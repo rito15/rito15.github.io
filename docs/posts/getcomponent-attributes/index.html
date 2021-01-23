@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Getcomponent Attributes" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity_GetComponentAttributes GetComponent(), Find() 종류의 메소드들을 필드/프로퍼티 애트리뷰트로 제공합니다. https://github.com/rito15/Unity_GetComponent-Attributes","headline":"Getcomponent Attributes","dateModified":"2020-04-13T00:30:00+09:00","datePublished":"2020-04-13T00:30:00+09:00","url":"https://rito15.github.io/posts/getcomponent-attributes/","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/getcomponent-attributes/"},"author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Unity_GetComponentAttributes GetComponent(), Find() 종류의 메소드들을 필드/프로퍼티 애트리뷰트로 제공합니다. https://github.com/rito15/Unity_GetComponent-Attributes","datePublished":"2020-04-13T00:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/getcomponent-attributes/"},"url":"https://rito15.github.io/posts/getcomponent-attributes/","author":{"@type":"Person","name":"Rito15"},"headline":"Getcomponent Attributes","dateModified":"2020-04-13T00:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -905,6 +905,11 @@
         
         <li><a href="/posts/ray-marching/">Ray Marching</a></li>
       
+        
+        
+        
+        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
+      
 
       </ul>
     </div> <!-- #access-lastmod -->
@@ -932,6 +937,51 @@
     
     
     
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -961,6 +1011,20 @@
     
     
     
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -984,6 +1048,12 @@
       
         
         <a class="post-tag" href="/tags/unity/">unity</a>
+      
+        
+        <a class="post-tag" href="/tags/attribute/">attribute</a>
+      
+        
+        <a class="post-tag" href="/tags/custom/">custom</a>
       
         
         <a class="post-tag" href="/tags/plugin/">plugin</a>
@@ -1077,6 +1147,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
 
 
@@ -1094,6 +1177,72 @@
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
     <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/custom-attributes/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 17
+  
+
+  <i class="unloaded">2021-01-17T23:18:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Attributes</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Download
+
+
+  https://github.com/rito15/Unity_Custom_Attributes
+
+
+
+
+MemoBox
+
+
+  필드의 상단에 상자 및 메모를 표시합니다.
+
+
+
+  
+    
+      매개변수
+      설명
+    
+  
+  
+    
+      Contents
+      메모에 적을 내용을 기록합니다. 스트링을 콤마로...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     
       
       
@@ -1191,61 +1340,6 @@
 
 
 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/fog-of-war/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 20
-  
-
-  <i class="unloaded">2021-01-20T00:15:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Fog of War</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                개념
-
-
-  맵 전체에 걸쳐 RGBA(0, 0, 0, a)의 텍스쳐를 씌워 시야를 표현한다.
-  지정한 유닛이 현재 위치한 영역들은 a = 0,
-  지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8,
-  지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
-
-
-
-
-구현 방법
-
-[1] 카메라와 지상 사이에 안개 플레인 사용...
               </p>
             </div>
           </div>
@@ -1373,6 +1467,51 @@
     
     
     
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -1402,6 +1541,20 @@
     
     
     
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1420,6 +1573,12 @@
       
         
         <a class="post-tag" href="/tags/unity/">unity</a>
+      
+        
+        <a class="post-tag" href="/tags/attribute/">attribute</a>
+      
+        
+        <a class="post-tag" href="/tags/custom/">custom</a>
       
         
         <a class="post-tag" href="/tags/plugin/">plugin</a>
