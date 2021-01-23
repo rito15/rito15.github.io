@@ -10,5 +10,6 @@ order: 4
 # MIT License
 ---
 
+> Unity C# Developer
 
-> **Note**: Add Markdown syntax content to file `_tabs/about.md` and it will show up on this page.
+> [https://github.com/rito15](https://github.com/rito15)
