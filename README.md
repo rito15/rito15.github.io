@@ -1,3 +1,3 @@
 # Rito15.github.io
 ---
-- Github Blog
+- https://rito15.github.io/
