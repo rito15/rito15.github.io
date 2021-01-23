@@ -8,7 +8,7 @@ math: true
 mermaid: true
 ---
 
-## [1] 레이 마칭이란?
+# [1] 레이 마칭이란?
 ---
  - 폴리곤의 정점 정보를 이용해 렌더링하는 기존의 3D 렌더링 방식과는 다른 기법.
  
@@ -51,18 +51,18 @@ mermaid: true
  
 
  
-## [2] 장점
+# [2] 장점
 ---
  - 곡면을 부드럽게 렌더링할 수 있다.
  - 거리 함수, 연산 함수들을 이용하여 모델들을 다양하고 부드럽게 블렌딩하기에 좋다.
  - 각 레이를 GPU 연산을 통해 병렬적으로 연산하기에 적합하다.
  
-## [3] 단점
+# [3] 단점
 ---
  - 성능 소모가 크다.
  <img src="https://user-images.githubusercontent.com/42164422/105004241-023b9780-5a77-11eb-9d91-015809da2d88.png" width="500">
  
-## [4] 연관 개념
+# [4] 연관 개념
 ---
  - https://blog.hybrid3d.dev/2019-11-15-raytracing-pathtracing-denoising
 
@@ -74,7 +74,7 @@ mermaid: true
    - 레이 트레이싱을 이용해 디퓨즈(Diffuse) 및 스페큘러(Specular), 전역 조명(GI, Global Illumination)을 계산하는 기법
     
 
-## References
+# References
 ---
   - http://jamie-wong.com/2016/07/15/ray-marching-signed-distance-functions
   - https://www.youtube.com/watch?v=PGtv-dBi2wE [The Art of Code]

@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-01-23T23:13:55+09:00</updated>
+  <updated>2021-01-23T23:30:38+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,63 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Fog of War</title>
+    <link href="https://rito15.github.io/posts/fog-of-war/" rel="alternate" type="text/html" title="Fog of War" />
+    <published>2021-01-20T00:15:00+09:00</published>
+  
+    <updated>2021-01-20T00:15:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/fog-of-war/</id>
+    <content src="https://rito15.github.io/posts/fog-of-war/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      [1] 개념
+
+
+  맵 전체에 걸쳐 RGBA(0, 0, 0, a)의 텍스쳐를 씌워 시야를 표현한다.
+  지정한 유닛이 현재 위치한 영역들은 a = 0,
+  지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8,
+  지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
+
+
+[2] 구현 방법
+
+[2-1] 카메라와 지상 사이에 안개 플레인 사용
+
+
+  
+    시야의 역할을 해줄 검정색 플레인을 카메라와 지상 사이에 위치시킨다.
+  
+  
+    맵 전체를 좌표 형태의 2차원배열로 관리하여, 유닛들이 현재 위치한 영역, 방문했던 영역, 한 번도 방문하지 않은 영역의 정보를 실시간으로 저장한다.
+  
+  
+    카메라와 해당 유닛들 사이에서 시야를 적용할 안개 플레인의 로컬좌표를 ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>

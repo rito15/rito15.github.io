@@ -462,7 +462,7 @@
 
         
 
-        <h2 id="1-레이-마칭이란">[1] 레이 마칭이란?</h2>
+        <h1 id="1-레이-마칭이란">[1] 레이 마칭이란?</h1>
 <hr />
 <ul>
   <li>
@@ -512,7 +512,7 @@
 <h3 id="--간단한-구현-예시-httpsgithubcomseblagueray-marching-활용">- 간단한 구현 예시 (https://github.com/SebLague/Ray-Marching 활용)</h3>
 <center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105003713-5f831900-5a76-11eb-8090-bd2e8d6f9b87.png" width="500" /></center>
 
-<h2 id="2-장점">[2] 장점</h2>
+<h1 id="2-장점">[2] 장점</h1>
 <hr />
 <ul>
   <li>곡면을 부드럽게 렌더링할 수 있다.</li>
@@ -520,14 +520,14 @@
   <li>각 레이를 GPU 연산을 통해 병렬적으로 연산하기에 적합하다.</li>
 </ul>
 
-<h2 id="3-단점">[3] 단점</h2>
+<h1 id="3-단점">[3] 단점</h1>
 <hr />
 <ul>
   <li>성능 소모가 크다.
  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105004241-023b9780-5a77-11eb-9d91-015809da2d88.png" width="500" /></li>
 </ul>
 
-<h2 id="4-연관-개념">[4] 연관 개념</h2>
+<h1 id="4-연관-개념">[4] 연관 개념</h1>
 <hr />
 <ul>
   <li>
@@ -546,7 +546,7 @@
   </li>
 </ul>
 
-<h2 id="references">References</h2>
+<h1 id="references">References</h1>
 <hr />
 <ul>
   <li>http://jamie-wong.com/2016/07/15/ray-marching-signed-distance-functions</li>
@@ -804,6 +804,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -829,6 +842,12 @@
 
 
 
+  
+    
+    
+      
+      
+    
   
     
     
@@ -896,6 +915,59 @@
         </a>
       </div>
     
+      
+      
+      <div class="card">
+        <a href="/posts/fog-of-war/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 20
+  
+
+  <i class="unloaded">2021-01-20T00:15:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Fog of War</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                [1] 개념
+
+
+  맵 전체에 걸쳐 RGBA(0, 0, 0, a)의 텍스쳐를 씌워 시야를 표현한다.
+  지정한 유닛이 현재 위치한 영역들은 a = 0,
+  지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8,
+  지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
+
+
+[2] 구현 방법
+
+[2-1] 카메라와 지상 사이에 안...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -918,9 +990,9 @@
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/fog-of-war/" class="btn btn-outline-primary">
+    <p>Fog of War</p>
+  </a>
   
 
 </div>
