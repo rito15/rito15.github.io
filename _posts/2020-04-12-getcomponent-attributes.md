@@ -2,7 +2,7 @@
 title: Getcomponent Attributes
 author: Rito15
 date: 2020-04-12 23:30:00 +08:00
-categories: [Unity, Asset]
+categories: [Unity, Toys]
 tags: [unity, csharp, plugin]
 math: true
 mermaid: true
