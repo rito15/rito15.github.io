@@ -1,7 +1,7 @@
 ---
 title: Getcomponent Attributes
 author: Rito15
-date: 2020-04-12 23:30:00 +08:00
+date: 2020-04-12 23:30:00 +09:00
 categories: [Unity, Toys]
 tags: [unity, csharp, plugin]
 math: true
