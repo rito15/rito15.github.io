@@ -1,11 +1,12 @@
 ---
 title: Ray Marching
 author: Rito15
-date: 2021-01-19 23:15:00 +08:00
+date: 2021-01-19 23:15:00 +09:00
 categories: [Unity, Study]
 tags: [unity, csharp]
-math: true
-mermaid: true
+toc: true
+pin: false
+published: true
 ---
 
 ## [1] 레이 마칭이란?
