@@ -92,7 +92,7 @@ mermaid: true
 
 # References
 ---
-  - http://jamie-wong.com/2016/07/15/ray-marching-signed-distance-functions
-  - https://www.youtube.com/watch?v=PGtv-dBi2wE [The Art of Code]
-  - https://www.youtube.com/watch?v=Cp5WWtMoeKg [Sebastian Lague]
-  - https://github.com/SebLague/Ray-Marching
+  - <http://jamie-wong.com/2016/07/15/ray-marching-signed-distance-functions>
+  - <https://www.youtube.com/watch?v=PGtv-dBi2wE> [The Art of Code]
+  - <https://www.youtube.com/watch?v=Cp5WWtMoeKg> [Sebastian Lague]
+  - <https://github.com/SebLague/Ray-Marching>

@@ -8,8 +8,8 @@ math: true
 mermaid: true
 ---
 
-# Unity_GetComponentAttributes
- - ```GetComponent()```, ```Find()``` 종류의 메소드들을 필드/프로퍼티 애트리뷰트로 제공합니다.
+# Note
+ - `GetComponent()`, `Find()` 종류의 메소드들을 필드/프로퍼티 애트리뷰트로 제공합니다.
  - [https://github.com/rito15/Unity_GetComponent-Attributes](https://github.com/rito15/Unity_GetComponent-Attributes)
  
 

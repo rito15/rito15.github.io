@@ -127,7 +127,7 @@ private void MakeBehaviorNodes()
 
 <br>
 
-# Source Codes
+# Source Code
 ---
 
-- https://github.com/rito15/UnityStudy2
+- [https://github.com/rito15/UnityStudy2](https://github.com/rito15/UnityStudy2)
