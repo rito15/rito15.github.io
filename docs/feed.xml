@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-01-23T23:30:38+09:00</updated>
+  <updated>2021-01-23T23:46:13+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -48,7 +48,7 @@
 
 
 
-      [1] 개념
+      개념
 
 
   맵 전체에 걸쳐 RGBA(0, 0, 0, a)의 텍스쳐를 씌워 시야를 표현한다.
@@ -57,9 +57,11 @@
   지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
 
 
-[2] 구현 방법
 
-[2-1] 카메라와 지상 사이에 안개 플레인 사용
+
+구현 방법
+
+[1] 카메라와 지상 사이에 안개 플레인 사용
 
 
   
@@ -69,7 +71,7 @@
     맵 전체를 좌표 형태의 2차원배열로 관리하여, 유닛들이 현재 위치한 영역, 방문했던 영역, 한 번도 방문하지 않은 영역의 정보를 실시간으로 저장한다.
   
   
-    카메라와 해당 유닛들 사이에서 시야를 적용할 안개 플레인의 로컬좌표를 ...
+    카메라와 해당 유닛들 사이에서 시야를 적용할 안개 플레인의 로컬좌표를 구하고 정점 색...
     </summary>
   
 
@@ -81,7 +83,7 @@
     <link href="https://rito15.github.io/posts/ray-marching/" rel="alternate" type="text/html" title="Ray Marching" />
     <published>2021-01-20T00:15:00+09:00</published>
   
-    <updated>2021-01-23T21:50:29+09:00</updated>
+    <updated>2021-01-23T23:30:46+09:00</updated>
   
     <id>https://rito15.github.io/posts/ray-marching/</id>
     <content src="https://rito15.github.io/posts/ray-marching/" />
@@ -105,11 +107,12 @@
 
 
 
-      [1] 레이 마칭이란?
+      레이 마칭이란?
+
 
 
   
-    폴리곤의 정점 정보를 이용해 렌더링하는 기존의 3D 렌더링 방식과는 다른 기법.
+    폴리곤의 정점 정보를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 표면의 정보를 얻어 오브젝트를 그려내는 기법
   
   
     레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.
@@ -119,18 +122,19 @@
 
 
 
+
+
   한 점(RO : Ray Origin, 위의 그림에서 Camera)에서 스크린의 각각의 픽셀을 향한 방향(RD : Ray Direction, 위의 그림에서 Image)들을 향해
 레이 캐스팅을 하여, 각 레이마다 여러 스텝(Step)으로 나누어 레이를 전진시키게 된다.
 
 
+
+
   
 
 
   
-    한 번의 스텝마다 존재하는 모든 SDF를 각각 계산하여 현재 레이 위치로부터 각 모델들과의 거리를 얻어낸다.
-  
-  
-   ...
+    한 번의 스텝마다 존재하는 모든 SDF를 각각 계산하...
     </summary>
   
 
@@ -142,7 +146,7 @@
     <link href="https://rito15.github.io/posts/behavior-tree/" rel="alternate" type="text/html" title="Behavior Tree" />
     <published>2021-01-05T01:26:00+09:00</published>
   
-    <updated>2021-01-23T21:50:29+09:00</updated>
+    <updated>2021-01-23T23:30:46+09:00</updated>
   
     <id>https://rito15.github.io/posts/behavior-tree/</id>
     <content src="https://rito15.github.io/posts/behavior-tree/" />
@@ -166,7 +170,7 @@
 
 
 
-      [1] 개념
+      개념
 
 
   FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
@@ -176,7 +180,52 @@
     
       Leaf : 동작을 수행하는 노드. 대표적으로 Action 또는 Task 노드가 있다.
       Decorator : 다른 노드에 조건을 붙여 수식하는 노드
-      Composite : 자식 노드들을 가지며, ...
+      Composite : 자식 노드들을 가지며, 자식들을...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Getcomponent Attributes</title>
+    <link href="https://rito15.github.io/posts/getcomponent-attributes/" rel="alternate" type="text/html" title="Getcomponent Attributes" />
+    <published>2020-04-13T00:30:00+09:00</published>
+  
+    <updated>2020-04-13T00:30:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/getcomponent-attributes/</id>
+    <content src="https://rito15.github.io/posts/getcomponent-attributes/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Asset" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Unity_GetComponentAttributes
+
+  GetComponent(), Find() 종류의 메소드들을 필드/프로퍼티 애트리뷰트로 제공합니다.
+  https://github.com/rito15/Unity_GetComponent-Attributes
+
+
+Catalog
+/* ******************************************************************************** *
+ *                                    참고사항                                       *
+ * **********************************************************************...
     </summary>
   
 

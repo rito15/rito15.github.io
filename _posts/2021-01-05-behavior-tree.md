@@ -8,7 +8,7 @@ math: true
 mermaid: true
 ---
 
-# [1] 개념
+# 개념
 ---
 - FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
 - FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
@@ -16,16 +16,19 @@ mermaid: true
 - 기본적으로 Leaf, Decorator, Composite 노드를 기반으로 하며, 구현은 많이 다를 수 있다.
   - Leaf : 동작을 수행하는 노드. 대표적으로 Action 또는 Task 노드가 있다.
   - Decorator : 다른 노드에 조건을 붙여 수식하는 노드
-  - Composite : 자식 노드들을 가지며, 자식들을 순회하거나 선택하는 역할을 수행하는 노드  
+  - Composite : 자식 노드들을 가지며, 자식들을 순회하거나 선택하는 역할을 수행하는 노드
 
+<br>
 
-# [2] 노드 구성
+# 노드 구성
 ---
 - 모든 노드는 실행의 결과로 true 또는 false를 리턴한다.
 
-- Decorator는 가독성의 이유로 Composite와 Leaf들의 구성으로 대체하였다.  
+- Decorator는 가독성의 이유로 Composite와 Leaf들의 구성으로 대체하였다.
 
-## [2-1] 인터페이스
+<br>
+
+## [1] 인터페이스
 
 - **INode**
   - 최상위 노드 클래스
@@ -40,9 +43,11 @@ mermaid: true
 
 - **ICompositeNode** : INode
   - 자식들을 순회하기 위한 노드
-  - 인터페이스 구현 시 List<INode> ChildList 멤버를 작성한다.  
+  - 인터페이스 구현 시 List<INode> ChildList 멤버를 작성한다.
 
-## [2-2] 클래스
+<br>
+
+## [2] 클래스
 
 - **ActionNode** : ILeafNode
   - 주요 동작을 수행하는 역할을 하며, 무조건 true를 리턴한다.
@@ -64,10 +69,11 @@ mermaid: true
   - 모든 자식 노드가 true인 경우 Sequence 노드도 true를 리턴하며, false인 자식이 존재하는 경우 즉시 false를 리턴하고 종료한다.
 
 - **ParallelNode** : ICompositeNode
-  - 자식 노드들의 실행 결과에 관계 없이 모든 자식 노드를 순회한다.  
+  - 자식 노드들의 실행 결과에 관계 없이 모든 자식 노드를 순회한다.
 
+<br>
 
-# [3] 예시 코드
+# 예시 코드
 ---
 
 ```cs

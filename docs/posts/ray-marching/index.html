@@ -26,8 +26,8 @@
 <meta property="og:title" content="Ray Marching" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="[1] 레이 마칭이란? 폴리곤의 정점 정보를 이용해 렌더링하는 기존의 3D 렌더링 방식과는 다른 기법. 레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다." />
-<meta property="og:description" content="[1] 레이 마칭이란? 폴리곤의 정점 정보를 이용해 렌더링하는 기존의 3D 렌더링 방식과는 다른 기법. 레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다." />
+<meta name="description" content="레이 마칭이란?" />
+<meta property="og:description" content="레이 마칭이란?" />
 <link rel="canonical" href="https://rito15.github.io/posts/ray-marching/" />
 <meta property="og:url" content="https://rito15.github.io/posts/ray-marching/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Ray Marching" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"[1] 레이 마칭이란? 폴리곤의 정점 정보를 이용해 렌더링하는 기존의 3D 렌더링 방식과는 다른 기법. 레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.","datePublished":"2021-01-20T00:15:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/ray-marching/"},"url":"https://rito15.github.io/posts/ray-marching/","author":{"@type":"Person","name":"Rito15"},"headline":"Ray Marching","dateModified":"2021-01-23T21:50:29+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"레이 마칭이란?","headline":"Ray Marching","dateModified":"2021-01-23T23:30:46+09:00","datePublished":"2021-01-20T00:15:00+09:00","url":"https://rito15.github.io/posts/ray-marching/","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/ray-marching/"},"author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,7 +421,7 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sat, Jan 23, 2021,  9:50 PM +0900"
+    title="Sat, Jan 23, 2021, 11:30 PM +0900"
   >
 
   
@@ -431,7 +431,7 @@
     Jan 23
   
 
-  <i class="unloaded">2021-01-23T21:50:29+09:00</i>
+  <i class="unloaded">2021-01-23T23:30:46+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="616 words">3 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="640 words">3 min</span>
 
 
           <!-- page views -->
@@ -462,16 +462,19 @@
 
         
 
-        <h1 id="1-레이-마칭이란">[1] 레이 마칭이란?</h1>
+        <h1 id="레이-마칭이란">레이 마칭이란?</h1>
 <hr />
+
 <ul>
   <li>
-    <p>폴리곤의 정점 정보를 이용해 렌더링하는 기존의 3D 렌더링 방식과는 다른 기법.</p>
+    <p>폴리곤의 정점 정보를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 표면의 정보를 얻어 오브젝트를 그려내는 기법</p>
   </li>
   <li>
     <p>레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.</p>
   </li>
 </ul>
+
+<p><br /></p>
 
 <center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104993172-ce0bab00-5a65-11eb-9eda-705de2034f17.png" width="500" /></center>
 
@@ -479,6 +482,8 @@
   <li>한 점(RO : Ray Origin, 위의 그림에서 Camera)에서 스크린의 각각의 픽셀을 향한 방향(RD : Ray Direction, 위의 그림에서 Image)들을 향해
 레이 캐스팅을 하여, 각 레이마다 여러 스텝(Step)으로 나누어 레이를 전진시키게 된다.</li>
 </ul>
+
+<p><br /></p>
 
 <center> <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104993811-c1d41d80-5a66-11eb-9ad3-a861471cce8e.png" width="500" /> </center>
 
@@ -500,19 +505,35 @@
   </li>
 </ul>
 
-<h3 id="1-거리-계산">1) 거리 계산</h3>
+<p><br /></p>
+
+<h3 id="1-거리-계산">[1] 거리 계산</h3>
+
 <center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104995624-f0072c80-5a69-11eb-9888-15b0f89edd41.png" width="500" /></center>
 
-<h3 id="2-노멀-계산">2) 노멀 계산</h3>
+<h3 id="2-노멀-계산">[2] 노멀 계산</h3>
+
 <center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104995731-1927bd00-5a6a-11eb-8f0b-c63f60abe394.png" width="500" /> </center>
 
-<h3 id="3-라이트directional-light-계산">3) 라이트(Directional Light) 계산</h3>
+<h3 id="3-라이트directional-light-계산">[3] 라이트(Directional Light) 계산</h3>
+
 <center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104995793-2e045080-5a6a-11eb-86db-8c7601d12846.png" width="500" /> </center>
 
-<h3 id="--간단한-구현-예시-httpsgithubcomseblagueray-marching-활용">- 간단한 구현 예시 (https://github.com/SebLague/Ray-Marching 활용)</h3>
+<h3 id="간단한-구현-예시-httpsgithubcomseblagueray-marching-활용">간단한 구현 예시 (https://github.com/SebLague/Ray-Marching 활용)</h3>
+
 <center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105003713-5f831900-5a76-11eb-8090-bd2e8d6f9b87.png" width="500" /></center>
 
-<h1 id="2-장점">[2] 장점</h1>
+<h3 id="shadertoy에서의-구현">ShaderToy에서의 구현</h3>
+
+<ul>
+  <li><a href="https://www.shadertoy.com/view/wstBW4">https://www.shadertoy.com/view/wstBW4</a></li>
+</ul>
+
+<center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105588245-d00e9a80-5dd4-11eb-88ac-a146ee0fc817.png" width="500" /></center>
+
+<p><br /></p>
+
+<h1 id="장점">장점</h1>
 <hr />
 <ul>
   <li>곡면을 부드럽게 렌더링할 수 있다.</li>
@@ -520,14 +541,18 @@
   <li>각 레이를 GPU 연산을 통해 병렬적으로 연산하기에 적합하다.</li>
 </ul>
 
-<h1 id="3-단점">[3] 단점</h1>
+<p><br /></p>
+
+<h1 id="단점">단점</h1>
 <hr />
 <ul>
   <li>성능 소모가 크다.
  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105004241-023b9780-5a77-11eb-9d91-015809da2d88.png" width="500" /></li>
 </ul>
 
-<h1 id="4-연관-개념">[4] 연관 개념</h1>
+<p><br /></p>
+
+<h1 id="연관-개념">연관 개념</h1>
 <hr />
 <ul>
   <li>
@@ -545,6 +570,8 @@
     </ul>
   </li>
 </ul>
+
+<p><br /></p>
 
 <h1 id="references">References</h1>
 <hr />
@@ -736,6 +763,25 @@
     
     
     
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -753,6 +799,9 @@
       
         
         <a class="post-tag" href="/tags/unity/">unity</a>
+      
+        
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
 
       </div>
@@ -831,6 +880,19 @@
   
 
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
 
 
 
@@ -839,25 +901,6 @@
 
 <!-- Fill with the other newlest posts  -->
 
-
-
-
-  
-    
-    
-      
-      
-    
-  
-    
-    
-  
-    
-    
-      
-      
-    
-  
 
 
 
@@ -902,13 +945,13 @@
 
 
 
-                [1] 개념
+                개념
 
 
 
   FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
   FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
-  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 ...
+  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
               </p>
             </div>
           </div>
@@ -950,7 +993,7 @@
 
 
 
-                [1] 개념
+                개념
 
 
   맵 전체에 걸쳐 RGBA(0, 0, 0, a)의 텍스쳐를 씌워 시야를 표현한다.
@@ -959,9 +1002,60 @@
   지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
 
 
-[2] 구현 방법
 
-[2-1] 카메라와 지상 사이에 안...
+
+구현 방법
+
+[1] 카메라와 지상 사이에 안개 플레인 사용...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/getcomponent-attributes/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Apr 13, 2020
+  
+
+  <i class="unloaded">2020-04-13T00:30:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Getcomponent Attributes</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Unity_GetComponentAttributes
+
+  GetComponent(), Find() 종류의 메소드들을 필드/프로퍼티 애트리뷰트로 제공합니다.
+  https://github.com/rito15/Unity_GetComponent-Attributes
+
+
+Catalog
+/* ***************************************...
               </p>
             </div>
           </div>
@@ -1105,6 +1199,25 @@
     
     
     
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1117,6 +1230,9 @@
       
         
         <a class="post-tag" href="/tags/unity/">unity</a>
+      
+        
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
 
     </div>
