@@ -1,0 +1,130 @@
+
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://rito15.github.io/</id>
+  <title>Rito15</title>
+  <subtitle>Unity Csharp Developer</subtitle>
+  <updated>2021-01-23T22:55:57+09:00</updated>
+  <author>
+    <name>Rito15</name>
+    <uri>https://rito15.github.io/</uri>
+  </author>
+  <link rel="self" type="application/atom+xml" href="https://rito15.github.io/feed.xml"/>
+  <link rel="alternate" type="text/html" hreflang="en"
+    href="https://rito15.github.io/"/>
+  <generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator>
+  <rights> © 2021 Rito15 </rights>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
+
+
+  
+  <entry>
+    <title>Ray Marching</title>
+    <link href="https://rito15.github.io/posts/ray-marching/" rel="alternate" type="text/html" title="Ray Marching" />
+    <published>2021-01-20T00:15:00+09:00</published>
+  
+    <updated>2021-01-23T21:50:29+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/ray-marching/</id>
+    <content src="https://rito15.github.io/posts/ray-marching/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      [1] 레이 마칭이란?
+
+
+  
+    폴리곤의 정점 정보를 이용해 렌더링하는 기존의 3D 렌더링 방식과는 다른 기법.
+  
+  
+    레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.
+  
+
+
+
+
+
+  한 점(RO : Ray Origin, 위의 그림에서 Camera)에서 스크린의 각각의 픽셀을 향한 방향(RD : Ray Direction, 위의 그림에서 Image)들을 향해
+레이 캐스팅을 하여, 각 레이마다 여러 스텝(Step)으로 나누어 레이를 전진시키게 된다.
+
+
+  
+
+
+  
+    한 번의 스텝마다 존재하는 모든 SDF를 각각 계산하여 현재 레이 위치로부터 각 모델들과의 거리를 얻어낸다.
+  
+  
+   ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Behavior Tree</title>
+    <link href="https://rito15.github.io/posts/behavior-tree/" rel="alternate" type="text/html" title="Behavior Tree" />
+    <published>2021-01-05T01:26:00+09:00</published>
+  
+    <updated>2021-01-23T21:50:29+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/behavior-tree/</id>
+    <content src="https://rito15.github.io/posts/behavior-tree/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      [1] 개념
+
+
+  FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
+  FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
+  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다.
+  기본적으로 Leaf, Decorator, Composite 노드를 기반으로 하며, 구현은 많이 다를 수 있다.
+    
+      Leaf : 동작을 수행하는 노드. 대표적으로 Action 또는 Task 노드가 있다.
+      Decorator : 다른 노드에 조건을 붙여 수식하는 노드
+      Composite : 자식 노드들을 가지며, ...
+    </summary>
+  
+
+  </entry>
+
+</feed>
+
+
