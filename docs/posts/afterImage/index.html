@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Pixelater" />
+<meta property="og:title" content="AfterImage(Motion Trail)" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Note 렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킵니다. 스크립트를 카메라에 부착하여 사용합니다." />
-<meta property="og:description" content="Note 렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킵니다. 스크립트를 카메라에 부착하여 사용합니다." />
-<link rel="canonical" href="https://rito15.github.io/posts/pixelater/" />
-<meta property="og:url" content="https://rito15.github.io/posts/pixelater/" />
+<meta name="description" content="Note 게임오브젝트가 지나간 자리에 잔상을 생성합니다. 하위 게임오브젝트에도 렌더러가 있는 경우, 잔상을 함께 생성할 수 있습니다." />
+<meta property="og:description" content="Note 게임오브젝트가 지나간 자리에 잔상을 생성합니다. 하위 게임오브젝트에도 렌더러가 있는 경우, 잔상을 함께 생성할 수 있습니다." />
+<link rel="canonical" href="https://rito15.github.io/posts/afterImage/" />
+<meta property="og:url" content="https://rito15.github.io/posts/afterImage/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-01-19T22:56:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Pixelater" />
+<meta property="twitter:title" content="AfterImage(Motion Trail)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note 렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킵니다. 스크립트를 카메라에 부착하여 사용합니다.","datePublished":"2021-01-19T22:56:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/pixelater/"},"url":"https://rito15.github.io/posts/pixelater/","author":{"@type":"Person","name":"Rito15"},"headline":"Pixelater","dateModified":"2021-01-25T02:17:35+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note 게임오브젝트가 지나간 자리에 잔상을 생성합니다. 하위 게임오브젝트에도 렌더러가 있는 경우, 잔상을 함께 생성할 수 있습니다.","datePublished":"2021-01-19T22:56:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/afterImage/"},"url":"https://rito15.github.io/posts/afterImage/","author":{"@type":"Person","name":"Rito15"},"headline":"AfterImage(Motion Trail)","dateModified":"2021-01-19T22:56:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Pixelater | Rito15
+  <title>AfterImage(Motion Trail) | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>Pixelater</span>
+        <span>AfterImage(Motion Trail)</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Pixelater</h1>
+      <h1 data-toc-skip>AfterImage(Motion Trail)</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -407,35 +407,6 @@
         <div>
           <!-- lastmod -->
           
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Jan 25, 2021,  2:17 AM +0900"
-  >
-
-  
-  
-
-  
-    Jan 25
-  
-
-  <i class="unloaded">2021-01-25T02:17:35+09:00</i>
-
-</span>
-          </span>
-          
 
           <!-- read time -->
           <!--
@@ -448,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="56 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="282 words">1 min</span>
 
 
           <!-- page views -->
@@ -465,19 +436,36 @@
         <h1 id="note">Note</h1>
 <hr />
 <ul>
-  <li>렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킵니다.</li>
-  <li>스크립트를 카메라에 부착하여 사용합니다.</li>
+  <li>게임오브젝트가 지나간 자리에 잔상을 생성합니다.</li>
+  <li>하위 게임오브젝트에도 렌더러가 있는 경우, 잔상을 함께 생성할 수 있습니다.</li>
+</ul>
+
+<h1 id="how-to-use">How To Use</h1>
+<hr />
+<ul>
+  <li>대상 게임오브젝트에 Mesh Renderer가 존재하는 경우, MeshAfterImage 스크립트를 부착합니다.</li>
+  <li>Skinned Mesh Renderer가 존재하는 경우, SkinnedMeshAfterImage 스크립트를 부착합니다.</li>
+  <li>
+    <p>After Image Material 필드에 동봉된 AfterImage 마테리얼을 지정합니다.</p>
+  </li>
+  <li>After Image Gradient 옵션으로 잔상의 색상을 지정할 수 있습니다.</li>
+  <li>Color Update Speed 옵션으로 그라디언트 색상 변화 속도를 조절할 수 잇습니다.</li>
+  <li>Baking Cycle 옵션으로 잔상 생성 주기를 조절할 수 있습니다.</li>
+  <li>Duration 옵션으로 잔상 지속 시간을 조절할 수 있습니다.</li>
+  <li>Contain Children Meshes를 체크할 경우 해당 게임오브젝트의 모든 하위 오브젝트에 있는 메시들도 잔상을 생성합니다.</li>
 </ul>
 
 <h1 id="preview">Preview</h1>
 <hr />
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105009217-90b31780-5a7d-11eb-8feb-bf1062c91286.gif" alt="" /></p>
+<h2 id="1-mesh-afterimage">1. Mesh AfterImage</h2>
 
-<h1 id="reference">Reference</h1>
-<hr />
-<ul>
-  <li><a href="https://www.youtube.com/watch?v=5rMkh9sl2bM">https://www.youtube.com/watch?v=5rMkh9sl2bM</a></li>
-</ul>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104916486-7c1b4480-59d5-11eb-9aa2-5ad96490d932.gif" alt="" />
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104916405-6017a300-59d5-11eb-8527-f6090e3465d9.png" alt="" /></p>
+
+<h2 id="2-skinned-mesh-afterimage">2. Skinned Mesh AfterImage</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104916494-7e7d9e80-59d5-11eb-9bff-71be140535ea.gif" alt="" />
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104916473-76bdfa00-59d5-11eb-98b1-bcedfc89eb63.png" alt="" /></p>
 
 <h1 id="source-code">Source Code</h1>
 <hr />
@@ -488,7 +476,7 @@
 <h1 id="download">Download</h1>
 <hr />
 <ul>
-  <li><a href="https://github.com/rito15/Images/files/5862729/Pixelater.zip">Pixelater.zip</a></li>
+  <li><a href="https://github.com/rito15/Images/files/5862734/2021_0118_AfterImage.zip">AfterImage.zip</a></li>
 </ul>
 
 
@@ -550,19 +538,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Pixelater - Rito15&url=https://rito15.github.io/posts/pixelater/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=AfterImage(Motion Trail) - Rito15&url=https://rito15.github.io/posts/afterImage/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Pixelater - Rito15&u=https://rito15.github.io/posts/pixelater/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=AfterImage(Motion Trail) - Rito15&u=https://rito15.github.io/posts/afterImage/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Pixelater - Rito15&url=https://rito15.github.io/posts/pixelater/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=AfterImage(Motion Trail) - Rito15&url=https://rito15.github.io/posts/afterImage/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -988,6 +976,11 @@
   </div> <!-- .access -->
 
   
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
@@ -1078,20 +1071,20 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
   
 
   
@@ -1190,7 +1183,7 @@
       
       
       <div class="card">
-        <a href="/posts/afterImage/">
+        <a href="/posts/pixelater/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1213,7 +1206,7 @@
   <i class="unloaded">2021-01-19T22:56:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>AfterImage(Motion Trail)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pixelater</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1225,17 +1218,27 @@
                 Note
 
 
-
-  게임오브젝트가 지나간 자리에 잔상을 생성합니다.
-  하위 게임오브젝트에도 렌더러가 있는 경우, 잔상을 함께 생성할 수 있습니다.
-
-
-How To Use
+  렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킵니다.
+  스크립트를 카메라에 부착하여 사용합니다.
 
 
+Preview
 
-  대상 게임오브젝트에 Mesh Renderer가 존재하는 경우, MeshAfterImage 스크립트를 부착합니다.
-  Skinned Mesh Renderer가 존재하는 경우, ...
+
+
+Reference
+
+
+  https://www.youtube.com/watch?v=5rMkh9sl2bM
+
+
+Source Code
+
+
+  https://github.com/rito15/Unity_Toys
+
+
+...
               </p>
             </div>
           </div>
@@ -1374,14 +1377,14 @@ Catalog
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/afterImage/" class="btn btn-outline-primary">
-    <p>AfterImage(Motion Trail)</p>
+  <a href="/posts/custom-attributes/" class="btn btn-outline-primary">
+    <p>Custom Attributes</p>
   </a>
   
 
   
-  <a href="/posts/ray-marching/" class="btn btn-outline-primary">
-    <p>Ray Marching</p>
+  <a href="/posts/pixelater/" class="btn btn-outline-primary">
+    <p>Pixelater</p>
   </a>
   
 

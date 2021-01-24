@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Save Transform During Play" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note 기존에는 플레이 모드에서 트랜스폼의 위치, 회전, 크기를 변경하여도 플레이 모드가 종료되면 변경사항이 저장되지 않습니다. 따라서 컴포넌트를 간단히 추가하기만 하면 플레이 모드를 종료해도 트랜스폼의 변경사항이 저장되도록 하는 컴포넌트를 제작했습니다. How to Use 원하는 게임오브젝트에 SaveTransformDuringPlay 컴포넌트를 추가하고, On에 체크합니다. 플레이 모드에서 On, 각각의 Space 옵션을 수정해도 수정사항이 적용됩니다. 인스펙터에서 Position Space를 Local 또는 World로 설정하여, 플레이모드가 종료될 때 transform.localPosition과 transform.position 중 어떤 값을 보존할지 선택할 수 있습니다. 인스펙터에서 Rotation Space를 Local 또는 World로 설정하여, 플레이모드가 종료될 때 transform.localRotation과 transform.rotation 중 어떤 값을 보존할지 선택할 수 있습니다. 인스펙터에서 Scale Space를 Local 또는 World로 설정하여, 플레이모드가 종료될 때 transform.localScale과 transform.lossyScale 중 어떤 값을 보존할지 선택할 수 있습니다. Example Local Space 옵션을 적용하는 경우 종료하기 직전 인스펙터의 transform 요소 값들을 그대로 보존합니다.","datePublished":"2020-04-11T18:10:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/save-transform-during-play/"},"url":"https://rito15.github.io/posts/save-transform-during-play/","author":{"@type":"Person","name":"Rito15"},"headline":"Save Transform During Play","dateModified":"2020-04-11T18:10:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note 기존에는 플레이 모드에서 트랜스폼의 위치, 회전, 크기를 변경하여도 플레이 모드가 종료되면 변경사항이 저장되지 않습니다. 따라서 컴포넌트를 간단히 추가하기만 하면 플레이 모드를 종료해도 트랜스폼의 변경사항이 저장되도록 하는 컴포넌트를 제작했습니다. How to Use 원하는 게임오브젝트에 SaveTransformDuringPlay 컴포넌트를 추가하고, On에 체크합니다. 플레이 모드에서 On, 각각의 Space 옵션을 수정해도 수정사항이 적용됩니다. 인스펙터에서 Position Space를 Local 또는 World로 설정하여, 플레이모드가 종료될 때 transform.localPosition과 transform.position 중 어떤 값을 보존할지 선택할 수 있습니다. 인스펙터에서 Rotation Space를 Local 또는 World로 설정하여, 플레이모드가 종료될 때 transform.localRotation과 transform.rotation 중 어떤 값을 보존할지 선택할 수 있습니다. 인스펙터에서 Scale Space를 Local 또는 World로 설정하여, 플레이모드가 종료될 때 transform.localScale과 transform.lossyScale 중 어떤 값을 보존할지 선택할 수 있습니다. Example Local Space 옵션을 적용하는 경우 종료하기 직전 인스펙터의 transform 요소 값들을 그대로 보존합니다.","datePublished":"2020-04-11T18:10:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/save-transform-during-play/"},"url":"https://rito15.github.io/posts/save-transform-during-play/","author":{"@type":"Person","name":"Rito15"},"headline":"Save Transform During Play","dateModified":"2021-01-25T02:17:35+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,6 +407,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Jan 25, 2021,  2:17 AM +0900"
+  >
+
+  
+  
+
+  
+    Jan 25
+  
+
+  <i class="unloaded">2021-01-25T02:17:35+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -662,27 +691,27 @@
         
         
         
-        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/frame-rate-checker/">Frame Rate Checker</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/getcomponent-attributes/">Getcomponent Attributes</a></li>
-      
-        
-        
-        
         <li><a href="/posts/behavior-tree/">Behavior Tree</a></li>
       
         
         
         
         <li><a href="/posts/custom-attributes/">Custom Attributes</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/pixelater/">Pixelater</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/ray-marching/">Ray Marching</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
       
 
       </ul>
@@ -1193,6 +1222,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
 
 
@@ -1210,6 +1252,124 @@
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
     <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/afterImage/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 19
+  
+
+  <i class="unloaded">2021-01-19T22:56:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>AfterImage(Motion Trail)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+  게임오브젝트가 지나간 자리에 잔상을 생성합니다.
+  하위 게임오브젝트에도 렌더러가 있는 경우, 잔상을 함께 생성할 수 있습니다.
+
+
+How To Use
+
+
+  대상 게임오브젝트에 Mesh Renderer가 존재하는 경우, MeshAfterImage 스크립트를 부착합니다.
+  Skinned Mesh Renderer가 존재하는 경우, Sk...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/pixelater/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 19
+  
+
+  <i class="unloaded">2021-01-19T22:56:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pixelater</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+  렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킵니다.
+  스크립트를 카메라에 부착하여 사용합니다.
+
+
+Preview
+
+
+
+Reference
+
+
+  https://www.youtube.com/watch?v=5rMkh9sl2bM
+
+
+Source Code
+
+
+  https://github.com/rito15/Unity_Toys
+
+
+...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     
       
       
@@ -1298,134 +1458,6 @@ Catalog
 42
 43
 44...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/pixelater/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 19
-  
-
-  <i class="unloaded">2021-01-19T22:56:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pixelater</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-  렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킵니다.
-  스크립트를 카메라에 부착하여 사용합니다.
-
-
-Preview
-
-
-
-Reference
-
-
-  https://www.youtube.com/watch?v=5rMkh9sl2bM
-
-
-Source Code
-
-
-  https://github.com/rito15/Unity_Toys
-
-
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/frame-rate-checker/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 24
-  
-
-  <i class="unloaded">2021-01-24T17:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Frame Rate Checker</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-  실제 FPS 값을 실시간, 최근 N개의 평균, 최소, 최댓값으로 확인할 수 있습니다.
-  게임 진행 동안 텍스트의 위치, 색상, 크기, GUI 표시 상태를 실시간으로 변경할 수 있습니다.
-
-
-Preview
-
-
-
-
-Source Code
-
-
-  https://github.com/rito15/Unity_Toys
-
-
-Download
-
-
-  F...
               </p>
             </div>
           </div>
