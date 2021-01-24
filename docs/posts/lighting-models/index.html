@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Frame Rate Checker" />
+<meta property="og:title" content="Lighting Models" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Note 실제 FPS 값을 실시간, 최근 N개의 평균, 최소, 최댓값으로 확인할 수 있습니다. 게임 진행 동안 텍스트의 위치, 색상, 크기, GUI 표시 상태를 실시간으로 변경할 수 있습니다." />
-<meta property="og:description" content="Note 실제 FPS 값을 실시간, 최근 N개의 평균, 최소, 최댓값으로 확인할 수 있습니다. 게임 진행 동안 텍스트의 위치, 색상, 크기, GUI 표시 상태를 실시간으로 변경할 수 있습니다." />
-<link rel="canonical" href="https://rito15.github.io/posts/frame-rate-checker/" />
-<meta property="og:url" content="https://rito15.github.io/posts/frame-rate-checker/" />
+<meta name="description" content="Vectors L (Light) : 정점에서 광원을 향하는 방향의 벡터 N (Normal) : 정점의 노멀 벡터 V (View) : 정점에서 카메라를 향하는 방향의 벡터 R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L ) H (Half) : 블린퐁에서 사용, L와 V의 중간 벡터 ( normalize(L + V) )" />
+<meta property="og:description" content="Vectors L (Light) : 정점에서 광원을 향하는 방향의 벡터 N (Normal) : 정점의 노멀 벡터 V (View) : 정점에서 카메라를 향하는 방향의 벡터 R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L ) H (Half) : 블린퐁에서 사용, L와 V의 중간 벡터 ( normalize(L + V) )" />
+<link rel="canonical" href="https://rito15.github.io/posts/lighting-models/" />
+<meta property="og:url" content="https://rito15.github.io/posts/lighting-models/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-01-24T17:00:00+09:00" />
+<meta property="article:published_time" content="2020-11-16T17:14:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Frame Rate Checker" />
+<meta property="twitter:title" content="Lighting Models" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note 실제 FPS 값을 실시간, 최근 N개의 평균, 최소, 최댓값으로 확인할 수 있습니다. 게임 진행 동안 텍스트의 위치, 색상, 크기, GUI 표시 상태를 실시간으로 변경할 수 있습니다.","datePublished":"2021-01-24T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/frame-rate-checker/"},"url":"https://rito15.github.io/posts/frame-rate-checker/","author":{"@type":"Person","name":"Rito15"},"headline":"Frame Rate Checker","dateModified":"2021-01-24T17:20:50+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Vectors L (Light) : 정점에서 광원을 향하는 방향의 벡터 N (Normal) : 정점의 노멀 벡터 V (View) : 정점에서 카메라를 향하는 방향의 벡터 R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L ) H (Half) : 블린퐁에서 사용, L와 V의 중간 벡터 ( normalize(L + V) )","datePublished":"2020-11-16T17:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/lighting-models/"},"url":"https://rito15.github.io/posts/lighting-models/","author":{"@type":"Person","name":"Rito15"},"headline":"Lighting Models","dateModified":"2020-11-16T17:14:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Frame Rate Checker | Rito15
+  <title>Lighting Models | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>Frame Rate Checker</span>
+        <span>Lighting Models</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Frame Rate Checker</h1>
+      <h1 data-toc-skip>Lighting Models</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sun, Jan 24, 2021,  5:00 PM +0900"
+    title="Mon, Nov 16, 2020,  5:14 PM +0900"
   >
 
   
   
 
   
-    Jan 24
+    Nov 16, 2020
   
 
-  <i class="unloaded">2021-01-24T17:00:00+09:00</i>
+  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
 
 </span>
           by
@@ -406,35 +406,6 @@
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Jan 24, 2021,  5:20 PM +0900"
-  >
-
-  
-  
-
-  
-    Jan 24
-  
-
-  <i class="unloaded">2021-01-24T17:20:50+09:00</i>
-
-</span>
-          </span>
           
 
           <!-- read time -->
@@ -448,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="78 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="450 words">2 min</span>
 
 
           <!-- page views -->
@@ -462,24 +433,93 @@
 
         
 
-        <h1 id="note">Note</h1>
+        <h1 id="vectors">Vectors</h1>
 <hr />
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105632022-871e1b00-5e94-11eb-8a8a-06fa08406fa2.png" alt="" /></p>
 <ul>
-  <li>실제 FPS 값을 실시간, 최근 N개의 평균, 최소, 최댓값으로 확인할 수 있습니다.</li>
-  <li>게임 진행 동안 텍스트의 위치, 색상, 크기, GUI 표시 상태를 실시간으로 변경할 수 있습니다.</li>
+  <li><strong>L</strong> (Light) : 정점에서 광원을 향하는 방향의 벡터</li>
+  <li><strong>N</strong> (Normal) : 정점의 노멀 벡터</li>
+  <li><strong>V</strong> (View) : 정점에서 카메라를 향하는 방향의 벡터</li>
+  <li><strong>R</strong> (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )</li>
+  <li>
+    <p><strong>H</strong> (Half) : 블린퐁에서 사용, L와 V의 중간 벡터 ( normalize(L + V) )</p>
+  </li>
+  <li><strong>NdL</strong> = dot(N, L) : 기본 램버트 공식</li>
+  <li><strong>NdV</strong> = dot(N, V) : 림라이트에서 사용</li>
+  <li><strong>RdV</strong> = dot(R, V) : 퐁 스페큘러에서 사용</li>
+  <li><strong>NdH</strong> = dot(N, H) = dot(N, normalize(L + V) : 블린퐁 스페큘러에서 사용</li>
 </ul>
 
-<h1 id="preview">Preview</h1>
-<hr />
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105624478-6d191400-5e65-11eb-89ba-5a894dcfdce3.gif" alt="" />
-<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105624575-16f8a080-5e66-11eb-840e-385845be4d48.png" alt="" /></p>
+<p><br /></p>
 
-<h1 id="source-code">Source Code</h1>
+<h1 id="lighting-models">Lighting Models</h1>
 <hr />
-
+<h2 id="lambert">Lambert</h2>
 <ul>
-  <li><a href="https://github.com/rito15/Unity_Toys">https://github.com/rito15/Unity_Toys</a></li>
+  <li>조명 모델의 기본
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Diffuse</span> <span class="o">=</span> <span class="nb">saturate</span><span class="p">(</span><span class="n">NdL</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+  </li>
 </ul>
+
+<p><br /></p>
+<h2 id="half-lambert">Half Lambert</h2>
+<ul>
+  <li>램버트의 계산 결과 범위를 [-1.0, 1.0]에서 [0.0, 1.0]으로 옮긴 것
+    <div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Diffuse</span> <span class="o">=</span> <span class="n">NdL</span> <span class="o">*</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+  </li>
+</ul>
+
+<p><br /></p>
+<h1 id="specular">Specular</h1>
+<hr />
+<h2 id="phong">Phong</h2>
+<ul>
+  <li>Phong Reflection의 기본 원리 : 보는 방향으로부터 반사된 방향에 조명이 있으면, 그 부분의 하이라이트가 가장 높다</li>
+  <li>반사 벡터 R = 2N(NdL) - L</li>
+  <li>RdV = dot(R, V)</li>
+  <li>RdV를 기본으로, 연산을 다양하게 커스터마이징하여 스페큘러를 계산할 수 있다.
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Specular</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span> <span class="nb">saturate</span><span class="p">(</span><span class="n">RdV</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+  </li>
+</ul>
+
+<p><br /></p>
+<h2 id="blinn-phong">Blinn Phong</h2>
+<ul>
+  <li>Phong 스페큘러에서 R 벡터 계산은 비싸기 때문에, 비슷하지만 더 저렴한 하프 벡터를 이용한다.</li>
+  <li>하프 벡터 H = normalize(L + V)</li>
+  <li>NdH = dot(N, H)
+    <div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Specular</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span> <span class="n">saturate</span><span class="p">(</span><span class="n">NdH</span><span class="p">),</span> <span class="mi">100</span> <span class="p">)</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+  </li>
+</ul>
+
+<p><br />
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105632082-d1070100-5e94-11eb-8863-189edb9fcb0d.png" alt="" /></p>
+
+<h1 id="rim-light">Rim Light</h1>
+<hr />
+<ul>
+  <li>프레넬 현상 : 물체를 바라볼 때 정면보다 측면일 수록 더 많은 빛을 반사하는 현상</li>
+  <li>노멀 벡터와 뷰 벡터의 도트 연산을 이용한다.</li>
+  <li>프레넬 공식
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Fresnel</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">NdV</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+  </li>
+</ul>
+
+<h1 id="라이팅-함수-공식">라이팅 함수 공식</h1>
+<hr />
+<div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Diffuse</span> <span class="o">*</span> <span class="n">LightColor</span> <span class="o">*</span> <span class="n">distanceAtten</span> <span class="o">*</span> <span class="n">shadowAtten</span> <span class="o">+</span> <span class="n">Specular</span> <span class="o">+</span> <span class="n">RimLight</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 
       </div>
@@ -491,8 +531,8 @@
         <div class="post-meta mb-3">
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
-            <a href='/categories/unity/'>Unity</a>,
-            <a href='/categories/toys/'>Toys</a>
+            <a href='/categories/unity-shader/'>Unity Shader</a>,
+            <a href='/categories/shader-study/'>Shader Study</a>
         </div>
         
 
@@ -507,8 +547,11 @@
           <a href="/tags/csharp/"
             class="post-tag no-text-decoration" >csharp</a>
           
-          <a href="/tags/plugin/"
-            class="post-tag no-text-decoration" >plugin</a>
+          <a href="/tags/shader/"
+            class="post-tag no-text-decoration" >shader</a>
+          
+          <a href="/tags/graphics/"
+            class="post-tag no-text-decoration" >graphics</a>
           
           </div>
         
@@ -540,19 +583,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Frame Rate Checker - Rito15&url=https://rito15.github.io/posts/frame-rate-checker/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=Lighting Models - Rito15&url=https://rito15.github.io/posts/lighting-models/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Frame Rate Checker - Rito15&u=https://rito15.github.io/posts/frame-rate-checker/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Lighting Models - Rito15&u=https://rito15.github.io/posts/lighting-models/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Frame Rate Checker - Rito15&url=https://rito15.github.io/posts/frame-rate-checker/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=Lighting Models - Rito15&url=https://rito15.github.io/posts/lighting-models/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -994,6 +1037,11 @@
   </div> <!-- .access -->
 
   
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
@@ -1032,98 +1080,98 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
   
 
   
@@ -1282,7 +1330,7 @@ Catalog
       
       
       <div class="card">
-        <a href="/posts/pixelater/">
+        <a href="/posts/behavior-tree/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1299,13 +1347,13 @@ Catalog
   
 
   
-    Jan 19
+    Jan  5
   
 
-  <i class="unloaded">2021-01-19T22:56:00+09:00</i>
+  <i class="unloaded">2021-01-05T00:26:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pixelater</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Behavior Tree</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1314,33 +1362,12 @@ Catalog
 
 
 
-                Note
+                개념
 
 
-
-  렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킵니다.
-  스크립트를 카메라에 부착하여 사용합니다.
-
-
-Preview
-
-
-
-
-Reference
-
-
-
-  https://www.youtube.com/watch?v=5rMkh9sl2bM
-
-
-Source Code
-
-
-
-  https://github.com/rito15/Unity_Toys
-
-
+  FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
+  FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
+  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다....
               </p>
             </div>
           </div>
@@ -1363,15 +1390,15 @@ Source Code
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/job-system/" class="btn btn-outline-primary">
-    <p>Job System</p>
+  <a href="/posts/getcomponent-attributes/" class="btn btn-outline-primary">
+    <p>Getcomponent Attributes</p>
   </a>
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/behavior-tree/" class="btn btn-outline-primary">
+    <p>Behavior Tree</p>
+  </a>
   
 
 </div>
