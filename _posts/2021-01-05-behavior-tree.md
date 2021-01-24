@@ -23,8 +23,7 @@ mermaid: true
 # 노드 구성
 ---
 - 모든 노드는 실행의 결과로 true 또는 false를 리턴한다.
-
-- Decorator는 가독성의 이유로 Composite와 Leaf들의 구성으로 대체하였다.
+- Decorator는 가독성을 위해 Composite와 Leaf들의 구성으로 대체하였다.
 
 <br>
 
@@ -131,3 +130,10 @@ private void MakeBehaviorNodes()
 ---
 
 - [https://github.com/rito15/UnityStudy2](https://github.com/rito15/UnityStudy2)
+
+<br>
+
+# Download
+---
+
+- [Behavior Tree.zip](https://github.com/rito15/Images/files/5862741/2021_0105_Behavior.Tree.zip)

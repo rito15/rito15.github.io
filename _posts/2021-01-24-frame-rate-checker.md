@@ -20,5 +20,8 @@ mermaid: true
 
 # Source Code
 ---
-
 - <https://github.com/rito15/Unity_Toys>
+
+# Download
+---
+- [FrameRateChecker.zip](https://github.com/rito15/Images/files/5862736/FrameRateChecker.zip)

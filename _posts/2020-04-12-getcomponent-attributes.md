@@ -9,11 +9,12 @@ mermaid: true
 ---
 
 # Note
+---
  - `GetComponent()`, `Find()` 종류의 메소드들을 필드/프로퍼티 애트리뷰트로 제공합니다.
- - [https://github.com/rito15/Unity_GetComponent-Attributes](https://github.com/rito15/Unity_GetComponent-Attributes)
  
 
-## Catalog
+# Catalog
+---
 ```cs
 /* ******************************************************************************** *
  *                                    참고사항                                       *
@@ -161,7 +162,8 @@ public Collider _col;
 
  <br>
 
-## 설명
+# Note
+---
   - 리플렉션과 커스텀 애트리뷰트를 활용하여 제작하였습니다.
   - ```Component```를 상속받는 타입의 필드/프로퍼티에 사용할 수 있습니다.
   - 대상 멤버의 접근지정자에 관계 없이 모두 동작합니다.
@@ -171,7 +173,8 @@ public Collider _col;
  
   <br>
 
-## 사용법
+# How to Use
+---
   - **유니티 프로젝트** - [**Window**] - [**Package Manager**] - [**+**](좌측 상단) - [**Add package from git URL**] -
     <br> **https://github.com/rito15/Unity_GetComponent-Attributes.git** - [**Add**]
   - 사용하려는 스크립트 상단에 ```using Rito.Attributes;```를 추가합니다.
@@ -181,7 +184,8 @@ public Collider _col;
  
   <br>
   
-## 주의사항
+# Cautions
+---
   - ```Component``` 클래스를 상속하는 타입의 멤버들에 대해서만 동작합니다.
   - ```[GetComponent]``` 종류의 애트리뷰트는 ```Array```나 ```List```, ```Dictionary``` 등 배열 또는 제네릭 타입의 멤버에 대해 동작하지 않습니다.
   - ```[GetComponents]``` 종류의 애트리뷰트는 요소의 타입이 ```Component```를 상속하는 경우의 ```Array``` 또는 ```List``` 타입 멤버에 대해 동작합니다.
@@ -189,5 +193,20 @@ public Collider _col;
   
   <br>
   
-## 실행 화면 예시
+# Example
+---
   ![GetComAttr](https://user-images.githubusercontent.com/42164422/78687106-c643a580-792e-11ea-9cbf-e5204d5e17ed.gif)
+
+<br>
+
+# Source Code
+---
+- <https://github.com/rito15/Unity_GetComponent-Attributes>
+
+<br>
+
+# Download(UPM)
+---
+- https://github.com/rito15/Unity_GetComponent-Attributes.git
+
+

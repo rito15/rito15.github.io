@@ -377,13 +377,12 @@ private void Start()
 
 # References
 ---
- - <https://docs.unity3d.com/kr/2020.2/Manual/JobSystem.html>
- - <https://www.raywenderlich.com/7880445-unity-job-system-and-burst-compiler-getting-started>
- - <http://blog.naver.com/PostView.nhn?blogId=canny708&logNo=221557618976>
+- <https://docs.unity3d.com/kr/2020.2/Manual/JobSystem.html>
+- <https://www.raywenderlich.com/7880445-unity-job-system-and-burst-compiler-getting-started>
+- <http://blog.naver.com/PostView.nhn?blogId=canny708&logNo=221557618976>
 
 <br>
 
 # Source Code
 ---
-
 - <https://github.com/rito15/UnityStudy2>

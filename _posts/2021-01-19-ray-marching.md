@@ -73,6 +73,7 @@ mermaid: true
 # 단점
 ---
  - 성능 소모가 크다.
+
  <img src="https://user-images.githubusercontent.com/42164422/105004241-023b9780-5a77-11eb-9d91-015809da2d88.png" width="500">
  
 <br>

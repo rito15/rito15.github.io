@@ -8,7 +8,7 @@ math: true
 mermaid: true
 ---
 
-## 설명
+# Note
 ---
   - 기존에는 플레이 모드에서 트랜스폼의 위치, 회전, 크기를 변경하여도
     <br>플레이 모드가 종료되면 변경사항이 저장되지 않습니다.
@@ -18,7 +18,7 @@ mermaid: true
   
   <br>
   
-## 사용법
+# How to Use
 ---
   - 원하는 게임오브젝트에 ```SaveTransformDuringPlay``` 컴포넌트를 추가하고, ```On```에 체크합니다.
   
@@ -35,7 +35,7 @@ mermaid: true
   
   <br>
   
-## 사용 예시
+# Example
 ---
   - Local Space 옵션을 적용하는 경우
    : 종료하기 직전 인스펙터의 transform 요소 값들을 그대로 보존합니다.
@@ -56,3 +56,14 @@ mermaid: true
    
    ![STDP_Reset](https://user-images.githubusercontent.com/42164422/78341253-55b92380-75d2-11ea-9916-a43a3afbbed4.gif)
 
+<br>
+
+# Source Code
+---
+- <https://github.com/rito15/Unity_Save-Transform-During-Play>
+
+<br>
+
+# Download(UPM)
+---
+- https://github.com/rito15/Unity_Save-Transform-During-Play.git
