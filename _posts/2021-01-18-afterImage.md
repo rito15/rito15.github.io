@@ -1,7 +1,7 @@
 ---
 title: AfterImage(Motion Trail)
 author: Rito15
-date: 2021-01-19 22:56:00 +09:00
+date: 2021-01-18 22:56:00 +09:00
 categories: [Unity, Toys]
 tags: [unity, csharp, plugin]
 math: true

@@ -595,17 +595,17 @@ Download
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Tue, Jan 19, 2021, 11:15 PM +0900"
+    title="Wed, Jan 20, 2021,  9:00 PM +0900"
   >
 
   
   
 
   
-    Jan 19
+    Jan 20
   
 
-  <i class="unloaded">2021-01-19T23:15:00+09:00</i>
+  <i class="unloaded">2021-01-20T21:00:00+09:00</i>
 
 </span>
 
@@ -870,17 +870,17 @@ How To Use
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Tue, Jan 19, 2021, 10:56 PM +0900"
+    title="Mon, Jan 18, 2021, 10:56 PM +0900"
   >
 
   
   
 
   
-    Jan 19
+    Jan 18
   
 
-  <i class="unloaded">2021-01-19T22:56:00+09:00</i>
+  <i class="unloaded">2021-01-18T22:56:00+09:00</i>
 
 </span>
 
@@ -1014,6 +1014,101 @@ MemoBox
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unlit-custom-lit-shadergraph/">Unlit으로 만드는 Custom Lit Shadergraph</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Lit 쉐이더 만들기
+
+
+
+
+1. Diffuse 구현
+
+
+
+  커스텀 함수를 이용하여 메인라이트의 방향, 색상, 감쇠를 얻어낸다.
+
+
+
+
+Custom_Mainlight.hlsl
+
+void MainLight_half(float3 WorldPos, out half3 Direction, ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Jan 16, 2021, 10:14 PM +0900"
+  >
+
+  
+  
+
+  
+    Jan 16
+  
+
+  <i class="unloaded">2021-01-16T22:14:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="557 words">3 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/behavior-tree/">Behavior Tree</a>
     </h1>
 
@@ -1079,101 +1174,6 @@ MemoBox
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="837 words">4 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unlit-custom-lit-shadergraph/">Unlit으로 만드는 Custom Lit Shadergraph</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Lit 쉐이더 만들기
-
-
-
-
-1. Diffuse 구현
-
-
-
-  커스텀 함수를 이용하여 메인라이트의 방향, 색상, 감쇠를 얻어낸다.
-
-
-
-
-Custom_Mainlight.hlsl
-
-void MainLight_half(float3 WorldPos, out half3 Direction, ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Nov 16, 2020,  5:14 PM +0900"
-  >
-
-  
-  
-
-  
-    Nov 16, 2020
-  
-
-  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="557 words">3 min</span>
 
 
         <!-- page views -->
@@ -1387,6 +1387,11 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
         
         
         
+        <li><a href="/posts/unlit-custom-lit-shadergraph/">Unlit으로 만드는 Custom Lit Shadergraph</a></li>
+      
+        
+        
+        
         <li><a href="/posts/behavior-tree/">Behavior Tree</a></li>
       
         
@@ -1403,11 +1408,6 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
         
         
         <li><a href="/posts/ray-marching/">Ray Marching</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
       
 
       </ul>
