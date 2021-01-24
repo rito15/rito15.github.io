@@ -2,8 +2,8 @@
 title: Unlit으로 만드는 Custom Lit Shadergraph
 author: Rito15
 date: 2020-11-16 17:14:00 +09:00
-categories: [Unity Shader, Shader Study]
-tags: [unity, csharp, shader, graphics]
+categories: [Unity Shader, Shader Graph Study]
+tags: [unity, csharp, shader, shadergraph]
 math: true
 mermaid: true
 ---
