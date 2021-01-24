@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-01-24T08:40:26+09:00</updated>
+  <updated>2021-01-24T13:32:19+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,67 @@
 
   
   <entry>
+    <title>Job System</title>
+    <link href="https://rito15.github.io/posts/job-system/" rel="alternate" type="text/html" title="Job System" />
+    <published>2021-01-24T13:15:00+09:00</published>
+  
+    <updated>2021-01-24T13:15:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/job-system/</id>
+    <content src="https://rito15.github.io/posts/job-system/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      개념
+
+
+  유니티에서 안전한 멀티스레딩을 구현하는 시스템
+  스레드를 별도로 생성하지 않으며, 유니티의 워커스레드에 작업을 지시할 수 있게 한다.
+  잡 대기열에 잡을 배치하면 워커 스레드가 잡 대기열에서 항목을 가져와 실행한다.
+  Native Container를 이용해 잡의 수행 결과를 메인 스레드와 공유한다.
+  버스트 컴파일러를 이용하여 추가적인 성능 향상을 기대할 수 있다.
+
+
+
+
+
+
+장점
+
+
+  다수의 작은 작업들을 처리하기에 좋으며, 속도가 빠르다.
+  스레드를 추가로 만들고 관리하지 않아도 되므로 메모리를 절약할 수 있다.
+  유니티 콘솔을 이용해 디버깅할 수 있다.
+  메인 스레드의 데이터를 잡의 스택에 깊은 복사를 하여 복사본으로 사용하므로 Race Condition이 발생하지 않는...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>Fog of War</title>
     <link href="https://rito15.github.io/posts/fog-of-war/" rel="alternate" type="text/html" title="Fog of War" />
     <published>2021-01-19T23:15:00+09:00</published>
   
-    <updated>2021-01-24T01:51:17+09:00</updated>
+    <updated>2021-01-24T08:41:09+09:00</updated>
   
     <id>https://rito15.github.io/posts/fog-of-war/</id>
     <content src="https://rito15.github.io/posts/fog-of-war/" />
@@ -83,7 +139,7 @@
     <link href="https://rito15.github.io/posts/ray-marching/" rel="alternate" type="text/html" title="Ray Marching" />
     <published>2021-01-19T23:15:00+09:00</published>
   
-    <updated>2021-01-24T01:51:17+09:00</updated>
+    <updated>2021-01-24T08:41:09+09:00</updated>
   
     <id>https://rito15.github.io/posts/ray-marching/</id>
     <content src="https://rito15.github.io/posts/ray-marching/" />
@@ -146,7 +202,7 @@
     <link href="https://rito15.github.io/posts/custom-attributes/" rel="alternate" type="text/html" title="Custom Attributes" />
     <published>2021-01-17T22:18:00+09:00</published>
   
-    <updated>2021-01-24T01:35:32+09:00</updated>
+    <updated>2021-01-24T08:41:09+09:00</updated>
   
     <id>https://rito15.github.io/posts/custom-attributes/</id>
     <content src="https://rito15.github.io/posts/custom-attributes/" />
@@ -222,7 +278,7 @@ MemoBox
     <link href="https://rito15.github.io/posts/behavior-tree/" rel="alternate" type="text/html" title="Behavior Tree" />
     <published>2021-01-05T00:26:00+09:00</published>
   
-    <updated>2021-01-24T01:51:17+09:00</updated>
+    <updated>2021-01-24T08:41:09+09:00</updated>
   
     <id>https://rito15.github.io/posts/behavior-tree/</id>
     <content src="https://rito15.github.io/posts/behavior-tree/" />
@@ -257,53 +313,6 @@ MemoBox
       Leaf : 동작을 수행하는 노드. 대표적으로 Action 또는 Task 노드가 있다.
       Decorator : 다른 노드에 조건을 붙여 수식하는 노드
       Composite : 자식 노드들을 가지며, 자식들을...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Getcomponent Attributes</title>
-    <link href="https://rito15.github.io/posts/getcomponent-attributes/" rel="alternate" type="text/html" title="Getcomponent Attributes" />
-    <published>2020-04-12T23:30:00+09:00</published>
-  
-    <updated>2021-01-24T01:51:17+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/getcomponent-attributes/</id>
-    <content src="https://rito15.github.io/posts/getcomponent-attributes/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Toys" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-  GetComponent(), Find() 종류의 메소드들을 필드/프로퍼티 애트리뷰트로 제공합니다.
-  https://github.com/rito15/Unity_GetComponent-Attributes
-
-
-Catalog
-/* ******************************************************************************** *
- *                                    참고사항                                       *
- * ******************************************************************************** */
-
-/* 공통 파라미...
     </summary>
   
 
