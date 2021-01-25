@@ -166,6 +166,14 @@ void ComputeFogIntensity_float(in float fogFactor, out float fogIntensity)
 
 <br>
 
+# 비교
+---
+- 좌측 : PBR, 우측 : Custom Lit
+
+![](https://user-images.githubusercontent.com/42164422/105748082-f96e2880-5f84-11eb-9ecb-5cb14d688a73.png)
+
+<br>
+
 # Reference
 ---
 - <https://www.youtube.com/watch?v=j0uInkqU3Pk>
