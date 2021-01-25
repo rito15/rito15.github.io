@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Fog of War" />
+<meta property="og:title" content="Unity Editor-only Debug" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="개념 맵 전체에 걸쳐 RGBA(0, 0, 0, a)의 텍스쳐를 씌워 시야를 표현한다. 지정한 유닛이 현재 위치한 영역들은 a = 0, 지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8, 지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다." />
-<meta property="og:description" content="개념 맵 전체에 걸쳐 RGBA(0, 0, 0, a)의 텍스쳐를 씌워 시야를 표현한다. 지정한 유닛이 현재 위치한 영역들은 a = 0, 지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8, 지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다." />
-<link rel="canonical" href="https://rito15.github.io/posts/fog-of-war/" />
-<meta property="og:url" content="https://rito15.github.io/posts/fog-of-war/" />
+<meta name="description" content="Note 유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있습니다. 이를 방지할 수 있게, 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스입니다." />
+<meta property="og:description" content="Note 유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있습니다. 이를 방지할 수 있게, 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스입니다." />
+<link rel="canonical" href="https://rito15.github.io/posts/unity-editor-only-debug/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unity-editor-only-debug/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-01-20T21:00:00+09:00" />
+<meta property="article:published_time" content="2020-07-06T15:00:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Fog of War" />
+<meta property="twitter:title" content="Unity Editor-only Debug" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Fog of War","description":"개념 맵 전체에 걸쳐 RGBA(0, 0, 0, a)의 텍스쳐를 씌워 시야를 표현한다. 지정한 유닛이 현재 위치한 영역들은 a = 0, 지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8, 지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.","dateModified":"2021-01-25T02:46:07+09:00","datePublished":"2021-01-20T21:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/fog-of-war/"},"url":"https://rito15.github.io/posts/fog-of-war/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Unity Editor-only Debug","description":"Note 유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있습니다. 이를 방지할 수 있게, 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스입니다.","dateModified":"2020-07-06T15:00:00+09:00","datePublished":"2020-07-06T15:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-only-debug/"},"url":"https://rito15.github.io/posts/unity-editor-only-debug/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Fog of War | Rito15
+  <title>Unity Editor-only Debug | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>Fog of War</span>
+        <span>Unity Editor-only Debug</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -347,20 +347,6 @@
 
 
 
-  
-
-  
-
-  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
-  
-  
-
-  
-
-  
-
-
-
 <!-- return -->
 <div class="row">
 
@@ -368,7 +354,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Fog of War</h1>
+      <h1 data-toc-skip>Unity Editor-only Debug</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +371,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Jan 20, 2021,  9:00 PM +0900"
+    title="Mon, Jul  6, 2020,  3:00 PM +0900"
   >
 
   
   
 
   
-    Jan 20
+    Jul  6, 2020
   
 
-  <i class="unloaded">2021-01-20T21:00:00+09:00</i>
+  <i class="unloaded">2020-07-06T15:00:00+09:00</i>
 
 </span>
           by
@@ -406,35 +392,6 @@
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Jan 25, 2021,  2:46 AM +0900"
-  >
-
-  
-  
-
-  
-    Jan 25
-  
-
-  <i class="unloaded">2021-01-25T02:46:07+09:00</i>
-
-</span>
-          </span>
           
 
           <!-- read time -->
@@ -448,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1157 words">6 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="103 words">1 min</span>
 
 
           <!-- page views -->
@@ -462,216 +419,33 @@
 
         
 
-        <h1 id="개념">개념</h1>
+        <h1 id="note">Note</h1>
 <hr />
 <ul>
-  <li>맵 전체에 걸쳐 RGBA(0, 0, 0, a)의 텍스쳐를 씌워 시야를 표현한다.</li>
-  <li>지정한 유닛이 현재 위치한 영역들은 a = 0,</li>
-  <li>지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8,</li>
-  <li>지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.</li>
+  <li>유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있습니다.</li>
+  <li>이를 방지할 수 있게, 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스입니다.</li>
 </ul>
 
-<p><br /></p>
-
-<h1 id="구현-방법">구현 방법</h1>
-<hr />
-<h2 id="1-카메라와-지상-사이에-안개-플레인-사용">[1] 카메라와 지상 사이에 안개 플레인 사용</h2>
-
-<ul>
-  <li>
-    <p>시야의 역할을 해줄 검정색 플레인을 카메라와 지상 사이에 위치시킨다.</p>
-  </li>
-  <li>
-    <p>맵 전체를 좌표 형태의 2차원배열로 관리하여, 유닛들이 현재 위치한 영역, 방문했던 영역, 한 번도 방문하지 않은 영역의 정보를 실시간으로 저장한다.</p>
-  </li>
-  <li>
-    <p>카메라와 해당 유닛들 사이에서 시야를 적용할 안개 플레인의 로컬좌표를 구하고 정점 색상을 변경시킨다.</p>
-  </li>
-  <li>
-    <p>좌표를 구하는 방법 : 레이캐스트 또는 비례식 사용 (여기서는 비례식)</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105534824-6a1d0700-5d31-11eb-8125-3610abd888b3.png" width="500" /></p>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105534838-6e492480-5d31-11eb-8914-546fc287e45f.png" width="500" /></p>
-
-<p><br /></p>
-
-<h2 id="2-타일맵-기반-구현">[2] 타일맵 기반 구현</h2>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105534813-65f0e980-5d31-11eb-9151-9d8859e12acc.png" width="500" /></p>
-
-<p><br /></p>
-
-<h3 id="타일맵"><strong>타일맵</strong></h3>
-<ul>
-  <li>
-    <p>정사각형 타일 하나의 가로,세로 너비와 전체 안개 플레인의 가로, 세로 너비를 결정한다.
-(예 : 타일 너비 0.5, 안개 20x20)</p>
-  </li>
-  <li>
-    <p>게임 시작 시 각각의 타일마다 지형의 높이(position.y)를 계산해 2차원 배열로 저장한다.
-(-Y 방향 레이캐스트 이용, 배열의 크기는 전체 타일 개수(플레인 가로 너비 * 세로 너비))</p>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="유닛"><strong>유닛</strong></h3>
-<ul>
-  <li>시야를 밝힐 대상 유닛들은 리스트를 통해 실시간으로 관리된다.</li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="visit-배열"><strong>Visit 배열</strong></h3>
-
-<ul>
-  <li>
-    <p>배열의 크기는 타일의 개수와 같다.</p>
-  </li>
-  <li>
-    <p>Visit.current 배열은 현재 유닛들의 시야가 유지되는 타일들에 대해 true 값을 가지며, 시야 계산이 끝날 때마다 전체 false로 초기화된다.</p>
-  </li>
-  <li>
-    <p>Visit.ever 배열은 한 번이라도 시야가 확보됐던 타일들에 대해 true값을 가지며, 한 번 true가 된 타일은 항상 그 값을 true로 유지한다.</p>
-  </li>
-  <li>
-    <p>유닛들의 위치를 중심으로 반복문을 통해, 주기적으로 Visit 배열을 갱신한다.</p>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="시야-계산"><strong>시야 계산</strong></h3>
-
-<ul>
-  <li>
-    <p>주기적으로(0.2~0.5초) 각 유닛들이 위치한 타일 기준으로 주변의 시야를 계산한다.</p>
-
-    <ul>
-      <li>[1] 시야만큼의 원형범위 내 모든 타일들을 가져온다.</li>
-    </ul>
-
-    <center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105534301-a56b0600-5d30-11eb-9c2c-1695ecf657cc.png" width="250" /></center>
-
-    <ul>
-      <li>[2] 현재 유닛 타일보다 높은 곳에 위치한 타일들은 배제한다.</li>
-    </ul>
-
-    <center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105534318-aa2fba00-5d30-11eb-8f32-303b340ecd35.png" width="250" /></center>
-
-    <ul>
-      <li>[3] 유닛 타일과 각각의 타일 사이에 유닛 타일보다 더 높은 타일이 존재하는 경우, 해당 타일을 배제한다.</li>
-    </ul>
-
-    <center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105534332-adc34100-5d30-11eb-84e1-e3acde754022.png" width="250" /></center>
-
-    <ul>
-      <li>[4] 결과로 얻은 타일들에 대해, Visit.current 및 Visit.ever 배열의 값을 true로 초기화한다,</li>
-    </ul>
-
-    <center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105534342-b156c800-5d30-11eb-81d9-76480f4c9dcb.png" width="250" /></center>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="fog-텍스쳐"><strong>Fog 텍스쳐</strong></h3>
-
-<ul>
-  <li>
-    <p>텍스쳐의 알파값 저장을 위한 Color 배열이 필요하며, 크기는 타일의 개수와 같다.</p>
-  </li>
-  <li>
-    <p>Fog 텍스쳐의 넓이는 타일의 가로 개수 * 세로 개수와 같다.</p>
-  </li>
-  <li>
-    <p>시야 계산이 끝날 때마다 Visit.current, Visit.ever 값에 따라 Color 배열의 A 값을 초기화한다. (current -&gt; 0, ever -&gt; 0.5~0.8, 그 외 1)</p>
-  </li>
-  <li>
-    <p>Color 배열을 텍스쳐에 적용한다.</p>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="fog-쉐이더"><strong>Fog 쉐이더</strong></h3>
-
-<ul>
-  <li>Fog 쉐이더는 ZTest Off로 설정하여 항상 다른 오브젝트들 위에 보이게 한다.</li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="블러-보간-효과"><strong>블러, 보간 효과</strong></h3>
-
-<ul>
-  <li>
-    <p>자연스러운 블러 효과를 위해, 가우시안 블러를 적용하는 쉐이더를 사용한다.</p>
-  </li>
-  <li>
-    <p>매 프레임마다 이전 프레임의 시야 텍스쳐를 현재 프레임의 텍스쳐에 부드럽게 보간하여 적용한다.</p>
-  </li>
-  <li>
-    <p>부자연스러운 픽셀이 나타나는 것을 방지하기 위해 렌더 텍스쳐를 여러 장 거쳐 보간을 적용한다.</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105534346-b451b880-5d30-11eb-9f4a-3bb0b35c069b.gif" width="500" /></p>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105534357-b6b41280-5d30-11eb-9ffa-c6a6e3d9ab3c.gif" width="500" /></p>
-
-<p><br /></p>
-
-<h1 id="job--burst-compiler-적용">Job + Burst Compiler 적용</h1>
-<hr />
-<h2 id="테스트-1">테스트 1</h2>
-<ul>
-  <li>Fog Width : 40x40</li>
-  <li>Tile Size : 1</li>
-  <li>Update Cycle : 0.2</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105628627-541e5c00-5e81-11eb-80ef-7407205732d9.png" width="500" /></p>
-
-<h2 id="테스트-2">테스트 2</h2>
-<ul>
-  <li>Fog Width : 40x40</li>
-  <li>Tile Size : 0.5</li>
-  <li>Update Cycle : 0.5</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105628633-5a143d00-5e81-11eb-9c66-c033740ed202.png" width="500" /></p>
-
-<h2 id="잡-시스템-적용-결과">잡 시스템 적용 결과</h2>
-<ul>
-  <li>주요 병목이 되는 각 유닛의 주기적 시야 계산 코드를 IJobParallelFor를 이용해 돌려보았지만, 버스트 컴파일도 안되는 데다가 유의미한 성능 향상이 보이지 않는다. 나중에 잡을 더 깊게 익히면 다시 성능 최적화에 도전해봐야 할듯.</li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="reference">Reference</h1>
+<h1 id="how-to-use">How To Use</h1>
 <hr />
 <ul>
-  <li><a href="https://github.com/QinZhuo/FogOfWar_ForUnity">https://github.com/QinZhuo/FogOfWar_ForUnity</a></li>
+  <li>스크립트 상단에 다음과 같이 작성합니다.</li>
 </ul>
 
-<p><br /></p>
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">Debug</span> <span class="p">=</span> <span class="n">Rito</span><span class="p">.</span><span class="n">Debug</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 <h1 id="source-code">Source Code</h1>
 <hr />
 <ul>
-  <li><a href="https://github.com/rito15/UnityStudy2">https://github.com/rito15/UnityStudy2</a></li>
+  <li><a href="https://github.com/rito15/Unity_Toys">https://github.com/rito15/Unity_Toys</a></li>
 </ul>
-
-<p><br /></p>
 
 <h1 id="download">Download</h1>
 <hr />
 <ul>
-  <li><a href="https://github.com/rito15/Images/files/5862742/2021_0120_Fog.of.War.zip">Fog of War.zip</a></li>
+  <li><a href="https://github.com/rito15/Images/files/5864550/Debug_UnityEditorConditional.zip">Debug_UnityEditorConditional.zip</a></li>
 </ul>
 
 
@@ -685,7 +459,7 @@
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
             <a href='/categories/unity/'>Unity</a>,
-            <a href='/categories/study/'>Study</a>
+            <a href='/categories/toys/'>Toys</a>
         </div>
         
 
@@ -699,6 +473,9 @@
           
           <a href="/tags/csharp/"
             class="post-tag no-text-decoration" >csharp</a>
+          
+          <a href="/tags/plugin/"
+            class="post-tag no-text-decoration" >plugin</a>
           
           </div>
         
@@ -730,19 +507,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Fog of War - Rito15&url=https://rito15.github.io/posts/fog-of-war/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=Unity Editor-only Debug - Rito15&url=https://rito15.github.io/posts/unity-editor-only-debug/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Fog of War - Rito15&u=https://rito15.github.io/posts/fog-of-war/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Unity Editor-only Debug - Rito15&u=https://rito15.github.io/posts/unity-editor-only-debug/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Fog of War - Rito15&url=https://rito15.github.io/posts/fog-of-war/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=Unity Editor-only Debug - Rito15&url=https://rito15.github.io/posts/unity-editor-only-debug/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1241,11 +1018,6 @@
   </div> <!-- .access -->
 
   
-    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
-      <span class="pl-3 pt-2 mb-2">Contents</span>
-      <nav id="toc" data-toggle="toc"></nav>
-    </div>
-  
 
 </div> <!-- #panel-wrapper -->
 
@@ -1310,124 +1082,124 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
   
 
   
@@ -1474,7 +1246,7 @@
       
       
       <div class="card">
-        <a href="/posts/behavior-tree/">
+        <a href="/posts/afterImage/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1491,13 +1263,13 @@
   
 
   
-    Jan  5
+    Jan 18
   
 
-  <i class="unloaded">2021-01-05T00:26:00+09:00</i>
+  <i class="unloaded">2021-01-18T22:56:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Behavior Tree</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>AfterImage(Motion Trail)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1506,13 +1278,18 @@
 
 
 
-                개념
+                Note
 
 
+  게임오브젝트가 지나간 자리에 잔상을 생성합니다.
+  하위 게임오브젝트에도 렌더러가 있는 경우, 잔상을 함께 생성할 수 있습니다.
 
-  FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
-  FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
-  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
+
+How To Use
+
+
+  대상 게임오브젝트에 Mesh Renderer가 존재하는 경우, MeshAfterImage 스크립트를 부착합니다.
+  Skinned Mesh Renderer가 존재하는 경우, Sk...
               </p>
             </div>
           </div>
@@ -1522,7 +1299,7 @@
       
       
       <div class="card">
-        <a href="/posts/ray-marching/">
+        <a href="/posts/pixelater/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1542,10 +1319,10 @@
     Jan 19
   
 
-  <i class="unloaded">2021-01-19T23:15:00+09:00</i>
+  <i class="unloaded">2021-01-19T22:56:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Ray Marching</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pixelater</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1554,17 +1331,27 @@
 
 
 
-                레이 마칭이란?
+                Note
+
+
+  렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킵니다.
+  스크립트를 카메라에 부착하여 사용합니다.
+
+
+Preview
 
 
 
-  
-    폴리곤의 정점 정보를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 표면의 정보를 얻어 오브젝트를 그려내는 기법
-  
-  
-    레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.
-  
+Reference
 
+
+  https://www.youtube.com/watch?v=5rMkh9sl2bM
+
+
+Source Code
+
+
+  https://github.com/rito15/Unity_Toys
 
 
 ...
@@ -1577,7 +1364,7 @@
       
       
       <div class="card">
-        <a href="/posts/job-system/">
+        <a href="/posts/save-transform-during-play/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1594,13 +1381,13 @@
   
 
   
-    Jan 24
+    Apr 11, 2020
   
 
-  <i class="unloaded">2021-01-24T13:15:00+09:00</i>
+  <i class="unloaded">2020-04-11T18:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Job System</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Save Transform During Play</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1609,14 +1396,28 @@
 
 
 
-                개념
+                Note
 
 
-  유니티에서 안전한 멀티스레딩을 구현하는 시스템
-  스레드를 별도로 생성하지 않으며, 유니티의 워커스레드에 작업을 지시할 수 있게 한다.
-  잡 대기열에 잡을 배치하면 워커 스레드가 잡 대기열에서 항목을 가져와 실행한다.
-  Native Container를 이용해 잡의 수행 결과를 메인 스레드와 공유한다.
-  버스트 컴파일러를 이용하여 추가...
+
+  
+    기존에는 플레이 모드에서 트랜스폼의 위치, 회전, 크기를 변경하여도
+플레이 모드가 종료되면 변경사항이 저장되지 않습니다.
+  
+  
+    따라서 컴포넌트를 간단히 추가하기만 하면 플레이 모드를 종료해도
+트랜스폼의 변경사항이 저장되도록 하는 컴포넌트를 제작했습니다.
+  
+
+
+
+
+How to Use
+
+
+
+  
+    원하는 게...
               </p>
             </div>
           </div>
@@ -1639,14 +1440,14 @@
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/ray-marching/" class="btn btn-outline-primary">
-    <p>Ray Marching</p>
+  <a href="/posts/getcomponent-attributes/" class="btn btn-outline-primary">
+    <p>Getcomponent Attributes</p>
   </a>
   
 
   
-  <a href="/posts/job-system/" class="btn btn-outline-primary">
-    <p>Job System</p>
+  <a href="/posts/singleton-monobehavior/" class="btn btn-outline-primary">
+    <p>Singleton MonoBehavior</p>
   </a>
   
 
@@ -1660,16 +1461,6 @@
 
 </div> <!-- .row -->
 
-
-
-  <!-- image lazy load: https://github.com/ApoorvSaxena/lozad.js -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-
-<script type="text/javascript">
-  const imgs = document.querySelectorAll('.post-content img');
-  const observer = lozad(imgs);
-  observer.observe();
-</script>
 
 
 
