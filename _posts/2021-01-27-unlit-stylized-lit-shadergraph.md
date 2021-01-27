@@ -148,7 +148,7 @@ mermaid: true
 
 ## [2] 다양한 그라데이션, NPR 효과
 
-- 앞은 여러 색상을 혼합하였으며, 뒤는 각각의 Smooth값을 0으로 낮추어 셀 쉐이딩 같은 효과를 낸 모습이다.
+- 앞은 여러 색상을 혼합하였으며, 뒤는 각각의 Smooth값을 0으로 낮추어 셀 쉐이딩 같은 효과를 내주었다.
 
 ![](https://user-images.githubusercontent.com/42164422/105982196-50d1dd00-60da-11eb-97ab-85aa21650f31.png)
 
