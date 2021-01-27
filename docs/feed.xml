@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-01-27T02:26:10+09:00</updated>
+  <updated>2021-01-27T22:16:46+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,80 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</title>
+    <link href="https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" rel="alternate" type="text/html" title="Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더" />
+    <published>2021-01-27T22:00:00+09:00</published>
+  
+    <updated>2021-01-27T22:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/</id>
+    <content src="https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Graph Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      동기
+
+
+
+
+
+  유나이트 서울 2020의 위 세션을 보고, 쉐이더그래프만을 이용해 비슷하게 만들어 봐야겠다고 생각했다.
+
+
+목표
+
+
+  URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Stylized Lit 쉐이더 만들기
+
+
+
+
+1. 서브그래프 준비
+
+
+  영상에서 보면, SmoothStep과 비슷한 연산을 더 저렴하게 할 수 있게 해주는 LinearStep을 다룬다.
+
+
+
+
+
+  LinearStep을 함수화하여 자주 사용하는 코드가 나오기에, 서브그래프로 만들어주었다.
+
+
+
+
+
+  그런데 실제로 이 세션의 코드를 보면 LinearStep 내에 threshold, smooth 값들을 동일한 형태로 사용하는 코드가 반복된다.
+
+
+
+
+
+  따라서 이것을 Smoother라고 명명하고 통째로 서브그래...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -253,70 +327,6 @@ Download
 
   
     한 번의 스텝마다 존재하는 모든 SDF를 각각 계산하...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Pixelater</title>
-    <link href="https://rito15.github.io/posts/pixelater/" rel="alternate" type="text/html" title="Pixelater" />
-    <published>2021-01-19T22:56:00+09:00</published>
-  
-    <updated>2021-01-25T02:17:35+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/pixelater/</id>
-    <content src="https://rito15.github.io/posts/pixelater/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Toys" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-  렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킵니다.
-  스크립트를 카메라에 부착하여 사용합니다.
-
-
-Preview
-
-
-
-Reference
-
-
-  https://www.youtube.com/watch?v=5rMkh9sl2bM
-
-
-Source Code
-
-
-  https://github.com/rito15/Unity_Toys
-
-
-Download
-
-
-  Pixelater.zip
-
-
     </summary>
   
 
