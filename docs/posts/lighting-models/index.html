@@ -658,7 +658,7 @@
         
         
         
-        <li><a href="/posts/unlit-stylized-lit-shadergraph/">Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</a></li>
+        <li><a href="/posts/unlit-stylized-lit-shadergraph/">OpenGL 공부 1일차</a></li>
       
         
         
@@ -678,7 +678,7 @@
         
         
         
-        <li><a href="/posts/behavior-tree/">Behavior Tree</a></li>
+        <li><a href="/posts/custom-attributes/">Custom Attributes</a></li>
       
 
       </ul>
@@ -773,40 +773,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -914,6 +880,91 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -992,43 +1043,6 @@
     
     
     
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1060,6 +1074,9 @@
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
@@ -1070,9 +1087,6 @@
       
         
         <a class="post-tag" href="/tags/custom/">custom</a>
-      
-        
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
         <a class="post-tag" href="/tags/job/">job</a>
@@ -1122,6 +1136,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1413,7 +1440,7 @@ Custom_Mainlight.hlsl
       
       
       <div class="card">
-        <a href="/posts/unlit-stylized-lit-shadergraph/">
+        <a href="/posts/unlit-stylized-lit-shadergraph-%EB%B3%B5%EC%82%AC%EB%B3%B8/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1475,7 +1502,7 @@ Custom_Mainlight.hlsl
       
       
       <div class="card">
-        <a href="/posts/behavior-tree/">
+        <a href="/posts/custom-attributes/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1492,13 +1519,13 @@ Custom_Mainlight.hlsl
   
 
   
-    Jan  5
+    Jan 17
   
 
-  <i class="unloaded">2021-01-05T00:26:00+09:00</i>
+  <i class="unloaded">2021-01-17T22:18:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Behavior Tree</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Attributes</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1507,12 +1534,31 @@ Custom_Mainlight.hlsl
 
 
 
-                개념
+                Download
 
 
-  FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
-  FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
-  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다....
+  https://github.com/rito15/Unity_Custom_Attributes
+
+
+
+
+MemoBox
+
+
+  필드의 상단에 상자 및 메모를 표시합니다.
+
+
+
+  
+    
+      매개변수
+      설명
+    
+  
+  
+    
+      Contents
+      메모에 적을 내용을 기록합니다. 스트링을 콤마로...
               </p>
             </div>
           </div>
@@ -1706,40 +1752,6 @@ Custom_Mainlight.hlsl
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1847,6 +1859,91 @@ Custom_Mainlight.hlsl
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -1925,43 +2022,6 @@ Custom_Mainlight.hlsl
     
     
     
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1988,6 +2048,9 @@ Custom_Mainlight.hlsl
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
@@ -1998,9 +2061,6 @@ Custom_Mainlight.hlsl
       
         
         <a class="post-tag" href="/tags/custom/">custom</a>
-      
-        
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
         <a class="post-tag" href="/tags/job/">job</a>

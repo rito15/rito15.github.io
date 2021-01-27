@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Ray Marching" />
+<meta property="og:title" content="Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="레이 마칭이란?" />
-<meta property="og:description" content="레이 마칭이란?" />
-<link rel="canonical" href="https://rito15.github.io/posts/ray-marching/" />
-<meta property="og:url" content="https://rito15.github.io/posts/ray-marching/" />
+<meta name="description" content="동기" />
+<meta property="og:description" content="동기" />
+<link rel="canonical" href="https://rito15.github.io/posts/unlit-stylized-lit-shadergraph-%EB%B3%B5%EC%82%AC%EB%B3%B8/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unlit-stylized-lit-shadergraph-%EB%B3%B5%EC%82%AC%EB%B3%B8/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-01-19T23:15:00+09:00" />
+<meta property="article:published_time" content="2021-01-27T22:00:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Ray Marching" />
+<meta property="twitter:title" content="Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Ray Marching","description":"레이 마칭이란?","dateModified":"2021-01-25T02:17:35+09:00","datePublished":"2021-01-19T23:15:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/ray-marching/"},"url":"https://rito15.github.io/posts/ray-marching/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더","description":"동기","dateModified":"2021-01-27T22:00:00+09:00","datePublished":"2021-01-27T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph-%EB%B3%B5%EC%82%AC%EB%B3%B8/"},"url":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph-%EB%B3%B5%EC%82%AC%EB%B3%B8/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Ray Marching | Rito15
+  <title>Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>Ray Marching</span>
+        <span>Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Ray Marching</h1>
+      <h1 data-toc-skip>Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Tue, Jan 19, 2021, 11:15 PM +0900"
+    title="Wed, Jan 27, 2021, 10:00 PM +0900"
   >
 
   
   
 
   
-    Jan 19
+    Jan 27
   
 
-  <i class="unloaded">2021-01-19T23:15:00+09:00</i>
+  <i class="unloaded">2021-01-27T22:00:00+09:00</i>
 
 </span>
           by
@@ -406,35 +406,6 @@
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Jan 25, 2021,  2:17 AM +0900"
-  >
-
-  
-  
-
-  
-    Jan 25
-  
-
-  <i class="unloaded">2021-01-25T02:17:35+09:00</i>
-
-</span>
-          </span>
           
 
           <!-- read time -->
@@ -448,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="640 words">3 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1331 words">7 min</span>
 
 
           <!-- page views -->
@@ -462,125 +433,263 @@
 
         
 
-        <h1 id="레이-마칭이란">레이 마칭이란?</h1>
+        <h1 id="동기">동기</h1>
 <hr />
 
-<ul>
-  <li>
-    <p>폴리곤의 정점 정보를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 표면의 정보를 얻어 오브젝트를 그려내는 기법</p>
-  </li>
-  <li>
-    <p>레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.</p>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104993172-ce0bab00-5a65-11eb-9eda-705de2034f17.png" width="500" /></center>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105963070-e44be380-60c3-11eb-9a27-19eded174b98.png" alt="" /></p>
 
 <ul>
-  <li>한 점(RO : Ray Origin, 위의 그림에서 Camera)에서 스크린의 각각의 픽셀을 향한 방향(RD : Ray Direction, 위의 그림에서 Image)들을 향해
-레이 캐스팅을 하여, 각 레이마다 여러 스텝(Step)으로 나누어 레이를 전진시키게 된다.</li>
+  <li>유나이트 서울 2020의 위 세션을 보고, 쉐이더그래프만을 이용해 비슷하게 만들어 봐야겠다고 생각했다.</li>
 </ul>
 
-<p><br /></p>
-
-<center> <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104993811-c1d41d80-5a66-11eb-9ad3-a861471cce8e.png" width="500" /> </center>
-
-<ul>
-  <li>
-    <p>한 번의 스텝마다 존재하는 모든 SDF를 각각 계산하여 현재 레이 위치로부터 각 모델들과의 거리를 얻어낸다.</p>
-  </li>
-  <li>
-    <p>그 중 현재 레이의 위치로부터 가장 가까운 거리값만큼 레이를 이동한다.</p>
-  </li>
-  <li>
-    <p>레이의 다음 전진 거리가 매우 작으면(예: dS &lt; 0.01) 해당 위치가 물체의 표면이라고 판단하고, 레이의 전진을 중단한다.</p>
-  </li>
-  <li>
-    <p>물체의 표면을 알아내지 못했는데 전진 횟수가 MAX_STEPS를 넘어서면 해당 픽셀에는 모델의 표면이 존재하지 않는다고 판단한다.</p>
-  </li>
-  <li>
-    <p>각 픽셀들에 대한 계산이 끝나면 표면의 노말과 라이팅 계산을 적용한다.</p>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="1-거리-계산">[1] 거리 계산</h3>
-
-<center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104995624-f0072c80-5a69-11eb-9888-15b0f89edd41.png" width="500" /></center>
-
-<h3 id="2-노멀-계산">[2] 노멀 계산</h3>
-
-<center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104995731-1927bd00-5a6a-11eb-8f0b-c63f60abe394.png" width="500" /> </center>
-
-<h3 id="3-라이트directional-light-계산">[3] 라이트(Directional Light) 계산</h3>
-
-<center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104995793-2e045080-5a6a-11eb-86db-8c7601d12846.png" width="500" /> </center>
-
-<h3 id="간단한-구현-예시-httpsgithubcomseblagueray-marching-활용">간단한 구현 예시 (https://github.com/SebLague/Ray-Marching 활용)</h3>
-
-<center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105003713-5f831900-5a76-11eb-8090-bd2e8d6f9b87.png" width="500" /></center>
-
-<h3 id="shadertoy에서의-구현">ShaderToy에서의 구현</h3>
-
-<ul>
-  <li><a href="https://www.shadertoy.com/view/wstBW4">https://www.shadertoy.com/view/wstBW4</a></li>
-</ul>
-
-<center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105588245-d00e9a80-5dd4-11eb-88ac-a146ee0fc817.png" width="500" /></center>
-
-<p><br /></p>
-
-<h1 id="장점">장점</h1>
+<h1 id="목표">목표</h1>
 <hr />
 <ul>
-  <li>곡면을 부드럽게 렌더링할 수 있다.</li>
-  <li>거리 함수, 연산 함수들을 이용하여 모델들을 다양하고 부드럽게 블렌딩하기에 좋다.</li>
-  <li>각 레이를 GPU 연산을 통해 병렬적으로 연산하기에 적합하다.</li>
+  <li>URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Stylized Lit 쉐이더 만들기</li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="단점">단점</h1>
+<h1 id="1-서브그래프-준비">1. 서브그래프 준비</h1>
 <hr />
 <ul>
-  <li>성능 소모가 크다.</li>
+  <li>영상에서 보면, SmoothStep과 비슷한 연산을 더 저렴하게 할 수 있게 해주는 LinearStep을 다룬다.</li>
 </ul>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105004241-023b9780-5a77-11eb-9d91-015809da2d88.png" width="500" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105963609-8b307f80-60c4-11eb-9900-c27dd78495c7.png" alt="" /></p>
+
+<ul>
+  <li>LinearStep을 함수화하여 자주 사용하는 코드가 나오기에, 서브그래프로 만들어주었다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105963981-f5e1bb00-60c4-11eb-917a-b607a35aec71.png" alt="" /></p>
+
+<ul>
+  <li>그런데 실제로 이 세션의 코드를 보면 LinearStep 내에 threshold, smooth 값들을 동일한 형태로 사용하는 코드가 반복된다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105964242-3fcaa100-60c5-11eb-88c2-10322d9d2165.png" alt="" /></p>
+
+<ul>
+  <li>따라서 이것을 Smoother라고 명명하고 통째로 서브그래프로 만들어주었다.</li>
+  <li>그런데 smooth 값이 만약 0이 된다면 LinearStep의 (in-min)/(max-min)에서 (max-min)이 0이 되므로 zero division 문제가 발생할 수 있기 때문에 이를 방지하기 위해 smooth에 아주 작은 값을 더해주었다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105982414-94c4e200-60da-11eb-97c5-5fe396f34779.png" alt="" /></p>
 
 <p><br /></p>
 
-<h1 id="연관-개념">연관 개념</h1>
+<h1 id="2-diffuse">2. Diffuse</h1>
 <hr />
 <ul>
+  <li><a href="https://rito15.github.io/posts/unlit-custom-lit-shadergraph/">https://rito15.github.io/posts/unlit-custom-lit-shadergraph/</a></li>
+  <li>위 링크에서 만들었던 디퓨즈를 이용하되, Half Lambert를 적용한다.</li>
+  <li>Attenuation은 이후에 쓰임새가 더 있으므로 지금 적용하지 않고, 따로 분리해둔다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105982930-4f54e480-60db-11eb-8fb2-d70daae7d9d8.png" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="3-color">3. Color</h1>
+<hr />
+<ul>
+  <li>쉐이더 프로퍼티에 3가지 색상과 그림자 색상을 만든다.</li>
+  <li>3가지 색상에 적용할 Threshold, Smooth도 각각 만든다.</li>
+  <li>위에서 만든 서브그래프 Smoother, 그리고 Lerp를 이용해 총 네 가지 색상을 아래처럼 섞어준다.</li>
+  <li>각 Smoother 노드의 In 파라미터는 Diffuse의 결괏값을 넣어준다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105983224-c0949780-60db-11eb-81a9-14e0a092fbcf.png" alt="" /></p>
+
+<ul>
+  <li>이제 메인 텍스쳐의 색상에 곱해주고, 추가로 Color Intensity 프로퍼티를 만들고 곱하여 간단히 전체 색상의 강도를 조절할 수 있도록 한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105984407-6ac0ef00-60dd-11eb-95af-e46e20c1841a.png" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="4-specular">4. Specular</h1>
+<hr />
+<ul>
+  <li>우선 블린 퐁 스페큘러를 Smoother에 적용한 서브그래프를 준비한다.</li>
+  <li>offset 프로퍼티는 Vector3 타입으로, 스페큘러의 위치를 조정하기 위한 용도이다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105984978-37329480-60de-11eb-9c13-0d436439af26.png" alt="" /></p>
+
+<ul>
+  <li>스페큘러 역시 Threshold와 Smooth 프로퍼티를 만들어 적용하며, 색상을 지정할 수 있도록 Color 프로퍼티도 추가하여 곱해준다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105985479-d9527c80-60de-11eb-8ec8-f564d6cbcc4e.png" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="5-rim-light">5. Rim Light</h1>
+<hr />
+<ul>
+  <li>림라이트 서브그래프는 간단히 Fresnel 노드에 Smoother를 적용시키는 정도로 만들어주고 림라이트는 색상을 지정해서 사용하는 경우가 많았기 때문에 서브그래프 내에 색상 파라미터도 추가해주었다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105985881-77dedd80-60df-11eb-88ce-2fc29659ce62.png" alt="" /></p>
+
+<ul>
+  <li>마찬가지로 Threshold, Smooth, Color 프로퍼티를 추가하여 적용해준다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105985990-9e9d1400-60df-11eb-8790-ebb68e7a49e0.png" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="6-specular-rim-light-적용">6. Specular, Rim Light 적용</h1>
+<hr />
+<ul>
+  <li>색상의 결괏값에 더해준다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105988056-76fb7b00-60e2-11eb-8f26-a6e9f4845361.png" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="7-reflection">7. Reflection</h1>
+<hr />
+<ul>
+  <li>반사율을 조정하기 위한 Reflection(Vector1) 프로퍼티를 만들고, 반사 영역을 지정하기 위한 Reflection Map 텍스쳐 프로퍼티도 추가한다.</li>
+  <li>Reflection Probe 노드를 이용해 간단히 반사를 추가할 수 있다.</li>
+  <li>6번의 결과에 Lerp를 이용하여 반사를 적용시켜준다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105988402-e70a0100-60e2-11eb-8cea-dba29a91d4db.png" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="8-shadow">8. Shadow</h1>
+<hr />
+<ul>
+  <li>Shadow Cascade, Soft Shadow를 적용하기 위해 키워드를 추가한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105988493-0acd4700-60e3-11eb-99b3-97dac2bba555.png" alt="" /></p>
+
+<ul>
+  <li>그림자 적용 여부를 위한 Receive Shadow(Boolean) 프로퍼티를 추가한다.</li>
   <li>
-    <p>https://blog.hybrid3d.dev/2019-11-15-raytracing-pathtracing-denoising</p>
+    <p>기존에는 없는 기능이지만, 그림자 반응 민감도를 조정하기 위해 Shadow sensitivity(Vector1) 프로퍼티도 추가했다.</p>
   </li>
-  <li>레이 트레이싱(Ray Traycing)
+  <li>그림자가 생겼을 때는 스페큘러가 맺히지 않도록 하기 위해 스페큘러를 아래와 같이 수정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105988995-d4dc9280-60e3-11eb-9533-c56dd1f0d399.png" alt="" /></p>
+
+<ul>
+  <li>Reflection까지 적용한 결과에 그림자 조정 옵션을 적용하기 위해 아래처럼 추가하고 그래프를 완성한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105989189-1a00c480-60e4-11eb-84a7-97f645b3ef50.png" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="9-완성된-그래프">9. 완성된 그래프</h1>
+<hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105994469-ff7e1980-60ea-11eb-974d-982cbbe5a303.png" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="captures---sphere">Captures - Sphere</h1>
+<hr />
+<h2 id="1-pbr과의-비교">[1] PBR과의 비교</h2>
+
+<ul>
+  <li>색상을 그라데이션으로 자유롭게 적용하고, 스페큘러와 림라이트의 커스텀도 가능하기 때문에 당연히 더 예쁘다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105982128-3dbf0d00-60da-11eb-952b-d98579e7c0c9.png" alt="" /></p>
+
+<p><br /></p>
+
+<h2 id="2-다양한-그라데이션-npr-효과">[2] 다양한 그라데이션, NPR 효과</h2>
+
+<ul>
+  <li>앞은 여러 색상을 혼합하였으며, 뒤는 각각의 Smooth값을 0으로 낮추어 셀 쉐이딩 같은 효과를 내주었다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105982196-50d1dd00-60da-11eb-97ab-85aa21650f31.png" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="captures---modelrobot-kyle">Captures - Model(Robot Kyle)</h1>
+<hr />
+<h2 id="1-pbr">[1] PBR</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105961740-4277c700-60c2-11eb-902d-7faa9cc3d899.png" alt="" /></p>
+
+<h2 id="2-stylized-lit">[2] Stylized Lit</h2>
+
+<ul>
+  <li>네 번째 로봇은 모든 smooth 값을 0으로 낮추어 NPR 효과를 주었다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105962365-10b33000-60c3-11eb-811d-e5e835062d67.png" alt="" /></p>
+
+<h2 id="3-stylized-lit---응용">[3] Stylized Lit - 응용</h2>
+
+<ul>
+  <li>다른 톤의 색상을 혼합하여 변화를 주었다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105962351-0db83f80-60c3-11eb-866e-bda95cd8e2ae.png" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="captures---shadow">Captures - Shadow</h1>
+<hr />
+<ul>
+  <li>Shadow Sensitivity가 0.2일 때 그림자가 드리우는 모습</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105990613-1bcb8780-60e6-11eb-9a1e-8bdee1421a87.gif" alt="" /></p>
+
+<ul>
+  <li>빛이 가려져 있을 때 Shadow Sensitivity를 0.0 ~ 1.0으로 조정하는 모습</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105990620-1e2de180-60e6-11eb-9daa-ab40ccdad056.gif" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="future-works">Future Works</h1>
+<hr />
+<ul>
+  <li>각종 맵 텍스쳐 적용
     <ul>
-      <li>눈(RO)에서 출발한 빛이 광원에 도달할 때까지, 물체의 표면에 굴절되고 반사되는 것을 추적하는 기법</li>
-      <li>기본적인 레이 트레이싱은 주로 반사/스페큘러 계산에 사용</li>
+      <li>참고 세션처럼 PBR 쉐이더를 수정한 것이 아니라 Unlit 쉐이더에서 직접 만든 것인 만큼 노멀, 메탈릭, 오클루전 등 각종 텍스쳐들은 필요한 경우 추가해야 한다.</li>
     </ul>
   </li>
-  <li>패스 트레이싱(Path Traycing)
+  <li>브러시 텍스쳐
     <ul>
-      <li>레이 트레이싱을 이용해 디퓨즈(Diffuse) 및 스페큘러(Specular), 전역 조명(GI, Global Illumination)을 계산하는 기법</li>
+      <li>세션에서는 브러시 텍스쳐를 추가했지만, 여기서는 일단 공통적인 효과들만 적용하기 위해 브러시 텍스쳐는 추가하지 않았다.</li>
     </ul>
   </li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="references">References</h1>
+<h1 id="reference">Reference</h1>
 <hr />
 <ul>
-  <li><a href="http://jamie-wong.com/2016/07/15/ray-marching-signed-distance-functions">http://jamie-wong.com/2016/07/15/ray-marching-signed-distance-functions</a></li>
-  <li><a href="https://www.youtube.com/watch?v=PGtv-dBi2wE">https://www.youtube.com/watch?v=PGtv-dBi2wE</a> [The Art of Code]</li>
-  <li><a href="https://www.youtube.com/watch?v=Cp5WWtMoeKg">https://www.youtube.com/watch?v=Cp5WWtMoeKg</a> [Sebastian Lague]</li>
-  <li><a href="https://github.com/SebLague/Ray-Marching">https://github.com/SebLague/Ray-Marching</a></li>
+  <li><a href="https://www.youtube.com/watch?v=cykinrW0pwQ">https://www.youtube.com/watch?v=cykinrW0pwQ</a></li>
+  <li><a href="https://github.com/madumpa/URP_StylizedLitShader">https://github.com/madumpa/URP_StylizedLitShader</a></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="download">Download</h1>
+<hr />
+<ul>
+  <li><a href="https://github.com/rito15/Images/files/5880324/2021_0126_Stylized.Lit.zip">2021_0126_Stylized Lit.zip</a></li>
 </ul>
 
 
@@ -593,8 +702,8 @@
         <div class="post-meta mb-3">
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
-            <a href='/categories/unity/'>Unity</a>,
-            <a href='/categories/study/'>Study</a>
+            <a href='/categories/unity-shader/'>Unity Shader</a>,
+            <a href='/categories/shader-graph-study/'>Shader Graph Study</a>
         </div>
         
 
@@ -608,6 +717,12 @@
           
           <a href="/tags/csharp/"
             class="post-tag no-text-decoration" >csharp</a>
+          
+          <a href="/tags/shader/"
+            class="post-tag no-text-decoration" >shader</a>
+          
+          <a href="/tags/shadergraph/"
+            class="post-tag no-text-decoration" >shadergraph</a>
           
           </div>
         
@@ -639,19 +754,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Ray Marching - Rito15&url=https://rito15.github.io/posts/ray-marching/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더 - Rito15&url=https://rito15.github.io/posts/unlit-stylized-lit-shadergraph-%EB%B3%B5%EC%82%AC%EB%B3%B8/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Ray Marching - Rito15&u=https://rito15.github.io/posts/ray-marching/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더 - Rito15&u=https://rito15.github.io/posts/unlit-stylized-lit-shadergraph-%EB%B3%B5%EC%82%AC%EB%B3%B8/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Ray Marching - Rito15&url=https://rito15.github.io/posts/ray-marching/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더 - Rito15&url=https://rito15.github.io/posts/unlit-stylized-lit-shadergraph-%EB%B3%B5%EC%82%AC%EB%B3%B8/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1210,59 +1325,59 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -1413,7 +1528,7 @@
       
       
       <div class="card">
-        <a href="/posts/fog-of-war/">
+        <a href="/posts/unlit-custom-lit-shadergraph/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1430,13 +1545,13 @@
   
 
   
-    Jan 20
+    Jan 16
   
 
-  <i class="unloaded">2021-01-20T21:00:00+09:00</i>
+  <i class="unloaded">2021-01-16T22:14:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Fog of War</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1445,17 +1560,27 @@
 
 
 
-                개념
-
-
-  맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다.
-  지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0,
-  지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8,
-  지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
+                목표
 
 
 
-[스타크래프트2 게임...
+  URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Lit 쉐이더 만들기
+
+
+
+
+1. Diffuse 구현
+
+
+
+  커스텀 함수를 이용하여 메인라이트의 방향, 색상, 감쇠를 얻어낸다.
+
+
+
+
+Custom_Mainlight.hlsl
+
+void MainLight_half(float3 WorldPos, out half3 Direction, ...
               </p>
             </div>
           </div>
@@ -1465,7 +1590,7 @@
       
       
       <div class="card">
-        <a href="/posts/job-system/">
+        <a href="/posts/lighting-models/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1482,13 +1607,13 @@
   
 
   
-    Jan 24
+    Nov 16, 2020
   
 
-  <i class="unloaded">2021-01-24T13:15:00+09:00</i>
+  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Job System</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lighting Models</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1497,14 +1622,17 @@
 
 
 
-                개념
+                Vectors
 
 
-  유니티에서 안전한 멀티스레딩을 구현하는 시스템
-  스레드를 별도로 생성하지 않으며, 유니티의 워커스레드에 작업을 지시할 수 있게 한다.
-  잡 대기열에 잡을 배치하면 워커 스레드가 잡 대기열에서 항목을 가져와 실행한다.
-  Native Container를 이용해 잡의 수행 결과를 메인 스레드와 공유한다.
-  버스트 컴파일러를 이용하여 추가...
+
+
+  L (Light) : 정점에서 광원을 향하는 방향의 벡터
+  N (Normal) : 정점의 노멀 벡터
+  V (View) : 정점에서 카메라를 향하는 방향의 벡터
+  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
+  
+    H (Half) : 블린퐁에서 사용, L와 V의 중...
               </p>
             </div>
           </div>
@@ -1514,7 +1642,7 @@
       
       
       <div class="card">
-        <a href="/posts/behavior-tree/">
+        <a href="/posts/custom-attributes/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1531,13 +1659,13 @@
   
 
   
-    Jan  5
+    Jan 17
   
 
-  <i class="unloaded">2021-01-05T00:26:00+09:00</i>
+  <i class="unloaded">2021-01-17T22:18:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Behavior Tree</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Attributes</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1546,13 +1674,33 @@
 
 
 
-                개념
+                Download
 
 
 
-  FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
-  FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
-  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
+  https://github.com/rito15/Unity_Custom_Attributes
+
+
+
+
+MemoBox
+
+
+
+  필드의 상단에 상자 및 메모를 표시합니다.
+
+
+
+  
+    
+      매개변수
+      설명
+    
+  
+  
+    
+      Contents
+      메모에 적을 내용을 기록합니다. 스트링을 콤...
               </p>
             </div>
           </div>
@@ -1575,14 +1723,14 @@
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/pixelater/" class="btn btn-outline-primary">
-    <p>Pixelater</p>
+  <a href="/posts/frame-rate-checker/" class="btn btn-outline-primary">
+    <p>Frame Rate Checker</p>
   </a>
   
 
   
-  <a href="/posts/fog-of-war/" class="btn btn-outline-primary">
-    <p>Fog of War</p>
+  <a href="/posts/unlit-stylized-lit-shadergraph/" class="btn btn-outline-primary">
+    <p>OpenGL 공부 1일차</p>
   </a>
   
 

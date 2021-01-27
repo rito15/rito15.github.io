@@ -1,208 +1,134 @@
 ---
-title: Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더
+title: OpenGL 공부 1일차
 author: Rito15
-date: 2021-01-27 22:00:00 +09:00
-categories: [Unity Shader, Shader Graph Study]
-tags: [unity, csharp, shader, shadergraph]
+date: 2021-01-28 00:10:00 +09:00
+categories: [OpenGL, OpenGL Study]
+tags: [graphics, opengl]
 math: true
 mermaid: true
 ---
 
 # 동기
 ---
+- 그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.
 
-![](https://user-images.githubusercontent.com/42164422/105963070-e44be380-60c3-11eb-9a27-19eded174b98.png)
-
-- 유나이트 서울 2020의 위 세션을 보고, 쉐이더그래프만을 이용해 비슷하게 만들어 봐야겠다고 생각했다.
+<br>
 
 # 목표
 ---
-- URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Stylized Lit 쉐이더 만들기
+- OpenGL의 완전 기초부터 쉐이더 적용까지 모든 과정 공부
+- 그래픽스에 대한 전반적인 지식 습득
 
 <br>
 
-# 1. 서브그래프 준비
+# OpenGL?
 ---
-- 영상에서 보면, SmoothStep과 비슷한 연산을 더 저렴하게 할 수 있게 해주는 LinearStep을 다룬다.
+- OpenGL 자체는 API가 아닌, 각종 OpenGL 라이브러리를 개발하기 위해 Khronos Group이 개발 및 유지 관리하는 설명서이다.
 
-![](https://user-images.githubusercontent.com/42164422/105963609-8b307f80-60c4-11eb-9900-c27dd78495c7.png)
+- OpenGL은 각 함수의 출력과 수행 방법을 정의한다.
 
-- LinearStep을 함수화하여 자주 사용하는 코드가 나오기에, 서브그래프로 만들어주었다.
+- 실제로 OpenGL 라이브러리를 개발하는 사람들은 일반적으로 그래픽카드 제조업체이다.
 
-![](https://user-images.githubusercontent.com/42164422/105963981-f5e1bb00-60c4-11eb-917a-b607a35aec71.png)
-
-- 그런데 실제로 이 세션의 코드를 보면 LinearStep 내에 threshold, smooth 값들을 동일한 형태로 사용하는 코드가 반복된다.
-
-![](https://user-images.githubusercontent.com/42164422/105964242-3fcaa100-60c5-11eb-88c2-10322d9d2165.png)
-
-- 따라서 이것을 Smoother라고 명명하고 통째로 서브그래프로 만들어주었다.
-- 그런데 smooth 값이 만약 0이 된다면 LinearStep의 (in-min)/(max-min)에서 (max-min)이 0이 되므로 zero division 문제가 발생할 수 있기 때문에 이를 방지하기 위해 smooth에 아주 작은 값을 더해주었다.
-
-![](https://user-images.githubusercontent.com/42164422/105982414-94c4e200-60da-11eb-97c5-5fe396f34779.png)
+- OpenGL은 기본적으로 C언어로 작성되었으며, 각종 확장 라이브러리는 C++로 작성된 경우가 많다.
 
 <br>
 
-# 2. Diffuse
+# OpenGL 라이브러리 종류
 ---
-- <https://rito15.github.io/posts/unlit-custom-lit-shadergraph/>
-- 위 링크에서 만들었던 디퓨즈를 이용하되, Half Lambert를 적용한다.
-- Attenuation은 이후에 쓰임새가 더 있으므로 지금 적용하지 않고, 따로 분리해둔다.
+- GL(Graphics Library)
+  - 저수준의 기본 그래픽스 라이브러리
 
-![](https://user-images.githubusercontent.com/42164422/105982930-4f54e480-60db-11eb-8fb2-d70daae7d9d8.png)
+- GLU(OpenGL Utility Library)
+  - GL을 보완하여, 고수준의 함수와 기능들을 제공하는 라이브러리
+
+- GLUT(OpenGL Utility Toolkit)
+  - 다양한 플랫폼에서 사용할 수 있는 보조 라이브러리. 1998년에 버려졌다.
+
+- FreeGLUT
+  - GLUT는 라이센스 때문에 더이상 개발이 불가능하여 사람들이 자유롭게 개발할 수 있도록 새롭게 작성된 라이브러리
+
+- SDL(Simple Directmedia Layer)
+  - OpenGL, Direct3D를 통해 오디오, 키보드, 마우스, 그래픽 하드웨어에 대한 저수준 접근이 가능하도록 설계된 크로스플랫폼 개발 라이브러리
+  - Windows, Linux, Mac OS X, Android, iOS 등 다양한 플랫폼을 지원한다.
+  - 무료로 이용이 가능하지만, 기능이 너무 많아 프로그램이 무겁다.
+
+- SFML(Simple and Fast Multimedia Library)
+  - 다양한 멀티미디어에 걸쳐 API를 제공하기 위해 설계된 크로스플랫폼 개발 라이브러리
+  - System, Window, Graphics, Audio, Network 이렇게 5가지 모듈로 구성되어 있다.
+  - C, C++, Ruby, Java, Go, Pthon, Rust 등 다양한 언어를 지원한다.
+
+- GLFW(Graphics Library Framework)
+  - OpenGL과 함께 사용하기 위한 경량 유틸리티 라이브러리
+  - OpenGL 환경에서 윈도우를 생성하고 마우스, 키보드, 조이스틱 등의 입력을 받아 처리할 수 있다.
+  - C언어로 작성되었지만, Ada, C++, C#, Go, Java, Ruby, Rust 등 다양한 언어를 지원한다.
+
+- GLEW(OpenGL Extension Wrangler Library)
+  - 크로스플랫폼 C/C++ 확장 라이브러리
+  - 하나의 헤더파일만 추가하면 사용할 수 있게 작성되었으며, 더 많은 기능들을 제공한다.
+  - 쉐이더 프로그램을 작성할 때 주로 사용된다.
+
+- GLM(OpenGL Mathematics)
+  - GLSL 기반 그래픽 소프트웨어에 사용 가능한 C++ 수학 라이브러리
 
 <br>
 
-# 3. Color
+# GLFW 설치, 프로젝트 준비
 ---
-- 쉐이더 프로퍼티에 3가지 색상과 그림자 색상을 만든다.
-- 3가지 색상에 적용할 Threshold, Smooth도 각각 만든다.
-- 위에서 만든 서브그래프 Smoother, 그리고 Lerp를 이용해 총 네 가지 색상을 아래처럼 섞어준다.
-- 각 Smoother 노드의 In 파라미터는 Diffuse의 결괏값을 넣어준다.
+- <https://www.glfw.org/> 에서 최신버전을 받을 수 있다.
+- 그리고 이미 컴파일된 라이브러리 파일들을 <https://www.glfw.org/download.html> 에서 곧바로 받을 수 있으므로 이것을 사용하기로 한다.
+- 32bit와 64bit로 나뉘어 있는데, VS에서 32bit로 실행할 것이므로 32bit로 받아온다.
 
-![](https://user-images.githubusercontent.com/42164422/105983224-c0949780-60db-11eb-81a9-14e0a092fbcf.png)
+- C++ 프로젝트 생성
 
-- 이제 메인 텍스쳐의 색상에 곱해주고, 추가로 Color Intensity 프로퍼티를 만들고 곱하여 간단히 전체 색상의 강도를 조절할 수 있도록 한다.
+![image](https://user-images.githubusercontent.com/42164422/106020566-437f1780-6107-11eb-919b-ae61f265fdbf.png)
 
-![](https://user-images.githubusercontent.com/42164422/105984407-6ac0ef00-60dd-11eb-95af-e46e20c1841a.png)
+- 필요한 라이브러리 파일들을 프로젝트 폴더로 가져오기
+
+![image](https://user-images.githubusercontent.com/42164422/106020625-5396f700-6107-11eb-81af-092a6a1d99b8.png)
+
+- 프로젝트 속성 설정
+
+![image](https://user-images.githubusercontent.com/42164422/106022424-29463900-6109-11eb-9316-2aae3e549729.png)
+
+![image](https://user-images.githubusercontent.com/42164422/106023330-0c5e3580-610a-11eb-9283-03ddcc22c095.png)
+
+![image](https://user-images.githubusercontent.com/42164422/106023375-16803400-610a-11eb-919f-25c288b20ad4.png)
+
+- 예제 코드를 통해 바인딩 확인
+  - 예제 코드 : <https://www.glfw.org/documentation.html>
+
+![image](https://user-images.githubusercontent.com/42164422/106023474-2dbf2180-610a-11eb-9612-78e3b10b23a6.png)
+
+- 빌드(F7) 시도 후 발생하는 무수한 에러는
+
+![image](https://user-images.githubusercontent.com/42164422/106025513-27ca4000-610c-11eb-9eb6-61cc56f338d6.png)
+
+- 이렇게 해결한다.
+
+![image](https://user-images.githubusercontent.com/42164422/106025642-4b8d8600-610c-11eb-8241-654f06dcb49c.png)
+
+- 그리고 빌드 시, 유서깊은 Hello World 창을 만날 수 있다.
+
+![image](https://user-images.githubusercontent.com/42164422/106025780-6a8c1800-610c-11eb-90ae-dc83ecb0a789.png)
+
+- 이제 간단한 삼각형을 그려보기 위해 glClear( .. ); 코드 하단에 다음과 같이 추가하고 실행한다.
+
+```cpp
+glBegin(GL_TRIANGLES);
+glVertex2f(-0.5f, -0.5f); // Bottom Left
+glVertex2f( 0.0f,  0.5f); // Top
+glVertex2f( 0.5f, -0.5f); // Bottom Right
+glEnd();
+```
+
+![image](https://user-images.githubusercontent.com/42164422/106026558-509f0500-610d-11eb-8e49-ab75f81f4c57.png)
+
+- 뷰포트 좌표는 0.0 ~ 1.0 이라고 어디선가 주워들은 지식이 머릿속에 있는데.. 이건 뷰포트가 아닌가보다.
 
 <br>
 
-# 4. Specular
+# References
 ---
-- 우선 블린 퐁 스페큘러를 Smoother에 적용한 서브그래프를 준비한다.
-- offset 프로퍼티는 Vector3 타입으로, 스페큘러의 위치를 조정하기 위한 용도이다.
-
-![](https://user-images.githubusercontent.com/42164422/105984978-37329480-60de-11eb-9c13-0d436439af26.png)
-
-- 스페큘러 역시 Threshold와 Smooth 프로퍼티를 만들어 적용하며, 색상을 지정할 수 있도록 Color 프로퍼티도 추가하여 곱해준다.
-
-![](https://user-images.githubusercontent.com/42164422/105985479-d9527c80-60de-11eb-8ec8-f564d6cbcc4e.png)
-
-<br>
-
-# 5. Rim Light
----
-- 림라이트 서브그래프는 간단히 Fresnel 노드에 Smoother를 적용시키는 정도로 만들어주고 림라이트는 색상을 지정해서 사용하는 경우가 많았기 때문에 서브그래프 내에 색상 파라미터도 추가해주었다.
-
-![](https://user-images.githubusercontent.com/42164422/105985881-77dedd80-60df-11eb-88ce-2fc29659ce62.png)
-
-- 마찬가지로 Threshold, Smooth, Color 프로퍼티를 추가하여 적용해준다.
-
-![](https://user-images.githubusercontent.com/42164422/105985990-9e9d1400-60df-11eb-8790-ebb68e7a49e0.png)
-
-<br>
-
-# 6. Specular, Rim Light 적용
----
-- 색상의 결괏값에 더해준다.
-
-![](https://user-images.githubusercontent.com/42164422/105988056-76fb7b00-60e2-11eb-8f26-a6e9f4845361.png)
-
-<br>
-
-# 7. Reflection
----
-- 반사율을 조정하기 위한 Reflection(Vector1) 프로퍼티를 만들고, 반사 영역을 지정하기 위한 Reflection Map 텍스쳐 프로퍼티도 추가한다.
-- Reflection Probe 노드를 이용해 간단히 반사를 추가할 수 있다.
-- 6번의 결과에 Lerp를 이용하여 반사를 적용시켜준다.
-
-![](https://user-images.githubusercontent.com/42164422/105988402-e70a0100-60e2-11eb-8cea-dba29a91d4db.png)
-
-<br>
-
-# 8. Shadow
----
-- Shadow Cascade, Soft Shadow를 적용하기 위해 키워드를 추가한다.
-
-![](https://user-images.githubusercontent.com/42164422/105988493-0acd4700-60e3-11eb-99b3-97dac2bba555.png)
-
-- 그림자 적용 여부를 위한 Receive Shadow(Boolean) 프로퍼티를 추가한다.
-- 기존에는 없는 기능이지만, 그림자 반응 민감도를 조정하기 위해 Shadow sensitivity(Vector1) 프로퍼티도 추가했다.
-
-- 그림자가 생겼을 때는 스페큘러가 맺히지 않도록 하기 위해 스페큘러를 아래와 같이 수정한다.
-
-![](https://user-images.githubusercontent.com/42164422/105988995-d4dc9280-60e3-11eb-9533-c56dd1f0d399.png)
-
-- Reflection까지 적용한 결과에 그림자 조정 옵션을 적용하기 위해 아래처럼 추가하고 그래프를 완성한다.
-
-![](https://user-images.githubusercontent.com/42164422/105989189-1a00c480-60e4-11eb-84a7-97f645b3ef50.png)
-
-<br>
-
-# 9. 완성된 그래프
----
-
-![](https://user-images.githubusercontent.com/42164422/105994469-ff7e1980-60ea-11eb-974d-982cbbe5a303.png)
-
-<br>
-
-# Captures - Sphere
----
-## [1] PBR과의 비교
-
-- 색상을 그라데이션으로 자유롭게 적용하고, 스페큘러와 림라이트의 커스텀도 가능하기 때문에 당연히 더 예쁘다.
-
-![](https://user-images.githubusercontent.com/42164422/105982128-3dbf0d00-60da-11eb-952b-d98579e7c0c9.png)
-
-<br>
-
-## [2] 다양한 그라데이션, NPR 효과
-
-- 앞은 여러 색상을 혼합하였으며, 뒤는 각각의 Smooth값을 0으로 낮추어 셀 쉐이딩 같은 효과를 내주었다.
-
-![](https://user-images.githubusercontent.com/42164422/105982196-50d1dd00-60da-11eb-97ab-85aa21650f31.png)
-
-<br>
-
-# Captures - Model(Robot Kyle)
----
-## [1] PBR
-
-![](https://user-images.githubusercontent.com/42164422/105961740-4277c700-60c2-11eb-902d-7faa9cc3d899.png)
-
-## [2] Stylized Lit
-
-- 네 번째 로봇은 모든 smooth 값을 0으로 낮추어 NPR 효과를 주었다.
-
-![](https://user-images.githubusercontent.com/42164422/105962365-10b33000-60c3-11eb-811d-e5e835062d67.png)
-
-## [3] Stylized Lit - 응용
-
-- 다른 톤의 색상을 혼합하여 변화를 주었다.
-
-![](https://user-images.githubusercontent.com/42164422/105962351-0db83f80-60c3-11eb-866e-bda95cd8e2ae.png)
-
-<br>
-
-# Captures - Shadow
----
-- Shadow Sensitivity가 0.2일 때 그림자가 드리우는 모습
-
-![](https://user-images.githubusercontent.com/42164422/105990613-1bcb8780-60e6-11eb-9a1e-8bdee1421a87.gif)
-
-- 빛이 가려져 있을 때 Shadow Sensitivity를 0.0 ~ 1.0으로 조정하는 모습
-
-![](https://user-images.githubusercontent.com/42164422/105990620-1e2de180-60e6-11eb-9daa-ab40ccdad056.gif)
-
-<br>
-
-# Future Works
----
-- 각종 맵 텍스쳐 적용
-  - 참고 세션처럼 PBR 쉐이더를 수정한 것이 아니라 Unlit 쉐이더에서 직접 만든 것인 만큼 노멀, 메탈릭, 오클루전 등 각종 텍스쳐들은 필요한 경우 추가해야 한다.
-
-- 브러시 텍스쳐
-  - 세션에서는 브러시 텍스쳐를 추가했지만, 여기서는 일단 공통적인 효과들만 적용하기 위해 브러시 텍스쳐는 추가하지 않았다.
-
-<br>
-
-# Reference
----
-- <https://www.youtube.com/watch?v=cykinrW0pwQ>
-- <https://github.com/madumpa/URP_StylizedLitShader>
-
-<br>
-
-# Download
----
-- [2021_0126_Stylized Lit.zip](https://github.com/rito15/Images/files/5880324/2021_0126_Stylized.Lit.zip)
+- <https://www.youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2>
+- <https://heinleinsgame.tistory.com/tag/OpenGL>
+- <https://learnopengl.com/>

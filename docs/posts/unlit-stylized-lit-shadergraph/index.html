@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더" />
+<meta property="og:title" content="OpenGL 공부 1일차" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="동기" />
-<meta property="og:description" content="동기" />
+<meta name="description" content="동기 그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다." />
+<meta property="og:description" content="동기 그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다." />
 <link rel="canonical" href="https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-01-27T22:00:00+09:00" />
+<meta property="article:published_time" content="2021-01-28T00:10:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더" />
+<meta property="twitter:title" content="OpenGL 공부 1일차" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더","description":"동기","dateModified":"2021-01-27T23:58:56+09:00","datePublished":"2021-01-27T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/"},"url":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"OpenGL 공부 1일차","description":"동기 그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.","dateModified":"2021-01-28T00:00:21+09:00","datePublished":"2021-01-28T00:10:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/"},"url":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더 | Rito15
+  <title>OpenGL 공부 1일차 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</span>
+        <span>OpenGL 공부 1일차</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</h1>
+      <h1 data-toc-skip>OpenGL 공부 1일차</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Jan 27, 2021, 10:00 PM +0900"
+    title="Thu, Jan 28, 2021, 12:10 AM +0900"
   >
 
   
   
 
   
-    Jan 27
+    Jan 28
   
 
-  <i class="unloaded">2021-01-27T22:00:00+09:00</i>
+  <i class="unloaded">2021-01-28T00:10:00+09:00</i>
 
 </span>
           by
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Jan 27, 2021, 11:58 PM +0900"
+    title="Thu, Jan 28, 2021, 12:00 AM +0900"
   >
 
   
   
 
   
-    Jan 27
+    Jan 28
   
 
-  <i class="unloaded">2021-01-27T23:58:56+09:00</i>
+  <i class="unloaded">2021-01-28T00:00:21+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1331 words">7 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1080 words">6 min</span>
 
 
           <!-- page views -->
@@ -464,261 +464,187 @@
 
         <h1 id="동기">동기</h1>
 <hr />
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105963070-e44be380-60c3-11eb-9a27-19eded174b98.png" alt="" /></p>
-
 <ul>
-  <li>유나이트 서울 2020의 위 세션을 보고, 쉐이더그래프만을 이용해 비슷하게 만들어 봐야겠다고 생각했다.</li>
+  <li>그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.</li>
 </ul>
+
+<p><br /></p>
 
 <h1 id="목표">목표</h1>
 <hr />
 <ul>
-  <li>URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Stylized Lit 쉐이더 만들기</li>
+  <li>OpenGL의 완전 기초부터 쉐이더 적용까지 모든 과정 공부</li>
+  <li>그래픽스에 대한 전반적인 지식 습득</li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="1-서브그래프-준비">1. 서브그래프 준비</h1>
+<h1 id="opengl">OpenGL?</h1>
 <hr />
 <ul>
-  <li>영상에서 보면, SmoothStep과 비슷한 연산을 더 저렴하게 할 수 있게 해주는 LinearStep을 다룬다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105963609-8b307f80-60c4-11eb-9900-c27dd78495c7.png" alt="" /></p>
-
-<ul>
-  <li>LinearStep을 함수화하여 자주 사용하는 코드가 나오기에, 서브그래프로 만들어주었다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105963981-f5e1bb00-60c4-11eb-917a-b607a35aec71.png" alt="" /></p>
-
-<ul>
-  <li>그런데 실제로 이 세션의 코드를 보면 LinearStep 내에 threshold, smooth 값들을 동일한 형태로 사용하는 코드가 반복된다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105964242-3fcaa100-60c5-11eb-88c2-10322d9d2165.png" alt="" /></p>
-
-<ul>
-  <li>따라서 이것을 Smoother라고 명명하고 통째로 서브그래프로 만들어주었다.</li>
-  <li>그런데 smooth 값이 만약 0이 된다면 LinearStep의 (in-min)/(max-min)에서 (max-min)이 0이 되므로 zero division 문제가 발생할 수 있기 때문에 이를 방지하기 위해 smooth에 아주 작은 값을 더해주었다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105982414-94c4e200-60da-11eb-97c5-5fe396f34779.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="2-diffuse">2. Diffuse</h1>
-<hr />
-<ul>
-  <li><a href="https://rito15.github.io/posts/unlit-custom-lit-shadergraph/">https://rito15.github.io/posts/unlit-custom-lit-shadergraph/</a></li>
-  <li>위 링크에서 만들었던 디퓨즈를 이용하되, Half Lambert를 적용한다.</li>
-  <li>Attenuation은 이후에 쓰임새가 더 있으므로 지금 적용하지 않고, 따로 분리해둔다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105982930-4f54e480-60db-11eb-8fb2-d70daae7d9d8.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="3-color">3. Color</h1>
-<hr />
-<ul>
-  <li>쉐이더 프로퍼티에 3가지 색상과 그림자 색상을 만든다.</li>
-  <li>3가지 색상에 적용할 Threshold, Smooth도 각각 만든다.</li>
-  <li>위에서 만든 서브그래프 Smoother, 그리고 Lerp를 이용해 총 네 가지 색상을 아래처럼 섞어준다.</li>
-  <li>각 Smoother 노드의 In 파라미터는 Diffuse의 결괏값을 넣어준다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105983224-c0949780-60db-11eb-81a9-14e0a092fbcf.png" alt="" /></p>
-
-<ul>
-  <li>이제 메인 텍스쳐의 색상에 곱해주고, 추가로 Color Intensity 프로퍼티를 만들고 곱하여 간단히 전체 색상의 강도를 조절할 수 있도록 한다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105984407-6ac0ef00-60dd-11eb-95af-e46e20c1841a.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="4-specular">4. Specular</h1>
-<hr />
-<ul>
-  <li>우선 블린 퐁 스페큘러를 Smoother에 적용한 서브그래프를 준비한다.</li>
-  <li>offset 프로퍼티는 Vector3 타입으로, 스페큘러의 위치를 조정하기 위한 용도이다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105984978-37329480-60de-11eb-9c13-0d436439af26.png" alt="" /></p>
-
-<ul>
-  <li>스페큘러 역시 Threshold와 Smooth 프로퍼티를 만들어 적용하며, 색상을 지정할 수 있도록 Color 프로퍼티도 추가하여 곱해준다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105985479-d9527c80-60de-11eb-8ec8-f564d6cbcc4e.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="5-rim-light">5. Rim Light</h1>
-<hr />
-<ul>
-  <li>림라이트 서브그래프는 간단히 Fresnel 노드에 Smoother를 적용시키는 정도로 만들어주고 림라이트는 색상을 지정해서 사용하는 경우가 많았기 때문에 서브그래프 내에 색상 파라미터도 추가해주었다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105985881-77dedd80-60df-11eb-88ce-2fc29659ce62.png" alt="" /></p>
-
-<ul>
-  <li>마찬가지로 Threshold, Smooth, Color 프로퍼티를 추가하여 적용해준다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105985990-9e9d1400-60df-11eb-8790-ebb68e7a49e0.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="6-specular-rim-light-적용">6. Specular, Rim Light 적용</h1>
-<hr />
-<ul>
-  <li>색상의 결괏값에 더해준다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105988056-76fb7b00-60e2-11eb-8f26-a6e9f4845361.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="7-reflection">7. Reflection</h1>
-<hr />
-<ul>
-  <li>반사율을 조정하기 위한 Reflection(Vector1) 프로퍼티를 만들고, 반사 영역을 지정하기 위한 Reflection Map 텍스쳐 프로퍼티도 추가한다.</li>
-  <li>Reflection Probe 노드를 이용해 간단히 반사를 추가할 수 있다.</li>
-  <li>6번의 결과에 Lerp를 이용하여 반사를 적용시켜준다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105988402-e70a0100-60e2-11eb-8cea-dba29a91d4db.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="8-shadow">8. Shadow</h1>
-<hr />
-<ul>
-  <li>Shadow Cascade, Soft Shadow를 적용하기 위해 키워드를 추가한다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105988493-0acd4700-60e3-11eb-99b3-97dac2bba555.png" alt="" /></p>
-
-<ul>
-  <li>그림자 적용 여부를 위한 Receive Shadow(Boolean) 프로퍼티를 추가한다.</li>
   <li>
-    <p>기존에는 없는 기능이지만, 그림자 반응 민감도를 조정하기 위해 Shadow sensitivity(Vector1) 프로퍼티도 추가했다.</p>
+    <p>OpenGL 자체는 API가 아닌, 각종 OpenGL 라이브러리를 개발하기 위해 Khronos Group이 개발 및 유지 관리하는 설명서이다.</p>
   </li>
-  <li>그림자가 생겼을 때는 스페큘러가 맺히지 않도록 하기 위해 스페큘러를 아래와 같이 수정한다.</li>
+  <li>
+    <p>OpenGL은 각 함수의 출력과 수행 방법을 정의한다.</p>
+  </li>
+  <li>
+    <p>실제로 OpenGL 라이브러리를 개발하는 사람들은 일반적으로 그래픽카드 제조업체이다.</p>
+  </li>
+  <li>
+    <p>OpenGL은 기본적으로 C언어로 작성되었으며, 각종 확장 라이브러리는 C++로 작성된 경우가 많다.</p>
+  </li>
 </ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105988995-d4dc9280-60e3-11eb-9533-c56dd1f0d399.png" alt="" /></p>
-
-<ul>
-  <li>Reflection까지 적용한 결과에 그림자 조정 옵션을 적용하기 위해 아래처럼 추가하고 그래프를 완성한다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105989189-1a00c480-60e4-11eb-84a7-97f645b3ef50.png" alt="" /></p>
 
 <p><br /></p>
 
-<h1 id="9-완성된-그래프">9. 완성된 그래프</h1>
-<hr />
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105994469-ff7e1980-60ea-11eb-974d-982cbbe5a303.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="captures---sphere">Captures - Sphere</h1>
-<hr />
-<h2 id="1-pbr과의-비교">[1] PBR과의 비교</h2>
-
-<ul>
-  <li>색상을 그라데이션으로 자유롭게 적용하고, 스페큘러와 림라이트의 커스텀도 가능하기 때문에 당연히 더 예쁘다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105982128-3dbf0d00-60da-11eb-952b-d98579e7c0c9.png" alt="" /></p>
-
-<p><br /></p>
-
-<h2 id="2-다양한-그라데이션-npr-효과">[2] 다양한 그라데이션, NPR 효과</h2>
-
-<ul>
-  <li>앞은 여러 색상을 혼합하였으며, 뒤는 각각의 Smooth값을 0으로 낮추어 셀 쉐이딩 같은 효과를 내주었다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105982196-50d1dd00-60da-11eb-97ab-85aa21650f31.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="captures---modelrobot-kyle">Captures - Model(Robot Kyle)</h1>
-<hr />
-<h2 id="1-pbr">[1] PBR</h2>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105961740-4277c700-60c2-11eb-902d-7faa9cc3d899.png" alt="" /></p>
-
-<h2 id="2-stylized-lit">[2] Stylized Lit</h2>
-
-<ul>
-  <li>네 번째 로봇은 모든 smooth 값을 0으로 낮추어 NPR 효과를 주었다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105962365-10b33000-60c3-11eb-811d-e5e835062d67.png" alt="" /></p>
-
-<h2 id="3-stylized-lit---응용">[3] Stylized Lit - 응용</h2>
-
-<ul>
-  <li>다른 톤의 색상을 혼합하여 변화를 주었다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105962351-0db83f80-60c3-11eb-866e-bda95cd8e2ae.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="captures---shadow">Captures - Shadow</h1>
+<h1 id="opengl-라이브러리-종류">OpenGL 라이브러리 종류</h1>
 <hr />
 <ul>
-  <li>Shadow Sensitivity가 0.2일 때 그림자가 드리우는 모습</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105990613-1bcb8780-60e6-11eb-9a1e-8bdee1421a87.gif" alt="" /></p>
-
-<ul>
-  <li>빛이 가려져 있을 때 Shadow Sensitivity를 0.0 ~ 1.0으로 조정하는 모습</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105990620-1e2de180-60e6-11eb-9daa-ab40ccdad056.gif" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="future-works">Future Works</h1>
-<hr />
-<ul>
-  <li>각종 맵 텍스쳐 적용
+  <li>GL(Graphics Library)
     <ul>
-      <li>참고 세션처럼 PBR 쉐이더를 수정한 것이 아니라 Unlit 쉐이더에서 직접 만든 것인 만큼 노멀, 메탈릭, 오클루전 등 각종 텍스쳐들은 필요한 경우 추가해야 한다.</li>
+      <li>저수준의 기본 그래픽스 라이브러리</li>
     </ul>
   </li>
-  <li>브러시 텍스쳐
+  <li>GLU(OpenGL Utility Library)
     <ul>
-      <li>세션에서는 브러시 텍스쳐를 추가했지만, 여기서는 일단 공통적인 효과들만 적용하기 위해 브러시 텍스쳐는 추가하지 않았다.</li>
+      <li>GL을 보완하여, 고수준의 함수와 기능들을 제공하는 라이브러리</li>
+    </ul>
+  </li>
+  <li>GLUT(OpenGL Utility Toolkit)
+    <ul>
+      <li>다양한 플랫폼에서 사용할 수 있는 보조 라이브러리. 1998년에 버려졌다.</li>
+    </ul>
+  </li>
+  <li>FreeGLUT
+    <ul>
+      <li>GLUT는 라이센스 때문에 더이상 개발이 불가능하여 사람들이 자유롭게 개발할 수 있도록 새롭게 작성된 라이브러리</li>
+    </ul>
+  </li>
+  <li>SDL(Simple Directmedia Layer)
+    <ul>
+      <li>OpenGL, Direct3D를 통해 오디오, 키보드, 마우스, 그래픽 하드웨어에 대한 저수준 접근이 가능하도록 설계된 크로스플랫폼 개발 라이브러리</li>
+      <li>Windows, Linux, Mac OS X, Android, iOS 등 다양한 플랫폼을 지원한다.</li>
+      <li>무료로 이용이 가능하지만, 기능이 너무 많아 프로그램이 무겁다.</li>
+    </ul>
+  </li>
+  <li>SFML(Simple and Fast Multimedia Library)
+    <ul>
+      <li>다양한 멀티미디어에 걸쳐 API를 제공하기 위해 설계된 크로스플랫폼 개발 라이브러리</li>
+      <li>System, Window, Graphics, Audio, Network 이렇게 5가지 모듈로 구성되어 있다.</li>
+      <li>C, C++, Ruby, Java, Go, Pthon, Rust 등 다양한 언어를 지원한다.</li>
+    </ul>
+  </li>
+  <li>GLFW(Graphics Library Framework)
+    <ul>
+      <li>OpenGL과 함께 사용하기 위한 경량 유틸리티 라이브러리</li>
+      <li>OpenGL 환경에서 윈도우를 생성하고 마우스, 키보드, 조이스틱 등의 입력을 받아 처리할 수 있다.</li>
+      <li>C언어로 작성되었지만, Ada, C++, C#, Go, Java, Ruby, Rust 등 다양한 언어를 지원한다.</li>
+    </ul>
+  </li>
+  <li>GLEW(OpenGL Extension Wrangler Library)
+    <ul>
+      <li>크로스플랫폼 C/C++ 확장 라이브러리</li>
+      <li>하나의 헤더파일만 추가하면 사용할 수 있게 작성되었으며, 더 많은 기능들을 제공한다.</li>
+      <li>쉐이더 프로그램을 작성할 때 주로 사용된다.</li>
+    </ul>
+  </li>
+  <li>GLM(OpenGL Mathematics)
+    <ul>
+      <li>GLSL 기반 그래픽 소프트웨어에 사용 가능한 C++ 수학 라이브러리</li>
     </ul>
   </li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="reference">Reference</h1>
+<h1 id="glfw-설치-프로젝트-준비">GLFW 설치, 프로젝트 준비</h1>
 <hr />
 <ul>
-  <li><a href="https://www.youtube.com/watch?v=cykinrW0pwQ">https://www.youtube.com/watch?v=cykinrW0pwQ</a></li>
-  <li><a href="https://github.com/madumpa/URP_StylizedLitShader">https://github.com/madumpa/URP_StylizedLitShader</a></li>
+  <li><a href="https://www.glfw.org/">https://www.glfw.org/</a> 에서 최신버전을 받을 수 있다.</li>
+  <li>그리고 이미 컴파일된 라이브러리 파일들을 <a href="https://www.glfw.org/download.html">https://www.glfw.org/download.html</a> 에서 곧바로 받을 수 있으므로 이것을 사용하기로 한다.</li>
+  <li>
+    <p>32bit와 64bit로 나뉘어 있는데, VS에서 32bit로 실행할 것이므로 32bit로 받아온다.</p>
+  </li>
+  <li>C++ 프로젝트 생성</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106020566-437f1780-6107-11eb-919b-ae61f265fdbf.png" alt="image" /></p>
+
+<ul>
+  <li>필요한 라이브러리 파일들을 프로젝트 폴더로 가져오기</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106020625-5396f700-6107-11eb-81af-092a6a1d99b8.png" alt="image" /></p>
+
+<ul>
+  <li>프로젝트 속성 설정</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106022424-29463900-6109-11eb-9316-2aae3e549729.png" alt="image" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106023330-0c5e3580-610a-11eb-9283-03ddcc22c095.png" alt="image" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106023375-16803400-610a-11eb-919f-25c288b20ad4.png" alt="image" /></p>
+
+<ul>
+  <li>예제 코드를 통해 바인딩 확인
+    <ul>
+      <li>예제 코드 : <a href="https://www.glfw.org/documentation.html">https://www.glfw.org/documentation.html</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106023474-2dbf2180-610a-11eb-9612-78e3b10b23a6.png" alt="image" /></p>
+
+<ul>
+  <li>빌드(F7) 시도 후 발생하는 무수한 에러는</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106025513-27ca4000-610c-11eb-9eb6-61cc56f338d6.png" alt="image" /></p>
+
+<ul>
+  <li>이렇게 해결한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106025642-4b8d8600-610c-11eb-8241-654f06dcb49c.png" alt="image" /></p>
+
+<ul>
+  <li>그리고 빌드 시, 유서깊은 Hello World 창을 만날 수 있다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106025780-6a8c1800-610c-11eb-90ae-dc83ecb0a789.png" alt="image" /></p>
+
+<ul>
+  <li>이제 간단한 삼각형을 그려보기 위해 glClear( .. ); 코드 하단에 다음과 같이 추가하고 실행한다.</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="n">glBegin</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">);</span>
+<span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">);</span> <span class="c1">// Bottom Left</span>
+<span class="n">glVertex2f</span><span class="p">(</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">);</span> <span class="c1">// Top</span>
+<span class="n">glVertex2f</span><span class="p">(</span> <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">);</span> <span class="c1">// Bottom Right</span>
+<span class="n">glEnd</span><span class="p">();</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106026558-509f0500-610d-11eb-8e49-ab75f81f4c57.png" alt="image" /></p>
+
+<ul>
+  <li>뷰포트 좌표는 0.0 ~ 1.0 이라고 어디선가 주워들은 지식이 머릿속에 있는데.. 이건 뷰포트가 아닌가보다.</li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="download">Download</h1>
+<h1 id="references">References</h1>
 <hr />
 <ul>
-  <li><a href="https://github.com/rito15/Images/files/5880324/2021_0126_Stylized.Lit.zip">2021_0126_Stylized Lit.zip</a></li>
+  <li><a href="https://www.youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2">https://www.youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2</a></li>
+  <li><a href="https://heinleinsgame.tistory.com/tag/OpenGL">https://heinleinsgame.tistory.com/tag/OpenGL</a></li>
+  <li><a href="https://learnopengl.com/">https://learnopengl.com/</a></li>
 </ul>
 
 
@@ -731,8 +657,8 @@
         <div class="post-meta mb-3">
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
-            <a href='/categories/unity-shader/'>Unity Shader</a>,
-            <a href='/categories/shader-graph-study/'>Shader Graph Study</a>
+            <a href='/categories/opengl/'>OpenGL</a>,
+            <a href='/categories/opengl-study/'>OpenGL Study</a>
         </div>
         
 
@@ -741,17 +667,11 @@
         <div class="post-tags">
           <i class="fa fa-tags fa-fw mr-1"></i>
           
-          <a href="/tags/unity/"
-            class="post-tag no-text-decoration" >unity</a>
+          <a href="/tags/graphics/"
+            class="post-tag no-text-decoration" >graphics</a>
           
-          <a href="/tags/csharp/"
-            class="post-tag no-text-decoration" >csharp</a>
-          
-          <a href="/tags/shader/"
-            class="post-tag no-text-decoration" >shader</a>
-          
-          <a href="/tags/shadergraph/"
-            class="post-tag no-text-decoration" >shadergraph</a>
+          <a href="/tags/opengl/"
+            class="post-tag no-text-decoration" >opengl</a>
           
           </div>
         
@@ -783,19 +703,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더 - Rito15&url=https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 1일차 - Rito15&url=https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더 - Rito15&u=https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 1일차 - Rito15&u=https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더 - Rito15&url=https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=OpenGL 공부 1일차 - Rito15&url=https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -858,7 +778,7 @@
         
         
         
-        <li><a href="/posts/unlit-stylized-lit-shadergraph/">Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</a></li>
+        <li><a href="/posts/unlit-stylized-lit-shadergraph/">OpenGL 공부 1일차</a></li>
       
         
         
@@ -878,7 +798,7 @@
         
         
         
-        <li><a href="/posts/behavior-tree/">Behavior Tree</a></li>
+        <li><a href="/posts/custom-attributes/">Custom Attributes</a></li>
       
 
       </ul>
@@ -973,40 +893,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1114,6 +1000,91 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -1192,43 +1163,6 @@
     
     
     
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1260,6 +1194,9 @@
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
@@ -1272,9 +1209,6 @@
         <a class="post-tag" href="/tags/custom/">custom</a>
       
         
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
-      
-        
         <a class="post-tag" href="/tags/job/">job</a>
       
 
@@ -1283,11 +1217,6 @@
   
   </div> <!-- .access -->
 
-  
-    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
-      <span class="pl-3 pt-2 mb-2">Contents</span>
-      <nav id="toc" data-toggle="toc"></nav>
-    </div>
   
 
 </div> <!-- #panel-wrapper -->
@@ -1510,6 +1439,19 @@
   
 
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
 
 
 
@@ -1521,73 +1463,36 @@
 
 
 
+  
+    
+    
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+          
+
+
+
 
 
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
     <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unlit-custom-lit-shadergraph/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 16
-  
-
-  <i class="unloaded">2021-01-16T22:14:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목표
-
-
-
-  URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Lit 쉐이더 만들기
-
-
-
-
-1. Diffuse 구현
-
-
-
-  커스텀 함수를 이용하여 메인라이트의 방향, 색상, 감쇠를 얻어낸다.
-
-
-
-
-Custom_Mainlight.hlsl
-
-void MainLight_half(float3 WorldPos, out half3 Direction, ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
     
       
       
@@ -1644,7 +1549,7 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
       
       
       <div class="card">
-        <a href="/posts/behavior-tree/">
+        <a href="/posts/unlit-stylized-lit-shadergraph-%EB%B3%B5%EC%82%AC%EB%B3%B8/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1661,13 +1566,13 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
   
 
   
-    Jan  5
+    Jan 27
   
 
-  <i class="unloaded">2021-01-05T00:26:00+09:00</i>
+  <i class="unloaded">2021-01-27T22:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Behavior Tree</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1676,13 +1581,95 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
 
 
 
-                개념
+                동기
 
 
 
-  FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
-  FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
-  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
+
+
+  유나이트 서울 2020의 위 세션을 보고, 쉐이더그래프만을 이용해 비슷하게 만들어 봐야겠다고 생각했다.
+
+
+목표
+
+
+
+  URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Stylized Lit 쉐이더 만들기
+
+
+
+
+1. 서브그래프 준비
+
+
+
+  영상에서 보면, SmoothStep과 비슷한 연산을 더 저렴하게 할 수 있게 해주는...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/frame-rate-checker/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 24
+  
+
+  <i class="unloaded">2021-01-24T17:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Frame Rate Checker</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+
+  실제 FPS 값을 실시간, 최근 N개의 평균, 최소, 최댓값으로 확인할 수 있습니다.
+  게임 진행 동안 텍스트의 위치, 색상, 크기, GUI 표시 상태를 실시간으로 변경할 수 있습니다.
+
+
+Preview
+
+
+
+
+
+Source Code
+
+
+
+  https://github.com/rito15/Unity_Toys
+
+
+Download
+
+
+...
               </p>
             </div>
           </div>
@@ -1705,8 +1692,8 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/frame-rate-checker/" class="btn btn-outline-primary">
-    <p>Frame Rate Checker</p>
+  <a href="/posts/unlit-stylized-lit-shadergraph-%EB%B3%B5%EC%82%AC%EB%B3%B8/" class="btn btn-outline-primary">
+    <p>Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</p>
   </a>
   
 
@@ -1876,40 +1863,6 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2017,6 +1970,91 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
       
         
         
@@ -2095,43 +2133,6 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
     
     
     
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2158,6 +2159,9 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
@@ -2168,9 +2172,6 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
       
         
         <a class="post-tag" href="/tags/custom/">custom</a>
-      
-        
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
         <a class="post-tag" href="/tags/job/">job</a>
