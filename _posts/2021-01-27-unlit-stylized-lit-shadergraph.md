@@ -61,7 +61,7 @@ mermaid: true
 
 ![](https://user-images.githubusercontent.com/42164422/105983224-c0949780-60db-11eb-81a9-14e0a092fbcf.png)
 
-- 이제 메인 텍스쳐의 색상에 곱해주고, 추가로 Color Intensity 프로퍼티를 만들고 곱하여 간단히 색상의 밝기를 조절할 수 있도록 한다.
+- 이제 메인 텍스쳐의 색상에 곱해주고, 추가로 Color Intensity 프로퍼티를 만들고 곱하여 간단히 전체 색상의 강도를 조절할 수 있도록 한다.
 
 ![](https://user-images.githubusercontent.com/42164422/105984407-6ac0ef00-60dd-11eb-95af-e46e20c1841a.png)
 
@@ -103,7 +103,8 @@ mermaid: true
 # 7. Reflection
 ---
 - 반사율을 조정하기 위한 Reflection(Vector1) 프로퍼티를 만들고, 반사 영역을 지정하기 위한 Reflection Map 텍스쳐 프로퍼티도 추가한다.
-- 6번의 결과에 Lerp를 이용하여 적용시켜준다.
+- Reflection Probe 노드를 이용해 간단히 반사를 추가할 수 있다.
+- 6번의 결과에 Lerp를 이용하여 반사를 적용시켜준다.
 
 ![](https://user-images.githubusercontent.com/42164422/105988402-e70a0100-60e2-11eb-8cea-dba29a91d4db.png)
 
@@ -202,6 +203,6 @@ mermaid: true
 
 <br>
 
-# 5. Download
+# Download
 ---
 - [2021_0126_Stylized Lit.zip](https://github.com/rito15/Images/files/5880324/2021_0126_Stylized.Lit.zip)
