@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-01-28T07:20:19+09:00</updated>
+  <updated>2021-01-28T21:41:47+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,60 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# 파일 입출력</title>
+    <link href="https://rito15.github.io/posts/csharp-fileio/" rel="alternate" type="text/html" title="C# 파일 입출력" />
+    <published>2021-01-28T21:10:00+09:00</published>
+  
+    <updated>2021-01-28T21:10:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/csharp-fileio/</id>
+    <content src="https://rito15.github.io/posts/csharp-fileio/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Csharp" />
+    
+    <category term="Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Namespace
+using System.IO;
+
+
+
+
+Path
+
+// \ 대신 /를 써도 \로 자동 변환
+string   filePath = @"C:\folder\fileName.txt"; 
+FileInfo fileInfo = new FileInfo(filePath);
+
+fileInfo.FullName;      // C:\folder\fileName.txt
+fileInfo.Directory;     // DirectoriInfo("C:\folder") 객체 반환
+fileInfo.DirectoryName; // C:\folder
+fileInfo.Name;          // fileName.txt
+fileInfo.Extension;     // .txt
+
+Path.GetDirectoryName(fi...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -88,7 +142,7 @@ OpenGL?
     <link href="https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" rel="alternate" type="text/html" title="Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더" />
     <published>2021-01-27T22:00:00+09:00</published>
   
-    <updated>2021-01-28T02:12:00+09:00</updated>
+    <updated>2021-01-28T07:20:41+09:00</updated>
   
     <id>https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/</id>
     <content src="https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" />
@@ -266,68 +320,6 @@ Download
   스레드를 추가로 만들고 관리하지 않아도 되므로 메모리를 절약할 수 있다.
   유니티 콘솔을 이용해 디버깅할 수 있다.
   메인 스레드의 데이터를 잡의 스택에 깊은 복사를 하여 복사본으로 사용하므로 Race Condition이 발생하지 않는...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Fog of War</title>
-    <link href="https://rito15.github.io/posts/fog-of-war/" rel="alternate" type="text/html" title="Fog of War" />
-    <published>2021-01-20T21:00:00+09:00</published>
-  
-    <updated>2021-01-26T12:23:40+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/fog-of-war/</id>
-    <content src="https://rito15.github.io/posts/fog-of-war/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      개념
-
-
-  맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다.
-  지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0,
-  지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8,
-  지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
-
-
-
-[스타크래프트2 게임 플레이 화면]
-
-
-
-구현 방법
-
-[1] 카메라와 지상 사이에 검정색 Plane 사용
-
-
-  
-    시야의 역할을 해줄 Plane을 카메라와 지상 사이에 위치시킨다.
-  
-  
-    맵 전체를 좌표 형태의 2차원 배열로 관리하여, 유닛들이 현재 위치한 영역, 방문했던 영역, 한 번도 방문하지 않은 영역의 정보를 실시간으로 저장한다.
-  
-  
-    카...
     </summary>
   
 
