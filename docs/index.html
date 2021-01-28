@@ -377,21 +377,19 @@
 
 
 
-        Namespace
-using System.IO;
+        간단 정리
 
 
+파일에 쓰려면
+
+  대상이 string, string[], byte[] 타입 중 하나여야 한다.
+  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
 
 
-Path
+한 파일에 대한 연속 입출력 횟수에 따라
 
-
-// \ 대신 /를 써도 \로 자동 변환
-string   filePath = @"C:\folder\fileName.txt"; 
-FileInfo fi = new FileInfo(filePath);
-
-fi.FullName;      // C:\folder\fileName.txt
-fi.Di...
+  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
+  여러 번에 걸쳐 읽거나 쓰려면 스트림 ...
       </p>
     </div>
 
@@ -438,7 +436,7 @@ fi.Di...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1077 words">5 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1189 words">6 min</span>
 
 
         <!-- page views -->
@@ -1397,6 +1395,11 @@ MemoBox
         
         
         
+        <li><a href="/posts/csharp-fileio/">C# 파일 입출력</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unlit-stylized-lit-shadergraph/">Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</a></li>
       
         
@@ -1413,11 +1416,6 @@ MemoBox
         
         
         <li><a href="/posts/afterImage/">AfterImage(Motion Trail)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/custom-attributes/">Custom Attributes</a></li>
       
 
       </ul>

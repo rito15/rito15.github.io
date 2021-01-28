@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-01-28T21:43:36+09:00</updated>
+  <updated>2021-01-28T22:03:28+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -24,7 +24,7 @@
     <link href="https://rito15.github.io/posts/csharp-fileio/" rel="alternate" type="text/html" title="C# 파일 입출력" />
     <published>2021-01-28T21:10:00+09:00</published>
   
-    <updated>2021-01-28T21:10:00+09:00</updated>
+    <updated>2021-01-28T21:43:54+09:00</updated>
   
     <id>https://rito15.github.io/posts/csharp-fileio/</id>
     <content src="https://rito15.github.io/posts/csharp-fileio/" />
@@ -48,7 +48,23 @@
 
 
 
-      Namespace
+      간단 정리
+
+파일에 쓰려면
+
+  대상이 string, string[], byte[] 타입 중 하나여야 한다.
+  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
+
+
+한 파일에 대한 연속 입출력 횟수에 따라
+
+  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
+  여러 번에 걸쳐 읽거나 쓰려면 스트림 객체를 사용한다.
+
+
+
+
+Namespace
 using System.IO;
 
 
@@ -60,14 +76,7 @@ Path
 string   filePath = @"C:\folder\fileName.txt"; 
 FileInfo fi = new FileInfo(filePath);
 
-fi.FullName;      // C:\folder\fileName.txt
-fi.Directory;     // DirectoriInfo("C:\folder") 객체 반환
-fi.DirectoryName; // C:\folder
-fi.Name;          // fileName.txt
-fi.Extension;     // .txt
-
-Path.GetDirectoryName(filePath);            // C:\folder
-Pat...
+fi.FullName;      // C:\folder\fileName....
     </summary>
   
 
