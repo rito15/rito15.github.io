@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-01-28T22:03:28+09:00</updated>
+  <updated>2021-01-29T01:35:27+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,85 @@
 
   
   <entry>
+    <title>OpenGL 공부 - 02</title>
+    <link href="https://rito15.github.io/posts/opengl-study-02/" rel="alternate" type="text/html" title="OpenGL 공부 - 02" />
+    <published>2021-01-28T22:09:00+09:00</published>
+  
+    <updated>2021-01-28T22:09:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-02/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-02/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  GLEW 설치 및 적용
+
+
+
+
+GLEW 설치
+
+
+  GLEW : OpenGL Extension Wrangler Library
+  http://glew.sourceforge.net
+  
+    Binary 다운로드
+  
+  프로젝트의 Dependency 폴더 내로 GLEW 폴더 복사
+    
+      glew-2.1.0 폴더를 통째로 가져와서 GLEW로 이름을 변경해준다.
+    
+  
+
+
+
+
+
+  GLEW/doc/index.html - Usage 탭에 들어가면 초기 사용법이 있다.
+
+
+
+
+참조 추가
+
+
+
+  헤더
+    
+      프로젝트 속성 - C/C++ - 일반 - 추가 포함 디렉터리
+      $(SolutionDir)OpenGL_Study\Dependencies\GLEW\inc...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>C# 파일 입출력</title>
     <link href="https://rito15.github.io/posts/csharp-fileio/" rel="alternate" type="text/html" title="C# 파일 입출력" />
     <published>2021-01-28T21:10:00+09:00</published>
   
-    <updated>2021-01-28T21:43:54+09:00</updated>
+    <updated>2021-01-28T22:03:44+09:00</updated>
   
     <id>https://rito15.github.io/posts/csharp-fileio/</id>
     <content src="https://rito15.github.io/posts/csharp-fileio/" />
@@ -274,62 +348,6 @@ Download
   FrameRateChecker.zip
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Job System</title>
-    <link href="https://rito15.github.io/posts/job-system/" rel="alternate" type="text/html" title="Job System" />
-    <published>2021-01-24T13:15:00+09:00</published>
-  
-    <updated>2021-01-25T02:17:35+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/job-system/</id>
-    <content src="https://rito15.github.io/posts/job-system/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      개념
-
-
-  유니티에서 안전한 멀티스레딩을 구현하는 시스템
-  스레드를 별도로 생성하지 않으며, 유니티의 워커스레드에 작업을 지시할 수 있게 한다.
-  잡 대기열에 잡을 배치하면 워커 스레드가 잡 대기열에서 항목을 가져와 실행한다.
-  Native Container를 이용해 잡의 수행 결과를 메인 스레드와 공유한다.
-  버스트 컴파일러를 이용하여 추가적인 성능 향상을 기대할 수 있다.
-
-
-
-
-
-
-장점
-
-
-  다수의 작은 작업들을 처리하기에 좋으며, 속도가 빠르다.
-  스레드를 추가로 만들고 관리하지 않아도 되므로 메모리를 절약할 수 있다.
-  유니티 콘솔을 이용해 디버깅할 수 있다.
-  메인 스레드의 데이터를 잡의 스택에 깊은 복사를 하여 복사본으로 사용하므로 Race Condition이 발생하지 않는...
     </summary>
   
 

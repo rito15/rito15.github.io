@@ -86,7 +86,7 @@ mermaid: true
 
 ![image](https://user-images.githubusercontent.com/42164422/106020625-5396f700-6107-11eb-81af-092a6a1d99b8.png)
 
-- 프로젝트 속성 설정
+- 프로젝트 속성 설정 : 모든 플랫폼에 대해 설정하는 것이 좋다.
 
 ![image](https://user-images.githubusercontent.com/42164422/106022424-29463900-6109-11eb-9316-2aae3e549729.png)
 
@@ -124,6 +124,55 @@ glEnd();
 ![image](https://user-images.githubusercontent.com/42164422/106026558-509f0500-610d-11eb-8e49-ab75f81f4c57.png)
 
 - 뷰포트 좌표는 0.0 ~ 1.0 이라고 어디선가 주워들은 지식이 머릿속에 있는데.. 이건 뷰포트가 아닌가보다.
+
+<br>
+
+# Current Source Code
+```cpp
+#include <GLFW/glfw3.h>
+
+int main(void)
+{
+    GLFWwindow* window;
+
+    /* Initialize the library */
+    if (!glfwInit())
+        return -1;
+
+    /* Create a windowed mode window and its OpenGL context */
+    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    if (!window)
+    {
+        glfwTerminate();
+        return -1;
+    }
+
+    /* Make the window's context current */
+    glfwMakeContextCurrent(window);
+
+    /* Loop until the user closes the window */
+    while (!glfwWindowShouldClose(window))
+    {
+        /* Render here */
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glBegin(GL_TRIANGLES);
+        glVertex2f(-0.5f, -0.5f); // Bottom Left
+        glVertex2f(0.0f, 0.5f); // Top
+        glVertex2f(0.5f, -0.5f); // Bottom Right
+        glEnd();
+
+        /* Swap front and back buffers */
+        glfwSwapBuffers(window);
+
+        /* Poll for and process events */
+        glfwPollEvents();
+    }
+
+    glfwTerminate();
+    return 0;
+}
+```
 
 <br>
 
