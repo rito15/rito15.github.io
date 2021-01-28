@@ -20,13 +20,13 @@ using System.IO;
 ```cs
 // \ 대신 /를 써도 \로 자동 변환
 string   filePath = @"C:\folder\fileName.txt"; 
-FileInfo fileInfo = new FileInfo(filePath);
+FileInfo fi = new FileInfo(filePath);
 
-fileInfo.FullName;      // C:\folder\fileName.txt
-fileInfo.Directory;     // DirectoriInfo("C:\folder") 객체 반환
-fileInfo.DirectoryName; // C:\folder
-fileInfo.Name;          // fileName.txt
-fileInfo.Extension;     // .txt
+fi.FullName;      // C:\folder\fileName.txt
+fi.Directory;     // DirectoriInfo("C:\folder") 객체 반환
+fi.DirectoryName; // C:\folder
+fi.Name;          // fileName.txt
+fi.Extension;     // .txt
 
 Path.GetDirectoryName(filePath);            // C:\folder
 Path.GetFileName(filePath);                 // fileName.txt
