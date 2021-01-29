@@ -835,6 +835,11 @@ and call glewInit() to initialize the extension entry points.
         
         
         
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01</a></li>
+      
+        
+        
+        
         <li><a href="/posts/csharp-fileio/">C# 파일 입출력</a></li>
       
         
@@ -851,11 +856,6 @@ and call glewInit() to initialize the extension entry points.
         
         
         <li><a href="/posts/fog-of-war/">Fog of War</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/afterImage/">AfterImage(Motion Trail)</a></li>
       
 
       </ul>
@@ -963,50 +963,6 @@ and call glewInit() to initialize the extension entry points.
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1026,96 +982,6 @@ and call glewInit() to initialize the extension entry points.
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
   
     
     
@@ -1195,6 +1061,25 @@ and call glewInit() to initialize the extension entry points.
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1211,6 +1096,141 @@ and call glewInit() to initialize the extension entry points.
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
     
   
     
@@ -1362,6 +1382,19 @@ and call glewInit() to initialize the extension entry points.
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1603,9 +1636,6 @@ and call glewInit() to initialize the extension entry points.
   
     
     
-  
-    
-    
       
       
         
@@ -1732,7 +1762,7 @@ and call glewInit() to initialize the extension entry points.
       
       
       <div class="card">
-        <a href="/posts/csharp-fileio/">
+        <a href="/posts/script-templates/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1749,13 +1779,13 @@ and call glewInit() to initialize the extension entry points.
   
 
   
-    Jan 28
+    Jan 29
   
 
-  <i class="unloaded">2021-01-28T21:10:00+09:00</i>
+  <i class="unloaded">2021-01-29T16:55:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 파일 입출력</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>스크립트 템플릿(Script Templates)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1764,19 +1794,20 @@ and call glewInit() to initialize the extension entry points.
 
 
 
-                간단 정리
+                개념
 
 
-파일에 쓰려면
-
-  대상이 string, string[], byte[] 타입 중 하나여야 한다.
-  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
+  Project - 우클릭 - Create를 통해 만드는 스크립트 또는 텍스트의 템플릿을 미리 지정하는 기능
+  스크립트 템플릿의 저장 경로 :
 
 
-한 파일에 대한 연속 입출력 횟수에 따라
+1
+C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
 
-  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
-  여러 번에 걸쳐 읽거나 쓰려면 스트림 ...
+
+
+  각각의 유니티 버전마다 따로 저장된다.
+  한가지 팁은, 스크립트 템플...
               </p>
             </div>
           </div>
@@ -1805,9 +1836,9 @@ and call glewInit() to initialize the extension entry points.
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/script-templates/" class="btn btn-outline-primary">
+    <p>스크립트 템플릿(Script Templates)</p>
+  </a>
   
 
 </div>
@@ -1983,50 +2014,6 @@ and call glewInit() to initialize the extension entry points.
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2046,96 +2033,6 @@ and call glewInit() to initialize the extension entry points.
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
   
     
     
@@ -2215,6 +2112,25 @@ and call glewInit() to initialize the extension entry points.
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2231,6 +2147,141 @@ and call glewInit() to initialize the extension entry points.
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
     
   
     
