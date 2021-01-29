@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-01-29T17:17:55+09:00</updated>
+  <updated>2021-01-30T02:47:32+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,75 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>OpenGL 공부 - 03</title>
+    <link href="https://rito15.github.io/posts/opengl-study-03/" rel="alternate" type="text/html" title="OpenGL 공부 - 03" />
+    <published>2021-01-29T22:07:00+09:00</published>
+  
+    <updated>2021-01-29T22:07:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-03/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-03/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  버텍스, 버텍스 버퍼에 대한 이해
+
+
+
+
+렌더링 파이프라인 요약
+
+
+
+Vertex Shader
+
+  입력 : 정점 목록
+  정점들을 오브젝트 스페이스에서 MVP 변환을 통해 클립 스페이스까지 변환한다.
+
+
+Shape Assembly
+
+  정점을 조립하여 렌더링을 할 수 있는 최소 단위(Primitive : 점, 선, 삼각형 등)로 만든다.
+
+
+Geometry Shader
+
+  입력 : 프리미티브 목록
+  프리미티브 당 한 번씩 수행한다.
+  프리미티브를 없앨 수도, 더 만들 수도 있고 완전히 다른 프리미티브로 변환할 수도 있다.
+
+
+Rasterization
+
+  입력 : 프리미티브 목록
+  프리미티브를 최종 화면의 적절한 픽셀과 매핑하여, 프래그먼트 쉐이더에서 사용할 Fragment를 만든...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -36,7 +105,7 @@
     
     <category term="Unity" />
     
-    <category term="Memo" />
+    <category term="Unity Memo" />
     
   
 
@@ -176,7 +245,7 @@ GLEW 설치
     
     <category term="Csharp" />
     
-    <category term="Memo" />
+    <category term="Csharp Memo" />
     
   
 
@@ -281,80 +350,6 @@ OpenGL?
   
     실제로 OpenGL 라이브러리를 개발하는 사람들은 일반적으로 그래픽카드 제조업체이다.
  ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</title>
-    <link href="https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" rel="alternate" type="text/html" title="Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더" />
-    <published>2021-01-27T22:00:00+09:00</published>
-  
-    <updated>2021-01-28T07:20:41+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/</id>
-    <content src="https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Graph Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      동기
-
-
-
-
-
-  유나이트 서울 2020의 위 세션을 보고, 쉐이더그래프만을 이용해 비슷하게 만들어 봐야겠다고 생각했다.
-
-
-목표
-
-
-  URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Stylized Lit 쉐이더 만들기
-
-
-
-
-1. 서브그래프 준비
-
-
-  영상에서 보면, SmoothStep과 비슷한 연산을 더 저렴하게 할 수 있게 해주는 LinearStep을 다룬다.
-
-
-
-
-
-  LinearStep을 함수화하여 자주 사용하는 코드가 나오기에, 서브그래프로 만들어주었다.
-
-
-
-
-
-  그런데 실제로 이 세션의 코드를 보면 LinearStep 내에 threshold, smooth 값들을 동일한 형태로 사용하는 코드가 반복된다.
-
-
-
-
-
-  따라서 이것을 Smoother라고 명명하고 통째로 서브그래...
     </summary>
   
 

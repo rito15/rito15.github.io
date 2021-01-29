@@ -2,7 +2,7 @@
 title: Save Transform During Play
 author: Rito15
 date: 2020-04-11 18:10:00 +09:00
-categories: [Unity, Toys]
+categories: [Unity, Unity Toys]
 tags: [unity, csharp, plugin]
 math: true
 mermaid: true

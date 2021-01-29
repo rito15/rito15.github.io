@@ -2,7 +2,7 @@
 title: Behavior Tree
 author: Rito15
 date: 2021-01-05 00:26:00 +09:00
-categories: [Unity, Study]
+categories: [Unity, Unity Study]
 tags: [unity, csharp]
 math: true
 mermaid: true

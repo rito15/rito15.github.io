@@ -2,7 +2,7 @@
 title: Ray Marching
 author: Rito15
 date: 2021-01-19 23:15:00 +09:00
-categories: [Unity, Study]
+categories: [Unity, Unity Study]
 tags: [unity, csharp]
 math: true
 mermaid: true

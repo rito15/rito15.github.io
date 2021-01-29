@@ -2,7 +2,7 @@
 title: 스크립트 템플릿(Script Templates)
 author: Rito15
 date: 2021-01-29 16:55:00 +09:00
-categories: [Unity, Memo]
+categories: [Unity, Unity Memo]
 tags: [unity, csharp, script, templates]
 math: true
 mermaid: true

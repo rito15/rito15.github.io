@@ -2,7 +2,7 @@
 title: Pixelater
 author: Rito15
 date: 2021-01-19 22:56:00 +09:00
-categories: [Unity, Toys]
+categories: [Unity, Unity Toys]
 tags: [unity, csharp, plugin]
 math: true
 mermaid: true

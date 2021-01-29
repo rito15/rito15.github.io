@@ -2,7 +2,7 @@
 title: Custom Attributes
 author: Rito15
 date: 2021-01-17 22:18:00 +09:00
-categories: [Unity, Toys]
+categories: [Unity, Unity Toys]
 tags: [unity, csharp, custom, attribute]
 math: true
 mermaid: true

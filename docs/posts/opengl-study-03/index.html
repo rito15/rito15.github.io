@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더" />
+<meta property="og:title" content="OpenGL 공부 - 03" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목표 URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Lit 쉐이더 만들기" />
-<meta property="og:description" content="목표 URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Lit 쉐이더 만들기" />
-<link rel="canonical" href="https://rito15.github.io/posts/unlit-custom-lit-shadergraph/" />
-<meta property="og:url" content="https://rito15.github.io/posts/unlit-custom-lit-shadergraph/" />
+<meta name="description" content="목표 버텍스, 버텍스 버퍼에 대한 이해" />
+<meta property="og:description" content="목표 버텍스, 버텍스 버퍼에 대한 이해" />
+<link rel="canonical" href="https://rito15.github.io/posts/opengl-study-03/" />
+<meta property="og:url" content="https://rito15.github.io/posts/opengl-study-03/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-01-16T22:14:00+09:00" />
+<meta property="article:published_time" content="2021-01-29T22:07:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더" />
+<meta property="twitter:title" content="OpenGL 공부 - 03" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Lit 쉐이더 만들기","datePublished":"2021-01-16T22:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-custom-lit-shadergraph/"},"url":"https://rito15.github.io/posts/unlit-custom-lit-shadergraph/","author":{"@type":"Person","name":"Rito15"},"headline":"Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더","dateModified":"2021-01-27T02:26:22+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 버텍스, 버텍스 버퍼에 대한 이해","datePublished":"2021-01-29T22:07:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-03/"},"url":"https://rito15.github.io/posts/opengl-study-03/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 03","dateModified":"2021-01-29T22:07:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더 | Rito15
+  <title>OpenGL 공부 - 03 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더</span>
+        <span>OpenGL 공부 - 03</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더</h1>
+      <h1 data-toc-skip>OpenGL 공부 - 03</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sat, Jan 16, 2021, 10:14 PM +0900"
+    title="Fri, Jan 29, 2021, 10:07 PM +0900"
   >
 
   
   
 
   
-    Jan 16
+    Jan 29
   
 
-  <i class="unloaded">2021-01-16T22:14:00+09:00</i>
+  <i class="unloaded">2021-01-29T22:07:00+09:00</i>
 
 </span>
           by
@@ -406,35 +406,6 @@
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Jan 27, 2021,  2:26 AM +0900"
-  >
-
-  
-  
-
-  
-    Jan 27
-  
-
-  <i class="unloaded">2021-01-27T02:26:22+09:00</i>
-
-</span>
-          </span>
           
 
           <!-- read time -->
@@ -448,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="568 words">3 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1524 words">8 min</span>
 
 
           <!-- page views -->
@@ -465,22 +436,161 @@
         <h1 id="목표">목표</h1>
 <hr />
 <ul>
-  <li>URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Lit 쉐이더 만들기</li>
+  <li>버텍스, 버텍스 버퍼에 대한 이해</li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="1-diffuse-구현">1. Diffuse 구현</h1>
+<h1 id="렌더링-파이프라인-요약">렌더링 파이프라인 요약</h1>
 <hr />
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106298996-fb432f00-6297-11eb-80a8-41eeed261413.png" alt="image" /></p>
+
+<h3 id="vertex-shader">Vertex Shader</h3>
 <ul>
-  <li>커스텀 함수를 이용하여 메인라이트의 방향, 색상, 감쇠를 얻어낸다.</li>
+  <li>입력 : 정점 목록</li>
+  <li>정점들을 오브젝트 스페이스에서 MVP 변환을 통해 클립 스페이스까지 변환한다.</li>
 </ul>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105636772-2ea74780-5ead-11eb-9533-e4094fba622c.png" alt="" /></p>
+<h3 id="shape-assembly">Shape Assembly</h3>
+<ul>
+  <li>정점을 조립하여 렌더링을 할 수 있는 최소 단위(Primitive : 점, 선, 삼각형 등)로 만든다.</li>
+</ul>
 
-<h3 id="custom_mainlighthlsl">Custom_Mainlight.hlsl</h3>
+<h3 id="geometry-shader">Geometry Shader</h3>
+<ul>
+  <li>입력 : 프리미티브 목록</li>
+  <li>프리미티브 당 한 번씩 수행한다.</li>
+  <li>프리미티브를 없앨 수도, 더 만들 수도 있고 완전히 다른 프리미티브로 변환할 수도 있다.</li>
+</ul>
 
-<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<h3 id="rasterization">Rasterization</h3>
+<ul>
+  <li>입력 : 프리미티브 목록</li>
+  <li>프리미티브를 최종 화면의 적절한 픽셀과 매핑하여, 프래그먼트 쉐이더에서 사용할 Fragment를 만든다.</li>
+  <li>성능을 향상시키기 위해 뷰 프러스텀 밖의 Fragment를 폐기한다.</li>
+</ul>
+
+<h3 id="fragment-shader">Fragment Shader</h3>
+<ul>
+  <li>입력 : Fragment 목록</li>
+  <li>OpenGL의 모든 고급 효과들을 계산하는 단계</li>
+  <li>화면에 렌더링할 모든 픽셀의 색상을 계산한다.</li>
+</ul>
+
+<h3 id="alpha-test-alpha-blending">Alpha Test, Alpha Blending</h3>
+<ul>
+  <li>뎁스와 스텐실을 체크</li>
+  <li>알파 테스팅 : 알파값이 있으면 1, 없으면 0으로 판단하여 0인 픽셀 잘라내기</li>
+  <li>알파 블렌딩 : 뎁스 버퍼를 이용해 깊이를 계산하여 모든 픽셀의 최종 색상 계산</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="내용">내용</h1>
+<hr />
+<h3 id="vertex">Vertex</h3>
+<ul>
+  <li>3D 공간의 정점 좌표 데이터</li>
+  <li>float 배열</li>
+</ul>
+
+<h3 id="ndcnormalized-device-coordinates">NDC(Normalized Device Coordinates)</h3>
+<ul>
+  <li>모든 x, y, z 좌표가 -1.0 ~ 1.0 사이인 좌표</li>
+  <li>정규화된 좌표를 사용함으로써, 좌표 계산과정을 줄일 수 있으며 화면 해상도 차이에 빠르게 대응할 수 있다.</li>
+  <li>정점 쉐이더에서 4x4 Projection 행렬에 의해 직교투영(Orthographic Projection) 또는 원근 투영(Perspective Projection)을 통해 얻어지는 모든 좌표는 NDC 내로 들어온다.</li>
+  <li>투영 행렬이 정의하는 Viewing Box는 절두체(Frustum)라고 하며, 지정한 범위에서 NDC로 변환하는 과정을 ‘투영한다’라고 한다.</li>
+  <li>NDC 좌표는 glViewport() 메소드를 통해 Viewport Transform을 거쳐 Screen-space Coordinates 좌표로 변환된다.</li>
+  <li>스크린 좌표는 Fragment로 변환되어 Fragment Shader의 입력이 된다.</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="kt">float</span> <span class="n">positions</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
+     <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
+     <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="vertex-buffer">Vertex Buffer</h3>
+<ul>
+  <li>정점들에 대한 정보를 갖고 있는 메모리 버퍼</li>
+  <li>오브젝트(Vertex Buffer Object) 단위로 관리된다.</li>
+</ul>
+
+<h3 id="vbovertex-buffer-object">VBO(Vertex Buffer Object)</h3>
+<ul>
+  <li>OpenGL 객체 중 하나</li>
+  <li>고유 ID를 가지고 있다. (OpenGL의 모든 오브젝트는 고유 ID를 가진다.)</li>
+  <li>OpenGL은 다양한 타입의 버퍼 객체를 갖고 있는데, VBO는 그 중 <code class="language-plaintext highlighter-rouge">GL_ARRAY_BUFFER</code>이다.</li>
+  <li>많은 양의 정점들을 GPU 메모리 상에 저장할 수 있다.</li>
+  <li>CPU에서 GPU로 데이터를 전송하는 것은 비교적 느린데, VBO를 이용하면 비교적 빠르게 전송할 수 있다.</li>
+</ul>
+
+<h3 id="버퍼-id-생성">버퍼 ID 생성</h3>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">buffer</span><span class="p">;</span>
+<span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buffer</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+<ul>
+  <li>glGenBuffers() 메소드는 버퍼의 ID를 받아 해당 ID에 버퍼를 생성한다.</li>
+  <li>파라미터 1 : 해당 ID에 생성할 버퍼 개수</li>
+  <li>파라미터 2 : 버퍼를 생성할 ID</li>
+</ul>
+
+<h3 id="생성한-버퍼에-타입-바인딩">생성한 버퍼에 타입 바인딩</h3>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+<ul>
+  <li>glBindBuffer() 메소드는 버퍼 오브젝트에 타입을 바인딩한다.</li>
+  <li>파라미터 2 : 바인딩할 버퍼의 종류</li>
+  <li>파라미터 1 : 대상 버퍼 ID</li>
+</ul>
+
+<h3 id="미리-정의된-정점-데이터를-버퍼의-메모리에-복사">미리 정의된 정점 데이터를 버퍼의 메모리에 복사</h3>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="mi">6</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="n">positions</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+<ul>
+  <li>glBufferData() 메소드는 사용자가 정의한 데이터(지금의 경우에는 정점 데이터)를 현재 바인딩 버퍼에 복사한다.</li>
+  <li>파라미터 1 : 데이터를 복사하여 집어넣을 버퍼의 타입</li>
+  <li>파라미터 2 : 버퍼에 저장할 데이터 크기(바이트 단위), 주로 sizeof 사용</li>
+  <li>파라미터 3 : 버퍼에 저장할 실제 데이터</li>
+  <li>파라미터 4 : GPU가 주어진 데이터를 관리하는 방법
+    <ul>
+      <li>GL_STATIC_DRAW : 거의 변하지 않는 데이터</li>
+      <li>GL_DYNAMIC_DRAW : 자주 변경되는 데이터</li>
+      <li>GL_STREAM_DRAW : 그려질 때마다 변경되는 데이터</li>
+      <li>DYNAMIC, STREAM으로 전달할 경우 GPU는 빠르게 사용할 수 있는 메모리에 데이터를 저장한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="버퍼의-데이터를-이용해-그려주기">버퍼의 데이터를 이용해 그려주기</h3>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">glDrawArrays</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+<ul>
+  <li>glDrawArrays() 메소드는 배열 데이터로부터 프리미티브를 렌더링한다. 드로우 콜 중 하나</li>
+  <li>파라미터 1 : 렌더링할 프리미티브의 종류</li>
+  <li>파라미터 2 : 배열에서 참조할 데이터의 시작 인덱스</li>
+  <li>
+    <p>파라미터 3 : 렌더링할 인덱스의 개수(지금은 인덱스 2개씩을 모아 3개의 정점을 구성하므로 3)</p>
+  </li>
+  <li>하지만 아직 드로우콜만 했을 뿐, 그려지지는 않는다.</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="current-source-code">Current Source Code</h1>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -505,237 +615,121 @@
 23
 24
 25
-</pre></td><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">MainLight_half</span><span class="p">(</span><span class="kt">float3</span> <span class="n">WorldPos</span><span class="p">,</span> <span class="k">out</span> <span class="kt">half3</span> <span class="n">Direction</span><span class="p">,</span> <span class="k">out</span> <span class="kt">half3</span> <span class="n">Color</span><span class="p">,</span> <span class="k">out</span> <span class="n">half</span> <span class="n">DistanceAtten</span><span class="p">,</span> <span class="k">out</span> <span class="n">half</span> <span class="n">ShadowAtten</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="cp">#if SHADERGRAPH_PREVIEW
-</span>        <span class="n">Direction</span> <span class="o">=</span> <span class="kt">half3</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="n">Color</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">DistanceAtten</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">ShadowAtten</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="cp">#else
-</span>        <span class="kt">half4</span> <span class="n">shadowCoord</span> <span class="o">=</span> <span class="n">TransformWorldToShadowCoord</span><span class="p">(</span><span class="n">WorldPos</span><span class="p">);</span>
-        <span class="n">Light</span> <span class="n">mainLight</span> <span class="o">=</span> <span class="n">GetMainLight</span><span class="p">(</span><span class="n">shadowCoord</span><span class="p">);</span>
-        <span class="n">Direction</span> <span class="o">=</span> <span class="n">mainLight</span><span class="p">.</span><span class="n">direction</span><span class="p">;</span>
-        <span class="n">Color</span> <span class="o">=</span> <span class="n">mainLight</span><span class="p">.</span><span class="n">color</span><span class="p">;</span>
-        <span class="n">DistanceAtten</span> <span class="o">=</span> <span class="n">mainLight</span><span class="p">.</span><span class="n">distanceAttenuation</span><span class="p">;</span>
-
-        <span class="cp">#if !defined(_MAIN_LIGHT_SHADOWS) || defined(_RECEIVE_SHADOWS_OFF)
-</span>            <span class="n">ShadowAtten</span> <span class="o">=</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="n">h</span><span class="p">;</span>
-        <span class="cp">#endif
-</span>            <span class="n">ShadowSamplingData</span> <span class="n">shadowSamplingData</span> <span class="o">=</span> <span class="n">GetMainLightShadowSamplingData</span><span class="p">();</span>
-            <span class="n">half</span> <span class="n">shadowStrength</span> <span class="o">=</span> <span class="n">GetMainLightShadowStrength</span><span class="p">();</span>
-            <span class="n">ShadowAtten</span> <span class="o">=</span> <span class="n">SampleShadowmap</span><span class="p">(</span><span class="n">shadowCoord</span><span class="p">,</span>
-                <span class="n">TEXTURE2D_ARGS</span><span class="p">(</span><span class="n">_MainLightShadowmapTexture</span><span class="p">,</span> <span class="n">sampler_MainLightShadowmapTexture</span><span class="p">),</span>
-                <span class="n">shadowSamplingData</span><span class="p">,</span> <span class="n">shadowStrength</span><span class="p">,</span> <span class="nb">false</span>
-            <span class="p">);</span>
-    <span class="cp">#endif
-</span><span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p><br /></p>
-
-<ul>
-  <li>
-    <p>주변광을 얻어와야 하므로, 주변광을 얻기 위한 커스텀 함수와 서브 노드를 이용한다.</p>
-  </li>
-  <li>
-    <p>Sub_AdditionalLights
-<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105636788-467ecb80-5ead-11eb-839e-edfdcb41ba3d.png" alt="" /></p>
-  </li>
-  <li>
-    <p>여기에 들어가는 커스텀 함수 :</p>
-  </li>
-</ul>
-
-<h3 id="custom_additionallightshlsl">Custom_AdditionalLights.hlsl</h3>
-
-<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-</pre></td><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">AdditionalLights_half</span><span class="p">(</span><span class="kt">half3</span> <span class="n">WorldPos</span><span class="p">,</span> <span class="kt">half3</span> <span class="n">WorldNormal</span><span class="p">,</span> <span class="kt">half3</span> <span class="n">WorldView</span><span class="p">,</span> <span class="k">out</span> <span class="kt">half3</span> <span class="n">Diffuse</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">half3</span> <span class="n">diffuseColor</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    
-<span class="cp">#ifndef SHADERGRAPH_PREVIEW
-</span>    <span class="n">WorldNormal</span> <span class="o">=</span> <span class="nb">normalize</span><span class="p">(</span><span class="n">WorldNormal</span><span class="p">);</span>
-    <span class="n">WorldView</span> <span class="o">=</span> <span class="n">SafeNormalize</span><span class="p">(</span><span class="n">WorldView</span><span class="p">);</span>
-    <span class="n">int</span> <span class="n">pixelLightCount</span> <span class="o">=</span> <span class="n">GetAdditionalLightsCount</span><span class="p">();</span>
-
-    <span class="k">for</span> <span class="p">(</span><span class="n">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">pixelLightCount</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Light</span> <span class="n">light</span> <span class="o">=</span> <span class="n">GetAdditionalLight</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">WorldPos</span><span class="p">);</span>
-        <span class="kt">half3</span> <span class="n">attenuatedLightColor</span> <span class="o">=</span> <span class="n">light</span><span class="p">.</span><span class="n">color</span> <span class="o">*</span> <span class="p">(</span><span class="n">light</span><span class="p">.</span><span class="n">distanceAttenuation</span> <span class="o">*</span> <span class="n">light</span><span class="p">.</span><span class="n">shadowAttenuation</span><span class="p">);</span>
-        <span class="n">diffuseColor</span> <span class="o">+=</span> <span class="n">LightingLambert</span><span class="p">(</span><span class="n">attenuatedLightColor</span><span class="p">,</span> <span class="n">light</span><span class="p">.</span><span class="n">direction</span><span class="p">,</span> <span class="n">WorldNormal</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="cp">#endif
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+</pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;GL/glew.h&gt;
+#include &lt;GLFW/glfw3.h&gt;
 </span>
-    <span class="n">Diffuse</span> <span class="o">=</span> <span class="n">diffuseColor</span><span class="p">;</span>
+<span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">GLFWwindow</span><span class="o">*</span> <span class="n">window</span><span class="p">;</span>
+
+    <span class="cm">/* Initialize the library */</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">glfwInit</span><span class="p">())</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="cm">/* Create a windowed mode window and its OpenGL context */</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">glfwCreateWindow</span><span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">,</span> <span class="s">"Hello World"</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">window</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">glfwTerminate</span><span class="p">();</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* Make the window's context current */</span>
+    <span class="n">glfwMakeContextCurrent</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+
+    <span class="c1">// glewInit은 rendering context를 만들고 난 이후에 해야 함</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">glewInit</span><span class="p">()</span> <span class="o">!=</span> <span class="n">GLEW_OK</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"GLEW INIT ERROR"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 간단히 GLEW 버전 확인</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">glGetString</span><span class="p">(</span><span class="n">GL_VERSION</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="c1">// 정점 데이터</span>
+    <span class="kt">float</span> <span class="n">positions</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
+         <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
+         <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
+    <span class="p">};</span>
+
+    <span class="c1">// VBO(Vertex Buffer Object)</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">buffer</span><span class="p">;</span>
+    <span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buffer</span><span class="p">);</span>
+    <span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+    <span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="mi">6</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="n">positions</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
+
+    <span class="cm">/* Loop until the user closes the window */</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="cm">/* Render here */</span>
+        <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+
+        <span class="n">glDrawArrays</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+        <span class="cm">/* Swap front and back buffers */</span>
+        <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+
+        <span class="cm">/* Poll for and process events */</span>
+        <span class="n">glfwPollEvents</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">glfwTerminate</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p><br />
-<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105636784-4383db00-5ead-11eb-87cb-e85a9ca16604.png" alt="" /></p>
-
-<ul>
-  <li>PBR 라이팅 공식을 이용해 조립한다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105636782-3ff05400-5ead-11eb-9ba9-52cd27ff747b.png" alt="" /></p>
-
 <p><br /></p>
 
-<h1 id="2-soft-shadow-적용">2. Soft Shadow 적용</h1>
+<h1 id="references">References</h1>
 <hr />
 <ul>
-  <li>이대로는 하드 쉐도우만 적용되므로, 키워드를 이용해 소프트 쉐도우를 적용한다.</li>
-  <li>Keyword - Boolean : Shader Feature, Global
-    <ul>
-      <li>_MAIN_LIGHT_SHADOWS_CASCADE</li>
-      <li>_SHADOWS_SOFT</li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105636797-4979bc00-5ead-11eb-87fe-5988de4e3364.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="3-fog-적용">3. Fog 적용</h1>
-<hr />
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105636800-4bdc1600-5ead-11eb-87b9-6b11d8b767e6.png" alt="" /></p>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105636824-6adaa800-5ead-11eb-99f0-d7113ec00d11.png" alt="" /></p>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105637321-459b6900-5eb0-11eb-8f37-c9ed352cae5d.png" alt="" /></p>
-
-<ul>
-  <li>여기에 필요한 커스텀 함수 2가지</li>
-</ul>
-
-<h3 id="custom_computefogfactorhlsl">Custom_ComputeFogFactor.hlsl</h3>
-
-<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-</pre></td><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">ComputeFogFactor_float</span><span class="p">(</span><span class="k">in</span> <span class="n">float</span> <span class="n">z</span><span class="p">,</span> <span class="k">out</span> <span class="n">float</span> <span class="n">fogFactor</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">float</span> <span class="n">clipZ_01</span> <span class="o">=</span> <span class="n">UNITY_Z_0_FAR_FROM_CLIPSPACE</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
-
-<span class="cp">#if defined(FOG_LINEAR)
-</span>    <span class="n">fogFactor</span> <span class="o">=</span> <span class="nb">saturate</span><span class="p">(</span><span class="n">clipZ_01</span> <span class="o">*</span> <span class="n">unity_FogParams</span><span class="p">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">unity_FogParams</span><span class="p">.</span><span class="n">w</span><span class="p">);</span>
-
-<span class="cp">#elif defined(FOG_EXP) || defined(FOG_EXP2)
-</span>    <span class="n">fogFactor</span> <span class="o">=</span> <span class="p">(</span><span class="n">unity_FogParams</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">clipZ_01</span><span class="p">);</span>
-
-<span class="cp">#else
-</span>    <span class="n">fogFactor</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="n">h</span><span class="p">;</span>
-
-<span class="cp">#endif
-</span><span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<h3 id="custom_computefogintensityhlsl">Custom_ComputeFogIntensity.hlsl</h3>
-
-<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-</pre></td><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">ComputeFogIntensity_float</span><span class="p">(</span><span class="k">in</span> <span class="n">float</span> <span class="n">fogFactor</span><span class="p">,</span> <span class="k">out</span> <span class="n">float</span> <span class="n">fogIntensity</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">fogIntensity</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
-<span class="cp">#if defined(FOG_EXP)
-</span>    <span class="n">fogIntensity</span> <span class="o">=</span> <span class="nb">saturate</span><span class="p">(</span><span class="nb">exp2</span><span class="p">(</span><span class="o">-</span><span class="n">fogFactor</span><span class="p">));</span>
-
-<span class="cp">#elif defined(FOG_EXP2)
-</span>    <span class="n">fogIntensity</span> <span class="o">=</span> <span class="nb">saturate</span><span class="p">(</span><span class="nb">exp2</span><span class="p">(</span><span class="o">-</span><span class="n">fogFactor</span> <span class="o">*</span> <span class="n">fogFactor</span><span class="p">));</span>
-
-<span class="cp">#elif defined(FOG_LINEAR)
-</span>    <span class="n">fogIntensity</span> <span class="o">=</span> <span class="n">fogFactor</span><span class="p">;</span>
-
-<span class="cp">#endif
-</span><span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<h1 id="4-specular-rim-light-추가">4. Specular, Rim Light 추가</h1>
-<hr />
-<ul>
-  <li>
-    <p>쉐이더그래프의 월드 Normal, View 벡터들은 크기가 1이 아니므로</p>
-
-    <p>반드시 정규화시켜서 사용해야 한다.</p>
-  </li>
-  <li>
-    <p>블린 퐁 스페큘러와 림라이트까지 적용한 커스텀 릿 쉐이더를 완성하였다.</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105636833-729a4c80-5ead-11eb-8196-87b5c6ce6ca7.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="비교">비교</h1>
-<hr />
-<ul>
-  <li>좌측 : PBR, 우측 : Custom Lit</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105748082-f96e2880-5f84-11eb-9ecb-5cb14d688a73.png" alt="" /></p>
-
-<p><br /></p>
-
-<h1 id="reference">Reference</h1>
-<hr />
-<ul>
-  <li><a href="https://www.youtube.com/watch?v=j0uInkqU3Pk">https://www.youtube.com/watch?v=j0uInkqU3Pk</a></li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="5-download">5. Download</h1>
-<hr />
-<ul>
-  <li><a href="https://github.com/rito15/Images/files/5862666/2021_0117_Unlit_Custom_Lit.zip">Unlit_Custom_Lit_ShaderGraph</a></li>
+  <li><a href="https://www.youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2">https://www.youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2</a></li>
+  <li><a href="https://heinleinsgame.tistory.com/7">https://heinleinsgame.tistory.com/7</a></li>
+  <li><a href="https://lalyns.tistory.com/14">https://lalyns.tistory.com/14</a></li>
 </ul>
 
 
@@ -748,8 +742,8 @@
         <div class="post-meta mb-3">
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
-            <a href='/categories/unity-shader/'>Unity Shader</a>,
-            <a href='/categories/shader-graph-study/'>Shader Graph Study</a>
+            <a href='/categories/opengl/'>OpenGL</a>,
+            <a href='/categories/opengl-study/'>OpenGL Study</a>
         </div>
         
 
@@ -758,17 +752,11 @@
         <div class="post-tags">
           <i class="fa fa-tags fa-fw mr-1"></i>
           
-          <a href="/tags/unity/"
-            class="post-tag no-text-decoration" >unity</a>
+          <a href="/tags/graphics/"
+            class="post-tag no-text-decoration" >graphics</a>
           
-          <a href="/tags/csharp/"
-            class="post-tag no-text-decoration" >csharp</a>
-          
-          <a href="/tags/shader/"
-            class="post-tag no-text-decoration" >shader</a>
-          
-          <a href="/tags/shadergraph/"
-            class="post-tag no-text-decoration" >shadergraph</a>
+          <a href="/tags/opengl/"
+            class="post-tag no-text-decoration" >opengl</a>
           
           </div>
         
@@ -800,19 +788,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더 - Rito15&url=https://rito15.github.io/posts/unlit-custom-lit-shadergraph/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 03 - Rito15&url=https://rito15.github.io/posts/opengl-study-03/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더 - Rito15&u=https://rito15.github.io/posts/unlit-custom-lit-shadergraph/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 03 - Rito15&u=https://rito15.github.io/posts/opengl-study-03/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더 - Rito15&url=https://rito15.github.io/posts/unlit-custom-lit-shadergraph/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=OpenGL 공부 - 03 - Rito15&url=https://rito15.github.io/posts/opengl-study-03/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1430,176 +1418,176 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -1698,7 +1686,7 @@
       
       
       <div class="card">
-        <a href="/posts/unlit-stylized-lit-shadergraph/">
+        <a href="/posts/opengl-study-01/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1715,13 +1703,13 @@
   
 
   
-    Jan 27
+    Jan 28
   
 
-  <i class="unloaded">2021-01-27T22:00:00+09:00</i>
+  <i class="unloaded">2021-01-28T00:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 01</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1734,23 +1722,79 @@
 
 
 
+  그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.
 
 
-  유나이트 서울 2020의 위 세션을 보고, 쉐이더그래프만을 이용해 비슷하게 만들어 봐야겠다고 생각했다.
 
 
 목표
 
 
-  URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Stylized Lit 쉐이더 만들기
+
+  OpenGL의 완전 기초부터 쉐이더 적용까지 모든 과정 공부
+  그래픽스에 대한 전반적인 지식 습득...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/opengl-study-02/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 28
+  
+
+  <i class="unloaded">2021-01-28T22:09:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 02</h3>
+            <div class="text-muted small">
+              <p>
+                
 
 
 
 
-1. 서브그래프 준비
+
+                목표
 
 
-  영상에서 보면, SmoothStep과 비슷한 연산을 더 저렴하게 할 수 있게 해주는 L...
+
+  GLEW 설치 및 적용
+
+
+
+
+GLEW 설치
+
+
+
+  GLEW : OpenGL Extension Wrangler Library
+  http://glew.sourceforge.net
+  
+    Binary 다운로드
+  
+  프로젝트의 Dependency 폴더 내로 GLEW 폴더 복사
+    
+      glew-2.1.0 폴더를 통째로 ...
               </p>
             </div>
           </div>
@@ -1809,61 +1853,6 @@
         </a>
       </div>
     
-      
-      
-      <div class="card">
-        <a href="/posts/ray-marching/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 19
-  
-
-  <i class="unloaded">2021-01-19T23:15:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Ray Marching</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                레이 마칭이란?
-
-
-
-  
-    폴리곤의 정점 정보를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 표면의 정보를 얻어 오브젝트를 그려내는 기법
-  
-  
-    레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.
-  
-
-
-
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -1880,15 +1869,15 @@
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/behavior-tree/" class="btn btn-outline-primary">
-    <p>Behavior Tree</p>
+  <a href="/posts/script-templates/" class="btn btn-outline-primary">
+    <p>스크립트 템플릿(Script Templates)</p>
   </a>
   
 
   
-  <a href="/posts/custom-attributes/" class="btn btn-outline-primary">
-    <p>Custom Attributes</p>
-  </a>
+  <span class="btn btn-outline-primary disabled">
+    <p>-</p>
+  </span>
   
 
 </div>

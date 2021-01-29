@@ -2,7 +2,7 @@
 title: Job System
 author: Rito15
 date: 2021-01-24 13:15:00 +09:00
-categories: [Unity, Study]
+categories: [Unity, Unity Study]
 tags: [unity, csharp, job, burst]
 math: true
 mermaid: true

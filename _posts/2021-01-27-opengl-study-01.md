@@ -181,3 +181,10 @@ int main(void)
 - <https://www.youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2>
 - <https://heinleinsgame.tistory.com/tag/OpenGL>
 - <https://learnopengl.com/>
+
+<br>
+
+# Documents, APIs
+---
+- <http://docs.gl/>
+- <http://glew.sourceforge.net/>

@@ -2,7 +2,7 @@
 title: Frame Rate Checker
 author: Rito15
 date: 2021-01-24 17:00:00 +09:00
-categories: [Unity, Toys]
+categories: [Unity, Unity Toys]
 tags: [unity, csharp, plugin]
 math: true
 mermaid: true

@@ -2,7 +2,7 @@
 title: Unity Editor-only Debug
 author: Rito15
 date: 2020-07-06 15:00:00 +09:00
-categories: [Unity, Toys]
+categories: [Unity, Unity Toys]
 tags: [unity, csharp, plugin]
 math: true
 mermaid: true
