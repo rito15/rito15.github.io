@@ -180,6 +180,6 @@ void ComputeFogIntensity_float(in float fogFactor, out float fogIntensity)
 
 <br>
 
-# 5. Download
+# Download
 ---
 - [Unlit_Custom_Lit_ShaderGraph](https://github.com/rito15/Images/files/5862666/2021_0117_Unlit_Custom_Lit.zip)

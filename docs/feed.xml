@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-01-30T02:47:32+09:00</updated>
+  <updated>2021-01-30T22:26:19+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,64 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Input Binding System</title>
+    <link href="https://rito15.github.io/posts/input-binding-system/" rel="alternate" type="text/html" title="Input Binding System" />
+    <published>2021-01-30T16:18:00+09:00</published>
+  
+    <updated>2021-01-30T16:18:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/input-binding-system/</id>
+    <content src="https://rito15.github.io/posts/input-binding-system/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  에디터 및 인게임에서 언제든 기능에 연결된 사용자 마우스, 키보드 바인딩을 변경할 수 있는 기능 구현
+  전체 입력 바인딩을 직렬화하여 저장하고 불러올 수 있는 기능 구현
+
+
+
+
+유니티의 입력 시스템
+
+
+  유니티에는 2가지 Input System이 있다.
+  첫 번째는 Input.Get~ 꼴의 메소드를 이용해 이번 프레임에 해당 입력이 있었는지 검사하는 레거시 시스템
+  
+    두 번째는 2019년 소개된 New Input System.
+
+  
+  New Input System을 사용하려면
+    
+      패키지 매니저에서 Input System을 설치하고,
+      프로젝트 세팅에서 Active Input Handling을 지정하고,
+      입력 시스템을 위한 스크립터블 오브...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -93,7 +151,7 @@ Rasterization
     <link href="https://rito15.github.io/posts/script-templates/" rel="alternate" type="text/html" title="스크립트 템플릿(Script Templates)" />
     <published>2021-01-29T16:55:00+09:00</published>
   
-    <updated>2021-01-29T16:55:00+09:00</updated>
+    <updated>2021-01-30T02:47:44+09:00</updated>
   
     <id>https://rito15.github.io/posts/script-templates/</id>
     <content src="https://rito15.github.io/posts/script-templates/" />
@@ -233,7 +291,7 @@ GLEW 설치
     <link href="https://rito15.github.io/posts/csharp-fileio/" rel="alternate" type="text/html" title="C# 파일 입출력" />
     <published>2021-01-28T21:10:00+09:00</published>
   
-    <updated>2021-01-28T22:03:44+09:00</updated>
+    <updated>2021-01-30T02:47:44+09:00</updated>
   
     <id>https://rito15.github.io/posts/csharp-fileio/</id>
     <content src="https://rito15.github.io/posts/csharp-fileio/" />
@@ -286,70 +344,6 @@ string   filePath = @"C:\folder\fileName.txt";
 FileInfo fi = new FileInfo(filePath);
 
 fi.FullName;      // C:\folder\fileName....
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 01</title>
-    <link href="https://rito15.github.io/posts/opengl-study-01/" rel="alternate" type="text/html" title="OpenGL 공부 - 01" />
-    <published>2021-01-28T00:10:00+09:00</published>
-  
-    <updated>2021-01-29T01:36:05+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-01/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-01/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      동기
-
-
-  그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.
-
-
-
-
-목표
-
-
-  OpenGL의 완전 기초부터 쉐이더 적용까지 모든 과정 공부
-  그래픽스에 대한 전반적인 지식 습득
-
-
-
-
-OpenGL?
-
-
-  
-    OpenGL 자체는 API가 아닌, 각종 OpenGL 라이브러리를 개발하기 위해 Khronos Group이 개발 및 유지 관리하는 설명서이다.
-  
-  
-    OpenGL은 각 함수의 출력과 수행 방법을 정의한다.
-  
-  
-    실제로 OpenGL 라이브러리를 개발하는 사람들은 일반적으로 그래픽카드 제조업체이다.
- ...
     </summary>
   
 
