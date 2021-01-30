@@ -320,4 +320,4 @@ private void LogBindingInfo(UserAction action)
 
 # Download
 ---
-- [Input Binding.zip](https://github.com/rito15/Images/files/5897977/2021_0129_Input.Binding.zip)
+- [Input Binding.zip](https://github.com/rito15/Images/files/5898182/2021_0129_Input.Binding.zip)
