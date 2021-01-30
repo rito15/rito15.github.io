@@ -39,9 +39,9 @@ mermaid: true
 
 - 바인딩 JSON 세이브 로드 기능은 <https://forum.unity.com/threads/how-to-save-input-action-bindings.799311/> 여기서 찾을 수 있었다.
 
-- 어쨌든 새로운 입력 시스템은 현재로서는 접근성이 너무 떨어지고 딱히 사용할 메리트가 없어보인다.
+- 어쨌든 새로운 입력 시스템은 현재로서는 접근성이 너무 떨어진다.
 
-- 그래서 레거시 입력 시스템으로 실시간 변경과 직렬화가 가능한 바인딩 시스템을 만들어보려고 한다.
+- 그래서 기존의 입력 시스템으로 실시간 변경과 직렬화가 가능한 바인딩 시스템을 만들어보려고 한다.
 
 <br>
 
@@ -122,8 +122,8 @@ public class InputBinding
         _bindingDict = new Dictionary<UserAction, KeyCode>(newBinding._bindingDict);
     }
 
-    // 바인딩 지정 메소드
-    public void SetBinding(in UserAction action, in KeyCode code, bool allowOverlap = false)
+    // 바인딩 지정 메소드 : allowOverlap 매개변수를 통해 중복 바인딩 허용여부를 결정한다.
+    public void Bind(in UserAction action, in KeyCode code, bool allowOverlap = false)
     {
         if (!allowOverlap && _bindingDict.ContainsValue(code))
         {
@@ -143,19 +143,19 @@ public class InputBinding
     // 초기 바인딩셋 지정 메소드
     public void ResetAll()
     {
-        SetBinding(UserAction.Attack,       KeyCode.Mouse0);
+        Bind(UserAction.Attack,       KeyCode.Mouse0);
 
-        SetBinding(UserAction.MoveForward,  KeyCode.W);
-        SetBinding(UserAction.MoveBackward, KeyCode.S);
-        SetBinding(UserAction.MoveLeft,     KeyCode.A);
-        SetBinding(UserAction.MoveRight,    KeyCode.D);
+        Bind(UserAction.MoveForward,  KeyCode.W);
+        Bind(UserAction.MoveBackward, KeyCode.S);
+        Bind(UserAction.MoveLeft,     KeyCode.A);
+        Bind(UserAction.MoveRight,    KeyCode.D);
 
-        SetBinding(UserAction.Run,          KeyCode.LeftControl);
-        SetBinding(UserAction.Jump,         KeyCode.Space);
+        Bind(UserAction.Run,          KeyCode.LeftControl);
+        Bind(UserAction.Jump,         KeyCode.Space);
 
-        SetBinding(UserAction.UI_Inventory, KeyCode.I);
-        SetBinding(UserAction.UI_Status,    KeyCode.P);
-        SetBinding(UserAction.UI_Skill,     KeyCode.K);
+        Bind(UserAction.UI_Inventory, KeyCode.I);
+        Bind(UserAction.UI_Status,    KeyCode.P);
+        Bind(UserAction.UI_Skill,     KeyCode.K);
     }
 }
 ```
@@ -235,7 +235,7 @@ public void ApplyNewBindings(SerializableInputBinding newBinding)
 ```
 
 - 저장, 불러오기 메소드를 작성한다.
-- 파일 입출력 부분은 본문에서 생략하였다.
+  - 파일 입출력 부분의 구현은 본문에서 생략하였다.
 
 ```cs
 public void SaveToFile()
@@ -265,14 +265,50 @@ public void LoadFromFile()
 
 # 구현 결과
 ---
-- "Demo Scene 2 - UI" 씬에서의 테스트
-
-![2021_0130_Binding_Test](https://user-images.githubusercontent.com/42164422/106357188-ecb45080-6347-11eb-8f1a-b59a139984c1.gif)
-
-<br>
-- 파일로 저장된 바인딩 설정
+- 바인딩 저장 파일 내용
 
 ![image](https://user-images.githubusercontent.com/42164422/106357237-40bf3500-6348-11eb-966a-87706c53c85e.png)
+
+<br>
+- Input 클래스를 통한 키 입력
+  - 파일로부터 읽어들인 바인딩 설정에 따라 동일한 기능에 대해 입력받는 키값이 달라진다.
+
+```cs
+public InputBinding _binding = new InputBinding();
+
+private void Start()
+{
+    _binding.LoadFromFile();
+}
+
+private void Update()
+{
+    if (Input.GetKeyDown(_binding.Bindings[UserAction.MoveLeft]))
+    {
+        LogBindingInfo(UserAction.MoveLeft);
+    }
+    if (Input.GetKeyDown(_binding.Bindings[UserAction.MoveRight]))
+    {
+        LogBindingInfo(UserAction.MoveRight);
+    }
+    if (Input.GetKeyDown(_binding.Bindings[UserAction.Attack]))
+    {
+        LogBindingInfo(UserAction.Attack);
+    }
+}
+
+private void LogBindingInfo(UserAction action)
+{
+    Debug.Log($"Action : {action}, KeyCode : {_binding.Bindings[action]}");
+}
+```
+
+![](https://user-images.githubusercontent.com/42164422/106359672-7881a900-6357-11eb-8b12-b123d65dc645.png)
+
+<br>
+- UI를 통한 키 바인딩 변경
+
+![2021_0130_Binding_Test](https://user-images.githubusercontent.com/42164422/106357188-ecb45080-6347-11eb-8f1a-b59a139984c1.gif)
 
 <br>
 

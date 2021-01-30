@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1625 words">9 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1752 words">9 min</span>
 
 
           <!-- page views -->
@@ -475,10 +475,10 @@
     <p>바인딩 JSON 세이브 로드 기능은 <a href="https://forum.unity.com/threads/how-to-save-input-action-bindings.799311/">https://forum.unity.com/threads/how-to-save-input-action-bindings.799311/</a> 여기서 찾을 수 있었다.</p>
   </li>
   <li>
-    <p>어쨌든 새로운 입력 시스템은 현재로서는 접근성이 너무 떨어지고 딱히 사용할 메리트가 없어보인다.</p>
+    <p>어쨌든 새로운 입력 시스템은 현재로서는 접근성이 너무 떨어진다.</p>
   </li>
   <li>
-    <p>그래서 레거시 입력 시스템으로 실시간 변경과 직렬화가 가능한 바인딩 시스템을 만들어보려고 한다.</p>
+    <p>그래서 기존의 입력 시스템으로 실시간 변경과 직렬화가 가능한 바인딩 시스템을 만들어보려고 한다.</p>
   </li>
 </ul>
 
@@ -646,8 +646,8 @@
         <span class="n">_bindingDict</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">UserAction</span><span class="p">,</span> <span class="n">KeyCode</span><span class="p">&gt;(</span><span class="n">newBinding</span><span class="p">.</span><span class="n">_bindingDict</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="c1">// 바인딩 지정 메소드</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetBinding</span><span class="p">(</span><span class="k">in</span> <span class="n">UserAction</span> <span class="n">action</span><span class="p">,</span> <span class="k">in</span> <span class="n">KeyCode</span> <span class="n">code</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">allowOverlap</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+    <span class="c1">// 바인딩 지정 메소드 : allowOverlap 매개변수를 통해 중복 바인딩 허용여부를 결정한다.</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Bind</span><span class="p">(</span><span class="k">in</span> <span class="n">UserAction</span> <span class="n">action</span><span class="p">,</span> <span class="k">in</span> <span class="n">KeyCode</span> <span class="n">code</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">allowOverlap</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(!</span><span class="n">allowOverlap</span> <span class="p">&amp;&amp;</span> <span class="n">_bindingDict</span><span class="p">.</span><span class="nf">ContainsValue</span><span class="p">(</span><span class="n">code</span><span class="p">))</span>
         <span class="p">{</span>
@@ -667,19 +667,19 @@
     <span class="c1">// 초기 바인딩셋 지정 메소드</span>
     <span class="k">public</span> <span class="k">void</span> <span class="nf">ResetAll</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="nf">SetBinding</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">Attack</span><span class="p">,</span>       <span class="n">KeyCode</span><span class="p">.</span><span class="n">Mouse0</span><span class="p">);</span>
+        <span class="nf">Bind</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">Attack</span><span class="p">,</span>       <span class="n">KeyCode</span><span class="p">.</span><span class="n">Mouse0</span><span class="p">);</span>
 
-        <span class="nf">SetBinding</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveForward</span><span class="p">,</span>  <span class="n">KeyCode</span><span class="p">.</span><span class="n">W</span><span class="p">);</span>
-        <span class="nf">SetBinding</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveBackward</span><span class="p">,</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">S</span><span class="p">);</span>
-        <span class="nf">SetBinding</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveLeft</span><span class="p">,</span>     <span class="n">KeyCode</span><span class="p">.</span><span class="n">A</span><span class="p">);</span>
-        <span class="nf">SetBinding</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveRight</span><span class="p">,</span>    <span class="n">KeyCode</span><span class="p">.</span><span class="n">D</span><span class="p">);</span>
+        <span class="nf">Bind</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveForward</span><span class="p">,</span>  <span class="n">KeyCode</span><span class="p">.</span><span class="n">W</span><span class="p">);</span>
+        <span class="nf">Bind</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveBackward</span><span class="p">,</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">S</span><span class="p">);</span>
+        <span class="nf">Bind</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveLeft</span><span class="p">,</span>     <span class="n">KeyCode</span><span class="p">.</span><span class="n">A</span><span class="p">);</span>
+        <span class="nf">Bind</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveRight</span><span class="p">,</span>    <span class="n">KeyCode</span><span class="p">.</span><span class="n">D</span><span class="p">);</span>
 
-        <span class="nf">SetBinding</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">Run</span><span class="p">,</span>          <span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftControl</span><span class="p">);</span>
-        <span class="nf">SetBinding</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">Jump</span><span class="p">,</span>         <span class="n">KeyCode</span><span class="p">.</span><span class="n">Space</span><span class="p">);</span>
+        <span class="nf">Bind</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">Run</span><span class="p">,</span>          <span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftControl</span><span class="p">);</span>
+        <span class="nf">Bind</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">Jump</span><span class="p">,</span>         <span class="n">KeyCode</span><span class="p">.</span><span class="n">Space</span><span class="p">);</span>
 
-        <span class="nf">SetBinding</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">UI_Inventory</span><span class="p">,</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">I</span><span class="p">);</span>
-        <span class="nf">SetBinding</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">UI_Status</span><span class="p">,</span>    <span class="n">KeyCode</span><span class="p">.</span><span class="n">P</span><span class="p">);</span>
-        <span class="nf">SetBinding</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">UI_Skill</span><span class="p">,</span>     <span class="n">KeyCode</span><span class="p">.</span><span class="n">K</span><span class="p">);</span>
+        <span class="nf">Bind</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">UI_Inventory</span><span class="p">,</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">I</span><span class="p">);</span>
+        <span class="nf">Bind</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">UI_Status</span><span class="p">,</span>    <span class="n">KeyCode</span><span class="p">.</span><span class="n">P</span><span class="p">);</span>
+        <span class="nf">Bind</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">UI_Skill</span><span class="p">,</span>     <span class="n">KeyCode</span><span class="p">.</span><span class="n">K</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
@@ -815,8 +815,11 @@
 </pre></td></tr></tbody></table></code></div></div>
 
 <ul>
-  <li>저장, 불러오기 메소드를 작성한다.</li>
-  <li>파일 입출력 부분은 본문에서 생략하였다.</li>
+  <li>저장, 불러오기 메소드를 작성한다.
+    <ul>
+      <li>파일 입출력 부분의 구현은 본문에서 생략하였다.</li>
+    </ul>
+  </li>
 </ul>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -868,17 +871,84 @@
 <h1 id="구현-결과">구현 결과</h1>
 <hr />
 <ul>
-  <li>“Demo Scene 2 - UI” 씬에서의 테스트</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106357188-ecb45080-6347-11eb-8f1a-b59a139984c1.gif" alt="2021_0130_Binding_Test" /></p>
-
-<p><br /></p>
-<ul>
-  <li>파일로 저장된 바인딩 설정</li>
+  <li>바인딩 저장 파일 내용</li>
 </ul>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106357237-40bf3500-6348-11eb-966a-87706c53c85e.png" alt="image" /></p>
+
+<p><br /></p>
+<ul>
+  <li>Input 클래스를 통한 키 입력
+    <ul>
+      <li>파일로부터 읽어들인 바인딩 설정에 따라 동일한 기능에 대해 입력받는 키값이 달라진다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="n">InputBinding</span> <span class="n">_binding</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InputBinding</span><span class="p">();</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_binding</span><span class="p">.</span><span class="nf">LoadFromFile</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">_binding</span><span class="p">.</span><span class="n">Bindings</span><span class="p">[</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveLeft</span><span class="p">]))</span>
+    <span class="p">{</span>
+        <span class="nf">LogBindingInfo</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveLeft</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">_binding</span><span class="p">.</span><span class="n">Bindings</span><span class="p">[</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveRight</span><span class="p">]))</span>
+    <span class="p">{</span>
+        <span class="nf">LogBindingInfo</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">MoveRight</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">_binding</span><span class="p">.</span><span class="n">Bindings</span><span class="p">[</span><span class="n">UserAction</span><span class="p">.</span><span class="n">Attack</span><span class="p">]))</span>
+    <span class="p">{</span>
+        <span class="nf">LogBindingInfo</span><span class="p">(</span><span class="n">UserAction</span><span class="p">.</span><span class="n">Attack</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">LogBindingInfo</span><span class="p">(</span><span class="n">UserAction</span> <span class="n">action</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">$"Action : </span><span class="p">{</span><span class="n">action</span><span class="p">}</span><span class="s">, KeyCode : </span><span class="p">{</span><span class="n">_binding</span><span class="p">.</span><span class="n">Bindings</span><span class="p">[</span><span class="n">action</span><span class="p">]}</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106359672-7881a900-6357-11eb-8b12-b123d65dc645.png" alt="" /></p>
+
+<p><br /></p>
+<ul>
+  <li>UI를 통한 키 바인딩 변경</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106357188-ecb45080-6347-11eb-8f1a-b59a139984c1.gif" alt="2021_0130_Binding_Test" /></p>
 
 <p><br /></p>
 
@@ -1033,6 +1103,11 @@
         
         
         
+        <li><a href="/posts/unlit-custom-lit-shadergraph/">Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더</a></li>
+      
+        
+        
+        
         <li><a href="/posts/fog-of-war/">Fog of War</a></li>
       
         
@@ -1049,11 +1124,6 @@
         
         
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/csharp-fileio/">C# 파일 입출력</a></li>
       
 
       </ul>
