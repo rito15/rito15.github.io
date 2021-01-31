@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-01-31T17:18:11+09:00</updated>
+  <updated>2021-02-01T03:05:31+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,142 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Unity UI Memo</title>
+    <link href="https://rito15.github.io/posts/unity-ui-memo/" rel="alternate" type="text/html" title="Unity UI Memo" />
+    <published>2021-02-01T03:00:00+09:00</published>
+  
+    <updated>2021-02-01T03:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-ui-memo/</id>
+    <content src="https://rito15.github.io/posts/unity-ui-memo/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      UI 드래그 앤 드롭으로 옮기기
+
+
+  UI 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기
+  헤더 UI의 컴포넌트로 넣어주기
+
+
+/// &amp;lt;summary&amp;gt; 헤더 드래그 앤 드롭에 의한 UI 이동 구현 &amp;lt;/summary&amp;gt;
+public class PopupUIHeader : MonoBehaviour,
+    IPointerDownHandler, IBeginDragHandler, IDragHandler
+{
+    private RectTransform _parentRect;
+
+    private Vector2 _rectBegin;
+    private Vector2 _moveBegin;
+    private Vector2 _moveOffset;
+
+    priva...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Popup UI Management System</title>
+    <link href="https://rito15.github.io/posts/popup-ui-management-system/" rel="alternate" type="text/html" title="Popup UI Management System" />
+    <published>2021-01-31T20:23:00+09:00</published>
+  
+    <updated>2021-01-31T20:23:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/popup-ui-management-system/</id>
+    <content src="https://rito15.github.io/posts/popup-ui-management-system/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  팝업 UI 관리 시스템 구현
+
+
+
+
+게임의 UI
+
+
+  온라인 PC게임을 예로 들었을 때, 다양한 형태의 UI들이 존재한다.
+  화면 예시 : Smilegate RPG ‘LostARK’
+
+
+1. 전체화면 UI
+
+  크기가 화면 전체에 해당하는 UI
+  예 : 상점, 캐시 샵
+
+
+
+
+2. 고정형 UI
+
+  고정된 위치에 항상 존재하는 UI
+  예 : 하단 바, 퀵슬롯, 미니맵, 채팅창
+
+
+
+
+3. 추적형 UI
+
+  게임 내 요소들(캐릭터, 몬스터, 건물 등)의 위치를 실시간으로 추적하여 따라다니는 UI
+  예 : 체력 바, 이름, 말풍선
+
+
+
+
+4. 안내형 UI
+
+  화면 한켠에 잠시 나타났다가 사라지는 형태의 UI
+  게임의 진행사항, 공지사항 등을 안내하는 용도로 주로 사용된다.
+
+
+
+
+...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -207,146 +343,6 @@ GLuint vao;
   
   
     Raster...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>스크립트 템플릿(Script Templates)</title>
-    <link href="https://rito15.github.io/posts/script-templates/" rel="alternate" type="text/html" title="스크립트 템플릿(Script Templates)" />
-    <published>2021-01-29T16:55:00+09:00</published>
-  
-    <updated>2021-01-30T02:47:44+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/script-templates/</id>
-    <content src="https://rito15.github.io/posts/script-templates/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      개념
-
-
-  Project - 우클릭 - Create를 통해 만드는 스크립트 또는 텍스트의 템플릿을 미리 지정하는 기능
-  스크립트 템플릿의 저장 경로 :
-
-
-C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
-
-
-
-  각각의 유니티 버전마다 따로 저장된다.
-  한가지 팁은, 스크립트 템플릿에 한 글자라도 애초에 한글이 작성되어 있지 않으면 나중에 한글 주석이라도 작성했을 때 인코딩이 깨져버릴 수 있으니 스크립트 템플릿 내에 아주 짧은 한글 주석을 적어 놓는게 좋다는 것
-
-
-
-
-규칙
-
-
-  각각의 템플릿 파일의 이름 규칙은 다음과 같다.
-
-
-[인덱스]-[템플릿 이름]-[생성 시 파일명.확장자].txt
-
-
-
-  예시 :
-
-
-81-C# Script...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 02</title>
-    <link href="https://rito15.github.io/posts/opengl-study-02/" rel="alternate" type="text/html" title="OpenGL 공부 - 02" />
-    <published>2021-01-28T22:09:00+09:00</published>
-  
-    <updated>2021-01-31T17:18:09+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-02/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-02/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  GLEW 설치 및 적용
-
-
-
-
-GLEW 설치
-
-
-  GLEW : OpenGL Extension Wrangler Library
-  http://glew.sourceforge.net
-  
-    Binary 다운로드
-  
-  프로젝트의 Dependency 폴더 내로 GLEW 폴더 복사
-    
-      glew-2.1.0 폴더를 통째로 가져와서 GLEW로 이름을 변경해준다.
-    
-  
-
-
-
-
-
-  GLEW/doc/index.html - Usage 탭에 들어가면 초기 사용법이 있다.
-
-
-
-
-참조 추가
-
-
-
-  헤더
-    
-      프로젝트 속성 - C/C++ - 일반 - 추가 포함 디렉터리
-      $(SolutionDir)OpenGL_Study\Dependencies\GLEW\inc...
     </summary>
   
 
