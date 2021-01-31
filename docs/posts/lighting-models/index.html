@@ -668,17 +668,17 @@
         
         
         
-        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
-      
-        
-        
-        
         <li><a href="/posts/job-system/">Job System</a></li>
       
         
         
         
         <li><a href="/posts/frame-rate-checker/">Frame Rate Checker</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01</a></li>
       
 
       </ul>
@@ -1031,8 +1031,6 @@
     
     
     
-    
-      
     
   
     
@@ -1476,6 +1474,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -1694,7 +1705,7 @@ Custom_Mainlight.hlsl
       
       
       <div class="card">
-        <a href="/posts/fog-of-war/">
+        <a href="/posts/job-system/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1711,13 +1722,13 @@ Custom_Mainlight.hlsl
   
 
   
-    Jan 20
+    Jan 24
   
 
-  <i class="unloaded">2021-01-20T21:00:00+09:00</i>
+  <i class="unloaded">2021-01-24T13:15:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Fog of War</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Job System</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1729,14 +1740,11 @@ Custom_Mainlight.hlsl
                 개념
 
 
-  맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다.
-  지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0,
-  지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8,
-  지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
-
-
-
-[스타크래프트2 게임...
+  유니티에서 안전한 멀티스레딩을 구현하는 시스템
+  스레드를 별도로 생성하지 않으며, 유니티의 워커스레드에 작업을 지시할 수 있게 한다.
+  잡 대기열에 잡을 배치하면 워커 스레드가 잡 대기열에서 항목을 가져와 실행한다.
+  Native Container를 이용해 잡의 수행 결과를 메인 스레드와 공유한다.
+  버스트 컴파일러를 이용하여 추가...
               </p>
             </div>
           </div>
@@ -2188,8 +2196,6 @@ Custom_Mainlight.hlsl
     
     
     
-    
-      
     
   
     

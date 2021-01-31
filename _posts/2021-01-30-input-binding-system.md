@@ -25,7 +25,6 @@ mermaid: true
 - New Input System을 사용하려면
   - 패키지 매니저에서 Input System을 설치하고,
   - 프로젝트 세팅에서 Active Input Handling을 지정하고,
-  - 입력 시스템을 위한 스크립터블 오브젝트를 생성하고,
   - InputAction 윈도우에서 Action Map, Action, Property를 설정하고,
   - New Input System을 사용할 게임오브젝트에 PlayerInput 컴포넌트를 넣고,
   - 이제 스크립트에서 콜백 메소드를 작성해서 입력을 처리한다.
@@ -39,13 +38,13 @@ mermaid: true
 
 - 바인딩 JSON 세이브 로드 기능은 <https://forum.unity.com/threads/how-to-save-input-action-bindings.799311/> 여기서 찾을 수 있었다.
 
-- 어쨌든 새로운 입력 시스템은 현재로서는 접근성이 너무 떨어진다.
+- 그나마 레거시에 비해 바인딩 시스템이 이미 만들어져 있다는 장점이 있지만, 어쨌든 새로운 입력 시스템은 현재로서는 접근성이 너무 떨어진다.
 
 - 그래서 기존의 입력 시스템으로 실시간 변경과 직렬화가 가능한 바인딩 시스템을 만들어보려고 한다.
 
 <br>
 
-# 기능과 입력의 분리
+# 1. 기능과 입력의 분리
 ---
 - 기능 또는 사용자의 행동과 실제 입력값을 분리해야 한다.
 
@@ -54,8 +53,8 @@ mermaid: true
 - 바인딩을 고려하지 않는다면 곧장 Input.GetKeyDown(KeyCode.A) 꼴로 사용하게 되는데, 입력값을 의미하는 KeyCode를 직접 사용하지 않고 기능과 관련된 코드를 사용하도록 만들어야 한다.
 
 - 따라서 게임 내에서 사용할 기능들을 미리 정의한다.
-  - int, string으로 이동은 0, 1, 2 ..., 또는 "MoveLeft", "MoveRight", ... 꼴로 만들 수도 있지만,
-  - 정수형은 직관적이지 않고 string은 GC의 먹이가 되는데다가 오탈자를 유발할 수 있으므로 enum으로 정의한다.
+  - int, string으로 0, 1, 2 ..., 또는 "MoveLeft", "MoveRight", ... 꼴로 만들 수도 있지만,
+  - 정수형은 직관적이지 않고 string은 오탈자를 유발할 수 있으므로 enum으로 정의한다.
 
 - 레거시 입력 시스템의 입력값은 키보드는 KeyCode, 마우스는 정수 값을 사용한다.
 - 그런데 KeyCode에 마우스 입력값도 Mouse0 ~ Mouse6까지 포함되어 있으므로 KeyCode로 통합하여 사용할 수 있다.
@@ -84,7 +83,7 @@ public enum UserAction
 
 <br>
 
-# 바인딩 구현
+# 2. 바인딩 구현
 ---
 - 기능에 따라 KeyCode 값을 참조할 수 있도록 하려면 간단히 딕셔너리를 사용하면 된다.
 
@@ -94,7 +93,7 @@ private Dictionary<UserAction, KeyCode> _bindingDict;
 
 <br>
 
-# 바인딩 클래스 작성
+# 3. 바인딩 클래스 작성
 ---
 - 딕셔너리만을 사용해 곧장 바인딩 기능을 사용할 수 있으나, 모듈화하여 바인딩을 프리셋으로 사용하고 저장, 불러오기도 할 수 있게 할 것이므로 클래스로 묶어 작성한다.
 
@@ -164,7 +163,7 @@ public class InputBinding
 
 <br>
 
-# 직렬화 가능한 클래스 작성
+# 4. 직렬화 가능한 클래스 작성
 ---
 - 중요한 문제점이 있는데, 일반적으로 딕셔너리는 직렬화가 안된다.
 - 따라서 저장 및 불러오기 기능을 위해 직렬화 가능한 형태의 새로운 클래스를 작성한다.
@@ -207,7 +206,7 @@ public class BindPair
 
 <br>
 
-# 로컬 저장, 불러오기 구현
+# 5. 저장, 불러오기 구현
 ---
 - 우선 SerializableInputBinding 클래스를 InputBinding 클래스에서 빠르게 변환하여 사용할 수 있도록 새로운 생성자와 메소드를 작성한다.
 
@@ -235,7 +234,8 @@ public void ApplyNewBindings(SerializableInputBinding newBinding)
 ```
 
 - 저장, 불러오기 메소드를 작성한다.
-  - 파일 입출력 부분의 구현은 본문에서 생략하였다.
+  - 로컬 또는 서버 등 환경에 따라 구현할 수 있다.
+  - 여기서는 로컬로 구현하였으며, 구현부는 본문에서 생략하였다.
 
 ```cs
 public void SaveToFile()
@@ -306,7 +306,7 @@ private void LogBindingInfo(UserAction action)
 ![](https://user-images.githubusercontent.com/42164422/106359672-7881a900-6357-11eb-8b12-b123d65dc645.png)
 
 <br>
-- UI를 통한 키 바인딩 변경
+- 추가 : UI를 통한 바인딩 변경 기능 구현
 
 ![2021_0130_Binding_Test](https://user-images.githubusercontent.com/42164422/106357188-ecb45080-6347-11eb-8f1a-b59a139984c1.gif)
 

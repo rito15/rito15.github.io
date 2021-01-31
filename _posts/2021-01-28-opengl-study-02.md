@@ -111,7 +111,7 @@ and call glewInit() to initialize the extension entry points.
 <br>
 
 # Current Source Code
-
+---
 ```cpp
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>

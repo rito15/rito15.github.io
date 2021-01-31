@@ -581,7 +581,7 @@ and call glewInit() to initialize the extension entry points.
 <p><br /></p>
 
 <h1 id="current-source-code">Current Source Code</h1>
-
+<hr />
 <div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -845,17 +845,17 @@ and call glewInit() to initialize the extension entry points.
         
         
         
-        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
-      
-        
-        
-        
         <li><a href="/posts/job-system/">Job System</a></li>
       
         
         
         
         <li><a href="/posts/frame-rate-checker/">Frame Rate Checker</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01</a></li>
       
 
       </ul>
@@ -1209,8 +1209,6 @@ and call glewInit() to initialize the extension entry points.
     
     
     
-      
-    
   
     
     
@@ -1435,6 +1433,19 @@ and call glewInit() to initialize the extension entry points.
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1821,15 +1832,18 @@ and call glewInit() to initialize the extension entry points.
 
 
 
-Vertex Shader
 
-  입력 : 정점 목록
-  정점들을 오브젝트 스페이스에서 MVP 변환을 통해 클립 스페이스까지 변환한다.
-
-
-Shape Assembly
-
-  정점을 조립하여 렌더링을 할 수 있는 최소 단위(Primitive : 점, 선, 삼각형 등)로 만든다....
+  
+    Vertex Shader
+    
+      입력 : 정점 목록
+      정점들을 오브젝트 스페이스에서 MVP 변환을 통해 클립 스페이스까지 변환한다.
+    
+  
+  
+    Shape Assembly
+    
+      정점을 조립하여 렌더링을 할 ...
               </p>
             </div>
           </div>
@@ -1839,7 +1853,7 @@ Shape Assembly
       
       
       <div class="card">
-        <a href="/posts/lighting-models/">
+        <a href="/posts/opengl-study-04/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1856,13 +1870,13 @@ Shape Assembly
   
 
   
-    Nov 16, 2020
+    Jan 31
   
 
-  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
+  <i class="unloaded">2021-01-31T13:31:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lighting Models</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 04</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1871,17 +1885,19 @@ Shape Assembly
 
 
 
-                Vectors
+                목표
+
+
+  Vertex Attributes, Layout, VBO, VAO에 대한 이해
 
 
 
 
-  L (Light) : 정점에서 광원을 향하는 방향의 벡터
-  N (Normal) : 정점의 노멀 벡터
-  V (View) : 정점에서 카메라를 향하는 방향의 벡터
-  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
-  
-    H (Half) : 블린퐁에서 사용, L와 V의 중...
+Attributes, VBO, VAO
+
+
+  버텍스 버퍼에는 버텍스 좌표, 텍스쳐 좌표, 노멀 벡터 등 여러 데이터가 float 값으로 들어갈 수 있다.
+  하지만 그 자체로는 그저 메모리에 올라가는 값일 뿐이기 때문에 각각의 데이터가 어떤 역할을 하고, ...
               </p>
             </div>
           </div>
@@ -2333,8 +2349,6 @@ Shape Assembly
     
     
     
-    
-      
     
   
     

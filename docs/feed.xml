@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-01-31T00:14:01+09:00</updated>
+  <updated>2021-01-31T17:17:10+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,76 @@
 
   
   <entry>
+    <title>OpenGL 공부 - 04</title>
+    <link href="https://rito15.github.io/posts/opengl-study-04/" rel="alternate" type="text/html" title="OpenGL 공부 - 04" />
+    <published>2021-01-31T13:31:00+09:00</published>
+  
+    <updated>2021-01-31T13:31:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-04/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-04/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  Vertex Attributes, Layout, VBO, VAO에 대한 이해
+
+
+
+
+Attributes, VBO, VAO
+
+
+  버텍스 버퍼에는 버텍스 좌표, 텍스쳐 좌표, 노멀 벡터 등 여러 데이터가 float 값으로 들어갈 수 있다.
+  하지만 그 자체로는 그저 메모리에 올라가는 값일 뿐이기 때문에 각각의 데이터가 어떤 역할을 하고, 길이는 얼마나 갖고 있고, 시작 위치는 어디인지 OpenGL에 알려줘야 한다.
+
+
+
+
+  
+    VAO(Vertex Array Object)
+    
+      하나 이상의 VBO를 담을 수 있는 객체
+      개별 오브젝트의 모든 데이터를 담고 있다.
+      고유 ID를 가진다.
+    
+  
+
+
+// 1. VAO ID 준비
+GLuint vao;
+...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>Input Binding System</title>
     <link href="https://rito15.github.io/posts/input-binding-system/" rel="alternate" type="text/html" title="Input Binding System" />
     <published>2021-01-30T16:18:00+09:00</published>
   
-    <updated>2021-01-31T00:12:14+09:00</updated>
+    <updated>2021-01-31T00:14:47+09:00</updated>
   
     <id>https://rito15.github.io/posts/input-binding-system/</id>
     <content src="https://rito15.github.io/posts/input-binding-system/" />
@@ -70,7 +135,7 @@
     
       패키지 매니저에서 Input System을 설치하고,
       프로젝트 세팅에서 Active Input Handling을 지정하고,
-      입력 시스템을 위한 스크립터블 오브...
+      InputAction 윈도우에서 A...
     </summary>
   
 
@@ -118,28 +183,30 @@
 
 
 
-Vertex Shader
 
-  입력 : 정점 목록
-  정점들을 오브젝트 스페이스에서 MVP 변환을 통해 클립 스페이스까지 변환한다.
-
-
-Shape Assembly
-
-  정점을 조립하여 렌더링을 할 수 있는 최소 단위(Primitive : 점, 선, 삼각형 등)로 만든다.
-
-
-Geometry Shader
-
-  입력 : 프리미티브 목록
-  프리미티브 당 한 번씩 수행한다.
-  프리미티브를 없앨 수도, 더 만들 수도 있고 완전히 다른 프리미티브로 변환할 수도 있다.
-
-
-Rasterization
-
-  입력 : 프리미티브 목록
-  프리미티브를 최종 화면의 적절한 픽셀과 매핑하여, 프래그먼트 쉐이더에서 사용할 Fragment를 만든...
+  
+    Vertex Shader
+    
+      입력 : 정점 목록
+      정점들을 오브젝트 스페이스에서 MVP 변환을 통해 클립 스페이스까지 변환한다.
+    
+  
+  
+    Shape Assembly
+    
+      정점을 조립하여 렌더링을 할 수 있는 최소 단위(Primitive : 점, 선, 삼각형 등)로 만든다.
+    
+  
+  
+    Geometry Shader
+    
+      입력 : 프리미티브 목록
+      프리미티브 당 한 번씩 수행한다.
+      프리미티브를 없앨 수도, 더 만들 수도 있고 완전히 다른 프리미티브로 변환할 수도 있다.
+    
+  
+  
+    Raster...
     </summary>
   
 
@@ -280,70 +347,6 @@ GLEW 설치
     
       프로젝트 속성 - C/C++ - 일반 - 추가 포함 디렉터리
       $(SolutionDir)OpenGL_Study\Dependencies\GLEW\inc...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# 파일 입출력</title>
-    <link href="https://rito15.github.io/posts/csharp-fileio/" rel="alternate" type="text/html" title="C# 파일 입출력" />
-    <published>2021-01-28T21:10:00+09:00</published>
-  
-    <updated>2021-01-30T02:47:44+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/csharp-fileio/</id>
-    <content src="https://rito15.github.io/posts/csharp-fileio/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Csharp" />
-    
-    <category term="Csharp Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      간단 정리
-
-파일에 쓰려면
-
-  대상이 string, string[], byte[] 타입 중 하나여야 한다.
-  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
-
-
-한 파일에 대한 연속 입출력 횟수에 따라
-
-  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
-  여러 번에 걸쳐 읽거나 쓰려면 스트림 객체를 사용한다.
-
-
-
-
-Namespace
-using System.IO;
-
-
-
-
-Path
-
-// \ 대신 /를 써도 \로 자동 변환
-string   filePath = @"C:\folder\fileName.txt"; 
-FileInfo fi = new FileInfo(filePath);
-
-fi.FullName;      // C:\folder\fileName....
     </summary>
   
 

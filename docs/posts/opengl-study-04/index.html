@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="OpenGL 공부 - 03" />
+<meta property="og:title" content="OpenGL 공부 - 04" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목표 버텍스, 버텍스 버퍼에 대한 이해" />
-<meta property="og:description" content="목표 버텍스, 버텍스 버퍼에 대한 이해" />
-<link rel="canonical" href="https://rito15.github.io/posts/opengl-study-03/" />
-<meta property="og:url" content="https://rito15.github.io/posts/opengl-study-03/" />
+<meta name="description" content="목표 Vertex Attributes, Layout, VBO, VAO에 대한 이해" />
+<meta property="og:description" content="목표 Vertex Attributes, Layout, VBO, VAO에 대한 이해" />
+<link rel="canonical" href="https://rito15.github.io/posts/opengl-study-04/" />
+<meta property="og:url" content="https://rito15.github.io/posts/opengl-study-04/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-01-29T22:07:00+09:00" />
+<meta property="article:published_time" content="2021-01-31T13:31:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="OpenGL 공부 - 03" />
+<meta property="twitter:title" content="OpenGL 공부 - 04" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 버텍스, 버텍스 버퍼에 대한 이해","datePublished":"2021-01-29T22:07:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-03/"},"url":"https://rito15.github.io/posts/opengl-study-03/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 03","dateModified":"2021-01-29T22:07:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 Vertex Attributes, Layout, VBO, VAO에 대한 이해","datePublished":"2021-01-31T13:31:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-04/"},"url":"https://rito15.github.io/posts/opengl-study-04/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 04","dateModified":"2021-01-31T13:31:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>OpenGL 공부 - 03 | Rito15
+  <title>OpenGL 공부 - 04 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>OpenGL 공부 - 03</span>
+        <span>OpenGL 공부 - 04</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>OpenGL 공부 - 03</h1>
+      <h1 data-toc-skip>OpenGL 공부 - 04</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Jan 29, 2021, 10:07 PM +0900"
+    title="Sun, Jan 31, 2021,  1:31 PM +0900"
   >
 
   
   
 
   
-    Jan 29
+    Jan 31
   
 
-  <i class="unloaded">2021-01-29T22:07:00+09:00</i>
+  <i class="unloaded">2021-01-31T13:31:00+09:00</i>
 
 </span>
           by
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1501 words">8 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1072 words">5 min</span>
 
 
           <!-- page views -->
@@ -436,84 +436,26 @@
         <h1 id="목표">목표</h1>
 <hr />
 <ul>
-  <li>버텍스, 버텍스 버퍼에 대한 이해</li>
+  <li>Vertex Attributes, Layout, VBO, VAO에 대한 이해</li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="렌더링-파이프라인-요약">렌더링 파이프라인 요약</h1>
+<h1 id="attributes-vbo-vao">Attributes, VBO, VAO</h1>
 <hr />
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106298996-fb432f00-6297-11eb-80a8-41eeed261413.png" alt="image" /></p>
-
 <ul>
-  <li>
-    <h2 id="vertex-shader">Vertex Shader</h2>
-    <ul>
-      <li>입력 : 정점 목록</li>
-      <li>정점들을 오브젝트 스페이스에서 MVP 변환을 통해 클립 스페이스까지 변환한다.</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="shape-assembly">Shape Assembly</h2>
-    <ul>
-      <li>정점을 조립하여 렌더링을 할 수 있는 최소 단위(Primitive : 점, 선, 삼각형 등)로 만든다.</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="geometry-shader">Geometry Shader</h2>
-    <ul>
-      <li>입력 : 프리미티브 목록</li>
-      <li>프리미티브 당 한 번씩 수행한다.</li>
-      <li>프리미티브를 없앨 수도, 더 만들 수도 있고 완전히 다른 프리미티브로 변환할 수도 있다.</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="rasterization">Rasterization</h2>
-    <ul>
-      <li>입력 : 프리미티브 목록</li>
-      <li>프리미티브를 최종 화면의 적절한 픽셀과 매핑하여, 프래그먼트 쉐이더에서 사용할 Fragment를 만든다.</li>
-      <li>성능을 향상시키기 위해 뷰 프러스텀 밖의 Fragment를 폐기한다.</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="fragment-shader">Fragment Shader</h2>
-    <ul>
-      <li>입력 : Fragment 목록</li>
-      <li>OpenGL의 모든 고급 효과들을 계산하는 단계</li>
-      <li>화면에 렌더링할 모든 픽셀의 색상을 계산한다.</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="alpha-test-alpha-blending">Alpha Test, Alpha Blending</h2>
-    <ul>
-      <li>뎁스와 스텐실을 체크</li>
-      <li>알파 테스팅 : 알파값이 있으면 1, 없으면 0으로 판단하여 0인 픽셀 잘라내기</li>
-      <li>알파 블렌딩 : 뎁스 버퍼를 이용해 깊이를 계산하여 모든 픽셀의 최종 색상 계산</li>
-    </ul>
-  </li>
+  <li>버텍스 버퍼에는 버텍스 좌표, 텍스쳐 좌표, 노멀 벡터 등 여러 데이터가 float 값으로 들어갈 수 있다.</li>
+  <li>하지만 그 자체로는 그저 메모리에 올라가는 값일 뿐이기 때문에 각각의 데이터가 어떤 역할을 하고, 길이는 얼마나 갖고 있고, 시작 위치는 어디인지 OpenGL에 알려줘야 한다.</li>
 </ul>
 
 <p><br /></p>
-
-<h1 id="개념-정리">개념 정리</h1>
-<hr />
 <ul>
   <li>
-    <h2 id="vertex">Vertex</h2>
+    <h2 id="vaovertex-array-object">VAO(Vertex Array Object)</h2>
     <ul>
-      <li>3D 공간의 정점 좌표 데이터</li>
-      <li>float 배열</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="ndcnormalized-device-coordinates">NDC(Normalized Device Coordinates)</h2>
-    <ul>
-      <li>모든 x, y, z 좌표가 -1.0 ~ 1.0 사이인 좌표</li>
-      <li>정규화된 좌표를 사용함으로써, 좌표 계산과정을 줄일 수 있으며 화면 해상도 차이에 빠르게 대응할 수 있다.</li>
-      <li>정점 쉐이더에서 4x4 Projection 행렬에 의해 직교투영(Orthographic Projection) 또는 원근 투영(Perspective Projection)을 통해 얻어지는 모든 좌표는 NDC 내로 들어온다.</li>
-      <li>투영 행렬이 정의하는 Viewing Box는 절두체(Frustum)라고 하며, 지정한 범위에서 NDC로 변환하는 과정을 ‘투영한다’라고 한다.</li>
-      <li>NDC 좌표는 glViewport() 메소드를 통해 Viewport Transform을 거쳐 Screen-space Coordinates 좌표로 변환된다.</li>
-      <li>스크린 좌표는 Fragment로 변환되어 Fragment Shader의 입력이 된다.</li>
+      <li>하나 이상의 VBO를 담을 수 있는 객체</li>
+      <li>개별 오브젝트의 모든 데이터를 담고 있다.</li>
+      <li>고유 ID를 가진다.</li>
     </ul>
   </li>
 </ul>
@@ -523,29 +465,89 @@
 3
 4
 5
-</pre></td><td class="rouge-code"><pre><span class="kt">float</span> <span class="n">positions</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
-     <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
-     <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
-<span class="p">};</span>
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c1">// 1. VAO ID 준비</span>
+<span class="n">GLuint</span> <span class="n">vao</span><span class="p">;</span>
+
+<span class="c1">// 2. VAO 객체 생성 및 ID에 바인딩</span>
+<span class="n">glGenVertexArrays</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vao</span><span class="p">);</span>
+
+<span class="c1">// 3. 객체 타입 바인딩</span>
+<span class="n">glBindVertexArray</span><span class="p">(</span><span class="n">vao</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
+<p><br /></p>
 <ul>
-  <li>
-    <h2 id="vertex-buffer">Vertex Buffer</h2>
-    <ul>
-      <li>정점들에 대한 정보를 갖고 있는 메모리 버퍼</li>
-      <li>오브젝트(Vertex Buffer Object) 단위로 관리된다.</li>
-    </ul>
-  </li>
   <li>
     <h2 id="vbovertex-buffer-object">VBO(Vertex Buffer Object)</h2>
     <ul>
-      <li>OpenGL 객체 중 하나</li>
-      <li>고유 ID를 가지고 있다. (OpenGL의 모든 오브젝트는 고유 ID를 가진다.)</li>
-      <li>OpenGL은 다양한 타입의 버퍼 객체를 갖고 있는데, VBO는 그 중 <code class="language-plaintext highlighter-rouge">GL_ARRAY_BUFFER</code>이다.</li>
-      <li>많은 양의 정점들을 GPU 메모리 상에 저장할 수 있다.</li>
-      <li>CPU에서 GPU로 데이터를 전송하는 것은 비교적 느린데, VBO를 이용하면 비교적 빠르게 전송할 수 있다.</li>
+      <li>하나의 정점 속성을 갖고 있는 GPU 상의 메모리 버퍼</li>
+      <li>예를 들어 위치 정보, 색상 정보, 노멀 정보 등</li>
+      <li>고유 ID를 가진다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="c1">// 1. 버퍼 객체 ID 준비</span>
+<span class="n">GLuint</span> <span class="n">vbo</span><span class="p">;</span>
+
+<span class="c1">// 2. 버퍼 객체 생성 및 ID에 바인딩</span>
+<span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">vbo</span><span class="p">);</span>
+
+<span class="c1">// 3. 버퍼 객체에 타입 바인딩</span>
+<span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">vbo</span><span class="p">);</span>
+
+<span class="c1">// 4. 버퍼에 실질적 데이터 담기</span>
+<span class="c1">// (미리 준비된 정점, 색상 등등의 배열 데이터(Attribute)를 vbo에 연결)</span>
+<span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+<ul>
+  <li>
+    <h2 id="vertex-attribute정점-속성">Vertex Attribute(정점 속성)</h2>
+    <ul>
+      <li>버텍스 버퍼에 들어가는 입력 데이터</li>
+      <li>각각의 속성은 배열로 이루어진다.</li>
+      <li>glVertexAttribPointer() 메소드를 통해 정점 속성을 어떻게 해석해야 하는지 지정해줄 수 있다.</li>
+      <li>각각의 정점 속성은 VBO(Vertex Buffer Object)에 작성하며, 이를 하나의 VAO(Vertex Array Object)에 저장한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="c1">// 1. 정점 속성의 데이터 정의</span>
+<span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">normalized</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">pointer</span><span class="p">);</span>
+
+<span class="c1">// 2. 정점 속성 배열을 인덱스를 통해 등록</span>
+<span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+<ul>
+  <li>
+    <h2 id="vao와-vbo의-관계">VAO와 VBO의 관계</h2>
+    <ul>
+      <li>출처 : <a href="https://www.youtube.com/watch?v=WMiggUPst-Q">https://www.youtube.com/watch?v=WMiggUPst-Q</a>
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106376782-b1636180-63db-11eb-9a79-756b3ab98715.png" alt="image" /></li>
     </ul>
   </li>
 </ul>
@@ -555,13 +557,11 @@
 <h1 id="공부-내용">공부 내용</h1>
 <hr />
 
-<h2 id="1-버퍼-id-생성">1. 버퍼 ID 생성</h2>
-
 <ul>
   <li>
-    <h3 id="glgenbuffers">glGenBuffers()</h3>
+    <h2 id="glvertexattribpointer">glVertexAttribPointer()</h2>
     <ul>
-      <li>버퍼의 ID를 받아 해당 ID에 버퍼를 생성한다.</li>
+      <li>정점 속성 배열을 정의</li>
     </ul>
   </li>
 </ul>
@@ -569,98 +569,42 @@
 <div class="table-wrapper"><table>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">n</code></td>
-      <td>해당 ID에 생성할 버퍼 개수</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">buffers</code></td>
-      <td>버퍼를 생성할 ID</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">buffer</span><span class="p">;</span>
-<span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buffer</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></div></div>
-<p><br /></p>
-
-<h2 id="2-생성한-버퍼에-타입-바인딩">2. 생성한 버퍼에 타입 바인딩</h2>
-
-<ul>
-  <li>
-    <h3 id="glbindbuffer">glBindBuffer()</h3>
-    <ul>
-      <li>버퍼 오브젝트에 타입을 바인딩한다.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="table-wrapper"><table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">target</code></td>
-      <td>바인딩할 버퍼의 종류</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">buffer</code></td>
-      <td>대상 버퍼 ID</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p><br /></p>
-
-<h2 id="3-미리-정의된-정점-데이터를-버퍼의-메모리에-복사">3. 미리 정의된 정점 데이터를 버퍼의 메모리에 복사</h2>
-
-<ul>
-  <li>
-    <h3 id="glbufferdata">glBufferData()</h3>
-    <ul>
-      <li>사용자가 정의한 데이터(지금의 경우에는 정점 데이터)를 현재 바인딩 버퍼에 복사한다.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="table-wrapper"><table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">target</code></td>
-      <td>데이터를 복사하여 집어넣을 버퍼의 타입</td>
+      <td><code class="language-plaintext highlighter-rouge">index</code></td>
+      <td>해당 정점 속성의 순서(좌표, 색상, 노멀이 있다면 0, 1, 2 순서)</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">size</code></td>
-      <td>버퍼에 저장할 데이터 크기(바이트 단위), 주로 sizeof 사용</td>
+      <td>정점 속성의 구성 크기(벡터를 의미 : 1, 2, 3, 4 중 하나)</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">data</code></td>
-      <td>버퍼에 저장할 실제 데이터</td>
+      <td><code class="language-plaintext highlighter-rouge">type</code></td>
+      <td>배열 내 데이터들의 타입</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">usage</code></td>
-      <td>GPU가 주어진 데이터를 관리하는 방법<br /> - GL_STATIC_DRAW : 거의 변하지 않는 데이터<br /> - GL_DYNAMIC_DRAW : 자주 변경되는 데이터<br /> - GL_STREAM_DRAW : 그려질 때마다 변경되는 데이터<br /> - DYNAMIC, STREAM으로 전달할 경우<br />GPU는 빠르게 사용할 수 있는 메모리에 데이터를 저장한다.</td>
+      <td><code class="language-plaintext highlighter-rouge">normalized</code></td>
+      <td>배열 내 데이터들이 정규화되어야 하는지 여부 전달</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">stride</code></td>
+      <td>배열 내 각각 데이터의 byte 오프셋 크기<br />(sizeof(float) * 2는 float 2개씩 구성되어 있음을 의미)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">pointer</code></td>
+      <td>해당 정점 속성의 시작 byte 위치<br />(좌표가 12, 색상이 16, 노멀이 12를 갖는다면<br />좌표는 0, 색상은 12, 노멀은 28의 byte 위치를 가짐)</td>
     </tr>
   </tbody>
 </table></div>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="mi">6</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="n">positions</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
+</pre></td><td class="rouge-code"><pre><span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
-
-<h2 id="4-버퍼의-데이터를-이용해-그려주기">4. 버퍼의 데이터를 이용해 그려주기</h2>
-
 <ul>
   <li>
-    <h3 id="gldrawarrays">glDrawArrays()</h3>
+    <h2 id="glenablevertexattribarray">glEnableVertexAttribArray()</h2>
     <ul>
-      <li>배열 데이터로부터 프리미티브를 렌더링한다. 드로우 콜 중 하나</li>
+      <li>해당 인덱스에 위치한 정점 속성 배열을 활성화</li>
     </ul>
   </li>
 </ul>
@@ -668,27 +612,15 @@
 <div class="table-wrapper"><table>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">mode</code></td>
-      <td>렌더링할 프리미티브의 종류</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">first</code></td>
-      <td>배열에서 참조할 데이터의 시작 인덱스</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">count</code></td>
-      <td>렌더링할 인덱스의 개수<br />(지금은 인덱스 2개씩을 모아 3개의 정점을 구성하므로 3)</td>
+      <td><code class="language-plaintext highlighter-rouge">index</code></td>
+      <td>활성화시킬 정점 속성 배열이 위치한 인덱스</td>
     </tr>
   </tbody>
 </table></div>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">glDrawArrays</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</pre></td><td class="rouge-code"><pre><span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
-
-<ul>
-  <li>하지만 아직 드로우콜만 했을 뿐, 그려지지는 않는다.</li>
-</ul>
 
 <p><br /></p>
 
@@ -765,6 +697,12 @@
 69
 70
 71
+72
+73
+74
+75
+76
+77
 </pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;GL/glew.h&gt;
 #include &lt;GLFW/glfw3.h&gt;
 </span>
@@ -799,7 +737,7 @@
     <span class="c1">// 간단히 GLEW 버전 확인</span>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">glGetString</span><span class="p">(</span><span class="n">GL_VERSION</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 
-    <span class="c1">// 정점 위치 데이터</span>
+    <span class="c1">// Vertex Attribute : 위치 데이터</span>
     <span class="kt">float</span> <span class="n">positions</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
         <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
          <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
@@ -807,7 +745,7 @@
     <span class="p">};</span>
 
     <span class="c1">// VBO(Vertex Buffer Object) ID 생성</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">buffer</span><span class="p">;</span>
+    <span class="n">GLuint</span> <span class="n">buffer</span><span class="p">;</span>
 
     <span class="c1">// VBO 객체 생성</span>
     <span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buffer</span><span class="p">);</span>
@@ -817,6 +755,12 @@
 
     <span class="c1">// VBO에 위치 데이터 연결</span>
     <span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="mi">6</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="n">positions</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
+
+    <span class="c1">// 정점 속성 정의</span>
+    <span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+    <span class="c1">// 정점 속성 활성화</span>
+    <span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
     <span class="cm">/* Loop until the user closes the window */</span>
     <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">))</span>
@@ -843,9 +787,10 @@
 <h1 id="references">References</h1>
 <hr />
 <ul>
-  <li><a href="https://www.youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2">https://www.youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2</a></li>
+  <li><a href="https://www.youtube.com/watch?v=x0H--CL2tUI">https://www.youtube.com/watch?v=x0H--CL2tUI</a></li>
+  <li><a href="https://www.youtube.com/watch?v=WMiggUPst-Q">https://www.youtube.com/watch?v=WMiggUPst-Q</a></li>
   <li><a href="https://heinleinsgame.tistory.com/7">https://heinleinsgame.tistory.com/7</a></li>
-  <li><a href="https://lalyns.tistory.com/14">https://lalyns.tistory.com/14</a></li>
+  <li><a href="https://whilescape.tistory.com/entry/OpenGL-오픈지엘-데이터-관련-개념-정리1">https://whilescape.tistory.com/entry/OpenGL-오픈지엘-데이터-관련-개념-정리1</a></li>
 </ul>
 
 
@@ -904,19 +849,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 03 - Rito15&url=https://rito15.github.io/posts/opengl-study-03/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 04 - Rito15&url=https://rito15.github.io/posts/opengl-study-04/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 03 - Rito15&u=https://rito15.github.io/posts/opengl-study-03/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 04 - Rito15&u=https://rito15.github.io/posts/opengl-study-04/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=OpenGL 공부 - 03 - Rito15&url=https://rito15.github.io/posts/opengl-study-03/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=OpenGL 공부 - 04 - Rito15&url=https://rito15.github.io/posts/opengl-study-04/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1587,33 +1532,33 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -1999,7 +1944,7 @@ GLEW 설치
       
       
       <div class="card">
-        <a href="/posts/opengl-study-04/">
+        <a href="/posts/opengl-study-03/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2016,13 +1961,13 @@ GLEW 설치
   
 
   
-    Jan 31
+    Jan 29
   
 
-  <i class="unloaded">2021-01-31T13:31:00+09:00</i>
+  <i class="unloaded">2021-01-29T22:07:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 04</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 03</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2034,16 +1979,29 @@ GLEW 설치
                 목표
 
 
-  Vertex Attributes, Layout, VBO, VAO에 대한 이해
+
+  버텍스, 버텍스 버퍼에 대한 이해
 
 
 
 
-Attributes, VBO, VAO
+렌더링 파이프라인 요약
 
 
-  버텍스 버퍼에는 버텍스 좌표, 텍스쳐 좌표, 노멀 벡터 등 여러 데이터가 float 값으로 들어갈 수 있다.
-  하지만 그 자체로는 그저 메모리에 올라가는 값일 뿐이기 때문에 각각의 데이터가 어떤 역할을 하고, ...
+
+
+
+  
+    Vertex Shader
+    
+      입력 : 정점 목록
+      정점들을 오브젝트 스페이스에서 MVP 변환을 통해 클립 스페이스까지 변환한다.
+    
+  
+  
+    Shape Assembly
+    
+      정점을 조립하여 렌더링을 ...
               </p>
             </div>
           </div>
@@ -2066,15 +2024,15 @@ Attributes, VBO, VAO
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/script-templates/" class="btn btn-outline-primary">
-    <p>스크립트 템플릿(Script Templates)</p>
+  <a href="/posts/input-binding-system/" class="btn btn-outline-primary">
+    <p>Input Binding System</p>
   </a>
   
 
   
-  <a href="/posts/input-binding-system/" class="btn btn-outline-primary">
-    <p>Input Binding System</p>
-  </a>
+  <span class="btn btn-outline-primary disabled">
+    <p>-</p>
+  </span>
   
 
 </div>
