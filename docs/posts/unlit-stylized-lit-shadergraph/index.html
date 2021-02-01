@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"동기","datePublished":"2021-01-27T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/"},"url":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/","author":{"@type":"Person","name":"Rito15"},"headline":"Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더","dateModified":"2021-01-28T07:20:41+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더","description":"동기","dateModified":"2021-01-28T07:20:41+09:00","datePublished":"2021-01-27T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/"},"url":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -858,12 +858,12 @@
         
         
         
-        <li><a href="/posts/opengl-study-04/">OpenGL 공부 - 04</a></li>
+        <li><a href="/posts/popup-ui-management-system/">Popup UI Management System</a></li>
       
         
         
         
-        <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02</a></li>
+        <li><a href="/posts/opengl-study-04/">OpenGL 공부 - 04</a></li>
       
         
         
@@ -1238,6 +1238,23 @@
     
     
     
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1267,21 +1284,6 @@
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1622,10 +1624,10 @@
         <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
-        <a class="post-tag" href="/tags/opengl/">opengl</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
@@ -1684,6 +1686,45 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2149,7 +2190,7 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
       
       
       <div class="card">
-        <a href="/posts/script-templates/">
+        <a href="/posts/unity-smart-multipass-code/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2166,13 +2207,13 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
   
 
   
-    Jan 29
+    Feb  2
   
 
-  <i class="unloaded">2021-01-29T16:55:00+09:00</i>
+  <i class="unloaded">2021-02-02T00:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>스크립트 템플릿(Script Templates)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>멀티패스 쉐이더 코드 깔끔하게 작성하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2181,20 +2222,75 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
 
 
 
-                개념
-
-
-  Project - 우클릭 - Create를 통해 만드는 스크립트 또는 텍스트의 템플릿을 미리 지정하는 기능
-  스크립트 템플릿의 저장 경로 :
-
-
-1
-C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
-
-
-
-  각각의 유니티 버전마다 따로 저장된다.
-  한가지 팁은, 스크립트 템플...
+                1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69...
               </p>
             </div>
           </div>
@@ -2653,6 +2749,23 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
     
     
     
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2682,21 +2795,6 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3032,10 +3130,10 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
         <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
-        <a class="post-tag" href="/tags/opengl/">opengl</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>

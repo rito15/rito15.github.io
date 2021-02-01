@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-01T23:55:21+09:00</updated>
+  <updated>2021-02-02T03:35:49+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,184 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Vertex/Fragment Shader Bible</title>
+    <link href="https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/" rel="alternate" type="text/html" title="Vertex/Fragment Shader Bible" />
+    <published>2021-02-02T01:00:00+09:00</published>
+  
+    <updated>2021-02-02T01:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/</id>
+    <content src="https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Vertex/Fragment Shader 구성
+
+
+  
+
+
+TODO
+
+
+  
+
+
+
+
+References
+
+
+  
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Surface Shader Bible</title>
+    <link href="https://rito15.github.io/posts/unity-surface-shader-bible/" rel="alternate" type="text/html" title="Surface Shader Bible" />
+    <published>2021-02-02T01:00:00+09:00</published>
+  
+    <updated>2021-02-02T01:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-surface-shader-bible/</id>
+    <content src="https://rito15.github.io/posts/unity-surface-shader-bible/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Surface Shader 기본 구성
+
+Shader "Custom/SurfaceShader01"
+{
+    Properties
+    {
+        _Color ("Color", Color) = (1,1,1,1)
+        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+    }
+    SubShader
+    {
+        Tags { "RenderType"="Opaque" }
+        LOD 200
+
+        CGPROGRAM
+
+        #pragma surface surf Standard fullforwardshadows
+        #pragma target 3.0
+
+        sampler2D _MainTex;
+
+        st...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>멀티패스 쉐이더 코드 깔끔하게 작성하기</title>
+    <link href="https://rito15.github.io/posts/unity-smart-multipass-code/" rel="alternate" type="text/html" title="멀티패스 쉐이더 코드 깔끔하게 작성하기" />
+    <published>2021-02-02T00:00:00+09:00</published>
+  
+    <updated>2021-02-02T00:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-smart-multipass-code/</id>
+    <content src="https://rito15.github.io/posts/unity-smart-multipass-code/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Shader "A/B"
+{
+	Properties
+	{
+		_MainTex ("Texture", 2D) = "black" {}
+	}
+
+	CGINCLUDE
+	#include "UnityCG.cginc"
+
+        struct appdata
+	{
+		float4 vertex : POSITION;
+		float2 uv : TEXCOORD0;
+	};
+	struct v2f
+	{
+		float4 vertex:SV_POSITION;
+		float2 uv:TEXCOORD0;
+	};
+
+	sampler2D _MainTex;
+
+	v2f vert1 (appdata_img v)
+	{
+		v2f o;
+                // ...
+		return o;
+	}
+
+	fixed4 frag1 (v2f i) : SV_Tar...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -149,209 +327,6 @@ OpenGL의 쉐이더
       하나의 픽셀 당 한 번씩 실행된다.
       입력 : 프래그먼트 데이터(래스터라이저가 만들어줌)
       ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>UI 드래그 앤 드롭으로 옮기기</title>
-    <link href="https://rito15.github.io/posts/unity-ui-drag-and-drop/" rel="alternate" type="text/html" title="UI 드래그 앤 드롭으로 옮기기" />
-    <published>2021-02-01T03:00:00+09:00</published>
-  
-    <updated>2021-02-01T03:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-ui-drag-and-drop/</id>
-    <content src="https://rito15.github.io/posts/unity-ui-drag-and-drop/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      기능
-
-  UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기
-
-
-사용법
-
-  헤더 UI는 UI의 자식으로 구성한다.
-  PopupUIHeader 스크립트를 헤더 UI의 컴포넌트로 넣어준다.
-
-
-/// &amp;lt;summary&amp;gt; 헤더 드래그 앤 드롭에 의한 UI 이동 구현 &amp;lt;/summary&amp;gt;
-public class PopupUIHeader : MonoBehaviour,
-    IPointerDownHandler, IBeginDragHandler, IDragHandler
-{
-    private RectTransform _parentRect;
-
-    private Vector2 _rectBegin;
-    private Vector2 _moveBegin;
-    pr...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Popup UI Management System</title>
-    <link href="https://rito15.github.io/posts/popup-ui-management-system/" rel="alternate" type="text/html" title="Popup UI Management System" />
-    <published>2021-01-31T20:23:00+09:00</published>
-  
-    <updated>2021-01-31T20:23:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/popup-ui-management-system/</id>
-    <content src="https://rito15.github.io/posts/popup-ui-management-system/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  팝업 UI 관리 시스템 구현
-
-
-
-
-게임의 UI
-
-
-  온라인 PC게임을 예로 들었을 때, 다양한 형태의 UI들이 존재한다.
-  화면 예시 : Smilegate RPG ‘LostARK’
-
-
-1. 전체화면 UI
-
-  크기가 화면 전체에 해당하는 UI
-  예 : 상점, 캐시 샵
-
-
-
-
-2. 고정형 UI
-
-  고정된 위치에 항상 존재하는 UI
-  예 : 하단 바, 퀵슬롯, 미니맵, 채팅창
-
-
-
-
-3. 추적형 UI
-
-  게임 내 요소들(캐릭터, 몬스터, 건물 등)의 위치를 실시간으로 추적하여 따라다니는 UI
-  예 : 체력 바, 이름, 말풍선
-
-
-
-
-4. 안내형 UI
-
-  화면 한켠에 잠시 나타났다가 사라지는 형태의 UI
-  게임의 진행사항, 공지사항 등을 안내하는 용도로 주로 사용된다.
-
-
-
-
-...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 04</title>
-    <link href="https://rito15.github.io/posts/opengl-study-04/" rel="alternate" type="text/html" title="OpenGL 공부 - 04" />
-    <published>2021-01-31T13:31:00+09:00</published>
-  
-    <updated>2021-02-01T20:24:50+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-04/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-04/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  Vertex Attributes, Layout, VBO, VAO에 대한 이해
-
-
-
-
-Attributes, VAO, VBO
-
-
-  버텍스 버퍼에는 버텍스 좌표, 텍스쳐 좌표, 노멀 벡터 등 여러 데이터가 float 값으로 들어갈 수 있다.
-  하지만 그 자체로는 그저 메모리에 올라가는 값일 뿐이기 때문에 각각의 데이터가 어떤 역할을 하고, 길이는 얼마나 갖고 있고, 시작 위치는 어디인지 OpenGL에 알려줘야 한다.
-
-
-
-
-  
-    VAO(Vertex Array Object)
-    
-      하나 이상의 VBO를 담을 수 있는 객체
-      개별 오브젝트의 모든 데이터를 담고 있다.
-      고유 ID를 가진다.
-    
-  
-
-
-// 1. VAO ID 준비
-GLuint vao;
-...
     </summary>
   
 
