@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Behavior Tree" />
+<meta property="og:title" content="UI 드래그 앤 드롭으로 옮기기" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="개념 FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법 FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다. 노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다. 기본적으로 Leaf, Decorator, Composite 노드를 기반으로 하며, 구현은 많이 다를 수 있다. Leaf : 동작을 수행하는 노드. 대표적으로 Action 또는 Task 노드가 있다. Decorator : 다른 노드에 조건을 붙여 수식하는 노드 Composite : 자식 노드들을 가지며, 자식들을 순회하거나 선택하는 역할을 수행하는 노드" />
-<meta property="og:description" content="개념 FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법 FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다. 노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다. 기본적으로 Leaf, Decorator, Composite 노드를 기반으로 하며, 구현은 많이 다를 수 있다. Leaf : 동작을 수행하는 노드. 대표적으로 Action 또는 Task 노드가 있다. Decorator : 다른 노드에 조건을 붙여 수식하는 노드 Composite : 자식 노드들을 가지며, 자식들을 순회하거나 선택하는 역할을 수행하는 노드" />
-<link rel="canonical" href="https://rito15.github.io/posts/behavior-tree/" />
-<meta property="og:url" content="https://rito15.github.io/posts/behavior-tree/" />
+<meta name="description" content="기능 UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기" />
+<meta property="og:description" content="기능 UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기" />
+<link rel="canonical" href="https://rito15.github.io/posts/unity-ui-drag-and-drop/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unity-ui-drag-and-drop/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-01-05T00:26:00+09:00" />
+<meta property="article:published_time" content="2021-02-01T03:00:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Behavior Tree" />
+<meta property="twitter:title" content="UI 드래그 앤 드롭으로 옮기기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개념 FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법 FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다. 노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다. 기본적으로 Leaf, Decorator, Composite 노드를 기반으로 하며, 구현은 많이 다를 수 있다. Leaf : 동작을 수행하는 노드. 대표적으로 Action 또는 Task 노드가 있다. Decorator : 다른 노드에 조건을 붙여 수식하는 노드 Composite : 자식 노드들을 가지며, 자식들을 순회하거나 선택하는 역할을 수행하는 노드","datePublished":"2021-01-05T00:26:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/behavior-tree/"},"url":"https://rito15.github.io/posts/behavior-tree/","author":{"@type":"Person","name":"Rito15"},"headline":"Behavior Tree","dateModified":"2021-01-30T02:47:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"기능 UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기","datePublished":"2021-02-01T03:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-ui-drag-and-drop/"},"url":"https://rito15.github.io/posts/unity-ui-drag-and-drop/","author":{"@type":"Person","name":"Rito15"},"headline":"UI 드래그 앤 드롭으로 옮기기","dateModified":"2021-02-01T03:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Behavior Tree | Rito15
+  <title>UI 드래그 앤 드롭으로 옮기기 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>Behavior Tree</span>
+        <span>UI 드래그 앤 드롭으로 옮기기</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -354,7 +354,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Behavior Tree</h1>
+      <h1 data-toc-skip>UI 드래그 앤 드롭으로 옮기기</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -371,17 +371,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Tue, Jan  5, 2021, 12:26 AM +0900"
+    title="Mon, Feb  1, 2021,  3:00 AM +0900"
   >
 
   
   
 
   
-    Jan  5
+    Feb  1
   
 
-  <i class="unloaded">2021-01-05T00:26:00+09:00</i>
+  <i class="unloaded">2021-02-01T03:00:00+09:00</i>
 
 </span>
           by
@@ -392,35 +392,6 @@
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sat, Jan 30, 2021,  2:47 AM +0900"
-  >
-
-  
-  
-
-  
-    Jan 30
-  
-
-  <i class="unloaded">2021-01-30T02:47:44+09:00</i>
-
-</span>
-          </span>
           
 
           <!-- read time -->
@@ -434,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="837 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="173 words">1 min</span>
 
 
           <!-- page views -->
@@ -448,105 +419,16 @@
 
         
 
-        <h1 id="개념">개념</h1>
-<hr />
+        <h2 id="기능">기능</h2>
 <ul>
-  <li>FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법</li>
-  <li>FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.</li>
-  <li>노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다.</li>
-  <li>기본적으로 Leaf, Decorator, Composite 노드를 기반으로 하며, 구현은 많이 다를 수 있다.
-    <ul>
-      <li>Leaf : 동작을 수행하는 노드. 대표적으로 Action 또는 Task 노드가 있다.</li>
-      <li>Decorator : 다른 노드에 조건을 붙여 수식하는 노드</li>
-      <li>Composite : 자식 노드들을 가지며, 자식들을 순회하거나 선택하는 역할을 수행하는 노드</li>
-    </ul>
-  </li>
+  <li>UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기</li>
 </ul>
 
-<p><br /></p>
-
-<h1 id="노드-구성">노드 구성</h1>
-<hr />
+<h2 id="사용법">사용법</h2>
 <ul>
-  <li>모든 노드는 실행의 결과로 true 또는 false를 리턴한다.</li>
-  <li>Decorator는 가독성을 위해 Composite와 Leaf들의 구성으로 대체하였다.</li>
+  <li>헤더 UI는 UI의 자식으로 구성한다.</li>
+  <li>PopupUIHeader 스크립트를 헤더 UI의 컴포넌트로 넣어준다.</li>
 </ul>
-
-<p><br /></p>
-
-<h2 id="1-인터페이스">[1] 인터페이스</h2>
-
-<ul>
-  <li><strong>INode</strong>
-    <ul>
-      <li>최상위 노드 클래스</li>
-      <li>bool Run(); 메소드를 가진다.</li>
-    </ul>
-  </li>
-  <li><strong>ILeafNode</strong> : INode
-    <ul>
-      <li>트리의 각 말단을 이루는 주요 수행 노드</li>
-      <li>Action 또는 Condition이 해당된다.</li>
-    </ul>
-  </li>
-  <li><strong>IDecoratorNode</strong> : INode
-    <ul>
-      <li>다른 노드들을 수식하여 동작 조건을 지정하는 노드</li>
-    </ul>
-  </li>
-  <li><strong>ICompositeNode</strong> : INode
-    <ul>
-      <li>자식들을 순회하기 위한 노드</li>
-      <li>인터페이스 구현 시 List<INode> ChildList 멤버를 작성한다.</INode></li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h2 id="2-클래스">[2] 클래스</h2>
-
-<ul>
-  <li><strong>ActionNode</strong> : ILeafNode
-    <ul>
-      <li>주요 동작을 수행하는 역할을 하며, 무조건 true를 리턴한다.</li>
-    </ul>
-  </li>
-  <li><strong>ConditionNode</strong> : ILeafNode
-    <ul>
-      <li>조건식을 검사하여, 그 결과를 리턴한다.</li>
-    </ul>
-  </li>
-  <li><strong>NotConditionNode</strong> : ILeafNode
-    <ul>
-      <li>조건식의 결과를 반대로 리턴한다.</li>
-    </ul>
-  </li>
-  <li><strong>SelectorNode</strong> : ICompositeNode
-    <ul>
-      <li>자식들 중 true인 노드를 만날 때까지 차례대로 순회한다.</li>
-      <li>자식이 false일 경우 계속해서 다음 자식 노드를 실행하고, true일 경우 순회를 중지한다.</li>
-      <li>모든 자식 노드가 false일 경우 Selector 노드도 false를 리턴하며, true인 자식 노드를 만난 경우 즉시 true를 리턴하고 종료한다.</li>
-    </ul>
-  </li>
-  <li><strong>SequenceNode</strong> : ICompositeNode
-    <ul>
-      <li>자식들 중 false인 노드를 만날 때까지 차례대로 순회한다.</li>
-      <li>자식이 true일 경우 계속해서 다음 자식 노드를 실행하고, false일 경우 순회를 중지한다.</li>
-      <li>모든 자식 노드가 true인 경우 Sequence 노드도 true를 리턴하며, false인 자식이 존재하는 경우 즉시 false를 리턴하고 종료한다.</li>
-    </ul>
-  </li>
-  <li><strong>ParallelNode</strong> : ICompositeNode
-    <ul>
-      <li>자식 노드들의 실행 결과에 관계 없이 모든 자식 노드를 순회한다.</li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="예시-코드">예시 코드</h1>
-<hr />
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -575,90 +457,34 @@
 25
 26
 27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">INode</span> <span class="n">_currentBehavior</span><span class="p">;</span>
-
-<span class="k">private</span> <span class="k">void</span> <span class="nf">MakeBehaviorNodes</span><span class="p">()</span>
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 헤더 드래그 앤 드롭에 의한 UI 이동 구현 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PopupUIHeader</span> <span class="p">:</span> <span class="n">MonoBehaviour</span><span class="p">,</span>
+    <span class="n">IPointerDownHandler</span><span class="p">,</span> <span class="n">IBeginDragHandler</span><span class="p">,</span> <span class="n">IDragHandler</span>
 <span class="p">{</span>
-    <span class="n">_currentBehavior</span> <span class="p">=</span>
-        <span class="nf">Selector</span>
-        <span class="p">(</span>
-            <span class="nf">Condition</span><span class="p">(</span><span class="n">CharacterIsDead</span><span class="p">),</span>
-            <span class="nf">Condition</span><span class="p">(</span><span class="n">CharacterIsStunned</span><span class="p">),</span>
-            <span class="nf">Condition</span><span class="p">(</span><span class="n">CharacterIsRolling</span><span class="p">),</span>
-            <span class="c1">// 위 조건 만족 시 모든 행동 불가</span>
+    <span class="k">private</span> <span class="n">RectTransform</span> <span class="n">_parentRect</span><span class="p">;</span>
 
-            <span class="c1">// 1. 공격</span>
-            <span class="nf">Sequence</span>
-            <span class="p">(</span>
-                <span class="nf">Condition</span><span class="p">(</span><span class="n">CharacterIsBattleMode</span><span class="p">),</span>
-                <span class="nf">Condition</span><span class="p">(</span><span class="n">CharacterIsGrounded</span><span class="p">),</span>
-                <span class="nf">Condition</span><span class="p">(</span><span class="n">AttackKeyDown</span><span class="p">),</span>
-                <span class="nf">Action</span><span class="p">(</span><span class="n">Attack</span><span class="p">),</span>
-                <span class="nf">Action</span><span class="p">(</span><span class="n">PlayAttackAnimation</span><span class="p">)</span>
-            <span class="p">),</span>
+    <span class="k">private</span> <span class="n">Vector2</span> <span class="n">_rectBegin</span><span class="p">;</span>
+    <span class="k">private</span> <span class="n">Vector2</span> <span class="n">_moveBegin</span><span class="p">;</span>
+    <span class="k">private</span> <span class="n">Vector2</span> <span class="n">_moveOffset</span><span class="p">;</span>
 
-            <span class="nf">Condition</span><span class="p">(</span><span class="n">CharacterIsBinded</span><span class="p">),</span>
-            <span class="c1">// 속박 시 아래 행동 불가</span>
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">_parentRect</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">RectTransform</span><span class="p">&gt;();</span>
+    <span class="p">}</span>
 
-            <span class="c1">// 2. 점프</span>
-            <span class="nf">Sequence</span>
-            <span class="p">(</span>
-                <span class="nf">NotCondition</span><span class="p">(</span><span class="n">OnAttackCooldown</span><span class="p">),</span>
-                <span class="nf">Condition</span><span class="p">(</span><span class="n">JumpKeyDown</span><span class="p">),</span>
-                <span class="nf">Action</span><span class="p">(</span><span class="n">Jump</span><span class="p">),</span>
-                <span class="nf">Action</span><span class="p">(</span><span class="n">PlayJumpAnimation</span><span class="p">),</span>
-            <span class="p">),</span>
+    <span class="k">void</span> <span class="n">IBeginDragHandler</span><span class="p">.</span><span class="nf">OnBeginDrag</span><span class="p">(</span><span class="n">PointerEventData</span> <span class="n">eventData</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_rectBegin</span> <span class="p">=</span> <span class="n">_parentRect</span><span class="p">.</span><span class="n">anchoredPosition</span><span class="p">;</span>
+        <span class="n">_moveBegin</span> <span class="p">=</span> <span class="n">eventData</span><span class="p">.</span><span class="n">position</span><span class="p">;</span>
+    <span class="p">}</span>
 
-            <span class="c1">// 3. 구르기</span>
-            <span class="nf">Sequence</span>
-            <span class="p">(</span>
-                <span class="nf">Condition</span><span class="p">(</span><span class="n">RollKeyDown</span><span class="p">),</span>
-                <span class="nf">Action</span><span class="p">(</span><span class="n">Roll</span><span class="p">),</span>
-                <span class="nf">Action</span><span class="p">(</span><span class="n">PlayRollAnimation</span><span class="p">)</span>
-            <span class="p">),</span>
-
-            <span class="c1">// 4. WASD 이동</span>
-            <span class="nf">Action</span><span class="p">(</span><span class="n">KeyboardMove</span><span class="p">)</span>
-        <span class="p">);</span>
+    <span class="k">void</span> <span class="n">IDragHandler</span><span class="p">.</span><span class="nf">OnDrag</span><span class="p">(</span><span class="n">PointerEventData</span> <span class="n">eventData</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_moveOffset</span> <span class="p">=</span> <span class="n">eventData</span><span class="p">.</span><span class="n">position</span> <span class="p">-</span> <span class="n">_moveBegin</span><span class="p">;</span>
+        <span class="n">_parentRect</span><span class="p">.</span><span class="n">anchoredPosition</span> <span class="p">=</span> <span class="n">_rectBegin</span> <span class="p">+</span> <span class="n">_moveOffset</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
-
-<p><br /></p>
-
-<h1 id="source-code">Source Code</h1>
-<hr />
-
-<ul>
-  <li><a href="https://github.com/rito15/UnityStudy2">https://github.com/rito15/UnityStudy2</a></li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="download">Download</h1>
-<hr />
-
-<ul>
-  <li><a href="https://github.com/rito15/Images/files/5862741/2021_0105_Behavior.Tree.zip">Behavior Tree.zip</a></li>
-</ul>
 
 
       </div>
@@ -671,7 +497,7 @@
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
             <a href='/categories/unity/'>Unity</a>,
-            <a href='/categories/unity-study/'>Unity Study</a>
+            <a href='/categories/unity-memo/'>Unity Memo</a>
         </div>
         
 
@@ -685,6 +511,18 @@
           
           <a href="/tags/csharp/"
             class="post-tag no-text-decoration" >csharp</a>
+          
+          <a href="/tags/ui/"
+            class="post-tag no-text-decoration" >ui</a>
+          
+          <a href="/tags/memo/"
+            class="post-tag no-text-decoration" >memo</a>
+          
+          <a href="/tags/drag/"
+            class="post-tag no-text-decoration" >drag</a>
+          
+          <a href="/tags/drop/"
+            class="post-tag no-text-decoration" >drop</a>
           
           </div>
         
@@ -716,19 +554,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Behavior Tree - Rito15&url=https://rito15.github.io/posts/behavior-tree/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=UI 드래그 앤 드롭으로 옮기기 - Rito15&url=https://rito15.github.io/posts/unity-ui-drag-and-drop/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Behavior Tree - Rito15&u=https://rito15.github.io/posts/behavior-tree/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=UI 드래그 앤 드롭으로 옮기기 - Rito15&u=https://rito15.github.io/posts/unity-ui-drag-and-drop/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Behavior Tree - Rito15&url=https://rito15.github.io/posts/behavior-tree/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=UI 드래그 앤 드롭으로 옮기기 - Rito15&url=https://rito15.github.io/posts/unity-ui-drag-and-drop/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1648,241 +1486,241 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -1968,61 +1806,6 @@
       
       
       <div class="card">
-        <a href="/posts/input-binding-system/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 30
-  
-
-  <i class="unloaded">2021-01-30T16:18:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Input Binding System</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목표
-
-
-  에디터 및 인게임에서 언제든 기능에 연결된 사용자 마우스, 키보드 바인딩을 변경할 수 있는 기능 구현
-  전체 입력 바인딩을 직렬화하여 저장하고 불러올 수 있는 기능 구현
-
-
-
-
-유니티의 입력 시스템
-
-
-  유니티에는 2가지 Input System이 있다.
-  첫 번째는 Input.Get~ 꼴의 메소드를 이용해 이번 프레임에 해당 입력이 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/popup-ui-management-system/">
           <div class="card-body">
             <!--
@@ -2058,12 +1841,14 @@
                 목표
 
 
+
   팝업 UI 관리 시스템 구현
 
 
 
 
 게임의 UI
+
 
 
   온라인 PC게임을 예로 들었을 때, 다양한 형태의 UI들이 존재한다.
@@ -2080,8 +1865,7 @@
 
 2. 고정형 UI
 
-  고정된 위치에 항상 존재하는 UI
-...
+  고정된 위치에 항상 존재하는 U...
               </p>
             </div>
           </div>
@@ -2091,7 +1875,7 @@
       
       
       <div class="card">
-        <a href="/posts/ray-marching/">
+        <a href="/posts/script-templates/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2108,13 +1892,13 @@
   
 
   
-    Jan 19
+    Jan 29
   
 
-  <i class="unloaded">2021-01-19T23:15:00+09:00</i>
+  <i class="unloaded">2021-01-29T16:55:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Ray Marching</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>스크립트 템플릿(Script Templates)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2123,20 +1907,72 @@
 
 
 
-                레이 마칭이란?
+                개념
 
 
+
+  Project - 우클릭 - Create를 통해 만드는 스크립트 또는 텍스트의 템플릿을 미리 지정하는 기능
+  스크립트 템플릿의 저장 경로 :
+
+
+C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
+
+
+
+  각각의 유니티 버전마다 따로 저장된다.
+  한가지 팁은, 스크립트 템플릿...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/lighting-models/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
 
   
-    폴리곤의 정점 정보를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 표면의 정보를 얻어 오브젝트를 그려내는 기법
   
+
   
-    레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.
+    Nov 16, 2020
   
+
+  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lighting Models</h3>
+            <div class="text-muted small">
+              <p>
+                
 
 
 
-...
+
+
+                Vectors
+
+
+
+
+  L (Light) : 정점에서 광원을 향하는 방향의 벡터
+  N (Normal) : 정점의 노멀 벡터
+  V (View) : 정점에서 카메라를 향하는 방향의 벡터
+  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
+  
+    H (Half) : 블린퐁에서 사용, L와 V의 중...
               </p>
             </div>
           </div>
@@ -2159,14 +1995,14 @@
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/lighting-models/" class="btn btn-outline-primary">
-    <p>Lighting Models</p>
+  <a href="/posts/popup-ui-management-system/" class="btn btn-outline-primary">
+    <p>Popup UI Management System</p>
   </a>
   
 
   
-  <a href="/posts/unlit-custom-lit-shadergraph/" class="btn btn-outline-primary">
-    <p>Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더</p>
+  <a href="/posts/opengl-study-05/" class="btn btn-outline-primary">
+    <p>OpenGL 공부 - 05</p>
   </a>
   
 

@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-01T20:24:09+09:00</updated>
+  <updated>2021-02-01T23:55:21+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -156,14 +156,14 @@ OpenGL의 쉐이더
 
   
   <entry>
-    <title>Unity UI Memo</title>
-    <link href="https://rito15.github.io/posts/unity-ui-memo/" rel="alternate" type="text/html" title="Unity UI Memo" />
+    <title>UI 드래그 앤 드롭으로 옮기기</title>
+    <link href="https://rito15.github.io/posts/unity-ui-drag-and-drop/" rel="alternate" type="text/html" title="UI 드래그 앤 드롭으로 옮기기" />
     <published>2021-02-01T03:00:00+09:00</published>
   
     <updated>2021-02-01T03:00:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-ui-memo/</id>
-    <content src="https://rito15.github.io/posts/unity-ui-memo/" />
+    <id>https://rito15.github.io/posts/unity-ui-drag-and-drop/</id>
+    <content src="https://rito15.github.io/posts/unity-ui-drag-and-drop/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -184,11 +184,15 @@ OpenGL의 쉐이더
 
 
 
-      UI 드래그 앤 드롭으로 옮기기
+      기능
+
+  UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기
 
 
-  UI 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기
-  헤더 UI의 컴포넌트로 넣어주기
+사용법
+
+  헤더 UI는 UI의 자식으로 구성한다.
+  PopupUIHeader 스크립트를 헤더 UI의 컴포넌트로 넣어준다.
 
 
 /// &amp;lt;summary&amp;gt; 헤더 드래그 앤 드롭에 의한 UI 이동 구현 &amp;lt;/summary&amp;gt;
@@ -199,9 +203,7 @@ public class PopupUIHeader : MonoBehaviour,
 
     private Vector2 _rectBegin;
     private Vector2 _moveBegin;
-    private Vector2 _moveOffset;
-
-    priva...
+    pr...
     </summary>
   
 
@@ -296,7 +298,7 @@ public class PopupUIHeader : MonoBehaviour,
     <link href="https://rito15.github.io/posts/opengl-study-04/" rel="alternate" type="text/html" title="OpenGL 공부 - 04" />
     <published>2021-01-31T13:31:00+09:00</published>
   
-    <updated>2021-02-01T03:12:15+09:00</updated>
+    <updated>2021-02-01T20:24:50+09:00</updated>
   
     <id>https://rito15.github.io/posts/opengl-study-04/</id>
     <content src="https://rito15.github.io/posts/opengl-study-04/" />
