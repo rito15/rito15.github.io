@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="OpenGL 공부 - 03" />
+<meta property="og:title" content="OpenGL 공부 - 05" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목표 버텍스, 버텍스 버퍼에 대한 이해" />
-<meta property="og:description" content="목표 버텍스, 버텍스 버퍼에 대한 이해" />
-<link rel="canonical" href="https://rito15.github.io/posts/opengl-study-03/" />
-<meta property="og:url" content="https://rito15.github.io/posts/opengl-study-03/" />
+<meta name="description" content="목표 OpenGL의 쉐이더에 대한 이해 간단한 vertex, fragment 쉐이더 작성, 컴파일 및 실행" />
+<meta property="og:description" content="목표 OpenGL의 쉐이더에 대한 이해 간단한 vertex, fragment 쉐이더 작성, 컴파일 및 실행" />
+<link rel="canonical" href="https://rito15.github.io/posts/opengl-study-05/" />
+<meta property="og:url" content="https://rito15.github.io/posts/opengl-study-05/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-01-29T22:07:00+09:00" />
+<meta property="article:published_time" content="2021-02-01T17:42:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="OpenGL 공부 - 03" />
+<meta property="twitter:title" content="OpenGL 공부 - 05" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 버텍스, 버텍스 버퍼에 대한 이해","datePublished":"2021-01-29T22:07:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-03/"},"url":"https://rito15.github.io/posts/opengl-study-03/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 03","dateModified":"2021-01-31T17:18:09+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 OpenGL의 쉐이더에 대한 이해 간단한 vertex, fragment 쉐이더 작성, 컴파일 및 실행","datePublished":"2021-02-01T17:42:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-05/"},"url":"https://rito15.github.io/posts/opengl-study-05/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 05","dateModified":"2021-02-01T17:42:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>OpenGL 공부 - 03 | Rito15
+  <title>OpenGL 공부 - 05 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>OpenGL 공부 - 03</span>
+        <span>OpenGL 공부 - 05</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>OpenGL 공부 - 03</h1>
+      <h1 data-toc-skip>OpenGL 공부 - 05</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Jan 29, 2021, 10:07 PM +0900"
+    title="Mon, Feb  1, 2021,  5:42 PM +0900"
   >
 
   
   
 
   
-    Jan 29
+    Feb  1
   
 
-  <i class="unloaded">2021-01-29T22:07:00+09:00</i>
+  <i class="unloaded">2021-02-01T17:42:00+09:00</i>
 
 </span>
           by
@@ -406,35 +406,6 @@
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Jan 31, 2021,  5:18 PM +0900"
-  >
-
-  
-  
-
-  
-    Jan 31
-  
-
-  <i class="unloaded">2021-01-31T17:18:09+09:00</i>
-
-</span>
-          </span>
           
 
           <!-- read time -->
@@ -448,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1501 words">8 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2016 words">11 min</span>
 
 
           <!-- page views -->
@@ -465,259 +436,464 @@
         <h1 id="목표">목표</h1>
 <hr />
 <ul>
-  <li>버텍스, 버텍스 버퍼에 대한 이해</li>
+  <li>OpenGL의 쉐이더에 대한 이해</li>
+  <li>간단한 vertex, fragment 쉐이더 작성, 컴파일 및 실행</li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="렌더링-파이프라인-요약">렌더링 파이프라인 요약</h1>
+<h1 id="opengl의-쉐이더">OpenGL의 쉐이더</h1>
 <hr />
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106298996-fb432f00-6297-11eb-80a8-41eeed261413.png" alt="image" /></p>
 
 <ul>
   <li>
+    <h2 id="vertexfragment-shader">Vertex&amp;Fragment Shader</h2>
+    <ul>
+      <li>OpenGL에서 거의 90%의 비중을 차지</li>
+    </ul>
+  </li>
+  <li>
     <h2 id="vertex-shader">Vertex Shader</h2>
     <ul>
-      <li>입력 : 정점 목록</li>
-      <li>정점들을 오브젝트 스페이스에서 MVP 변환을 통해 클립 스페이스까지 변환한다.</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="shape-assembly">Shape Assembly</h2>
-    <ul>
-      <li>정점을 조립하여 렌더링을 할 수 있는 최소 단위(Primitive : 점, 선, 삼각형 등)로 만든다.</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="geometry-shader">Geometry Shader</h2>
-    <ul>
-      <li>입력 : 프리미티브 목록</li>
-      <li>프리미티브 당 한 번씩 수행한다.</li>
-      <li>프리미티브를 없앨 수도, 더 만들 수도 있고 완전히 다른 프리미티브로 변환할 수도 있다.</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="rasterization">Rasterization</h2>
-    <ul>
-      <li>입력 : 프리미티브 목록</li>
-      <li>프리미티브를 최종 화면의 적절한 픽셀과 매핑하여, 프래그먼트 쉐이더에서 사용할 Fragment를 만든다.</li>
-      <li>성능을 향상시키기 위해 뷰 프러스텀 밖의 Fragment를 폐기한다.</li>
+      <li>하나의 정점 당 한 번씩 실행된다.</li>
+      <li>layout을 통해 정점 속성의 위치를 입력받는다.</li>
+      <li>입력 : 정점 데이터</li>
+      <li>출력 : 클립 스페이스의 정점 데이터</li>
     </ul>
   </li>
   <li>
     <h2 id="fragment-shader">Fragment Shader</h2>
     <ul>
-      <li>입력 : Fragment 목록</li>
-      <li>OpenGL의 모든 고급 효과들을 계산하는 단계</li>
-      <li>화면에 렌더링할 모든 픽셀의 색상을 계산한다.</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="alpha-test-alpha-blending">Alpha Test, Alpha Blending</h2>
-    <ul>
-      <li>뎁스와 스텐실을 체크</li>
-      <li>알파 테스팅 : 알파값이 있으면 1, 없으면 0으로 판단하여 0인 픽셀 잘라내기</li>
-      <li>알파 블렌딩 : 뎁스 버퍼를 이용해 깊이를 계산하여 모든 픽셀의 최종 색상 계산</li>
+      <li>하나의 픽셀 당 한 번씩 실행된다.</li>
+      <li>입력 : 프래그먼트 데이터(래스터라이저가 만들어줌)</li>
+      <li>출력 : 모든 픽셀의 최종 색상</li>
     </ul>
   </li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="개념-정리">개념 정리</h1>
+<h1 id="opengl-메소드-명세">OpenGL 메소드 명세</h1>
 <hr />
+
 <ul>
   <li>
-    <h2 id="vertex">Vertex</h2>
+    <h2 id="glcreateprogram">glCreateProgram</h2>
     <ul>
-      <li>3D 공간의 정점 좌표 데이터</li>
-      <li>float 배열</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="ndcnormalized-device-coordinates">NDC(Normalized Device Coordinates)</h2>
-    <ul>
-      <li>모든 x, y, z 좌표가 -1.0 ~ 1.0 사이인 좌표</li>
-      <li>정규화된 좌표를 사용함으로써, 좌표 계산과정을 줄일 수 있으며 화면 해상도 차이에 빠르게 대응할 수 있다.</li>
-      <li>정점 쉐이더에서 4x4 Projection 행렬에 의해 직교투영(Orthographic Projection) 또는 원근 투영(Perspective Projection)을 통해 얻어지는 모든 좌표는 NDC 내로 들어온다.</li>
-      <li>투영 행렬이 정의하는 Viewing Box는 절두체(Frustum)라고 하며, 지정한 범위에서 NDC로 변환하는 과정을 ‘투영한다’라고 한다.</li>
-      <li>NDC 좌표는 glViewport() 메소드를 통해 Viewport Transform을 거쳐 Screen-space Coordinates 좌표로 변환된다.</li>
-      <li>스크린 좌표는 Fragment로 변환되어 Fragment Shader의 입력이 된다.</li>
+      <li>빈 프로그램 객체를 생성하고 프로그램 ID 값 리턴</li>
     </ul>
   </li>
 </ul>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> GLuint</td>
+      <td>프로그램의 ID(1, 2, …)<br /> - 에러 발생 시 0</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+<ul>
+  <li>
+    <h2 id="glcreateshader">glCreateShader</h2>
+    <ul>
+      <li>지정한 타입의 빈 쉐이더 객체를 생성하고 쉐이더 ID 값 리턴</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>Glenum <code class="language-plaintext highlighter-rouge">shaderType</code></td>
+      <td>생성할 쉐이더의 타입 지정<br /> - GL_VERTEX_SHADER<br /> - GL_FRAGMENT_SHADER<br /> - GL_COMPUTE_SHADER<br /> - GL_GEOMETRY_SHADER<br /> - GL_TESS_CONTROL_SHADER<br /> - GL_TESS_EVALUATION_SHADER</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> GLuint</td>
+      <td>생성한 쉐이더의 ID(1, 2, …)<br /> - 에러 발생 시 0</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+<ul>
+  <li>
+    <h2 id="glshadersource">glShaderSource</h2>
+    <ul>
+      <li>쉐이더 소스 코드를 입력받아 쉐이더 객체로 변환</li>
+      <li>생성한 쉐이더 객체를 입력한 쉐이더 객체 ID에 바인딩</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>GLuint <code class="language-plaintext highlighter-rouge">shader</code></td>
+      <td>생성한 쉐이더 객체를 바인딩할 ID</td>
+    </tr>
+    <tr>
+      <td>GLsizei <code class="language-plaintext highlighter-rouge">count</code></td>
+      <td>string, length에 전달하는 요소의 개수</td>
+    </tr>
+    <tr>
+      <td>const GLchar** <code class="language-plaintext highlighter-rouge">string</code></td>
+      <td>쉐이더 소스 코드 스트링의 포인터</td>
+    </tr>
+    <tr>
+      <td>const GLint* <code class="language-plaintext highlighter-rouge">length</code></td>
+      <td>스트링 길이 배열의 포인터</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> void</td>
+      <td>리턴 값 없음</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <h2 id="glcompileshader">glCompileShader</h2>
+    <ul>
+      <li>지정한 ID에 위치한 쉐이더 객체를 컴파일</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>Gluint <code class="language-plaintext highlighter-rouge">shader</code></td>
+      <td>컴파일할 쉐이더 객체 ID</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> void</td>
+      <td>리턴 값 없음</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <h2 id="glattachshader">glAttachShader</h2>
+    <ul>
+      <li>지정한 프로그램 객체에 쉐이더 객체 부착</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>GLuint <code class="language-plaintext highlighter-rouge">program</code></td>
+      <td>프로그램 객체 ID</td>
+    </tr>
+    <tr>
+      <td>GLuint <code class="language-plaintext highlighter-rouge">shader</code></td>
+      <td>쉐이더 객체 ID</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> void</td>
+      <td>리턴 값 없음</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <h2 id="gllinkprogram">glLinkProgram</h2>
+    <ul>
+      <li>지정한 프로그램 객체가 executable(실행 가능한 상태)이 되도록 링크</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>GLuint <code class="language-plaintext highlighter-rouge">program</code></td>
+      <td>프로그램 객체 ID</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> void</td>
+      <td>리턴 값 없음</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <h2 id="glvaidateprogram">glVaidateProgram</h2>
+    <ul>
+      <li>지정한 프로그램 객체의 유효성 검증</li>
+      <li>해당 프로그램의 executable이 현재 OpenGL에서 실행될 수 있는지 검증</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>GLuint <code class="language-plaintext highlighter-rouge">program</code></td>
+      <td>프로그램 객체 ID</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> void</td>
+      <td>리턴 값 없음</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <h2 id="gldeleteshader">glDeleteShader</h2>
+    <ul>
+      <li>지정한 쉐이더 객체를 메모리에서 해제</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>GLuint <code class="language-plaintext highlighter-rouge">shader</code></td>
+      <td>쉐이더 객체 ID</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> void</td>
+      <td>리턴 값 없음</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <h2 id="glgetshaderiv">glGetShaderiv</h2>
+    <ul>
+      <li>지정한 쉐이더 객체의 정수형 정보(파라미터) 가져오기</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>GLuint <code class="language-plaintext highlighter-rouge">shader</code></td>
+      <td>쉐이더 객체 ID</td>
+    </tr>
+    <tr>
+      <td>GLenum <code class="language-plaintext highlighter-rouge">pname</code></td>
+      <td>쉐이더 객체에서 가져올 파라미터<br /> - GL_SHADER_TYPE<br /> - GL_DELETE_STATUS<br /> - GL_COMPILE_STATUS<br /> - GL_INFO_LOG_LENGTH<br /> - GL_SHADER_SOURCE_LENGTH</td>
+    </tr>
+    <tr>
+      <td>GLint* <code class="language-plaintext highlighter-rouge">params</code></td>
+      <td>파라미터를 받아올 정수형 변수 포인터</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> void</td>
+      <td>리턴 값 없음</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <h2 id="glgetshaderinfolog">glGetShaderInfoLog</h2>
+    <ul>
+      <li>지정한 쉐이더 객체의 로그 가져오기</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>GLuint <code class="language-plaintext highlighter-rouge">shader</code></td>
+      <td>쉐이더 객체 ID</td>
+    </tr>
+    <tr>
+      <td>GLsizei <code class="language-plaintext highlighter-rouge">maxLength</code></td>
+      <td>로그를 저장할 캐릭터 버퍼의 크기</td>
+    </tr>
+    <tr>
+      <td>GLsizei* <code class="language-plaintext highlighter-rouge">length</code></td>
+      <td>infoLog에 전달받은 길이를 저장할 정수형 변수 포인터</td>
+    </tr>
+    <tr>
+      <td>GLchar* <code class="language-plaintext highlighter-rouge">infoLog</code></td>
+      <td>로그를 받아올 문자 배열 포인터</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> void</td>
+      <td>리턴 값 없음</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <h2 id="gldeleteshader-1">glDeleteShader</h2>
+    <ul>
+      <li>지정한 쉐이더 객체의 메모리 해제</li>
+      <li>해당 쉐이더 객체의 ID도 제거됨</li>
+      <li>메모리에 등록된 쉐이더 객체 ID가 1, 2, 3이 있을 때 1을 제거할 경우,<br />
+다음에 생성한 쉐이더 객체 ID는 1로 할당</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>GLuint <code class="language-plaintext highlighter-rouge">shader</code></td>
+      <td>쉐이더 객체 ID</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> void</td>
+      <td>리턴 값 없음</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <h2 id="gluseprogram">glUseProgram</h2>
+    <ul>
+      <li>현재 렌더링 환경에서 프로그램 객체 설치(실행)</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>GLuint <code class="language-plaintext highlighter-rouge">program</code></td>
+      <td>프로그램 객체 ID</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> void</td>
+      <td>리턴 값 없음</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <h2 id="gldeleteprogram">glDeleteProgram</h2>
+    <ul>
+      <li>지정한 프로그램 객체의 메모리 해제</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>GLuint <code class="language-plaintext highlighter-rouge">program</code></td>
+      <td>프로그램 객체 ID</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code> void</td>
+      <td>리턴 값 없음</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<h1 id="vertex-fragment-shader">Vertex, Fragment Shader</h1>
+<hr />
+<h2 id="1-vertex-shader">1. Vertex Shader</h2>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
-</pre></td><td class="rouge-code"><pre><span class="kt">float</span> <span class="n">positions</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
-     <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
-     <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
-<span class="p">};</span>
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="c1">// 사용할 glsl 버전 설정(330 -&gt; 3.3버전)</span>
+<span class="cp">#version 330 core
+</span>
+<span class="c1">// 정점 좌표 애트리뷰트의 인덱스를 location에 전달</span>
+<span class="c1">// 지금 정점 좌표는 vec2이지만, 어쨌든 좌표는 항상 vec4로 사용</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">in</span> <span class="kt">vec4</span> <span class="n">position</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nb">gl_Position</span> <span class="o">=</span> <span class="n">position</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<ul>
-  <li>
-    <h2 id="vertex-buffer">Vertex Buffer</h2>
-    <ul>
-      <li>정점들에 대한 정보를 갖고 있는 메모리 버퍼</li>
-      <li>오브젝트(Vertex Buffer Object) 단위로 관리된다.</li>
-    </ul>
-  </li>
-  <li>
-    <h2 id="vbovertex-buffer-object">VBO(Vertex Buffer Object)</h2>
-    <ul>
-      <li>OpenGL 객체 중 하나</li>
-      <li>고유 ID를 가지고 있다. (OpenGL의 모든 오브젝트는 고유 ID를 가진다.)</li>
-      <li>OpenGL은 다양한 타입의 버퍼 객체를 갖고 있는데, VBO는 그 중 <code class="language-plaintext highlighter-rouge">GL_ARRAY_BUFFER</code>이다.</li>
-      <li>많은 양의 정점들을 GPU 메모리 상에 저장할 수 있다.</li>
-      <li>CPU에서 GPU로 데이터를 전송하는 것은 비교적 느린데, VBO를 이용하면 비교적 빠르게 전송할 수 있다.</li>
-    </ul>
-  </li>
-</ul>
+<h2 id="2-fragment-shader">2. Fragment Shader</h2>
 
-<p><br /></p>
-
-<h1 id="공부-내용">공부 내용</h1>
-<hr />
-
-<h2 id="1-버퍼-id-생성">1. 버퍼 ID 생성</h2>
-
-<ul>
-  <li>
-    <h3 id="glgenbuffers">glGenBuffers()</h3>
-    <ul>
-      <li>버퍼의 ID를 받아 해당 ID에 버퍼를 생성한다.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="table-wrapper"><table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">n</code></td>
-      <td>해당 ID에 생성할 버퍼 개수</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">buffers</code></td>
-      <td>버퍼를 생성할 ID</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td><td class="rouge-code"><pre><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">buffer</span><span class="p">;</span>
-<span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buffer</span><span class="p">);</span>
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="cp">#version 330 core
+</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">out</span> <span class="kt">vec4</span> <span class="n">color</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="kt">vec4</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
 </pre></td></tr></tbody></table></code></div></div>
+
 <p><br /></p>
-
-<h2 id="2-생성한-버퍼에-타입-바인딩">2. 생성한 버퍼에 타입 바인딩</h2>
-
+<h1 id="실행-결과">실행 결과</h1>
+<hr />
 <ul>
   <li>
-    <h3 id="glbindbuffer">glBindBuffer()</h3>
+    <h2 id="1-쉐이더-컴파일-에러-발생">1. 쉐이더 컴파일 에러 발생</h2>
     <ul>
-      <li>버퍼 오브젝트에 타입을 바인딩한다.</li>
+      <li>원인 : color에 알파 값을 지정하지 않음</li>
     </ul>
   </li>
 </ul>
 
-<div class="table-wrapper"><table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">target</code></td>
-      <td>바인딩할 버퍼의 종류</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">buffer</code></td>
-      <td>대상 버퍼 ID</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p><br /></p>
-
-<h2 id="3-미리-정의된-정점-데이터를-버퍼의-메모리에-복사">3. 미리 정의된 정점 데이터를 버퍼의 메모리에 복사</h2>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106450912-2cef0c80-64c9-11eb-8ce7-1235841cc3b8.png" alt="image" /></p>
 
 <ul>
   <li>
-    <h3 id="glbufferdata">glBufferData()</h3>
-    <ul>
-      <li>사용자가 정의한 데이터(지금의 경우에는 정점 데이터)를 현재 바인딩 버퍼에 복사한다.</li>
-    </ul>
+    <h2 id="2-쉐이더-컴파일-성공">2. 쉐이더 컴파일 성공</h2>
   </li>
 </ul>
 
-<div class="table-wrapper"><table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">target</code></td>
-      <td>데이터를 복사하여 집어넣을 버퍼의 타입</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">size</code></td>
-      <td>버퍼에 저장할 데이터 크기(바이트 단위), 주로 sizeof 사용</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">data</code></td>
-      <td>버퍼에 저장할 실제 데이터</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">usage</code></td>
-      <td>GPU가 주어진 데이터를 관리하는 방법<br /> - GL_STATIC_DRAW : 거의 변하지 않는 데이터<br /> - GL_DYNAMIC_DRAW : 자주 변경되는 데이터<br /> - GL_STREAM_DRAW : 그려질 때마다 변경되는 데이터<br /> - DYNAMIC, STREAM으로 전달할 경우<br />GPU는 빠르게 사용할 수 있는 메모리에 데이터를 저장한다.</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="mi">6</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="n">positions</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p><br /></p>
-
-<h2 id="4-버퍼의-데이터를-이용해-그려주기">4. 버퍼의 데이터를 이용해 그려주기</h2>
-
-<ul>
-  <li>
-    <h3 id="gldrawarrays">glDrawArrays()</h3>
-    <ul>
-      <li>배열 데이터로부터 프리미티브를 렌더링한다. 드로우 콜 중 하나</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="table-wrapper"><table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">mode</code></td>
-      <td>렌더링할 프리미티브의 종류</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">first</code></td>
-      <td>배열에서 참조할 데이터의 시작 인덱스</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">count</code></td>
-      <td>렌더링할 인덱스의 개수<br />(지금은 인덱스 2개씩을 모아 3개의 정점을 구성하므로 3)</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">glDrawArrays</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<ul>
-  <li>하지만 아직 드로우콜만 했을 뿐, 그려지지는 않는다.</li>
-</ul>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106450944-38423800-64c9-11eb-876c-4bbf0788cb49.png" alt="image" /></p>
 
 <p><br /></p>
 
@@ -794,11 +970,213 @@
 69
 70
 71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
 </pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;GL/glew.h&gt;
 #include &lt;GLFW/glfw3.h&gt;
 </span>
 <span class="cp">#include &lt;iostream&gt;
 </span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 쉐이더 소스 코드를 입력받아 쉐이더 객체 생성하고 컴파일</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="c1">/// &lt;param name="source"&gt;쉐이더 소스 코드&lt;/param&gt;</span>
+<span class="c1">/// &lt;param name="type"&gt;GL_VERTEX_SHADER 또는 GL_FRAGMENT_SHADER&lt;/param&gt;</span>
+<span class="c1">/// &lt;returns&gt;컴파일된 쉐이더 객체의 ID 또는 0(에러)&lt;/returns&gt;</span>
+<span class="k">static</span> <span class="n">GLuint</span> <span class="nf">CompileShader</span><span class="p">(</span><span class="n">GLenum</span> <span class="n">type</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// 빈 쉐이더 객체 생성</span>
+    <span class="n">GLuint</span> <span class="n">shaderID</span> <span class="o">=</span> <span class="n">glCreateShader</span><span class="p">(</span><span class="n">type</span><span class="p">);</span>
+    <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">src</span> <span class="o">=</span> <span class="n">source</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
+
+    <span class="c1">// 쉐이더 코드를 쉐이더 객체로 변환하여 위의 쉐이더 객체 id에 바인딩</span>
+    <span class="n">glShaderSource</span><span class="p">(</span><span class="n">shaderID</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">src</span><span class="p">,</span> <span class="nb">nullptr</span><span class="p">);</span>
+
+    <span class="c1">// 쉐이더 컴파일</span>
+    <span class="n">glCompileShader</span><span class="p">(</span><span class="n">shaderID</span><span class="p">);</span>
+
+    <span class="c1">// 쉐이더 컴파일 결과 검증</span>
+    <span class="n">GLint</span> <span class="n">result</span><span class="p">;</span>
+    <span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">shaderID</span><span class="p">,</span> <span class="n">GL_COMPILE_STATUS</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">result</span><span class="p">);</span>
+
+    <span class="c1">// 컴파일이 실패한 경우</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">length</span><span class="p">;</span>
+
+        <span class="c1">// 로그의 길이값을 length에 받아오기</span>
+        <span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">shaderID</span><span class="p">,</span> <span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">length</span><span class="p">);</span>
+
+        <span class="c1">// 스택에 배열 동적 할당</span>
+        <span class="kt">char</span><span class="o">*</span> <span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">_malloca</span><span class="p">(</span><span class="n">length</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">));</span>
+
+        <span class="c1">// 로그 메시지 받아오기</span>
+        <span class="n">glGetShaderInfoLog</span><span class="p">(</span><span class="n">shaderID</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">length</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+
+        <span class="c1">// 에러 메시지 출력</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Failed to Compile "</span>
+            <span class="o">&lt;&lt;</span> <span class="p">((</span><span class="n">type</span> <span class="o">==</span> <span class="n">GL_VERTEX_SHADER</span><span class="p">)</span> <span class="o">?</span> <span class="s">"Vertex"</span> <span class="o">:</span> <span class="s">"Fragment"</span><span class="p">)</span>
+            <span class="o">&lt;&lt;</span> <span class="s">" Shader"</span>
+            <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">Error Message :"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+        <span class="c1">// 쉐이더 메모리 해제</span>
+        <span class="n">glDeleteShader</span><span class="p">(</span><span class="n">shaderID</span><span class="p">);</span>
+
+        <span class="n">_freea</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">shaderID</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 프로그램, 쉐이더 객체 생성</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="c1">/// &lt;param name="vertexShader"&gt;버텍스 쉐이더 소스 코드&lt;/param&gt;</span>
+<span class="c1">/// &lt;param name="fragmentShader"&gt;프래그먼트 쉐이더 소스 코드&lt;/param&gt;</span>
+<span class="c1">/// &lt;returns&gt;생성된 프로그램 객체의 ID&lt;/returns&gt;</span>
+<span class="k">static</span> <span class="n">GLuint</span> <span class="nf">CreateShader</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">vertexShader</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">fragmentShader</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// 빈 프로그램 객체 생성</span>
+    <span class="n">GLuint</span> <span class="n">programID</span> <span class="o">=</span> <span class="n">glCreateProgram</span><span class="p">();</span>
+
+    <span class="c1">// 쉐이더 컴파일</span>
+    <span class="n">GLuint</span> <span class="n">vs</span> <span class="o">=</span> <span class="n">CompileShader</span><span class="p">(</span><span class="n">GL_VERTEX_SHADER</span><span class="p">,</span> <span class="n">vertexShader</span><span class="p">);</span>
+    <span class="n">GLuint</span> <span class="n">fs</span> <span class="o">=</span> <span class="n">CompileShader</span><span class="p">(</span><span class="n">GL_FRAGMENT_SHADER</span><span class="p">,</span> <span class="n">fragmentShader</span><span class="p">);</span>
+
+    <span class="c1">// 프로그램에 쉐이더 장착, 프로그램 링킹, 검증</span>
+    <span class="n">glAttachShader</span><span class="p">(</span><span class="n">programID</span><span class="p">,</span> <span class="n">vs</span><span class="p">);</span>
+    <span class="n">glAttachShader</span><span class="p">(</span><span class="n">programID</span><span class="p">,</span> <span class="n">fs</span><span class="p">);</span>
+    <span class="n">glLinkProgram</span><span class="p">(</span><span class="n">programID</span><span class="p">);</span>
+    <span class="n">glValidateProgram</span><span class="p">(</span><span class="n">programID</span><span class="p">);</span>
+
+    <span class="c1">// 쉐이더 메모리 해제</span>
+    <span class="n">glDeleteShader</span><span class="p">(</span><span class="n">vs</span><span class="p">);</span>
+    <span class="n">glDeleteShader</span><span class="p">(</span><span class="n">fs</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">programID</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
@@ -828,7 +1206,7 @@
     <span class="c1">// 간단히 GLEW 버전 확인</span>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">glGetString</span><span class="p">(</span><span class="n">GL_VERSION</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 
-    <span class="c1">// 정점 위치 데이터</span>
+    <span class="c1">// Vertex Attribute : 위치 데이터</span>
     <span class="kt">float</span> <span class="n">positions</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
         <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
          <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
@@ -836,7 +1214,7 @@
     <span class="p">};</span>
 
     <span class="c1">// VBO(Vertex Buffer Object) ID 생성</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">buffer</span><span class="p">;</span>
+    <span class="n">GLuint</span> <span class="n">buffer</span><span class="p">;</span>
 
     <span class="c1">// VBO 객체 생성</span>
     <span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buffer</span><span class="p">);</span>
@@ -846,6 +1224,39 @@
 
     <span class="c1">// VBO에 위치 데이터 연결</span>
     <span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ARRAY_BUFFER</span><span class="p">,</span> <span class="mi">6</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="n">positions</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
+
+    <span class="c1">// 정점 속성 정의</span>
+    <span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+    <span class="c1">// 정점 속성 활성화</span>
+    <span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+    <span class="c1">// 쉐이더 작성</span>
+    <span class="n">string</span> <span class="n">vertexShader</span> <span class="o">=</span>
+        <span class="s">"#version 330 core</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"layout(location = 0) in vec4 position;</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"void main()</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"{</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"   gl_Position = position;</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"}</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="n">string</span> <span class="n">fragmentShader</span> <span class="o">=</span>
+        <span class="s">"#version 330 core</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"layout(location = 0) out vec4 color;</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"void main()</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"{</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"   color = vec4(0.2, 0.3, 0.8, 1.0);</span><span class="se">\n</span><span class="s">"</span>
+        <span class="s">"}</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="c1">// 쉐이더 객체 생성 및 컴파일, 프로그램 객체 생성</span>
+    <span class="n">GLuint</span> <span class="n">shaderProgram</span> <span class="o">=</span> <span class="n">CreateShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span> <span class="n">fragmentShader</span><span class="p">);</span>
+
+    <span class="c1">// 쉐이더 프로그램 객체 사용</span>
+    <span class="n">glUseProgram</span><span class="p">(</span><span class="n">shaderProgram</span><span class="p">);</span>
 
     <span class="cm">/* Loop until the user closes the window */</span>
     <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">))</span>
@@ -862,6 +1273,9 @@
         <span class="n">glfwPollEvents</span><span class="p">();</span>
     <span class="p">}</span>
 
+    <span class="c1">// 프로그램 객체 메모리 해제</span>
+    <span class="n">glDeleteProgram</span><span class="p">(</span><span class="n">shaderProgram</span><span class="p">);</span>
+    
     <span class="n">glfwTerminate</span><span class="p">();</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -872,9 +1286,9 @@
 <h1 id="references">References</h1>
 <hr />
 <ul>
-  <li><a href="https://www.youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2">https://www.youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2</a></li>
+  <li><a href="https://www.youtube.com/watch?v=5W7JLgFCkwI">https://www.youtube.com/watch?v=5W7JLgFCkwI</a></li>
+  <li><a href="https://www.youtube.com/watch?v=71BLZwRGUJE">https://www.youtube.com/watch?v=71BLZwRGUJE</a></li>
   <li><a href="https://heinleinsgame.tistory.com/7">https://heinleinsgame.tistory.com/7</a></li>
-  <li><a href="https://lalyns.tistory.com/14">https://lalyns.tistory.com/14</a></li>
 </ul>
 
 
@@ -933,19 +1347,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 03 - Rito15&url=https://rito15.github.io/posts/opengl-study-03/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 05 - Rito15&url=https://rito15.github.io/posts/opengl-study-05/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 03 - Rito15&u=https://rito15.github.io/posts/opengl-study-03/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 05 - Rito15&u=https://rito15.github.io/posts/opengl-study-05/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=OpenGL 공부 - 03 - Rito15&url=https://rito15.github.io/posts/opengl-study-03/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=OpenGL 공부 - 05 - Rito15&url=https://rito15.github.io/posts/opengl-study-05/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1782,72 +2196,72 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -2177,6 +2591,73 @@ GLEW 설치
       
       
       <div class="card">
+        <a href="/posts/opengl-study-03/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 29
+  
+
+  <i class="unloaded">2021-01-29T22:07:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 03</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+
+  버텍스, 버텍스 버퍼에 대한 이해
+
+
+
+
+렌더링 파이프라인 요약
+
+
+
+
+
+  
+    Vertex Shader
+    
+      입력 : 정점 목록
+      정점들을 오브젝트 스페이스에서 MVP 변환을 통해 클립 스페이스까지 변환한다.
+    
+  
+  
+    Shape Assembly
+    
+      정점을 조립하여 렌더링을 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/opengl-study-04/">
           <div class="card-body">
             <!--
@@ -2212,6 +2693,7 @@ GLEW 설치
                 목표
 
 
+
   Vertex Attributes, Layout, VBO, VAO에 대한 이해
 
 
@@ -2220,64 +2702,9 @@ GLEW 설치
 Attributes, VAO, VBO
 
 
+
   버텍스 버퍼에는 버텍스 좌표, 텍스쳐 좌표, 노멀 벡터 등 여러 데이터가 float 값으로 들어갈 수 있다.
-  하지만 그 자체로는 그저 메모리에 올라가는 값일 뿐이기 때문에 각각의 데이터가 어떤 역할을 하고, ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/opengl-study-01/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 28
-  
-
-  <i class="unloaded">2021-01-28T00:10:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 01</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                동기
-
-
-
-  그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.
-
-
-
-
-목표
-
-
-
-  OpenGL의 완전 기초부터 쉐이더 적용까지 모든 과정 공부
-  그래픽스에 대한 전반적인 지식 습득...
+  하지만 그 자체로는 그저 메모리에 올라가는 값일 뿐이기 때문에 각각의 데이터가 어떤 역할을 하고...
               </p>
             </div>
           </div>
@@ -2300,14 +2727,14 @@ Attributes, VAO, VBO
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/script-templates/" class="btn btn-outline-primary">
-    <p>스크립트 템플릿(Script Templates)</p>
+  <a href="/posts/unity-ui-memo/" class="btn btn-outline-primary">
+    <p>Unity UI Memo</p>
   </a>
   
 
   
-  <a href="/posts/input-binding-system/" class="btn btn-outline-primary">
-    <p>Input Binding System</p>
+  <a href="/posts/cpp-stack-memory-allocation/" class="btn btn-outline-primary">
+    <p>C++ 스택 메모리 동적 할당</p>
   </a>
   
 

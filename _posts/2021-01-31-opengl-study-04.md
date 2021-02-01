@@ -65,7 +65,7 @@ glBufferData(GL_ARRAY_BUFFER, size, attribute, GL_STATIC_DRAW);
   - 각각의 정점 속성은 VBO(Vertex Buffer Object)에 작성하며, 이를 하나의 VAO(Vertex Array Object)에 저장한다.
 
 ```cpp
-// 1. 정점 속성의 데이터 정의
+// 1. 정점 속성의 레이아웃 지정
 glVertexAttribPointer(index, size, type, normalized, stride, pointer);
 
 // 2. 정점 속성 배열을 인덱스를 통해 등록
@@ -83,7 +83,7 @@ glEnableVertexAttribArray(index);
 ---
 
 - ## glVertexAttribPointer()
-  - 정점 속성 배열을 정의
+  - 정점 속성 배열을 정의 : 레이아웃 지정
 
 |---|---|
 |`index`|해당 정점 속성의 순서(좌표, 색상, 노멀이 있다면 0, 1, 2 순서)|
