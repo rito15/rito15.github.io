@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"동기","datePublished":"2021-01-27T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/"},"url":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/","author":{"@type":"Person","name":"Rito15"},"headline":"Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더","dateModified":"2021-01-28T07:20:41+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"동기","headline":"Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더","dateModified":"2021-01-28T07:20:41+09:00","datePublished":"2021-01-27T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/"},"url":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -868,17 +868,17 @@
         
         
         
-        <li><a href="/posts/input-binding-system/">Input Binding System</a></li>
-      
-        
-        
-        
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03</a></li>
       
 
       </ul>
@@ -1046,55 +1046,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1123,38 +1074,6 @@
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1234,6 +1153,13 @@
     
     
     
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1345,6 +1271,90 @@
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
     
   
     
@@ -1460,10 +1470,20 @@
     
     
     
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
   
     
     
@@ -1688,6 +1708,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2263,7 +2296,7 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
       
       
       <div class="card">
-        <a href="/posts/lighting-models/">
+        <a href="/posts/unity-surface-shader-bible/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2280,13 +2313,13 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
   
 
   
-    Nov 16, 2020
+    Feb  2
   
 
-  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
+  <i class="unloaded">2021-02-02T01:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lighting Models</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Surface Shader Bible</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2295,17 +2328,52 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
 
 
 
-                Vectors
+                Surface Shader 기본 구성
 
-
-
-
-  L (Light) : 정점에서 광원을 향하는 방향의 벡터
-  N (Normal) : 정점의 노멀 벡터
-  V (View) : 정점에서 카메라를 향하는 방향의 벡터
-  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
-  
-    H (Half) : 블린퐁에서 사용, L와 V의 중...
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+Shader "Custom/SurfaceShader01"
+{
+    Properties
+    {
+        _Col...
               </p>
             </div>
           </div>
@@ -2572,55 +2640,6 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2649,38 +2668,6 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2760,6 +2747,13 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
     
     
     
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -2871,6 +2865,90 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
     
   
     
@@ -2986,10 +3064,20 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
     
     
     
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
   
     
     

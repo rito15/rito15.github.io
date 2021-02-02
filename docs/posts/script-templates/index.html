@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="스크립트 템플릿(Script Templates)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개념 Project - 우클릭 - Create를 통해 만드는 스크립트 또는 텍스트의 템플릿을 미리 지정하는 기능 스크립트 템플릿의 저장 경로 :","datePublished":"2021-01-29T16:55:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/script-templates/"},"url":"https://rito15.github.io/posts/script-templates/","author":{"@type":"Person","name":"Rito15"},"headline":"스크립트 템플릿(Script Templates)","dateModified":"2021-01-30T02:47:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"개념 Project - 우클릭 - Create를 통해 만드는 스크립트 또는 텍스트의 템플릿을 미리 지정하는 기능 스크립트 템플릿의 저장 경로 :","headline":"스크립트 템플릿(Script Templates)","dateModified":"2021-01-30T02:47:44+09:00","datePublished":"2021-01-29T16:55:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/script-templates/"},"url":"https://rito15.github.io/posts/script-templates/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -726,17 +726,17 @@ public class #SCRIPTNAME# : MonoBehaviour
         
         
         
-        <li><a href="/posts/input-binding-system/">Input Binding System</a></li>
-      
-        
-        
-        
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03</a></li>
       
 
       </ul>
@@ -904,55 +904,6 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -981,38 +932,6 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1092,6 +1011,13 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
     
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1203,6 +1129,90 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
     
   
     
@@ -1318,10 +1328,20 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
     
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
   
     
     
@@ -1541,6 +1561,19 @@ public class #SCRIPTNAME# : MonoBehaviour
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2024,6 +2057,69 @@ public class #SCRIPTNAME# : MonoBehaviour
       
       
       <div class="card">
+        <a href="/posts/show-property-on-inspector/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb  2
+  
+
+  <i class="unloaded">2021-02-02T17:08:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>인스펙터에 오토 프로퍼티 표시하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+1
+2
+public GameObject Property1 =&gt; Field1;
+private GameObject Field1;
+
+
+이런 형태의 프로퍼티라면,
+
+1
+2
+3
+4
+public GameObject Property1 =&gt; field1;
+
+[SerializeField]
+private GameObject field1;
+
+
+이렇...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-smart-multipass-code/">
           <div class="card-body">
             <!--
@@ -2125,58 +2221,6 @@ public class #SCRIPTNAME# : MonoBehaviour
 67
 68
 69...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/lighting-models/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Nov 16, 2020
-  
-
-  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lighting Models</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Vectors
-
-
-
-
-  L (Light) : 정점에서 광원을 향하는 방향의 벡터
-  N (Normal) : 정점의 노멀 벡터
-  V (View) : 정점에서 카메라를 향하는 방향의 벡터
-  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
-  
-    H (Half) : 블린퐁에서 사용, L와 V의 중...
               </p>
             </div>
           </div>
@@ -2433,55 +2477,6 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2510,38 +2505,6 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2621,6 +2584,13 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
     
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -2732,6 +2702,90 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
     
   
     
@@ -2847,10 +2901,20 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
     
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
   
     
     

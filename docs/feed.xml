@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-02T14:59:38+09:00</updated>
+  <updated>2021-02-02T17:17:41+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,69 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>인스펙터에 오토 프로퍼티 표시하기</title>
+    <link href="https://rito15.github.io/posts/show-property-on-inspector/" rel="alternate" type="text/html" title="인스펙터에 오토 프로퍼티 표시하기" />
+    <published>2021-02-02T17:08:00+09:00</published>
+  
+    <updated>2021-02-02T17:08:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/show-property-on-inspector/</id>
+    <content src="https://rito15.github.io/posts/show-property-on-inspector/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+public GameObject Property1 =&amp;gt; Field1;
+private GameObject Field1;
+
+
+이런 형태의 프로퍼티라면,
+
+public GameObject Property1 =&amp;gt; field1;
+
+[SerializeField]
+private GameObject field1;
+
+
+이렇게 대상 필드에 [SerializeField]를 붙여서 인스펙터에 표시할 수 있다.
+
+하지만
+
+[SerializeField]
+public GameObject Property2 { get; private set; }
+
+
+이런 오토 속성 프로퍼티는 프로퍼티 앞에 [SerializeField]를 붙여도 인스펙터에 표시되지 않는다.
+
+그런데,
+
+[field: SerializeField...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -259,73 +322,6 @@ Shader "Custom/SurfaceShader01"
 	}
 
 	fixed4 frag1 (v2f i) : SV_Tar...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C++ 스택 메모리 동적 할당</title>
-    <link href="https://rito15.github.io/posts/cpp-stack-memory-allocation/" rel="alternate" type="text/html" title="C++ 스택 메모리 동적 할당" />
-    <published>2021-02-01T18:45:00+09:00</published>
-  
-    <updated>2021-02-01T18:45:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cpp-stack-memory-allocation/</id>
-    <content src="https://rito15.github.io/posts/cpp-stack-memory-allocation/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C++" />
-    
-    <category term="C++ Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-  
-    _alloca
-    
-      스택에 메모리를 동적으로 할당해준다.
-      함수의 리턴으로 전달하면 안된다.
-      블록이 종료되면 자동으로 할당 해제된다.
-      공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의
-      예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 함
-    
-  
-
-
-
-  
-    
-      size_t size
-      할당할 배열 크기(길이 * sizeof(타입))
-    
-    
-      return void*
-      할당된 배열의 주소(타입 캐스팅 필요)
-    
-  
-
-
-int length = 10;
-
-// 원했던 것 : char message[length]
-// 하지만 배열의 크...
     </summary>
   
 

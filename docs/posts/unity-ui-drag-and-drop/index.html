@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="UI 드래그 앤 드롭으로 옮기기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"기능 UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기","datePublished":"2021-02-01T03:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-ui-drag-and-drop/"},"url":"https://rito15.github.io/posts/unity-ui-drag-and-drop/","author":{"@type":"Person","name":"Rito15"},"headline":"UI 드래그 앤 드롭으로 옮기기","dateModified":"2021-02-01T03:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"기능 UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기","headline":"UI 드래그 앤 드롭으로 옮기기","dateModified":"2021-02-01T03:00:00+09:00","datePublished":"2021-02-01T03:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-ui-drag-and-drop/"},"url":"https://rito15.github.io/posts/unity-ui-drag-and-drop/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -639,17 +639,17 @@
         
         
         
-        <li><a href="/posts/input-binding-system/">Input Binding System</a></li>
-      
-        
-        
-        
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03</a></li>
       
 
       </ul>
@@ -817,55 +817,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -894,38 +845,6 @@
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1005,6 +924,13 @@
     
     
     
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1116,6 +1042,90 @@
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
     
   
     
@@ -1231,10 +1241,20 @@
     
     
     
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
   
     
     
@@ -1459,6 +1479,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1986,7 +2019,7 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
       
       
       <div class="card">
-        <a href="/posts/unity-smart-multipass-code/">
+        <a href="/posts/show-property-on-inspector/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2006,10 +2039,10 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
     Feb  2
   
 
-  <i class="unloaded">2021-02-02T00:00:00+09:00</i>
+  <i class="unloaded">2021-02-02T17:08:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>멀티패스 쉐이더 코드 깔끔하게 작성하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>인스펙터에 오토 프로퍼티 표시하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2018,75 +2051,28 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
 
 
 
-                1
+                Memo
+
+
+1
+2
+public GameObject Property1 =&gt; Field1;
+private GameObject Field1;
+
+
+이런 형태의 프로퍼티라면,
+
+1
 2
 3
 4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69...
+public GameObject Property1 =&gt; field1;
+
+[SerializeField]
+private GameObject field1;
+
+
+이렇...
               </p>
             </div>
           </div>
@@ -2343,55 +2329,6 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2420,38 +2357,6 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2531,6 +2436,13 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
     
     
     
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -2642,6 +2554,90 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
     
   
     
@@ -2757,10 +2753,20 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
     
     
     
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
   
     
     

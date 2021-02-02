@@ -36,7 +36,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"sameAs":["https://github.com/rito15"],"description":"Unity Csharp Developer","name":"Rito15","url":"https://rito15.github.io/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebSite","@context":"https://schema.org"}</script>
+{"description":"Unity Csharp Developer","headline":"Rito15","sameAs":["https://github.com/rito15"],"url":"https://rito15.github.io/","author":{"@type":"Person","name":"Rito15"},"name":"Rito15","@type":"WebSite","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -361,6 +361,96 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+public GameObject Property1 =&gt; Field1;
+private GameObject Field1;
+
+
+이런 형태의 프로퍼티라면,
+
+public GameObject Property1 =&gt; field1;
+
+[SerializeField]
+private GameObject field1;
+
+
+이렇게 대상 필드에 [Se...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, Feb  2, 2021,  5:08 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb  2
+  
+
+  <i class="unloaded">2021-02-02T17:08:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="158 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1190,96 +1280,6 @@ Attributes, VAO, VBO
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/input-binding-system/">Input Binding System</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  에디터 및 인게임에서 언제든 기능에 연결된 사용자 마우스, 키보드 바인딩을 변경할 수 있는 기능 구현
-  전체 입력 바인딩을 직렬화하여 저장하고 불러올 수 있는 기능 구현
-
-
-
-
-유니티의 입력 시스템
-
-
-
-  유니티에는 2가지 Input System이 있다.
-  첫 번째는 Input.Get~ 꼴의 메소드를 이용해 이번 프레임에 해당 입력...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sat, Jan 30, 2021,  4:18 PM +0900"
-  >
-
-  
-  
-
-  
-    Jan 30
-  
-
-  <i class="unloaded">2021-01-30T16:18:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1783 words">9 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1358,6 +1358,23 @@ Attributes, VAO, VBO
 
   
 
+    
+    
+    
+    
+    
+
+    
+
+    
+      <!-- show number -->
+      <li class="page-item ">
+        <a class="page-link btn-box-shadow" href="/page4/">4</a>
+      </li>
+    
+
+  
+
   <!-- right arrow -->
   
   <li class="page-item ">
@@ -1421,17 +1438,17 @@ Attributes, VAO, VBO
         
         
         
-        <li><a href="/posts/input-binding-system/">Input Binding System</a></li>
-      
-        
-        
-        
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03</a></li>
       
 
       </ul>
@@ -1599,55 +1616,6 @@ Attributes, VAO, VBO
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1676,38 +1644,6 @@ Attributes, VAO, VBO
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -1787,6 +1723,13 @@ Attributes, VAO, VBO
     
     
     
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1898,6 +1841,90 @@ Attributes, VAO, VBO
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
     
   
     
@@ -2013,10 +2040,20 @@ Attributes, VAO, VBO
     
     
     
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
   
     
     
@@ -2424,55 +2461,6 @@ Attributes, VAO, VBO
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2501,38 +2489,6 @@ Attributes, VAO, VBO
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -2612,6 +2568,13 @@ Attributes, VAO, VBO
     
     
     
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -2723,6 +2686,90 @@ Attributes, VAO, VBO
     
     
       
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
     
   
     
@@ -2838,10 +2885,20 @@ Attributes, VAO, VBO
     
     
     
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
   
     
     
