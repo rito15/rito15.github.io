@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더","description":"동기","dateModified":"2021-01-28T07:20:41+09:00","datePublished":"2021-01-27T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/"},"url":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"동기","datePublished":"2021-01-27T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/"},"url":"https://rito15.github.io/posts/unlit-stylized-lit-shadergraph/","author":{"@type":"Person","name":"Rito15"},"headline":"Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더","dateModified":"2021-01-28T07:20:41+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -868,17 +868,17 @@
         
         
         
-        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03</a></li>
-      
-        
-        
-        
         <li><a href="/posts/input-binding-system/">Input Binding System</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02</a></li>
       
 
       </ul>
@@ -1100,36 +1100,6 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -1185,70 +1155,6 @@
     
     
       
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1343,6 +1249,102 @@
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1618,16 +1620,16 @@
         <a class="post-tag" href="/tags/unity/">unity</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
-      
-        
         <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>
+      
+        
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
@@ -1686,6 +1688,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2138,58 +2153,6 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
       
       
       <div class="card">
-        <a href="/posts/lighting-models/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Nov 16, 2020
-  
-
-  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lighting Models</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Vectors
-
-
-
-
-  L (Light) : 정점에서 광원을 향하는 방향의 벡터
-  N (Normal) : 정점의 노멀 벡터
-  V (View) : 정점에서 카메라를 향하는 방향의 벡터
-  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
-  
-    H (Half) : 블린퐁에서 사용, L와 V의 중...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-smart-multipass-code/">
           <div class="card-body">
             <!--
@@ -2291,6 +2254,58 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
 67
 68
 69...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/lighting-models/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Nov 16, 2020
+  
+
+  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lighting Models</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Vectors
+
+
+
+
+  L (Light) : 정점에서 광원을 향하는 방향의 벡터
+  N (Normal) : 정점의 노멀 벡터
+  V (View) : 정점에서 카메라를 향하는 방향의 벡터
+  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
+  
+    H (Half) : 블린퐁에서 사용, L와 V의 중...
               </p>
             </div>
           </div>
@@ -2611,36 +2626,6 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -2696,70 +2681,6 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
     
     
       
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -2854,6 +2775,102 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -3124,16 +3141,16 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
         <a class="post-tag" href="/tags/unity/">unity</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
-      
-        
         <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>
+      
+        
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>

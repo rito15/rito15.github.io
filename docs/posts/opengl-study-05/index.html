@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="OpenGL 공부 - 05" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"OpenGL 공부 - 05","description":"목표 OpenGL의 쉐이더에 대한 이해 간단한 vertex, fragment 쉐이더 작성, 컴파일 및 실행","dateModified":"2021-02-01T17:42:00+09:00","datePublished":"2021-02-01T17:42:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-05/"},"url":"https://rito15.github.io/posts/opengl-study-05/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 OpenGL의 쉐이더에 대한 이해 간단한 vertex, fragment 쉐이더 작성, 컴파일 및 실행","datePublished":"2021-02-01T17:42:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-05/"},"url":"https://rito15.github.io/posts/opengl-study-05/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 05","dateModified":"2021-02-01T17:42:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1432,17 +1432,17 @@
         
         
         
-        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03</a></li>
-      
-        
-        
-        
         <li><a href="/posts/input-binding-system/">Input Binding System</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02</a></li>
       
 
       </ul>
@@ -1664,36 +1664,6 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -1749,70 +1719,6 @@
     
     
       
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -1907,6 +1813,102 @@
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -2182,16 +2184,16 @@
         <a class="post-tag" href="/tags/unity/">unity</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
-      
-        
         <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>
+      
+        
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
@@ -2250,6 +2252,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2640,73 +2655,6 @@
       
       
       <div class="card">
-        <a href="/posts/opengl-study-03/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 29
-  
-
-  <i class="unloaded">2021-01-29T22:07:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 03</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목표
-
-
-
-  버텍스, 버텍스 버퍼에 대한 이해
-
-
-
-
-렌더링 파이프라인 요약
-
-
-
-
-
-  
-    Vertex Shader
-    
-      입력 : 정점 목록
-      정점들을 오브젝트 스페이스에서 MVP 변환을 통해 클립 스페이스까지 변환한다.
-    
-  
-  
-    Shape Assembly
-    
-      정점을 조립하여 렌더링을 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/opengl-study-04/">
           <div class="card-body">
             <!--
@@ -2810,6 +2758,68 @@ Attributes, VAO, VBO
 
   OpenGL의 완전 기초부터 쉐이더 적용까지 모든 과정 공부
   그래픽스에 대한 전반적인 지식 습득...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/opengl-study-02/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 28
+  
+
+  <i class="unloaded">2021-01-28T22:09:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 02</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+
+  GLEW 설치 및 적용
+
+
+
+
+GLEW 설치
+
+
+
+  GLEW : OpenGL Extension Wrangler Library
+  http://glew.sourceforge.net
+  
+    Binary 다운로드
+  
+  프로젝트의 Dependency 폴더 내로 GLEW 폴더 복사
+    
+      glew-2.1.0 폴더를 통째로 ...
               </p>
             </div>
           </div>
@@ -3130,36 +3140,6 @@ Attributes, VAO, VBO
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -3215,70 +3195,6 @@ Attributes, VAO, VBO
     
     
       
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -3373,6 +3289,102 @@ Attributes, VAO, VBO
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -3643,16 +3655,16 @@ Attributes, VAO, VBO
         <a class="post-tag" href="/tags/unity/">unity</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
-      
-        
         <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>
+      
+        
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
