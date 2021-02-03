@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-03T16:28:43+09:00</updated>
+  <updated>2021-02-03T18:15:44+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,81 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>OpenGL 공부 - 07</title>
+    <link href="https://rito15.github.io/posts/opengl-study-07/" rel="alternate" type="text/html" title="OpenGL 공부 - 07" />
+    <published>2021-02-03T16:32:00+09:00</published>
+  
+    <updated>2021-02-03T16:32:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-07/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-07/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  인덱스 버퍼의 사용과 이해
+
+
+
+
+공부 내용
+
+
+삼각형 그리기
+
+  삼각형을 하나 그리려면, 버텍스 3개가 필요하다.
+
+
+float positions[6] =
+{
+    -0.5f, -0.5f,
+     0.0f,  0.5f,
+     0.5f, -0.5f,
+};
+
+
+
+  GPU는 전달받은 버텍스들을 순서대로 확인하여 3개씩 짝지어서 하나의 폴리곤을 그려준다.
+  이 때, 3개의 버텍스가 순서대로 시계 반대 방향으로 위치해야 폴리곤의 전면이 그려진다.
+
+
+
+사각형 그리기
+
+  사각형을 하나 그리려면 삼각형이 2개 필요하므로, 결국 버텍스 6개가 필요하다.
+
+
+
+
+
+  
+    그런데 두 삼각형이 두 개의 버텍스를 공유하므로, 여섯 개의 버텍스를 전달하는건 버텍스를 두 개만큼 손해보는 것과 ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -256,72 +331,6 @@ Shader "Custom/SurfaceShader01"
         sampler2D _MainTex;
 
         st...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>멀티패스 쉐이더 코드 깔끔하게 작성하기</title>
-    <link href="https://rito15.github.io/posts/unity-smart-multipass-code/" rel="alternate" type="text/html" title="멀티패스 쉐이더 코드 깔끔하게 작성하기" />
-    <published>2021-02-02T00:00:00+09:00</published>
-  
-    <updated>2021-02-02T00:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-smart-multipass-code/</id>
-    <content src="https://rito15.github.io/posts/unity-smart-multipass-code/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Shader "A/B"
-{
-	Properties
-	{
-		_MainTex ("Texture", 2D) = "black" {}
-	}
-
-	CGINCLUDE
-	#include "UnityCG.cginc"
-
-        struct appdata
-	{
-		float4 vertex : POSITION;
-		float2 uv : TEXCOORD0;
-	};
-	struct v2f
-	{
-		float4 vertex:SV_POSITION;
-		float2 uv:TEXCOORD0;
-	};
-
-	sampler2D _MainTex;
-
-	v2f vert1 (appdata_img v)
-	{
-		v2f o;
-                // ...
-		return o;
-	}
-
-	fixed4 frag1 (v2f i) : SV_Tar...
     </summary>
   
 

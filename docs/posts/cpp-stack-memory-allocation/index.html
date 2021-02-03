@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C++ 스택 메모리 동적 할당" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Memo _alloca 스택에 메모리를 동적으로 할당해준다. 함수의 리턴으로 전달하면 안된다. 블록이 종료되면 자동으로 할당 해제된다. 공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의 예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 함","datePublished":"2021-02-01T18:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cpp-stack-memory-allocation/"},"url":"https://rito15.github.io/posts/cpp-stack-memory-allocation/","author":{"@type":"Person","name":"Rito15"},"headline":"C++ 스택 메모리 동적 할당","dateModified":"2021-02-01T18:45:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C++ 스택 메모리 동적 할당","description":"Memo _alloca 스택에 메모리를 동적으로 할당해준다. 함수의 리턴으로 전달하면 안된다. 블록이 종료되면 자동으로 할당 해제된다. 공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의 예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 함","dateModified":"2021-02-01T18:45:00+09:00","datePublished":"2021-02-01T18:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cpp-stack-memory-allocation/"},"url":"https://rito15.github.io/posts/cpp-stack-memory-allocation/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -935,92 +935,6 @@
     
     
     
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1126,6 +1040,90 @@
     
     
       
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -1419,10 +1417,10 @@
         <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/opengl/">opengl</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/shader/">shader</a>
@@ -1484,6 +1482,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1932,6 +1943,79 @@
       
       
       <div class="card">
+        <a href="/posts/opengl-study-07/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb  3
+  
+
+  <i class="unloaded">2021-02-03T16:32:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 07</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+  인덱스 버퍼의 사용과 이해
+
+
+
+
+공부 내용
+
+
+삼각형 그리기
+
+  삼각형을 하나 그리려면, 버텍스 3개가 필요하다.
+
+
+1
+2
+3
+4
+5
+6
+float positions[6] =
+{
+    -0.5f, -0.5f,
+     0.0f,  0.5f,
+     0.5f, -0.5f,
+};
+
+
+
+  GPU는 전달받은 버텍스들을 순서대로 확인하여...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/show-property-on-inspector/">
           <div class="card-body">
             <!--
@@ -2043,67 +2127,6 @@ private GameObject field1;
   솔루션 디렉터리 - [Resources/Shaders] 폴더 생성
   Shaders 폴더 내에 [Basic.shader] 파일 생성
   속성 - 디버깅 - 작업 디렉터리에 $(ProjectDir)가 포함되어 있으므로 상대경로에서 불러오기 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-vertex-fragment-shader-bible/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  2
-  
-
-  <i class="unloaded">2021-02-02T01:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Vertex/Fragment Shader Bible</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Vertex/Fragment Shader 구성
-
-
-  
-
-
-TODO
-
-
-  
-
-
-
-
-References
-
-
-  
-
-
               </p>
             </div>
           </div>
@@ -2473,92 +2496,6 @@ References
     
     
     
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2664,6 +2601,90 @@ References
     
     
       
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -2952,10 +2973,10 @@ References
         <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/opengl/">opengl</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/shader/">shader</a>
