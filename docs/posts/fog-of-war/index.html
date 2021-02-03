@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Fog of War" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개념 맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다. 지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0, 지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8, 지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.","datePublished":"2021-01-20T21:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/fog-of-war/"},"url":"https://rito15.github.io/posts/fog-of-war/","author":{"@type":"Person","name":"Rito15"},"headline":"Fog of War","dateModified":"2021-01-30T02:47:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"개념 맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다. 지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0, 지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8, 지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.","datePublished":"2021-01-20T21:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/fog-of-war/"},"url":"https://rito15.github.io/posts/fog-of-war/","author":{"@type":"Person","name":"Rito15"},"headline":"Fog of War","dateModified":"2021-02-03T16:26:27+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sat, Jan 30, 2021,  2:47 AM +0900"
+    title="Wed, Feb  3, 2021,  4:26 PM +0900"
   >
 
   
   
 
   
-    Jan 30
+    Feb  3
   
 
-  <i class="unloaded">2021-01-30T02:47:44+09:00</i>
+  <i class="unloaded">2021-02-03T16:26:27+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2714 words">15 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2753 words">15 min</span>
 
 
           <!-- page views -->
@@ -859,8 +859,9 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
 
 <h1 id="job--burst-compiler-적용">Job + Burst Compiler 적용</h1>
 <hr />
+
 <ul>
-  <li>장애물 검사 알고리즘 : [2. 타일 전진 알고리즘]</li>
+  <li>장애물 검사 알고리즘은 타일 전진 알고리즘을 사용했으며, 프로파일링 결과 주요 병목이라고 생각하여 Job System을 이용해 돌려보았다.</li>
 </ul>
 
 <h2 id="테스트-1">테스트 1</h2>
@@ -887,7 +888,7 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
 
 <h2 id="잡-시스템-적용-결과">잡 시스템 적용 결과</h2>
 <ul>
-  <li>별 차이가 없다. 그래서 프로파일러를 다시 확인해보면..</li>
+  <li>별 차이가 없다. 그래서 프로파일링을 구체화해서 다시 확인해보면..</li>
 </ul>
 
 <p><br /></p>
@@ -900,7 +901,7 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
 <ul>
   <li>아니나 다를까, 예상 외의 결과였다.</li>
   <li>
-    <p>ComputeFog_1 부분은 시야 범위 타일 얻어오기, 2는 위에서 잡으로 돌린 가시 타일 계산, 3이 시야 정보를 업데이트하고 Blit하는 부분이다.</p>
+    <p>ComputeFog_1 부분은 시야 범위 타일 얻어오기, 2는 위에서 잡으로 돌린 장애물 계산, 3이 시야 정보를 업데이트하고 Blit하는 부분이다.</p>
   </li>
   <li>그래서 GPU 병목이겠거니 하고 더 세분화 했는데,</li>
 </ul>
@@ -1131,6 +1132,11 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
         
         
         
+        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
+      
+        
+        
+        
         <li><a href="/posts/popup-ui-management-system/">Popup UI Management System</a></li>
       
         
@@ -1147,11 +1153,6 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
         
         
         <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03</a></li>
       
 
       </ul>
