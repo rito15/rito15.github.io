@@ -26,8 +26,8 @@
 <meta property="og:title" content="Unity Profiling" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다." />
-<meta property="og:description" content="Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다." />
+<meta name="description" content="Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다. 모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다." />
+<meta property="og:description" content="Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다. 모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다." />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-profiling/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-profiling/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Unity Profiling" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다.","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-profiling/"},"url":"https://rito15.github.io/posts/unity-profiling/","author":{"@type":"Person","name":"Rito15"},"headline":"Unity Profiling","dateModified":"2021-02-04T19:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다. 모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다.","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-profiling/"},"url":"https://rito15.github.io/posts/unity-profiling/","author":{"@type":"Person","name":"Rito15"},"headline":"Unity Profiling","dateModified":"2021-02-04T19:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -347,6 +347,20 @@
 
 
 
+  
+
+  
+
+  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
+  
+  
+
+  
+
+  
+
+
+
 <!-- return -->
 <div class="row">
 
@@ -405,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="189 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1133 words">6 min</span>
 
 
           <!-- page views -->
@@ -423,9 +437,10 @@
 <hr />
 <ul class="task-list">
   <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.</li>
-  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />[Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다.</li>
+  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />[Edit - Project Settings - Quliaty - Other]에서 <code class="language-plaintext highlighter-rouge">VSync</code>가 설정되어 있는지 확인한다.</li>
   <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" /><code class="language-plaintext highlighter-rouge">Application.targetFrameRate</code>가 설정되어 있는지 확인한다(미설정 시 -1)</li>
   <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다.</li>
+  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다.</li>
 </ul>
 
 <p><br /></p>
@@ -436,6 +451,7 @@
 <ul>
   <li>Unity Profiler
     <ul>
+      <li>[Window - Analysis - Profiler (Ctrl+7)]</li>
       <li><a href="https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html">https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html</a></li>
     </ul>
   </li>
@@ -447,6 +463,7 @@
   </li>
   <li>Memory Profiler
     <ul>
+      <li>Package Manager - Memory Profiler [Preview]</li>
       <li><a href="https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/">https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/</a></li>
     </ul>
   </li>
@@ -486,13 +503,176 @@
 
 <p><br /></p>
 
+<h1 id="unity-profiler">Unity Profiler</h1>
+<hr />
+
+<h1 id="custom-profiler-tags"><strong>Custom Profiler Tags</strong></h1>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="c1">// using UnityEngine.Profiling;</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">SomeMethod</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Profiler</span><span class="p">.</span><span class="nf">BeginSample</span><span class="p">(</span><span class="s">"Sample Name"</span><span class="p">);</span>
+
+    <span class="c1">// Codes ...</span>
+
+    <span class="n">Profiler</span><span class="p">.</span><span class="nf">EndSample</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<ul>
+  <li>이렇게 래핑하면 저 사이에 있는 부분을 프로파일러에서 묶어 보여준다.</li>
+  <li>지정한 이름으로 확인할 수 있으므로 프로파일링 하기에 매우 편해진다.</li>
+</ul>
+
 <p><br /></p>
+
+<h1 id="cpu--gpu-boundary"><strong>CPU &amp; GPU Boundary</strong></h1>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106927047-1957d600-6755-11eb-8035-14de7be3294a.png" alt="image" class="normal" /></p>
+
+<ul>
+  <li>프로파일러의 이 부분을 확인하면 CPU, GPU 수행에 걸린 시간을 통해 CPU와 GPU 중 어느 부분이 더 병목인지 파악할 수 있다.</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="cpu-boundary"><strong>CPU Boundary</strong></h1>
+
+<h2 id="gcalloc-gccollect">GC.Alloc, GC.Collect</h2>
+<ul>
+  <li>대표적인 CPU 바운드로, 힙의 할당과 가비지 수거를 의미한다.</li>
+  <li>Alloc 자체는 직접적인 성능 저하를 유발하지 않지만, 결국 Collect의 대상이 되므로 줄이는 것이 좋다.</li>
+</ul>
+
+<h2 id="draw-call-set-pass-call">Draw Call, Set Pass Call</h2>
+<ul>
+  <li>GPU 바운드로 착각할 수 있지만, CPU가 GPU에게 전달하는 CPU 바운드이다.</li>
+  <li>Batch : DP Call 상태 변경을 합친 넓은 의미의 드로우 콜</li>
+  <li>SetPass Call : 쉐이더로 인한 렌더링 패스의 횟수를 의미하며 쉐이더 및 쉐이더 파라미터들의 변경이 일어날 때마다 발생한다.</li>
+</ul>
+
+<h2 id="method-calls">Method Calls</h2>
+<ul>
+  <li>Marker들을 통해 병목지점을 확인할 수 있으며, 구체적으로 파악하고 싶은 경우 Deep Profile 또는 Custom Profiler Tag를 이용하면 된다.</li>
+</ul>
+
+<p><br /></p>
+<h2 id="script-update-markers"><strong>Script update markers</strong></h2>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Update.ScriptRunBehaviourUpdate</code></td>
+      <td>MonoBehaviour 내부의 Update() 호출 및 코루틴 yield</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">BehaviourUpdate</code></td>
+      <td>Update() 호출</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">CoroutinesDelayedCalls</code></td>
+      <td>코루틴 yield</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ScriptRunBehaviourLateUpdate</code></td>
+      <td>LateUpdate() 호출</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FixedBehaviourUpdate</code></td>
+      <td>FixedUpdate() 호출</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<h1 id="gpu-boundary"><strong>GPU Boundary</strong></h1>
+
+<h2 id="graphicsblit-devicepresent-gfxwaitforpresent">Graphics.Blit, Device.Present, Gfx.WaitForPresent</h2>
+<ul>
+  <li>프로파일러에서 확인할 수 있는 대표적인 GPU 병목.</li>
+  <li>CPU가 GPU에게 일을 시키고 CPU는 한가한데 GPU가 열심히 일하는 상태이다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106918827-e873a300-674c-11eb-9c70-41b58cb1a213.png" alt="image" class="normal" /></p>
+
+<ul>
+  <li>이를 해결하려면 GPU 관련 요소들을 확인해야 한다.
+    <ul>
+      <li>필레이트(쉐이더 최적화)</li>
+      <li>메모리 대역폭(텍스쳐 최적화)</li>
+      <li>포스트 프로세싱</li>
+      <li>버텍스(LOD Model 활용)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="필레이트fill-rate">필레이트(Fill rate)</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">화면의 픽셀 수</code> X <code class="language-plaintext highlighter-rouge">프래그먼트 쉐이더 복잡도</code> X <code class="language-plaintext highlighter-rouge">오버드로우</code></li>
+  <li>오버드로우(Overdraw) : 투명 오브젝트의 픽셀을 여러 번 그리는 현상</li>
+  <li>필레이트가 문제인지 알기 위해서는 간단히 해상도 또는 렌더 스케일(Render Scale)을 줄였을 때 성능이 많이 향상되는지 확인하면 된다.</li>
+  <li>URP에서는 파이프라인 애셋에서 간단히 [Quality - Render Scale]을 조절하면 된다.</li>
+  <li>이를 해결하려면 쉐이더를 최적화 해야 한다.</li>
+</ul>
+
+<h2 id="메모리-대역폭memory-bandwidth">메모리 대역폭(Memory Bandwidth)</h2>
+<ul>
+  <li>메모리 대역폭 : GPU가 전용 메모리에서 읽고 쓸 수 있는 속도</li>
+  <li>메모리 대역폭이 문제인지 알아보려면, 텍스쳐 품질을 줄였을 때 성능이 많이 향상되는지 확인하면 된다.</li>
+  <li>이를 해결하려면 텍스쳐를 압축하거나 밉맵을 사용하여 멀리 떨어진 경우 작은 밉맵을 적용해야 한다.</li>
+</ul>
+
+<p><br /></p>
+<h2 id="rendering-and-vsync-markers"><strong>Rendering and VSync markers</strong></h2>
+
+<ul>
+  <li>모두 CPU가 GPU를 기다리는 시간과 GPU의 소요시간을 포함하는 경우로, GPU 바운드에 해당한다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">WaitForTargetFPS</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Gfx.ProcessCommands</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Gfx.WaitForCommands</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Gfx.PresentFrame</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Gfx.WaitForPresentOnGfxThread</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Gfx.WaitForRenderThread</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="memory-profiler">Memory Profiler</h1>
+<hr />
+<ul>
+  <li>유니티 패키지 매니저에서 Preview 버전을 받을 수 있다.</li>
+  <li>시각적으로 메모리 사용률을 파악할 수 있으며, 각각의 사각형을 클릭할 경우 더 구체적인 내용을 확인할 수 있다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106920799-c549f300-674e-11eb-8009-f2c6b71a598b.png" alt="image" /></p>
+
+<p><br /></p>
+
 <h1 id="references">References</h1>
 <hr />
 <ul>
   <li><a href="https://www.youtube.com/watch?v=4kVffWfmJ60&amp;ab_channel=UnityKorea">https://www.youtube.com/watch?v=4kVffWfmJ60&amp;ab_channel=UnityKorea</a></li>
   <li><a href="https://blogs.unity3d.com/kr/2019/11/14/tales-from-the-optimization-trenches/">https://blogs.unity3d.com/kr/2019/11/14/tales-from-the-optimization-trenches/</a></li>
   <li><a href="https://coderzero.tistory.com/entry/유니티-최적화-유니티-최적화에-대한-이해">https://coderzero.tistory.com/entry/유니티-최적화-유니티-최적화에-대한-이해</a></li>
+  <li><a href="https://docs.unity3d.com/Manual/profiler-markers.html">https://docs.unity3d.com/Manual/profiler-markers.html</a></li>
+  <li><a href="https://learn.unity.com/tutorial/fixing-performance-problems">https://learn.unity.com/tutorial/fixing-performance-problems</a></li>
 </ul>
 
 
@@ -2163,11 +2343,11 @@
 
 
 
-CPU, GPU(Rendering), Memory 등등 많은 탭들을 통해 현재 유니티 프로젝트에서 측정되는 성능 지표를 확인할 수 있다.
+CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니티 프로젝트에서 측정되는 성능을 확인할 수 있다.
 
 선택된 탭의 구체적인 내용들은 윈도우 하단에 나타난다.
 
-프로젝트 실행 후 그래프의...
+프로젝트 실행 후 그래프의 ...
               </p>
             </div>
           </div>
@@ -2259,6 +2439,16 @@ CPU, GPU(Rendering), Memory 등등 많은 탭들을 통해 현재 유니티 프�
 
 </div> <!-- .row -->
 
+
+
+  <!-- image lazy load: https://github.com/ApoorvSaxena/lozad.js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+
+<script type="text/javascript">
+  const imgs = document.querySelectorAll('.post-content img');
+  const observer = lozad(imgs);
+  observer.observe();
+</script>
 
 
 

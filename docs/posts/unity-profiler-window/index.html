@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="736 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="873 words">4 min</span>
 
 
           <!-- page views -->
@@ -437,13 +437,18 @@
 <hr />
 <p>[Window] - [Analysis] - [Profiler]를 통해 프로파일러 윈도우를 열 수 있다.</p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106869921-d32e5280-6713-11eb-9cb6-9f271dd0015a.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106927000-0a712380-6755-11eb-87bd-ba4d22bf0bbc.png" alt="image" /></p>
 
-<p>CPU, GPU(Rendering), Memory 등등 많은 탭들을 통해 현재 유니티 프로젝트에서 측정되는 성능 지표를 확인할 수 있다.</p>
+<p>CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니티 프로젝트에서 측정되는 성능을 확인할 수 있다.</p>
 
 <p>선택된 탭의 구체적인 내용들은 윈도우 하단에 나타난다.</p>
 
-<p>프로젝트 실행 후 그래프의 한 부분을 클릭할 경우, 유니티 프로젝트의 실행이 일시정지되며 해당 프레임의 정보를 볼 수 있다.</p>
+<p>프로젝트 실행 후 그래프의 한 부분을 클릭할 경우, 유니티 프로젝트의 실행이 일시정지되며 해당 프레임의 정보를 확인할 수 있다.</p>
+
+<h2 id="note"><strong>Note</strong></h2>
+<ul>
+  <li>좌측 상단의 [Profiler Modules]를 통해 측정할 지표들을 선택할 수 있으며, 필요하지 않은 지표들은 불필요하게 성능을 소모하므로 체크 해제하는 것이 좋다.</li>
+</ul>
 
 <p><br /></p>
 
@@ -453,7 +458,11 @@
 
 <p>그래프 중앙 하단에서 해당 프레임 동안 CPU, GPU 수행에 걸린 시간을 확인할 수 있다.</p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106870818-e2fa6680-6714-11eb-9f62-9948490ac105.png" alt="" class="normal" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106927047-1957d600-6755-11eb-8035-14de7be3294a.png" alt="image" class="normal" /></p>
+
+<ul>
+  <li>만약 GPU가 표시되지 않는 경우, 좌측 상단의 [Profiler Modules]에서 GPU Usage를 체크하면 된다.</li>
+</ul>
 
 <p><br /></p>
 <h2 id="timeline-view">Timeline View</h2>
@@ -465,7 +474,7 @@
 <p><br /></p>
 <h2 id="hierarchy-view">Hierarchy View</h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106872982-49808400-6717-11eb-95a2-dd5e600879b3.png" alt="image" class="normal" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106927972-0d204880-6756-11eb-8f32-bd2812f68a0f.png" alt="image" class="normal" /></p>
 
 <p>실행된 메소드들의 호출 스택을 하이라키 형태로 나타낸다.</p>
 
@@ -503,9 +512,9 @@
 </table></div>
 
 <p><br /></p>
-<h2 id="show-related-object">Show Related Object</h2>
+<h2 id="show-related-objects">Show Related Objects</h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106874635-2525a700-6719-11eb-970c-4a30b3d120b2.png" alt="image" class="normal" /></p>
+<p class="normal"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106928125-34771580-6756-11eb-9b05-876b0d8278cd.png" alt="image" /></p>
 
 <p>우측 하단에서 [Show Related Object]를 선택하고 하이라키의 메소드 중 하나를 선택할 경우, 연관된 오브젝트의 이름과 구체적인 정보를 확인할 수 있다.</p>
 
@@ -514,25 +523,36 @@
 <p><br /></p>
 <h2 id="call-stack">Call Stack</h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106875248-ce6c9d00-6719-11eb-99b5-139d3534f337.png" alt="image" class="normal" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106928446-8881fa00-6756-11eb-9d67-984138170f56.png" alt="image" class="normal" /></p>
 
 <p>상단에서 [Call Stacks]를 활성화하고 하이라키에서 GC.Alloc 항목을 선택, Show Related Object에서 하나의 항목을 선택할 경우 메모리 호출 스택을 확인할 수 있다.</p>
 
 <p><br /></p>
 <h2 id="show-calls">Show Calls</h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106875519-1ab7dd00-671a-11eb-9608-15852d43e113.png" alt="image" class="normal" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106928534-9fc0e780-6756-11eb-9ab9-0d4a7066244e.png" alt="image" class="normal" /></p>
 
 <p>우측 하단에서 [Show Calls]를 선택하고 하이라키에서 하나의 항목을 선택할 경우 해당 메소드를 호출한 부분들을 모두 확인할 수 있다.</p>
 
 <p><br /></p>
 <h2 id="deep-profile">Deep Profile</h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106875809-6f5b5800-671a-11eb-8d60-6d7a26dd72d2.png" alt="image" class="normal" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106928722-d1d24980-6756-11eb-85b3-a485b76a74d4.png" alt="image" class="normal" /></p>
 
 <p>윈도우 상단의 [Deep Profile]을 활성화할 경우, 더 구체적인 메소드 호출 스택을 확인할 수 있다.</p>
 
 <p>하지만 프로파일링에 성능을 더 많이 소모하므로 유의해야 한다.</p>
+
+<p><br /></p>
+
+<h1 id="gpu-usage">GPU Usage</h1>
+<hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106928934-18c03f00-6757-11eb-8869-4cae095f30a3.png" alt="image" class="normal" /></p>
+
+<ul>
+  <li>CPU와 유사하게 메소드 호출 스택에 따른 성능을 파악할 수 있으며, 드로우콜 횟수를 확인할 수 있다.</li>
+</ul>
 
 <p><br /></p>
 

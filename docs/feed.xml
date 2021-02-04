@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-04T22:41:07+09:00</updated>
+  <updated>2021-02-05T02:36:16+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -117,6 +117,7 @@
   [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다.
   Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1)
   병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다.
+  모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다.
 
 
 
@@ -127,12 +128,8 @@ Tools
 
   Unity Profiler
     
-      https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html
-    
-  
-  Profile Analyzer
-    
-    ...
+      [Window - Analysis - Profiler (Ctrl+7)]
+      https://docs...
     </summary>
   
 
@@ -174,24 +171,22 @@ Tools
 
 
 
-CPU, GPU(Rendering), Memory 등등 많은 탭들을 통해 현재 유니티 프로젝트에서 측정되는 성능 지표를 확인할 수 있다.
+CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니티 프로젝트에서 측정되는 성능을 확인할 수 있다.
 
 선택된 탭의 구체적인 내용들은 윈도우 하단에 나타난다.
 
-프로젝트 실행 후 그래프의 한 부분을 클릭할 경우, 유니티 프로젝트의 실행이 일시정지되며 해당 프레임의 정보를 볼 수 있다.
+프로젝트 실행 후 그래프의 한 부분을 클릭할 경우, 유니티 프로젝트의 실행이 일시정지되며 해당 프레임의 정보를 확인할 수 있다.
+
+Note
+
+  좌측 상단의 [Profiler Modules]를 통해 측정할 지표들을 선택할 수 있으며, 필요하지 않은 지표들은 불필요하게 성능을 소모하므로 체크 해제하는 것이 좋다.
+
 
 
 
 CPU Usage
 
-프로파일러에서 주로 확인하게 되는 부분으로, 해당 프레임에서 각각의 코드 수행에 걸린 시간과 비율 등을 확인할 수 있다.
-
-그래프 중앙 하단에서 해당 프레임 동안 CPU, GPU 수행에 걸린 시간을 확인할 수 있다.
-
-
-
-
-Timeli...
+프로파일러에서 주로 확인하게 되는 부분으로, 해...
     </summary>
   
 
