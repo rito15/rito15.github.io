@@ -35,40 +35,43 @@ mermaid: true
 
 # OpenGL 라이브러리 종류
 ---
-- GL(Graphics Library)
+## GL(Graphics Library)
   - 저수준의 기본 그래픽스 라이브러리
 
-- GLU(OpenGL Utility Library)
+## GLU(OpenGL Utility Library)
   - GL을 보완하여, 고수준의 함수와 기능들을 제공하는 라이브러리
 
-- GLUT(OpenGL Utility Toolkit)
+## GLUT(OpenGL Utility Toolkit)
   - 다양한 플랫폼에서 사용할 수 있는 보조 라이브러리. 1998년에 버려졌다.
 
-- FreeGLUT
+## FreeGLUT
   - GLUT는 라이센스 때문에 더이상 개발이 불가능하여 사람들이 자유롭게 개발할 수 있도록 새롭게 작성된 라이브러리
 
-- SDL(Simple Directmedia Layer)
+## SDL(Simple Directmedia Layer)
   - OpenGL, Direct3D를 통해 오디오, 키보드, 마우스, 그래픽 하드웨어에 대한 저수준 접근이 가능하도록 설계된 크로스플랫폼 개발 라이브러리
   - Windows, Linux, Mac OS X, Android, iOS 등 다양한 플랫폼을 지원한다.
   - 무료로 이용이 가능하지만, 기능이 너무 많아 프로그램이 무겁다.
 
-- SFML(Simple and Fast Multimedia Library)
+## SFML(Simple and Fast Multimedia Library)
   - 다양한 멀티미디어에 걸쳐 API를 제공하기 위해 설계된 크로스플랫폼 개발 라이브러리
   - System, Window, Graphics, Audio, Network 이렇게 5가지 모듈로 구성되어 있다.
   - C, C++, Ruby, Java, Go, Pthon, Rust 등 다양한 언어를 지원한다.
 
-- GLFW(Graphics Library Framework)
+## GLFW(Graphics Library Framework)
   - OpenGL과 함께 사용하기 위한 경량 유틸리티 라이브러리
   - OpenGL 환경에서 윈도우를 생성하고 마우스, 키보드, 조이스틱 등의 입력을 받아 처리할 수 있다.
   - C언어로 작성되었지만, Ada, C++, C#, Go, Java, Ruby, Rust 등 다양한 언어를 지원한다.
 
-- GLEW(OpenGL Extension Wrangler Library)
+## GLEW(OpenGL Extension Wrangler Library)
   - 크로스플랫폼 C/C++ 확장 라이브러리
   - 하나의 헤더파일만 추가하면 사용할 수 있게 작성되었으며, 더 많은 기능들을 제공한다.
   - 쉐이더 프로그램을 작성할 때 주로 사용된다.
 
-- GLM(OpenGL Mathematics)
+## GLM(OpenGL Mathematics)
   - GLSL 기반 그래픽 소프트웨어에 사용 가능한 C++ 수학 라이브러리
+
+## GLES(OpenGL ES, OpenGL for Embedded Systems)
+  - 스마트폰, PDA와 같이 휴대용 기기의 임베디드 시스템을 위한 API
 
 <br>
 
