@@ -21,31 +21,38 @@ mermaid: true
 ---
 
 ## 1. Unity Editor
-- Unity Profiler
+
+### **Unity Profiler**
   - [Window - Analysis - Profiler (Ctrl+7)]
   - <https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html>
 
-- Profile Analyzer
+### **Profile Analyzer**
   - Package Manager - Prifile Analyzer
   - <https://unity.com/kr/how-to/optimize-your-game-profile-analyzer>
 
-- Memory Profiler
+### **Frame Debugger**
+  - [Window - Analysis - Frame Debugger]
+
+### **Memory Profiler**
   - Package Manager - Memory Profiler [Preview]
   - <https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/>
 
+<br>
 ## 2. Intel CPU/GPU 사용
-- VTune
+### **VTune**
   - <https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html>
 
-- GPA
+### **GPA**
   - <https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html>
 
+<br>
 ## 3. Android
-- Snapdragon Profiler
+### **Snapdragon Profiler**
   - <https://developer.qualcomm.com/software/snapdragon-profiler>
 
+<br>
 ## 4. iOS
-- XCode Frame Debugger
+### **XCode Frame Debugger**
   - <https://developer.apple.com/documentation/metal/frame_capture_debugging_tools>
 
 <br>

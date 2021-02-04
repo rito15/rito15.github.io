@@ -251,6 +251,14 @@ public static class Debug
 
 <br>
 
+## **15. ScriptableObject 활용하기**
+
+게임 내에서 **값이 변하지 않는 공통 데이터**를 사용하는 경우, 필드로 사용하게 되면 동일한 데이터가 객체의 수만큼 메모리를 차지하게 된다.
+
+따라서 스크립터블 오브젝트로 메모리를 절약하는 것이 좋다.
+
+<br>
+
 # References
 ---
 - <https://coderzero.tistory.com/entry/유니티-최적화-유니티-최적화에-대한-이해>
