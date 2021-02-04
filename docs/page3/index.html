@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page3/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page3/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,188 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/frame-rate-checker/">Frame Rate Checker</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+
+  실제 FPS 값을 실시간, 최근 N개의 평균, 최소, 최댓값으로 확인할 수 있습니다.
+  게임 진행 동안 텍스트의 위치, 색상, 크기, GUI 표시 상태를 실시간으로 변경할 수 있습니다.
+
+
+Preview
+
+
+
+
+
+Source Code
+
+
+
+  https://github.com/rito15/Unity_Toys
+
+
+Download
+
+
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Jan 24, 2021,  5:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Jan 24
+  
+
+  <i class="unloaded">2021-01-24T17:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="80 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/job-system/">Job System</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        개념
+
+
+
+  유니티에서 안전한 멀티스레딩을 구현하는 시스템
+  스레드를 별도로 생성하지 않으며, 유니티의 워커스레드에 작업을 지시할 수 있게 한다.
+  잡 대기열에 잡을 배치하면 워커 스레드가 잡 대기열에서 항목을 가져와 실행한다.
+  Native Container를 이용해 잡의 수행 결과를 메인 스레드와 공유한다.
+  버스트 컴파일러를 이용하여 추...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Jan 24, 2021,  1:15 PM +0900"
+  >
+
+  
+  
+
+  
+    Jan 24
+  
+
+  <i class="unloaded">2021-01-24T13:15:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2209 words">12 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1088,194 +1270,6 @@ void MainLight_half(float3 WorldPos, out half3 Direction, ...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/singleton-monobehavior/">Singleton MonoBehavior</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  단순한 상속만으로 모노비헤이비어 클래스를 싱글톤으로 만들어주는 클래스입니다.
-
-
-How To Use
-
-
-
-  클래스명이 Apple일 때 예시로, 다음과 같이 상속받아 사용합니다.
-
-
-public class Apple : Rito.SingletonMonoBehavior&lt;Apple&gt;
-{
-    // Awake 메소드는 반드시 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Jul  8, 2020,  3:30 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul  8, 2020
-  
-
-  <i class="unloaded">2020-07-08T15:30:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="199 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-only-debug/">Unity Editor-only Debug</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있습니다.
-  이를 방지할 수 있게, 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스입니다.
-
-
-How To Use
-
-
-
-  스크립트 상단에 다음과 같이 작성합니다.
-
-
-using Debug = Rito.Debug;
-
-
-Source Code
-
-
-
-  h...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Jul  6, 2020,  3:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul  6, 2020
-  
-
-  <i class="unloaded">2020-07-06T15:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="103 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1829,8 +1823,6 @@ Source Code
     
     
     
-      
-    
   
     
     
@@ -1959,6 +1951,32 @@ Source Code
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -2063,6 +2081,8 @@ Source Code
     
     
     
+      
+    
   
     
     
@@ -2164,22 +2184,6 @@ Source Code
         
         
 
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -2216,6 +2220,9 @@ Source Code
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/cpp/">cpp</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
@@ -2223,9 +2230,6 @@ Source Code
       
         
         <a class="post-tag" href="/tags/attribute/">attribute</a>
-      
-        
-        <a class="post-tag" href="/tags/binding/">binding</a>
       
 
       </div>
@@ -2672,8 +2676,6 @@ Source Code
     
     
     
-      
-    
   
     
     
@@ -2802,6 +2804,32 @@ Source Code
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -2906,6 +2934,8 @@ Source Code
     
     
     
+      
+    
   
     
     
@@ -3007,22 +3037,6 @@ Source Code
         
         
 
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -3054,6 +3068,9 @@ Source Code
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/cpp/">cpp</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
@@ -3061,9 +3078,6 @@ Source Code
       
         
         <a class="post-tag" href="/tags/attribute/">attribute</a>
-      
-        
-        <a class="post-tag" href="/tags/binding/">binding</a>
       
 
     </div>

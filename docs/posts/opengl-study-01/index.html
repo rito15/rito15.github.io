@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="OpenGL 공부 - 01" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"OpenGL 공부 - 01","description":"동기 그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.","dateModified":"2021-01-31T17:18:09+09:00","datePublished":"2021-01-28T00:10:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-01/"},"url":"https://rito15.github.io/posts/opengl-study-01/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"동기 그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.","datePublished":"2021-01-28T00:10:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-01/"},"url":"https://rito15.github.io/posts/opengl-study-01/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 01","dateModified":"2021-01-31T17:18:09+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1284,8 +1284,6 @@
     
     
     
-      
-    
   
     
     
@@ -1414,6 +1412,32 @@
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -1518,6 +1542,8 @@
     
     
     
+      
+    
   
     
     
@@ -1619,22 +1645,6 @@
         
         
 
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -1671,6 +1681,9 @@
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/cpp/">cpp</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
@@ -1678,9 +1691,6 @@
       
         
         <a class="post-tag" href="/tags/attribute/">attribute</a>
-      
-        
-        <a class="post-tag" href="/tags/binding/">binding</a>
       
 
       </div>
@@ -1722,6 +1732,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2272,7 +2308,7 @@ OpenGL의 쉐이더
       
       
       <div class="card">
-        <a href="/posts/opengl-study-02/">
+        <a href="/posts/opengl-study-07/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2289,13 +2325,13 @@ OpenGL의 쉐이더
   
 
   
-    Jan 28
+    Feb  3
   
 
-  <i class="unloaded">2021-01-28T22:09:00+09:00</i>
+  <i class="unloaded">2021-02-03T16:32:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 02</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 07</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2307,22 +2343,35 @@ OpenGL의 쉐이더
                 목표
 
 
-  GLEW 설치 및 적용
+  인덱스 버퍼의 사용과 이해
 
 
 
 
-GLEW 설치
+공부 내용
 
 
-  GLEW : OpenGL Extension Wrangler Library
-  http://glew.sourceforge.net
-  
-    Binary 다운로드
-  
-  프로젝트의 Dependency 폴더 내로 GLEW 폴더 복사
-    
-      glew-2.1.0 폴더를 통째로 가져...
+삼각형 그리기
+
+  삼각형을 하나 그리려면, 버텍스 3개가 필요하다.
+
+
+1
+2
+3
+4
+5
+6
+float positions[6] =
+{
+    -0.5f, -0.5f,
+     0.0f,  0.5f,
+     0.5f, -0.5f,
+};
+
+
+
+  GPU는 전달받은 버텍스들을 순서대로 확인하여...
               </p>
             </div>
           </div>
@@ -2806,8 +2855,6 @@ GLEW 설치
     
     
     
-      
-    
   
     
     
@@ -2936,6 +2983,32 @@ GLEW 설치
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -3040,6 +3113,8 @@ GLEW 설치
     
     
     
+      
+    
   
     
     
@@ -3141,22 +3216,6 @@ GLEW 설치
         
         
 
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -3188,6 +3247,9 @@ GLEW 설치
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/cpp/">cpp</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
@@ -3195,9 +3257,6 @@ GLEW 설치
       
         
         <a class="post-tag" href="/tags/attribute/">attribute</a>
-      
-        
-        <a class="post-tag" href="/tags/binding/">binding</a>
       
 
     </div>

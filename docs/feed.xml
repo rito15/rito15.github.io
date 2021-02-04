@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-03T18:15:44+09:00</updated>
+  <updated>2021-02-04T17:19:05+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,142 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C++ Smart Debugging</title>
+    <link href="https://rito15.github.io/posts/cpp-smart-debugging/" rel="alternate" type="text/html" title="C++ Smart Debugging" />
+    <published>2021-02-04T16:56:00+09:00</published>
+  
+    <updated>2021-02-04T16:56:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cpp-smart-debugging/</id>
+    <content src="https://rito15.github.io/posts/cpp-smart-debugging/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C++" />
+    
+    <category term="C++ Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+C++에는 미리 정의된 동적 매크로가 있다.
+
+__FILE__
+
+  해당 위치의 소스파일 경로를 문자열로 가져온다.
+
+
+__LINE__
+
+  해당 위치의 줄 번호를 정수로 가져온다.
+
+
+
+그리고 매크로의 매개변수를 무조건 스트링으로 변환하여 가져올 수 있는 방법이 존재한다.
+
+#define MACRO(x) #x
+
+  x에 위치한 코드를 문자열로 변환하여 가져온다.
+
+
+
+
+이를 이용하면 해당 소스코드와 실행 위치 정보를 간단히 출력할 수 있다.
+
+#include &amp;lt;iostream&amp;gt;
+using namespace std;
+
+#define ShowCodeInfo(x) cout &amp;lt;&amp;lt; "Code : " &amp;lt;&amp;lt; #x &amp;lt;&amp;lt; endl\
+	&amp;lt;&amp;lt; "Line :...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>OpenGL 공부 - 08</title>
+    <link href="https://rito15.github.io/posts/opengl-study-08/" rel="alternate" type="text/html" title="OpenGL 공부 - 08" />
+    <published>2021-02-04T15:45:00+09:00</published>
+  
+    <updated>2021-02-04T15:45:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-08/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-08/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  OpenGL 내에서 디버깅하기
+
+
+
+
+공부 내용
+
+
+  OpenGL 내에서 에러가 발생하거나 코드를 잘못 작성한 경우, 친절한 에러 메시지보다는 그저 검은 화면을 볼 가능성이 높다.
+
+
+
+
+
+  그래서 디버깅을 하려면, OpenGL에서 제공하는 몇몇 메소드와 매크로를 활용해야 한다.
+
+
+
+
+  
+    glGetError
+    
+      에러가 발생한 경우 에러 플래그를 리턴한다.
+    
+  
+
+
+
+  
+    
+      return GLenum
+      에러 플래그 - GL_NO_ERROR - GL_INVALID_ENUM - GL_INVALID_VALUE - GL_INVALID_OPERATION - GL_INVALID_FRAMEBUFFER_OPERATION - GL_OUT_OF_...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -219,118 +355,6 @@ void main()
 #version 330 core
 
 layout(l...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Vertex/Fragment Shader Bible</title>
-    <link href="https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/" rel="alternate" type="text/html" title="Vertex/Fragment Shader Bible" />
-    <published>2021-02-02T01:00:00+09:00</published>
-  
-    <updated>2021-02-02T01:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/</id>
-    <content src="https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Vertex/Fragment Shader 구성
-
-
-  
-
-
-TODO
-
-
-  
-
-
-
-
-References
-
-
-  
-
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Surface Shader Bible</title>
-    <link href="https://rito15.github.io/posts/unity-surface-shader-bible/" rel="alternate" type="text/html" title="Surface Shader Bible" />
-    <published>2021-02-02T01:00:00+09:00</published>
-  
-    <updated>2021-02-02T01:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-surface-shader-bible/</id>
-    <content src="https://rito15.github.io/posts/unity-surface-shader-bible/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Surface Shader 기본 구성
-
-Shader "Custom/SurfaceShader01"
-{
-    Properties
-    {
-        _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
-    }
-    SubShader
-    {
-        Tags { "RenderType"="Opaque" }
-        LOD 200
-
-        CGPROGRAM
-
-        #pragma surface surf Standard fullforwardshadows
-        #pragma target 3.0
-
-        sampler2D _MainTex;
-
-        st...
     </summary>
   
 

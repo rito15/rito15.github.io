@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="OpenGL 공부 - 07" />
+<meta property="og:title" content="OpenGL 공부 - 08" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목표 인덱스 버퍼의 사용과 이해" />
-<meta property="og:description" content="목표 인덱스 버퍼의 사용과 이해" />
-<link rel="canonical" href="https://rito15.github.io/posts/opengl-study-07/" />
-<meta property="og:url" content="https://rito15.github.io/posts/opengl-study-07/" />
+<meta name="description" content="목표 OpenGL 내에서 디버깅하기" />
+<meta property="og:description" content="목표 OpenGL 내에서 디버깅하기" />
+<link rel="canonical" href="https://rito15.github.io/posts/opengl-study-08/" />
+<meta property="og:url" content="https://rito15.github.io/posts/opengl-study-08/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-02-03T16:32:00+09:00" />
+<meta property="article:published_time" content="2021-02-04T15:45:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="OpenGL 공부 - 07" />
+<meta property="twitter:title" content="OpenGL 공부 - 08" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 인덱스 버퍼의 사용과 이해","datePublished":"2021-02-03T16:32:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-07/"},"url":"https://rito15.github.io/posts/opengl-study-07/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 07","dateModified":"2021-02-03T16:32:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 OpenGL 내에서 디버깅하기","datePublished":"2021-02-04T15:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-08/"},"url":"https://rito15.github.io/posts/opengl-study-08/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 08","dateModified":"2021-02-04T15:45:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>OpenGL 공부 - 07 | Rito15
+  <title>OpenGL 공부 - 08 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>OpenGL 공부 - 07</span>
+        <span>OpenGL 공부 - 08</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>OpenGL 공부 - 07</h1>
+      <h1 data-toc-skip>OpenGL 공부 - 08</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Feb  3, 2021,  4:32 PM +0900"
+    title="Thu, Feb  4, 2021,  3:45 PM +0900"
   >
 
   
   
 
   
-    Feb  3
+    Feb  4
   
 
-  <i class="unloaded">2021-02-03T16:32:00+09:00</i>
+  <i class="unloaded">2021-02-04T15:45:00+09:00</i>
 
 </span>
           by
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1770 words">9 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2477 words">13 min</span>
 
 
           <!-- page views -->
@@ -436,17 +436,134 @@
         <h1 id="목표">목표</h1>
 <hr />
 <ul>
-  <li>인덱스 버퍼의 사용과 이해</li>
+  <li>OpenGL 내에서 디버깅하기</li>
 </ul>
 
 <p><br /></p>
 
 <h1 id="공부-내용">공부 내용</h1>
 <hr />
-
-<h2 id="삼각형-그리기">삼각형 그리기</h2>
 <ul>
-  <li>삼각형을 하나 그리려면, 버텍스 3개가 필요하다.</li>
+  <li>OpenGL 내에서 에러가 발생하거나 코드를 잘못 작성한 경우, 친절한 에러 메시지보다는 그저 검은 화면을 볼 가능성이 높다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106857096-e38a0180-6702-11eb-9b83-30638b84cc77.png" alt="image" /></p>
+
+<ul>
+  <li>그래서 디버깅을 하려면, OpenGL에서 제공하는 몇몇 메소드와 매크로를 활용해야 한다.</li>
+</ul>
+
+<p><br /></p>
+<ul>
+  <li>
+    <h2 id="glgeterror">glGetError</h2>
+    <ul>
+      <li>에러가 발생한 경우 에러 플래그를 리턴한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td>return <code class="language-plaintext highlighter-rouge">GLenum</code></td>
+      <td>에러 플래그<br /> - GL_NO_ERROR<br /> - GL_INVALID_ENUM<br /> - GL_INVALID_VALUE<br /> - GL_INVALID_OPERATION<br /> - GL_INVALID_FRAMEBUFFER_OPERATION<br /> - GL_OUT_OF_MEMORY<br /> - GL_STACK_UNDERFLOW<br /> - GL_STACK_OVERFLOW</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+<h2 id="에러-핸들링을-위한-메소드-작성">에러 핸들링을 위한 메소드 작성</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 해당 지점까지 발생한 에러 메시지를 모두 비워준다.</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">GLClearError</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">glGetError</span><span class="p">()</span> <span class="o">!=</span> <span class="n">GL_NO_ERROR</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 해당 지점까지 발생한 에러 메시지를 출력한다.</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">GLCheckError</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">GLenum</span> <span class="n">error</span> <span class="o">=</span> <span class="n">glGetError</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">string</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">case</span> <span class="n">GL_NO_ERROR</span><span class="p">:</span>          <span class="n">errStr</span> <span class="o">=</span> <span class="s">"No Errors"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_ENUM</span><span class="p">:</span>      <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Enum"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_VALUE</span><span class="p">:</span>     <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Value"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_OPERATION</span><span class="p">:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Operation"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_FRAMEBUFFER_OPERATION</span><span class="p">:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Framebuffer Operation"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_OUT_OF_MEMORY</span><span class="p">:</span>   <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Out of Memory"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_STACK_UNDERFLOW</span><span class="p">:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Stack Underflow"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_STACK_OVERFLOW</span><span class="p">:</span>  <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Stack Overflow"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+
+            <span class="nl">default:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Unknown"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"[OpenGL Error] - "</span> <span class="o">&lt;&lt;</span> <span class="n">errStr</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<ul>
+  <li>디버깅을 할 부분의 상단에 GLClearError();, 하단에 GLCheckError()를 호출하여 에러를 확인할 수 있다.</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="n">GLClearError</span><span class="p">();</span>
+<span class="n">glDrawElements</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">GL_INT</span><span class="p">,</span> <span class="nb">nullptr</span><span class="p">);</span> <span class="c1">// error</span>
+<span class="n">GLCheckError</span><span class="p">();</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106857297-319f0500-6703-11eb-8dc0-9bee5d00d483.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>대신 루프 내내 에러 메시지가 출력되며, 에러를 확인할 부분마다 위아래에 Clear, Check로 감싸줘야 된다는 단점이 있다.</p>
+  </li>
+  <li>
+    <p>따라서 아래처럼 수정한다.</p>
+  </li>
 </ul>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -455,123 +572,119 @@
 4
 5
 6
-</pre></td><td class="rouge-code"><pre><span class="kt">float</span> <span class="n">positions</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span>
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+</pre></td><td class="rouge-code"><pre><span class="c1">// x가 false인 경우 브레이크 포인트를 걸고 중단한다.</span>
+<span class="cp">#define ASSERT(x)  if(!(x)) __debugbreak();
+</span>
+<span class="c1">// 해당 부분의 에러를 검사하여, 에러 발생 시 정보를 출력한다.</span>
+<span class="cp">#define GLCheck(x) GLClearError();\
+                   x;\
+                   ASSERT(GLCheckError(#x, __FILE__, __LINE__))
+</span>
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 해당 지점까지 발생한 에러 메시지를 모두 비워준다.</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">GLClearError</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
-     <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
-     <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>
-<span class="p">};</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">glGetError</span><span class="p">()</span> <span class="o">!=</span> <span class="n">GL_NO_ERROR</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 해당 지점에서 발생한 에러 메시지와 메타 정보를 출력한다.</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">static</span> <span class="kt">bool</span> <span class="nf">GLCheckError</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">function</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">file</span><span class="p">,</span> <span class="kt">int</span> <span class="n">line</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">GLenum</span> <span class="n">error</span> <span class="o">=</span> <span class="n">glGetError</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">string</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">case</span> <span class="n">GL_NO_ERROR</span><span class="p">:</span>          <span class="n">errStr</span> <span class="o">=</span> <span class="s">"No Errors"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_ENUM</span><span class="p">:</span>      <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Enum"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_VALUE</span><span class="p">:</span>     <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Value"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_OPERATION</span><span class="p">:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Operation"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_FRAMEBUFFER_OPERATION</span><span class="p">:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Framebuffer Operation"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_OUT_OF_MEMORY</span><span class="p">:</span>   <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Out of Memory"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_STACK_UNDERFLOW</span><span class="p">:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Stack Underflow"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_STACK_OVERFLOW</span><span class="p">:</span>  <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Stack Overflow"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+
+            <span class="nl">default:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Unknown"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"[OpenGL Error] - "</span> <span class="o">&lt;&lt;</span> <span class="n">errStr</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span>
+             <span class="o">&lt;&lt;</span> <span class="s">"Code : "</span> <span class="o">&lt;&lt;</span> <span class="n">function</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span>
+             <span class="o">&lt;&lt;</span> <span class="s">"Line : "</span> <span class="o">&lt;&lt;</span> <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="s">" : "</span> <span class="o">&lt;&lt;</span> <span class="n">line</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <ul>
-  <li>GPU는 전달받은 버텍스들을 순서대로 확인하여 3개씩 짝지어서 하나의 폴리곤을 그려준다.</li>
-  <li>이 때, 3개의 버텍스가 순서대로 시계 반대 방향으로 위치해야 폴리곤의 전면이 그려진다.</li>
-</ul>
-
-<p><br /></p>
-<h2 id="사각형-그리기">사각형 그리기</h2>
-<ul>
-  <li>사각형을 하나 그리려면 삼각형이 2개 필요하므로, 결국 버텍스 6개가 필요하다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106721396-f5f33500-6647-11eb-8897-9b388e783887.png" alt="" /></p>
-
-<ul>
-  <li>
-    <p>그런데 두 삼각형이 두 개의 버텍스를 공유하므로, 여섯 개의 버텍스를 전달하는건 버텍스를 두 개만큼 손해보는 것과 같다.</p>
-  </li>
-  <li>
-    <p>따라서 버텍스는 네 개만 전달하고, 이를 인덱스 버퍼를 이용해 중복되는 버텍스를 재사용하게 된다.</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106721942-b37e2800-6648-11eb-96fe-bb9ed9f11685.png" alt="image" /></p>
-
-<p><br /></p>
-<h2 id="인덱스-버퍼-사용">인덱스 버퍼 사용</h2>
-
-<ul>
-  <li>Index 데이터 정의</li>
+  <li>이제 에러를 확인하고 싶은 부분에</li>
 </ul>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="n">GLuint</span> <span class="n">indices</span><span class="p">[]</span> <span class="o">=</span>
-<span class="p">{</span>
-    <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
-<span class="p">};</span>
+</pre></td><td class="rouge-code"><pre><span class="n">GLCheck</span><span class="p">(</span><span class="n">glDrawElements</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">GL_INT</span><span class="p">,</span> <span class="nb">nullptr</span><span class="p">));</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <ul>
-  <li>IBO(Index Buffer Object) 생성, 바인딩, 데이터 연결</li>
+  <li>이렇게 GLCheck( )으로 감싸기만 하면 에러가 있을 경우 자동으로 중단점을 걸고 에러 내용, 에러가 발생한 위치 정보, 소스 코드 내용까지 출력하게 된다.</li>
 </ul>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="n">GLuint</span> <span class="n">ibo</span><span class="p">;</span>
-<span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ibo</span><span class="p">);</span>
-<span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_ELEMENT_ARRAY_BUFFER</span><span class="p">,</span> <span class="n">ibo</span><span class="p">);</span>
-<span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_ELEMENT_ARRAY_BUFFER</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">indices</span><span class="p">),</span> <span class="n">indices</span><span class="p">,</span> <span class="n">GL_STATIC_DRAW</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<ul>
-  <li>Window Loop 내에서 그려주기</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>//glDrawArrays(GL_TRIANGLES, 0, 6); // 원래 코드
-glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-</pre></td></tr></tbody></table></code></div></div>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106859058-dd495480-6705-11eb-8892-bb460c86d654.png" alt="image" /></p>
 
 <p><br /></p>
 
 <ul>
-  <li>
-    <h2 id="gldrawelements">glDrawElements</h2>
-    <ul>
-      <li>배열 데이터로부터 프리미티브를 렌더링한다.</li>
-    </ul>
-  </li>
+  <li>응용하여 아래처럼 소스 코드 여러 부분을 묶어 체크할 수도 있고,</li>
 </ul>
 
-<div class="table-wrapper"><table>
-  <tbody>
-    <tr>
-      <td>GLenum <code class="language-plaintext highlighter-rouge">mode</code></td>
-      <td>어떤 프리미티브를 렌더링할지 결정</td>
-    </tr>
-    <tr>
-      <td>GLsizei <code class="language-plaintext highlighter-rouge">count</code></td>
-      <td>렌더링할 버텍스의 개수 지정</td>
-    </tr>
-    <tr>
-      <td>Glenum <code class="language-plaintext highlighter-rouge">type</code></td>
-      <td>indices 배열 엘리먼트의 타입 지정<br /> - GL_UNSIGNED_BYTE<br /> - GL_UNSIGNED_SHORT<br /> - GL_UNSIGNED_INT</td>
-    </tr>
-    <tr>
-      <td>const GLvoid* <code class="language-plaintext highlighter-rouge">indices</code></td>
-      <td>GL_ELEMENT_ARRAY_BUFFER로 바인딩되어<br />현재 버퍼 데이터를 저장하는 배열의 첫 번째 인덱스</td>
-    </tr>
-    <tr>
-      <td>return <code class="language-plaintext highlighter-rouge">void</code></td>
-      <td>리턴 값 없음</td>
-    </tr>
-  </tbody>
-</table></div>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106860095-42517a00-6707-11eb-86ab-547f325de492.png" alt="image" /></p>
 
-<p><br /></p>
+<ul>
+  <li>모든 라인을 각각 체크할 수도 있다.</li>
+</ul>
 
-<h1 id="실행-결과">실행 결과</h1>
-<hr />
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106723312-51262700-664a-11eb-973f-6b59e94c2a2f.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106860276-7c228080-6707-11eb-8f50-1ee7ef156abd.png" alt="image" /></p>
 
 <p><br /></p>
 
@@ -600,6 +713,106 @@ void main()
    color = vec4(0.2, 0.3, 0.8, 1.0);
 };
 </code></pre>
+
+<h2 id="errorhandlerhpp">ErrorHandler.hpp</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+</pre></td><td class="rouge-code"><pre><span class="cp">#pragma once
+</span>
+<span class="c1">// x가 false인 경우 브레이크 포인트를 걸고 중단한다.</span>
+<span class="cp">#define ASSERT(x)  if(!(x)) __debugbreak();
+</span>
+<span class="c1">// 해당 부분의 에러를 검사하여, 에러 발생 시 정보를 출력한다.</span>
+<span class="cp">#define GLCheck(x) GLClearError();\
+                   x;\
+                   ASSERT(GLCheckError(#x, __FILE__, __LINE__))
+</span>
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 해당 지점까지 발생한 에러 메시지를 모두 비워준다.</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">GLClearError</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">glGetError</span><span class="p">()</span> <span class="o">!=</span> <span class="n">GL_NO_ERROR</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 해당 지점에서 발생한 에러 메시지와 메타 정보를 출력한다.</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">static</span> <span class="kt">bool</span> <span class="nf">GLCheckError</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">function</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">file</span><span class="p">,</span> <span class="kt">int</span> <span class="n">line</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">GLenum</span> <span class="n">error</span> <span class="o">=</span> <span class="n">glGetError</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">string</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">case</span> <span class="n">GL_NO_ERROR</span><span class="p">:</span>          <span class="n">errStr</span> <span class="o">=</span> <span class="s">"No Errors"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_ENUM</span><span class="p">:</span>      <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Enum"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_VALUE</span><span class="p">:</span>     <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Value"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_OPERATION</span><span class="p">:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Operation"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_INVALID_FRAMEBUFFER_OPERATION</span><span class="p">:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Invalid Framebuffer Operation"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_OUT_OF_MEMORY</span><span class="p">:</span>   <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Out of Memory"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_STACK_UNDERFLOW</span><span class="p">:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Stack Underflow"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="n">GL_STACK_OVERFLOW</span><span class="p">:</span>  <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Stack Overflow"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+
+            <span class="nl">default:</span> <span class="n">errStr</span> <span class="o">=</span> <span class="s">"Unknown"</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"[OpenGL Error] - "</span> <span class="o">&lt;&lt;</span> <span class="n">errStr</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span>
+             <span class="o">&lt;&lt;</span> <span class="s">"Code : "</span> <span class="o">&lt;&lt;</span> <span class="n">function</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span>
+             <span class="o">&lt;&lt;</span> <span class="s">"Line : "</span> <span class="o">&lt;&lt;</span> <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="s">" : "</span> <span class="o">&lt;&lt;</span> <span class="n">line</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></div></div>
 
 <h2 id="customfunctionshpp">CustomFunctions.hpp</h2>
 
@@ -735,7 +948,6 @@ void main()
 130
 131
 132
-133
 </pre></td><td class="rouge-code"><pre><span class="cp">#pragma once
 </span>
 <span class="k">struct</span> <span class="nc">ShaderProgramSource</span>
@@ -868,7 +1080,6 @@ void main()
 
     <span class="k">return</span> <span class="n">programID</span><span class="p">;</span>
 <span class="p">}</span>
-
 </pre></td></tr></tbody></table></code></div></div>
 
 <h2 id="applicationcpp">Application.cpp</h2>
@@ -1002,6 +1213,8 @@ void main()
 127
 128
 129
+130
+131
 </pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;GL/glew.h&gt;
 #include &lt;GLFW/glfw3.h&gt;
 </span>
@@ -1012,7 +1225,8 @@ void main()
 </span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span class="cp">#include "CustomFunctions.hpp"
+<span class="cp">#include "ErrorHandler.hpp"
+#include "CustomFunctions.hpp"
 </span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
@@ -1113,16 +1327,17 @@ void main()
     <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">))</span>
     <span class="p">{</span>
         <span class="cm">/* Render here */</span>
-        <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+        <span class="n">GLCheck</span><span class="p">(</span><span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);)</span>
 
         <span class="c1">// 폴리곤 그리기</span>
-        <span class="n">glDrawElements</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">GL_UNSIGNED_INT</span><span class="p">,</span> <span class="nb">nullptr</span><span class="p">);</span>
-
+        <span class="c1">//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);</span>
+        <span class="n">GLCheck</span><span class="p">(</span><span class="n">glDrawElements</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">GL_INT</span><span class="p">,</span> <span class="nb">nullptr</span><span class="p">);)</span>
+        
         <span class="cm">/* Swap front and back buffers */</span>
-        <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+        <span class="n">GLCheck</span><span class="p">(</span><span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);)</span>
 
         <span class="cm">/* Poll for and process events */</span>
-        <span class="n">glfwPollEvents</span><span class="p">();</span>
+        <span class="n">GLCheck</span><span class="p">(</span><span class="n">glfwPollEvents</span><span class="p">();)</span>
     <span class="p">}</span>
 
     <span class="c1">// 프로그램 객체 메모리 해제</span>
@@ -1138,7 +1353,7 @@ void main()
 <h1 id="references">References</h1>
 <hr />
 <ul>
-  <li><a href="https://www.youtube.com/watch?v=MXNMC1YAxVQ">https://www.youtube.com/watch?v=MXNMC1YAxVQ</a></li>
+  <li><a href="https://www.youtube.com/watch?v=FBbPWSOQ0-w">https://www.youtube.com/watch?v=FBbPWSOQ0-w</a></li>
 </ul>
 
 
@@ -1197,19 +1412,19 @@ void main()
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 07 - Rito15&url=https://rito15.github.io/posts/opengl-study-07/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 08 - Rito15&url=https://rito15.github.io/posts/opengl-study-08/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 07 - Rito15&u=https://rito15.github.io/posts/opengl-study-07/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 08 - Rito15&u=https://rito15.github.io/posts/opengl-study-08/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=OpenGL 공부 - 07 - Rito15&url=https://rito15.github.io/posts/opengl-study-07/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=OpenGL 공부 - 08 - Rito15&url=https://rito15.github.io/posts/opengl-study-08/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -2148,20 +2363,20 @@ void main()
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -2708,7 +2923,7 @@ OpenGL의 쉐이더
       
       
       <div class="card">
-        <a href="/posts/opengl-study-01/">
+        <a href="/posts/opengl-study-07/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2725,13 +2940,13 @@ OpenGL의 쉐이더
   
 
   
-    Jan 28
+    Feb  3
   
 
-  <i class="unloaded">2021-01-28T00:10:00+09:00</i>
+  <i class="unloaded">2021-02-03T16:32:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 01</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 07</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2740,21 +2955,33 @@ OpenGL의 쉐이더
 
 
 
-                동기
+                목표
 
 
 
-  그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.
+  인덱스 버퍼의 사용과 이해
 
 
 
 
-목표
+공부 내용
+
+
+삼각형 그리기
+
+  삼각형을 하나 그리려면, 버텍스 3개가 필요하다.
+
+
+float positions[6] =
+{
+    -0.5f, -0.5f,
+     0.0f,  0.5f,
+     0.5f, -0.5f,
+};
 
 
 
-  OpenGL의 완전 기초부터 쉐이더 적용까지 모든 과정 공부
-  그래픽스에 대한 전반적인 지식 습득...
+  GPU는 전달받은 버텍스들을 순서대로 확인하여 3개씩 짝지어서 하...
               </p>
             </div>
           </div>
@@ -2777,14 +3004,14 @@ OpenGL의 쉐이더
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/show-property-on-inspector/" class="btn btn-outline-primary">
-    <p>인스펙터에 오토 프로퍼티 표시하기</p>
+  <a href="/posts/opengl-study-07/" class="btn btn-outline-primary">
+    <p>OpenGL 공부 - 07</p>
   </a>
   
 
   
-  <a href="/posts/opengl-study-08/" class="btn btn-outline-primary">
-    <p>OpenGL 공부 - 08</p>
+  <a href="/posts/cpp-smart-debugging/" class="btn btn-outline-primary">
+    <p>C++ Smart Debugging</p>
   </a>
   
 

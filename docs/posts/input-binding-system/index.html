@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Input Binding System" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Input Binding System","description":"목표 에디터 및 인게임에서 언제든 기능에 연결된 사용자 마우스, 키보드 바인딩을 변경할 수 있는 기능 구현 전체 입력 바인딩을 직렬화하여 저장하고 불러올 수 있는 기능 구현","dateModified":"2021-01-31T17:18:09+09:00","datePublished":"2021-01-30T16:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/input-binding-system/"},"url":"https://rito15.github.io/posts/input-binding-system/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 에디터 및 인게임에서 언제든 기능에 연결된 사용자 마우스, 키보드 바인딩을 변경할 수 있는 기능 구현 전체 입력 바인딩을 직렬화하여 저장하고 불러올 수 있는 기능 구현","datePublished":"2021-01-30T16:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/input-binding-system/"},"url":"https://rito15.github.io/posts/input-binding-system/","author":{"@type":"Person","name":"Rito15"},"headline":"Input Binding System","dateModified":"2021-01-31T17:18:09+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1537,8 +1537,6 @@
     
     
     
-      
-    
   
     
     
@@ -1667,6 +1665,32 @@
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -1771,6 +1795,8 @@
     
     
     
+      
+    
   
     
     
@@ -1872,22 +1898,6 @@
         
         
 
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -1924,6 +1934,9 @@
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/cpp/">cpp</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
@@ -1931,9 +1944,6 @@
       
         
         <a class="post-tag" href="/tags/attribute/">attribute</a>
-      
-        
-        <a class="post-tag" href="/tags/binding/">binding</a>
       
 
       </div>
@@ -1975,6 +1985,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2404,74 +2440,6 @@
       
       
       <div class="card">
-        <a href="/posts/popup-ui-management-system/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 31
-  
-
-  <i class="unloaded">2021-01-31T20:23:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Popup UI Management System</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목표
-
-
-  팝업 UI 관리 시스템 구현
-
-
-
-
-게임의 UI
-
-
-  온라인 PC게임을 예로 들었을 때, 다양한 형태의 UI들이 존재한다.
-  화면 예시 : Smilegate RPG ‘LostARK’
-
-
-1. 전체화면 UI
-
-  크기가 화면 전체에 해당하는 UI
-  예 : 상점, 캐시 샵
-
-
-
-
-2. 고정형 UI
-
-  고정된 위치에 항상 존재하는 UI
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/behavior-tree/">
           <div class="card-body">
             <!--
@@ -2566,6 +2534,59 @@
 
 
 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/fog-of-war/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 20
+  
+
+  <i class="unloaded">2021-01-20T21:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Fog of War</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                개념
+
+
+
+  맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다.
+  지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0,
+  지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8,
+  지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
+
+
+
+[스타크래프트2 게...
               </p>
             </div>
           </div>
@@ -3049,8 +3070,6 @@
     
     
     
-      
-    
   
     
     
@@ -3179,6 +3198,32 @@
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -3283,6 +3328,8 @@
     
     
     
+      
+    
   
     
     
@@ -3384,22 +3431,6 @@
         
         
 
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-      
-    
   
     
     
@@ -3431,6 +3462,9 @@
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/cpp/">cpp</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
@@ -3438,9 +3472,6 @@
       
         
         <a class="post-tag" href="/tags/attribute/">attribute</a>
-      
-        
-        <a class="post-tag" href="/tags/binding/">binding</a>
       
 
     </div>
