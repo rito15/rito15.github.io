@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-04T17:19:05+09:00</updated>
+  <updated>2021-02-04T22:41:07+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,185 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Unity Script Optimization</title>
+    <link href="https://rito15.github.io/posts/unity-script-optimization/" rel="alternate" type="text/html" title="Unity Script Optimization" />
+    <published>2021-02-04T19:30:00+09:00</published>
+  
+    <updated>2021-02-04T19:30:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-script-optimization/</id>
+    <content src="https://rito15.github.io/posts/unity-script-optimization/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Tips
+
+
+1. GetComponent(), Find() 메소드 반복 호출하지 않기
+
+너무나 기본적인 것이라 간단히 짚고 넘어가지만,
+매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
+항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.
+
+
+
+2. 필요하지 않은 경우, new로 생성하지 않기
+
+클래스 타입으로 생성한 객체는 항상 GC의 먹이가 된다.
+따라서 가능하면 한 번만 생성하고 이후에는 재사용 하는 방식을 선택해야 한다.
+
+데이터 클래스의 경우, 대신 구조체를 사용하는 것도 좋다.
+
+
+
+3. 구조체 사용하기
+
+
+  http://clarkkromenaker.com/post/csharp-structs/
+
+
+동일한 데이터를 하나는 구조체, 하나는 ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Unity Profiling</title>
+    <link href="https://rito15.github.io/posts/unity-profiling/" rel="alternate" type="text/html" title="Unity Profiling" />
+    <published>2021-02-04T19:30:00+09:00</published>
+  
+    <updated>2021-02-04T19:30:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-profiling/</id>
+    <content src="https://rito15.github.io/posts/unity-profiling/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+  프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.
+  [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다.
+  Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1)
+  병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다.
+
+
+
+Tools
+
+
+1. Unity Editor
+
+  Unity Profiler
+    
+      https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html
+    
+  
+  Profile Analyzer
+    
+    ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Unity Profiler Window</title>
+    <link href="https://rito15.github.io/posts/unity-profiler-window/" rel="alternate" type="text/html" title="Unity Profiler Window" />
+    <published>2021-02-04T17:50:00+09:00</published>
+  
+    <updated>2021-02-04T17:50:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-profiler-window/</id>
+    <content src="https://rito15.github.io/posts/unity-profiler-window/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      유니티 프로파일러
+
+[Window] - [Analysis] - [Profiler]를 통해 프로파일러 윈도우를 열 수 있다.
+
+
+
+CPU, GPU(Rendering), Memory 등등 많은 탭들을 통해 현재 유니티 프로젝트에서 측정되는 성능 지표를 확인할 수 있다.
+
+선택된 탭의 구체적인 내용들은 윈도우 하단에 나타난다.
+
+프로젝트 실행 후 그래프의 한 부분을 클릭할 경우, 유니티 프로젝트의 실행이 일시정지되며 해당 프레임의 정보를 볼 수 있다.
+
+
+
+CPU Usage
+
+프로파일러에서 주로 확인하게 되는 부분으로, 해당 프레임에서 각각의 코드 수행에 걸린 시간과 비율 등을 확인할 수 있다.
+
+그래프 중앙 하단에서 해당 프레임 동안 CPU, GPU 수행에 걸린 시간을 확인할 수 있다.
+
+
+
+
+Timeli...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -149,212 +328,6 @@ using namespace std;
     
       return GLenum
       에러 플래그 - GL_NO_ERROR - GL_INVALID_ENUM - GL_INVALID_VALUE - GL_INVALID_OPERATION - GL_INVALID_FRAMEBUFFER_OPERATION - GL_OUT_OF_...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 07</title>
-    <link href="https://rito15.github.io/posts/opengl-study-07/" rel="alternate" type="text/html" title="OpenGL 공부 - 07" />
-    <published>2021-02-03T16:32:00+09:00</published>
-  
-    <updated>2021-02-03T16:32:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-07/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-07/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  인덱스 버퍼의 사용과 이해
-
-
-
-
-공부 내용
-
-
-삼각형 그리기
-
-  삼각형을 하나 그리려면, 버텍스 3개가 필요하다.
-
-
-float positions[6] =
-{
-    -0.5f, -0.5f,
-     0.0f,  0.5f,
-     0.5f, -0.5f,
-};
-
-
-
-  GPU는 전달받은 버텍스들을 순서대로 확인하여 3개씩 짝지어서 하나의 폴리곤을 그려준다.
-  이 때, 3개의 버텍스가 순서대로 시계 반대 방향으로 위치해야 폴리곤의 전면이 그려진다.
-
-
-
-사각형 그리기
-
-  사각형을 하나 그리려면 삼각형이 2개 필요하므로, 결국 버텍스 6개가 필요하다.
-
-
-
-
-
-  
-    그런데 두 삼각형이 두 개의 버텍스를 공유하므로, 여섯 개의 버텍스를 전달하는건 버텍스를 두 개만큼 손해보는 것과 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>인스펙터에 오토 프로퍼티 표시하기</title>
-    <link href="https://rito15.github.io/posts/show-property-on-inspector/" rel="alternate" type="text/html" title="인스펙터에 오토 프로퍼티 표시하기" />
-    <published>2021-02-02T17:08:00+09:00</published>
-  
-    <updated>2021-02-02T17:08:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/show-property-on-inspector/</id>
-    <content src="https://rito15.github.io/posts/show-property-on-inspector/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-public GameObject Property1 =&amp;gt; Field1;
-private GameObject Field1;
-
-
-이런 형태의 프로퍼티라면,
-
-public GameObject Property1 =&amp;gt; field1;
-
-[SerializeField]
-private GameObject field1;
-
-
-이렇게 대상 필드에 [SerializeField]를 붙여서 인스펙터에 표시할 수 있다.
-
-하지만
-
-[SerializeField]
-public GameObject Property2 { get; private set; }
-
-
-이런 오토 속성 프로퍼티는 프로퍼티 앞에 [SerializeField]를 붙여도 인스펙터에 표시되지 않는다.
-
-그런데,
-
-[field: SerializeField...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 06</title>
-    <link href="https://rito15.github.io/posts/opengl-study-06/" rel="alternate" type="text/html" title="OpenGL 공부 - 06" />
-    <published>2021-02-02T14:21:00+09:00</published>
-  
-    <updated>2021-02-02T14:21:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-06/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-06/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  쉐이더를 파일로 분리하여, 파일로부터 읽어와 사용하기
-
-
-
-
-공부 내용
-
-
-쉐이더 파일 작성하기
-
-  솔루션 디렉터리 - [Resources/Shaders] 폴더 생성
-  Shaders 폴더 내에 [Basic.shader] 파일 생성
-  속성 - 디버깅 - 작업 디렉터리에 $(ProjectDir)가 포함되어 있으므로 상대경로에서 불러오기 가능
-  기존의 쉐이더 코드를 옮겨와 약간 수정하여 내용 작성
-
-
-#shader vertex
-#version 330 core
-
-layout(location = 0) in vec4 position;
-
-void main()
-{
-   gl_Position = position;
-};
-
-#shader fragment
-#version 330 core
-
-layout(l...
     </summary>
   
 

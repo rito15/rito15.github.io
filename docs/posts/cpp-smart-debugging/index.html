@@ -868,50 +868,6 @@ if(x != value) {        \
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -976,40 +932,10 @@ if(x != value) {        \
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
   
     
     
@@ -1174,6 +1100,199 @@ if(x != value) {        \
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1294,26 +1413,6 @@ if(x != value) {        \
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -1400,26 +1499,6 @@ if(x != value) {        \
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
     
   
@@ -1437,10 +1516,16 @@ if(x != value) {        \
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1477,16 +1562,16 @@ if(x != value) {        \
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/profiling/">profiling</a>
+      
+        
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
-      
-        
-        <a class="post-tag" href="/tags/ui/">ui</a>
-      
-        
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
       
 
       </div>
@@ -1533,6 +1618,45 @@ if(x != value) {        \
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -1982,9 +2106,6 @@ if(x != value) {        \
   
     
     
-  
-    
-    
       
       
         
@@ -2066,7 +2187,7 @@ if(x != value) {        \
       
       
       <div class="card">
-        <a href="/posts/opengl-study-08/">
+        <a href="/posts/unity-script-optimization/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2086,10 +2207,10 @@ if(x != value) {        \
     Feb  4
   
 
-  <i class="unloaded">2021-02-04T15:45:00+09:00</i>
+  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 08</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Script Optimization</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2098,34 +2219,20 @@ if(x != value) {        \
 
 
 
-                목표
+                Tips
+
+
+1. GetComponent(), Find() 메소드 반복 호출하지 않기
+
+너무나 기본적인 것이라 간단히 짚고 넘어가지만,
+매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
+항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.
 
 
 
-  OpenGL 내에서 디버깅하기
+2. 필요하지 않은 경우, new로 생성하지 않기
 
-
-
-
-공부 내용
-
-
-
-  OpenGL 내에서 에러가 발생하거나 코드를 잘못 작성한 경우, 친절한 에러 메시지보다는 그저 검은 화면을 볼 가능성이 높다.
-
-
-
-
-
-  그래서 디버깅을 하려면, OpenGL에서 제공하는 몇몇 메소드와 매크로를 활용해야 한다.
-
-
-
-
-  
-    glGetError
-    
-  ...
+클...
               </p>
             </div>
           </div>
@@ -2135,7 +2242,7 @@ if(x != value) {        \
       
       
       <div class="card">
-        <a href="/posts/opengl-study-07/">
+        <a href="/posts/unity-profiling/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2152,13 +2259,13 @@ if(x != value) {        \
   
 
   
-    Feb  3
+    Feb  4
   
 
-  <i class="unloaded">2021-02-03T16:32:00+09:00</i>
+  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 07</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Profiling</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2167,33 +2274,12 @@ if(x != value) {        \
 
 
 
-                목표
+                Note
 
 
-
-  인덱스 버퍼의 사용과 이해
-
-
-
-
-공부 내용
-
-
-삼각형 그리기
-
-  삼각형을 하나 그리려면, 버텍스 3개가 필요하다.
-
-
-float positions[6] =
-{
-    -0.5f, -0.5f,
-     0.0f,  0.5f,
-     0.5f, -0.5f,
-};
-
-
-
-  GPU는 전달받은 버텍스들을 순서대로 확인하여 3개씩 짝지어서 하...
+  프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.
+  [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다.
+  Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -...
               </p>
             </div>
           </div>
@@ -2222,9 +2308,9 @@ float positions[6] =
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/unity-profiler-window/" class="btn btn-outline-primary">
+    <p>Unity Profiler Window</p>
+  </a>
   
 
 </div>
@@ -2465,50 +2551,6 @@ float positions[6] =
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2573,40 +2615,10 @@ float positions[6] =
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
   
     
     
@@ -2771,6 +2783,199 @@ float positions[6] =
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2891,26 +3096,6 @@ float positions[6] =
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -2997,26 +3182,6 @@ float positions[6] =
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
     
   
@@ -3034,10 +3199,16 @@ float positions[6] =
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -3069,16 +3240,16 @@ float positions[6] =
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
+        <a class="post-tag" href="/tags/profiling/">profiling</a>
+      
+        
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
+      
+        
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
-      
-        
-        <a class="post-tag" href="/tags/ui/">ui</a>
-      
-        
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
       
 
     </div>

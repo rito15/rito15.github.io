@@ -1,6 +1,51 @@
 [
   
   {
+    "title": "Unity Script Optimization",
+    "url": "/posts/unity-script-optimization/",
+    "categories": "Unity, Unity Study",
+    "tags": "unity, csharp, profiling, optimization",
+    "date": "2021-02-04 19:30:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Tips1. GetComponent(), Find() 메소드 반복 호출하지 않기너무나 기본적인 것이라 간단히 짚고 넘어가지만,매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.2. 필요하지 않은 경우, new로 생성하지 않기클래스 타입으로 생성한 객체는 항상 GC의 먹이가 된다.따라서 가능하면 한 번만 생성하고 이후에는 재사용 하는 방식을 선택해야 한다.데이터 클래스의 경우, 대신 구조체를 사용하는 것도 좋다.3. 구조체 사..."
+  },
+  
+  {
+    "title": "Unity Profiling",
+    "url": "/posts/unity-profiling/",
+    "categories": "Unity, Unity Study",
+    "tags": "unity, csharp, profiling, optimization",
+    "date": "2021-02-04 19:30:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Note  프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.  [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다.  Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1)  병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다.Tools1. Unity Editor  Unity Profiler          https://docs.un..."
+  },
+  
+  {
+    "title": "Unity Profiler Window",
+    "url": "/posts/unity-profiler-window/",
+    "categories": "Unity, Unity Study",
+    "tags": "unity, csharp, profiling",
+    "date": "2021-02-04 17:50:00 +0900",
+    
+
+
+
+
+
+    "snippet": "유니티 프로파일러[Window] - [Analysis] - [Profiler]를 통해 프로파일러 윈도우를 열 수 있다.CPU, GPU(Rendering), Memory 등등 많은 탭들을 통해 현재 유니티 프로젝트에서 측정되는 성능 지표를 확인할 수 있다.선택된 탭의 구체적인 내용들은 윈도우 하단에 나타난다.프로젝트 실행 후 그래프의 한 부분을 클릭할 경우, 유니티 프로젝트의 실행이 일시정지되며 해당 프레임의 정보를 볼 수 있다.CPU Usage프로파일러에서 주로 확인하게 되는 부분으로, 해당 프레임에서 각각의 코드 수행에 걸린..."
+  },
+  
+  {
     "title": "C++ Smart Debugging",
     "url": "/posts/cpp-smart-debugging/",
     "categories": "C++, C++ Memo",
