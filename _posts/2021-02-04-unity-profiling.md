@@ -138,7 +138,7 @@ private void SomeMethod()
 <br>
 ## **Rendering and VSync markers**
 
-- 모두 CPU가 GPU를 기다리는 시간과 GPU의 소요시간을 포함하는 경우로, GPU 바운드에 해당한다.
+- CPU가 GPU를 기다리는 시간과 GPU의 소요시간을 포함하는 경우로, 모두 GPU 바운드에 해당한다.
   - `WaitForTargetFPS`
   - `Gfx.ProcessCommands`
   - `Gfx.WaitForCommands`
