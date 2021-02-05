@@ -917,50 +917,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -975,31 +931,6 @@
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1129,16 +1060,6 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -1163,6 +1084,95 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
   
     
     
@@ -1595,10 +1605,10 @@
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/profiling/">profiling</a>
@@ -1657,6 +1667,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2164,54 +2200,6 @@
       
       
       <div class="card">
-        <a href="/posts/behavior-tree/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan  5
-  
-
-  <i class="unloaded">2021-01-05T00:26:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Behavior Tree</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                개념
-
-
-
-  FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
-  FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
-  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-profiler-window/">
           <div class="card-body">
             <!--
@@ -2264,7 +2252,7 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
       
       
       <div class="card">
-        <a href="/posts/fog-of-war/">
+        <a href="/posts/unity-profiling/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2281,13 +2269,60 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
   
 
   
-    Jan 20
+    Feb  4
   
 
-  <i class="unloaded">2021-01-20T21:00:00+09:00</i>
+  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Fog of War</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Profiling</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+  프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.
+  [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다.
+  Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/behavior-tree/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan  5
+  
+
+  <i class="unloaded">2021-01-05T00:26:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Behavior Tree</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2299,14 +2334,10 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
                 개념
 
 
-  맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다.
-  지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0,
-  지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8,
-  지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
 
-
-
-[스타크래프트2 게임...
+  FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
+  FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
+  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
               </p>
             </div>
           </div>
@@ -2588,50 +2619,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2646,31 +2633,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2800,16 +2762,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -2834,6 +2786,95 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
   
     
     
@@ -3261,10 +3302,10 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/profiling/">profiling</a>

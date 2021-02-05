@@ -878,50 +878,6 @@ if(x != value) {        \
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -936,31 +892,6 @@ if(x != value) {        \
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1090,16 +1021,6 @@ if(x != value) {        \
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -1124,6 +1045,95 @@ if(x != value) {        \
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
   
     
     
@@ -1556,10 +1566,10 @@ if(x != value) {        \
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/profiling/">profiling</a>
@@ -1618,6 +1628,32 @@ if(x != value) {        \
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2200,7 +2236,7 @@ if(x != value) {        \
       
       
       <div class="card">
-        <a href="/posts/opengl-study-09/">
+        <a href="/posts/unity-transparent-stencil/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2217,13 +2253,13 @@ if(x != value) {        \
   
 
   
-    Feb  5
+    Feb  6
   
 
-  <i class="unloaded">2021-02-05T15:20:00+09:00</i>
+  <i class="unloaded">2021-02-06T01:29:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 09</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 투명 쉐이더와 스텐실</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2232,40 +2268,13 @@ if(x != value) {        \
 
 
 
-                목표
+                불투명과 투명
 
 
-  uniform 변수, VAO에 대한 이해 및 사용
+불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.
 
-
-
-
-1. uniform
-
-
-uniform이란?
-
-  OpenGL에서 쉐이더로 전달하는 글로벌 변수
-
-
-
-쉐이더에서 uniform 변수 선언 및 사용
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-#shader fragment
-#version 330 core
-
-layout(location ...
+유니티로 설명하자면 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 지정하는데 
+지정한 숫자가 작은 순서대로 그리게 되며, 기본적으로 Opaque는 2000, Transparent는 3000의 값을...
               </p>
             </div>
           </div>
@@ -2275,7 +2284,7 @@ layout(location ...
       
       
       <div class="card">
-        <a href="/posts/unity-script-optimization/">
+        <a href="/posts/unity-shader-compilation/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2292,13 +2301,13 @@ layout(location ...
   
 
   
-    Feb  4
+    Feb  6
   
 
-  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
+  <i class="unloaded">2021-02-06T01:25:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Script Optimization</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 모음</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2307,20 +2316,25 @@ layout(location ...
 
 
 
-                Tips
-
-
-1. GetComponent(), Find() 메소드 반복 호출하지 않기
-
-너무나 기본적인 것이라 간단히 짚고 넘어가지만,
-매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
-항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.
+                Render Depth
 
 
 
-2. 필요하지 않은 경우, new로 생성하지 않기
+  단순히 뎁스만 색상으로 보여주는 쉐이더
 
-클...
+
+
+
+Shader "Render Depth"
+{
+    Properties
+    {
+        _Multiplier("Multiplier", Float) = 50
+    }
+
+    SubShader
+    {
+        Tags { "RenderType" = "Opaq...
               </p>
             </div>
           </div>
@@ -2602,50 +2616,6 @@ layout(location ...
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2660,31 +2630,6 @@ layout(location ...
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2814,16 +2759,6 @@ layout(location ...
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -2848,6 +2783,95 @@ layout(location ...
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
   
     
     
@@ -3275,10 +3299,10 @@ layout(location ...
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/profiling/">profiling</a>

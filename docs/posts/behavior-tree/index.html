@@ -994,50 +994,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1052,31 +1008,6 @@
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1206,16 +1137,6 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -1240,6 +1161,95 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
   
     
     
@@ -1672,10 +1682,10 @@
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/profiling/">profiling</a>
@@ -1734,6 +1744,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2293,7 +2329,7 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
       
       
       <div class="card">
-        <a href="/posts/ray-marching/">
+        <a href="/posts/unity-profiling/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2310,13 +2346,13 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
   
 
   
-    Jan 19
+    Feb  4
   
 
-  <i class="unloaded">2021-01-19T23:15:00+09:00</i>
+  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Ray Marching</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Profiling</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2325,20 +2361,12 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
 
 
 
-                레이 마칭이란?
+                Note
 
 
-
-  
-    폴리곤의 정점 정보를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 표면의 정보를 얻어 오브젝트를 그려내는 기법
-  
-  
-    레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.
-  
-
-
-
-...
+  프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.
+  [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다.
+  Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -...
               </p>
             </div>
           </div>
@@ -2348,7 +2376,7 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
       
       
       <div class="card">
-        <a href="/posts/fog-of-war/">
+        <a href="/posts/unity-script-optimization/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2365,13 +2393,13 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
   
 
   
-    Jan 20
+    Feb  4
   
 
-  <i class="unloaded">2021-01-20T21:00:00+09:00</i>
+  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Fog of War</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Script Optimization</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2380,17 +2408,20 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
 
 
 
-                개념
+                Tips
 
 
-  맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다.
-  지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0,
-  지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8,
-  지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
+1. GetComponent(), Find() 메소드 반복 호출하지 않기
+
+너무나 기본적인 것이라 간단히 짚고 넘어가지만,
+매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
+항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.
 
 
 
-[스타크래프트2 게임...
+2. 필요하지 않은 경우, new로 생성하지 않기
+
+클...
               </p>
             </div>
           </div>
@@ -2662,50 +2693,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2720,31 +2707,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2874,16 +2836,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -2908,6 +2860,95 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
   
     
     
@@ -3335,10 +3376,10 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/profiling/">profiling</a>
