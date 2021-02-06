@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-06T03:36:01+09:00</updated>
+  <updated>2021-02-06T16:20:39+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,75 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>OpenGL 공부 - 10</title>
+    <link href="https://rito15.github.io/posts/opengl-study-10/" rel="alternate" type="text/html" title="OpenGL 공부 - 10" />
+    <published>2021-02-06T15:20:00+09:00</published>
+  
+    <updated>2021-02-06T15:20:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-10/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-10/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  다른 강좌로 새롭게 시작
+  GLM, SOIL2 설치
+
+
+
+
+새로운 시작
+
+
+새로운 강좌를 선택한 김에 기존의 파일들을 날려버리고 구조 변경
+
+
+
+공부 내용
+
+
+GLM ?
+
+  OpenGL Mathematics, 수학 라이브러리.
+  http://glm.g-truc.net/0.9.8/index.html 에서 받을 수 있다.
+  
+    이제는 익숙하게 Dependencies 폴더에 넣고 GLM 포함경로 설정
+  
+  libs.h에 아래처럼 추가
+
+
+#include &amp;lt;GLM/glm.hpp&amp;gt;
+#include &amp;lt;GLM/vec2.hpp&amp;gt;
+#include &amp;lt;GLM/vec3.hpp&amp;gt;
+#include &amp;lt;GLM/vec4.hpp&amp;gt;
+#include &amp;lt;GLM/m...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -281,61 +350,6 @@ OpenGL에서 uniform 변수 선언 및 전달
 
 
 동일한 데이터를 하나는 구조체, 하나는 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Unity Profiling</title>
-    <link href="https://rito15.github.io/posts/unity-profiling/" rel="alternate" type="text/html" title="Unity Profiling" />
-    <published>2021-02-04T19:30:00+09:00</published>
-  
-    <updated>2021-02-05T04:27:44+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-profiling/</id>
-    <content src="https://rito15.github.io/posts/unity-profiling/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-  프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.
-  [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다.
-  Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1)
-  병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다.
-  모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다.
-
-
-
-Tools
-
-
-1. Unity Editor
-
-Unity Profiler
-
-  [Window - Analysis - Profiler (Ctrl+7)]
-  https://docs.unity3d.com/k...
     </summary>
   
 

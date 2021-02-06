@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Unity Profiling" />
+<meta property="og:title" content="OpenGL 공부 - 10" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다. 모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다." />
-<meta property="og:description" content="Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다. 모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다." />
-<link rel="canonical" href="https://rito15.github.io/posts/unity-profiling/" />
-<meta property="og:url" content="https://rito15.github.io/posts/unity-profiling/" />
+<meta name="description" content="목표 다른 강좌로 새롭게 시작 GLM, SOIL2 설치" />
+<meta property="og:description" content="목표 다른 강좌로 새롭게 시작 GLM, SOIL2 설치" />
+<link rel="canonical" href="https://rito15.github.io/posts/opengl-study-10/" />
+<meta property="og:url" content="https://rito15.github.io/posts/opengl-study-10/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-02-04T19:30:00+09:00" />
+<meta property="article:published_time" content="2021-02-06T15:20:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Unity Profiling" />
+<meta property="twitter:title" content="OpenGL 공부 - 10" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다. 모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다.","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-profiling/"},"url":"https://rito15.github.io/posts/unity-profiling/","author":{"@type":"Person","name":"Rito15"},"headline":"Unity Profiling","dateModified":"2021-02-05T04:27:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 다른 강좌로 새롭게 시작 GLM, SOIL2 설치","datePublished":"2021-02-06T15:20:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-10/"},"url":"https://rito15.github.io/posts/opengl-study-10/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 10","dateModified":"2021-02-06T15:20:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Unity Profiling | Rito15
+  <title>OpenGL 공부 - 10 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>Unity Profiling</span>
+        <span>OpenGL 공부 - 10</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -347,20 +347,6 @@
 
 
 
-  
-
-  
-
-  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
-  
-  
-
-  
-
-  
-
-
-
 <!-- return -->
 <div class="row">
 
@@ -368,7 +354,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Unity Profiling</h1>
+      <h1 data-toc-skip>OpenGL 공부 - 10</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +371,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Thu, Feb  4, 2021,  7:30 PM +0900"
+    title="Sat, Feb  6, 2021,  3:20 PM +0900"
   >
 
   
   
 
   
-    Feb  4
+    Feb  6
   
 
-  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
+  <i class="unloaded">2021-02-06T15:20:00+09:00</i>
 
 </span>
           by
@@ -406,35 +392,6 @@
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Feb  5, 2021,  4:27 AM +0900"
-  >
-
-  
-  
-
-  
-    Feb  5
-  
-
-  <i class="unloaded">2021-02-05T04:27:44+09:00</i>
-
-</span>
-          </span>
           
 
           <!-- read time -->
@@ -448,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1141 words">6 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="750 words">4 min</span>
 
 
           <!-- page views -->
@@ -462,79 +419,85 @@
 
         
 
-        <h1 id="note">Note</h1>
+        <h1 id="목표">목표</h1>
 <hr />
-<ul class="task-list">
-  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.</li>
-  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />[Edit - Project Settings - Quliaty - Other]에서 <code class="language-plaintext highlighter-rouge">VSync</code>가 설정되어 있는지 확인한다.</li>
-  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" /><code class="language-plaintext highlighter-rouge">Application.targetFrameRate</code>가 설정되어 있는지 확인한다(미설정 시 -1)</li>
-  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다.</li>
-  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다.</li>
+<ul>
+  <li>다른 강좌로 새롭게 시작</li>
+  <li>GLM, SOIL2 설치</li>
 </ul>
 
 <p><br /></p>
-<h1 id="tools">Tools</h1>
+
+<h1 id="새로운-시작">새로운 시작</h1>
 <hr />
 
-<h2 id="1-unity-editor">1. Unity Editor</h2>
-
-<h3 id="unity-profiler"><strong>Unity Profiler</strong></h3>
-<ul>
-  <li>[Window - Analysis - Profiler (Ctrl+7)]</li>
-  <li><a href="https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html">https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html</a></li>
-</ul>
-
-<h3 id="profile-analyzer"><strong>Profile Analyzer</strong></h3>
-<ul>
-  <li>Package Manager - Prifile Analyzer</li>
-  <li><a href="https://unity.com/kr/how-to/optimize-your-game-profile-analyzer">https://unity.com/kr/how-to/optimize-your-game-profile-analyzer</a></li>
-</ul>
-
-<h3 id="frame-debugger"><strong>Frame Debugger</strong></h3>
-<ul>
-  <li>[Window - Analysis - Frame Debugger]</li>
-</ul>
-
-<h3 id="memory-profiler"><strong>Memory Profiler</strong></h3>
-<ul>
-  <li>Package Manager - Memory Profiler [Preview]</li>
-  <li><a href="https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/">https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/</a></li>
-</ul>
-
-<p><br /></p>
-<h2 id="2-intel-cpugpu-사용">2. Intel CPU/GPU 사용</h2>
-<h3 id="vtune"><strong>VTune</strong></h3>
-<ul>
-  <li><a href="https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html">https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html</a></li>
-</ul>
-
-<h3 id="gpa"><strong>GPA</strong></h3>
-<ul>
-  <li><a href="https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html">https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html</a></li>
-</ul>
-
-<p><br /></p>
-<h2 id="3-android">3. Android</h2>
-<h3 id="snapdragon-profiler"><strong>Snapdragon Profiler</strong></h3>
-<ul>
-  <li><a href="https://developer.qualcomm.com/software/snapdragon-profiler">https://developer.qualcomm.com/software/snapdragon-profiler</a></li>
-</ul>
-
-<p><br /></p>
-<h2 id="4-ios">4. iOS</h2>
-<h3 id="xcode-frame-debugger"><strong>XCode Frame Debugger</strong></h3>
-<ul>
-  <li><a href="https://developer.apple.com/documentation/metal/frame_capture_debugging_tools">https://developer.apple.com/documentation/metal/frame_capture_debugging_tools</a></li>
-</ul>
+<p>새로운 강좌를 선택한 김에 기존의 파일들을 날려버리고 구조 변경</p>
 
 <p><br /></p>
 
-<h1 id="unity-profiler-1">Unity Profiler</h1>
+<h1 id="공부-내용">공부 내용</h1>
 <hr />
 
-<h1 id="custom-profiler-tags"><strong>Custom Profiler Tags</strong></h1>
+<h2 id="glm-">GLM ?</h2>
+<ul>
+  <li>OpenGL Mathematics, 수학 라이브러리.</li>
+  <li><a href="http://glm.g-truc.net/0.9.8/index.html">http://glm.g-truc.net/0.9.8/index.html</a> 에서 받을 수 있다.</li>
+  <li>
+    <p>이제는 익숙하게 Dependencies 폴더에 넣고 GLM 포함경로 설정</p>
+  </li>
+  <li>libs.h에 아래처럼 추가</li>
+</ul>
 
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;GLM/glm.hpp&gt;
+#include &lt;GLM/vec2.hpp&gt;
+#include &lt;GLM/vec3.hpp&gt;
+#include &lt;GLM/vec4.hpp&gt;
+#include &lt;GLM/mat4x4.hpp&gt;
+#include &lt;GLM/gtc/matrix_transform.hpp&gt;
+#include &lt;GLM/gtc/type_ptr.hpp&gt;
+</span></pre></td></tr></tbody></table></code></div></div>
+<p><br /></p>
+<h2 id="soil2-">SOIL2 ?</h2>
+<ul>
+  <li>Simple OpenGL Image Library. 이미지 파일을 처리해주는 라이브러리</li>
+  <li><a href="https://bitbucket.org/SpartanJ/soil2/downloads/">https://bitbucket.org/SpartanJ/soil2/downloads/</a> 에서 받을 수 있지는..않고</li>
+  <li><a href="https://github.com/SpartanJ/soil2">https://github.com/SpartanJ/soil2</a> 여기로 가야 받을 수 있다.</li>
+</ul>
+
+<p><br /></p>
+<h2 id="premake">Premake</h2>
+<ul>
+  <li>SOIL2를 사용하기 위해 Premake를 다운받는다.</li>
+  <li><a href="https://premake.github.io/download.html">https://premake.github.io/download.html</a></li>
+  <li>premake[4,5].lua 파일이 있는 SOIL2-release-1.20 디렉토리에 premake[4,5].exe 응용프로그램을 집어넣고 cmd에서 해당 경로로 들어간다.</li>
+  <li>premake5 버전을 받았고, vs2019를 사용하고 있으므로 <code class="language-plaintext highlighter-rouge">premake5 vs2019</code>라고 타이핑하면 SOIL2 솔루션이 <code class="language-plaintext highlighter-rouge">make</code> 폴더에 생긴다.</li>
+  <li>soil2-static-lib를 누르고 [release]로 설정한 뒤 빌드한다.</li>
+  <li>그리고 다른 OpenGL 라이브러리들과 마찬가지로, 생성된 .lib 파일은 Dependency/SOIL2/lib에 넣어주고, 헤더와 소스파일들은 include에 넣어준다.</li>
+  <li>역시 라이브러리와 헤더는 각각 링크와 포함 경로로, 그리고 링커의 입력에 soil2.lib를 추가해준다.</li>
+</ul>
+
+<p><br /></p>
+<h2 id="opengl-기본-세팅">OpenGL 기본 세팅</h2>
+
+<ul>
+  <li>GLFW, GLEW 세팅과 메인 루프를 완성하고, 검은 화면을 띄울 정도까지만 마무리</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="current-source-code">Current Source Code</h1>
+<hr />
+
+<h2 id="libsh">libs.h</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -544,161 +507,229 @@
 8
 9
 10
-</pre></td><td class="rouge-code"><pre><span class="c1">// using UnityEngine.Profiling;</span>
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="cp">#pragma once
+</span>
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="cp">#include &lt;GL/glew.h&gt; // Before GLFW
+#include &lt;GLFW/glfw3.h&gt;
+</span>
+<span class="cp">#include &lt;GLM/glm.hpp&gt;
+#include &lt;GLM/vec2.hpp&gt;
+#include &lt;GLM/vec3.hpp&gt;
+#include &lt;GLM/vec4.hpp&gt;
+#include &lt;GLM/mat4x4.hpp&gt;
+#include &lt;GLM/gtc/matrix_transform.hpp&gt;
+#include &lt;GLM/gtc/type_ptr.hpp&gt;
+</span>
+<span class="cp">#include &lt;SOIL2/SOIL2.h&gt;
+</span></pre></td></tr></tbody></table></code></div></div>
 
-<span class="k">private</span> <span class="k">void</span> <span class="nf">SomeMethod</span><span class="p">()</span>
+<h2 id="customfunctionshpp">CustomFunctions.hpp</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="cp">#pragma once
+</span>
+<span class="kt">void</span> <span class="nf">framebufferResizeCallback</span><span class="p">(</span><span class="n">GLFWwindow</span><span class="o">*</span> <span class="n">window</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fbW</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fbH</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">Profiler</span><span class="p">.</span><span class="nf">BeginSample</span><span class="p">(</span><span class="s">"Sample Name"</span><span class="p">);</span>
-
-    <span class="c1">// Codes ...</span>
-
-    <span class="n">Profiler</span><span class="p">.</span><span class="nf">EndSample</span><span class="p">();</span>
+	<span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">fbW</span><span class="p">,</span> <span class="n">fbH</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<ul>
-  <li>이렇게 래핑하면 저 사이에 있는 부분을 프로파일러에서 묶어 보여준다.</li>
-  <li>지정한 이름으로 확인할 수 있으므로 프로파일링 하기에 매우 편해진다.</li>
-</ul>
+<h2 id="maincpp">main.cpp</h2>
 
-<p><br /></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+</pre></td><td class="rouge-code"><pre><span class="cp">#include "libs.h"
+#include "CustomFunctions.hpp"
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="cm">/*****************************************************************
+                                   GLFW Init
+    ******************************************************************/</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">glfwInit</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"GLFW Init ERROR</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<h1 id="cpu--gpu-boundary"><strong>CPU &amp; GPU Boundary</strong></h1>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">WINDOW_WIDTH</span>  <span class="o">=</span> <span class="mi">640</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">WINDOW_HEIGHT</span> <span class="o">=</span> <span class="mi">480</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">framebufferWidth</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">framebufferHeight</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106927047-1957d600-6755-11eb-8035-14de7be3294a.png" alt="image" class="normal" /></p>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_OPENGL_PROFILE</span><span class="p">,</span> <span class="n">GLFW_OPENGL_CORE_PROFILE</span><span class="p">);</span>
+    <span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_RESIZABLE</span><span class="p">,</span> <span class="n">GL_TRUE</span><span class="p">);</span>
 
-<ul>
-  <li>프로파일러의 이 부분을 확인하면 CPU, GPU 수행에 걸린 시간을 통해 CPU와 GPU 중 어느 부분이 더 병목인지 파악할 수 있다.</li>
-</ul>
+    <span class="n">GLFWwindow</span><span class="o">*</span> <span class="n">window</span> 
+        <span class="o">=</span> <span class="n">glfwCreateWindow</span><span class="p">(</span><span class="n">WINDOW_WIDTH</span><span class="p">,</span> <span class="n">WINDOW_HEIGHT</span><span class="p">,</span> <span class="s">"OpenGL"</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
 
-<p><br /></p>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">window</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">glfwTerminate</span><span class="p">();</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<h1 id="cpu-boundary"><strong>CPU Boundary</strong></h1>
+    <span class="n">glfwSetFramebufferSizeCallback</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">framebufferResizeCallback</span><span class="p">);</span>
+    <span class="c1">//glfwGetFramebufferSize(window, &amp;framebufferWidth, &amp;framebufferHeight);</span>
+    <span class="c1">//glViewport(0, 0, framebufferWidth, framebufferHeight);</span>
 
-<h2 id="gcalloc-gccollect">GC.Alloc, GC.Collect</h2>
-<ul>
-  <li>대표적인 CPU 바운드로, 힙의 할당과 가비지 수거를 의미한다.</li>
-  <li>Alloc 자체는 직접적인 성능 저하를 유발하지 않지만, 결국 Collect의 대상이 되므로 줄이는 것이 좋다.</li>
-</ul>
+    <span class="c1">// 현재 컨텍스트에서 윈도우 생성</span>
+    <span class="n">glfwMakeContextCurrent</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
 
-<h2 id="draw-call-set-pass-call">Draw Call, Set Pass Call</h2>
-<ul>
-  <li>GPU 바운드로 착각할 수 있지만, CPU가 GPU에게 전달하는 CPU 바운드이다.</li>
-  <li>Batch : DP Call 상태 변경을 합친 넓은 의미의 드로우 콜</li>
-  <li>SetPass Call : 쉐이더로 인한 렌더링 패스의 횟수를 의미하며 쉐이더 및 쉐이더 파라미터들의 변경이 일어날 때마다 발생한다.</li>
-</ul>
+    <span class="c1">// 프레임 진행 속도 설정</span>
+    <span class="n">glfwSwapInterval</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 
-<h2 id="method-calls">Method Calls</h2>
-<ul>
-  <li>Marker들을 통해 병목지점을 확인할 수 있으며, 구체적으로 파악하고 싶은 경우 Deep Profile 또는 Custom Profiler Tag를 이용하면 된다.</li>
-</ul>
+    <span class="cm">/*****************************************************************
+                                   GLEW Init
+    ******************************************************************/</span>
+    <span class="c1">// glewInit은 rendering context를 만들고 난 이후에 해야 함</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">glewInit</span><span class="p">()</span> <span class="o">!=</span> <span class="n">GLEW_OK</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"GLEW INIT ERROR</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="n">glfwTerminate</span><span class="p">();</span>
+    <span class="p">}</span>
 
-<p><br /></p>
-<h2 id="script-update-markers"><strong>Script update markers</strong></h2>
+    <span class="c1">// 간단히 GLEW 버전 확인</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">glGetString</span><span class="p">(</span><span class="n">GL_VERSION</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<div class="table-wrapper"><table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Update.ScriptRunBehaviourUpdate</code></td>
-      <td>MonoBehaviour 내부의 Update() 호출 및 코루틴 yield</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">BehaviourUpdate</code></td>
-      <td>Update() 호출</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">CoroutinesDelayedCalls</code></td>
-      <td>코루틴 yield</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">ScriptRunBehaviourLateUpdate</code></td>
-      <td>LateUpdate() 호출</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">FixedBehaviourUpdate</code></td>
-      <td>FixedUpdate() 호출</td>
-    </tr>
-  </tbody>
-</table></div>
+    <span class="cm">/*****************************************************************
+                                   Objects
+    ******************************************************************/</span>
 
-<p><br /></p>
 
-<h1 id="gpu-boundary"><strong>GPU Boundary</strong></h1>
+    <span class="cm">/*****************************************************************
+                                   Main Loop
+    ******************************************************************/</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="c1">// Update Input</span>
+        <span class="n">glfwPollEvents</span><span class="p">();</span>
 
-<h2 id="graphicsblit-devicepresent-gfxwaitforpresent">Graphics.Blit, Device.Present, Gfx.WaitForPresent</h2>
-<ul>
-  <li>프로파일러에서 확인할 수 있는 대표적인 GPU 병목.</li>
-  <li>CPU가 GPU에게 일을 시키고 CPU는 한가한데 GPU가 열심히 일하는 상태이다.</li>
-</ul>
+        <span class="c1">// Update</span>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106918827-e873a300-674c-11eb-9c70-41b58cb1a213.png" alt="image" class="normal" /></p>
+        <span class="c1">// Clear</span>
+        <span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">);</span>
+        <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_STENCIL_BUFFER_BIT</span><span class="p">);</span>
 
-<ul>
-  <li>이를 해결하려면 GPU 관련 요소들을 확인해야 한다.
-    <ul>
-      <li>필레이트(쉐이더 최적화)</li>
-      <li>메모리 대역폭(텍스쳐 최적화)</li>
-      <li>포스트 프로세싱</li>
-      <li>버텍스(LOD Model 활용)</li>
-    </ul>
-  </li>
-</ul>
+        <span class="c1">// Draw</span>
 
-<p><br /></p>
+        <span class="c1">// End Draw</span>
+        <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+        <span class="n">glFlush</span><span class="p">();</span>
+    <span class="p">}</span>
 
-<h2 id="필레이트fill-rate">필레이트(Fill rate)</h2>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">화면의 픽셀 수</code> X <code class="language-plaintext highlighter-rouge">프래그먼트 쉐이더 복잡도</code> X <code class="language-plaintext highlighter-rouge">오버드로우</code></li>
-  <li>오버드로우(Overdraw) : 투명 오브젝트의 픽셀을 여러 번 그리는 현상</li>
-  <li>필레이트가 문제인지 알기 위해서는 간단히 해상도 또는 렌더 스케일(Render Scale)을 줄였을 때 성능이 많이 향상되는지 확인하면 된다.</li>
-  <li>URP에서는 파이프라인 애셋에서 간단히 [Quality - Render Scale]을 조절하면 된다.</li>
-  <li>이를 해결하려면 쉐이더를 최적화 해야 한다.</li>
-</ul>
-
-<h2 id="메모리-대역폭memory-bandwidth">메모리 대역폭(Memory Bandwidth)</h2>
-<ul>
-  <li>메모리 대역폭 : GPU가 전용 메모리에서 읽고 쓸 수 있는 속도</li>
-  <li>메모리 대역폭이 문제인지 알아보려면, 텍스쳐 품질을 줄였을 때 성능이 많이 향상되는지 확인하면 된다.</li>
-  <li>이를 해결하려면 텍스쳐를 압축하거나 밉맵을 사용하여 멀리 떨어진 경우 작은 밉맵을 적용해야 한다.</li>
-</ul>
-
-<p><br /></p>
-<h2 id="rendering-and-vsync-markers"><strong>Rendering and VSync markers</strong></h2>
-
-<ul>
-  <li>CPU가 GPU를 기다리는 시간과 GPU의 소요시간을 포함하는 경우로, 모두 GPU 바운드에 해당한다.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">WaitForTargetFPS</code></li>
-      <li><code class="language-plaintext highlighter-rouge">Gfx.ProcessCommands</code></li>
-      <li><code class="language-plaintext highlighter-rouge">Gfx.WaitForCommands</code></li>
-      <li><code class="language-plaintext highlighter-rouge">Gfx.PresentFrame</code></li>
-      <li><code class="language-plaintext highlighter-rouge">Gfx.WaitForPresentOnGfxThread</code></li>
-      <li><code class="language-plaintext highlighter-rouge">Gfx.WaitForRenderThread</code></li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="memory-profiler-1">Memory Profiler</h1>
-<hr />
-<ul>
-  <li>유니티 패키지 매니저에서 Preview 버전을 받을 수 있다.</li>
-  <li>시각적으로 메모리 사용률을 파악할 수 있으며, 각각의 사각형을 클릭할 경우 더 구체적인 내용을 확인할 수 있다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106920799-c549f300-674e-11eb-8009-f2c6b71a598b.png" alt="image" /></p>
-
-<p><br /></p>
+    <span class="c1">// End of Program</span>
+    <span class="n">glfwTerminate</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 <h1 id="references">References</h1>
 <hr />
 <ul>
-  <li><a href="https://www.youtube.com/watch?v=4kVffWfmJ60&amp;ab_channel=UnityKorea">https://www.youtube.com/watch?v=4kVffWfmJ60&amp;ab_channel=UnityKorea</a></li>
-  <li><a href="https://blogs.unity3d.com/kr/2019/11/14/tales-from-the-optimization-trenches/">https://blogs.unity3d.com/kr/2019/11/14/tales-from-the-optimization-trenches/</a></li>
-  <li><a href="https://coderzero.tistory.com/entry/유니티-최적화-유니티-최적화에-대한-이해">https://coderzero.tistory.com/entry/유니티-최적화-유니티-최적화에-대한-이해</a></li>
-  <li><a href="https://docs.unity3d.com/Manual/profiler-markers.html">https://docs.unity3d.com/Manual/profiler-markers.html</a></li>
-  <li><a href="https://learn.unity.com/tutorial/fixing-performance-problems">https://learn.unity.com/tutorial/fixing-performance-problems</a></li>
+  <li><a href="https://www.youtube.com/watch?v=15JS0kvHSSA">https://www.youtube.com/watch?v=15JS0kvHSSA</a></li>
+  <li><a href="https://www.youtube.com/watch?v=Bcs56Mm-FJY">https://www.youtube.com/watch?v=Bcs56Mm-FJY</a></li>
+  <li><a href="https://www.youtube.com/watch?v=bxov_ZhJoG4">https://www.youtube.com/watch?v=bxov_ZhJoG4</a></li>
+  <li><a href="https://www.youtube.com/watch?v=iYZA1k8IKgM">https://www.youtube.com/watch?v=iYZA1k8IKgM</a></li>
 </ul>
 
 
@@ -711,8 +742,8 @@
         <div class="post-meta mb-3">
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
-            <a href='/categories/unity/'>Unity</a>,
-            <a href='/categories/unity-study/'>Unity Study</a>
+            <a href='/categories/opengl/'>OpenGL</a>,
+            <a href='/categories/opengl-study/'>OpenGL Study</a>
         </div>
         
 
@@ -721,17 +752,11 @@
         <div class="post-tags">
           <i class="fa fa-tags fa-fw mr-1"></i>
           
-          <a href="/tags/unity/"
-            class="post-tag no-text-decoration" >unity</a>
+          <a href="/tags/graphics/"
+            class="post-tag no-text-decoration" >graphics</a>
           
-          <a href="/tags/csharp/"
-            class="post-tag no-text-decoration" >csharp</a>
-          
-          <a href="/tags/profiling/"
-            class="post-tag no-text-decoration" >profiling</a>
-          
-          <a href="/tags/optimization/"
-            class="post-tag no-text-decoration" >optimization</a>
+          <a href="/tags/opengl/"
+            class="post-tag no-text-decoration" >opengl</a>
           
           </div>
         
@@ -763,19 +788,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Unity Profiling - Rito15&url=https://rito15.github.io/posts/unity-profiling/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 10 - Rito15&url=https://rito15.github.io/posts/opengl-study-10/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Unity Profiling - Rito15&u=https://rito15.github.io/posts/unity-profiling/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 10 - Rito15&u=https://rito15.github.io/posts/opengl-study-10/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Unity Profiling - Rito15&url=https://rito15.github.io/posts/unity-profiling/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=OpenGL 공부 - 10 - Rito15&url=https://rito15.github.io/posts/opengl-study-10/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1796,72 +1821,72 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -2337,7 +2362,75 @@
       
       
       <div class="card">
-        <a href="/posts/unity-script-optimization/">
+        <a href="/posts/opengl-study-07/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb  3
+  
+
+  <i class="unloaded">2021-02-03T16:32:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 07</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+
+  인덱스 버퍼의 사용과 이해
+
+
+
+
+공부 내용
+
+
+삼각형 그리기
+
+  삼각형을 하나 그리려면, 버텍스 3개가 필요하다.
+
+
+float positions[6] =
+{
+    -0.5f, -0.5f,
+     0.0f,  0.5f,
+     0.5f, -0.5f,
+};
+
+
+
+  GPU는 전달받은 버텍스들을 순서대로 확인하여 3개씩 짝지어서 하...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/opengl-study-08/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2357,10 +2450,10 @@
     Feb  4
   
 
-  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
+  <i class="unloaded">2021-02-04T15:45:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Script Optimization</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 08</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2369,20 +2462,34 @@
 
 
 
-                Tips
-
-
-1. GetComponent(), Find() 메소드 반복 호출하지 않기
-
-너무나 기본적인 것이라 간단히 짚고 넘어가지만,
-매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
-항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.
+                목표
 
 
 
-2. 필요하지 않은 경우, new로 생성하지 않기
+  OpenGL 내에서 디버깅하기
 
-클...
+
+
+
+공부 내용
+
+
+
+  OpenGL 내에서 에러가 발생하거나 코드를 잘못 작성한 경우, 친절한 에러 메시지보다는 그저 검은 화면을 볼 가능성이 높다.
+
+
+
+
+
+  그래서 디버깅을 하려면, OpenGL에서 제공하는 몇몇 메소드와 매크로를 활용해야 한다.
+
+
+
+
+  
+    glGetError
+    
+  ...
               </p>
             </div>
           </div>
@@ -2392,7 +2499,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-profiler-window/">
+        <a href="/posts/opengl-study-09/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2409,13 +2516,13 @@
   
 
   
-    Feb  4
+    Feb  5
   
 
-  <i class="unloaded">2021-02-04T17:50:00+09:00</i>
+  <i class="unloaded">2021-02-05T15:20:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Profiler Window</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 09</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2424,66 +2531,32 @@
 
 
 
-                유니티 프로파일러
-
-
-[Window] - [Analysis] - [Profiler]를 통해 프로파일러 윈도우를 열 수 있다.
+                목표
 
 
 
-CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니티 프로젝트에서 측정되는 성능을 확인할 수 있다.
-
-선택된 탭의 구체적인 내용들은 윈도우 하단에 나타난다.
-
-프로젝트 실행 후 그래프의 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/behavior-tree/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan  5
-  
-
-  <i class="unloaded">2021-01-05T00:26:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Behavior Tree</h3>
-            <div class="text-muted small">
-              <p>
-                
+  uniform 변수, VAO에 대한 이해 및 사용
 
 
 
 
-
-                개념
-
+1. uniform
 
 
-  FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
-  FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
-  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
+uniform이란?
+
+  OpenGL에서 쉐이더로 전달하는 글로벌 변수
+
+
+
+쉐이더에서 uniform 변수 선언 및 사용
+
+#shader fragment
+#version 330 core
+
+layout(location = 0) out vec4 color;
+
+u...
               </p>
             </div>
           </div>
@@ -2506,15 +2579,15 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/unity-profiler-window/" class="btn btn-outline-primary">
-    <p>Unity Profiler Window</p>
+  <a href="/posts/unity-transparent-stencil/" class="btn btn-outline-primary">
+    <p>유니티 투명 쉐이더와 스텐실</p>
   </a>
   
 
   
-  <a href="/posts/unity-script-optimization/" class="btn btn-outline-primary">
-    <p>Unity Script Optimization</p>
-  </a>
+  <span class="btn btn-outline-primary disabled">
+    <p>-</p>
+  </span>
   
 
 </div>
@@ -2527,16 +2600,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
 
 </div> <!-- .row -->
 
-
-
-  <!-- image lazy load: https://github.com/ApoorvSaxena/lozad.js -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-
-<script type="text/javascript">
-  const imgs = document.querySelectorAll('.post-content img');
-  const observer = lozad(imgs);
-  observer.observe();
-</script>
 
 
 

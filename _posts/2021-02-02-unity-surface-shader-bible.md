@@ -170,7 +170,7 @@ Tags { "RenderType"="Overlay" "Queue"="Overlay" }
 
 - 각각의 패스 CGPROGRAM 상단에 Name, LOD, RenderSetup, Stencil 지정 가능
   - Name "PassName" : 해당 패스의 이름 지정
-  - `LOD` : 거리에 따라 다른 패스 사용<br>(현재 LOD가 패스에 지정한 LOD값 이하인 경우 해당 패스 사용)
+  - `LOD` : 지정된 LOD 값에 따라 다른 패스 사용<br>(현재 LOD가 패스에 지정한 LOD값 이하인 경우 해당 패스 사용)
   - `RenderSetup` : Cull, ZTest, ZWrite, Blend, ColorMask, Offset
 
 ```hlsl
@@ -213,7 +213,7 @@ Shader "Custom/SurfaceShader01"
 - 폴리곤 전면 또는 후면을 렌더링하지 않도록 설정
 
 |---|---|
-|`Cull Back`|폴리곤 후면(모델 안쪽) 그리지 않기(기본값)|
+|`Cull Back`(기본값)|폴리곤 후면(모델 안쪽) 그리지 않기|
 |`Cull Front`|폴리곤 전면(모델 바깥쪽) 그리지 않가|
 |`Cull Off`|모든 면을 그리기|
 
@@ -224,7 +224,7 @@ Shader "Custom/SurfaceShader01"
 - 뎁스 버퍼 : 깊이를 나타내는 렌더 텍스쳐
 
 |---|---|
-|`ZWrite On`|뎁스 버퍼에 그리기(기본값)|
+|`ZWrite On`(기본값)|뎁스 버퍼에 그리기|
 |`ZWrite Off`|뎁스 버퍼에 그리지 않가<br> - 항상 앞에 보이게 됨|
 
 <br>

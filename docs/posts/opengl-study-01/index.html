@@ -2151,6 +2151,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2507,7 +2520,7 @@ float positions[6] =
       
       
       <div class="card">
-        <a href="/posts/opengl-study-02/">
+        <a href="/posts/opengl-study-09/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2524,13 +2537,13 @@ float positions[6] =
   
 
   
-    Jan 28
+    Feb  5
   
 
-  <i class="unloaded">2021-01-28T22:09:00+09:00</i>
+  <i class="unloaded">2021-02-05T15:20:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 02</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 09</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2542,22 +2555,37 @@ float positions[6] =
                 목표
 
 
-  GLEW 설치 및 적용
+  uniform 변수, VAO에 대한 이해 및 사용
 
 
 
 
-GLEW 설치
+1. uniform
 
 
-  GLEW : OpenGL Extension Wrangler Library
-  http://glew.sourceforge.net
-  
-    Binary 다운로드
-  
-  프로젝트의 Dependency 폴더 내로 GLEW 폴더 복사
-    
-      glew-2.1.0 폴더를 통째로 가져...
+uniform이란?
+
+  OpenGL에서 쉐이더로 전달하는 글로벌 변수
+
+
+
+쉐이더에서 uniform 변수 선언 및 사용
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+#shader fragment
+#version 330 core
+
+layout(location ...
               </p>
             </div>
           </div>
