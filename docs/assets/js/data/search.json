@@ -16,7 +16,37 @@
   },
   
   {
-    "title": "유니티 투명 쉐이더와 스텐실",
+    "title": "각종 그래프 모음",
+    "url": "/posts/mathematics-graph-compilation/",
+    "categories": "Mathematics, Graph",
+    "tags": "mathematics, graph",
+    "date": "2021-02-06 05:25:00 +0900",
+    
+
+
+
+
+
+    "snippet": "sin xcos xtan xasin xacos xatan xsin(acos x), cos(asin x)asin(cos x)acos(sin x)sin(e^x)cos(e^x)atan(e^x)asin( e^(-x) )e^xe^(1-x)e^(1-x) * x"
+  },
+  
+  {
+    "title": "0~1 구간 가속, 감속 그래프 모음",
+    "url": "/posts/mathematics-graph-accel_01/",
+    "categories": "Mathematics, Graph",
+    "tags": "mathematics, graph",
+    "date": "2021-02-06 05:25:00 +0900",
+    
+
+
+
+
+
+    "snippet": "1. 가속\\(x^{n}\\) 기본 가속 모델\\(\\sin\\left(\\cos^{-1}\\left(x-1\\right)\\right)\\)\\(x^{2}\\left(3-2x\\right)\\)\\(\\sin\\left(\\pi\\left(x-0.5\\right)\\right)\\cdot0.5+0.5\\)\\(\\sin^{-1}\\left(2x-1\\right)\\cdot\\frac{1}{\\pi}+0.5\\)2. 가속 이후 감속\\(x^{a}\\left(1-x^{b}\\right)c\\)  a &amp;gt; 0  b &amp;gt; 0"
+  },
+  
+  {
+    "title": "유니티 투명 쉐이더와 스텐실 개념",
     "url": "/posts/unity-transparent-stencil/",
     "categories": "Unity Shader, Shader Study",
     "tags": "unity, csharp, shader, graphics, transparent, stencil",
@@ -27,7 +57,7 @@
 
 
 
-    "snippet": "불투명과 투명불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.유니티로 설명하자면 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 지정하는데 지정한 숫자가 작은 순서대로 그리게 되며, 기본적으로 Opaque는 2000, Transparent는 3000의 값을 가진다.따라서 Opaque를 전부 그린 후에 Transparent를 그린다.Z-buffer카메라로부터 픽셀마다 가장 가까운 오브젝트까지의 거리를 (0.0 ~ 1.0) 값으로 기록해놓는 버퍼..."
+    "snippet": "불투명과 투명불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.유니티에서는 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 정수 값으로 지정하는데, 지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 2000, Transparent는 3000의 값을 가진다.따라서 불투명 오브젝트가 전부 그려진 후에 투명 오브젝트가 그려진다.Z-buffer카메라로부터 픽셀마다 가장 가까운 오브젝트까지의 거리를 (0.0 ~ 1.0) 값으로 기록해놓는 ..."
   },
   
   {

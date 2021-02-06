@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-06T16:20:39+09:00</updated>
+  <updated>2021-02-07T04:42:37+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -89,8 +89,167 @@ GLM ?
 
   
   <entry>
-    <title>유니티 투명 쉐이더와 스텐실</title>
-    <link href="https://rito15.github.io/posts/unity-transparent-stencil/" rel="alternate" type="text/html" title="유니티 투명 쉐이더와 스텐실" />
+    <title>각종 그래프 모음</title>
+    <link href="https://rito15.github.io/posts/mathematics-graph-compilation/" rel="alternate" type="text/html" title="각종 그래프 모음" />
+    <published>2021-02-06T05:25:00+09:00</published>
+  
+    <updated>2021-02-06T05:25:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/mathematics-graph-compilation/</id>
+    <content src="https://rito15.github.io/posts/mathematics-graph-compilation/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Mathematics" />
+    
+    <category term="Graph" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      sin x
+
+
+cos x
+
+
+tan x
+
+
+asin x
+
+
+acos x
+
+
+atan x
+
+
+sin(acos x), cos(asin x)
+
+
+asin(cos x)
+
+
+acos(sin x)
+
+
+
+
+sin(e^x)
+
+
+cos(e^x)
+
+
+atan(e^x)
+
+
+asin( e^(-x) )
+
+
+
+
+e^x
+
+
+e^(1-x)
+
+
+e^(1-x) * x
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>0~1 구간 가속, 감속 그래프 모음</title>
+    <link href="https://rito15.github.io/posts/mathematics-graph-accel_01/" rel="alternate" type="text/html" title="0~1 구간 가속, 감속 그래프 모음" />
+    <published>2021-02-06T05:25:00+09:00</published>
+  
+    <updated>2021-02-06T05:25:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/mathematics-graph-accel_01/</id>
+    <content src="https://rito15.github.io/posts/mathematics-graph-accel_01/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Mathematics" />
+    
+    <category term="Graph" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. 가속
+
+
+\(x^{n}\) 기본 가속 모델
+
+
+
+
+\(\sin\left(\cos^{-1}\left(x-1\right)\right)\)
+
+
+
+\(x^{2}\left(3-2x\right)\)
+
+
+
+\(\sin\left(\pi\left(x-0.5\right)\right)\cdot0.5+0.5\)
+
+
+
+
+\(\sin^{-1}\left(2x-1\right)\cdot\frac{1}{\pi}+0.5\)
+
+
+
+
+2. 가속 이후 감속
+
+
+\(x^{a}\left(1-x^{b}\right)c\)
+
+  a &amp;gt; 0
+  b &amp;gt; 0
+
+
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>유니티 투명 쉐이더와 스텐실 개념</title>
+    <link href="https://rito15.github.io/posts/unity-transparent-stencil/" rel="alternate" type="text/html" title="유니티 투명 쉐이더와 스텐실 개념" />
     <published>2021-02-06T01:29:00+09:00</published>
   
     <updated>2021-02-06T01:29:00+09:00</updated>
@@ -122,9 +281,10 @@ GLM ?
 
 불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.
 
-유니티로 설명하자면 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 지정하는데 
-지정한 숫자가 작은 순서대로 그리게 되며, 기본적으로 Opaque는 2000, Transparent는 3000의 값을 가진다.
-따라서 Opaque를 전부 그린 후에 Transparent를 그린다.
+유니티에서는 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 정수 값으로 지정하는데, 
+지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 2000, Transparent는 3000의 값을 가진다.
+
+따라서 불투명 오브젝트가 전부 그려진 후에 투명 오브젝트가 그려진다.
 
 
 
@@ -143,7 +303,7 @@ Z-buffer
 
 
 불투명 오브젝트를 그리기 위해서 우선 Z버퍼를 참조한다.
-각각의 픽...
+각각...
     </summary>
   
 
@@ -209,147 +369,6 @@ Shader "Render Depth"
             struct v2f 
             {
      ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 09</title>
-    <link href="https://rito15.github.io/posts/opengl-study-09/" rel="alternate" type="text/html" title="OpenGL 공부 - 09" />
-    <published>2021-02-05T15:20:00+09:00</published>
-  
-    <updated>2021-02-05T15:20:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-09/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-09/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  uniform 변수, VAO에 대한 이해 및 사용
-
-
-
-
-1. uniform
-
-
-uniform이란?
-
-  OpenGL에서 쉐이더로 전달하는 글로벌 변수
-
-
-
-쉐이더에서 uniform 변수 선언 및 사용
-
-#shader fragment
-#version 330 core
-
-layout(location = 0) out vec4 color;
-
-uniform vec4 u_Color;
-
-void main()
-{
-	color = u_Color;
-};
-
-
-
-  uniform 변수는 기본적으로 u_를 붙여 네이밍한다.
-
-
-
-OpenGL에서 uniform 변수 선언 및 전달
-
-
-  
-    glGetUniformLocation
-    
-      대상 프로그램(쉐이더)에 uniform 변수의 위치를 생성하고,...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Unity Script Optimization</title>
-    <link href="https://rito15.github.io/posts/unity-script-optimization/" rel="alternate" type="text/html" title="Unity Script Optimization" />
-    <published>2021-02-04T19:30:00+09:00</published>
-  
-    <updated>2021-02-05T04:27:44+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-script-optimization/</id>
-    <content src="https://rito15.github.io/posts/unity-script-optimization/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Tips
-
-
-1. GetComponent(), Find() 메소드 반복 호출하지 않기
-
-너무나 기본적인 것이라 간단히 짚고 넘어가지만,
-매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
-항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.
-
-
-
-2. 필요하지 않은 경우, new로 생성하지 않기
-
-클래스 타입으로 생성한 객체는 항상 GC의 먹이가 된다.
-따라서 가능하면 한 번만 생성하고 이후에는 재사용 하는 방식을 선택해야 한다.
-
-데이터 클래스의 경우, 대신 구조체를 사용하는 것도 좋다.
-
-
-
-3. 구조체 사용하기
-
-
-  http://clarkkromenaker.com/post/csharp-structs/
-
-
-동일한 데이터를 하나는 구조체, 하나는 ...
     </summary>
   
 

@@ -23,7 +23,7 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="유니티 투명 쉐이더와 스텐실" />
+<meta property="og:title" content="유니티 투명 쉐이더와 스텐실 개념" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="불투명과 투명" />
@@ -34,14 +34,14 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-02-06T01:29:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="유니티 투명 쉐이더와 스텐실" />
+<meta property="twitter:title" content="유니티 투명 쉐이더와 스텐실 개념" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"불투명과 투명","datePublished":"2021-02-06T01:29:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-transparent-stencil/"},"url":"https://rito15.github.io/posts/unity-transparent-stencil/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 투명 쉐이더와 스텐실","dateModified":"2021-02-06T01:29:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"불투명과 투명","datePublished":"2021-02-06T01:29:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-transparent-stencil/"},"url":"https://rito15.github.io/posts/unity-transparent-stencil/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 투명 쉐이더와 스텐실 개념","dateModified":"2021-02-06T01:29:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>유니티 투명 쉐이더와 스텐실 | Rito15
+  <title>유니티 투명 쉐이더와 스텐실 개념 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>유니티 투명 쉐이더와 스텐실</span>
+        <span>유니티 투명 쉐이더와 스텐실 개념</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>유니티 투명 쉐이더와 스텐실</h1>
+      <h1 data-toc-skip>유니티 투명 쉐이더와 스텐실 개념</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="661 words">3 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2310 words">12 min</span>
 
 
           <!-- page views -->
@@ -436,44 +436,43 @@
         <h1 id="불투명과-투명">불투명과 투명</h1>
 <hr />
 
-<p>불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.</p>
+<p><strong>불투명(Opaque)</strong>과 <strong>투명(Transparent)</strong> 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.</p>
 
-<p>유니티로 설명하자면 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 지정하는데 
-지정한 숫자가 작은 순서대로 그리게 되며, 기본적으로 Opaque는 2000, Transparent는 3000의 값을 가진다.
-따라서 Opaque를 전부 그린 후에 Transparent를 그린다.</p>
+<p>유니티에서는 오브젝트를 렌더링하는 순서를 <strong>렌더 큐(Render Queue)</strong>를 통해 정수 값으로 지정하는데, 
+지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 <strong>2000</strong>, Transparent는 <strong>3000</strong>의 값을 가진다.</p>
+
+<p>따라서 불투명 오브젝트가 전부 그려진 후에 투명 오브젝트가 그려진다.</p>
 
 <p><br /></p>
 
-<h2 id="z-buffer">Z-buffer</h2>
+<h2 id="z-buffer"><strong>Z-buffer</strong></h2>
 
 <p>카메라로부터 픽셀마다 가장 가까운 오브젝트까지의 거리를 (0.0 ~ 1.0) 값으로 기록해놓는 버퍼.</p>
 
-<p>깊이 버퍼(Depth Buffer)라고도 한다.</p>
+<p><strong>깊이 버퍼(Depth Buffer)</strong>라고도 한다.</p>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107067589-d49a7080-6822-11eb-95d0-f8b4a103bece.png" alt="image" class="normal" /></p>
 
 <p><br /></p>
 
-<h2 id="불투명opaque">불투명(Opaque)</h2>
+<h2 id="불투명opaque"><strong>불투명(Opaque)</strong></h2>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107073497-cfd9ba80-682a-11eb-922e-9766ea42556f.png" alt="image" class="normal" /></p>
 
 <p>불투명 오브젝트를 그리기 위해서 우선 Z버퍼를 참조한다.
-각각의 픽셀마다 얻어낸 Z버퍼의 값을 통해 가장 가까운 오브젝트의 픽셀만 화면에 그리게 되는데, 이를 Z Test(Read)라고 한다.</p>
+각각의 픽셀마다 얻어낸 Z버퍼의 값을 통해 겹쳐 있는 픽셀들 중 가장 가까운 오브젝트의 픽셀만 화면에 그리게 되는데, 이를 <strong>Z Test</strong>(Z Read)라고 한다.</p>
 
 <p>따라서 불투명을 그릴 때는 해당 픽셀에서 가장 앞에 있는 오브젝트의 픽셀만 그리고 뒤에 있는 픽셀은 그리지 않음으로써 자원을 절약하게 된다.</p>
 
-<h3 id="-만약-동일한-z-값을-가진다면">+ 만약 동일한 Z 값을 가진다면?</h3>
+<h3 id="-만약-동일한-z-값을-가진다면"><strong>+ 만약 동일한 Z 값을 가진다면?</strong></h3>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107071993-e2eb8b00-6828-11eb-8f76-6ea2fdef82e0.png" alt="image" class="normal" /></p>
 
-<ul>
-  <li>어떤 것을 먼저 그릴지 알 수 없으므로 위처럼 보이게 되며, 이를 Z fighting이라고 한다.</li>
-</ul>
+<p>어떤 것을 먼저 그릴지 알 수 없으므로 위처럼 보이게 되며, 이를 <strong>Z fighting</strong>이라고 한다.</p>
 
 <p><br /></p>
 
-<h2 id="투명transparent">투명(Transparent)</h2>
+<h2 id="투명transparent"><strong>투명(Transparent)</strong></h2>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107073835-34951500-682b-11eb-843c-c78fb555b9c6.png" alt="image" class="normal" /></p>
 
@@ -485,19 +484,451 @@
 
 <p><br /></p>
 
-<h1 id="알파-소팅alpha-sorting">알파 소팅(Alpha Sorting)</h1>
+<h1 id="알파-블렌딩-알파-소팅">알파 블렌딩, 알파 소팅</h1>
 <hr />
 
-<p>투명 오브젝트는 불투명 오브젝트와 달리 멀리 있는 것부터 그리는데, 이를 알파 소팅이라고 한다.</p>
+<p>겹쳐 있는 투명 오브젝트의 픽셀들은 서로 섞여 최종적으로 화면에 그려지는데, 이를 <strong>알파 블렌딩(Alpha Blending)</strong>이라고 한다.</p>
 
-<p>https://m.blog.naver.com/plasticbag0/221299492724</p>
+<p>투명 쉐이더는 기본적으로 알파 블렌딩 쉐이더라고 부른다.</p>
+
+<p>그리고 투명 오브젝트는 불투명 오브젝트와 다르게 멀리 있는 것부터 그려지는데, 이를 <strong>알파 소팅(Alpha Sorting)</strong>이라고 한다.</p>
+
+<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre></td><td class="rouge-code"><pre><span class="n">Shader</span> <span class="s">"Custom/AlphaBlend"</span>
+<span class="p">{</span>
+    <span class="n">Properties</span>
+    <span class="p">{</span>
+        <span class="n">_MainTex</span> <span class="p">(</span><span class="s">"Albedo (RGB)"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"white"</span> <span class="p">{}</span>
+    <span class="p">}</span>
+    <span class="n">SubShader</span>
+    <span class="p">{</span>
+        <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span><span class="o">=</span><span class="s">"Transparent"</span> <span class="s">"Queue"</span><span class="o">=</span><span class="s">"Transparent"</span> <span class="p">}</span>
+
+        <span class="n">CGPROGRAM</span>
+
+        <span class="cp">#pragma surface surf Lambert alpha:fade // alpha:fade 또는 alpha:blend
+</span>        <span class="cp">#pragma target 3.0
+</span>
+        <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
+
+        <span class="k">struct</span> <span class="n">Input</span>
+        <span class="p">{</span>
+            <span class="kt">float2</span> <span class="n">uv_MainTex</span><span class="p">;</span>
+        <span class="p">};</span>
+
+        <span class="kt">void</span> <span class="n">surf</span> <span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="k">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">fixed4</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">tex2D</span> <span class="p">(</span><span class="n">_MainTex</span><span class="p">,</span> <span class="n">IN</span><span class="p">.</span><span class="n">uv_MainTex</span><span class="p">);</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Albedo</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Alpha</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ENDCG</span>
+    <span class="p">}</span>
+    <span class="n">Fallback</span> <span class="s">"Transparent"</span> <span class="c1">// 그림자 없애기</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>기본적으로 알파 블렌딩 쉐이더를 만들려면,</p>
+
+<ul>
+  <li>Tags의 RenderType과 Queue를 <code class="language-plaintext highlighter-rouge">"Transparent"</code>로 작성한다.</li>
+  <li>pragma에 <code class="language-plaintext highlighter-rouge">alpha:fade</code> 또는 <code class="language-plaintext highlighter-rouge">alpha:blend</code>라고 작성한다.</li>
+  <li>투명 오브젝트는 그림자가 없는 것이 당연하므로, Fallback은 <code class="language-plaintext highlighter-rouge">"Transparent"</code>로 작성한다.<br />
+(Fallback에 지정한 쉐이더가 그림자의 생성에 영향을 준다.)</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107119845-7aa2b500-68cd-11eb-89d6-75ff0a3e6ccd.gif" alt="2021_0206_Grass" class="normal" /></p>
+
+<p>알파 소팅은 카메라에서 각 오브젝트의 피벗까지의 거리값을 기반으로 하기 때문에, 카메라 시점이 회전함에 따라 뒤에 있던 오브젝트가 불쑥 튀어나오는 현상이 발생한다.</p>
+
+<p>이는 고질적인 문제로, 순수한 알파 블렌딩 쉐이더에서는 해결할 수 없다.</p>
 
 <p><br /></p>
 
-<h1 id="알파-블렌딩alpha-blending">알파 블렌딩(Alpha Blending)</h1>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107127187-c0747300-68f7-11eb-9ad8-bc5815e6ec44.gif" alt="2021_0206_Grass_Zwriteon" class="normal" /></p>
+
+<p>그리고 위와 같은 문제가 발생할 수 있는데, <code class="language-plaintext highlighter-rouge">ZWrite off</code>를 적어주면 해결할 수 있다.</p>
+
+<p>따라서 알파 블렌딩 쉐이더에서는 기본적으로 Tags 밑에 ZWrite off를 적어준다.</p>
+
+<p><br /></p>
+
+<h1 id="알파-테스팅">알파 테스팅</h1>
 <hr />
 
-<p>겹쳐 있는 투명 오브젝트의 픽셀들을 서로 어떻게 섞어 그려낼지 계산하게 되는데, 이를 알파 블렌딩이라고 한다.</p>
+<p>DirectX에서는 <strong>알파 테스팅(Alpha Testing)</strong>, OpenGL에서는 <strong>컷아웃(Cutout)</strong>이라고 부르며, 유니티에서도 컷아웃이라고 부른다.</p>
+
+<p>(그런데 키워드로는 AlphaTest를 쓰고, 기본 프로퍼티명은 _Cutoff라고 쓴다…)</p>
+
+<p>알파 테스팅 쉐이더는 지정한 Cutoff 값보다 큰 알파값을 가지는 부분만 그려주고, 작은 값을 가지는 부분은 잘라낸다.</p>
+
+<p>알파 테스팅 쉐이더에서는 알파 소팅에서 발생하는 문제(시점을 돌리면 뒤에 있던 오브젝트가 불쑥 튀어나오는 문제)가 발생하지 않는다.</p>
+
+<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+</pre></td><td class="rouge-code"><pre><span class="n">Shader</span> <span class="s">"Custom/AlphaTest"</span>
+<span class="p">{</span>
+    <span class="n">Properties</span>
+    <span class="p">{</span>
+        <span class="n">_MainTex</span><span class="p">(</span><span class="s">"Albedo (RGB)"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"white"</span> <span class="p">{}</span>
+        <span class="n">_Cutoff</span><span class="p">(</span><span class="s">"Alpha Cutoff"</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span>
+    <span class="p">}</span>
+    <span class="n">SubShader</span>
+    <span class="p">{</span>
+        <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span><span class="o">=</span><span class="s">"TransparentCutout"</span> <span class="s">"Queue"</span><span class="o">=</span><span class="s">"AlphaTest"</span> <span class="p">}</span>
+
+        <span class="n">CGPROGRAM</span>
+
+        <span class="c1">// 컷아웃 프로퍼티 연결, 그림자 정보 갱신</span>
+        <span class="cp">#pragma surface surf Lambert alphatest:_Cutoff addshadow
+</span>        <span class="cp">#pragma target 3.0
+</span>
+        <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
+
+        <span class="k">struct</span> <span class="n">Input</span>
+        <span class="p">{</span>
+            <span class="kt">float2</span> <span class="n">uv_MainTex</span><span class="p">;</span>
+        <span class="p">};</span>
+
+        <span class="kt">void</span> <span class="n">surf</span><span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="k">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">fixed4</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">tex2D</span><span class="p">(</span><span class="n">_MainTex</span><span class="p">,</span> <span class="n">IN</span><span class="p">.</span><span class="n">uv_MainTex</span><span class="p">);</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Albedo</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Alpha</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ENDCG</span>
+    <span class="p">}</span>
+    <span class="n">Fallback</span> <span class="s">"Legacy Shaders/Transparent/Cutout/Diffuse"</span> <span class="c1">// 그림자 생성 관여</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<ul>
+  <li>Tags의 RenderType은 딱히 상관 없지만 Queue는 꼭 <code class="language-plaintext highlighter-rouge">"AlphaTest"</code>로 해준다.</li>
+  <li>프로퍼티에 컷아웃 변수를 하나 만들어주고(이름은 꼭 _Cutoff), pragma에서 <code class="language-plaintext highlighter-rouge">alphatest:_Cutoff</code>로 연결해준다.</li>
+  <li>pragma에 <code class="language-plaintext highlighter-rouge">addshadow</code>를 추가해주지 않으면 쿼드의 그림자가 네모네모하게 나온다.</li>
+  <li>Fallback도 그림자 생성에 관여하므로, 위처럼 작성해야 한다.</li>
+</ul>
+
+<p><br /></p>
+
+<ul>
+  <li>addshadow 대신, <code class="language-plaintext highlighter-rouge">_Color</code> 프로퍼티를 추가해주는 방법이 있다.</li>
+  <li>_Color 프로퍼티를 그저 넣어주기만 하면 그림자 생성에 영향을 준다.</li>
+</ul>
+
+<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td><td class="rouge-code"><pre><span class="n">Shader</span> <span class="s">"Custom/AlphaTest"</span>
+<span class="p">{</span>
+    <span class="n">Properties</span>
+    <span class="p">{</span>
+        <span class="n">_MainTex</span><span class="p">(</span><span class="s">"Albedo (RGB)"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"white"</span> <span class="p">{}</span>
+        <span class="n">_Cutoff</span><span class="p">(</span><span class="s">"Alpha Cutoff"</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span>
+        <span class="n">_Color</span><span class="p">(</span><span class="s">"Color"</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// 그림자 생성 관여</span>
+    <span class="p">}</span>
+    <span class="n">SubShader</span>
+    <span class="p">{</span>
+        <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span><span class="o">=</span><span class="s">"TransparentCutout"</span> <span class="s">"Queue"</span><span class="o">=</span><span class="s">"AlphaTest"</span> <span class="p">}</span>
+
+        <span class="n">CGPROGRAM</span>
+
+        <span class="c1">// 컷아웃 프로퍼티 연결</span>
+        <span class="cp">#pragma surface surf Lambert alphatest:_Cutoff // addshadow 안씀
+</span>        <span class="cp">#pragma target 3.0
+</span>
+        <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
+
+        <span class="k">struct</span> <span class="n">Input</span>
+        <span class="p">{</span>
+            <span class="kt">float2</span> <span class="n">uv_MainTex</span><span class="p">;</span>
+        <span class="p">};</span>
+
+        <span class="kt">void</span> <span class="n">surf</span><span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="k">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">fixed4</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">tex2D</span><span class="p">(</span><span class="n">_MainTex</span><span class="p">,</span> <span class="n">IN</span><span class="p">.</span><span class="n">uv_MainTex</span><span class="p">);</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Albedo</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Alpha</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ENDCG</span>
+    <span class="p">}</span>
+    <span class="n">Fallback</span> <span class="s">"Legacy Shaders/Transparent/Cutout/Diffuse"</span> <span class="c1">// 그림자 생성 관여</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107126350-af753300-68f2-11eb-8a9a-cf0b84053af5.gif" alt="2021_0206_Grass_Alphatest" class="normal" /></p>
+
+<p>알파 테스팅 쉐이더는 알파 소팅의 불쑥 튀어나오는 문제가 발생하지 않고, 알파 블렌딩에 비해 가볍다는 장점이 있다.</p>
+
+<p>하지만 알파 블렌딩에 비해 외곽선이 자글자글하고 거칠게 잘려 보인다는 단점이 있다.</p>
+
+<p><br /></p>
+
+<h2 id="번외--알파-블렌딩-쉐이더에서-그림자-생성하기">번외 : 알파 블렌딩 쉐이더에서 그림자 생성하기</h2>
+
+<ul>
+  <li>
+    <p>알파 테스팅 쉐이더에서 그림자를 생성하는 방식을 이용하면 알파 블렌딩 쉐이더에서도 그림자를 생성할 수 있다.</p>
+
+    <p>(하지만 그림자를 받지는 않는다. 다시 말해, Cast Shadow는 동작하지만 Receive Shadow는 동작하지 않는다.)</p>
+  </li>
+  <li>
+    <p>알파 소팅 문제가 발생하지만, 외곽선이 알파 테스팅 쉐이더보다 훨씬 부드럽다는 장점이 있다.</p>
+  </li>
+</ul>
+
+<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td><td class="rouge-code"><pre><span class="n">Shader</span> <span class="s">"Custom/AlphaBlendShadow"</span>
+<span class="p">{</span>
+    <span class="n">Properties</span>
+    <span class="p">{</span>
+        <span class="n">_MainTex</span><span class="p">(</span><span class="s">"Albedo (RGB)"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"white"</span> <span class="p">{}</span>
+        <span class="n">_Cutoff</span><span class="p">(</span><span class="s">"Alpha Cutout"</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span> <span class="c1">// 그림자 생성 관여</span>
+        <span class="n">_Color</span><span class="p">(</span><span class="s">"Color"</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>         <span class="c1">// 그림자 생성 관여</span>
+    <span class="p">}</span>
+    <span class="n">SubShader</span>
+    <span class="p">{</span>
+        <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span> <span class="o">=</span> <span class="s">"Transparent"</span> <span class="s">"Queue"</span> <span class="o">=</span> <span class="s">"Transparent"</span> <span class="p">}</span>
+        <span class="n">ZWrite</span> <span class="n">Off</span>
+
+        <span class="n">CGPROGRAM</span>
+
+        <span class="cp">#pragma surface surf Lambert alpha:fade // alpha
+</span>        <span class="cp">#pragma target 3.0
+</span>
+        <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
+
+        <span class="k">struct</span> <span class="n">Input</span>
+        <span class="p">{</span>
+            <span class="kt">float2</span> <span class="n">uv_MainTex</span><span class="p">;</span>
+        <span class="p">};</span>
+
+        <span class="kt">void</span> <span class="n">surf</span><span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="k">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">fixed4</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">tex2D</span><span class="p">(</span><span class="n">_MainTex</span><span class="p">,</span> <span class="n">IN</span><span class="p">.</span><span class="n">uv_MainTex</span><span class="p">);</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Albedo</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Alpha</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ENDCG</span>
+    <span class="p">}</span>
+    <span class="n">Fallback</span> <span class="s">"Legacy Shaders/Transparent/Cutout/Diffuse"</span> <span class="c1">// 그림자 생성</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107126764-1693e700-68f5-11eb-8b6e-cf3033f53247.png" alt="image" class="normal" /></p>
+
+<p><br /></p>
+
+<h1 id="커스텀-알파-블렌딩">커스텀 알파 블렌딩</h1>
+<hr />
+
+<p>알파 블렌딩 쉐이더에서는 <code class="language-plaintext highlighter-rouge">blend</code> 키워드를 통해 블렌딩 연산 방식을 지정할 수 있다.</p>
+
+<p>그리고 ZWrite는 off로 설정해주고, pragma에 alpha:fade나 alpha:blend 대신 <code class="language-plaintext highlighter-rouge">keepalpha</code>를 작성한다.</p>
+
+<p>(유니티 5.0부터 서피스 쉐이더에서는 기본적으로 모든 불투명 쉐이더 알파값이 1.0으로 강제되는데, keepalpha를 쓰면 이것을 막아준다.)</p>
+
+<p><br /></p>
+
+<h2 id="블렌딩-구문">블렌딩 구문</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>blend SrcAlpha OneMinusSrcAlpha
+</pre></td></tr></tbody></table></code></div></div>
+
+<ul>
+  <li>blend A B 라고 했을 때, <code class="language-plaintext highlighter-rouge">A * Source + B * Destination</code> 으로 계산한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">B</code> : 블렌딩 팩터</li>
+  <li><code class="language-plaintext highlighter-rouge">Source</code> : 오브젝트 자신의 픽셀</li>
+  <li><code class="language-plaintext highlighter-rouge">Destination</code> : 배경의 픽셀</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="블렌딩-팩터">블렌딩 팩터</h2>
+
+<div class="table-wrapper"><table>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">One</code></td>
+      <td>숫자 1</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Zero</code></td>
+      <td>숫자 0</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SrcColor</code></td>
+      <td>소스 색상</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SrcAlpha</code></td>
+      <td>소스 알파</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DstColor</code></td>
+      <td>배경 색상</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DstAlpha</code></td>
+      <td>배경 알파</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">OneMinusSrcColor</code></td>
+      <td>1 - 소스 색상</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">OneMinusSrcAlpha</code></td>
+      <td>1 - 소스 알파</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">OneMinusDstColor</code></td>
+      <td>1 - 배경 색상</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">OneMinusDstAlpha</code></td>
+      <td>1 - 배경 알파</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p><br /></p>
+
+<h2 id="블렌딩-구문-예시">블렌딩 구문 예시</h2>
+
+<p><br /></p>
+
+<h1 id="깨끗한-알파-블렌딩-쉐이더-만들기">깨끗한 알파 블렌딩 쉐이더 만들기</h1>
+<hr />
 
 <p><br /></p>
 
@@ -584,19 +1015,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=유니티 투명 쉐이더와 스텐실 - Rito15&url=https://rito15.github.io/posts/unity-transparent-stencil/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=유니티 투명 쉐이더와 스텐실 개념 - Rito15&url=https://rito15.github.io/posts/unity-transparent-stencil/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=유니티 투명 쉐이더와 스텐실 - Rito15&u=https://rito15.github.io/posts/unity-transparent-stencil/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=유니티 투명 쉐이더와 스텐실 개념 - Rito15&u=https://rito15.github.io/posts/unity-transparent-stencil/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=유니티 투명 쉐이더와 스텐실 - Rito15&url=https://rito15.github.io/posts/unity-transparent-stencil/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=유니티 투명 쉐이더와 스텐실 개념 - Rito15&url=https://rito15.github.io/posts/unity-transparent-stencil/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -659,6 +1090,11 @@
         
         
         
+        <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-profiling/">Unity Profiling</a></li>
       
         
@@ -675,11 +1111,6 @@
         
         
         <li><a href="/posts/fog-of-war/">Fog of War</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-profiler-window/">Unity Profiler Window</a></li>
       
 
       </ul>
@@ -872,50 +1303,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -930,135 +1317,6 @@
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1297,6 +1555,234 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1377,36 +1863,6 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -1463,42 +1919,7 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
     
   
     
@@ -1562,10 +1983,10 @@
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
-        <a class="post-tag" href="/tags/optimization/">optimization</a>
+        <a class="post-tag" href="/tags/graph/">graph</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/mathematics/">mathematics</a>
       
 
       </div>
@@ -1612,6 +2033,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2346,8 +2793,8 @@ Shader "Render Depth"
   
 
   
-  <a href="/posts/opengl-study-10/" class="btn btn-outline-primary">
-    <p>OpenGL 공부 - 10</p>
+  <a href="/posts/mathematics-graph-accel_01/" class="btn btn-outline-primary">
+    <p>0~1 구간 가속, 감속 그래프 모음</p>
   </a>
   
 
@@ -2609,50 +3056,6 @@ Shader "Render Depth"
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2667,135 +3070,6 @@ Shader "Render Depth"
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3034,6 +3308,234 @@ Shader "Render Depth"
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3114,36 +3616,6 @@ Shader "Render Depth"
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -3200,42 +3672,7 @@ Shader "Render Depth"
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
-    
-  
-    
-    
-    
     
   
     
@@ -3294,10 +3731,10 @@ Shader "Render Depth"
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
-        <a class="post-tag" href="/tags/optimization/">optimization</a>
+        <a class="post-tag" href="/tags/graph/">graph</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/mathematics/">mathematics</a>
       
 
     </div>
