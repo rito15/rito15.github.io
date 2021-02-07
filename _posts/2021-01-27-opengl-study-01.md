@@ -1,5 +1,5 @@
 ---
-title: OpenGL 공부 - 01
+title: OpenGL 공부 - 01 - 시작
 author: Rito15
 date: 2021-01-28 00:10:00 +09:00
 categories: [OpenGL, OpenGL Study]

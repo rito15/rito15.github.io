@@ -1,5 +1,5 @@
 ---
-title: OpenGL 공부 - 07
+title: OpenGL 공부 - 07 - Index Buffer
 author: Rito15
 date: 2021-02-03 16:32:00 +09:00
 categories: [OpenGL, OpenGL Study]

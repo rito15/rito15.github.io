@@ -1,5 +1,5 @@
 ---
-title: OpenGL 공부 - 05
+title: OpenGL 공부 - 05 - Shader
 author: Rito15
 date: 2021-02-01 17:42:00 +09:00
 categories: [OpenGL, OpenGL Study]

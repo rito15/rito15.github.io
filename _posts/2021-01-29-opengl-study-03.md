@@ -1,5 +1,5 @@
 ---
-title: OpenGL 공부 - 03
+title: OpenGL 공부 - 03 - Vertex, VBO
 author: Rito15
 date: 2021-01-29 22:07:00 +09:00
 categories: [OpenGL, OpenGL Study]

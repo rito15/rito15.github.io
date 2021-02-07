@@ -23,7 +23,7 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="OpenGL 공부 - 09" />
+<meta property="og:title" content="OpenGL 공부 - 09 - uniform, VAO" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="목표 uniform 변수, VAO에 대한 이해 및 사용" />
@@ -34,14 +34,14 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-02-05T15:20:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="OpenGL 공부 - 09" />
+<meta property="twitter:title" content="OpenGL 공부 - 09 - uniform, VAO" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 uniform 변수, VAO에 대한 이해 및 사용","datePublished":"2021-02-05T15:20:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-09/"},"url":"https://rito15.github.io/posts/opengl-study-09/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 09","dateModified":"2021-02-05T15:20:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 uniform 변수, VAO에 대한 이해 및 사용","datePublished":"2021-02-05T15:20:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-09/"},"url":"https://rito15.github.io/posts/opengl-study-09/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 09 - uniform, VAO","dateModified":"2021-02-05T15:20:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>OpenGL 공부 - 09 | Rito15
+  <title>OpenGL 공부 - 09 - uniform, VAO | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>OpenGL 공부 - 09</span>
+        <span>OpenGL 공부 - 09 - uniform, VAO</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -354,7 +354,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>OpenGL 공부 - 09</h1>
+      <h1 data-toc-skip>OpenGL 공부 - 09 - uniform, VAO</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -1430,19 +1430,19 @@ void main()
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 09 - Rito15&url=https://rito15.github.io/posts/opengl-study-09/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 09 - uniform, VAO - Rito15&url=https://rito15.github.io/posts/opengl-study-09/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 09 - Rito15&u=https://rito15.github.io/posts/opengl-study-09/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 09 - uniform, VAO - Rito15&u=https://rito15.github.io/posts/opengl-study-09/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=OpenGL 공부 - 09 - Rito15&url=https://rito15.github.io/posts/opengl-study-09/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=OpenGL 공부 - 09 - uniform, VAO - Rito15&url=https://rito15.github.io/posts/opengl-study-09/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1505,6 +1505,11 @@ void main()
         
         
         
+        <li><a href="/posts/unity-transparent-stencil/">유니티 투명 쉐이더와 스텐실 개념</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible</a></li>
       
         
@@ -1520,12 +1525,7 @@ void main()
         
         
         
-        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
       
 
       </ul>
@@ -2518,6 +2518,19 @@ void main()
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -3043,7 +3056,7 @@ void main()
   <i class="unloaded">2021-01-28T00:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 01</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 01 - 시작</h3>
             <div class="text-muted small">
               <p>
                 
@@ -3099,7 +3112,7 @@ void main()
   <i class="unloaded">2021-01-28T22:09:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 02</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 02 - 초기 세팅</h3>
             <div class="text-muted small">
               <p>
                 
@@ -3161,7 +3174,7 @@ GLEW 설치
   <i class="unloaded">2021-01-29T22:07:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 03</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 03 - Vertex, VBO</h3>
             <div class="text-muted small">
               <p>
                 

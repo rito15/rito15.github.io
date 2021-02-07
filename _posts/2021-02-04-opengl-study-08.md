@@ -1,5 +1,5 @@
 ---
-title: OpenGL 공부 - 08
+title: OpenGL 공부 - 08 - Debugging
 author: Rito15
 date: 2021-02-04 15:45:00 +09:00
 categories: [OpenGL, OpenGL Study]

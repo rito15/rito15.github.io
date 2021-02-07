@@ -1,5 +1,5 @@
 ---
-title: OpenGL 공부 - 10
+title: OpenGL 공부 - 10 - New Beginning
 author: Rito15
 date: 2021-02-06 15:20:00 +09:00
 categories: [OpenGL, OpenGL Study]

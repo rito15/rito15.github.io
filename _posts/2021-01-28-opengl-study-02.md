@@ -1,5 +1,5 @@
 ---
-title: OpenGL 공부 - 02
+title: OpenGL 공부 - 02 - 초기 세팅
 author: Rito15
 date: 2021-01-28 22:09:00 +09:00
 categories: [OpenGL, OpenGL Study]

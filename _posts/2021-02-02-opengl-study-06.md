@@ -1,5 +1,5 @@
 ---
-title: OpenGL 공부 - 06
+title: OpenGL 공부 - 06 - Shaders With a File
 author: Rito15
 date: 2021-02-02 14:21:00 +09:00
 categories: [OpenGL, OpenGL Study]

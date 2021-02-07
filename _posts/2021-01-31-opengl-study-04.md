@@ -1,5 +1,5 @@
 ---
-title: OpenGL 공부 - 04
+title: OpenGL 공부 - 04 - VAO, VBO, Attributes
 author: Rito15
 date: 2021-01-31 13:31:00 +09:00
 categories: [OpenGL, OpenGL Study]

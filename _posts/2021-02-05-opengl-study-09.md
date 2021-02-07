@@ -1,5 +1,5 @@
 ---
-title: OpenGL 공부 - 09
+title: OpenGL 공부 - 09 - uniform, VAO
 author: Rito15
 date: 2021-02-05 15:20:00 +09:00
 categories: [OpenGL, OpenGL Study]
