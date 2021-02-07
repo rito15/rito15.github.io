@@ -846,7 +846,7 @@ private GameObject field1;
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-vertex-fragment-shader-bible/">Vertex/Fragment Shader Bible</a>
+      <a href="/posts/unity-vertex-fragment-shader-bible/">Vertex/Fragment Shader Bible [예정]</a>
     </h1>
 
     <div class="post-content">
@@ -943,7 +943,7 @@ References
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-surface-shader-bible/">Surface Shader Bible</a>
+      <a href="/posts/unity-surface-shader-bible/">Surface Shader Bible [작성 중]</a>
     </h1>
 
     <div class="post-content">
@@ -1042,20 +1042,18 @@ Shader "Custom/SurfaceShader01"
 
         Shader "A/B"
 {
-	Properties
-	{
-		_MainTex ("Texture", 2D) = "black" {}
-	}
+    Properties
+    {
+        _MainTex ("Texture", 2D) = "black" {}
+    }
 
-	CGINCLUDE
-	#include "UnityCG.cginc"
+    CGINCLUDE
+    #include "UnityCG.cginc"
 
-        struct appdata
-	{
-		float4 vertex : POSITION;
-		float2 uv : TEXCOORD0;
-	};
-	s...
+    struct appdata
+    {
+        float4 vertex : POSITION;
+     ...
       </p>
     </div>
 
@@ -1102,7 +1100,7 @@ Shader "Custom/SurfaceShader01"
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="200 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="223 words">1 min</span>
 
 
         <!-- page views -->
@@ -1469,27 +1467,27 @@ OpenGL의 쉐이더
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 투명 쉐이더와 스텐실 개념</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-profiling/">Unity Profiling</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-script-optimization/">Unity Script Optimization</a></li>
+        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02 - 초기 세팅</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03 - Vertex, VBO</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-04/">OpenGL 공부 - 04 - VAO, VBO, Attributes</a></li>
       
 
       </ul>
@@ -1538,155 +1536,6 @@ OpenGL의 쉐이더
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1751,10 +1600,21 @@ OpenGL의 쉐이더
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1904,70 +1764,10 @@ OpenGL의 쉐이더
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
   
     
     
@@ -2162,10 +1962,6 @@ OpenGL의 쉐이더
     
     
     
-      
-        
-        
-
   
     
     
@@ -2210,6 +2006,253 @@ OpenGL의 쉐이더
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
     
   
@@ -2246,6 +2289,11 @@ OpenGL의 쉐이더
         
         
 
+  
+    
+    
+    
+    
   
     
     
@@ -2476,155 +2524,6 @@ OpenGL의 쉐이더
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2689,10 +2588,21 @@ OpenGL의 쉐이더
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2842,70 +2752,10 @@ OpenGL의 쉐이더
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
   
     
     
@@ -3100,10 +2950,6 @@ OpenGL의 쉐이더
     
     
     
-      
-        
-        
-
   
     
     
@@ -3148,6 +2994,253 @@ OpenGL의 쉐이더
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
     
   
@@ -3184,6 +3277,11 @@ OpenGL의 쉐이더
         
         
 
+  
+    
+    
+    
+    
   
     
     

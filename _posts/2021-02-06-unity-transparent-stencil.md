@@ -1,9 +1,9 @@
 ---
-title: 유니티 투명 쉐이더와 스텐실 개념
+title: 유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]
 author: Rito15
 date: 2021-02-06 01:29:00 +09:00
 categories: [Unity Shader, Shader Study]
-tags: [unity, csharp, shader, graphics, transparent, stencil]
+tags: [unity, csharp, shader, graphics, transparent, alpha, stencil]
 math: true
 mermaid: true
 ---
@@ -283,7 +283,7 @@ Shader "Custom/AlphaBlendShadow"
 # 커스텀 알파 블렌딩
 ---
 
-알파 블렌딩 쉐이더에서는 `blend` 키워드를 통해 블렌딩 연산 방식을 지정할 수 있다.
+알파 블렌딩 쉐이더에서는 `Blend` 키워드를 통해 블렌딩 연산 방식을 지정할 수 있다.
 
 그리고 ZWrite는 off로 설정해주고, pragma에 alpha:fade나 alpha:blend 대신 `keepalpha`를 작성한다.
 
@@ -294,13 +294,13 @@ Shader "Custom/AlphaBlendShadow"
 ## 블렌딩 구문
 
 ```
-blend SrcAlpha OneMinusSrcAlpha
+Blend SrcAlpha OneMinusSrcAlpha
 ```
 
-- blend A B 라고 했을 때, `A * Source + B * Destination` 으로 계산한다.
+- Blend A B 라고 했을 때, `A * Source + B * Destination` 으로 계산한다.
 - `A`, `B` : 블렌딩 팩터
-- `Source` : 오브젝트 자신의 픽셀
-- `Destination` : 배경의 픽셀
+- `Source` : 오브젝트 자신의 픽셀 색상(RGB)
+- `Destination` : 배경의 픽셀 색상(RGB)
 
 
 <br>
@@ -310,7 +310,7 @@ blend SrcAlpha OneMinusSrcAlpha
 |---|---|
 |`One`|숫자 1|
 |`Zero`|숫자 0|
-|`SrcColor`|소스 색상|
+|`SrcColor`|소스 색상(RGB)|
 |`SrcAlpha`|소스 알파|
 |`DstColor`|배경 색상|
 |`DstAlpha`|배경 알파|
@@ -319,19 +319,321 @@ blend SrcAlpha OneMinusSrcAlpha
 |`OneMinusDstColor`|1 - 배경 색상|
 |`OneMinusDstAlpha`|1 - 배경 알파|
 
+<br>
+
+## 주로 사용되는 블렌딩 구문들
+
+### Alpha Blending
+ - `Blend SrcAlpha OneMinusSrcAlpha`
+
+### Additive
+ - `Blend SrcAlpha One`
+
+### Additive 2 (Additive No Alpha Black is Transparent)
+ - `Blend One One`
+
+### Multiplicative
+ - `Blend DstColor Zero`
+
+### 2x Multiplicative
+ - `Blend DstColor SrcColor`
+
+<br>
+![image](https://user-images.githubusercontent.com/42164422/107146122-7e940d00-6989-11eb-9476-e8df784d9ea0.png){:.normal}
+
+- 모든 쉐이더의 알파값은 0.7로 지정하였다.
+- Multiplicative 쉐이더들은 알파 값의 영향을 받지 않는다.
+
+- Alpha Blending, Additive, Additive 2 쉐이더는 Albedo에 텍스쳐 색상을 넣어주었다.
+  - `o.Albedo = c.rgb;`
+
+- Multiplicative 쉐이더는 RGB의 까만 영역을 모두 하얗게 바꿔주었다.
+  - `o.Emission = lerp(float3(1,1,1), c.rgb, c.a);`
+
+- 2x Multiplicative 쉐이더는 이렇게 작성하여 RGB의 까만 영역을 모두 회색으로 바꿔주었다.
+  - `o.Emission = lerp(float3(.5, .5, .5), c.rgb, c.a);`
+
+<br>
+### 메인 라이트의 강도를 0 ~ 1사이에서 조정했을 때
+
+![2021_0207_AlphaShaders_LightIntensityChange](https://user-images.githubusercontent.com/42164422/107146211-ff530900-6989-11eb-9bee-ea124986debc.gif){:.normal}
+
+- 모든 쉐이더의 라이팅 함수 : Lambert
+
+- Alpha Blending 쉐이더는 빛이 없으면 색상이 까맣게 변한다.
+- Additive, Additive 2 쉐이더는 빛이 없으면 투명해진다.
+- Multiplicative, 2x Multiplicative 쉐이더는 Albedo 대신 Emission을 지정하였으므로, 빛의 영향을 받지 않는다.
 
 <br>
 
-## 블렌딩 구문 예시
+# 파티클 쉐이더 만들어보기
+---
 
+## 조건
+- 빛을 받지 않으므로 빛의 연산이 필요하지 않다.
+- 그림자를 받지도, 만들지도 않는다.
+- 파티클 색상을 조절할 수 있어야 한다.
+- 알파 블렌딩 옵션을 조절할 수 있어야 한다.
 
+<br>
+## 소스코드
+
+``` hlsl
+Shader "Custom/Particle"
+Shader "Custom/Particle"
+{
+    Properties
+    {
+        _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
+        _Intensity("Intensity", Range(0, 2)) = 1
+        _MainTex("Albedo (RGB)", 2D) = "white"{}
+        [Enum(UnityEngine.Rendering.BlendMode)]_SrcBlend("SrcBlend Mode", Float) = 5 // SrcAlpha
+        [Enum(UnityEngine.Rendering.BlendMode)]_DstBlend("DstBlend Mode", Float) = 1 // One
+    }
+    SubShader
+    {
+        Tags { "RenderType"="Transparent" "Queue"="Transparent" "IgnoreProjector"="True" }
+        Blend [_SrcBlend] [_DstBlend]
+        Zwrite off
+        Cull off
+
+        CGPROGRAM
+        #pragma surface surf nolight keepalpha noforwardadd nolightmap noambient novertexlights noshadow
+
+        sampler2D _MainTex;
+        float4 _TintColor;
+        float _Intensity;
+
+        struct Input
+        {
+            float2 uv_MainTex;
+            float4 color:COLOR; // Vertex Color
+        };
+
+        void surf(Input IN, inout SurfaceOutput o)
+        {
+            fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
+            c = c * _TintColor * IN.color;
+            o.Emission = c.rgb * _Intensity;
+            o.Alpha = c.a;
+        }
+
+        float4 Lightingnolight(SurfaceOutput s, float3 lightDir, float atten)
+        {
+            return float4(0, 0, 0, s.Alpha);
+        }
+        ENDCG
+    }
+}
+```
+
+<br>
+## 설명
+
+```hlsl
+_TintColor ("Tint Color", Color) = (1, 1, 1, 1)
+_Intensity("Intensity", Range(0, 2)) = 1
+```
+
+- _TintColor 값으로 색상을 지정할 수 있게 한다.
+- _Intensity 값으로 색상의 강도를 조절할 수 있게 한다.
+
+<br>
+
+```hlsl
+[Enum(UnityEngine.Rendering.BlendMode)]_SrcBlend("SrcBlend Mode", Float) = 5 // SrcAlpha
+[Enum(UnityEngine.Rendering.BlendMode)]_DstBlend("DstBlend Mode", Float) = 1 // One
+
+Blend [_SrcBlend] [_DstBlend]
+```
+
+- Src, Dst 블렌드 팩터를 마테리얼에서 직접 지정할 수 있게 한다.
+- 기본 값은 `Blend SrcAlpha One`
+
+<br>
+
+```hlsl
+Cull off
+```
+
+- 폴리곤의 양면을 모두 그린다(2 sided mode)
+
+<br>
+
+```hlsl
+"IgnoreProjector"="True"
+```
+
+- 유니티의 Projector의 영향을 받지 않도록 한다.
+- 프로젝터를 안써봐서 솔직히 잘 모르겠다.
+
+<br>
+
+```hlsl
+#pragma surface surf nolight keepalpha noforwardadd nolightmap noambient novertexlights noshadow
+```
+
+-> 쉐이더가 만들어지며 자동 생성되는 추가 쉐이더(Variant)들을 최소화하여 쉐이더를 가볍게 해주는 구문들이다.
+
+(**Variant** : 라이트맵, 그림자, 정점조명 등이 있는 경우, 없는 경우를 모두 계산하여 경우에 따라 미리 다르게 만들어 놓는 쉐이더들)<br>
+
+- `nolight` : Lightingnolight 커스텀 라이팅 함수를 지정하여 빛의 연산을 최소화한다.
+- `noforawrdadd` : Forward 렌더링 추가 패스를 비활성화하여, 쉐이더의 크기를 줄인다.
+- `nolightmap` : 쉐이더에서 모든 라이트맵 지원을 비활성화한다.
+- `noambient` : 주변광과 라이트 프로브를 적용하지 않도록 한다.
+- `novertexlights` : 정점 라이팅을 비활성화한다.
+- `noshadow` : 그림자를 받지 않도록 한다.
+
+이렇게 적용하면 Variants를 엄청 줄여줄 수 있다.
+
+![image](https://user-images.githubusercontent.com/42164422/107154451-5b338700-69b6-11eb-90e9-747a09e69bc6.png){:.normal}
+
+<br>
+
+```hlsl
+float4 color:COLOR; // Vertex Color
+```
+
+- 버텍스 컬러를 받아온다. 파티클에서 색상을 조정할 수 있게 하려면 꼭 필요하다.
+
+<br>
+
+```hlsl
+void surf(Input IN, inout SurfaceOutput o)
+{
+    fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
+    c = c * _TintColor * IN.color;
+    o.Emission = c.rgb * _Intensity;
+    o.Alpha = c.a;
+}
+```
+
+- 텍스쳐 샘플링을 통해 얻은 색상에 _TintColor를 곱해줌으로써 마테리얼에서 지정한 색상을 적용시켜주고, IN.color를 곱해줌으로써 파티클 시스템에서 지정한 색상도 적용시켜준다.
+- o.Albedo가 아니라 o.Emission에 rgb값을 지정하여, 라이팅의 영향을 받지 않도록 한다.
+- o.Emissiom에 색상을 지정할 때 _Intensity를 곱해줌으로써 마테리얼에서 지정한 색상의 강도를 적용시켜준다.
+
+<br>
+
+```hlsl
+float4 Lightingnolight(SurfaceOutput s, float3 lightDir, float atten)
+{
+    return float4(0, 0, 0, s.Alpha);
+}
+```
+
+- 아무 것도 하지 않는, 그저 껍데기만 있는 아주 가벼운 라이팅 함수
+- 이렇게 라이팅 함수가 존재하기는 해야 하기 때문에 넣어준다.
+
+<br>
+
+## 파티클 예시
+
+**[1] 위에서 작성한 쉐이더 사용**
+
+![2021_0208_CustomParticle](https://user-images.githubusercontent.com/42164422/107153835-ee6abd80-69b2-11eb-806f-7bbdc7673b42.gif){:.normal}
+
+<br>
+**[2] 유니티 기본 파티클 쉐이더 사용**
+
+![2021_0208_DefaultParticle](https://user-images.githubusercontent.com/42164422/107153836-f0cd1780-69b2-11eb-8144-80e7d40f4e72.gif){:.normal}
 
 <br>
 
 # 깨끗한 알파 블렌딩 쉐이더 만들기
 ---
 
+```hlsl
 
+Shader "Custom/Alpha2Pass"
+{
+    Properties
+    {
+        _MainTex("Albedo (RGB)", 2D) = "white" {}
+        _Alpha("Alpha", Range(0, 1)) = 0.5
+    }
+    SubShader
+    {
+        Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
+
+        /****************************************************************
+        *                            Pass 1
+        *****************************************************************
+        * - Zwrite on
+        * - Rendering off (ColorMask 0)
+        * - 패스 1의 역할 : 알파 소팅 문제가 발생하지 않도록
+        *                   Z버퍼에 기록해주기
+        *****************************************************************/
+        ZWrite On
+        ColorMask 0
+
+        CGPROGRAM
+        #pragma surface surf nolight noambient noforwardadd nolightmap novertexlights noshadow
+
+        struct Input
+        {
+            float4 color:COLOR; // Input을 비워두지 않기 위해 작성
+        };
+
+        // 서피스 함수 : 아무 것도 하지 않음
+        void surf(Input IN, inout SurfaceOutput o){}
+
+        // 라이팅 함수 : 아무 것도 하지 않음
+        float4 Lightingnolight(SurfaceOutput s, float3 lightDir, float atten)
+        {
+            return float4(0,0,0,0);
+        }
+        ENDCG
+
+        /****************************************************************
+        *                            Pass 2
+        *****************************************************************
+        * - Zwrite off
+        * - 패스 2 : 메인 패스. 여기서 모든걸 계산. 빛의 영향도 받음
+        *****************************************************************/
+        ZWrite Off
+
+        CGPROGRAM
+        #pragma surface surf Lambert alpha:fade
+        
+        sampler2D _MainTex;
+        
+        struct Input
+        {
+            float2 uv_MainTex;
+        };
+
+        float _Alpha;
+
+        void surf(Input IN, inout SurfaceOutput o)
+        {
+            fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
+            o.Albedo = c.rgb;
+            o.Alpha = _Alpha;
+        }
+        ENDCG
+    }
+    Fallback "Transparent" // 그림자 생성 X
+}
+```
+
+- 패스를 두 개로 나누어 작성한다.
+- 첫 번째 패스는 알파 소팅 문제가 발생하지 않도록 Z버퍼에 기록만 해주는 용도로 작성한다.
+- 두 번째 패스에서 필요한 모든 것을 계산한다.
+
+<br>
+
+![2021_0208_CustomAlphaRobot](https://user-images.githubusercontent.com/42164422/107155537-51ad1d80-69bc-11eb-863e-3d59c0c5381c.gif){:.normal}
+
+- _Alpha 프로퍼티를 통해 투명도를 조절할 수 있다.
+- 두 번째 패스에서 Lambert 라이팅을 적용했기 때문에 빛의 영향도 받는다.
+
+<br>
+
+## 기본 알파 블렌딩 쉐이더와 비교
+
+![image](https://user-images.githubusercontent.com/42164422/107155608-b4061e00-69bc-11eb-8c5c-6c3752e5c321.png){:.normal}
+
+- 알파 소팅 문제가 발생하지 않아 깔끔하다.
 
 <br>
 

@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="200 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="223 words">1 min</span>
 
 
           <!-- page views -->
@@ -489,75 +489,89 @@
 68
 69
 70
+71
+72
+73
+74
+75
+76
+77
 </pre></td><td class="rouge-code"><pre><span class="n">Shader</span> <span class="s">"A/B"</span>
 <span class="p">{</span>
-	<span class="n">Properties</span>
-	<span class="p">{</span>
-		<span class="n">_MainTex</span> <span class="p">(</span><span class="s">"Texture"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"black"</span> <span class="p">{}</span>
-	<span class="p">}</span>
+    <span class="n">Properties</span>
+    <span class="p">{</span>
+        <span class="n">_MainTex</span> <span class="p">(</span><span class="s">"Texture"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"black"</span> <span class="p">{}</span>
+    <span class="p">}</span>
 
-	<span class="n">CGINCLUDE</span>
-	<span class="cp">#include "UnityCG.cginc"
+    <span class="n">CGINCLUDE</span>
+    <span class="cp">#include "UnityCG.cginc"
 </span>
-        <span class="k">struct</span> <span class="n">appdata</span>
-	<span class="p">{</span>
-		<span class="kt">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="nb">POSITION</span><span class="p">;</span>
-		<span class="kt">float2</span> <span class="n">uv</span> <span class="o">:</span> <span class="nb">TEXCOORD0</span><span class="p">;</span>
-	<span class="p">};</span>
-	<span class="k">struct</span> <span class="n">v2f</span>
-	<span class="p">{</span>
-		<span class="kt">float4</span> <span class="n">vertex</span><span class="o">:</span><span class="nb">SV_POSITION</span><span class="p">;</span>
-		<span class="kt">float2</span> <span class="n">uv</span><span class="o">:</span><span class="nb">TEXCOORD0</span><span class="p">;</span>
-	<span class="p">};</span>
+    <span class="k">struct</span> <span class="n">appdata</span>
+    <span class="p">{</span>
+        <span class="kt">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="nb">POSITION</span><span class="p">;</span>
+        <span class="kt">float2</span> <span class="n">uv</span> <span class="o">:</span> <span class="nb">TEXCOORD0</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="k">struct</span> <span class="n">v2f</span>
+    <span class="p">{</span>
+        <span class="kt">float4</span> <span class="n">pos</span><span class="o">:</span><span class="nb">SV_POSITION</span><span class="p">;</span>
+        <span class="kt">float2</span> <span class="n">uv</span><span class="o">:</span><span class="nb">TEXCOORD0</span><span class="p">;</span>
+    <span class="p">};</span>
 
-	<span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
+    <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
 
-	<span class="n">v2f</span> <span class="n">vert1</span> <span class="p">(</span><span class="n">appdata_img</span> <span class="n">v</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">v2f</span> <span class="n">o</span><span class="p">;</span>
-                <span class="c1">// ...</span>
-		<span class="k">return</span> <span class="n">o</span><span class="p">;</span>
-	<span class="p">}</span>
+    <span class="n">v2f</span> <span class="n">vert1</span> <span class="p">(</span><span class="n">appdata</span> <span class="n">v</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">v2f</span> <span class="n">o</span><span class="p">;</span>
+		<span class="n">o</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">UnityObjectToClipPos</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">vertex</span><span class="p">);</span>
+		<span class="n">o</span><span class="p">.</span><span class="n">uv</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">uv</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+        <span class="k">return</span> <span class="n">o</span><span class="p">;</span>
+    <span class="p">}</span>
 
-	<span class="n">fixed4</span> <span class="n">frag1</span> <span class="p">(</span><span class="n">v2f</span> <span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">SV_Target</span>
-	<span class="p">{</span>
-		<span class="c1">// ...</span>
-		<span class="k">return</span> <span class="n">col</span><span class="p">;</span>
-	<span class="p">}</span> 	
+    <span class="n">fixed4</span> <span class="n">frag1</span> <span class="p">(</span><span class="n">v2f</span> <span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">SV_Target</span>
+    <span class="p">{</span>
+        <span class="n">fixed4</span> <span class="n">col</span> <span class="o">=</span> <span class="n">fixed4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+        <span class="c1">// ...</span>
+        <span class="k">return</span> <span class="n">col</span><span class="p">;</span>
+    <span class="p">}</span>     
 
-	<span class="n">v2f</span> <span class="n">vert2</span> <span class="p">(</span><span class="n">appdata_img</span> <span class="n">v</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">v2f</span> <span class="n">o</span><span class="p">;</span>
-                <span class="c1">// ...</span>
-		<span class="k">return</span> <span class="n">o</span><span class="p">;</span>
-	<span class="p">}</span>
+    <span class="n">v2f</span> <span class="n">vert2</span> <span class="p">(</span><span class="n">appdata</span> <span class="n">v</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">v2f</span> <span class="n">o</span><span class="p">;</span>
+		<span class="n">o</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">UnityObjectToClipPos</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">vertex</span><span class="p">);</span>
+		<span class="n">o</span><span class="p">.</span><span class="n">uv</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">uv</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+        <span class="k">return</span> <span class="n">o</span><span class="p">;</span>
+    <span class="p">}</span>
 
-	<span class="n">fixed4</span> <span class="n">frag2</span> <span class="p">(</span><span class="n">v2f</span> <span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">SV_Target</span>
-	<span class="p">{</span>
-		<span class="c1">// ...</span>
-		<span class="k">return</span> <span class="n">col</span><span class="p">;</span>
-	<span class="p">}</span> 
-	<span class="n">ENDCG</span>
+    <span class="n">fixed4</span> <span class="n">frag2</span> <span class="p">(</span><span class="n">v2f</span> <span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">SV_Target</span>
+    <span class="p">{</span>
+        <span class="n">fixed4</span> <span class="n">col</span> <span class="o">=</span> <span class="n">fixed4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+        <span class="c1">// ...</span>
+        <span class="k">return</span> <span class="n">col</span><span class="p">;</span>
+    <span class="p">}</span> 
+    <span class="n">ENDCG</span>
 
-	<span class="n">SubShader</span>
-	<span class="p">{</span>
-		<span class="n">Tags</span> <span class="p">{</span> <span class="s">"Queue"</span> <span class="o">=</span> <span class="s">"Opaque"</span> <span class="p">}</span>
-		<span class="c1">//Cull Off ZWrite Off ZTest Always</span>
-		<span class="n">Pass</span> <span class="c1">// Pass 0</span>
-		<span class="p">{</span>
-			<span class="n">CGPROGRAM</span>
-			<span class="cp">#pragma vertex vert1	
-</span>			<span class="cp">#pragma fragment frag1
-</span>			<span class="n">ENDCG</span>
-		<span class="p">}</span>
-		<span class="n">Pass</span> <span class="c1">// Pass 1</span>
-		<span class="p">{</span>
-			<span class="n">CGPROGRAM</span>
-			<span class="cp">#pragma vertex vert2
-</span>			<span class="cp">#pragma fragment frag2
-</span>			<span class="n">ENDCG</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
+    <span class="n">SubShader</span>
+    <span class="p">{</span>
+        <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span><span class="o">=</span><span class="s">"Opaque"</span> <span class="p">}</span>
+        <span class="c1">//Cull Off ZWrite Off ZTest Always</span>
+
+        <span class="n">Pass</span> <span class="c1">// 1</span>
+        <span class="p">{</span>
+            <span class="n">CGPROGRAM</span>
+            <span class="cp">#pragma vertex vert1    
+</span>            <span class="cp">#pragma fragment frag1
+</span>            <span class="n">ENDCG</span>
+        <span class="p">}</span>
+        <span class="n">Pass</span> <span class="c1">// 2</span>
+        <span class="p">{</span>
+            <span class="n">CGPROGRAM</span>
+            <span class="cp">#pragma vertex vert2
+</span>            <span class="cp">#pragma fragment frag2
+</span>            <span class="n">ENDCG</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -695,27 +709,27 @@
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 투명 쉐이더와 스텐실 개념</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-profiling/">Unity Profiling</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-script-optimization/">Unity Script Optimization</a></li>
+        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02 - 초기 세팅</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03 - Vertex, VBO</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-04/">OpenGL 공부 - 04 - VAO, VBO, Attributes</a></li>
       
 
       </ul>
@@ -764,155 +778,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -977,10 +842,21 @@
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -1130,70 +1006,10 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
   
     
     
@@ -1388,10 +1204,6 @@
     
     
     
-      
-        
-        
-
   
     
     
@@ -1436,6 +1248,253 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
     
   
@@ -1472,6 +1531,11 @@
         
         
 
+  
+    
+    
+    
+    
   
     
     
@@ -2301,7 +2365,7 @@ Shader "Render Depth"
   <i class="unloaded">2021-02-06T01:29:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 투명 쉐이더와 스텐실 개념</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2398,7 +2462,7 @@ Shader "Render Depth"
 
   
   <a href="/posts/unity-surface-shader-bible/" class="btn btn-outline-primary">
-    <p>Surface Shader Bible</p>
+    <p>Surface Shader Bible [작성 중]</p>
   </a>
   
 
@@ -2506,155 +2570,6 @@ Shader "Render Depth"
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2719,10 +2634,21 @@ Shader "Render Depth"
     
     
     
-      
-        
-        
-
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2872,70 +2798,10 @@ Shader "Render Depth"
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
   
     
     
@@ -3130,10 +2996,6 @@ Shader "Render Depth"
     
     
     
-      
-        
-        
-
   
     
     
@@ -3178,6 +3040,253 @@ Shader "Render Depth"
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
     
   
@@ -3214,6 +3323,11 @@ Shader "Render Depth"
         
         
 
+  
+    
+    
+    
+    
   
     
     

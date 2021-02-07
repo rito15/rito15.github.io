@@ -1,5 +1,5 @@
 ---
-title: Vertex/Fragment Shader Bible
+title: Vertex/Fragment Shader Bible [예정]
 author: Rito15
 date: 2021-02-02 01:00:00 +09:00
 categories: [Unity Shader, Shader Study]

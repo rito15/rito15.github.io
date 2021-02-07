@@ -1,5 +1,5 @@
 ---
-title: Surface Shader Bible
+title: Surface Shader Bible [작성 중]
 author: Rito15
 date: 2021-02-02 01:00:00 +09:00
 categories: [Unity Shader, Shader Study]

@@ -61,10 +61,10 @@
   },
   
   {
-    "title": "유니티 투명 쉐이더와 스텐실 개념",
+    "title": "유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]",
     "url": "/posts/unity-transparent-stencil/",
     "categories": "Unity Shader, Shader Study",
-    "tags": "unity, csharp, shader, graphics, transparent, stencil",
+    "tags": "unity, csharp, shader, graphics, transparent, alpha, stencil",
     "date": "2021-02-06 01:29:00 +0900",
     
 
@@ -226,7 +226,7 @@
   },
   
   {
-    "title": "Vertex/Fragment Shader Bible",
+    "title": "Vertex/Fragment Shader Bible [예정]",
     "url": "/posts/unity-vertex-fragment-shader-bible/",
     "categories": "Unity Shader, Shader Study",
     "tags": "unity, csharp, shader",
@@ -241,7 +241,7 @@
   },
   
   {
-    "title": "Surface Shader Bible",
+    "title": "Surface Shader Bible [작성 중]",
     "url": "/posts/unity-surface-shader-bible/",
     "categories": "Unity Shader, Shader Study",
     "tags": "unity, csharp, shader",
@@ -267,7 +267,7 @@
 
 
 
-    "snippet": "Shader &quot;A/B&quot;{	Properties	{		_MainTex (&quot;Texture&quot;, 2D) = &quot;black&quot; {}	}	CGINCLUDE	#include &quot;UnityCG.cginc&quot;        struct appdata	{		float4 vertex : POSITION;		float2 uv : TEXCOORD0;	};	struct v2f	{		float4 vertex:SV_POSITION;		float2 uv:TEXCOORD0;	};	sampler2D ..."
+    "snippet": "Shader &quot;A/B&quot;{    Properties    {        _MainTex (&quot;Texture&quot;, 2D) = &quot;black&quot; {}    }    CGINCLUDE    #include &quot;UnityCG.cginc&quot;    struct appdata    {        float4 vertex : POSITION;        float2 uv : TEXCOORD0;    };    struct v2f    {        float4 pos:SV_P..."
   },
   
   {

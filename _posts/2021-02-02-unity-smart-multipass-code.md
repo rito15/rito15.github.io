@@ -11,72 +11,79 @@ mermaid: true
 ```hlsl
 Shader "A/B"
 {
-	Properties
-	{
-		_MainTex ("Texture", 2D) = "black" {}
-	}
+    Properties
+    {
+        _MainTex ("Texture", 2D) = "black" {}
+    }
 
-	CGINCLUDE
-	#include "UnityCG.cginc"
+    CGINCLUDE
+    #include "UnityCG.cginc"
 
-        struct appdata
-	{
-		float4 vertex : POSITION;
-		float2 uv : TEXCOORD0;
-	};
-	struct v2f
-	{
-		float4 vertex:SV_POSITION;
-		float2 uv:TEXCOORD0;
-	};
+    struct appdata
+    {
+        float4 vertex : POSITION;
+        float2 uv : TEXCOORD0;
+    };
+    struct v2f
+    {
+        float4 pos:SV_POSITION;
+        float2 uv:TEXCOORD0;
+    };
 
-	sampler2D _MainTex;
+    sampler2D _MainTex;
 
-	v2f vert1 (appdata_img v)
-	{
-		v2f o;
-                // ...
-		return o;
-	}
+    v2f vert1 (appdata v)
+    {
+        v2f o;
+		o.pos = UnityObjectToClipPos(v.vertex);
+		o.uv = v.uv;
+        // ...
+        return o;
+    }
 
-	fixed4 frag1 (v2f i) : SV_Target
-	{
-		// ...
-		return col;
-	} 	
+    fixed4 frag1 (v2f i) : SV_Target
+    {
+        fixed4 col = fixed4(0,0,0,0);
+        // ...
+        return col;
+    }     
 
-	v2f vert2 (appdata_img v)
-	{
-		v2f o;
-                // ...
-		return o;
-	}
+    v2f vert2 (appdata v)
+    {
+        v2f o;
+		o.pos = UnityObjectToClipPos(v.vertex);
+		o.uv = v.uv;
+        // ...
+        return o;
+    }
 
-	fixed4 frag2 (v2f i) : SV_Target
-	{
-		// ...
-		return col;
-	} 
-	ENDCG
+    fixed4 frag2 (v2f i) : SV_Target
+    {
+        fixed4 col = fixed4(0,0,0,0);
+        // ...
+        return col;
+    } 
+    ENDCG
 
-	SubShader
-	{
-		Tags { "Queue" = "Opaque" }
-		//Cull Off ZWrite Off ZTest Always
-		Pass // Pass 0
-		{
-			CGPROGRAM
-			#pragma vertex vert1	
-			#pragma fragment frag1
-			ENDCG
-		}
-		Pass // Pass 1
-		{
-			CGPROGRAM
-			#pragma vertex vert2
-			#pragma fragment frag2
-			ENDCG
-		}
-	}
+    SubShader
+    {
+        Tags { "RenderType"="Opaque" }
+        //Cull Off ZWrite Off ZTest Always
+
+        Pass // 1
+        {
+            CGPROGRAM
+            #pragma vertex vert1    
+            #pragma fragment frag1
+            ENDCG
+        }
+        Pass // 2
+        {
+            CGPROGRAM
+            #pragma vertex vert2
+            #pragma fragment frag2
+            ENDCG
+        }
+    }
 }
 ```
