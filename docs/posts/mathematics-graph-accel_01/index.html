@@ -601,27 +601,27 @@
         
         
         
+        <li><a href="/posts/unity-transparent-stencil/">유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-smart-multipass-code/">멀티패스 쉐이더 코드 깔끔하게 작성하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible [작성 중]</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-vertex-fragment-shader-bible/">Vertex/Fragment Shader Bible [예정]</a></li>
+      
+        
+        
+        
         <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02 - 초기 세팅</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03 - Vertex, VBO</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-04/">OpenGL 공부 - 04 - VAO, VBO, Attributes</a></li>
       
 
       </ul>
@@ -1638,6 +1638,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2294,6 +2307,83 @@ e^(1-x) * x
       
       
       <div class="card">
+        <a href="/posts/opengl-study-12/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb  7
+  
+
+  <i class="unloaded">2021-02-07T16:12:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 12 - New Beginning 3</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+  기본 렌더링 세팅
+  기본 도형 렌더링
+
+
+
+
+공부 내용
+
+
+테스트를 위해 렌더링 옵션들 설정
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+// main.cpp - in main()
+
+glEnable(GL_DEPTH_TEST);
+
+glEnable(GL_CULL_FACE);
+glCullFace(GL_BACK);
+glFr...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/opengl-study-11/">
           <div class="card-body">
             <!--
@@ -2370,72 +2460,6 @@ vertex_core.glsl
 #version 440
 
 layout (location = 0) in vec3 vert...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/opengl-study-10/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  6
-  
-
-  <i class="unloaded">2021-02-06T15:20:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 10 - New Beginning</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목표
-
-
-  다른 강좌로 새롭게 시작
-  GLM, SOIL2 설치
-
-
-
-
-새로운 시작
-
-
-새로운 강좌를 선택한 김에 기존의 파일들을 날려버리고 구조 변경
-
-
-
-공부 내용
-
-
-GLM ?
-
-  OpenGL Mathematics, 수학 라이브러리.
-  http://glm.g-truc.net/0.9.8/index.html 에서 받을 수 있다.
-  
-    이...
               </p>
             </div>
           </div>

@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-08T03:36:19+09:00</updated>
+  <updated>2021-02-08T16:46:03+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,74 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>OpenGL 공부 - 12 - New Beginning 3</title>
+    <link href="https://rito15.github.io/posts/opengl-study-12/" rel="alternate" type="text/html" title="OpenGL 공부 - 12 - New Beginning 3" />
+    <published>2021-02-07T16:12:00+09:00</published>
+  
+    <updated>2021-02-07T16:12:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-12/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-12/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  기본 렌더링 세팅
+  기본 도형 렌더링
+
+
+
+
+공부 내용
+
+
+테스트를 위해 렌더링 옵션들 설정
+
+// main.cpp - in main()
+
+glEnable(GL_DEPTH_TEST);
+
+glEnable(GL_CULL_FACE);
+glCullFace(GL_BACK);
+glFrontFace(GL_CCW); // 시계 반대 방향으로 구성된 폴리곤을 전면으로 설정
+
+// 픽셀 블렌딩 연산 지정
+glEnable(GL_BLEND);
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+// GL_LINE : 폴리곤을 선으로 그리기
+// GL_FILL : 폴리곤을 색상으로 채우기
+glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+
+
+...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -313,69 +381,6 @@ e^(1-x) * x
 
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]</title>
-    <link href="https://rito15.github.io/posts/unity-transparent-stencil/" rel="alternate" type="text/html" title="유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]" />
-    <published>2021-02-06T01:29:00+09:00</published>
-  
-    <updated>2021-02-07T04:43:17+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-transparent-stencil/</id>
-    <content src="https://rito15.github.io/posts/unity-transparent-stencil/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      불투명과 투명
-
-
-불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.
-
-유니티에서는 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 정수 값으로 지정하는데, 
-지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 2000, Transparent는 3000의 값을 가진다.
-
-따라서 불투명 오브젝트가 전부 그려진 후에 투명 오브젝트가 그려진다.
-
-
-
-Z-buffer
-
-카메라로부터 픽셀마다 가장 가까운 오브젝트까지의 거리를 (0.0 ~ 1.0) 값으로 기록해놓는 버퍼.
-
-깊이 버퍼(Depth Buffer)라고도 한다.
-
-
-
-
-
-불투명(Opaque)
-
-
-
-불투명 오브젝트를 그리기 위해서 우선 Z버퍼를 참조한다.
-각각...
     </summary>
   
 
