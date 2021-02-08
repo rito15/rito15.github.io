@@ -1197,65 +1197,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1325,65 +1266,10 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1583,10 +1469,151 @@
     
     
     
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -1895,10 +1922,10 @@
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
         <a class="post-tag" href="/tags/profiling/">profiling</a>
@@ -1957,6 +1984,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2555,53 +2595,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-profiling/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  4
-  
-
-  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Profiling</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-  프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.
-  [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다.
-  Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-script-optimization/">
           <div class="card-body">
             <!--
@@ -2708,6 +2701,54 @@ Shader "Render Depth"
     SubShader
     {
         Tags { "RenderType" = "Opaq...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-transparent-stencil/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb  6
+  
+
+  <i class="unloaded">2021-02-06T01:29:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                불투명과 투명
+
+
+불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.
+
+유니티에서는 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 정수 값으로 지정하는데, 
+지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 2000, Transparent는 3000의 ...
               </p>
             </div>
           </div>
@@ -3009,65 +3050,6 @@ Shader "Render Depth"
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3137,65 +3119,10 @@ Shader "Render Depth"
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3395,10 +3322,151 @@ Shader "Render Depth"
     
     
     
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -3702,10 +3770,10 @@ Shader "Render Depth"
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
         <a class="post-tag" href="/tags/profiling/">profiling</a>
