@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-09T02:20:29+09:00</updated>
+  <updated>2021-02-10T03:33:35+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,79 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>OpenGL 공부 - 13 - Texture</title>
+    <link href="https://rito15.github.io/posts/opengl-study-13/" rel="alternate" type="text/html" title="OpenGL 공부 - 13 - Texture" />
+    <published>2021-02-10T01:30:00+09:00</published>
+  
+    <updated>2021-02-10T01:30:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-13/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-13/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  폴리곤에 텍스쳐 씌워보기(1장, 여러 장)
+
+
+
+
+1. 텍스쳐 한 장 사용
+
+
+이미지 준비
+
+  프로젝트 디렉토리 내에 Images 폴더를 만들고 PNG 이미지 파일을 준비한다.
+
+
+
+
+소스코드 작성
+
+
+  위치 : VertexAttribPointer ~ Main Loop 사이
+
+
+
+[1] 이미지 로드
+
+int imageWidth = 0;
+int imageHeight = 0;
+unsigned char* image = SOIL_load_image("Images/MoonCat.png",
+    &amp;amp;imageWidth, &amp;amp;imageHeight, NULL, SOIL_LOAD_RGBA);
+
+
+
+[2] 텍스쳐 객체 생성 및 바인드
+
+GLuint texture0; // Texture ID
+...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -82,9 +155,9 @@
   <entry>
     <title>OpenGL 공부 - 12 - New Beginning 3</title>
     <link href="https://rito15.github.io/posts/opengl-study-12/" rel="alternate" type="text/html" title="OpenGL 공부 - 12 - New Beginning 3" />
-    <published>2021-02-07T16:12:00+09:00</published>
+    <published>2021-02-08T16:12:00+09:00</published>
   
-    <updated>2021-02-07T16:12:00+09:00</updated>
+    <updated>2021-02-08T16:12:00+09:00</updated>
   
     <id>https://rito15.github.io/posts/opengl-study-12/</id>
     <content src="https://rito15.github.io/posts/opengl-study-12/" />
@@ -194,7 +267,7 @@ glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 
 
-Current Source Code
+Current Source Codes
 
 
 vertex_core.glsl
@@ -212,7 +285,7 @@ out vec2 vs_texcoord;
 void main()
 {
     vs_position = vertex_position;
-    vs_color = vertex_color...
+    vs_color = vertex_colo...
     </summary>
   
 
@@ -282,93 +355,6 @@ GLM ?
 #include &amp;lt;GLM/vec3.hpp&amp;gt;
 #include &amp;lt;GLM/vec4.hpp&amp;gt;
 #include &amp;lt;GLM/m...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>각종 그래프 모음</title>
-    <link href="https://rito15.github.io/posts/mathematics-graph-compilation/" rel="alternate" type="text/html" title="각종 그래프 모음" />
-    <published>2021-02-06T05:25:00+09:00</published>
-  
-    <updated>2021-02-06T05:25:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/mathematics-graph-compilation/</id>
-    <content src="https://rito15.github.io/posts/mathematics-graph-compilation/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Mathematics" />
-    
-    <category term="Graph" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      sin x
-
-
-cos x
-
-
-tan x
-
-
-asin x
-
-
-acos x
-
-
-atan x
-
-
-sin(acos x), cos(asin x)
-
-
-asin(cos x)
-
-
-acos(sin x)
-
-
-
-
-sin(e^x)
-
-
-cos(e^x)
-
-
-atan(e^x)
-
-
-asin( e^(-x) )
-
-
-
-
-e^x
-
-
-e^(1-x)
-
-
-e^(1-x) * x
-
-
     </summary>
   
 

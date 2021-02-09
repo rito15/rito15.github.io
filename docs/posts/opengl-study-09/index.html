@@ -684,7 +684,7 @@ glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 <p><br /></p>
 
-<h1 id="current-source-code">Current Source Code</h1>
+<h1 id="current-source-codes">Current Source Codes</h1>
 <hr />
 
 <h2 id="basicshader">Basic.shader</h2>
@@ -2663,6 +2663,19 @@ void main()
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -3165,62 +3178,6 @@ void main()
       
       
       <div class="card">
-        <a href="/posts/opengl-study-01/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 28
-  
-
-  <i class="unloaded">2021-01-28T00:10:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 01 - 시작</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                동기
-
-
-
-  그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.
-
-
-
-
-목표
-
-
-
-  OpenGL의 완전 기초부터 쉐이더 적용까지 모든 과정 공부
-  그래픽스에 대한 전반적인 지식 습득...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/opengl-study-10/">
           <div class="card-body">
             <!--
@@ -3287,7 +3244,7 @@ GLM ?
       
       
       <div class="card">
-        <a href="/posts/opengl-study-02/">
+        <a href="/posts/opengl-study-01/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -3307,10 +3264,66 @@ GLM ?
     Jan 28
   
 
-  <i class="unloaded">2021-01-28T22:09:00+09:00</i>
+  <i class="unloaded">2021-01-28T00:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 02 - 초기 세팅</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 01 - 시작</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                동기
+
+
+
+  그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.
+
+
+
+
+목표
+
+
+
+  OpenGL의 완전 기초부터 쉐이더 적용까지 모든 과정 공부
+  그래픽스에 대한 전반적인 지식 습득...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/opengl-study-11/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb  7
+  
+
+  <i class="unloaded">2021-02-07T16:12:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 11 - New Beginning 2</h3>
             <div class="text-muted small">
               <p>
                 
@@ -3322,24 +3335,47 @@ GLM ?
                 목표
 
 
-
-  GLEW 설치 및 적용
-
-
-
-
-GLEW 설치
+  프로그램 및 쉐이더 객체 생성
+  파일에 쉐이더 작성, 불러와 컴파일
 
 
 
-  GLEW : OpenGL Extension Wrangler Library
-  http://glew.sourceforge.net
-  
-    Binary 다운로드
-  
-  프로젝트의 Dependency 폴더 내로 GLEW 폴더 복사
-    
-      glew-2.1.0 폴더를 통째로 ...
+
+공부 내용
+
+
+
+
+
+
+
+
+Current Source Codes
+
+
+vertex_core.glsl
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+#version 440
+
+layout (location = 0) in vec3 ver...
               </p>
             </div>
           </div>

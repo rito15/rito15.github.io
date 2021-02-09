@@ -2477,6 +2477,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2758,61 +2771,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-script-optimization/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  4
-  
-
-  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Script Optimization</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Tips
-
-
-1. GetComponent(), Find() 메소드 반복 호출하지 않기
-
-너무나 기본적인 것이라 간단히 짚고 넘어가지만,
-매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
-항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.
-
-
-
-2. 필요하지 않은 경우, new로 생성하지 않기
-
-클...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/behavior-tree/">
           <div class="card-body">
             <!--
@@ -2907,6 +2865,59 @@
 
 
 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/fog-of-war/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 20
+  
+
+  <i class="unloaded">2021-01-20T21:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Fog of War</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                개념
+
+
+
+  맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다.
+  지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0,
+  지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8,
+  지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.
+
+
+
+[스타크래프트2 게...
               </p>
             </div>
           </div>

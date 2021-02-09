@@ -1,7 +1,7 @@
 ---
-title: OpenGL 공부 - 12 - New Beginning 3
+title: OpenGL 공부 - 13 - Texture
 author: Rito15
-date: 2021-02-08 16:12:00 +09:00
+date: 2021-02-10 01:30:00 +09:00    ==================================== 변경!
 categories: [OpenGL, OpenGL Study]
 tags: [graphics, opengl]
 math: true
@@ -10,208 +10,251 @@ mermaid: true
 
 # 목표
 ---
-- 기본 렌더링 세팅
-- 기본 도형 렌더링
+- 폴리곤에 텍스쳐 씌워보기(1장, 여러 장)
 
 <br>
 
-# 공부 내용
+# 1. 텍스쳐 한 장 사용
 ---
 
-## 테스트를 위해 렌더링 옵션들 설정
+## 이미지 준비
+- 프로젝트 디렉토리 내에 Images 폴더를 만들고 PNG 이미지 파일을 준비한다.
+
+<br>
+
+## 소스코드 작성
+
+- 위치 : VertexAttribPointer ~ Main Loop 사이
+
+<br>
+### [1] 이미지 로드
 
 ```cpp
-// main.cpp - in main()
-
-glEnable(GL_DEPTH_TEST);
-
-glEnable(GL_CULL_FACE);
-glCullFace(GL_BACK);
-glFrontFace(GL_CCW); // 시계 반대 방향으로 구성된 폴리곤을 전면으로 설정
-
-// 픽셀 블렌딩 연산 지정
-glEnable(GL_BLEND);
-glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-// GL_LINE : 폴리곤을 선으로 그리기
-// GL_FILL : 폴리곤을 색상으로 채우기
-glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+int imageWidth = 0;
+int imageHeight = 0;
+unsigned char* image = SOIL_load_image("Images/MoonCat.png",
+    &imageWidth, &imageHeight, NULL, SOIL_LOAD_RGBA);
 ```
 
 <br>
-## 키보드 입력 테스트
+### [2] 텍스쳐 객체 생성 및 바인드
+
+```cpp
+GLuint texture0; // Texture ID
+glGenTextures(1, &texture0);
+glBindTexture(GL_TEXTURE_2D, texture0);
+```
+
+<br>
+### [3] 옵션 설정
+
+```cpp
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+```
+
+- S, T는 U, V를 의미한다.
+- UV 범위를 벗어나는 부분들은 텍스쳐를 반복시키도록 설정한다.
+
+
+```cpp
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+```
+
+- 폴리곤에 입혀진 텍스쳐가 기존 이미지 크기보다 큰 경우, 작은 경우의 필터링 옵션을 설정한다.
+
+|---|---|
+|`GL_NEAREST`|인접한 텍셀 중 가장 가까운 픽셀을 선택한다.<br>텍스쳐 픽셀이 뚝뚝 끊기는 계단 현상이 두드러진다.|
+|`GL_LINEAR`|인접한 텍셀 4개(2x2)의 평균 색상값을 사용한다.<br>더 부드럽고 번진 것처럼 보인다.|
+|`GL_LINEAR_MIPMAP_LINEAR`|현재 LOD에서 인접한 두 MIPMAP의 평균치에 GL_LINEAR를 적용한다.|
+
+<br>
+
+### [4] 텍스쳐 생성
+
+```cpp
+if (image)
+{
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+                 GL_RGBA, GL_UNSIGNED_BYTE, image);
+    glGenerateMipmap(GL_TEXTURE_2D);
+}
+else
+{
+    std::cout << "ERROR::TEXTURE_LOAD_FAILED\n";
+}
+```
+
+- 로드된 이미지 데이터를 사용하여 2D 텍스쳐를 생성한다.
+
+<br>
+
+### [5] 프래그먼트 쉐이더에서 텍스쳐 사용
+
+```glsl
+// fragment_core.glsl
+
+#version 440
+
+in vec3 vs_position;
+in vec3 vs_color;
+in vec2 vs_texcoord;
+
+out vec4 fs_color;
+
+uniform sampler2D mainTex; // texture0
+
+void main()
+{
+    //fs_color = vec4(vs_color, 1.f);
+    fs_color = texture(mainTex, vs_texcoord);
+}
+```
+
+- uniform sampler2D 변수를 선언하여 텍스쳐를 받을 수 있도록 한다.
+- texture() 함수로 텍스쳐를 샘플링하여 출력 색상에 넣는다.
+
+<br>
+
+### [6] 메인 루프에서 텍스쳐 적용
+
+```cpp
+// Activate Texture
+glActiveTexture(GL_TEXTURE0);
+glBindTexture(GL_TEXTURE_2D, texture0);
+
+// Draw
+glDrawElements(GL_TRIANGLES, numOfIndices, GL_UNSIGNED_INT, 0);
+```
+
+- 드로우콜 이전에 glActiveTexture(), glBindTexture() 함수를 호출하여 텍스쳐를 바인드한다.
+
+<br>
+
+### 실행 결과
+
+![image](https://user-images.githubusercontent.com/42164422/107401201-fc9d1300-6b45-11eb-855e-758369946133.png){:.normal}
+
+<br>
+
+# 2. 텍스쳐 여러 장 사용
+---
+
+### 사전 준비
 
 ```cpp
 // functions.hpp
-void UpdateInputs(GLFWwindow* window)
+
+GLuint LoadTextureImage(const char* imageDir)
 {
-    // ESC 누르면 윈도우 종료
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    // 1. Load Image
+    int imageWidth, imageHeight;
+    unsigned char* image = SOIL_load_image(imageDir,
+        &imageWidth, &imageHeight, NULL, SOIL_LOAD_RGBA);
+
+    // 2. Texture Object Gen & Bind
+    GLuint textureID; // Texture ID
+    glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+
+    // 3. Setup Options
+    // UV 벗어날 경우 텍스쳐 반복
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    // 텍스쳐 축소/확대 필터 설정
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+    // 4. Generate Texture2D
+    if (image)
     {
-        glfwSetWindowShouldClose(window, GLFW_TRUE);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+            GL_RGBA, GL_UNSIGNED_BYTE, image);
+        glGenerateMipmap(GL_TEXTURE_2D);
     }
-}
+    else
+    {
+        std::cout << "ERROR::TEXTURE_LOAD_FAILED - " << imageDir << std::endl;
+    }
 
-// main.cpp - in Main Loop
-UpdateInputs(window);
-```
+    SOIL_free_image_data(image); // Release image
 
-<br>
-
-## Vertex 정의, 데이터 생성
-
-```cpp
-struct Vertex
-{
-    glm::vec3 position;
-    glm::vec3 color;
-    glm::vec2 texcoord;
-};
-
-Vertex vertices[] =
-{
-    // Position                     // Color                      // TexCoord
-    glm::vec3( 0.0f,  0.5f, 0.0f),  glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec2(0.0f, 1.0f),
-    glm::vec3(-0.5f, -0.5f, 0.0f),  glm::vec3(0.0f, 1.0f, 0.0f),  glm::vec2(0.0f, 0.0f),
-    glm::vec3( 0.5f, -0.5f, 0.0f),  glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec2(1.0f, 0.0f)
-};
-
-unsigned int numOfVertices = sizeof(vertices) / sizeof(Vertex);
-
-GLuint indices[] =
-{
-    0, 1, 2
-};
-
-unsigned int numOfIndices = sizeof(indices) / sizeof(GLuint);
-```
-
-<br>
-
-## VAO, VBO, EBO 생성 및 바인딩
-
-- VAO : VBO를 담는 객체
-- VBO : 버텍스 데이터(위치, 색상, ..)를 담는 객체
-- EBO : 인덱스 데이터를 담는 객체
-
-```cpp
-// VAO : Vertex Array Object
-// VAO Gen & Bind
-GLuint vao;
-glCreateVertexArrays(1, &vao);
-glBindVertexArray(vao);
-
-// VBO : Vertex Buffer Object
-// VBO Gen & Bind & Send Data
-GLuint vbo;
-glGenBuffers(1, &vbo);
-glBindBuffer(GL_ARRAY_BUFFER, vbo);
-glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-// EBO : Element Buffer Object
-// EBO Gen & Bind & Send Data
-GLuint ebo;
-glGenBuffers(1, &ebo);
-glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-
-// Set VertexAttribPointers & Enable
-// 1. Position
-glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
-glEnableVertexAttribArray(0);
-
-// 2. Color
-glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, color));
-glEnableVertexAttribArray(1);
-
-// 3. TexCoord
-glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texcoord));
-glEnableVertexAttribArray(2);
-
-// Bind VAO 0
-glBindVertexArray(0);
-```
-
-<br>
-
-### 메인 루프에서 렌더링
-
-```cpp
-while (!glfwWindowShouldClose(window))
-{
-    // Update Input
-    glfwPollEvents();
-
-    // Update
-    UpdateInputs(window);
-
-    // Clear
-    glClearColor(0.f, 0.f, 0.f, 1.f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-
-    // Use a program
-    glUseProgram(coreProgram);
-
-    // Bind VAO
-    glBindVertexArray(vao);
-
-    // Draw
-    //glDrawArrays(GL_TRIANGLES, 0, numOfVertices);
-    glDrawElements(GL_TRIANGLES, numOfIndices, GL_UNSIGNED_INT, 0);
-
-    // End Draw
-    glfwSwapBuffers(window);
-    glFlush();
+    return textureID;
 }
 ```
 
-<br>
+- 여러 장의 텍스쳐를 사용하는데 같은 코드를 텍스쳐 수만큼 반복하는 안타까운 일이 벌어지지 않도록, 메소드화한다.
 
-## 실행 결과
+<br> 
 
-- 채우기 모드
-
-![image](https://user-images.githubusercontent.com/42164422/107188457-07af5080-6a2b-11eb-9543-996386ef6c1e.png){:.normal}
-
-- 와이어프레임 모드
-
-![image](https://user-images.githubusercontent.com/42164422/107188481-14cc3f80-6a2b-11eb-895f-0b5967ffcf7b.png){:.normal}
-
-<br>
-
-## 사각형 렌더링하기
-
-- 버텍스와 인덱스를 다음처럼 수정한다.
+### 텍스쳐 로드
 
 ```cpp
-Vertex vertices[] =
-{
-    // Position                     // Color                      // TexCoord
-    glm::vec3(-0.5f,  0.5f, 0.0f),  glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec2(0.0f, 1.0f), // LT
-    glm::vec3(-0.5f, -0.5f, 0.0f),  glm::vec3(0.0f, 1.0f, 0.0f),  glm::vec2(0.0f, 0.0f), // LB
-    glm::vec3( 0.5f, -0.5f, 0.0f),  glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec2(1.0f, 0.0f), // RB
-    glm::vec3( 0.5f,  0.5f, 0.0f),  glm::vec3(1.0f, 1.0f, 0.0f),  glm::vec2(1.0f, 1.0f)  // RT
-};
+// main.cpp
 
-// NOTE : Counter Clockwise
-GLuint indices[] =
-{
-    0, 1, 2,
-    0, 2, 3
-};
-
-unsigned int numOfVertices = sizeof(vertices) / sizeof(Vertex);
-unsigned int numOfIndices  = sizeof(indices) / sizeof(GLuint);
+GLuint texture0 = LoadTextureImage("Images/MoonCat.png");
+GLuint texture1 = LoadTextureImage("Images/Wall.png");
 ```
+
+- 앞에서 작성한 메소드로 간단히 텍스쳐를 로드하고 텍스쳐 객체를 생성한다.
 
 <br>
 
-## 실행 결과
+### 프래그먼트 쉐이더 수정
 
-![image](https://user-images.githubusercontent.com/42164422/107189204-4f82a780-6a2c-11eb-8420-beb1c30be767.png){:.normal}
+```glsl
+#version 440
 
-![image](https://user-images.githubusercontent.com/42164422/107189695-1bf44d00-6a2d-11eb-9970-d6a754a9e76a.png){:.normal}
+in vec3 vs_position;
+in vec3 vs_color;
+in vec2 vs_texcoord;
+
+out vec4 fs_color;
+
+uniform sampler2D catTex;
+uniform sampler2D wallTex;
+
+void main()
+{
+    vec4 vertColor = vec4(vs_color, 1.0f);
+    vec4 catColor = texture(catTex, vs_texcoord);
+    vec4 wallColor = texture(wallTex, vs_texcoord);
+    vec4 catMask = step(vec4(0.01), catColor);
+
+    // Final Color
+    fs_color = mix(wallColor, catColor * vertColor, catMask);
+}
+```
+
+- 예전에 쉐이더토이를 잠깐 갖고 놀았던 경험을 살려 프래그먼트 쉐이더 코드를 위와 같이 간단히 수정한다.
+
+<br>
+
+### 메인 루프 작성
+
+```cpp
+// Activate, Bind Textures
+glActiveTexture(GL_TEXTURE0);
+glBindTexture(GL_TEXTURE_2D, texture0);
+
+glActiveTexture(GL_TEXTURE1);
+glBindTexture(GL_TEXTURE_2D, texture1);
+
+// Update Uniforms
+glUniform1i(glGetUniformLocation(shaderProgram, "catTex"), 0);
+glUniform1i(glGetUniformLocation(shaderProgram, "wallTex"), 1);
+```
+
+- glActiveTexture()와 glBindTexture() 함수는 저렇게 텍스쳐마다 연달아 사용해야 한다.
+- 텍스쳐 여러 장을 쉐이더에 전달하기 위해서 uniform으로 위처럼 0, 1 인덱스 순서로 glUniform 메소드를 호출한다.
+
+<br>
+
+### 실행 결과
+
+![image](https://user-images.githubusercontent.com/42164422/107409821-e85e1380-6b4f-11eb-98f5-9bfc98724c1e.png){:.normal}
 
 <br>
 
@@ -234,10 +277,10 @@ out vec2 vs_texcoord;
 void main()
 {
     vs_position = vertex_position;
-    vs_color = vertex_color;
-    vs_texcoord = vec2(vertex_texcoord.x, vertex_texcoord.y * -1.f);
+    vs_color    = vertex_color;
+    vs_texcoord = vec2(vertex_texcoord.x, vertex_texcoord.y * -1.0f);
 
-    gl_Position = vec4(vertex_position, 1.f);
+    gl_Position = vec4(vertex_position, 1.0f);
 }
 ```
 
@@ -252,9 +295,18 @@ in vec2 vs_texcoord;
 
 out vec4 fs_color;
 
+uniform sampler2D catTex;
+uniform sampler2D wallTex;
+
 void main()
 {
-    fs_color = vec4(vs_color, 1.f);
+    vec4 vertColor = vec4(vs_color, 1.0f);
+    vec4 catColor = texture(catTex, vs_texcoord);
+    vec4 wallColor = texture(wallTex, vs_texcoord);
+    vec4 catMask = step(vec4(0.01), catColor);
+
+    // Final Color
+    fs_color = mix(wallColor, catColor * vertColor, catMask);
 }
 ```
 
@@ -431,6 +483,45 @@ bool CreateShaders(GLuint& program)
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 }
+
+// 이미지 파일로부터 텍스쳐 로드
+GLuint LoadTextureImage(const char* imageDir)
+{
+    // 1. Load Image
+    int imageWidth, imageHeight;
+    unsigned char* image = SOIL_load_image(imageDir,
+        &imageWidth, &imageHeight, NULL, SOIL_LOAD_RGBA);
+
+    // 2. Texture Object Gen & Bind
+    GLuint textureID; // Texture ID
+    glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+
+    // 3. Setup Options
+    // UV 벗어날 경우 텍스쳐 반복
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    // 텍스쳐 축소/확대 필터 설정
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+    // 4. Generate Texture2D
+    if (image)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0,
+            GL_RGBA, GL_UNSIGNED_BYTE, image);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "ERROR::TEXTURE_LOAD_FAILED - " << imageDir << std::endl;
+    }
+
+    SOIL_free_image_data(image); // Release image
+
+    return textureID;
+}
 ```
 
 ## main.cpp
@@ -514,8 +605,8 @@ int main()
                                    Objects
     ******************************************************************/
     // Shader Init
-    GLuint coreProgram;
-    if (!CreateShaders(coreProgram))
+    GLuint shaderProgram;
+    if (!CreateShaders(shaderProgram))
     {
         glfwTerminate();
     }
@@ -557,51 +648,73 @@ int main()
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texcoord));
     glEnableVertexAttribArray(2);
 
-    // Bind VAO 0
-    glBindVertexArray(0);
+    /*****************************************************************
+                                   Textures
+    ******************************************************************/
+    GLuint texture0 = LoadTextureImage("Images/MoonCat.png");
+    GLuint texture1 = LoadTextureImage("Images/Wall.png");
 
     /*****************************************************************
                                    Main Loop
     ******************************************************************/
     while (!glfwWindowShouldClose(window))
     {
+        // =========================== Init ============================ //
         // Update Input
         glfwPollEvents();
-
-        // Update
         UpdateInputs(window);
 
         // Clear
         glClearColor(0.f, 0.f, 0.f, 1.f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-        // Use a program
-        glUseProgram(coreProgram);
+        // ========================= Bindings ========================== //
+        // Use a shader program
+        glUseProgram(shaderProgram);
 
         // Bind VAO
         glBindVertexArray(vao);
 
-        // Draw
-        //glDrawArrays(GL_TRIANGLES, 0, numOfVertices);
+        // Activate, Bind Textures
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture0);
+
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, texture1);
+
+        // ========================= Uniforms ========================== //
+        glUniform1i(glGetUniformLocation(shaderProgram, "catTex"), 0);
+        glUniform1i(glGetUniformLocation(shaderProgram, "wallTex"), 1);
+
+        // ========================== Draw ============================= //
         glDrawElements(GL_TRIANGLES, numOfIndices, GL_UNSIGNED_INT, 0);
 
+        // ========================== End ============================== //
         // End Draw
         glfwSwapBuffers(window);
         glFlush();
+
+        // Reset bindings
+        glBindVertexArray(0);
+        glUseProgram(0);
+        glActiveTexture(0);
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
 
     // End of Program
     glfwDestroyWindow(window);
     glfwTerminate();
 
-    glDeleteProgram(coreProgram);
+    glDeleteProgram(shaderProgram);
 
     return 0;
 }
 ```
 
+<br>
+
 # References
 ---
-- <https://www.youtube.com/watch?v=Gu9SapXMWkg>
-- <https://www.youtube.com/watch?v=ZpAeH0SpR5Y>
-- <https://www.youtube.com/watch?v=f2Hj_dSjPC8>
+- <https://www.youtube.com/watch?v=2sgSfyUZlRI>
+- <https://heinleinsgame.tistory.com/9>
+- <https://skyfe.tistory.com/entry/iOS-OpenGL-ES-튜토리얼-11편>

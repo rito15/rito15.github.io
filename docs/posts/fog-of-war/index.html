@@ -2687,6 +2687,19 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2851,61 +2864,6 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
       
       
       <div class="card">
-        <a href="/posts/unity-script-optimization/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  4
-  
-
-  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Script Optimization</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Tips
-
-
-1. GetComponent(), Find() 메소드 반복 호출하지 않기
-
-너무나 기본적인 것이라 간단히 짚고 넘어가지만,
-매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
-항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.
-
-
-
-2. 필요하지 않은 경우, new로 생성하지 않기
-
-클...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/behavior-tree/">
           <div class="card-body">
             <!--
@@ -3000,6 +2958,55 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
 
 
 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/job-system/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 24
+  
+
+  <i class="unloaded">2021-01-24T13:15:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Job System</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                개념
+
+
+  유니티에서 안전한 멀티스레딩을 구현하는 시스템
+  스레드를 별도로 생성하지 않으며, 유니티의 워커스레드에 작업을 지시할 수 있게 한다.
+  잡 대기열에 잡을 배치하면 워커 스레드가 잡 대기열에서 항목을 가져와 실행한다.
+  Native Container를 이용해 잡의 수행 결과를 메인 스레드와 공유한다.
+  버스트 컴파일러를 이용하여 추가...
               </p>
             </div>
           </div>
