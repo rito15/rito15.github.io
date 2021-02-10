@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="인스펙터에 오토 프로퍼티 표시하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Memo","datePublished":"2021-02-02T17:08:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/show-property-on-inspector/"},"url":"https://rito15.github.io/posts/show-property-on-inspector/","author":{"@type":"Person","name":"Rito15"},"headline":"인스펙터에 오토 프로퍼티 표시하기","dateModified":"2021-02-02T17:08:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"인스펙터에 오토 프로퍼티 표시하기","description":"Memo","dateModified":"2021-02-02T17:08:00+09:00","datePublished":"2021-02-02T17:08:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/show-property-on-inspector/"},"url":"https://rito15.github.io/posts/show-property-on-inspector/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="158 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="259 words">1 min</span>
 
 
           <!-- page views -->
@@ -442,7 +442,7 @@
 <span class="k">private</span> <span class="n">GameObject</span> <span class="n">Field1</span><span class="p">;</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>이런 형태의 프로퍼티라면,</p>
+<p>이렇게 다른 필드와 연결된 프로퍼티라면</p>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -454,7 +454,7 @@
 <span class="k">private</span> <span class="n">GameObject</span> <span class="n">field1</span><span class="p">;</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>이렇게 대상 필드에 <code class="language-plaintext highlighter-rouge">[SerializeField]</code>를 붙여서 인스펙터에 표시할 수 있다.</p>
+<p>대상 필드에 <code class="language-plaintext highlighter-rouge">[SerializeField]</code>를 붙여서 인스펙터에 표시할 수 있다.</p>
 
 <p>하지만</p>
 
@@ -465,6 +465,8 @@
 </pre></td></tr></tbody></table></code></div></div>
 
 <p>이런 오토 속성 프로퍼티는 프로퍼티 앞에 <code class="language-plaintext highlighter-rouge">[SerializeField]</code>를 붙여도 인스펙터에 표시되지 않는다.</p>
+
+<p><br /></p>
 
 <p>그런데,</p>
 
@@ -479,6 +481,58 @@
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106571323-5c118680-657a-11eb-8400-4ef143b6238c.png" alt="image" /></p>
 
 <p>인스펙터에 표시할 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="예외">예외</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property1</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property2</span>
+<span class="p">{</span>
+    <span class="k">get</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property3</span>
+<span class="p">{</span>
+    <span class="k">get</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+    <span class="k">set</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<ul>
+  <li>위와 같은 읽기 전용 프로퍼티, Getter 또는 Setter의 블록을 구현한 프로퍼티의 경우에는 인스펙터에 표시할 수 없다.</li>
+</ul>
 
 
       </div>
@@ -614,27 +668,27 @@
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]</a></li>
+        <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
       
         
         
         
-        <li><a href="/posts/unity-smart-multipass-code/">멀티패스 쉐이더 코드 깔끔하게 작성하기</a></li>
+        <li><a href="/posts/opengl-study-11/">OpenGL 공부 - 11 - New Beginning 2</a></li>
       
         
         
         
-        <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible [작성 중]</a></li>
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
       
         
         
         
-        <li><a href="/posts/unity-vertex-fragment-shader-bible/">Vertex/Fragment Shader Bible [예정]</a></li>
+        <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02 - 초기 세팅</a></li>
       
         
         
         
-        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
+        <li><a href="/posts/opengl-study-12/">OpenGL 공부 - 12 - New Beginning 3</a></li>
       
 
       </ul>
@@ -852,60 +906,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -920,31 +920,6 @@
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1233,6 +1208,135 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
     
   
@@ -1369,25 +1473,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1402,38 +1487,6 @@
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1489,6 +1542,87 @@
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -1596,6 +1730,11 @@
   </div> <!-- .access -->
 
   
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
@@ -1629,6 +1768,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -2362,7 +2514,7 @@ public class ...
       
       
       <div class="card">
-        <a href="/posts/unity-shader-compilation/">
+        <a href="/posts/unity-editor-exit-dialog/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2379,13 +2531,13 @@ public class ...
   
 
   
-    Feb  6
+    Feb 10
   
 
-  <i class="unloaded">2021-02-06T01:25:00+09:00</i>
+  <i class="unloaded">2021-02-10T13:50:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 모음</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 종료 확인 다이얼로그 만들기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2394,25 +2546,23 @@ public class ...
 
 
 
-                Render Depth
+                Memo
+
+
+기본적으로 유니티 에디터를 종료할 때는 확인창이 뜨지 않고 바로 종료된다.
+
+만약 실수로 닫기 버튼을 눌러버린다면 그대로 종료되어 버린다.
+
+그런데 유니티 에디터는 에디터의 종료도 이벤트로 구분하여, 메소드를 추가할 수 있도록 구현해놓았기 때문에
+
+이를 이용해 에디터의 종료를 시도할 경우 확인창을 띄우도록 할 수 있다.
 
 
 
-  단순히 뎁스만 색상으로 보여주는 쉐이더
-
-
-
-
-Shader "Render Depth"
-{
-    Properties
-    {
-        _Multiplier("Multiplier", Float) = 50
-    }
-
-    SubShader
-    {
-        Tags { "RenderType" = "Opaq...
+1
+2
+3
+4...
               </p>
             </div>
           </div>
@@ -2729,60 +2879,6 @@ Shader "Render Depth"
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2797,31 +2893,6 @@ Shader "Render Depth"
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3110,6 +3181,135 @@ Shader "Render Depth"
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
     
   
@@ -3246,25 +3446,6 @@ Shader "Render Depth"
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3279,38 +3460,6 @@ Shader "Render Depth"
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3366,6 +3515,87 @@ Shader "Render Depth"
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     

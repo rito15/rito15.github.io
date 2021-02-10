@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "유니티 에디터 종료 확인 다이얼로그 만들기",
+    "url": "/posts/unity-editor-exit-dialog/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, editor, dialog, csharp",
+    "date": "2021-02-10 13:50:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Memo기본적으로 유니티 에디터를 종료할 때는 확인창이 뜨지 않고 바로 종료된다.만약 실수로 닫기 버튼을 눌러버린다면 그대로 종료되어 버린다.그런데 유니티 에디터는 에디터의 종료도 이벤트로 구분하여, 메소드를 추가할 수 있도록 구현해놓았기 때문에이를 이용해 에디터의 종료를 시도할 경우 확인창을 띄우도록 할 수 있다.[InitializeOnLoad]public class EditorExitDialog{    static EditorExitDialog()    {        EditorApplication.wantsToQuit ..."
+  },
+  
+  {
     "title": "OpenGL 공부 - 13 - Texture",
     "url": "/posts/opengl-study-13/",
     "categories": "OpenGL, OpenGL Study",
@@ -252,7 +267,7 @@
 
 
 
-    "snippet": "Memopublic GameObject Property1 =&amp;gt; Field1;private GameObject Field1;이런 형태의 프로퍼티라면,public GameObject Property1 =&amp;gt; field1;[SerializeField]private GameObject field1;이렇게 대상 필드에 [SerializeField]를 붙여서 인스펙터에 표시할 수 있다.하지만[SerializeField]public GameObject Property2 { get; private set; }이런 오토..."
+    "snippet": "Memopublic GameObject Property1 =&amp;gt; Field1;private GameObject Field1;이렇게 다른 필드와 연결된 프로퍼티라면public GameObject Property1 =&amp;gt; field1;[SerializeField]private GameObject field1;대상 필드에 [SerializeField]를 붙여서 인스펙터에 표시할 수 있다.하지만[SerializeField]public GameObject Property2 { get; private set; }이런..."
   },
   
   {

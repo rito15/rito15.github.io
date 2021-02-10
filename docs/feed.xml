@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-10T03:33:35+09:00</updated>
+  <updated>2021-02-10T14:06:05+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,61 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 에디터 종료 확인 다이얼로그 만들기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-exit-dialog/" rel="alternate" type="text/html" title="유니티 에디터 종료 확인 다이얼로그 만들기" />
+    <published>2021-02-10T13:50:00+09:00</published>
+  
+    <updated>2021-02-10T13:50:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-exit-dialog/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-exit-dialog/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+기본적으로 유니티 에디터를 종료할 때는 확인창이 뜨지 않고 바로 종료된다.
+
+만약 실수로 닫기 버튼을 눌러버린다면 그대로 종료되어 버린다.
+
+그런데 유니티 에디터는 에디터의 종료도 이벤트로 구분하여, 메소드를 추가할 수 있도록 구현해놓았기 때문에
+
+이를 이용해 에디터의 종료를 시도할 경우 확인창을 띄우도록 할 수 있다.
+
+
+
+[InitializeOnLoad]
+public class EditorExitDialog
+{
+    static EditorExitDialog()
+    {
+        EditorApplication.wantsToQuit += 
+            () =&amp;gt; EditorUtility.DisplayDialog("Unity Editor", "Are you sure...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -157,7 +212,7 @@ GLuint texture0; // Texture ID
     <link href="https://rito15.github.io/posts/opengl-study-12/" rel="alternate" type="text/html" title="OpenGL 공부 - 12 - New Beginning 3" />
     <published>2021-02-08T16:12:00+09:00</published>
   
-    <updated>2021-02-08T16:12:00+09:00</updated>
+    <updated>2021-02-10T03:35:04+09:00</updated>
   
     <id>https://rito15.github.io/posts/opengl-study-12/</id>
     <content src="https://rito15.github.io/posts/opengl-study-12/" />
@@ -225,7 +280,7 @@ glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     <link href="https://rito15.github.io/posts/opengl-study-11/" rel="alternate" type="text/html" title="OpenGL 공부 - 11 - New Beginning 2" />
     <published>2021-02-07T16:12:00+09:00</published>
   
-    <updated>2021-02-07T16:12:00+09:00</updated>
+    <updated>2021-02-10T03:35:04+09:00</updated>
   
     <id>https://rito15.github.io/posts/opengl-study-11/</id>
     <content src="https://rito15.github.io/posts/opengl-study-11/" />
@@ -286,75 +341,6 @@ void main()
 {
     vs_position = vertex_position;
     vs_color = vertex_colo...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 10 - New Beginning</title>
-    <link href="https://rito15.github.io/posts/opengl-study-10/" rel="alternate" type="text/html" title="OpenGL 공부 - 10 - New Beginning" />
-    <published>2021-02-06T15:20:00+09:00</published>
-  
-    <updated>2021-02-07T18:05:21+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-10/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-10/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  다른 강좌로 새롭게 시작
-  GLM, SOIL2 설치
-
-
-
-
-새로운 시작
-
-
-새로운 강좌를 선택한 김에 기존의 파일들을 날려버리고 구조 변경
-
-
-
-공부 내용
-
-
-GLM ?
-
-  OpenGL Mathematics, 수학 라이브러리.
-  http://glm.g-truc.net/0.9.8/index.html 에서 받을 수 있다.
-  
-    이제는 익숙하게 Dependencies 폴더에 넣고 GLM 포함경로 설정
-  
-  libs.h에 아래처럼 추가
-
-
-#include &amp;lt;GLM/glm.hpp&amp;gt;
-#include &amp;lt;GLM/vec2.hpp&amp;gt;
-#include &amp;lt;GLM/vec3.hpp&amp;gt;
-#include &amp;lt;GLM/vec4.hpp&amp;gt;
-#include &amp;lt;GLM/m...
     </summary>
   
 
