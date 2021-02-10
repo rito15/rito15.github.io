@@ -8,6 +8,20 @@ math: true
 mermaid: true
 ---
 
+# 목차
+---
+- [1. Note](#note)
+- [2. Tools](#tools)
+- [3. Unity Profiler](#unity-profiler)
+  - [Custom Profiler Tags](#custom-profiler-tags)
+  - [CPU & GPU Boundary](#cpu--gpu-boundary)
+  - [CPU Boundary](#cpu-boundary)
+  - [GPU Boundary](#gpu-boundary)
+- [4. Memory Profiler](#memory-profiler)
+- [5. References](#references)
+
+<br>
+
 # Note
 ---
 - [x] 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.
@@ -22,37 +36,41 @@ mermaid: true
 
 ## 1. Unity Editor
 
-### **Unity Profiler**
+- **Profiler**
   - [Window - Analysis - Profiler (Ctrl+7)]
   - <https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html>
 
-### **Profile Analyzer**
+<br>
+- **Profile Analyzer**
   - Package Manager - Prifile Analyzer
   - <https://unity.com/kr/how-to/optimize-your-game-profile-analyzer>
 
-### **Frame Debugger**
+<br>
+- **Frame Debugger**
   - [Window - Analysis - Frame Debugger]
 
-### **Memory Profiler**
+<br>
+- **Memory Profiler**
   - Package Manager - Memory Profiler [Preview]
   - <https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/>
 
 <br>
 ## 2. Intel CPU/GPU 사용
-### **VTune**
+- **VTune**
   - <https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html>
 
-### **GPA**
+<br>
+- **GPA**
   - <https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html>
 
 <br>
 ## 3. Android
-### **Snapdragon Profiler**
+- **Snapdragon Profiler**
   - <https://developer.qualcomm.com/software/snapdragon-profiler>
 
 <br>
 ## 4. iOS
-### **XCode Frame Debugger**
+- **XCode Frame Debugger**
   - <https://developer.apple.com/documentation/metal/frame_capture_debugging_tools>
 
 <br>
@@ -137,6 +155,7 @@ private void SomeMethod()
 - URP에서는 파이프라인 애셋에서 간단히 [Quality - Render Scale]을 조절하면 된다.
 - 이를 해결하려면 쉐이더를 최적화 해야 한다.
 
+<br>
 ## 메모리 대역폭(Memory Bandwidth)
 - 메모리 대역폭 : GPU가 전용 메모리에서 읽고 쓸 수 있는 속도
 - 메모리 대역폭이 문제인지 알아보려면, 텍스쳐 품질을 줄였을 때 성능이 많이 향상되는지 확인하면 된다.

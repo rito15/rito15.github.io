@@ -3,71 +3,48 @@ title: Unity Script Optimization
 author: Rito15
 date: 2021-02-04 19:30:00 +09:00
 categories: [Unity, Unity Study]
-tags: [unity, csharp, profiling, optimization]
+tags: [unity, csharp, optimize, optimization, performance]
 math: true
 mermaid: true
 ---
 
-# Tips
+# 목차
 ---
+- [1. GetComponent(), Find() 메소드 사용 줄이기](#getcomponent-find-메소드-사용-줄이기)
+- [2. 비어있는 유니티 이벤트 메소드 방치하지 않기](#비어있는-유니티-이벤트-메소드-방치하지-않기)
+- [3. 필요하지 않은 경우, new로 생성하지 않기](#필요하지-않은-경우-new로-생성하지-않기)
+- [4. 필요하지 않은 경우, 리턴하지 않기](#필요하지-않은-경우-리턴하지-않기)
+- [5. StartCoroutine() 자주 호출하지 않기](#startcoroutine-자주-호출하지-않기)
+- [6. 코루틴의 yield 캐싱하기](#코루틴의-yield-캐싱하기)
+- [7. 컬렉션 재사용하기](#컬렉션-재사용하기)
+- [8. StringBuilder 사용하기](#stringbuilder-사용하기)
+- [9. 구조체 사용하기](#구조체-사용하기)
+- [10. 빌드 이후 Debug.Log() 사용하지 않기](#빌드-이후-debuglog-사용하지-않기)
+- [11. Transform 변경은 한번에](#transform-변경은-한번에)
+- [12. LINQ 사용하지 않기](#linq-사용하지-않기)
+- [13. 오브젝트 풀링 사용하기](#오브젝트-풀링-사용하기)
+- [14. Enum HasFlag() 박싱 이슈](#enum-hasflag-박싱-이슈)
+- [15. ScriptableObject 활용하기](#scriptableobject-활용하기)
+- [16. 메소드 호출 줄이기](#메소드-호출-줄이기)
+- [17. 박싱, 언박싱 피하기](#박싱-언박싱-피하기)
+- [18. 비싼 수학 계산 피하기](#비싼-수학-계산-피하기)
 
-## **1. GetComponent(), Find() 메소드 반복 호출하지 않기**
-
-너무나 기본적인 것이라 간단히 짚고 넘어가지만,
-매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
-항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.
-
-<br>
-
-## **2. 필요하지 않은 경우, new로 생성하지 않기**
-
-클래스 타입으로 생성한 객체는 항상 GC의 먹이가 된다.
-따라서 가능하면 한 번만 생성하고 이후에는 재사용 하는 방식을 선택해야 한다.
-
-데이터 클래스의 경우, 대신 구조체를 사용하는 것도 좋다.
-
-<br>
-
-## **3. 구조체 사용하기**
-
-- <http://clarkkromenaker.com/post/csharp-structs/>
-
-동일한 데이터를 하나는 구조체, 하나는 클래스로 작성할 경우 클래스는 참조를 위해 8~24 바이트의 추가적인 메모리를 필요로 한다.
-
-따라서 데이터 클래스는 구조체로 작성하는 것이 좋으며, GC의 먹이가 되지 않는다는 장점도 있다.
-
-그리고 구조체는 크기에 관계없이 항상 스택에, 클래스는 힙에 할당된다.
-16kB를 초과한다고 해서 구조체가 힙에 할당되지는 않는다.
 
 <br>
 
-## **4. Transform 변경은 한번에**
+# GetComponent(), Find() 메소드 사용 줄이기
+---
+GetComponent, Find, FindObjectOfType 등의 메소드는 자주 호출될 경우 성능에 악영향을 끼친다.
 
-position, rotation, scale을 한 메소드 내에서 여러 번 변경할 경우, 그 때마다 트랜스폼의 변경이 이루어진다.
-그런데 트랜스폼이 여러 자식 트랜스폼들을 갖고 있는 경우, 자식 트랜스폼도 함께 변경된다.
+따라서 객체 참조가 필요할 때마다 Update에서 Get, Find 메소드들을 호출하는 방식은 지양하고,
 
-따라서 벡터로 미리 담아두고 최종 계산 이후, 트랜스폼에 단 한 번만 변경을 지정하는 것이 좋다.
-또한 position과 rotation을 모두 변경해야 하는 경우 `SetPositionAndRotation()` 메소드를 사용하는 것이 좋다.
-
-<br>
-
-## **5. LINQ 사용하지 않기**
-
-LINQ는 개발자에게 굉장한 편의성을 제공해주지만, 성능이 좋지 않다.
-따라서 성능에 민감한 부분에서는 사용하지 않는 것이 좋다.
+최대한 Awake, Start 메소드에서 Get, Find 메소드들을 통해 객체들을 필드에 캐싱하여 사용해야 한다.
 
 <br>
 
-## **6. 오브젝트 풀링 사용하기**
-
-게임오브젝트의 잦은 생성/파괴가 이루어지는 경우,
-반드시 오브젝트 풀링을 사용하는 것이 좋다.
-
-<br>
-
-## **7. 비어있는 유니티 콜백 메소드 방치하지 않기**
-
-`Awake()`, `Update()` 등의 유니티 기본 콜백 메소드는 스크립트 내에 작성되어 있는 것만으로도 호출되어 성능을 소모한다.
+# 비어있는 유니티 이벤트 메소드 방치하지 않기
+---
+`Awake()`, `Update()` 등의 유니티 기본 이벤트 메소드는 스크립트 내에 작성되어 있는 것만으로도 호출되어 성능을 소모한다.
 
 따라서 내용이 비어있는 유니티 기본 콜백 메소드는 아예 지워야 한다.
 
@@ -75,8 +52,18 @@ LINQ는 개발자에게 굉장한 편의성을 제공해주지만, 성능이 좋
 
 <br>
 
-## **8. 필요하지 않은 경우, 리턴하지 않기**
+# 필요하지 않은 경우, new로 생성하지 않기
+---
+클래스 타입으로 생성한 객체는 항상 GC의 먹이가 된다.
 
+따라서 가능하면 한 번만 생성하고 이후에는 재사용 하는 방식을 선택해야 한다.
+
+데이터 클래스의 경우, 대신 구조체를 사용하는 것도 좋다.
+
+<br>
+
+# 필요하지 않은 경우, 리턴하지 않기
+---
 ```cs
 private int SomeMethod()
 {
@@ -95,17 +82,18 @@ private void Caller()
 
 <br>
 
-## **9. StartCoroutine() 자주 호출하지 않기**
-
+# StartCoroutine() 자주 호출하지 않기
+---
 `StartCoroutine()` 메소드는 `Coroutine` 타입을 리턴하므로 GC의 먹이가 된다.
+
 따라서 짧은 주기로 코루틴을 자주 실행해야 하는 경우, UniTask, UniRx 등으로 대체하는 것이 좋다.
 
 그리고 매 프레임 실행되는 코루틴의 경우(`yield return null`), 대신 Update를 사용하는 것이 성능상 효율적이라고 한다.
 
 <br>
 
-## **10. 코루틴의 yield 캐싱하기**
-
+# 코루틴의 yield 캐싱하기
+---
 ```cs
 private IEnumerator SomeCoroutine()
 {
@@ -120,6 +108,7 @@ private IEnumerator SomeCoroutine()
 코루틴에서는 `WaitForSeconds()` 등의 객체를 yield return으로 사용한다.
 
 그런데 위처럼 항상 new로 생성할 경우, 모조리 GC.Collect()의 대상이 된다.
+
 따라서 아래처럼 캐싱하여 사용하는 것이 좋다.
 
 ```cs
@@ -135,8 +124,8 @@ private IEnumerator SomeCoroutine()
 ```
 
 <br>
-
-## **11. 컬렉션 재사용하기**
+---
+# 컬렉션 재사용하기
 
 List를 메소드 내에서 할당하여 사용하는 경우가 많다.
 
@@ -173,8 +162,8 @@ private void SomeMethod()
 
 <br>
 
-## **12. StringBuilder 사용하기**
-
+# StringBuilder 사용하기
+---
 스트링의 연결(a + b)이 자주 발생하는 경우, StringBuilder.Append()를 활용하는 것이 좋다.
 
 ```cs
@@ -205,8 +194,69 @@ sb.Append("b");
 
 <br>
 
-## **13. Enum HasFlag() 박싱 이슈**
+# 구조체 사용하기
+---
+- <http://clarkkromenaker.com/post/csharp-structs/>
 
+동일한 데이터를 하나는 구조체, 하나는 클래스로 작성할 경우 클래스는 참조를 위해 8~24 바이트의 추가적인 메모리를 필요로 한다.
+
+따라서 데이터 클래스는 구조체로 작성하는 것이 좋으며, GC의 먹이가 되지 않는다는 장점도 있다.
+
+그리고 구조체는 크기에 관계없이 항상 스택에, 클래스는 힙에 할당된다.
+
+16kB를 초과한다고 해서 구조체가 힙에 할당되지는 않는다.
+
+<br>
+
+# 빌드 이후 Debug.Log() 사용하지 않기
+---
+`Debug`의 메소드들은 에디터에서 디버깅을 위해 사용하지만, 빌드 이후에도 호출되어 성능을 많이 소모한다.
+
+따라서 아래처럼 Debug 클래스를 에디터 전용으로 래핑에서 사용할 경우, 이를 방지할 수 있다.
+
+- <https://github.com/rito15/Unity_Toys/blob/master/Rito/2.%20Toy/2021_0125_EditorOnly%20Debug/Debug_UnityEditorConditional.cs>
+
+```cs
+public static class Debug
+{
+    [Conditional("UNITY_EDITOR")]
+    public static void Log(object message)
+        => UnityEngine.Debug.Log(message);
+}
+```
+
+<br>
+
+# Transform 변경은 한번에
+---
+position, rotation, scale을 한 메소드 내에서 여러 번 변경할 경우, 그 때마다 트랜스폼의 변경이 이루어진다.
+
+그런데 트랜스폼이 여러 자식 트랜스폼들을 갖고 있는 경우, 자식 트랜스폼도 함께 변경된다.
+
+따라서 벡터로 미리 담아두고 최종 계산 이후, 트랜스폼에 단 한 번만 변경을 지정하는 것이 좋다.
+
+또한 position과 rotation을 모두 변경해야 하는 경우 `SetPositionAndRotation()` 메소드를 사용하는 것이 좋다.
+
+<br>
+
+# LINQ 사용하지 않기
+---
+LINQ는 개발자에게 굉장한 편의성을 제공해주지만, 성능이 좋지 않다.
+
+따라서 성능에 민감한 부분에서는 사용하지 않는 것이 좋다.
+
+<br>
+
+# 오브젝트 풀링 사용하기
+---
+게임오브젝트의 잦은 생성/파괴가 이루어지는 경우,
+
+반드시 오브젝트 풀링을 사용하는 것이 좋다.
+
+<br>
+
+# Enum HasFlag() 박싱 이슈
+---
 - <https://medium.com/@arphox/the-boxing-overhead-of-the-enum-hasflag-method-c62a0841c25a>
 
 `[Flags]`를 사용하는 enum의 경우, HasFlag()를 자주 사용하게 된다.
@@ -232,33 +282,240 @@ public static bool IsSet2<T>(this T self, T flag) where T : Enum
 
 <br>
 
-## **14. 빌드 이후 Debug.Log() 사용하지 않기**
-
-`Debug`의 메소드들은 에디터에서 디버깅을 위해 사용하지만, 빌드 이후에도 호출되어 성능을 많이 소모한다.
-
-따라서 아래처럼 Debug 클래스를 에디터 전용으로 래핑에서 사용할 경우, 이를 방지할 수 있다.
-
-- <https://github.com/rito15/Unity_Toys/blob/master/Rito/2.%20Toy/2021_0125_EditorOnly%20Debug/Debug_UnityEditorConditional.cs>
-
-```cs
-public static class Debug
-{
-    [Conditional("UNITY_EDITOR")]
-    public static void Log(object message)
-        => UnityEngine.Debug.Log(message);
-}
-```
-
-<br>
-
-## **15. ScriptableObject 활용하기**
-
+# ScriptableObject 활용하기
+---
 게임 내에서 **값이 변하지 않는 공통 데이터**를 사용하는 경우, 필드로 사용하게 되면 동일한 데이터가 객체의 수만큼 메모리를 차지하게 된다.
 
 따라서 스크립터블 오브젝트로 메모리를 절약하는 것이 좋다.
 
 <br>
 
+# 메소드 호출 줄이기
+---
+
+메소드는 호출하는 것 자체만으로도 성능을 소모한다.
+
+그런데 종종 가독성을 위해 비교적 간단한 문장도 메소드화하는 경우가 있다.
+
+```cs
+void Update()
+{
+    // 1. 문장
+    bool b1 = transform.gameObject.activeSelf &&
+              transform.gameObject.activeInHierarchy;
+
+    // 2. 메소드 호출
+    bool b2 = IsFullyActive(transform);
+}
+
+bool IsFullyActive(Transform tr)
+ => transform.gameObject.activeSelf &&
+    transform.gameObject.activeInHierarchy;
+```
+
+위의 경우, 동일한 문장을 여러 번 호출해야 한다면 대부분 메소드화해서 사용할 것이다.
+
+메소드 호출 때문에 비용이 더 들지만 가독성을 위해 어쩔 수 없는 선택이라고 할 수 있다.
+
+<br>
+
+따라서 아래와 같이 사용할 수 있다.
+
+```cs
+void Update()
+{
+    if(IsFullyActive(transform))
+    {
+        // ...1
+    }
+
+    // ..
+
+    if(IsFullyActive(transform) && /* ... */)
+    {
+        // ...2
+    }
+    else
+    {
+        // ...
+    }
+
+    // ..
+
+    if(/* .. */ || /* .. */ && IsFullyActive(transform))
+    {
+        // ...3
+    }
+}
+```
+
+그런데 '문장의 메소드화'와는 별개로, 이 코드에서 생각해봐야 할 점이 있다.
+
+메소드 호출의 결괏값이 범위(메소드 블록 또는 라이프사이클 등) 내에서 항상 같다면?
+
+따라서 두 가지 경우로 나누어 생각해볼 수 있다.
+
+<br>
+### 1. 해당 메소드 호출의 결괏값이 범위 내에서 달라질 수 있는 경우
+
+- IsFullyActive(transform)을 호출할 때마다 결과가 다를 수 있다면, 위처럼 사용하면 된다.
+
+<br>
+### 2. 해당 메소드 호출의 결괏값이 범위 내에서 항상 같은 경우
+
+- 결국 항상 같은 값을 얻는데, 메소드를 여러 번 호출하는 것은 해당 메소드의 비용에 비례해서 그만큼의 손해를 보게 된다.
+
+- 따라서 이런 경우에는 지역변수 또는 필드에 한 번의 메소드 호출로 값을 얻어 초기화한 뒤, 재사용 하는 방식을 선택해야 한다.
+
+```cs
+void Update()
+{
+    bool isTransformFullyActive = IsFullyActive(transform);
+    
+    // 블록 내에서 isTransformFullyActive 재사용
+}
+```
+
+<br>
+
+# 박싱, 언박싱 피하기
+---
+
+박싱(Boxing)은 값 타입이 참조 타입으로 암시적, 또는 명시적으로 캐스팅되는 것을 의미한다.
+
+언박싱(Unboxing)은 참조 타입이 값 타입으로 명시적으로 캐스팅되는 것을 의미한다.
+
+이 때 중요한 것은, 박싱과 언박싱이 단순 할당보다 성능이 매우 나쁘다는 것과 참조 타입은 힙에 할당되어 GC의 먹이가 될 수 있다는 점이다.
+
+```cs
+public static class Debug
+{
+    public static void Log(object messageg) { /* ... */ }
+}
+```
+
+유니티 엔진을 사용하면서 가장 친숙한 메소드인 Debug.Log()이다.
+
+그리고 항상 박싱과 언박싱이 발생하는 대표적인 예시라고 할 수 있다.
+
+파라미터의 타입이 object이기 때문에, 어떤 값 타입을 넣어도 참조타입인 object 타입으로 박싱된다.
+
+그리고 로그를 문자열로 출력해야 하므로 string으로 언박싱된다.
+
+이렇게 메소드 매개변수로 object 타입을 사용하거나 박싱을 유도하는 방식은 최대한 지양해야 한다.
+
+따라서 이를 피할 수 있는 대표적인 방법으로, 제네릭이 있다.
+
+제네릭은 객체 생성 또는 메소드 호출 시 제네릭 타입이 하나의 타입으로 고정되기 때문에, 박싱과 언박싱을 피할 수 있다.
+
+<br>
+
+# 비싼 수학 계산 피하기
+---
+
+## 나눗셈 대신 곱셈
+
+나눗셈이 곱셈보다 훨씬 느리다는 것은 흔히 알려져 있는 사실이다.
+
+그런데 곱셈을 해도 되는 부분에 나눗셈을 사용하는 코드가 의외로 자주 보인다.
+
+`1.0f / 2.0f` 보다 `1.0f * 0.5f`가 훨씬 빠르다. 꼭 기억하자.
+
+<br>
+
+## If-else vs 삼항 연산자
+
+직접 비교해본 결과, 성능 차이가 거의 없었다.
+
+가독성만 생각해서 사용하면 될 것 같다.
+
+<br>
+
+## System.Math.Abs vs UnityEngine.Mathf.Abs vs 삼항 연산자
+
+```cs
+// 삼항 연산자를 이용한 Abs
+(x >= 0) ? x : -x;
+```
+
+삼항 연산자가 압도적으로 빠르다.
+
+닷넷 콘솔 디버그 빌드에서는 Math.Abs보다 삼항 연산자가 두 배 정도 빨랐고,
+
+릴리즈 빌드에서는 여섯 배 정도 빨랐다.
+
+심지어 삼항 연산자를 함수화 해도 Math.Abs(), Mathf.Abs()보다 빨랐다.
+
+![image](https://user-images.githubusercontent.com/42164422/107555426-81596100-6c1a-11eb-976d-711523fe98ab.png){:.normal}
+
+그리고 유니티 엔진에서도 비슷한 결과를 얻을 수 있었다.
+
+![image](https://user-images.githubusercontent.com/42164422/107555731-ddbc8080-6c1a-11eb-8483-955dfaa6092d.png){:.normal}
+
+가독성을 위해서라면 메소드를 사용할 수 있겠으나,
+
+작은 성능에도 아주 민감하다면 삼항 연산자를 사용하는 것이 좋다.
+
+<br>
+
+## Mathf가 느린 이유
+
+UnityEngine.Mathf.Abs(float)를 예시로 내부 구현을 살펴보면
+
+```cs
+// UnityEngine.Mathf
+using System;
+
+/// <summary>
+///   <para>Returns the absolute value of f.</para>
+/// </summary>
+/// <param name="f"></param>
+public static float Abs(float f)
+{
+	return Math.Abs(f);
+}
+```
+
+이렇게 System.Math.Abs(float)를 호출한다.
+
+그럼 System.Math.Abs(float)를 살펴보면
+
+```cs
+// System.Math
+using System.Runtime.CompilerServices;
+using System.Security;
+
+/// <summary>단정밀도 부동 소수점 수의 절대 값을 반환합니다.</summary>
+/// <param name="value">
+///   <see cref="F:System.Single.MinValue" />보다 크거나 같지만 <see cref="F:System.Single.MaxValue" />보다 작거나 같은 숫자입니다.</param>
+/// <returns>0 ≤ x ≤<see cref="F:System.Single.MaxValue" /> 범위의 단정밀도 부동 소수점 숫자 x입니다.</returns>
+[MethodImpl(MethodImplOptions.InternalCall)]
+[SecuritySafeCritical]
+[__DynamicallyInvokable]
+public static extern float Abs(float value);
+```
+
+이렇게 되어있다.
+
+UnityEngine.Mathf는 대부분 이렇게 구현되어 있기 때문에 느리다.
+
+<br>
+
+결론적으로
+
+1. 직접 계산하는 것이 가장 빠르다.
+
+2. 메소드를 만들어 사용하는 것이 System.Math의 메소드들보다 빠르거나 비슷하다.
+
+3. System.Math는 UnityEngine.Mathf보다 빠르다.
+
+4. UnityEngine.Mathf는 가장 느리다.
+
+<br>
+
 # References
 ---
 - <https://coderzero.tistory.com/entry/유니티-최적화-유니티-최적화에-대한-이해>
+- <https://docs.unity3d.com/2019.3/Documentation/Manual/MobileOptimizationPracticalScriptingOptimizations.html>
+- <https://www.jacksondunstan.com/articles/5361>
+- <https://everyday-devup.tistory.com/64>

@@ -26,8 +26,8 @@
 <meta property="og:title" content="Unity Script Optimization" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Tips" />
-<meta property="og:description" content="Tips" />
+<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. 필요하지 않은 경우, new로 생성하지 않기 4. 필요하지 않은 경우, 리턴하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 컬렉션 재사용하기 8. StringBuilder 사용하기 9. 구조체 사용하기 10. 빌드 이후 Debug.Log() 사용하지 않기 11. Transform 변경은 한번에 12. LINQ 사용하지 않기 13. 오브젝트 풀링 사용하기 14. Enum HasFlag() 박싱 이슈 15. ScriptableObject 활용하기 16. 메소드 호출 줄이기 17. 박싱, 언박싱 피하기 18. 비싼 수학 계산 피하기" />
+<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. 필요하지 않은 경우, new로 생성하지 않기 4. 필요하지 않은 경우, 리턴하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 컬렉션 재사용하기 8. StringBuilder 사용하기 9. 구조체 사용하기 10. 빌드 이후 Debug.Log() 사용하지 않기 11. Transform 변경은 한번에 12. LINQ 사용하지 않기 13. 오브젝트 풀링 사용하기 14. Enum HasFlag() 박싱 이슈 15. ScriptableObject 활용하기 16. 메소드 호출 줄이기 17. 박싱, 언박싱 피하기 18. 비싼 수학 계산 피하기" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-script-optimization/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-script-optimization/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Unity Script Optimization" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Tips","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-script-optimization/"},"url":"https://rito15.github.io/posts/unity-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"Unity Script Optimization","dateModified":"2021-02-05T04:27:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. 필요하지 않은 경우, new로 생성하지 않기 4. 필요하지 않은 경우, 리턴하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 컬렉션 재사용하기 8. StringBuilder 사용하기 9. 구조체 사용하기 10. 빌드 이후 Debug.Log() 사용하지 않기 11. Transform 변경은 한번에 12. LINQ 사용하지 않기 13. 오브젝트 풀링 사용하기 14. Enum HasFlag() 박싱 이슈 15. ScriptableObject 활용하기 16. 메소드 호출 줄이기 17. 박싱, 언박싱 피하기 18. 비싼 수학 계산 피하기","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-script-optimization/"},"url":"https://rito15.github.io/posts/unity-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"Unity Script Optimization","dateModified":"2021-02-05T04:27:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1941 words">10 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3692 words">20 min</span>
 
 
           <!-- page views -->
@@ -462,68 +462,44 @@
 
         
 
-        <h1 id="tips">Tips</h1>
+        <h1 id="목차">목차</h1>
 <hr />
-
-<h2 id="1-getcomponent-find-메소드-반복-호출하지-않기"><strong>1. GetComponent(), Find() 메소드 반복 호출하지 않기</strong></h2>
-
-<p>너무나 기본적인 것이라 간단히 짚고 넘어가지만,
-매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
-항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.</p>
-
-<p><br /></p>
-
-<h2 id="2-필요하지-않은-경우-new로-생성하지-않기"><strong>2. 필요하지 않은 경우, new로 생성하지 않기</strong></h2>
-
-<p>클래스 타입으로 생성한 객체는 항상 GC의 먹이가 된다.
-따라서 가능하면 한 번만 생성하고 이후에는 재사용 하는 방식을 선택해야 한다.</p>
-
-<p>데이터 클래스의 경우, 대신 구조체를 사용하는 것도 좋다.</p>
-
-<p><br /></p>
-
-<h2 id="3-구조체-사용하기"><strong>3. 구조체 사용하기</strong></h2>
-
 <ul>
-  <li><a href="http://clarkkromenaker.com/post/csharp-structs/">http://clarkkromenaker.com/post/csharp-structs/</a></li>
+  <li><a href="#getcomponent-find-메소드-사용-줄이기">1. GetComponent(), Find() 메소드 사용 줄이기</a></li>
+  <li><a href="#비어있는-유니티-이벤트-메소드-방치하지-않기">2. 비어있는 유니티 이벤트 메소드 방치하지 않기</a></li>
+  <li><a href="#필요하지-않은-경우-new로-생성하지-않기">3. 필요하지 않은 경우, new로 생성하지 않기</a></li>
+  <li><a href="#필요하지-않은-경우-리턴하지-않기">4. 필요하지 않은 경우, 리턴하지 않기</a></li>
+  <li><a href="#startcoroutine-자주-호출하지-않기">5. StartCoroutine() 자주 호출하지 않기</a></li>
+  <li><a href="#코루틴의-yield-캐싱하기">6. 코루틴의 yield 캐싱하기</a></li>
+  <li><a href="#컬렉션-재사용하기">7. 컬렉션 재사용하기</a></li>
+  <li><a href="#stringbuilder-사용하기">8. StringBuilder 사용하기</a></li>
+  <li><a href="#구조체-사용하기">9. 구조체 사용하기</a></li>
+  <li><a href="#빌드-이후-debuglog-사용하지-않기">10. 빌드 이후 Debug.Log() 사용하지 않기</a></li>
+  <li><a href="#transform-변경은-한번에">11. Transform 변경은 한번에</a></li>
+  <li><a href="#linq-사용하지-않기">12. LINQ 사용하지 않기</a></li>
+  <li><a href="#오브젝트-풀링-사용하기">13. 오브젝트 풀링 사용하기</a></li>
+  <li><a href="#enum-hasflag-박싱-이슈">14. Enum HasFlag() 박싱 이슈</a></li>
+  <li><a href="#scriptableobject-활용하기">15. ScriptableObject 활용하기</a></li>
+  <li><a href="#메소드-호출-줄이기">16. 메소드 호출 줄이기</a></li>
+  <li><a href="#박싱-언박싱-피하기">17. 박싱, 언박싱 피하기</a></li>
+  <li><a href="#비싼-수학-계산-피하기">18. 비싼 수학 계산 피하기</a></li>
 </ul>
 
-<p>동일한 데이터를 하나는 구조체, 하나는 클래스로 작성할 경우 클래스는 참조를 위해 8~24 바이트의 추가적인 메모리를 필요로 한다.</p>
+<p><br /></p>
 
-<p>따라서 데이터 클래스는 구조체로 작성하는 것이 좋으며, GC의 먹이가 되지 않는다는 장점도 있다.</p>
+<h1 id="getcomponent-find-메소드-사용-줄이기">GetComponent(), Find() 메소드 사용 줄이기</h1>
+<hr />
+<p>GetComponent, Find, FindObjectOfType 등의 메소드는 자주 호출될 경우 성능에 악영향을 끼친다.</p>
 
-<p>그리고 구조체는 크기에 관계없이 항상 스택에, 클래스는 힙에 할당된다.
-16kB를 초과한다고 해서 구조체가 힙에 할당되지는 않는다.</p>
+<p>따라서 객체 참조가 필요할 때마다 Update에서 Get, Find 메소드들을 호출하는 방식은 지양하고,</p>
+
+<p>최대한 Awake, Start 메소드에서 Get, Find 메소드들을 통해 객체들을 필드에 캐싱하여 사용해야 한다.</p>
 
 <p><br /></p>
 
-<h2 id="4-transform-변경은-한번에"><strong>4. Transform 변경은 한번에</strong></h2>
-
-<p>position, rotation, scale을 한 메소드 내에서 여러 번 변경할 경우, 그 때마다 트랜스폼의 변경이 이루어진다.
-그런데 트랜스폼이 여러 자식 트랜스폼들을 갖고 있는 경우, 자식 트랜스폼도 함께 변경된다.</p>
-
-<p>따라서 벡터로 미리 담아두고 최종 계산 이후, 트랜스폼에 단 한 번만 변경을 지정하는 것이 좋다.
-또한 position과 rotation을 모두 변경해야 하는 경우 <code class="language-plaintext highlighter-rouge">SetPositionAndRotation()</code> 메소드를 사용하는 것이 좋다.</p>
-
-<p><br /></p>
-
-<h2 id="5-linq-사용하지-않기"><strong>5. LINQ 사용하지 않기</strong></h2>
-
-<p>LINQ는 개발자에게 굉장한 편의성을 제공해주지만, 성능이 좋지 않다.
-따라서 성능에 민감한 부분에서는 사용하지 않는 것이 좋다.</p>
-
-<p><br /></p>
-
-<h2 id="6-오브젝트-풀링-사용하기"><strong>6. 오브젝트 풀링 사용하기</strong></h2>
-
-<p>게임오브젝트의 잦은 생성/파괴가 이루어지는 경우,
-반드시 오브젝트 풀링을 사용하는 것이 좋다.</p>
-
-<p><br /></p>
-
-<h2 id="7-비어있는-유니티-콜백-메소드-방치하지-않기"><strong>7. 비어있는 유니티 콜백 메소드 방치하지 않기</strong></h2>
-
-<p><code class="language-plaintext highlighter-rouge">Awake()</code>, <code class="language-plaintext highlighter-rouge">Update()</code> 등의 유니티 기본 콜백 메소드는 스크립트 내에 작성되어 있는 것만으로도 호출되어 성능을 소모한다.</p>
+<h1 id="비어있는-유니티-이벤트-메소드-방치하지-않기">비어있는 유니티 이벤트 메소드 방치하지 않기</h1>
+<hr />
+<p><code class="language-plaintext highlighter-rouge">Awake()</code>, <code class="language-plaintext highlighter-rouge">Update()</code> 등의 유니티 기본 이벤트 메소드는 스크립트 내에 작성되어 있는 것만으로도 호출되어 성능을 소모한다.</p>
 
 <p>따라서 내용이 비어있는 유니티 기본 콜백 메소드는 아예 지워야 한다.</p>
 
@@ -531,8 +507,18 @@
 
 <p><br /></p>
 
-<h2 id="8-필요하지-않은-경우-리턴하지-않기"><strong>8. 필요하지 않은 경우, 리턴하지 않기</strong></h2>
+<h1 id="필요하지-않은-경우-new로-생성하지-않기">필요하지 않은 경우, new로 생성하지 않기</h1>
+<hr />
+<p>클래스 타입으로 생성한 객체는 항상 GC의 먹이가 된다.</p>
 
+<p>따라서 가능하면 한 번만 생성하고 이후에는 재사용 하는 방식을 선택해야 한다.</p>
+
+<p>데이터 클래스의 경우, 대신 구조체를 사용하는 것도 좋다.</p>
+
+<p><br /></p>
+
+<h1 id="필요하지-않은-경우-리턴하지-않기">필요하지 않은 경우, 리턴하지 않기</h1>
+<hr />
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -560,17 +546,18 @@
 
 <p><br /></p>
 
-<h2 id="9-startcoroutine-자주-호출하지-않기"><strong>9. StartCoroutine() 자주 호출하지 않기</strong></h2>
+<h1 id="startcoroutine-자주-호출하지-않기">StartCoroutine() 자주 호출하지 않기</h1>
+<hr />
+<p><code class="language-plaintext highlighter-rouge">StartCoroutine()</code> 메소드는 <code class="language-plaintext highlighter-rouge">Coroutine</code> 타입을 리턴하므로 GC의 먹이가 된다.</p>
 
-<p><code class="language-plaintext highlighter-rouge">StartCoroutine()</code> 메소드는 <code class="language-plaintext highlighter-rouge">Coroutine</code> 타입을 리턴하므로 GC의 먹이가 된다.
-따라서 짧은 주기로 코루틴을 자주 실행해야 하는 경우, UniTask, UniRx 등으로 대체하는 것이 좋다.</p>
+<p>따라서 짧은 주기로 코루틴을 자주 실행해야 하는 경우, UniTask, UniRx 등으로 대체하는 것이 좋다.</p>
 
 <p>그리고 매 프레임 실행되는 코루틴의 경우(<code class="language-plaintext highlighter-rouge">yield return null</code>), 대신 Update를 사용하는 것이 성능상 효율적이라고 한다.</p>
 
 <p><br /></p>
 
-<h2 id="10-코루틴의-yield-캐싱하기"><strong>10. 코루틴의 yield 캐싱하기</strong></h2>
-
+<h1 id="코루틴의-yield-캐싱하기">코루틴의 yield 캐싱하기</h1>
+<hr />
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -591,8 +578,9 @@
 
 <p>코루틴에서는 <code class="language-plaintext highlighter-rouge">WaitForSeconds()</code> 등의 객체를 yield return으로 사용한다.</p>
 
-<p>그런데 위처럼 항상 new로 생성할 경우, 모조리 GC.Collect()의 대상이 된다.
-따라서 아래처럼 캐싱하여 사용하는 것이 좋다.</p>
+<p>그런데 위처럼 항상 new로 생성할 경우, 모조리 GC.Collect()의 대상이 된다.</p>
+
+<p>따라서 아래처럼 캐싱하여 사용하는 것이 좋다.</p>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -614,9 +602,8 @@
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p><br /></p>
-
-<h2 id="11-컬렉션-재사용하기"><strong>11. 컬렉션 재사용하기</strong></h2>
+<h2><br /></h2>
+<h1 id="컬렉션-재사용하기">컬렉션 재사용하기</h1>
 
 <p>List를 메소드 내에서 할당하여 사용하는 경우가 많다.</p>
 
@@ -665,8 +652,8 @@
 
 <p><br /></p>
 
-<h2 id="12-stringbuilder-사용하기"><strong>12. StringBuilder 사용하기</strong></h2>
-
+<h1 id="stringbuilder-사용하기">StringBuilder 사용하기</h1>
+<hr />
 <p>스트링의 연결(a + b)이 자주 발생하는 경우, StringBuilder.Append()를 활용하는 것이 좋다.</p>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -705,8 +692,78 @@
 
 <p><br /></p>
 
-<h2 id="13-enum-hasflag-박싱-이슈"><strong>13. Enum HasFlag() 박싱 이슈</strong></h2>
+<h1 id="구조체-사용하기">구조체 사용하기</h1>
+<hr />
+<ul>
+  <li><a href="http://clarkkromenaker.com/post/csharp-structs/">http://clarkkromenaker.com/post/csharp-structs/</a></li>
+</ul>
 
+<p>동일한 데이터를 하나는 구조체, 하나는 클래스로 작성할 경우 클래스는 참조를 위해 8~24 바이트의 추가적인 메모리를 필요로 한다.</p>
+
+<p>따라서 데이터 클래스는 구조체로 작성하는 것이 좋으며, GC의 먹이가 되지 않는다는 장점도 있다.</p>
+
+<p>그리고 구조체는 크기에 관계없이 항상 스택에, 클래스는 힙에 할당된다.</p>
+
+<p>16kB를 초과한다고 해서 구조체가 힙에 할당되지는 않는다.</p>
+
+<p><br /></p>
+
+<h1 id="빌드-이후-debuglog-사용하지-않기">빌드 이후 Debug.Log() 사용하지 않기</h1>
+<hr />
+<p><code class="language-plaintext highlighter-rouge">Debug</code>의 메소드들은 에디터에서 디버깅을 위해 사용하지만, 빌드 이후에도 호출되어 성능을 많이 소모한다.</p>
+
+<p>따라서 아래처럼 Debug 클래스를 에디터 전용으로 래핑에서 사용할 경우, 이를 방지할 수 있다.</p>
+
+<ul>
+  <li><a href="https://github.com/rito15/Unity_Toys/blob/master/Rito/2.%20Toy/2021_0125_EditorOnly%20Debug/Debug_UnityEditorConditional.cs">https://github.com/rito15/Unity_Toys/blob/master/Rito/2.%20Toy/2021_0125_EditorOnly%20Debug/Debug_UnityEditorConditional.cs</a></li>
+</ul>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Debug</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="nf">Conditional</span><span class="p">(</span><span class="s">"UNITY_EDITOR"</span><span class="p">)]</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Log</span><span class="p">(</span><span class="kt">object</span> <span class="n">message</span><span class="p">)</span>
+        <span class="p">=&gt;</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h1 id="transform-변경은-한번에">Transform 변경은 한번에</h1>
+<hr />
+<p>position, rotation, scale을 한 메소드 내에서 여러 번 변경할 경우, 그 때마다 트랜스폼의 변경이 이루어진다.</p>
+
+<p>그런데 트랜스폼이 여러 자식 트랜스폼들을 갖고 있는 경우, 자식 트랜스폼도 함께 변경된다.</p>
+
+<p>따라서 벡터로 미리 담아두고 최종 계산 이후, 트랜스폼에 단 한 번만 변경을 지정하는 것이 좋다.</p>
+
+<p>또한 position과 rotation을 모두 변경해야 하는 경우 <code class="language-plaintext highlighter-rouge">SetPositionAndRotation()</code> 메소드를 사용하는 것이 좋다.</p>
+
+<p><br /></p>
+
+<h1 id="linq-사용하지-않기">LINQ 사용하지 않기</h1>
+<hr />
+<p>LINQ는 개발자에게 굉장한 편의성을 제공해주지만, 성능이 좋지 않다.</p>
+
+<p>따라서 성능에 민감한 부분에서는 사용하지 않는 것이 좋다.</p>
+
+<p><br /></p>
+
+<h1 id="오브젝트-풀링-사용하기">오브젝트 풀링 사용하기</h1>
+<hr />
+<p>게임오브젝트의 잦은 생성/파괴가 이루어지는 경우,</p>
+
+<p>반드시 오브젝트 풀링을 사용하는 것이 좋다.</p>
+
+<p><br /></p>
+
+<h1 id="enum-hasflag-박싱-이슈">Enum HasFlag() 박싱 이슈</h1>
+<hr />
 <ul>
   <li><a href="https://medium.com/@arphox/the-boxing-overhead-of-the-enum-hasflag-method-c62a0841c25a">https://medium.com/@arphox/the-boxing-overhead-of-the-enum-hasflag-method-c62a0841c25a</a></li>
 </ul>
@@ -744,14 +801,132 @@
 
 <p><br /></p>
 
-<h2 id="14-빌드-이후-debuglog-사용하지-않기"><strong>14. 빌드 이후 Debug.Log() 사용하지 않기</strong></h2>
+<h1 id="scriptableobject-활용하기">ScriptableObject 활용하기</h1>
+<hr />
+<p>게임 내에서 <strong>값이 변하지 않는 공통 데이터</strong>를 사용하는 경우, 필드로 사용하게 되면 동일한 데이터가 객체의 수만큼 메모리를 차지하게 된다.</p>
 
-<p><code class="language-plaintext highlighter-rouge">Debug</code>의 메소드들은 에디터에서 디버깅을 위해 사용하지만, 빌드 이후에도 호출되어 성능을 많이 소모한다.</p>
+<p>따라서 스크립터블 오브젝트로 메모리를 절약하는 것이 좋다.</p>
 
-<p>따라서 아래처럼 Debug 클래스를 에디터 전용으로 래핑에서 사용할 경우, 이를 방지할 수 있다.</p>
+<p><br /></p>
+
+<h1 id="메소드-호출-줄이기">메소드 호출 줄이기</h1>
+<hr />
+
+<p>메소드는 호출하는 것 자체만으로도 성능을 소모한다.</p>
+
+<p>그런데 종종 가독성을 위해 비교적 간단한 문장도 메소드화하는 경우가 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 1. 문장</span>
+    <span class="kt">bool</span> <span class="n">b1</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeSelf</span> <span class="p">&amp;&amp;</span>
+              <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeInHierarchy</span><span class="p">;</span>
+
+    <span class="c1">// 2. 메소드 호출</span>
+    <span class="kt">bool</span> <span class="n">b2</span> <span class="p">=</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">Transform</span> <span class="n">tr</span><span class="p">)</span>
+ <span class="p">=&gt;</span> <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeSelf</span> <span class="p">&amp;&amp;</span>
+    <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeInHierarchy</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위의 경우, 동일한 문장을 여러 번 호출해야 한다면 대부분 메소드화해서 사용할 것이다.</p>
+
+<p>메소드 호출 때문에 비용이 더 들지만 가독성을 위해 어쩔 수 없는 선택이라고 할 수 있다.</p>
+
+<p><br /></p>
+
+<p>따라서 아래와 같이 사용할 수 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre></td><td class="rouge-code"><pre><span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="c1">// ...1</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ..</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="cm">/* ... */</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...2</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ..</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="cm">/* .. */</span> <span class="p">||</span> <span class="cm">/* .. */</span> <span class="p">&amp;&amp;</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="c1">// ...3</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>그런데 ‘문장의 메소드화’와는 별개로, 이 코드에서 생각해봐야 할 점이 있다.</p>
+
+<p>메소드 호출의 결괏값이 범위(메소드 블록 또는 라이프사이클 등) 내에서 항상 같다면?</p>
+
+<p>따라서 두 가지 경우로 나누어 생각해볼 수 있다.</p>
+
+<p><br /></p>
+<h3 id="1-해당-메소드-호출의-결괏값이-범위-내에서-달라질-수-있는-경우">1. 해당 메소드 호출의 결괏값이 범위 내에서 달라질 수 있는 경우</h3>
 
 <ul>
-  <li><a href="https://github.com/rito15/Unity_Toys/blob/master/Rito/2.%20Toy/2021_0125_EditorOnly%20Debug/Debug_UnityEditorConditional.cs">https://github.com/rito15/Unity_Toys/blob/master/Rito/2.%20Toy/2021_0125_EditorOnly%20Debug/Debug_UnityEditorConditional.cs</a></li>
+  <li>IsFullyActive(transform)을 호출할 때마다 결과가 다를 수 있다면, 위처럼 사용하면 된다.</li>
+</ul>
+
+<p><br /></p>
+<h3 id="2-해당-메소드-호출의-결괏값이-범위-내에서-항상-같은-경우">2. 해당 메소드 호출의 결괏값이 범위 내에서 항상 같은 경우</h3>
+
+<ul>
+  <li>
+    <p>결국 항상 같은 값을 얻는데, 메소드를 여러 번 호출하는 것은 해당 메소드의 비용에 비례해서 그만큼의 손해를 보게 된다.</p>
+  </li>
+  <li>
+    <p>따라서 이런 경우에는 지역변수 또는 필드에 한 번의 메소드 호출로 값을 얻어 초기화한 뒤, 재사용 하는 방식을 선택해야 한다.</p>
+  </li>
 </ul>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -760,21 +935,180 @@
 4
 5
 6
-</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Debug</span>
+</pre></td><td class="rouge-code"><pre><span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="p">[</span><span class="nf">Conditional</span><span class="p">(</span><span class="s">"UNITY_EDITOR"</span><span class="p">)]</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Log</span><span class="p">(</span><span class="kt">object</span> <span class="n">message</span><span class="p">)</span>
-        <span class="p">=&gt;</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+    <span class="kt">bool</span> <span class="n">isTransformFullyActive</span> <span class="p">=</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">);</span>
+    
+    <span class="c1">// 블록 내에서 isTransformFullyActive 재사용</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
 
-<h2 id="15-scriptableobject-활용하기"><strong>15. ScriptableObject 활용하기</strong></h2>
+<h1 id="박싱-언박싱-피하기">박싱, 언박싱 피하기</h1>
+<hr />
 
-<p>게임 내에서 <strong>값이 변하지 않는 공통 데이터</strong>를 사용하는 경우, 필드로 사용하게 되면 동일한 데이터가 객체의 수만큼 메모리를 차지하게 된다.</p>
+<p>박싱(Boxing)은 값 타입이 참조 타입으로 암시적, 또는 명시적으로 캐스팅되는 것을 의미한다.</p>
 
-<p>따라서 스크립터블 오브젝트로 메모리를 절약하는 것이 좋다.</p>
+<p>언박싱(Unboxing)은 참조 타입이 값 타입으로 명시적으로 캐스팅되는 것을 의미한다.</p>
+
+<p>이 때 중요한 것은, 박싱과 언박싱이 단순 할당보다 성능이 매우 나쁘다는 것과 참조 타입은 힙에 할당되어 GC의 먹이가 될 수 있다는 점이다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Debug</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Log</span><span class="p">(</span><span class="kt">object</span> <span class="n">messageg</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>유니티 엔진을 사용하면서 가장 친숙한 메소드인 Debug.Log()이다.</p>
+
+<p>그리고 항상 박싱과 언박싱이 발생하는 대표적인 예시라고 할 수 있다.</p>
+
+<p>파라미터의 타입이 object이기 때문에, 어떤 값 타입을 넣어도 참조타입인 object 타입으로 박싱된다.</p>
+
+<p>그리고 로그를 문자열로 출력해야 하므로 string으로 언박싱된다.</p>
+
+<p>이렇게 메소드 매개변수로 object 타입을 사용하거나 박싱을 유도하는 방식은 최대한 지양해야 한다.</p>
+
+<p>따라서 이를 피할 수 있는 대표적인 방법으로, 제네릭이 있다.</p>
+
+<p>제네릭은 객체 생성 또는 메소드 호출 시 제네릭 타입이 하나의 타입으로 고정되기 때문에, 박싱과 언박싱을 피할 수 있다.</p>
+
+<p><br /></p>
+
+<h1 id="비싼-수학-계산-피하기">비싼 수학 계산 피하기</h1>
+<hr />
+
+<h2 id="나눗셈-대신-곱셈">나눗셈 대신 곱셈</h2>
+
+<p>나눗셈이 곱셈보다 훨씬 느리다는 것은 흔히 알려져 있는 사실이다.</p>
+
+<p>그런데 곱셈을 해도 되는 부분에 나눗셈을 사용하는 코드가 의외로 자주 보인다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">1.0f / 2.0f</code> 보다 <code class="language-plaintext highlighter-rouge">1.0f * 0.5f</code>가 훨씬 빠르다. 꼭 기억하자.</p>
+
+<p><br /></p>
+
+<h2 id="if-else-vs-삼항-연산자">If-else vs 삼항 연산자</h2>
+
+<p>직접 비교해본 결과, 성능 차이가 거의 없었다.</p>
+
+<p>가독성만 생각해서 사용하면 될 것 같다.</p>
+
+<p><br /></p>
+
+<h2 id="systemmathabs-vs-unityenginemathfabs-vs-삼항-연산자">System.Math.Abs vs UnityEngine.Mathf.Abs vs 삼항 연산자</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="c1">// 삼항 연산자를 이용한 Abs</span>
+<span class="p">(</span><span class="n">x</span> <span class="p">&gt;=</span> <span class="m">0</span><span class="p">)</span> <span class="p">?</span> <span class="n">x</span> <span class="p">:</span> <span class="p">-</span><span class="n">x</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>삼항 연산자가 압도적으로 빠르다.</p>
+
+<p>닷넷 콘솔 디버그 빌드에서는 Math.Abs보다 삼항 연산자가 두 배 정도 빨랐고,</p>
+
+<p>릴리즈 빌드에서는 여섯 배 정도 빨랐다.</p>
+
+<p>심지어 삼항 연산자를 함수화 해도 Math.Abs(), Mathf.Abs()보다 빨랐다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107555426-81596100-6c1a-11eb-976d-711523fe98ab.png" alt="image" class="normal" /></p>
+
+<p>그리고 유니티 엔진에서도 비슷한 결과를 얻을 수 있었다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107555731-ddbc8080-6c1a-11eb-8483-955dfaa6092d.png" alt="image" class="normal" /></p>
+
+<p>가독성을 위해서라면 메소드를 사용할 수 있겠으나,</p>
+
+<p>작은 성능에도 아주 민감하다면 삼항 연산자를 사용하는 것이 좋다.</p>
+
+<p><br /></p>
+
+<h2 id="mathf가-느린-이유">Mathf가 느린 이유</h2>
+
+<p>UnityEngine.Mathf.Abs(float)를 예시로 내부 구현을 살펴보면</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="c1">// UnityEngine.Mathf</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">///   &lt;para&gt;Returns the absolute value of f.&lt;/para&gt;</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="c1">/// &lt;param name="f"&gt;&lt;/param&gt;</span>
+<span class="k">public</span> <span class="k">static</span> <span class="kt">float</span> <span class="nf">Abs</span><span class="p">(</span><span class="kt">float</span> <span class="n">f</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="n">Math</span><span class="p">.</span><span class="nf">Abs</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 System.Math.Abs(float)를 호출한다.</p>
+
+<p>그럼 System.Math.Abs(float)를 살펴보면</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="c1">// System.Math</span>
+<span class="k">using</span> <span class="nn">System.Runtime.CompilerServices</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Security</span><span class="p">;</span>
+
+<span class="c1">/// &lt;summary&gt;단정밀도 부동 소수점 수의 절대 값을 반환합니다.&lt;/summary&gt;</span>
+<span class="c1">/// &lt;param name="value"&gt;</span>
+<span class="c1">///   &lt;see cref="F:System.Single.MinValue" /&gt;보다 크거나 같지만 &lt;see cref="F:System.Single.MaxValue" /&gt;보다 작거나 같은 숫자입니다.&lt;/param&gt;</span>
+<span class="c1">/// &lt;returns&gt;0 ≤ x ≤&lt;see cref="F:System.Single.MaxValue" /&gt; 범위의 단정밀도 부동 소수점 숫자 x입니다.&lt;/returns&gt;</span>
+<span class="p">[</span><span class="nf">MethodImpl</span><span class="p">(</span><span class="n">MethodImplOptions</span><span class="p">.</span><span class="n">InternalCall</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SecuritySafeCritical</span><span class="p">]</span>
+<span class="p">[</span><span class="n">__DynamicallyInvokable</span><span class="p">]</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">extern</span> <span class="kt">float</span> <span class="nf">Abs</span><span class="p">(</span><span class="kt">float</span> <span class="k">value</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 되어있다.</p>
+
+<p>UnityEngine.Mathf는 대부분 이렇게 구현되어 있기 때문에 느리다.</p>
+
+<p><br /></p>
+
+<p>결론적으로</p>
+
+<ol>
+  <li>
+    <p>직접 계산하는 것이 가장 빠르다.</p>
+  </li>
+  <li>
+    <p>메소드를 만들어 사용하는 것이 System.Math의 메소드들보다 빠르거나 비슷하다.</p>
+  </li>
+  <li>
+    <p>System.Math는 UnityEngine.Mathf보다 빠르다.</p>
+  </li>
+  <li>
+    <p>UnityEngine.Mathf는 가장 느리다.</p>
+  </li>
+</ol>
 
 <p><br /></p>
 
@@ -782,6 +1116,9 @@
 <hr />
 <ul>
   <li><a href="https://coderzero.tistory.com/entry/유니티-최적화-유니티-최적화에-대한-이해">https://coderzero.tistory.com/entry/유니티-최적화-유니티-최적화에-대한-이해</a></li>
+  <li><a href="https://docs.unity3d.com/2019.3/Documentation/Manual/MobileOptimizationPracticalScriptingOptimizations.html">https://docs.unity3d.com/2019.3/Documentation/Manual/MobileOptimizationPracticalScriptingOptimizations.html</a></li>
+  <li><a href="https://www.jacksondunstan.com/articles/5361">https://www.jacksondunstan.com/articles/5361</a></li>
+  <li><a href="https://everyday-devup.tistory.com/64">https://everyday-devup.tistory.com/64</a></li>
 </ul>
 
 
@@ -810,11 +1147,14 @@
           <a href="/tags/csharp/"
             class="post-tag no-text-decoration" >csharp</a>
           
-          <a href="/tags/profiling/"
-            class="post-tag no-text-decoration" >profiling</a>
+          <a href="/tags/optimize/"
+            class="post-tag no-text-decoration" >optimize</a>
           
           <a href="/tags/optimization/"
             class="post-tag no-text-decoration" >optimization</a>
+          
+          <a href="/tags/performance/"
+            class="post-tag no-text-decoration" >performance</a>
           
           </div>
         
@@ -921,27 +1261,27 @@
         
         
         
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-07/">OpenGL 공부 - 07 - Index Buffer</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
+      
+        
+        
+        
         <li><a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-11/">OpenGL 공부 - 11 - New Beginning 2</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-12/">OpenGL 공부 - 12 - New Beginning 3</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
       
 
       </ul>
@@ -1169,70 +1509,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1317,55 +1593,10 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1590,18 +1821,6 @@
     
     
     
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1736,6 +1955,33 @@
     
     
     
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1913,6 +2159,126 @@
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1965,9 +2331,6 @@
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/profiling/">profiling</a>
-      
-        
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
@@ -1975,6 +2338,9 @@
       
         
         <a class="post-tag" href="/tags/mathematics/">mathematics</a>
+      
+        
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
       </div>
@@ -2703,66 +3069,27 @@
 
 
 
-                Note
+                목차
 
 
 
-  프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.
-  [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다.
-  Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
+  1. Note
+  2. Tools
+  3. Unity Profiler
     
-      
-      
-      <div class="card">
-        <a href="/posts/unity-profiler-window/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
+      Custom Profiler Tags
+      CPU &amp; GPU Boundary
+      CPU Boundary
+      GPU Boundary
+    
   
-  
-
-  
-    Feb  4
-  
-
-  <i class="unloaded">2021-02-04T17:50:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Profiler Window</h3>
-            <div class="text-muted small">
-              <p>
-                
+  4. Memory Profiler
+  5. References
 
 
 
 
-
-                유니티 프로파일러
-
-
-[Window] - [Analysis] - [Profiler]를 통해 프로파일러 윈도우를 열 수 있다.
-
-
-
-CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니티 프로젝트에서 측정되는 성능을 확인할 수 있다.
-
-선택된 탭의 구체적인 내용들은 윈도우 하단에 나타난다.
-
-프로젝트 실행 후 그래프의 ...
+No...
               </p>
             </div>
           </div>
@@ -2811,6 +3138,61 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
   FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
   FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
   노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/ray-marching/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 19
+  
+
+  <i class="unloaded">2021-01-19T23:15:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Ray Marching</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                레이 마칭이란?
+
+
+
+  
+    폴리곤의 정점 정보를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 표면의 정보를 얻어 오브젝트를 그려내는 기법
+  
+  
+    레이 마칭의 모든 모델링들은 폴리곤이 아닌 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.
+  
+
+
+
+...
               </p>
             </div>
           </div>
@@ -3137,70 +3519,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3285,55 +3603,10 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3558,18 +3831,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3704,6 +3965,33 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3881,6 +4169,126 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -3928,9 +4336,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/profiling/">profiling</a>
-      
-        
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
@@ -3938,6 +4343,9 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
       
         
         <a class="post-tag" href="/tags/mathematics/">mathematics</a>
+      
+        
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
     </div>

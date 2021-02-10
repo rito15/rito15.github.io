@@ -571,20 +571,17 @@ u...
 
 
 
-        Tips
-
-
-1. GetComponent(), Find() 메소드 반복 호출하지 않기
-
-너무나 기본적인 것이라 간단히 짚고 넘어가지만,
-매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
-항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.
+        목차
 
 
 
-2. 필요하지 않은 경우, new로 생성하지 않기
-
-클...
+  1. GetComponent(), Find() 메소드 사용 줄이기
+  2. 비어있는 유니티 이벤트 메소드 방치하지 않기
+  3. 필요하지 않은 경우, new로 생성하지 않기
+  4. 필요하지 않은 경우, 리턴하지 않기
+  5. StartCoroutine() 자주 호출하지 않기
+  6. 코루틴의 yield 캐싱하기
+  7. 컬렉션 재사용하...
       </p>
     </div>
 
@@ -631,7 +628,7 @@ u...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1941 words">10 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3692 words">20 min</span>
 
 
         <!-- page views -->
@@ -659,13 +656,27 @@ u...
 
 
 
-        Note
+        목차
 
 
 
-  프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.
-  [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다.
-  Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 ...
+  1. Note
+  2. Tools
+  3. Unity Profiler
+    
+      Custom Profiler Tags
+      CPU &amp; GPU Boundary
+      CPU Boundary
+      GPU Boundary
+    
+  
+  4. Memory Profiler
+  5. References
+
+
+
+
+No...
       </p>
     </div>
 
@@ -712,7 +723,7 @@ u...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1141 words">6 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1165 words">6 min</span>
 
 
         <!-- page views -->
@@ -740,18 +751,23 @@ u...
 
 
 
-        유니티 프로파일러
-
-
-[Window] - [Analysis] - [Profiler]를 통해 프로파일러 윈도우를 열 수 있다.
+        목차
 
 
 
-CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니티 프로젝트에서 측정되는 성능을 확인할 수 있다.
-
-선택된 탭의 구체적인 내용들은 윈도우 하단에 나타난다.
-
-프로젝트 실행 후 그래프의 ...
+  1. Unity Profiler
+  2. CPU Usage
+    
+      Timeline View
+      Hierarchy View
+      Show Related Objects
+      Call Stack
+      Show Calls
+      Deep Profile
+    
+  
+  3. GPU Usage
+  4. Re...
       </p>
     </div>
 
@@ -798,7 +814,7 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="873 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="895 words">4 min</span>
 
 
         <!-- page views -->
@@ -1460,27 +1476,27 @@ private GameObject field1;
         
         
         
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-07/">OpenGL 공부 - 07 - Index Buffer</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
+      
+        
+        
+        
         <li><a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-11/">OpenGL 공부 - 11 - New Beginning 2</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-12/">OpenGL 공부 - 12 - New Beginning 3</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
       
 
       </ul>
@@ -1708,70 +1724,6 @@ private GameObject field1;
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1856,55 +1808,10 @@ private GameObject field1;
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2129,18 +2036,6 @@ private GameObject field1;
     
     
     
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2275,6 +2170,33 @@ private GameObject field1;
     
     
     
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2452,6 +2374,126 @@ private GameObject field1;
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -2504,9 +2546,6 @@ private GameObject field1;
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/profiling/">profiling</a>
-      
-        
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
@@ -2514,6 +2553,9 @@ private GameObject field1;
       
         
         <a class="post-tag" href="/tags/mathematics/">mathematics</a>
+      
+        
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
       </div>
@@ -2803,70 +2845,6 @@ private GameObject field1;
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2951,55 +2929,10 @@ private GameObject field1;
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3224,18 +3157,6 @@ private GameObject field1;
     
     
     
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3370,6 +3291,33 @@ private GameObject field1;
     
     
     
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3547,6 +3495,126 @@ private GameObject field1;
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -3594,9 +3662,6 @@ private GameObject field1;
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/profiling/">profiling</a>
-      
-        
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
@@ -3604,6 +3669,9 @@ private GameObject field1;
       
         
         <a class="post-tag" href="/tags/mathematics/">mathematics</a>
+      
+        
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
     </div>

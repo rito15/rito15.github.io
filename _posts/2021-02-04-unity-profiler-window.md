@@ -8,7 +8,25 @@ math: true
 mermaid: true
 ---
 
-# 유니티 프로파일러
+# 목차
+---
+
+- [1. Unity Profiler](#unity-profiler)
+- [2. CPU Usage](#cpu-usage)
+  - [Timeline View](#timeline-view)
+  - [Hierarchy View](#hierarchy-view)
+  - [Show Related Objects](#show-related-objects)
+  - [Call Stack](#call-stack)
+  - [Show Calls](#show-calls)
+  - [Deep Profile](#deep-profile)
+- [3. GPU Usage](#gpu-usage)
+- [4. Rendering](#rendering)
+- [5. Memory](#memory)
+
+
+<br>
+
+# Unity Profiler
 ---
 [Window] - [Analysis] - [Profiler]를 통해 프로파일러 윈도우를 열 수 있다.
 

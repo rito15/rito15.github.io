@@ -26,8 +26,8 @@
 <meta property="og:title" content="Fog of War" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="개념 맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다. 지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0, 지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8, 지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다." />
-<meta property="og:description" content="개념 맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다. 지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0, 지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8, 지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다." />
+<meta name="description" content="목차 1. 개념 2. 구현 방법 3. 타일맵을 이용한 구현 4. 구현 결과 5. 프로파일링, 최적화 6. Reference" />
+<meta property="og:description" content="목차 1. 개념 2. 구현 방법 3. 타일맵을 이용한 구현 4. 구현 결과 5. 프로파일링, 최적화 6. Reference" />
 <link rel="canonical" href="https://rito15.github.io/posts/fog-of-war/" />
 <meta property="og:url" content="https://rito15.github.io/posts/fog-of-war/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Fog of War" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개념 맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다. 지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0, 지정한 유닛이 한 번이라도 위치했던 영역들은 a = 0.5~0.8, 지정한 유닛이 한 번도 방문하지 않은 영역은 a = 1로 표현한다.","datePublished":"2021-01-20T21:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/fog-of-war/"},"url":"https://rito15.github.io/posts/fog-of-war/","author":{"@type":"Person","name":"Rito15"},"headline":"Fog of War","dateModified":"2021-02-05T03:35:32+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. 개념 2. 구현 방법 3. 타일맵을 이용한 구현 4. 구현 결과 5. 프로파일링, 최적화 6. Reference","datePublished":"2021-01-20T21:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/fog-of-war/"},"url":"https://rito15.github.io/posts/fog-of-war/","author":{"@type":"Person","name":"Rito15"},"headline":"Fog of War","dateModified":"2021-02-05T03:35:32+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2996 words">16 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3033 words">16 min</span>
 
 
           <!-- page views -->
@@ -462,7 +462,20 @@
 
         
 
-        <h1 id="개념">개념</h1>
+        <h1 id="목차">목차</h1>
+<hr />
+<ul>
+  <li><a href="#개념">1. 개념</a></li>
+  <li><a href="#구현-방법">2. 구현 방법</a></li>
+  <li><a href="#타일맵을-이용한-구현">3. 타일맵을 이용한 구현</a></li>
+  <li><a href="#구현-결과">4. 구현 결과</a></li>
+  <li><a href="#프로파일링-최적화">5. 프로파일링, 최적화</a></li>
+  <li><a href="#reference">6. Reference</a></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="개념">개념</h1>
 <hr />
 <ul>
   <li>맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다.</li>
@@ -1220,27 +1233,27 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
         
         
         
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-07/">OpenGL 공부 - 07 - Index Buffer</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
+      
+        
+        
+        
         <li><a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-11/">OpenGL 공부 - 11 - New Beginning 2</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-12/">OpenGL 공부 - 12 - New Beginning 3</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
       
 
       </ul>
@@ -1468,70 +1481,6 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1616,55 +1565,10 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1889,18 +1793,6 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
     
     
     
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2035,6 +1927,33 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
     
     
     
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2212,6 +2131,126 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -2264,9 +2303,6 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/profiling/">profiling</a>
-      
-        
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
@@ -2274,6 +2310,9 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
       
         
         <a class="post-tag" href="/tags/mathematics/">mathematics</a>
+      
+        
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
       </div>
@@ -3439,70 +3478,6 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3587,55 +3562,10 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3860,18 +3790,6 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
     
     
     
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -4006,6 +3924,33 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
     
     
     
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -4183,6 +4128,126 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -4230,9 +4295,6 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/profiling/">profiling</a>
-      
-        
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
@@ -4240,6 +4302,9 @@ U와 C의 관계를 4가지로 분류하여 진행한다.
       
         
         <a class="post-tag" href="/tags/mathematics/">mathematics</a>
+      
+        
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
     </div>

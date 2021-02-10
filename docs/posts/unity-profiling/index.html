@@ -26,8 +26,8 @@
 <meta property="og:title" content="Unity Profiling" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다. 모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다." />
-<meta property="og:description" content="Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다. 모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다." />
+<meta name="description" content="목차 1. Note 2. Tools 3. Unity Profiler Custom Profiler Tags CPU &amp; GPU Boundary CPU Boundary GPU Boundary 4. Memory Profiler 5. References" />
+<meta property="og:description" content="목차 1. Note 2. Tools 3. Unity Profiler Custom Profiler Tags CPU &amp; GPU Boundary CPU Boundary GPU Boundary 4. Memory Profiler 5. References" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-profiling/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-profiling/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Unity Profiling" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note 프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다. [Edit - Project Settings - Quliaty - Other]에서 VSync가 설정되어 있는지 확인한다. Application.targetFrameRate가 설정되어 있는지 확인한다(미설정 시 -1) 병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다. 모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다.","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-profiling/"},"url":"https://rito15.github.io/posts/unity-profiling/","author":{"@type":"Person","name":"Rito15"},"headline":"Unity Profiling","dateModified":"2021-02-05T04:27:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. Note 2. Tools 3. Unity Profiler Custom Profiler Tags CPU &amp; GPU Boundary CPU Boundary GPU Boundary 4. Memory Profiler 5. References","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-profiling/"},"url":"https://rito15.github.io/posts/unity-profiling/","author":{"@type":"Person","name":"Rito15"},"headline":"Unity Profiling","dateModified":"2021-02-05T04:27:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1141 words">6 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1165 words">6 min</span>
 
 
           <!-- page views -->
@@ -462,7 +462,26 @@
 
         
 
-        <h1 id="note">Note</h1>
+        <h1 id="목차">목차</h1>
+<hr />
+<ul>
+  <li><a href="#note">1. Note</a></li>
+  <li><a href="#tools">2. Tools</a></li>
+  <li><a href="#unity-profiler">3. Unity Profiler</a>
+    <ul>
+      <li><a href="#custom-profiler-tags">Custom Profiler Tags</a></li>
+      <li><a href="#cpu--gpu-boundary">CPU &amp; GPU Boundary</a></li>
+      <li><a href="#cpu-boundary">CPU Boundary</a></li>
+      <li><a href="#gpu-boundary">GPU Boundary</a></li>
+    </ul>
+  </li>
+  <li><a href="#memory-profiler">4. Memory Profiler</a></li>
+  <li><a href="#references">5. References</a></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="note">Note</h1>
 <hr />
 <ul class="task-list">
   <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.</li>
@@ -478,58 +497,86 @@
 
 <h2 id="1-unity-editor">1. Unity Editor</h2>
 
-<h3 id="unity-profiler"><strong>Unity Profiler</strong></h3>
 <ul>
-  <li>[Window - Analysis - Profiler (Ctrl+7)]</li>
-  <li><a href="https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html">https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html</a></li>
+  <li><strong>Profiler</strong>
+    <ul>
+      <li>[Window - Analysis - Profiler (Ctrl+7)]</li>
+      <li><a href="https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html">https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html</a></li>
+    </ul>
+  </li>
 </ul>
 
-<h3 id="profile-analyzer"><strong>Profile Analyzer</strong></h3>
+<p><br /></p>
 <ul>
-  <li>Package Manager - Prifile Analyzer</li>
-  <li><a href="https://unity.com/kr/how-to/optimize-your-game-profile-analyzer">https://unity.com/kr/how-to/optimize-your-game-profile-analyzer</a></li>
+  <li><strong>Profile Analyzer</strong>
+    <ul>
+      <li>Package Manager - Prifile Analyzer</li>
+      <li><a href="https://unity.com/kr/how-to/optimize-your-game-profile-analyzer">https://unity.com/kr/how-to/optimize-your-game-profile-analyzer</a></li>
+    </ul>
+  </li>
 </ul>
 
-<h3 id="frame-debugger"><strong>Frame Debugger</strong></h3>
+<p><br /></p>
 <ul>
-  <li>[Window - Analysis - Frame Debugger]</li>
+  <li><strong>Frame Debugger</strong>
+    <ul>
+      <li>[Window - Analysis - Frame Debugger]</li>
+    </ul>
+  </li>
 </ul>
 
-<h3 id="memory-profiler"><strong>Memory Profiler</strong></h3>
+<p><br /></p>
 <ul>
-  <li>Package Manager - Memory Profiler [Preview]</li>
-  <li><a href="https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/">https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/</a></li>
+  <li><strong>Memory Profiler</strong>
+    <ul>
+      <li>Package Manager - Memory Profiler [Preview]</li>
+      <li><a href="https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/">https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/</a></li>
+    </ul>
+  </li>
 </ul>
 
 <p><br /></p>
 <h2 id="2-intel-cpugpu-사용">2. Intel CPU/GPU 사용</h2>
-<h3 id="vtune"><strong>VTune</strong></h3>
 <ul>
-  <li><a href="https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html">https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html</a></li>
+  <li><strong>VTune</strong>
+    <ul>
+      <li><a href="https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html">https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html</a></li>
+    </ul>
+  </li>
 </ul>
 
-<h3 id="gpa"><strong>GPA</strong></h3>
+<p><br /></p>
 <ul>
-  <li><a href="https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html">https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html</a></li>
+  <li><strong>GPA</strong>
+    <ul>
+      <li><a href="https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html">https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html</a></li>
+    </ul>
+  </li>
 </ul>
 
 <p><br /></p>
 <h2 id="3-android">3. Android</h2>
-<h3 id="snapdragon-profiler"><strong>Snapdragon Profiler</strong></h3>
 <ul>
-  <li><a href="https://developer.qualcomm.com/software/snapdragon-profiler">https://developer.qualcomm.com/software/snapdragon-profiler</a></li>
+  <li><strong>Snapdragon Profiler</strong>
+    <ul>
+      <li><a href="https://developer.qualcomm.com/software/snapdragon-profiler">https://developer.qualcomm.com/software/snapdragon-profiler</a></li>
+    </ul>
+  </li>
 </ul>
 
 <p><br /></p>
 <h2 id="4-ios">4. iOS</h2>
-<h3 id="xcode-frame-debugger"><strong>XCode Frame Debugger</strong></h3>
 <ul>
-  <li><a href="https://developer.apple.com/documentation/metal/frame_capture_debugging_tools">https://developer.apple.com/documentation/metal/frame_capture_debugging_tools</a></li>
+  <li><strong>XCode Frame Debugger</strong>
+    <ul>
+      <li><a href="https://developer.apple.com/documentation/metal/frame_capture_debugging_tools">https://developer.apple.com/documentation/metal/frame_capture_debugging_tools</a></li>
+    </ul>
+  </li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="unity-profiler-1">Unity Profiler</h1>
+<h1 id="unity-profiler">Unity Profiler</h1>
 <hr />
 
 <h1 id="custom-profiler-tags"><strong>Custom Profiler Tags</strong></h1>
@@ -655,6 +702,7 @@
   <li>이를 해결하려면 쉐이더를 최적화 해야 한다.</li>
 </ul>
 
+<p><br /></p>
 <h2 id="메모리-대역폭memory-bandwidth">메모리 대역폭(Memory Bandwidth)</h2>
 <ul>
   <li>메모리 대역폭 : GPU가 전용 메모리에서 읽고 쓸 수 있는 속도</li>
@@ -680,7 +728,7 @@
 
 <p><br /></p>
 
-<h1 id="memory-profiler-1">Memory Profiler</h1>
+<h1 id="memory-profiler">Memory Profiler</h1>
 <hr />
 <ul>
   <li>유니티 패키지 매니저에서 Preview 버전을 받을 수 있다.</li>
@@ -838,27 +886,27 @@
         
         
         
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-07/">OpenGL 공부 - 07 - Index Buffer</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
+      
+        
+        
+        
         <li><a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a></li>
       
         
         
         
         <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-11/">OpenGL 공부 - 11 - New Beginning 2</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-12/">OpenGL 공부 - 12 - New Beginning 3</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
       
 
       </ul>
@@ -1086,70 +1134,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1234,55 +1218,10 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1507,18 +1446,6 @@
     
     
     
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1653,6 +1580,33 @@
     
     
     
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -1830,6 +1784,126 @@
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -1882,9 +1956,6 @@
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/profiling/">profiling</a>
-      
-        
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
@@ -1892,6 +1963,9 @@
       
         
         <a class="post-tag" href="/tags/mathematics/">mathematics</a>
+      
+        
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
       </div>
@@ -2588,61 +2662,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-script-optimization/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  4
-  
-
-  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Script Optimization</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Tips
-
-
-1. GetComponent(), Find() 메소드 반복 호출하지 않기
-
-너무나 기본적인 것이라 간단히 짚고 넘어가지만,
-매 프레임, 혹은 주기적으로 Get, Find류의 메소드를 호출하는 것은 매우 좋지 않다.
-항상 처음에만 Get, Find로 필드에 담아놓고 사용해야 한다.
-
-
-
-2. 필요하지 않은 경우, new로 생성하지 않기
-
-클...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-profiler-window/">
           <div class="card-body">
             <!--
@@ -2675,18 +2694,74 @@
 
 
 
-                유니티 프로파일러
-
-
-[Window] - [Analysis] - [Profiler]를 통해 프로파일러 윈도우를 열 수 있다.
+                목차
 
 
 
-CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니티 프로젝트에서 측정되는 성능을 확인할 수 있다.
+  1. Unity Profiler
+  2. CPU Usage
+    
+      Timeline View
+      Hierarchy View
+      Show Related Objects
+      Call Stack
+      Show Calls
+      Deep Profile
+    
+  
+  3. GPU Usage
+  4. Re...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-script-optimization/">
+          <div class="card-body">
+            <!--
+  Date format snippet
 
-선택된 탭의 구체적인 내용들은 윈도우 하단에 나타난다.
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
 
-프로젝트 실행 후 그래프의 ...
+  
+  
+
+  
+    Feb  4
+  
+
+  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Script Optimization</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목차
+
+
+  1. GetComponent(), Find() 메소드 사용 줄이기
+  2. 비어있는 유니티 이벤트 메소드 방치하지 않기
+  3. 필요하지 않은 경우, new로 생성하지 않기
+  4. 필요하지 않은 경우, 리턴하지 않기
+  5. StartCoroutine() 자주 호출하지 않기
+  6. 코루틴의 yield 캐싱하기
+  7. 컬렉션 재사용하기...
               </p>
             </div>
           </div>
@@ -3061,70 +3136,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3209,55 +3220,10 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3482,18 +3448,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3628,6 +3582,33 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3805,6 +3786,126 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -3852,9 +3953,6 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/profiling/">profiling</a>
-      
-        
         <a class="post-tag" href="/tags/cpp/">cpp</a>
       
         
@@ -3862,6 +3960,9 @@ CPU, GPU(Rendering), Memory 등등 다양한 지표들을 통해 현재 유니�
       
         
         <a class="post-tag" href="/tags/mathematics/">mathematics</a>
+      
+        
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
     </div>
