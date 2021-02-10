@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="OpenGL 공부 - 04 - VAO, VBO, Attributes" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"OpenGL 공부 - 04 - VAO, VBO, Attributes","description":"목표 Vertex Attributes, Layout, VBO, VAO에 대한 이해","dateModified":"2021-02-10T03:35:04+09:00","datePublished":"2021-01-31T13:31:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-04/"},"url":"https://rito15.github.io/posts/opengl-study-04/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 Vertex Attributes, Layout, VBO, VAO에 대한 이해","datePublished":"2021-01-31T13:31:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-04/"},"url":"https://rito15.github.io/posts/opengl-study-04/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 04 - VAO, VBO, Attributes","dateModified":"2021-02-10T03:35:04+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -953,6 +953,11 @@
         
         
         
+        <li><a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
       
         
@@ -963,17 +968,12 @@
         
         
         
-        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02 - 초기 세팅</a></li>
-      
-        
-        
-        
         <li><a href="/posts/opengl-study-12/">OpenGL 공부 - 12 - New Beginning 3</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
       
 
       </ul>
@@ -2396,6 +2396,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2841,7 +2854,7 @@ layout (location = 0) in vec3 ver...
       
       
       <div class="card">
-        <a href="/posts/opengl-study-01/">
+        <a href="/posts/opengl-study-12/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2858,13 +2871,13 @@ layout (location = 0) in vec3 ver...
   
 
   
-    Jan 28
+    Feb  8
   
 
-  <i class="unloaded">2021-01-28T00:10:00+09:00</i>
+  <i class="unloaded">2021-02-08T16:12:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 01 - 시작</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 12 - New Beginning 3</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2873,21 +2886,42 @@ layout (location = 0) in vec3 ver...
 
 
 
-                동기
+                목표
+
+
+  기본 렌더링 세팅
+  기본 도형 렌더링
 
 
 
-  그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.
+
+공부 내용
 
 
+테스트를 위해 렌더링 옵션들 설정
 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+// main.cpp - in main()
 
-목표
+glEnable(GL_DEPTH_TEST);
 
-
-
-  OpenGL의 완전 기초부터 쉐이더 적용까지 모든 과정 공부
-  그래픽스에 대한 전반적인 지식 습득...
+glEnable(GL_CULL_FACE);
+glCullFace(GL_BACK);
+glFr...
               </p>
             </div>
           </div>

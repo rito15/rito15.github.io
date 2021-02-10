@@ -129,7 +129,7 @@ glBindVertexArray(vao);
 - VAO가 있으나 없으나 어차피 잘 실행이 된다.
 - 차이점을 확인하기 위해 메인 코드 상단부에 이렇게 작성해본다.
 
-```
+```cpp
 /* Initialize the library */
 if (!glfwInit())
     return -1;

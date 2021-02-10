@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Surface Shader Bible [작성 중]" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Surface Shader Bible [작성 중]","description":"Surface Shader 기본 구성 ```hlsl Shader “Custom/SurfaceShader01” { Properties { _Color (“Color”, Color) = (1,1,1,1) _MainTex (“Albedo (RGB)”, 2D) = “white” {} } SubShader { Tags { “RenderType”=”Opaque” } LOD 200","dateModified":"2021-02-08T03:37:09+09:00","datePublished":"2021-02-02T01:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-surface-shader-bible/"},"url":"https://rito15.github.io/posts/unity-surface-shader-bible/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Surface Shader 기본 구성 ```hlsl Shader “Custom/SurfaceShader01” { Properties { _Color (“Color”, Color) = (1,1,1,1) _MainTex (“Albedo (RGB)”, 2D) = “white” {} } SubShader { Tags { “RenderType”=”Opaque” } LOD 200","datePublished":"2021-02-02T01:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-surface-shader-bible/"},"url":"https://rito15.github.io/posts/unity-surface-shader-bible/","author":{"@type":"Person","name":"Rito15"},"headline":"Surface Shader Bible [작성 중]","dateModified":"2021-02-08T03:37:09+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1102,6 +1102,11 @@ https://m.blog.naver.com/plasticbag0/221299492724</p>
         
         
         
+        <li><a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
       
         
@@ -1112,17 +1117,12 @@ https://m.blog.naver.com/plasticbag0/221299492724</p>
         
         
         
-        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02 - 초기 세팅</a></li>
-      
-        
-        
-        
         <li><a href="/posts/opengl-study-12/">OpenGL 공부 - 12 - New Beginning 3</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
       
 
       </ul>
@@ -2467,6 +2467,19 @@ https://m.blog.naver.com/plasticbag0/221299492724</p>
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2839,66 +2852,6 @@ https://m.blog.naver.com/plasticbag0/221299492724</p>
       
       
       <div class="card">
-        <a href="/posts/unity-shader-compilation/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  6
-  
-
-  <i class="unloaded">2021-02-06T01:25:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 모음</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Render Depth
-
-
-
-  단순히 뎁스만 색상으로 보여주는 쉐이더
-
-
-
-
-Shader "Render Depth"
-{
-    Properties
-    {
-        _Multiplier("Multiplier", Float) = 50
-    }
-
-    SubShader
-    {
-        Tags { "RenderType" = "Opaq...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-transparent-stencil/">
           <div class="card-body">
             <!--
@@ -2990,6 +2943,61 @@ Shader "Render Depth"
   R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
   
     H (Half) : 블린퐁에서 사용, L와 V의 중...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-smart-multipass-code/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb  2
+  
+
+  <i class="unloaded">2021-02-02T00:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>멀티패스 쉐이더 코드 깔끔하게 작성하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Shader "A/B"
+{
+    Properties
+    {
+        _MainTex ("Texture", 2D) = "black" {}
+    }
+
+    CGINCLUDE
+    #include "UnityCG.cginc"
+
+    struct appdata
+    {
+        float4 vertex : POSITION;
+     ...
               </p>
             </div>
           </div>

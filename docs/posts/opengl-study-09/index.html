@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="OpenGL 공부 - 09 - uniform, VAO" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"OpenGL 공부 - 09 - uniform, VAO","description":"목표 uniform 변수, VAO에 대한 이해 및 사용","dateModified":"2021-02-10T03:35:04+09:00","datePublished":"2021-02-05T15:20:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-09/"},"url":"https://rito15.github.io/posts/opengl-study-09/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 uniform 변수, VAO에 대한 이해 및 사용","datePublished":"2021-02-05T15:20:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-09/"},"url":"https://rito15.github.io/posts/opengl-study-09/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 09 - uniform, VAO","dateModified":"2021-02-10T03:35:04+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -660,20 +660,20 @@
   <li>차이점을 확인하기 위해 메인 코드 상단부에 이렇게 작성해본다.</li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
 6
 7
-</pre></td><td class="rouge-code"><pre>/* Initialize the library */
-if (!glfwInit())
-    return -1;
+</pre></td><td class="rouge-code"><pre><span class="cm">/* Initialize the library */</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">glfwInit</span><span class="p">())</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 
-glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+<span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_CONTEXT_VERSION_MAJOR</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_CONTEXT_VERSION_MINOR</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">glfwWindowHint</span><span class="p">(</span><span class="n">GLFW_OPENGL_PROFILE</span><span class="p">,</span> <span class="n">GLFW_OPENGL_CORE_PROFILE</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <ul>
@@ -1534,6 +1534,11 @@ void main()
         
         
         
+        <li><a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
       
         
@@ -1544,17 +1549,12 @@ void main()
         
         
         
-        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02 - 초기 세팅</a></li>
-      
-        
-        
-        
         <li><a href="/posts/opengl-study-12/">OpenGL 공부 - 12 - New Beginning 3</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
       
 
       </ul>
@@ -2769,6 +2769,19 @@ void main()
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -3422,7 +3435,7 @@ layout (location = 0) in vec3 ver...
       
       
       <div class="card">
-        <a href="/posts/opengl-study-01/">
+        <a href="/posts/opengl-study-12/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -3439,13 +3452,13 @@ layout (location = 0) in vec3 ver...
   
 
   
-    Jan 28
+    Feb  8
   
 
-  <i class="unloaded">2021-01-28T00:10:00+09:00</i>
+  <i class="unloaded">2021-02-08T16:12:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 01 - 시작</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 12 - New Beginning 3</h3>
             <div class="text-muted small">
               <p>
                 
@@ -3454,21 +3467,42 @@ layout (location = 0) in vec3 ver...
 
 
 
-                동기
+                목표
+
+
+  기본 렌더링 세팅
+  기본 도형 렌더링
 
 
 
-  그동안 유니티를 공부하면서 필요에 따라 쉐이더나 렌더링 파이프라인에 대한 단편적인 지식들을 익혀왔지만, DirectX나 OpenGL같은 그래픽스 라이브러리를 한 번쯤은 제대로 공부하는 게 나을 것이라는 생각이 들었다.
+
+공부 내용
 
 
+테스트를 위해 렌더링 옵션들 설정
 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+// main.cpp - in main()
 
-목표
+glEnable(GL_DEPTH_TEST);
 
-
-
-  OpenGL의 완전 기초부터 쉐이더 적용까지 모든 과정 공부
-  그래픽스에 대한 전반적인 지식 습득...
+glEnable(GL_CULL_FACE);
+glCullFace(GL_BACK);
+glFr...
               </p>
             </div>
           </div>

@@ -47,6 +47,18 @@ float positions[6] =
 <br>
 ## 인덱스 버퍼 사용
 
+- 정점 위치 데이터 수정
+
+```cpp
+float positions[] =
+{
+    -0.5f, -0.5f, // 0
+     0.5f, -0.5f, // 1
+     0.5f,  0.5f, // 2
+    -0.5f,  0.5f, // 3
+};
+```
+
 - Index 데이터 정의
 
 ```cpp
@@ -68,7 +80,7 @@ glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 - Window Loop 내에서 그려주기
 
-```
+```cpp
 //glDrawArrays(GL_TRIANGLES, 0, 6); // 원래 코드
 glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 ```
