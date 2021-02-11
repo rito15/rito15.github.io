@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# 파일 입출력" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"간단 정리 파일에 쓰려면 대상이 string, string[], byte[] 타입 중 하나여야 한다. 파일의 전체 경로(&quot;폴더경로\\파일명.확장자&quot;)가 필요하다.","datePublished":"2021-01-28T21:10:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/csharp-fileio/"},"url":"https://rito15.github.io/posts/csharp-fileio/","author":{"@type":"Person","name":"Rito15"},"headline":"C# 파일 입출력","dateModified":"2021-01-30T02:47:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C# 파일 입출력","description":"간단 정리 파일에 쓰려면 대상이 string, string[], byte[] 타입 중 하나여야 한다. 파일의 전체 경로(&quot;폴더경로\\파일명.확장자&quot;)가 필요하다.","dateModified":"2021-01-30T02:47:44+09:00","datePublished":"2021-01-28T21:10:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/csharp-fileio/"},"url":"https://rito15.github.io/posts/csharp-fileio/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -964,27 +964,27 @@
         
         
         
+        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-profiler-window/">Unity Profiler Window</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-profiling/">Unity Profiling</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-script-optimization/">Unity Script Optimization</a></li>
+      
+        
+        
+        
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-07/">OpenGL 공부 - 07 - Index Buffer</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
       
 
       </ul>
@@ -2511,6 +2511,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2740,54 +2753,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-transparent-stencil/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  6
-  
-
-  <i class="unloaded">2021-02-06T01:29:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                불투명과 투명
-
-
-불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.
-
-유니티에서는 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 정수 값으로 지정하는데, 
-지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 2000, Transparent는 3000의 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/save-transform-during-play/">
           <div class="card-body">
             <!--
@@ -2895,6 +2860,70 @@ Catalog
 
 /* ******************************************************************************** *
  *                                ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-only-debug/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul  6, 2020
+  
+
+  <i class="unloaded">2020-07-06T15:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Editor-only Debug</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+
+  유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있습니다.
+  이를 방지할 수 있게, 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스입니다.
+
+
+How To Use
+
+
+
+  스크립트 상단에 다음과 같이 작성합니다.
+
+
+using Debug = Rito.Debug;
+
+
+Source Code
+
+
+
+  h...
               </p>
             </div>
           </div>

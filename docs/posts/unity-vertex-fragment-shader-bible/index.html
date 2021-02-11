@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Vertex/Fragment Shader Bible [예정]" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Vertex/Fragment Shader 구성","datePublished":"2021-02-02T01:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/"},"url":"https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/","author":{"@type":"Person","name":"Rito15"},"headline":"Vertex/Fragment Shader Bible [예정]","dateModified":"2021-02-08T03:37:09+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Vertex/Fragment Shader Bible [예정]","description":"Vertex/Fragment Shader 구성","dateModified":"2021-02-08T03:37:09+09:00","datePublished":"2021-02-02T01:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/"},"url":"https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -602,27 +602,27 @@
         
         
         
+        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-profiler-window/">Unity Profiler Window</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-profiling/">Unity Profiling</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-script-optimization/">Unity Script Optimization</a></li>
+      
+        
+        
+        
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-07/">OpenGL 공부 - 07 - Index Buffer</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
       
 
       </ul>
@@ -1988,6 +1988,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2373,54 +2386,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-transparent-stencil/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  6
-  
-
-  <i class="unloaded">2021-02-06T01:29:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                불투명과 투명
-
-
-불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.
-
-유니티에서는 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 정수 값으로 지정하는데, 
-지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 2000, Transparent는 3000의 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/lighting-models/">
           <div class="card-body">
             <!--
@@ -2519,6 +2484,59 @@
     {
         float4 vertex : POSITION;
      ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-surface-shader-bible/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb  2
+  
+
+  <i class="unloaded">2021-02-02T01:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Surface Shader Bible [작성 중]</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Surface Shader 기본 구성
+
+
+Shader "Custom/SurfaceShader01"
+{
+    Properties
+    {
+        _Color ("Color", Color) = (1,1,1,1)
+        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+    }
+    SubShader
+    ...
               </p>
             </div>
           </div>

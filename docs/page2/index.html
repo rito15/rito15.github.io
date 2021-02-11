@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page2/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page2/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,87 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-transparent-stencil/">유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        불투명과 투명
+
+
+불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.
+
+유니티에서는 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 정수 값으로 지정하는데, 
+지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 2000, Transparent는 3000의 ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Feb  6, 2021,  1:29 AM +0900"
+  >
+
+  
+  
+
+  
+    Feb  6
+  
+
+  <i class="unloaded">2021-02-06T01:29:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4046 words">22 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1217,97 +1298,6 @@ private GameObject field1;
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-06/">OpenGL 공부 - 06 - Shaders With a File</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  쉐이더를 파일로 분리하여, 파일로부터 읽어와 사용하기
-
-
-
-
-공부 내용
-
-
-쉐이더 파일 작성하기
-
-  솔루션 디렉터리 - [Resources/Shaders] 폴더 생성
-  Shaders 폴더 내에 [Basic.shader] 파일 생성
-  속성 - 디버깅 - 작업 디렉터리에 $(ProjectDir)가 포함되어 있으므로 상대경로에서 불러오기...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Feb  2, 2021,  2:21 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb  2
-  
-
-  <i class="unloaded">2021-02-02T14:21:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1708 words">9 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1476,27 +1466,27 @@ private GameObject field1;
         
         
         
+        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-profiler-window/">Unity Profiler Window</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-profiling/">Unity Profiling</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-script-optimization/">Unity Script Optimization</a></li>
+      
+        
+        
+        
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-07/">OpenGL 공부 - 07 - Index Buffer</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
       
 
       </ul>

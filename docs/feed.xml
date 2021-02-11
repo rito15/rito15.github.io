@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-11T05:20:25+09:00</updated>
+  <updated>2021-02-11T19:09:59+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,75 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>OpenGL 공부 - 15 - View Projection Matrix</title>
+    <link href="https://rito15.github.io/posts/opengl-study-15/" rel="alternate" type="text/html" title="OpenGL 공부 - 15 - View Projection Matrix" />
+    <published>2021-02-11T17:05:00+09:00</published>
+  
+    <updated>2021-02-11T17:05:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-15/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-15/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  View, Projection 행렬 만들고 적용하기
+
+
+
+
+공간 변환
+
+
+
+
+공간 변환 과정을 간단히 설명하면 다음과 같다.
+
+1. Model Transformation
+
+
+  Model -&amp;gt; World
+
+
+모델링의 피벗이 원점인 Local Space(Model Space 또는 Object Space)에 Model Matrix를 곱하면 월드의 특정 좌표가 원점인 World Space의 좌표로 변환된다.
+
+
+
+2. View Transformation
+
+
+  World -&amp;gt; View
+
+
+카메라의 위치, 방향을 정의한 뒤 World Space에 View Matrix를 곱해주면 View Space로 변환된다.
+
+View Space에서는 카메라의 좌표가 원점이며, 카메라를 통해 공간을 바...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -272,74 +341,6 @@ GLuint texture0; // Texture ID
 
 
   MouseEventCaller 컴포넌트가 매 프레임 마우스 위치에...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 12 - New Beginning 3</title>
-    <link href="https://rito15.github.io/posts/opengl-study-12/" rel="alternate" type="text/html" title="OpenGL 공부 - 12 - New Beginning 3" />
-    <published>2021-02-08T16:12:00+09:00</published>
-  
-    <updated>2021-02-10T03:35:04+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-12/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-12/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  기본 렌더링 세팅
-  기본 도형 렌더링
-
-
-
-
-공부 내용
-
-
-테스트를 위해 렌더링 옵션들 설정
-
-// main.cpp - in main()
-
-glEnable(GL_DEPTH_TEST);
-
-glEnable(GL_CULL_FACE);
-glCullFace(GL_BACK);
-glFrontFace(GL_CCW); // 시계 반대 방향으로 구성된 폴리곤을 전면으로 설정
-
-// 픽셀 블렌딩 연산 지정
-glEnable(GL_BLEND);
-glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-// GL_LINE : 폴리곤을 선으로 그리기
-// GL_FILL : 폴리곤을 색상으로 채우기
-glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-
-
-...
     </summary>
   
 

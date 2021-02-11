@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C++ Smart Debugging" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note C++에는 미리 정의된 동적 매크로가 있다.","datePublished":"2021-02-04T16:56:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cpp-smart-debugging/"},"url":"https://rito15.github.io/posts/cpp-smart-debugging/","author":{"@type":"Person","name":"Rito15"},"headline":"C++ Smart Debugging","dateModified":"2021-02-04T16:56:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C++ Smart Debugging","description":"Note C++에는 미리 정의된 동적 매크로가 있다.","dateModified":"2021-02-04T16:56:00+09:00","datePublished":"2021-02-04T16:56:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cpp-smart-debugging/"},"url":"https://rito15.github.io/posts/cpp-smart-debugging/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -675,27 +675,27 @@ if(x != value) {        \
         
         
         
+        <li><a href="/posts/fog-of-war/">Fog of War</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-profiler-window/">Unity Profiler Window</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-profiling/">Unity Profiling</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-script-optimization/">Unity Script Optimization</a></li>
+      
+        
+        
+        
         <li><a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-07/">OpenGL 공부 - 07 - Index Buffer</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/show-property-on-inspector/">인스펙터에 오토 프로퍼티 표시하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a></li>
       
 
       </ul>
@@ -2001,6 +2001,19 @@ if(x != value) {        \
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2526,6 +2539,69 @@ if(x != value) {        \
       
       
       <div class="card">
+        <a href="/posts/opengl-study-15/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 11
+  
+
+  <i class="unloaded">2021-02-11T17:05:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 15 - View Projection Matrix</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+  View, Projection 행렬 만들고 적용하기
+
+
+
+
+공간 변환
+
+
+
+
+공간 변환 과정을 간단히 설명하면 다음과 같다.
+
+1. Model Transformation
+
+
+  Model -&gt; World
+
+
+모델링의 피벗이 원점인 Local Space(Model Space 또는 Object Space)에 Model Matrix를 곱하...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/opengl-study-14/">
           <div class="card-body">
             <!--
@@ -2581,64 +2657,6 @@ glm::mat modelMatrix(1.0f);
 openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진다.
 
 4x4 행렬과 곱해지려면 벡터 또한 vec4...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-editor-exit-dialog/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 10
-  
-
-  <i class="unloaded">2021-02-10T13:50:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 종료 확인 다이얼로그 만들기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Memo
-
-
-기본적으로 유니티 에디터를 종료할 때는 확인창이 뜨지 않고 바로 종료된다.
-
-만약 실수로 닫기 버튼을 눌러버린다면 그대로 종료되어 버린다.
-
-그런데 유니티 에디터는 에디터의 종료도 이벤트로 구분하여, 메소드를 추가할 수 있도록 구현해놓았기 때문에
-
-이를 이용해 에디터의 종료를 시도할 경우 확인창을 띄우도록 할 수 있다.
-
-
-
-1
-2
-3
-4...
               </p>
             </div>
           </div>
