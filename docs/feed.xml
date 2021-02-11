@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-12T05:30:57+09:00</updated>
+  <updated>2021-02-12T05:52:45+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,75 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>ILSpy로 유니티 내부 구현 뜯어보기</title>
+    <link href="https://rito15.github.io/posts/unity-ilspy/" rel="alternate" type="text/html" title="ILSpy로 유니티 내부 구현 뜯어보기" />
+    <published>2021-02-12T05:32:00+09:00</published>
+  
+    <updated>2021-02-12T05:32:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-ilspy/</id>
+    <content src="https://rito15.github.io/posts/unity-ilspy/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      다운로드
+
+
+  https://github.com/icsharpcode/ILSpy/releases
+  vsix를 받을 경우, 비주얼 스튜디오의 확장으로 추가하여 [도구] - [ILSpy]를 통해 바로 실행할 수 있다.
+
+
+
+
+사용법
+
+
+  
+    ILSpy를 실행한다.
+  
+  
+    File - Open으로 대상 어셈블리(dll, exe 등)를 불러온다.
+  
+  
+    검색을 통해 원하는 클래스, 메소드 등을 빠르게 찾을 수 있다.
+  
+
+
+
+
+유니티 구현 뜯어보기
+
+
+C:\Program Files\유니티 버전\Editor\Data\Managed\UnityEngine
+
+
+
+  위 경로에 유니티 주요 dll들이 들어있다.
+  평소 자주 사용하는 기능들은 주로 UnityEngine.CoreModu...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -95,7 +164,7 @@
     <link href="https://rito15.github.io/posts/opengl-study-15/" rel="alternate" type="text/html" title="OpenGL 공부 - 15 - View Projection Matrix" />
     <published>2021-02-11T17:05:00+09:00</published>
   
-    <updated>2021-02-11T17:05:00+09:00</updated>
+    <updated>2021-02-12T05:31:38+09:00</updated>
   
     <id>https://rito15.github.io/posts/opengl-study-15/</id>
     <content src="https://rito15.github.io/posts/opengl-study-15/" />
@@ -279,79 +348,6 @@ public class EditorExitDialog
     {
         EditorApplication.wantsToQuit += 
             () =&amp;gt; EditorUtility.DisplayDialog("Unity Editor", "Are you sure...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 13 - Texture</title>
-    <link href="https://rito15.github.io/posts/opengl-study-13/" rel="alternate" type="text/html" title="OpenGL 공부 - 13 - Texture" />
-    <published>2021-02-10T01:30:00+09:00</published>
-  
-    <updated>2021-02-10T01:30:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-13/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-13/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  폴리곤에 텍스쳐 씌워보기(1장, 여러 장)
-
-
-
-
-1. 텍스쳐 한 장 사용
-
-
-이미지 준비
-
-  프로젝트 디렉토리 내에 Images 폴더를 만들고 PNG 이미지 파일을 준비한다.
-
-
-
-
-소스코드 작성
-
-
-  위치 : VertexAttribPointer ~ Main Loop 사이
-
-
-
-[1] 이미지 로드
-
-int imageWidth = 0;
-int imageHeight = 0;
-unsigned char* image = SOIL_load_image("Images/MoonCat.png",
-    &amp;amp;imageWidth, &amp;amp;imageHeight, NULL, SOIL_LOAD_RGBA);
-
-
-
-[2] 텍스쳐 객체 생성 및 바인드
-
-GLuint texture0; // Texture ID
-...
     </summary>
   
 
