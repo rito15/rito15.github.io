@@ -156,7 +156,7 @@ float farPlane = 100.0f;
 glm::mat4 projectionMatrix =
     glm::perspective (
         glm::radians(fov),
-        static_cast<float>(framebufferWidth / framebufferHeight),
+        static_cast<float>(framebufferWidth) / framebufferHeight,
         nearPlane,
         farPlane
     );
@@ -224,7 +224,7 @@ glfwGetFramebufferSize(window, &framebufferWidth, &framebufferHeight);
 projectionMatrix = glm::perspective
 (
     glm::radians(fov),
-    static_cast<float>(framebufferWidth / (float)framebufferHeight),
+    static_cast<float>(framebufferWidth) / framebufferHeight,
     nearPlane,
     farPlane
 );
