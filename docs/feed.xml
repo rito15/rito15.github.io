@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-12T16:24:59+09:00</updated>
+  <updated>2021-02-13T06:09:09+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,169 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]</title>
+    <link href="https://rito15.github.io/posts/fps-tps-character/" rel="alternate" type="text/html" title="1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]" />
+    <published>2021-02-12T18:06:00+09:00</published>
+  
+    <updated>2021-02-12T18:06:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/fps-tps-character/</id>
+    <content src="https://rito15.github.io/posts/fps-tps-character/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목차
+
+
+  
+    
+      하이라키 구성
+    
+  
+  
+    
+      스크립트 기초 작성
+    
+  
+  
+    
+      1인칭 이동, 회전
+    
+  
+  
+    
+      3인칭 이동, 회전
+    
+  
+  
+    
+      카메라 전환
+    
+  
+  
+    
+      점프
+    
+  
+  
+    
+      애니메이션 적용하기
+    
+  
+  
+    
+      부드러운 애니메이션 적용하기 : 블렌딩, 러프
+    
+  
+  
+    
+      버그 수정
+    
+  
+  
+    
+      카메라 전환 시 시점 방향 공유하기
+    
+  
+  
+    
+      3인칭 카메라 줌 구현하기
+    
+  
+  
+    
+      경사로에서 정...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>쿨타임 아이콘 UI 만들기</title>
+    <link href="https://rito15.github.io/posts/cooldown-icon-ui/" rel="alternate" type="text/html" title="쿨타임 아이콘 UI 만들기" />
+    <published>2021-02-12T17:13:00+09:00</published>
+  
+    <updated>2021-02-12T17:13:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cooldown-icon-ui/</id>
+    <content src="https://rito15.github.io/posts/cooldown-icon-ui/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+
+
+
+
+구현
+
+
+1. 하이라키 구성
+
+
+
+[1] Outline
+
+  Image 컴포넌트 : 원하는 모양의 스프라이트 사용, 아웃라인으로 지정할 색상 적용
+
+
+[2] Mask
+
+  RectTransform : Anchor Preset [stretch &amp;amp; stretch] 설정
+  Left, Top, Right, Bottom 4픽셀 설정
+  Image 컴포넌트 : Outline과 같은 스프라이트 사용
+  Mask 컴포넌트 : [Show Mask Graphic] 체크 해제
+
+
+[3] Icon
+
+  RectTransform : Anchor Preset [stretch &amp;amp; stretch] 설정
+  Left, Top, Right, Bottom 0
+  Image 컴포넌트 : 원하는 스프라이트 ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -212,146 +375,6 @@ C:\Program Files\유니티 버전\Editor\Data\Managed\UnityEngine
   
     한글을 지원하는 폰트 파일(.ttf)을 유니티 프로젝트로 가져온다.
   ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 15 - View Projection Matrix</title>
-    <link href="https://rito15.github.io/posts/opengl-study-15/" rel="alternate" type="text/html" title="OpenGL 공부 - 15 - View Projection Matrix" />
-    <published>2021-02-11T17:05:00+09:00</published>
-  
-    <updated>2021-02-12T05:31:38+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-15/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-15/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  View, Projection 행렬 만들고 적용하기
-
-
-
-
-공간 변환
-
-
-
-
-공간 변환 과정을 간단히 설명하면 다음과 같다.
-
-1. Model Transformation
-
-
-  Model -&amp;gt; World
-
-
-모델링의 피벗이 원점인 Local Space(Model Space 또는 Object Space)에 Model Matrix를 곱하면 월드의 특정 좌표가 원점인 World Space의 좌표로 변환된다.
-
-
-
-2. View Transformation
-
-
-  World -&amp;gt; View
-
-
-카메라의 위치, 방향을 정의한 뒤 World Space에 View Matrix를 곱해주면 View Space로 변환된다.
-
-View Space에서는 카메라의 좌표가 원점이며, 카메라를 통해 공간을 바...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 14</title>
-    <link href="https://rito15.github.io/posts/opengl-study-14/" rel="alternate" type="text/html" title="OpenGL 공부 - 14" />
-    <published>2021-02-10T15:20:00+09:00</published>
-  
-    <updated>2021-02-10T15:20:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-14/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-14/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  Model Matrix에 대한 이해
-  이동, 회전, 크기 변경
-
-
-
-
-공부 내용
-
-
-공통
-
-glm의 모델 매트릭스를 선언하는 것으로 시작한다.
-
-glm::mat modelMatrix(1.0f);
-
-
-openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진다.
-
-4x4 행렬과 곱해지려면 벡터 또한 vec4여야 하므로, vec3를 전달하면 내부적으로 vec4(vec3, 1.)을 만들어 연산한다.
-
-변환행렬은 서로 곱하여 하나의 변환행렬로 사용할 수 있다.
-
-그런데 만약 이동행렬 뒤에 크기행렬을 곱하면 이동값 또한 크기가 변하기 때문에
-
-이동, 회전, 크기 행렬을 곱하여 사용할 때는 크기, 회전, 이동 순서로 행렬을 곱하여 사용한다.
-
-
-
-크기(Scale)
-
-
-
-...
     </summary>
   
 
