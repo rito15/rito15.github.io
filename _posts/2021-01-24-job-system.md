@@ -1,5 +1,5 @@
 ---
-title: Job System
+title: 잡 시스템(Job System)
 author: Rito15
 date: 2021-01-24 13:15:00 +09:00
 categories: [Unity, Unity Study]

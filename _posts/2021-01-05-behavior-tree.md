@@ -1,5 +1,5 @@
 ---
-title: Behavior Tree
+title: 비헤이비어 트리(Behavior Tree)
 author: Rito15
 date: 2021-01-05 00:26:00 +09:00
 categories: [Unity, Unity Study]

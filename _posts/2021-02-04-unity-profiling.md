@@ -1,8 +1,8 @@
 ---
-title: Unity Profiling
+title: 유니티 프로파일링을 통한 최적화
 author: Rito15
 date: 2021-02-04 19:30:00 +09:00
-categories: [Unity, Unity Study]
+categories: [Unity, Unity Optimization]
 tags: [unity, csharp, profiling, optimization]
 math: true
 mermaid: true

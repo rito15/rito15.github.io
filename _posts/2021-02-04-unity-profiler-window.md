@@ -1,8 +1,8 @@
 ---
-title: Unity Profiler Window
+title: 유니티 에디터 프로파일러
 author: Rito15
 date: 2021-02-04 17:50:00 +09:00
-categories: [Unity, Unity Study]
+categories: [Unity, Unity Optimization]
 tags: [unity, csharp, profiling]
 math: true
 mermaid: true

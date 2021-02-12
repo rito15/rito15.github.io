@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-12T05:52:45+09:00</updated>
+  <updated>2021-02-12T16:24:59+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,65 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>OpenGL 공부 - 16 - Transform, Input</title>
+    <link href="https://rito15.github.io/posts/opengl-study-16/" rel="alternate" type="text/html" title="OpenGL 공부 - 16 - Transform, Input" />
+    <published>2021-02-12T15:11:00+09:00</published>
+  
+    <updated>2021-02-12T15:11:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-16/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-16/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  오브젝트 기본 트랜스폼 정의하기
+  키보드 입력 처리하기
+
+
+
+
+트랜스폼 정의
+
+
+트랜스폼의 3요소(위치, 회전, 크기)를 정의한다.
+
+glm::vec3 position(0.0f);
+glm::vec3 rotation(0.0f);
+glm::vec3 scale(1.0f);
+
+
+그리고 모델 행렬에 트랜스폼 연산을 모두 넣어준다.
+
+modelMatrix = glm::translate(modelMatrix, position);
+modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.x), glm::vec3(1.f, 0.f, 0.f));
+modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.y...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -293,61 +352,6 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
 
 
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 에디터 종료 확인 다이얼로그 만들기</title>
-    <link href="https://rito15.github.io/posts/unity-editor-exit-dialog/" rel="alternate" type="text/html" title="유니티 에디터 종료 확인 다이얼로그 만들기" />
-    <published>2021-02-10T13:50:00+09:00</published>
-  
-    <updated>2021-02-10T13:50:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-exit-dialog/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-exit-dialog/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-기본적으로 유니티 에디터를 종료할 때는 확인창이 뜨지 않고 바로 종료된다.
-
-만약 실수로 닫기 버튼을 눌러버린다면 그대로 종료되어 버린다.
-
-그런데 유니티 에디터는 에디터의 종료도 이벤트로 구분하여, 메소드를 추가할 수 있도록 구현해놓았기 때문에
-
-이를 이용해 에디터의 종료를 시도할 경우 확인창을 띄우도록 할 수 있다.
-
-
-
-[InitializeOnLoad]
-public class EditorExitDialog
-{
-    static EditorExitDialog()
-    {
-        EditorApplication.wantsToQuit += 
-            () =&amp;gt; EditorUtility.DisplayDialog("Unity Editor", "Are you sure...
     </summary>
   
 

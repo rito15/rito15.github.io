@@ -1,5 +1,5 @@
 ---
-title: Popup UI Management System
+title: 팝업 UI 관리 시스템 구현하기
 author: Rito15
 date: 2021-01-31 20:23:00 +09:00
 categories: [Unity, Unity Study]
@@ -7,12 +7,6 @@ tags: [unity, csharp, ui, stack]
 math: true
 mermaid: true
 ---
-
-# 목표
----
-- 팝업 UI 관리 시스템 구현
-
-<br>
 
 # 게임의 UI
 ---
@@ -69,7 +63,7 @@ mermaid: true
 
 - 이렇게 되면 스택으로는 위의 동작들을 구현할 수 없다.
 
-- 대체 방안으로 가변 배열(C#에서는 List)을 생각해볼 수 있으나, 중간에서 요소를 제거할 경우 인덱스를 전부 재조정해야 하는 비효율성이 존재한다.
+- 대체 방안으로 가변 배열(C#에서는 List)을 생각해볼 수 있으나, 중간에서 요소를 변경할 경우의 효율이 좋지 않다.
 
 - 따라서 링크드리스트(Linked List)가 가장 적합하다고 생각하여, 링크드리스트를 통한 팝업형 UI 관리 시스템을 구현해보고자 한다.
 
