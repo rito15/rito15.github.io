@@ -8,6 +8,11 @@ math: true
 mermaid: true
 ---
 
+# 목차
+---
+
+<br>
+
 # Surface Shader 기본 구성
 ---
 ```hlsl
@@ -291,6 +296,24 @@ https://docs.unity3d.com/kr/530/Manual/SL-Stencil.html
 # Fallback
 ---
 - 
+
+<br>
+
+# 애트리뷰트
+---
+
+https://docs.unity3d.com/ScriptReference/MaterialProperty.PropFlags.html
+https://docs.unity3d.com/ScriptReference/MaterialPropertyDrawer.html
+
+<br>
+
+# Shader Feature
+---
+
+- Shader Feature, Multi Compile
+
+https://illu.tistory.com/1370#footnote_link_1370_1
+https://docs.unity3d.com/kr/2019.4/Manual/SL-MultipleProgramVariants.html
 
 <br>
 

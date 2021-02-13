@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-13T18:59:33+09:00</updated>
+  <updated>2021-02-14T06:17:04+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,152 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Custom Plane Mesh Generator</title>
+    <link href="https://rito15.github.io/posts/custom-plane-mesh-generator/" rel="alternate" type="text/html" title="Custom Plane Mesh Generator" />
+    <published>2021-02-14T03:06:00+09:00</published>
+  
+    <updated>2021-02-14T03:06:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/custom-plane-mesh-generator/</id>
+    <content src="https://rito15.github.io/posts/custom-plane-mesh-generator/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Toys" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+  Plane을 원하는 너비, 해상도로 만들 수 있게 해주는 컴포넌트
+
+
+Preview
+
+
+
+
+
+
+How to Use
+
+
+  빈 게임오브젝트를 생성합니다.
+  PlaneMeshGenerator 컴포넌트를 추가합니다.
+  옵션을 설정하고 마테리얼을 인스펙터의 Material에 넣습니다.
+  Generate 버튼을 누릅니다.
+
+
+Download
+
+
+  PlaneMeshGenerator.zip
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>물 쉐이더 만들기</title>
+    <link href="https://rito15.github.io/posts/water-shader/" rel="alternate" type="text/html" title="물 쉐이더 만들기" />
+    <published>2021-02-13T19:24:00+09:00</published>
+  
+    <updated>2021-02-13T19:24:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/water-shader/</id>
+    <content src="https://rito15.github.io/posts/water-shader/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  서피스 쉐이더로 물 쉐이더 만들기
+
+
+
+
+목차
+
+
+  1. 물 쉐이더 기초
+  2. 프레넬 공식 적용
+  3. 물 흐르게 하기
+  4. 스페큘러 적용
+  5. 파도 만들기
+  6. 투과율 제어하기
+  7. 최종 결과
+
+
+
+
+준비물
+
+
+  큐브맵 텍스쳐 기반 스카이박스
+  물 노멀맵 텍스쳐
+  물에 빠질 로봇
+
+
+
+
+물 쉐이더 기초
+
+
+메시는 유니티의 기본적인 Plane을 이용한다.
+
+노멀은 노멀맵을 넣어 적용하고, 간단히 float로 타일링이 가능하도록 _Tiling 프로퍼티를 추가한다.
+
+그리고 _Strength 프로퍼티를 통해 노멀의 강도를 조절할 수 있게 한다.
+
+
+
+Shader "Rito/Water"
+{
+    Properties
+    {
+        _BumpMap("Norma...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -236,134 +382,6 @@ Vertex vertices[] =
   RectTransform : Anchor Preset [stretch &amp;amp; stretch] 설정
   Left, Top, Right, Bottom 0
   Image 컴포넌트 : 원하는 스프라이트 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 16 - Transform, Input</title>
-    <link href="https://rito15.github.io/posts/opengl-study-16/" rel="alternate" type="text/html" title="OpenGL 공부 - 16 - Transform, Input" />
-    <published>2021-02-12T15:11:00+09:00</published>
-  
-    <updated>2021-02-12T15:11:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-16/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-16/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  오브젝트 기본 트랜스폼 정의하기
-  키보드 입력 처리하기
-
-
-
-
-트랜스폼 정의
-
-
-트랜스폼의 3요소(위치, 회전, 크기)를 정의한다.
-
-glm::vec3 position(0.0f);
-glm::vec3 rotation(0.0f);
-glm::vec3 scale(1.0f);
-
-
-그리고 모델 행렬에 트랜스폼 연산을 모두 넣어준다.
-
-modelMatrix = glm::translate(modelMatrix, position);
-modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.x), glm::vec3(1.f, 0.f, 0.f));
-modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.y...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>ILSpy로 유니티 내부 구현 뜯어보기</title>
-    <link href="https://rito15.github.io/posts/unity-ilspy/" rel="alternate" type="text/html" title="ILSpy로 유니티 내부 구현 뜯어보기" />
-    <published>2021-02-12T05:32:00+09:00</published>
-  
-    <updated>2021-02-12T05:32:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-ilspy/</id>
-    <content src="https://rito15.github.io/posts/unity-ilspy/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      다운로드
-
-
-  https://github.com/icsharpcode/ILSpy/releases
-  vsix를 받을 경우, 비주얼 스튜디오의 확장으로 추가하여 [도구] - [ILSpy]를 통해 바로 실행할 수 있다.
-
-
-
-
-사용법
-
-
-  
-    ILSpy를 실행한다.
-  
-  
-    File - Open으로 대상 어셈블리(dll, exe 등)를 불러온다.
-  
-  
-    검색을 통해 원하는 클래스, 메소드 등을 빠르게 찾을 수 있다.
-  
-
-
-
-
-유니티 구현 뜯어보기
-
-
-C:\Program Files\유니티 버전\Editor\Data\Managed\UnityEngine
-
-
-
-  위 경로에 유니티 주요 dll들이 들어있다.
-  평소 자주 사용하는 기능들은 주로 UnityEngine.CoreModu...
     </summary>
   
 
