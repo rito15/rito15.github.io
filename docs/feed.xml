@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-13T06:09:09+09:00</updated>
+  <updated>2021-02-13T18:59:33+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,66 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>OpenGL 공부 - 17 - Ambient, Diffuse Lighting</title>
+    <link href="https://rito15.github.io/posts/opengl-study-17/" rel="alternate" type="text/html" title="OpenGL 공부 - 17 - Ambient, Diffuse Lighting" />
+    <published>2021-02-13T15:32:00+09:00</published>
+  
+    <updated>2021-02-13T15:32:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-17/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-17/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  Ambient, Diffuse 라이팅 구현
+
+
+
+
+공부 내용
+
+
+버텍스에 노멀 정보 추가
+
+struct Vertex
+{
+    glm::vec3 position;
+    glm::vec3 color;
+    glm::vec2 texcoord;
+    glm::vec3 normal;
+};
+
+Vertex vertices[] =
+{
+    // Position                    // Color                     // TexCoord            // Normal                                                
+    glm::vec3(-0.5f,  0.5f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -304,77 +364,6 @@ C:\Program Files\유니티 버전\Editor\Data\Managed\UnityEngine
 
   위 경로에 유니티 주요 dll들이 들어있다.
   평소 자주 사용하는 기능들은 주로 UnityEngine.CoreModu...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>텍스트 메쉬 프로(TMPro) 사용하기</title>
-    <link href="https://rito15.github.io/posts/textmeshpro-usage/" rel="alternate" type="text/html" title="텍스트 메쉬 프로(TMPro) 사용하기" />
-    <published>2021-02-12T02:09:00+09:00</published>
-  
-    <updated>2021-02-12T02:09:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/textmeshpro-usage/</id>
-    <content src="https://rito15.github.io/posts/textmeshpro-usage/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      특징
-
-
-  
-    SDF(Signed Distance Field)를 이용하여 UGUI 텍스트보다 외곽선을 더 깔끔하게 표현한다.
-  
-  
-    마테리얼을 이용하여 다양한 효과를 줄 수 있다.
-  
-  
-    UGUI 텍스트에 비해 성능이 좋다.
-  
-  
-    미리 고해상도의 Font Texture Atlas를 생성하여 사용하기 때문에 실시간으로 크기가 변경되어도 픽셀을 부드럽게 나타낼 수 있다.
-  
-
-
-
-
-폰트 애셋 생성하기
-
-
-1. 필요 리소스 임포트
-
-
-  [Window] - [TextMeshPro] - [Import Essential Resources] - [Import]
-
-
-
-
-2. 폰트 준비
-
-
-  
-    한글을 지원하는 폰트 파일(.ttf)을 유니티 프로젝트로 가져온다.
-  ...
     </summary>
   
 

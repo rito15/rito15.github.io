@@ -2788,6 +2788,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
 
 
@@ -2805,58 +2818,6 @@
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
     <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-custom-mouse-events/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  8
-  
-
-  <i class="unloaded">2021-02-08T21:54:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Mouse Events</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                구현 동기
-
-유니티 모노비헤이비어는 OnMouse로 시작하는 이벤트 메소드들을 작성하여 사용할 수 있습니다.
-
-이 이벤트 메소드들은 레이캐스트 기반으로 동작하며, 해당 마우스 동작이 발생하면 메소드가 호출됩니다.
-
-하지만 여러가지 단점들이 있습니다.
-
-
-  마우스 좌클릭에 대해서만 동작합니다.
-  이벤트 메소드 작성 시, 비워놓거나 해당 이벤트가 발생...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
     
       
       
@@ -3007,6 +2968,72 @@ Source Code
 
 
   ht...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/singleton-monobehavior/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul  8, 2020
+  
+
+  <i class="unloaded">2020-07-08T15:30:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Singleton MonoBehavior</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+  단순한 상속만으로 모노비헤이비어 클래스를 싱글톤으로 만들어주는 클래스입니다.
+
+
+How To Use
+
+
+  클래스명이 Apple일 때 예시로, 다음과 같이 상속받아 사용합니다.
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+public class Apple : Rito.SingletonMonoBehavior&lt;Apple&gt;
+{
+   ...
               </p>
             </div>
           </div>

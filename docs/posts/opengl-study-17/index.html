@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="OpenGL 공부 - 16 - Transform, Input" />
+<meta property="og:title" content="OpenGL 공부 - 17 - Ambient, Diffuse Lighting" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목표 오브젝트 기본 트랜스폼 정의하기 키보드 입력 처리하기" />
-<meta property="og:description" content="목표 오브젝트 기본 트랜스폼 정의하기 키보드 입력 처리하기" />
-<link rel="canonical" href="https://rito15.github.io/posts/opengl-study-16/" />
-<meta property="og:url" content="https://rito15.github.io/posts/opengl-study-16/" />
+<meta name="description" content="목표 Ambient, Diffuse 라이팅 구현" />
+<meta property="og:description" content="목표 Ambient, Diffuse 라이팅 구현" />
+<link rel="canonical" href="https://rito15.github.io/posts/opengl-study-17/" />
+<meta property="og:url" content="https://rito15.github.io/posts/opengl-study-17/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-02-12T15:11:00+09:00" />
+<meta property="article:published_time" content="2021-02-13T15:32:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="OpenGL 공부 - 16 - Transform, Input" />
+<meta property="twitter:title" content="OpenGL 공부 - 17 - Ambient, Diffuse Lighting" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 오브젝트 기본 트랜스폼 정의하기 키보드 입력 처리하기","datePublished":"2021-02-12T15:11:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-16/"},"url":"https://rito15.github.io/posts/opengl-study-16/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 16 - Transform, Input","dateModified":"2021-02-12T15:11:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 Ambient, Diffuse 라이팅 구현","datePublished":"2021-02-13T15:32:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-17/"},"url":"https://rito15.github.io/posts/opengl-study-17/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 17 - Ambient, Diffuse Lighting","dateModified":"2021-02-13T15:32:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>OpenGL 공부 - 16 - Transform, Input | Rito15
+  <title>OpenGL 공부 - 17 - Ambient, Diffuse Lighting | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>OpenGL 공부 - 16 - Transform, Input</span>
+        <span>OpenGL 공부 - 17 - Ambient, Diffuse Lighting</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>OpenGL 공부 - 16 - Transform, Input</h1>
+      <h1 data-toc-skip>OpenGL 공부 - 17 - Ambient, Diffuse Lighting</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Feb 12, 2021,  3:11 PM +0900"
+    title="Sat, Feb 13, 2021,  3:32 PM +0900"
   >
 
   
   
 
   
-    Feb 12
+    Feb 13
   
 
-  <i class="unloaded">2021-02-12T15:11:00+09:00</i>
+  <i class="unloaded">2021-02-13T15:32:00+09:00</i>
 
 </span>
           by
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2839 words">15 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3939 words">21 min</span>
 
 
           <!-- page views -->
@@ -436,40 +436,15 @@
         <h1 id="목표">목표</h1>
 <hr />
 <ul>
-  <li>오브젝트 기본 트랜스폼 정의하기</li>
-  <li>키보드 입력 처리하기</li>
+  <li>Ambient, Diffuse 라이팅 구현</li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="트랜스폼-정의">트랜스폼 정의</h1>
+<h1 id="공부-내용">공부 내용</h1>
 <hr />
 
-<p>트랜스폼의 3요소(위치, 회전, 크기)를 정의한다.</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="nf">position</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
-<span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="nf">rotation</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
-<span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="nf">scale</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p>그리고 모델 행렬에 트랜스폼 연산을 모두 넣어준다.</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">translate</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">,</span> <span class="n">position</span><span class="p">);</span>
-<span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">));</span>
-<span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">));</span>
-<span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">));</span>
-<span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">scale</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">,</span> <span class="n">scale</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p>루프 내에서 트랜스폼 변경을 수행할 경우, 모델 매트릭스를 매번 초기화한 뒤 위의 연산을 동일하게 수행해준다.</p>
+<h2 id="버텍스에-노멀-정보-추가">버텍스에 노멀 정보 추가</h2>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -493,38 +468,49 @@
 20
 21
 22
-</pre></td><td class="rouge-code"><pre><span class="c1">// in main loop</span>
+23
+24
+25
+26
+27
+</pre></td><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">Vertex</span>
+<span class="p">{</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">position</span><span class="p">;</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">color</span><span class="p">;</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span> <span class="n">texcoord</span><span class="p">;</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">normal</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="kt">double</span> <span class="n">time</span> <span class="o">=</span> <span class="n">glfwGetTime</span><span class="p">();</span>
+<span class="n">Vertex</span> <span class="n">vertices</span><span class="p">[]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="c1">// Position                    // Color                     // TexCoord            // Normal                                                </span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="c1">// LT</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="c1">// LB</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span> <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="c1">// RB</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span> <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="c1">// RT</span>
+<span class="p">};</span>
 
-<span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.6</span><span class="n">f</span><span class="p">;</span>
-<span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.3</span><span class="n">f</span><span class="p">;</span>
-<span class="n">rotation</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">3.0</span><span class="n">f</span><span class="p">;</span>
-<span class="n">scale</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="n">f</span> <span class="o">+</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">;</span>
-<span class="n">scale</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">time</span> <span class="o">*</span> <span class="mf">10.</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.8</span><span class="n">f</span> <span class="o">+</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">;</span>
 
-<span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">mat4</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">);</span>
-<span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">translate</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">,</span> <span class="n">position</span><span class="p">);</span>
-<span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">));</span>
-<span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">));</span>
-<span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">));</span>
-<span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">scale</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">,</span> <span class="n">scale</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
 
-<span class="n">glUniformMatrix4fv</span>
-<span class="p">(</span>
-    <span class="n">glGetUniformLocation</span><span class="p">(</span><span class="n">shaderProgram</span><span class="p">,</span> <span class="s">"ModelMatrix"</span><span class="p">),</span>
-    <span class="mi">1</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">value_ptr</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">)</span>
-<span class="p">);</span>
+    <span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Vertex</span><span class="p">),</span> <span class="p">(</span><span class="n">GLvoid</span><span class="o">*</span><span class="p">)</span><span class="n">offsetof</span><span class="p">(</span><span class="n">Vertex</span><span class="p">,</span> <span class="n">normal</span><span class="p">));</span>
+    <span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107738952-1b202b80-6d4b-11eb-8641-e170929fb533.gif" alt="2021_0212_Transform" class="normal" /></p>
+<ul>
+  <li>카메라를 향하는 방향이 +Z, 멀어지는 방향이 -Z이기 때문에 노멀은 +Z 방향으로 지정한다.</li>
+</ul>
 
-<p><br /></p>
+<h2 id="라이트-정보-추가-쉐이더에-전달">라이트 정보 추가, 쉐이더에 전달</h2>
 
-<h1 id="키보드-입력-처리">키보드 입력 처리</h1>
-<hr />
-
-<p>입력을 받아 트랜스폼 정보를 변경하기 위한 메소드를 작성한다.</p>
+<ul>
+  <li>main.cpp</li>
+</ul>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -539,34 +525,257 @@
 11
 12
 13
-14
-</pre></td><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">UpdateTransformByInputs</span><span class="p">(</span>
-    <span class="n">GLFWwindow</span><span class="o">*</span> <span class="n">window</span><span class="p">,</span>
-    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="o">&amp;</span> <span class="n">position</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="o">&amp;</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="o">&amp;</span> <span class="n">scale</span><span class="p">,</span>
-    <span class="kt">float</span> <span class="n">moveSpeed</span><span class="p">,</span> <span class="kt">float</span> <span class="n">rotSpeed</span><span class="p">,</span> <span class="kt">float</span> <span class="n">scaleSpeed</span><span class="p">)</span>
+</pre></td><td class="rouge-code"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_W</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">moveSpeed</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_S</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">-=</span> <span class="n">moveSpeed</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_A</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">-=</span> <span class="n">moveSpeed</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_D</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">moveSpeed</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_Q</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">rotation</span><span class="p">.</span><span class="n">y</span> <span class="o">-=</span> <span class="n">rotSpeed</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_E</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">rotation</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">rotSpeed</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_Z</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">scale</span> <span class="o">/=</span> <span class="p">(</span><span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">scaleSpeed</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_C</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">scale</span> <span class="o">*=</span> <span class="p">(</span><span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">scaleSpeed</span><span class="p">);</span>
+    <span class="c1">// ...</span>
+
+    <span class="n">glUseProgram</span><span class="p">(</span><span class="n">shaderProgram</span><span class="p">);</span>
+
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">lightPos0</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">2.0</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">glUniform3fv</span><span class="p">(</span><span class="n">glGetUniformLocation</span><span class="p">(</span><span class="n">shaderProgram</span><span class="p">,</span> <span class="s">"lightPos0"</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">value_ptr</span><span class="p">(</span><span class="n">lightPos0</span><span class="p">));</span>
+
+    <span class="n">glUseProgram</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+    <span class="c1">// ...</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>메인 루프에서 호출한다.</p>
+<h2 id="버텍스-쉐이더">버텍스 쉐이더</h2>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">UpdateTransformByInputs</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="mf">0.02</span><span class="n">f</span><span class="p">,</span> <span class="mf">5.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.04</span><span class="n">f</span><span class="p">);</span>
+<ul>
+  <li>노멀 전달받고, 월드 노멀로 프래그먼트 쉐이더에 전달</li>
+</ul>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre></td><td class="rouge-code"><pre><span class="cp">#version 440
+</span>
+<span class="k">layout</span> <span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">in</span> <span class="kt">vec3</span> <span class="n">vertex_position</span><span class="p">;</span>
+<span class="k">layout</span> <span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">in</span> <span class="kt">vec3</span> <span class="n">vertex_color</span><span class="p">;</span>
+<span class="k">layout</span> <span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">in</span> <span class="kt">vec3</span> <span class="n">vertex_texcoord</span><span class="p">;</span>
+<span class="k">layout</span> <span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="k">in</span> <span class="kt">vec3</span> <span class="n">vertex_normal</span><span class="p">;</span>
+
+<span class="k">out</span> <span class="kt">vec3</span> <span class="n">vs_position</span><span class="p">;</span>
+<span class="k">out</span> <span class="kt">vec3</span> <span class="n">vs_color</span><span class="p">;</span>
+<span class="k">out</span> <span class="kt">vec2</span> <span class="n">vs_texcoord</span><span class="p">;</span>
+<span class="k">out</span> <span class="kt">vec3</span> <span class="n">vs_normal</span><span class="p">;</span>
+
+<span class="k">uniform</span> <span class="kt">mat4</span> <span class="n">ModelMatrix</span><span class="p">;</span>
+<span class="k">uniform</span> <span class="kt">mat4</span> <span class="n">ViewMatrix</span><span class="p">;</span>
+<span class="k">uniform</span> <span class="kt">mat4</span> <span class="n">ProjectionMatrix</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">vec4</span> <span class="n">worldPos4</span> <span class="o">=</span> <span class="n">ModelMatrix</span> <span class="o">*</span> <span class="kt">vec4</span><span class="p">(</span><span class="n">vertex_position</span><span class="p">,</span> <span class="mi">1</span><span class="p">.);</span>
+    <span class="kt">vec4</span> <span class="n">clipPos4</span> <span class="o">=</span> <span class="n">ProjectionMatrix</span> <span class="o">*</span> <span class="n">ViewMatrix</span> <span class="o">*</span> <span class="n">worldPos4</span><span class="p">;</span>
+
+    <span class="c1">// 프래그먼트 쉐이더에는 월드 스페이스의 정점 데이터 전달</span>
+    <span class="n">vs_position</span> <span class="o">=</span> <span class="n">worldPos4</span><span class="p">.</span><span class="n">xyz</span><span class="p">;</span>
+    <span class="n">vs_color</span>    <span class="o">=</span> <span class="n">vertex_color</span><span class="p">;</span>
+    <span class="n">vs_texcoord</span> <span class="o">=</span> <span class="kt">vec2</span><span class="p">(</span><span class="n">vertex_texcoord</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex_texcoord</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">.);</span>
+    <span class="n">vs_normal</span>   <span class="o">=</span> <span class="p">(</span><span class="n">ModelMatrix</span> <span class="o">*</span> <span class="kt">vec4</span><span class="p">(</span><span class="n">vertex_normal</span><span class="p">,</span> <span class="mi">1</span><span class="p">.)).</span><span class="n">xyz</span><span class="p">;</span>
+
+    <span class="c1">// 정점 쉐이더의 최종 출력(정점 좌표)은 클립 좌표</span>
+    <span class="nb">gl_Position</span> <span class="o">=</span> <span class="n">clipPos4</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107740413-68ea6300-6d4e-11eb-94cb-c31912be499b.gif" alt="2021_0212_Move" class="normal" /></p>
+<h2 id="프래그먼트-쉐이더에서-라이팅-수행">프래그먼트 쉐이더에서 라이팅 수행</h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107740416-6b4cbd00-6d4e-11eb-83a5-17cf5ae74444.gif" alt="2021_0212_Rot" class="normal" /></p>
+<div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre></td><td class="rouge-code"><pre><span class="cp">#version 440
+</span>
+<span class="cp">#define saturate(x) clamp(x, 0., 1.)
+</span>
+<span class="k">in</span> <span class="kt">vec3</span> <span class="n">vs_position</span><span class="p">;</span>
+<span class="k">in</span> <span class="kt">vec3</span> <span class="n">vs_color</span><span class="p">;</span>
+<span class="k">in</span> <span class="kt">vec2</span> <span class="n">vs_texcoord</span><span class="p">;</span>
+<span class="k">in</span> <span class="kt">vec3</span> <span class="n">vs_normal</span><span class="p">;</span>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107740420-6daf1700-6d4e-11eb-9f5d-202f775f2045.gif" alt="2021_0212_Scale" class="normal" /></p>
+<span class="k">out</span> <span class="kt">vec4</span> <span class="n">fs_color</span><span class="p">;</span>
+
+<span class="k">uniform</span> <span class="kt">sampler2D</span> <span class="n">catTex</span><span class="p">;</span>
+<span class="k">uniform</span> <span class="kt">sampler2D</span> <span class="n">wallTex</span><span class="p">;</span>
+<span class="k">uniform</span> <span class="kt">vec3</span> <span class="n">lightPos0</span><span class="p">;</span> <span class="c1">// Main Light</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">vec3</span> <span class="n">catColor</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">catTex</span><span class="p">,</span> <span class="n">vs_texcoord</span><span class="p">).</span><span class="n">xyz</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">wallColor</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">wallTex</span><span class="p">,</span> <span class="n">vs_texcoord</span><span class="p">).</span><span class="n">xyz</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">catMask</span> <span class="o">=</span> <span class="n">step</span><span class="p">(</span><span class="kt">vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mo">01</span><span class="p">),</span> <span class="n">catColor</span><span class="p">);</span>
+
+    <span class="c1">// Colors</span>
+    <span class="kt">vec3</span> <span class="n">albedo</span> <span class="o">=</span> <span class="n">mix</span><span class="p">(</span><span class="n">wallColor</span><span class="p">,</span> <span class="n">catColor</span> <span class="o">*</span> <span class="n">vs_color</span><span class="p">,</span> <span class="n">catMask</span><span class="p">);</span>
+    <span class="kt">vec3</span> <span class="n">lightCol</span> <span class="o">=</span> <span class="kt">vec3</span><span class="p">(</span><span class="mi">1</span><span class="p">.,</span> <span class="mi">1</span><span class="p">.,</span> <span class="mi">1</span><span class="p">.);</span>
+
+    <span class="c1">// ====================== Lighting ==============================</span>
+    <span class="c1">// 월드 라이트 벡터(정점 -&gt; 광원)</span>
+    <span class="kt">vec3</span> <span class="n">lightDir</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">lightPos0</span> <span class="o">-</span> <span class="n">vs_position</span><span class="p">);</span>
+
+    <span class="c1">// Ambient Light</span>
+    <span class="kt">vec3</span> <span class="n">ambient</span> <span class="o">=</span> <span class="kt">vec3</span><span class="p">(.</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">// Diffuse Light</span>
+    <span class="kt">float</span> <span class="n">NdL</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">vs_normal</span><span class="p">,</span> <span class="n">lightDir</span><span class="p">);</span>
+    <span class="kt">vec3</span> <span class="n">diffuse</span> <span class="o">=</span> <span class="kt">vec3</span><span class="p">(</span><span class="n">saturate</span><span class="p">(</span><span class="n">NdL</span><span class="p">));</span>
+    
+    <span class="c1">// ====================== Final Color ============================</span>
+    <span class="kt">vec3</span> <span class="n">col</span> <span class="o">=</span> <span class="n">albedo</span> <span class="o">*</span> <span class="n">lightCol</span> <span class="o">*</span> <span class="p">(</span><span class="n">diffuse</span> <span class="o">+</span> <span class="n">ambient</span><span class="p">);</span>
+    <span class="n">fs_color</span> <span class="o">=</span> <span class="kt">vec4</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="mi">1</span><span class="p">.);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="결과">결과</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107846645-aa4f4100-6e28-11eb-8b9e-a6d31fc70ba5.gif" alt="2021_0213_lighting01" class="normal" /></p>
+
+<p>회전했을 때의 모습을 보면 정상적인 것 같다.</p>
+
+<p>그런데 거리가 멀어지면 감쇄가 일어나는 것처럼 점차 밝기가 감소한다.</p>
+
+<p>그래서 NdL을 dot(N, L) 대신 dot(normalize(N), L)로 적용하면, 일정 거리까지는 밝기가 동일하고, 그 거리보다 멀어지면 바로 사라져버린다.</p>
+
+<p><br /></p>
+
+<h1 id="버그-수정">버그 수정</h1>
+<hr />
+
+<p>위의 결과에서 무언가 이상함을 느끼고 디퓨즈만 출력해봤다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107846647-acb19b00-6e28-11eb-8cc0-899a90accbcd.gif" alt="2021_0213_Diffuse" class="normal" /></p>
+
+<p>내가 멍청했음을 인정하고 이번에는 노멀만 출력해봤다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107846652-af13f500-6e28-11eb-86c9-0e4ade22ab57.gif" alt="2021_0213_NormalValue" class="normal" /></p>
+
+<p>정점의 위치만 이동해도 노멀 값이 바뀐다..?</p>
+
+<p>그러니까 정점 위치가 (0., 0., 0.)에서 (1., 1. 0.)으로 바뀌면 노멀도 (0., 0., 1.)에서 (1., 1., 1)로 바뀐다.</p>
+
+<p>생각해보니 모델 행렬을 그대로 노멀에도 곱해줘서 일어나는 현상이었다.</p>
+
+<p><br /></p>
+
+<p>그래서 버텍스 쉐이더에서</p>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="k">uniform</span> <span class="kt">mat4</span> <span class="n">ModelMatrixForNormal</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이걸 추가하고</p>
+
+<div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">vs_normal</span> <span class="o">=</span> <span class="p">(</span><span class="n">ModelMatrixForNormal</span> <span class="o">*</span> <span class="kt">vec4</span><span class="p">(</span><span class="n">vertex_normal</span><span class="p">,</span> <span class="mi">1</span><span class="p">.)).</span><span class="n">xyz</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>요렇게 계산해주고</p>
+
+<p>메인 루프에서</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="n">glm</span><span class="o">::</span><span class="n">mat4</span> <span class="nf">modelMatrixForNormal</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">);</span>
+<span class="n">modelMatrixForNormal</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrixForNormal</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">));</span>
+<span class="n">modelMatrixForNormal</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrixForNormal</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">));</span>
+<span class="n">modelMatrixForNormal</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrixForNormal</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">));</span>
+
+<span class="n">glUniformMatrix4fv</span>
+<span class="p">(</span>
+    <span class="n">glGetUniformLocation</span><span class="p">(</span><span class="n">shaderProgram</span><span class="p">,</span> <span class="s">"ModelMatrixForNormal"</span><span class="p">),</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">value_ptr</span><span class="p">(</span><span class="n">modelMatrixForNormal</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 회전만 적용된 모델 행렬을 유니폼으로 넣어준다.</p>
+
+<p>그다음 광원의 위치를 (0f, 0f, -1f) 로 바꿔주었다.</p>
+
+<p>우선 노멀을 출력해봤다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107846653-b20ee580-6e28-11eb-9a98-f4ce78dcbba4.gif" alt="2021_0213_NormalValue_Solved" class="normal" /></p>
+
+<p>의도대로 회전에만 영향받고, 위치, 크기에는 영향받지 않는다.</p>
+
+<p>그리고 최종 색상을 출력해보면</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107846655-b3d8a900-6e28-11eb-83ec-51266854488e.gif" alt="2021_0213_Lighting_Solved2" class="normal" /></p>
+
+<p>정확히 원하는대로 나온다.</p>
 
 <p><br /></p>
 
@@ -603,17 +812,23 @@
 26
 27
 28
+29
+30
+31
 </pre></td><td class="rouge-code"><pre><span class="cp">#version 440
 </span>
 <span class="k">layout</span> <span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">in</span> <span class="kt">vec3</span> <span class="n">vertex_position</span><span class="p">;</span>
 <span class="k">layout</span> <span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">in</span> <span class="kt">vec3</span> <span class="n">vertex_color</span><span class="p">;</span>
 <span class="k">layout</span> <span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">in</span> <span class="kt">vec3</span> <span class="n">vertex_texcoord</span><span class="p">;</span>
+<span class="k">layout</span> <span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="k">in</span> <span class="kt">vec3</span> <span class="n">vertex_normal</span><span class="p">;</span>
 
 <span class="k">out</span> <span class="kt">vec3</span> <span class="n">vs_position</span><span class="p">;</span>
 <span class="k">out</span> <span class="kt">vec3</span> <span class="n">vs_color</span><span class="p">;</span>
 <span class="k">out</span> <span class="kt">vec2</span> <span class="n">vs_texcoord</span><span class="p">;</span>
+<span class="k">out</span> <span class="kt">vec3</span> <span class="n">vs_normal</span><span class="p">;</span>
 
 <span class="k">uniform</span> <span class="kt">mat4</span> <span class="n">ModelMatrix</span><span class="p">;</span>
+<span class="k">uniform</span> <span class="kt">mat4</span> <span class="n">ModelMatrixForNormal</span><span class="p">;</span> <span class="c1">// 노멀 변환용 행렬</span>
 <span class="k">uniform</span> <span class="kt">mat4</span> <span class="n">ViewMatrix</span><span class="p">;</span>
 <span class="k">uniform</span> <span class="kt">mat4</span> <span class="n">ProjectionMatrix</span><span class="p">;</span>
 
@@ -622,11 +837,11 @@
     <span class="kt">vec4</span> <span class="n">worldPos4</span> <span class="o">=</span> <span class="n">ModelMatrix</span> <span class="o">*</span> <span class="kt">vec4</span><span class="p">(</span><span class="n">vertex_position</span><span class="p">,</span> <span class="mi">1</span><span class="p">.);</span>
     <span class="kt">vec4</span> <span class="n">clipPos4</span> <span class="o">=</span> <span class="n">ProjectionMatrix</span> <span class="o">*</span> <span class="n">ViewMatrix</span> <span class="o">*</span> <span class="n">worldPos4</span><span class="p">;</span>
 
-    <span class="c1">// 프래그먼트 쉐이더에서 사용할 월드 좌표 전달</span>
-    <span class="c1">// 이 값은 카메라 이동의 영향을 받지 않음</span>
+    <span class="c1">// 프래그먼트 쉐이더에는 월드 스페이스의 정점 데이터 전달</span>
     <span class="n">vs_position</span> <span class="o">=</span> <span class="n">worldPos4</span><span class="p">.</span><span class="n">xyz</span><span class="p">;</span>
     <span class="n">vs_color</span>    <span class="o">=</span> <span class="n">vertex_color</span><span class="p">;</span>
     <span class="n">vs_texcoord</span> <span class="o">=</span> <span class="kt">vec2</span><span class="p">(</span><span class="n">vertex_texcoord</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">vertex_texcoord</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">.);</span>
+    <span class="n">vs_normal</span>   <span class="o">=</span> <span class="p">(</span><span class="n">ModelMatrixForNormal</span> <span class="o">*</span> <span class="kt">vec4</span><span class="p">(</span><span class="n">vertex_normal</span><span class="p">,</span> <span class="mi">1</span><span class="p">.)).</span><span class="n">xyz</span><span class="p">;</span>
 
     <span class="c1">// 정점 쉐이더의 최종 출력(정점 좌표)은 클립 좌표</span>
     <span class="nb">gl_Position</span> <span class="o">=</span> <span class="n">clipPos4</span><span class="p">;</span>
@@ -656,26 +871,78 @@
 19
 20
 21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
 </pre></td><td class="rouge-code"><pre><span class="cp">#version 440
+</span>
+<span class="cp">#define saturate(x) clamp(x, 0., 1.)
 </span>
 <span class="k">in</span> <span class="kt">vec3</span> <span class="n">vs_position</span><span class="p">;</span>
 <span class="k">in</span> <span class="kt">vec3</span> <span class="n">vs_color</span><span class="p">;</span>
 <span class="k">in</span> <span class="kt">vec2</span> <span class="n">vs_texcoord</span><span class="p">;</span>
+<span class="k">in</span> <span class="kt">vec3</span> <span class="n">vs_normal</span><span class="p">;</span>
 
 <span class="k">out</span> <span class="kt">vec4</span> <span class="n">fs_color</span><span class="p">;</span>
 
 <span class="k">uniform</span> <span class="kt">sampler2D</span> <span class="n">catTex</span><span class="p">;</span>
 <span class="k">uniform</span> <span class="kt">sampler2D</span> <span class="n">wallTex</span><span class="p">;</span>
+<span class="k">uniform</span> <span class="kt">vec3</span> <span class="n">lightPos0</span><span class="p">;</span> <span class="c1">// Main Light</span>
 
 <span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="kt">vec4</span> <span class="n">vertColor</span> <span class="o">=</span> <span class="kt">vec4</span><span class="p">(</span><span class="n">vs_color</span><span class="p">,</span> <span class="mi">1</span><span class="p">.);</span>
-    <span class="kt">vec4</span> <span class="n">catColor</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">catTex</span><span class="p">,</span> <span class="n">vs_texcoord</span><span class="p">);</span>
-    <span class="kt">vec4</span> <span class="n">wallColor</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">wallTex</span><span class="p">,</span> <span class="n">vs_texcoord</span><span class="p">);</span>
-    <span class="kt">vec4</span> <span class="n">catMask</span> <span class="o">=</span> <span class="n">step</span><span class="p">(</span><span class="kt">vec4</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mo">01</span><span class="p">),</span> <span class="n">catColor</span><span class="p">);</span>
+    <span class="c1">// 헷갈림 방지용 네이밍</span>
+    <span class="kt">vec3</span> <span class="n">worldPos</span> <span class="o">=</span> <span class="n">vs_position</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">worldNormal</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">vs_normal</span><span class="p">);</span>
 
-    <span class="c1">// Final Color</span>
-    <span class="n">fs_color</span> <span class="o">=</span> <span class="n">mix</span><span class="p">(</span><span class="n">wallColor</span><span class="p">,</span> <span class="n">catColor</span> <span class="o">*</span> <span class="n">vertColor</span><span class="p">,</span> <span class="n">catMask</span><span class="p">);</span>
+    <span class="kt">vec3</span> <span class="n">catColor</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">catTex</span><span class="p">,</span> <span class="n">vs_texcoord</span><span class="p">).</span><span class="n">xyz</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">wallColor</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">wallTex</span><span class="p">,</span> <span class="n">vs_texcoord</span><span class="p">).</span><span class="n">xyz</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">catMask</span> <span class="o">=</span> <span class="n">step</span><span class="p">(</span><span class="kt">vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mo">01</span><span class="p">),</span> <span class="n">catColor</span><span class="p">);</span>
+
+    <span class="c1">// Colors</span>
+    <span class="kt">vec3</span> <span class="n">albedo</span> <span class="o">=</span> <span class="n">mix</span><span class="p">(</span><span class="n">wallColor</span><span class="p">,</span> <span class="n">catColor</span> <span class="o">*</span> <span class="n">vs_color</span><span class="p">,</span> <span class="n">catMask</span><span class="p">);</span>
+    <span class="kt">vec3</span> <span class="n">lightCol</span> <span class="o">=</span> <span class="kt">vec3</span><span class="p">(</span><span class="mi">1</span><span class="p">.,</span> <span class="mi">1</span><span class="p">.,</span> <span class="mi">1</span><span class="p">.);</span>
+
+    <span class="c1">// ====================== Lighting ==============================</span>
+    <span class="c1">// 월드 라이트 벡터(정점 -&gt; 광원)</span>
+    <span class="kt">vec3</span> <span class="n">lightDir</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">lightPos0</span> <span class="o">-</span> <span class="n">worldPos</span><span class="p">);</span>
+
+    <span class="c1">// Ambient Light</span>
+    <span class="kt">vec3</span> <span class="n">ambient</span> <span class="o">=</span> <span class="kt">vec3</span><span class="p">(.</span><span class="mi">2</span><span class="p">);</span>
+
+    <span class="c1">// Diffuse Light</span>
+    <span class="kt">float</span> <span class="n">NdL</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">worldNormal</span><span class="p">,</span> <span class="n">lightDir</span><span class="p">);</span>
+    <span class="kt">vec3</span> <span class="n">diffuse</span> <span class="o">=</span> <span class="kt">vec3</span><span class="p">(</span><span class="n">saturate</span><span class="p">(</span><span class="n">NdL</span><span class="p">));</span>
+    
+    <span class="c1">// ====================== Final Color ============================</span>
+    <span class="kt">vec3</span> <span class="n">col</span> <span class="o">=</span> <span class="n">albedo</span> <span class="o">*</span> <span class="n">lightCol</span> <span class="o">*</span> <span class="p">(</span><span class="n">diffuse</span> <span class="o">+</span> <span class="n">ambient</span><span class="p">);</span>
+    <span class="c1">//col = vs_normal;</span>
+    <span class="c1">//col = diffuse;</span>
+    
+    <span class="n">fs_color</span> <span class="o">=</span> <span class="kt">vec4</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="mi">1</span><span class="p">.);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -706,6 +973,7 @@
 23
 24
 25
+26
 </pre></td><td class="rouge-code"><pre><span class="cp">#pragma once
 </span>
 <span class="cp">#include &lt;iostream&gt;
@@ -730,6 +998,7 @@
     <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">position</span><span class="p">;</span>
     <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">color</span><span class="p">;</span>
     <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span> <span class="n">texcoord</span><span class="p">;</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">normal</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -854,16 +1123,44 @@
 20
 21
 22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
 </pre></td><td class="rouge-code"><pre><span class="c1">// Global Variables</span>
 <span class="cp">#pragma once
 </span>
+<span class="c1">// 1. 평면</span>
 <span class="n">Vertex</span> <span class="n">vertices</span><span class="p">[]</span> <span class="o">=</span>
 <span class="p">{</span>
-    <span class="c1">// Position                     // Color                      // TexCoord</span>
-    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span>  <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span>  <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="c1">// LT</span>
-    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span>  <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span>  <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="c1">// LB</span>
-    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span> <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span>  <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span>  <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="c1">// RB</span>
-    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span> <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span>  <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span>  <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">)</span>  <span class="c1">// RT</span>
+    <span class="c1">// Position                    // Color                     // TexCoord            // Normal                                                </span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="c1">// LT</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="c1">// LB</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span> <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="c1">// RB</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span> <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span>  <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec2</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="c1">// RT</span>
 <span class="p">};</span>
 
 <span class="c1">// NOTE : Counter Clockwise</span>
@@ -872,6 +1169,32 @@
     <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>
     <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
 <span class="p">};</span>
+
+<span class="c1">// 2. 육면체 : 보류</span>
+<span class="c1">//Vertex vertices[] =</span>
+<span class="c1">//{</span>
+<span class="c1">//    // Position                    // Color                     // TexCoord            // Normal</span>
+<span class="c1">//    glm::vec3(-0.5f,  0.5f, -0.5f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 1.0f), // LT</span>
+<span class="c1">//    glm::vec3(-0.5f, -0.5f, -0.5f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), // LB</span>
+<span class="c1">//    glm::vec3( 0.5f, -0.5f, -0.5f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), // RB</span>
+<span class="c1">//    glm::vec3( 0.5f,  0.5f, -0.5f), glm::vec3(1.0f, 1.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 1.0f), // RT</span>
+<span class="c1">//</span>
+<span class="c1">//    glm::vec3(-0.5f,  0.5f, 0.5f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 1.0f),</span>
+<span class="c1">//    glm::vec3(-0.5f, -0.5f, 0.5f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f),</span>
+<span class="c1">//    glm::vec3( 0.5f, -0.5f, 0.5f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec2(1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f),</span>
+<span class="c1">//    glm::vec3( 0.5f,  0.5f, 0.5f), glm::vec3(1.0f, 1.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 1.0f),</span>
+<span class="c1">//};</span>
+<span class="c1">//</span>
+<span class="c1">//// NOTE : Counter Clockwise</span>
+<span class="c1">//GLuint indices[] =</span>
+<span class="c1">//{</span>
+<span class="c1">//    0, 1, 2, 0, 2, 3,</span>
+<span class="c1">//    4, 5, 1, 4, 1, 0,</span>
+<span class="c1">//    4, 0, 3, 4, 3, 7,</span>
+<span class="c1">//    1, 5, 6, 1, 6, 2,</span>
+<span class="c1">//    3, 2, 6, 3, 6, 7,</span>
+<span class="c1">//    7, 6, 5, 7, 5, 4,</span>
+<span class="c1">//};</span>
 
 <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">numOfVertices</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Vertex</span><span class="p">);</span>
 <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">numOfIndices</span>  <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">GLuint</span><span class="p">);</span>
@@ -1071,8 +1394,8 @@
     <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_D</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">moveSpeed</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_Q</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">rotation</span><span class="p">.</span><span class="n">y</span> <span class="o">-=</span> <span class="n">rotSpeed</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_E</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">rotation</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">rotSpeed</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_Z</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">scale</span> <span class="o">/=</span> <span class="p">(</span><span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">scaleSpeed</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_C</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">scale</span> <span class="o">*=</span> <span class="p">(</span><span class="mf">1.0</span><span class="n">f</span> <span class="o">+</span> <span class="n">scaleSpeed</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_Z</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">position</span><span class="p">.</span><span class="n">z</span> <span class="o">+=</span> <span class="n">moveSpeed</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">glfwGetKey</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">GLFW_KEY_C</span><span class="p">)</span> <span class="o">==</span> <span class="n">GLFW_PRESS</span><span class="p">)</span> <span class="n">position</span><span class="p">.</span><span class="n">z</span> <span class="o">-=</span> <span class="n">moveSpeed</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">FramebufferResizeCallback</span><span class="p">(</span><span class="n">GLFWwindow</span><span class="o">*</span> <span class="n">window</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fbW</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fbH</span><span class="p">)</span>
@@ -1513,6 +1836,30 @@
 291
 292
 293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
 </pre></td><td class="rouge-code"><pre><span class="cp">#include "libs.h"
 #include "errorHandler.hpp"
 #include "variables.hpp"
@@ -1635,6 +1982,10 @@
     <span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Vertex</span><span class="p">),</span> <span class="p">(</span><span class="n">GLvoid</span><span class="o">*</span><span class="p">)</span><span class="n">offsetof</span><span class="p">(</span><span class="n">Vertex</span><span class="p">,</span> <span class="n">texcoord</span><span class="p">));</span>
     <span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 
+    <span class="c1">// 4. Normal</span>
+    <span class="n">glVertexAttribPointer</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">GL_FLOAT</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Vertex</span><span class="p">),</span> <span class="p">(</span><span class="n">GLvoid</span><span class="o">*</span><span class="p">)</span><span class="n">offsetof</span><span class="p">(</span><span class="n">Vertex</span><span class="p">,</span> <span class="n">normal</span><span class="p">));</span>
+    <span class="n">glEnableVertexAttribArray</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
     <span class="cm">/*****************************************************************
                                    Textures
     ******************************************************************/</span>
@@ -1645,9 +1996,9 @@
                                    Transformation
     ******************************************************************/</span>
     <span class="c1">// Object Transform Values</span>
-    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">position</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
-    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">rotation</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
-    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">scale</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">position</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">rotation</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">scale</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">);</span>
 
     <span class="c1">// MVP Matrices</span>
     <span class="n">glm</span><span class="o">::</span><span class="n">mat4</span> <span class="n">modelMatrix</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">);</span>
@@ -1671,7 +2022,7 @@
     <span class="c1">// 3. Projection</span>
     <span class="kt">float</span> <span class="n">fov</span> <span class="o">=</span> <span class="mf">90.0</span><span class="n">f</span><span class="p">;</span> <span class="c1">// Field of View Angle</span>
     <span class="kt">float</span> <span class="n">nearPlane</span> <span class="o">=</span> <span class="mf">0.1</span><span class="n">f</span><span class="p">;</span>
-    <span class="kt">float</span> <span class="n">farPlane</span> <span class="o">=</span> <span class="mf">100.0</span><span class="n">f</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">farPlane</span> <span class="o">=</span> <span class="mf">1000.0</span><span class="n">f</span><span class="p">;</span>
 
     <span class="n">projectionMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">perspective</span>
     <span class="p">(</span>
@@ -1680,6 +2031,11 @@
         <span class="n">nearPlane</span><span class="p">,</span>
         <span class="n">farPlane</span>
     <span class="p">);</span>
+
+    <span class="cm">/*****************************************************************
+                                   Lights
+    ******************************************************************/</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">lightPos0</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="n">f</span><span class="p">);</span>
 
     <span class="cm">/*****************************************************************
                                    Uniforms (Init)
@@ -1706,6 +2062,9 @@
         <span class="n">glGetUniformLocation</span><span class="p">(</span><span class="n">shaderProgram</span><span class="p">,</span> <span class="s">"ProjectionMatrix"</span><span class="p">),</span>
         <span class="mi">1</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">value_ptr</span><span class="p">(</span><span class="n">projectionMatrix</span><span class="p">)</span>
     <span class="p">);</span>
+
+    <span class="c1">// 3. Light</span>
+    <span class="n">glUniform3fv</span><span class="p">(</span><span class="n">glGetUniformLocation</span><span class="p">(</span><span class="n">shaderProgram</span><span class="p">,</span> <span class="s">"lightPos0"</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">value_ptr</span><span class="p">(</span><span class="n">lightPos0</span><span class="p">));</span>
 
     <span class="n">glUseProgram</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
@@ -1748,7 +2107,7 @@
 
         <span class="c1">// ========================= Update Transform =================== //</span>
         <span class="n">GLCheck</span><span class="p">(</span>
-        <span class="n">UpdateTransformByInputs</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="mf">0.02</span><span class="n">f</span><span class="p">,</span> <span class="mf">5.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.04</span><span class="n">f</span><span class="p">);</span>
+        <span class="n">UpdateTransformByInputs</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="mf">0.04</span><span class="n">f</span><span class="p">,</span> <span class="mf">5.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.04</span><span class="n">f</span><span class="p">);</span>
 
         <span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">mat4</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">);</span>
         <span class="n">modelMatrix</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">translate</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">,</span> <span class="n">position</span><span class="p">);</span>
@@ -1761,6 +2120,18 @@
         <span class="p">(</span>
             <span class="n">glGetUniformLocation</span><span class="p">(</span><span class="n">shaderProgram</span><span class="p">,</span> <span class="s">"ModelMatrix"</span><span class="p">),</span>
             <span class="mi">1</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">value_ptr</span><span class="p">(</span><span class="n">modelMatrix</span><span class="p">)</span>
+        <span class="p">);</span>
+
+        <span class="c1">// 회전만 적용되는 노멀 변환용 행렬</span>
+        <span class="n">glm</span><span class="o">::</span><span class="n">mat4</span> <span class="n">modelMatrixForNormal</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">);</span>
+        <span class="n">modelMatrixForNormal</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrixForNormal</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">));</span>
+        <span class="n">modelMatrixForNormal</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrixForNormal</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">));</span>
+        <span class="n">modelMatrixForNormal</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">modelMatrixForNormal</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">radians</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">));</span>
+
+        <span class="n">glUniformMatrix4fv</span>
+        <span class="p">(</span>
+            <span class="n">glGetUniformLocation</span><span class="p">(</span><span class="n">shaderProgram</span><span class="p">,</span> <span class="s">"ModelMatrixForNormal"</span><span class="p">),</span>
+            <span class="mi">1</span><span class="p">,</span> <span class="n">GL_FALSE</span><span class="p">,</span> <span class="n">glm</span><span class="o">::</span><span class="n">value_ptr</span><span class="p">(</span><span class="n">modelMatrixForNormal</span><span class="p">)</span>
         <span class="p">);</span>
         <span class="p">);</span>
 
@@ -1813,7 +2184,7 @@
 <h1 id="references">References</h1>
 <hr />
 <ul>
-  <li><a href="https://www.youtube.com/watch?v=uX3Iil0F51U">https://www.youtube.com/watch?v=uX3Iil0F51U</a></li>
+  <li><a href="https://www.youtube.com/watch?v=Fw74_fKFowU">https://www.youtube.com/watch?v=Fw74_fKFowU</a></li>
 </ul>
 
 
@@ -1872,19 +2243,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 16 - Transform, Input - Rito15&url=https://rito15.github.io/posts/opengl-study-16/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 17 - Ambient, Diffuse Lighting - Rito15&url=https://rito15.github.io/posts/opengl-study-17/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 16 - Transform, Input - Rito15&u=https://rito15.github.io/posts/opengl-study-16/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 17 - Ambient, Diffuse Lighting - Rito15&u=https://rito15.github.io/posts/opengl-study-17/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=OpenGL 공부 - 16 - Transform, Input - Rito15&url=https://rito15.github.io/posts/opengl-study-16/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=OpenGL 공부 - 17 - Ambient, Diffuse Lighting - Rito15&url=https://rito15.github.io/posts/opengl-study-17/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -3347,46 +3718,46 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -4294,15 +4665,15 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/unity-ilspy/" class="btn btn-outline-primary">
-    <p>ILSpy로 유니티 내부 구현 뜯어보기</p>
+  <a href="/posts/fps-tps-character/" class="btn btn-outline-primary">
+    <p>1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]</p>
   </a>
   
 
   
-  <a href="/posts/cooldown-icon-ui/" class="btn btn-outline-primary">
-    <p>쿨타임 아이콘 UI 만들기</p>
-  </a>
+  <span class="btn btn-outline-primary disabled">
+    <p>-</p>
+  </span>
   
 
 </div>
