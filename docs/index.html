@@ -36,7 +36,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","headline":"Rito15","sameAs":["https://github.com/rito15"],"url":"https://rito15.github.io/","author":{"@type":"Person","name":"Rito15"},"name":"Rito15","@type":"WebSite","@context":"https://schema.org"}</script>
+{"sameAs":["https://github.com/rito15"],"description":"Unity Csharp Developer","name":"Rito15","url":"https://rito15.github.io/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebSite","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -366,6 +366,99 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/opengl-study-18/">OpenGL 공부 - 18 - Specular, Rim Light</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  Specular Lighting, Rim Lighting 적용
+
+
+
+
+공부 내용
+
+
+필요한 유니폼 변수 전달
+
+World View 벡터가 필요하므로, 이를 구하기 위한 카메라 위치를 전달해준다.
+
+// main.cpp
+
+glUniform3fv(glGetUniformLocation(shaderProgram, "cameraPos"), 1, ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Feb 14, 2021,  3:38 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 14
+  
+
+  <i class="unloaded">2021-02-14T15:38:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4150 words">23 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/custom-plane-mesh-generator/">Custom Plane Mesh Generator</a>
     </h1>
 
@@ -560,7 +653,7 @@ Downl...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2212 words">12 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2216 words">12 min</span>
 
 
         <!-- page views -->
@@ -1259,103 +1352,6 @@ modelM...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-14/">OpenGL 공부 - 14</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  Model Matrix에 대한 이해
-  이동, 회전, 크기 변경
-
-
-
-
-공부 내용
-
-
-공통
-
-glm의 모델 매트릭스를 선언하는 것으로 시작한다.
-
-glm::mat modelMatrix(1.0f);
-
-
-openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진다.
-
-4x4 행렬과 곱해지려면 벡터 또한 vec4여...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Feb 10, 2021,  3:20 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 10
-  
-
-  <i class="unloaded">2021-02-10T15:20:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2384 words">13 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1539,6 +1535,11 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
         
         
         
+        <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible [작성 중]</a></li>
+      
+        
+        
+        
         <li><a href="/posts/behavior-tree/">비헤이비어 트리(Behavior Tree)</a></li>
       
         
@@ -1555,11 +1556,6 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
         
         
         <li><a href="/posts/job-system/">잡 시스템(Job System)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/input-binding-system/">입력 바인딩 시스템 만들기</a></li>
       
 
       </ul>

@@ -1,5 +1,5 @@
 ---
-title: OpenGL 공부 - 14
+title: OpenGL 공부 - 14 - Model Matrix
 author: Rito15
 date: 2021-02-10 15:20:00 +09:00
 categories: [OpenGL, OpenGL Study]

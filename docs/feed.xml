@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-14T06:17:04+09:00</updated>
+  <updated>2021-02-14T18:31:18+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,72 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>OpenGL 공부 - 18 - Specular, Rim Light</title>
+    <link href="https://rito15.github.io/posts/opengl-study-18/" rel="alternate" type="text/html" title="OpenGL 공부 - 18 - Specular, Rim Light" />
+    <published>2021-02-14T15:38:00+09:00</published>
+  
+    <updated>2021-02-14T15:38:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-18/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-18/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  Specular Lighting, Rim Lighting 적용
+
+
+
+
+공부 내용
+
+
+필요한 유니폼 변수 전달
+
+World View 벡터가 필요하므로, 이를 구하기 위한 카메라 위치를 전달해준다.
+
+// main.cpp
+
+glUniform3fv(glGetUniformLocation(shaderProgram, "cameraPos"), 1, glm::value_ptr(camPos));
+
+
+
+프래그먼트 쉐이더
+
+우선 라이팅 계산을 위한 벡터들을 만들어준다.
+
+uniform vec3 lightPos0; // Main Light World Position
+uniform vec3 cameraPos; // Camera World Position
+
+void main()
+{
+    vec3 worldNorm...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -315,73 +381,6 @@ Vertex vertices[] =
   
     
       경사로에서 정...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>쿨타임 아이콘 UI 만들기</title>
-    <link href="https://rito15.github.io/posts/cooldown-icon-ui/" rel="alternate" type="text/html" title="쿨타임 아이콘 UI 만들기" />
-    <published>2021-02-12T17:13:00+09:00</published>
-  
-    <updated>2021-02-12T17:13:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cooldown-icon-ui/</id>
-    <content src="https://rito15.github.io/posts/cooldown-icon-ui/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-
-
-
-
-구현
-
-
-1. 하이라키 구성
-
-
-
-[1] Outline
-
-  Image 컴포넌트 : 원하는 모양의 스프라이트 사용, 아웃라인으로 지정할 색상 적용
-
-
-[2] Mask
-
-  RectTransform : Anchor Preset [stretch &amp;amp; stretch] 설정
-  Left, Top, Right, Bottom 4픽셀 설정
-  Image 컴포넌트 : Outline과 같은 스프라이트 사용
-  Mask 컴포넌트 : [Show Mask Graphic] 체크 해제
-
-
-[3] Icon
-
-  RectTransform : Anchor Preset [stretch &amp;amp; stretch] 설정
-  Left, Top, Right, Bottom 0
-  Image 컴포넌트 : 원하는 스프라이트 ...
     </summary>
   
 

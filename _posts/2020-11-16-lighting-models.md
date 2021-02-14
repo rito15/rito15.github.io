@@ -45,6 +45,7 @@ Diffuse = NdL * 0.5 + 0.5
 ## Phong
 - Phong Reflection의 기본 원리 : 보는 방향으로부터 반사된 방향에 조명이 있으면, 그 부분의 하이라이트가 가장 높다
 - 반사 벡터 R = 2N(NdL) - L
+- 또는 R = reflect(-L, N);
 - RdV = dot(R, V)
 - RdV를 기본으로, 연산을 다양하게 커스터마이징하여 스페큘러를 계산할 수 있다.
 ```hlsl

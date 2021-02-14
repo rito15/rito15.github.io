@@ -254,6 +254,8 @@ v.vertex.y += abs(v.texcoord.x * 2. - 1.);
 
 그래서 바로 만들어 왔다.
 
+- [Custom Plane Mesh Generator(Link)](../custom-plane-mesh-generator/)
+
 ![image](https://user-images.githubusercontent.com/42164422/107857915-93364080-6e74-11eb-8578-d5855f9247ae.png){:.normal}
 
 그리고 이번엔 프로퍼티를 넣어 각종 옵션들을 제어할 수 있게 해주고,
