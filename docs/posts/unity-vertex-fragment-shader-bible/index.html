@@ -26,8 +26,8 @@
 <meta property="og:title" content="Vertex/Fragment Shader Bible [예정]" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Vertex/Fragment Shader 구성" />
-<meta property="og:description" content="Vertex/Fragment Shader 구성" />
+<meta name="description" content="목차" />
+<meta property="og:description" content="목차" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Vertex/Fragment Shader Bible [예정]" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Vertex/Fragment Shader 구성","datePublished":"2021-02-02T01:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/"},"url":"https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/","author":{"@type":"Person","name":"Rito15"},"headline":"Vertex/Fragment Shader Bible [예정]","dateModified":"2021-02-08T03:37:09+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차","datePublished":"2021-02-02T01:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/"},"url":"https://rito15.github.io/posts/unity-vertex-fragment-shader-bible/","author":{"@type":"Person","name":"Rito15"},"headline":"Vertex/Fragment Shader Bible [예정]","dateModified":"2021-02-08T03:37:09+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="539 words">2 min</span>
 
 
           <!-- page views -->
@@ -448,7 +448,13 @@
 
         
 
-        <h1 id="vertexfragment-shader-구성">Vertex/Fragment Shader 구성</h1>
+        <h1 id="목차">목차</h1>
+<hr />
+<ul>
+  <li></li>
+</ul>
+
+<h1 id="vertexfragment-shader-구성">Vertex/Fragment Shader 구성</h1>
 <hr />
 <ul>
   <li></li>
@@ -456,11 +462,269 @@
 
 <h1 id="todo">TODO</h1>
 <hr />
+
 <ul>
-  <li></li>
+  <li>https://docs.unity3d.com/Manual/SL-VertexFragmentShaderExamples.html
+    <ul>
+      <li>노말맵 적용법</li>
+      <li>큐브맵 적용법</li>
+      <li>오클루전맵 적용법</li>
+      <li>Triplanar 적용법</li>
+      <li>라이팅 계산법(디퓨즈, 앰비언트)</li>
+      <li>Shadow Receive, Cast</li>
+      <li>Fog</li>
+    </ul>
+  </li>
+  <li>Height Map</li>
+  <li>Parallax</li>
+  <li>Tessellation</li>
 </ul>
 
+<h1 id="gpu-instancing">GPU Instancing</h1>
+<hr />
+
+<p>https://docs.unity3d.com/kr/2018.4/Manual/GPUInstancing.html</p>
+
 <p><br /></p>
+
+<h1 id="compilation">Compilation</h1>
+<hr />
+
+<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+</pre></td><td class="rouge-code"><pre><span class="n">Shader</span> <span class="s">"Rito/VertexFragmentStartPoint"</span>
+<span class="p">{</span>
+    <span class="n">Properties</span>
+    <span class="p">{</span>
+        <span class="n">_MainTex</span> <span class="p">(</span><span class="s">"Texture"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"white"</span> <span class="p">{}</span>
+        <span class="n">_BumpMap</span> <span class="p">(</span><span class="s">"Normal Map"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"white"</span> <span class="p">{}</span>
+    <span class="p">}</span>
+    <span class="n">SubShader</span>
+    <span class="p">{</span>
+        <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span><span class="o">=</span><span class="s">"Opaque"</span> <span class="p">}</span>
+
+        <span class="n">Pass</span>
+        <span class="p">{</span>
+            <span class="n">CGPROGRAM</span>
+            <span class="cp">#pragma vertex vert
+</span>            <span class="cp">#pragma fragment frag
+</span>            <span class="c1">// make fog work</span>
+            <span class="cp">#pragma multi_compile_fog
+</span>
+            <span class="cp">#include "UnityCG.cginc"
+</span>            <span class="cp">#include "Lighting.cginc"
+</span>
+            <span class="k">struct</span> <span class="n">appdata</span>
+            <span class="p">{</span>
+                <span class="kt">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="nb">POSITION</span><span class="p">;</span> <span class="c1">// Object Position</span>
+                <span class="kt">float3</span> <span class="n">normal</span> <span class="o">:</span> <span class="nb">NORMAL</span><span class="p">;</span>   <span class="c1">// Object Normal</span>
+                <span class="kt">float4</span> <span class="n">tangent</span> <span class="o">:</span> <span class="nb">TANGENT</span><span class="p">;</span>
+                <span class="kt">float2</span> <span class="n">uv</span> <span class="o">:</span> <span class="nb">TEXCOORD0</span><span class="p">;</span>
+            <span class="p">};</span>
+
+            <span class="k">struct</span> <span class="n">v2f</span>
+            <span class="p">{</span>
+                <span class="kt">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="nb">SV_POSITION</span><span class="p">;</span> <span class="c1">// Clip Position</span>
+                <span class="kt">float2</span> <span class="n">uv</span> <span class="o">:</span> <span class="nb">TEXCOORD0</span><span class="p">;</span>
+                <span class="kt">float3</span> <span class="n">wPos</span> <span class="o">:</span> <span class="nb">TEXCOORD1</span><span class="p">;</span>
+                <span class="kt">float3</span> <span class="n">wNormal</span> <span class="o">:</span> <span class="nb">TEXCOORD2</span><span class="p">;</span>
+
+                <span class="c1">// Tangent -&gt; World 회전 변환을 위한 3x3 매트릭스</span>
+                <span class="kt">float3</span> <span class="n">tspace0</span> <span class="o">:</span> <span class="nb">TEXCOORD3</span><span class="p">;</span> <span class="c1">// tangent.x, bitangent.x, normal.x</span>
+                <span class="kt">float3</span> <span class="n">tspace1</span> <span class="o">:</span> <span class="nb">TEXCOORD4</span><span class="p">;</span> <span class="c1">// tangent.y, bitangent.y, normal.y</span>
+                <span class="kt">float3</span> <span class="n">tspace2</span> <span class="o">:</span> <span class="n">TEXCOORD5</span><span class="p">;</span> <span class="c1">// tangent.z, bitangent.z, normal.z</span>
+
+            <span class="p">};</span>
+
+            <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
+            <span class="n">sampler2D</span> <span class="n">_BumpMap</span><span class="p">;</span>
+            <span class="kt">float4</span> <span class="n">_MainTex_ST</span><span class="p">;</span>
+
+            <span class="n">v2f</span> <span class="n">vert</span> <span class="p">(</span><span class="n">appdata</span> <span class="n">v</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">v2f</span> <span class="n">o</span><span class="p">;</span>
+                <span class="n">o</span><span class="p">.</span><span class="n">vertex</span> <span class="o">=</span> <span class="n">UnityObjectToClipPos</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">vertex</span><span class="p">);</span>
+                
+                <span class="kt">float3</span> <span class="n">wNormal</span> <span class="o">=</span> <span class="n">UnityObjectToWorldNormal</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">normal</span><span class="p">);</span>
+                <span class="kt">float3</span> <span class="n">wTangent</span> <span class="o">=</span> <span class="n">UnityObjectToWorldDir</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">tangent</span><span class="p">.</span><span class="n">xyz</span><span class="p">);</span>
+
+                <span class="c1">// Calculate Bitangent</span>
+                <span class="n">float</span> <span class="n">tangentSign</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">tangent</span><span class="p">.</span><span class="n">w</span> <span class="o">*</span> <span class="n">unity_WorldTransformParams</span><span class="p">.</span><span class="n">w</span><span class="p">;</span>
+                <span class="kt">float3</span> <span class="n">wBitangent</span> <span class="o">=</span> <span class="nb">cross</span><span class="p">(</span><span class="n">wNormal</span><span class="p">,</span> <span class="n">wTangent</span><span class="p">)</span> <span class="o">*</span> <span class="n">tangentSign</span><span class="p">;</span>
+
+                <span class="c1">// Tangent To World 행렬</span>
+                <span class="n">o</span><span class="p">.</span><span class="n">tspace0</span> <span class="o">=</span> <span class="kt">float3</span><span class="p">(</span><span class="n">wTangent</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">wBitangent</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">wNormal</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+                <span class="n">o</span><span class="p">.</span><span class="n">tspace1</span> <span class="o">=</span> <span class="kt">float3</span><span class="p">(</span><span class="n">wTangent</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">wBitangent</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">wNormal</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+                <span class="n">o</span><span class="p">.</span><span class="n">tspace2</span> <span class="o">=</span> <span class="kt">float3</span><span class="p">(</span><span class="n">wTangent</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">wBitangent</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">wNormal</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+
+                <span class="n">o</span><span class="p">.</span><span class="n">uv</span> <span class="o">=</span> <span class="n">TRANSFORM_TEX</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">uv</span><span class="p">,</span> <span class="n">_MainTex</span><span class="p">);</span>
+                <span class="n">o</span><span class="p">.</span><span class="n">wPos</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">unity_ObjectToWorld</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">vertex</span><span class="p">).</span><span class="n">xyz</span><span class="p">;</span>
+                <span class="n">o</span><span class="p">.</span><span class="n">wNormal</span> <span class="o">=</span> <span class="n">wNormal</span><span class="p">;</span>
+                <span class="k">return</span> <span class="n">o</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="n">fixed4</span> <span class="n">frag</span> <span class="p">(</span><span class="n">v2f</span> <span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">SV_Target</span>
+            <span class="p">{</span>
+                <span class="kt">float3</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">1</span><span class="p">.;</span>
+                <span class="n">fixed</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">.;</span>
+
+                <span class="c1">// World Vectors</span>
+                <span class="kt">float3</span> <span class="n">wPos</span>    <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="n">wPos</span><span class="p">;</span>
+                <span class="kt">float3</span> <span class="n">wNormal</span> <span class="o">=</span> <span class="nb">normalize</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">wNormal</span><span class="p">);</span>
+                <span class="kt">float3</span> <span class="n">wView</span>   <span class="o">=</span> <span class="nb">normalize</span><span class="p">(</span><span class="n">UnityWorldSpaceViewDir</span><span class="p">(</span><span class="n">wPos</span><span class="p">));</span>
+                <span class="kt">float3</span> <span class="n">wLight</span>  <span class="o">=</span> <span class="n">UnityWorldSpaceLightDir</span><span class="p">(</span><span class="n">wPos</span><span class="p">);</span>
+                <span class="kt">float3</span> <span class="n">wHalf</span>   <span class="o">=</span> <span class="nb">normalize</span><span class="p">(</span><span class="n">wLight</span> <span class="o">+</span> <span class="n">wView</span><span class="p">);</span>
+                <span class="kt">float3</span> <span class="n">wLReflect</span> <span class="o">=</span> <span class="nb">reflect</span><span class="p">(</span><span class="o">-</span><span class="n">wLight</span><span class="p">,</span> <span class="n">wNormal</span><span class="p">);</span>
+
+                <span class="c1">// Calculate World Normal From Normal Map</span>
+                <span class="kt">float3</span> <span class="n">tNormal0</span> <span class="o">=</span> <span class="n">UnpackNormal</span><span class="p">(</span><span class="nb">tex2D</span><span class="p">(</span><span class="n">_BumpMap</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">uv</span><span class="p">));</span>
+                <span class="kt">float3</span> <span class="n">wNormal0</span><span class="p">;</span>
+                <span class="n">wNormal0</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">tspace0</span><span class="p">,</span> <span class="n">tNormal0</span><span class="p">);</span>
+                <span class="n">wNormal0</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">tspace1</span><span class="p">,</span> <span class="n">tNormal0</span><span class="p">);</span>
+                <span class="n">wNormal0</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">tspace2</span><span class="p">,</span> <span class="n">tNormal0</span><span class="p">);</span>
+                
+                <span class="c1">//wNormal = wNormal0;</span>
+
+                <span class="c1">// Lighting Term</span>
+                <span class="n">float</span> <span class="n">ndl</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span><span class="n">wNormal</span><span class="p">,</span> <span class="n">wLight</span><span class="p">);</span>
+                <span class="n">float</span> <span class="n">ndv</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span><span class="n">wNormal</span><span class="p">,</span> <span class="n">wView</span><span class="p">);</span>
+                <span class="n">float</span> <span class="n">ndh</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span><span class="n">wNormal</span><span class="p">,</span> <span class="n">wHalf</span><span class="p">);</span>
+                <span class="n">float</span> <span class="n">rdv</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span><span class="n">wLReflect</span><span class="p">,</span> <span class="n">wView</span><span class="p">);</span>
+
+                <span class="n">float</span> <span class="n">diffuse</span> <span class="o">=</span> <span class="nb">saturate</span><span class="p">(</span><span class="n">ndl</span><span class="p">);</span>
+                <span class="n">float</span> <span class="n">specPhong</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="nb">saturate</span><span class="p">(</span><span class="n">rdv</span><span class="p">),</span> <span class="mi">30</span><span class="p">.)</span> <span class="o">*</span> <span class="p">.</span><span class="mi">4</span><span class="p">;</span>
+                <span class="n">float</span> <span class="n">specBlinnPhong</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="nb">saturate</span><span class="p">(</span><span class="n">ndh</span><span class="p">),</span> <span class="mi">80</span><span class="p">.)</span> <span class="o">*</span> <span class="p">.</span><span class="mi">4</span><span class="p">;</span>
+                <span class="n">float</span> <span class="n">fresnel</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span> <span class="o">-</span> <span class="nb">saturate</span><span class="p">(</span><span class="n">ndv</span><span class="p">),</span> <span class="mi">3</span><span class="p">.)</span> <span class="o">*</span> <span class="p">.</span><span class="mi">5</span><span class="p">;</span>
+
+                <span class="c1">// Final Color</span>
+
+                <span class="c1">//col = tex2D(_MainTex, i.uv);</span>
+                <span class="n">float</span> <span class="n">light</span> <span class="o">=</span> <span class="nb">saturate</span><span class="p">(</span><span class="n">diffuse</span> <span class="o">+</span> <span class="n">specBlinnPhong</span><span class="p">);</span>
+                <span class="n">col</span> <span class="o">*=</span> <span class="n">light</span> <span class="o">*</span> <span class="n">_LightColor0</span><span class="p">;</span>
+                <span class="n">col</span> <span class="o">+=</span> <span class="n">fresnel</span><span class="p">;</span>
+
+                <span class="k">return</span> <span class="n">fixed4</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">alpha</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">ENDCG</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 <h1 id="references">References</h1>
 <hr />
@@ -602,27 +866,27 @@
         
         
         
+        <li><a href="/posts/lighting-models/">Lighting Models</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/water-shader/">물 쉐이더 만들기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-14/">OpenGL 공부 - 14 - Model Matrix</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible [작성 중]</a></li>
       
         
         
         
         <li><a href="/posts/behavior-tree/">비헤이비어 트리(Behavior Tree)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/fog-of-war/">전장의 안개(Fog of War)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/job-system/">잡 시스템(Job System)</a></li>
       
 
       </ul>
