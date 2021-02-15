@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C++ Smart Debugging" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note C++에는 미리 정의된 동적 매크로가 있다.","datePublished":"2021-02-04T16:56:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cpp-smart-debugging/"},"url":"https://rito15.github.io/posts/cpp-smart-debugging/","author":{"@type":"Person","name":"Rito15"},"headline":"C++ Smart Debugging","dateModified":"2021-02-04T16:56:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C++ Smart Debugging","description":"Note C++에는 미리 정의된 동적 매크로가 있다.","dateModified":"2021-02-04T16:56:00+09:00","datePublished":"2021-02-04T16:56:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cpp-smart-debugging/"},"url":"https://rito15.github.io/posts/cpp-smart-debugging/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -675,6 +675,16 @@ if(x != value) {        \
         
         
         
+        <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible [작성 중]</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-vertex-fragment-shader-bible/">Vertex/Fragment Shader Bible [예정]</a></li>
+      
+        
+        
+        
         <li><a href="/posts/lighting-models/">Lighting Models</a></li>
       
         
@@ -686,16 +696,6 @@ if(x != value) {        \
         
         
         <li><a href="/posts/opengl-study-14/">OpenGL 공부 - 14 - Model Matrix</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible [작성 중]</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/behavior-tree/">비헤이비어 트리(Behavior Tree)</a></li>
       
 
       </ul>
@@ -2443,6 +2443,19 @@ if(x != value) {        \
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2968,6 +2981,81 @@ if(x != value) {        \
       
       
       <div class="card">
+        <a href="/posts/opengl-study-19/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 15
+  
+
+  <i class="unloaded">2021-02-15T15:30:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 19 - Shader, Transform Class</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+  쉐이더, 트랜스폼 클래스화하기
+
+
+
+
+1. 쉐이더의 클래스화
+
+
+shader.hpp 작성
+
+shader.hpp 파일에 Shader 클래스를 작성한다.
+
+기존에 functions.hpp와 main.cpp에서 사용하던 쉐이더 부분을 모두 Shader 클래스로 옮겨준다.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+1...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/opengl-study-18/">
           <div class="card-body">
             <!--
@@ -3021,70 +3109,6 @@ World View 벡터가 필요하므로, 이를 구하기 위한 카메라 위치�
 // main.cpp
 
 glUniform3fv(glGetUniformLocation(shaderProgram, "cameraPos")...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/custom-plane-mesh-generator/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 14
-  
-
-  <i class="unloaded">2021-02-14T03:06:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Plane Mesh Generator</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-  Plane을 원하는 너비, 해상도로 만들 수 있게 해주는 컴포넌트
-
-
-Preview
-
-
-
-
-
-
-How to Use
-
-
-  빈 게임오브젝트를 생성합니다.
-  PlaneMeshGenerator 컴포넌트를 추가합니다.
-  옵션을 설정하고 마테리얼을 인스펙터의 Material에 넣습니다.
-  Generate 버튼을 누릅니다.
-
-
-Downloa...
               </p>
             </div>
           </div>

@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-15T03:58:26+09:00</updated>
+  <updated>2021-02-15T18:09:46+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,67 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>OpenGL 공부 - 19 - Shader, Transform Class</title>
+    <link href="https://rito15.github.io/posts/opengl-study-19/" rel="alternate" type="text/html" title="OpenGL 공부 - 19 - Shader, Transform Class" />
+    <published>2021-02-15T15:30:00+09:00</published>
+  
+    <updated>2021-02-15T15:30:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-19/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-19/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  쉐이더, 트랜스폼 클래스화하기
+
+
+
+
+1. 쉐이더의 클래스화
+
+
+shader.hpp 작성
+
+shader.hpp 파일에 Shader 클래스를 작성한다.
+
+기존에 functions.hpp와 main.cpp에서 사용하던 쉐이더 부분을 모두 Shader 클래스로 옮겨준다.
+
+// shader.hpp
+
+class Shader
+{
+private:
+    GLuint id;
+
+    GLuint CompileShader(const GLenum&amp;amp; shaderType, const char* fileDir);
+    void LinkProgram(const GLuint&amp;amp; vertexShader, const GLuint&amp;amp; fragmentShader, const GLuint&amp;amp; geo...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -285,102 +346,6 @@ Vertex vertices[] =
 {
     // Position                    // Color                     // TexCoord            // Normal                                                
     glm::vec3(-0.5f,  0.5f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]</title>
-    <link href="https://rito15.github.io/posts/fps-tps-character/" rel="alternate" type="text/html" title="1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]" />
-    <published>2021-02-12T18:06:00+09:00</published>
-  
-    <updated>2021-02-12T18:06:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/fps-tps-character/</id>
-    <content src="https://rito15.github.io/posts/fps-tps-character/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목차
-
-
-  
-    
-      하이라키 구성
-    
-  
-  
-    
-      스크립트 기초 작성
-    
-  
-  
-    
-      1인칭 이동, 회전
-    
-  
-  
-    
-      3인칭 이동, 회전
-    
-  
-  
-    
-      카메라 전환
-    
-  
-  
-    
-      점프
-    
-  
-  
-    
-      애니메이션 적용하기
-    
-  
-  
-    
-      부드러운 애니메이션 적용하기 : 블렌딩, 러프
-    
-  
-  
-    
-      버그 수정
-    
-  
-  
-    
-      카메라 전환 시 시점 방향 공유하기
-    
-  
-  
-    
-      3인칭 카메라 줌 구현하기
-    
-  
-  
-    
-      경사로에서 정...
     </summary>
   
 
