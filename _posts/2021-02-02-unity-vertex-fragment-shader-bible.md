@@ -28,14 +28,18 @@ mermaid: true
   - Shadow Receive, Cast
   - Fog
 
+- Multiple Lights
+  - https://github.com/shantanubhadoria/Unity3D-Shaders-Basic/tree/master/Shaders
+  - https://en.wikibooks.org/wiki/Cg_Programming/Unity/Multiple_Lights
+
+
+- GPU Instancing
+  - https://docs.unity3d.com/kr/2018.4/Manual/GPUInstancing.html
+
 - Height Map
 - Parallax
 - Tessellation
-
-# GPU Instancing
----
-
-https://docs.unity3d.com/kr/2018.4/Manual/GPUInstancing.html
+- LightMap
 
 <br>
 

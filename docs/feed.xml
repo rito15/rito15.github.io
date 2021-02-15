@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-15T18:09:46+09:00</updated>
+  <updated>2021-02-16T03:22:06+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,129 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>쉐이더그래프로 물 쉐이더 만들기 [작성중]</title>
+    <link href="https://rito15.github.io/posts/shadergraph-water/" rel="alternate" type="text/html" title="쉐이더그래프로 물 쉐이더 만들기 [작성중]" />
+    <published>2021-02-16T03:00:00+09:00</published>
+  
+    <updated>2021-02-16T03:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/shadergraph-water/</id>
+    <content src="https://rito15.github.io/posts/shadergraph-water/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="URP Shader Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Preview
+
+
+1. 단순 색상
+
+
+
+2. 큐브맵 매핑
+
+
+
+
+
+References
+
+
+  https://www.youtube.com/watch?v=gRq-IdShxpU&amp;amp;ab_channel=Unity
+
+
+Download
+
+
+  2021_0214_Water.zip
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>URP에서 쉐이더 코딩하기 [작성 중]</title>
+    <link href="https://rito15.github.io/posts/unity-urp-shader-coding/" rel="alternate" type="text/html" title="URP에서 쉐이더 코딩하기 [작성 중]" />
+    <published>2021-02-15T18:07:00+09:00</published>
+  
+    <updated>2021-02-15T18:07:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-urp-shader-coding/</id>
+    <content src="https://rito15.github.io/posts/unity-urp-shader-coding/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="URP Shader Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      기본 구조
+
+
+  
+
+
+Starting Point
+
+
+Shader "RitoURP/VertexFragmentStartPoint"
+{
+    Properties
+    {
+        _MainTex ("Main Map", 2D) = "white" {}
+        _BumpMap ("Normal Map", 2D) = "bump" {}
+    }
+    SubShader
+    {
+        Tags 
+        {
+            "RenderPipeline"="UniversalPipeline"
+            "RenderType"="Opaque"
+        }
+
+        Pass
+        {
+            HLSLPROGRAM
+            #pra...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -203,149 +326,6 @@ Download
   PlaneMeshGenerator.zip
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>물 쉐이더 만들기</title>
-    <link href="https://rito15.github.io/posts/water-shader/" rel="alternate" type="text/html" title="물 쉐이더 만들기" />
-    <published>2021-02-13T19:24:00+09:00</published>
-  
-    <updated>2021-02-14T18:31:57+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/water-shader/</id>
-    <content src="https://rito15.github.io/posts/water-shader/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  서피스 쉐이더로 물 쉐이더 만들기
-
-
-
-
-목차
-
-
-  1. 물 쉐이더 기초
-  2. 프레넬 공식 적용
-  3. 물 흐르게 하기
-  4. 스페큘러 적용
-  5. 파도 만들기
-  6. 투과율 제어하기
-  7. 최종 결과
-
-
-
-
-준비물
-
-
-  큐브맵 텍스쳐 기반 스카이박스
-  물 노멀맵 텍스쳐
-  물에 빠질 로봇
-
-
-
-
-물 쉐이더 기초
-
-
-메시는 유니티의 기본적인 Plane을 이용한다.
-
-노멀은 노멀맵을 넣어 적용하고, 간단히 float로 타일링이 가능하도록 _Tiling 프로퍼티를 추가한다.
-
-그리고 _Strength 프로퍼티를 통해 노멀의 강도를 조절할 수 있게 한다.
-
-
-
-Shader "Rito/Water"
-{
-    Properties
-    {
-        _BumpMap("Norma...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 17 - Ambient, Diffuse Lighting</title>
-    <link href="https://rito15.github.io/posts/opengl-study-17/" rel="alternate" type="text/html" title="OpenGL 공부 - 17 - Ambient, Diffuse Lighting" />
-    <published>2021-02-13T15:32:00+09:00</published>
-  
-    <updated>2021-02-13T15:32:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-17/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-17/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  Ambient, Diffuse 라이팅 구현
-
-
-
-
-공부 내용
-
-
-버텍스에 노멀 정보 추가
-
-struct Vertex
-{
-    glm::vec3 position;
-    glm::vec3 color;
-    glm::vec2 texcoord;
-    glm::vec3 normal;
-};
-
-Vertex vertices[] =
-{
-    // Position                    // Color                     // TexCoord            // Normal                                                
-    glm::vec3(-0.5f,  0.5f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f...
     </summary>
   
 

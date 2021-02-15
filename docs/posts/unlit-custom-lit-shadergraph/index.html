@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더","description":"목표 URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Lit 쉐이더 만들기","dateModified":"2021-01-30T22:28:22+09:00","datePublished":"2021-01-16T22:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-custom-lit-shadergraph/"},"url":"https://rito15.github.io/posts/unlit-custom-lit-shadergraph/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Lit 쉐이더 만들기","datePublished":"2021-01-16T22:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unlit-custom-lit-shadergraph/"},"url":"https://rito15.github.io/posts/unlit-custom-lit-shadergraph/","author":{"@type":"Person","name":"Rito15"},"headline":"Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더","dateModified":"2021-01-30T22:28:22+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -749,7 +749,7 @@
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
             <a href='/categories/unity-shader/'>Unity Shader</a>,
-            <a href='/categories/shader-graph-study/'>Shader Graph Study</a>
+            <a href='/categories/urp-shader-study/'>URP Shader Study</a>
         </div>
         
 
@@ -3007,6 +3007,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -3168,7 +3194,7 @@
       
       
       <div class="card">
-        <a href="/posts/lighting-models/">
+        <a href="/posts/unity-urp-shader-coding/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -3185,13 +3211,13 @@
   
 
   
-    Nov 16, 2020
+    Feb 15
   
 
-  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
+  <i class="unloaded">2021-02-15T18:07:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lighting Models</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>URP에서 쉐이더 코딩하기 [작성 중]</h3>
             <div class="text-muted small">
               <p>
                 
@@ -3200,59 +3226,16 @@
 
 
 
-                Vectors
+                기본 구조
 
-
-
-
-  L (Light) : 정점에서 광원을 향하는 방향의 벡터
-  N (Normal) : 정점의 노멀 벡터
-  V (View) : 정점에서 카메라를 향하는 방향의 벡터
-  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
-  
-    H (Half) : 블린퐁에서 사용, L와 V의 중...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-smart-multipass-code/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
 
   
-  
-
-  
-    Feb  2
-  
-
-  <i class="unloaded">2021-02-02T00:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>멀티패스 쉐이더 코드 깔끔하게 작성하기</h3>
-            <div class="text-muted small">
-              <p>
-                
 
 
+Starting Point
 
 
-
-                1
+1
 2
 3
 4
@@ -3310,17 +3293,73 @@
 56
 57
 58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69...
+59...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/shadergraph-water/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 16
+  
+
+  <i class="unloaded">2021-02-16T03:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>쉐이더그래프로 물 쉐이더 만들기 [작성중]</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Preview
+
+
+1. 단순 색상
+
+
+
+2. 큐브맵 매핑
+
+
+
+
+
+References
+
+
+  https://www.youtube.com/watch?v=gRq-IdShxpU&amp;ab_channel=Unity
+
+
+Download
+
+
+  2021_0214_Water.zip
+
+
               </p>
             </div>
           </div>

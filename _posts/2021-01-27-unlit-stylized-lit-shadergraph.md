@@ -2,7 +2,7 @@
 title: Unlit 쉐이더그래프로 만드는 Stylized Lit 쉐이더
 author: Rito15
 date: 2021-01-27 22:00:00 +09:00
-categories: [Unity Shader, Shader Graph Study]
+categories: [Unity Shader, URP Shader Study]
 tags: [unity, csharp, shader, shadergraph]
 math: true
 mermaid: true
