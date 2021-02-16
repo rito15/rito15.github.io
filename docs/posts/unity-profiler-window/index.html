@@ -769,6 +769,11 @@
         
         
         
+        <li><a href="/posts/custom-plane-mesh-generator/">Custom Plane Mesh Generator</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unlit-custom-lit-shadergraph/">Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더</a></li>
       
         
@@ -785,11 +790,6 @@
         
         
         <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible [작성 중]</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/lighting-models/">Lighting Models</a></li>
       
 
       </ul>
@@ -2563,6 +2563,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -3138,7 +3164,7 @@ Not...
       
       
       <div class="card">
-        <a href="/posts/lighting-models/">
+        <a href="/posts/water-shader/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -3155,13 +3181,13 @@ Not...
   
 
   
-    Nov 16, 2020
+    Feb 13
   
 
-  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
+  <i class="unloaded">2021-02-13T19:24:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lighting Models</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>물 쉐이더 만들기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -3170,17 +3196,42 @@ Not...
 
 
 
-                Vectors
+                목표
+
+
+  서피스 쉐이더로 물 쉐이더 만들기
 
 
 
 
-  L (Light) : 정점에서 광원을 향하는 방향의 벡터
-  N (Normal) : 정점의 노멀 벡터
-  V (View) : 정점에서 카메라를 향하는 방향의 벡터
-  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
-  
-    H (Half) : 블린퐁에서 사용, L와 V의 중...
+목차
+
+
+  1. 물 쉐이더 기초
+  2. 프레넬 공식 적용
+  3. 물 흐르게 하기
+  4. 스페큘러 적용
+  5. 파도 만들기
+  6. 투과율 제어하기
+  7. 최종 결과
+
+
+
+
+준비물
+
+
+  큐브맵 텍스쳐 기반 스카이박스
+  물 노멀맵 텍스쳐
+  물에 빠질 로봇
+
+
+
+
+물 쉐이더 기초
+
+
+메시...
               </p>
             </div>
           </div>

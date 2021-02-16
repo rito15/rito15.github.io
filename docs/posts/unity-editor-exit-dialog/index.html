@@ -629,6 +629,11 @@
         
         
         
+        <li><a href="/posts/custom-plane-mesh-generator/">Custom Plane Mesh Generator</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unlit-custom-lit-shadergraph/">Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더</a></li>
       
         
@@ -645,11 +650,6 @@
         
         
         <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible [작성 중]</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/lighting-models/">Lighting Models</a></li>
       
 
       </ul>
@@ -2249,6 +2249,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2881,71 +2907,6 @@
       
       
       <div class="card">
-        <a href="/posts/cooldown-icon-ui/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 12
-  
-
-  <i class="unloaded">2021-02-12T17:13:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>쿨타임 아이콘 UI 만들기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목표
-
-
-
-
-
-
-구현
-
-
-1. 하이라키 구성
-
-
-
-[1] Outline
-
-  Image 컴포넌트 : 원하는 모양의 스프라이트 사용, 아웃라인으로 지정할 색상 적용
-
-
-[2] Mask
-
-  RectTransform : Anchor Preset [stretch &amp; stretch] 설정
-  Left, Top, Right, Bottom 4픽셀 설정
- ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/script-templates/">
           <div class="card-body">
             <!--
@@ -3046,6 +3007,63 @@ C:\Program Files\유니티 버전\Editor\Data\Resources\ScriptTemplates
 
 /// &lt;summary&gt; 헤더 드래그 앤 드롭에 의한 UI 이동 구현 &lt;/summary&gt;
 public class ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/show-property-on-inspector/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb  2
+  
+
+  <i class="unloaded">2021-02-02T17:08:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>인스펙터에 오토 프로퍼티 표시하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+public GameObject Property1 =&gt; Field1;
+private GameObject Field1;
+
+
+이렇게 다른 필드와 연결된 프로퍼티라면
+
+public GameObject Property1 =&gt; field1;
+
+[SerializeField]
+private GameObject field1;
+
+
+대상 필드에 ...
               </p>
             </div>
           </div>

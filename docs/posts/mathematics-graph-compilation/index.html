@@ -616,6 +616,11 @@
         
         
         
+        <li><a href="/posts/custom-plane-mesh-generator/">Custom Plane Mesh Generator</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unlit-custom-lit-shadergraph/">Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더</a></li>
       
         
@@ -632,11 +637,6 @@
         
         
         <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible [작성 중]</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/lighting-models/">Lighting Models</a></li>
       
 
       </ul>
@@ -2314,6 +2314,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -2953,7 +2979,7 @@
       
       
       <div class="card">
-        <a href="/posts/shadergraph-water/">
+        <a href="/posts/ref-in-performance/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -2973,10 +2999,10 @@
     Feb 16
   
 
-  <i class="unloaded">2021-02-16T03:00:00+09:00</i>
+  <i class="unloaded">2021-02-16T23:20:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>쉐이더그래프로 물 쉐이더 만들기 [작성중]</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>매개변수 한정자 ref, in의 성능</h3>
             <div class="text-muted small">
               <p>
                 
@@ -2985,79 +3011,17 @@
 
 
 
-                Preview
+                목표
 
 
-1. 단순 색상
+  값타입을 매개변수로 전달할 때 매개변수 한정자 사용에 따른 성능 알아보기
 
 
-
-2. 큐브맵 매핑
-
-
+(string은 참조타입이지만 매개변수로 전달하면 복제되므로 함께 테스트)
 
 
 
-References
-
-
-  https://www.youtube.com/watch?v=gRq-IdShxpU&amp;ab_channel=Unity
-
-
-Download
-
-
-  2021_0214_Water.zip
-
-
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-urp-shader-coding/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 15
-  
-
-  <i class="unloaded">2021-02-15T18:07:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>URP에서 쉐이더 코딩하기 [작성 중]</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                기본 구조
-
-
-  
-
-
-Starting Point
+비교군
 
 
 1
@@ -3084,41 +3048,85 @@ Starting Point
 22
 23
 24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59...
+public struct StructA
+{
+    publi...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/opengl-study-20/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 16
+  
+
+  <i class="unloaded">2021-02-16T22:22:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 20 - Texture Class</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+  텍스쳐 클래스화하기
+
+
+
+
+텍스쳐 클래스 작성
+
+
+기존에 메소드화하여 사용하던 텍스쳐를 클래스화하려고 한다.
+
+function.hpp 파일에 LoadTextureImage() 메소드에 작성했던 내용을 클래스로 옮겨 작성한다.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+class Texture
+{
+priva...
               </p>
             </div>
           </div>

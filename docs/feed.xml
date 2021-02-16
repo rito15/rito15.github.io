@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-16T03:35:31+09:00</updated>
+  <updated>2021-02-17T01:52:07+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,137 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>매개변수 한정자 ref, in의 성능</title>
+    <link href="https://rito15.github.io/posts/ref-in-performance/" rel="alternate" type="text/html" title="매개변수 한정자 ref, in의 성능" />
+    <published>2021-02-16T23:20:00+09:00</published>
+  
+    <updated>2021-02-16T23:20:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/ref-in-performance/</id>
+    <content src="https://rito15.github.io/posts/ref-in-performance/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Csharp" />
+    
+    <category term="Csharp Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  값타입을 매개변수로 전달할 때 매개변수 한정자 사용에 따른 성능 알아보기
+
+
+(string은 참조타입이지만 매개변수로 전달하면 복제되므로 함께 테스트)
+
+
+
+비교군
+
+
+public struct StructA
+{
+    public long a,b,c,d,e,f,g;
+
+    public StructA(long value)
+    {
+        a = b = c = d = e = f = g = value;
+    }
+}
+
+public readonly struct StructB
+{
+    public readonly long a,b,c,d,e,f,g;
+
+    public StructB(long value)
+    {
+        a = b = c = d = e = f = g = valu...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>OpenGL 공부 - 20 - Texture Class</title>
+    <link href="https://rito15.github.io/posts/opengl-study-20/" rel="alternate" type="text/html" title="OpenGL 공부 - 20 - Texture Class" />
+    <published>2021-02-16T22:22:00+09:00</published>
+  
+    <updated>2021-02-16T22:22:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-20/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-20/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  텍스쳐 클래스화하기
+
+
+
+
+텍스쳐 클래스 작성
+
+
+기존에 메소드화하여 사용하던 텍스쳐를 클래스화하려고 한다.
+
+function.hpp 파일에 LoadTextureImage() 메소드에 작성했던 내용을 클래스로 옮겨 작성한다.
+
+class Texture
+{
+private:
+    GLuint id;
+    GLenum type;
+    int width;
+    int height;
+
+public:
+    Texture(const char* fileName, GLenum type);
+    ~Texture();
+
+    inline const GLuint&amp;amp; GetID();
+    void Bind(const GLint&amp;amp; index);
+    void Release();
+    ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -197,135 +328,6 @@ private:
 
     GLuint CompileShader(const GLenum&amp;amp; shaderType, const char* fileDir);
     void LinkProgram(const GLuint&amp;amp; vertexShader, const GLuint&amp;amp; fragmentShader, const GLuint&amp;amp; geo...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 18 - Specular, Rim Light</title>
-    <link href="https://rito15.github.io/posts/opengl-study-18/" rel="alternate" type="text/html" title="OpenGL 공부 - 18 - Specular, Rim Light" />
-    <published>2021-02-14T15:38:00+09:00</published>
-  
-    <updated>2021-02-14T15:38:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-18/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-18/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  Specular Lighting, Rim Lighting 적용
-
-
-
-
-공부 내용
-
-
-필요한 유니폼 변수 전달
-
-World View 벡터가 필요하므로, 이를 구하기 위한 카메라 위치를 전달해준다.
-
-// main.cpp
-
-glUniform3fv(glGetUniformLocation(shaderProgram, "cameraPos"), 1, glm::value_ptr(camPos));
-
-
-
-프래그먼트 쉐이더
-
-우선 라이팅 계산을 위한 벡터들을 만들어준다.
-
-uniform vec3 lightPos0; // Main Light World Position
-uniform vec3 cameraPos; // Camera World Position
-
-void main()
-{
-    vec3 worldNorm...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Custom Plane Mesh Generator</title>
-    <link href="https://rito15.github.io/posts/custom-plane-mesh-generator/" rel="alternate" type="text/html" title="Custom Plane Mesh Generator" />
-    <published>2021-02-14T03:06:00+09:00</published>
-  
-    <updated>2021-02-14T03:06:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/custom-plane-mesh-generator/</id>
-    <content src="https://rito15.github.io/posts/custom-plane-mesh-generator/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Toys" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-  Plane을 원하는 너비, 해상도로 만들 수 있게 해주는 컴포넌트
-
-
-Preview
-
-
-
-
-
-
-How to Use
-
-
-  빈 게임오브젝트를 생성합니다.
-  PlaneMeshGenerator 컴포넌트를 추가합니다.
-  옵션을 설정하고 마테리얼을 인스펙터의 Material에 넣습니다.
-  Generate 버튼을 누릅니다.
-
-
-Download
-
-
-  PlaneMeshGenerator.zip
-
-
     </summary>
   
 
