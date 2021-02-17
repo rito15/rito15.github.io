@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-17T22:41:10+09:00</updated>
+  <updated>2021-02-18T03:21:04+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,79 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>OpenGL 공부 - 21 - Material Class</title>
+    <link href="https://rito15.github.io/posts/opengl-study-21/" rel="alternate" type="text/html" title="OpenGL 공부 - 21 - Material Class" />
+    <published>2021-02-17T22:43:00+09:00</published>
+  
+    <updated>2021-02-17T22:43:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-21/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-21/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  Material 클래스 작성
+
+
+
+
+공부 내용
+
+
+
+  오브젝트에 적용할 색상과 텍스쳐들을 Material 클래스로 래핑하여 쉐이더에 전달한다.
+
+
+Fragment 쉐이더 수정
+
+#version 440
+
+#define saturate(x) clamp(x, 0., 1.)
+
+struct Material
+{
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+
+    sampler2D diffuseMap;
+};
+
+in vec3 vs_position;
+in vec3 vs_color;
+in vec2 vs_texcoord;
+in vec3 vs_normal;
+
+out vec4 fs_color;
+
+// ====================== Uniforms...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -263,72 +336,6 @@ public readonly struct StructB
     public StructB(long value)
     {
         a = b = c = d = e = f = g = valu...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 20 - Texture Class</title>
-    <link href="https://rito15.github.io/posts/opengl-study-20/" rel="alternate" type="text/html" title="OpenGL 공부 - 20 - Texture Class" />
-    <published>2021-02-16T22:22:00+09:00</published>
-  
-    <updated>2021-02-16T22:22:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-20/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-20/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  텍스쳐 클래스화하기
-
-
-
-
-텍스쳐 클래스 작성
-
-
-기존에 메소드화하여 사용하던 텍스쳐를 클래스화하려고 한다.
-
-function.hpp 파일에 LoadTextureImage() 메소드에 작성했던 내용을 클래스로 옮겨 작성한다.
-
-class Texture
-{
-private:
-    GLuint id;
-    GLenum type;
-    int width;
-    int height;
-
-public:
-    Texture(const char* fileName, GLenum type);
-    ~Texture();
-
-    inline const GLuint&amp;amp; GetID();
-    void Bind(const GLint&amp;amp; index);
-    void Release();
-    ...
     </summary>
   
 

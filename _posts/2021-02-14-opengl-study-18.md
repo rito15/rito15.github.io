@@ -120,7 +120,7 @@ float rim = pow(1. - saturate(NdV), rimPower) * 2.;
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 
 ## vertex_core.glsl

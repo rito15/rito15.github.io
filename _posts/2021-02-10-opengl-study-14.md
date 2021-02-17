@@ -179,7 +179,7 @@ modelMatrix = glm::scale (modelMatrix, glm::vec3(scaleChange));
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 
 ## vertex_core.glsl

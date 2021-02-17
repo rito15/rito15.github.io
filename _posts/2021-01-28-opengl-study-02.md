@@ -110,7 +110,7 @@ and call glewInit() to initialize the extension entry points.
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 ```cpp
 #include <GL/glew.h>

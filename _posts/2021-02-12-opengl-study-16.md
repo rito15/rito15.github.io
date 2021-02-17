@@ -103,7 +103,7 @@ UpdateTransformByInputs(window, position, rotation, scale, 0.02f, 5.0f, 0.04f);
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 
 ## vertex_core.glsl

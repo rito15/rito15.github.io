@@ -150,7 +150,7 @@ glDrawArrays(GL_TRIANGLES, 0, 3);
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 ```cpp
 #include <GL/glew.h>

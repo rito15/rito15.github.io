@@ -242,7 +242,7 @@ shader.SetMat4fv("ModelMatrix", transform.GetModelMatrix());
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 
 - [2021_0215_OpenGL_Study_19.zip](https://github.com/rito15/Images/files/5980503/2021_0215_OpenGL_Study_19.zip)

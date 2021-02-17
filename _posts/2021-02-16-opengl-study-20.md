@@ -78,7 +78,7 @@ texture1.Bind(1);
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 
 - [2021_0217_OpenGL_Study_20.zip](https://github.com/rito15/Images/files/5990171/2021_0217_OpenGL_Study_20.zip)

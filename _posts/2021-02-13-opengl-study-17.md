@@ -233,7 +233,7 @@ glUniformMatrix4fv
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 
 ## vertex_core.glsl

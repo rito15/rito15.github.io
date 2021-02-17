@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="쿨타임 아이콘 UI 만들기" />
+<meta property="og:title" content="OpenGL 공부 - 21 - Material Class" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목표" />
-<meta property="og:description" content="목표" />
-<link rel="canonical" href="https://rito15.github.io/posts/cooldown-icon-ui/" />
-<meta property="og:url" content="https://rito15.github.io/posts/cooldown-icon-ui/" />
+<meta name="description" content="목표 Material 클래스 작성" />
+<meta property="og:description" content="목표 Material 클래스 작성" />
+<link rel="canonical" href="https://rito15.github.io/posts/opengl-study-21/" />
+<meta property="og:url" content="https://rito15.github.io/posts/opengl-study-21/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-02-12T17:13:00+09:00" />
+<meta property="article:published_time" content="2021-02-17T22:43:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="쿨타임 아이콘 UI 만들기" />
+<meta property="twitter:title" content="OpenGL 공부 - 21 - Material Class" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표","datePublished":"2021-02-12T17:13:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cooldown-icon-ui/"},"url":"https://rito15.github.io/posts/cooldown-icon-ui/","author":{"@type":"Person","name":"Rito15"},"headline":"쿨타임 아이콘 UI 만들기","dateModified":"2021-02-12T17:13:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 Material 클래스 작성","datePublished":"2021-02-17T22:43:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-21/"},"url":"https://rito15.github.io/posts/opengl-study-21/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 21 - Material Class","dateModified":"2021-02-17T22:43:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>쿨타임 아이콘 UI 만들기 | Rito15
+  <title>OpenGL 공부 - 21 - Material Class | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>쿨타임 아이콘 UI 만들기</span>
+        <span>OpenGL 공부 - 21 - Material Class</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>쿨타임 아이콘 UI 만들기</h1>
+      <h1 data-toc-skip>OpenGL 공부 - 21 - Material Class</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Feb 12, 2021,  5:13 PM +0900"
+    title="Wed, Feb 17, 2021, 10:43 PM +0900"
   >
 
   
   
 
   
-    Feb 12
+    Feb 17
   
 
-  <i class="unloaded">2021-02-12T17:13:00+09:00</i>
+  <i class="unloaded">2021-02-17T22:43:00+09:00</i>
 
 </span>
           by
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="339 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="521 words">2 min</span>
 
 
           <!-- page views -->
@@ -435,59 +435,22 @@
 
         <h1 id="목표">목표</h1>
 <hr />
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107744663-71df3280-6d56-11eb-93d3-85813ca51263.gif" alt="2012_0212_CooldownIcon" class="normal" /></p>
+<ul>
+  <li>Material 클래스 작성</li>
+</ul>
 
 <p><br /></p>
 
-<h1 id="구현">구현</h1>
+<h1 id="공부-내용">공부 내용</h1>
 <hr />
 
-<h2 id="1-하이라키-구성">1. 하이라키 구성</h2>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107747987-b3bea780-6d5b-11eb-8c1c-830ea4139774.png" alt="image" class="normal" /></p>
-
-<h3 id="1-outline"><strong>[1] Outline</strong></h3>
 <ul>
-  <li>Image 컴포넌트 : 원하는 모양의 스프라이트 사용, 아웃라인으로 지정할 색상 적용</li>
+  <li>오브젝트에 적용할 색상과 텍스쳐들을 Material 클래스로 래핑하여 쉐이더에 전달한다.</li>
 </ul>
 
-<h3 id="2-mask"><strong>[2] Mask</strong></h3>
-<ul>
-  <li>RectTransform : Anchor Preset [stretch &amp; stretch] 설정</li>
-  <li>Left, Top, Right, Bottom 4픽셀 설정</li>
-  <li>Image 컴포넌트 : Outline과 같은 스프라이트 사용</li>
-  <li>Mask 컴포넌트 : [Show Mask Graphic] 체크 해제</li>
-</ul>
+<h2 id="fragment-쉐이더-수정">Fragment 쉐이더 수정</h2>
 
-<h3 id="3-icon"><strong>[3] Icon</strong></h3>
-<ul>
-  <li>RectTransform : Anchor Preset [stretch &amp; stretch] 설정</li>
-  <li>Left, Top, Right, Bottom 0</li>
-  <li>Image 컴포넌트 : 원하는 스프라이트 사용</li>
-</ul>
-
-<h3 id="4-fill"><strong>[4] Fill</strong></h3>
-<ul>
-  <li>RectTransform : Anchor Preset [stretch &amp; stretch] 설정</li>
-  <li>Left, Top, Right, Bottom 0</li>
-  <li>Image 컴포넌트
-    <ul>
-      <li>Outline과 같은 모양 또는 가득찬 사각형 스프라이트 사용</li>
-      <li>Color : RGBA(0, 0, 0, 0.5)</li>
-      <li>Image Type : Filled</li>
-      <li>Fill Method : Radial 360</li>
-      <li>Fill Origin : Top</li>
-      <li>Fill Amount : 1</li>
-      <li>Clockwise : False</li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-<h2 id="2-스크립트-작성">2. 스크립트 작성</h2>
-
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -520,52 +483,239 @@
 31
 32
 33
-</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">CooldownUI</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+</pre></td><td class="rouge-code"><pre><span class="cp">#version 440
+</span>
+<span class="cp">#define saturate(x) clamp(x, 0., 1.)
+</span>
+<span class="k">struct</span> <span class="n">Material</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">UI</span><span class="p">.</span><span class="n">Image</span> <span class="n">fill</span><span class="p">;</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">maxCooldown</span> <span class="p">=</span> <span class="m">5f</span><span class="p">;</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">currentCooldown</span> <span class="p">=</span> <span class="m">5f</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">ambient</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">diffuse</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">specular</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetMaxCooldown</span><span class="p">(</span><span class="k">in</span> <span class="kt">float</span> <span class="k">value</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">maxCooldown</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
-        <span class="nf">UpdateFiilAmount</span><span class="p">();</span>
-    <span class="p">}</span>
+    <span class="kt">sampler2D</span> <span class="n">diffuseMap</span><span class="p">;</span>
+<span class="p">};</span>
 
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetCurrentCooldown</span><span class="p">(</span><span class="k">in</span> <span class="kt">float</span> <span class="k">value</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">currentCooldown</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
-        <span class="nf">UpdateFiilAmount</span><span class="p">();</span>
-    <span class="p">}</span>
+<span class="k">in</span> <span class="kt">vec3</span> <span class="n">vs_position</span><span class="p">;</span>
+<span class="k">in</span> <span class="kt">vec3</span> <span class="n">vs_color</span><span class="p">;</span>
+<span class="k">in</span> <span class="kt">vec2</span> <span class="n">vs_texcoord</span><span class="p">;</span>
+<span class="k">in</span> <span class="kt">vec3</span> <span class="n">vs_normal</span><span class="p">;</span>
 
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">UpdateFiilAmount</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">fill</span><span class="p">.</span><span class="n">fillAmount</span> <span class="p">=</span> <span class="n">currentCooldown</span> <span class="p">/</span> <span class="n">maxCooldown</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="k">out</span> <span class="kt">vec4</span> <span class="n">fs_color</span><span class="p">;</span>
 
-    <span class="c1">// Test</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="nf">SetCurrentCooldown</span><span class="p">(</span><span class="n">currentCooldown</span> <span class="p">-</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">);</span>
+<span class="c1">// ====================== Uniforms =========================</span>
+<span class="k">uniform</span> <span class="n">Material</span> <span class="n">material</span><span class="p">;</span>
+<span class="k">uniform</span> <span class="kt">sampler2D</span> <span class="n">wallTex</span><span class="p">;</span>
+<span class="k">uniform</span> <span class="kt">vec3</span> <span class="n">lightPos0</span><span class="p">;</span> <span class="c1">// Main Light World Position</span>
+<span class="k">uniform</span> <span class="kt">vec3</span> <span class="n">cameraPos</span><span class="p">;</span> <span class="c1">// Camera World Position</span>
 
-        <span class="c1">// Loop</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">currentCooldown</span> <span class="p">&lt;</span> <span class="m">0f</span><span class="p">)</span>
-            <span class="n">currentCooldown</span> <span class="p">=</span> <span class="n">maxCooldown</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">vec3</span> <span class="n">worldPos</span> <span class="o">=</span> <span class="n">vs_position</span><span class="p">;</span>
+
+    <span class="c1">// ====================== World Vectors =========================</span>
+    <span class="kt">vec3</span> <span class="n">worldNormal</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">vs_normal</span><span class="p">);</span>
+    <span class="kt">vec3</span> <span class="n">worldLight</span>  <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">lightPos0</span> <span class="o">-</span> <span class="n">worldPos</span><span class="p">);</span>
+    <span class="kt">vec3</span> <span class="n">worldView</span>   <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">cameraPos</span> <span class="o">-</span> <span class="n">worldPos</span><span class="p">);</span>
+    <span class="kt">vec3</span> <span class="n">worldHalf</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">worldLight</span> <span class="o">+</span> <span class="n">worldView</span><span class="p">);</span>
+
+    <span class="c1">// ====================== Lighting ==============================</span>
+    <span class="c1">// Ambient Light</span>
+    <span class="kt">vec3</span> <span class="n">ambient</span> <span class="o">=</span> <span class="kt">vec3</span><span class="p">(</span><span class="mi">1</span><span class="p">.);</span>
+
+    <span class="c1">// Diffuse Light</span>
+    <span class="kt">float</span> <span class="n">NdL</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">worldNormal</span><span class="p">,</span> <span class="n">worldLight</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">diffuse</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">(</span><span class="n">NdL</span><span class="p">);</span>
+
+    <span class="c1">// Specular Light - Blinn Phong</span>
+    <span class="kt">float</span> <span class="n">NdH</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">worldNormal</span><span class="p">,</span> <span class="n">worldHalf</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">specBpPower</span> <span class="o">=</span> <span class="mi">500</span><span class="p">.;</span>
+    <span class="kt">float</span> <span class="n">specBP</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">saturate</span><span class="p">(</span><span class="n">NdH</span><span class="p">),</span> <span class="n">specBpPower</span><span class="p">);</span>
+
+    <span class="c1">// Rim Light</span>
+    <span class="c1">//float NdV = dot(worldNormal, worldView);</span>
+    <span class="c1">//float rimPower = 1.;</span>
+    <span class="c1">//float rim = pow(1. - saturate(NdV), rimPower) * 2.;</span>
+    
+    <span class="c1">// ====================== Textures ==============================</span>
+    <span class="kt">vec3</span> <span class="n">diffMapCol</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">material</span><span class="p">.</span><span class="n">diffuseMap</span><span class="p">,</span> <span class="n">vs_texcoord</span><span class="p">).</span><span class="n">xyz</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">diffMapMask</span> <span class="o">=</span> <span class="n">step</span><span class="p">(</span><span class="kt">vec3</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mo">01</span><span class="p">),</span> <span class="n">diffMapCol</span><span class="p">);</span>
+    <span class="kt">vec3</span> <span class="n">wallMapCol</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">wallTex</span><span class="p">,</span> <span class="n">vs_texcoord</span><span class="p">).</span><span class="n">xyz</span><span class="p">;</span>
+    
+    <span class="c1">// ====================== Colors ================================</span>
+    <span class="kt">vec3</span> <span class="n">ambientCol</span> <span class="o">=</span> <span class="n">material</span><span class="p">.</span><span class="n">ambient</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">diffCol</span> <span class="o">=</span> <span class="n">mix</span><span class="p">(</span><span class="n">wallMapCol</span><span class="p">,</span> <span class="n">diffMapCol</span> <span class="o">*</span> <span class="n">material</span><span class="p">.</span><span class="n">diffuse</span><span class="p">,</span> <span class="n">diffMapMask</span><span class="p">);</span>
+    <span class="kt">vec3</span> <span class="n">specCol</span> <span class="o">=</span> <span class="n">material</span><span class="p">.</span><span class="n">specular</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">lightCol</span> <span class="o">=</span> <span class="kt">vec3</span><span class="p">(</span><span class="mi">1</span><span class="p">.,</span> <span class="mi">1</span><span class="p">.,</span> <span class="mi">1</span><span class="p">.);</span>
+    
+    <span class="c1">// ====================== Final Colors ==========================</span>
+    <span class="n">ambientCol</span> <span class="o">=</span> <span class="n">ambient</span> <span class="o">*</span> <span class="n">ambientCol</span><span class="p">;</span>
+    <span class="n">diffCol</span> <span class="o">=</span> <span class="n">diffuse</span> <span class="o">*</span> <span class="n">diffCol</span><span class="p">;</span>
+    <span class="n">specCol</span> <span class="o">=</span> <span class="n">specBP</span> <span class="o">*</span> <span class="n">specCol</span><span class="p">;</span>
+
+
+    <span class="kt">vec3</span> <span class="n">col</span> <span class="o">=</span> <span class="p">(</span><span class="n">diffCol</span> <span class="o">+</span> <span class="n">specCol</span><span class="p">)</span> <span class="o">*</span> <span class="n">lightCol</span> <span class="o">+</span> <span class="n">ambientCol</span><span class="p">;</span>
+
+    <span class="n">fs_color</span> <span class="o">=</span> <span class="kt">vec4</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="mi">1</span><span class="p">.);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
+<h2 id="material-클래스-작성">Material 클래스 작성</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre></td><td class="rouge-code"><pre><span class="cp">#pragma once
+</span>
+<span class="k">class</span> <span class="nc">Material</span>
+<span class="p">{</span>
+<span class="nl">private:</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">ambient</span><span class="p">;</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">diffuse</span><span class="p">;</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">specular</span><span class="p">;</span>
+    <span class="n">GLint</span> <span class="n">diffuseMapID</span><span class="p">;</span>
+
+<span class="nl">public:</span>
+    <span class="n">Material</span><span class="p">(</span><span class="k">const</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="o">&amp;</span> <span class="n">ambient</span><span class="p">,</span> <span class="k">const</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="o">&amp;</span> <span class="n">diffuse</span><span class="p">,</span> <span class="k">const</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="o">&amp;</span> <span class="n">specular</span><span class="p">,</span>
+        <span class="n">Texture</span><span class="o">&amp;</span> <span class="n">diffuseMap</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">ambient</span> <span class="o">=</span> <span class="n">ambient</span><span class="p">;</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">diffuse</span> <span class="o">=</span> <span class="n">diffuse</span><span class="p">;</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">specular</span> <span class="o">=</span> <span class="n">specular</span><span class="p">;</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">diffuseMapID</span> <span class="o">=</span> <span class="n">diffuseMap</span><span class="p">.</span><span class="n">GetID</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="o">~</span><span class="n">Material</span><span class="p">()</span> <span class="p">{}</span>
+
+    <span class="c1">// 쉐이더에 전달</span>
+    <span class="kt">void</span> <span class="n">SendToShader</span><span class="p">(</span><span class="n">Shader</span><span class="o">&amp;</span> <span class="n">shader</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">shader</span><span class="p">.</span><span class="n">SetVec3f</span><span class="p">(</span><span class="s">"material.ambient"</span><span class="p">,</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">ambient</span><span class="p">);</span>
+        <span class="n">shader</span><span class="p">.</span><span class="n">SetVec3f</span><span class="p">(</span><span class="s">"material.diffuse"</span><span class="p">,</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">diffuse</span><span class="p">);</span>
+        <span class="n">shader</span><span class="p">.</span><span class="n">SetVec3f</span><span class="p">(</span><span class="s">"material.specular"</span><span class="p">,</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">specular</span><span class="p">);</span>
+        <span class="n">shader</span><span class="p">.</span><span class="n">SetTexture</span><span class="p">(</span><span class="s">"material.diffuseMap"</span><span class="p">,</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">diffuseMapID</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="maincpp-수정">main.cpp 수정</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="n">Texture</span> <span class="nf">texture0</span><span class="p">(</span><span class="s">"Images/MoonCat.png"</span><span class="p">);</span>
+<span class="n">Texture</span> <span class="nf">texture1</span><span class="p">(</span><span class="s">"Images/Wall.png"</span><span class="p">);</span>
+
+<span class="c1">// 마테리얼 선언</span>
+<span class="n">Material</span> <span class="nf">material</span><span class="p">(</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">0.1</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span> <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">),</span>
+    <span class="n">texture0</span>
+<span class="p">);</span>
+
+<span class="c1">// 쉐이더에 마테리얼 전달</span>
+<span class="n">material</span><span class="p">.</span><span class="n">SendToShader</span><span class="p">(</span><span class="n">shader</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h1 id="실행-결과">실행 결과</h1>
+<hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108246171-79f30400-7194-11eb-88b8-90577c82299c.gif" alt="2021_0218_Opengl" class="normal" /></p>
+
+<p><br /></p>
+
+<h1 id="source-code">Source Code</h1>
+<hr />
+
 <ul>
-  <li>인스펙터에서 fill 필드에 Fill 게임오브젝트를 드래그해서 넣어준다.</li>
+  <li><a href="https://github.com/rito15/Images/files/5997649/2021_0217_OpenGL_Study_21.zip">2021_0217_OpenGL_Study_21.zip</a></li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="구현-예시">구현 예시</h1>
+<h1 id="references">References</h1>
 <hr />
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107747801-60e4f000-6d5b-11eb-8dc6-00216437f23c.gif" alt="2012_0212_CooldownIcons" class="normal" /></p>
-
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=7mDSWwS9cFs">https://www.youtube.com/watch?v=7mDSWwS9cFs</a></li>
+  <li><a href="https://heinleinsgame.tistory.com/16">https://heinleinsgame.tistory.com/16</a></li>
+</ul>
 
 
       </div>
@@ -577,8 +727,8 @@
         <div class="post-meta mb-3">
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
-            <a href='/categories/unity/'>Unity</a>,
-            <a href='/categories/unity-memo/'>Unity Memo</a>
+            <a href='/categories/opengl/'>OpenGL</a>,
+            <a href='/categories/opengl-study/'>OpenGL Study</a>
         </div>
         
 
@@ -587,17 +737,11 @@
         <div class="post-tags">
           <i class="fa fa-tags fa-fw mr-1"></i>
           
-          <a href="/tags/unity/"
-            class="post-tag no-text-decoration" >unity</a>
+          <a href="/tags/graphics/"
+            class="post-tag no-text-decoration" >graphics</a>
           
-          <a href="/tags/csharp/"
-            class="post-tag no-text-decoration" >csharp</a>
-          
-          <a href="/tags/ui/"
-            class="post-tag no-text-decoration" >ui</a>
-          
-          <a href="/tags/cooldown/"
-            class="post-tag no-text-decoration" >cooldown</a>
+          <a href="/tags/opengl/"
+            class="post-tag no-text-decoration" >opengl</a>
           
           </div>
         
@@ -629,19 +773,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=쿨타임 아이콘 UI 만들기 - Rito15&url=https://rito15.github.io/posts/cooldown-icon-ui/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=OpenGL 공부 - 21 - Material Class - Rito15&url=https://rito15.github.io/posts/opengl-study-21/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=쿨타임 아이콘 UI 만들기 - Rito15&u=https://rito15.github.io/posts/cooldown-icon-ui/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=OpenGL 공부 - 21 - Material Class - Rito15&u=https://rito15.github.io/posts/opengl-study-21/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=쿨타임 아이콘 UI 만들기 - Rito15&url=https://rito15.github.io/posts/cooldown-icon-ui/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=OpenGL 공부 - 21 - Material Class - Rito15&url=https://rito15.github.io/posts/opengl-study-21/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -2352,189 +2496,189 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -3244,7 +3388,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-ui-drag-and-drop/">
+        <a href="/posts/opengl-study-18/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -3261,13 +3405,13 @@
   
 
   
-    Feb  1
+    Feb 14
   
 
-  <i class="unloaded">2021-02-01T03:00:00+09:00</i>
+  <i class="unloaded">2021-02-14T15:38:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 드래그 앤 드롭으로 옮기기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 18 - Specular, Rim Light</h3>
             <div class="text-muted small">
               <p>
                 
@@ -3276,19 +3420,25 @@
 
 
 
-                기능
-
-  UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기
+                목표
 
 
-사용법
 
-  헤더 UI는 UI의 자식으로 구성한다.
-  PopupUIHeader 스크립트를 헤더 UI의 컴포넌트로 넣어준다.
+  Specular Lighting, Rim Lighting 적용
 
 
-/// &lt;summary&gt; 헤더 드래그 앤 드롭에 의한 UI 이동 구현 &lt;/summary&gt;
-public class ...
+
+
+공부 내용
+
+
+필요한 유니폼 변수 전달
+
+World View 벡터가 필요하므로, 이를 구하기 위한 카메라 위치를 전달해준다.
+
+// main.cpp
+
+glUniform3fv(glGetUniformLocation(shaderProgram, "cameraPos"), 1, ...
               </p>
             </div>
           </div>
@@ -3298,7 +3448,7 @@ public class ...
       
       
       <div class="card">
-        <a href="/posts/textmeshpro-usage/">
+        <a href="/posts/opengl-study-19/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -3315,13 +3465,13 @@ public class ...
   
 
   
-    Feb 12
+    Feb 15
   
 
-  <i class="unloaded">2021-02-12T02:09:00+09:00</i>
+  <i class="unloaded">2021-02-15T15:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>텍스트 메쉬 프로(TMPro) 사용하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 19 - Shader, Transform Class</h3>
             <div class="text-muted small">
               <p>
                 
@@ -3330,83 +3480,92 @@ public class ...
 
 
 
-                특징
+                목표
 
 
 
-  
-    SDF(Signed Distance Field)를 이용하여 UGUI 텍스트보다 외곽선을 더 깔끔하게 표현한다.
-  
-  
-    마테리얼을 이용하여 다양한 효과를 줄 수 있다.
-  
-  
-    UGUI 텍스트에 비해 성능이 좋다.
-  
-  
-    미리 고해상도의 Font Texture Atlas를 생성하여 사용하기 때문에 실...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/popup-ui-management-system/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 31
-  
-
-  <i class="unloaded">2021-01-31T20:23:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>팝업 UI 관리 시스템 구현하기</h3>
-            <div class="text-muted small">
-              <p>
-                
+  쉐이더, 트랜스폼 클래스화하기
 
 
 
 
-
-                게임의 UI
-
+1. 쉐이더의 클래스화
 
 
-  온라인 PC게임을 예로 들었을 때, 다양한 형태의 UI들이 존재한다.
-  화면 예시 : Smilegate RPG ‘LostARK’
+shader.hpp 작성
 
+shader.hpp 파일에 Shader 클래스를 작성한다.
 
-1. 전체화면 UI
+기존에 functions.hpp와 main.cpp에서 사용하던 쉐이더 부분을 모두 Shader 클래스로 옮겨준다.
 
-  크기가 화면 전체에 해당하는 UI
-  예 : 상점, 캐시 샵
+// shader.hpp
 
-
-
-
-2. 고정형 UI
-
-  고정된 위치에 항상 존재하는 UI
-  예 : 하단 바, 퀵슬롯, 미니맵, 채팅창
+class Shader
+{
+private:
 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/opengl-study-01/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 28
+  
+
+  <i class="unloaded">2021-01-28T00:10:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 01 - 시작</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+
+  OpenGL 기초 세팅
+
+
+
+
+OpenGL?
+
+
+
+  
+    OpenGL 자체는 API가 아닌, 각종 OpenGL 라이브러리를 개발하기 위해 Khronos Group이 개발 및 유지 관리하는 설명서이다.
+  
+  
+    OpenGL은 각 함수의 출력과 수행 방법을 정의한다.
+  
+  
+    실제로 OpenGL 라이브러리를 개발하는 ...
               </p>
             </div>
           </div>
@@ -3429,15 +3588,15 @@ public class ...
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/opengl-study-16/" class="btn btn-outline-primary">
-    <p>OpenGL 공부 - 16 - Transform, Input</p>
+  <a href="/posts/memo-game-server-engines/" class="btn btn-outline-primary">
+    <p>게임 서버 엔진</p>
   </a>
   
 
   
-  <a href="/posts/fps-tps-character/" class="btn btn-outline-primary">
-    <p>1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]</p>
-  </a>
+  <span class="btn btn-outline-primary disabled">
+    <p>-</p>
+  </span>
   
 
 </div>

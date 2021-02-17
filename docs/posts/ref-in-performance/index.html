@@ -2347,6 +2347,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -3293,7 +3306,7 @@
       
       
       <div class="card">
-        <a href="/posts/custom-plane-mesh-generator/">
+        <a href="/posts/unity-urp-shader-coding/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -3310,13 +3323,13 @@
   
 
   
-    Feb 14
+    Feb 15
   
 
-  <i class="unloaded">2021-02-14T03:06:00+09:00</i>
+  <i class="unloaded">2021-02-15T18:07:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Plane Mesh Generator</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>URP에서 쉐이더 코딩하기 [작성 중]</h3>
             <div class="text-muted small">
               <p>
                 
@@ -3325,31 +3338,24 @@
 
 
 
-                Note
+                기본 구조
 
 
 
-  Plane을 원하는 너비, 해상도로 만들 수 있게 해주는 컴포넌트
+  
 
 
-Preview
+Starting Point
 
 
-
-
-
-
-How to Use
-
-
-
-  빈 게임오브젝트를 생성합니다.
-  PlaneMeshGenerator 컴포넌트를 추가합니다.
-  옵션을 설정하고 마테리얼을 인스펙터의 Material에 넣습니다.
-  Generate 버튼을 누릅니다.
-
-
-Downl...
+Shader "RitoURP/VertexFragmentStartPoint"
+{
+    Properties
+    {
+        _MainTex ("Main Map", 2D) = "white" {}
+        _BumpMap ("Normal Map", 2D) = "bump" {}
+    }
+...
               </p>
             </div>
           </div>

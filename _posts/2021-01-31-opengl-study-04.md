@@ -110,7 +110,7 @@ glEnableVertexAttribArray(0);
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 ```cpp
 #include <GL/glew.h>

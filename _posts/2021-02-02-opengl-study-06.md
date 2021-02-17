@@ -127,7 +127,7 @@ cout << "\nVERTEX\n" + vertexShader +
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 
 ## Basic.shader

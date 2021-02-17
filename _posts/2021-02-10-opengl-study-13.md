@@ -258,7 +258,7 @@ glUniform1i(glGetUniformLocation(shaderProgram, "wallTex"), 1);
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 
 ## vertex_core.glsl

@@ -211,7 +211,7 @@ void main()
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 ```cpp
 #include <GL/glew.h>

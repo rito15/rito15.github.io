@@ -123,7 +123,7 @@ glEnd();
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 ```cpp
 #include <GLFW/glfw3.h>

@@ -367,6 +367,94 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-exit-dialog/">유니티 에디터 종료 확인 다이얼로그 만들기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+기본적으로 유니티 에디터를 종료할 때는 확인창이 뜨지 않고 바로 종료된다.
+
+만약 실수로 닫기 버튼을 눌러버린다면 그대로 종료되어 버린다.
+
+그런데 유니티 에디터는 에디터의 종료도 이벤트로 구분하여, 메소드를 추가할 수 있도록 구현해놓았기 때문에
+
+이를 이용해 에디터의 종료를 시도할 경우 확인창을 띄우도록 할 수 있다.
+
+
+
+[Initia...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Feb 10, 2021,  1:50 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 10
+  
+
+  <i class="unloaded">2021-02-10T13:50:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="414 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/opengl-study-13/">OpenGL 공부 - 13 - Texture</a>
     </h1>
 
@@ -453,7 +541,7 @@ int imageWidth = 0...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2631 words">14 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2630 words">14 min</span>
 
 
         <!-- page views -->
@@ -635,7 +723,7 @@ glFrontFace(GL_CCW); // 시계 반대 방향으로 구성된 ...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1984 words">11 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1983 words">11 min</span>
 
 
         <!-- page views -->
@@ -682,7 +770,7 @@ glFrontFace(GL_CCW); // 시계 반대 방향으로 구성된 ...
 
 
 
-Current Source Codes
+Source Code
 
 
 vertex_core.glsl
@@ -690,7 +778,7 @@ vertex_core.glsl
 #version 440
 
 layout (location = 0) in vec3 vertex_position;
-layout (location = 1) in vec3 ...
+layout (location = 1) in vec3 vertex_co...
       </p>
     </div>
 
@@ -737,7 +825,7 @@ layout (location = 1) in vec3 ...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="991 words">5 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="990 words">5 min</span>
 
 
         <!-- page views -->
@@ -837,7 +925,7 @@ GLM ?
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="750 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="749 words">4 min</span>
 
 
         <!-- page views -->
@@ -1234,106 +1322,6 @@ Shader "Render Depth"
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="99 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  uniform 변수, VAO에 대한 이해 및 사용
-
-
-
-
-1. uniform
-
-
-uniform이란?
-
-  OpenGL에서 쉐이더로 전달하는 글로벌 변수
-
-
-
-쉐이더에서 uniform 변수 선언 및 사용
-
-#shader fragment
-#version 330 core
-
-layout(location = 0) out vec4 color;
-
-u...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Feb  5, 2021,  3:20 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb  5
-  
-
-  <i class="unloaded">2021-02-05T15:20:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2483 words">13 min</span>
 
 
         <!-- page views -->

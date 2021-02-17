@@ -215,7 +215,7 @@ unsigned int numOfIndices  = sizeof(indices) / sizeof(GLuint);
 
 <br>
 
-# Current Source Codes
+# Source Code
 ---
 
 ## vertex_core.glsl

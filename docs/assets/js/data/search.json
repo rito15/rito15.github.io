@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "OpenGL 공부 - 21 - Material Class",
+    "url": "/posts/opengl-study-21/",
+    "categories": "OpenGL, OpenGL Study",
+    "tags": "graphics, opengl",
+    "date": "2021-02-17 22:43:00 +0900",
+    
+
+
+
+
+
+    "snippet": "목표  Material 클래스 작성공부 내용  오브젝트에 적용할 색상과 텍스쳐들을 Material 클래스로 래핑하여 쉐이더에 전달한다.Fragment 쉐이더 수정#version 440#define saturate(x) clamp(x, 0., 1.)struct Material{    vec3 ambient;    vec3 diffuse;    vec3 specular;    sampler2D diffuseMap;};in vec3 vs_position;in vec3 vs_color;in vec2 vs_texcoord;in vec3..."
+  },
+  
+  {
     "title": "게임 서버 엔진",
     "url": "/posts/memo-game-server-engines/",
     "categories": "Memo",
@@ -357,7 +372,7 @@
 
 
 
-    "snippet": "목표  프로그램 및 쉐이더 객체 생성  파일에 쉐이더 작성, 불러와 컴파일공부 내용Current Source Codesvertex_core.glsl#version 440layout (location = 0) in vec3 vertex_position;layout (location = 1) in vec3 vertex_color;layout (location = 2) in vec3 vertex_texcoord;out vec3 vs_position;out vec3 vs_color;out vec2 vs_texcoord;void mai..."
+    "snippet": "목표  프로그램 및 쉐이더 객체 생성  파일에 쉐이더 작성, 불러와 컴파일공부 내용Source Codevertex_core.glsl#version 440layout (location = 0) in vec3 vertex_position;layout (location = 1) in vec3 vertex_color;layout (location = 2) in vec3 vertex_texcoord;out vec3 vs_position;out vec3 vs_color;out vec2 vs_texcoord;void main(){    v..."
   },
   
   {
