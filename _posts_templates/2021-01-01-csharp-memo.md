@@ -15,7 +15,3 @@ mermaid: true
 # References
 ---
 - 
-
-# Download
----
-- 
