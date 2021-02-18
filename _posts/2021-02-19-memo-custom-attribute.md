@@ -8,6 +8,13 @@ math: true
 mermaid: true
 ---
 
+## 필요 네임스페이스
+
+```
+using System;
+using System.Linq;
+```
+
 ## 1. 애트리뷰트 클래스 작성
 
 ```cs

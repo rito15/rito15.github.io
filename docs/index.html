@@ -36,7 +36,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Rito15","description":"Unity Csharp Developer","sameAs":["https://github.com/rito15"],"url":"https://rito15.github.io/","author":{"@type":"Person","name":"Rito15"},"name":"Rito15","@type":"WebSite","@context":"https://schema.org"}</script>
+{"sameAs":["https://github.com/rito15"],"description":"Unity Csharp Developer","name":"Rito15","url":"https://rito15.github.io/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebSite","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -377,14 +377,18 @@
 
 
 
-        1. 애트리뷰트 클래스 작성
+        필요 네임스페이스
+
+using System;
+using System.Linq;
+
+
+1. 애트리뷰트 클래스 작성
 
 [System.AttributeUsage(System.AttributeTargets.Method)]
 public class CustomAttribute : System.Attribute
 {
-    public string Title { get; }
-
-    public CustomAttribute(string t) =&g...
+    public string Title { ge...
       </p>
     </div>
 
@@ -431,7 +435,7 @@ public class CustomAttribute : System.Attribute
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="189 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="203 words">1 min</span>
 
 
         <!-- page views -->
@@ -1509,6 +1513,11 @@ Download
         
         
         
+        <li><a href="/posts/fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]</a></li>
+      
+        
+        
+        
         <li><a href="/posts/opengl-study-20/">OpenGL 공부 - 20 - Texture Class</a></li>
       
         
@@ -1525,11 +1534,6 @@ Download
         
         
         <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03 - Vertex, VBO</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-04/">OpenGL 공부 - 04 - VAO, VBO, Attributes</a></li>
       
 
       </ul>

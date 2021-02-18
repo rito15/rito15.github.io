@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# 파일 입출력" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"C# 파일 입출력","description":"간단 정리 파일에 쓰려면 대상이 string, string[], byte[] 타입 중 하나여야 한다. 파일의 전체 경로(&quot;폴더경로\\파일명.확장자&quot;)가 필요하다.","dateModified":"2021-01-30T02:47:44+09:00","datePublished":"2021-01-28T21:10:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/csharp-fileio/"},"url":"https://rito15.github.io/posts/csharp-fileio/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"간단 정리 파일에 쓰려면 대상이 string, string[], byte[] 타입 중 하나여야 한다. 파일의 전체 경로(&quot;폴더경로\\파일명.확장자&quot;)가 필요하다.","datePublished":"2021-01-28T21:10:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/csharp-fileio/"},"url":"https://rito15.github.io/posts/csharp-fileio/","author":{"@type":"Person","name":"Rito15"},"headline":"C# 파일 입출력","dateModified":"2021-01-30T02:47:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -964,6 +964,11 @@
         
         
         
+        <li><a href="/posts/fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]</a></li>
+      
+        
+        
+        
         <li><a href="/posts/opengl-study-20/">OpenGL 공부 - 20 - Texture Class</a></li>
       
         
@@ -980,11 +985,6 @@
         
         
         <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03 - Vertex, VBO</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-04/">OpenGL 공부 - 04 - VAO, VBO, Attributes</a></li>
       
 
       </ul>
@@ -3638,7 +3638,15 @@ Type targetType = Type.GetType("네임스페이스명.클래스명");
 
 
 
-                1. 애트리뷰트 클래스 작성
+                필요 네임스페이스
+
+1
+2
+using System;
+using System.Linq;
+
+
+1. 애트리뷰트 클래스 작성
 
 1
 2
@@ -3650,9 +3658,7 @@ Type targetType = Type.GetType("네임스페이스명.클래스명");
 [System.AttributeUsage(System.AttributeTargets.Method)]
 public class CustomAttribute : System.Attribute
 {
-    public string Title { get; }
-
-    public CustomAttribute...
+    public...
               </p>
             </div>
           </div>

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="각종 그래프 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"각종 그래프 모음","description":"sin x","dateModified":"2021-02-06T05:25:00+09:00","datePublished":"2021-02-06T05:25:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/mathematics-graph-compilation/"},"url":"https://rito15.github.io/posts/mathematics-graph-compilation/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"sin x","datePublished":"2021-02-06T05:25:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/mathematics-graph-compilation/"},"url":"https://rito15.github.io/posts/mathematics-graph-compilation/","author":{"@type":"Person","name":"Rito15"},"headline":"각종 그래프 모음","dateModified":"2021-02-06T05:25:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -616,6 +616,11 @@
         
         
         
+        <li><a href="/posts/fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]</a></li>
+      
+        
+        
+        
         <li><a href="/posts/opengl-study-20/">OpenGL 공부 - 20 - Texture Class</a></li>
       
         
@@ -632,11 +637,6 @@
         
         
         <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03 - Vertex, VBO</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-04/">OpenGL 공부 - 04 - VAO, VBO, Attributes</a></li>
       
 
       </ul>
@@ -3227,7 +3227,15 @@
 
 
 
-                1. 애트리뷰트 클래스 작성
+                필요 네임스페이스
+
+1
+2
+using System;
+using System.Linq;
+
+
+1. 애트리뷰트 클래스 작성
 
 1
 2
@@ -3239,9 +3247,7 @@
 [System.AttributeUsage(System.AttributeTargets.Method)]
 public class CustomAttribute : System.Attribute
 {
-    public string Title { get; }
-
-    public CustomAttribute...
+    public...
               </p>
             </div>
           </div>
