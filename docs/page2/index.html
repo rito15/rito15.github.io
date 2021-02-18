@@ -367,6 +367,289 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-urp-shader-coding/">URP에서 쉐이더 코딩하기 [작성 중]</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        기본 구조
+
+
+
+  
+
+
+Starting Point
+
+
+Shader "RitoURP/VertexFragmentStartPoint"
+{
+    Properties
+    {
+        _MainTex ("Main Map", 2D) = "white" {}
+        _BumpMap ("Normal Map", 2D) = "bump" {}
+    }
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Feb 15, 2021,  6:07 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 15
+  
+
+  <i class="unloaded">2021-02-15T18:07:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="681 words">3 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/opengl-study-19/">OpenGL 공부 - 19 - Shader, Transform Class</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  쉐이더, 트랜스폼 클래스화하기
+
+
+
+
+1. 쉐이더의 클래스화
+
+
+shader.hpp 작성
+
+shader.hpp 파일에 Shader 클래스를 작성한다.
+
+기존에 functions.hpp와 main.cpp에서 사용하던 쉐이더 부분을 모두 Shader 클래스로 옮겨준다.
+
+// shader.hpp
+
+class Shader
+{
+private:
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Feb 15, 2021,  3:30 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 15
+  
+
+  <i class="unloaded">2021-02-15T15:30:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1077 words">5 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/opengl-study-18/">OpenGL 공부 - 18 - Specular, Rim Light</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  Specular Lighting, Rim Lighting 적용
+
+
+
+
+공부 내용
+
+
+필요한 유니폼 변수 전달
+
+World View 벡터가 필요하므로, 이를 구하기 위한 카메라 위치를 전달해준다.
+
+// main.cpp
+
+glUniform3fv(glGetUniformLocation(shaderProgram, "cameraPos"), 1, ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Feb 14, 2021,  3:38 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 14
+  
+
+  <i class="unloaded">2021-02-14T15:38:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4149 words">23 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/custom-plane-mesh-generator/">Custom Plane Mesh Generator</a>
     </h1>
 
@@ -692,38 +975,18 @@ Vertex vertices[] =
 
 
 
-  
-    
-      하이라키 구성
-    
-  
-  
-    
-      스크립트 기초 작성
-    
-  
-  
-    
-      1인칭 이동, 회전
-    
-  
-  
-    
-      3인칭 이동, 회전
-    
-  
-  
-    
-      카메라 전환
-    
-  
-  
-    
-      점프
-    
-  
-  
-    
+  1. 하이라키 구성
+  2. 스크립트 기초
+  3. 1인칭 이동, 회전
+  4. 3인칭 이동, 회전
+  5. 카메라 전환
+  6. 점프
+  7. 애니메이션 적용
+  8. 애니메이션 블렌딩
+  9. 카메라 전환 시 시점 방향 유지하기
+  10. 3인칭 카메라 줌 구현
+  11. 경사로에서 정확한 이동 구현
+  12. 이동 가속/감속 제어
 ...
       </p>
     </div>
@@ -771,7 +1034,7 @@ Vertex vertices[] =
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3443 words">19 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5076 words">28 min</span>
 
 
         <!-- page views -->
@@ -1074,289 +1337,6 @@ modelM...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/textmeshpro-usage/">텍스트 메쉬 프로(TMPro) 사용하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        특징
-
-
-
-  
-    SDF(Signed Distance Field)를 이용하여 UGUI 텍스트보다 외곽선을 더 깔끔하게 표현한다.
-  
-  
-    마테리얼을 이용하여 다양한 효과를 줄 수 있다.
-  
-  
-    UGUI 텍스트에 비해 성능이 좋다.
-  
-  
-    미리 고해상도의 Font Texture Atlas를 생성하여 사용하기 때문에 실...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Feb 12, 2021,  2:09 AM +0900"
-  >
-
-  
-  
-
-  
-    Feb 12
-  
-
-  <i class="unloaded">2021-02-12T02:09:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1375 words">7 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-15/">OpenGL 공부 - 15 - View Projection Matrix</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  View, Projection 행렬 만들고 적용하기
-
-
-
-
-공간 변환
-
-
-
-
-공간 변환 과정을 간단히 설명하면 다음과 같다.
-
-1. Model Transformation
-
-
-  Model -&gt; World
-
-
-모델링의 피벗이 원점인 Local Space(Model Space 또는 Object Space)에 Model Matrix를 곱...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Feb 11, 2021,  5:05 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 11
-  
-
-  <i class="unloaded">2021-02-11T17:05:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3227 words">17 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-14/">OpenGL 공부 - 14 - Model Matrix</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  Model Matrix에 대한 이해
-  이동, 회전, 크기 변경
-
-
-
-
-공부 내용
-
-
-공통
-
-glm의 모델 매트릭스를 선언하는 것으로 시작한다.
-
-glm::mat modelMatrix(1.0f);
-
-
-openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진다.
-
-4x4 행렬과 곱해지려면 벡터 또한 vec4여...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Feb 10, 2021,  3:20 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 10
-  
-
-  <i class="unloaded">2021-02-10T15:20:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2383 words">13 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1494,9 +1474,24 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page7/">7</a>
+        <a class="page-link btn-box-shadow" href="/page8/">8</a>
       </li>
     
 
@@ -1555,12 +1550,7 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
         
         
         
-        <li><a href="/posts/opengl-study-18/">OpenGL 공부 - 18 - Specular, Rim Light</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-19/">OpenGL 공부 - 19 - Shader, Transform Class</a></li>
+        <li><a href="/posts/opengl-study-20/">OpenGL 공부 - 20 - Texture Class</a></li>
       
         
         
@@ -1575,7 +1565,12 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
         
         
         
-        <li><a href="/posts/opengl-study-20/">OpenGL 공부 - 20 - Texture Class</a></li>
+        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03 - Vertex, VBO</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/opengl-study-04/">OpenGL 공부 - 04 - VAO, VBO, Attributes</a></li>
       
 
       </ul>
@@ -1933,115 +1928,6 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2161,319 +2047,10 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2868,6 +2445,155 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2947,6 +2673,256 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2961,16 +2937,10 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -2982,6 +2952,11 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
       
+    
+  
+    
+    
+    
     
   
     
@@ -3012,43 +2987,6 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
     
   
@@ -3071,30 +3009,7 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
+      
     
   
     
@@ -3145,13 +3060,13 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
         <a class="post-tag" href="/tags/ui/">ui</a>
       
         
+        <a class="post-tag" href="/tags/attribute/">attribute</a>
+      
+        
         <a class="post-tag" href="/tags/cloud/">cloud</a>
       
         
         <a class="post-tag" href="/tags/cpp/">cpp</a>
-      
-        
-        <a class="post-tag" href="/tags/graph/">graph</a>
       
 
       </div>
@@ -3571,115 +3486,6 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3799,319 +3605,10 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -4506,6 +4003,155 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -4585,6 +4231,256 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -4599,16 +4495,10 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -4620,6 +4510,11 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
       
+    
+  
+    
+    
+    
     
   
     
@@ -4650,43 +4545,6 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
     
   
@@ -4709,30 +4567,7 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
+      
     
   
     
@@ -4778,13 +4613,13 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
         <a class="post-tag" href="/tags/ui/">ui</a>
       
         
+        <a class="post-tag" href="/tags/attribute/">attribute</a>
+      
+        
         <a class="post-tag" href="/tags/cloud/">cloud</a>
       
         
         <a class="post-tag" href="/tags/cpp/">cpp</a>
-      
-        
-        <a class="post-tag" href="/tags/graph/">graph</a>
       
 
     </div>

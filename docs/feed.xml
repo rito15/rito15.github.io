@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-18T03:30:39+09:00</updated>
+  <updated>2021-02-19T04:00:18+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,192 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>커스텀 애트리뷰트</title>
+    <link href="https://rito15.github.io/posts/memo-custom-attribute/" rel="alternate" type="text/html" title="커스텀 애트리뷰트" />
+    <published>2021-02-19T03:55:00+09:00</published>
+  
+    <updated>2021-02-19T03:55:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/memo-custom-attribute/</id>
+    <content src="https://rito15.github.io/posts/memo-custom-attribute/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Csharp" />
+    
+    <category term="Csharp Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. 애트리뷰트 클래스 작성
+
+[System.AttributeUsage(System.AttributeTargets.Method)]
+public class CustomAttribute : System.Attribute
+{
+    public string Title { get; }
+
+    public CustomAttribute(string t) =&amp;gt; Title = t;
+}
+
+
+2. 타겟 메소드에 애트리뷰트 장착
+
+public class TargetClass
+{
+    [CustomAttribute("Title String")]
+    public void TargetMethod()
+    {
+
+    }
+}
+
+
+3. 대상 클래스에서 MethodInfo[] 가져오기
+
+var methodInfos =...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>리플렉션</title>
+    <link href="https://rito15.github.io/posts/memo-reflection/" rel="alternate" type="text/html" title="리플렉션" />
+    <published>2021-02-19T03:50:00+09:00</published>
+  
+    <updated>2021-02-19T03:50:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/memo-reflection/</id>
+    <content src="https://rito15.github.io/posts/memo-reflection/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Csharp" />
+    
+    <category term="Csharp Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      필요 네임스페이스
+using System;
+using System.Reflection;
+
+
+
+특정 클래스 타입 가져오기
+Type targetType = Type.GetType("클래스명");
+
+
+
+네임스페이스 내에 있는 클래스 타입 가져오기
+Type targetType = Type.GetType("네임스페이스명.클래스명");
+
+
+
+다른 어셈블리(예: DLL) 내에 있는 클래스 타입 가져오기
+Type targetType = Type.GetType("네임스페이스명.클래스명, 어셈블리명);
+
+
+
+타입으로 객체 생성하기
+object instance = Activator.CreateInstance(targetType);
+
+
+
+특정 클래스의 메소드 가져오기
+MethodInfo targetMethod = targe...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>OpenGL 공부 - 22 - Light Class</title>
+    <link href="https://rito15.github.io/posts/opengl-study-22/" rel="alternate" type="text/html" title="OpenGL 공부 - 22 - Light Class" />
+    <published>2021-02-18T15:13:00+09:00</published>
+  
+    <updated>2021-02-18T15:13:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/opengl-study-22/</id>
+    <content src="https://rito15.github.io/posts/opengl-study-22/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="OpenGL" />
+    
+    <category term="OpenGL Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  DirectionalLight, PointLight 클래스 작성
+  프래그먼트 쉐이더에서 각 라이트에 맞는 계산 수행
+
+
+
+
+1. Directional Light
+
+
+
+  위치에 관계 없이 방향으로만 작용하는 직광 만들기
+
+
+DirectionalLight 클래스 작성
+
+class DirectionalLight
+{
+private:
+    glm::vec3 direction; // 빛의 방향과 반전된 L 벡터 방향
+    glm::vec3 color;
+    float intensity;
+
+public:
+    DirectionalLight(const glm::vec3&amp;amp; direction, const glm::vec3&amp;amp; color, const float&amp;amp; intensity...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -141,201 +327,6 @@ out vec4 fs_color;
   
   아이펀(국내)
  ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Serverless, BaaS, FaaS</title>
-    <link href="https://rito15.github.io/posts/memo-serverless-baas-faas/" rel="alternate" type="text/html" title="Serverless, BaaS, FaaS" />
-    <published>2021-02-17T20:40:00+09:00</published>
-  
-    <updated>2021-02-17T20:40:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-serverless-baas-faas/</id>
-    <content src="https://rito15.github.io/posts/memo-serverless-baas-faas/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      애플리케이션 개발 패러다임 변화
-
-
-
-
-모놀리스(Monolith)
-
-  소프트웨어의 모든 구성요소가 한 프로젝트에 통합된 형태
-  중앙 집중적 구조
-  변경이 발생할 경우 전체 애플리케이션을 재배포, 재시작해야 한다.
-  부분의 장애가 전체 서비스의 장애로 이어지는 경우가 발생한다.
-  서비스가 커지면 커질수록 전체 시스템 구조 파악이 어려워진다.
-
-
-마이크로 서비스(Micro Service Architecture, MSA)
-
-  모놀리스의 단점을 보완하기 위한 구조
-  애플리케이션을 서비스들의 결합으로 구성한다.
-  각 서비스는 크기가 작을 뿐, 하나의 모놀리스와 유사한 구조를 가진다.
-  각 서비스는 독립적으로 배포가 가능해야 한다.
-  
-    각 서비스는 다른 서비스에 대한 의존성이 최소화 되어...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>클라우드 컴퓨팅 3대 서비스</title>
-    <link href="https://rito15.github.io/posts/memo-cloud-computing-services/" rel="alternate" type="text/html" title="클라우드 컴퓨팅 3대 서비스" />
-    <published>2021-02-17T20:40:00+09:00</published>
-  
-    <updated>2021-02-17T20:40:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-cloud-computing-services/</id>
-    <content src="https://rito15.github.io/posts/memo-cloud-computing-services/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      IaaS, PaaS, SaaS
-
-
-구분
-
-  기업과 클라우드 서비스 제공자간의 관리 영역 분할 정도에 따라 구분할 수 있다.
-
-
-
-
-
-
-선택 예시
-
-  IaaS : 인력이 충분하고 자원 및 인프라만 대여하고 싶은 경우
-  PaaS : 이미 만들어진 런타임, DB 등의 API를 사용하여 본 개발에만 집중하고 싶은 경우
-  SaaS : 특수목적의 소프트웨어들을 바로 사용하고 싶은 경우
-
-
-
-
-IaaS(Infrastructure-as-a-Service)
-
-
-특징
-
-  
-    서버 자원, 네트워크, 전력, 스토리지 등의 인프라를 가상화하여 제공한다.
-  
-  
-    사용한 만큼 지불하는 종량제 형식으로 운영된다.
-  
-  
-    보통 운영체제 기반으로 서비스를 제공한다.
-  
-
-
-
-장점
-
-  
-    데...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>매개변수 한정자 ref, in의 성능</title>
-    <link href="https://rito15.github.io/posts/ref-in-performance/" rel="alternate" type="text/html" title="매개변수 한정자 ref, in의 성능" />
-    <published>2021-02-16T23:20:00+09:00</published>
-  
-    <updated>2021-02-16T23:20:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/ref-in-performance/</id>
-    <content src="https://rito15.github.io/posts/ref-in-performance/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Csharp" />
-    
-    <category term="Csharp Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  값타입을 매개변수로 전달할 때 매개변수 한정자 사용에 따른 성능 알아보기
-
-
-(string은 참조타입이지만 매개변수로 전달하면 복제되므로 함께 테스트)
-
-
-
-비교군
-
-
-public struct StructA
-{
-    public long a,b,c,d,e,f,g;
-
-    public StructA(long value)
-    {
-        a = b = c = d = e = f = g = value;
-    }
-}
-
-public readonly struct StructB
-{
-    public readonly long a,b,c,d,e,f,g;
-
-    public StructB(long value)
-    {
-        a = b = c = d = e = f = g = valu...
     </summary>
   
 

@@ -10,20 +10,19 @@ mermaid: true
 
 # 목차
 ---
-- 1. 하이라키 구성
-- 2. 스크립트 기초 작성
-- 3. 1인칭 이동, 회전
-- 4. 3인칭 이동, 회전
-- 5. 카메라 전환
-- 6. 점프
-- 7. 애니메이션 적용하기
-- 8. 부드러운 애니메이션 적용하기 : 블렌딩, 러프
-- 9. 버그 수정
-- 10. 카메라 전환 시 시점 방향 공유하기
-- 11. 3인칭 카메라 줌 구현하기
-- 12. 경사로에서 정확한 이동 구현하기
-- 13. 이동 가속/감속 제어하기
-- 14. 캐릭터 고개가 상하 회전방향 바라보게 하기
+- [1. 하이라키 구성](#하이라키-구성하기)
+- [2. 스크립트 기초](#스크립트-기초-작성)
+- [3. 1인칭 이동, 회전](#1인칭-이동-회전-구현)
+- [4. 3인칭 이동, 회전](#3인칭-이동-회전-구현)
+- [5. 카메라 전환](#카메라-전환-기능-구현)
+- [6. 점프](#점프-구현)
+- [7. 애니메이션 적용](#애니메이션-적용하기)
+- [8. 애니메이션 블렌딩](#애니메이션-블렌딩)
+- [9. 카메라 전환 시 시점 방향 유지하기](#카메라-전환-시-시점-방향-유지하기)
+- [10. 3인칭 카메라 줌 구현](#3인칭-카메라-줌-구현하기)
+- [11. 경사로에서 정확한 이동 구현](#)
+- [12. 이동 가속/감속 제어](#)
+- [13. 캐릭터 고개가 상하 회전방향 바라보게 하기](#)
 
 <br>
 
@@ -32,11 +31,13 @@ mermaid: true
 
 ![image](https://user-images.githubusercontent.com/42164422/107759975-66970180-6d6c-11eb-87f7-d712112f6a90.png){:.normal}
 
-위와 같이 하이라키를 구성한다.
+위와 같이 캐릭터의 하이라키를 구성한다.
 
-따로 지정하지 않는 이상, 모든 게임오브젝트는 Position(0, 0, 0), Rotation(0, 0, 0), Scale(1, 1, 1)로 초깃값을 지정한다.
+따로 지정하지 않는 이상,
 
-이동에 사용할 캐릭터의 예시로 유니티짱(UnityChan)을 사용하였다.
+모든 게임오브젝트는 Position(0, 0, 0), Rotation(0, 0, 0), Scale(1, 1, 1)로 초깃값을 지정한다.
+
+이동에 사용할 캐릭터의 예시로 유니티짱(UnityChan) 모델을 사용하였다.
 
 ## Character Root
 - 실제로 이동할 게임오브젝트
@@ -545,12 +546,6 @@ private void Update()
 
 ## 구현 결과
 
-- 게임 뷰
-
-![2012_0213_TPMove](https://user-images.githubusercontent.com/42164422/107802228-69154d80-6da4-11eb-8a14-bed0bdb1d714.gif){:.normal}
-
-- 씬 뷰
-
 ![2012_0213_TPMove2](https://user-images.githubusercontent.com/42164422/107802244-6c103e00-6da4-11eb-92ae-8b2404683ab2.gif){:.normal}
 
 <br>
@@ -586,11 +581,9 @@ private void Update()
 # 점프 구현
 ---
 
-## 1. 지면으로부터의 거리 검사
-
 캐릭터가 지상에 있는지, 공중에 있는지 여부를 항상 검사해야 한다.
 
-우선 MovementOption 클래스에 다음을 추가한다.
+MovementOption 클래스에 다음을 추가한다.
 
 ```cs
 [Tooltip("지면으로 체크할 레이어 설정")]
@@ -599,10 +592,13 @@ public LayerMask groundLayerMask = -1;
 
 Raycast 대신 SphereCast를 통해 검사할 것이기 때문에, 반지름 정보가 필요하다.
 
-캡슐 콜라이더를 사용하므로 이를 기반으로 설정한다.
+캡슐 콜라이더를 사용하므로 이를 이용한다.
+
+필드로 float _groundCheckRadius를 추가하고,
+
+InitSettings() 메소드 하단에 아래처럼 추가로 작성한다.
 
 ```cs
-
 private float _groundCheckRadius;
 
 private void InitSettings()
@@ -612,10 +608,11 @@ private void InitSettings()
     TryGetComponent(out CapsuleCollider cCol);
     _groundCheckRadius = cCol ? cCol.radius : 0.1f;
 }
+```
 
-필드로 _groundCheckRadius를 추가하고,
+그리고 지면으로부터의 거리를 검사하여 저장하기 위한
 
-InitSettings() 메소드 내에 위의 내용을 추가로 작성한다.
+float _distFromGround 필드를 추가하고, 아래의 메소드를 작성한다.
 
 ```cs
 /// <summary> 땅으로부터의 거리 체크 </summary>
@@ -631,10 +628,16 @@ private void CheckDistanceFromGround()
     bool cast =
         Physics.SphereCast(ray, _groundCheckRadius, out var hit, rayDist, MoveOption.groundLayerMask);
 
-    float distFromGround = cast ? (hit.distance - 1f + _groundCheckRadius) : float.MaxValue;
-    State.isGrounded = distFromGround <= _groundCheckRadius + threshold;
+    _distFromGround = cast ? (hit.distance - 1f + _groundCheckRadius) : float.MaxValue;
+    State.isGrounded = _distFromGround <= _groundCheckRadius + threshold;
 }
+```
 
+이제 캐릭터가 지면에 닿아있을 때만 점프하도록 Jump() 메소드를 작성하고,
+
+Update()에서 호출하도록 한다.
+
+```cs
 private void Jump()
 {
     if (!State.isGrounded) return;
@@ -658,9 +661,6 @@ private void Update()
 }
 ```
 
-위의 두 메소드를 구현하고, Update에서 호출해준다.
-
-
 ## 구현 결과
 
 ![2012_0213_Jump](https://user-images.githubusercontent.com/42164422/107806031-90bae480-6da9-11eb-93a5-89e40a9d954f.gif){:.normal}
@@ -670,9 +670,266 @@ private void Update()
 # 애니메이션 적용하기
 ---
 
+각각의 행동에 맞는 애니메이션을 재생하기 위해 애니메이터 컨트롤러를 만들고, 애니메이션 클립을 통해 애니메이션 상태들을 만들어 서로 연결한다.
+
+![image](https://user-images.githubusercontent.com/42164422/108347546-faad1100-7223-11eb-963b-5c4fbb11417f.png){:.normal}
+
+그러면 보통 이런 형태가 된다.
+
+하지만 이동 애니메이션이 이동 방향에 따라 MoveForward, MoveLeft, MoveRight, MoveBackward 이렇게 나뉘어 있다면
+
+![image](https://user-images.githubusercontent.com/42164422/108347908-76a75900-7224-11eb-91e6-31e8b2a25a79.png){:.normal}
+
+이렇게 마법진을 만들 수 있다.
+
+이런 트랜지션 지옥을 피하기 위해서는 애니메이션 블렌딩을 이용해야 한다.
+
+<br>
+
+# 애니메이션 블렌딩
+---
+
+## 애니메이션 파라미터 정의
+
+애니메이션 블렌딩을 하기 전에, 애니메이터 내에서 사용할 파라미터들을 정의한다.
+
+![image](https://user-images.githubusercontent.com/42164422/108348386-1369f680-7225-11eb-9db9-08f884d12649.png){:.normal}
+
+|이름|타입|설명|
+|---|---|---|
+|Move X|Float|로컬 X축 방향 이동 속도|
+|Move Z|Float|로컬 Z축 방향 이동 속도|
+|Dist Y|Float|캐릭터와 지면 사이의 Y축 거리|
+|Grounded|Bool|캐릭터가 땅과 닿아 있는지 여부|
+|Jump|Trigger|점프 명령|
+
+그리고 스크립트에서 해당 파라미터 이름들을 변수로 지정할 수 있도록 이를 관리하는 클래스를 만든다.
+
+```cs
+public class AnimatorOption
+{
+    public string paramMoveX = "Move X";
+    public string paramMoveZ = "Move Z";
+    public string paramDistY = "Dist Y";
+    public string paramGrounded = "Grounded";
+    public string paramJump = "Jump";
+}
+
+public AnimatorOption AnimOption => _animatorOption;
+
+[Space]
+[SerializeField] private AnimatorOption _animatorOption = new AnimatorOption();
+```
+
+애니메이션 파라미터들을 전달하기 위한 메소드를 작성한다.
+
+```cs
+// Lerp를 위한 변수들
+private float _moveX;
+private float _moveZ;
+
+private void UpdateAnimationParams()
+{
+    float x, z;
+
+    if (State.isCurrentFp)
+    {
+        x = _moveDir.x;
+        z = _moveDir.z;
+
+        if (State.isRunning)
+        {
+            x *= 2f;
+            z *= 2f;
+        }
+    }
+    else
+    {
+        x = 0f;
+        z = _moveDir.sqrMagnitude > 0f ? 1f : 0f;
+
+        if (State.isRunning)
+        {
+            z *= 2f;
+        }
+    }
+
+    // 보간
+    const float LerpSpeed = 0.05f;
+    _moveX = Mathf.Lerp(_moveX, x, LerpSpeed);
+    _moveZ = Mathf.Lerp(_moveZ, z, LerpSpeed);
+
+    Com.anim.SetFloat(AnimOption.paramMoveX, _moveX);
+    Com.anim.SetFloat(AnimOption.paramMoveZ, _moveZ);
+    Com.anim.SetFloat(AnimOption.paramDistY, _distFromGround);
+    Com.anim.SetBool(AnimOption.paramGrounded, State.isGrounded);
+}
+```
+
+1인칭에서는 전후좌우 모두 이동하지만, 3인칭에서는 어차피 이동방향으로 항상 바라보므로 전방 이동 애니메이션만 적용하면 된다.
+
+따라서 3인칭의 경우 Move Z에 이동 시 1, 정지 시 0을 전달하면 된다.
+
+애니메이션은 각 파라미터에 의존하여 실행되므로, 0과 1만 전달하면 뚝뚝 끊기므로 Move X, Z는 Lerp 계산을 통해 부드럽게 보간하여 전달한다.
+
+그리고 Update() 맨 아래에서 위의 메소드를 호출한다.
+
+<br>
+
+## IDLE_MOVE 블렌드 트리 생성
+
+애니메이터 컨트롤러에서 Create State - From New Blend Tree 를 통해 새로운 블렌드 트리를 만든다.
+
+그리고 Idle 1개, Walk 4개(Front, Back, Left, Right), Run 4개 총 9개의 애니메이션을 준비한다.
+
+각각의 Back 애니메이션이 존재하지 않을 경우, Front를 역재생하는 방식으로 사용할 수 있다.
+
+2D Freeform Directional을 선택하여 아래처럼 블렌드 트리를 완성한다.
+
+![image](https://user-images.githubusercontent.com/42164422/108351624-1ebf2100-7229-11eb-986f-30b744171ffe.png){:.normal}
+
+- 실행 결과
+
+![2021_0218_SmoothMove](https://user-images.githubusercontent.com/42164422/108353850-f4229780-722b-11eb-8788-85bf521225fc.gif){:.normal}
+
+<br>
+
+## 점프 애니메이션
+
+정지 및 이동 애니메이션을 완성했으므로, 이제 점프 애니메이션도 적용해야 한다.
+
+점프 애니메이션을 위한 고려사항들은 다음과 같다.
+
+> - 점프할 때 [정지 -> 점프] 까지 부드럽게 연결되는 애니메이션이 재생되어야 한다.
+> - 점프 이후, 착지하기 전까지 [최고점의 점프 애니메이션]이 반복 재생되어야 한다.
+> - 착지할 때 [점프 -> 정지] 까지 부드럽게 연결되는 애니메이션이 재생되어야 한다.
+
+그리고 이에 적용할 수 있는 애니메이션 파라미터들은 다음과 같다.
+
+> - 점프하는 순간에 활성화시킬 Jump 트리거
+> - 캐릭터와 지면 사이의 높이값 Dist Y (Float)
+> - 캐릭터의 Y축 위치 상태를 나타내는 Grounded (Bool)
+
+
+위의 요소들을 고려하여 애니메이션들을 준비한다.
+
+- ### 1. Jump_Up
+
+![2021_0218_Anim_Jump1](https://user-images.githubusercontent.com/42164422/108356998-3352e780-7230-11eb-9bb4-2d776b133e11.gif){:.normal}
+
+- ### 2. Jump_Up_Loop
+
+![2021_0218_Anim_Jump2](https://user-images.githubusercontent.com/42164422/108357003-351cab00-7230-11eb-978d-edd54f02a217.gif){:.normal}
+
+- ### 3. Jump_Down
+
+![2021_0218_Anim_Jump3](https://user-images.githubusercontent.com/42164422/108357005-35b54180-7230-11eb-800f-8d55dfb9aa46.gif){:.normal}
+
+<br>
+
+## JUMP_DOWN 블렌드 트리 생성
+
+Jump_Up 애니메이션은 그대로 하나의 상태로 애니메이터에 넣는다.
+
+Jump_Loop와 Jump_Down은 블렌드 트리로 묶고 1D로 설정, 파라미터는 Dist Y로 지정한다.
+
+![image](https://user-images.githubusercontent.com/42164422/108358253-d7895e00-7231-11eb-973f-6c23502fb28c.png){:.normal}
+
+<br>
+
+## 트랜지션 설정
+
+![image](https://user-images.githubusercontent.com/42164422/108359299-2e436780-7233-11eb-82f6-66ad9911a1be.png){:.normal}
+
+|트랜지션|조건|Has Exit Time|
+|---|---|---|
+|IDLE_MOVE->JUMP_UP|Jump(Trigger)|false|
+|JUMP_UP->IDLE_MOVE|Ground == true|false|
+|JUMP_UP->JUMP_DOWN|없음|true|
+|JUMP_DOWN->JUMP_UP|Jump(Trigger)|false|
+|JUMP_DOWN->IDLE_MOVE|Grounded == true|false|
+
+<br>
+
+## 실행 결과
+
+- 평지에서의 점프
+
+![2021_0218_JumpTest1](https://user-images.githubusercontent.com/42164422/108359420-5337da80-7233-11eb-8a85-5e51f97fb987.gif){:.normal}
+
+- 고지에서 점프 후 하강
+
+![2021_0218_JumpTest2](https://user-images.githubusercontent.com/42164422/108359426-55019e00-7233-11eb-8278-ea0b1533fbf9.gif){:.normal}
+
+의도대로 동작하며, 부드럽게 이어진다.
+
+<br>
+
+# 카메라 전환 시 시점 방향 유지하기
+---
+
+탭 키를 눌러 1인칭, 3인칭 카메라를 서로 전환할 경우
+
+![2021_0218_ChangeCamView](https://user-images.githubusercontent.com/42164422/108360636-cbeb6680-7234-11eb-99d6-74b9600178c5.gif){:.normal}
+
+이렇게 각각의 카메라가 원래 향하고 있던 방향으로 돌아가서 보이게 된다.
+
+카메라를 전환할 때 이전의 카메라가 보고 있던 방향을 전환 후 카메라가 바라볼 수 있게 하려고 한다.
+
+```cs
+private void CameraViewToggle()
+{
+    if (Input.GetKeyDown(Key.switchCamera))
+    {
+        State.isCurrentFp = !State.isCurrentFp;
+        Com.fpCamObject.SetActive(State.isCurrentFp);
+        Com.tpCamObject.SetActive(!State.isCurrentFp);
+
+        // TP -> FP
+        if (State.isCurrentFp)
+        {
+            Vector3 tpEulerAngle = Com.tpRig.localEulerAngles;
+            Com.fpRig.localEulerAngles = Vector3.right * tpEulerAngle.x;
+            Com.fpRoot.localEulerAngles = Vector3.up * tpEulerAngle.y;
+        }
+        // FP -> TP
+        else
+        {
+            Vector3 newRot = default;
+            newRot.x = Com.fpRig.localEulerAngles.x;
+            newRot.y = Com.fpRoot.localEulerAngles.y;
+            Com.tpRig.localEulerAngles = newRot;
+        }
+    }
+}
+```
+
+CameraViewToggle() 메소드를 위와 같이 수정한다.
+
+1인칭 시점에서는 fpRig 트랜스폼이 x 회전을, fpRoot 트랜스폼이 y 회전을 담당하고
+
+3인칭 시점에서는 tpRig 트랜스폼이 x, y 회전을 모두 담당하므로
+
+위처럼 나누어 전달한다.
+
+## 실행 결과
+
+![2021_0218_CamRotation](https://user-images.githubusercontent.com/42164422/108367406-c98d0a80-723c-11eb-877e-013a9df970a8.gif){:.normal}
+
+카메라 전환 시 이전 카메라의 회전을 유지하는 것을 확인할 수 있다.
+
+<br>
+
+# 3인칭 카메라 줌 구현하기
+---
+
 
 
 <br>
+
+# 경사로에서 정확한 이동 구현하기
+# 이동 가속/감속 제어하기
+# 캐릭터 고개가 상하 회전방향 바라보게 하기
 
 # Source Code
 ---

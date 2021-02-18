@@ -1,6 +1,51 @@
 [
   
   {
+    "title": "커스텀 애트리뷰트",
+    "url": "/posts/memo-custom-attribute/",
+    "categories": "Csharp, Csharp Memo",
+    "tags": "csharp, custom, attribute",
+    "date": "2021-02-19 03:55:00 +0900",
+    
+
+
+
+
+
+    "snippet": "1. 애트리뷰트 클래스 작성[System.AttributeUsage(System.AttributeTargets.Method)]public class CustomAttribute : System.Attribute{    public string Title { get; }    public CustomAttribute(string t) =&amp;gt; Title = t;}2. 타겟 메소드에 애트리뷰트 장착public class TargetClass{    [CustomAttribute(&quot;Title String&quot;..."
+  },
+  
+  {
+    "title": "리플렉션",
+    "url": "/posts/memo-reflection/",
+    "categories": "Csharp, Csharp Memo",
+    "tags": "csharp, reflection",
+    "date": "2021-02-19 03:50:00 +0900",
+    
+
+
+
+
+
+    "snippet": "필요 네임스페이스using System;using System.Reflection;특정 클래스 타입 가져오기Type targetType = Type.GetType(&quot;클래스명&quot;);네임스페이스 내에 있는 클래스 타입 가져오기Type targetType = Type.GetType(&quot;네임스페이스명.클래스명&quot;);다른 어셈블리(예: DLL) 내에 있는 클래스 타입 가져오기Type targetType = Type.GetType(&quot;네임스페이스명.클래스명, 어셈블리명);타입으로 객체 생성하기obje..."
+  },
+  
+  {
+    "title": "OpenGL 공부 - 22 - Light Class",
+    "url": "/posts/opengl-study-22/",
+    "categories": "OpenGL, OpenGL Study",
+    "tags": "graphics, opengl",
+    "date": "2021-02-18 15:13:00 +0900",
+    
+
+
+
+
+
+    "snippet": "목표  DirectionalLight, PointLight 클래스 작성  프래그먼트 쉐이더에서 각 라이트에 맞는 계산 수행1. Directional Light  위치에 관계 없이 방향으로만 작용하는 직광 만들기DirectionalLight 클래스 작성class DirectionalLight{private:    glm::vec3 direction; // 빛의 방향과 반전된 L 벡터 방향    glm::vec3 color;    float intensity;public:    DirectionalLight(const glm::v..."
+  },
+  
+  {
     "title": "OpenGL 공부 - 21 - Material Class",
     "url": "/posts/opengl-study-21/",
     "categories": "OpenGL, OpenGL Study",
@@ -207,7 +252,7 @@
 
 
 
-    "snippet": "목차            하이라키 구성                  스크립트 기초 작성                  1인칭 이동, 회전                  3인칭 이동, 회전                  카메라 전환                  점프                  애니메이션 적용하기                  부드러운 애니메이션 적용하기 : 블렌딩, 러프                  버그 수정                  카메라 전환 시 시점 방향 공유하기                 ..."
+    "snippet": "목차  1. 하이라키 구성  2. 스크립트 기초  3. 1인칭 이동, 회전  4. 3인칭 이동, 회전  5. 카메라 전환  6. 점프  7. 애니메이션 적용  8. 애니메이션 블렌딩  9. 카메라 전환 시 시점 방향 유지하기  10. 3인칭 카메라 줌 구현  11. 경사로에서 정확한 이동 구현  12. 이동 가속/감속 제어  13. 캐릭터 고개가 상하 회전방향 바라보게 하기하이라키 구성하기위와 같이 캐릭터의 하이라키를 구성한다.따로 지정하지 않는 이상,모든 게임오브젝트는 Position(0, 0, 0), Rotation(0, ..."
   },
   
   {
