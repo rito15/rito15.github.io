@@ -20,8 +20,8 @@ mermaid: true
 - [8. 애니메이션 블렌딩](#애니메이션-블렌딩)
 - [9. 카메라 전환 시 시점 방향 유지하기](#카메라-전환-시-시점-방향-유지하기)
 - [10. 3인칭 카메라 줌 구현](#3인칭-카메라-줌-구현하기)
-- [11. 경사로에서 정확한 이동 구현](#)
-- [12. 이동 가속/감속 제어](#)
+- [11. 점프 버그 수정](#점프-버그-수정하기)
+- [12. 이동 버그 수정](#이동-버그-수정하기)
 - [13. 캐릭터 고개가 상하 회전방향 바라보게 하기](#)
 
 <br>
@@ -839,12 +839,11 @@ Jump_Loop와 Jump_Down은 블렌드 트리로 묶고 1D로 설정, 파라미터�
 
 ## 트랜지션 설정
 
-![image](https://user-images.githubusercontent.com/42164422/108359299-2e436780-7233-11eb-82f6-66ad9911a1be.png){:.normal}
+![image](https://user-images.githubusercontent.com/42164422/108544038-38e02880-7329-11eb-95e4-f267ab65603f.png){:.normal}
 
 |트랜지션|조건|Has Exit Time|
 |---|---|---|
 |IDLE_MOVE->JUMP_UP|Jump(Trigger)|false|
-|JUMP_UP->IDLE_MOVE|Ground == true|false|
 |JUMP_UP->JUMP_DOWN|없음|true|
 |JUMP_DOWN->JUMP_UP|Jump(Trigger)|false|
 |JUMP_DOWN->IDLE_MOVE|Grounded == true|false|
@@ -923,13 +922,260 @@ CameraViewToggle() 메소드를 위와 같이 수정한다.
 # 3인칭 카메라 줌 구현하기
 ---
 
+3인칭 카메라 모드일 때만, 휠 입력을 받아서 카메라 줌 기능을 구현하려고 한다.
 
+3인칭 카메라를 카메라가 바라보는 방향(transform.foward)으로 이동시키면 줌 인, 반대 방향으로 이동시키면 줌 아웃을 구현할 수 있다.
+
+CameraOption 클래스에 다음처럼 필드를 작성한다.
+
+```cs
+[Range(0f, 3.5f), Space, Tooltip("줌 확대 최대 거리")]
+public float zoomInDistance = 3f;
+
+[Range(0f, 5f), Tooltip("줌 축소 최대 거리")]
+public float zoomOutDistance = 3f;
+
+[Range(1f, 20f), Tooltip("줌 속도")]
+public float zoomSpeed = 10f;
+```
+
+그리고 스크립트 내에 필드를 더 추가한다.
+
+```cs
+/// <summary> TP 카메라 ~ Rig 초기 거리 </summary>
+private float _tpCamZoomInitialDistance;
+
+/// <summary> TP 카메라 휠 입력 값 </summary>
+private float _tpCameraWheelInput = 0;
+```
+
+게임 시작 시 _tpCamZoomInitialDistance 필드에 TP Camera, TP Rig 사이의 거리를 측정하고 게임 내에서 해당 값을 기준으로 줌인/줌아웃 기능을 사용하게 된다.
+
+InitSettings() 메소드 블록 내 최하단에 다음과 같이 작성하여 초기 줌 거리를 측정한다.
+
+```cs
+_tpCamZoomInitialDistance = Vector3.Distance(Com.tpRig.position, Com.tpCamera.transform.position);
+```
+
+그리고 SetValuesByKeyInput() 메소드 하단에도 마찬가지로 다음 한줄을 추가하여 휠 입력값을 받아오도록 한다.
+
+```cs
+_tpCameraWheelInput = Input.GetAxisRaw("Mouse ScrollWheel");
+```
+
+마지막으로 새로운 메소드를 작성하고, Update() 블록 내부 하단에서 호출해준다.
+
+```cs
+private void TpCameraZoom()
+{
+    if (State.isCurrentFp) return;         // TP 카메라만 가능
+    if (_tpCameraWheelInput == 0f) return; // 휠 입력 있어야 가능
+
+    Transform tpCamTr = Com.tpCamera.transform;
+    Transform tpCamRig = Com.tpRig;
+
+    float zoom = Time.deltaTime * CamOption.zoomSpeed;
+    float currentCamToRigDist = Vector3.Distance(tpCamTr.position, tpCamRig.position);
+    Vector3 move = Vector3.forward * zoom;
+
+    // Zoom In
+    if (_tpCameraWheelInput > 0.01f)
+    {
+        if (_tpCamZoomInitialDistance - currentCamToRigDist < CamOption.zoomInDistance)
+        {
+            tpCamTr.Translate(move, Space.Self);
+        }
+    }
+    // Zoom Out
+    else if (_tpCameraWheelInput < -0.01f)
+    {
+
+        if (currentCamToRigDist - _tpCamZoomInitialDistance < CamOption.zoomOutDistance)
+        {
+            tpCamTr.Translate(-move, Space.Self);
+        }
+    }
+}
+```
+<br>
+
+## 추가 : 부드러운 줌 구현하기
+
+Lerp를 이용하여 부드러운 줌을 구현할 수 있다.
+
+우선 CameraOption 클래스에 다음 필드를 추가한다.
+
+```cs
+[Range(0.01f, 0.5f), Tooltip("줌 가속")]
+public float zoomAccel = 0.1f;
+```
+
+zoomAccel 값이 작을수록 줌이 부드럽게 연결되고, 더 오래 지속된다. 반대로 이 값이 클수록 줌이 더 빨라진다.
+
+그리고 SetValuesByKeyInput() 메소드 하단의 줌 입력받는 문장을
+
+```cs
+_tpCameraWheelInput = Input.GetAxisRaw("Mouse ScrollWheel");
+_currentWheel = Mathf.Lerp(_currentWheel, _tpCameraWheelInput, CamOption.zoomAccel);
+```
+
+이렇게 수정하고,
+
+TpCameraZoom() 메소드를
+
+```cs
+private void TpCameraZoom()
+{
+    if (State.isCurrentFp) return;                // TP 카메라만 가능
+    if (Mathf.Abs(_currentWheel) < 0.01f) return; // 휠 입력 있어야 가능
+
+    Transform tpCamTr = Com.tpCamera.transform;
+    Transform tpCamRig = Com.tpRig;
+
+    float zoom = Time.deltaTime * CamOption.zoomSpeed;
+    float currentCamToRigDist = Vector3.Distance(tpCamTr.position, tpCamRig.position);
+    Vector3 move = Vector3.forward * zoom * _currentWheel * 10f;
+
+    // Zoom In
+    if (_currentWheel > 0.01f)
+    {
+        if (_tpCamZoomInitialDistance - currentCamToRigDist < CamOption.zoomInDistance)
+        {
+            tpCamTr.Translate(move, Space.Self);
+        }
+    }
+    // Zoom Out
+    else if (_currentWheel < -0.01f)
+    {
+
+        if (currentCamToRigDist - _tpCamZoomInitialDistance < CamOption.zoomOutDistance)
+        {
+            tpCamTr.Translate(move, Space.Self);
+        }
+    }
+}
+```
+
+이렇게 수정해준다.
+
+<br>
+## 실행 결과
+
+![2021_0220_FpTpZoom](https://user-images.githubusercontent.com/42164422/108523951-de879d80-7311-11eb-8d61-3cdee92dc206.gif){:.normal}
 
 <br>
 
-# 경사로에서 정확한 이동 구현하기
-# 이동 가속/감속 제어하기
+# 점프 버그 수정하기
+---
+
+## (깨알팁) Time.deltaTime 캐싱하기
+
+이 스크립트에서는 Time.deltaTime을 여러 번 사용하므로, 매 Update마다 필드에 저장하여 공통으로 사용하도록 한다.
+
+성능 상 이득을 얻을 수 있다.
+
+```cs
+private float _deltaTime;
+
+private void Update()
+{
+    _deltaTime = Time.deltaTime;
+
+    // ...
+}
+
+<br>
+
+## 다중 점프 버그
+
+![2021_0220_InfiniteJump](https://user-images.githubusercontent.com/42164422/108530888-691fcb00-7319-11eb-9c52-62675be3bba4.gif){:.normal}
+
+지형을 이용하면 순간적으로 점프 입력키를 빠르게 연타하여 한 번에 많이 점프할 수 있다.
+
+이를 고치기 위해서는 점프에 짧은 쿨타임을 부여하면 된다.
+
+
+
+MovementOption 클래스 내에 점프 쿨타임을 지정할 필드를 만들어준다.
+
+```cs
+[Range(0.0f, 2.0f), Tooltip("점프 쿨타임")]
+public float jumpCooldown = 1.0f;
+```
+
+그리고 현재 스크립트에 점프 쿨타임 지속시간을 기억할 필드를 추가한다.
+
+```cs
+private float _currentJumpCooldown;
+```
+
+Jump() 메소드를 다음처럼 수정한다.
+
+```cs
+private void Jump()
+{
+    if (!State.isGrounded) return;
+    if (_currentJumpCooldown > 0f) return; // 점프 쿨타임
+
+    if (Input.GetKeyDown(Key.jump))
+    {
+        Debug.Log("JUMP");
+
+        // 하강 중 점프 시 속도가 합산되지 않도록 속도 초기화
+        Com.rBody.velocity = Vector3.zero;
+
+        Com.rBody.AddForce(Vector3.up * MoveOption.jumpForce, ForceMode.VelocityChange);
+
+        // 애니메이션 점프 트리거
+        Com.anim.SetTrigger(AnimOption.paramJump);
+
+        // 쿨타임 초기화
+        _currentJumpCooldown = MoveOption.jumpCooldown;
+    }
+}
+```
+
+점프 쿨타임에 걸려 있으면 점프가 불가능하도록 해주었고,
+
+점프할 때 다시 쿨타임이 시작되록 하였다.
+
+그리고 하강 중 점프할 때 점프가 제대로 되지 않는 버그도 추가로 수정해주었다.
+
+이제 실시간으로 쿨타임을 계산해줄 메소드를 만들고, Update()에서 호출하도록 한다.
+
+```cs
+private void UpdateCurrentValues()
+{
+    if(_currentJumpCooldown > 0f)
+        _currentJumpCooldown -= _deltaTime;
+}
+
+private void Update()
+{
+    // ...
+
+    UpdateCurrentValues();
+}
+```
+
+## 결과
+
+![2021_0220_JumpFix](https://user-images.githubusercontent.com/42164422/108545079-ab9dd380-732a-11eb-8ab3-14177988221d.gif){:.normal}
+
+이제 올바르게 점프할 수 있다.
+
+<br>
+
+## 이동 버그 수정하기
+---
+
+<br>
+
 # 캐릭터 고개가 상하 회전방향 바라보게 하기
+---
+
+
+<br>
 
 # Source Code
 ---

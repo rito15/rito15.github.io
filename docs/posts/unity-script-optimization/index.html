@@ -26,8 +26,8 @@
 <meta property="og:title" content="유니티 스크립트 최적화" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. 필요하지 않은 경우, new로 생성하지 않기 4. 필요하지 않은 경우, 리턴하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 컬렉션 재사용하기 8. StringBuilder 사용하기 9. 구조체 사용하기 10. 빌드 이후 Debug.Log() 사용하지 않기 11. Transform 변경은 한번에 12. LINQ 사용하지 않기 13. 오브젝트 풀링 사용하기 14. Enum HasFlag() 박싱 이슈 15. ScriptableObject 활용하기 16. 메소드 호출 줄이기 17. 박싱, 언박싱 피하기 18. 비싼 수학 계산 피하기" />
-<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. 필요하지 않은 경우, new로 생성하지 않기 4. 필요하지 않은 경우, 리턴하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 컬렉션 재사용하기 8. StringBuilder 사용하기 9. 구조체 사용하기 10. 빌드 이후 Debug.Log() 사용하지 않기 11. Transform 변경은 한번에 12. LINQ 사용하지 않기 13. 오브젝트 풀링 사용하기 14. Enum HasFlag() 박싱 이슈 15. ScriptableObject 활용하기 16. 메소드 호출 줄이기 17. 박싱, 언박싱 피하기 18. 비싼 수학 계산 피하기" />
+<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. 필요하지 않은 경우, new로 생성하지 않기 4. 필요하지 않은 경우, 리턴하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 컬렉션 재사용하기 8. StringBuilder 사용하기 9. 구조체 사용하기 10. 빌드 이후 Debug.Log() 사용하지 않기 11. Transform 변경은 한번에 12. LINQ 사용하지 않기 13. 오브젝트 풀링 사용하기 14. Enum HasFlag() 박싱 이슈 15. ScriptableObject 활용하기 16. 메소드 호출 줄이기 17. 참조 캐싱하기 18. 박싱, 언박싱 피하기 19. 비싼 수학 계산 피하기" />
+<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. 필요하지 않은 경우, new로 생성하지 않기 4. 필요하지 않은 경우, 리턴하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 컬렉션 재사용하기 8. StringBuilder 사용하기 9. 구조체 사용하기 10. 빌드 이후 Debug.Log() 사용하지 않기 11. Transform 변경은 한번에 12. LINQ 사용하지 않기 13. 오브젝트 풀링 사용하기 14. Enum HasFlag() 박싱 이슈 15. ScriptableObject 활용하기 16. 메소드 호출 줄이기 17. 참조 캐싱하기 18. 박싱, 언박싱 피하기 19. 비싼 수학 계산 피하기" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-script-optimization/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-script-optimization/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 스크립트 최적화" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 스크립트 최적화","description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. 필요하지 않은 경우, new로 생성하지 않기 4. 필요하지 않은 경우, 리턴하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 컬렉션 재사용하기 8. StringBuilder 사용하기 9. 구조체 사용하기 10. 빌드 이후 Debug.Log() 사용하지 않기 11. Transform 변경은 한번에 12. LINQ 사용하지 않기 13. 오브젝트 풀링 사용하기 14. Enum HasFlag() 박싱 이슈 15. ScriptableObject 활용하기 16. 메소드 호출 줄이기 17. 박싱, 언박싱 피하기 18. 비싼 수학 계산 피하기","dateModified":"2021-02-12T16:25:14+09:00","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-script-optimization/"},"url":"https://rito15.github.io/posts/unity-script-optimization/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. 필요하지 않은 경우, new로 생성하지 않기 4. 필요하지 않은 경우, 리턴하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 컬렉션 재사용하기 8. StringBuilder 사용하기 9. 구조체 사용하기 10. 빌드 이후 Debug.Log() 사용하지 않기 11. Transform 변경은 한번에 12. LINQ 사용하지 않기 13. 오브젝트 풀링 사용하기 14. Enum HasFlag() 박싱 이슈 15. ScriptableObject 활용하기 16. 메소드 호출 줄이기 17. 참조 캐싱하기 18. 박싱, 언박싱 피하기 19. 비싼 수학 계산 피하기","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-script-optimization/"},"url":"https://rito15.github.io/posts/unity-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 스크립트 최적화","dateModified":"2021-02-12T16:25:14+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3692 words">20 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4309 words">23 min</span>
 
 
           <!-- page views -->
@@ -481,8 +481,9 @@
   <li><a href="#enum-hasflag-박싱-이슈">14. Enum HasFlag() 박싱 이슈</a></li>
   <li><a href="#scriptableobject-활용하기">15. ScriptableObject 활용하기</a></li>
   <li><a href="#메소드-호출-줄이기">16. 메소드 호출 줄이기</a></li>
-  <li><a href="#박싱-언박싱-피하기">17. 박싱, 언박싱 피하기</a></li>
-  <li><a href="#비싼-수학-계산-피하기">18. 비싼 수학 계산 피하기</a></li>
+  <li><a href="#참조-캐싱하기">17. 참조 캐싱하기</a></li>
+  <li><a href="#박싱-언박싱-피하기">18. 박싱, 언박싱 피하기</a></li>
+  <li><a href="#비싼-수학-계산-피하기">19. 비싼 수학 계산 피하기</a></li>
 </ul>
 
 <p><br /></p>
@@ -548,11 +549,15 @@
 
 <h1 id="startcoroutine-자주-호출하지-않기">StartCoroutine() 자주 호출하지 않기</h1>
 <hr />
-<p><code class="language-plaintext highlighter-rouge">StartCoroutine()</code> 메소드는 <code class="language-plaintext highlighter-rouge">Coroutine</code> 타입을 리턴하므로 GC의 먹이가 된다.</p>
+<p><code class="language-plaintext highlighter-rouge">StartCoroutine()</code> 메소드는 <code class="language-plaintext highlighter-rouge">Coroutine</code> 타입의 객체를 리턴하므로 GC의 먹이가 된다.</p>
 
 <p>따라서 짧은 주기로 코루틴을 자주 실행해야 하는 경우, UniTask, UniRx 등으로 대체하는 것이 좋다.</p>
 
-<p>그리고 매 프레임 실행되는 코루틴의 경우(<code class="language-plaintext highlighter-rouge">yield return null</code>), 대신 Update를 사용하는 것이 성능상 효율적이라고 한다.</p>
+<p>UniTask는 Cancellation 관리가 번거로우므로, UniRx의 MicroCoroutine을 활용하면 좋다.</p>
+
+<p>그리고 매 프레임 실행되는 코루틴의 경우(<code class="language-plaintext highlighter-rouge">yield return null</code>), 대신 Update를 사용하는 것이 성능상 효율적이다.</p>
+
+<p>그런데 UniRx의 MicroCoroutine을 사용한다면 매 프레임 실행해도 된다.</p>
 
 <p><br /></p>
 
@@ -803,7 +808,9 @@
 
 <h1 id="scriptableobject-활용하기">ScriptableObject 활용하기</h1>
 <hr />
-<p>게임 내에서 <strong>값이 변하지 않는 공통 데이터</strong>를 사용하는 경우, 필드로 사용하게 되면 동일한 데이터가 객체의 수만큼 메모리를 차지하게 된다.</p>
+<p>게임 내에서 항상 공통으로 참조하는 변수를 사용하는 경우,</p>
+
+<p>각 객체의 필드로 사용하게 되면 동일한 데이터가 객체의 수만큼 메모리를 차지하게 된다.</p>
 
 <p>따라서 스크립터블 오브젝트로 메모리를 절약하는 것이 좋다.</p>
 
@@ -945,6 +952,109 @@
 
 <p><br /></p>
 
+<h1 id="참조-캐싱하기">참조 캐싱하기</h1>
+<hr />
+
+<p>위의 ‘메소드 호출 줄이기’와 같은 맥락이다.</p>
+
+<p>이것은 주로 프로퍼티 호출에 해당한다.</p>
+
+<p>예를 들어,</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">gameObject</span><span class="p">;</span>
+    <span class="n">_</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">forward</span><span class="p">;</span>
+    <span class="n">_</span> <span class="p">=</span> <span class="n">targetObject</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeInHierarchy</span><span class="p">;</span>
+    <span class="n">_</span> <span class="p">+=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이런 경우이다.</p>
+
+<p>프로퍼티는 필드가 아니다. 필드처럼, 혹은 메소드처럼 사용할 수 있는 참조이다.</p>
+
+<p>그리고 일반적으로 필드 참조보다 비용이 비싸다.</p>
+
+<p>심지어 위처럼 대상.프로퍼티.프로퍼티.프로퍼티.값 이렇게 이어지는 경우에는</p>
+
+<p>호출하는 모든 프로퍼티가 각각 성능 비용으로 이어진다.</p>
+
+<p>따라서 이를 자주 호출해야 하는 경우에는 미리 참조로 캐싱해두는 것이 좋다.</p>
+
+<p>예전보다 나아졌긴 하지만 심지어 Camera.main도 필드 참조보다 훨씬 비싸다.</p>
+
+<p>메인 카메라로 등록된 참조를 바로 가져오는 친절한 친구가 아니라,</p>
+
+<p>내부적으로 FindMainCamera() 메소드 호출을 통해 “MainCamera” 태그가 붙은 카메라들 중에 현재 렌더링을 담당하고 있는 카메라를 가져오는 프로퍼티다.</p>
+
+<p>그래서 이렇게,</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">GameObject</span> <span class="n">_mainCamObject</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">Transform</span>  <span class="n">_mainCamTransform</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">GameObject</span> <span class="n">_targetParentObject</span><span class="p">;</span>
+<span class="k">private</span> <span class="kt">float</span>      <span class="n">_deltaTime</span><span class="p">;</span>
+
+<span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_mainCamObject</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">gameObject</span><span class="p">;</span>
+    <span class="n">_mainCamTransform</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">transform</span><span class="p">;</span>
+    <span class="n">_targetParentObject</span> <span class="p">=</span> <span class="n">targetObject</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">.</span><span class="n">gameObject</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_deltaTime</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
+
+    <span class="c1">// Usages</span>
+    <span class="n">_</span> <span class="p">=</span> <span class="n">_mainCamObject</span><span class="p">;</span>
+    <span class="n">_</span> <span class="p">=</span> <span class="n">_mainCamTransform</span><span class="p">.</span><span class="n">forward</span><span class="p">;</span>
+    <span class="n">_</span> <span class="p">=</span> <span class="n">_targetParentObject</span><span class="p">.</span><span class="n">activeInHierarchy</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>자주 호출하는 프로퍼티, 참조들은 최대한 해당 타입 그대로 필드에 담아 사용하는 것이 좋다.</p>
+
+<p>Time.deltaTime도 캐싱하는 것은 과하다고 생각할 수 있는데,</p>
+
+<p>Time.deltaTime 또한 내부 메소드 호출로 구현되어 있다.</p>
+
+<p>여러 군데, 수십 군데에서 Time.deltaTime을 그대로 항상 호출하여 사용하면 그만큼의 메소드 호출 비용이 발생하는 것이니 항상 Update() 최상단에서 캐싱해서 사용하는 것이 좋다.</p>
+
+<p><br /></p>
+
 <h1 id="박싱-언박싱-피하기">박싱, 언박싱 피하기</h1>
 <hr />
 
@@ -983,7 +1093,11 @@
 <h1 id="비싼-수학-계산-피하기">비싼 수학 계산 피하기</h1>
 <hr />
 
-<h2 id="나눗셈-대신-곱셈">나눗셈 대신 곱셈</h2>
+<ul>
+  <li>
+    <h2 id="나눗셈-대신-곱셈">나눗셈 대신 곱셈</h2>
+  </li>
+</ul>
 
 <p>나눗셈이 곱셈보다 훨씬 느리다는 것은 흔히 알려져 있는 사실이다.</p>
 
@@ -993,7 +1107,11 @@
 
 <p><br /></p>
 
-<h2 id="if-else-vs-삼항-연산자">If-else vs 삼항 연산자</h2>
+<ul>
+  <li>
+    <h2 id="if-else-vs-삼항-연산자">If-else vs 삼항 연산자</h2>
+  </li>
+</ul>
 
 <p>직접 비교해본 결과, 성능 차이가 거의 없었다.</p>
 
@@ -1001,7 +1119,11 @@
 
 <p><br /></p>
 
-<h2 id="systemmathabs-vs-unityenginemathfabs-vs-삼항-연산자">System.Math.Abs vs UnityEngine.Mathf.Abs vs 삼항 연산자</h2>
+<ul>
+  <li>
+    <h2 id="systemmathabs-vs-unityenginemathfabs-vs-삼항-연산자">System.Math.Abs vs UnityEngine.Mathf.Abs vs 삼항 연산자</h2>
+  </li>
+</ul>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -1029,7 +1151,11 @@
 
 <p><br /></p>
 
-<h2 id="mathf가-느린-이유">Mathf가 느린 이유</h2>
+<ul>
+  <li>
+    <h2 id="mathf가-느린-이유">Mathf가 느린 이유</h2>
+  </li>
+</ul>
 
 <p>UnityEngine.Mathf.Abs(float)를 예시로 내부 구현을 살펴보면</p>
 
@@ -1087,7 +1213,7 @@
 <span class="k">public</span> <span class="k">static</span> <span class="k">extern</span> <span class="kt">float</span> <span class="nf">Abs</span><span class="p">(</span><span class="kt">float</span> <span class="k">value</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>이렇게 되어있다.</p>
+<p>이렇게 네이티브 호출로 이어진다.</p>
 
 <p>UnityEngine.Mathf는 대부분 이렇게 구현되어 있기 때문에 느리다.</p>
 
@@ -1261,6 +1387,11 @@
         
         
         
+        <li><a href="/posts/opengl-study-06/">OpenGL 공부 - 06 - Shader File</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-custom-attribute/">커스텀 애트리뷰트</a></li>
       
         
@@ -1277,11 +1408,6 @@
         
         
         <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02 - 초기 세팅</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03 - Vertex, VBO</a></li>
       
 
       </ul>
@@ -1649,110 +1775,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1877,324 +1899,10 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2609,6 +2317,165 @@
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -2653,6 +2520,310 @@
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -2970,6 +3141,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -4584,110 +4768,6 @@ No...
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -4812,324 +4892,10 @@ No...
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -5544,6 +5310,165 @@ No...
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -5588,6 +5513,310 @@ No...
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     

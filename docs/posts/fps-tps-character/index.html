@@ -26,8 +26,8 @@
 <meta property="og:title" content="1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목차 1. 하이라키 구성 2. 스크립트 기초 3. 1인칭 이동, 회전 4. 3인칭 이동, 회전 5. 카메라 전환 6. 점프 7. 애니메이션 적용 8. 애니메이션 블렌딩 9. 카메라 전환 시 시점 방향 유지하기 10. 3인칭 카메라 줌 구현 11. 경사로에서 정확한 이동 구현 12. 이동 가속/감속 제어 13. 캐릭터 고개가 상하 회전방향 바라보게 하기" />
-<meta property="og:description" content="목차 1. 하이라키 구성 2. 스크립트 기초 3. 1인칭 이동, 회전 4. 3인칭 이동, 회전 5. 카메라 전환 6. 점프 7. 애니메이션 적용 8. 애니메이션 블렌딩 9. 카메라 전환 시 시점 방향 유지하기 10. 3인칭 카메라 줌 구현 11. 경사로에서 정확한 이동 구현 12. 이동 가속/감속 제어 13. 캐릭터 고개가 상하 회전방향 바라보게 하기" />
+<meta name="description" content="목차 1. 하이라키 구성 2. 스크립트 기초 3. 1인칭 이동, 회전 4. 3인칭 이동, 회전 5. 카메라 전환 6. 점프 7. 애니메이션 적용 8. 애니메이션 블렌딩 9. 카메라 전환 시 시점 방향 유지하기 10. 3인칭 카메라 줌 구현 11. 점프 버그 수정 12. 이동 버그 수정 13. 캐릭터 고개가 상하 회전방향 바라보게 하기" />
+<meta property="og:description" content="목차 1. 하이라키 구성 2. 스크립트 기초 3. 1인칭 이동, 회전 4. 3인칭 이동, 회전 5. 카메라 전환 6. 점프 7. 애니메이션 적용 8. 애니메이션 블렌딩 9. 카메라 전환 시 시점 방향 유지하기 10. 3인칭 카메라 줌 구현 11. 점프 버그 수정 12. 이동 버그 수정 13. 캐릭터 고개가 상하 회전방향 바라보게 하기" />
 <link rel="canonical" href="https://rito15.github.io/posts/fps-tps-character/" />
 <meta property="og:url" content="https://rito15.github.io/posts/fps-tps-character/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]","description":"목차 1. 하이라키 구성 2. 스크립트 기초 3. 1인칭 이동, 회전 4. 3인칭 이동, 회전 5. 카메라 전환 6. 점프 7. 애니메이션 적용 8. 애니메이션 블렌딩 9. 카메라 전환 시 시점 방향 유지하기 10. 3인칭 카메라 줌 구현 11. 경사로에서 정확한 이동 구현 12. 이동 가속/감속 제어 13. 캐릭터 고개가 상하 회전방향 바라보게 하기","dateModified":"2021-02-19T05:06:10+09:00","datePublished":"2021-02-12T18:06:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/fps-tps-character/"},"url":"https://rito15.github.io/posts/fps-tps-character/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. 하이라키 구성 2. 스크립트 기초 3. 1인칭 이동, 회전 4. 3인칭 이동, 회전 5. 카메라 전환 6. 점프 7. 애니메이션 적용 8. 애니메이션 블렌딩 9. 카메라 전환 시 시점 방향 유지하기 10. 3인칭 카메라 줌 구현 11. 점프 버그 수정 12. 이동 버그 수정 13. 캐릭터 고개가 상하 회전방향 바라보게 하기","datePublished":"2021-02-12T18:06:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/fps-tps-character/"},"url":"https://rito15.github.io/posts/fps-tps-character/","author":{"@type":"Person","name":"Rito15"},"headline":"1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]","dateModified":"2021-02-19T05:06:10+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5076 words">28 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6351 words">35 min</span>
 
 
           <!-- page views -->
@@ -475,8 +475,8 @@
   <li><a href="#애니메이션-블렌딩">8. 애니메이션 블렌딩</a></li>
   <li><a href="#카메라-전환-시-시점-방향-유지하기">9. 카메라 전환 시 시점 방향 유지하기</a></li>
   <li><a href="#3인칭-카메라-줌-구현하기">10. 3인칭 카메라 줌 구현</a></li>
-  <li><a href="#">11. 경사로에서 정확한 이동 구현</a></li>
-  <li><a href="#">12. 이동 가속/감속 제어</a></li>
+  <li><a href="#점프-버그-수정하기">11. 점프 버그 수정</a></li>
+  <li><a href="#이동-버그-수정하기">12. 이동 버그 수정</a></li>
   <li><a href="#">13. 캐릭터 고개가 상하 회전방향 바라보게 하기</a></li>
 </ul>
 
@@ -1883,7 +1883,7 @@
 
 <h2 id="트랜지션-설정">트랜지션 설정</h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108359299-2e436780-7233-11eb-82f6-66ad9911a1be.png" alt="image" class="normal" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108544038-38e02880-7329-11eb-95e4-f267ab65603f.png" alt="image" class="normal" /></p>
 
 <div class="table-wrapper"><table>
   <thead>
@@ -1897,11 +1897,6 @@
     <tr>
       <td>IDLE_MOVE-&gt;JUMP_UP</td>
       <td>Jump(Trigger)</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>JUMP_UP-&gt;IDLE_MOVE</td>
-      <td>Ground == true</td>
       <td>false</td>
     </tr>
     <tr>
@@ -2024,11 +2019,386 @@
 <h1 id="3인칭-카메라-줌-구현하기">3인칭 카메라 줌 구현하기</h1>
 <hr />
 
+<p>3인칭 카메라 모드일 때만, 휠 입력을 받아서 카메라 줌 기능을 구현하려고 한다.</p>
+
+<p>3인칭 카메라를 카메라가 바라보는 방향(transform.foward)으로 이동시키면 줌 인, 반대 방향으로 이동시키면 줌 아웃을 구현할 수 있다.</p>
+
+<p>CameraOption 클래스에 다음처럼 필드를 작성한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">3.5f</span><span class="p">),</span> <span class="n">Space</span><span class="p">,</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 확대 최대 거리"</span><span class="p">)]</span>
+<span class="k">public</span> <span class="kt">float</span> <span class="n">zoomInDistance</span> <span class="p">=</span> <span class="m">3f</span><span class="p">;</span>
+
+<span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">5f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 축소 최대 거리"</span><span class="p">)]</span>
+<span class="k">public</span> <span class="kt">float</span> <span class="n">zoomOutDistance</span> <span class="p">=</span> <span class="m">3f</span><span class="p">;</span>
+
+<span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">20f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 속도"</span><span class="p">)]</span>
+<span class="k">public</span> <span class="kt">float</span> <span class="n">zoomSpeed</span> <span class="p">=</span> <span class="m">10f</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>그리고 스크립트 내에 필드를 더 추가한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; TP 카메라 ~ Rig 초기 거리 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="kt">float</span> <span class="n">_tpCamZoomInitialDistance</span><span class="p">;</span>
+
+<span class="c1">/// &lt;summary&gt; TP 카메라 휠 입력 값 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="kt">float</span> <span class="n">_tpCameraWheelInput</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>게임 시작 시 _tpCamZoomInitialDistance 필드에 TP Camera, TP Rig 사이의 거리를 측정하고 게임 내에서 해당 값을 기준으로 줌인/줌아웃 기능을 사용하게 된다.</p>
+
+<p>InitSettings() 메소드 블록 내 최하단에 다음과 같이 작성하여 초기 줌 거리를 측정한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">_tpCamZoomInitialDistance</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Distance</span><span class="p">(</span><span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>그리고 SetValuesByKeyInput() 메소드 하단에도 마찬가지로 다음 한줄을 추가하여 휠 입력값을 받아오도록 한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">_tpCameraWheelInput</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetAxisRaw</span><span class="p">(</span><span class="s">"Mouse ScrollWheel"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>마지막으로 새로운 메소드를 작성하고, Update() 블록 내부 하단에서 호출해준다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">TpCameraZoom</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>         <span class="c1">// TP 카메라만 가능</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_tpCameraWheelInput</span> <span class="p">==</span> <span class="m">0f</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span> <span class="c1">// 휠 입력 있어야 가능</span>
+
+    <span class="n">Transform</span> <span class="n">tpCamTr</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">.</span><span class="n">transform</span><span class="p">;</span>
+    <span class="n">Transform</span> <span class="n">tpCamRig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">;</span>
+
+    <span class="kt">float</span> <span class="n">zoom</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span> <span class="p">*</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomSpeed</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">currentCamToRigDist</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Distance</span><span class="p">(</span><span class="n">tpCamTr</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">tpCamRig</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+    <span class="n">Vector3</span> <span class="n">move</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">forward</span> <span class="p">*</span> <span class="n">zoom</span><span class="p">;</span>
+
+    <span class="c1">// Zoom In</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_tpCameraWheelInput</span> <span class="p">&gt;</span> <span class="m">0.01f</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_tpCamZoomInitialDistance</span> <span class="p">-</span> <span class="n">currentCamToRigDist</span> <span class="p">&lt;</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomInDistance</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">tpCamTr</span><span class="p">.</span><span class="nf">Translate</span><span class="p">(</span><span class="n">move</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">Self</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// Zoom Out</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">_tpCameraWheelInput</span> <span class="p">&lt;</span> <span class="p">-</span><span class="m">0.01f</span><span class="p">)</span>
+    <span class="p">{</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">currentCamToRigDist</span> <span class="p">-</span> <span class="n">_tpCamZoomInitialDistance</span> <span class="p">&lt;</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomOutDistance</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">tpCamTr</span><span class="p">.</span><span class="nf">Translate</span><span class="p">(-</span><span class="n">move</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">Self</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
 <p><br /></p>
 
-<h1 id="경사로에서-정확한-이동-구현하기">경사로에서 정확한 이동 구현하기</h1>
-<h1 id="이동-가속감속-제어하기">이동 가속/감속 제어하기</h1>
+<h2 id="추가--부드러운-줌-구현하기">추가 : 부드러운 줌 구현하기</h2>
+
+<p>Lerp를 이용하여 부드러운 줌을 구현할 수 있다.</p>
+
+<p>우선 CameraOption 클래스에 다음 필드를 추가한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.01f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 가속"</span><span class="p">)]</span>
+<span class="k">public</span> <span class="kt">float</span> <span class="n">zoomAccel</span> <span class="p">=</span> <span class="m">0.1f</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>zoomAccel 값이 작을수록 줌이 부드럽게 연결되고, 더 오래 지속된다. 반대로 이 값이 클수록 줌이 더 빨라진다.</p>
+
+<p>그리고 SetValuesByKeyInput() 메소드 하단의 줌 입력받는 문장을</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="n">_tpCameraWheelInput</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetAxisRaw</span><span class="p">(</span><span class="s">"Mouse ScrollWheel"</span><span class="p">);</span>
+<span class="n">_currentWheel</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Lerp</span><span class="p">(</span><span class="n">_currentWheel</span><span class="p">,</span> <span class="n">_tpCameraWheelInput</span><span class="p">,</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomAccel</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 수정하고,</p>
+
+<p>TpCameraZoom() 메소드를</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">TpCameraZoom</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>                <span class="c1">// TP 카메라만 가능</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Mathf</span><span class="p">.</span><span class="nf">Abs</span><span class="p">(</span><span class="n">_currentWheel</span><span class="p">)</span> <span class="p">&lt;</span> <span class="m">0.01f</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span> <span class="c1">// 휠 입력 있어야 가능</span>
+
+    <span class="n">Transform</span> <span class="n">tpCamTr</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">.</span><span class="n">transform</span><span class="p">;</span>
+    <span class="n">Transform</span> <span class="n">tpCamRig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">;</span>
+
+    <span class="kt">float</span> <span class="n">zoom</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span> <span class="p">*</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomSpeed</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">currentCamToRigDist</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Distance</span><span class="p">(</span><span class="n">tpCamTr</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">tpCamRig</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+    <span class="n">Vector3</span> <span class="n">move</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">forward</span> <span class="p">*</span> <span class="n">zoom</span> <span class="p">*</span> <span class="n">_currentWheel</span> <span class="p">*</span> <span class="m">10f</span><span class="p">;</span>
+
+    <span class="c1">// Zoom In</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_currentWheel</span> <span class="p">&gt;</span> <span class="m">0.01f</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_tpCamZoomInitialDistance</span> <span class="p">-</span> <span class="n">currentCamToRigDist</span> <span class="p">&lt;</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomInDistance</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">tpCamTr</span><span class="p">.</span><span class="nf">Translate</span><span class="p">(</span><span class="n">move</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">Self</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// Zoom Out</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">_currentWheel</span> <span class="p">&lt;</span> <span class="p">-</span><span class="m">0.01f</span><span class="p">)</span>
+    <span class="p">{</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">currentCamToRigDist</span> <span class="p">-</span> <span class="n">_tpCamZoomInitialDistance</span> <span class="p">&lt;</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomOutDistance</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">tpCamTr</span><span class="p">.</span><span class="nf">Translate</span><span class="p">(</span><span class="n">move</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">Self</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 수정해준다.</p>
+
+<p><br /></p>
+<h2 id="실행-결과-2">실행 결과</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108523951-de879d80-7311-11eb-8d61-3cdee92dc206.gif" alt="2021_0220_FpTpZoom" class="normal" /></p>
+
+<p><br /></p>
+
+<h1 id="점프-버그-수정하기">점프 버그 수정하기</h1>
+<hr />
+
+<h2 id="깨알팁-timedeltatime-캐싱하기">(깨알팁) Time.deltaTime 캐싱하기</h2>
+
+<p>이 스크립트에서는 Time.deltaTime을 여러 번 사용하므로, 매 Update마다 필드에 저장하여 공통으로 사용하도록 한다.</p>
+
+<p>성능 상 이득을 얻을 수 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="kt">float</span> <span class="n">_deltaTime</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_deltaTime</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="p">&lt;</span><span class="n">br</span><span class="p">&gt;</span>
+
+<span class="err">##</span> <span class="err">다중</span> <span class="err">점프</span> <span class="err">버그</span>
+
+<span class="p">![</span><span class="m">2021</span><span class="n">_0220_InfiniteJump</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="c1">//user-images.githubusercontent.com/42164422/108530888-691fcb00-7319-11eb-9c52-62675be3bba4.gif){:.normal}</span>
+
+<span class="err">지형을</span> <span class="err">이용하면</span> <span class="err">순간적으로</span> <span class="err">점프</span> <span class="err">입력키를</span> <span class="err">빠르게</span> <span class="err">연타하여</span> <span class="err">한</span> <span class="err">번에</span> <span class="err">많이</span> <span class="err">점프할</span> <span class="err">수</span> <span class="err">있다</span><span class="p">.</span>
+
+<span class="err">이를</span> <span class="err">고치기</span> <span class="err">위해서는</span> <span class="err">점프에</span> <span class="err">짧은</span> <span class="err">쿨타임을</span> <span class="err">부여하면</span> <span class="err">된다</span><span class="p">.</span>
+
+
+
+<span class="n">MovementOption</span> <span class="err">클래스</span> <span class="err">내에</span> <span class="err">점프</span> <span class="err">쿨타임을</span> <span class="err">지정할</span> <span class="err">필드를</span> <span class="err">만들어준다</span><span class="p">.</span>
+
+<span class="err">```</span><span class="n">cs</span>
+<span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.0f</span><span class="p">,</span> <span class="m">2.0f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"점프 쿨타임"</span><span class="p">)]</span>
+<span class="k">public</span> <span class="kt">float</span> <span class="n">jumpCooldown</span> <span class="p">=</span> <span class="m">1.0f</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>그리고 현재 스크립트에 점프 쿨타임 지속시간을 기억할 필드를 추가한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="kt">float</span> <span class="n">_currentJumpCooldown</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>Jump() 메소드를 다음처럼 수정한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">Jump</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_currentJumpCooldown</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span> <span class="c1">// 점프 쿨타임</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">jump</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"JUMP"</span><span class="p">);</span>
+
+        <span class="c1">// 하강 중 점프 시 속도가 합산되지 않도록 속도 초기화</span>
+        <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">velocity</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
+
+        <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="nf">AddForce</span><span class="p">(</span><span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="n">MoveOption</span><span class="p">.</span><span class="n">jumpForce</span><span class="p">,</span> <span class="n">ForceMode</span><span class="p">.</span><span class="n">VelocityChange</span><span class="p">);</span>
+
+        <span class="c1">// 애니메이션 점프 트리거</span>
+        <span class="n">Com</span><span class="p">.</span><span class="n">anim</span><span class="p">.</span><span class="nf">SetTrigger</span><span class="p">(</span><span class="n">AnimOption</span><span class="p">.</span><span class="n">paramJump</span><span class="p">);</span>
+
+        <span class="c1">// 쿨타임 초기화</span>
+        <span class="n">_currentJumpCooldown</span> <span class="p">=</span> <span class="n">MoveOption</span><span class="p">.</span><span class="n">jumpCooldown</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>점프 쿨타임에 걸려 있으면 점프가 불가능하도록 해주었고,</p>
+
+<p>점프할 때 다시 쿨타임이 시작되록 하였다.</p>
+
+<p>그리고 하강 중 점프할 때 점프가 제대로 되지 않는 버그도 추가로 수정해주었다.</p>
+
+<p>이제 실시간으로 쿨타임을 계산해줄 메소드를 만들고, Update()에서 호출하도록 한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">UpdateCurrentValues</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">_currentJumpCooldown</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">)</span>
+        <span class="n">_currentJumpCooldown</span> <span class="p">-=</span> <span class="n">_deltaTime</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="nf">UpdateCurrentValues</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="결과">결과</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108545079-ab9dd380-732a-11eb-8ab3-14177988221d.gif" alt="2021_0220_JumpFix" class="normal" /></p>
+
+<p>이제 올바르게 점프할 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="이동-버그-수정하기">이동 버그 수정하기</h2>
+<hr />
+
+<p><br /></p>
+
 <h1 id="캐릭터-고개가-상하-회전방향-바라보게-하기">캐릭터 고개가 상하 회전방향 바라보게 하기</h1>
+<hr />
+
+<p><br /></p>
 
 <h1 id="source-code">Source Code</h1>
 <hr />
@@ -2184,6 +2554,11 @@
         
         
         
+        <li><a href="/posts/opengl-study-06/">OpenGL 공부 - 06 - Shader File</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-custom-attribute/">커스텀 애트리뷰트</a></li>
       
         
@@ -2200,11 +2575,6 @@
         
         
         <li><a href="/posts/opengl-study-02/">OpenGL 공부 - 02 - 초기 세팅</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-03/">OpenGL 공부 - 03 - Vertex, VBO</a></li>
       
 
       </ul>
@@ -2572,110 +2942,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2800,324 +3066,10 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3532,6 +3484,165 @@
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -3576,6 +3687,310 @@
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -3893,6 +4308,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -5477,110 +5905,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -5705,324 +6029,10 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -6437,6 +6447,165 @@
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -6481,6 +6650,310 @@
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     

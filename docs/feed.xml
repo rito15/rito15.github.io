@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-19T22:18:17+09:00</updated>
+  <updated>2021-02-20T03:22:32+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,65 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>스크립터블 오브젝트</title>
+    <link href="https://rito15.github.io/posts/memo-modifiable-scriptable-object/" rel="alternate" type="text/html" title="스크립터블 오브젝트" />
+    <published>2021-02-20T02:02:00+09:00</published>
+  
+    <updated>2021-02-20T02:02:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/memo-modifiable-scriptable-object/</id>
+    <content src="https://rito15.github.io/posts/memo-modifiable-scriptable-object/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      형태
+
+
+[CreateAssetMenu(fileName = "TestSO", menuName = "ScriptableObjects/Test", order = 1)]
+public class TestScriptableObject : ScriptableObject
+{
+    public int value = 0;
+}
+
+
+
+  상단의 메뉴에서 [Assets] - [Create] - [ScriptableObjects] - [Test] 를 통해 생성 할 수 있게 된다.
+  프로젝트 윈도우에서 우클릭하면 동일한 메뉴를 확인할 수 있다.
+
+
+
+
+특징
+
+
+
+  스크립터블 오브젝트를 참조하게 되면 동일한 값의 필드를 각각의 객체에서 중복된 형태로 사용하게 되는 것을 방지할 수 있다.
+    
+      예시 : 공통으로...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -290,68 +349,6 @@ object instance = Activator.CreateInstance(targetType);
 
 특정 클래스의 메소드 가져오기
 MethodInfo targetMethod = targe...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>OpenGL 공부 - 22 - Light Class</title>
-    <link href="https://rito15.github.io/posts/opengl-study-22/" rel="alternate" type="text/html" title="OpenGL 공부 - 22 - Light Class" />
-    <published>2021-02-18T15:13:00+09:00</published>
-  
-    <updated>2021-02-18T15:13:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/opengl-study-22/</id>
-    <content src="https://rito15.github.io/posts/opengl-study-22/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="OpenGL" />
-    
-    <category term="OpenGL Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  DirectionalLight, PointLight 클래스 작성
-  프래그먼트 쉐이더에서 각 라이트에 맞는 계산 수행
-
-
-
-
-1. Directional Light
-
-
-
-  위치에 관계 없이 방향으로만 작용하는 직광 만들기
-
-
-DirectionalLight 클래스 작성
-
-class DirectionalLight
-{
-private:
-    glm::vec3 direction; // 빛의 방향과 반전된 L 벡터 방향
-    glm::vec3 color;
-    float intensity;
-
-public:
-    DirectionalLight(const glm::vec3&amp;amp; direction, const glm::vec3&amp;amp; color, const float&amp;amp; intensity...
     </summary>
   
 

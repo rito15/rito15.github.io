@@ -26,8 +26,9 @@ mermaid: true
 - [14. Enum HasFlag() 박싱 이슈](#enum-hasflag-박싱-이슈)
 - [15. ScriptableObject 활용하기](#scriptableobject-활용하기)
 - [16. 메소드 호출 줄이기](#메소드-호출-줄이기)
-- [17. 박싱, 언박싱 피하기](#박싱-언박싱-피하기)
-- [18. 비싼 수학 계산 피하기](#비싼-수학-계산-피하기)
+- [17. 참조 캐싱하기](#참조-캐싱하기)
+- [18. 박싱, 언박싱 피하기](#박싱-언박싱-피하기)
+- [19. 비싼 수학 계산 피하기](#비싼-수학-계산-피하기)
 
 
 <br>
@@ -84,11 +85,15 @@ private void Caller()
 
 # StartCoroutine() 자주 호출하지 않기
 ---
-`StartCoroutine()` 메소드는 `Coroutine` 타입을 리턴하므로 GC의 먹이가 된다.
+`StartCoroutine()` 메소드는 `Coroutine` 타입의 객체를 리턴하므로 GC의 먹이가 된다.
 
 따라서 짧은 주기로 코루틴을 자주 실행해야 하는 경우, UniTask, UniRx 등으로 대체하는 것이 좋다.
 
-그리고 매 프레임 실행되는 코루틴의 경우(`yield return null`), 대신 Update를 사용하는 것이 성능상 효율적이라고 한다.
+UniTask는 Cancellation 관리가 번거로우므로, UniRx의 MicroCoroutine을 활용하면 좋다.
+
+그리고 매 프레임 실행되는 코루틴의 경우(`yield return null`), 대신 Update를 사용하는 것이 성능상 효율적이다.
+
+그런데 UniRx의 MicroCoroutine을 사용한다면 매 프레임 실행해도 된다.
 
 <br>
 
@@ -284,7 +289,9 @@ public static bool IsSet2<T>(this T self, T flag) where T : Enum
 
 # ScriptableObject 활용하기
 ---
-게임 내에서 **값이 변하지 않는 공통 데이터**를 사용하는 경우, 필드로 사용하게 되면 동일한 데이터가 객체의 수만큼 메모리를 차지하게 된다.
+게임 내에서 항상 공통으로 참조하는 변수를 사용하는 경우,
+
+각 객체의 필드로 사용하게 되면 동일한 데이터가 객체의 수만큼 메모리를 차지하게 된다.
 
 따라서 스크립터블 오브젝트로 메모리를 절약하는 것이 좋다.
 
@@ -378,6 +385,81 @@ void Update()
 
 <br>
 
+# 참조 캐싱하기
+---
+
+위의 '메소드 호출 줄이기'와 같은 맥락이다.
+
+이것은 주로 프로퍼티 호출에 해당한다.
+
+예를 들어,
+
+```cs
+void Update()
+{
+    _ = Camera.main.gameObject;
+    _ = Camera.main.transform.forward;
+    _ = targetObject.transform.parent.gameObject.activeInHierarchy;
+    _ += Time.deltaTime;
+}
+```
+
+이런 경우이다.
+
+프로퍼티는 필드가 아니다. 필드처럼, 혹은 메소드처럼 사용할 수 있는 참조이다.
+
+그리고 일반적으로 필드 참조보다 비용이 비싸다.
+
+심지어 위처럼 대상.프로퍼티.프로퍼티.프로퍼티.값 이렇게 이어지는 경우에는
+
+호출하는 모든 프로퍼티가 각각 성능 비용으로 이어진다.
+
+따라서 이를 자주 호출해야 하는 경우에는 미리 참조로 캐싱해두는 것이 좋다.
+
+예전보다 나아졌긴 하지만 심지어 Camera.main도 필드 참조보다 훨씬 비싸다.
+
+메인 카메라로 등록된 참조를 바로 가져오는 친절한 친구가 아니라,
+
+내부적으로 FindMainCamera() 메소드 호출을 통해 "MainCamera" 태그가 붙은 카메라들 중에 현재 렌더링을 담당하고 있는 카메라를 가져오는 프로퍼티다.
+
+그래서 이렇게,
+
+```cs
+private GameObject _mainCamObject;
+private Transform  _mainCamTransform;
+private GameObject _targetParentObject;
+private float      _deltaTime;
+
+void Start()
+{
+    _mainCamObject = Camera.main.gameObject;
+    _mainCamTransform = Camera.main.transform;
+    _targetParentObject = targetObject.transform.parent.gameObject;
+}
+
+void Update()
+{
+    _deltaTime = Time.deltaTime;
+
+    // ...
+
+    // Usages
+    _ = _mainCamObject;
+    _ = _mainCamTransform.forward;
+    _ = _targetParentObject.activeInHierarchy;
+}
+```
+
+자주 호출하는 프로퍼티, 참조들은 최대한 해당 타입 그대로 필드에 담아 사용하는 것이 좋다.
+
+Time.deltaTime도 캐싱하는 것은 과하다고 생각할 수 있는데,
+
+Time.deltaTime 또한 내부 메소드 호출로 구현되어 있다.
+
+여러 군데, 수십 군데에서 Time.deltaTime을 그대로 항상 호출하여 사용하면 그만큼의 메소드 호출 비용이 발생하는 것이니 항상 Update() 최상단에서 캐싱해서 사용하는 것이 좋다.
+
+<br>
+
 # 박싱, 언박싱 피하기
 ---
 
@@ -413,7 +495,7 @@ public static class Debug
 # 비싼 수학 계산 피하기
 ---
 
-## 나눗셈 대신 곱셈
+- ## 나눗셈 대신 곱셈
 
 나눗셈이 곱셈보다 훨씬 느리다는 것은 흔히 알려져 있는 사실이다.
 
@@ -423,7 +505,7 @@ public static class Debug
 
 <br>
 
-## If-else vs 삼항 연산자
+- ## If-else vs 삼항 연산자
 
 직접 비교해본 결과, 성능 차이가 거의 없었다.
 
@@ -431,7 +513,7 @@ public static class Debug
 
 <br>
 
-## System.Math.Abs vs UnityEngine.Mathf.Abs vs 삼항 연산자
+- ## System.Math.Abs vs UnityEngine.Mathf.Abs vs 삼항 연산자
 
 ```cs
 // 삼항 연산자를 이용한 Abs
@@ -458,7 +540,7 @@ public static class Debug
 
 <br>
 
-## Mathf가 느린 이유
+- ## Mathf가 느린 이유
 
 UnityEngine.Mathf.Abs(float)를 예시로 내부 구현을 살펴보면
 
@@ -495,7 +577,7 @@ using System.Security;
 public static extern float Abs(float value);
 ```
 
-이렇게 되어있다.
+이렇게 네이티브 호출로 이어진다.
 
 UnityEngine.Mathf는 대부분 이렇게 구현되어 있기 때문에 느리다.
 
