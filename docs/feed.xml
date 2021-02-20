@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-02-20T16:00:47+09:00</updated>
+  <updated>2021-02-21T04:39:00+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,89 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>깃 로컬 리포지토리 초기 세팅하기</title>
+    <link href="https://rito15.github.io/posts/memo-git-local-repo-initialization/" rel="alternate" type="text/html" title="깃 로컬 리포지토리 초기 세팅하기" />
+    <published>2021-02-21T00:00:00+09:00</published>
+  
+    <updated>2021-02-21T00:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/memo-git-local-repo-initialization/</id>
+    <content src="https://rito15.github.io/posts/memo-git-local-repo-initialization/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      조건
+
+
+
+  
+    깃헙 리포지토리를 새로 생성하는 경우
+  
+  
+    아무런 파일도 만들지 않고 순수한 상태로 리포지토리를 만든 경우 1번에 해당하며,
+  
+  
+    Readme.md, LICENCE, .gitignore 등의 파일을 만들었다면 2번에 해당한다.
+  
+
+
+
+
+1. 깃헙에 빈 리포지토리를 생성한 경우
+
+
+
+  로컬 리포지토리로 사용할 디렉토리에는 다른 파일들 존재한다고 가정한다.
+
+
+
+깃 로컬 리포지토리로 사용하겠다고 선언한다. (.git 폴더 생성)
+
+git init
+
+
+
+업로드할 파일들을 등록한다.
+
+git add .
+
+
+
+커밋을 등록한다.
+
+git commit -m "내용"
+
+
+
+원격 브랜치 이름을 main으로 지정한다.
+
+git branch -M main
+
+
+
+로컬 브...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -190,6 +273,7 @@ public class TestScriptableObject : ScriptableObject
 
   레이캐스트 시작점
   레이캐스트 방향
+  반복 횟수 : 10만 회
 
 
 변동
@@ -221,6 +305,22 @@ public class TestScriptableObject : ScriptableObject
   레이캐스트 도형 크기(Sphere, Box)
 
 
+
+
+추가 - Rigidbody.SweepTest
+
+
+SweepTest ?
+
+  콜라이더 표면으로부터 지정한 방향으로 일정 거리 이내에 다른 콜라이더가 존재하는지 검사하는 것
+
+
+검사 조건
+
+  
+    검사 주체 콜라이더 : Sphere, Capsule, Box
+
+    ...
     </summary>
   
 
@@ -286,69 +386,6 @@ public class TargetClass
 
 
 3....
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>리플렉션</title>
-    <link href="https://rito15.github.io/posts/memo-reflection/" rel="alternate" type="text/html" title="리플렉션" />
-    <published>2021-02-19T03:50:00+09:00</published>
-  
-    <updated>2021-02-19T03:50:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-reflection/</id>
-    <content src="https://rito15.github.io/posts/memo-reflection/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Csharp" />
-    
-    <category term="Csharp Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      필요 네임스페이스
-using System;
-using System.Reflection;
-
-
-
-특정 클래스 타입 가져오기
-Type targetType = Type.GetType("클래스명");
-
-
-
-네임스페이스 내에 있는 클래스 타입 가져오기
-Type targetType = Type.GetType("네임스페이스명.클래스명");
-
-
-
-다른 어셈블리(예: DLL) 내에 있는 클래스 타입 가져오기
-Type targetType = Type.GetType("네임스페이스명.클래스명, 어셈블리명);
-
-
-
-타입으로 객체 생성하기
-object instance = Activator.CreateInstance(targetType);
-
-
-
-특정 클래스의 메소드 가져오기
-MethodInfo targetMethod = targe...
     </summary>
   
 
