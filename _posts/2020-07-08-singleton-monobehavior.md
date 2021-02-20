@@ -42,4 +42,4 @@ public class Apple : Rito.SingletonMonoBehavior<Apple>
 
 # Download
 ---
-- [SingletonMonoBehavior.zip](https://github.com/rito15/Images/files/5864626/SingletonMonoBehavior.zip)
+- [SingletonMonoBehavior.zip](https://github.com/rito15/Images/files/6014305/SingletonMonoBehavior.zip)
