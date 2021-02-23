@@ -64,7 +64,9 @@ mermaid: true
 
 ## [3] Random Between Two Constants
 
-- 지정한 두 값 사이의 범위에서 무작위 값을 항상 뽑아 사용하게 된다.
+- 두 개의 값을 지정한다.
+
+- 지정한 두 값 사이의 범위에서 무작위 값을 사용하게 된다.
 
 - 예시 : Start Size [0.1, 2]
 

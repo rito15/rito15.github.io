@@ -96,7 +96,7 @@ mermaid: true
 |4.0|3개 [`Burst 2`]|
 |4.5|0개|
 
-![2021_0222_Particle_Bursts](https://user-images.githubusercontent.com/42164422/108719502-fb66df80-7562-11eb-8cf4-5aecd6277ac7.gif){:.normal}
+![2021_0223_Particle_Burst](https://user-images.githubusercontent.com/42164422/108809572-7f18de80-75ec-11eb-8d33-9c702d7670a1.gif){:.normal}
 
 <br>
 

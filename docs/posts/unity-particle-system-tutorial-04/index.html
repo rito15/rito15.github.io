@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2075 words">11 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2089 words">11 min</span>
 
 
           <!-- page views -->
@@ -477,15 +477,28 @@
 <h1 id="duration-looping-prewarm">Duration, Looping, Prewarm</h1>
 <hr />
 
+<h2 id="duration">Duration</h2>
 <ul>
   <li>
-    <p>Looping에 체크할 경우, Duration 속성을 무시하고, 파티클 시스템이 파괴되거나 수동으로 정지하기 전까지 무한히 반복되며 파티클을 생성한다.</p>
+    <p>파티클 시스템의 지속 시간을 초 단위로 지정한다.</p>
   </li>
   <li>
-    <p>Looping에 체크 해제할 경우 파티클 시스템이 시작된 순간부터 Duration에 지정된 시간(초)이 지나면 자동으로 정지한다.</p>
+    <p>Looping이 체크되지 않은 경우, 파티클 시스템이 시작된 순간부터 Duration에 지정된 시간이 지나면 자동으로 정지한다.</p>
+  </li>
+</ul>
+
+<h2 id="looping">Looping</h2>
+<ul>
+  <li>Looping에 체크할 경우 파티클 시스템이 파괴되거나 수동으로 정지하기 전까지 Duration이 무한히 반복되며 파티클을 생성한다.</li>
+</ul>
+
+<h2 id="prewarm">Prewarm</h2>
+<ul>
+  <li>
+    <p>Looping에 체크한 경우에만 Prewarm 속성을 사용할 수 있다.</p>
   </li>
   <li>
-    <p>Looping에 체크한 경우에만 Prewarm 속성을 사용할 수 있으며, Prewarm에 체크하면 파티클 시스템은 시작될 때 빈 공간에서부터 파티클을 하나씩 생성하는 것이 아니라 한 번의 루프(Duration 시간만큼)가 지났을 때를 가정하고, 그 지점에서부터 시작하게 된다.</p>
+    <p>Prewarm에 체크하면 파티클 시스템은 시작될 때 빈 공간에서부터 파티클을 하나씩 생성하는 것이 아니라 한 번의 루프(Duration 시간만큼)가 지났을 때를 가정하고, 그 지점에서부터 시작하게 된다.</p>
   </li>
   <li>
     <p>즉, Prewarm을 체크하면 시작부터 이미 생성된 많은 파티클을 가진 채로 시작하게 된다.</p>
@@ -609,12 +622,11 @@
 <hr />
 
 <ul>
-  <li>파티클을 회전시키는 경우에만 해당된다.</li>
-</ul>
+  <li>
+    <p>파티클을 회전시키는 경우에만 해당된다.</p>
 
-<p>(Start Rotation이 아니라 [Rotation over Lifetime], [Rotation by Speed]에 해당)</p>
-
-<ul>
+    <p>(Start Rotation이 아니라 [Rotation over Lifetime], [Rotation by Speed]에 해당)</p>
+  </li>
   <li>
     <p>0 ~ 1 범위의 값으로 지정한다.</p>
   </li>
@@ -3002,6 +3014,11 @@
   </div> <!-- .access -->
 
   
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
@@ -4128,10 +4145,10 @@
     주로 유니티 내에서 VFX(Visual Effect)를 표현하는데 사용한다.
   
   
-    이름이 ‘파티클’이 아니고 ‘파티클 시스템’인 이유는 마치 시스템처럼 하나의 파티클 시스템이 여러 개의 작은 파티클 오브젝트를 생성 및 관리하기 때문이다.
+    이름이 ‘파티클’이 아니고 ‘파티클 시스템’인 이유는 마치 시스템처럼 하나의 파티클 시스템이 여러 개의 작은 파티클들을 생성 및 관리하기 때문이다.
   
   
-    기본적으로 빈 게임오브젝트에 Particl...
+    기본적으로 빈 게임오브젝트에 Particle Sy...
               </p>
             </div>
           </div>

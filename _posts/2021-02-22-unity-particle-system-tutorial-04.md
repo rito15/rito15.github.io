@@ -48,13 +48,20 @@ mermaid: true
 # Duration, Looping, Prewarm
 ---
 
-- Looping에 체크할 경우, Duration 속성을 무시하고, 파티클 시스템이 파괴되거나 수동으로 정지하기 전까지 무한히 반복되며 파티클을 생성한다.
+## Duration
+ - 파티클 시스템의 지속 시간을 초 단위로 지정한다.
 
-- Looping에 체크 해제할 경우 파티클 시스템이 시작된 순간부터 Duration에 지정된 시간(초)이 지나면 자동으로 정지한다.
+ - Looping이 체크되지 않은 경우, 파티클 시스템이 시작된 순간부터 Duration에 지정된 시간이 지나면 자동으로 정지한다.
 
-- Looping에 체크한 경우에만 Prewarm 속성을 사용할 수 있으며, Prewarm에 체크하면 파티클 시스템은 시작될 때 빈 공간에서부터 파티클을 하나씩 생성하는 것이 아니라 한 번의 루프(Duration 시간만큼)가 지났을 때를 가정하고, 그 지점에서부터 시작하게 된다.
+## Looping
+ - Looping에 체크할 경우 파티클 시스템이 파괴되거나 수동으로 정지하기 전까지 Duration이 무한히 반복되며 파티클을 생성한다.
 
-- 즉, Prewarm을 체크하면 시작부터 이미 생성된 많은 파티클을 가진 채로 시작하게 된다.
+## Prewarm
+ - Looping에 체크한 경우에만 Prewarm 속성을 사용할 수 있다.
+
+ - Prewarm에 체크하면 파티클 시스템은 시작될 때 빈 공간에서부터 파티클을 하나씩 생성하는 것이 아니라 한 번의 루프(Duration 시간만큼)가 지났을 때를 가정하고, 그 지점에서부터 시작하게 된다.
+
+ - 즉, Prewarm을 체크하면 시작부터 이미 생성된 많은 파티클을 가진 채로 시작하게 된다.
 
 <br>
 - 예시 1 : Looping [설정] vs [해제]
@@ -139,7 +146,7 @@ mermaid: true
 
 - 파티클을 회전시키는 경우에만 해당된다.
 
-(Start Rotation이 아니라 [Rotation over Lifetime], [Rotation by Speed]에 해당)
+  (Start Rotation이 아니라 [Rotation over Lifetime], [Rotation by Speed]에 해당)
 
 - 0 ~ 1 범위의 값으로 지정한다.
 
