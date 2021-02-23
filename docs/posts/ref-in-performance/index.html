@@ -665,27 +665,27 @@
         
         
         
+        <li><a href="/posts/unity-particle-system-tutorial-01/">파티클 시스템 기초 - 01 - 파티클 시스템 만들기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-particle-system-tutorial-03/">파티클 시스템 기초 - 03 - 값의 지정 방법</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-particle-system-tutorial-05/">파티클 시스템 기초 - 05 - 주요 모듈</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-raycast-performance/">레이캐스트 성능 체크</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/singleton-monobehavior/">Singleton MonoBehavior</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-script-optimization/">유니티 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기 [작성 중]</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-06/">OpenGL 공부 - 06 - Shader File</a></li>
       
 
       </ul>
@@ -2885,6 +2885,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -3852,7 +3865,7 @@
       
       
       <div class="card">
-        <a href="/posts/memo-custom-attribute/">
+        <a href="/posts/csharp-fileio/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -3869,13 +3882,13 @@
   
 
   
-    Feb 19
+    Jan 28
   
 
-  <i class="unloaded">2021-02-19T03:55:00+09:00</i>
+  <i class="unloaded">2021-01-28T21:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>커스텀 애트리뷰트</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 파일 입출력</h3>
             <div class="text-muted small">
               <p>
                 
@@ -3884,27 +3897,19 @@
 
 
 
-                필요 네임스페이스
-
-1
-2
-using System;
-using System.Linq;
+                간단 정리
 
 
-1. 애트리뷰트 클래스 작성
+파일에 쓰려면
 
-1
-2
-3
-4
-5
-6
-7
-[System.AttributeUsage(System.AttributeTargets.Method)]
-public class CustomAttribute : System.Attribute
-{
-    public...
+  대상이 string, string[], byte[] 타입 중 하나여야 한다.
+  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
+
+
+한 파일에 대한 연속 입출력 횟수에 따라
+
+  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
+  여러 번에 걸쳐 읽거나 쓰려면 스트림 ...
               </p>
             </div>
           </div>

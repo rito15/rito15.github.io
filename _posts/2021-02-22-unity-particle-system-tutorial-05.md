@@ -17,6 +17,7 @@ mermaid: true
 - [4. Color over Lifetime](#color-over-lifetime)
 - [5. Size over Lifetime](#size-over-lifetime)
 - [6. Rotation over Lifetime](#rotation-over-lifetime)
+- [7. Texture Sheet Animation](#texture-sheet-animation)
 - [References](#references)
 
 <br>
@@ -423,6 +424,75 @@ mermaid: true
 ![2021_0223_Particle_RotationOverLifetime_4](https://user-images.githubusercontent.com/42164422/108753058-9a053780-7587-11eb-97e7-9d98c464ada6.gif)
 
 <br>
+
+# Texture Sheet Animation
+---
+
+![image](https://user-images.githubusercontent.com/42164422/108836253-f877f780-7613-11eb-8281-55c80123f312.png)
+
+- 대부분의 경우에 파티클 하나를 그려놓은 텍스쳐를 이용하여 이펙트를 제작한다.
+
+- 그리고 또다른 방식으로, 마치 스톱모션 애니메이션을 만드는 것처럼 연속된 애니메이션을 표현하는 여러 장의 텍스쳐를 교체하며 보여주는 방법이 있다.
+
+- 여러 장의 텍스쳐, 혹은 연속된 텍스쳐들을 하나의 작은 텍스쳐에 그리드(Grid) 영역을 나누어 표현해 놓은 텍스쳐 시트(Texture Sheet)를 이용할 수 있다.
+
+- [Texture Sheet Animation] 모듈은 위에 해당하는 경우들에만 체크하여 사용한다.
+
+![image](https://user-images.githubusercontent.com/42164422/108836060-ba7ad380-7613-11eb-9a97-384052a4d17c.png)
+<center>텍스쳐 시트의 예시</center>
+
+<br>
+
+## Mode
+ - Grid : 각각의 스냅샷이 한 장의 텍스쳐에 그리드 형태로 표현된 텍스쳐 시트를 사용하는 경우
+ - Sprites : 여러 장의 텍스쳐를 교체하며 보여주려는 경우
+
+<br>
+
+## Tiles
+ - 그리드를 이루는 타일의 가로, 세로 개수를 X, Y에 입력한다.
+
+<br>
+
+## Animation
+ - Whole Sheet : 텍스쳐 내의 모든 타일을 애니메이션에 사용한다.
+ - Single Row : 특정 행을 하나 지정하여 사용한다.
+
+<br>
+
+## Time Mode
+ - Lifetime : 메인 모듈의 [Start Lifetime] 속성을 기준으로 애니메이션의 속도를 조정한다.
+ - Speed : 파티클의 속도에 비례하여 프레임을 선택하기 위한 최소 ~ 최대 속도 범위를 지정한다.
+ - FPS : 초당 재생할 프레임 수를 입력한다.
+
+<br>
+
+## Row Mode
+ - Animation이 Single Row일 때만 설정할 수 있다.
+
+ - Custom : 재생할 특정 행의 인덱스를 지정한다.
+ - Random : 무작위 행을 재생한다.
+ - Mesh Index : 파티클에 할당된 메시 인덱스에 기반하여 행을 지정한다.
+
+<br>
+
+## Start Frame
+ - 처음으로 재생할 프레임의 번호를 입력한다.
+
+<br>
+
+## Cycles
+ - 한 번의 수명 주기 내에서 애니메이션을 반복할 횟수를 지정한다.
+
+<br>
+
+## Affected UV Channels
+ - 파티클 시스템에 영향을 받는 UV 채널을 정확히 지정한다.
+
+<br>
+
+![2021_0223_Particle_SpriteSheet_Fire](https://user-images.githubusercontent.com/42164422/108839988-14ca6300-7619-11eb-9641-435f560d1955.gif)
+<center>위의 텍스쳐 시트로 만든 파티클 예시</center>
 
 # References
 ---

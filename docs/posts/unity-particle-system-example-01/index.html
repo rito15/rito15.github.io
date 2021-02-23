@@ -23,23 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="dialog" />
+<meta property="og:title" content="파티클 시스템 예제 - 01" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Unity Csharp Developer" />
-<meta property="og:description" content="Unity Csharp Developer" />
-<link rel="canonical" href="https://rito15.github.io/tags/dialog/" />
-<meta property="og:url" content="https://rito15.github.io/tags/dialog/" />
+<meta name="description" content="Preview" />
+<meta property="og:description" content="Preview" />
+<link rel="canonical" href="https://rito15.github.io/posts/unity-particle-system-example-01/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unity-particle-system-example-01/" />
 <meta property="og:site_name" content="Rito15" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-23T21:15:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="dialog" />
+<meta property="twitter:title" content="파티클 시스템 예제 - 01" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/tags/dialog/","author":{"@type":"Person","name":"Rito15"},"headline":"dialog","@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Preview","datePublished":"2021-02-23T21:15:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-particle-system-example-01/"},"url":"https://rito15.github.io/posts/unity-particle-system-example-01/","author":{"@type":"Person","name":"Rito15"},"headline":"파티클 시스템 예제 - 01","dateModified":"2021-02-23T21:15:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>dialog | Rito15
+  <title>파티클 시스템 예제 - 01 | Rito15
   </title>
 
   <!--
@@ -115,9 +117,14 @@
 
 
 
-<link rel="preload" href="/assets/css/category-tag.css" as="style">
-<link rel="stylesheet" href="/assets/css/category-tag.css">
+<link rel="preload" href="/assets/css/post.css" as="style">
+<link rel="stylesheet" href="/assets/css/post.css">
 
+
+  
+    <link rel="preload" as="style" href="/assets/css/lib/bootstrap-toc.min.css">
+    <link rel="stylesheet" href="/assets/css/lib/bootstrap-toc.min.css" />
+  
 
 
 
@@ -140,8 +147,12 @@
 
 
 
-<script async src="/assets/js/page.min.js"></script>
+<script async src="/assets/js/post.min.js"></script>
 
+
+  <!-- MathJax -->
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 
 
@@ -278,22 +289,14 @@
         
         <span>
           <a href="/">
-            Home
-          </a>
-        </span>
-        
-      
-        
-        <span>
-          <a href="/tabs/tags/">
-            Tags
+            Posts
           </a>
         </span>
         
       
 
       
-        <span>dialog</span>
+        <span>파티클 시스템 예제 - 01</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -301,7 +304,7 @@
     <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
 
     <div id="topbar-title">
-      Tag
+      Post
     </div>
 
     <i id="search-trigger" class="fas fa-search fa-fw"></i>
@@ -344,31 +347,506 @@
 
 
 
+  
+
+  
+
+  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
+  
+  
+
+  
+
+  
+
+
+
 <!-- return -->
 <div class="row">
-  <div class="col-12 col-lg-11 col-xl-8">
-    <div id="page" class="post pb-5 pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4 mb-md-4">
+
+  <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+
+    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+      <h1 data-toc-skip>파티클 시스템 예제 - 01</h1>
+
+      <div class="post-meta text-muted d-flex flex-column">
+        <!-- Published date and author -->
+        <div>
+          <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, Feb 23, 2021,  9:15 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 23
+  
+
+  <i class="unloaded">2021-02-23T21:15:00+09:00</i>
+
+</span>
+          by
+          <span class="author">
+            Rito15
+          </span>
+        </div>
+
+        <div>
+          <!-- lastmod -->
+          
+
+          <!-- read time -->
+          <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1022 words">5 min</span>
+
+
+          <!-- page views -->
+          
+
+        </div>
+
+      </div> <!-- .post-meta -->
+
+      <div class="post-content">
+
+        
+
+        <h1 id="preview">Preview</h1>
+<hr />
+
+<h2 id="1-twinkles">1. Twinkles</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108846034-7abae880-7621-11eb-9ca0-f0831153ae0e.gif" alt="2021_0223_Particle_Ex_Twinkle_Completed" /></p>
+
+<h2 id="2-falling-snowflakes">2. Falling Snowflakes</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108849793-ec953100-7625-11eb-9a33-3b4c595cc628.gif" alt="2021_0223_Particle_Ex_Snow_Completed" /></p>
+
+<h2 id="3-rising-hearts">3. Rising Hearts</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108842884-49d8b480-761d-11eb-86b4-d6ad7590c42a.gif" alt="2021_0223_Particle_Ex_Hearts" /></p>
+
+<p><br /></p>
+
+<h1 id="목차">목차</h1>
+<hr />
+
+<ul>
+  <li><a href="#twinkles">1. Twinkles</a></li>
+  <li><a href="#falling-snowflakes">2. Falling Snowflakes</a></li>
+  <li><a href="#rising-hearts">3. Rising Hearts</a></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="twinkles">Twinkles</h1>
+<hr />
+
+<ul>
+  <li>
+    <p>우선 반짝이는 모양의 텍스쳐와 Additive 마테리얼을 준비한다.</p>
+
+    <p>(텍스쳐 및 마테리얼 준비는 설명을 생략하며, 파티클 시스템 게임오브젝트를 생성한 상태라고 가정한다.)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="transform">Transform</h2>
+
+<ul>
+  <li>
+    <p>파티클 시스템 게임오브젝트를 최초로 생성하면 Rotation X 값이 -90으로 설정되어 있다.</p>
+  </li>
+  <li>
+    <p>의도와 다르게 동작할 수 있으므로, 0으로 지정해주고 시작하는 것이 좋다.</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108844434-7988bc00-761f-11eb-8f87-52cde111a46a.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="shape">Shape</h2>
+
+<ul>
+  <li>
+    <p>파티클이 넓게 퍼진 영역에서 생성될 것이므로, Shape를 Box로 지한다.</p>
+  </li>
+  <li>
+    <p>영역의 크기(Scale)는 적당히 넓게 10 ~ 20 정도로 지정한다.</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108844090-f7989300-761e-11eb-8f81-10496469f102.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="main---start-speed">Main - Start Speed</h2>
+<ul>
+  <li>파티클이 움직이지 않고 제자리에서 생성되고 사라지는 형태이므로, Start Speed를 0으로 설정한다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="main---start-color">Main - Start Color</h2>
+<ul>
+  <li>다양한 색상을 무작위로 사용하기 위해, [Random Color]를 지정하고 다음과 같이 설정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108844904-0d5a8800-7620-11eb-92df-31b5a56690c3.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="main---start-size">Main - Start Size</h2>
+<ul>
+  <li>다양한 크기를 무작위로 사용하기 위해, [Random Between Two Constants]를 지정한다.</li>
+  <li>카메라와의 거리에 따라 크기를 적절하게 지정한다. (예 : 1 ~ 4)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="size-over-lifetime">Size over Lifetime</h2>
+<ul>
+  <li>점점 커졌다가 작아지는 것을 표현하기 위해 커브를 다음처럼 지정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108845697-1435ca80-7621-11eb-8c8c-7aadd486549b.gif" alt="2021_0223_Particle_Ex_Twinkle_SizeCurve" /></p>
+
+<p><br /></p>
+
+<h2 id="main---start-lifetime">Main - Start Lifetime</h2>
+<ul>
+  <li>더 빠르게 깜빡일 수 있도록, Lifetime 값을 1 정도로 설정한다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="emission">Emission</h2>
+<ul>
+  <li>파티클을 더 많이 생성하도록 Rate over Time 값을 64 정도로 높여준다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="결과">결과</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108846034-7abae880-7621-11eb-9ca0-f0831153ae0e.gif" alt="2021_0223_Particle_Ex_Twinkle_Completed" /></p>
+
+<p><br /></p>
+
+<h1 id="falling-snowflakes">Falling Snowflakes</h1>
+<hr />
+
+<h2 id="사전-준비">사전 준비</h2>
+<ul>
+  <li>텍스쳐</li>
+  <li>마테리얼</li>
+  <li>파티클 시스템 게임오브젝트 생성</li>
+  <li>Transform - Rotation (0, 0, 0)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="shape-1">Shape</h2>
+<ul>
+  <li>Box</li>
+  <li>옆으로 길쭉한 형태가 필요하므로, Scale을 (20, 1, 1) 정도로 설정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108846733-3ed45300-7622-11eb-8153-b2b4daabc13b.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="main---start-speed-1">Main - Start Speed</h2>
+<ul>
+  <li>0으로 설정한다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="main---gravity-modifier">Main - Gravity Modifier</h2>
+<ul>
+  <li>파티클이 적당히 천천히 떨어질 수 있도록 0.2로 지정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108847091-9d013600-7622-11eb-9e93-d8e9a9ee4160.gif" alt="2021_0223_Particle_Ex_Snow_Gravity" /></p>
+
+<p><br /></p>
+
+<h2 id="main---start-color-1">Main - Start Color</h2>
+<ul>
+  <li>하얀색 ~ 하늘색 사이에서 무작위 색상을 사용할 수 있도록 [Random Color]로 다음과 같이 지정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108847409-008b6380-7623-11eb-961e-ea42bd7f17fc.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="main---start-size-1">Main - Start Size</h2>
+<ul>
+  <li>파티클이 다양한 크기를 가질 수 있도록 [Random Between Two Constants]로 설정하고, 값을 [1, 2]로 지정한다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="rotation-over-lifetime">Rotation over Lifetime</h2>
+<ul>
+  <li>파티클이 수명 내에서 계속 회전할 수 있도록 Angular Velocity 값을 180으로 지정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108848287-28c79200-7624-11eb-85ba-3badc6e99d17.gif" alt="2021_0223_Particle_Ex_Snow_RotationOverTime" /></p>
+
+<p><br /></p>
+
+<h2 id="main---flip-rotation">Main - Flip Rotation</h2>
+<ul>
+  <li>파티클이 반대 방향의 회전도 가질 수 있도록 Flip Rotation 값을 0.5로 지정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108848473-5e6c7b00-7624-11eb-9665-2ec02a0474fd.gif" alt="2021_0223_Particle_Ex_Snow_FlipRotation" /></p>
+
+<p><br /></p>
+
+<h2 id="color-over-lifetime">Color over Lifetime</h2>
+<ul>
+  <li>파티클이 자연스럽게 나타나고 사라지는 것처럼 보일 수 있게 다음처럼 그라디언트를 지정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108849307-5c56ec00-7625-11eb-8637-f363e4a01709.gif" alt="2021_0223_Particle_Ex_Snow_ColorOverLifetime" /></p>
+
+<p><br /></p>
+
+<h2 id="기타-속성">기타 속성</h2>
+<ul>
+  <li>메인 모듈의 Start Lifetime으로 파티클의 수명을 적절하게 조정해준다. (예제 : 4)</li>
+  <li>Emission 모듈의 Rate over Time으로 파티클의 개수를 원하는대로 조정한다. (예제 : 20)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="결과-1">결과</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108849793-ec953100-7625-11eb-9a33-3b4c595cc628.gif" alt="2021_0223_Particle_Ex_Snow_Completed" /></p>
+
+<p><br /></p>
+
+<h1 id="rising-hearts">Rising Hearts</h1>
+<hr />
+
+<ul>
+  <li>위의 Snowflake와 비슷하므로 중복되는 내용은 간략히 설명한다.</li>
+</ul>
+
+<h2 id="사전-준비-1">사전 준비</h2>
+<ul>
+  <li>텍스쳐</li>
+  <li>마테리얼</li>
+  <li>파티클 시스템 게임오브젝트 생성</li>
+  <li>Transform - Rotation (0, 0, 0)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="shape-2">Shape</h2>
+<ul>
+  <li>Box</li>
+  <li>Scale (20, 1, 1)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="main-모듈">Main 모듈</h2>
+
+<ul>
+  <li>
+    <p>Start Lifetime : 2 ~ 4 [Random Between Two Constants]</p>
+  </li>
+  <li>
+    <p>Start Speed : 0</p>
+  </li>
+  <li>
+    <p>Start Size : 1 ~ 3 [Random Between Two Constants]</p>
+  </li>
+  <li>
+    <p>Start Color : Random Color</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108851491-d38d7f80-7627-11eb-861a-ffa2b718a802.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="color-over-lifetime-1">Color over Lifetime</h2>
+
+<ul>
+  <li>위의 Snowflake와 동일하게 지정한다. (알파값 0 ~ 255 ~ 0)</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108851647-046db480-7628-11eb-81c0-8dafe903c51f.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="velocity-over-lifetime">Velocity over Lifetime</h2>
+
+<ul>
+  <li>
+    <p>파티클들이 다양한 속도로 이동할 수 있도록, Linear를 [Random Between Two Constants]로 지정한다.</p>
+  </li>
+  <li>
+    <p>값은 다음과 같이 설정한다.</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108851972-5f9fa700-7628-11eb-8037-126434148bfc.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="size-over-lifetime-1">Size over Lifetime</h2>
+
+<ul>
+  <li>
+    <p>Size 값을 [Random Between Two Curves]로 지정한다.</p>
+  </li>
+  <li>
+    <p>커브를 수정하지 않고 이대로 사용한다.</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108852128-8a89fb00-7628-11eb-8ddd-6ff80b611e47.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="기타-속성-1">기타 속성</h2>
+
+<ul>
+  <li>Emission - Rate over Time (예제에서는 20으로 설정)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="결과-2">결과</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108852403-e9e80b00-7628-11eb-9b15-a274baef8401.gif" alt="2021_0223_Particle_Ex_Hearts_Completed" /></p>
+
+
+      </div>
+
+      <div class="post-tail-wrapper text-muted">
+
+        <!-- categories -->
+        
+        <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+          
+            <a href='/categories/unity/'>Unity</a>,
+            <a href='/categories/unity-particle-system/'>Unity Particle System</a>
+        </div>
+        
+
+        <!-- tags -->
+        
+        <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          
+          <a href="/tags/unity/"
+            class="post-tag no-text-decoration" >unity</a>
+          
+          <a href="/tags/csharp/"
+            class="post-tag no-text-decoration" >csharp</a>
+          
+          <a href="/tags/particle/"
+            class="post-tag no-text-decoration" >particle</a>
+          
+          </div>
+        
+
+        <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+          
+          <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+          </div>
+          
+
+          <!--
+ Post sharing snippet
+
+ v2.1
+ https://github.com/cotes2020/jekyll-theme-chirpy
+ © 2019 Cotes Chung
+ Published under the MIT License
+-->
+
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
     
-      <div id="page-tag">
-  <h1 class="pl-lg-2">
-    <i class="fa fa-tag fa-fw text-muted"></i>
-    dialog
-    <span class="lead text-muted pl-2">1</span>
-  </h1>
-  <ul class="post-content pl-0">
     
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-exit-dialog/">유니티 에디터 종료 확인 다이얼로그 만들기</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Feb 10, 2021</span>
-    </li>
-    
-  </ul>
-</div>
 
     
-    </div> <!-- #page -->
-  </div><!-- .col-12 -->
+      
+        <a href="https://twitter.com/intent/tweet?text=파티클 시스템 예제 - 01 - Rito15&url=https://rito15.github.io/posts/unity-particle-system-example-01/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+    
+      
+        <a href="https://www.facebook.com/sharer/sharer.php?title=파티클 시스템 예제 - 01 - Rito15&u=https://rito15.github.io/posts/unity-particle-system-example-01/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+    
+      
+        <a href="https://telegram.me/share?text=파티클 시스템 예제 - 01 - Rito15&url=https://rito15.github.io/posts/unity-particle-system-example-01/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    
+
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+
+  </span>
+</div>
+
+
+        </div><!-- .post-tail-bottom -->
+
+      </div><!-- div.post-tail -->
+
+    </div> <!-- .post -->
+
+
+  </div> <!-- #post-wrapper -->
+
+  
+
+  
 
   <!--
   The Pannel on right side (Desktop views)
@@ -2381,14 +2859,1329 @@
   </div> <!-- .access -->
 
   
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
 
+</div> <!-- .row -->
+
+<div class="row">
+  <div class="col-12 col-lg-11 col-xl-8">
+    <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+    <!--
+ Recommend the other 3 posts according to the tags and categories of the current post,
+ if the number is not enough, use the other latest posts to supplement.
+
+ v2.0
+ https://github.com/cotes2020/jekyll-theme-chirpy
+ © 2019 Cotes Chung
+ Published under the MIT License
+-->
+
+<!-- The total size of related posts  -->
+
+
+<!-- An random integer that bigger than 0  -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy}  -->
+
+
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+<!-- Fill with the other newlest posts  -->
+
+
+
+
+
+
+  <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+    <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3>
+    <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-particle-system-tutorial-01/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 22
+  
+
+  <i class="unloaded">2021-02-22T15:04:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>파티클 시스템 기초 - 01 - 파티클 시스템 만들기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1. 파티클 시스템 개요
+
+
+
+  
+    주로 유니티 내에서 VFX(Visual Effect)를 표현하는데 사용한다.
+  
+  
+    이름이 ‘파티클’이 아니고 ‘파티클 시스템’인 이유는 마치 시스템처럼 하나의 파티클 시스템이 여러 개의 작은 파티클들을 생성 및 관리하기 때문이다.
+  
+  
+    기본적으로 빈 게임오브젝트에 Particle Sy...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-particle-system-tutorial-02/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 22
+  
+
+  <i class="unloaded">2021-02-22T15:55:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>파티클 시스템 기초 - 02 - 파티클 속성 기초</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목차
+
+
+
+  
+    1. 개요
+  
+  2. 메인 모듈
+    
+      Start Lifetime
+      Start Speed
+      Start Size
+      Start Color
+      Gravity Modifier
+    
+  
+  
+    3. Emission
+  
+  
+    4. Shape
+  
+  5. Renderer...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-particle-system-tutorial-03/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 22
+  
+
+  <i class="unloaded">2021-02-22T17:04:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>파티클 시스템 기초 - 03 - 값의 지정 방법</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목차
+
+
+
+  1. 값(Value)
+    
+      Constant
+      Curve
+      Random Between Two Constants
+      Random Between Two Curves
+    
+  
+  2. 색상(Color)
+    
+      Color
+      Gradient
+      Random Between Tw...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+    </div> <!-- .card-deck -->
+  </div> <!-- #related-posts -->
+
+
+
+    <!--
+  Navigation buttons at the bottom of the post.
+
+  v2.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+
+<div class="post-navigation d-flex justify-content-between">
+  
+  <a href="/posts/unity-particle-system-tutorial-05/" class="btn btn-outline-primary">
+    <p>파티클 시스템 기초 - 05 - 주요 모듈</p>
+  </a>
+  
+
+  
+  <span class="btn btn-outline-primary disabled">
+    <p>-</p>
+  </span>
+  
+
 </div>
 
+    
+
+    </div> <!-- #post-extend-wrapper -->
+
+  </div> <!-- .col-* -->
+
+</div> <!-- .row -->
 
 
+
+  <!-- image lazy load: https://github.com/ApoorvSaxena/lozad.js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+
+<script type="text/javascript">
+  const imgs = document.querySelectorAll('.post-content img');
+  const observer = lozad(imgs);
+  observer.observe();
+</script>
 
 
 
@@ -4384,6 +6177,36 @@
 
 
     </div> <!-- #main-wrapper -->
+
+    
+      <!--
+  mermaid-js loader
+-->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(function() {
+    let initTheme = "default";
+
+    if ($("html[mode=dark]").length > 0
+      || ($("html[mode]").length == 0
+        && window.matchMedia("(prefers-color-scheme: dark)").matches ) ) {
+      initTheme = "dark";
+    }
+
+    let mermaidConf = {
+      theme: initTheme  /* <default|dark|forest|neutral> */
+    };
+
+    /* Markdown converts to HTML */
+    $("pre").has("code.language-mermaid").each(function() {
+      let svgCode = $(this).children().html();
+      $(this).addClass("unloaded");
+      $(this).after(`<div class=\"mermaid\">${svgCode}</div>`);
+    });
+
+    mermaid.initialize(mermaidConf);
+  });
+</script>
 
     
 
