@@ -8,6 +8,21 @@ math: true
 mermaid: true
 ---
 
+# 목차
+---
+- [1. 서론](#서론)
+- [2. 이동 스크립트 분리](#이동-스크립트-분리)
+- [3. 요구사항 정리](#요구사항)
+- [4. 필드, 프로퍼티 정의](#필드-프로퍼티-정의)
+- [5. 상태 검사 구현](#상태-검사)
+- [6. 중력 적용](#중력)
+- [7. 이동 구현](#이동-구현하기)
+- [8. 물리 상호작용](#물리-상호작용)
+- [9. 구현 결과](#구현-결과)
+- [10. 소스 코드](#source-code)
+
+<br>
+
 # 서론
 ---
 
@@ -21,7 +36,9 @@ mermaid: true
 
 트랜스폼, 내비메시 에이전트를 통해 이동을 구현하면 물리 상호작용을 할 수 없고,
 
-캐릭터 컨트롤러를 통해 구현하면 이미 구현되어 있는 기능들로 인해 물리 제어를 완전히 커스텀하게 할 수 없다.
+캐릭터 컨트롤러를 통해 구현해도 다른 콜라이더에 상호작용을 하려면 콜라이더가 따로 필요하고, 
+
+다른 강체로부터 상호작용을 받으려면 역시 리지드바디가 따로 필요한데다가 캐릭터 콜라이더는 비활성화된 상태여야 한다.
 
 따라서 리지드바디를 이용해 이동을 구현하려 한다.
 
@@ -415,78 +432,21 @@ else
 # 이동 구현하기
 ---
 
-## **[1] XZ 이동 벡터 초기화**
-
-기본적인 XZ 평면 방향 이동 벡터는 위처럼 이동 방향 전방이 막히지 않은 경우 월드 이동 방향 벡터에 이동속도를 곱해주는 방식으로 초기화한다.
-
-```cs
-if (State.isForwardBlocked) 
-{
-    Current.horizontalVelocity = Vector3.zero;
-}
-else
-{
-    float speed = !State.isMoving  ? 0f :
-                    !State.isRunning ? MOption.speed :
-                                        MOption.speed * MOption.runningCoef;
-
-    Current.horizontalVelocity = Current.worldMoveDir * speed;
-}
-```
-
-<br>
-
-## **[2] 경사면에서 벡터의 회전**
-
-지면 검사 메소드에서 얻어냈던 경사면 회전축 벡터(groundCross)를 이용하여, XZ 평면의 이동벡터를 경사면에 평행하도록 회전시킨다.
-
-그리고 그 전에, 캐릭터가 향하는 방향의 경사각(forwardSlopeAngle)을 이용하여 경사에 의한 가속/감속을 적용한다.
-
-```cs
-if (State.isGrounded && State.isMoving && !State.isForwardBlocked)
-{
-    // 경사로 인한 가속/감속
-    if (MOption.slopeAccel > 0f)
-    {
-        bool isPlus = Current.forwardSlopeAngle >= 0f;
-        float absFsAngle = isPlus ? Current.forwardSlopeAngle : -Current.forwardSlopeAngle;
-        float accel = MOption.slopeAccel * absFsAngle * 0.01111f + 1f;
-        Current.slopeAccel = !isPlus ? accel : 1.0f / accel;
-
-        Current.horizontalVelocity *= Current.slopeAccel;
-    }
-
-    // 벡터 회전 (경사로)
-    Current.horizontalVelocity =
-        Quaternion.AngleAxis(-Current.groundSlopeAngle, Current.groundCross) * Current.horizontalVelocity;
-}
-```
-
-<br>
-
-## **[3] 점프**
-
-점프는 현재 적용된 중력 값을 점프력 값으로 초기화하는 방식을 통해 간단히 구현할 수 있다.
-
-```cs
-if (State.isJumpTriggered && Current.jumpCooldown <= 0f)
-{
-    Current.gravity = MOption.jumpForce;
-}
-```
-
-<br>
-
-# 최종 이동 벡터 계산
----
-
 구현 순서대로 작성한다.
 
 <br>
 
 ## **[1] 점프**
 
-점프는 다중 점프와 쿨타임을 고려하여 작성한다.
+점프는 현재 적용된 중력 값을 점프력 값으로 초기화하는 방식을 통해 간단히 구현할 수 있다.
+
+```cs
+Current.gravity = MOption.jumpForce;
+```
+
+<br>
+
+여기에서 확장하여, 다중 점프와 쿨타임을 고려하여 작성한다.
 
 ```cs
 if (State.isJumpTriggered)
@@ -502,17 +462,32 @@ if (State.isJumpTriggered)
 }
 ```
 
-- 점프는 현재 gravity 값에 양수의 점프력 값을 초기화하여 구현한다.
+점프는 현재 gravity 값에 양수의 점프력 값을 초기화하여 구현한다.
 
-- 메인 컨트롤러로부터 점프 명령을 받으면 isJumpTriggered 값이 true로 초기화되며, 위 코드에서 이를 감지하여 점프를 하게 된다.
+메인 컨트롤러로부터 점프 명령을 받으면 isJumpTriggered 값이 true로 초기화되며, 위 코드에서 이를 감지하여 점프를 하게 된다.
 
-- 점프 쿨타임은 0보다 클 경우 Update 또는 FixedUpdate에서 값을 항상 감소시킨다.
+jumpCooldown(현재 점프 쿨타임)은 0보다 클 경우 Update 또는 FixedUpdate에서 값을 항상 감소시킨다.
+
+jumpCount(현재 누적 점프 횟수)는 grounded 상태가 되었을 때 0으로 제한하며, 점프 명령을 내리는 메소드에서 jumpCount가 일정 횟수 이상이면 점프하지 않도록 횟수 제한을 할 수 있다.
+
+isJumping 변수는 캐릭터가 공중에 있게 된 원인이 단순히 뛰어내린 것인지, 점프로 인한 것인지 구분할 수 있게 해주며 마찬가지로 grounded 상태가 되었을 때 false로 초기화한다.
 
 <br>
 
 ## **[2] XZ 평면 이동**
 
-XZ 이동속도 계산의 경우, 여러가지 조건을 고려할 수 있다.
+기본적인 XZ 평면 방향 이동 벡터는 월드 이동 방향 벡터에 이동속도를 곱해주는 방식으로 초기화할 수 있다.
+
+```cs
+float speed = !State.isMoving  ? 0f :
+              !State.isRunning ? MOption.speed :
+                                 MOption.speed * MOption.runningCoef;
+
+// XZ 이동벡터
+Current.horizontalVelocity = Current.worldMoveDir * speed;
+```
+
+그리고 여러가지 조건을 고려할 수 있다.
 
 조건을 아예 설정하지 않은 경우, 벽으로 이동하며 점프했을 때 점프가 되지 않거나 매달려버리는 경우가 발생한다.
 
@@ -543,6 +518,31 @@ if (State.isForwardBlocked && !State.isGrounded || State.isJumping && State.isGr
 <br>
 
 ## **[3] XZ 벡터 회전**
+
+지면 검사 메소드에서 얻어냈던 경사면 회전축 벡터(groundCross)를 이용하여, XZ 평면의 이동벡터를 경사면에 평행하도록 회전시킨다.
+
+그리고 그 전에, 캐릭터가 향하는 방향의 경사각(forwardSlopeAngle)을 이용하여 경사에 의한 가속/감속을 적용한다.
+
+```cs
+// 경사로 인한 가속/감속
+if (MOption.slopeAccel > 0f)
+{
+    bool isPlus = Current.forwardSlopeAngle >= 0f;
+    float absFsAngle = isPlus ? Current.forwardSlopeAngle : -Current.forwardSlopeAngle;
+    float accel = MOption.slopeAccel * absFsAngle * 0.01111f + 1f;
+    Current.slopeAccel = !isPlus ? accel : 1.0f / accel;
+
+    Current.horizontalVelocity *= Current.slopeAccel;
+}
+
+// 벡터 회전
+Current.horizontalVelocity =
+    Quaternion.AngleAxis(-Current.groundSlopeAngle, Current.groundCross) * Current.horizontalVelocity;
+```
+
+<br>
+
+여기서도 조건들을 고려해볼 수 있다.
 
 ```cs
 if (State.isGrounded && State.isMoving && !State.isForwardBlocked)
@@ -668,6 +668,39 @@ XZ 이동속도를 계산한 벡터와 중력 벡터를 더하여 리지드바�
 넉백의 구현을 예로 들 수 있다.
 
 넉백 순간에 일시적으로 제어가 불가능한 상태를 만들고 힘을 가한 뒤, 일정 시간 후에 제어를 되찾는 방식으로 구현할 수 있다.
+
+<br>
+
+이 포스팅에서는 두 번째 방법을 간단히 구현하였다.
+
+<br>
+
+# 구현 결과
+---
+
+## [1] 3인칭 뷰
+
+![2021_0226_PBM1](https://user-images.githubusercontent.com/42164422/109312876-e653be80-788a-11eb-90b6-f2f815b129f0.gif)
+
+![2021_0226_PBM2](https://user-images.githubusercontent.com/42164422/109312918-f370ad80-788a-11eb-87bb-d4b9c7b0050c.gif)
+
+![2021_0226_PBM3](https://user-images.githubusercontent.com/42164422/109312947-fe2b4280-788a-11eb-8be4-964f8bc1f42f.gif)
+
+![2021_0226_PBM4](https://user-images.githubusercontent.com/42164422/109312957-008d9c80-788b-11eb-9ef1-963026727302.gif)
+
+![2021_0226_PBM5](https://user-images.githubusercontent.com/42164422/109312963-02576000-788b-11eb-8348-cfcd8757a778.gif)
+
+![2021_0226_PBM6](https://user-images.githubusercontent.com/42164422/109312969-04212380-788b-11eb-92bf-22f72f1ce251.gif)
+
+<br>
+
+## [2] 1인칭 뷰
+
+![2021_0226_PBM_FP_1](https://user-images.githubusercontent.com/42164422/109314538-d4731b00-788c-11eb-8815-3f5f47ac8d03.gif)
+
+![2021_0226_PBM_FP_2](https://user-images.githubusercontent.com/42164422/109314546-d6d57500-788c-11eb-895e-31797cfa4a91.gif)
+
+![2021_0226_PBM_FP_3](https://user-images.githubusercontent.com/42164422/109314552-d937cf00-788c-11eb-9015-678b25cdba6e.gif)
 
 <br>
 
@@ -1206,32 +1239,3 @@ public class PhysicsBasedMovement : MonoBehaviour, IMovement3D
 ```
 
 </details>
-
-<br>
-
-# 구현 결과
----
-
-## [1] 3인칭 뷰
-
-![2021_0226_PBM1](https://user-images.githubusercontent.com/42164422/109312876-e653be80-788a-11eb-90b6-f2f815b129f0.gif)
-
-![2021_0226_PBM2](https://user-images.githubusercontent.com/42164422/109312918-f370ad80-788a-11eb-87bb-d4b9c7b0050c.gif)
-
-![2021_0226_PBM3](https://user-images.githubusercontent.com/42164422/109312947-fe2b4280-788a-11eb-8be4-964f8bc1f42f.gif)
-
-![2021_0226_PBM4](https://user-images.githubusercontent.com/42164422/109312957-008d9c80-788b-11eb-9ef1-963026727302.gif)
-
-![2021_0226_PBM5](https://user-images.githubusercontent.com/42164422/109312963-02576000-788b-11eb-8348-cfcd8757a778.gif)
-
-![2021_0226_PBM6](https://user-images.githubusercontent.com/42164422/109312969-04212380-788b-11eb-92bf-22f72f1ce251.gif)
-
-<br>
-
-## [2] 1인칭 뷰
-
-![2021_0226_PBM_FP_1](https://user-images.githubusercontent.com/42164422/109314538-d4731b00-788c-11eb-8815-3f5f47ac8d03.gif)
-
-![2021_0226_PBM_FP_2](https://user-images.githubusercontent.com/42164422/109314546-d6d57500-788c-11eb-895e-31797cfa4a91.gif)
-
-![2021_0226_PBM_FP_3](https://user-images.githubusercontent.com/42164422/109314552-d937cf00-788c-11eb-9015-678b25cdba6e.gif)

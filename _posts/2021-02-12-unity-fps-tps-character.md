@@ -22,6 +22,7 @@ mermaid: true
 - [10. 3인칭 카메라 줌 구현](#3인칭-카메라-줌-구현하기)
 - [11. 점프 버그 수정](#점프-버그-수정하기)
 - [12. 이동 스크립트 분리하기](#이동-스크립트-분리하기)
+- [13. 소스 코드](#source-code)
 
 <br>
 
@@ -1196,9 +1197,12 @@ private void Update()
 
 그리고 월드 이동 벡터는 Y 값은 0으로 두고 XZ 값만 전달해야 하는데, 현재로서는 3인칭의 경우 상하 및 좌우 회전이 통합되어 있으므로 정확한 값을 전달할 수 없다.
 
-따라서 하이라키 구조를 변경하고 회전 기능도 수정한다.
+따라서 하이라키 구조를 변경하고 회전 기능도 수정하였으며, 다음 포스팅에서 물리 기반 이동을 구현한다.
 
 <br>
+
+# Source Code
+---
 
 <details>
 <summary markdown="span"> 
@@ -1309,13 +1313,13 @@ public class CharacterMainController : MonoBehaviour
     ***********************************************************************/
     #region .
     public Components Com => _components;
-    public KeyOption Key => _keyOption;
+    public KeyOption  Key => _keyOption;
     public CameraOption   CamOption  => _cameraOption;
     public AnimatorOption AnimOption => _animatorOption;
     public CharacterState State => _state;
 
-    [SerializeField] private Components _components = new Components();
-    [Space, SerializeField] private KeyOption _keyOption = new KeyOption();
+    [SerializeField]        private Components _components = new Components();
+    [Space, SerializeField] private KeyOption  _keyOption  = new KeyOption();
     [Space, SerializeField] private CameraOption   _cameraOption   = new CameraOption();
     [Space, SerializeField] private AnimatorOption _animatorOption = new AnimatorOption();
     [Space, SerializeField] private CharacterState _state = new CharacterState();
@@ -1695,7 +1699,3 @@ public class CharacterMainController : MonoBehaviour
 ```
 
 </details>
-
-<br>
-
-이동 스크립트는 다음 포스팅을 통해 작성한다.

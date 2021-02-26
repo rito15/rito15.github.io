@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C++ 스택 메모리 동적 할당" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"C++ 스택 메모리 동적 할당","description":"Memo _alloca 스택에 메모리를 동적으로 할당해준다. 함수의 리턴으로 전달하면 안된다. 블록이 종료되면 자동으로 할당 해제된다. 공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의 예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 함","dateModified":"2021-02-01T18:45:00+09:00","datePublished":"2021-02-01T18:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cpp-stack-memory-allocation/"},"url":"https://rito15.github.io/posts/cpp-stack-memory-allocation/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Memo _alloca 스택에 메모리를 동적으로 할당해준다. 함수의 리턴으로 전달하면 안된다. 블록이 종료되면 자동으로 할당 해제된다. 공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의 예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 함","datePublished":"2021-02-01T18:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cpp-stack-memory-allocation/"},"url":"https://rito15.github.io/posts/cpp-stack-memory-allocation/","author":{"@type":"Person","name":"Rito15"},"headline":"C++ 스택 메모리 동적 할당","dateModified":"2021-02-01T18:45:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -634,6 +634,11 @@
         
         
         
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-particle-system-tutorial-05/">파티클 시스템 기초 - 05 - 주요 모듈</a></li>
       
         
@@ -650,11 +655,6 @@
         
         
         <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-raycast-performance/">레이캐스트 성능 체크</a></li>
       
 
       </ul>
@@ -3895,22 +3895,31 @@ __LINE__
 
 
 
-                서론
+                목차
+
+
+  1. 서론
+  2. 이동 스크립트 분리
+  3. 요구사항 정리
+  4. 필드, 프로퍼티 정의
+  5. 상태 검사 구현
+  6. 중력 적용
+  7. 이동 구현
+  8. 물리 상호작용
+  9. 구현 결과
+  10. 소스 코드
+
+
+
+
+서론
 
 
 유니티에서 캐릭터 이동을 구현하기 위한 방법들은 다양하다.
 
 
   Transform
-  Rigidbody
-  Character Controller
-  NavMeshAgent
-  …
-
-
-트랜스폼, 내비메시 에이전트를 통해 이동을 구현하면 물리 상호작용을 할 수 없고,
-
-캐릭터 컨트롤러를 통해 구현하면 이미 구현되어 있는 기능들로 인해 물리 제어...
+  Rigidbod...
               </p>
             </div>
           </div>
