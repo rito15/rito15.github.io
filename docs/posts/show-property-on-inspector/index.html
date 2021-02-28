@@ -697,12 +697,12 @@
         
         
         
-        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
+        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
+        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
       
         
         
@@ -717,7 +717,7 @@
         
         
         
-        <li><a href="/posts/unity-particle-system-tutorial-01/">파티클 시스템 기초 - 01 - 파티클 시스템 만들기</a></li>
+        <li><a href="/posts/unity-particle-system-tutorial-03/">파티클 시스템 기초 - 03 - 값의 지정 방법</a></li>
       
 
       </ul>
@@ -2717,6 +2717,186 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2757,7 +2937,7 @@
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
       </div>
@@ -2804,6 +2984,45 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -4024,7 +4243,7 @@ publi...
       
       
       <div class="card">
-        <a href="/posts/unity-editor-exit-dialog/">
+        <a href="/posts/unity-editor-api-memo/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4041,13 +4260,13 @@ publi...
   
 
   
-    Feb 10
+    Feb 28
   
 
-  <i class="unloaded">2021-02-10T13:50:00+09:00</i>
+  <i class="unloaded">2021-02-28T01:50:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 종료 확인 다이얼로그 만들기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 관련 유용한 스크립트, 팁 모음</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4056,23 +4275,28 @@ publi...
 
 
 
-                Memo
+                
+   
+다이얼로그 창 띄우기
 
 
-기본적으로 유니티 에디터를 종료할 때는 확인창이 뜨지 않고 바로 종료된다.
-
-만약 실수로 닫기 버튼을 눌러버린다면 그대로 종료되어 버린다.
-
-그런데 유니티 에디터는 에디터의 종료도 이벤트로 구분하여, 메소드를 추가할 수 있도록 구현해놓았기 때문에
-
-이를 이용해 에디터의 종료를 시도할 경우 확인창을 띄우도록 할 수 있다.
-
-
-
-1
+  1
 2
-3
-4...
+bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
+bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
+  
+
+
+
+
+
+
+   
+Undo 모음
+
+
+  1
+2...
               </p>
             </div>
           </div>
@@ -6171,6 +6395,186 @@ publi...
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -6206,7 +6610,7 @@ publi...
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
     </div>

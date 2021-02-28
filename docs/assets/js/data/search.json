@@ -1,6 +1,51 @@
 [
   
   {
+    "title": "오클루전 컬링",
+    "url": "/posts/unity-opt-occlusion-culling/",
+    "categories": "Unity, Unity Optimization",
+    "tags": "unity, csharp, optimization, performance",
+    "date": "2021-03-01 01:40:00 +0900",
+    
+
+
+
+
+
+    "snippet": "프러스텀 컬링 (Frustum Culling)      카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것        따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.  그냥 이렇게 두어도실제로 이렇게 컬링된다.GIF오클루전 컬링 (Occlusion Culling)      다른 오브젝트에 가려진 오브젝트들은 렌더링하지 않는 것        [Window] - [Rendering] - [Occlusion Culling]        Occlusion Culling 윈도우를 통해 설..."
+  },
+  
+  {
+    "title": "UI 위에 게임오브젝트 띄우기",
+    "url": "/posts/unity-memo-gameobject-over-ui/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, csharp, ui",
+    "date": "2021-02-28 22:30:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Preview  Green : Default  Red : Over UI1. Standard Rendering Pipeline   .  [1] 레이어 준비      [Over UI] 레이어를 만든다.      [2] Over UI 카메라 준비            카메라를 하나 더 만들고, Audio Listener를 제거한다.              메인 카메라와 함께 움직이려면 메인 카메라의 자식으로 둔다.        Over UI 카메라의 Camera 컴포넌트 설정              Clear Flags : Depth..."
+  },
+  
+  {
+    "title": "Free Look Camera",
+    "url": "/posts/unity-toy-free-look-camera/",
+    "categories": "Unity, Unity Toys",
+    "tags": "unity, csharp, plugin",
+    "date": "2021-02-28 17:45:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Note  자유롭게 회전, 이동이 가능한 자유 시점 카메라How To Use  카메라가 존재하는 게임오브젝트에 FreeLookCamera 컴포넌트를 추가한다.  게임 시작 후, Left Alt 키를 눌러 커서가 사라지도록 한다.  WASD 키로 카메라를 움직이며, 마우스 이동을 통해 카메라를 회전시킬 수 있다.PreviewDownload  FreeLookCamera.zipSource Code  https://github.com/rito15/Unity_Toys   .  using System;using System.Collect..."
+  },
+  
+  {
     "title": "Enum 관련 메모",
     "url": "/posts/csharp-enum-memo/",
     "categories": "Csharp, Csharp Memo",
@@ -392,7 +437,7 @@
   
   {
     "title": "Custom Plane Mesh Generator",
-    "url": "/posts/custom-plane-mesh-generator/",
+    "url": "/posts/unity-toy-custom-plane-mesh-generator/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, mesh, plane",
     "date": "2021-02-14 03:06:00 +0900",
@@ -402,7 +447,7 @@
 
 
 
-    "snippet": "Note  Plane을 원하는 너비, 해상도로 만들 수 있게 해주는 컴포넌트PreviewHow to Use  빈 게임오브젝트를 생성합니다.  PlaneMeshGenerator 컴포넌트를 추가합니다.  옵션을 설정하고 마테리얼을 인스펙터의 Material에 넣습니다.  Generate 버튼을 누릅니다.Download  PlaneMeshGenerator.zip"
+    "snippet": "Note  Plane을 원하는 너비, 해상도로 만들 수 있게 해주는 컴포넌트PreviewHow to Use  빈 게임오브젝트를 생성한다.  PlaneMeshGenerator 컴포넌트를 추가한다.  옵션을 설정하고 마테리얼을 인스펙터의 Material에 넣는다.  Generate 버튼을 누른다.Download  PlaneMeshGenerator.zipSource Code  https://github.com/rito15/Unity_Toys"
   },
   
   {
@@ -572,7 +617,7 @@
   
   {
     "title": "Custom Mouse Events",
-    "url": "/posts/unity-custom-mouse-events/",
+    "url": "/posts/unity-toy-custom-mouse-events/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin, mouse",
     "date": "2021-02-08 21:54:00 +0900",
@@ -582,7 +627,7 @@
 
 
 
-    "snippet": "구현 동기유니티 모노비헤이비어는 OnMouse로 시작하는 이벤트 메소드들을 작성하여 사용할 수 있습니다.이 이벤트 메소드들은 레이캐스트 기반으로 동작하며, 해당 마우스 동작이 발생하면 메소드가 호출됩니다.하지만 여러가지 단점들이 있습니다.  마우스 좌클릭에 대해서만 동작합니다.  이벤트 메소드 작성 시, 비워놓거나 해당 이벤트가 발생하지 않는 상황에도 성능을 소모합니다.  컴포넌트를 비활성화하거나, 심지어 게임오브젝트를 비활성화해도 성능을 소모합니다.  마우스가 닿은 정확한 위치를 알 수 없습니다.  대상을 레이어로 필터링할 ..."
+    "snippet": "구현 동기유니티 모노비헤이비어는 OnMouse로 시작하는 이벤트 메소드들을 작성하여 사용할 수 있다.이 이벤트 메소드들은 레이캐스트 기반으로 동작하며, 해당 마우스 동작이 발생하면 메소드가 호출된다.하지만 여러가지 단점들이 있다.  마우스 좌클릭에 대해서만 동작한다.  이벤트 메소드 작성 시, 비워놓거나 해당 이벤트가 발생하지 않는 상황에도 성능을 소모한다.  컴포넌트를 비활성화하거나, 심지어 게임오브젝트를 비활성화해도 성능을 소모한다.  마우스가 닿은 정확한 위치를 알 수 없다.  대상을 레이어로 필터링할 수 없다.이런 단점..."
   },
   
   {
@@ -707,7 +752,7 @@
   
   {
     "title": "유니티 스크립트 최적화",
-    "url": "/posts/unity-script-optimization/",
+    "url": "/posts/unity-opt-script-optimization/",
     "categories": "Unity, Unity Optimization",
     "tags": "unity, csharp, optimize, optimization, performance",
     "date": "2021-02-04 19:30:00 +0900",
@@ -722,7 +767,7 @@
   
   {
     "title": "유니티 프로파일링을 통한 최적화",
-    "url": "/posts/unity-profiling/",
+    "url": "/posts/unity-opt-profiling/",
     "categories": "Unity, Unity Optimization",
     "tags": "unity, csharp, profiling, optimization",
     "date": "2021-02-04 19:30:00 +0900",
@@ -737,7 +782,7 @@
   
   {
     "title": "유니티 에디터 프로파일러",
-    "url": "/posts/unity-profiler-window/",
+    "url": "/posts/unity-opt-profiler-window/",
     "categories": "Unity, Unity Optimization",
     "tags": "unity, csharp, profiling",
     "date": "2021-02-04 17:50:00 +0900",
@@ -1052,7 +1097,7 @@
   
   {
     "title": "Frame Rate Checker",
-    "url": "/posts/frame-rate-checker/",
+    "url": "/posts/unity-toy-frame-rate-checker/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
     "date": "2021-01-24 17:00:00 +0900",
@@ -1062,7 +1107,7 @@
 
 
 
-    "snippet": "Note  실제 FPS 값을 실시간, 최근 N개의 평균, 최소, 최댓값으로 확인할 수 있습니다.  게임 진행 동안 텍스트의 위치, 색상, 크기, GUI 표시 상태를 실시간으로 변경할 수 있습니다.PreviewSource Code  https://github.com/rito15/Unity_ToysDownload  FrameRateChecker.zip"
+    "snippet": "Note  실제 FPS 값을 실시간, 최근 N개의 평균, 최소, 최댓값으로 확인할 수 있다.  게임 진행 동안 텍스트의 위치, 색상, 크기, GUI 표시 상태를 실시간으로 변경할 수 있다.PreviewDownload  FrameRateChecker.zipSource Code   .  using System;using System.Collections;using System.Collections.Generic;using UnityEngine;// 날짜 : 2021-01-24 PM 4:11:02// 작성자 : Ritonamespa..."
   },
   
   {
@@ -1112,7 +1157,7 @@
   
   {
     "title": "Pixelater",
-    "url": "/posts/pixelater/",
+    "url": "/posts/unity-toy-pixelater/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
     "date": "2021-01-19 22:56:00 +0900",
@@ -1122,12 +1167,12 @@
 
 
 
-    "snippet": "Note  렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킵니다.  스크립트를 카메라에 부착하여 사용합니다.PreviewReference  https://www.youtube.com/watch?v=5rMkh9sl2bMSource Code  https://github.com/rito15/Unity_ToysDownload  Pixelater.zip"
+    "snippet": "Note  렌더 텍스쳐의 해상도를 강제로 변경하여 화면을 픽셀화시킨다.  스크립트를 카메라에 부착하여 사용한다.PreviewDownload  Pixelater.zipSource Code   .  using System;using System.Collections;using System.Collections.Generic;using UnityEngine;// 날짜 : 2021-01-19 PM 5:01:57// 작성자 : Ritonamespace Rito{    [ExecuteInEditMode]    public class Pi..."
   },
   
   {
     "title": "AfterImage(Motion Trail)",
-    "url": "/posts/afterImage/",
+    "url": "/posts/unity-toy-afterImage/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
     "date": "2021-01-18 22:56:00 +0900",
@@ -1137,12 +1182,12 @@
 
 
 
-    "snippet": "Note  게임오브젝트가 지나간 자리에 잔상을 생성합니다.  하위 게임오브젝트에도 렌더러가 있는 경우, 잔상을 함께 생성할 수 있습니다.How To Use  대상 게임오브젝트에 Mesh Renderer가 존재하는 경우, MeshAfterImage 스크립트를 부착합니다.  Skinned Mesh Renderer가 존재하는 경우, SkinnedMeshAfterImage 스크립트를 부착합니다.      After Image Material 필드에 동봉된 AfterImage 마테리얼을 지정합니다.    After Image Gradi..."
+    "snippet": "Note  게임오브젝트가 지나간 자리에 잔상을 생성한다.  하위 게임오브젝트에도 렌더러가 있는 경우, 잔상을 함께 생성할 수 있다.How To Use  대상 게임오브젝트에 Mesh Renderer가 존재하는 경우, MeshAfterImage 스크립트를 부착한다.  Skinned Mesh Renderer가 존재하는 경우, SkinnedMeshAfterImage 스크립트를 부착한다.      After Image Material 필드에 동봉된 AfterImage 마테리얼을 지정한다.    After Image Gradient 옵션..."
   },
   
   {
     "title": "Custom Attributes",
-    "url": "/posts/custom-attributes/",
+    "url": "/posts/unity-toy-custom-attributes/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, custom, attribute",
     "date": "2021-01-17 22:18:00 +0900",
@@ -1152,7 +1197,7 @@
 
 
 
-    "snippet": "Download  https://github.com/rito15/Unity_Custom_AttributesMemoBox  필드의 상단에 상자 및 메모를 표시합니다.            매개변수      설명                  Contents      메모에 적을 내용을 기록합니다. 스트링을 콤마로 구분할 경우 각각 개행됩니다.              FontSize      글자 크기 (기본 : 12)              LineSpacing      줄 간격 (기본 : 2)              TextCo..."
+    "snippet": "목차  1. MemoBox  2. BoxHeader  3. MethodButton  4. AutoInject  5. Required  6. LayerDropdown, TagDropdown  7. Readonly  8. ProgressBar  9. Label  10. SpaceTop      11. SpaceBottom    Download  Source CodeMemoBox  필드의 상단에 상자 및 메모를 표시한다.            매개변수      설명                  Contents      메모에 적을 ..."
   },
   
   {
@@ -1202,7 +1247,7 @@
   
   {
     "title": "Singleton MonoBehavior",
-    "url": "/posts/singleton-monobehavior/",
+    "url": "/posts/unity-toy-singleton-monobehavior/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
     "date": "2020-07-08 15:30:00 +0900",
@@ -1212,12 +1257,12 @@
 
 
 
-    "snippet": "Note  단순한 상속만으로 모노비헤이비어 클래스를 싱글톤으로 만들어주는 클래스입니다.How To Use  클래스명이 Apple일 때 예시로, 다음과 같이 상속받아 사용합니다.public class Apple : Rito.SingletonMonoBehavior&amp;lt;Apple&amp;gt;{    // Awake 메소드는 반드시 이렇게 작성해야 합니다.    protected override void Awake()    {        base.Awake();        // .. 기타 코드    }}Preview  ..."
+    "snippet": "Note  단순한 상속만으로 모노비헤이비어 클래스를 싱글톤으로 만들어주는 클래스How To Use  클래스명이 Apple일 때 예시로, 다음과 같이 상속받아 사용한다.public class Apple : Rito.SingletonMonoBehavior&amp;lt;Apple&amp;gt;{    // Awake 메소드는 반드시 이렇게 작성해야 한다.    protected override void Awake()    {        base.Awake();        // .. 기타 코드    }}Preview  게임 시작 ..."
   },
   
   {
     "title": "Unity Editor-only Debug",
-    "url": "/posts/unity-editor-only-debug/",
+    "url": "/posts/unity-toy-editor-only-debug/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
     "date": "2020-07-06 15:00:00 +0900",
@@ -1227,12 +1272,12 @@
 
 
 
-    "snippet": "Note  유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있습니다.  이를 방지할 수 있게, 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스입니다.How To Use  스크립트 상단에 다음과 같이 작성합니다.using Debug = Rito.Debug;Source Code  https://github.com/rito15/Unity_ToysDownload  Debug_UnityEditorConditional.zip"
+    "snippet": "Note  유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있다.  이를 방지할 수 있게 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스How To Use  스크립트 상단에 다음과 같이 작성한다.using Debug = Rito.Debug;Download  Debug_UnityEditorConditional.zipSource Code  https://github.com/rito15/Unity_Toys   .  using System;using UnityEngine;using System.Dia..."
   },
   
   {
     "title": "Getcomponent Attributes",
-    "url": "/posts/getcomponent-attributes/",
+    "url": "/posts/unity-toy-getcomponent-attributes/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
     "date": "2020-04-12 23:30:00 +0900",
@@ -1242,12 +1287,12 @@
 
 
 
-    "snippet": "Note  GetComponent(), Find() 종류의 메소드들을 필드/프로퍼티 애트리뷰트로 제공합니다.Catalog/* ******************************************************************************** * *                                    참고사항                                       * * ************************************************************..."
+    "snippet": "Note      GetComponent(), Find() 종류의 메소드들을 필드/프로퍼티 애트리뷰트로 제공한다.    리플렉션과 커스텀 애트리뷰트를 활용하여 제작하였다.  Component를 상속받는 타입의 필드/프로퍼티에 사용할 수 있다.  대상 멤버의 접근지정자에 관계 없이 모두 동작한다.  본 애트리뷰트들을 통한 컴포넌트 할당 기능은 Awake() 및 OnEnable() 이후, Start() 이전에 동작한다.  씬 이동, 재시작 시에도 올바르게 동작한다.  Find() 종류의 애트리뷰트들은 게임 오브젝트의 자식 범위가 ..."
   },
   
   {
     "title": "Save Transform During Play",
-    "url": "/posts/save-transform-during-play/",
+    "url": "/posts/unity-toy-save-transform-during-play/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
     "date": "2020-04-11 18:10:00 +0900",
@@ -1257,7 +1302,7 @@
 
 
 
-    "snippet": "Note      기존에는 플레이 모드에서 트랜스폼의 위치, 회전, 크기를 변경하여도플레이 모드가 종료되면 변경사항이 저장되지 않습니다.        따라서 컴포넌트를 간단히 추가하기만 하면 플레이 모드를 종료해도트랜스폼의 변경사항이 저장되도록 하는 컴포넌트를 제작했습니다.  How to Use      원하는 게임오브젝트에 SaveTransformDuringPlay 컴포넌트를 추가하고, On에 체크합니다.        플레이 모드에서 On, 각각의 Space 옵션을 수정해도 수정사항이 적용됩니다.        인스펙터에서 P..."
+    "snippet": "Note      기본적으로, 플레이 모드에서 트랜스폼의 위치, 회전, 크기를 변경하여도플레이 모드가 종료되면 변경사항이 저장되지 않는다.        이 컴포넌트를 간단히 추가하기만 하면 플레이 모드를 종료해도트랜스폼의 변경사항이 저장되도록 할 수 있다.  How to Use      원하는 게임오브젝트에 SaveTransformDuringPlay 컴포넌트를 추가하고, On에 체크한다.        플레이 모드에서 On, 각각의 Space 옵션을 수정해도 수정사항이 적용된다.        인스펙터에서 Position Spac..."
   }
   
 ]

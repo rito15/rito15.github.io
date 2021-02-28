@@ -665,12 +665,12 @@
         
         
         
-        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
+        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
+        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
       
         
         
@@ -685,7 +685,7 @@
         
         
         
-        <li><a href="/posts/unity-particle-system-tutorial-01/">파티클 시스템 기초 - 01 - 파티클 시스템 만들기</a></li>
+        <li><a href="/posts/unity-particle-system-tutorial-03/">파티클 시스템 기초 - 03 - 값의 지정 방법</a></li>
       
 
       </ul>
@@ -2685,6 +2685,186 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2725,7 +2905,7 @@
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
       </div>
@@ -2767,6 +2947,45 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -3872,7 +4091,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-script-optimization/">
+        <a href="/posts/unity-opt-script-optimization/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -3999,7 +4218,7 @@
       
       
       <div class="card">
-        <a href="/posts/csharp-fileio/">
+        <a href="/posts/unity-opt-occlusion-culling/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4016,13 +4235,13 @@
   
 
   
-    Jan 28
+    Mar  1
   
 
-  <i class="unloaded">2021-01-28T21:10:00+09:00</i>
+  <i class="unloaded">2021-03-01T01:40:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 파일 입출력</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>오클루전 컬링</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4031,19 +4250,36 @@
 
 
 
-                간단 정리
+                프러스텀 컬링 (Frustum Culling)
 
 
-파일에 쓰려면
+  
+    카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것
+  
+  
+    따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.
+  
 
-  대상이 string, string[], byte[] 타입 중 하나여야 한다.
-  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
 
 
-한 파일에 대한 연속 입출력 횟수에 따라
 
-  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
-  여러 번에 걸쳐 읽거나 쓰려면 스트림 ...
+
+
+그냥 이렇게 두어도
+
+
+
+실제로 이렇게 컬링된다.
+
+
+
+GIF
+
+
+
+
+
+오클루전 컬링 (Occlusion Cu...
               </p>
             </div>
           </div>
@@ -6142,6 +6378,186 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -6177,7 +6593,7 @@
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
     </div>

@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8528 words">47 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8578 words">47 min</span>
 
 
           <!-- page views -->
@@ -2900,491 +2900,521 @@ CharacterMainController.cs
 484
 485
 486
-</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">CharacterMainController</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="c1">// 날짜 : 2021-02-12 PM 7:45:19</span>
+<span class="c1">// 작성자 : Rito</span>
+
+<span class="k">namespace</span> <span class="nn">Rito.CharacterControl</span>
 <span class="p">{</span>
-    <span class="cm">/*
-
-        [하이라키 구조]
-
-        Character Root [ CharacterMainController, Movement3D, Rigidbody, Capsule Collider ]
-          ㄴTP Root    [ Pos(0,   1,   0) , Rot(0,  0, 0) ]
-            ㄴTP Rig   [ Pos(0,   0,   0) , Rot(0, 45, 0) ]
-              ㄴTP Cam [ Pos(0,   0,  -4) , Rot(0,  0, 0), Camera Component ]
-          ㄴWalker     [ Pos(0,   1,   0) , Rot(0,  0, 0) ]
-            ㄴFP Rig   [ Pos(0, 1.3, 0.2) , Rot(0,  0, 0) ]
-              ㄴFP Cam [ Pos(0, 1.3, 0.2) , Rot(0,  0, 0), Camera Component ]
-          ㄴModel Root
-
-    */</span>
-    <span class="cm">/***********************************************************************
-    *                               Definitions
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-    <span class="k">public</span> <span class="k">enum</span> <span class="n">CameraType</span> <span class="p">{</span> <span class="n">FpCamera</span><span class="p">,</span> <span class="n">TpCamera</span> <span class="p">};</span>
-
-    <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">Components</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">CharacterMainController</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
     <span class="p">{</span>
-        <span class="k">public</span> <span class="n">Camera</span> <span class="n">tpCamera</span><span class="p">;</span>
-        <span class="k">public</span> <span class="n">Camera</span> <span class="n">fpCamera</span><span class="p">;</span>
+        <span class="cm">/*
 
-        <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Transform</span> <span class="n">tpRoot</span><span class="p">;</span>
-        <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Transform</span> <span class="n">tpRig</span><span class="p">;</span>
-        <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Transform</span> <span class="n">walker</span><span class="p">;</span>
-        <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Transform</span> <span class="n">fpRig</span><span class="p">;</span>
+            [하이라키 구조]
 
-        <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">GameObject</span> <span class="n">tpCamObject</span><span class="p">;</span>
-        <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">GameObject</span> <span class="n">fpCamObject</span><span class="p">;</span>
+            Character Root [ CharacterMainController, Movement3D, Rigidbody, Capsule Collider ]
+              ㄴTP Root    [ Pos(0,   1,   0) , Rot(0,  0, 0) ]
+                ㄴTP Rig   [ Pos(0,   0,   0) , Rot(0, 45, 0) ]
+                  ㄴTP Cam [ Pos(0,   0,  -4) , Rot(0,  0, 0), Camera Component ]
+              ㄴWalker     [ Pos(0,   1,   0) , Rot(0,  0, 0) ]
+                ㄴFP Rig   [ Pos(0, 1.3, 0.2) , Rot(0,  0, 0) ]
+                  ㄴFP Cam [ Pos(0, 1.3, 0.2) , Rot(0,  0, 0), Camera Component ]
+                ㄴModel Root
 
-        <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Animator</span> <span class="n">anim</span><span class="p">;</span>
-        <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">IMovement3D</span> <span class="n">movement3D</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">KeyOption</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">moveForward</span>  <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">W</span><span class="p">;</span>
-        <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">moveBackward</span> <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">S</span><span class="p">;</span>
-        <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">moveLeft</span>     <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">A</span><span class="p">;</span>
-        <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">moveRight</span>    <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">D</span><span class="p">;</span>
-        <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">run</span>  <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftShift</span><span class="p">;</span>
-        <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">jump</span> <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">Space</span><span class="p">;</span>
-        <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">switchCamera</span> <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">Tab</span><span class="p">;</span>
-        <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">showCursor</span> <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftAlt</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">CameraOption</span>
-    <span class="p">{</span>
-        <span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"게임 시작 시 카메라"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="n">CameraType</span> <span class="n">initialCamera</span><span class="p">;</span>
+        */</span>
 
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">10f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"카메라 상하좌우 회전 속도"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">rotationSpeed</span> <span class="p">=</span> <span class="m">2f</span><span class="p">;</span>
+        <span class="cm">/***********************************************************************
+        *                               Definitions
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+        <span class="k">public</span> <span class="k">enum</span> <span class="n">CameraType</span> <span class="p">{</span> <span class="n">FpCamera</span><span class="p">,</span> <span class="n">TpCamera</span> <span class="p">};</span>
 
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(-</span><span class="m">90f</span><span class="p">,</span> <span class="m">0f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"올려다보기 제한 각도"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">lookUpDegree</span> <span class="p">=</span> <span class="p">-</span><span class="m">60f</span><span class="p">;</span>
+        <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+        <span class="k">public</span> <span class="k">class</span> <span class="nc">Components</span>
+        <span class="p">{</span>
+            <span class="k">public</span> <span class="n">Camera</span> <span class="n">tpCamera</span><span class="p">;</span>
+            <span class="k">public</span> <span class="n">Camera</span> <span class="n">fpCamera</span><span class="p">;</span>
 
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">75f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"내려다보기 제한 각도"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">lookDownDegree</span> <span class="p">=</span> <span class="m">75f</span><span class="p">;</span>
+            <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Transform</span> <span class="n">tpRoot</span><span class="p">;</span>
+            <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Transform</span> <span class="n">tpRig</span><span class="p">;</span>
+            <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Transform</span> <span class="n">walker</span><span class="p">;</span>
+            <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Transform</span> <span class="n">fpRig</span><span class="p">;</span>
 
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">3.5f</span><span class="p">),</span> <span class="n">Space</span><span class="p">,</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 확대 최대 거리"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">zoomInDistance</span> <span class="p">=</span> <span class="m">3f</span><span class="p">;</span>
+            <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">GameObject</span> <span class="n">tpCamObject</span><span class="p">;</span>
+            <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">GameObject</span> <span class="n">fpCamObject</span><span class="p">;</span>
 
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">5f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 축소 최대 거리"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">zoomOutDistance</span> <span class="p">=</span> <span class="m">3f</span><span class="p">;</span>
+            <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Animator</span> <span class="n">anim</span><span class="p">;</span>
+            <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">IMovement3D</span> <span class="n">movement3D</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+        <span class="k">public</span> <span class="k">class</span> <span class="nc">KeyOption</span>
+        <span class="p">{</span>
+            <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">moveForward</span>  <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">W</span><span class="p">;</span>
+            <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">moveBackward</span> <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">S</span><span class="p">;</span>
+            <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">moveLeft</span>     <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">A</span><span class="p">;</span>
+            <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">moveRight</span>    <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">D</span><span class="p">;</span>
+            <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">run</span>  <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftShift</span><span class="p">;</span>
+            <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">jump</span> <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">Space</span><span class="p">;</span>
+            <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">switchCamera</span> <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">Tab</span><span class="p">;</span>
+            <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">showCursor</span> <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftAlt</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+        <span class="k">public</span> <span class="k">class</span> <span class="nc">CameraOption</span>
+        <span class="p">{</span>
+            <span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"게임 시작 시 카메라"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="n">CameraType</span> <span class="n">initialCamera</span><span class="p">;</span>
 
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">30f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 속도"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">zoomSpeed</span> <span class="p">=</span> <span class="m">20f</span><span class="p">;</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">10f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"카메라 상하좌우 회전 속도"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">rotationSpeed</span> <span class="p">=</span> <span class="m">2f</span><span class="p">;</span>
 
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.01f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 가속"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">zoomAccel</span> <span class="p">=</span> <span class="m">0.1f</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">AnimatorOption</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="kt">string</span> <span class="n">paramMoveX</span> <span class="p">=</span> <span class="s">"Move X"</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">string</span> <span class="n">paramMoveZ</span> <span class="p">=</span> <span class="s">"Move Z"</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">string</span> <span class="n">paramDistY</span> <span class="p">=</span> <span class="s">"Dist Y"</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">string</span> <span class="n">paramGrounded</span> <span class="p">=</span> <span class="s">"Grounded"</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">string</span> <span class="n">paramJump</span> <span class="p">=</span> <span class="s">"Jump"</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">CharacterState</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isCurrentFp</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isMoving</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isRunning</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isGrounded</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isCursorActive</span><span class="p">;</span>
-    <span class="p">}</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(-</span><span class="m">90f</span><span class="p">,</span> <span class="m">0f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"올려다보기 제한 각도"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">lookUpDegree</span> <span class="p">=</span> <span class="p">-</span><span class="m">60f</span><span class="p">;</span>
 
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Fields, Properties
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-    <span class="k">public</span> <span class="n">Components</span> <span class="n">Com</span> <span class="p">=&gt;</span> <span class="n">_components</span><span class="p">;</span>
-    <span class="k">public</span> <span class="n">KeyOption</span>  <span class="n">Key</span> <span class="p">=&gt;</span> <span class="n">_keyOption</span><span class="p">;</span>
-    <span class="k">public</span> <span class="n">CameraOption</span>   <span class="n">CamOption</span>  <span class="p">=&gt;</span> <span class="n">_cameraOption</span><span class="p">;</span>
-    <span class="k">public</span> <span class="n">AnimatorOption</span> <span class="n">AnimOption</span> <span class="p">=&gt;</span> <span class="n">_animatorOption</span><span class="p">;</span>
-    <span class="k">public</span> <span class="n">CharacterState</span> <span class="n">State</span> <span class="p">=&gt;</span> <span class="n">_state</span><span class="p">;</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">75f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"내려다보기 제한 각도"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">lookDownDegree</span> <span class="p">=</span> <span class="m">75f</span><span class="p">;</span>
 
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>        <span class="k">private</span> <span class="n">Components</span> <span class="n">_components</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Components</span><span class="p">();</span>
-    <span class="p">[</span><span class="n">Space</span><span class="p">,</span> <span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">KeyOption</span>  <span class="n">_keyOption</span>  <span class="p">=</span> <span class="k">new</span> <span class="nf">KeyOption</span><span class="p">();</span>
-    <span class="p">[</span><span class="n">Space</span><span class="p">,</span> <span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">CameraOption</span>   <span class="n">_cameraOption</span>   <span class="p">=</span> <span class="k">new</span> <span class="nf">CameraOption</span><span class="p">();</span>
-    <span class="p">[</span><span class="n">Space</span><span class="p">,</span> <span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">AnimatorOption</span> <span class="n">_animatorOption</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">AnimatorOption</span><span class="p">();</span>
-    <span class="p">[</span><span class="n">Space</span><span class="p">,</span> <span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">CharacterState</span> <span class="n">_state</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CharacterState</span><span class="p">();</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">3.5f</span><span class="p">),</span> <span class="n">Space</span><span class="p">,</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 확대 최대 거리"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">zoomInDistance</span> <span class="p">=</span> <span class="m">3f</span><span class="p">;</span>
 
-    <span class="c1">/// &lt;summary&gt; Time.deltaTime 항상 저장 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_deltaTime</span><span class="p">;</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">5f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 축소 최대 거리"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">zoomOutDistance</span> <span class="p">=</span> <span class="m">3f</span><span class="p">;</span>
 
-    <span class="c1">/// &lt;summary&gt; 마우스 움직임을 통해 얻는 회전 값 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="n">Vector2</span> <span class="n">_rotation</span><span class="p">;</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">30f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 속도"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">zoomSpeed</span> <span class="p">=</span> <span class="m">20f</span><span class="p">;</span>
 
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.01f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"줌 가속"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">zoomAccel</span> <span class="p">=</span> <span class="m">0.1f</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+        <span class="k">public</span> <span class="k">class</span> <span class="nc">AnimatorOption</span>
+        <span class="p">{</span>
+            <span class="k">public</span> <span class="kt">string</span> <span class="n">paramMoveX</span> <span class="p">=</span> <span class="s">"Move X"</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">string</span> <span class="n">paramMoveZ</span> <span class="p">=</span> <span class="s">"Move Z"</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">string</span> <span class="n">paramDistY</span> <span class="p">=</span> <span class="s">"Dist Y"</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">string</span> <span class="n">paramGrounded</span> <span class="p">=</span> <span class="s">"Grounded"</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">string</span> <span class="n">paramJump</span> <span class="p">=</span> <span class="s">"Jump"</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+        <span class="k">public</span> <span class="k">class</span> <span class="nc">CharacterState</span>
+        <span class="p">{</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isCurrentFp</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isMoving</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isRunning</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isGrounded</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isCursorActive</span><span class="p">;</span>
+        <span class="p">}</span>
 
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_distFromGround</span><span class="p">;</span>
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Fields, Properties
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+        <span class="k">public</span> <span class="n">Components</span> <span class="n">Com</span> <span class="p">=&gt;</span> <span class="n">_components</span><span class="p">;</span>
+        <span class="k">public</span> <span class="n">KeyOption</span> <span class="n">Key</span> <span class="p">=&gt;</span> <span class="n">_keyOption</span><span class="p">;</span>
+        <span class="k">public</span> <span class="n">CameraOption</span>   <span class="n">CamOption</span>  <span class="p">=&gt;</span> <span class="n">_cameraOption</span><span class="p">;</span>
+        <span class="k">public</span> <span class="n">AnimatorOption</span> <span class="n">AnimOption</span> <span class="p">=&gt;</span> <span class="n">_animatorOption</span><span class="p">;</span>
+        <span class="k">public</span> <span class="n">CharacterState</span> <span class="n">State</span> <span class="p">=&gt;</span> <span class="n">_state</span><span class="p">;</span>
 
-    <span class="c1">// Animation Params</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_moveX</span><span class="p">;</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_moveZ</span><span class="p">;</span>
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Components</span> <span class="n">_components</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Components</span><span class="p">();</span>
+        <span class="p">[</span><span class="n">Space</span><span class="p">,</span> <span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">KeyOption</span> <span class="n">_keyOption</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">KeyOption</span><span class="p">();</span>
+        <span class="p">[</span><span class="n">Space</span><span class="p">,</span> <span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">CameraOption</span>   <span class="n">_cameraOption</span>   <span class="p">=</span> <span class="k">new</span> <span class="nf">CameraOption</span><span class="p">();</span>
+        <span class="p">[</span><span class="n">Space</span><span class="p">,</span> <span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">AnimatorOption</span> <span class="n">_animatorOption</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">AnimatorOption</span><span class="p">();</span>
+        <span class="p">[</span><span class="n">Space</span><span class="p">,</span> <span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">CharacterState</span> <span class="n">_state</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CharacterState</span><span class="p">();</span>
 
+        <span class="c1">/// &lt;summary&gt; Time.deltaTime 항상 저장 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_deltaTime</span><span class="p">;</span>
 
-    <span class="c1">/// &lt;summary&gt; TP 카메라 ~ Rig 초기 거리 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_tpCamZoomInitialDistance</span><span class="p">;</span>
-
-    <span class="c1">/// &lt;summary&gt; TP 카메라 휠 입력 값 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_tpCameraWheelInput</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-
-    <span class="c1">/// &lt;summary&gt; 선형보간된 현재 휠 입력 값 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_currentWheel</span><span class="p">;</span>
+        <span class="c1">/// &lt;summary&gt; 마우스 움직임을 통해 얻는 회전 값 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="n">Vector2</span> <span class="n">_rotation</span><span class="p">;</span>
 
 
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_distFromGround</span><span class="p">;</span>
 
-    <span class="c1">// Current Movement Variables</span>
+        <span class="c1">// Animation Params</span>
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_moveX</span><span class="p">;</span>
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_moveZ</span><span class="p">;</span>
 
-    <span class="c1">/// &lt;summary&gt; 키보드 WASD 입력으로 얻는 로컬 이동 벡터 &lt;/summary&gt;</span>
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
-    <span class="k">private</span> <span class="n">Vector3</span> <span class="n">_moveDir</span><span class="p">;</span>
 
-    <span class="c1">/// &lt;summary&gt; 월드 이동 벡터 &lt;/summary&gt;</span>
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
-    <span class="k">private</span> <span class="n">Vector3</span> <span class="n">_worldMoveDir</span><span class="p">;</span>
+        <span class="c1">/// &lt;summary&gt; TP 카메라 ~ Rig 초기 거리 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_tpCamZoomInitialDistance</span><span class="p">;</span>
 
-    <span class="err">#</span><span class="n">endregion</span>
+        <span class="c1">/// &lt;summary&gt; TP 카메라 휠 입력 값 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_tpCameraWheelInput</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
 
-    <span class="cm">/***********************************************************************
-    *                               Unity Events
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="nf">InitComponents</span><span class="p">();</span>
-        <span class="nf">InitSettings</span><span class="p">();</span>
-    <span class="p">}</span>
+        <span class="c1">/// &lt;summary&gt; 선형보간된 현재 휠 입력 값 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_currentWheel</span><span class="p">;</span>
 
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">_deltaTime</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
 
-        <span class="c1">// 1. Check, Key Input</span>
-        <span class="nf">ShowCursorToggle</span><span class="p">();</span>
-        <span class="nf">CameraViewToggle</span><span class="p">();</span>
-        <span class="nf">SetValuesByKeyInput</span><span class="p">();</span>
 
-        <span class="c1">// 2. Behaviors, Camera Actions</span>
-        <span class="nf">Rotate</span><span class="p">();</span>
-        <span class="nf">TpCameraZoom</span><span class="p">();</span>
+        <span class="c1">// Current Movement Variables</span>
 
-        <span class="c1">// 3. Updates</span>
-        <span class="nf">CheckGroundDistance</span><span class="p">();</span>
-        <span class="nf">UpdateAnimationParams</span><span class="p">();</span>
-    <span class="p">}</span>
+        <span class="c1">/// &lt;summary&gt; 키보드 WASD 입력으로 얻는 로컬 이동 벡터 &lt;/summary&gt;</span>
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
+        <span class="k">private</span> <span class="n">Vector3</span> <span class="n">_moveDir</span><span class="p">;</span>
 
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Init Methods
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">InitComponents</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="nf">LogNotInitializedComponentError</span><span class="p">(</span><span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">,</span> <span class="s">"TP Camera"</span><span class="p">);</span>
-        <span class="nf">LogNotInitializedComponentError</span><span class="p">(</span><span class="n">Com</span><span class="p">.</span><span class="n">fpCamera</span><span class="p">,</span> <span class="s">"FP Camera"</span><span class="p">);</span>
+        <span class="c1">/// &lt;summary&gt; 월드 이동 벡터 &lt;/summary&gt;</span>
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
+        <span class="k">private</span> <span class="n">Vector3</span> <span class="n">_worldMoveDir</span><span class="p">;</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+
+        <span class="cm">/***********************************************************************
+        *                               Unity Events
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="nf">InitComponents</span><span class="p">();</span>
+            <span class="nf">InitSettings</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">_deltaTime</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+
+            <span class="c1">// 1. Check, Key Input</span>
+            <span class="nf">ShowCursorToggle</span><span class="p">();</span>
+            <span class="nf">CameraViewToggle</span><span class="p">();</span>
+            <span class="nf">SetValuesByKeyInput</span><span class="p">();</span>
+
+            <span class="c1">// 2. Behaviors, Camera Actions</span>
+            <span class="nf">Rotate</span><span class="p">();</span>
+            <span class="nf">TpCameraZoom</span><span class="p">();</span>
+
+            <span class="c1">// 3. Updates</span>
+            <span class="nf">CheckGroundDistance</span><span class="p">();</span>
+            <span class="nf">UpdateAnimationParams</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Init Methods
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">InitComponents</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="nf">LogNotInitializedComponentError</span><span class="p">(</span><span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">,</span> <span class="s">"TP Camera"</span><span class="p">);</span>
+            <span class="nf">LogNotInitializedComponentError</span><span class="p">(</span><span class="n">Com</span><span class="p">.</span><span class="n">fpCamera</span><span class="p">,</span> <span class="s">"FP Camera"</span><span class="p">);</span>
             
-        <span class="n">Com</span><span class="p">.</span><span class="n">anim</span> <span class="p">=</span> <span class="n">GetComponentInChildren</span><span class="p">&lt;</span><span class="n">Animator</span><span class="p">&gt;();</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">anim</span> <span class="p">=</span> <span class="n">GetComponentInChildren</span><span class="p">&lt;</span><span class="n">Animator</span><span class="p">&gt;();</span>
 
-        <span class="n">Com</span><span class="p">.</span><span class="n">tpCamObject</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">.</span><span class="n">gameObject</span><span class="p">;</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">tpRoot</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">tpCamObject</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">.</span><span class="n">gameObject</span><span class="p">;</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">tpRoot</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
 
-        <span class="n">Com</span><span class="p">.</span><span class="n">fpCamObject</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">fpCamera</span><span class="p">.</span><span class="n">gameObject</span><span class="p">;</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">fpRig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">fpCamera</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">walker</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">fpRig</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">fpCamObject</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">fpCamera</span><span class="p">.</span><span class="n">gameObject</span><span class="p">;</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">fpRig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">fpCamera</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">walker</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">fpRig</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
 
-        <span class="nf">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">InitSettings</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">// 모든 카메라 게임오브젝트 비활성화</span>
-        <span class="kt">var</span> <span class="n">allCams</span> <span class="p">=</span> <span class="n">FindObjectsOfType</span><span class="p">&lt;</span><span class="n">Camera</span><span class="p">&gt;();</span>
-        <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">cam</span> <span class="k">in</span> <span class="n">allCams</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">cam</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+            <span class="nf">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">);</span>
+            <span class="c1">//if(Com.movement3D == null)</span>
+            <span class="c1">//    Com.movement3D = gameObject.AddComponent&lt;PhysicsBasedMovement&gt;();</span>
+                <span class="c1">//Com.pbMove = gameObject.AddComponent&lt;Test.PBMove2&gt;();</span>
         <span class="p">}</span>
 
-        <span class="c1">// 설정한 카메라 하나만 활성화</span>
-        <span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span> <span class="p">=</span> <span class="p">(</span><span class="n">CamOption</span><span class="p">.</span><span class="n">initialCamera</span> <span class="p">==</span> <span class="n">CameraType</span><span class="p">.</span><span class="n">FpCamera</span><span class="p">);</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">fpCamObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">);</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">tpCamObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(!</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">);</span>
-
-        <span class="c1">// Zoom</span>
-        <span class="n">_tpCamZoomInitialDistance</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Distance</span><span class="p">(</span><span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
-    <span class="p">}</span>
-        
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Check Methods
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="n">LogNotInitializedComponentError</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span> <span class="n">component</span><span class="p">,</span> <span class="kt">string</span> <span class="n">componentName</span><span class="p">)</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">Component</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">component</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-            <span class="n">Debug</span><span class="p">.</span><span class="nf">LogError</span><span class="p">(</span><span class="s">$"</span><span class="p">{</span><span class="n">componentName</span><span class="p">}</span><span class="s"> 컴포넌트를 인스펙터에 넣어주세요"</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Methods
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-    <span class="c1">/// &lt;summary&gt; 키보드 입력을 통해 필드 초기화 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">SetValuesByKeyInput</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">float</span> <span class="n">h</span> <span class="p">=</span> <span class="m">0f</span><span class="p">,</span> <span class="n">v</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">moveForward</span><span class="p">))</span> <span class="n">v</span> <span class="p">+=</span> <span class="m">1.0f</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">moveBackward</span><span class="p">))</span> <span class="n">v</span> <span class="p">-=</span> <span class="m">1.0f</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">moveLeft</span><span class="p">))</span> <span class="n">h</span> <span class="p">-=</span> <span class="m">1.0f</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">moveRight</span><span class="p">))</span> <span class="n">h</span> <span class="p">+=</span> <span class="m">1.0f</span><span class="p">;</span>
-
-        <span class="c1">// Move, Rotate</span>
-        <span class="nf">SendMoveInfo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
-        <span class="n">_rotation</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector2</span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetAxisRaw</span><span class="p">(</span><span class="s">"Mouse X"</span><span class="p">),</span> <span class="p">-</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetAxisRaw</span><span class="p">(</span><span class="s">"Mouse Y"</span><span class="p">));</span>
-
-        <span class="n">State</span><span class="p">.</span><span class="n">isMoving</span> <span class="p">=</span> <span class="n">h</span> <span class="p">!=</span> <span class="m">0</span> <span class="p">||</span> <span class="n">v</span> <span class="p">!=</span> <span class="m">0</span><span class="p">;</span>
-        <span class="n">State</span><span class="p">.</span><span class="n">isRunning</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">run</span><span class="p">);</span>
-
-        <span class="c1">// Jump</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">jump</span><span class="p">))</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">InitSettings</span><span class="p">()</span>
         <span class="p">{</span>
-            <span class="nf">Jump</span><span class="p">();</span>
-        <span class="p">}</span>
+            <span class="c1">// 모든 카메라 게임오브젝트 비활성화</span>
+            <span class="kt">var</span> <span class="n">allCams</span> <span class="p">=</span> <span class="n">FindObjectsOfType</span><span class="p">&lt;</span><span class="n">Camera</span><span class="p">&gt;();</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">cam</span> <span class="k">in</span> <span class="n">allCams</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">cam</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+            <span class="p">}</span>
 
-        <span class="c1">// Wheel</span>
-        <span class="n">_tpCameraWheelInput</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetAxisRaw</span><span class="p">(</span><span class="s">"Mouse ScrollWheel"</span><span class="p">);</span>
-        <span class="n">_currentWheel</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Lerp</span><span class="p">(</span><span class="n">_currentWheel</span><span class="p">,</span> <span class="n">_tpCameraWheelInput</span><span class="p">,</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomAccel</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">Rotate</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Transform</span> <span class="n">root</span><span class="p">,</span> <span class="n">rig</span><span class="p">;</span>
-
-        <span class="c1">// 1인칭</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">root</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">;</span>
-            <span class="n">rig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">fpRig</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="c1">// 3인칭</span>
-        <span class="k">else</span>
-        <span class="p">{</span>
-            <span class="n">root</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRoot</span><span class="p">;</span>
-            <span class="n">rig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">;</span>
-            <span class="nf">RotateWalker</span><span class="p">();</span> <span class="c1">// 3인칭일 경우 Walker를 이동방향으로 회전</span>
-        <span class="p">}</span>
-            
-        <span class="k">if</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCursorActive</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-
-        <span class="c1">// 회전 ==========================================================</span>
-        <span class="kt">float</span> <span class="n">deltaCoef</span> <span class="p">=</span> <span class="n">_deltaTime</span> <span class="p">*</span> <span class="m">50f</span><span class="p">;</span>
-
-        <span class="c1">// 상하 : Rig 회전</span>
-        <span class="kt">float</span> <span class="n">xRotPrev</span> <span class="p">=</span> <span class="n">rig</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-        <span class="kt">float</span> <span class="n">xRotNext</span> <span class="p">=</span> <span class="n">xRotPrev</span> <span class="p">+</span> <span class="n">_rotation</span><span class="p">.</span><span class="n">y</span>
-            <span class="p">*</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">rotationSpeed</span> <span class="p">*</span> <span class="n">deltaCoef</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">xRotNext</span> <span class="p">&gt;</span> <span class="m">180f</span><span class="p">)</span>
-            <span class="n">xRotNext</span> <span class="p">-=</span> <span class="m">360f</span><span class="p">;</span>
-
-        <span class="c1">// 좌우 : Root 회전</span>
-        <span class="kt">float</span> <span class="n">yRotPrev</span> <span class="p">=</span> <span class="n">root</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-        <span class="kt">float</span> <span class="n">yRotNext</span> <span class="p">=</span>
-            <span class="n">yRotPrev</span> <span class="p">+</span> <span class="n">_rotation</span><span class="p">.</span><span class="n">x</span>
-            <span class="p">*</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">rotationSpeed</span> <span class="p">*</span> <span class="n">deltaCoef</span><span class="p">;</span>
-
-        <span class="c1">// 상하 회전 가능 여부</span>
-        <span class="kt">bool</span> <span class="n">xRotatable</span> <span class="p">=</span>
-            <span class="n">CamOption</span><span class="p">.</span><span class="n">lookUpDegree</span> <span class="p">&lt;</span> <span class="n">xRotNext</span> <span class="p">&amp;&amp;</span>
-            <span class="n">CamOption</span><span class="p">.</span><span class="n">lookDownDegree</span> <span class="p">&gt;</span> <span class="n">xRotNext</span><span class="p">;</span>
-
-        <span class="c1">// Rig 상하 회전 적용</span>
-        <span class="n">rig</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">right</span> <span class="p">*</span> <span class="p">(</span><span class="n">xRotatable</span> <span class="p">?</span> <span class="n">xRotNext</span> <span class="p">:</span> <span class="n">xRotPrev</span><span class="p">);</span>
-
-        <span class="c1">// Root 좌우 회전 적용</span>
-        <span class="n">root</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="n">yRotNext</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt; 3인칭일 경우 Walker 회전 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">RotateWalker</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isMoving</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-
-        <span class="n">Vector3</span> <span class="n">dir</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">.</span><span class="nf">TransformDirection</span><span class="p">(</span><span class="n">_moveDir</span><span class="p">);</span>
-        <span class="kt">float</span> <span class="n">currentY</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-        <span class="kt">float</span> <span class="n">nextY</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">LookRotation</span><span class="p">(</span><span class="n">dir</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="p">).</span><span class="n">eulerAngles</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">nextY</span> <span class="p">-</span> <span class="n">currentY</span> <span class="p">&gt;</span> <span class="m">180f</span><span class="p">)</span> <span class="n">nextY</span> <span class="p">-=</span> <span class="m">360f</span><span class="p">;</span>
-        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">currentY</span> <span class="p">-</span> <span class="n">nextY</span> <span class="p">&gt;</span> <span class="m">180f</span><span class="p">)</span> <span class="n">nextY</span> <span class="p">+=</span> <span class="m">360f</span><span class="p">;</span>
-
-        <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">.</span><span class="n">eulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Lerp</span><span class="p">(</span><span class="n">currentY</span><span class="p">,</span> <span class="n">nextY</span><span class="p">,</span> <span class="m">0.1f</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">ShowCursorToggle</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">showCursor</span><span class="p">))</span>
-            <span class="n">State</span><span class="p">.</span><span class="n">isCursorActive</span> <span class="p">=</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isCursorActive</span><span class="p">;</span>
-
-        <span class="nf">ShowCursor</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCursorActive</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">ShowCursor</span><span class="p">(</span><span class="kt">bool</span> <span class="k">value</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Cursor</span><span class="p">.</span><span class="n">visible</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
-        <span class="n">Cursor</span><span class="p">.</span><span class="n">lockState</span> <span class="p">=</span> <span class="k">value</span> <span class="p">?</span> <span class="n">CursorLockMode</span><span class="p">.</span><span class="n">None</span> <span class="p">:</span> <span class="n">CursorLockMode</span><span class="p">.</span><span class="n">Locked</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">CameraViewToggle</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">switchCamera</span><span class="p">))</span>
-        <span class="p">{</span>
-            <span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span> <span class="p">=</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">;</span>
+            <span class="c1">// 설정한 카메라 하나만 활성화</span>
+            <span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span> <span class="p">=</span> <span class="p">(</span><span class="n">CamOption</span><span class="p">.</span><span class="n">initialCamera</span> <span class="p">==</span> <span class="n">CameraType</span><span class="p">.</span><span class="n">FpCamera</span><span class="p">);</span>
             <span class="n">Com</span><span class="p">.</span><span class="n">fpCamObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">);</span>
             <span class="n">Com</span><span class="p">.</span><span class="n">tpCamObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(!</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">);</span>
 
-            <span class="c1">// TP -&gt; FP</span>
+            <span class="c1">// Zoom</span>
+            <span class="n">_tpCamZoomInitialDistance</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Distance</span><span class="p">(</span><span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Check Methods
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="n">LogNotInitializedComponentError</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span> <span class="n">component</span><span class="p">,</span> <span class="kt">string</span> <span class="n">componentName</span><span class="p">)</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">Component</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">component</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                <span class="n">Debug</span><span class="p">.</span><span class="nf">LogError</span><span class="p">(</span><span class="s">$"</span><span class="p">{</span><span class="n">componentName</span><span class="p">}</span><span class="s"> 컴포넌트를 인스펙터에 넣어주세요"</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Methods
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+        <span class="c1">/// &lt;summary&gt; 키보드 입력을 통해 필드 초기화 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">SetValuesByKeyInput</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="kt">float</span> <span class="n">h</span> <span class="p">=</span> <span class="m">0f</span><span class="p">,</span> <span class="n">v</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">moveForward</span><span class="p">))</span> <span class="n">v</span> <span class="p">+=</span> <span class="m">1.0f</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">moveBackward</span><span class="p">))</span> <span class="n">v</span> <span class="p">-=</span> <span class="m">1.0f</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">moveLeft</span><span class="p">))</span> <span class="n">h</span> <span class="p">-=</span> <span class="m">1.0f</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">moveRight</span><span class="p">))</span> <span class="n">h</span> <span class="p">+=</span> <span class="m">1.0f</span><span class="p">;</span>
+
+            <span class="c1">// Move, Rotate</span>
+            <span class="nf">SendMoveInfo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+            <span class="n">_rotation</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector2</span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetAxisRaw</span><span class="p">(</span><span class="s">"Mouse X"</span><span class="p">),</span> <span class="p">-</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetAxisRaw</span><span class="p">(</span><span class="s">"Mouse Y"</span><span class="p">));</span>
+
+            <span class="n">State</span><span class="p">.</span><span class="n">isMoving</span> <span class="p">=</span> <span class="n">h</span> <span class="p">!=</span> <span class="m">0</span> <span class="p">||</span> <span class="n">v</span> <span class="p">!=</span> <span class="m">0</span><span class="p">;</span>
+            <span class="n">State</span><span class="p">.</span><span class="n">isRunning</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">run</span><span class="p">);</span>
+
+            <span class="c1">// Jump</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">jump</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="nf">Jump</span><span class="p">();</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Wheel</span>
+            <span class="n">_tpCameraWheelInput</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetAxisRaw</span><span class="p">(</span><span class="s">"Mouse ScrollWheel"</span><span class="p">);</span>
+            <span class="n">_currentWheel</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Lerp</span><span class="p">(</span><span class="n">_currentWheel</span><span class="p">,</span> <span class="n">_tpCameraWheelInput</span><span class="p">,</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomAccel</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">Rotate</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Transform</span> <span class="n">root</span><span class="p">,</span> <span class="n">rig</span><span class="p">;</span>
+
+            <span class="c1">// 1인칭</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRoot</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-                <span class="n">Com</span><span class="p">.</span><span class="n">fpRig</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">right</span> <span class="p">*</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+                <span class="n">root</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">;</span>
+                <span class="n">rig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">fpRig</span><span class="p">;</span>
             <span class="p">}</span>
-            <span class="c1">// FP -&gt; TP</span>
+            <span class="c1">// 3인칭</span>
             <span class="k">else</span>
             <span class="p">{</span>
-                <span class="n">Com</span><span class="p">.</span><span class="n">tpRoot</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-                <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">right</span> <span class="p">*</span> <span class="n">Com</span><span class="p">.</span><span class="n">fpRig</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+                <span class="n">root</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRoot</span><span class="p">;</span>
+                <span class="n">rig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">;</span>
+                <span class="nf">RotateWalker</span><span class="p">();</span> <span class="c1">// 3인칭일 경우 Walker를 이동방향으로 회전</span>
             <span class="p">}</span>
+            
+            <span class="k">if</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCursorActive</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+            <span class="c1">// 회전 ==========================================================</span>
+            <span class="kt">float</span> <span class="n">deltaCoef</span> <span class="p">=</span> <span class="n">_deltaTime</span> <span class="p">*</span> <span class="m">50f</span><span class="p">;</span>
+
+            <span class="c1">// 상하 : Rig 회전</span>
+            <span class="kt">float</span> <span class="n">xRotPrev</span> <span class="p">=</span> <span class="n">rig</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+            <span class="kt">float</span> <span class="n">xRotNext</span> <span class="p">=</span> <span class="n">xRotPrev</span> <span class="p">+</span> <span class="n">_rotation</span><span class="p">.</span><span class="n">y</span>
+                <span class="p">*</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">rotationSpeed</span> <span class="p">*</span> <span class="n">deltaCoef</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">xRotNext</span> <span class="p">&gt;</span> <span class="m">180f</span><span class="p">)</span>
+                <span class="n">xRotNext</span> <span class="p">-=</span> <span class="m">360f</span><span class="p">;</span>
+
+            <span class="c1">// 좌우 : Root 회전</span>
+            <span class="kt">float</span> <span class="n">yRotPrev</span> <span class="p">=</span> <span class="n">root</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+            <span class="kt">float</span> <span class="n">yRotNext</span> <span class="p">=</span>
+                <span class="n">yRotPrev</span> <span class="p">+</span> <span class="n">_rotation</span><span class="p">.</span><span class="n">x</span>
+                <span class="p">*</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">rotationSpeed</span> <span class="p">*</span> <span class="n">deltaCoef</span><span class="p">;</span>
+
+            <span class="c1">// 상하 회전 가능 여부</span>
+            <span class="kt">bool</span> <span class="n">xRotatable</span> <span class="p">=</span>
+                <span class="n">CamOption</span><span class="p">.</span><span class="n">lookUpDegree</span> <span class="p">&lt;</span> <span class="n">xRotNext</span> <span class="p">&amp;&amp;</span>
+                <span class="n">CamOption</span><span class="p">.</span><span class="n">lookDownDegree</span> <span class="p">&gt;</span> <span class="n">xRotNext</span><span class="p">;</span>
+
+            <span class="c1">// Rig 상하 회전 적용</span>
+            <span class="n">rig</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">right</span> <span class="p">*</span> <span class="p">(</span><span class="n">xRotatable</span> <span class="p">?</span> <span class="n">xRotNext</span> <span class="p">:</span> <span class="n">xRotPrev</span><span class="p">);</span>
+
+            <span class="c1">// Root 좌우 회전 적용</span>
+            <span class="n">root</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="n">yRotNext</span><span class="p">;</span>
         <span class="p">}</span>
-    <span class="p">}</span>
 
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">TpCameraZoom</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>                <span class="c1">// TP 카메라만 가능</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Mathf</span><span class="p">.</span><span class="nf">Abs</span><span class="p">(</span><span class="n">_currentWheel</span><span class="p">)</span> <span class="p">&lt;</span> <span class="m">0.01f</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span> <span class="c1">// 휠 입력 있어야 가능</span>
-
-        <span class="n">Transform</span> <span class="n">tpCamTr</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">.</span><span class="n">transform</span><span class="p">;</span>
-        <span class="n">Transform</span> <span class="n">tpCamRig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">;</span>
-
-        <span class="kt">float</span> <span class="n">zoom</span> <span class="p">=</span> <span class="n">_deltaTime</span> <span class="p">*</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomSpeed</span><span class="p">;</span>
-        <span class="kt">float</span> <span class="n">currentCamToRigDist</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Distance</span><span class="p">(</span><span class="n">tpCamTr</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">tpCamRig</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
-        <span class="n">Vector3</span> <span class="n">move</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">forward</span> <span class="p">*</span> <span class="n">zoom</span> <span class="p">*</span> <span class="n">_currentWheel</span> <span class="p">*</span> <span class="m">10f</span><span class="p">;</span>
-
-        <span class="c1">// Zoom In</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">_currentWheel</span> <span class="p">&gt;</span> <span class="m">0.01f</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt; 3인칭일 경우 Walker 회전 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">RotateWalker</span><span class="p">()</span>
         <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">_tpCamZoomInitialDistance</span> <span class="p">-</span> <span class="n">currentCamToRigDist</span> <span class="p">&lt;</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomInDistance</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isMoving</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+            <span class="n">Vector3</span> <span class="n">dir</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">.</span><span class="nf">TransformDirection</span><span class="p">(</span><span class="n">_moveDir</span><span class="p">);</span>
+            <span class="kt">float</span> <span class="n">currentY</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+            <span class="kt">float</span> <span class="n">nextY</span> <span class="p">=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">LookRotation</span><span class="p">(</span><span class="n">dir</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="p">).</span><span class="n">eulerAngles</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">nextY</span> <span class="p">-</span> <span class="n">currentY</span> <span class="p">&gt;</span> <span class="m">180f</span><span class="p">)</span> <span class="n">nextY</span> <span class="p">-=</span> <span class="m">360f</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">currentY</span> <span class="p">-</span> <span class="n">nextY</span> <span class="p">&gt;</span> <span class="m">180f</span><span class="p">)</span> <span class="n">nextY</span> <span class="p">+=</span> <span class="m">360f</span><span class="p">;</span>
+
+            <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">.</span><span class="n">eulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Lerp</span><span class="p">(</span><span class="n">currentY</span><span class="p">,</span> <span class="n">nextY</span><span class="p">,</span> <span class="m">0.1f</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">ShowCursorToggle</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">showCursor</span><span class="p">))</span>
+                <span class="n">State</span><span class="p">.</span><span class="n">isCursorActive</span> <span class="p">=</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isCursorActive</span><span class="p">;</span>
+
+            <span class="nf">ShowCursor</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCursorActive</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">ShowCursor</span><span class="p">(</span><span class="kt">bool</span> <span class="k">value</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Cursor</span><span class="p">.</span><span class="n">visible</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+            <span class="n">Cursor</span><span class="p">.</span><span class="n">lockState</span> <span class="p">=</span> <span class="k">value</span> <span class="p">?</span> <span class="n">CursorLockMode</span><span class="p">.</span><span class="n">None</span> <span class="p">:</span> <span class="n">CursorLockMode</span><span class="p">.</span><span class="n">Locked</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">CameraViewToggle</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">Key</span><span class="p">.</span><span class="n">switchCamera</span><span class="p">))</span>
             <span class="p">{</span>
-                <span class="n">tpCamTr</span><span class="p">.</span><span class="nf">Translate</span><span class="p">(</span><span class="n">move</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">Self</span><span class="p">);</span>
+                <span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span> <span class="p">=</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">;</span>
+                <span class="n">Com</span><span class="p">.</span><span class="n">fpCamObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">);</span>
+                <span class="n">Com</span><span class="p">.</span><span class="n">tpCamObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(!</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">);</span>
+
+                <span class="c1">// TP -&gt; FP</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRoot</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+                    <span class="n">Com</span><span class="p">.</span><span class="n">fpRig</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">right</span> <span class="p">*</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="c1">// FP -&gt; TP</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="n">Com</span><span class="p">.</span><span class="n">tpRoot</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+                    <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">.</span><span class="n">localEulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">right</span> <span class="p">*</span> <span class="n">Com</span><span class="p">.</span><span class="n">fpRig</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+                <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
-        <span class="c1">// Zoom Out</span>
-        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">_currentWheel</span> <span class="p">&lt;</span> <span class="p">-</span><span class="m">0.01f</span><span class="p">)</span>
-        <span class="p">{</span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="n">currentCamToRigDist</span> <span class="p">-</span> <span class="n">_tpCamZoomInitialDistance</span> <span class="p">&lt;</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomOutDistance</span><span class="p">)</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">TpCameraZoom</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>                <span class="c1">// TP 카메라만 가능</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Mathf</span><span class="p">.</span><span class="nf">Abs</span><span class="p">(</span><span class="n">_currentWheel</span><span class="p">)</span> <span class="p">&lt;</span> <span class="m">0.01f</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span> <span class="c1">// 휠 입력 있어야 가능</span>
+
+            <span class="n">Transform</span> <span class="n">tpCamTr</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpCamera</span><span class="p">.</span><span class="n">transform</span><span class="p">;</span>
+            <span class="n">Transform</span> <span class="n">tpCamRig</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRig</span><span class="p">;</span>
+
+            <span class="kt">float</span> <span class="n">zoom</span> <span class="p">=</span> <span class="n">_deltaTime</span> <span class="p">*</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomSpeed</span><span class="p">;</span>
+            <span class="kt">float</span> <span class="n">currentCamToRigDist</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Distance</span><span class="p">(</span><span class="n">tpCamTr</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">tpCamRig</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+            <span class="n">Vector3</span> <span class="n">move</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">forward</span> <span class="p">*</span> <span class="n">zoom</span> <span class="p">*</span> <span class="n">_currentWheel</span> <span class="p">*</span> <span class="m">10f</span><span class="p">;</span>
+
+            <span class="c1">// Zoom In</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">_currentWheel</span> <span class="p">&gt;</span> <span class="m">0.01f</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="n">tpCamTr</span><span class="p">.</span><span class="nf">Translate</span><span class="p">(</span><span class="n">move</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">Self</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">_tpCamZoomInitialDistance</span> <span class="p">-</span> <span class="n">currentCamToRigDist</span> <span class="p">&lt;</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomInDistance</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">tpCamTr</span><span class="p">.</span><span class="nf">Translate</span><span class="p">(</span><span class="n">move</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">Self</span><span class="p">);</span>
+                <span class="p">}</span>
             <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">UpdateAnimationParams</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">float</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">x</span> <span class="p">=</span> <span class="n">_moveDir</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-            <span class="n">z</span> <span class="p">=</span> <span class="n">_moveDir</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isRunning</span><span class="p">)</span>
+            <span class="c1">// Zoom Out</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">_currentWheel</span> <span class="p">&lt;</span> <span class="p">-</span><span class="m">0.01f</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="n">x</span> <span class="p">*=</span> <span class="m">2f</span><span class="p">;</span>
-                <span class="n">z</span> <span class="p">*=</span> <span class="m">2f</span><span class="p">;</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">currentCamToRigDist</span> <span class="p">-</span> <span class="n">_tpCamZoomInitialDistance</span> <span class="p">&lt;</span> <span class="n">CamOption</span><span class="p">.</span><span class="n">zoomOutDistance</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">tpCamTr</span><span class="p">.</span><span class="nf">Translate</span><span class="p">(</span><span class="n">move</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">Self</span><span class="p">);</span>
+                <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
-        <span class="k">else</span>
-        <span class="p">{</span>
-            <span class="n">x</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
-            <span class="n">z</span> <span class="p">=</span> <span class="n">_moveDir</span><span class="p">.</span><span class="n">sqrMagnitude</span> <span class="p">&gt;</span> <span class="m">0f</span> <span class="p">?</span> <span class="m">1f</span> <span class="p">:</span> <span class="m">0f</span><span class="p">;</span>
 
-            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isRunning</span><span class="p">)</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">UpdateAnimationParams</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="kt">float</span> <span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="n">z</span> <span class="p">*=</span> <span class="m">2f</span><span class="p">;</span>
+                <span class="n">x</span> <span class="p">=</span> <span class="n">_moveDir</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+                <span class="n">z</span> <span class="p">=</span> <span class="n">_moveDir</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isRunning</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">x</span> <span class="p">*=</span> <span class="m">2f</span><span class="p">;</span>
+                    <span class="n">z</span> <span class="p">*=</span> <span class="m">2f</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">x</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+                <span class="n">z</span> <span class="p">=</span> <span class="n">_moveDir</span><span class="p">.</span><span class="n">sqrMagnitude</span> <span class="p">&gt;</span> <span class="m">0f</span> <span class="p">?</span> <span class="m">1f</span> <span class="p">:</span> <span class="m">0f</span><span class="p">;</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isRunning</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">z</span> <span class="p">*=</span> <span class="m">2f</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 보간</span>
+            <span class="k">const</span> <span class="kt">float</span> <span class="n">LerpSpeed</span> <span class="p">=</span> <span class="m">0.05f</span><span class="p">;</span>
+            <span class="n">_moveX</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Lerp</span><span class="p">(</span><span class="n">_moveX</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">LerpSpeed</span><span class="p">);</span>
+            <span class="n">_moveZ</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Lerp</span><span class="p">(</span><span class="n">_moveZ</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">LerpSpeed</span><span class="p">);</span>
+
+            <span class="n">Com</span><span class="p">.</span><span class="n">anim</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="n">AnimOption</span><span class="p">.</span><span class="n">paramMoveX</span><span class="p">,</span> <span class="n">_moveX</span><span class="p">);</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">anim</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="n">AnimOption</span><span class="p">.</span><span class="n">paramMoveZ</span><span class="p">,</span> <span class="n">_moveZ</span><span class="p">);</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">anim</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="n">AnimOption</span><span class="p">.</span><span class="n">paramDistY</span><span class="p">,</span> <span class="n">_distFromGround</span><span class="p">);</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">anim</span><span class="p">.</span><span class="nf">SetBool</span><span class="p">(</span><span class="n">AnimOption</span><span class="p">.</span><span class="n">paramGrounded</span><span class="p">,</span> <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Movement Methods
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+        <span class="c1">/// &lt;summary&gt; 땅으로부터의 거리 체크 - 애니메이터 전달용 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">CheckGroundDistance</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">_distFromGround</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">.</span><span class="nf">GetDistanceFromGround</span><span class="p">();</span>
+            <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">.</span><span class="nf">IsGrounded</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">SendMoveInfo</span><span class="p">(</span><span class="kt">float</span> <span class="n">horizontal</span><span class="p">,</span> <span class="kt">float</span> <span class="n">vertical</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_moveDir</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">horizontal</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="n">vertical</span><span class="p">).</span><span class="n">normalized</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">_worldMoveDir</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">.</span><span class="nf">TransformDirection</span><span class="p">(</span><span class="n">_moveDir</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">_worldMoveDir</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRoot</span><span class="p">.</span><span class="nf">TransformDirection</span><span class="p">(</span><span class="n">_moveDir</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">.</span><span class="nf">SetMovement</span><span class="p">(</span><span class="n">_worldMoveDir</span><span class="p">,</span> <span class="n">State</span><span class="p">.</span><span class="n">isRunning</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">Jump</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="kt">bool</span> <span class="n">jumpSucceeded</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">.</span><span class="nf">SetJump</span><span class="p">();</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">jumpSucceeded</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// 애니메이션 점프 트리거</span>
+                <span class="n">Com</span><span class="p">.</span><span class="n">anim</span><span class="p">.</span><span class="nf">SetTrigger</span><span class="p">(</span><span class="n">AnimOption</span><span class="p">.</span><span class="n">paramJump</span><span class="p">);</span>
+
+                <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"JUMP"</span><span class="p">);</span>
             <span class="p">}</span>
         <span class="p">}</span>
-
-        <span class="c1">// 보간</span>
-        <span class="k">const</span> <span class="kt">float</span> <span class="n">LerpSpeed</span> <span class="p">=</span> <span class="m">0.05f</span><span class="p">;</span>
-        <span class="n">_moveX</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Lerp</span><span class="p">(</span><span class="n">_moveX</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">LerpSpeed</span><span class="p">);</span>
-        <span class="n">_moveZ</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Lerp</span><span class="p">(</span><span class="n">_moveZ</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">LerpSpeed</span><span class="p">);</span>
-
-        <span class="n">Com</span><span class="p">.</span><span class="n">anim</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="n">AnimOption</span><span class="p">.</span><span class="n">paramMoveX</span><span class="p">,</span> <span class="n">_moveX</span><span class="p">);</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">anim</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="n">AnimOption</span><span class="p">.</span><span class="n">paramMoveZ</span><span class="p">,</span> <span class="n">_moveZ</span><span class="p">);</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">anim</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="n">AnimOption</span><span class="p">.</span><span class="n">paramDistY</span><span class="p">,</span> <span class="n">_distFromGround</span><span class="p">);</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">anim</span><span class="p">.</span><span class="nf">SetBool</span><span class="p">(</span><span class="n">AnimOption</span><span class="p">.</span><span class="n">paramGrounded</span><span class="p">,</span> <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Movement Methods
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-    <span class="c1">/// &lt;summary&gt; 땅으로부터의 거리 체크 - 애니메이터 전달용 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">CheckGroundDistance</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">_distFromGround</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">.</span><span class="nf">GetDistanceFromGround</span><span class="p">();</span>
-        <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">.</span><span class="nf">IsGrounded</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">SendMoveInfo</span><span class="p">(</span><span class="kt">float</span> <span class="n">horizontal</span><span class="p">,</span> <span class="kt">float</span> <span class="n">vertical</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">_moveDir</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">horizontal</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="n">vertical</span><span class="p">).</span><span class="n">normalized</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isCurrentFp</span><span class="p">)</span>
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Public Methods
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">KnockBack</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">force</span><span class="p">,</span> <span class="kt">float</span> <span class="n">time</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">_worldMoveDir</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">walker</span><span class="p">.</span><span class="nf">TransformDirection</span><span class="p">(</span><span class="n">_moveDir</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">else</span>
-        <span class="p">{</span>
-            <span class="n">_worldMoveDir</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">tpRoot</span><span class="p">.</span><span class="nf">TransformDirection</span><span class="p">(</span><span class="n">_moveDir</span><span class="p">);</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">.</span><span class="nf">KnockBack</span><span class="p">(</span><span class="n">force</span><span class="p">,</span> <span class="n">time</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">.</span><span class="nf">SetMovement</span><span class="p">(</span><span class="n">_worldMoveDir</span><span class="p">,</span> <span class="n">State</span><span class="p">.</span><span class="n">isRunning</span><span class="p">);</span>
+        <span class="err">#</span><span class="n">endregion</span>
     <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">Jump</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">bool</span> <span class="n">jumpSucceeded</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">.</span><span class="nf">SetJump</span><span class="p">();</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">jumpSucceeded</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="c1">// 애니메이션 점프 트리거</span>
-            <span class="n">Com</span><span class="p">.</span><span class="n">anim</span><span class="p">.</span><span class="nf">SetTrigger</span><span class="p">(</span><span class="n">AnimOption</span><span class="p">.</span><span class="n">paramJump</span><span class="p">);</span>
-
-            <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"JUMP"</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Public Methods
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">KnockBack</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">force</span><span class="p">,</span> <span class="kt">float</span> <span class="n">time</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">movement3D</span><span class="p">.</span><span class="nf">KnockBack</span><span class="p">(</span><span class="n">force</span><span class="p">,</span> <span class="n">time</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="err">#</span><span class="n">endregion</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
@@ -3530,12 +3560,12 @@ CharacterMainController.cs
         
         
         
-        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
+        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
+        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
       
         
         
@@ -3550,7 +3580,7 @@ CharacterMainController.cs
         
         
         
-        <li><a href="/posts/unity-particle-system-tutorial-01/">파티클 시스템 기초 - 01 - 파티클 시스템 만들기</a></li>
+        <li><a href="/posts/unity-particle-system-tutorial-03/">파티클 시스템 기초 - 03 - 값의 지정 방법</a></li>
       
 
       </ul>
@@ -5550,6 +5580,186 @@ CharacterMainController.cs
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -5590,7 +5800,7 @@ CharacterMainController.cs
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
       </div>
@@ -5637,6 +5847,45 @@ CharacterMainController.cs
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8994,6 +9243,186 @@ CharacterMainController.cs
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -9029,7 +9458,7 @@ CharacterMainController.cs
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
     </div>

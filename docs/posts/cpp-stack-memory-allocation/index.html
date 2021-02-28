@@ -634,12 +634,12 @@
         
         
         
-        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
+        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
+        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
       
         
         
@@ -654,7 +654,7 @@
         
         
         
-        <li><a href="/posts/unity-particle-system-tutorial-01/">파티클 시스템 기초 - 01 - 파티클 시스템 만들기</a></li>
+        <li><a href="/posts/unity-particle-system-tutorial-03/">파티클 시스템 기초 - 03 - 값의 지정 방법</a></li>
       
 
       </ul>
@@ -2654,6 +2654,186 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2694,7 +2874,7 @@
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
       </div>
@@ -2741,6 +2921,45 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -3929,7 +4148,7 @@ __LINE__
       
       
       <div class="card">
-        <a href="/posts/csharp-enum-memo/">
+        <a href="/posts/unity-opt-occlusion-culling/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -3946,13 +4165,13 @@ __LINE__
   
 
   
-    Feb 28
+    Mar  1
   
 
-  <i class="unloaded">2021-02-28T04:00:00+09:00</i>
+  <i class="unloaded">2021-03-01T01:40:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Enum 관련 메모</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>오클루전 컬링</h3>
             <div class="text-muted small">
               <p>
                 
@@ -3961,28 +4180,36 @@ __LINE__
 
 
 
-                enum의 모든 요소를 배열로 가져오기
-
-1
-2
-3
-enum MyEnum { A, B }
-
-Array allValues = Enum.GetValues(typeof(MyEnum));
+                프러스텀 컬링 (Frustum Culling)
 
 
+  
+    카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것
+  
+  
+    따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.
+  
 
 
-enum의 마지막 요소 가져오기
 
-1
-2
-3
-4
-// System.Linq;
 
-MyEnum last = 
-    Enum.GetValues(typeof(EditorW...
+
+
+그냥 이렇게 두어도
+
+
+
+실제로 이렇게 컬링된다.
+
+
+
+GIF
+
+
+
+
+
+오클루전 컬링 (Occlusion Cu...
               </p>
             </div>
           </div>
@@ -3992,7 +4219,7 @@ MyEnum last =
       
       
       <div class="card">
-        <a href="/posts/unity-editor-api-memo/">
+        <a href="/posts/unity-memo-gameobject-over-ui/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4012,10 +4239,10 @@ MyEnum last =
     Feb 28
   
 
-  <i class="unloaded">2021-02-28T01:50:00+09:00</i>
+  <i class="unloaded">2021-02-28T22:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 관련 유용한 스크립트, 팁 모음</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 위에 게임오브젝트 띄우기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4024,28 +4251,37 @@ MyEnum last =
 
 
 
-                
+                Preview
+
+
+
+
+
+  Green : Default
+  Red : Over UI
+
+
+
+
+1. Standard Rendering Pipeline
+
+
+
    
-다이얼로그 창 띄우기
+.
 
 
-  1
-2
-bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
-bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
+  [1] 레이어 준비
+  
+    [Over UI] 레이어를 만든다.
   
 
+  
 
-
-
-
-
-   
-Undo 모음
-
-
-  1
-2...
+  [2] Over UI 카메라 준비
+  
+    
+      카메라를 하나 더 만들고, Audio ...
               </p>
             </div>
           </div>
@@ -6134,6 +6370,186 @@ Undo 모음
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -6169,7 +6585,7 @@ Undo 모음
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
     </div>

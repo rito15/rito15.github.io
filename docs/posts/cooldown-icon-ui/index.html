@@ -704,12 +704,12 @@
         
         
         
-        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
+        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
+        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
       
         
         
@@ -724,7 +724,7 @@
         
         
         
-        <li><a href="/posts/unity-particle-system-tutorial-01/">파티클 시스템 기초 - 01 - 파티클 시스템 만들기</a></li>
+        <li><a href="/posts/unity-particle-system-tutorial-03/">파티클 시스템 기초 - 03 - 값의 지정 방법</a></li>
       
 
       </ul>
@@ -2724,6 +2724,186 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2764,7 +2944,7 @@
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
       </div>
@@ -2811,6 +2991,45 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -4028,7 +4247,7 @@ publi...
       
       
       <div class="card">
-        <a href="/posts/popup-ui-management-system/">
+        <a href="/posts/unity-memo-gameobject-over-ui/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4045,13 +4264,13 @@ publi...
   
 
   
-    Jan 31
+    Feb 28
   
 
-  <i class="unloaded">2021-01-31T20:23:00+09:00</i>
+  <i class="unloaded">2021-02-28T22:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>팝업 UI 관리 시스템 구현하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 위에 게임오브젝트 띄우기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4060,27 +4279,37 @@ publi...
 
 
 
-                게임의 UI
-
-
-
-  온라인 PC게임을 예로 들었을 때, 다양한 형태의 UI들이 존재한다.
-  화면 예시 : Smilegate RPG ‘LostARK’
-
-
-1. 전체화면 UI
-
-  크기가 화면 전체에 해당하는 UI
-  예 : 상점, 캐시 샵
+                Preview
 
 
 
 
-2. 고정형 UI
 
-  고정된 위치에 항상 존재하는 UI
-  예 : 하단 바, 퀵슬롯, 미니맵, 채팅창
-...
+  Green : Default
+  Red : Over UI
+
+
+
+
+1. Standard Rendering Pipeline
+
+
+
+   
+.
+
+
+  [1] 레이어 준비
+  
+    [Over UI] 레이어를 만든다.
+  
+
+  
+
+  [2] Over UI 카메라 준비
+  
+    
+      카메라를 하나 더 만들고, Audio ...
               </p>
             </div>
           </div>
@@ -6179,6 +6408,186 @@ publi...
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -6214,7 +6623,7 @@ publi...
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
     </div>

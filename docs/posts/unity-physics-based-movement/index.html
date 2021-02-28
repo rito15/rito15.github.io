@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6869 words">38 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="7326 words">40 min</span>
 
 
           <!-- page views -->
@@ -1974,528 +1974,724 @@ PhysicsBasedMovement.cs
 521
 522
 523
-</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">PhysicsBasedMovement</span> <span class="p">:</span> <span class="n">MonoBehaviour</span><span class="p">,</span> <span class="n">IMovement3D</span>
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="c1">// 날짜 : 2021-02-21 PM 8:23:22</span>
+<span class="c1">// 작성자 : Rito</span>
+
+<span class="c1">// 단점 : 오를 수 없는 경사면으로 이동하려고 시도할 경우 지터링 발생</span>
+
+<span class="k">namespace</span> <span class="nn">Rito.CharacterControl</span>
 <span class="p">{</span>
-    <span class="cm">/***********************************************************************
-    *                               Definitions
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-    <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">Components</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">PhysicsBasedMovement</span> <span class="p">:</span> <span class="n">MonoBehaviour</span><span class="p">,</span> <span class="n">IMovement3D</span>
     <span class="p">{</span>
-        <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">CapsuleCollider</span> <span class="n">capsule</span><span class="p">;</span>
-        <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Rigidbody</span> <span class="n">rBody</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">CheckOption</span>
-    <span class="p">{</span>
-        <span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"지면으로 체크할 레이어 설정"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="n">LayerMask</span> <span class="n">groundLayerMask</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.01f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"전방 감지 거리"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">forwardCheckDistance</span> <span class="p">=</span> <span class="m">0.1f</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.1f</span><span class="p">,</span> <span class="m">10.0f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"지면 감지 거리"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">groundCheckDistance</span> <span class="p">=</span> <span class="m">2.0f</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.0f</span><span class="p">,</span> <span class="m">0.1f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"지면 인식 허용 거리"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">groundCheckThreshold</span> <span class="p">=</span> <span class="m">0.01f</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">MovementOption</span>
-    <span class="p">{</span>
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">10f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"이동속도"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">speed</span> <span class="p">=</span> <span class="m">5f</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">3f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"달리기 이동속도 증가 계수"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">runningCoef</span> <span class="p">=</span> <span class="m">1.5f</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">10f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"점프 강도"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">jumpForce</span> <span class="p">=</span> <span class="m">4.2f</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.0f</span><span class="p">,</span> <span class="m">2.0f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"점프 쿨타임"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">jumpCooldown</span> <span class="p">=</span> <span class="m">0.6f</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"점프 허용 횟수"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">int</span> <span class="n">maxJumpCount</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">70f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"등반 가능한 경사각"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">maxSlopeAngle</span> <span class="p">=</span> <span class="m">50f</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">4f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"경사로 이동속도 변화율(가속/감속)"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">slopeAccel</span> <span class="p">=</span> <span class="m">1f</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="nf">Range</span><span class="p">(-</span><span class="m">9.81f</span><span class="p">,</span> <span class="m">0f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"중력"</span><span class="p">)]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">gravity</span> <span class="p">=</span> <span class="p">-</span><span class="m">9.81f</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">CurrentState</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isMoving</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isRunning</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isGrounded</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isOnSteepSlope</span><span class="p">;</span>   <span class="c1">// 등반 불가능한 경사로에 올라와 있음</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isJumpTriggered</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isJumping</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isForwardBlocked</span><span class="p">;</span> <span class="c1">// 전방에 장애물 존재</span>
-        <span class="k">public</span> <span class="kt">bool</span> <span class="n">isOutOfControl</span><span class="p">;</span>   <span class="c1">// 제어 불가 상태</span>
-    <span class="p">}</span>
-    <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">CurrentValue</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="n">Vector3</span> <span class="n">worldMoveDir</span><span class="p">;</span>
-        <span class="k">public</span> <span class="n">Vector3</span> <span class="n">groundNormal</span><span class="p">;</span>
-        <span class="k">public</span> <span class="n">Vector3</span> <span class="n">groundCross</span><span class="p">;</span>
-        <span class="k">public</span> <span class="n">Vector3</span> <span class="n">horizontalVelocity</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="n">Space</span><span class="p">]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">jumpCooldown</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">int</span>   <span class="n">jumpCount</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">outOfControllDuration</span><span class="p">;</span>
-
-        <span class="p">[</span><span class="n">Space</span><span class="p">]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">groundDistance</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">groundSlopeAngle</span><span class="p">;</span>         <span class="c1">// 현재 바닥의 경사각</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">groundVerticalSlopeAngle</span><span class="p">;</span> <span class="c1">// 수직으로 재측정한 경사각</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">forwardSlopeAngle</span><span class="p">;</span> <span class="c1">// 캐릭터가 바라보는 방향의 경사각</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">slopeAccel</span><span class="p">;</span>        <span class="c1">// 경사로 인한 가속/감속 비율</span>
-
-        <span class="p">[</span><span class="n">Space</span><span class="p">]</span>
-        <span class="k">public</span> <span class="kt">float</span> <span class="n">gravity</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Variables
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Components</span> <span class="n">_components</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Components</span><span class="p">();</span>
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">CheckOption</span> <span class="n">_checkOptions</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CheckOption</span><span class="p">();</span>
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">MovementOption</span> <span class="n">_moveOptions</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">MovementOption</span><span class="p">();</span>
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">CurrentState</span> <span class="n">_currentStates</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CurrentState</span><span class="p">();</span>
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">CurrentValue</span> <span class="n">_currentValues</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CurrentValue</span><span class="p">();</span>
-
-    <span class="k">private</span> <span class="n">Components</span> <span class="n">Com</span> <span class="p">=&gt;</span> <span class="n">_components</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">CheckOption</span> <span class="n">COption</span> <span class="p">=&gt;</span> <span class="n">_checkOptions</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">MovementOption</span> <span class="n">MOption</span> <span class="p">=&gt;</span> <span class="n">_moveOptions</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">CurrentState</span> <span class="n">State</span> <span class="p">=&gt;</span> <span class="n">_currentStates</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">CurrentValue</span> <span class="n">Current</span> <span class="p">=&gt;</span> <span class="n">_currentValues</span><span class="p">;</span>
-
-
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_capsuleRadiusDiff</span><span class="p">;</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_fixedDeltaTime</span><span class="p">;</span>
-
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_castRadius</span><span class="p">;</span> <span class="c1">// Sphere, Capsule 레이캐스트 반지름</span>
-    <span class="k">private</span> <span class="n">Vector3</span> <span class="n">CapsuleTopCenterPoint</span> 
-        <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="p">+</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">height</span> <span class="p">-</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">radius</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-    <span class="k">private</span> <span class="n">Vector3</span> <span class="n">CapsuleBottomCenterPoint</span> 
-        <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="p">+</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">radius</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Unity Events
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="nf">InitComponents</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">FixedUpdate</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">_fixedDeltaTime</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">fixedDeltaTime</span><span class="p">;</span>
-
-        <span class="nf">CheckGround</span><span class="p">();</span>
-        <span class="nf">CheckForward</span><span class="p">();</span>
-
-        <span class="nf">UpdatePhysics</span><span class="p">();</span>
-        <span class="nf">UpdateValues</span><span class="p">();</span>
-
-        <span class="nf">CalculateMovements</span><span class="p">();</span>
-        <span class="nf">ApplyMovementsToRigidbody</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Init Methods
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">InitComponents</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="nf">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">);</span>
-        <span class="nf">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">);</span>
-
-        <span class="c1">// 회전은 트랜스폼을 통해 직접 제어할 것이기 때문에 리지드바디 회전은 제한</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">constraints</span> <span class="p">=</span> <span class="n">RigidbodyConstraints</span><span class="p">.</span><span class="n">FreezeRotation</span><span class="p">;</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">interpolation</span> <span class="p">=</span> <span class="n">RigidbodyInterpolation</span><span class="p">.</span><span class="n">Interpolate</span><span class="p">;</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">useGravity</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span> <span class="c1">// 중력 직접 제어</span>
-
-        <span class="n">_castRadius</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">radius</span> <span class="p">*</span> <span class="m">0.9f</span><span class="p">;</span>
-        <span class="n">_capsuleRadiusDiff</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">radius</span> <span class="p">-</span> <span class="n">_castRadius</span> <span class="p">+</span> <span class="m">0.05f</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Public Methods
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-
-    <span class="kt">bool</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">IsMoving</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">State</span><span class="p">.</span><span class="n">isMoving</span><span class="p">;</span>
-    <span class="kt">bool</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">IsGrounded</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span><span class="p">;</span>
-    <span class="kt">float</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">GetDistanceFromGround</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span><span class="p">;</span>
-
-    <span class="k">void</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">SetMovement</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">worldMoveDir</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isRunning</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span> <span class="p">=</span> <span class="n">worldMoveDir</span><span class="p">;</span>
-        <span class="n">State</span><span class="p">.</span><span class="n">isMoving</span> <span class="p">=</span> <span class="n">worldMoveDir</span><span class="p">.</span><span class="n">sqrMagnitude</span> <span class="p">&gt;</span> <span class="m">0.01f</span><span class="p">;</span>
-        <span class="n">State</span><span class="p">.</span><span class="n">isRunning</span> <span class="p">=</span> <span class="n">isRunning</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">bool</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">SetJump</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">// 첫 점프는 지면 위에서만 가능</span>
-        <span class="k">if</span> <span class="p">(!</span><span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">&amp;&amp;</span> <span class="n">Current</span><span class="p">.</span><span class="n">jumpCount</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">jumpCount</span> <span class="p">&gt;=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">maxJumpCount</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
-
-        <span class="c1">// 접근 불가능 경사로에서 점프 불가능</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isOnSteepSlope</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
-
-        <span class="n">State</span><span class="p">.</span><span class="n">isJumpTriggered</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">void</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">StopMoving</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
-        <span class="n">State</span><span class="p">.</span><span class="n">isMoving</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-        <span class="n">State</span><span class="p">.</span><span class="n">isRunning</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">void</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">KnockBack</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">force</span><span class="p">,</span> <span class="kt">float</span> <span class="n">time</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="nf">SetOutOfControl</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
-        <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="nf">AddForce</span><span class="p">(</span><span class="n">force</span><span class="p">,</span> <span class="n">ForceMode</span><span class="p">.</span><span class="n">Impulse</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetOutOfControl</span><span class="p">(</span><span class="kt">float</span> <span class="n">time</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Current</span><span class="p">.</span><span class="n">outOfControllDuration</span> <span class="p">=</span> <span class="n">time</span><span class="p">;</span>
-        <span class="nf">ResetJump</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Private Methods
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">ResetJump</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
-        <span class="n">Current</span><span class="p">.</span><span class="n">jumpCount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-        <span class="n">State</span><span class="p">.</span><span class="n">isJumping</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-        <span class="n">State</span><span class="p">.</span><span class="n">isJumpTriggered</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt; 하단 지면 검사 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">CheckGround</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span> <span class="p">=</span> <span class="kt">float</span><span class="p">.</span><span class="n">MaxValue</span><span class="p">;</span>
-        <span class="n">Current</span><span class="p">.</span><span class="n">groundNormal</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="p">;</span>
-        <span class="n">Current</span><span class="p">.</span><span class="n">groundSlopeAngle</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
-        <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
-
-        <span class="kt">bool</span> <span class="n">cast</span> <span class="p">=</span>
-            <span class="n">Physics</span><span class="p">.</span><span class="nf">SphereCast</span><span class="p">(</span><span class="n">CapsuleBottomCenterPoint</span><span class="p">,</span> <span class="n">_castRadius</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">down</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">hit</span><span class="p">,</span> <span class="n">COption</span><span class="p">.</span><span class="n">groundCheckDistance</span><span class="p">,</span> <span class="n">COption</span><span class="p">.</span><span class="n">groundLayerMask</span><span class="p">,</span> <span class="n">QueryTriggerInteraction</span><span class="p">.</span><span class="n">Ignore</span><span class="p">);</span>
-
-        <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">cast</span><span class="p">)</span>
+        <span class="cm">/***********************************************************************
+        *                               Definitions
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+        <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+        <span class="k">public</span> <span class="k">class</span> <span class="nc">Components</span>
         <span class="p">{</span>
-            <span class="c1">// 지면 노멀벡터 초기화</span>
-            <span class="n">Current</span><span class="p">.</span><span class="n">groundNormal</span> <span class="p">=</span> <span class="n">hit</span><span class="p">.</span><span class="n">normal</span><span class="p">;</span>
+            <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">CapsuleCollider</span> <span class="n">capsule</span><span class="p">;</span>
+            <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="k">public</span> <span class="n">Rigidbody</span> <span class="n">rBody</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+        <span class="k">public</span> <span class="k">class</span> <span class="nc">CheckOption</span>
+        <span class="p">{</span>
+            <span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"지면으로 체크할 레이어 설정"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="n">LayerMask</span> <span class="n">groundLayerMask</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
 
-            <span class="c1">// 현재 위치한 지면의 경사각 구하기(캐릭터 이동방향 고려)</span>
-            <span class="n">Current</span><span class="p">.</span><span class="n">groundSlopeAngle</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Angle</span><span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">groundNormal</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="p">);</span>
-            <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Angle</span><span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">groundNormal</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span><span class="p">)</span> <span class="p">-</span> <span class="m">90f</span><span class="p">;</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.01f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"전방 감지 거리"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">forwardCheckDistance</span> <span class="p">=</span> <span class="m">0.1f</span><span class="p">;</span>
 
-            <span class="n">State</span><span class="p">.</span><span class="n">isOnSteepSlope</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundSlopeAngle</span> <span class="p">&gt;=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span><span class="p">;</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.1f</span><span class="p">,</span> <span class="m">10.0f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"지면 감지 거리"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">groundCheckDistance</span> <span class="p">=</span> <span class="m">2.0f</span><span class="p">;</span>
 
-            <span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Max</span><span class="p">(</span><span class="n">hit</span><span class="p">.</span><span class="n">distance</span> <span class="p">-</span> <span class="n">_capsuleRadiusDiff</span> <span class="p">-</span> <span class="n">COption</span><span class="p">.</span><span class="n">groundCheckThreshold</span><span class="p">,</span> <span class="m">0f</span><span class="p">);</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.0f</span><span class="p">,</span> <span class="m">0.1f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"지면 인식 허용 거리"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">groundCheckThreshold</span> <span class="p">=</span> <span class="m">0.01f</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+        <span class="k">public</span> <span class="k">class</span> <span class="nc">MovementOption</span>
+        <span class="p">{</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">10f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"이동속도"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">speed</span> <span class="p">=</span> <span class="m">5f</span><span class="p">;</span>
 
-            <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">=</span>
-                <span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span> <span class="p">&lt;=</span> <span class="m">0.0001f</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isOnSteepSlope</span><span class="p">;</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">3f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"달리기 이동속도 증가 계수"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">runningCoef</span> <span class="p">=</span> <span class="m">1.5f</span><span class="p">;</span>
 
-            <span class="nf">GzUpdateValue</span><span class="p">(</span><span class="k">ref</span> <span class="n">_gzGroundTouch</span><span class="p">,</span> <span class="n">hit</span><span class="p">.</span><span class="n">point</span><span class="p">);</span>
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">10f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"점프 강도"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">jumpForce</span> <span class="p">=</span> <span class="m">4.2f</span><span class="p">;</span>
+
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.0f</span><span class="p">,</span> <span class="m">2.0f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"점프 쿨타임"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">jumpCooldown</span> <span class="p">=</span> <span class="m">0.6f</span><span class="p">;</span>
+
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"점프 허용 횟수"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">int</span> <span class="n">maxJumpCount</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">75f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"등반 가능한 경사각"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">maxSlopeAngle</span> <span class="p">=</span> <span class="m">50f</span><span class="p">;</span>
+
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">4f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"경사로 이동속도 변화율(가속/감속)"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">slopeAccel</span> <span class="p">=</span> <span class="m">1f</span><span class="p">;</span>
+
+            <span class="p">[</span><span class="nf">Range</span><span class="p">(-</span><span class="m">9.81f</span><span class="p">,</span> <span class="m">0f</span><span class="p">),</span> <span class="nf">Tooltip</span><span class="p">(</span><span class="s">"중력"</span><span class="p">)]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">gravity</span> <span class="p">=</span> <span class="p">-</span><span class="m">9.81f</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+        <span class="k">public</span> <span class="k">class</span> <span class="nc">CurrentState</span>
+        <span class="p">{</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isMoving</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isRunning</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isGrounded</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isOnSteepSlope</span><span class="p">;</span>   <span class="c1">// 등반 불가능한 경사로에 올라와 있음</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isJumpTriggered</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isJumping</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isForwardBlocked</span><span class="p">;</span> <span class="c1">// 전방에 장애물 존재</span>
+            <span class="k">public</span> <span class="kt">bool</span> <span class="n">isOutOfControl</span><span class="p">;</span>   <span class="c1">// 제어 불가 상태</span>
+        <span class="p">}</span>
+        <span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+        <span class="k">public</span> <span class="k">class</span> <span class="nc">CurrentValue</span>
+        <span class="p">{</span>
+            <span class="k">public</span> <span class="n">Vector3</span> <span class="n">worldMoveDir</span><span class="p">;</span>
+            <span class="k">public</span> <span class="n">Vector3</span> <span class="n">groundNormal</span><span class="p">;</span>
+            <span class="k">public</span> <span class="n">Vector3</span> <span class="n">groundCross</span><span class="p">;</span>
+            <span class="k">public</span> <span class="n">Vector3</span> <span class="n">horizontalVelocity</span><span class="p">;</span>
+
+            <span class="p">[</span><span class="n">Space</span><span class="p">]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">jumpCooldown</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">int</span>   <span class="n">jumpCount</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">outOfControllDuration</span><span class="p">;</span>
+
+            <span class="p">[</span><span class="n">Space</span><span class="p">]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">groundDistance</span><span class="p">;</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">groundSlopeAngle</span><span class="p">;</span>         <span class="c1">// 현재 바닥의 경사각</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">groundVerticalSlopeAngle</span><span class="p">;</span> <span class="c1">// 수직으로 재측정한 경사각</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">forwardSlopeAngle</span><span class="p">;</span> <span class="c1">// 캐릭터가 바라보는 방향의 경사각</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">slopeAccel</span><span class="p">;</span>        <span class="c1">// 경사로 인한 가속/감속 비율</span>
+
+            <span class="p">[</span><span class="n">Space</span><span class="p">]</span>
+            <span class="k">public</span> <span class="kt">float</span> <span class="n">gravity</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="c1">// 월드 이동벡터 회전축</span>
-        <span class="n">Current</span><span class="p">.</span><span class="n">groundCross</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Cross</span><span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">groundNormal</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="p">);</span>
-    <span class="p">}</span>
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Variables
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
 
-    <span class="c1">/// &lt;summary&gt; 전방 장애물 검사 : 레이어 관계 없이 trigger가 아닌 모든 장애물 검사 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">CheckForward</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">bool</span> <span class="n">cast</span> <span class="p">=</span>
-            <span class="n">Physics</span><span class="p">.</span><span class="nf">CapsuleCast</span><span class="p">(</span><span class="n">CapsuleBottomCenterPoint</span><span class="p">,</span> <span class="n">CapsuleTopCenterPoint</span><span class="p">,</span> <span class="n">_castRadius</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span> <span class="p">+</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">down</span> <span class="p">*</span> <span class="m">0.1f</span><span class="p">,</span>
-                <span class="k">out</span> <span class="kt">var</span> <span class="n">hit</span><span class="p">,</span> <span class="n">COption</span><span class="p">.</span><span class="n">forwardCheckDistance</span><span class="p">,</span> <span class="p">-</span><span class="m">1</span><span class="p">,</span> <span class="n">QueryTriggerInteraction</span><span class="p">.</span><span class="n">Ignore</span><span class="p">);</span>
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Components</span> <span class="n">_components</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Components</span><span class="p">();</span>
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">CheckOption</span> <span class="n">_checkOptions</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CheckOption</span><span class="p">();</span>
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">MovementOption</span> <span class="n">_moveOptions</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">MovementOption</span><span class="p">();</span>
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">CurrentState</span> <span class="n">_currentStates</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CurrentState</span><span class="p">();</span>
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">CurrentValue</span> <span class="n">_currentValues</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">CurrentValue</span><span class="p">();</span>
 
-        <span class="n">State</span><span class="p">.</span><span class="n">isForwardBlocked</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">cast</span><span class="p">)</span>
+        <span class="k">private</span> <span class="n">Components</span> <span class="n">Com</span> <span class="p">=&gt;</span> <span class="n">_components</span><span class="p">;</span>
+        <span class="k">private</span> <span class="n">CheckOption</span> <span class="n">COption</span> <span class="p">=&gt;</span> <span class="n">_checkOptions</span><span class="p">;</span>
+        <span class="k">private</span> <span class="n">MovementOption</span> <span class="n">MOption</span> <span class="p">=&gt;</span> <span class="n">_moveOptions</span><span class="p">;</span>
+        <span class="k">private</span> <span class="n">CurrentState</span> <span class="n">State</span> <span class="p">=&gt;</span> <span class="n">_currentStates</span><span class="p">;</span>
+        <span class="k">private</span> <span class="n">CurrentValue</span> <span class="n">Current</span> <span class="p">=&gt;</span> <span class="n">_currentValues</span><span class="p">;</span>
+
+
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_capsuleRadiusDiff</span><span class="p">;</span>
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_fixedDeltaTime</span><span class="p">;</span>
+
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_castRadius</span><span class="p">;</span> <span class="c1">// Sphere, Capsule 레이캐스트 반지름</span>
+        <span class="k">private</span> <span class="n">Vector3</span> <span class="n">CapsuleTopCenterPoint</span> 
+            <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="p">+</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">height</span> <span class="p">-</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">radius</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+        <span class="k">private</span> <span class="n">Vector3</span> <span class="n">CapsuleBottomCenterPoint</span> 
+            <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="p">+</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">radius</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Unity Events
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
         <span class="p">{</span>
-            <span class="kt">float</span> <span class="n">forwardObstacleAngle</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Angle</span><span class="p">(</span><span class="n">hit</span><span class="p">.</span><span class="n">normal</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="p">);</span>
-            <span class="n">State</span><span class="p">.</span><span class="n">isForwardBlocked</span> <span class="p">=</span> <span class="n">forwardObstacleAngle</span> <span class="p">&gt;=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span><span class="p">;</span>
-
-            <span class="nf">GzUpdateValue</span><span class="p">(</span><span class="k">ref</span> <span class="n">_gzForwardTouch</span><span class="p">,</span> <span class="n">hit</span><span class="p">.</span><span class="n">point</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">UpdatePhysics</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">// Custom Gravity, Jumping State</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">Current</span><span class="p">.</span><span class="n">gravity</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
-
-            <span class="n">Current</span><span class="p">.</span><span class="n">jumpCount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-            <span class="n">State</span><span class="p">.</span><span class="n">isJumping</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">else</span>
-        <span class="p">{</span>
-            <span class="n">Current</span><span class="p">.</span><span class="n">gravity</span> <span class="p">+=</span> <span class="n">_fixedDeltaTime</span> <span class="p">*</span> <span class="n">MOption</span><span class="p">.</span><span class="n">gravity</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">UpdateValues</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">// Calculate Jump Cooldown</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">)</span>
-            <span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">-=</span> <span class="n">_fixedDeltaTime</span><span class="p">;</span>
-
-        <span class="c1">// Out Of Control</span>
-        <span class="n">State</span><span class="p">.</span><span class="n">isOutOfControl</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">outOfControllDuration</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isOutOfControl</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">Current</span><span class="p">.</span><span class="n">outOfControllDuration</span> <span class="p">-=</span> <span class="n">_fixedDeltaTime</span><span class="p">;</span>
-            <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">CalculateMovements</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isOutOfControl</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
-            <span class="k">return</span><span class="p">;</span>
+            <span class="nf">InitRigidbody</span><span class="p">();</span>
+            <span class="nf">InitCapsuleCollider</span><span class="p">();</span>
         <span class="p">}</span>
 
-        <span class="c1">// 1. 점프</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isJumpTriggered</span> <span class="p">&amp;&amp;</span> <span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">&lt;=</span> <span class="m">0f</span><span class="p">)</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">FixedUpdate</span><span class="p">()</span>
         <span class="p">{</span>
-            <span class="nf">DebugMark</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+            <span class="n">_fixedDeltaTime</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">fixedDeltaTime</span><span class="p">;</span>
 
-            <span class="n">Current</span><span class="p">.</span><span class="n">gravity</span> <span class="p">=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">jumpForce</span><span class="p">;</span>
+            <span class="nf">CheckGround</span><span class="p">();</span>
+            <span class="nf">CheckForward</span><span class="p">();</span>
 
-            <span class="c1">// 점프 쿨타임, 트리거 초기화</span>
-            <span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">jumpCooldown</span><span class="p">;</span>
-            <span class="n">State</span><span class="p">.</span><span class="n">isJumpTriggered</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-            <span class="n">State</span><span class="p">.</span><span class="n">isJumping</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="nf">UpdatePhysics</span><span class="p">();</span>
+            <span class="nf">UpdateValues</span><span class="p">();</span>
 
-            <span class="n">Current</span><span class="p">.</span><span class="n">jumpCount</span><span class="p">++;</span>
+            <span class="nf">CalculateMovements</span><span class="p">();</span>
+            <span class="nf">ApplyMovementsToRigidbody</span><span class="p">();</span>
         <span class="p">}</span>
 
-        <span class="c1">// 2. XZ 이동속도 계산</span>
-        <span class="c1">// 공중에서 전방이 막힌 경우 제한 (지상에서는 벽에 붙어서 이동할 수 있도록 허용)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isForwardBlocked</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">||</span> <span class="n">State</span><span class="p">.</span><span class="n">isJumping</span> <span class="p">&amp;&amp;</span> <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span><span class="p">)</span> 
-        <span class="p">{</span>
-            <span class="nf">DebugMark</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Init Methods
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
 
-            <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">InitRigidbody</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="nf">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Com</span><span class="p">.</span><span class="n">rBody</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span> <span class="p">=</span> <span class="n">gameObject</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">Rigidbody</span><span class="p">&gt;();</span>
+
+            <span class="c1">// 회전은 자식 트랜스폼을 통해 직접 제어할 것이기 때문에 리지드바디 회전은 제한</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">constraints</span> <span class="p">=</span> <span class="n">RigidbodyConstraints</span><span class="p">.</span><span class="n">FreezeRotation</span><span class="p">;</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">interpolation</span> <span class="p">=</span> <span class="n">RigidbodyInterpolation</span><span class="p">.</span><span class="n">Interpolate</span><span class="p">;</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">collisionDetectionMode</span> <span class="p">=</span> <span class="n">CollisionDetectionMode</span><span class="p">.</span><span class="n">ContinuousDynamic</span><span class="p">;</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">useGravity</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span> <span class="c1">// 중력 직접 제어</span>
         <span class="p">}</span>
-        <span class="k">else</span> <span class="c1">// 이동 가능한 경우 : 지상 or 전방이 막히지 않음</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">InitCapsuleCollider</span><span class="p">()</span>
         <span class="p">{</span>
-            <span class="nf">DebugMark</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
-
-            <span class="kt">float</span> <span class="n">speed</span> <span class="p">=</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isMoving</span>  <span class="p">?</span> <span class="m">0f</span> <span class="p">:</span>
-                          <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isRunning</span> <span class="p">?</span> <span class="n">MOption</span><span class="p">.</span><span class="n">speed</span> <span class="p">:</span>
-                                             <span class="n">MOption</span><span class="p">.</span><span class="n">speed</span> <span class="p">*</span> <span class="n">MOption</span><span class="p">.</span><span class="n">runningCoef</span><span class="p">;</span>
-
-            <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span> <span class="p">*</span> <span class="n">speed</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="c1">// 3. XZ 벡터 회전</span>
-        <span class="c1">// 지상이거나 지면에 가까운 높이</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">||</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span> <span class="p">&lt;</span> <span class="n">COption</span><span class="p">.</span><span class="n">groundCheckDistance</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isJumping</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isMoving</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isForwardBlocked</span><span class="p">)</span>
+            <span class="nf">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Com</span><span class="p">.</span><span class="n">capsule</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
             <span class="p">{</span>
-                <span class="nf">DebugMark</span><span class="p">(</span><span class="m">4</span><span class="p">);</span>
+                <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span> <span class="p">=</span> <span class="n">gameObject</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">CapsuleCollider</span><span class="p">&gt;();</span>
 
-                <span class="c1">// 경사로 인한 가속/감속</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">MOption</span><span class="p">.</span><span class="n">slopeAccel</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">)</span>
+                <span class="c1">// 렌더러를 모두 탐색하여 높이 결정</span>
+                <span class="kt">float</span> <span class="n">maxHeight</span> <span class="p">=</span> <span class="p">-</span><span class="m">1f</span><span class="p">;</span>
+
+                <span class="c1">// 1. SMR 확인</span>
+                <span class="kt">var</span> <span class="n">smrArr</span> <span class="p">=</span> <span class="n">GetComponentsInChildren</span><span class="p">&lt;</span><span class="n">SkinnedMeshRenderer</span><span class="p">&gt;();</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">smrArr</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
                 <span class="p">{</span>
-                    <span class="kt">bool</span> <span class="n">isPlus</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span> <span class="p">&gt;=</span> <span class="m">0f</span><span class="p">;</span>
-                    <span class="kt">float</span> <span class="n">absFsAngle</span> <span class="p">=</span> <span class="n">isPlus</span> <span class="p">?</span> <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span> <span class="p">:</span> <span class="p">-</span><span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span><span class="p">;</span>
-                    <span class="kt">float</span> <span class="n">accel</span> <span class="p">=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">slopeAccel</span> <span class="p">*</span> <span class="n">absFsAngle</span> <span class="p">*</span> <span class="m">0.01111f</span> <span class="p">+</span> <span class="m">1f</span><span class="p">;</span>
-                    <span class="n">Current</span><span class="p">.</span><span class="n">slopeAccel</span> <span class="p">=</span> <span class="p">!</span><span class="n">isPlus</span> <span class="p">?</span> <span class="n">accel</span> <span class="p">:</span> <span class="m">1.0f</span> <span class="p">/</span> <span class="n">accel</span><span class="p">;</span>
-
-                    <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">*=</span> <span class="n">Current</span><span class="p">.</span><span class="n">slopeAccel</span><span class="p">;</span>
+                    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">smr</span> <span class="k">in</span> <span class="n">smrArr</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">vertex</span> <span class="k">in</span> <span class="n">smr</span><span class="p">.</span><span class="n">sharedMesh</span><span class="p">.</span><span class="n">vertices</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="k">if</span><span class="p">(</span><span class="n">maxHeight</span> <span class="p">&lt;</span> <span class="n">vertex</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+                                <span class="n">maxHeight</span> <span class="p">=</span> <span class="n">vertex</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="c1">// 2. MR 확인</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="kt">var</span> <span class="n">mfArr</span> <span class="p">=</span> <span class="n">GetComponentsInChildren</span><span class="p">&lt;</span><span class="n">MeshFilter</span><span class="p">&gt;();</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">mfArr</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">mf</span> <span class="k">in</span> <span class="n">mfArr</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">vertex</span> <span class="k">in</span> <span class="n">mf</span><span class="p">.</span><span class="n">mesh</span><span class="p">.</span><span class="n">vertices</span><span class="p">)</span>
+                            <span class="p">{</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="n">maxHeight</span> <span class="p">&lt;</span> <span class="n">vertex</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+                                    <span class="n">maxHeight</span> <span class="p">=</span> <span class="n">vertex</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
                 <span class="p">}</span>
 
-                <span class="c1">// 벡터 회전 (경사로)</span>
-                <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">=</span>
-                    <span class="n">Quaternion</span><span class="p">.</span><span class="nf">AngleAxis</span><span class="p">(-</span><span class="n">Current</span><span class="p">.</span><span class="n">groundSlopeAngle</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundCross</span><span class="p">)</span> <span class="p">*</span> <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span><span class="p">;</span>
+                <span class="c1">// 3. 캡슐 콜라이더 값 설정</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">maxHeight</span> <span class="p">&lt;=</span> <span class="m">0</span><span class="p">)</span>
+                    <span class="n">maxHeight</span> <span class="p">=</span> <span class="m">1f</span><span class="p">;</span>
+
+                <span class="kt">float</span> <span class="n">center</span> <span class="p">=</span> <span class="n">maxHeight</span> <span class="p">*</span> <span class="m">0.5f</span><span class="p">;</span>
+
+                <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">height</span> <span class="p">=</span> <span class="n">maxHeight</span><span class="p">;</span>
+                <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">center</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="n">center</span><span class="p">;</span>
+                <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">radius</span> <span class="p">=</span> <span class="m">0.2f</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="n">_castRadius</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">radius</span> <span class="p">*</span> <span class="m">0.9f</span><span class="p">;</span>
+            <span class="n">_capsuleRadiusDiff</span> <span class="p">=</span> <span class="n">Com</span><span class="p">.</span><span class="n">capsule</span><span class="p">.</span><span class="n">radius</span> <span class="p">-</span> <span class="n">_castRadius</span> <span class="p">+</span> <span class="m">0.05f</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Public Methods
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+
+        <span class="kt">bool</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">IsMoving</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">State</span><span class="p">.</span><span class="n">isMoving</span><span class="p">;</span>
+        <span class="kt">bool</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">IsGrounded</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span><span class="p">;</span>
+        <span class="kt">float</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">GetDistanceFromGround</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span><span class="p">;</span>
+
+        <span class="k">void</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">SetMovement</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">worldMoveDir</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isRunning</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span> <span class="p">=</span> <span class="n">worldMoveDir</span><span class="p">;</span>
+            <span class="n">State</span><span class="p">.</span><span class="n">isMoving</span> <span class="p">=</span> <span class="n">worldMoveDir</span><span class="p">.</span><span class="n">sqrMagnitude</span> <span class="p">&gt;</span> <span class="m">0.01f</span><span class="p">;</span>
+            <span class="n">State</span><span class="p">.</span><span class="n">isRunning</span> <span class="p">=</span> <span class="n">isRunning</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">bool</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">SetJump</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="c1">// 첫 점프는 지면 위에서만 가능</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">&amp;&amp;</span> <span class="n">Current</span><span class="p">.</span><span class="n">jumpCount</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+
+            <span class="c1">// 점프 쿨타임, 횟수 확인</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">jumpCount</span> <span class="p">&gt;=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">maxJumpCount</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+
+            <span class="c1">// 접근 불가능 경사로에서 점프 불가능</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isOnSteepSlope</span><span class="p">)</span> <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+
+            <span class="n">State</span><span class="p">.</span><span class="n">isJumpTriggered</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">void</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">StopMoving</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
+            <span class="n">State</span><span class="p">.</span><span class="n">isMoving</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+            <span class="n">State</span><span class="p">.</span><span class="n">isRunning</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">void</span> <span class="n">IMovement3D</span><span class="p">.</span><span class="nf">KnockBack</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">force</span><span class="p">,</span> <span class="kt">float</span> <span class="n">time</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nf">SetOutOfControl</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+            <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="nf">AddForce</span><span class="p">(</span><span class="n">force</span><span class="p">,</span> <span class="n">ForceMode</span><span class="p">.</span><span class="n">Impulse</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">SetOutOfControl</span><span class="p">(</span><span class="kt">float</span> <span class="n">time</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Current</span><span class="p">.</span><span class="n">outOfControllDuration</span> <span class="p">=</span> <span class="n">time</span><span class="p">;</span>
+            <span class="nf">ResetJump</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Private Methods
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">ResetJump</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+            <span class="n">Current</span><span class="p">.</span><span class="n">jumpCount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+            <span class="n">State</span><span class="p">.</span><span class="n">isJumping</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+            <span class="n">State</span><span class="p">.</span><span class="n">isJumpTriggered</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt; 하단 지면 검사 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">CheckGround</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span> <span class="p">=</span> <span class="kt">float</span><span class="p">.</span><span class="n">MaxValue</span><span class="p">;</span>
+            <span class="n">Current</span><span class="p">.</span><span class="n">groundNormal</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="p">;</span>
+            <span class="n">Current</span><span class="p">.</span><span class="n">groundSlopeAngle</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+            <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+
+            <span class="kt">bool</span> <span class="n">cast</span> <span class="p">=</span>
+                <span class="n">Physics</span><span class="p">.</span><span class="nf">SphereCast</span><span class="p">(</span><span class="n">CapsuleBottomCenterPoint</span><span class="p">,</span> <span class="n">_castRadius</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">down</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">hit</span><span class="p">,</span> <span class="n">COption</span><span class="p">.</span><span class="n">groundCheckDistance</span><span class="p">,</span> <span class="n">COption</span><span class="p">.</span><span class="n">groundLayerMask</span><span class="p">,</span> <span class="n">QueryTriggerInteraction</span><span class="p">.</span><span class="n">Ignore</span><span class="p">);</span>
+
+            <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">cast</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// 지면 노멀벡터 초기화</span>
+                <span class="n">Current</span><span class="p">.</span><span class="n">groundNormal</span> <span class="p">=</span> <span class="n">hit</span><span class="p">.</span><span class="n">normal</span><span class="p">;</span>
+
+                <span class="c1">// 현재 위치한 지면의 경사각 구하기(캐릭터 이동방향 고려)</span>
+                <span class="n">Current</span><span class="p">.</span><span class="n">groundSlopeAngle</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Angle</span><span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">groundNormal</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="p">);</span>
+                <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Angle</span><span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">groundNormal</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span><span class="p">)</span> <span class="p">-</span> <span class="m">90f</span><span class="p">;</span>
+
+                <span class="n">State</span><span class="p">.</span><span class="n">isOnSteepSlope</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundSlopeAngle</span> <span class="p">&gt;=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span><span class="p">;</span>
+
+                <span class="c1">// 경사각 이중검증 (수직 레이캐스트) : 뾰족하거나 각진 부분 체크</span>
+                <span class="c1">//if (State.isOnSteepSlope)</span>
+                <span class="c1">//{</span>
+                <span class="c1">//    Vector3 ro = hit.point + Vector3.up * 0.1f;</span>
+                <span class="c1">//    Vector3 rd = Vector3.down;</span>
+                <span class="c1">//    bool rayD = </span>
+                <span class="c1">//        Physics.SphereCast(ro, 0.09f, rd, out var hitRayD, 0.2f, COption.groundLayerMask, QueryTriggerInteraction.Ignore);</span>
+
+                <span class="c1">//    Current.groundVerticalSlopeAngle = rayD ? Vector3.Angle(hitRayD.normal, Vector3.up) : Current.groundSlopeAngle;</span>
+
+                <span class="c1">//    State.isOnSteepSlope = Current.groundVerticalSlopeAngle &gt;= MOption.maxSlopeAngle;</span>
+                <span class="c1">//}</span>
+
+                <span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Max</span><span class="p">(</span><span class="n">hit</span><span class="p">.</span><span class="n">distance</span> <span class="p">-</span> <span class="n">_capsuleRadiusDiff</span> <span class="p">-</span> <span class="n">COption</span><span class="p">.</span><span class="n">groundCheckThreshold</span><span class="p">,</span> <span class="m">0f</span><span class="p">);</span>
+
+                <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">=</span>
+                    <span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span> <span class="p">&lt;=</span> <span class="m">0.0001f</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isOnSteepSlope</span><span class="p">;</span>
+
+                <span class="nf">GzUpdateValue</span><span class="p">(</span><span class="k">ref</span> <span class="n">_gzGroundTouch</span><span class="p">,</span> <span class="n">hit</span><span class="p">.</span><span class="n">point</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 월드 이동벡터 회전축</span>
+            <span class="n">Current</span><span class="p">.</span><span class="n">groundCross</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Cross</span><span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">groundNormal</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt; 전방 장애물 검사 : 레이어 관계 없이 trigger가 아닌 모든 장애물 검사 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">CheckForward</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="kt">bool</span> <span class="n">cast</span> <span class="p">=</span>
+                <span class="n">Physics</span><span class="p">.</span><span class="nf">CapsuleCast</span><span class="p">(</span><span class="n">CapsuleBottomCenterPoint</span><span class="p">,</span> <span class="n">CapsuleTopCenterPoint</span><span class="p">,</span> <span class="n">_castRadius</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span> <span class="p">+</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">down</span> <span class="p">*</span> <span class="m">0.1f</span><span class="p">,</span>
+                    <span class="k">out</span> <span class="kt">var</span> <span class="n">hit</span><span class="p">,</span> <span class="n">COption</span><span class="p">.</span><span class="n">forwardCheckDistance</span><span class="p">,</span> <span class="p">-</span><span class="m">1</span><span class="p">,</span> <span class="n">QueryTriggerInteraction</span><span class="p">.</span><span class="n">Ignore</span><span class="p">);</span>
+
+            <span class="n">State</span><span class="p">.</span><span class="n">isForwardBlocked</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">cast</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">float</span> <span class="n">forwardObstacleAngle</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Angle</span><span class="p">(</span><span class="n">hit</span><span class="p">.</span><span class="n">normal</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="p">);</span>
+                <span class="n">State</span><span class="p">.</span><span class="n">isForwardBlocked</span> <span class="p">=</span> <span class="n">forwardObstacleAngle</span> <span class="p">&gt;=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span><span class="p">;</span>
+
+                <span class="nf">GzUpdateValue</span><span class="p">(</span><span class="k">ref</span> <span class="n">_gzForwardTouch</span><span class="p">,</span> <span class="n">hit</span><span class="p">.</span><span class="n">point</span><span class="p">);</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="nf">GzUpdateValue</span><span class="p">(</span><span class="k">ref</span> <span class="n">_gzRotatedWorldMoveDir</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">*</span> <span class="m">0.2f</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt; 리지드바디 최종 속도 적용 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">ApplyMovementsToRigidbody</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isOutOfControl</span><span class="p">)</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">UpdatePhysics</span><span class="p">()</span>
         <span class="p">{</span>
-            <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">velocity</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">gravity</span><span class="p">,</span> <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-            <span class="k">return</span><span class="p">;</span>
+            <span class="c1">// Custom Gravity, Jumping State</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Current</span><span class="p">.</span><span class="n">gravity</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+
+                <span class="n">Current</span><span class="p">.</span><span class="n">jumpCount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                <span class="n">State</span><span class="p">.</span><span class="n">isJumping</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">Current</span><span class="p">.</span><span class="n">gravity</span> <span class="p">+=</span> <span class="n">_fixedDeltaTime</span> <span class="p">*</span> <span class="n">MOption</span><span class="p">.</span><span class="n">gravity</span><span class="p">;</span>
+            <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">velocity</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">+</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">gravity</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Debugs
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-
-    <span class="k">public</span> <span class="kt">bool</span> <span class="n">_debugOn</span><span class="p">;</span>
-    <span class="k">public</span> <span class="kt">int</span> <span class="n">_debugIndex</span><span class="p">;</span>
-
-    <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="nf">Conditional</span><span class="p">(</span><span class="s">"UNITY_EDITOR"</span><span class="p">)]</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">DebugMark</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(!</span><span class="n">_debugOn</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"MARK - "</span> <span class="p">+</span> <span class="n">index</span><span class="p">);</span>
-        <span class="n">_debugIndex</span> <span class="p">=</span> <span class="n">index</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="err">#</span><span class="n">endregion</span>
-    <span class="cm">/***********************************************************************
-    *                               Gizmos, GUI
-    ***********************************************************************/</span>
-    <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
-
-    <span class="k">private</span> <span class="n">Vector3</span> <span class="n">_gzGroundTouch</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">Vector3</span> <span class="n">_gzForwardTouch</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">Vector3</span> <span class="n">_gzRotatedWorldMoveDir</span><span class="p">;</span>
-
-    <span class="p">[</span><span class="nf">Header</span><span class="p">(</span><span class="s">"Gizmos Option"</span><span class="p">)]</span>
-    <span class="k">public</span> <span class="kt">bool</span> <span class="n">_showGizmos</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">,</span> <span class="nf">Range</span><span class="p">(</span><span class="m">0.01f</span><span class="p">,</span> <span class="m">2f</span><span class="p">)]</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_gizmoRadius</span> <span class="p">=</span> <span class="m">0.05f</span><span class="p">;</span>
-
-    <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="nf">Conditional</span><span class="p">(</span><span class="s">"UNITY_EDITOR"</span><span class="p">)]</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">OnDrawGizmos</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">Application</span><span class="p">.</span><span class="n">isPlaying</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(!</span><span class="n">_showGizmos</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-
-        <span class="n">Gizmos</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">red</span><span class="p">;</span>
-        <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawSphere</span><span class="p">(</span><span class="n">_gzGroundTouch</span><span class="p">,</span> <span class="n">_gizmoRadius</span><span class="p">);</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isForwardBlocked</span><span class="p">)</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">UpdateValues</span><span class="p">()</span>
         <span class="p">{</span>
+            <span class="c1">// Calculate Jump Cooldown</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">)</span>
+                <span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">-=</span> <span class="n">_fixedDeltaTime</span><span class="p">;</span>
+
+            <span class="c1">// Out Of Control</span>
+            <span class="n">State</span><span class="p">.</span><span class="n">isOutOfControl</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">outOfControllDuration</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isOutOfControl</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Current</span><span class="p">.</span><span class="n">outOfControllDuration</span> <span class="p">-=</span> <span class="n">_fixedDeltaTime</span><span class="p">;</span>
+                <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">CalculateMovements</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isOutOfControl</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 0. 가파른 경사면에 있는 경우 : 꼼짝말고 미끄럼틀 타기</span>
+            <span class="c1">//if (State.isOnSteepSlope &amp;&amp; Current.groundDistance &lt; 0.1f)</span>
+            <span class="c1">//{</span>
+            <span class="c1">//    DebugMark(0);</span>
+
+            <span class="c1">//    Current.horizontalVelocity =</span>
+            <span class="c1">//        Quaternion.AngleAxis(90f - Current.groundSlopeAngle, Current.groundCross) * (Vector3.up * Current.gravity);</span>
+
+            <span class="c1">//    Com.rBody.velocity = Current.horizontalVelocity;</span>
+
+            <span class="c1">//    return;</span>
+            <span class="c1">//}</span>
+
+            <span class="c1">// 1. 점프</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isJumpTriggered</span> <span class="p">&amp;&amp;</span> <span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">&lt;=</span> <span class="m">0f</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="nf">DebugMark</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+
+                <span class="n">Current</span><span class="p">.</span><span class="n">gravity</span> <span class="p">=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">jumpForce</span><span class="p">;</span>
+
+                <span class="c1">// 점프 쿨타임, 트리거 초기화</span>
+                <span class="n">Current</span><span class="p">.</span><span class="n">jumpCooldown</span> <span class="p">=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">jumpCooldown</span><span class="p">;</span>
+                <span class="n">State</span><span class="p">.</span><span class="n">isJumpTriggered</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+                <span class="n">State</span><span class="p">.</span><span class="n">isJumping</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+
+                <span class="n">Current</span><span class="p">.</span><span class="n">jumpCount</span><span class="p">++;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 2. XZ 이동속도 계산</span>
+            <span class="c1">// 공중에서 전방이 막힌 경우 제한 (지상에서는 벽에 붙어서 이동할 수 있도록 허용)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isForwardBlocked</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">||</span> <span class="n">State</span><span class="p">.</span><span class="n">isJumping</span> <span class="p">&amp;&amp;</span> <span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span><span class="p">)</span> 
+            <span class="p">{</span>
+                <span class="nf">DebugMark</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+
+                <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="c1">// 이동 가능한 경우 : 지상 or 전방이 막히지 않음</span>
+            <span class="p">{</span>
+                <span class="nf">DebugMark</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
+
+                <span class="kt">float</span> <span class="n">speed</span> <span class="p">=</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isMoving</span>  <span class="p">?</span> <span class="m">0f</span> <span class="p">:</span>
+                              <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isRunning</span> <span class="p">?</span> <span class="n">MOption</span><span class="p">.</span><span class="n">speed</span> <span class="p">:</span>
+                                                 <span class="n">MOption</span><span class="p">.</span><span class="n">speed</span> <span class="p">*</span> <span class="n">MOption</span><span class="p">.</span><span class="n">runningCoef</span><span class="p">;</span>
+
+                <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">worldMoveDir</span> <span class="p">*</span> <span class="n">speed</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 3. XZ 벡터 회전</span>
+            <span class="c1">// 지상이거나 지면에 가까운 높이</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isGrounded</span> <span class="p">||</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span> <span class="p">&lt;</span> <span class="n">COption</span><span class="p">.</span><span class="n">groundCheckDistance</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isJumping</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isMoving</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">State</span><span class="p">.</span><span class="n">isForwardBlocked</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="nf">DebugMark</span><span class="p">(</span><span class="m">4</span><span class="p">);</span>
+
+                    <span class="c1">// 경사로 인한 가속/감속</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">MOption</span><span class="p">.</span><span class="n">slopeAccel</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="kt">bool</span> <span class="n">isPlus</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span> <span class="p">&gt;=</span> <span class="m">0f</span><span class="p">;</span>
+                        <span class="kt">float</span> <span class="n">absFsAngle</span> <span class="p">=</span> <span class="n">isPlus</span> <span class="p">?</span> <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span> <span class="p">:</span> <span class="p">-</span><span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span><span class="p">;</span>
+                        <span class="kt">float</span> <span class="n">accel</span> <span class="p">=</span> <span class="n">MOption</span><span class="p">.</span><span class="n">slopeAccel</span> <span class="p">*</span> <span class="n">absFsAngle</span> <span class="p">*</span> <span class="m">0.01111f</span> <span class="p">+</span> <span class="m">1f</span><span class="p">;</span>
+                        <span class="n">Current</span><span class="p">.</span><span class="n">slopeAccel</span> <span class="p">=</span> <span class="p">!</span><span class="n">isPlus</span> <span class="p">?</span> <span class="n">accel</span> <span class="p">:</span> <span class="m">1.0f</span> <span class="p">/</span> <span class="n">accel</span><span class="p">;</span>
+
+                        <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">*=</span> <span class="n">Current</span><span class="p">.</span><span class="n">slopeAccel</span><span class="p">;</span>
+                    <span class="p">}</span>
+
+                    <span class="c1">// 벡터 회전 (경사로)</span>
+                    <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">=</span>
+                        <span class="n">Quaternion</span><span class="p">.</span><span class="nf">AngleAxis</span><span class="p">(-</span><span class="n">Current</span><span class="p">.</span><span class="n">groundSlopeAngle</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundCross</span><span class="p">)</span> <span class="p">*</span> <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="nf">GzUpdateValue</span><span class="p">(</span><span class="k">ref</span> <span class="n">_gzRotatedWorldMoveDir</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">*</span> <span class="m">0.2f</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt; 리지드바디 최종 속도 적용 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">ApplyMovementsToRigidbody</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isOutOfControl</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">velocity</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">Current</span><span class="p">.</span><span class="n">gravity</span><span class="p">,</span> <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="n">Com</span><span class="p">.</span><span class="n">rBody</span><span class="p">.</span><span class="n">velocity</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span> <span class="p">+</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">up</span> <span class="p">*</span> <span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">gravity</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Debugs
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+
+        <span class="k">public</span> <span class="kt">bool</span> <span class="n">_debugOn</span><span class="p">;</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">_debugIndex</span><span class="p">;</span>
+
+        <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="nf">Conditional</span><span class="p">(</span><span class="s">"UNITY_EDITOR"</span><span class="p">)]</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">DebugMark</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(!</span><span class="n">_debugOn</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+            <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"MARK - "</span> <span class="p">+</span> <span class="n">index</span><span class="p">);</span>
+            <span class="n">_debugIndex</span> <span class="p">=</span> <span class="n">index</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Gizmos, GUI
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+
+        <span class="k">private</span> <span class="n">Vector3</span> <span class="n">_gzGroundTouch</span><span class="p">;</span>
+        <span class="k">private</span> <span class="n">Vector3</span> <span class="n">_gzForwardTouch</span><span class="p">;</span>
+        <span class="k">private</span> <span class="n">Vector3</span> <span class="n">_gzRotatedWorldMoveDir</span><span class="p">;</span>
+
+        <span class="p">[</span><span class="nf">Header</span><span class="p">(</span><span class="s">"Gizmos Option"</span><span class="p">)]</span>
+        <span class="k">public</span> <span class="kt">bool</span> <span class="n">_showGizmos</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">,</span> <span class="nf">Range</span><span class="p">(</span><span class="m">0.01f</span><span class="p">,</span> <span class="m">2f</span><span class="p">)]</span>
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_gizmoRadius</span> <span class="p">=</span> <span class="m">0.05f</span><span class="p">;</span>
+
+        <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="nf">Conditional</span><span class="p">(</span><span class="s">"UNITY_EDITOR"</span><span class="p">)]</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">OnDrawGizmos</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Application</span><span class="p">.</span><span class="n">isPlaying</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="n">_showGizmos</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(!</span><span class="n">enabled</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+            <span class="n">Gizmos</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">red</span><span class="p">;</span>
+            <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawSphere</span><span class="p">(</span><span class="n">_gzGroundTouch</span><span class="p">,</span> <span class="n">_gizmoRadius</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">State</span><span class="p">.</span><span class="n">isForwardBlocked</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Gizmos</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">blue</span><span class="p">;</span>
+                <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawSphere</span><span class="p">(</span><span class="n">_gzForwardTouch</span><span class="p">,</span> <span class="n">_gizmoRadius</span><span class="p">);</span>
+            <span class="p">}</span>
+
             <span class="n">Gizmos</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">blue</span><span class="p">;</span>
-            <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawSphere</span><span class="p">(</span><span class="n">_gzForwardTouch</span><span class="p">,</span> <span class="n">_gizmoRadius</span><span class="p">);</span>
+            <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawLine</span><span class="p">(</span><span class="n">_gzGroundTouch</span> <span class="p">-</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundCross</span><span class="p">,</span> <span class="n">_gzGroundTouch</span> <span class="p">+</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundCross</span><span class="p">);</span>
+
+            <span class="n">Gizmos</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">black</span><span class="p">;</span>
+            <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawLine</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span> <span class="p">+</span> <span class="n">_gzRotatedWorldMoveDir</span><span class="p">);</span>
+
+            <span class="n">Gizmos</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span><span class="m">0.5f</span><span class="p">,</span> <span class="m">1.0f</span><span class="p">,</span> <span class="m">0.8f</span><span class="p">,</span> <span class="m">0.8f</span><span class="p">);</span>
+            <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawWireSphere</span><span class="p">(</span><span class="n">CapsuleTopCenterPoint</span><span class="p">,</span> <span class="n">_castRadius</span><span class="p">);</span>
+            <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawWireSphere</span><span class="p">(</span><span class="n">CapsuleBottomCenterPoint</span><span class="p">,</span> <span class="n">_castRadius</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="n">Gizmos</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">blue</span><span class="p">;</span>
-        <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawLine</span><span class="p">(</span><span class="n">_gzGroundTouch</span> <span class="p">-</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundCross</span><span class="p">,</span> <span class="n">_gzGroundTouch</span> <span class="p">+</span> <span class="n">Current</span><span class="p">.</span><span class="n">groundCross</span><span class="p">);</span>
+        <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="nf">Conditional</span><span class="p">(</span><span class="s">"UNITY_EDITOR"</span><span class="p">)]</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="n">GzUpdateValue</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">ref</span> <span class="n">T</span> <span class="n">variable</span><span class="p">,</span> <span class="k">in</span> <span class="n">T</span> <span class="k">value</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">variable</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        <span class="n">Gizmos</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">black</span><span class="p">;</span>
-        <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawLine</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span> <span class="p">+</span> <span class="n">_gzRotatedWorldMoveDir</span><span class="p">);</span>
 
-        <span class="n">Gizmos</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span><span class="m">0.5f</span><span class="p">,</span> <span class="m">1.0f</span><span class="p">,</span> <span class="m">0.8f</span><span class="p">,</span> <span class="m">0.8f</span><span class="p">);</span>
-        <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawWireSphere</span><span class="p">(</span><span class="n">CapsuleTopCenterPoint</span><span class="p">,</span> <span class="n">_castRadius</span><span class="p">);</span>
-        <span class="n">Gizmos</span><span class="p">.</span><span class="nf">DrawWireSphere</span><span class="p">(</span><span class="n">CapsuleBottomCenterPoint</span><span class="p">,</span> <span class="n">_castRadius</span><span class="p">);</span>
+
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">,</span> <span class="n">Space</span><span class="p">]</span>
+        <span class="k">private</span> <span class="kt">bool</span> <span class="n">_showGUI</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
+        <span class="k">private</span> <span class="kt">int</span> <span class="n">_guiTextSize</span> <span class="p">=</span> <span class="m">28</span><span class="p">;</span>
+
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_prevForwardSlopeAngle</span><span class="p">;</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">OnGUI</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Application</span><span class="p">.</span><span class="n">isPlaying</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="n">_showGUI</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="n">enabled</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+            <span class="n">GUIStyle</span> <span class="n">labelStyle</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="n">skin</span><span class="p">.</span><span class="n">label</span><span class="p">;</span>
+            <span class="n">labelStyle</span><span class="p">.</span><span class="n">normal</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">yellow</span><span class="p">;</span>
+            <span class="n">labelStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="p">=</span> <span class="n">Math</span><span class="p">.</span><span class="nf">Max</span><span class="p">(</span><span class="n">_guiTextSize</span><span class="p">,</span> <span class="m">20</span><span class="p">);</span>
+
+            <span class="n">_prevForwardSlopeAngle</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span> <span class="p">==</span> <span class="p">-</span><span class="m">90f</span> <span class="p">?</span> <span class="n">_prevForwardSlopeAngle</span> <span class="p">:</span> <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span><span class="p">;</span>
+
+            <span class="kt">var</span> <span class="n">oldColor</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="n">color</span><span class="p">;</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">);</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="nf">Box</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">40</span><span class="p">,</span> <span class="m">420</span><span class="p">,</span> <span class="m">260</span><span class="p">),</span> <span class="s">""</span><span class="p">);</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">oldColor</span><span class="p">;</span>
+
+            <span class="n">GUILayout</span><span class="p">.</span><span class="nf">BeginArea</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="m">50</span><span class="p">,</span> <span class="m">50</span><span class="p">,</span> <span class="m">1000</span><span class="p">,</span> <span class="m">500</span><span class="p">));</span>
+            <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Ground Height : </span><span class="p">{</span><span class="n">Mathf</span><span class="p">.</span><span class="nf">Min</span><span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span><span class="p">,</span> <span class="m">99.99f</span><span class="p">):</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
+            <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Slope Angle(Ground)  : </span><span class="p">{</span><span class="n">Current</span><span class="p">.</span><span class="n">groundSlopeAngle</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
+            <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Slope Angle(Forward) : </span><span class="p">{</span><span class="n">_prevForwardSlopeAngle</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
+            <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Allowed Slope Angle : </span><span class="p">{</span><span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
+            <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Current Slope Accel : </span><span class="p">{</span><span class="n">Current</span><span class="p">.</span><span class="n">slopeAccel</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
+            <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Current Speed Mag  : </span><span class="p">{</span><span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span><span class="p">.</span><span class="n">magnitude</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
+            <span class="n">GUILayout</span><span class="p">.</span><span class="nf">EndArea</span><span class="p">();</span>
+
+            <span class="kt">float</span> <span class="n">sWidth</span> <span class="p">=</span> <span class="n">Screen</span><span class="p">.</span><span class="n">width</span><span class="p">;</span>
+            <span class="kt">float</span> <span class="n">sHeight</span> <span class="p">=</span> <span class="n">Screen</span><span class="p">.</span><span class="n">height</span><span class="p">;</span>
+
+            <span class="n">GUIStyle</span> <span class="n">RTLabelStyle</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="n">skin</span><span class="p">.</span><span class="n">label</span><span class="p">;</span>
+            <span class="n">RTLabelStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="p">=</span> <span class="m">20</span><span class="p">;</span>
+            <span class="n">RTLabelStyle</span><span class="p">.</span><span class="n">normal</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">green</span><span class="p">;</span>
+
+            <span class="n">oldColor</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="n">color</span><span class="p">;</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">);</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="nf">Box</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">355f</span><span class="p">,</span> <span class="m">5f</span><span class="p">,</span> <span class="m">340f</span><span class="p">,</span> <span class="m">100f</span><span class="p">),</span> <span class="s">""</span><span class="p">);</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">oldColor</span><span class="p">;</span>
+
+            <span class="kt">float</span> <span class="n">yPos</span> <span class="p">=</span> <span class="m">10f</span><span class="p">;</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">350f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">,</span> <span class="m">150f</span><span class="p">,</span> <span class="m">30f</span><span class="p">),</span> <span class="s">$"Speed : </span><span class="p">{</span><span class="n">MOption</span><span class="p">.</span><span class="n">speed</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">RTLabelStyle</span><span class="p">);</span>
+            <span class="n">MOption</span><span class="p">.</span><span class="n">speed</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="nf">HorizontalSlider</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">200f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">+</span><span class="m">10f</span><span class="p">,</span> <span class="m">180f</span><span class="p">,</span> <span class="m">20f</span><span class="p">),</span> <span class="n">MOption</span><span class="p">.</span><span class="n">speed</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">10f</span><span class="p">);</span>
+
+            <span class="n">yPos</span> <span class="p">+=</span> <span class="m">20f</span><span class="p">;</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">350f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">,</span> <span class="m">150f</span><span class="p">,</span> <span class="m">30f</span><span class="p">),</span> <span class="s">$"Jump : </span><span class="p">{</span><span class="n">MOption</span><span class="p">.</span><span class="n">jumpForce</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">RTLabelStyle</span><span class="p">);</span>
+            <span class="n">MOption</span><span class="p">.</span><span class="n">jumpForce</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="nf">HorizontalSlider</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">200f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">+</span> <span class="m">10f</span><span class="p">,</span> <span class="m">180f</span><span class="p">,</span> <span class="m">20f</span><span class="p">),</span> <span class="n">MOption</span><span class="p">.</span><span class="n">jumpForce</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">10f</span><span class="p">);</span>
+
+            <span class="n">yPos</span> <span class="p">+=</span> <span class="m">20f</span><span class="p">;</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">350f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">,</span> <span class="m">150f</span><span class="p">,</span> <span class="m">30f</span><span class="p">),</span> <span class="s">$"Jump Count : </span><span class="p">{</span><span class="n">MOption</span><span class="p">.</span><span class="n">maxJumpCount</span><span class="p">:</span> <span class="m">0</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">RTLabelStyle</span><span class="p">);</span>
+            <span class="n">MOption</span><span class="p">.</span><span class="n">maxJumpCount</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">GUI</span><span class="p">.</span><span class="nf">HorizontalSlider</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">200f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">+</span> <span class="m">10f</span><span class="p">,</span> <span class="m">180f</span><span class="p">,</span> <span class="m">20f</span><span class="p">),</span> <span class="n">MOption</span><span class="p">.</span><span class="n">maxJumpCount</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">3f</span><span class="p">);</span>
+
+            <span class="n">yPos</span> <span class="p">+=</span> <span class="m">20f</span><span class="p">;</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">350f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">,</span> <span class="m">150f</span><span class="p">,</span> <span class="m">30f</span><span class="p">),</span> <span class="s">$"Max Slope : </span><span class="p">{</span><span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span><span class="p">:</span> <span class="m">00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">RTLabelStyle</span><span class="p">);</span>
+            <span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">GUI</span><span class="p">.</span><span class="nf">HorizontalSlider</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">200f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">+</span> <span class="m">10f</span><span class="p">,</span> <span class="m">180f</span><span class="p">,</span> <span class="m">20f</span><span class="p">),</span> <span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">75f</span><span class="p">);</span>
+
+            <span class="n">labelStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="p">=</span> <span class="n">Math</span><span class="p">.</span><span class="nf">Max</span><span class="p">(</span><span class="n">_guiTextSize</span><span class="p">,</span> <span class="m">20</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
     <span class="p">}</span>
-
-    <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="nf">Conditional</span><span class="p">(</span><span class="s">"UNITY_EDITOR"</span><span class="p">)]</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="n">GzUpdateValue</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">ref</span> <span class="n">T</span> <span class="n">variable</span><span class="p">,</span> <span class="k">in</span> <span class="n">T</span> <span class="k">value</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">variable</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
-    <span class="p">}</span>
-
-
-
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">,</span> <span class="n">Space</span><span class="p">]</span>
-    <span class="k">private</span> <span class="kt">bool</span> <span class="n">_showGUI</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
-    <span class="k">private</span> <span class="kt">int</span> <span class="n">_guiTextSize</span> <span class="p">=</span> <span class="m">28</span><span class="p">;</span>
-
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">_prevForwardSlopeAngle</span><span class="p">;</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">OnGUI</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(!</span><span class="n">_showGUI</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-
-        <span class="n">GUIStyle</span> <span class="n">labelStyle</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="n">skin</span><span class="p">.</span><span class="n">label</span><span class="p">;</span>
-        <span class="n">labelStyle</span><span class="p">.</span><span class="n">normal</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">yellow</span><span class="p">;</span>
-        <span class="n">labelStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="p">=</span> <span class="n">Math</span><span class="p">.</span><span class="nf">Max</span><span class="p">(</span><span class="n">_guiTextSize</span><span class="p">,</span> <span class="m">20</span><span class="p">);</span>
-
-        <span class="n">_prevForwardSlopeAngle</span> <span class="p">=</span> <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span> <span class="p">==</span> <span class="p">-</span><span class="m">90f</span> <span class="p">?</span> <span class="n">_prevForwardSlopeAngle</span> <span class="p">:</span> <span class="n">Current</span><span class="p">.</span><span class="n">forwardSlopeAngle</span><span class="p">;</span>
-
-        <span class="kt">var</span> <span class="n">oldColor</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="n">color</span><span class="p">;</span>
-        <span class="n">GUI</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">);</span>
-        <span class="n">GUI</span><span class="p">.</span><span class="nf">Box</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">40</span><span class="p">,</span> <span class="m">420</span><span class="p">,</span> <span class="m">260</span><span class="p">),</span> <span class="s">""</span><span class="p">);</span>
-        <span class="n">GUI</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">oldColor</span><span class="p">;</span>
-
-        <span class="n">GUILayout</span><span class="p">.</span><span class="nf">BeginArea</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="m">50</span><span class="p">,</span> <span class="m">50</span><span class="p">,</span> <span class="m">1000</span><span class="p">,</span> <span class="m">500</span><span class="p">));</span>
-        <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Ground Height : </span><span class="p">{</span><span class="n">Mathf</span><span class="p">.</span><span class="nf">Min</span><span class="p">(</span><span class="n">Current</span><span class="p">.</span><span class="n">groundDistance</span><span class="p">,</span> <span class="m">99.99f</span><span class="p">):</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
-        <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Slope Angle(Ground)  : </span><span class="p">{</span><span class="n">Current</span><span class="p">.</span><span class="n">groundSlopeAngle</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
-        <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Slope Angle(Forward) : </span><span class="p">{</span><span class="n">_prevForwardSlopeAngle</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
-        <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Allowed Slope Angle : </span><span class="p">{</span><span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
-        <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Current Slope Accel : </span><span class="p">{</span><span class="n">Current</span><span class="p">.</span><span class="n">slopeAccel</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
-        <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="s">$"Current Speed Mag  : </span><span class="p">{</span><span class="n">Current</span><span class="p">.</span><span class="n">horizontalVelocity</span><span class="p">.</span><span class="n">magnitude</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
-        <span class="n">GUILayout</span><span class="p">.</span><span class="nf">EndArea</span><span class="p">();</span>
-
-        <span class="kt">float</span> <span class="n">sWidth</span> <span class="p">=</span> <span class="n">Screen</span><span class="p">.</span><span class="n">width</span><span class="p">;</span>
-        <span class="kt">float</span> <span class="n">sHeight</span> <span class="p">=</span> <span class="n">Screen</span><span class="p">.</span><span class="n">height</span><span class="p">;</span>
-
-        <span class="n">GUIStyle</span> <span class="n">RTLabelStyle</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="n">skin</span><span class="p">.</span><span class="n">label</span><span class="p">;</span>
-        <span class="n">RTLabelStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="p">=</span> <span class="m">20</span><span class="p">;</span>
-        <span class="n">RTLabelStyle</span><span class="p">.</span><span class="n">normal</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">green</span><span class="p">;</span>
-
-        <span class="n">oldColor</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="n">color</span><span class="p">;</span>
-        <span class="n">GUI</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">);</span>
-        <span class="n">GUI</span><span class="p">.</span><span class="nf">Box</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">355f</span><span class="p">,</span> <span class="m">5f</span><span class="p">,</span> <span class="m">340f</span><span class="p">,</span> <span class="m">100f</span><span class="p">),</span> <span class="s">""</span><span class="p">);</span>
-        <span class="n">GUI</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">oldColor</span><span class="p">;</span>
-
-        <span class="kt">float</span> <span class="n">yPos</span> <span class="p">=</span> <span class="m">10f</span><span class="p">;</span>
-        <span class="n">GUI</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">350f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">,</span> <span class="m">150f</span><span class="p">,</span> <span class="m">30f</span><span class="p">),</span> <span class="s">$"Speed : </span><span class="p">{</span><span class="n">MOption</span><span class="p">.</span><span class="n">speed</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">RTLabelStyle</span><span class="p">);</span>
-        <span class="n">MOption</span><span class="p">.</span><span class="n">speed</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="nf">HorizontalSlider</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">200f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">+</span><span class="m">10f</span><span class="p">,</span> <span class="m">180f</span><span class="p">,</span> <span class="m">20f</span><span class="p">),</span> <span class="n">MOption</span><span class="p">.</span><span class="n">speed</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">10f</span><span class="p">);</span>
-
-        <span class="n">yPos</span> <span class="p">+=</span> <span class="m">20f</span><span class="p">;</span>
-        <span class="n">GUI</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">350f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">,</span> <span class="m">150f</span><span class="p">,</span> <span class="m">30f</span><span class="p">),</span> <span class="s">$"Jump : </span><span class="p">{</span><span class="n">MOption</span><span class="p">.</span><span class="n">jumpForce</span><span class="p">:</span> <span class="m">00.00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">RTLabelStyle</span><span class="p">);</span>
-        <span class="n">MOption</span><span class="p">.</span><span class="n">jumpForce</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="nf">HorizontalSlider</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">200f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">+</span> <span class="m">10f</span><span class="p">,</span> <span class="m">180f</span><span class="p">,</span> <span class="m">20f</span><span class="p">),</span> <span class="n">MOption</span><span class="p">.</span><span class="n">jumpForce</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">10f</span><span class="p">);</span>
-
-        <span class="n">yPos</span> <span class="p">+=</span> <span class="m">20f</span><span class="p">;</span>
-        <span class="n">GUI</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">350f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">,</span> <span class="m">150f</span><span class="p">,</span> <span class="m">30f</span><span class="p">),</span> <span class="s">$"Jump Count : </span><span class="p">{</span><span class="n">MOption</span><span class="p">.</span><span class="n">maxJumpCount</span><span class="p">:</span> <span class="m">0</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">RTLabelStyle</span><span class="p">);</span>
-        <span class="n">MOption</span><span class="p">.</span><span class="n">maxJumpCount</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">GUI</span><span class="p">.</span><span class="nf">HorizontalSlider</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">200f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">+</span> <span class="m">10f</span><span class="p">,</span> <span class="m">180f</span><span class="p">,</span> <span class="m">20f</span><span class="p">),</span> <span class="n">MOption</span><span class="p">.</span><span class="n">maxJumpCount</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">3f</span><span class="p">);</span>
-
-        <span class="n">yPos</span> <span class="p">+=</span> <span class="m">20f</span><span class="p">;</span>
-        <span class="n">GUI</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">350f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">,</span> <span class="m">150f</span><span class="p">,</span> <span class="m">30f</span><span class="p">),</span> <span class="s">$"Max Slope : </span><span class="p">{</span><span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span><span class="p">:</span> <span class="m">00</span><span class="p">}</span><span class="s">"</span><span class="p">,</span> <span class="n">RTLabelStyle</span><span class="p">);</span>
-        <span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">GUI</span><span class="p">.</span><span class="nf">HorizontalSlider</span><span class="p">(</span><span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">sWidth</span> <span class="p">-</span> <span class="m">200f</span><span class="p">,</span> <span class="n">yPos</span><span class="p">+</span> <span class="m">10f</span><span class="p">,</span> <span class="m">180f</span><span class="p">,</span> <span class="m">20f</span><span class="p">),</span> <span class="n">MOption</span><span class="p">.</span><span class="n">maxSlopeAngle</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">75f</span><span class="p">);</span>
-
-        <span class="n">labelStyle</span><span class="p">.</span><span class="n">fontSize</span> <span class="p">=</span> <span class="n">Math</span><span class="p">.</span><span class="nf">Max</span><span class="p">(</span><span class="n">_guiTextSize</span><span class="p">,</span> <span class="m">20</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="err">#</span><span class="n">endregion</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
@@ -2638,12 +2834,12 @@ PhysicsBasedMovement.cs
         
         
         
-        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
+        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
+        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
       
         
         
@@ -2658,7 +2854,7 @@ PhysicsBasedMovement.cs
         
         
         
-        <li><a href="/posts/unity-particle-system-tutorial-01/">파티클 시스템 기초 - 01 - 파티클 시스템 만들기</a></li>
+        <li><a href="/posts/unity-particle-system-tutorial-03/">파티클 시스템 기초 - 03 - 값의 지정 방법</a></li>
       
 
       </ul>
@@ -4658,6 +4854,186 @@ PhysicsBasedMovement.cs
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -4698,7 +5074,7 @@ PhysicsBasedMovement.cs
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
       </div>
@@ -4745,6 +5121,45 @@ PhysicsBasedMovement.cs
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8102,6 +8517,186 @@ PhysicsBasedMovement.cs
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -8137,7 +8732,7 @@ PhysicsBasedMovement.cs
         <a class="post-tag" href="/tags/performance/">performance</a>
       
         
-        <a class="post-tag" href="/tags/attribute/">attribute</a>
+        <a class="post-tag" href="/tags/optimization/">optimization</a>
       
 
     </div>
