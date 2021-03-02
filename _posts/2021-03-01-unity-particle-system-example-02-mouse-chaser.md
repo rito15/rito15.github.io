@@ -8,6 +8,33 @@ math: true
 mermaid: true
 ---
 
+# 목차
+---
+- [목표](#목표)
+- [준비물](#준비물)
+- [1. 기본 준비](#1-기본-준비)
+- [2. Heart](#2-heart)
+- [3. Twinkle](#3-twinkle)
+
+<br>
+
+# Preview
+---
+
+## 기본
+
+![2021_0301_MouseChaser02](https://user-images.githubusercontent.com/42164422/109498158-720d5b00-7ad6-11eb-9245-88bb937ceaa3.gif)
+
+## Heart
+
+![2021_0301_MouseChaser03_Heart](https://user-images.githubusercontent.com/42164422/109501018-5c9a3000-7ada-11eb-81b4-3d9c61ed92f7.gif)
+
+## Twinkle
+
+![2021_0301_MouseChaser04_Twinkle](https://user-images.githubusercontent.com/42164422/109502349-34133580-7adc-11eb-9a8f-ce9c347c8484.gif)
+
+<br>
+
 # 목표
 ---
 
@@ -18,7 +45,11 @@ mermaid: true
 # 준비물
 ---
 
+- 원하는 모양의 파티클 텍스쳐 (예제에서는 Heart, Twinkle), Additive 마테리얼
+
 - 파티클이 마우스를 따라오게 만드는 스크립트
+
+- 아래 소스코드를 다운로드하여 프로젝트 내에 넣어둔다.
 
 - [MouseChaser.zip](https://github.com/rito15/Images/files/6061506/MouseChaser.zip)
 
@@ -65,32 +96,6 @@ public class MouseChaser : MonoBehaviour
 
 <br>
 
-# Preview
----
-
-## 1. 기본
-
-![2021_0301_MouseChaser02](https://user-images.githubusercontent.com/42164422/109498158-720d5b00-7ad6-11eb-9245-88bb937ceaa3.gif)
-
-## 2. Heart
-
-![2021_0301_MouseChaser03_Heart](https://user-images.githubusercontent.com/42164422/109501018-5c9a3000-7ada-11eb-81b4-3d9c61ed92f7.gif)
-
-## 3. Twinkle
-
-![2021_0301_MouseChaser04_Twinkle](https://user-images.githubusercontent.com/42164422/109502349-34133580-7adc-11eb-9a8f-ce9c347c8484.gif)
-
-<br>
-
-# 목차
----
-
-- [1. 기본 준비](#기본-준비)
-- [2. Heart](#heart)
-- [3. Twinkle](#twinkle)
-
-<br>
-
 # 1. 기본 준비
 ---
 
@@ -119,6 +124,8 @@ public class MouseChaser : MonoBehaviour
 - 결과
 
 ![2021_0301_MouseChaser01](https://user-images.githubusercontent.com/42164422/109496899-a122cd00-7ad4-11eb-9c80-ee45aed8138a.gif)
+
+게임을 시작하면 위처럼 마우스 커서를 따라오는 모습을 확인할 수 있다.
 
 <br>
 
@@ -160,10 +167,11 @@ public class MouseChaser : MonoBehaviour
 ## 메인 모듈
 - `Start Speed` : 1
 
-- `Start Color`를 Random Between Two Colors로 아래처럼 설정한다.<br>
-  (빨강, 분홍 : 각각 알파값 0.5)
+- `Start Color`에 원하는 색상을 지정한다.
 
-![image](https://user-images.githubusercontent.com/42164422/109501315-c7e40200-7ada-11eb-8295-3d97a1eb2284.png)
+- 예제에서는 Random Between Two Colors : (빨강, 분홍)
+
+![image](https://user-images.githubusercontent.com/42164422/109621610-8ad14b80-7b7e-11eb-8fc4-ff4cd39a2bf4.png)
 
 <br>
 
@@ -199,8 +207,10 @@ public class MouseChaser : MonoBehaviour
 ## 메인 모듈
 
 - `Start Speed` : 1
-- `Start Size` - [Random Between Two Constants] : 1, 2
-- `Start Color` - [Random Color] : 원하는 색상들을 지정한다.
+- `Start Size` - [Random Between Two Constants] : (1, 2)
+- `Start Color` : 원하는 색상들을 지정한다.
+
+- 예제에서는 [Random Color] 사용
 
 ![image](https://user-images.githubusercontent.com/42164422/109502325-2e1d5480-7adc-11eb-863d-a80593336f6e.png)
 

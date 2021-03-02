@@ -8,19 +8,19 @@ math: true
 mermaid: true
 ---
 
+# Preview
+---
+
+![2021_0301_Firefly_Completed](https://user-images.githubusercontent.com/42164422/109513377-5f038680-7ae8-11eb-9ccd-047b13ba6f16.gif)
+
+<br>
+
 # 목표
 ---
 
 - Light 모듈, Collision 모듈 간단히 사용해보고 이해하기
 
 - 반딧불이 이펙트 만들기
-
-<br>
-
-# Preview
----
-
-![2021_0301_Firefly_Completed](https://user-images.githubusercontent.com/42164422/109513377-5f038680-7ae8-11eb-9ccd-047b13ba6f16.gif)
 
 <br>
 
@@ -76,7 +76,9 @@ mermaid: true
 
 - `Start Size` - [Random Between Two Constants] : (0.5, 3)
 
-- `Start Color` - [Random Color] : 원하는 색상을 설정한다.
+- `Start Color` : 원하는 색상을 설정한다.
+
+- 예제에서는 [Random Color] 사용
 
 ![image](https://user-images.githubusercontent.com/42164422/109508322-17c6c700-7ae3-11eb-9493-0d37bf51ca47.png)
 

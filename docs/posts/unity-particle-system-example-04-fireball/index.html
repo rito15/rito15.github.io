@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="파티클 시스템 예제 - 04 - Fire Ball [작성 중]" />
+<meta property="og:title" content="파티클 시스템 예제 - 04 - Fire Ball" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목표" />
-<meta property="og:description" content="목표" />
+<meta name="description" content="목차" />
+<meta property="og:description" content="목차" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-particle-system-example-04-fireball/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-particle-system-example-04-fireball/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-03-02T03:03:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="파티클 시스템 예제 - 04 - Fire Ball [작성 중]" />
+<meta property="twitter:title" content="파티클 시스템 예제 - 04 - Fire Ball" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표","datePublished":"2021-03-02T03:03:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-particle-system-example-04-fireball/"},"url":"https://rito15.github.io/posts/unity-particle-system-example-04-fireball/","author":{"@type":"Person","name":"Rito15"},"headline":"파티클 시스템 예제 - 04 - Fire Ball [작성 중]","dateModified":"2021-03-02T03:03:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차","datePublished":"2021-03-02T03:03:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-particle-system-example-04-fireball/"},"url":"https://rito15.github.io/posts/unity-particle-system-example-04-fireball/","author":{"@type":"Person","name":"Rito15"},"headline":"파티클 시스템 예제 - 04 - Fire Ball","dateModified":"2021-03-02T03:03:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>파티클 시스템 예제 - 04 - Fire Ball [작성 중] | Rito15
+  <title>파티클 시스템 예제 - 04 - Fire Ball | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>파티클 시스템 예제 - 04 - Fire Ball [작성 중]</span>
+        <span>파티클 시스템 예제 - 04 - Fire Ball</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>파티클 시스템 예제 - 04 - Fire Ball [작성 중]</h1>
+      <h1 data-toc-skip>파티클 시스템 예제 - 04 - Fire Ball</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="587 words">3 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1606 words">8 min</span>
 
 
           <!-- page views -->
@@ -433,7 +433,30 @@
 
         
 
-        <h1 id="목표">목표</h1>
+        <h1 id="목차">목차</h1>
+<hr />
+
+<ul>
+  <li><a href="#목표">목표</a></li>
+  <li><a href="#준비물">준비물</a></li>
+  <li><a href="#1-파티클-시스템-제작">1. 파티클 시스템 제작</a></li>
+  <li><a href="#2-서브-이미터-설정">2. 서브 이미터 설정</a></li>
+  <li><a href="#3-projectile-shooter-적용">3. Projectile Shooter 적용</a></li>
+  <li><a href="#4-결과">4. 결과</a></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="preview">Preview</h1>
+<hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109539634-e4952f80-7b04-11eb-88f4-760a6b5af2d7.gif" alt="2021_0302_Fireball_Preview01" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109539647-e6f78980-7b04-11eb-8100-a2e508a9f398.gif" alt="2021_0302_Fireball_Preview02" /></p>
+
+<p><br /></p>
+
+<h1 id="목표">목표</h1>
 <hr />
 
 <ul>
@@ -461,6 +484,9 @@
 <ul>
   <li>
     <p>파이어볼을 발사할 수 있게 해줄 스크립트</p>
+  </li>
+  <li>
+    <p>아래 소스코드를 다운로드하여 프로젝트 내에 넣어둔다.</p>
   </li>
   <li>
     <p><a href="https://github.com/rito15/Images/files/6063758/ProjectileShooter.zip">ProjectileShooter.zip</a></p>
@@ -788,22 +814,255 @@ Source Code
 
 <p><br /></p>
 
-<h1 id="preview">Preview</h1>
+<h1 id="1-파티클-시스템-제작">1. 파티클 시스템 제작</h1>
+<hr />
+
+<h2 id="기본-준비">기본 준비</h2>
+
+<ul>
+  <li>
+    <p>파티클 시스템 게임오브젝트 생성</p>
+  </li>
+  <li>
+    <p>트랜스폼을 Reset하여 Position(0, 0, 0), Rotation(0, 0, 0) 설정</p>
+  </li>
+  <li>
+    <p>마테리얼 적용</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="메인-모듈">메인 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> : 1</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Speed</code> : 0</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Size</code> : 10</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="shape-모듈">Shape 모듈</h2>
+
+<ul>
+  <li>파티클이 같은 위치에서만 생성되도록, Shape 모듈을 체크 해제한다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="emission-모듈">Emission 모듈</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Rate over Time</code> : 5</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="color-over-lifetime-모듈">Color over Lifetime 모듈</h2>
+
+<ul>
+  <li>
+    <p>색상은 주황색으로 시작하여 노란색으로 끝나도록 한다.</p>
+  </li>
+  <li>
+    <p>투명도는 255로 시작하여 0으로 끝나도록 한다.</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109613038-f5c95500-7b73-11eb-9365-7bb026d01f47.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="size-over-lifetime-모듈">Size over Lifetime 모듈</h2>
+
+<ul>
+  <li>Curve로 설정하고, 크기가 0% ~ 100% ~ 0%로 변화하도록 다음처럼 그래프를 지정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109509302-177afb80-7ae4-11eb-8f6e-37ee31ff545b.gif" alt="" /></p>
+
+<p><br /></p>
+
+<h2 id="현재-상태">현재 상태</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109614365-e0edc100-7b75-11eb-89bf-790656599580.gif" alt="2021_0302_Fireball_Mid" /></p>
+
+<p><br /></p>
+
+<h2 id="sub-emitter-모듈">Sub Emitter 모듈</h2>
+
+<ul>
+  <li>Sub Emitter 모듈이란?
+    <blockquote>
+      <p>파티클에 생성, 파괴, 충돌 등의 이벤트가 발생할 때 생성되는, 본 파티클 시스템에 종속적인 또다른 파티클 시스템을 등록하는 것</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Sub Emitter 모듈에 체크하고, 우측 상단의 [+] 버튼을 눌러 서브 이미터 하나를 추가한다.</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Inherit</code> 속성은 Color를 지정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109614772-67a29e00-7b76-11eb-8db0-dba61ed194e5.gif" alt="2021_0302_Fireball_SubEmitter" /></p>
+
+<ul>
+  <li>
+    <p>기본적으로 <code class="language-plaintext highlighter-rouge">Birth</code> 속성이 지정되어 있으므로, 파티클이 생성될 때 서브 이미터 파티클 시스템이 함께 생성된다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Inherit</code>를 Color로 지정하였으므로, 본 파티클 시스템의 파티클 색상을 서브 이미터가 상속하게 된다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="2-서브-이미터-설정">2. 서브 이미터 설정</h1>
+<hr />
+
+<ul>
+  <li>Sub Emitter 모듈에서 [+] 버튼을 눌렀을 때 파티클 시스템 게임오브젝트의 자식으로 서브 이미터 파티클 시스템이 생성된다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109614804-71c49c80-7b76-11eb-899b-2f3ee83ab64d.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>하이라키에서 파티클 시스템 게임오브젝트의 좌측 화살표를 눌러 확인할 수 있다.</p>
+  </li>
+  <li>
+    <p>서브 이미터 역시 파티클 시스템이기 때문에, 똑같이 모듈을 통해 다양한 속성을 설정할 수 있다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="마테리얼-설정">마테리얼 설정</h2>
+
+<ul>
+  <li>파이어볼 파티클 시스템에 사용한 마테리얼을 서브 이미터에도 드래그하여 똑같이 적용한다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="메인-모듈-1">메인 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> - [Random Between Two Constants] : (0.5, 1)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Size</code> - [Random Between Two Constants] : (1, 6)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Simulation Space</code> : World</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="emission-모듈-1">Emission 모듈</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Rate over Time</code> : 24</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="shape-모듈-1">Shape 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Shape</code> : Sphere</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Radius</code> : 0.3</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="color-over-lifetime-모듈-1">Color over Lifetime 모듈</h2>
+
+<ul>
+  <li>알파 값만 255 ~ 0으로 변화하도록 설정</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109616186-3925c280-7b78-11eb-950e-9ac8c7c84cac.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="size-over-lifetime-모듈-1">Size over Lifetime 모듈</h2>
+
+<ul>
+  <li>100% ~ 0%로 감소하는 그래프 설정 (하단 프리셋 중 3번째 클릭)</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109616470-830ea880-7b78-11eb-9149-2ba1ffba6521.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="테스트">테스트</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109616990-2e1f6200-7b79-11eb-9059-9b982b15f841.gif" alt="2021_0302_Fireball_Move" /></p>
+
+<ul>
+  <li>씬 뷰에서 기즈모 핸들을 잡고 이동시켜보면 위처럼 서브 이미터가 잔상처럼 남는 효과를 확인할 수 있다.</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="3-projectile-shooter-적용">3. Projectile Shooter 적용</h1>
+<hr />
+
+<ul>
+  <li>
+    <p>위의 ‘준비물’ 부분에 있는 <code class="language-plaintext highlighter-rouge">ProjectileShooter.cs</code> 스크립트가 프로젝트 내에 존재해야 한다.</p>
+  </li>
+  <li>
+    <p>하이라키의 빈 공간을 우클릭하여 <code class="language-plaintext highlighter-rouge">Create Empty</code>를 눌러 빈 게임오브젝트를 생성한다.</p>
+  </li>
+  <li>
+    <p>빈 게임오브젝트를 F2로 수정하여 이름을 <code class="language-plaintext highlighter-rouge">Projectile Shooter</code>로 지정한다.</p>
+  </li>
+  <li>
+    <p>생성한 게임오브젝트를 선택하고, 인스펙터에서 <code class="language-plaintext highlighter-rouge">Add Component</code>를 눌러 <code class="language-plaintext highlighter-rouge">Projectile Shooter</code>를 추가하거나, 프로젝트 윈도우에서 스크립트를 드래그하여 컴포넌트로 추가한다.</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109617499-cf0e1d00-7b79-11eb-8d82-d916930341f2.png" alt="image" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>하이라키에서 파이어볼 게임오브젝트를 드래그하여 인스펙터의 <code class="language-plaintext highlighter-rouge">Projectile Prefab</code> 부분에 가져와 등록한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109617699-0f6d9b00-7b7a-11eb-83d3-8b1b2ac8fb1a.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>게임을 시작하여, 게임 씬의 공간을 클릭할 경우 파이어볼이 생성되는 모습을 확인할 수 있다.</p>
+  </li>
+  <li>
+    <p>Projectile Shooter의 <code class="language-plaintext highlighter-rouge">Direction</code> 옵션을 수정하여 발사 방향을 바꿀 수 있다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="4-결과">4. 결과</h1>
 <hr />
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109539634-e4952f80-7b04-11eb-88f4-760a6b5af2d7.gif" alt="2021_0302_Fireball_Preview01" /></p>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109539647-e6f78980-7b04-11eb-8100-a2e508a9f398.gif" alt="2021_0302_Fireball_Preview02" /></p>
-
-<p><br /></p>
-
-<h1 id="fire-ball-effect">Fire Ball Effect</h1>
-<hr />
-
-<p>##</p>
-
-<h2 id="결과">결과</h2>
-
 
 
       </div>
@@ -864,19 +1123,19 @@ Source Code
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=파티클 시스템 예제 - 04 - Fire Ball [작성 중] - Rito15&url=https://rito15.github.io/posts/unity-particle-system-example-04-fireball/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=파티클 시스템 예제 - 04 - Fire Ball - Rito15&url=https://rito15.github.io/posts/unity-particle-system-example-04-fireball/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=파티클 시스템 예제 - 04 - Fire Ball [작성 중] - Rito15&u=https://rito15.github.io/posts/unity-particle-system-example-04-fireball/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=파티클 시스템 예제 - 04 - Fire Ball - Rito15&u=https://rito15.github.io/posts/unity-particle-system-example-04-fireball/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=파티클 시스템 예제 - 04 - Fire Ball [작성 중] - Rito15&url=https://rito15.github.io/posts/unity-particle-system-example-04-fireball/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=파티클 시스템 예제 - 04 - Fire Ball - Rito15&url=https://rito15.github.io/posts/unity-particle-system-example-04-fireball/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -4469,7 +4728,37 @@ Source Code
 
 
 
-                목표
+                목차
+
+
+
+  목표
+  준비물
+  1. 기본 준비
+  2. Heart
+  3. Twinkle
+
+
+
+
+Preview
+
+
+기본
+
+
+
+Heart
+
+
+
+Twinkle
+
+
+
+
+
+목표
 
 
 
@@ -4483,22 +4772,7 @@ Source Code
 
 
   
-    파티클이 마우스를 따라오게 만드는 스크립트
-  
-  
-    MouseChaser.zip
-  
-
-
-
-  
-    Source Code
-  
-
-  
-    
-      using System.Collections;
-using System.Collections...
+    원하는 모양의 파티클 텍스쳐 (예제에서는 Heart, Twinkle), Additive ...
               </p>
             </div>
           </div>
@@ -4540,7 +4814,14 @@ using System.Collections...
 
 
 
-                목표
+                Preview
+
+
+
+
+
+
+목표
 
 
 
@@ -4550,13 +4831,6 @@ using System.Collections...
   
     반딧불이 이펙트 만들기
   
-
-
-
-
-Preview
-
-
 
 
 

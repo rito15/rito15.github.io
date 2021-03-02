@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-02T03:57:37+09:00</updated>
+  <updated>2021-03-02T17:49:28+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -167,8 +167,8 @@ using UnityEngine;
 
   
   <entry>
-    <title>파티클 시스템 예제 - 04 - Fire Ball [작성 중]</title>
-    <link href="https://rito15.github.io/posts/unity-particle-system-example-04-fireball/" rel="alternate" type="text/html" title="파티클 시스템 예제 - 04 - Fire Ball [작성 중]" />
+    <title>파티클 시스템 예제 - 04 - Fire Ball</title>
+    <link href="https://rito15.github.io/posts/unity-particle-system-example-04-fireball/" rel="alternate" type="text/html" title="파티클 시스템 예제 - 04 - Fire Ball" />
     <published>2021-03-02T03:03:00+09:00</published>
   
     <updated>2021-03-02T03:03:00+09:00</updated>
@@ -195,7 +195,30 @@ using UnityEngine;
 
 
 
-      목표
+      목차
+
+
+
+  목표
+  준비물
+  1. 파티클 시스템 제작
+  2. 서브 이미터 설정
+  3. Projectile Shooter 적용
+  4. 결과
+
+
+
+
+Preview
+
+
+
+
+
+
+
+
+목표
 
 
 
@@ -225,6 +248,9 @@ using UnityEngine;
     파이어볼을 발사할 수 있게 해줄 스크립트
   
   
+    아래 소스코드를 다운로드하여 프로젝트 내에 넣어둔다.
+  
+  
     ProjectileShooter.zip
   
 
@@ -236,17 +262,7 @@ Source Code
 
   using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-using Random = UnityEngine.Random;
-
-// 2021. 03. 02. 03:02
-// 작성자 : Rito
-
-namespace Rito
-{
-    p...
+using S...
     </summary>
   
 
@@ -282,7 +298,14 @@ namespace Rito
 
 
 
-      목표
+      Preview
+
+
+
+
+
+
+목표
 
 
 
@@ -292,13 +315,6 @@ namespace Rito
   
     반딧불이 이펙트 만들기
   
-
-
-
-
-Preview
-
-
 
 
 
@@ -387,7 +403,36 @@ Firefly Effect
 
 
 
-      목표
+      목차
+
+
+  목표
+  준비물
+  1. 기본 준비
+  2. Heart
+  3. Twinkle
+
+
+
+
+Preview
+
+
+기본
+
+
+
+Heart
+
+
+
+Twinkle
+
+
+
+
+
+목표
 
 
 
@@ -401,7 +446,13 @@ Firefly Effect
 
 
   
+    원하는 모양의 파티클 텍스쳐 (예제에서는 Heart, Twinkle), Additive 마테리얼
+  
+  
     파티클이 마우스를 따라오게 만드는 스크립트
+  
+  
+    아래 소스코드를 다운로드하여 프로젝트 내에 넣어둔다.
   
   
     MouseChaser.zip
@@ -415,17 +466,7 @@ Source Code
 
   using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-
-public class MouseChaser : MonoBehaviour
-{
-    // 카메라로부터의 거리
-    public float _distanceFromCamera = 5f;
-
-    [Range(0.01f, 1.0f)]
-    public float _ChasingSpeed = 0.1f;
-
-    private Vecto...
+using Unit...
     </summary>
   
 
