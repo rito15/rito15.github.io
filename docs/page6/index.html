@@ -367,6 +367,210 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/opengl-study-11/">OpenGL 공부 - 11 - New Beginning 2</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  프로그램 및 쉐이더 객체 생성
+  파일에 쉐이더 작성, 불러와 컴파일
+
+
+
+
+공부 내용
+
+
+
+
+
+
+
+
+Source Code
+
+
+vertex_core.glsl
+
+
+  
+    #version 440
+
+layout (location = 0) in vec3 vertex_position;
+layout (location = 1) in vec3 v...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Feb  7, 2021,  4:12 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb  7
+  
+
+  <i class="unloaded">2021-02-07T16:12:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="990 words">5 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/opengl-study-10/">OpenGL 공부 - 10 - New Beginning</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  다른 강좌로 새롭게 시작
+  GLM, SOIL2 설치
+
+
+
+
+새로운 시작
+
+
+새로운 강좌를 선택한 김에 기존의 파일들을 날려버리고 구조 변경
+
+
+
+공부 내용
+
+
+GLM ?
+
+  OpenGL Mathematics, 수학 라이브러리.
+  http://glm.g-truc.net/0.9.8/index.html 에서 받을 수 있다.
+  
+    ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Feb  6, 2021,  3:20 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb  6
+  
+
+  <i class="unloaded">2021-02-06T15:20:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="749 words">4 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/mathematics-graph-compilation/">각종 그래프 모음</a>
     </h1>
 
@@ -589,7 +793,7 @@ e^(1-x) * x
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-transparent-stencil/">유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]</a>
+      <a href="/posts/unity-transparent-stencil/">유니티 Alpha, Depth(Z), Stencil 개념 익히기</a>
     </h1>
 
     <div class="post-content">
@@ -600,13 +804,27 @@ e^(1-x) * x
 
 
 
-        불투명과 투명
+        목차
 
 
-불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.
 
-유니티에서는 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 정수 값으로 지정하는데, 
-지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 2000, Transparent는 3000의 ...
+  1. 불투명과 투명
+  2. 알파 블렌딩, 알파 소팅
+  3. 알파 테스트
+  4. 커스텀 알파 블렌딩
+  5. 파티클 쉐이더 만들어보기
+  6. 깨끗한 알파 블렌딩 쉐이더 만들기
+  7. 깊이 테스트
+  8. 스텐실
+  9. References
+
+
+
+
+불투명과 투명
+
+
+불투명(Opaque)과 투명(Transparent) 오브젝트는 그려...
       </p>
     </div>
 
@@ -653,7 +871,7 @@ e^(1-x) * x
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4046 words">22 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4190 words">23 min</span>
 
 
         <!-- page views -->
@@ -1132,203 +1350,6 @@ No...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cpp-smart-debugging/">C++ Smart Debugging</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-C++에는 미리 정의된 동적 매크로가 있다.
-
-__FILE__
-
-  해당 위치의 소스파일 경로를 문자열로 가져온다.
-
-
-__LINE__
-
-  해당 위치의 줄 번호를 정수로 가져온다.
-
-
-
-그리고 매크로의 매개변수를 무조건 스트링으로 변환하여 가져올 수 있는 방법이 존재한다.
-
-#define MACRO(x) #x
-
-  x에 위치한 코드를 문...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Feb  4, 2021,  4:56 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb  4
-  
-
-  <i class="unloaded">2021-02-04T16:56:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="429 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-08/">OpenGL 공부 - 08 - Debugging</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  OpenGL 내에서 디버깅하기
-
-
-
-
-공부 내용
-
-
-
-  OpenGL 내에서 에러가 발생하거나 코드를 잘못 작성한 경우, 친절한 에러 메시지보다는 그저 검은 화면을 볼 가능성이 높다.
-
-
-
-
-
-  그래서 디버깅을 하려면, OpenGL에서 제공하는 몇몇 메소드와 매크로를 활용해야 한다.
-
-
-
-
-  
-    glGetError
-    
-  ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Feb  4, 2021,  3:45 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb  4
-  
-
-  <i class="unloaded">2021-02-04T15:45:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2476 words">13 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1579,27 +1600,27 @@ __LINE__
         
         
         
+        <li><a href="/posts/unity-particle-system-example-02-mouse-chaser/">파티클 시스템 예제 - 02 - Mouse Chaser</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-particle-system-example-03-firefly/">파티클 시스템 예제 - 03 - Firefly</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-particle-system-example-04-fireball/">파티클 시스템 예제 - 04 - Fire Ball</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
       
         
         
         
         <li><a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-particle-system-tutorial-05/">파티클 시스템 기초 - 05 - 주요 모듈</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-particle-system-tutorial-01/">파티클 시스템 기초 - 01 - 파티클 시스템 만들기</a></li>
       
 
       </ul>
@@ -2534,6 +2555,217 @@ __LINE__
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -2763,26 +2995,6 @@ __LINE__
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
     
   
@@ -2805,194 +3017,7 @@ __LINE__
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -3806,13 +3831,13 @@ __LINE__
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
+        <a class="post-tag" href="/tags/particle/">particle</a>
+      
+        
         <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/shader/">shader</a>
-      
-        
-        <a class="post-tag" href="/tags/particle/">particle</a>
       
         
         <a class="post-tag" href="/tags/ui/">ui</a>
@@ -4818,6 +4843,217 @@ __LINE__
     
     
     
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
   
     
     
@@ -5047,26 +5283,6 @@ __LINE__
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
     
   
@@ -5089,194 +5305,7 @@ __LINE__
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
     
   
     
@@ -6085,13 +6114,13 @@ __LINE__
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
+        <a class="post-tag" href="/tags/particle/">particle</a>
+      
+        
         <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/shader/">shader</a>
-      
-        
-        <a class="post-tag" href="/tags/particle/">particle</a>
       
         
         <a class="post-tag" href="/tags/ui/">ui</a>

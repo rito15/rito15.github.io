@@ -1,5 +1,5 @@
 ---
-title: 유니티 투명 쉐이더와 스텐실 개념 익히기 [작성 중]
+title: 유니티 Alpha, Depth(Z), Stencil 개념 익히기
 author: Rito15
 date: 2021-02-06 01:29:00 +09:00
 categories: [Unity Shader, Shader Study]
@@ -7,6 +7,22 @@ tags: [unity, csharp, shader, graphics, transparent, alpha, stencil]
 math: true
 mermaid: true
 ---
+
+# 목차
+---
+
+- [1. 불투명과 투명](#불투명과-투명)
+- [2. 알파 블렌딩, 알파 소팅](#알파-블렌딩-알파-소팅)
+- [3. 알파 테스트](#알파-테스트)
+- [4. 커스텀 알파 블렌딩](#커스텀-알파-블렌딩)
+- [5. 파티클 쉐이더 만들어보기](#파티클-쉐이더-만들어보기)
+- [6. 깨끗한 알파 블렌딩 쉐이더 만들기](#깨끗한-알파-블렌딩-쉐이더-만들기)
+- [7. 깊이 테스트](#깊이-테스트)
+- [8. 스텐실](#스텐실)
+- [9. References](#references)
+
+
+<br>
 
 # 불투명과 투명
 ---
@@ -68,6 +84,11 @@ mermaid: true
 
 그리고 투명 오브젝트는 불투명 오브젝트와 다르게 멀리 있는 것부터 그려지는데, 이를 **알파 소팅(Alpha Sorting)**이라고 한다.
 
+<details>
+<summary markdown="span"> 
+Source Code
+</summary>
+
 ```hlsl
 Shader "Custom/AlphaBlend"
 {
@@ -103,6 +124,10 @@ Shader "Custom/AlphaBlend"
 }
 ```
 
+</details>
+
+<br>
+
 기본적으로 알파 블렌딩 쉐이더를 만들려면,
 
 - Tags의 RenderType과 Queue를 `"Transparent"`로 작성한다.
@@ -126,16 +151,21 @@ Shader "Custom/AlphaBlend"
 
 <br>
 
-# 알파 테스팅
+# 알파 테스트
 ---
 
-DirectX에서는 **알파 테스팅(Alpha Testing)**, OpenGL에서는 **컷아웃(Cutout)**이라고 부르며, 유니티에서도 컷아웃이라고 부른다.
+DirectX에서는 **알파 테스트(Alpha Test)**, OpenGL에서는 **컷아웃(Cutout)**이라고 부르며, 유니티에서도 컷아웃이라고 부른다.
 
 (그런데 키워드로는 AlphaTest를 쓰고, 기본 프로퍼티명은 _Cutoff라고 쓴다...)
 
 알파 테스팅 쉐이더는 지정한 Cutoff 값보다 큰 알파값을 가지는 부분만 그려주고, 작은 값을 가지는 부분은 잘라낸다.
 
 알파 테스팅 쉐이더에서는 알파 소팅에서 발생하는 문제(시점을 돌리면 뒤에 있던 오브젝트가 불쑥 튀어나오는 문제)가 발생하지 않는다.
+
+<details>
+<summary markdown="span"> 
+Source Code
+</summary>
 
 ```hlsl
 Shader "Custom/AlphaTest"
@@ -174,6 +204,10 @@ Shader "Custom/AlphaTest"
 }
 ```
 
+</details>
+
+<br>
+
 - Tags의 RenderType은 딱히 상관 없지만 Queue는 꼭 `"AlphaTest"`로 해준다.
 - 프로퍼티에 컷아웃 변수를 하나 만들어주고(이름은 꼭 _Cutoff), pragma에서 `alphatest:_Cutoff`로 연결해준다.
 - pragma에 `addshadow`를 추가해주지 않으면 쿼드의 그림자가 네모네모하게 나온다.
@@ -183,6 +217,11 @@ Shader "Custom/AlphaTest"
 
 - addshadow 대신, `_Color` 프로퍼티를 추가해주는 방법이 있다.
 - _Color 프로퍼티를 그저 넣어주기만 하면 그림자 생성에 영향을 준다.
+
+<details>
+<summary markdown="span"> 
+Source Code
+</summary>
 
 ```hlsl
 Shader "Custom/AlphaTest"
@@ -222,6 +261,10 @@ Shader "Custom/AlphaTest"
 }
 ```
 
+</details>
+
+<br>
+
 ![2021_0206_Grass_Alphatest](https://user-images.githubusercontent.com/42164422/107126350-af753300-68f2-11eb-8a9a-cf0b84053af5.gif){:.normal}
 
 알파 테스팅 쉐이더는 알파 소팅의 불쑥 튀어나오는 문제가 발생하지 않고, 알파 블렌딩에 비해 가볍다는 장점이 있다.
@@ -237,6 +280,11 @@ Shader "Custom/AlphaTest"
   (하지만 그림자를 받지는 않는다. 다시 말해, Cast Shadow는 동작하지만 Receive Shadow는 동작하지 않는다.)
 
 - 알파 소팅 문제가 발생하지만, 외곽선이 알파 테스팅 쉐이더보다 훨씬 부드럽다는 장점이 있다.
+
+<details>
+<summary markdown="span"> 
+Source Code
+</summary>
 
 ```hlsl
 Shader "Custom/AlphaBlendShadow"
@@ -275,6 +323,10 @@ Shader "Custom/AlphaBlendShadow"
     Fallback "Legacy Shaders/Transparent/Cutout/Diffuse" // 그림자 생성
 }
 ```
+
+</details>
+
+<br>
 
 ![image](https://user-images.githubusercontent.com/42164422/107126764-1693e700-68f5-11eb-8b6e-cf3033f53247.png){:.normal}
 
@@ -378,6 +430,11 @@ Blend SrcAlpha OneMinusSrcAlpha
 <br>
 ## 소스코드
 
+<details>
+<summary markdown="span"> 
+Source Code
+</summary>
+
 ``` hlsl
 Shader "Custom/Particle"
 Shader "Custom/Particle"
@@ -427,7 +484,10 @@ Shader "Custom/Particle"
 }
 ```
 
+</details>
+
 <br>
+
 ## 설명
 
 ```hlsl
@@ -542,8 +602,12 @@ float4 Lightingnolight(SurfaceOutput s, float3 lightDir, float atten)
 # 깨끗한 알파 블렌딩 쉐이더 만들기
 ---
 
-```hlsl
+<details>
+<summary markdown="span"> 
+Source Code
+</summary>
 
+```hlsl
 Shader "Custom/Alpha2Pass"
 {
     Properties
@@ -616,6 +680,10 @@ Shader "Custom/Alpha2Pass"
 }
 ```
 
+</details>
+
+<br>
+
 - 패스를 두 개로 나누어 작성한다.
 - 첫 번째 패스는 알파 소팅 문제가 발생하지 않도록 Z버퍼에 기록만 해주는 용도로 작성한다.
 - 두 번째 패스에서 필요한 모든 것을 계산한다.
@@ -634,6 +702,20 @@ Shader "Custom/Alpha2Pass"
 ![image](https://user-images.githubusercontent.com/42164422/107155608-b4061e00-69bc-11eb-8c5c-6c3752e5c321.png){:.normal}
 
 - 알파 소팅 문제가 발생하지 않아 깔끔하다.
+
+<br>
+
+# 깊이 테스트
+---
+
+-> 렌더큐, ZWrite, ZTest ...
+
+렌더 큐에 적힌 값에 따라, 적을수록 드로우 콜이 빠르다.
+
+렌더 큐의 값이 가려지는 순서를 결정하지는 않는다?
+
+
+
 
 <br>
 
