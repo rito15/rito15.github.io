@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="유니티 프로파일링을 통한 최적화" />
+<meta property="og:title" content="Depth Texture Renderer" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목차 1. Note 2. Tools 3. Unity Profiler Custom Profiler Tags CPU &amp; GPU Boundary CPU Boundary GPU Boundary 4. Memory Profiler 5. References" />
-<meta property="og:description" content="목차 1. Note 2. Tools 3. Unity Profiler Custom Profiler Tags CPU &amp; GPU Boundary CPU Boundary GPU Boundary 4. Memory Profiler 5. References" />
-<link rel="canonical" href="https://rito15.github.io/posts/unity-opt-profiling/" />
-<meta property="og:url" content="https://rito15.github.io/posts/unity-opt-profiling/" />
+<meta name="description" content="Note" />
+<meta property="og:description" content="Note" />
+<link rel="canonical" href="https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-02-04T19:30:00+09:00" />
+<meta property="article:published_time" content="2021-03-03T19:08:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="유니티 프로파일링을 통한 최적화" />
+<meta property="twitter:title" content="Depth Texture Renderer" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목차 1. Note 2. Tools 3. Unity Profiler Custom Profiler Tags CPU &amp; GPU Boundary CPU Boundary GPU Boundary 4. Memory Profiler 5. References","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-profiling/"},"url":"https://rito15.github.io/posts/unity-opt-profiling/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 프로파일링을 통한 최적화","dateModified":"2021-02-04T19:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note","datePublished":"2021-03-03T19:08:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-depth-texture-renderer/"},"url":"https://rito15.github.io/posts/unity-toy-depth-texture-renderer/","author":{"@type":"Person","name":"Rito15"},"headline":"Depth Texture Renderer","dateModified":"2021-03-03T19:08:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>유니티 프로파일링을 통한 최적화 | Rito15
+  <title>Depth Texture Renderer | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>유니티 프로파일링을 통한 최적화</span>
+        <span>Depth Texture Renderer</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>유니티 프로파일링을 통한 최적화</h1>
+      <h1 data-toc-skip>Depth Texture Renderer</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Thu, Feb  4, 2021,  7:30 PM +0900"
+    title="Wed, Mar  3, 2021,  7:08 PM +0900"
   >
 
   
   
 
   
-    Feb  4
+    Mar  3
   
 
-  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
+  <i class="unloaded">2021-03-03T19:08:00+09:00</i>
 
 </span>
           by
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1165 words">6 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="543 words">3 min</span>
 
 
           <!-- page views -->
@@ -433,126 +433,72 @@
 
         
 
-        <h1 id="목차">목차</h1>
-<hr />
-<ul>
-  <li><a href="#note">1. Note</a></li>
-  <li><a href="#tools">2. Tools</a></li>
-  <li><a href="#unity-profiler">3. Unity Profiler</a>
-    <ul>
-      <li><a href="#custom-profiler-tags">Custom Profiler Tags</a></li>
-      <li><a href="#cpu--gpu-boundary">CPU &amp; GPU Boundary</a></li>
-      <li><a href="#cpu-boundary">CPU Boundary</a></li>
-      <li><a href="#gpu-boundary">GPU Boundary</a></li>
-    </ul>
-  </li>
-  <li><a href="#memory-profiler">4. Memory Profiler</a></li>
-  <li><a href="#references">5. References</a></li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="note">Note</h1>
-<hr />
-<ul class="task-list">
-  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />프로파일링은 1차적으로 에디터에서 수행하지만, 타겟 디바이스에서 실제로 실행하며 진행하는 프로파일링이 가장 중요하다.</li>
-  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />[Edit - Project Settings - Quliaty - Other]에서 <code class="language-plaintext highlighter-rouge">VSync</code>가 설정되어 있는지 확인한다.</li>
-  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" /><code class="language-plaintext highlighter-rouge">Application.targetFrameRate</code>가 설정되어 있는지 확인한다(미설정 시 -1)</li>
-  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />병목을 확인할 때 CPU 바운드인지 GPU 바운드인지 꼭 짚고 시작한다.</li>
-  <li class="task-list-item" hide-bullet><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />모바일 기기라면 프로파일링 순간이 쓰로틀링 상황인지 확인해야 한다.</li>
-</ul>
-
-<p><br /></p>
-<h1 id="tools">Tools</h1>
+        <h1 id="note">Note</h1>
 <hr />
 
-<h2 id="1-unity-editor">1. Unity Editor</h2>
-
 <ul>
-  <li><strong>Profiler</strong>
-    <ul>
-      <li>[Window - Analysis - Profiler (Ctrl+7)]</li>
-      <li><a href="https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html">https://docs.unity3d.com/kr/2018.4/Manual/ProfilerWindow.html</a></li>
-    </ul>
+  <li>
+    <p>현재 메인 카메라의 뎁스 텍스쳐를 화면에 렌더링한다.</p>
   </li>
-</ul>
-
-<p><br /></p>
-<ul>
-  <li><strong>Profile Analyzer</strong>
-    <ul>
-      <li>Package Manager - Prifile Analyzer</li>
-      <li><a href="https://unity.com/kr/how-to/optimize-your-game-profile-analyzer">https://unity.com/kr/how-to/optimize-your-game-profile-analyzer</a></li>
-    </ul>
+  <li>
+    <p>각 쉐이더의 ZWrite 여부에 관계 없이 모두 렌더링하는 단점이 있다.</p>
   </li>
-</ul>
-
-<p><br /></p>
-<ul>
-  <li><strong>Frame Debugger</strong>
-    <ul>
-      <li>[Window - Analysis - Frame Debugger]</li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-<ul>
-  <li><strong>Memory Profiler</strong>
-    <ul>
-      <li>Package Manager - Memory Profiler [Preview]</li>
-      <li><a href="https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/">https://bitbucket.org/Unity-Technologies/memoryprofiler/src/default/</a></li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-<h2 id="2-intel-cpugpu-사용">2. Intel CPU/GPU 사용</h2>
-<ul>
-  <li><strong>VTune</strong>
-    <ul>
-      <li><a href="https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html">https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html</a></li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-<ul>
-  <li><strong>GPA</strong>
-    <ul>
-      <li><a href="https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html">https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html</a></li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-<h2 id="3-android">3. Android</h2>
-<ul>
-  <li><strong>Snapdragon Profiler</strong>
-    <ul>
-      <li><a href="https://developer.qualcomm.com/software/snapdragon-profiler">https://developer.qualcomm.com/software/snapdragon-profiler</a></li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-<h2 id="4-ios">4. iOS</h2>
-<ul>
-  <li><strong>XCode Frame Debugger</strong>
-    <ul>
-      <li><a href="https://developer.apple.com/documentation/metal/frame_capture_debugging_tools">https://developer.apple.com/documentation/metal/frame_capture_debugging_tools</a></li>
-    </ul>
+  <li>
+    <p>렌더 큐 값이 2500(Skybox) 이하인 오브젝트들만 인식한다.</p>
   </li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="unity-profiler">Unity Profiler</h1>
+<h1 id="how-to-use">How to Use</h1>
 <hr />
 
-<h1 id="custom-profiler-tags"><strong>Custom Profiler Tags</strong></h1>
+<ul>
+  <li>
+    <p>DepthRenderer.cs 스크립트를 메인 카메라에 넣는다.</p>
+  </li>
+  <li>
+    <p>enabled를 체크/해제하여 화면에 렌더 텍스쳐를 보여줄지 여부를 결정할 수 있다.</p>
+  </li>
+</ul>
 
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<p><br /></p>
+
+<h1 id="preview">Preview</h1>
+<hr />
+
+<ul>
+  <li>원래 화면</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109798735-795f7080-7c5e-11eb-91b1-9e5a49490d5b.png" alt="image" /></p>
+
+<ul>
+  <li>뎁스 텍스쳐 렌더링</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109798762-80867e80-7c5e-11eb-9594-24b378f2a69e.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h1 id="download">Download</h1>
+<hr />
+
+<ul>
+  <li><a href="https://github.com/rito15/Images/files/6075674/DepthRenderer.zip">DepthRenderer.zip</a></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="source-code">Source Code</h1>
+<hr />
+
+<details>
+  <summary> 
+RenderDepth.shader
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -562,162 +508,263 @@
 8
 9
 10
-</pre></td><td class="rouge-code"><pre><span class="c1">// using UnityEngine.Profiling;</span>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+</pre></td><td class="rouge-code"><pre> <span class="n">Shader</span> <span class="s">"Custom/RenderDepth"</span>
+ <span class="p">{</span>
+     <span class="n">Properties</span>
+     <span class="p">{</span>
+         <span class="nf">_MainTex</span> <span class="p">(</span><span class="s">"Base (RGB)"</span><span class="p">,</span> <span class="m">2D</span><span class="p">)</span> <span class="p">=</span> <span class="s">"white"</span> <span class="p">{}</span>
+         <span class="nf">_DepthLevel</span> <span class="p">(</span><span class="s">"Depth Level"</span><span class="p">,</span> <span class="nf">Range</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">))</span> <span class="p">=</span> <span class="m">1</span>
+         <span class="nf">_DepthMul</span> <span class="p">(</span><span class="s">"Depth Mul"</span><span class="p">,</span> <span class="nf">Range</span><span class="p">(-</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span> <span class="p">=</span> <span class="m">0</span>
+     <span class="p">}</span>
+     <span class="n">SubShader</span>
+     <span class="p">{</span>
+         <span class="n">Pass</span>
+         <span class="p">{</span>
+             <span class="n">CGPROGRAM</span>
+ 
+             <span class="err">#</span><span class="n">pragma</span> <span class="n">vertex</span> <span class="n">vert</span>
+             <span class="err">#</span><span class="n">pragma</span> <span class="n">fragment</span> <span class="n">frag</span>
+             <span class="err">#</span><span class="n">include</span> <span class="s">"UnityCG.cginc"</span>
+             
+             <span class="n">uniform</span> <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
+             <span class="n">uniform</span> <span class="n">sampler2D</span> <span class="n">_CameraDepthTexture</span><span class="p">;</span>
+             <span class="n">uniform</span> <span class="k">fixed</span> <span class="n">_DepthLevel</span><span class="p">;</span>
+             <span class="n">uniform</span> <span class="k">fixed</span> <span class="n">_DepthMul</span><span class="p">;</span>
+             <span class="n">uniform</span> <span class="n">half4</span> <span class="n">_MainTex_TexelSize</span><span class="p">;</span>
+ 
+             <span class="k">struct</span> <span class="nc">input</span>
+             <span class="p">{</span>
+                 <span class="n">float4</span> <span class="n">pos</span> <span class="p">:</span> <span class="n">POSITION</span><span class="p">;</span>
+                 <span class="n">half2</span> <span class="n">uv</span> <span class="p">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+             <span class="p">};</span>
+ 
+             <span class="k">struct</span> <span class="nc">output</span>
+             <span class="p">{</span>
+                 <span class="n">float4</span> <span class="n">pos</span> <span class="p">:</span> <span class="n">SV_POSITION</span><span class="p">;</span>
+                 <span class="n">half2</span> <span class="n">uv</span> <span class="p">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+             <span class="p">};</span>
+ 
+ 
+             <span class="n">output</span> <span class="nf">vert</span><span class="p">(</span><span class="n">input</span> <span class="n">i</span><span class="p">)</span>
+             <span class="p">{</span>
+                 <span class="n">output</span> <span class="n">o</span><span class="p">;</span>
+                 <span class="n">o</span><span class="p">.</span><span class="n">pos</span> <span class="p">=</span> <span class="nf">UnityObjectToClipPos</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">pos</span><span class="p">);</span>
+                 <span class="n">o</span><span class="p">.</span><span class="n">uv</span> <span class="p">=</span> <span class="nf">MultiplyUV</span><span class="p">(</span><span class="n">UNITY_MATRIX_TEXTURE0</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">uv</span><span class="p">);</span>
+                 <span class="c1">// why do we need this? cause sometimes the image I get is flipped. see: http://docs.unity3d.com/Manual/SL-PlatformDifferences.html</span>
+                 <span class="err">#</span><span class="k">if</span> <span class="n">UNITY_UV_STARTS_AT_TOP</span>
+                 <span class="k">if</span> <span class="p">(</span><span class="n">_MainTex_TexelSize</span><span class="p">.</span><span class="n">y</span> <span class="p">&lt;</span> <span class="m">0</span><span class="p">)</span>
+                         <span class="n">o</span><span class="p">.</span><span class="n">uv</span><span class="p">.</span><span class="n">y</span> <span class="p">=</span> <span class="m">1</span> <span class="p">-</span> <span class="n">o</span><span class="p">.</span><span class="n">uv</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+                 <span class="err">#</span><span class="n">endif</span>
+ 
+                 <span class="k">return</span> <span class="n">o</span><span class="p">;</span>
+             <span class="p">}</span>
+             
+             <span class="n">fixed4</span> <span class="nf">frag</span><span class="p">(</span><span class="n">output</span> <span class="n">o</span><span class="p">)</span> <span class="p">:</span> <span class="n">COLOR</span>
+             <span class="p">{</span>
+                 <span class="kt">float</span> <span class="n">depth</span> <span class="p">=</span> <span class="nf">UNITY_SAMPLE_DEPTH</span><span class="p">(</span><span class="nf">tex2D</span><span class="p">(</span><span class="n">_CameraDepthTexture</span><span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="n">uv</span><span class="p">));</span>
+                 <span class="n">depth</span> <span class="p">=</span> <span class="nf">pow</span><span class="p">(</span><span class="nf">Linear01Depth</span><span class="p">(</span><span class="n">depth</span><span class="p">),</span> <span class="n">_DepthLevel</span><span class="p">)</span> <span class="p">*</span> <span class="n">_DepthMul</span><span class="p">;</span>
+                 <span class="k">return</span> <span class="n">depth</span><span class="p">;</span>
+             <span class="p">}</span>
+             
+             <span class="n">ENDCG</span>
+         <span class="p">}</span>
+     <span class="p">}</span> 
+ <span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
 
-<span class="k">private</span> <span class="k">void</span> <span class="nf">SomeMethod</span><span class="p">()</span>
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+DepthRenderer.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">ExecuteInEditMode</span><span class="p">]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">DepthRenderer</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
 <span class="p">{</span>
-    <span class="n">Profiler</span><span class="p">.</span><span class="nf">BeginSample</span><span class="p">(</span><span class="s">"Sample Name"</span><span class="p">);</span>
+    <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">3f</span><span class="p">)]</span>
+    <span class="k">public</span> <span class="kt">float</span> <span class="n">depthLevel</span> <span class="p">=</span> <span class="m">1.0f</span><span class="p">;</span>
 
-    <span class="c1">// Codes ...</span>
+    <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">50f</span><span class="p">)]</span>
+    <span class="k">public</span> <span class="kt">float</span> <span class="n">depthMul</span> <span class="p">=</span> <span class="m">20.0f</span><span class="p">;</span>
 
-    <span class="n">Profiler</span><span class="p">.</span><span class="nf">EndSample</span><span class="p">();</span>
+    <span class="k">private</span> <span class="n">Shader</span> <span class="n">_shader</span><span class="p">;</span>
+    <span class="k">private</span> <span class="n">Shader</span> <span class="n">RdShader</span>
+        <span class="p">=&gt;</span> <span class="n">_shader</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">?</span> <span class="n">_shader</span> <span class="p">:</span> <span class="p">(</span><span class="n">_shader</span> <span class="p">=</span> <span class="n">Shader</span><span class="p">.</span><span class="nf">Find</span><span class="p">(</span><span class="s">"Custom/RenderDepth"</span><span class="p">));</span>
+
+    <span class="k">private</span> <span class="n">Material</span> <span class="n">_material</span><span class="p">;</span>
+    <span class="k">private</span> <span class="n">Material</span> <span class="n">RdMaterial</span>
+    <span class="p">{</span>
+        <span class="k">get</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">_material</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">_material</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Material</span><span class="p">(</span><span class="n">RdShader</span><span class="p">);</span>
+                <span class="n">_material</span><span class="p">.</span><span class="n">hideFlags</span> <span class="p">=</span> <span class="n">HideFlags</span><span class="p">.</span><span class="n">HideAndDontSave</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">_material</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">OnEnable</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">RdShader</span> <span class="p">==</span> <span class="k">null</span> <span class="p">||</span> <span class="p">!</span><span class="n">RdShader</span><span class="p">.</span><span class="n">isSupported</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">enabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"Shader "</span> <span class="p">+</span> <span class="n">RdShader</span><span class="p">.</span><span class="n">name</span> <span class="p">+</span> <span class="s">" is not supported"</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">depthTextureMode</span> <span class="p">=</span> <span class="n">DepthTextureMode</span><span class="p">.</span><span class="n">None</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">OnDisable</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_material</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+            <span class="nf">DestroyImmediate</span><span class="p">(</span><span class="n">_material</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">OnRenderImage</span><span class="p">(</span><span class="n">RenderTexture</span> <span class="n">src</span><span class="p">,</span> <span class="n">RenderTexture</span> <span class="n">dest</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">RdShader</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">RdMaterial</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="s">"_DepthLevel"</span><span class="p">,</span> <span class="n">depthLevel</span><span class="p">);</span>
+            <span class="n">RdMaterial</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="s">"_DepthMul"</span><span class="p">,</span> <span class="n">depthMul</span><span class="p">);</span>
+            <span class="n">Graphics</span><span class="p">.</span><span class="nf">Blit</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">RdMaterial</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">Graphics</span><span class="p">.</span><span class="nf">Blit</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
+</pre></td></tr></tbody></table></code></div>  </div>
 
-<ul>
-  <li>이렇게 래핑하면 저 사이에 있는 부분을 프로파일러에서 묶어 보여준다.</li>
-  <li>지정한 이름으로 확인할 수 있으므로 프로파일링 하기에 매우 편해진다.</li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="cpu--gpu-boundary"><strong>CPU &amp; GPU Boundary</strong></h1>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106927047-1957d600-6755-11eb-8035-14de7be3294a.png" alt="image" class="normal" /></p>
-
-<ul>
-  <li>프로파일러의 이 부분을 확인하면 CPU, GPU 수행에 걸린 시간을 통해 CPU와 GPU 중 어느 부분이 더 병목인지 파악할 수 있다.</li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="cpu-boundary"><strong>CPU Boundary</strong></h1>
-
-<h2 id="gcalloc-gccollect">GC.Alloc, GC.Collect</h2>
-<ul>
-  <li>대표적인 CPU 바운드로, 힙의 할당과 가비지 수거를 의미한다.</li>
-  <li>Alloc 자체는 직접적인 성능 저하를 유발하지 않지만, 결국 Collect의 대상이 되므로 줄이는 것이 좋다.</li>
-</ul>
-
-<h2 id="draw-call-set-pass-call">Draw Call, Set Pass Call</h2>
-<ul>
-  <li>GPU 바운드로 착각할 수 있지만, CPU가 GPU에게 전달하는 CPU 바운드이다.</li>
-  <li>Batch : DP Call 상태 변경을 합친 넓은 의미의 드로우 콜</li>
-  <li>SetPass Call : 쉐이더로 인한 렌더링 패스의 횟수를 의미하며 쉐이더 및 쉐이더 파라미터들의 변경이 일어날 때마다 발생한다.</li>
-</ul>
-
-<h2 id="method-calls">Method Calls</h2>
-<ul>
-  <li>Marker들을 통해 병목지점을 확인할 수 있으며, 구체적으로 파악하고 싶은 경우 Deep Profile 또는 Custom Profiler Tag를 이용하면 된다.</li>
-</ul>
-
-<p><br /></p>
-<h2 id="script-update-markers"><strong>Script update markers</strong></h2>
-
-<div class="table-wrapper"><table>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Update.ScriptRunBehaviourUpdate</code></td>
-      <td>MonoBehaviour 내부의 Update() 호출 및 코루틴 yield</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">BehaviourUpdate</code></td>
-      <td>Update() 호출</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">CoroutinesDelayedCalls</code></td>
-      <td>코루틴 yield</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">ScriptRunBehaviourLateUpdate</code></td>
-      <td>LateUpdate() 호출</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">FixedBehaviourUpdate</code></td>
-      <td>FixedUpdate() 호출</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<p><br /></p>
-
-<h1 id="gpu-boundary"><strong>GPU Boundary</strong></h1>
-
-<h2 id="graphicsblit-devicepresent-gfxwaitforpresent">Graphics.Blit, Device.Present, Gfx.WaitForPresent</h2>
-<ul>
-  <li>프로파일러에서 확인할 수 있는 대표적인 GPU 병목.</li>
-  <li>CPU가 GPU에게 일을 시키고 CPU는 한가한데 GPU가 열심히 일하는 상태이다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106918827-e873a300-674c-11eb-9c70-41b58cb1a213.png" alt="image" class="normal" /></p>
-
-<ul>
-  <li>이를 해결하려면 GPU 관련 요소들을 확인해야 한다.
-    <ul>
-      <li>필레이트(쉐이더 최적화)</li>
-      <li>메모리 대역폭(텍스쳐 최적화)</li>
-      <li>포스트 프로세싱</li>
-      <li>버텍스(LOD Model 활용)</li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h2 id="필레이트fill-rate">필레이트(Fill rate)</h2>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">화면의 픽셀 수</code> X <code class="language-plaintext highlighter-rouge">프래그먼트 쉐이더 복잡도</code> X <code class="language-plaintext highlighter-rouge">오버드로우</code></li>
-  <li>오버드로우(Overdraw) : 투명 오브젝트의 픽셀을 여러 번 그리는 현상</li>
-  <li>필레이트가 문제인지 알기 위해서는 간단히 해상도 또는 렌더 스케일(Render Scale)을 줄였을 때 성능이 많이 향상되는지 확인하면 된다.</li>
-  <li>URP에서는 파이프라인 애셋에서 간단히 [Quality - Render Scale]을 조절하면 된다.</li>
-  <li>이를 해결하려면 쉐이더를 최적화 해야 한다.</li>
-</ul>
-
-<p><br /></p>
-<h2 id="메모리-대역폭memory-bandwidth">메모리 대역폭(Memory Bandwidth)</h2>
-<ul>
-  <li>메모리 대역폭 : GPU가 전용 메모리에서 읽고 쓸 수 있는 속도</li>
-  <li>메모리 대역폭이 문제인지 알아보려면, 텍스쳐 품질을 줄였을 때 성능이 많이 향상되는지 확인하면 된다.</li>
-  <li>이를 해결하려면 텍스쳐를 압축하거나 밉맵을 사용하여 멀리 떨어진 경우 작은 밉맵을 적용해야 한다.</li>
-</ul>
-
-<p><br /></p>
-<h2 id="rendering-and-vsync-markers"><strong>Rendering and VSync markers</strong></h2>
-
-<ul>
-  <li>CPU가 GPU를 기다리는 시간과 GPU의 소요시간을 포함하는 경우로, 모두 GPU 바운드에 해당한다.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">WaitForTargetFPS</code></li>
-      <li><code class="language-plaintext highlighter-rouge">Gfx.ProcessCommands</code></li>
-      <li><code class="language-plaintext highlighter-rouge">Gfx.WaitForCommands</code></li>
-      <li><code class="language-plaintext highlighter-rouge">Gfx.PresentFrame</code></li>
-      <li><code class="language-plaintext highlighter-rouge">Gfx.WaitForPresentOnGfxThread</code></li>
-      <li><code class="language-plaintext highlighter-rouge">Gfx.WaitForRenderThread</code></li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="memory-profiler">Memory Profiler</h1>
-<hr />
-<ul>
-  <li>유니티 패키지 매니저에서 Preview 버전을 받을 수 있다.</li>
-  <li>시각적으로 메모리 사용률을 파악할 수 있으며, 각각의 사각형을 클릭할 경우 더 구체적인 내용을 확인할 수 있다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106920799-c549f300-674e-11eb-8009-f2c6b71a598b.png" alt="image" /></p>
+</details>
 
 <p><br /></p>
 
 <h1 id="references">References</h1>
 <hr />
 <ul>
-  <li><a href="https://www.youtube.com/watch?v=4kVffWfmJ60&amp;ab_channel=UnityKorea">https://www.youtube.com/watch?v=4kVffWfmJ60&amp;ab_channel=UnityKorea</a></li>
-  <li><a href="https://blogs.unity3d.com/kr/2019/11/14/tales-from-the-optimization-trenches/">https://blogs.unity3d.com/kr/2019/11/14/tales-from-the-optimization-trenches/</a></li>
-  <li><a href="https://coderzero.tistory.com/entry/유니티-최적화-유니티-최적화에-대한-이해">https://coderzero.tistory.com/entry/유니티-최적화-유니티-최적화에-대한-이해</a></li>
-  <li><a href="https://docs.unity3d.com/Manual/profiler-markers.html">https://docs.unity3d.com/Manual/profiler-markers.html</a></li>
-  <li><a href="https://learn.unity.com/tutorial/fixing-performance-problems">https://learn.unity.com/tutorial/fixing-performance-problems</a></li>
+  <li><a href="https://answers.unity.com/questions/877170/render-scene-depth-to-a-texture.html">https://answers.unity.com/questions/877170/render-scene-depth-to-a-texture.html</a></li>
 </ul>
 
 
@@ -731,7 +778,7 @@
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
             <a href='/categories/unity/'>Unity</a>,
-            <a href='/categories/unity-optimization/'>Unity Optimization</a>
+            <a href='/categories/unity-toys/'>Unity Toys</a>
         </div>
         
 
@@ -746,11 +793,8 @@
           <a href="/tags/csharp/"
             class="post-tag no-text-decoration" >csharp</a>
           
-          <a href="/tags/profiling/"
-            class="post-tag no-text-decoration" >profiling</a>
-          
-          <a href="/tags/optimization/"
-            class="post-tag no-text-decoration" >optimization</a>
+          <a href="/tags/plugin/"
+            class="post-tag no-text-decoration" >plugin</a>
           
           </div>
         
@@ -782,19 +826,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=유니티 프로파일링을 통한 최적화 - Rito15&url=https://rito15.github.io/posts/unity-opt-profiling/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=Depth Texture Renderer - Rito15&url=https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=유니티 프로파일링을 통한 최적화 - Rito15&u=https://rito15.github.io/posts/unity-opt-profiling/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Depth Texture Renderer - Rito15&u=https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=유니티 프로파일링을 통한 최적화 - Rito15&url=https://rito15.github.io/posts/unity-opt-profiling/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=Depth Texture Renderer - Rito15&url=https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -3108,11 +3152,6 @@
   </div> <!-- .access -->
 
   
-    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
-      <span class="pl-3 pt-2 mb-2">Contents</span>
-      <nav id="toc" data-toggle="toc"></nav>
-    </div>
-  
 
 </div> <!-- #panel-wrapper -->
 
@@ -3151,774 +3190,774 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -4407,7 +4446,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-opt-occlusion-culling/">
+        <a href="/posts/unity-toy-save-transform-during-play/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4424,13 +4463,13 @@
   
 
   
-    Mar  1
+    Apr 11, 2020
   
 
-  <i class="unloaded">2021-03-01T01:40:00+09:00</i>
+  <i class="unloaded">2020-04-11T18:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>오클루전 컬링</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Save Transform During Play</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4439,36 +4478,28 @@
 
 
 
-                프러스텀 컬링 (Frustum Culling)
+                Note
+
 
 
   
-    카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것
+    기본적으로, 플레이 모드에서 트랜스폼의 위치, 회전, 크기를 변경하여도
+플레이 모드가 종료되면 변경사항이 저장되지 않는다.
   
   
-    따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.
+    이 컴포넌트를 간단히 추가하기만 하면 플레이 모드를 종료해도
+트랜스폼의 변경사항이 저장되도록 할 수 있다.
   
 
 
 
 
-
-
-그냥 이렇게 두어도
-
-
-
-실제로 이렇게 컬링된다.
+How to Use
 
 
 
-GIF
-
-
-
-
-
-오클루전 컬링 (Occlusion Cu...
+  
+    원하는 게임오브젝트에 Sav...
               </p>
             </div>
           </div>
@@ -4478,7 +4509,7 @@ GIF
       
       
       <div class="card">
-        <a href="/posts/unity-opt-profiler-window/">
+        <a href="/posts/unity-toy-getcomponent-attributes/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4495,13 +4526,13 @@ GIF
   
 
   
-    Feb  4
+    Apr 12, 2020
   
 
-  <i class="unloaded">2021-02-04T17:50:00+09:00</i>
+  <i class="unloaded">2020-04-12T23:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 프로파일러</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Getcomponent Attributes</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4510,23 +4541,17 @@ GIF
 
 
 
-                목차
+                Note
 
 
 
-  1. Unity Profiler
-  2. CPU Usage
-    
-      Timeline View
-      Hierarchy View
-      Show Related Objects
-      Call Stack
-      Show Calls
-      Deep Profile
-    
   
-  3. GPU Usage
-  4. Re...
+    GetComponent(), Find() 종류의 메소드들을 필드/프로퍼티 애트리뷰트로 제공한다.
+  
+  리플렉션과 커스텀 애트리뷰트를 활용하여 제작하였다.
+  Component를 상속받는 타입의 필드/프로퍼티에 사용할 수 있다.
+  대상 멤버의 접근지정자에 관계 없이 모두 동작한다.
+  본 애트리뷰트들을 통한 컴포넌트 할당...
               </p>
             </div>
           </div>
@@ -4536,7 +4561,7 @@ GIF
       
       
       <div class="card">
-        <a href="/posts/unity-opt-script-optimization/">
+        <a href="/posts/unity-toy-editor-only-debug/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4553,13 +4578,13 @@ GIF
   
 
   
-    Feb  4
+    Jul  6, 2020
   
 
-  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
+  <i class="unloaded">2020-07-06T15:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 스크립트 최적화</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Editor-only Debug</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4568,16 +4593,33 @@ GIF
 
 
 
-                목차
+                Note
 
 
-  1. GetComponent(), Find() 메소드 사용 줄이기
-  2. 비어있는 유니티 이벤트 메소드 방치하지 않기
-  3. 필요하지 않은 경우, new로 생성하지 않기
-  4. 필요하지 않은 경우, 리턴하지 않기
-  5. StartCoroutine() 자주 호출하지 않기
-  6. 코루틴의 yield 캐싱하기
-  7. 컬렉션 재사용하기...
+
+  유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있다.
+  이를 방지할 수 있게 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스
+
+
+How To Use
+
+
+
+  스크립트 상단에 다음과 같이 작성한다.
+
+
+
+  
+    using Debug = Rito.Debug;
+
+  
+
+
+Download
+
+
+
+  ...
               </p>
             </div>
           </div>
@@ -4600,15 +4642,15 @@ GIF
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/unity-opt-profiler-window/" class="btn btn-outline-primary">
-    <p>유니티 에디터 프로파일러</p>
+  <a href="/posts/unity-particle-system-example-06-dr-strange-portal/" class="btn btn-outline-primary">
+    <p>파티클 시스템 예제 - 06 - Dr. Strange Portal [TODO]</p>
   </a>
   
 
   
-  <a href="/posts/unity-opt-script-optimization/" class="btn btn-outline-primary">
-    <p>유니티 스크립트 최적화</p>
-  </a>
+  <span class="btn btn-outline-primary disabled">
+    <p>-</p>
+  </span>
   
 
 </div>

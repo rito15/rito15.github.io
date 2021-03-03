@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "Depth Texture Renderer",
+    "url": "/posts/unity-toy-depth-texture-renderer/",
+    "categories": "Unity, Unity Toys",
+    "tags": "unity, csharp, plugin",
+    "date": "2021-03-03 19:08:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Note      현재 메인 카메라의 뎁스 텍스쳐를 화면에 렌더링한다.        각 쉐이더의 ZWrite 여부에 관계 없이 모두 렌더링하는 단점이 있다.        렌더 큐 값이 2500(Skybox) 이하인 오브젝트들만 인식한다.  How to Use      DepthRenderer.cs 스크립트를 메인 카메라에 넣는다.        enabled를 체크/해제하여 화면에 렌더 텍스쳐를 보여줄지 여부를 결정할 수 있다.  Preview  원래 화면  뎁스 텍스쳐 렌더링Download  DepthRenderer.zipSo..."
+  },
+  
+  {
     "title": "파티클 시스템 예제 - 06 - Dr. Strange Portal [TODO]",
     "url": "/posts/unity-particle-system-example-06-dr-strange-portal/",
     "categories": "Unity, Unity Particle System",
@@ -811,8 +826,8 @@
   },
   
   {
-    "title": "유니티 Alpha, Depth(Z), Stencil 개념 익히기",
-    "url": "/posts/unity-transparent-stencil/",
+    "title": "유니티 Depth(Z), Alpha, Stencil 개념 익히기",
+    "url": "/posts/unity-depth-alpha-stencil/",
     "categories": "Unity Shader, Shader Study",
     "tags": "unity, csharp, shader, graphics, transparent, alpha, stencil",
     "date": "2021-02-06 01:29:00 +0900",
@@ -822,7 +837,7 @@
 
 
 
-    "snippet": "목차  1. 불투명과 투명  2. 알파 블렌딩, 알파 소팅  3. 알파 테스트  4. 커스텀 알파 블렌딩  5. 파티클 쉐이더 만들어보기  6. 깨끗한 알파 블렌딩 쉐이더 만들기  7. 깊이 테스트  8. 스텐실  9. References불투명과 투명불투명(Opaque)과 투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.유니티에서는 오브젝트를 렌더링하는 순서를 렌더 큐(Render Queue)를 통해 정수 값으로 지정하는데, 지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque..."
+    "snippet": "목차  1. 불투명과 반투명  2. 알파 블렌딩, 알파 소팅  3. 알파 테스트  4. 커스텀 알파 블렌딩  5. 파티클 쉐이더 만들어보기  6. 깨끗한 알파 블렌딩 쉐이더 만들기  7. ZTest와 ZWrite  [8. 알파 블렌딩 쉐이더에서 발생하는 문제점들(#알파-블렌딩-쉐이더에서-발생하는-문제점들)  9. 스텐실  10. References불투명과 반투명불투명(Opaque)과 반투명(Transparent) 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.유니티에서는 오브젝트를 렌더링하는 순서를 렌더 큐(Re..."
   },
   
   {
