@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="유니티 Depth(Z), Alpha, Stencil 개념 익히기" />
+<meta property="og:title" content="유니티 반투명, 스텐실 개념 익히기" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="목차" />
 <meta property="og:description" content="목차" />
-<link rel="canonical" href="https://rito15.github.io/posts/unity-depth-alpha-stencil/" />
-<meta property="og:url" content="https://rito15.github.io/posts/unity-depth-alpha-stencil/" />
+<link rel="canonical" href="https://rito15.github.io/posts/unity-transparent-stencil/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unity-transparent-stencil/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-02-06T01:29:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="유니티 Depth(Z), Alpha, Stencil 개념 익히기" />
+<meta property="twitter:title" content="유니티 반투명, 스텐실 개념 익히기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목차","datePublished":"2021-02-06T01:29:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-depth-alpha-stencil/"},"url":"https://rito15.github.io/posts/unity-depth-alpha-stencil/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 Depth(Z), Alpha, Stencil 개념 익히기","dateModified":"2021-02-06T01:29:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차","datePublished":"2021-02-06T01:29:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-transparent-stencil/"},"url":"https://rito15.github.io/posts/unity-transparent-stencil/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 반투명, 스텐실 개념 익히기","dateModified":"2021-03-04T04:03:40+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>유니티 Depth(Z), Alpha, Stencil 개념 익히기 | Rito15
+  <title>유니티 반투명, 스텐실 개념 익히기 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>유니티 Depth(Z), Alpha, Stencil 개념 익히기</span>
+        <span>유니티 반투명, 스텐실 개념 익히기</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>유니티 Depth(Z), Alpha, Stencil 개념 익히기</h1>
+      <h1 data-toc-skip>유니티 반투명, 스텐실 개념 익히기</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -407,6 +407,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Mar  4, 2021,  4:03 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar  4
+  
+
+  <i class="unloaded">2021-03-04T04:03:40+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -419,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="9626 words">53 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="11109 words">61 min</span>
 
 
           <!-- page views -->
@@ -444,7 +473,7 @@
   <li><a href="#파티클-쉐이더-만들어보기">5. 파티클 쉐이더 만들어보기</a></li>
   <li><a href="#깨끗한-알파-블렌딩-쉐이더-만들기">6. 깨끗한 알파 블렌딩 쉐이더 만들기</a></li>
   <li><a href="#ztest와-zwrite">7. ZTest와 ZWrite</a></li>
-  <li>[8. 알파 블렌딩 쉐이더에서 발생하는 문제점들(#알파-블렌딩-쉐이더에서-발생하는-문제점들)</li>
+  <li><a href="#알파-블렌딩-쉐이더에서-발생하는-문제점들">8. 알파 블렌딩 쉐이더에서 발생하는 문제점들</a></li>
   <li><a href="#스텐실">9. 스텐실</a></li>
   <li><a href="#references">10. References</a></li>
 </ul>
@@ -456,7 +485,7 @@
 
 <p><strong>불투명(Opaque)</strong>과 <strong>반투명(Transparent)</strong> 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.</p>
 
-<p>유니티에서는 오브젝트를 렌더링하는 순서를 <strong>렌더 큐(Render Queue)</strong>를 통해 정수 값으로 지정하는데, 
+<p>유니티에서는 오브젝트를 렌더링하는 순서를 쉐이더와 마테리얼의 <strong>렌더 큐(Render Queue)</strong>를 통해 정수 값으로 지정하는데, 
 지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 <strong>2000</strong>, Transparent는 <strong>3000</strong>의 값을 가진다.</p>
 
 <p>따라서 불투명 오브젝트가 전부 그려진 후에 반투명 오브젝트가 그려진다.</p>
@@ -478,15 +507,15 @@
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107073497-cfd9ba80-682a-11eb-922e-9766ea42556f.png" alt="image" class="normal" /></p>
 
 <p>불투명 오브젝트를 그리기 위해서 우선 Z버퍼를 참조한다.
-각각의 픽셀마다 얻어낸 Z버퍼의 값을 통해 겹쳐 있는 픽셀들 중 가장 가까운 오브젝트의 픽셀만 화면에 그리게 되는데, 이를 <strong>Z Test</strong>(Z Read)라고 한다.</p>
+각각의 픽셀마다 얻어낸 Z버퍼의 깊이 값과 자신의 깊이를 비교하여 픽셀들을 그릴지 안그릴지 여부를 결정하게 되는데, 이를 <strong>Z Test</strong>(Z Read)라고 한다.</p>
 
-<p>따라서 불투명을 그릴 때는 해당 픽셀에서 가장 앞에 있는 오브젝트의 픽셀만 그리고 뒤에 있는 픽셀은 그리지 않음으로써 자원을 절약하게 된다.</p>
+<p>따라서 불투명을 그릴 때는 해당 픽셀에서 겹쳐 있는 픽셀들 중에 가장 앞에 있는 오브젝트의 픽셀만 그리고, 뒤에 있는 픽셀은 그리지 않음으로써 자원을 절약하게 된다.</p>
 
-<h3 id="-만약-동일한-z-값을-가진다면"><strong>+ 만약 동일한 Z 값을 가진다면?</strong></h3>
+<h3 id="-만약-동일한-깊이-값을-가진다면"><strong>+ 만약 동일한 깊이 값을 가진다면?</strong></h3>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107071993-e2eb8b00-6828-11eb-8f76-6ea2fdef82e0.png" alt="image" class="normal" /></p>
 
-<p>어떤 것을 먼저 그릴지 알 수 없으므로 위처럼 보이게 되며, 이를 <strong>Z fighting</strong>이라고 한다.</p>
+<p>어떤 것을 먼저 그릴지 알 수 없으므로 위처럼 깨져 보이게 되며, 이를 <strong>Z fighting</strong>이라고 한다.</p>
 
 <p><br /></p>
 
@@ -500,9 +529,13 @@
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109839300-52b72f00-7c8a-11eb-82d2-37b927bda1fc.png" alt="image" /></p>
 
-<p>이런 문제가 발생할 수 있기 때문에, 불투명 오브젝트의 계산을 모두 끝내고 반투명 오브젝트를 계산하게 되는 것이다.</p>
+<p>반투명 오브젝트가 Z버퍼에 자신의 깊이를 기록해놓았고, 그 뒤에 그려지는 불투명 오브젝트는 이를 비교하여 겹친 부분에는 자신의 픽셀을 그리지 않도록 하여 위처럼 보이게 된다.</p>
 
-<p>그리고 같은 픽셀에 존재하는 모든 반투명 오브젝트의 픽셀들은 전부 화면에 그려지며, 이를 <strong>오버드로우(Overdraw)</strong>라고 한다.</p>
+<p>따라서 이런 문제 때문에 불투명 오브젝트를 모두 그리고 반투명 오브젝트를 그리게 된다.</p>
+
+<p>그리고 불투명 오브젝트와 달리 같은 픽셀에 존재하는 모든 반투명 오브젝트의 픽셀들은 앞에서 불투명으로 가려지지 않은 이상 전부 화면에 그려지며, 이를 <strong>오버드로우(Overdraw)</strong>라고 한다.</p>
+
+<p>오버드로우는 GPU 성능을 잡아먹는 주범 중 하나이기도 하다.</p>
 
 <p><br /></p>
 
@@ -533,7 +566,9 @@
 
 <p>그런데 이번에는 똑같은 문제가 반투명 오브젝트 사이에서도 발생한다.</p>
 
-<p>따라서 이를 해결하기 위해, 반투명 오브젝트를 그릴 때 카메라로부터 피벗까지의 거리를 기준으로 멀리 있는 오브젝트부터 그리도록 하여 앞의 오브젝트를 먼저 그려서 뒤의 오브젝트가 가려지는 일이 발생하지 않게 하는 것이다.</p>
+<p>따라서 이를 해결하기 위해 반투명 오브젝트를 그릴 때 카메라로부터 피벗까지의 거리를 기준으로 멀리 있는 오브젝트부터 그리도록 하여,</p>
+
+<p>앞의 오브젝트를 먼저 그려서 뒤의 오브젝트가 가려지는 일이 발생하지 않게 하는 것이다.</p>
 
 <p><br /></p>
 
@@ -1501,7 +1536,12 @@ Source Code
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107155608-b4061e00-69bc-11eb-8c5c-6c3752e5c321.png" alt="image" class="normal" /></p>
 
 <ul>
-  <li>깔끔하게 그려지는 것을 볼 수 있다.</li>
+  <li>
+    <p>좌 : 2 Pass / 우 : 기본</p>
+  </li>
+  <li>
+    <p>내부가 드러나지 않고 깔끔하게 그려지는 것을 볼 수 있다.</p>
+  </li>
 </ul>
 
 <p><br /></p>
@@ -1513,7 +1553,7 @@ Source Code
 
 <p>예를 들면 불투명은 2000, 스카이박스는 2500, 반투명은 3000이다.</p>
 
-<p>그리고 대개의 경우에는 렌더 큐의 값이 같으면 무작위 순서로 그리는데, 반투명 오브젝트 만큼은 알파 소팅 과정을 통해 멀리서부터 그린다. (그래서 더 비싸다)</p>
+<p>그리고 대부분의 경우에는 렌더 큐의 값이 같으면 무작위 순서로 그리는데, 반투명 오브젝트 만큼은 알파 소팅 과정을 통해 멀리서부터 그린다. (그래서 더 비싸다)</p>
 
 <p><br /></p>
 
@@ -1543,6 +1583,8 @@ Source Code
 
 <h2 id="zbuffer"><strong>ZBuffer</strong></h2>
 
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109923539-42db3180-7d02-11eb-8b1e-c6152cfcf71d.png" alt="image" /></p>
+
 <p>ZBuffer는 화면의 각 픽셀마다 카메라와 가장 가까운 오브젝트의 표면을 0.0 ~ 1.0 값으로 기록해놓은 텍스쳐이다.</p>
 
 <p>카메라의 Near Plane(뷰 프러스텀 내에서 카메라와 가장 가까운 위치)에 있으면 0.0 값을 갖고,</p>
@@ -1557,19 +1599,21 @@ Source Code
 
 <p>ZWrite는 오브젝트가 그려질 때 해당 픽셀에 이미 적힌 깊이 값과 자신의 깊이 값을 비교하여, 더 작은 값을 ZBuffer의 해당 픽셀에 기록하는 것을 의미한다.</p>
 
-<p>그렇게 되면 결국 모든 오브젝트의 깊이 값을 기록했을 때 ZBuffer에는 해당 픽셀마다 카메라에서 가장 가까운 오브젝트의 깊이 값만을 갖게 된다.</p>
+<p>그렇게 되면 결국 모든 오브젝트의 깊이 값을 기록했을 때 ZBuffer는 픽셀마다 카메라에서 가장 가까운 오브젝트의 깊이 값만을 갖게 된다.</p>
 
-<p>유니티에서는 <code class="language-plaintext highlighter-rouge">ZWrite On</code>, <code class="language-plaintext highlighter-rouge">ZWrite Off</code> 옵션으로 쉐이더에서 해당 오브젝트의 ZWrite를 수행할지 여부를 결정할 수 있다.</p>
+<p>유니티에서는 쉐이더에 <code class="language-plaintext highlighter-rouge">ZWrite On</code>, <code class="language-plaintext highlighter-rouge">ZWrite Off</code>를 작성하여 해당 오브젝트의 ZWrite를 수행할지 여부를 결정할 수 있다.</p>
 
 <p><br /></p>
 
 <h2 id="ztest"><strong>ZTest</strong></h2>
 
-<p>ZTest는 ZRead라고도 한다. 오브젝트가 그려질 때 ZBuffer의 해당 픽셀에 이미 기록된 깊이 값과 자신의 깊이 값을 비교하여, 둘 중 어떤 픽셀을 화면에 그릴지 결정하게 된다.</p>
+<p>ZTest는 ZRead라고도 한다. 오브젝트가 그려질 때 ZBuffer의 해당 픽셀에 이미 기록된 깊이 값과 자신의 깊이 값을 비교하여, 자신의 픽셀을 화면에 그릴지 결정하게 된다.</p>
 
 <p>유니티에서는 ZTest <code class="language-plaintext highlighter-rouge">Less</code>, <code class="language-plaintext highlighter-rouge">Greater</code>, <code class="language-plaintext highlighter-rouge">LEqual</code>, <code class="language-plaintext highlighter-rouge">GEqual</code>, <code class="language-plaintext highlighter-rouge">Equal</code>, <code class="language-plaintext highlighter-rouge">NotEqual</code>, <code class="language-plaintext highlighter-rouge">Always</code> 옵션으로 쉐이더에서 해당 오브젝트의 ZTest를 어떻게 수행할지 결정 할 수 있다.</p>
 
-<p>다시 말해, “ZBuffer에 이미 기록된 값과 자신의 깊이 값 중 어떤 값을 갖는 녀석을 그릴 것인가”를 결정하는 연산을 나타낸다.</p>
+<p>다시 말해, “ZBuffer에 이미 기록된 값에 자신의 깊이 값을 비교하여 자신의 픽셀을 렌더링할지 여부”를 결정하는 연산을 나타낸다.</p>
+
+<p>예를 들어 <code class="language-plaintext highlighter-rouge">Less</code>일 경우, 해당 픽셀에 존재하는 자신의 깊이 값이 ZBuffer에 기록된 깊이 값보다 작으면(Less) 자신의 픽셀을 화면에 그린다.</p>
 
 <p>그리고 <code class="language-plaintext highlighter-rouge">Always</code>는 그냥, 그린다. 비교 안하고 아무튼 그냥 자기를 그린다.</p>
 
@@ -1578,8 +1622,6 @@ Source Code
 <h2 id="note"><strong>Note</strong></h2>
 
 <p>알아둬야 할 점은, 오브젝트를 그릴 때 ZTest를 먼저 수행한 다음에 ZWrite를 한다는 것이다.</p>
-
-<p>이게 왜 중요하냐면, 유니티의 ZTest에는 Less, Greater 뿐만 아니라 Equal 비교가 있기 때문이다.</p>
 
 <p><br /></p>
 
@@ -1597,7 +1639,13 @@ Source Code
 
 <p>그러니까 ZTest에는 자기 자신의 ZWrite가 영향을 미치지 않는다. (중요)</p>
 
-<p>대신, ZWrite에는 ZTest의 결과가 영향을 미치는 것 같다. (이건 추측, 밑의 예시[3]에서 보충)</p>
+<p>대신, ZWrite에는 ZTest의 결과가 영향을 미친다.</p>
+
+<p>ZTest의 비교 연산이 참의 값을 가져서 자신의 픽셀을 그리는데 성공했을 때, 이를 “ZTest를 통과했다”라고 한다.</p>
+
+<p>반대로, ZTest의 결과가 거짓이라 픽셀을 그리지 못했다면 “ZTest에 실패했다”고 하며</p>
+
+<p><strong>ZTest를 통과해야 ZWrite를 수행한다.</strong></p>
 
 <p><br /></p>
 
@@ -1644,6 +1692,39 @@ Source Code
 
 <p>그려지는 순서에 관계 없이, 가장 가까운 오브젝트가 먼저 그려진다.</p>
 
+<details>
+  <summary> 
+그래도 자세히 살펴보자면..
+</summary>
+
+  <h3 id="section">(1) 빨 -&gt; 초 -&gt; 파</h3>
+
+  <p>빨강이 그려질 때 ZBuffer에는 모두 1.0이므로 ZTest를 (0.1 &lt;= 1.0)로 모두 성공하고, ZBuffer에서 빨간색 오브젝트가 존재하는 픽셀들에 0.1을 기록한다.</p>
+
+  <p>초록이 그려질 때 ZBuffer에서 빨간색 오브젝트와 겹치는 부분은 0.1이 기록되어 있으므로 ZTest를 (0.2 &lt;= 0.1)로 실패하여 그리지 못하고, 다른 부분은 (0.2 &lt;= 1.0)으로 성공하여, 해당 부분의 ZBuffer에 0.2를 기록한다.</p>
+
+  <p>파랑이 그려질 때 ZBuffer의 값은 크게 3가지로 나눌 수 있다.<br />
+빨강이 기록해놓은 0.1, 초록이 기록해놓은 0.2, 그 외의 부분은 1.0이다.<br />
+따라서 ZTest (0.3 &lt;= 0.1), (0.3 &lt;= 0.2)는 실패하고, (0.3 &lt;= 1.0)은 성공하여 빨강, 초록이 위치하지 않은 픽셀에만 파란색의 픽셀을 그리고 해당 부분의 ZBuffer에 0.3을 기록한다.</p>
+
+  <p><br /></p>
+
+  <h3 id="section-1">(2) 파 -&gt; 초 -&gt; 빨</h3>
+
+  <p>파랑이 그려질 때 ZBuffer에는 모두 1.0이므로 ZTest를 (0.3 &lt;= 1.0)로 모두 성공하고, ZBuffer에서 파란색 오브젝트가 존재하는 픽셀들의 ZBuffer에 0.3을 기록한다.</p>
+
+  <p>초록이 그려질 때 ZBuffer의 값은 파랑이 위치한 픽셀의 0.3, 그 외의 부분에는 1.0만 존재하므로 ZTest는 (0.2 &lt;= 0.3), (0.2 &lt;= 1.0)으로 모두 성공하며, 초록이 존재하는 부분의 ZBuffer에 0.2를 기록한다.</p>
+
+  <p>빨강이 그려질 때 ZBuffer의 값은 초록(0.2), 파랑(0.3), 나머지(1.0)이므로 ZTest는 (0.1 &lt;= 0.2), (0.1 &lt;= 0.3), (0.1 &lt;= 1.0)으로 모두 성공하며, 빨강이 존재하는 부분의 ZBuffer에 0.1을 기록한다.</p>
+
+  <p><br /></p>
+
+  <h3 id="section-2">기타</h3>
+
+  <p>초 -&gt; 파 -&gt; 빨, 빨 -&gt; 파 -&gt; 초, … 등등 모두 결과는 같다.</p>
+
+</details>
+
 <p><br /></p>
 
 <h3 id="2-equal"><strong>[2] Equal</strong></h3>
@@ -1658,17 +1739,13 @@ Source Code
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109785694-b8d29080-7c4f-11eb-9e5e-b27c4fde27d7.png" alt="image" /></p>
 
-<p>렌더 큐를 1999로 설정하여 다른 오브젝트보다 먼저 그리는 경우, 그리는 순간에는 아무 것도 없으므로</p>
+<p>렌더 큐를 1999로 설정하여 다른 오브젝트보다 먼저 그리는 경우, 그리는 순간에는 아무 것도 없기 때문에</p>
 
-<p>초록색(0.2) &lt; 기본(1.0) 이므로 초록색 오브젝트는 그려지지 않는다.</p>
+<p>초록색(0.2) &lt; 기본(1.0) 이므로 초록색 오브젝트는 그려지지 않는다. (모든 픽셀에서 ZTest 실패)</p>
 
-<p>그래도 ZWrite를 하기 때문에, 파란색 오브젝트를 그리는 순간에 초록색과 파란색이 겹치는 위치에는 파란색(0.3)보다 초록색(0.2)가 더 작으므로 초록색을 그려줘야 하는 게 맞다고 생각했는데</p>
+<p>ZTest를 모두 실패했으므로, ZWrite를 해도 ZBuffer에 아무것도 쓰지 못한 것이다.</p>
 
-<p>아무래도 ZTest의 결과가 ZWrite에 영향을 미치는 것 같다.</p>
-
-<p>ZTest에서 초록색 오브젝트를 하나도 그리지 못했으므로 ZWrite를 해도 깊이 버퍼에 아무것도 쓰지 못한 듯하다.</p>
-
-<p>그래서 초록색보다 나중에 그려진 파란색이 ZTest <code class="language-plaintext highlighter-rouge">LEqual</code>임에도 불구하고, 초록색과 겹쳐진 부분에서 초록색을 인식하지 못하고 자신을 그린 것으로 보인다.</p>
+<p>그래서 빨간색과 파란색을 그리는 순간에도 ZBuffer에는 아무 것도 없으므로 빨간색과 파란색은 <code class="language-plaintext highlighter-rouge">LEqual</code>에 따라, 겹치는 부분에서는 빨간색이 앞에 그려진다.</p>
 
 <p><br /></p>
 
@@ -1676,9 +1753,11 @@ Source Code
 
 <p>렌더 큐를 2001로 설정하여 다른 오브젝트보다 나중에 그리는 경우,</p>
 
+<p>ZTest를 수행했을 때</p>
+
 <p>빨간색과 겹치는 부분에는 빨간색(0.1) &lt; 초록색(0.2) 이므로 초록색을 그린다.</p>
 
-<p>파란색과 겹치는 부분에는 파란색(0.3) &gt; 초록색(0.2) 이므로 파란색을 그린다.</p>
+<p>파란색과 겹치는 부분에는 파란색(0.3) &gt; 초록색(0.2) 이므로 그려지지 않는다.</p>
 
 <p>다른 오브젝트와 겹치지 않는 부분에는 기본(1.0) &gt; 초록색(0.2)이므로 그려지지 않는다.</p>
 
@@ -1762,7 +1841,7 @@ Source Code
 
 <p>렌더 큐 2001인 경우(나중에 그려지는 경우)</p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109814137-7a4dcd80-7c71-11eb-8609-78fa6a7cc7d1.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109924893-54253d80-7d04-11eb-8f11-013b5fb2cc1b.png" alt="image" /></p>
 
 <p>초록색을 그리는 상황에는 이미 빨간색, 파란색이 자신들의 깊이 값을 ZBuffer에 기록해놓은 상태이다.</p>
 
@@ -1801,13 +1880,13 @@ Source Code
 
 <p>알파 소팅 방식에 따라 피벗 지점이 카메라로부터 멀리 있는 오브젝트부터 그려내는데,</p>
 
-<p>눈으로 보기에는 가까이 있는 것(초록색 풀)이 카메라로부터는 더 멀리 있다고 판정될 때 위처럼 된다.</p>
+<p>픽셀 상으로 가까이 있는 것(초록색 풀)이 피벗 거리는 더 멀리 있다고 판정될 때 위처럼 된다.</p>
 
 <p>알파 소팅에 의해 초록색 풀을 먼저 그리고 ZWrite로 초록색 풀의 모든 픽셀(완전히 투명한 부분 포함)을 ZBuffer에 기록한 상태에서</p>
 
 <p>빨간색 풀의 ZTest를 할 때, 초록색 풀과 겹치는 부분에서는 당연히 초록색 풀의 픽셀이 더 가까이 있으니까</p>
 
-<p>ZTest <code class="language-plaintext highlighter-rouge">LEqual</code>에 따라 초록색 풀 &lt; 빨간색 풀이므로 초록색 풀은 그리고, 빨간색 풀은 무시한다.</p>
+<p>ZTest <code class="language-plaintext highlighter-rouge">LEqual</code>로 비교했을 때 초록색 풀 &lt; 빨간색 풀이므로 ZTest를 실패하여 빨간색 풀은 그려지지 않는다.</p>
 
 <p>결국 “피벗은 더 멀리 있는데 픽셀은 더 가까이 있는” 어이없는 현상에 의해 발생하는 문제.</p>
 
@@ -1911,7 +1990,7 @@ Source Code
 
 <p><br /></p>
 
-<p>스텐실 테스트는 ZTest처럼 먼저 그려진 오브젝트에 먼저 수행된다.</p>
+<p>스텐실 테스트는 ZTest와 마찬가지로, 먼저 그려진 오브젝트에 먼저 수행된다.</p>
 
 <p>스텐실 버퍼의 모든 값은 8비트(0 ~ 255)의 값을 가지며, 기본적으로 0으로 초기화되어 있다.</p>
 
@@ -1980,7 +2059,7 @@ Source Code
   </tbody>
 </table></div>
 
-<h2 id="비교-함수comp"><strong>비교 함수(Comp)</strong></h2>
+<h2 id="비교-함수comp"><strong>비교 함수(<code class="language-plaintext highlighter-rouge">Comp</code>)</strong></h2>
 
 <div class="table-wrapper"><table>
   <thead>
@@ -1996,7 +2075,7 @@ Source Code
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Always</code></td>
-      <td>스텐실 테스트를 항성 성공하도록 만든다.</td>
+      <td>스텐실 테스트를 항상 성공하도록 만든다.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Greater</code></td>
@@ -2025,7 +2104,7 @@ Source Code
   </tbody>
 </table></div>
 
-<h2 id="스텐실-동작"><strong>스텐실 동작</strong></h2>
+<h2 id="스텐실-동작pass-fail-zfail"><strong>스텐실 동작(<code class="language-plaintext highlighter-rouge">Pass</code>, <code class="language-plaintext highlighter-rouge">Fail</code>, <code class="language-plaintext highlighter-rouge">ZFail</code>)</strong></h2>
 
 <div class="table-wrapper"><table>
   <thead>
@@ -2074,71 +2153,435 @@ Source Code
 
 <h2 id="스텐실의-대표적인-활용"><strong>스텐실의 대표적인 활용</strong></h2>
 
-<h3 id="1-마스크"><strong>[1] 마스크</strong></h3>
-
-<p>특정 오브젝트(마스크)에게 가려진 경우에만 보이게 한다.</p>
-
-<p><br /></p>
+<h2 id="1-마스킹"><strong>[1] 마스킹</strong></h2>
 
 <ul>
-  <li>대상 오브젝트(마스크에게 가려져야 보이는 오브젝트)
-    <ul>
-      <li>마스크가 카메라와 이 오브젝트 사이에 있어야 보인다.</li>
-    </ul>
-  </li>
+  <li>특정 오브젝트(마스크)에게 가려진 경우에만 보이게 한다.</li>
 </ul>
 
-<pre><code class="language-shader">Stencil
-{
-    Ref 1      // 이 쉐이더는 1번마
-    Comp Equal // 버퍼 값이 1인 픽셀에만 그린다
-}
-</code></pre>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109963895-48e80700-7d30-11eb-8de2-8ec9ff401f36.gif" alt="2021_0304_Stencil01" /></p>
 
 <p><br /></p>
+
+<h3 id="타겟-오브젝트"><strong>타겟 오브젝트</strong></h3>
+<ul>
+  <li>마스크에게 가려져야 보이는 오브젝트</li>
+  <li>마스크가 카메라와 이 오브젝트 사이에 있어야 보인다.</li>
+</ul>
+
+<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="n">Stencil</span>
+<span class="p">{</span>
+    <span class="n">Ref</span> <span class="mi">1</span>      <span class="c1">// 1번으로 설정</span>
+    <span class="n">Comp</span> <span class="n">Equal</span> <span class="c1">// 버퍼 값이 1인 픽셀에만 그린다</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<details>
+  <summary> 
+StencilTarget01.shader
+</summary>
+
+  <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+</pre></td><td class="rouge-code"><pre><span class="n">Shader</span> <span class="s">"Custom/StencilTarget01"</span>
+<span class="p">{</span>
+    <span class="n">Properties</span>
+    <span class="p">{</span>
+        <span class="n">_Color</span> <span class="p">(</span><span class="s">"Color"</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">_MainTex</span> <span class="p">(</span><span class="s">"Albedo (RGB)"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"white"</span> <span class="p">{}</span>
+    <span class="p">}</span>
+    <span class="n">SubShader</span>
+    <span class="p">{</span>
+        <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span><span class="o">=</span><span class="s">"Opaque"</span> <span class="p">}</span>
+
+        <span class="n">Stencil</span>
+        <span class="p">{</span>
+            <span class="n">Ref</span> <span class="mi">1</span>
+            <span class="n">Comp</span> <span class="n">Equal</span> <span class="c1">// 스텐실 버퍼가 1인 곳에만 렌더링</span>
+        <span class="p">}</span>
+
+        <span class="n">CGPROGRAM</span>
+        <span class="cp">#pragma surface surf Lambert
+</span>        <span class="cp">#pragma target 3.0
+</span>
+        <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
+
+        <span class="k">struct</span> <span class="n">Input</span>
+        <span class="p">{</span>
+            <span class="kt">float2</span> <span class="n">uv_MainTex</span><span class="p">;</span>
+        <span class="p">};</span>
+
+        <span class="n">fixed4</span> <span class="n">_Color</span><span class="p">;</span>
+
+        <span class="kt">void</span> <span class="n">surf</span> <span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="k">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">fixed4</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">tex2D</span> <span class="p">(</span><span class="n">_MainTex</span><span class="p">,</span> <span class="n">IN</span><span class="p">.</span><span class="n">uv_MainTex</span><span class="p">)</span> <span class="o">*</span> <span class="n">_Color</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Albedo</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Alpha</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ENDCG</span>
+    <span class="p">}</span>
+    <span class="n">FallBack</span> <span class="s">"Diffuse"</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<h3 id="마스크-1"><strong>마스크 (1)</strong></h3>
+<ul>
+  <li>마스크 뒤에 대상 오브젝트가 있으면 보이게 한다.</li>
+  <li>마스크 오브젝트를 화면에 렌더링하지 않는다.</li>
+  <li>항상 대상보다 먼저 그려져야 하므로 렌더큐큐 1999번에 렌더링한다.</li>
+</ul>
+
+<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="n">Stencil</span>
+<span class="p">{</span>
+    <span class="n">Ref</span> <span class="mi">1</span>        <span class="c1">// 1번으로 설정</span>
+    <span class="n">Comp</span> <span class="n">Never</span>   <span class="c1">// 이녀석은 절대 안그린다</span>
+    <span class="n">Fail</span> <span class="n">Replace</span> <span class="c1">// 못그린 픽셀에는 버퍼에 1을 기록한다</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<details>
+  <summary> 
+StencilMask01.shader
+</summary>
+
+  <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre></td><td class="rouge-code"><pre><span class="n">Shader</span> <span class="s">"Custom/StencilMask01"</span>
+<span class="p">{</span>
+    <span class="n">Properties</span> <span class="p">{}</span>
+    <span class="n">SubShader</span>
+    <span class="p">{</span>
+        <span class="n">Tags</span> 
+        <span class="p">{</span>
+            <span class="s">"RenderType"</span><span class="o">=</span><span class="s">"Opaque"</span>
+            <span class="s">"Queue"</span><span class="o">=</span><span class="s">"Geometry-1"</span> <span class="c1">// 반드시 대상보다 먼저 그려져야 하므로</span>
+        <span class="p">}</span>
+
+        <span class="n">Stencil</span>
+        <span class="p">{</span>
+            <span class="n">Ref</span> <span class="mi">1</span>
+            <span class="n">Comp</span> <span class="n">Never</span>   <span class="c1">// 항상 렌더링 하지 않음</span>
+            <span class="n">Fail</span> <span class="n">Replace</span> <span class="c1">// 렌더링 실패한 부분의 스텐실 버퍼에 1을 채움</span>
+        <span class="p">}</span>
+
+        <span class="n">CGPROGRAM</span>
+        <span class="cp">#pragma surface surf nolight noforwardadd nolightmap noambient novertexlights noshadow
+</span>
+        <span class="k">struct</span> <span class="n">Input</span> <span class="p">{</span> <span class="kt">float4</span> <span class="n">color</span><span class="o">:</span><span class="nb">COLOR</span><span class="p">;</span> <span class="p">};</span>
+
+        <span class="kt">void</span> <span class="n">surf</span> <span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="k">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">){}</span>
+        <span class="kt">float4</span> <span class="n">Lightingnolight</span><span class="p">(</span><span class="n">SurfaceOutput</span> <span class="n">s</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">lightDir</span><span class="p">,</span> <span class="n">float</span> <span class="n">atten</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="kt">float4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">ENDCG</span>
+    <span class="p">}</span>
+    <span class="n">FallBack</span> <span class="s">""</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<h3 id="마스크-2"><strong>마스크 (2)</strong></h3>
 
 <ul>
-  <li>마스크 오브젝트 (1)
-    <ul>
-      <li>마스크 오브젝트를 화면에 그리지 않는 경우</li>
-    </ul>
-  </li>
+  <li>위의 마스킹 기능을 하면서, 동시에 마스크 오브젝트도 반투명으로 렌더링하려 했지만</li>
+  <li>유니티 쉐이더는 하나의 쉐이더에 렌더 큐를 여러 개 지정할 수 없다.</li>
+  <li>따라서 마스크 오브젝트에 마테리얼을 2개 사용해서 첫 번째는 위의 마스크, 두 번째에는 반투명 마테리얼을 사용하였다.</li>
 </ul>
 
-<pre><code class="language-shader">Stencil
-{
-    Ref 1        // 1번으로 설정
-    Comp Never   // 이녀석은 절대 안그린다
-    Fail Replace // 못그린 픽셀에는 버퍼에 1을 기록한다
-}
-</code></pre>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109963857-3c63ae80-7d30-11eb-8893-5e1767fd1349.gif" alt="2021_0304_Stencil01_MultiMat" /></p>
 
 <p><br /></p>
 
-<p>https://m.blog.naver.com/plasticbag0/221299492724</p>
+<h2 id="2-실루엣"><strong>[2] 실루엣</strong></h2>
 
 <ul>
-  <li>마스크 오브젝트 (2)
-    <ul>
-      <li>마스크 오브젝트를 화면에 그리는 경우</li>
-      <li>투명 쉐이더를 써야 한다.</li>
-      <li>다른 불투명 오브젝트처럼 자연스럽게 보여야 하므로…..? TODO !!</li>
-    </ul>
-  </li>
+  <li>가려지지 않은 경우에는 정상적으로 렌더링한다.</li>
+  <li>(다른 모든 오브젝트에게) 가려진 경우에는 단색의 실루엣을 보여준다.</li>
 </ul>
 
-<pre><code class="language-shader">Stencil
-{
-    Ref 1      // 1번으로 설정
-    // TODO
-}
-</code></pre>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109963897-49809d80-7d30-11eb-8fbc-d2e6e32b21e8.gif" alt="2021_0304_Stencil02" /></p>
 
 <p><br /></p>
 
-<h3 id="2-실루엣"><strong>[2] 실루엣</strong></h3>
+<h3 id="패스-1"><strong>패스 1</strong></h3>
+<ul>
+  <li>일반적인 Opaque로 렌더링한다.</li>
+  <li>스텐실 버퍼에 값을 기록한다.</li>
+</ul>
 
-<p>(다른 모든 오브젝트에게) 가려진 경우에만 보이는 실루엣을 만든다.</p>
+<h2 id="패스-2"><strong>패스 2</strong></h2>
+<ul>
+  <li>ZWrite는 필요 없으므로 하지 않는다.</li>
+  <li>가려진 경우에만 렌더링한다. (ZTest Greater)</li>
+  <li>패스 1에서 이미 렌더링된 부분(Ref 2)에는 실루엣을 그리지 않도록 스텐실을 설정한다. (Comp NotEqual)</li>
+</ul>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+Silhouette.shader
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+</pre></td><td class="rouge-code"><pre><span class="n">Shader</span> <span class="s">"Custom/Silhouette"</span>
+<span class="p">{</span>
+    <span class="n">Properties</span>
+    <span class="p">{</span>
+        <span class="nf">_SilhouetteColor</span> <span class="p">(</span><span class="s">"Silhouette Color"</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.5</span><span class="p">)</span>
+
+        <span class="p">[</span><span class="n">Space</span><span class="p">]</span>
+        <span class="nf">_Color</span> <span class="p">(</span><span class="s">"Color"</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
+        <span class="nf">_MainTex</span> <span class="p">(</span><span class="s">"Albedo (RGB)"</span><span class="p">,</span> <span class="m">2D</span><span class="p">)</span> <span class="p">=</span> <span class="s">"white"</span> <span class="p">{}</span>
+    <span class="p">}</span>
+    <span class="n">SubShader</span>
+    <span class="p">{</span>
+        <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span><span class="p">=</span><span class="s">"Opaque"</span> <span class="p">}</span>
+        
+        <span class="cm">/****************************************************************
+        *                            Pass 1
+        *****************************************************************
+        * - 메인 패스
+        * - 스텐실 버퍼에 Ref 2 기록
+        *****************************************************************/</span>
+        <span class="n">ZWrite</span> <span class="n">On</span>
+
+        <span class="n">Stencil</span>
+        <span class="p">{</span>
+            <span class="n">Ref</span> <span class="m">2</span>
+            <span class="n">Pass</span> <span class="n">Replace</span> <span class="c1">// Stencil, Z Test 모두 성공한 부분에 2 기록</span>
+        <span class="p">}</span>
+
+        <span class="n">CGPROGRAM</span>
+        <span class="err">#</span><span class="n">pragma</span> <span class="n">surface</span> <span class="n">surf</span> <span class="n">Lambert</span>
+        <span class="err">#</span><span class="n">pragma</span> <span class="n">target</span> <span class="m">3.0</span>
+        
+        <span class="n">fixed4</span> <span class="n">_Color</span><span class="p">;</span>
+        <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
+
+        <span class="k">struct</span> <span class="nc">Input</span>
+        <span class="p">{</span>
+            <span class="n">float2</span> <span class="n">uv_MainTex</span><span class="p">;</span>
+        <span class="p">};</span>
+
+        <span class="k">void</span> <span class="nf">surf</span> <span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="n">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">fixed4</span> <span class="n">c</span> <span class="p">=</span> <span class="nf">tex2D</span> <span class="p">(</span><span class="n">_MainTex</span><span class="p">,</span> <span class="n">IN</span><span class="p">.</span><span class="n">uv_MainTex</span><span class="p">)</span> <span class="p">*</span> <span class="n">_Color</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Albedo</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Alpha</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ENDCG</span>
+
+        <span class="cm">/****************************************************************
+        *                            Pass 2
+        *****************************************************************
+        * - Zwrite off
+        * - ZTest Greater : 다른 물체에 가려진 부분에 단색 실루엣 렌더링
+        * - Stencil NotEqual : 다른 실루엣이 그려진 부분에 덮어쓰지 않기
+        *****************************************************************/</span>
+        <span class="n">ZWrite</span> <span class="n">Off</span>
+        <span class="n">ZTest</span> <span class="n">Greater</span> <span class="c1">// 가려진 부분에 항상 그린다</span>
+
+        <span class="n">Stencil</span>
+        <span class="p">{</span>
+            <span class="n">Ref</span> <span class="m">2</span>
+            <span class="n">Comp</span> <span class="n">NotEqual</span> <span class="c1">// 패스 1에서 렌더링 성공한 부분에는 그리지 않도록 한다</span>
+        <span class="p">}</span>
+
+        <span class="n">CGPROGRAM</span>
+        <span class="err">#</span><span class="n">pragma</span> <span class="n">surface</span> <span class="n">surf</span> <span class="n">nolight</span> <span class="n">alpha</span><span class="p">:</span><span class="n">fade</span> <span class="n">noforwardadd</span> <span class="n">nolightmap</span> <span class="n">noambient</span> <span class="n">novertexlights</span> <span class="n">noshadow</span>
+        
+        <span class="k">struct</span> <span class="nc">Input</span> <span class="p">{</span> <span class="n">float4</span> <span class="n">color</span><span class="p">:</span><span class="n">COLOR</span><span class="p">;</span> <span class="p">};</span>
+        <span class="n">float4</span> <span class="n">_SilhouetteColor</span><span class="p">;</span>
+        
+        <span class="k">void</span> <span class="nf">surf</span> <span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="n">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Emission</span> <span class="p">=</span> <span class="n">_SilhouetteColor</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Alpha</span> <span class="p">=</span> <span class="n">_SilhouetteColor</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">float4</span> <span class="nf">Lightingnolight</span><span class="p">(</span><span class="n">SurfaceOutput</span> <span class="n">s</span><span class="p">,</span> <span class="n">float3</span> <span class="n">lightDir</span><span class="p">,</span> <span class="kt">float</span> <span class="n">atten</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="nf">float4</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">Emission</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">Alpha</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">ENDCG</span>
+    <span class="p">}</span>
+    <span class="n">FallBack</span> <span class="s">"Diffuse"</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
@@ -2221,19 +2664,19 @@ Source Code
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=유니티 Depth(Z), Alpha, Stencil 개념 익히기 - Rito15&url=https://rito15.github.io/posts/unity-depth-alpha-stencil/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=유니티 반투명, 스텐실 개념 익히기 - Rito15&url=https://rito15.github.io/posts/unity-transparent-stencil/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=유니티 Depth(Z), Alpha, Stencil 개념 익히기 - Rito15&u=https://rito15.github.io/posts/unity-depth-alpha-stencil/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=유니티 반투명, 스텐실 개념 익히기 - Rito15&u=https://rito15.github.io/posts/unity-transparent-stencil/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=유니티 Depth(Z), Alpha, Stencil 개념 익히기 - Rito15&url=https://rito15.github.io/posts/unity-depth-alpha-stencil/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=유니티 반투명, 스텐실 개념 익히기 - Rito15&url=https://rito15.github.io/posts/unity-transparent-stencil/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -2296,6 +2739,11 @@ Source Code
         
         
         
+        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-particle-system-example-01/">파티클 시스템 예제 - 01</a></li>
       
         
@@ -2312,11 +2760,6 @@ Source Code
         
         
         <li><a href="/posts/unity-particle-system-example-04-fireball/">파티클 시스템 예제 - 04 - Fire Ball</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-fps-tps-character/">1인칭, 3인칭 전환 가능한 캐릭터 제작하기</a></li>
       
 
       </ul>

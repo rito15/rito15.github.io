@@ -1,5 +1,5 @@
 ---
-title: 유니티 Depth(Z), Alpha, Stencil 개념 익히기
+title: 유니티 반투명, 스텐실 개념 익히기
 author: Rito15
 date: 2021-02-06 01:29:00 +09:00
 categories: [Unity Shader, Shader Study]
@@ -18,7 +18,7 @@ mermaid: true
 - [5. 파티클 쉐이더 만들어보기](#파티클-쉐이더-만들어보기)
 - [6. 깨끗한 알파 블렌딩 쉐이더 만들기](#깨끗한-알파-블렌딩-쉐이더-만들기)
 - [7. ZTest와 ZWrite](#ztest와-zwrite)
-- [8. 알파 블렌딩 쉐이더에서 발생하는 문제점들(#알파-블렌딩-쉐이더에서-발생하는-문제점들)
+- [8. 알파 블렌딩 쉐이더에서 발생하는 문제점들](#알파-블렌딩-쉐이더에서-발생하는-문제점들)
 - [9. 스텐실](#스텐실)
 - [10. References](#references)
 
@@ -30,7 +30,7 @@ mermaid: true
 
 **불투명(Opaque)**과 **반투명(Transparent)** 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.
 
-유니티에서는 오브젝트를 렌더링하는 순서를 **렌더 큐(Render Queue)**를 통해 정수 값으로 지정하는데, 
+유니티에서는 오브젝트를 렌더링하는 순서를 쉐이더와 마테리얼의 **렌더 큐(Render Queue)**를 통해 정수 값으로 지정하는데, 
 지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 **2000**, Transparent는 **3000**의 값을 가진다.
 
 따라서 불투명 오브젝트가 전부 그려진 후에 반투명 오브젝트가 그려진다.
@@ -52,15 +52,15 @@ mermaid: true
 ![image](https://user-images.githubusercontent.com/42164422/107073497-cfd9ba80-682a-11eb-922e-9766ea42556f.png){:.normal}
 
 불투명 오브젝트를 그리기 위해서 우선 Z버퍼를 참조한다.
-각각의 픽셀마다 얻어낸 Z버퍼의 값을 통해 겹쳐 있는 픽셀들 중 가장 가까운 오브젝트의 픽셀만 화면에 그리게 되는데, 이를 **Z Test**(Z Read)라고 한다.
+각각의 픽셀마다 얻어낸 Z버퍼의 깊이 값과 자신의 깊이를 비교하여 픽셀들을 그릴지 안그릴지 여부를 결정하게 되는데, 이를 **Z Test**(Z Read)라고 한다.
 
-따라서 불투명을 그릴 때는 해당 픽셀에서 가장 앞에 있는 오브젝트의 픽셀만 그리고 뒤에 있는 픽셀은 그리지 않음으로써 자원을 절약하게 된다.
+따라서 불투명을 그릴 때는 해당 픽셀에서 겹쳐 있는 픽셀들 중에 가장 앞에 있는 오브젝트의 픽셀만 그리고, 뒤에 있는 픽셀은 그리지 않음으로써 자원을 절약하게 된다.
 
-### **+ 만약 동일한 Z 값을 가진다면?**
+### **+ 만약 동일한 깊이 값을 가진다면?**
 
 ![image](https://user-images.githubusercontent.com/42164422/107071993-e2eb8b00-6828-11eb-8f76-6ea2fdef82e0.png){:.normal}
 
-어떤 것을 먼저 그릴지 알 수 없으므로 위처럼 보이게 되며, 이를 **Z fighting**이라고 한다.
+어떤 것을 먼저 그릴지 알 수 없으므로 위처럼 깨져 보이게 되며, 이를 **Z fighting**이라고 한다.
 
 <br>
 
@@ -74,9 +74,13 @@ mermaid: true
 
 ![image](https://user-images.githubusercontent.com/42164422/109839300-52b72f00-7c8a-11eb-82d2-37b927bda1fc.png)
 
-이런 문제가 발생할 수 있기 때문에, 불투명 오브젝트의 계산을 모두 끝내고 반투명 오브젝트를 계산하게 되는 것이다.
+반투명 오브젝트가 Z버퍼에 자신의 깊이를 기록해놓았고, 그 뒤에 그려지는 불투명 오브젝트는 이를 비교하여 겹친 부분에는 자신의 픽셀을 그리지 않도록 하여 위처럼 보이게 된다.
 
-그리고 같은 픽셀에 존재하는 모든 반투명 오브젝트의 픽셀들은 전부 화면에 그려지며, 이를 **오버드로우(Overdraw)**라고 한다.
+따라서 이런 문제 때문에 불투명 오브젝트를 모두 그리고 반투명 오브젝트를 그리게 된다.
+
+그리고 불투명 오브젝트와 달리 같은 픽셀에 존재하는 모든 반투명 오브젝트의 픽셀들은 앞에서 불투명으로 가려지지 않은 이상 전부 화면에 그려지며, 이를 **오버드로우(Overdraw)**라고 한다.
+
+오버드로우는 GPU 성능을 잡아먹는 주범 중 하나이기도 하다.
 
 <br>
 
@@ -108,7 +112,9 @@ mermaid: true
 
 그런데 이번에는 똑같은 문제가 반투명 오브젝트 사이에서도 발생한다.
 
-따라서 이를 해결하기 위해, 반투명 오브젝트를 그릴 때 카메라로부터 피벗까지의 거리를 기준으로 멀리 있는 오브젝트부터 그리도록 하여 앞의 오브젝트를 먼저 그려서 뒤의 오브젝트가 가려지는 일이 발생하지 않게 하는 것이다.
+따라서 이를 해결하기 위해 반투명 오브젝트를 그릴 때 카메라로부터 피벗까지의 거리를 기준으로 멀리 있는 오브젝트부터 그리도록 하여,
+
+앞의 오브젝트를 먼저 그려서 뒤의 오브젝트가 가려지는 일이 발생하지 않게 하는 것이다.
 
 <br>
 
@@ -725,7 +731,9 @@ Shader "Custom/Alpha2Pass"
 
 ![image](https://user-images.githubusercontent.com/42164422/107155608-b4061e00-69bc-11eb-8c5c-6c3752e5c321.png){:.normal}
 
-- 깔끔하게 그려지는 것을 볼 수 있다.
+- 좌 : 2 Pass / 우 : 기본
+
+- 내부가 드러나지 않고 깔끔하게 그려지는 것을 볼 수 있다.
 
 <br>
 
@@ -736,7 +744,7 @@ Shader "Custom/Alpha2Pass"
 
 예를 들면 불투명은 2000, 스카이박스는 2500, 반투명은 3000이다.
 
-그리고 대개의 경우에는 렌더 큐의 값이 같으면 무작위 순서로 그리는데, 반투명 오브젝트 만큼은 알파 소팅 과정을 통해 멀리서부터 그린다. (그래서 더 비싸다)
+그리고 대부분의 경우에는 렌더 큐의 값이 같으면 무작위 순서로 그리는데, 반투명 오브젝트 만큼은 알파 소팅 과정을 통해 멀리서부터 그린다. (그래서 더 비싸다)
 
 <br>
 
@@ -762,6 +770,8 @@ Shader "Custom/Alpha2Pass"
 
 ## **ZBuffer**
 
+![image](https://user-images.githubusercontent.com/42164422/109923539-42db3180-7d02-11eb-8b1e-c6152cfcf71d.png)
+
 ZBuffer는 화면의 각 픽셀마다 카메라와 가장 가까운 오브젝트의 표면을 0.0 ~ 1.0 값으로 기록해놓은 텍스쳐이다.
 
 카메라의 Near Plane(뷰 프러스텀 내에서 카메라와 가장 가까운 위치)에 있으면 0.0 값을 갖고,
@@ -777,19 +787,21 @@ Far Plane(뷰 프러스텀 내에서 카메라와 가장 먼 위치)에 있으�
 
 ZWrite는 오브젝트가 그려질 때 해당 픽셀에 이미 적힌 깊이 값과 자신의 깊이 값을 비교하여, 더 작은 값을 ZBuffer의 해당 픽셀에 기록하는 것을 의미한다.
 
-그렇게 되면 결국 모든 오브젝트의 깊이 값을 기록했을 때 ZBuffer에는 해당 픽셀마다 카메라에서 가장 가까운 오브젝트의 깊이 값만을 갖게 된다.
+그렇게 되면 결국 모든 오브젝트의 깊이 값을 기록했을 때 ZBuffer는 픽셀마다 카메라에서 가장 가까운 오브젝트의 깊이 값만을 갖게 된다.
 
-유니티에서는 `ZWrite On`, `ZWrite Off` 옵션으로 쉐이더에서 해당 오브젝트의 ZWrite를 수행할지 여부를 결정할 수 있다.
+유니티에서는 쉐이더에 `ZWrite On`, `ZWrite Off`를 작성하여 해당 오브젝트의 ZWrite를 수행할지 여부를 결정할 수 있다.
 
 <br>
 
 ## **ZTest**
 
-ZTest는 ZRead라고도 한다. 오브젝트가 그려질 때 ZBuffer의 해당 픽셀에 이미 기록된 깊이 값과 자신의 깊이 값을 비교하여, 둘 중 어떤 픽셀을 화면에 그릴지 결정하게 된다.
+ZTest는 ZRead라고도 한다. 오브젝트가 그려질 때 ZBuffer의 해당 픽셀에 이미 기록된 깊이 값과 자신의 깊이 값을 비교하여, 자신의 픽셀을 화면에 그릴지 결정하게 된다.
 
 유니티에서는 ZTest `Less`, `Greater`, `LEqual`, `GEqual`, `Equal`, `NotEqual`, `Always` 옵션으로 쉐이더에서 해당 오브젝트의 ZTest를 어떻게 수행할지 결정 할 수 있다.
 
-다시 말해, "ZBuffer에 이미 기록된 값과 자신의 깊이 값 중 어떤 값을 갖는 녀석을 그릴 것인가"를 결정하는 연산을 나타낸다.
+다시 말해, "ZBuffer에 이미 기록된 값에 자신의 깊이 값을 비교하여 자신의 픽셀을 렌더링할지 여부"를 결정하는 연산을 나타낸다.
+
+예를 들어 `Less`일 경우, 해당 픽셀에 존재하는 자신의 깊이 값이 ZBuffer에 기록된 깊이 값보다 작으면(Less) 자신의 픽셀을 화면에 그린다.
 
 그리고 `Always`는 그냥, 그린다. 비교 안하고 아무튼 그냥 자기를 그린다.
 
@@ -798,8 +810,6 @@ ZTest는 ZRead라고도 한다. 오브젝트가 그려질 때 ZBuffer의 해당 
 ## **Note**
 
 알아둬야 할 점은, 오브젝트를 그릴 때 ZTest를 먼저 수행한 다음에 ZWrite를 한다는 것이다.
-
-이게 왜 중요하냐면, 유니티의 ZTest에는 Less, Greater 뿐만 아니라 Equal 비교가 있기 때문이다.
 
 <br>
 
@@ -817,7 +827,13 @@ ZTest는 ZRead라고도 한다. 오브젝트가 그려질 때 ZBuffer의 해당 
 
 그러니까 ZTest에는 자기 자신의 ZWrite가 영향을 미치지 않는다. (중요)
 
-대신, ZWrite에는 ZTest의 결과가 영향을 미치는 것 같다. (이건 추측, 밑의 예시[3]에서 보충)
+대신, ZWrite에는 ZTest의 결과가 영향을 미친다.
+
+ZTest의 비교 연산이 참의 값을 가져서 자신의 픽셀을 그리는데 성공했을 때, 이를 "ZTest를 통과했다"라고 한다.
+
+반대로, ZTest의 결과가 거짓이라 픽셀을 그리지 못했다면 "ZTest에 실패했다"고 하며
+
+**ZTest를 통과해야 ZWrite를 수행한다.**
 
 <br>
 
@@ -857,6 +873,39 @@ ZBuffer에 아무도 쓰지 않았으므로, ZBuffer의 모든 값은 1.0인 상
 
 그려지는 순서에 관계 없이, 가장 가까운 오브젝트가 먼저 그려진다.
 
+<details>
+<summary markdown="span"> 
+그래도 자세히 살펴보자면..
+</summary>
+
+### (1) 빨 -> 초 -> 파
+
+빨강이 그려질 때 ZBuffer에는 모두 1.0이므로 ZTest를 (0.1 <= 1.0)로 모두 성공하고, ZBuffer에서 빨간색 오브젝트가 존재하는 픽셀들에 0.1을 기록한다.
+
+초록이 그려질 때 ZBuffer에서 빨간색 오브젝트와 겹치는 부분은 0.1이 기록되어 있으므로 ZTest를 (0.2 <= 0.1)로 실패하여 그리지 못하고, 다른 부분은 (0.2 <= 1.0)으로 성공하여, 해당 부분의 ZBuffer에 0.2를 기록한다.
+
+파랑이 그려질 때 ZBuffer의 값은 크게 3가지로 나눌 수 있다.<br>
+빨강이 기록해놓은 0.1, 초록이 기록해놓은 0.2, 그 외의 부분은 1.0이다.<br>
+따라서 ZTest (0.3 <= 0.1), (0.3 <= 0.2)는 실패하고, (0.3 <= 1.0)은 성공하여 빨강, 초록이 위치하지 않은 픽셀에만 파란색의 픽셀을 그리고 해당 부분의 ZBuffer에 0.3을 기록한다.
+
+<br>
+
+### (2) 파 -> 초 -> 빨
+
+파랑이 그려질 때 ZBuffer에는 모두 1.0이므로 ZTest를 (0.3 <= 1.0)로 모두 성공하고, ZBuffer에서 파란색 오브젝트가 존재하는 픽셀들의 ZBuffer에 0.3을 기록한다.
+
+초록이 그려질 때 ZBuffer의 값은 파랑이 위치한 픽셀의 0.3, 그 외의 부분에는 1.0만 존재하므로 ZTest는 (0.2 <= 0.3), (0.2 <= 1.0)으로 모두 성공하며, 초록이 존재하는 부분의 ZBuffer에 0.2를 기록한다.
+
+빨강이 그려질 때 ZBuffer의 값은 초록(0.2), 파랑(0.3), 나머지(1.0)이므로 ZTest는 (0.1 <= 0.2), (0.1 <= 0.3), (0.1 <= 1.0)으로 모두 성공하며, 빨강이 존재하는 부분의 ZBuffer에 0.1을 기록한다.
+
+<br>
+
+### 기타
+
+초 -> 파 -> 빨, 빨 -> 파 -> 초, ... 등등 모두 결과는 같다.
+
+</details>
+
 <br>
 
 ### **[2] Equal**
@@ -871,17 +920,13 @@ ZBuffer에 아무도 쓰지 않았으므로, ZBuffer의 모든 값은 1.0인 상
 
 ![image](https://user-images.githubusercontent.com/42164422/109785694-b8d29080-7c4f-11eb-9e5e-b27c4fde27d7.png)
 
-렌더 큐를 1999로 설정하여 다른 오브젝트보다 먼저 그리는 경우, 그리는 순간에는 아무 것도 없으므로
+렌더 큐를 1999로 설정하여 다른 오브젝트보다 먼저 그리는 경우, 그리는 순간에는 아무 것도 없기 때문에
 
-초록색(0.2) < 기본(1.0) 이므로 초록색 오브젝트는 그려지지 않는다.
+초록색(0.2) < 기본(1.0) 이므로 초록색 오브젝트는 그려지지 않는다. (모든 픽셀에서 ZTest 실패)
 
-그래도 ZWrite를 하기 때문에, 파란색 오브젝트를 그리는 순간에 초록색과 파란색이 겹치는 위치에는 파란색(0.3)보다 초록색(0.2)가 더 작으므로 초록색을 그려줘야 하는 게 맞다고 생각했는데
+ZTest를 모두 실패했으므로, ZWrite를 해도 ZBuffer에 아무것도 쓰지 못한 것이다.
 
-아무래도 ZTest의 결과가 ZWrite에 영향을 미치는 것 같다.
-
-ZTest에서 초록색 오브젝트를 하나도 그리지 못했으므로 ZWrite를 해도 깊이 버퍼에 아무것도 쓰지 못한 듯하다.
-
-그래서 초록색보다 나중에 그려진 파란색이 ZTest `LEqual`임에도 불구하고, 초록색과 겹쳐진 부분에서 초록색을 인식하지 못하고 자신을 그린 것으로 보인다.
+그래서 빨간색과 파란색을 그리는 순간에도 ZBuffer에는 아무 것도 없으므로 빨간색과 파란색은 `LEqual`에 따라, 겹치는 부분에서는 빨간색이 앞에 그려진다.
 
 <br>
 
@@ -889,9 +934,11 @@ ZTest에서 초록색 오브젝트를 하나도 그리지 못했으므로 ZWrite
 
 렌더 큐를 2001로 설정하여 다른 오브젝트보다 나중에 그리는 경우,
 
+ZTest를 수행했을 때
+
 빨간색과 겹치는 부분에는 빨간색(0.1) < 초록색(0.2) 이므로 초록색을 그린다.
 
-파란색과 겹치는 부분에는 파란색(0.3) > 초록색(0.2) 이므로 파란색을 그린다.
+파란색과 겹치는 부분에는 파란색(0.3) > 초록색(0.2) 이므로 그려지지 않는다.
 
 다른 오브젝트와 겹치지 않는 부분에는 기본(1.0) > 초록색(0.2)이므로 그려지지 않는다.
 
@@ -975,7 +1022,7 @@ ZBuffer에 자신과 같은 깊이 값이 이미 존재하면 자신은 그려�
 
 렌더 큐 2001인 경우(나중에 그려지는 경우)
 
-![image](https://user-images.githubusercontent.com/42164422/109814137-7a4dcd80-7c71-11eb-8609-78fa6a7cc7d1.png)
+![image](https://user-images.githubusercontent.com/42164422/109924893-54253d80-7d04-11eb-8f11-013b5fb2cc1b.png)
 
 초록색을 그리는 상황에는 이미 빨간색, 파란색이 자신들의 깊이 값을 ZBuffer에 기록해놓은 상태이다.
 
@@ -1014,14 +1061,14 @@ ZBuffer에 자신과 같은 깊이 값이 이미 존재하면 자신은 그려�
 
 알파 소팅 방식에 따라 피벗 지점이 카메라로부터 멀리 있는 오브젝트부터 그려내는데,
 
-눈으로 보기에는 가까이 있는 것(초록색 풀)이 카메라로부터는 더 멀리 있다고 판정될 때 위처럼 된다.
+픽셀 상으로 가까이 있는 것(초록색 풀)이 피벗 거리는 더 멀리 있다고 판정될 때 위처럼 된다.
 
 
 알파 소팅에 의해 초록색 풀을 먼저 그리고 ZWrite로 초록색 풀의 모든 픽셀(완전히 투명한 부분 포함)을 ZBuffer에 기록한 상태에서
 
 빨간색 풀의 ZTest를 할 때, 초록색 풀과 겹치는 부분에서는 당연히 초록색 풀의 픽셀이 더 가까이 있으니까
 
-ZTest `LEqual`에 따라 초록색 풀 < 빨간색 풀이므로 초록색 풀은 그리고, 빨간색 풀은 무시한다.
+ZTest `LEqual`로 비교했을 때 초록색 풀 < 빨간색 풀이므로 ZTest를 실패하여 빨간색 풀은 그려지지 않는다.
 
 결국 "피벗은 더 멀리 있는데 픽셀은 더 가까이 있는" 어이없는 현상에 의해 발생하는 문제.
 
@@ -1110,7 +1157,7 @@ ZBuffer에 깊이 값을 ZWrite로 쓰고 ZTest로 읽는 것처럼,
 
 <br>
 
-스텐실 테스트는 ZTest처럼 먼저 그려진 오브젝트에 먼저 수행된다.
+스텐실 테스트는 ZTest와 마찬가지로, 먼저 그려진 오브젝트에 먼저 수행된다.
 
 스텐실 버퍼의 모든 값은 8비트(0 ~ 255)의 값을 가지며, 기본적으로 0으로 초기화되어 있다.
 
@@ -1134,12 +1181,12 @@ ZBuffer에 깊이 값을 ZWrite로 쓰고 ZTest로 읽는 것처럼,
 |`Fail`|스텐실 테스트가 실패하면<br>버퍼의 값을 어떻게 할지 지정한다.|후술|Keep|
 |`Zfail`|스텐실 테스트를 통과했으나 Z 테스트를 실패하면<br>버퍼의 값을 어떻게 할지 지정한다.|후술|Keep|
 
-## **비교 함수(Comp)**
+## **비교 함수(`Comp`)**
 
 |종류|설명|
 |---|---|
 |`Never`|스텐실 테스트를 항상 실패하도록 만든다.|
-|`Always`|스텐실 테스트를 항성 성공하도록 만든다.|
+|`Always`|스텐실 테스트를 항상 성공하도록 만든다.|
 |`Greater`|(쉐이더 Ref 값 > 버퍼 값)인 픽셀만 화면에 그린다.|
 |`GEqual`|(쉐이더 Ref 값 >= 버퍼 값)인 픽셀만 화면에 그린다.|
 |`Less`|(쉐이더 Ref 값 < 버퍼 값)인 픽셀만 화면에 그린다.|
@@ -1147,7 +1194,7 @@ ZBuffer에 깊이 값을 ZWrite로 쓰고 ZTest로 읽는 것처럼,
 |`Equal`|(쉐이더 Ref 값 == 버퍼 값)인 픽셀만 화면에 그린다.|
 |`NotEqual`|(쉐이더 Ref 값 != 버퍼 값)인 픽셀만 화면에 그린다.|
 
-## **스텐실 동작**
+## **스텐실 동작(`Pass`, `Fail`, `ZFail`)**
 
 |종류|설명|
 |---|---|
@@ -1164,29 +1211,85 @@ ZBuffer에 깊이 값을 ZWrite로 쓰고 ZTest로 읽는 것처럼,
 
 ## **스텐실의 대표적인 활용**
 
-### **[1] 마스크**
+## **[1] 마스킹**
 
-특정 오브젝트(마스크)에게 가려진 경우에만 보이게 한다.
+- 특정 오브젝트(마스크)에게 가려진 경우에만 보이게 한다.
+
+![2021_0304_Stencil01](https://user-images.githubusercontent.com/42164422/109963895-48e80700-7d30-11eb-8de2-8ec9ff401f36.gif)
 
 <br>
 
-- 대상 오브젝트(마스크에게 가려져야 보이는 오브젝트)
-  - 마스크가 카메라와 이 오브젝트 사이에 있어야 보인다.
+### **타겟 오브젝트**
+ - 마스크에게 가려져야 보이는 오브젝트
+ - 마스크가 카메라와 이 오브젝트 사이에 있어야 보인다.
 
-```shader
+```hlsl
 Stencil
 {
-    Ref 1      // 이 쉐이더는 1번마
+    Ref 1      // 1번으로 설정
     Comp Equal // 버퍼 값이 1인 픽셀에만 그린다
 }
 ```
 
+<details>
+<summary markdown="span"> 
+StencilTarget01.shader
+</summary>
+
+```hlsl
+Shader "Custom/StencilTarget01"
+{
+    Properties
+    {
+        _Color ("Color", Color) = (1,1,1,1)
+        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+    }
+    SubShader
+    {
+        Tags { "RenderType"="Opaque" }
+
+        Stencil
+        {
+            Ref 1
+            Comp Equal // 스텐실 버퍼가 1인 곳에만 렌더링
+        }
+
+        CGPROGRAM
+        #pragma surface surf Lambert
+        #pragma target 3.0
+
+        sampler2D _MainTex;
+
+        struct Input
+        {
+            float2 uv_MainTex;
+        };
+
+        fixed4 _Color;
+
+        void surf (Input IN, inout SurfaceOutput o)
+        {
+            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+            o.Albedo = c.rgb;
+            o.Alpha = c.a;
+        }
+        ENDCG
+    }
+    FallBack "Diffuse"
+}
+
+```
+
+</details>
+
 <br>
 
-- 마스크 오브젝트 (1)
-  - 마스크 오브젝트를 화면에 그리지 않는 경우
+### **마스크 (1)**
+ - 마스크 뒤에 대상 오브젝트가 있으면 보이게 한다.
+ - 마스크 오브젝트를 화면에 렌더링하지 않는다.
+ - 항상 대상보다 먼저 그려져야 하므로 렌더큐큐 1999번에 렌더링한다.
 
-```shader
+```hlsl
 Stencil
 {
     Ref 1        // 1번으로 설정
@@ -1195,37 +1298,172 @@ Stencil
 }
 ```
 
-<br>
+<details>
+<summary markdown="span"> 
+StencilMask01.shader
+</summary>
 
-
-
-
-TODO : 각각 예제 스샷 첨부, 밑에 두 예제 완성
-
-https://m.blog.naver.com/plasticbag0/221299492724
-
-
-
-- 마스크 오브젝트 (2)
-  - 마스크 오브젝트를 화면에 그리는 경우
-  - 투명 쉐이더를 써야 한다.
-  - 다른 불투명 오브젝트처럼 자연스럽게 보여야 하므로.....? TODO !!
-
-```shader
-Stencil
+```hlsl
+Shader "Custom/StencilMask01"
 {
-    Ref 1      // 1번으로 설정
-    // TODO
+    Properties {}
+    SubShader
+    {
+        Tags 
+        {
+            "RenderType"="Opaque"
+            "Queue"="Geometry-1" // 반드시 대상보다 먼저 그려져야 하므로
+        }
+
+        Stencil
+        {
+            Ref 1
+            Comp Never   // 항상 렌더링 하지 않음
+            Fail Replace // 렌더링 실패한 부분의 스텐실 버퍼에 1을 채움
+        }
+
+        CGPROGRAM
+        #pragma surface surf nolight noforwardadd nolightmap noambient novertexlights noshadow
+
+        struct Input { float4 color:COLOR; };
+
+        void surf (Input IN, inout SurfaceOutput o){}
+        float4 Lightingnolight(SurfaceOutput s, float3 lightDir, float atten)
+        {
+            return float4(0, 0, 0, 0);
+        }
+        ENDCG
+    }
+    FallBack ""
 }
 ```
 
+</details>
+
 <br>
 
-### **[2] 실루엣**
+### **마스크 (2)**
 
-(다른 모든 오브젝트에게) 가려진 경우에만 보이는 실루엣을 만든다.
+ - 위의 마스킹 기능을 하면서, 동시에 마스크 오브젝트도 반투명으로 렌더링하려 했지만
+ - 유니티 쉐이더는 하나의 쉐이더에 렌더 큐를 여러 개 지정할 수 없다.
+ - 따라서 마스크 오브젝트에 마테리얼을 2개 사용해서 첫 번째는 위의 마스크, 두 번째에는 반투명 마테리얼을 사용하였다.
 
+![2021_0304_Stencil01_MultiMat](https://user-images.githubusercontent.com/42164422/109963857-3c63ae80-7d30-11eb-8893-5e1767fd1349.gif)
 
+<br>
+
+## **[2] 실루엣**
+
+ - 가려지지 않은 경우에는 정상적으로 렌더링한다.
+ - (다른 모든 오브젝트에게) 가려진 경우에는 단색의 실루엣을 보여준다.
+
+![2021_0304_Stencil02](https://user-images.githubusercontent.com/42164422/109963897-49809d80-7d30-11eb-8fbc-d2e6e32b21e8.gif)
+
+<br>
+
+### **패스 1**
+ - 일반적인 Opaque로 렌더링한다.
+ - 스텐실 버퍼에 값을 기록한다.
+
+## **패스 2**
+ - ZWrite는 필요 없으므로 하지 않는다.
+ - 가려진 경우에만 렌더링한다. (ZTest Greater)
+ - 패스 1에서 이미 렌더링된 부분(Ref 2)에는 실루엣을 그리지 않도록 스텐실을 설정한다. (Comp NotEqual)
+
+<br>
+
+<details>
+<summary markdown="span"> 
+Silhouette.shader
+</summary>
+
+```cs
+Shader "Custom/Silhouette"
+{
+    Properties
+    {
+        _SilhouetteColor ("Silhouette Color", Color) = (1, 0, 0, 0.5)
+
+        [Space]
+        _Color ("Color", Color) = (1,1,1,1)
+        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+    }
+    SubShader
+    {
+        Tags { "RenderType"="Opaque" }
+        
+        /****************************************************************
+        *                            Pass 1
+        *****************************************************************
+        * - 메인 패스
+        * - 스텐실 버퍼에 Ref 2 기록
+        *****************************************************************/
+        ZWrite On
+
+        Stencil
+        {
+            Ref 2
+            Pass Replace // Stencil, Z Test 모두 성공한 부분에 2 기록
+        }
+
+        CGPROGRAM
+        #pragma surface surf Lambert
+        #pragma target 3.0
+        
+        fixed4 _Color;
+        sampler2D _MainTex;
+
+        struct Input
+        {
+            float2 uv_MainTex;
+        };
+
+        void surf (Input IN, inout SurfaceOutput o)
+        {
+            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+            o.Albedo = c.rgb;
+            o.Alpha = c.a;
+        }
+        ENDCG
+
+        /****************************************************************
+        *                            Pass 2
+        *****************************************************************
+        * - Zwrite off
+        * - ZTest Greater : 다른 물체에 가려진 부분에 단색 실루엣 렌더링
+        * - Stencil NotEqual : 다른 실루엣이 그려진 부분에 덮어쓰지 않기
+        *****************************************************************/
+        ZWrite Off
+        ZTest Greater // 가려진 부분에 항상 그린다
+
+        Stencil
+        {
+            Ref 2
+            Comp NotEqual // 패스 1에서 렌더링 성공한 부분에는 그리지 않도록 한다
+        }
+
+        CGPROGRAM
+        #pragma surface surf nolight alpha:fade noforwardadd nolightmap noambient novertexlights noshadow
+        
+        struct Input { float4 color:COLOR; };
+        float4 _SilhouetteColor;
+        
+        void surf (Input IN, inout SurfaceOutput o)
+        {
+            o.Emission = _SilhouetteColor.rgb;
+            o.Alpha = _SilhouetteColor.a;
+        }
+        float4 Lightingnolight(SurfaceOutput s, float3 lightDir, float atten)
+        {
+            return float4(s.Emission, s.Alpha);
+        }
+        ENDCG
+    }
+    FallBack "Diffuse"
+}
+```
+
+</details>
 
 <br>
 
