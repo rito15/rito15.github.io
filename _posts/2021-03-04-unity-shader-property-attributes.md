@@ -180,6 +180,8 @@ SubShader
 ```
 
 - KeywordEnum 괄호 내부에 Enum 값들을 직접 정의한다.
+- 정수 값은 0부터 시작한다.
+
 - `#pragma shader_feature` Enum 값마다 `프로퍼티명_값` 꼴로 모두 작성해준다.
 - pragma는 enum 하나 당 한줄로 작성해야 하며, 프로퍼티를 소문자로 선언했더라도 모두 대문자로 작성해야 한다.
 - 전처리 지시문 `#if` ~ `#elif` ~ `#endif`로 활용할 수 있다.

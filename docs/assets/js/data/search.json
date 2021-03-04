@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "무한 루프를 방지하는 작은 습관",
+    "url": "/posts/unity-memo-prevent-infinite-loop/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, csharp",
+    "date": "2021-03-05 04:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Note      유니티 엔진에서 무한루프가 발생하면 에디터가 그대로 뻗어버린다.        따라서 혹시나 무한루프가 될 가능성이 있는 코드를 인지했다면, 간단한 체크 로직을 넣어주는 것이 좋다.  while( /* condition */ ){    // codes..}이런 코드에서, 간단히 다음처럼 추가해준다.int loopNum = 0;while( /* condition */ ){    // codes..    if(loopNum++ &amp;gt; 1000)        throw new Exception(&quot;I..."
+  },
+  
+  {
     "title": "유니티 쉐이더 프로퍼티 애트리뷰트 모음",
     "url": "/posts/unity-shader-property-attributes/",
     "categories": "Unity Shader, Shader Study",

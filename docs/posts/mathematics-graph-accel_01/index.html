@@ -601,6 +601,11 @@
         
         
         
+        <li><a href="/posts/unity-shader-compilation/">유니티 쉐이더 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
@@ -617,11 +622,6 @@
         
         
         <li><a href="/posts/unity-particle-system-example-03-firefly/">파티클 시스템 예제 - 03 - Firefly</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-particle-system-example-04-fireball/">파티클 시스템 예제 - 04 - Fire Ball</a></li>
       
 
       </ul>
@@ -3660,6 +3660,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -4329,6 +4342,69 @@ e^(1-x) * x
       
       
       <div class="card">
+        <a href="/posts/unity-memo-prevent-infinite-loop/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  5
+  
+
+  <i class="unloaded">2021-03-05T04:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>무한 루프를 방지하는 작은 습관</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+  
+    유니티 엔진에서 무한루프가 발생하면 에디터가 그대로 뻗어버린다.
+  
+  
+    따라서 혹시나 무한루프가 될 가능성이 있는 코드를 인지했다면, 간단한 체크 로직을 넣어주는 것이 좋다.
+  
+
+
+1
+2
+3
+4
+while( /* condition */ )
+{
+    // codes..
+}
+
+
+이런 코드에서, 간단히 다음처럼 추가...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-shader-property-attributes/">
           <div class="card-body">
             <!--
@@ -4397,70 +4473,6 @@ Toggle
 
 
   체크할 경우 1.0, ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-toy-depth-texture-renderer/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar  3
-  
-
-  <i class="unloaded">2021-03-03T19:08:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Depth Texture Renderer</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-
-  
-    현재 메인 카메라의 뎁스 텍스쳐를 화면에 렌더링한다.
-  
-  
-    각 쉐이더의 ZWrite 여부에 관계 없이 모두 렌더링하는 단점이 있다.
-  
-  
-    렌더 큐 값이 2500(Skybox) 이하인 오브젝트들만 인식한다.
-  
-
-
-
-
-How to Use
-
-
-
-  
-    DepthRenderer.cs 스크립트를 메인...
               </p>
             </div>
           </div>
