@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-04T21:34:34+09:00</updated>
+  <updated>2021-03-04T23:30:23+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,98 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 쉐이더 프로퍼티 애트리뷰트 모음</title>
+    <link href="https://rito15.github.io/posts/unity-shader-property-attributes/" rel="alternate" type="text/html" title="유니티 쉐이더 프로퍼티 애트리뷰트 모음" />
+    <published>2021-03-04T21:58:00+09:00</published>
+  
+    <updated>2021-03-04T21:58:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-shader-property-attributes/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-property-attributes/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Space
+
+
+[Space(10)]
+
+
+
+  단순 공백을 크기로 지정한다.
+
+
+
+
+Header
+
+
+[Header(Header Text)]
+
+
+
+  헤더 문자열을 지정한다.
+  큰따옴표로 묶지 않아야 한다.
+
+
+
+
+Toggle
+
+
+[Toggle] _MyToggle ("My Toggle", Float) = 1.0
+
+
+
+  체크할 경우 1.0, 체크 해제할 경우 0.0으로 값을 받을 수 있다.
+
+
+
+
+IntRange
+
+
+[IntRange] _Value("Value", Range(0, 100)) = 50
+
+
+
+  Range를 정수로 지정할 수 있게 한다.
+
+
+
+
+PowerSlider
+
+
+[PowerSlider(3.0)] _Pow("Power", Range(0.01, 1)) = 0.01
+
+
+
+  지수 슬라이더를...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -262,85 +354,6 @@ How To Use
   
   
     Speed로 대상 게임오브젝트의 이동속도를 지정할 수 있...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Mouse Chaser</title>
-    <link href="https://rito15.github.io/posts/unity-toy-mouse-chaser/" rel="alternate" type="text/html" title="Mouse Chaser" />
-    <published>2021-03-02T03:14:00+09:00</published>
-  
-    <updated>2021-03-02T03:14:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-toy-mouse-chaser/</id>
-    <content src="https://rito15.github.io/posts/unity-toy-mouse-chaser/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Toys" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-  게임오브젝트가 마우스 커서를 따라오게 하는 스크립트
-
-
-How To Use
-
-
-  
-    마우스 커서를 따라오게 할 게임오브젝트에 컴포넌트로 넣는다.
-  
-  
-    Distance From Camera를 통해 카메라로부터의 거리를 지정할 수 있다.
-  
-  
-    Chasing Speed를 통해 마우스를 따라올 속도를 지정할 수 있다.
-  
-
-
-Preview
-
-
-
-
-
-
-Source Code
-
-
-  https://github.com/rito15/Unity_Toys
-
-
-
-   
-.
-
-
-  using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-// 2021. 03. 02. 03:02
-// 작성자 ...
     </summary>
   
 

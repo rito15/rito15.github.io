@@ -15,7 +15,7 @@ mermaid: true
 
 ![image](https://user-images.githubusercontent.com/42164422/107067589-d49a7080-6822-11eb-95d0-f8b4a103bece.png){:.normal}
 
-```shader
+```hlsl
 Shader "Render Depth"
 {
     Properties
