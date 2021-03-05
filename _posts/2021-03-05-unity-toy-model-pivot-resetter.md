@@ -143,7 +143,7 @@ namespace Rito
                 m.RecalculateBounds();
                 m.RecalculateNormals();
 
-                Debug.Log("Pivot Reset : " + go.name);
+                Debug.Log($"Pivot Reset - {go.name}::{meshFilter.gameObject.name}");
             }
         }
 
