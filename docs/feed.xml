@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-06T21:11:56+09:00</updated>
+  <updated>2021-03-07T01:54:50+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,63 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>bool 타입 필드를 인스펙터에서 버튼처럼 사용하기</title>
+    <link href="https://rito15.github.io/posts/unity-memo-bool-as-a-button/" rel="alternate" type="text/html" title="bool 타입 필드를 인스펙터에서 버튼처럼 사용하기" />
+    <published>2021-03-07T01:33:00+09:00</published>
+  
+    <updated>2021-03-07T01:33:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-memo-bool-as-a-button/</id>
+    <content src="https://rito15.github.io/posts/unity-memo-bool-as-a-button/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      인스펙터의 버튼
+
+
+컴포넌트의 인스펙터에서 버튼을 사용하고 싶을 때가 있다.
+
+예를 들면 플레이 모드로 진입하지 않고 에디터 모드에서 메소드를 바로 호출 하고 싶을 때.
+
+그리고 실제로 커스텀 에디터를 이용해 버튼을 만들 수도 있다.
+
+
+
+하지만 잠깐 테스트용으로 쓰려는데 스크립트 하나 더 만들고, 커스텀 에디터 선언하고, …
+
+심지어 에디터 GUI좀 쓰려면 EditorGUI, EditorUtility, EditorGUILayout, GUIUtility, GUILayout, … 뭐가 이렇게 다양하고 헷갈리게 만들어 놨는지,
+
+어쨌든 커스텀 에디터 만들어서 if(GUILayout.Button()){} 으로 버튼 하나 달아서 사용할 수 있다.
+
+그러니까, 가끔씩 이게 참 번거롭다.
+
+
+
+bool 필드를 버...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -309,107 +366,6 @@ PowerSlider
 
 
   지수 슬라이더를...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Depth Texture Renderer</title>
-    <link href="https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" rel="alternate" type="text/html" title="Depth Texture Renderer" />
-    <published>2021-03-03T19:08:00+09:00</published>
-  
-    <updated>2021-03-03T19:08:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-toy-depth-texture-renderer/</id>
-    <content src="https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Toys" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-
-  
-    현재 메인 카메라의 뎁스 텍스쳐를 화면에 렌더링한다.
-  
-  
-    각 쉐이더의 ZWrite 여부에 관계 없이 모두 렌더링하는 단점이 있다.
-  
-  
-    렌더 큐 값이 2500(Skybox) 이하인 오브젝트들만 인식한다.
-  
-
-
-
-
-How to Use
-
-
-
-  
-    DepthRenderer.cs 스크립트를 메인 카메라에 넣는다.
-  
-  
-    enabled를 체크/해제하여 화면에 렌더 텍스쳐를 보여줄지 여부를 결정할 수 있다.
-  
-
-
-
-
-Preview
-
-
-
-  원래 화면
-
-
-
-
-
-  뎁스 텍스쳐 렌더링
-
-
-
-
-
-
-Download
-
-
-
-  DepthRenderer.zip
-
-
-
-
-Source Code
-
-
-
-   
-RenderDepth.shader
-
-
-   Sh...
     </summary>
   
 
