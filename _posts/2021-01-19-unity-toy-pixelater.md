@@ -1,5 +1,5 @@
 ---
-title: Pixelater
+title: Pixelater (픽셀화 렌더링)
 author: Rito15
 date: 2021-01-19 22:56:00 +09:00
 categories: [Unity, Unity Toys]

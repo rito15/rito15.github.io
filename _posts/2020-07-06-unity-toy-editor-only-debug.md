@@ -1,5 +1,5 @@
 ---
-title: Unity Editor-only Debug
+title: Unity Editor-only Debug (에디터 전용 디버그 클래스)
 author: Rito15
 date: 2020-07-06 15:00:00 +09:00
 categories: [Unity, Unity Toys]

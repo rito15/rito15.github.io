@@ -35,7 +35,6 @@ using UniRx.Triggers;
 
 ## UniRx의 대표적인 활용
 - 비동기 구현
-- 코루틴 대체
 - 이벤트 대체
 - UI의 변화에 따른 동작 구현
 - 입력에 따른 동작 구현
@@ -117,8 +116,6 @@ var dbClickStreamDisposable =
 <br>
 
 UI 이벤트 대체
-
-코루틴 대체
 
 멀티스레딩(계산)
 

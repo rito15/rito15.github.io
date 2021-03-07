@@ -1,5 +1,5 @@
 ---
-title: Depth Texture Renderer
+title: Depth Texture Renderer (Z-Buffer 렌더러)
 author: Rito15
 date: 2021-03-03 19:08:00 +09:00
 categories: [Unity, Unity Toys]

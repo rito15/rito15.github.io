@@ -1,5 +1,5 @@
 ---
-title: Custom Mouse Events
+title: Custom Mouse Events (성능 향상된 마우스 이벤트 처리)
 author: Rito15
 date: 2021-02-08 21:54:00 +09:00
 categories: [Unity, Unity Toys]

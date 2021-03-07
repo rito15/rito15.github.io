@@ -1,5 +1,5 @@
 ---
-title: Model Pivot Resetter
+title: Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)
 author: Rito15
 date: 2021-03-05 22:22:00 +09:00
 categories: [Unity, Unity Toys]

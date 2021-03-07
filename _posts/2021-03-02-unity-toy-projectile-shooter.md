@@ -1,5 +1,5 @@
 ---
-title: Projectile Shooter
+title: Projectile Shooter (투사체 발사 컴포넌트)
 author: Rito15
 date: 2021-03-02 03:28:00 +09:00
 categories: [Unity, Unity Toys]

@@ -1,6 +1,51 @@
 [
   
   {
+    "title": "컴파일, 게임 시작 시 실행되는 애트리뷰트 정리",
+    "url": "/posts/unity-memo-init-events/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, csharp",
+    "date": "2021-03-08 03:03:00 +0900",
+    
+
+
+
+
+
+    "snippet": "공통 특징      클래스 또는 메소드 상단에 애트리뷰트를 명시한다.        컴포넌트로 넣지 않고, 스크립트로만 존재해도 실행된다.        정적 클래스나 상속에 관계 없이 동작한다.        메소드 애트리뷰트는 정적 메소드에만 동작한다.  컴파일, 플레이모드 진입 시 실행Note  EditorApplication.isPlaying으로 현재 에디터 모드를 구분하여 활용할 수 있다.[InitializeOnLoad]      using UnityEditor;        클래스 애트리뷰트        정적 생성자가 호..."
+  },
+  
+  {
+    "title": "Scene Auto Saver (현재 씬 자동 저장)",
+    "url": "/posts/unity-toy-scene-auto-saver/",
+    "categories": "Unity, Unity Toys",
+    "tags": "unity, csharp, plugin, autosave",
+    "date": "2021-03-08 02:22:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Note      일정 시간 주기로 현재 활성화된 씬을 자동 저장한다.        씬이 저장되지 않은 상태일 때만 타이머가 동작한다.  How To Use  [Window] - [Rito] - [Scene Auto Saver]를 통해 윈도우를 연다.  On에 체크한다.  Save Cycle에 저장 주기를 설정할 수 있다. (단위 : 초)PreviewDownload  Scene Auto Saver.zipSource Code  https://github.com/rito15/Unity_Toys"
+  },
+  
+  {
+    "title": "커스텀 에디터 윈도우",
+    "url": "/posts/unity-memo-custom-editor-window/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, csharp, editorwindow",
+    "date": "2021-03-08 00:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Note  에디터 윈도우를 직접 만들어 사용할 수 있다.PreviewSource Code Example#if UNITY_EDITORusing UnityEngine;using UnityEditor;public class ExampleWindow : EditorWindow{    private bool boolValue;    private float floatValue;    private Vector3 vector3Value;    [MenuItem(&quot;Window/Rito/Example Window&quot;)] //..."
+  },
+  
+  {
     "title": "bool 타입 필드를 인스펙터에서 버튼처럼 사용하기",
     "url": "/posts/unity-memo-bool-as-a-button/",
     "categories": "Unity, Unity Memo",
@@ -12,7 +57,7 @@
 
 
 
-    "snippet": "인스펙터의 버튼컴포넌트의 인스펙터에서 버튼을 사용하고 싶을 때가 있다.예를 들면 플레이 모드로 진입하지 않고 에디터 모드에서 메소드를 바로 호출 하고 싶을 때.그리고 실제로 커스텀 에디터를 이용해 버튼을 만들 수도 있다.하지만 잠깐 테스트용으로 쓰려는데 스크립트 하나 더 만들고, 커스텀 에디터 선언하고, …심지어 에디터 GUI좀 쓰려면 EditorGUI, EditorUtility, EditorGUILayout, GUIUtility, GUILayout, … 뭐가 이렇게 다양하고 헷갈리게 만들어 놨는지,어쨌든 커스텀 에디터 만들어..."
+    "snippet": "인스펙터의 버튼컴포넌트의 인스펙터에서 버튼을 사용하고 싶을 때가 있다.예를 들면 플레이 모드로 진입하지 않고 에디터 모드에서 메소드를 바로 호출 하고 싶을 때.그리고 실제로 커스텀 에디터를 이용해 버튼을 만들 수도 있다.하지만 잠깐 테스트용으로 쓰려는데 스크립트 하나 더 만들고, 커스텀 에디터 선언하고, …심지어 에디터 GUI좀 쓰려면 EditorGUI, EditorUtility, EditorGUILayout, GUIUtility, GUILayout, … 뭐가 이렇게 다양하고 헷갈리게 만들어 놨는지..어쨌든 커스텀 에디터 만들..."
   },
   
   {
@@ -31,7 +76,7 @@
   },
   
   {
-    "title": "Model Pivot Resetter",
+    "title": "Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)",
     "url": "/posts/unity-toy-model-pivot-resetter/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin, model, pivot, postprocessor",
@@ -57,7 +102,7 @@
 
 
 
-    "snippet": "Note      유니티 엔진에서 무한루프가 발생하면 에디터가 그대로 뻗어버린다.        따라서 혹시나 무한루프가 될 가능성이 있는 코드를 인지했다면, 간단한 체크 로직을 넣어주는 것이 좋다.  while( /* condition */ ){    // codes..}이런 코드에서, 간단히 다음처럼 추가해준다.int loopNum = 0;while( /* condition */ ){    // codes..    if(loopNum++ &amp;gt; 1000)        throw new Exception(&quot;I..."
+    "snippet": "Note      유니티 엔진에서 무한루프가 발생하면 에디터가 그대로 뻗어버린다.        따라서 혹시나 무한루프가 될 가능성이 있는 코드를 인지했다면, 간단한 체크 로직을 넣어주는 것이 좋다.  while( /* condition */ ){    // codes..}이런 코드에서, 간단히 다음처럼 추가해준다.int loopNum = 0;while( /* condition */ ){    // codes..    if(loopNum++ &amp;gt; 10000)        throw new Exception(&quot;..."
   },
   
   {
@@ -76,7 +121,7 @@
   },
   
   {
-    "title": "Depth Texture Renderer",
+    "title": "Depth Texture Renderer (Z-Buffer 렌더러)",
     "url": "/posts/unity-toy-depth-texture-renderer/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
@@ -121,7 +166,7 @@
   },
   
   {
-    "title": "Projectile Shooter",
+    "title": "Projectile Shooter (투사체 발사 컴포넌트)",
     "url": "/posts/unity-toy-projectile-shooter/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
@@ -136,7 +181,7 @@
   },
   
   {
-    "title": "Mouse Chaser",
+    "title": "Mouse Chaser (마우스 커서 추적 컴포넌트)",
     "url": "/posts/unity-toy-mouse-chaser/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
@@ -226,7 +271,7 @@
   },
   
   {
-    "title": "Free Look Camera",
+    "title": "Free Look Camera (자유 시점 카메라)",
     "url": "/posts/unity-toy-free-look-camera/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
@@ -267,7 +312,7 @@
 
 
 
-    "snippet": "   다이얼로그 창 띄우기  bool res1 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;);bool res2 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;, &quot;Cancel&quot;);     Undo 모음  // 오브젝트 생성 이후에 호출Undo.RegisterCreatedObjectUndo(target,..."
+    "snippet": "   다이얼로그 창 띄우기  bool res1 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;);bool res2 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;, &quot;Cancel&quot;);     Undo 모음  // 이름 변경, 기타 등등 수행하기 직전에 호출// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 ..."
   },
   
   {
@@ -811,7 +856,7 @@
   },
   
   {
-    "title": "Custom Mouse Events",
+    "title": "Custom Mouse Events (성능 향상된 마우스 이벤트 처리)",
     "url": "/posts/unity-toy-custom-mouse-events/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin, mouse",
@@ -1351,7 +1396,7 @@
   },
   
   {
-    "title": "Pixelater",
+    "title": "Pixelater (픽셀화 렌더링)",
     "url": "/posts/unity-toy-pixelater/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
@@ -1366,10 +1411,10 @@
   },
   
   {
-    "title": "AfterImage(Motion Trail)",
+    "title": "AfterImage(Motion Trail, 잔상 효과)",
     "url": "/posts/unity-toy-afterImage/",
     "categories": "Unity, Unity Toys",
-    "tags": "unity, csharp, plugin",
+    "tags": "unity, csharp, plugin, afterimage, motiontrail",
     "date": "2021-01-18 22:56:00 +0900",
     
 
@@ -1381,7 +1426,7 @@
   },
   
   {
-    "title": "Custom Attributes",
+    "title": "Custom Attributes (커스텀 애트리뷰트 모음)",
     "url": "/posts/unity-toy-custom-attributes/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, custom, attribute",
@@ -1456,7 +1501,7 @@
   },
   
   {
-    "title": "Singleton MonoBehavior",
+    "title": "Singleton MonoBehavior (상속으로 간단히 싱글톤 적용하기)",
     "url": "/posts/unity-toy-singleton-monobehavior/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",
@@ -1471,7 +1516,7 @@
   },
   
   {
-    "title": "Unity Editor-only Debug",
+    "title": "Unity Editor-only Debug (에디터 전용 디버그 클래스)",
     "url": "/posts/unity-toy-editor-only-debug/",
     "categories": "Unity, Unity Toys",
     "tags": "unity, csharp, plugin",

@@ -1,5 +1,5 @@
 ---
-title: Mouse Chaser
+title: Mouse Chaser (마우스 커서 추적 컴포넌트)
 author: Rito15
 date: 2021-03-02 03:14:00 +09:00
 categories: [Unity, Unity Toys]

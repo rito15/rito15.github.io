@@ -1,5 +1,5 @@
 ---
-title: Singleton MonoBehavior
+title: Singleton MonoBehavior (상속으로 간단히 싱글톤 적용하기)
 author: Rito15
 date: 2020-07-08 15:30:00 +09:00
 categories: [Unity, Unity Toys]

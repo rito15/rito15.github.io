@@ -1,9 +1,9 @@
 ---
-title: AfterImage(Motion Trail)
+title: AfterImage(Motion Trail, 잔상 효과)
 author: Rito15
 date: 2021-01-18 22:56:00 +09:00
 categories: [Unity, Unity Toys]
-tags: [unity, csharp, plugin]
+tags: [unity, csharp, plugin, afterimage, motiontrail]
 math: true
 mermaid: true
 ---

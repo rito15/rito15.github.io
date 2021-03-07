@@ -1,5 +1,5 @@
 ---
-title: Free Look Camera
+title: Free Look Camera (자유 시점 카메라)
 author: Rito15
 date: 2021-02-28 17:45:00 +09:00
 categories: [Unity, Unity Toys]
