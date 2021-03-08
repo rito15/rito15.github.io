@@ -24,7 +24,7 @@ mermaid: true
 - `Show Log` 옵션으로 자동 저장 시 로그 출력 여부를 설정할 수 있다.
 - `Save Cycle` 옵션으로 저장 주기를 설정할 수 있다. (기본 : 10초, 최소 : 5초)
 
-![image](https://user-images.githubusercontent.com/42164422/110249420-62e84a80-7fb9-11eb-81a2-c61770d936cd.png)
+![image](https://user-images.githubusercontent.com/42164422/110288473-67e5e200-802b-11eb-9d2f-4ab392e77f6d.png)
 
 
 
