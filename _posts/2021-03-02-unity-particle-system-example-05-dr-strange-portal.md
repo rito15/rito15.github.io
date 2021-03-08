@@ -1,5 +1,5 @@
 ---
-title: 파티클 시스템 예제 - 06 - Dr. Strange Portal [TODO]
+title: 파티클 시스템 예제 - 05 - Dr. Strange Portal [TODO]
 author: Rito15
 date: 2021-03-03 03:33:00 +09:00
 categories: [Unity, Unity Particle System]

@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-08T18:47:18+09:00</updated>
+  <updated>2021-03-09T04:45:47+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,84 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Weighted Random Picker (가중치 랜덤 뽑기)</title>
+    <link href="https://rito15.github.io/posts/unity-toy-weighted-random-picker/" rel="alternate" type="text/html" title="Weighted Random Picker (가중치 랜덤 뽑기)" />
+    <published>2021-03-09T03:22:00+09:00</published>
+  
+    <updated>2021-03-09T03:22:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-toy-weighted-random-picker/</id>
+    <content src="https://rito15.github.io/posts/unity-toy-weighted-random-picker/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Toys" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+  
+    게임에서 각각 n% 확률로 존재하는 요소들의 뽑기를 수행할 때, 단순히 Random.Range()를 통해서는 계산할 수 없다.
+  
+  
+    이 때, ‘가중치 랜덤 뽑기’를 이용한다.
+  
+  
+    제네릭을 활용하여, 아이템들과 가중치의 목록을 넣으면 간단히 뽑기를 수행할 수 있도록 작성하였다.
+  
+  
+    아이템은 중복되게 추가할 수 없다.
+  
+  
+    내부적으로 System.Random을 사용한다.
+  
+
+
+
+
+가중치 랜덤 뽑기?
+
+
+
+
+  
+    각각의 요소에 가중치(Weight)를 부여한다.
+  
+  
+    뽑기를 수행했을 때 각각의 요소가 뽑힐 확률은 (가중치) / (전체 가중치 합)이 된다.
+  
+
+
+
+
+How To Use
+
+
+1. 객체 생성
+
+...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -295,63 +373,6 @@ public class ExampleWindow : EditorWindow
     {
         // 현재 활성화된 윈도우 가져오며, 없으면 새로 생성
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>bool 타입 필드를 인스펙터에서 버튼처럼 사용하기</title>
-    <link href="https://rito15.github.io/posts/unity-memo-bool-as-a-button/" rel="alternate" type="text/html" title="bool 타입 필드를 인스펙터에서 버튼처럼 사용하기" />
-    <published>2021-03-07T01:33:00+09:00</published>
-  
-    <updated>2021-03-08T03:55:02+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-memo-bool-as-a-button/</id>
-    <content src="https://rito15.github.io/posts/unity-memo-bool-as-a-button/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      인스펙터의 버튼
-
-
-컴포넌트의 인스펙터에서 버튼을 사용하고 싶을 때가 있다.
-
-예를 들면 플레이 모드로 진입하지 않고 에디터 모드에서 메소드를 바로 호출 하고 싶을 때.
-
-그리고 실제로 커스텀 에디터를 이용해 버튼을 만들 수도 있다.
-
-
-
-하지만 잠깐 테스트용으로 쓰려는데 스크립트 하나 더 만들고, 커스텀 에디터 선언하고, …
-
-심지어 에디터 GUI좀 쓰려면 EditorGUI, EditorUtility, EditorGUILayout, GUIUtility, GUILayout, … 뭐가 이렇게 다양하고 헷갈리게 만들어 놨는지..
-
-어쨌든 커스텀 에디터 만들어서 if(GUILayout.Button()){} 으로 버튼 하나 달아서 사용할 수 있지만,
-
-가끔씩 이게 참 번거롭다.
-
-
-
-bool 필드를 버튼처럼 ...
     </summary>
   
 

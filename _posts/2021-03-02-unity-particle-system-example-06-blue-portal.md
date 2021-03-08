@@ -1,7 +1,7 @@
 ---
-title: 파티클 시스템 예제 - 05 - Blue Portal [TODO]
+title: 파티클 시스템 예제 - 06 - Blue Portal [TODO]
 author: Rito15
-date: 2021-03-03 03:33:00 +09:00
+date: 2021-03-03 03:34:00 +09:00
 categories: [Unity, Unity Particle System]
 tags: [unity, csharp, particle]
 math: true
