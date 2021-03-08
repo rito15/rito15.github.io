@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-08T16:48:22+09:00</updated>
+  <updated>2021-03-08T18:47:18+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,69 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Regex (정규표현식)</title>
+    <link href="https://rito15.github.io/posts/csharp-memo-regex/" rel="alternate" type="text/html" title="Regex (정규표현식)" />
+    <published>2021-03-08T17:42:00+09:00</published>
+  
+    <updated>2021-03-08T17:42:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/csharp-memo-regex/</id>
+    <content src="https://rito15.github.io/posts/csharp-memo-regex/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Csharp" />
+    
+    <category term="Csharp Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+Using
+
+using System.Text.RegularExpressions;
+
+
+
+
+스트링의 오른쪽에서부터 탐색
+
+Regex.Match(string, pattern, RegexOptions.RightToLeft)
+
+
+
+
+찾은 문자열 주변을 변경 (그룹 사용)
+
+string strExample = "&amp;lt;12&amp;gt; GameObject [23]  ";
+string pattern = @"[\s\[\{\(\&amp;lt;]+" + @"([0-9]+)" + @"[\s\]\}\)\&amp;gt;]+";
+string replacement = @"($1)";
+string result = Regex.Replace(strExample, pattern, replacement);
+
+
+
+  
+    패턴에서 “( ~ )...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -103,7 +166,7 @@ Note
     <link href="https://rito15.github.io/posts/unity-toy-scene-auto-saver/" rel="alternate" type="text/html" title="Scene Auto Saver (현재 씬 자동 저장)" />
     <published>2021-03-08T02:22:00+09:00</published>
   
-    <updated>2021-03-08T16:46:09+09:00</updated>
+    <updated>2021-03-08T16:48:55+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-toy-scene-auto-saver/</id>
     <content src="https://rito15.github.io/posts/unity-toy-scene-auto-saver/" />
@@ -289,67 +352,6 @@ public class ExampleWindow : EditorWindow
 
 
 bool 필드를 버튼처럼 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>UniRx (Reactive Extensions for Unity)</title>
-    <link href="https://rito15.github.io/posts/unity-study-unirx/" rel="alternate" type="text/html" title="UniRx (Reactive Extensions for Unity)" />
-    <published>2021-03-06T20:14:00+09:00</published>
-  
-    <updated>2021-03-08T03:55:02+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-study-unirx/</id>
-    <content src="https://rito15.github.io/posts/unity-study-unirx/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      개요
-
-
-Rx란?
-
-
-  Reactive Extensions
-  .NET에도 다양한 언어로 구현되어 있다.
-  절차적 프로그래밍에서 다루기 쉽지 않은 비동기 프로그래밍을 손쉽게 다루기 위한 패러다임
-  비동기 데이터 스트림을 중심으로 동작한다.
-  스트림 내의 데이터에 변화가 발생했을 때 반응형으로 기능이 동작하는 방식을 사용한다.
-  Observer Pattern + Iterator Pattern + Functional Programming
-
-
-
-
-UniRx
-
-  .NET의 Rx를 유니티에서 사용할 수 없다는 한계를 극복하기 위해 만들어졌다.
-  유니티의 코루틴, 주요 이벤트 함수, UGUI 등과 상호작용하기 편하게 구현되어 있다.
-
-
-using UniRx;
-using UniRx.Triggers;
-
-...
     </summary>
   
 
