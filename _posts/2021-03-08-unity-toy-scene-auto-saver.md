@@ -17,9 +17,12 @@ mermaid: true
 
 # How To Use
 ---
+- 스크립트 2개를 모두 다운받아 유니티 프로젝트에 넣는다.
 - [Window] - [Rito] - [Scene Auto Saver]를 통해 윈도우를 연다.
-- `On`에 체크한다.
-- `Save Cycle`에 저장 주기를 설정할 수 있다. (단위 : 초)
+
+- `On`에 체크 해제되어 있을 경우, 체크한다.
+- `Show Log` 옵션으로 자동 저장 시 로그 출력 여부를 설정할 수 있다.
+- `Save Cycle` 옵션으로 저장 주기를 설정할 수 있다. (단위 : 초)
 
 ![image](https://user-images.githubusercontent.com/42164422/110249420-62e84a80-7fb9-11eb-81a2-c61770d936cd.png)
 
@@ -28,13 +31,13 @@ mermaid: true
 # Preview
 ---
 
-![2021_0308_Scene Auto Saver](https://user-images.githubusercontent.com/42164422/110249469-8dd29e80-7fb9-11eb-849d-4fa30cb192b8.gif)
+![2021_0308_Scene Auto Saver2](https://user-images.githubusercontent.com/42164422/110287071-48e65080-8029-11eb-8832-80ba04d7816e.gif)
 
 
 
 # Download
 ---
-- [Scene Auto Saver.zip](https://github.com/rito15/Images/files/6097683/Scene.Auto.Saver.zip)
+- [Scene Auto Saver.zip](https://github.com/rito15/Images/files/6099540/Scene.Auto.Saver.zip)
 
 
 
