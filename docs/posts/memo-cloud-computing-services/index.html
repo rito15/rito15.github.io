@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="클라우드 컴퓨팅 3대 서비스" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"IaaS, PaaS, SaaS","datePublished":"2021-02-17T20:40:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cloud-computing-services/"},"url":"https://rito15.github.io/posts/memo-cloud-computing-services/","author":{"@type":"Person","name":"Rito15"},"headline":"클라우드 컴퓨팅 3대 서비스","dateModified":"2021-02-17T20:40:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"클라우드 컴퓨팅 3대 서비스","description":"IaaS, PaaS, SaaS","dateModified":"2021-02-17T20:40:00+09:00","datePublished":"2021-02-17T20:40:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cloud-computing-services/"},"url":"https://rito15.github.io/posts/memo-cloud-computing-services/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -771,42 +771,6 @@
 
 
 
-
-  
-
-    <div id="access-lastmod" class="post">
-      <span>Recent Update</span>
-      <ul class="post-content pl-0 pb-1 ml-1 mt-2">
-
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-toy-scene-auto-saver/">Scene Auto Saver (현재 씬 자동 저장)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-toy-custom-attributes/">Custom Attributes (커스텀 애트리뷰트 모음)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-toy-afterImage/">AfterImage(Motion Trail, 잔상 효과)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-toy-pixelater/">Pixelater (픽셀화 렌더링)</a></li>
-      
-
-      </ul>
-    </div> <!-- #access-lastmod -->
 
   
 
@@ -4809,7 +4773,7 @@
       
       
       <div class="card">
-        <a href="/posts/memo-game-server-engines/">
+        <a href="/posts/memo-cs-fileio/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4826,13 +4790,13 @@
   
 
   
-    Feb 17
+    Jan 28
   
 
-  <i class="unloaded">2021-02-17T21:40:00+09:00</i>
+  <i class="unloaded">2021-01-28T21:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>게임 서버 엔진</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 파일 입출력</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4841,22 +4805,19 @@
 
 
 
-                게임 서버 엔진
+                간단 정리
 
 
-  완성된 형태의 게임 서버 기능 제공
+파일에 쓰려면
+
+  대상이 string, string[], byte[] 타입 중 하나여야 한다.
+  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
 
 
+한 파일에 대한 연속 입출력 횟수에 따라
 
-
-설치형(On-premise, Self-hosted)
-
-  ProudNet(국내)
-    
-      개인 무료 라이센스 제공
-      마비노기 영웅전, 세븐나이츠 등 190여개 프로젝트에 사용
-      실시간 대규모 RPG, FPS에 적합
-      https://www.youtub...
+  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
+  여러 번에 걸쳐 읽거나 쓰려면 스트림 ...
               </p>
             </div>
           </div>
@@ -4866,7 +4827,7 @@
       
       
       <div class="card">
-        <a href="/posts/memo-git-local-repo-initialization/">
+        <a href="/posts/memo-cpp-stack-memory-allocation/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4883,13 +4844,13 @@
   
 
   
-    Feb 21
+    Feb  1
   
 
-  <i class="unloaded">2021-02-21T00:00:00+09:00</i>
+  <i class="unloaded">2021-02-01T18:45:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>깃 로컬 리포지토리 초기 세팅하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C++ 스택 메모리 동적 할당</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4898,28 +4859,18 @@
 
 
 
-                조건
+                Memo
 
 
 
   
-    깃헙 리포지토리를 새로 생성하는 경우
-  
-  
-    아무런 파일도 만들지 않고 순수한 상태로 리포지토리를 만든 경우 1번에 해당하며,
-  
-  
-    Readme.md, LICENCE, .gitignore 등의 파일을 만들었다면 2번에 해당한다.
-  
-
-
-
-
-1. 깃헙에 빈 리포지토리를 생성한 경우
-
-
-
-  로컬 리포지토리...
+    _alloca
+    
+      스택에 메모리를 동적으로 할당해준다.
+      함수의 리턴으로 전달하면 안된다.
+      블록이 종료되면 자동으로 할당 해제된다.
+      공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의
+      예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 ...
               </p>
             </div>
           </div>
@@ -4942,7 +4893,7 @@
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/ref-in-performance/" class="btn btn-outline-primary">
+  <a href="/posts/memo-cs-ref-in-performance/" class="btn btn-outline-primary">
     <p>매개변수 한정자 ref, in의 성능</p>
   </a>
   

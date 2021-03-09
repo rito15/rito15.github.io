@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="깃 로컬 리포지토리 초기 세팅하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"조건","datePublished":"2021-02-21T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git-local-repo-initialization/"},"url":"https://rito15.github.io/posts/memo-git-local-repo-initialization/","author":{"@type":"Person","name":"Rito15"},"headline":"깃 로컬 리포지토리 초기 세팅하기","dateModified":"2021-02-21T00:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"깃 로컬 리포지토리 초기 세팅하기","description":"조건","dateModified":"2021-02-21T00:00:00+09:00","datePublished":"2021-02-21T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git-local-repo-initialization/"},"url":"https://rito15.github.io/posts/memo-git-local-repo-initialization/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -706,42 +706,6 @@ git push -u origin main
 
 
 
-
-  
-
-    <div id="access-lastmod" class="post">
-      <span>Recent Update</span>
-      <ul class="post-content pl-0 pb-1 ml-1 mt-2">
-
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-toy-scene-auto-saver/">Scene Auto Saver (현재 씬 자동 저장)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-toy-custom-attributes/">Custom Attributes (커스텀 애트리뷰트 모음)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-toy-afterImage/">AfterImage(Motion Trail, 잔상 효과)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-toy-pixelater/">Pixelater (픽셀화 렌더링)</a></li>
-      
-
-      </ul>
-    </div> <!-- #access-lastmod -->
 
   
 
@@ -4689,7 +4653,7 @@ git push -u origin main
       
       
       <div class="card">
-        <a href="/posts/unity-ui-drag-and-drop/">
+        <a href="/posts/unity-memo-ui-drag-and-drop/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4745,7 +4709,7 @@ publi...
       
       
       <div class="card">
-        <a href="/posts/memo-cloud-computing-services/">
+        <a href="/posts/memo-cs-fileio/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4762,13 +4726,13 @@ publi...
   
 
   
-    Feb 17
+    Jan 28
   
 
-  <i class="unloaded">2021-02-17T20:40:00+09:00</i>
+  <i class="unloaded">2021-01-28T21:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>클라우드 컴퓨팅 3대 서비스</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 파일 입출력</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4777,23 +4741,19 @@ publi...
 
 
 
-                IaaS, PaaS, SaaS
+                간단 정리
 
 
-구분
+파일에 쓰려면
 
-  기업과 클라우드 서비스 제공자간의 관리 영역 분할 정도에 따라 구분할 수 있다.
-
-
-
+  대상이 string, string[], byte[] 타입 중 하나여야 한다.
+  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
 
 
+한 파일에 대한 연속 입출력 횟수에 따라
 
-선택 예시
-
-  IaaS : 인력이 충분하고 자원 및 인프라만 대여하고 싶은 경우
-  PaaS : 이미 만들어진 런타임, DB 등의 API를 사용하여 본 개발에만 집중하고 싶은 경우
-  SaaS : 특수목적의 소프트웨...
+  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
+  여러 번에 걸쳐 읽거나 쓰려면 스트림 ...
               </p>
             </div>
           </div>
@@ -4803,7 +4763,7 @@ publi...
       
       
       <div class="card">
-        <a href="/posts/memo-serverless-baas-faas/">
+        <a href="/posts/memo-cpp-stack-memory-allocation/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4820,13 +4780,13 @@ publi...
   
 
   
-    Feb 17
+    Feb  1
   
 
-  <i class="unloaded">2021-02-17T20:40:00+09:00</i>
+  <i class="unloaded">2021-02-01T18:45:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Serverless, BaaS, FaaS</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C++ 스택 메모리 동적 할당</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4835,20 +4795,18 @@ publi...
 
 
 
-                애플리케이션 개발 패러다임 변화
+                Memo
 
 
 
-
-모놀리스(Monolith)
-
-  소프트웨어의 모든 구성요소가 한 프로젝트에 통합된 형태
-  중앙 집중적 구조
-  변경이 발생할 경우 전체 애플리케이션을 재배포, 재시작해야 한다.
-  부분의 장애가 전체 서비스의 장애로 이어지는 경우가 발생한다.
-  서비스가 커지면 커질수록 전체 시스템 구조 파악이 어려워진다.
-
-...
+  
+    _alloca
+    
+      스택에 메모리를 동적으로 할당해준다.
+      함수의 리턴으로 전달하면 안된다.
+      블록이 종료되면 자동으로 할당 해제된다.
+      공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의
+      예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 ...
               </p>
             </div>
           </div>
@@ -4871,7 +4829,7 @@ publi...
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/memo-modifiable-scriptable-object/" class="btn btn-outline-primary">
+  <a href="/posts/unity-memo-scriptable-object/" class="btn btn-outline-primary">
     <p>스크립터블 오브젝트</p>
   </a>
   
