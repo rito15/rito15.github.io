@@ -25,7 +25,7 @@ mermaid: true
 # Preview
 ---
 
-![2021_0303_Doctor Strange Portal](https://user-images.githubusercontent.com/42164422/109697617-c9dcbc80-7bd1-11eb-9fab-938ee19915eb.gif)
+![2021_0309_drStrange_10](https://user-images.githubusercontent.com/42164422/110457627-2ed26e00-810e-11eb-9770-c5c5c9d7576c.gif)
 
 <br>
 

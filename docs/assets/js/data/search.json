@@ -1,6 +1,36 @@
 [
   
   {
+    "title": "플레이모드 상태 변경에 따른 동작 구현하기",
+    "url": "/posts/unity-editor/",
+    "categories": "Unity, Unity Editor",
+    "tags": "unity, csharp",
+    "date": "2021-03-11 03:33:00 +0900",
+    
+
+
+
+
+
+    "snippet": "#if UNITY_EDITORusing System;using System.Collections;using System.Collections.Generic;using UnityEngine;using UnityEditor;namespace Rito{    [InitializeOnLoad]    public class PlayModeStateChangeHandler : ScriptableObject    {        public static event Action OnExitEditMode;        public stati..."
+  },
+  
+  {
+    "title": "Custom Transform Editor",
+    "url": "/posts/unity-toy-transform-custom-editor/",
+    "categories": "Unity, Unity Toys",
+    "tags": "unity, csharp, plugin, transform",
+    "date": "2021-03-10 15:15:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Note      트랜스폼의 커스텀 에디터        트랜스폼의 로컬 정보 뿐만 아니라, 글로벌 위치, 회전, 크기 값을 확인 및 조작할 수 있다.        총 8개의 리셋 버튼으로 트랜스폼의 로컬, 글로벌 값들을 초기화할 수 있다.  Preview  Global - Reset 버튼을 누를 경우  Global Position - Reset 버튼을 누를 경우  Global Rotation - Reset 버튼을 누를 경우  Global Scale - Reset 버튼을 누를 경우Download  CustomTransformEd..."
+  },
+  
+  {
     "title": "Weighted Random Picker (가중치 랜덤 뽑기)",
     "url": "/posts/unity-toy-weighted-random-picker/",
     "categories": "Unity, Unity Toys",
@@ -32,8 +62,8 @@
   
   {
     "title": "컴파일, 게임 시작 시 실행되는 애트리뷰트 정리",
-    "url": "/posts/unity-memo-init-events/",
-    "categories": "Unity, Unity Memo",
+    "url": "/posts/unity-editor-init-events/",
+    "categories": "Unity, Unity Editor",
     "tags": "unity, csharp",
     "date": "2021-03-08 03:03:00 +0900",
     
@@ -62,8 +92,8 @@
   
   {
     "title": "커스텀 에디터 윈도우",
-    "url": "/posts/unity-memo-custom-editor-window/",
-    "categories": "Unity, Unity Memo",
+    "url": "/posts/unity-editor-custom-editor-window/",
+    "categories": "Unity, Unity Editor",
     "tags": "unity, csharp, editorwindow",
     "date": "2021-03-08 00:00:00 +0900",
     
@@ -467,8 +497,8 @@
   
   {
     "title": "스크립터블 오브젝트",
-    "url": "/posts/unity-memo-scriptable-object/",
-    "categories": "Unity, Unity Memo",
+    "url": "/posts/unity-editor-scriptable-object/",
+    "categories": "Unity, Unity Editor",
     "tags": "unity, csharp, scriptable, object",
     "date": "2021-02-20 02:02:00 +0900",
     

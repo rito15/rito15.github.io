@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-09T19:38:38+09:00</updated>
+  <updated>2021-03-11T04:03:17+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,160 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>플레이모드 상태 변경에 따른 동작 구현하기</title>
+    <link href="https://rito15.github.io/posts/unity-editor/" rel="alternate" type="text/html" title="플레이모드 상태 변경에 따른 동작 구현하기" />
+    <published>2021-03-11T03:33:00+09:00</published>
+  
+    <updated>2021-03-11T03:33:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor/</id>
+    <content src="https://rito15.github.io/posts/unity-editor/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      #if UNITY_EDITOR
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+
+namespace Rito
+{
+    [InitializeOnLoad]
+    public class PlayModeStateChangeHandler : ScriptableObject
+    {
+        public static event Action OnExitEditMode;
+        public static event Action OnEnterPlayMode;
+        public static event Action OnExitPlayMode;
+   ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Custom Transform Editor</title>
+    <link href="https://rito15.github.io/posts/unity-toy-transform-custom-editor/" rel="alternate" type="text/html" title="Custom Transform Editor" />
+    <published>2021-03-10T15:15:00+09:00</published>
+  
+    <updated>2021-03-10T15:15:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-toy-transform-custom-editor/</id>
+    <content src="https://rito15.github.io/posts/unity-toy-transform-custom-editor/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Toys" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+  
+    트랜스폼의 커스텀 에디터
+  
+  
+    트랜스폼의 로컬 정보 뿐만 아니라, 글로벌 위치, 회전, 크기 값을 확인 및 조작할 수 있다.
+  
+  
+    총 8개의 리셋 버튼으로 트랜스폼의 로컬, 글로벌 값들을 초기화할 수 있다.
+  
+
+
+
+
+Preview
+
+
+
+
+
+
+
+  Global - Reset 버튼을 누를 경우
+
+
+
+
+
+
+
+  Global Position - Reset 버튼을 누를 경우
+
+
+
+
+
+
+
+  Global Rotation - Reset 버튼을 누를 경우
+
+
+
+
+
+
+
+  Global Scale - Reset 버튼을 누를 경우
+
+
+
+
+
+
+Download
+
+
+  CustomTransformEditor.zip
+
+
+
+
+Source Code
+
+
+  https://githu...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -162,13 +316,13 @@ string result = Regex.Replace(strExample, pattern, replacement);
   
   <entry>
     <title>컴파일, 게임 시작 시 실행되는 애트리뷰트 정리</title>
-    <link href="https://rito15.github.io/posts/unity-memo-init-events/" rel="alternate" type="text/html" title="컴파일, 게임 시작 시 실행되는 애트리뷰트 정리" />
+    <link href="https://rito15.github.io/posts/unity-editor-init-events/" rel="alternate" type="text/html" title="컴파일, 게임 시작 시 실행되는 애트리뷰트 정리" />
     <published>2021-03-08T03:03:00+09:00</published>
   
     <updated>2021-03-08T03:03:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-memo-init-events/</id>
-    <content src="https://rito15.github.io/posts/unity-memo-init-events/" />
+    <id>https://rito15.github.io/posts/unity-editor-init-events/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-init-events/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -177,7 +331,7 @@ string result = Regex.Replace(strExample, pattern, replacement);
     
     <category term="Unity" />
     
-    <category term="Unity Memo" />
+    <category term="Unity Editor" />
     
   
 
@@ -233,146 +387,6 @@ Note
   
   
     실행 타이밍 : 컴파일, 플레이모드 진입...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Scene Auto Saver (현재 씬 자동 저장)</title>
-    <link href="https://rito15.github.io/posts/unity-toy-scene-auto-saver/" rel="alternate" type="text/html" title="Scene Auto Saver (현재 씬 자동 저장)" />
-    <published>2021-03-08T02:22:00+09:00</published>
-  
-    <updated>2021-03-08T02:22:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-toy-scene-auto-saver/</id>
-    <content src="https://rito15.github.io/posts/unity-toy-scene-auto-saver/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Toys" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-  
-    일정 시간 주기로 현재 활성화된 씬을 자동 저장한다.
-  
-  
-    씬이 저장되지 않은 상태일 때만 타이머가 동작한다.
-  
-
-
-How To Use
-
-
-  스크립트 2개를 모두 다운로드 받아 유니티 프로젝트에 넣는다.
-  
-    [Window] - [Rito] - [Scene Auto Saver]를 통해 윈도우를 연다.
-  
-  On에 체크/해제하여 기능 실행 여부를 설정할 수 있다.
-  Show Log 옵션으로 자동 저장 시 로그 출력 여부를 설정할 수 있다.
-  Save Cycle 옵션으로 저장 주기를 설정할 수 있다. (기본 : 10초, 최소 : 5초)
-
-
-
-
-Preview
-
-
-
-
-Download
-
-
-  Scene Auto Saver.zip
-
-
-Source Code
-...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>커스텀 에디터 윈도우</title>
-    <link href="https://rito15.github.io/posts/unity-memo-custom-editor-window/" rel="alternate" type="text/html" title="커스텀 에디터 윈도우" />
-    <published>2021-03-08T00:00:00+09:00</published>
-  
-    <updated>2021-03-08T00:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-memo-custom-editor-window/</id>
-    <content src="https://rito15.github.io/posts/unity-memo-custom-editor-window/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-  에디터 윈도우를 직접 만들어 사용할 수 있다.
-
-
-Preview
-
-
-
-
-
-
-Source Code Example
-
-
-#if UNITY_EDITOR
-
-using UnityEngine;
-using UnityEditor;
-
-public class ExampleWindow : EditorWindow
-{
-    private bool boolValue;
-    private float floatValue;
-    private Vector3 vector3Value;
-
-    [MenuItem("Window/Rito/Example Window")] // 메뉴 등록
-    private static void Init()
-    {
-        // 현재 활성화된 윈도우 가져오며, 없으면 새로 생성
-...
     </summary>
   
 

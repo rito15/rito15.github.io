@@ -192,5 +192,51 @@ private static bool CheckFocusedWindow(EditorWindowType type)
 
 <br>
 
+<details>
+<summary markdown="span"> 
+메뉴 아이템 : 토글 체크 (EditorPrefs 이용)
+</summary>
 
+```cs
+private const string ActivationMenuName = "Window/MENU_EXAMPLE/Activated";
+private const string ActivationSettingName = "MENU_EXAMPLE_Activated";
+
+public static bool Activated
+{
+    get { return EditorPrefs.GetBool(ActivationSettingName, true); }
+    set { EditorPrefs.SetBool(ActivationSettingName, value); }
+}
+
+[MenuItem(ActivationMenuName)]
+private static void ActivationToggle() => Activated = !Activated;
+
+[MenuItem(ActivationMenuName, true)]
+private static bool ActivationToggleValidate()
+{
+    Menu.SetChecked(ActivationMenuName, Activated);
+    return true;
+}
+```
+
+</details>
+
+<br>
+
+<details>
+<summary markdown="span"> 
+컨텍스트 메뉴 아이템 : 컴포넌트 우클릭 메뉴
+</summary>
+
+```cs
+[MenuItem ("CONTEXT/Transform/Menu Name")]
+private static void RandomRotation (MenuCommand command)
+{
+    var transform = command.context as Transform;
+
+    Undo.RecordObject (transform, SOME_ACTION);
+    transform.rotation = Random.rotation;
+}
+```
+
+</details>
 

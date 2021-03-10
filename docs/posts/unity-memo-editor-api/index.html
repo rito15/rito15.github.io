@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 에디터 관련 유용한 스크립트, 팁 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 에디터 관련 유용한 스크립트, 팁 모음","description":"다이얼로그 창 띄우기","dateModified":"2021-02-28T01:50:00+09:00","datePublished":"2021-02-28T01:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-editor-api/"},"url":"https://rito15.github.io/posts/unity-memo-editor-api/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"다이얼로그 창 띄우기","datePublished":"2021-02-28T01:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-editor-api/"},"url":"https://rito15.github.io/posts/unity-memo-editor-api/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 에디터 관련 유용한 스크립트, 팁 모음","dateModified":"2021-02-28T01:50:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="676 words">3 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="808 words">4 min</span>
 
 
           <!-- page views -->
@@ -683,6 +683,78 @@ Enum - EditorWindowType
 </details>
 
 <p><br /></p>
+
+<details>
+  <summary> 
+메뉴 아이템 : 토글 체크 (EditorPrefs 이용)
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">ActivationMenuName</span> <span class="p">=</span> <span class="s">"Window/MENU_EXAMPLE/Activated"</span><span class="p">;</span>
+<span class="k">private</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">ActivationSettingName</span> <span class="p">=</span> <span class="s">"MENU_EXAMPLE_Activated"</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="kt">bool</span> <span class="n">Activated</span>
+<span class="p">{</span>
+    <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">EditorPrefs</span><span class="p">.</span><span class="nf">GetBool</span><span class="p">(</span><span class="n">ActivationSettingName</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span> <span class="p">}</span>
+    <span class="k">set</span> <span class="p">{</span> <span class="n">EditorPrefs</span><span class="p">.</span><span class="nf">SetBool</span><span class="p">(</span><span class="n">ActivationSettingName</span><span class="p">,</span> <span class="k">value</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">[</span><span class="nf">MenuItem</span><span class="p">(</span><span class="n">ActivationMenuName</span><span class="p">)]</span>
+<span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">ActivationToggle</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">Activated</span> <span class="p">=</span> <span class="p">!</span><span class="n">Activated</span><span class="p">;</span>
+
+<span class="p">[</span><span class="nf">MenuItem</span><span class="p">(</span><span class="n">ActivationMenuName</span><span class="p">,</span> <span class="k">true</span><span class="p">)]</span>
+<span class="k">private</span> <span class="k">static</span> <span class="kt">bool</span> <span class="nf">ActivationToggleValidate</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Menu</span><span class="p">.</span><span class="nf">SetChecked</span><span class="p">(</span><span class="n">ActivationMenuName</span><span class="p">,</span> <span class="n">Activated</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+컨텍스트 메뉴 아이템 : 컴포넌트 우클릭 메뉴
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nf">MenuItem</span> <span class="p">(</span><span class="s">"CONTEXT/Transform/Menu Name"</span><span class="p">)]</span>
+<span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">RandomRotation</span> <span class="p">(</span><span class="n">MenuCommand</span> <span class="n">command</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">transform</span> <span class="p">=</span> <span class="n">command</span><span class="p">.</span><span class="n">context</span> <span class="k">as</span> <span class="n">Transform</span><span class="p">;</span>
+
+    <span class="n">Undo</span><span class="p">.</span><span class="nf">RecordObject</span> <span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="n">SOME_ACTION</span><span class="p">);</span>
+    <span class="n">transform</span><span class="p">.</span><span class="n">rotation</span> <span class="p">=</span> <span class="n">Random</span><span class="p">.</span><span class="n">rotation</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 
 
@@ -1286,145 +1358,6 @@ Enum - EditorWindowType
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1434,76 +1367,6 @@ Enum - EditorWindowType
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1858,120 +1721,10 @@ Enum - EditorWindowType
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2461,10 +2214,339 @@ Enum - EditorWindowType
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
@@ -3385,6 +3467,32 @@ Enum - EditorWindowType
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -4807,56 +4915,6 @@ Enum - EditorWindowType
       
       
       <div class="card">
-        <a href="/posts/unity-memo-pdf-compilation/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan  1
-  
-
-  <i class="unloaded">2021-01-01T01:01:01+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유용한 정보, PDF 링크 모음</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                레거시 파이프라인과 SRP
-
-
-  https://drive.google.com/file/d/1eR39KY_n_wuWF5S_zClCECE3ynmSfs-h/view
-
-
-
-
-
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-memo-script-templates/">
           <div class="card-body">
             <!--
@@ -4907,6 +4965,62 @@ Enum - EditorWindowType
 
   각각의 유니티 버전마다 따로 저장된다.
   한가지 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-memo-ui-drag-and-drop/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb  1
+  
+
+  <i class="unloaded">2021-02-01T03:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 드래그 앤 드롭으로 옮기기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                기능
+
+  UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기
+
+
+사용법
+
+  헤더 UI는 UI의 자식으로 구성한다.
+  PopupUIHeader 스크립트를 헤더 UI의 컴포넌트로 넣어준다.
+
+
+
+  
+    /// &lt;summary&gt; 헤더 드래그 앤 드롭에 의한 UI 이동 구현 &lt;/summary&gt;
+publi...
               </p>
             </div>
           </div>
@@ -5478,145 +5592,6 @@ Enum - EditorWindowType
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -5626,76 +5601,6 @@ Enum - EditorWindowType
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -6050,120 +5955,10 @@ Enum - EditorWindowType
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -6653,10 +6448,339 @@ Enum - EditorWindowType
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
   
     
     
