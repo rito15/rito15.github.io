@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-11T04:03:17+09:00</updated>
+  <updated>2021-03-12T04:22:29+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,14 +20,117 @@
 
   
   <entry>
+    <title>컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-component-on-top/" rel="alternate" type="text/html" title="컴포넌트의 인스펙터 내 순서를 맨 위로 올리기" />
+    <published>2021-03-12T04:04:00+09:00</published>
+  
+    <updated>2021-03-12T04:04:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-component-on-top/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-component-on-top/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      bool flag = true;
+while (flag)
+{
+    flag = UnityEditorInternal.ComponentUtility.MoveComponentUp(this);
+    // 맨 위로 올라갔을 경우 false 리턴
+}
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드</title>
+    <link href="https://rito15.github.io/posts/unity-memo-callback-overhead/" rel="alternate" type="text/html" title="메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드" />
+    <published>2021-03-11T18:11:00+09:00</published>
+  
+    <updated>2021-03-11T18:11:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-memo-callback-overhead/</id>
+    <content src="https://rito15.github.io/posts/unity-memo-callback-overhead/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      테스트 대상
+
+
+[1] 문장(계산식)
+
+private static void TestInline()
+{
+    for (int i = 0; i &amp;lt; count; i++)
+    {
+        _ = Math.Round(2.3f) * Math.Sin(2.5f);
+        _ = Math.Floor(4.4f) * Math.Log10(6.34f);
+        _ = Math.Acos(5.5f) * Math.Tan(34.4f);
+    }
+}
+
+
+[2] 동일한 문장들을 각각 메소드화하여 호출
+
+private static void MethodA()
+{
+    _ = Math.Round(2.3f) * Math.Sin(2.5f);
+}
+private static void MethodB()
+{
+    _...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>플레이모드 상태 변경에 따른 동작 구현하기</title>
-    <link href="https://rito15.github.io/posts/unity-editor/" rel="alternate" type="text/html" title="플레이모드 상태 변경에 따른 동작 구현하기" />
+    <link href="https://rito15.github.io/posts/unity-editor-playmode-state-change/" rel="alternate" type="text/html" title="플레이모드 상태 변경에 따른 동작 구현하기" />
     <published>2021-03-11T03:33:00+09:00</published>
   
     <updated>2021-03-11T03:33:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-editor/</id>
-    <content src="https://rito15.github.io/posts/unity-editor/" />
+    <id>https://rito15.github.io/posts/unity-editor-playmode-state-change/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-playmode-state-change/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -59,12 +162,12 @@ using UnityEditor;
 namespace Rito
 {
     [InitializeOnLoad]
-    public class PlayModeStateChangeHandler : ScriptableObject
+    public class PlayModeStateChangeHandler
     {
         public static event Action OnExitEditMode;
         public static event Action OnEnterPlayMode;
         public static event Action OnExitPlayMode;
-   ...
+        public static ...
     </summary>
   
 
@@ -245,148 +348,6 @@ How To Use
 1. 객체 생성
 
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Regex (정규표현식)</title>
-    <link href="https://rito15.github.io/posts/memo-cs-regex/" rel="alternate" type="text/html" title="Regex (정규표현식)" />
-    <published>2021-03-08T17:42:00+09:00</published>
-  
-    <updated>2021-03-08T17:42:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-cs-regex/</id>
-    <content src="https://rito15.github.io/posts/memo-cs-regex/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Csharp Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-Using
-
-using System.Text.RegularExpressions;
-
-
-
-
-스트링의 오른쪽에서부터 탐색
-
-Regex.Match(string, pattern, RegexOptions.RightToLeft)
-
-
-
-
-찾은 문자열 주변을 변경 (그룹 사용)
-
-string strExample = "&amp;lt;12&amp;gt; GameObject [23]  ";
-string pattern = @"[\s\[\{\(\&amp;lt;]+" + @"([0-9]+)" + @"[\s\]\}\)\&amp;gt;]+";
-string replacement = @"($1)";
-string result = Regex.Replace(strExample, pattern, replacement);
-
-
-
-  
-    패턴에서 “( ~ )...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>컴파일, 게임 시작 시 실행되는 애트리뷰트 정리</title>
-    <link href="https://rito15.github.io/posts/unity-editor-init-events/" rel="alternate" type="text/html" title="컴파일, 게임 시작 시 실행되는 애트리뷰트 정리" />
-    <published>2021-03-08T03:03:00+09:00</published>
-  
-    <updated>2021-03-08T03:03:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-init-events/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-init-events/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      공통 특징
-
-
-
-  
-    클래스 또는 메소드 상단에 애트리뷰트를 명시한다.
-  
-  
-    컴포넌트로 넣지 않고, 스크립트로만 존재해도 실행된다.
-  
-  
-    정적 클래스나 상속에 관계 없이 동작한다.
-  
-  
-    메소드 애트리뷰트는 정적 메소드에만 동작한다.
-  
-
-
-
-
-컴파일, 플레이모드 진입 시 실행
-
-
-Note
-
-  EditorApplication.isPlaying으로 현재 에디터 모드를 구분하여 활용할 수 있다.
-
-
-
-
-[InitializeOnLoad]
-
-
-  
-    using UnityEditor;
-  
-  
-    클래스 애트리뷰트
-  
-  
-    정적 생성자가 호출되므로, 정적 생성자에 원하는 코드를 작성한다.
-  
-  
-    실행 타이밍 : 컴파일, 플레이모드 진입...
     </summary>
   
 

@@ -1,10 +1,40 @@
 [
   
   {
-    "title": "플레이모드 상태 변경에 따른 동작 구현하기",
-    "url": "/posts/unity-editor/",
-    "categories": "Unity, Unity Editor",
+    "title": "컴포넌트의 인스펙터 내 순서를 맨 위로 올리기",
+    "url": "/posts/unity-editor-component-on-top/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, editor, csharp",
+    "date": "2021-03-12 04:04:00 +0900",
+    
+
+
+
+
+
+    "snippet": "bool flag = true;while (flag){    flag = UnityEditorInternal.ComponentUtility.MoveComponentUp(this);    // 맨 위로 올라갔을 경우 false 리턴}"
+  },
+  
+  {
+    "title": "메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드",
+    "url": "/posts/unity-memo-callback-overhead/",
+    "categories": "Unity, Unity Memo",
     "tags": "unity, csharp",
+    "date": "2021-03-11 18:11:00 +0900",
+    
+
+
+
+
+
+    "snippet": "테스트 대상[1] 문장(계산식)private static void TestInline(){    for (int i = 0; i &amp;lt; count; i++)    {        _ = Math.Round(2.3f) * Math.Sin(2.5f);        _ = Math.Floor(4.4f) * Math.Log10(6.34f);        _ = Math.Acos(5.5f) * Math.Tan(34.4f);    }}[2] 동일한 문장들을 각각 메소드화하여 호출private static void MethodA(..."
+  },
+  
+  {
+    "title": "플레이모드 상태 변경에 따른 동작 구현하기",
+    "url": "/posts/unity-editor-playmode-state-change/",
+    "categories": "Unity, Unity Editor",
+    "tags": "unity, editor, csharp",
     "date": "2021-03-11 03:33:00 +0900",
     
 
@@ -12,7 +42,7 @@
 
 
 
-    "snippet": "#if UNITY_EDITORusing System;using System.Collections;using System.Collections.Generic;using UnityEngine;using UnityEditor;namespace Rito{    [InitializeOnLoad]    public class PlayModeStateChangeHandler : ScriptableObject    {        public static event Action OnExitEditMode;        public stati..."
+    "snippet": "#if UNITY_EDITORusing System;using System.Collections;using System.Collections.Generic;using UnityEngine;using UnityEditor;namespace Rito{    [InitializeOnLoad]    public class PlayModeStateChangeHandler    {        public static event Action OnExitEditMode;        public static event Action OnEn..."
   },
   
   {
@@ -64,7 +94,7 @@
     "title": "컴파일, 게임 시작 시 실행되는 애트리뷰트 정리",
     "url": "/posts/unity-editor-init-events/",
     "categories": "Unity, Unity Editor",
-    "tags": "unity, csharp",
+    "tags": "unity, editor, csharp",
     "date": "2021-03-08 03:03:00 +0900",
     
 
@@ -94,7 +124,7 @@
     "title": "커스텀 에디터 윈도우",
     "url": "/posts/unity-editor-custom-editor-window/",
     "categories": "Unity, Unity Editor",
-    "tags": "unity, csharp, editorwindow",
+    "tags": "unity, editor, csharp, editorwindow",
     "date": "2021-03-08 00:00:00 +0900",
     
 
@@ -361,8 +391,23 @@
   },
   
   {
+    "title": "유니티 에디터 - Undo",
+    "url": "/posts/unity-editor-undo/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, csharp, editor",
+    "date": "2021-02-28 01:52:00 +0900",
+    
+
+
+
+
+
+    "snippet": "// 이름 변경, 기타 등등 수행하기 직전에 호출// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함Undo.RecordObject(target, &quot;Action&quot;);// 오브젝트 생성 이후에 호출Undo.RegisterCreatedObjectUndo(target, &quot;Create New&quot;);// 오브젝트 파괴 및 Undo 등록Undo.DestroyObjectImmediate(selected.gameObject);// 부모 변경 및 Undo 등록Undo.SetTran..."
+  },
+  
+  {
     "title": "유니티 에디터 관련 유용한 스크립트, 팁 모음",
-    "url": "/posts/unity-memo-editor-api/",
+    "url": "/posts/unity-editor-api/",
     "categories": "Unity, Unity Memo",
     "tags": "unity, csharp, editor",
     "date": "2021-02-28 01:50:00 +0900",
@@ -372,7 +417,7 @@
 
 
 
-    "snippet": "   다이얼로그 창 띄우기  bool res1 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;);bool res2 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;, &quot;Cancel&quot;);     Undo 모음  // 이름 변경, 기타 등등 수행하기 직전에 호출// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 ..."
+    "snippet": "   다이얼로그 창 띄우기  bool res1 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;);bool res2 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;, &quot;Cancel&quot;);     우클릭 MenuItem 메소드 중복 호출 방지하기            게임오브젝트를 다중 선택하고 우클릭 메뉴를 통..."
   },
   
   {
@@ -499,7 +544,7 @@
     "title": "스크립터블 오브젝트",
     "url": "/posts/unity-editor-scriptable-object/",
     "categories": "Unity, Unity Editor",
-    "tags": "unity, csharp, scriptable, object",
+    "tags": "unity, csharp, scriptableobject",
     "date": "2021-02-20 02:02:00 +0900",
     
 
@@ -556,7 +601,7 @@
   },
   
   {
-    "title": "리플렉션",
+    "title": "Reflection(리플렉션)",
     "url": "/posts/memo-cs-reflection/",
     "categories": "Memo, Csharp Memo",
     "tags": "csharp, reflection",
@@ -567,7 +612,7 @@
 
 
 
-    "snippet": "필요 네임스페이스using System;using System.Reflection;특정 클래스 타입 가져오기Type targetType = Type.GetType(&quot;클래스명&quot;);네임스페이스 내에 있는 클래스 타입 가져오기Type targetType = Type.GetType(&quot;네임스페이스명.클래스명&quot;);다른 어셈블리(예: DLL) 내에 있는 클래스 타입 가져오기Type targetType = Type.GetType(&quot;네임스페이스명.클래스명, 어셈블리명);타입으로 객체 생성하기obje..."
+    "snippet": "필요 네임스페이스using System;using System.Reflection;특정 클래스 타입 가져오기Type targetType = Type.GetType(&quot;클래스명&quot;);네임스페이스 내에 있는 클래스 타입 가져오기Type targetType = Type.GetType(&quot;네임스페이스명.클래스명&quot;);다른 어셈블리(예: DLL) 내에 있는 클래스 타입 가져오기Type targetType = Type.GetType(&quot;네임스페이스명.클래스명, 어셈블리명&quot;);// 어셈블리명 예..."
   },
   
   {

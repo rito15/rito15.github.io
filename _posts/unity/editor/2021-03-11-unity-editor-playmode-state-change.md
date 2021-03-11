@@ -3,7 +3,7 @@ title: 플레이모드 상태 변경에 따른 동작 구현하기
 author: Rito15
 date: 2021-03-11 03:33:00 +09:00
 categories: [Unity, Unity Editor]
-tags: [unity, csharp]
+tags: [unity, editor, csharp]
 math: true
 mermaid: true
 ---
@@ -20,7 +20,7 @@ using UnityEditor;
 namespace Rito
 {
     [InitializeOnLoad]
-    public class PlayModeStateChangeHandler : ScriptableObject
+    public class PlayModeStateChangeHandler
     {
         public static event Action OnExitEditMode;
         public static event Action OnEnterPlayMode;

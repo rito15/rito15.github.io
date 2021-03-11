@@ -24,30 +24,6 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
 
 <details>
 <summary markdown="span"> 
-Undo 모음
-</summary>
-
-```cs
-// 이름 변경, 기타 등등 수행하기 직전에 호출
-// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함
-Undo.RecordObject(target, "Action");
-
-// 오브젝트 생성 이후에 호출
-Undo.RegisterCreatedObjectUndo(target, "Create New");
-
-// 오브젝트 파괴 및 Undo 등록
-Undo.DestroyObjectImmediate(selected.gameObject);
-
-// 부모 변경 및 Undo 등록
-Undo.SetTransformParent(transform, parent, "Change Parent");
-```
-
-</details>
-
-<br>
-
-<details>
-<summary markdown="span"> 
 우클릭 MenuItem 메소드 중복 호출 방지하기
 </summary>
 

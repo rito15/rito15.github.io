@@ -3,7 +3,7 @@ title: 커스텀 에디터 윈도우
 author: Rito15
 date: 2021-03-08 00:00:00 +09:00
 categories: [Unity, Unity Editor]
-tags: [unity, csharp, editorwindow]
+tags: [unity, editor, csharp, editorwindow]
 math: true
 mermaid: true
 ---
