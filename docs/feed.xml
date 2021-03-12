@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-12T04:22:29+09:00</updated>
+  <updated>2021-03-12T21:59:32+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,23 +20,23 @@
 
   
   <entry>
-    <title>컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</title>
-    <link href="https://rito15.github.io/posts/unity-editor-component-on-top/" rel="alternate" type="text/html" title="컴포넌트의 인스펙터 내 순서를 맨 위로 올리기" />
-    <published>2021-03-12T04:04:00+09:00</published>
+    <title>델리게이트가 특정 메소드를 갖고 있는지 확인하기</title>
+    <link href="https://rito15.github.io/posts/memo-cs-delegate-has-method/" rel="alternate" type="text/html" title="델리게이트가 특정 메소드를 갖고 있는지 확인하기" />
+    <published>2021-03-12T21:52:00+09:00</published>
   
-    <updated>2021-03-12T04:04:00+09:00</updated>
+    <updated>2021-03-12T21:52:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-editor-component-on-top/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-component-on-top/" />
+    <id>https://rito15.github.io/posts/memo-cs-delegate-has-method/</id>
+    <content src="https://rito15.github.io/posts/memo-cs-delegate-has-method/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Unity" />
+    <category term="Memo" />
     
-    <category term="Unity Memo" />
+    <category term="Csharp Memo" />
     
   
 
@@ -48,14 +48,19 @@
 
 
 
-      bool flag = true;
-while (flag)
+      //using System;
+//using System.Linq;
+
+/// &amp;lt;summary&amp;gt; 델리게이트가 메소드를 갖고 있는지 검사 &amp;lt;/summary&amp;gt;
+private static bool CheckDelegateHasMethod&amp;lt;DType&amp;gt;(DType @delegate, DType method) where DType : Delegate
 {
-    flag = UnityEditorInternal.ComponentUtility.MoveComponentUp(this);
-    // 맨 위로 올라갔을 경우 false 리턴
+    return @delegate?.GetInvocationList()
+            .Where(d =&amp;gt; d.Method == method.Method)
+            .Count() &amp;gt; 0;
 }
 
-
+private Action&amp;lt;int&amp;gt; del;
+private void MethodA(int i) {...
     </summary>
   
 
@@ -63,74 +68,14 @@ while (flag)
 
   
   <entry>
-    <title>메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드</title>
-    <link href="https://rito15.github.io/posts/unity-memo-callback-overhead/" rel="alternate" type="text/html" title="메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드" />
-    <published>2021-03-11T18:11:00+09:00</published>
+    <title>Menu Item</title>
+    <link href="https://rito15.github.io/posts/unity-editor-menu-item/" rel="alternate" type="text/html" title="Menu Item" />
+    <published>2021-03-12T20:10:00+09:00</published>
   
-    <updated>2021-03-11T18:11:00+09:00</updated>
+    <updated>2021-03-12T20:10:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-memo-callback-overhead/</id>
-    <content src="https://rito15.github.io/posts/unity-memo-callback-overhead/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      테스트 대상
-
-
-[1] 문장(계산식)
-
-private static void TestInline()
-{
-    for (int i = 0; i &amp;lt; count; i++)
-    {
-        _ = Math.Round(2.3f) * Math.Sin(2.5f);
-        _ = Math.Floor(4.4f) * Math.Log10(6.34f);
-        _ = Math.Acos(5.5f) * Math.Tan(34.4f);
-    }
-}
-
-
-[2] 동일한 문장들을 각각 메소드화하여 호출
-
-private static void MethodA()
-{
-    _ = Math.Round(2.3f) * Math.Sin(2.5f);
-}
-private static void MethodB()
-{
-    _...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>플레이모드 상태 변경에 따른 동작 구현하기</title>
-    <link href="https://rito15.github.io/posts/unity-editor-playmode-state-change/" rel="alternate" type="text/html" title="플레이모드 상태 변경에 따른 동작 구현하기" />
-    <published>2021-03-11T03:33:00+09:00</published>
-  
-    <updated>2021-03-11T03:33:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-playmode-state-change/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-playmode-state-change/" />
+    <id>https://rito15.github.io/posts/unity-editor-menu-item/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-menu-item/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -151,23 +96,31 @@ private static void MethodB()
 
 
 
-      #if UNITY_EDITOR
+      메뉴 아이템 기본
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
+private const string MenuItemTitle = "Window/Rito/Menu Item";
+private const int MenuItemPriority = 123;
 
-namespace Rito
+[MenuItem(MenuItemTitle)]
+private static void MenuItem1()
 {
-    [InitializeOnLoad]
-    public class PlayModeStateChangeHandler
-    {
-        public static event Action OnExitEditMode;
-        public static event Action OnEnterPlayMode;
-        public static event Action OnExitPlayMode;
-        public static ...
+    // ..
+}
+
+[MenuItem(MenuItemTitle, false, MenuItemPriority)]
+private static void MenuItem2()
+{
+    // ..
+}
+
+
+
+
+활성화/비활성화 설정
+
+private const string MenuItemTitle = "Window/Rito/Menu Item";
+
+[MenuItem(MenuItemTitle, false)...
     </summary>
   
 
@@ -175,14 +128,14 @@ namespace Rito
 
   
   <entry>
-    <title>Custom Transform Editor</title>
-    <link href="https://rito15.github.io/posts/unity-toy-transform-custom-editor/" rel="alternate" type="text/html" title="Custom Transform Editor" />
-    <published>2021-03-10T15:15:00+09:00</published>
+    <title>Scripting Define Symbol 스크립트로 제어하기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-define-symbol/" rel="alternate" type="text/html" title="Scripting Define Symbol 스크립트로 제어하기" />
+    <published>2021-03-12T18:28:00+09:00</published>
   
-    <updated>2021-03-10T15:15:00+09:00</updated>
+    <updated>2021-03-12T18:28:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-toy-transform-custom-editor/</id>
-    <content src="https://rito15.github.io/posts/unity-toy-transform-custom-editor/" />
+    <id>https://rito15.github.io/posts/unity-editor-define-symbol/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-define-symbol/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -191,7 +144,7 @@ namespace Rito
     
     <category term="Unity" />
     
-    <category term="Unity Toys" />
+    <category term="Unity Editor" />
     
   
 
@@ -203,65 +156,24 @@ namespace Rito
 
 
 
-      Note
+      Scripting Define Symbol?
+
+
+
 
 
   
-    트랜스폼의 커스텀 에디터
+    스크립트에서 #define으로 정의하듯, 프로젝트 전체에서 정의하여 사용할 수 있는 심볼
   
   
-    트랜스폼의 로컬 정보 뿐만 아니라, 글로벌 위치, 회전, 크기 값을 확인 및 조작할 수 있다.
+    Project Settings - Player - Other Settings - Scripting Define Symbols
   
   
-    총 8개의 리셋 버튼으로 트랜스폼의 로컬, 글로벌 값들을 초기화할 수 있다.
+    빌드 타겟마다 달라진다.
   
-
-
-
-
-Preview
-
-
-
-
-
-
-
-  Global - Reset 버튼을 누를 경우
-
-
-
-
-
-
-
-  Global Position - Reset 버튼을 누를 경우
-
-
-
-
-
-
-
-  Global Rotation - Reset 버튼을 누를 경우
-
-
-
-
-
-
-
-  Global Scale - Reset 버튼을 누를 경우
-
-
-
-
-
-
-Download
-
-
-  CustomTransformEditor.zip
+  
+    유니티 에디터 스크립팅을 통해 확인, 추가, 제거할 수 있다.
+  
 
 
 
@@ -269,7 +181,13 @@ Download
 Source Code
 
 
-  https://githu...
+using System.Text.RegularExpressions;
+using UnityEditor;
+
+public static class DefineSymbolManager
+{
+    public struct DefineSymbolData
+    {...
     </summary>
   
 
@@ -277,23 +195,23 @@ Source Code
 
   
   <entry>
-    <title>Weighted Random Picker (가중치 랜덤 뽑기)</title>
-    <link href="https://rito15.github.io/posts/unity-toy-weighted-random-picker/" rel="alternate" type="text/html" title="Weighted Random Picker (가중치 랜덤 뽑기)" />
-    <published>2021-03-09T03:22:00+09:00</published>
+    <title>스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조</title>
+    <link href="https://rito15.github.io/posts/memo-cs-get-path/" rel="alternate" type="text/html" title="스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조" />
+    <published>2021-03-12T18:10:00+09:00</published>
   
-    <updated>2021-03-09T03:22:00+09:00</updated>
+    <updated>2021-03-12T18:10:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-toy-weighted-random-picker/</id>
-    <content src="https://rito15.github.io/posts/unity-toy-weighted-random-picker/" />
+    <id>https://rito15.github.io/posts/memo-cs-get-path/</id>
+    <content src="https://rito15.github.io/posts/memo-cs-get-path/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Unity" />
+    <category term="Memo" />
     
-    <category term="Unity Toys" />
+    <category term="Csharp Memo" />
     
   
 
@@ -305,49 +223,63 @@ Source Code
 
 
 
-      Note
+      스크립트 경로
 
+public static void GetScriptPath([System.Runtime.CompilerServices.CallerFilePath] string filePath = "")
+{
+    // 1. Script(.cs) Path
+    _ = filePath;
 
-  
-    게임에서 각각 n% 확률로 존재하는 요소들의 뽑기를 수행할 때, 단순히 Random.Range()를 통해서는 계산할 수 없다.
-  
-  
-    이 때, ‘가중치 랜덤 뽑기’를 이용한다.
-  
-  
-    제네릭을 활용하여, 아이템들과 가중치의 목록을 넣으면 간단히 뽑기를 수행할 수 있도록 작성하였다.
-  
-  
-    아이템은 중복되게 추가할 수 없다.
-  
-  
-    내부적으로 System.Random을 사용한다.
+    // 2. Folder Path
+    string folderPath = System.IO.Path.GetDirectoryName(filePath);
+
+    // 3. Specific Root Folder Path
+    string rootFolderName = @"Assets\";
+    int rootIndex = folderPath.IndexOf(rootFolderName);
+    if (rootIn...
+    </summary>
   
 
-
-
-
-가중치 랜덤 뽑기?
-
-
-
+  </entry>
 
   
-    각각의 요소에 가중치(Weight)를 부여한다.
+  <entry>
+    <title>컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-component-on-top/" rel="alternate" type="text/html" title="컴포넌트의 인스펙터 내 순서를 맨 위로 올리기" />
+    <published>2021-03-12T04:04:00+09:00</published>
   
+    <updated>2021-03-12T04:04:00+09:00</updated>
   
-    뽑기를 수행했을 때 각각의 요소가 뽑힐 확률은 (가중치) / (전체 가중치 합)이 된다.
+    <id>https://rito15.github.io/posts/unity-editor-component-on-top/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-component-on-top/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor" />
+    
   
 
+  
+    <summary>
+      
 
 
 
-How To Use
 
 
-1. 객체 생성
+      bool flag = true;
+while (flag)
+{
+    flag = UnityEditorInternal.ComponentUtility.MoveComponentUp(this);
+    // 맨 위로 올라갔을 경우 false 리턴
+}
 
-...
+
     </summary>
   
 

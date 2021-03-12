@@ -1,8 +1,8 @@
 ---
-title: 유니티 에디터 - Undo
+title: Undo
 author: Rito15
 date: 2021-02-28 01:52:00 +09:00
-categories: [Unity, Unity Memo]
+categories: [Unity, Unity Editor]
 tags: [unity, csharp, editor]
 math: true
 mermaid: true

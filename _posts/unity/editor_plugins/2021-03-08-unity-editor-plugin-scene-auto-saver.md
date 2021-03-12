@@ -2,7 +2,7 @@
 title: Scene Auto Saver (현재 씬 자동 저장)
 author: Rito15
 date: 2021-03-08 02:22:00 +09:00
-categories: [Unity, Unity Toys]
+categories: [Unity, Unity Editor Plugins]
 tags: [unity, csharp, plugin, autosave]
 math: true
 mermaid: true
@@ -43,5 +43,5 @@ mermaid: true
 
 # Source Code
 ---
-- <https://github.com/rito15/Unity_Toys>
+- <https://github.com/rito15/Unity-Library/tree/main/Unity%20Library/Editor%20Plugins>
 

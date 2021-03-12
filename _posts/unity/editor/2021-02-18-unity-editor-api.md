@@ -1,8 +1,8 @@
 ---
 title: 유니티 에디터 관련 유용한 스크립트, 팁 모음
 author: Rito15
-date: 2021-02-28 01:50:00 +09:00
-categories: [Unity, Unity Memo]
+date: 2021-02-18 01:50:00 +09:00
+categories: [Unity, Unity Editor]
 tags: [unity, csharp, editor]
 math: true
 mermaid: true
@@ -196,23 +196,4 @@ private static bool ActivationToggleValidate()
 
 </details>
 
-<br>
-
-<details>
-<summary markdown="span"> 
-컨텍스트 메뉴 아이템 : 컴포넌트 우클릭 메뉴
-</summary>
-
-```cs
-[MenuItem ("CONTEXT/Transform/Menu Name")]
-private static void RandomRotation (MenuCommand command)
-{
-    var transform = command.context as Transform;
-
-    Undo.RecordObject (transform, SOME_ACTION);
-    transform.rotation = Random.rotation;
-}
-```
-
-</details>
 

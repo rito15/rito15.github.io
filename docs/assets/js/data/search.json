@@ -1,9 +1,69 @@
 [
   
   {
+    "title": "델리게이트가 특정 메소드를 갖고 있는지 확인하기",
+    "url": "/posts/memo-cs-delegate-has-method/",
+    "categories": "Memo, Csharp Memo",
+    "tags": "csharp, delegate",
+    "date": "2021-03-12 21:52:00 +0900",
+    
+
+
+
+
+
+    "snippet": "//using System;//using System.Linq;/// &amp;lt;summary&amp;gt; 델리게이트가 메소드를 갖고 있는지 검사 &amp;lt;/summary&amp;gt;private static bool CheckDelegateHasMethod&amp;lt;DType&amp;gt;(DType @delegate, DType method) where DType : Delegate{    return @delegate?.GetInvocationList()            .Where(d =&amp;gt..."
+  },
+  
+  {
+    "title": "Menu Item",
+    "url": "/posts/unity-editor-menu-item/",
+    "categories": "Unity, Unity Editor",
+    "tags": "unity, editor, csharp, menuitem",
+    "date": "2021-03-12 20:10:00 +0900",
+    
+
+
+
+
+
+    "snippet": "메뉴 아이템 기본private const string MenuItemTitle = &quot;Window/Rito/Menu Item&quot;;private const int MenuItemPriority = 123;[MenuItem(MenuItemTitle)]private static void MenuItem1(){    // ..}[MenuItem(MenuItemTitle, false, MenuItemPriority)]private static void MenuItem2(){    // ..}활성화/비활성화 설정privat..."
+  },
+  
+  {
+    "title": "Scripting Define Symbol 스크립트로 제어하기",
+    "url": "/posts/unity-editor-define-symbol/",
+    "categories": "Unity, Unity Editor",
+    "tags": "unity, editor, csharp, define, symbol",
+    "date": "2021-03-12 18:28:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Scripting Define Symbol?      스크립트에서 #define으로 정의하듯, 프로젝트 전체에서 정의하여 사용할 수 있는 심볼        Project Settings - Player - Other Settings - Scripting Define Symbols        빌드 타겟마다 달라진다.        유니티 에디터 스크립팅을 통해 확인, 추가, 제거할 수 있다.  Source Codeusing System.Text.RegularExpressions;using UnityEditor;public sta..."
+  },
+  
+  {
+    "title": "스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조",
+    "url": "/posts/memo-cs-get-path/",
+    "categories": "Memo, Csharp Memo",
+    "tags": "csharp, path",
+    "date": "2021-03-12 18:10:00 +0900",
+    
+
+
+
+
+
+    "snippet": "스크립트 경로public static void GetScriptPath([System.Runtime.CompilerServices.CallerFilePath] string filePath = &quot;&quot;){    // 1. Script(.cs) Path    _ = filePath;    // 2. Folder Path    string folderPath = System.IO.Path.GetDirectoryName(filePath);    // 3. Specific Root Folder Path    string ..."
+  },
+  
+  {
     "title": "컴포넌트의 인스펙터 내 순서를 맨 위로 올리기",
     "url": "/posts/unity-editor-component-on-top/",
-    "categories": "Unity, Unity Memo",
+    "categories": "Unity, Unity Editor",
     "tags": "unity, editor, csharp",
     "date": "2021-03-12 04:04:00 +0900",
     
@@ -47,8 +107,8 @@
   
   {
     "title": "Custom Transform Editor",
-    "url": "/posts/unity-toy-transform-custom-editor/",
-    "categories": "Unity, Unity Toys",
+    "url": "/posts/unity-editor-plugin-transform-custom-editor/",
+    "categories": "Unity, Unity Editor Plugins",
     "tags": "unity, csharp, plugin, transform",
     "date": "2021-03-10 15:15:00 +0900",
     
@@ -87,7 +147,7 @@
 
 
 
-    "snippet": "MemoUsingusing System.Text.RegularExpressions;스트링의 오른쪽에서부터 탐색Regex.Match(string, pattern, RegexOptions.RightToLeft)찾은 문자열 주변을 변경 (그룹 사용)string strExample = &quot;&amp;lt;12&amp;gt; GameObject [23]  &quot;;string pattern = @&quot;[\\s\\[\\{\\(\\&amp;lt;]+&quot; + @&quot;([0-9]+)&quot; + @&quot;[\\s\\]\\}\\..."
+    "snippet": "MemoUsingusing System.Text.RegularExpressions;정확한 단어 찾기string input = &quot;AA,AAA,AAAA&quot;;string pattern = @&quot;\\bAA\\b&quot;; // 단어 경계를 \\b로 구분string result = Regex.Match(input, pattern).Value;스트링의 오른쪽에서부터 탐색Regex.Match(string, pattern, RegexOptions.RightToLeft)찾은 문자열 주변을 변경 (그룹 사용)string st..."
   },
   
   {
@@ -107,8 +167,8 @@
   
   {
     "title": "Scene Auto Saver (현재 씬 자동 저장)",
-    "url": "/posts/unity-toy-scene-auto-saver/",
-    "categories": "Unity, Unity Toys",
+    "url": "/posts/unity-editor-plugin-scene-auto-saver/",
+    "categories": "Unity, Unity Editor Plugins",
     "tags": "unity, csharp, plugin, autosave",
     "date": "2021-03-08 02:22:00 +0900",
     
@@ -121,7 +181,7 @@
   },
   
   {
-    "title": "커스텀 에디터 윈도우",
+    "title": "Custom Editor Window",
     "url": "/posts/unity-editor-custom-editor-window/",
     "categories": "Unity, Unity Editor",
     "tags": "unity, editor, csharp, editorwindow",
@@ -167,8 +227,8 @@
   
   {
     "title": "Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)",
-    "url": "/posts/unity-toy-model-pivot-resetter/",
-    "categories": "Unity, Unity Toys",
+    "url": "/posts/unity-editor-plugin-model-pivot-resetter/",
+    "categories": "Unity, Unity Editor Plugins",
     "tags": "unity, csharp, plugin, model, pivot, postprocessor",
     "date": "2021-03-05 22:22:00 +0900",
     
@@ -391,9 +451,9 @@
   },
   
   {
-    "title": "유니티 에디터 - Undo",
+    "title": "Undo",
     "url": "/posts/unity-editor-undo/",
-    "categories": "Unity, Unity Memo",
+    "categories": "Unity, Unity Editor",
     "tags": "unity, csharp, editor",
     "date": "2021-02-28 01:52:00 +0900",
     
@@ -403,21 +463,6 @@
 
 
     "snippet": "// 이름 변경, 기타 등등 수행하기 직전에 호출// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함Undo.RecordObject(target, &quot;Action&quot;);// 오브젝트 생성 이후에 호출Undo.RegisterCreatedObjectUndo(target, &quot;Create New&quot;);// 오브젝트 파괴 및 Undo 등록Undo.DestroyObjectImmediate(selected.gameObject);// 부모 변경 및 Undo 등록Undo.SetTran..."
-  },
-  
-  {
-    "title": "유니티 에디터 관련 유용한 스크립트, 팁 모음",
-    "url": "/posts/unity-editor-api/",
-    "categories": "Unity, Unity Memo",
-    "tags": "unity, csharp, editor",
-    "date": "2021-02-28 01:50:00 +0900",
-    
-
-
-
-
-
-    "snippet": "   다이얼로그 창 띄우기  bool res1 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;);bool res2 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;, &quot;Cancel&quot;);     우클릭 MenuItem 메소드 중복 호출 방지하기            게임오브젝트를 다중 선택하고 우클릭 메뉴를 통..."
   },
   
   {
@@ -541,7 +586,7 @@
   },
   
   {
-    "title": "스크립터블 오브젝트",
+    "title": "Scriptable Object",
     "url": "/posts/unity-editor-scriptable-object/",
     "categories": "Unity, Unity Editor",
     "tags": "unity, csharp, scriptableobject",
@@ -571,8 +616,8 @@
   },
   
   {
-    "title": "레이캐스트 성능 체크",
-    "url": "/posts/unity-memo-raycast-performance/",
+    "title": "레이캐스트 오버헤드 테스트",
+    "url": "/posts/unity-memo-raycast-overhead/",
     "categories": "Unity, Unity Memo",
     "tags": "unity, csharp, raycast, performance",
     "date": "2021-02-19 16:18:00 +0900",
@@ -628,6 +673,21 @@
 
 
     "snippet": "목표  DirectionalLight, PointLight 클래스 작성  프래그먼트 쉐이더에서 각 라이트에 맞는 계산 수행1. Directional Light  위치에 관계 없이 방향으로만 작용하는 직광 만들기DirectionalLight 클래스 작성class DirectionalLight{private:    glm::vec3 direction; // 빛의 방향과 반전된 L 벡터 방향    glm::vec3 color;    float intensity;public:    DirectionalLight(const glm::v..."
+  },
+  
+  {
+    "title": "유니티 에디터 관련 유용한 스크립트, 팁 모음",
+    "url": "/posts/unity-editor-api/",
+    "categories": "Unity, Unity Editor",
+    "tags": "unity, csharp, editor",
+    "date": "2021-02-18 01:50:00 +0900",
+    
+
+
+
+
+
+    "snippet": "   다이얼로그 창 띄우기  bool res1 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;);bool res2 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;, &quot;Cancel&quot;);     우클릭 MenuItem 메소드 중복 호출 방지하기            게임오브젝트를 다중 선택하고 우클릭 메뉴를 통..."
   },
   
   {

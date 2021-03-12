@@ -1,5 +1,5 @@
 ---
-title: 스크립터블 오브젝트
+title: Scriptable Object
 author: Rito15
 date: 2021-02-20 02:02:00 +09:00
 categories: [Unity, Unity Editor]

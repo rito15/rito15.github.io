@@ -19,6 +19,16 @@ using System.Text.RegularExpressions;
 
 <br>
 
+## 정확한 단어 찾기
+
+```cs
+string input = "AA,AAA,AAAA";
+string pattern = @"\bAA\b"; // 단어 경계를 \b로 구분
+string result = Regex.Match(input, pattern).Value;
+```
+
+<br>
+
 ## 스트링의 오른쪽에서부터 탐색
 
 ```cs
