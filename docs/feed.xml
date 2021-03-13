@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-12T21:59:32+09:00</updated>
+  <updated>2021-03-14T03:56:39+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,139 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Custom Editor (커스텀 에디터)</title>
+    <link href="https://rito15.github.io/posts/unity-editor-custom-editor/" rel="alternate" type="text/html" title="Custom Editor (커스텀 에디터)" />
+    <published>2021-03-13T17:40:00+09:00</published>
+  
+    <updated>2021-03-13T17:40:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-custom-editor/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-custom-editor/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Begin
+
+
+
+   
+Custom Editor Example
+
+
+  #if UNITY_EDITOR
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+
+[CustomEditor(typeof(SomeScript))]
+public class SomeScriptEditor : UnityEditor.Editor
+{
+    private SomeScript ss;
+
+    private void OnEnable()
+    {
+        ss = target as SomeScript;
+    }
+
+    public override void OnInspecto...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</title>
+    <link href="https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/" rel="alternate" type="text/html" title="Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)" />
+    <published>2021-03-13T17:20:00+09:00</published>
+  
+    <updated>2021-03-13T17:20:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Plugins" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+  
+    등록한 컴포넌트의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.
+  
+  
+    변경사항을 적용할 대상 컴포넌트들은 Play Mode Saver 컴포넌트 내에 관리된다.
+  
+  
+    유니티 에디터 내에서만 동작하며, 빌드 시 Play Mode Saver 컴포넌트는 자동으로 제거된다.
+  
+  
+    플레이 모드 내에서 Play Mode Saver를 수정한 사항도 플레이 모드가 종료되었을 때 유지된다.
+  
+
+
+
+
+Preview
+
+
+
+
+
+
+How To Use
+
+
+  변경사항 유지를 원하는 컴포넌트에 우클릭 후, Save Play Mode Changes를 클릭한다.
+
+
+
+
+
+  자동으로 Play Mode Saver 컴포넌트가 해당 게임오브젝트에 추가된다....
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -188,98 +321,6 @@ public static class DefineSymbolManager
 {
     public struct DefineSymbolData
     {...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조</title>
-    <link href="https://rito15.github.io/posts/memo-cs-get-path/" rel="alternate" type="text/html" title="스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조" />
-    <published>2021-03-12T18:10:00+09:00</published>
-  
-    <updated>2021-03-12T18:10:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-cs-get-path/</id>
-    <content src="https://rito15.github.io/posts/memo-cs-get-path/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Csharp Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      스크립트 경로
-
-public static void GetScriptPath([System.Runtime.CompilerServices.CallerFilePath] string filePath = "")
-{
-    // 1. Script(.cs) Path
-    _ = filePath;
-
-    // 2. Folder Path
-    string folderPath = System.IO.Path.GetDirectoryName(filePath);
-
-    // 3. Specific Root Folder Path
-    string rootFolderName = @"Assets\";
-    int rootIndex = folderPath.IndexOf(rootFolderName);
-    if (rootIn...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</title>
-    <link href="https://rito15.github.io/posts/unity-editor-component-on-top/" rel="alternate" type="text/html" title="컴포넌트의 인스펙터 내 순서를 맨 위로 올리기" />
-    <published>2021-03-12T04:04:00+09:00</published>
-  
-    <updated>2021-03-12T04:04:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-component-on-top/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-component-on-top/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      bool flag = true;
-while (flag)
-{
-    flag = UnityEditorInternal.ComponentUtility.MoveComponentUp(this);
-    // 맨 위로 올라갔을 경우 false 리턴
-}
-
-
     </summary>
   
 
