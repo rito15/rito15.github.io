@@ -718,6 +718,16 @@
         
         
         
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-component-on-top/">컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</a></li>
       
         
@@ -729,16 +739,6 @@
         
         
         <li><a href="/posts/unity-editor-undo/">Undo</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-custom-editor-window/">Custom Editor Window</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-regex/">Regex (정규표현식)</a></li>
       
 
       </ul>
@@ -3543,7 +3543,46 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -5042,7 +5081,7 @@ while (flag)
       
       
       <div class="card">
-        <a href="/posts/unity-editor-api/">
+        <a href="/posts/unity-editor-define-symbol/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -5059,13 +5098,13 @@ while (flag)
   
 
   
-    Feb 18
+    Mar 12
   
 
-  <i class="unloaded">2021-02-18T01:50:00+09:00</i>
+  <i class="unloaded">2021-03-12T18:28:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 관련 유용한 스크립트, 팁 모음</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Scripting Define Symbol 스크립트로 제어하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -5074,24 +5113,22 @@ while (flag)
 
 
 
-                
+                Scripting Define Symbol?
+
+
+
+
+
   
-    다이얼로그 창 띄우기
+    스크립트에서 #define으로 정의하듯, 프로젝트 전체에서 정의하여 사용할 수 있는 심볼
   
-
   
-    
-      bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
-bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
-
-    
+    Project Settings - Player - Other Settings - Scripting Define Symbols
   
-
-
-
-
-
-
+  
+    빌드 타겟마다 달라진다.
+  
+  
 ...
               </p>
             </div>

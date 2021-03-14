@@ -120,12 +120,47 @@ using UniRx.Triggers;
 # 대표적인 활용 모음
 ---
 
+
+<details>
+<summary markdown="span"> 
+단순 타이머 : 게임오브젝트 수명 지정
+</summary>
+
+```cs
+Observable.Timer(TimeSpan.FromSeconds(3.0))
+    .TakeUntilDisable(this)
+    .Subscribe(_ => Destroy(gameObject));
+```
+
+</details>
+
+<br>
+
+
+<details>
+<summary markdown="span"> 
+객체의 필드 값 변화 감지
+</summary>
+
+```cs
+// ObserveEveryValueChanged : 클래스 타입에 대해 모두 사용 가능
+this.ObserveEveryValueChanged(x => x._value)
+    .Subscribe(x => Debug.Log("Value Changed : " + x));
+```
+
+</details>
+
+<br>
+
+
 <details>
 <summary markdown="span"> 
 더블 클릭 판정
 </summary>
 
 ```cs
+// * 마지막 입력으로부터 인식 딜레이 발생
+
 // 좌클릭 입력을 감지하는 스트림 생성
 var dbClickStream = 
     Observable.EveryUpdate()
@@ -151,18 +186,132 @@ var dbClickStreamDisposable =
 
 <br>
 
+
 <details>
 <summary markdown="span"> 
-UI 이벤트 대체
+더블 클릭 판정(즉시)
 </summary>
 
 ```cs
+// * 인식 딜레이는 없지만, 간혹 제대로 인식하지 못하는 버그 존재
+
+// 0.3초 내로 두 번의 클릭을 인지하면 더블클릭 판정
+Observable.EveryUpdate().Where(_ => Input.GetMouseButtonDown(0))
+    .Buffer(TimeSpan.FromMilliseconds(300), 2)
+    .Where(buffer => buffer.Count >= 2)
+    .Subscribe(_ => Debug.Log("DoubleClicked!"));
+```
+
+</details>
+
+<br>
+
+
+<details>
+<summary markdown="span"> 
+동일 키보드 연속 입력 및 유지 판정
+</summary>
+
+```cs
+// * 마지막 입력으로부터 인식 딜레이 존재
+
+var keyDownStream = 
+    Observable.EveryUpdate().Where(_ => Input.GetKeyDown(key));
+
+var keyUpStream = 
+    Observable.EveryUpdate().Where(_ => Input.GetKeyUp(key));
+
+var keyPressStream = 
+    Observable.EveryUpdate().Where(_ => Input.GetKey(key))
+        .TakeUntil(keyUpStream);
+
+var dbKeyStreamDisposable =
+    keyDownStream
+        .Buffer(keyDownStream.Throttle(TimeSpan.FromMilliseconds(300)))
+        .Where(x => x.Count >= 2)
+        .SelectMany(_ => keyPressStream)
+        .TakeUntilDisable(this)
+        .Subscribe(_ => action());
 
 ```
 
 </details>
 
 <br>
+
+
+<details>
+<summary markdown="span"> 
+동일 키보드 연속 입력 및 유지 판정 (즉시)
+</summary>
+
+```cs
+// * 마지막 입력으로부터 인식 딜레이는 없지만, 홀수 입력 인식 불가
+
+var keyDownStream = 
+    Observable.EveryUpdate().Where(_ => Input.GetKeyDown(key));
+
+var keyUpStream = 
+    Observable.EveryUpdate().Where(_ => Input.GetKeyUp(key));
+
+var keyPressStream = 
+    Observable.EveryUpdate().Where(_ => Input.GetKey(key))
+        .TakeUntil(keyUpStream);
+
+var dbKeyStreamDisposable =
+    keyDownStream
+        .Buffer(keyDownStream.Throttle(TimeSpan.FromMilliseconds(300)))
+        .Where(x => x.Count >= 2)
+        .SelectMany(_ => keyPressStream)
+        .TakeUntilDisable(this)
+        .Subscribe(_ => action());
+
+```
+
+</details>
+
+<br>
+
+
+<details>
+<summary markdown="span"> 
+UI 이벤트 대체
+</summary>
+
+```cs
+var buttonStream =
+_targetButton.onClick.AsObservable()
+    .TakeUntilDestroy(_targetButton)
+    .Subscribe(
+        _  => Debug.Log("Click!"),
+        _  => Debug.Log("Error"),
+        () => Debug.Log("Completed")
+    );
+```
+
+</details>
+
+<br>
+
+
+<details>
+<summary markdown="span"> 
+드래그 앤 드롭(OnMouseDrag()와 동일)
+</summary>
+
+```cs
+this.OnMouseDownAsObservable()
+    .SelectMany(_ => this.UpdateAsObservable())
+    .TakeUntil(this.OnMouseUpAsObservable())
+    .Select(_ => Input.mousePosition)
+    .RepeatUntilDestroy(this) // Safe Repeating
+    .Subscribe(x => Debug.Log(x));
+```
+
+</details>
+
+<br>
+
 
 <details>
 <summary markdown="span"> 
@@ -174,7 +323,6 @@ UI 이벤트 대체
 ```
 
 </details>
-
 
 <br>
 

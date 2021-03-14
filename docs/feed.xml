@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-14T17:57:33+09:00</updated>
+  <updated>2021-03-15T03:43:01+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,61 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>키보드 연속 입력 유지 상태 감지하기</title>
+    <link href="https://rito15.github.io/posts/unity-memo-double-key-press/" rel="alternate" type="text/html" title="키보드 연속 입력 유지 상태 감지하기" />
+    <published>2021-03-14T23:23:00+09:00</published>
+  
+    <updated>2021-03-14T23:23:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-memo-double-key-press/</id>
+    <content src="https://rito15.github.io/posts/unity-memo-double-key-press/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      활용
+
+
+
+  달리기 구현(WW, AA, SS, DD)
+
+
+Source Code
+
+
+/// &amp;lt;summary&amp;gt; 키보드 연속 입력 유지 상태 감지 &amp;lt;/summary&amp;gt;
+private class KeyForDoublePressDetection
+{
+    public KeyCode Key { get; private set; }
+
+    /// &amp;lt;summary&amp;gt; 한 번 눌러서 유지한 상태 &amp;lt;/summary&amp;gt;
+    public bool SinglePressed { get; private set; }
+
+    /// &amp;lt;summary&amp;gt; 두 번 눌러서 유지한 상태 &amp;lt;/summary&amp;gt;
+    public bool DoublePressed { get; pri...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -254,73 +309,6 @@ private static void MenuItem2()
 private const string MenuItemTitle = "Window/Rito/Menu Item";
 
 [MenuItem(MenuItemTitle, false)...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Scripting Define Symbol 스크립트로 제어하기</title>
-    <link href="https://rito15.github.io/posts/unity-editor-define-symbol/" rel="alternate" type="text/html" title="Scripting Define Symbol 스크립트로 제어하기" />
-    <published>2021-03-12T18:28:00+09:00</published>
-  
-    <updated>2021-03-12T18:28:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-define-symbol/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-define-symbol/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Scripting Define Symbol?
-
-
-
-
-
-  
-    스크립트에서 #define으로 정의하듯, 프로젝트 전체에서 정의하여 사용할 수 있는 심볼
-  
-  
-    Project Settings - Player - Other Settings - Scripting Define Symbols
-  
-  
-    빌드 타겟마다 달라진다.
-  
-  
-    유니티 에디터 스크립팅을 통해 확인, 추가, 제거할 수 있다.
-  
-
-
-
-
-Source Code
-
-
-using System.Text.RegularExpressions;
-using UnityEditor;
-
-public static class DefineSymbolManager
-{
-    public struct DefineSymbolData
-    {...
     </summary>
   
 

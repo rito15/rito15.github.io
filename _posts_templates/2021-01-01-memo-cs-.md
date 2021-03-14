@@ -8,7 +8,7 @@ math: true
 mermaid: true
 ---
 
-# 개념
+# Summary
 ---
 - 
 
