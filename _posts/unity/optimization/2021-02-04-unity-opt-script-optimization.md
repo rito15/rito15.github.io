@@ -12,23 +12,24 @@ mermaid: true
 ---
 - [1. GetComponent(), Find() 메소드 사용 줄이기](#getcomponent-find-메소드-사용-줄이기)
 - [2. 비어있는 유니티 이벤트 메소드 방치하지 않기](#비어있는-유니티-이벤트-메소드-방치하지-않기)
-- [3. 필요하지 않은 경우, new로 생성하지 않기](#필요하지-않은-경우-new로-생성하지-않기)
-- [4. 필요하지 않은 경우, 리턴하지 않기](#필요하지-않은-경우-리턴하지-않기)
-- [5. StartCoroutine() 자주 호출하지 않기](#startcoroutine-자주-호출하지-않기)
-- [6. 코루틴의 yield 캐싱하기](#코루틴의-yield-캐싱하기)
-- [7. 컬렉션 재사용하기](#컬렉션-재사용하기)
-- [8. StringBuilder 사용하기](#stringbuilder-사용하기)
-- [9. 구조체 사용하기](#구조체-사용하기)
-- [10. 빌드 이후 Debug.Log() 사용하지 않기](#빌드-이후-debuglog-사용하지-않기)
-- [11. Transform 변경은 한번에](#transform-변경은-한번에)
-- [12. LINQ 사용하지 않기](#linq-사용하지-않기)
-- [13. 오브젝트 풀링 사용하기](#오브젝트-풀링-사용하기)
-- [14. Enum HasFlag() 박싱 이슈](#enum-hasflag-박싱-이슈)
-- [15. ScriptableObject 활용하기](#scriptableobject-활용하기)
-- [16. 메소드 호출 줄이기](#메소드-호출-줄이기)
-- [17. 참조 캐싱하기](#참조-캐싱하기)
-- [18. 박싱, 언박싱 피하기](#박싱-언박싱-피하기)
-- [19. 비싼 수학 계산 피하기](#비싼-수학-계산-피하기)
+- [3. StartCoroutine() 자주 호출하지 않기](#startcoroutine-자주-호출하지-않기)
+- [4. 코루틴의 yield 캐싱하기](#코루틴의-yield-캐싱하기)
+- [5. 참조 캐싱하기](#참조-캐싱하기)
+- [6. 빌드 이후 Debug.Log() 사용하지 않기](#빌드-이후-debuglog-사용하지-않기)
+- [7. Transform 변경은 한번에](#transform-변경은-한번에)
+- [8. ScriptableObject 활용하기](#scriptableobject-활용하기)
+- [9. 오브젝트 풀링 사용하기](#오브젝트-풀링-사용하기)
+- [10. 필요하지 않은 경우, 리턴하지 않기](#필요하지-않은-경우-리턴하지-않기)
+- [11. 필요하지 않은 경우, new로 생성하지 않기](#필요하지-않은-경우-new로-생성하지-않기)
+- [12. 구조체 사용하기](#구조체-사용하기)
+- [13. 컬렉션 재사용하기](#컬렉션-재사용하기)
+- [14. List 사용할 때 주의할 점](#list-사용할-때-주의할-점)
+- [15. StringBuilder 사용하기](#stringbuilder-사용하기)
+- [16. LINQ 사용하지 않기](#linq-사용하지-않기)
+- [17. Enum HasFlag() 박싱 이슈](#enum-hasflag-박싱-이슈)
+- [18. 메소드 호출 줄이기](#메소드-호출-줄이기)
+- [19. 박싱, 언박싱 피하기](#박싱-언박싱-피하기)
+- [20. 비싼 수학 계산 피하기](#비싼-수학-계산-피하기)
 
 
 <br>
@@ -43,6 +44,33 @@ GetComponent, Find, FindObjectOfType 등의 메소드는 자주 호출될 경우
 
 <br>
 
+- 예시
+
+```cs
+private void Update()
+{
+    GetComponent<Rigidbody>().AddForce(Vector3.right);
+}
+```
+
+위와 같은 코드가 있다면, 아래처럼 바꾼다.
+
+```cs
+private Rigidbody rb;
+
+private void Awake()
+{
+    rb = GetComponent<Rigidbody>();
+}
+
+private void Update()
+{
+    rb.AddForce(Vector3.right);
+}
+```
+
+<br>
+
 # 비어있는 유니티 이벤트 메소드 방치하지 않기
 ---
 `Awake()`, `Update()` 등의 유니티 기본 이벤트 메소드는 스크립트 내에 작성되어 있는 것만으로도 호출되어 성능을 소모한다.
@@ -50,36 +78,6 @@ GetComponent, Find, FindObjectOfType 등의 메소드는 자주 호출될 경우
 따라서 내용이 비어있는 유니티 기본 콜백 메소드는 아예 지워야 한다.
 
 `protected virtual` 등으로 지정하는 경우에도 혹시나 비워놓을 가능성이 있다면 지양하는 것이 좋다.
-
-<br>
-
-# 필요하지 않은 경우, new로 생성하지 않기
----
-클래스 타입으로 생성한 객체는 항상 GC의 먹이가 된다.
-
-따라서 가능하면 한 번만 생성하고 이후에는 재사용 하는 방식을 선택해야 한다.
-
-데이터 클래스의 경우, 대신 구조체를 사용하는 것도 좋다.
-
-<br>
-
-# 필요하지 않은 경우, 리턴하지 않기
----
-```cs
-private int SomeMethod()
-{
-    //...
-    return 0;
-}
-
-private void Caller()
-{
-    SomeMethod(); // 메소드의 리턴값을 사용하지 않음
-}
-```
-
-메소드를 호출하고 그 리턴값을 항상 사용하지는 않는 경우, 리턴값이 void인 메소드를 작성하는 것이 좋다.
-리턴하는 것만으로 항상 메모리 소비가 발생하며, 심지어 참조형인 경우 GC의 먹이가 된다.
 
 <br>
 
@@ -129,8 +127,177 @@ private IEnumerator SomeCoroutine()
 ```
 
 <br>
+
+# 참조 캐싱하기
 ---
+
+위의 '메소드 호출 줄이기'와 같은 맥락이다.
+
+이것은 주로 프로퍼티 호출에 해당한다.
+
+예를 들어,
+
+```cs
+void Update()
+{
+    _ = Camera.main.gameObject;
+    _ = Camera.main.transform.forward;
+    _ = targetObject.transform.parent.gameObject.activeInHierarchy;
+    _ += Time.deltaTime;
+}
+```
+
+이런 경우이다.
+
+프로퍼티는 필드가 아니다. 필드처럼, 혹은 메소드처럼 사용할 수 있는 참조이다.
+
+그리고 일반적으로 필드 참조보다 비용이 비싸다.
+
+심지어 위처럼 대상.프로퍼티.프로퍼티.프로퍼티.값 이렇게 이어지는 경우에는
+
+호출하는 모든 프로퍼티가 각각 성능 비용으로 이어진다.
+
+따라서 이를 자주 호출해야 하는 경우에는 미리 참조로 캐싱해두는 것이 좋다.
+
+예전보다 나아졌긴 하지만 심지어 Camera.main도 필드 참조보다 훨씬 비싸다.
+
+메인 카메라로 등록된 참조를 바로 가져오는 친절한 친구가 아니라,
+
+내부적으로 FindMainCamera() 메소드 호출을 통해 "MainCamera" 태그가 붙은 카메라들 중에 현재 렌더링을 담당하고 있는 카메라를 가져오는 프로퍼티다.
+
+그래서 이렇게,
+
+```cs
+private GameObject _mainCamObject;
+private Transform  _mainCamTransform;
+private GameObject _targetParentObject;
+private float      _deltaTime;
+
+void Start()
+{
+    _mainCamObject = Camera.main.gameObject;
+    _mainCamTransform = Camera.main.transform;
+    _targetParentObject = targetObject.transform.parent.gameObject;
+}
+
+void Update()
+{
+    _deltaTime = Time.deltaTime;
+
+    // ...
+
+    // Usages
+    _ = _mainCamObject;
+    _ = _mainCamTransform.forward;
+    _ = _targetParentObject.activeInHierarchy;
+}
+```
+
+자주 호출하는 프로퍼티, 참조들은 최대한 해당 타입 그대로 필드에 담아 사용하는 것이 좋다.
+
+Time.deltaTime도 캐싱하는 것은 과하다고 생각할 수 있는데,
+
+Time.deltaTime 또한 내부 메소드 호출로 구현되어 있다.
+
+여러 군데, 수십 군데에서 Time.deltaTime을 그대로 항상 호출하여 사용하면 그만큼의 메소드 호출 비용이 발생하는 것이니 항상 Update() 최상단에서 캐싱해서 사용하는 것이 좋다.
+
+<br>
+
+# 빌드 이후 Debug.Log() 사용하지 않기
+---
+`Debug`의 메소드들은 에디터에서 디버깅을 위해 사용하지만, 빌드 이후에도 호출되어 성능을 많이 소모한다.
+
+따라서 아래처럼 Debug 클래스를 에디터 전용으로 래핑에서 사용할 경우, 이를 방지할 수 있다.
+
+- <https://github.com/rito15/Unity_Toys/blob/master/Rito/2.%20Toy/2021_0125_EditorOnly%20Debug/Debug_UnityEditorConditional.cs>
+
+```cs
+public static class Debug
+{
+    [Conditional("UNITY_EDITOR")]
+    public static void Log(object message)
+        => UnityEngine.Debug.Log(message);
+}
+```
+
+<br>
+
+# Transform 변경은 한번에
+---
+position, rotation, scale을 한 메소드 내에서 여러 번 변경할 경우, 그 때마다 트랜스폼의 변경이 이루어진다.
+
+그런데 트랜스폼이 여러 자식 트랜스폼들을 갖고 있는 경우, 자식 트랜스폼도 함께 변경된다.
+
+따라서 벡터로 미리 담아두고 최종 계산 이후, 트랜스폼에 단 한 번만 변경을 지정하는 것이 좋다.
+
+또한 position과 rotation을 모두 변경해야 하는 경우 `SetPositionAndRotation()` 메소드를 사용하는 것이 좋다.
+
+<br>
+
+# ScriptableObject 활용하기
+---
+게임 내에서 항상 공통으로 참조하는 변수를 사용하는 경우,
+
+각 객체의 필드로 사용하게 되면 동일한 데이터가 객체의 수만큼 메모리를 차지하게 된다.
+
+따라서 스크립터블 오브젝트로 메모리를 절약하는 것이 좋다.
+
+<br>
+
+# 오브젝트 풀링 사용하기
+---
+게임오브젝트의 잦은 생성/파괴가 이루어지는 경우,
+
+반드시 오브젝트 풀링을 사용하는 것이 좋다.
+
+<br>
+
+# 필요하지 않은 경우, 리턴하지 않기
+---
+```cs
+private int SomeMethod()
+{
+    //...
+    return 0;
+}
+
+private void Caller()
+{
+    SomeMethod(); // 메소드의 리턴값을 사용하지 않음
+}
+```
+
+메소드를 호출하고 그 리턴값을 항상 사용하지는 않는 경우, 리턴값이 void인 메소드를 작성하는 것이 좋다.
+리턴하는 것만으로 항상 메모리 소비가 발생하며, 심지어 참조형인 경우 GC의 먹이가 된다.
+
+<br>
+
+# 필요하지 않은 경우, new로 생성하지 않기
+---
+클래스 타입으로 생성한 객체는 항상 GC의 먹이가 된다.
+
+따라서 가능하면 한 번만 생성하고 이후에는 재사용 하는 방식을 선택해야 한다.
+
+데이터 클래스의 경우, 대신 구조체를 사용하는 것도 좋다.
+
+<br>
+
+# 구조체 사용하기
+---
+- <http://clarkkromenaker.com/post/csharp-structs/>
+
+동일한 데이터를 하나는 구조체, 하나는 클래스로 작성할 경우 클래스는 참조를 위해 8~24 바이트의 추가적인 메모리를 필요로 한다.
+
+따라서 데이터 클래스는 구조체로 작성하는 것이 좋으며, GC의 먹이가 되지 않는다는 장점도 있다.
+
+그리고 구조체는 크기에 관계없이 항상 스택에, 클래스는 힙에 할당된다.
+
+16kB를 초과한다고 해서 구조체가 힙에 할당되지는 않는다.
+
+<br>
+
 # 컬렉션 재사용하기
+---
 
 List를 메소드 내에서 할당하여 사용하는 경우가 많다.
 
@@ -167,6 +334,37 @@ private void SomeMethod()
 
 <br>
 
+# List 사용할 때 주의할 점
+---
+
+만약 배열을 사용할 때, 처음에는 비어있는 배열을 생성하고
+
+새로운 값을 하나씩 넣을 때마다 크기가 1 더 큰 배열을 만들고, 기존의 배열을 통째로 복제하는 방식으로 사용한다고 생각해보자.
+
+그럼 애초에 배열의 크기를 어느정도 잡아서 만들고 사용하지, 이건 너무 비효율적인 것 아니냐고 생각할 수 있다.
+
+<br>
+
+C#의 가변 배열인 `List<T>`는 내부적으로 배열로 구현되어 있다.
+
+그리고 내부 구현은 정말로 위에서 설명한 그대로 되어있다.
+
+`new List<T>()`로 생성하면 크기가 0인 배열을 생성한다.
+
+그리고 `.Add()`를 통해 요소를 하나씩 추가할 때마다 기존의 배열보다 크기가 1 더 큰 배열을 생성하고,
+
+기존의 배열을 그대로 복제해온 뒤 마지막 위치에 새로운 요소를 집어넣는 방식이다.
+
+<br>
+
+그래서 리스트를 생성할 때, 사용될 영역의 크기를 미리 알고 있다면 `new List<T>(100)` 처럼 개수를 미리 지정하면
+
+내부적으로 그만큼의 크기를 갖는 배열을 미리 할당하여, `.Add()`를 하더라도 기존의 배열 전체를 통째로 복제하는 것을 방지할 수 있다.
+
+이미 생성된 리스트라면 `.Capacity`에 크기 값을 초기화하면 된다.
+
+<br>
+
 # StringBuilder 사용하기
 ---
 스트링의 연결(a + b)이 자주 발생하는 경우, StringBuilder.Append()를 활용하는 것이 좋다.
@@ -199,64 +397,11 @@ sb.Append("b");
 
 <br>
 
-# 구조체 사용하기
----
-- <http://clarkkromenaker.com/post/csharp-structs/>
-
-동일한 데이터를 하나는 구조체, 하나는 클래스로 작성할 경우 클래스는 참조를 위해 8~24 바이트의 추가적인 메모리를 필요로 한다.
-
-따라서 데이터 클래스는 구조체로 작성하는 것이 좋으며, GC의 먹이가 되지 않는다는 장점도 있다.
-
-그리고 구조체는 크기에 관계없이 항상 스택에, 클래스는 힙에 할당된다.
-
-16kB를 초과한다고 해서 구조체가 힙에 할당되지는 않는다.
-
-<br>
-
-# 빌드 이후 Debug.Log() 사용하지 않기
----
-`Debug`의 메소드들은 에디터에서 디버깅을 위해 사용하지만, 빌드 이후에도 호출되어 성능을 많이 소모한다.
-
-따라서 아래처럼 Debug 클래스를 에디터 전용으로 래핑에서 사용할 경우, 이를 방지할 수 있다.
-
-- <https://github.com/rito15/Unity_Toys/blob/master/Rito/2.%20Toy/2021_0125_EditorOnly%20Debug/Debug_UnityEditorConditional.cs>
-
-```cs
-public static class Debug
-{
-    [Conditional("UNITY_EDITOR")]
-    public static void Log(object message)
-        => UnityEngine.Debug.Log(message);
-}
-```
-
-<br>
-
-# Transform 변경은 한번에
----
-position, rotation, scale을 한 메소드 내에서 여러 번 변경할 경우, 그 때마다 트랜스폼의 변경이 이루어진다.
-
-그런데 트랜스폼이 여러 자식 트랜스폼들을 갖고 있는 경우, 자식 트랜스폼도 함께 변경된다.
-
-따라서 벡터로 미리 담아두고 최종 계산 이후, 트랜스폼에 단 한 번만 변경을 지정하는 것이 좋다.
-
-또한 position과 rotation을 모두 변경해야 하는 경우 `SetPositionAndRotation()` 메소드를 사용하는 것이 좋다.
-
-<br>
-
 # LINQ 사용하지 않기
 ---
 LINQ는 개발자에게 굉장한 편의성을 제공해주지만, 성능이 좋지 않다.
 
 따라서 성능에 민감한 부분에서는 사용하지 않는 것이 좋다.
-
-<br>
-
-# 오브젝트 풀링 사용하기
----
-게임오브젝트의 잦은 생성/파괴가 이루어지는 경우,
-
-반드시 오브젝트 풀링을 사용하는 것이 좋다.
 
 <br>
 
@@ -284,16 +429,6 @@ public static bool IsSet2<T>(this T self, T flag) where T : Enum
 
 2. Dictionary의 키로 Enum을 사용할 경우 박싱 이슈
   - 역시 .Net 4.x 버전에서 해결되었다고 한다.
-
-<br>
-
-# ScriptableObject 활용하기
----
-게임 내에서 항상 공통으로 참조하는 변수를 사용하는 경우,
-
-각 객체의 필드로 사용하게 되면 동일한 데이터가 객체의 수만큼 메모리를 차지하게 된다.
-
-따라서 스크립터블 오브젝트로 메모리를 절약하는 것이 좋다.
 
 <br>
 
@@ -385,81 +520,6 @@ void Update()
 
 <br>
 
-# 참조 캐싱하기
----
-
-위의 '메소드 호출 줄이기'와 같은 맥락이다.
-
-이것은 주로 프로퍼티 호출에 해당한다.
-
-예를 들어,
-
-```cs
-void Update()
-{
-    _ = Camera.main.gameObject;
-    _ = Camera.main.transform.forward;
-    _ = targetObject.transform.parent.gameObject.activeInHierarchy;
-    _ += Time.deltaTime;
-}
-```
-
-이런 경우이다.
-
-프로퍼티는 필드가 아니다. 필드처럼, 혹은 메소드처럼 사용할 수 있는 참조이다.
-
-그리고 일반적으로 필드 참조보다 비용이 비싸다.
-
-심지어 위처럼 대상.프로퍼티.프로퍼티.프로퍼티.값 이렇게 이어지는 경우에는
-
-호출하는 모든 프로퍼티가 각각 성능 비용으로 이어진다.
-
-따라서 이를 자주 호출해야 하는 경우에는 미리 참조로 캐싱해두는 것이 좋다.
-
-예전보다 나아졌긴 하지만 심지어 Camera.main도 필드 참조보다 훨씬 비싸다.
-
-메인 카메라로 등록된 참조를 바로 가져오는 친절한 친구가 아니라,
-
-내부적으로 FindMainCamera() 메소드 호출을 통해 "MainCamera" 태그가 붙은 카메라들 중에 현재 렌더링을 담당하고 있는 카메라를 가져오는 프로퍼티다.
-
-그래서 이렇게,
-
-```cs
-private GameObject _mainCamObject;
-private Transform  _mainCamTransform;
-private GameObject _targetParentObject;
-private float      _deltaTime;
-
-void Start()
-{
-    _mainCamObject = Camera.main.gameObject;
-    _mainCamTransform = Camera.main.transform;
-    _targetParentObject = targetObject.transform.parent.gameObject;
-}
-
-void Update()
-{
-    _deltaTime = Time.deltaTime;
-
-    // ...
-
-    // Usages
-    _ = _mainCamObject;
-    _ = _mainCamTransform.forward;
-    _ = _targetParentObject.activeInHierarchy;
-}
-```
-
-자주 호출하는 프로퍼티, 참조들은 최대한 해당 타입 그대로 필드에 담아 사용하는 것이 좋다.
-
-Time.deltaTime도 캐싱하는 것은 과하다고 생각할 수 있는데,
-
-Time.deltaTime 또한 내부 메소드 호출로 구현되어 있다.
-
-여러 군데, 수십 군데에서 Time.deltaTime을 그대로 항상 호출하여 사용하면 그만큼의 메소드 호출 비용이 발생하는 것이니 항상 Update() 최상단에서 캐싱해서 사용하는 것이 좋다.
-
-<br>
-
 # 박싱, 언박싱 피하기
 ---
 
@@ -497,11 +557,11 @@ public static class Debug
 
 - ## 나눗셈 대신 곱셈
 
-나눗셈이 곱셈보다 훨씬 느리다는 것은 흔히 알려져 있는 사실이다.
+나눗셈이 곱셈보다 느리다는 것은 흔히 알려져 있는 사실이다.
 
 그런데 곱셈을 해도 되는 부분에 나눗셈을 사용하는 코드가 의외로 자주 보인다.
 
-`1.0f / 2.0f` 보다 `1.0f * 0.5f`가 훨씬 빠르다. 꼭 기억하자.
+`1.0f / 2.0f` 보다 `1.0f * 0.5f`가 빠르다. 꼭 기억하자.
 
 <br>
 
