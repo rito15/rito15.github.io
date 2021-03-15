@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-15T03:43:01+09:00</updated>
+  <updated>2021-03-16T04:15:03+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,23 +20,23 @@
 
   
   <entry>
-    <title>키보드 연속 입력 유지 상태 감지하기</title>
-    <link href="https://rito15.github.io/posts/unity-memo-double-key-press/" rel="alternate" type="text/html" title="키보드 연속 입력 유지 상태 감지하기" />
-    <published>2021-03-14T23:23:00+09:00</published>
+    <title>Stencil Silhouette Shader</title>
+    <link href="https://rito15.github.io/posts/unity-shader-script-stencil-silhouette/" rel="alternate" type="text/html" title="Stencil Silhouette Shader" />
+    <published>2021-03-15T17:20:00+09:00</published>
   
-    <updated>2021-03-14T23:23:00+09:00</updated>
+    <updated>2021-03-15T17:20:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-memo-double-key-press/</id>
-    <content src="https://rito15.github.io/posts/unity-memo-double-key-press/" />
+    <id>https://rito15.github.io/posts/unity-shader-script-stencil-silhouette/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-script-stencil-silhouette/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Unity" />
+    <category term="Unity Shader" />
     
-    <category term="Unity Memo" />
+    <category term="Shader Scripts" />
     
   
 
@@ -48,140 +48,12 @@
 
 
 
-      활용
+      Summary
 
 
 
-  달리기 구현(WW, AA, SS, DD)
-
-
-Source Code
-
-
-/// &amp;lt;summary&amp;gt; 키보드 연속 입력 유지 상태 감지 &amp;lt;/summary&amp;gt;
-private class KeyForDoublePressDetection
-{
-    public KeyCode Key { get; private set; }
-
-    /// &amp;lt;summary&amp;gt; 한 번 눌러서 유지한 상태 &amp;lt;/summary&amp;gt;
-    public bool SinglePressed { get; private set; }
-
-    /// &amp;lt;summary&amp;gt; 두 번 눌러서 유지한 상태 &amp;lt;/summary&amp;gt;
-    public bool DoublePressed { get; pri...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Custom Editor (커스텀 에디터)</title>
-    <link href="https://rito15.github.io/posts/unity-editor-custom-editor/" rel="alternate" type="text/html" title="Custom Editor (커스텀 에디터)" />
-    <published>2021-03-13T17:40:00+09:00</published>
-  
-    <updated>2021-03-13T17:40:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-custom-editor/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-custom-editor/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Begin
-
-
-
-   
-Custom Editor Example
-
-
-  #if UNITY_EDITOR
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-
-[CustomEditor(typeof(SomeScript))]
-public class SomeScriptEditor : UnityEditor.Editor
-{
-    private SomeScript ss;
-
-    private void OnEnable()
-    {
-        ss = target as SomeScript;
-    }
-
-    public override void OnInspecto...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</title>
-    <link href="https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/" rel="alternate" type="text/html" title="Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)" />
-    <published>2021-03-13T17:20:00+09:00</published>
-  
-    <updated>2021-03-13T17:20:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Plugins" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-  
-    등록한 컴포넌트의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.
-  
-  
-    변경사항을 적용할 대상 컴포넌트들은 Play Mode Saver 컴포넌트 내에 관리된다.
-  
-  
-    유니티 에디터 내에서만 동작하며, 빌드 시 Play Mode Saver 컴포넌트는 자동으로 제거된다.
-  
-  
-    플레이 모드 내에서 Play Mode Saver를 수정한 사항도 플레이 모드가 종료되었을 때 유지된다.
-  
-
-
+  가려질 경우 단색이 드러나는 실루엣 쉐이더
+  Ref 2번 사용
 
 
 Preview
@@ -189,18 +61,27 @@ Preview
 
 
 
-
-
-How To Use
-
-
-  변경사항 유지를 원하는 컴포넌트에 우클릭 후, Save Play Mode Changes를 클릭한다.
+Source Code
 
 
 
+   
+Silhouette.shader
 
 
-  자동으로 Play Mode Saver 컴포넌트가 해당 게임오브젝트에 추가된다....
+  Shader "Custom/Silhouette"
+{
+    Properties
+    {
+        _SilhouetteColor ("Silhouette Color", Color) = (1, 0, 0, 0.5)
+
+        [Space]
+        _Color ("Color", Color) = (1,1,1,1)
+        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+    }
+    SubShader
+    {
+        Tags { "RenderType"="Opaque...
     </summary>
   
 
@@ -208,23 +89,23 @@ How To Use
 
   
   <entry>
-    <title>델리게이트가 특정 메소드를 갖고 있는지 확인하기</title>
-    <link href="https://rito15.github.io/posts/memo-cs-delegate-has-method/" rel="alternate" type="text/html" title="델리게이트가 특정 메소드를 갖고 있는지 확인하기" />
-    <published>2021-03-12T21:52:00+09:00</published>
+    <title>Stencil Mask Shader</title>
+    <link href="https://rito15.github.io/posts/unity-shader-script-stencil-mask/" rel="alternate" type="text/html" title="Stencil Mask Shader" />
+    <published>2021-03-15T17:10:00+09:00</published>
   
-    <updated>2021-03-12T21:52:00+09:00</updated>
+    <updated>2021-03-15T17:10:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/memo-cs-delegate-has-method/</id>
-    <content src="https://rito15.github.io/posts/memo-cs-delegate-has-method/" />
+    <id>https://rito15.github.io/posts/unity-shader-script-stencil-mask/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-script-stencil-mask/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Memo" />
+    <category term="Unity Shader" />
     
-    <category term="Csharp Memo" />
+    <category term="Shader Scripts" />
     
   
 
@@ -236,19 +117,42 @@ How To Use
 
 
 
-      //using System;
-//using System.Linq;
+      Summary
 
-/// &amp;lt;summary&amp;gt; 델리게이트가 메소드를 갖고 있는지 검사 &amp;lt;/summary&amp;gt;
-private static bool CheckDelegateHasMethod&amp;lt;DType&amp;gt;(DType @delegate, DType method) where DType : Delegate
+
+
+  스텐실 마스크 &amp;amp; 마스크로 가려야 드러나는 타겟 쉐이더
+  Ref 1번 사용
+
+
+Preview
+
+
+
+
+Source Code
+
+
+
+   
+StencilTarget01.shader
+
+
+  Shader "Custom/StencilTarget01"
 {
-    return @delegate?.GetInvocationList()
-            .Where(d =&amp;gt; d.Method == method.Method)
-            .Count() &amp;gt; 0;
-}
+    Properties
+    {
+        _Color ("Color", Color) = (1,1,1,1)
+        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+    }
+    SubShader
+    {
+        Tags { "RenderType"="Opaque" }
 
-private Action&amp;lt;int&amp;gt; del;
-private void MethodA(int i) {...
+        Stencil
+        {
+            Ref 1
+            Comp ...
     </summary>
   
 
@@ -256,23 +160,23 @@ private void MethodA(int i) {...
 
   
   <entry>
-    <title>Menu Item</title>
-    <link href="https://rito15.github.io/posts/unity-editor-menu-item/" rel="alternate" type="text/html" title="Menu Item" />
-    <published>2021-03-12T20:10:00+09:00</published>
+    <title>Customizable Transparent Shader</title>
+    <link href="https://rito15.github.io/posts/unity-shader-script-transparent-custom/" rel="alternate" type="text/html" title="Customizable Transparent Shader" />
+    <published>2021-03-15T17:00:00+09:00</published>
   
-    <updated>2021-03-12T20:10:00+09:00</updated>
+    <updated>2021-03-15T17:00:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-editor-menu-item/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-menu-item/" />
+    <id>https://rito15.github.io/posts/unity-shader-script-transparent-custom/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-script-transparent-custom/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Unity" />
+    <category term="Unity Shader" />
     
-    <category term="Unity Editor" />
+    <category term="Shader Scripts" />
     
   
 
@@ -284,31 +188,139 @@ private void MethodA(int i) {...
 
 
 
-      메뉴 아이템 기본
+      Summary
 
-private const string MenuItemTitle = "Window/Rito/Menu Item";
-private const int MenuItemPriority = 123;
 
-[MenuItem(MenuItemTitle)]
-private static void MenuItem1()
+
+  알파 블렌딩, ZTest 등의 옵션을 마테리얼에서 설정할 수 있는 반투명 쉐이더
+
+
+Source Code
+
+
+Shader "Custom/CustomizableTransparent"
 {
-    // ..
-}
+    Properties
+    {
+        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+        
+        _Color ("Color", Color) = (1,1,1,1)
+        _Alpha ("Alpha", Range(0, 1)) = 0.5
 
-[MenuItem(MenuItemTitle, false, MenuItemPriority)]
-private static void MenuItem2()
+        [Toggle] _ZWrite("Z Write", float) = 1
+        [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("Z ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>2-Pass Transparent Shader</title>
+    <link href="https://rito15.github.io/posts/unity-shader-script-transparent-2pass/" rel="alternate" type="text/html" title="2-Pass Transparent Shader" />
+    <published>2021-03-15T17:00:00+09:00</published>
+  
+    <updated>2021-03-15T17:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-shader-script-transparent-2pass/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-script-transparent-2pass/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Scripts" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  2패스로 작성하여 내부가 드러나는 알파 소팅 문제가 발생하지 않는 쉐이더
+
+
+Source Code
+
+
+Shader "Custom/Transparent2Pass"
 {
-    // ..
-}
+    Properties
+    {
+        _MainTex("Albedo (RGB)", 2D) = "white" {}
+        _Alpha("Alpha", Range(0, 1)) = 0.5
+    }
+    SubShader
+    {
+        Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
+
+        /****************************************************************
+       ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Particle Shader</title>
+    <link href="https://rito15.github.io/posts/unity-shader-script-particle/" rel="alternate" type="text/html" title="Particle Shader" />
+    <published>2021-03-15T16:00:00+09:00</published>
+  
+    <updated>2021-03-15T16:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-shader-script-particle/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-script-particle/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Scripts" />
+    
+  
+
+  
+    <summary>
+      
 
 
 
 
-활성화/비활성화 설정
 
-private const string MenuItemTitle = "Window/Rito/Menu Item";
+      Summary
 
-[MenuItem(MenuItemTitle, false)...
+
+
+  블렌딩 옵션 선택 가능한 파티클 쉐이더(기본 : Additive)
+
+
+Source Code
+
+
+Shader "Custom/Particle"
+{
+    Properties
+    {
+        _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
+        _Intensity("Intensity", Range(0, 2)) = 1
+        _MainTex("Albedo (RGB)", 2D) = "white"{}
+        [Enum(UnityEngine.Rendering.BlendMode)]_SrcBlend("SrcBlend Mode", Float) = 5 // SrcAlpha
+        [Enum(UnityEngine.Render...
     </summary>
   
 

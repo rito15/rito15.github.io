@@ -26,8 +26,8 @@
 <meta property="og:title" content="Undo" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="```cs // 이름 변경, 기타 등등 수행하기 직전에 호출 // 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함 Undo.RecordObject(target, “Action”);" />
-<meta property="og:description" content="```cs // 이름 변경, 기타 등등 수행하기 직전에 호출 // 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함 Undo.RecordObject(target, “Action”);" />
+<meta name="description" content="```cs /* 1. 다른 동작과 연계 */" />
+<meta property="og:description" content="```cs /* 1. 다른 동작과 연계 */" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-editor-undo/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-editor-undo/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Undo" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"```cs // 이름 변경, 기타 등등 수행하기 직전에 호출 // 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함 Undo.RecordObject(target, “Action”);","datePublished":"2021-02-28T01:52:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-undo/"},"url":"https://rito15.github.io/posts/unity-editor-undo/","author":{"@type":"Person","name":"Rito15"},"headline":"Undo","dateModified":"2021-03-13T05:20:35+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"```cs /* 1. 다른 동작과 연계 */","datePublished":"2021-02-28T01:52:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-undo/"},"url":"https://rito15.github.io/posts/unity-editor-undo/","author":{"@type":"Person","name":"Rito15"},"headline":"Undo","dateModified":"2021-03-13T05:20:35+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="138 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="177 words">1 min</span>
 
 
           <!-- page views -->
@@ -460,22 +460,46 @@
 10
 11
 12
-</pre></td><td class="rouge-code"><pre><span class="c1">// 이름 변경, 기타 등등 수행하기 직전에 호출</span>
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="cm">/* 1. 다른 동작과 연계 */</span>
+
+<span class="c1">// 이름 변경, 기타 등등 수행하기 직전에 호출</span>
 <span class="c1">// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함</span>
 <span class="n">Undo</span><span class="p">.</span><span class="nf">RecordObject</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="s">"Action"</span><span class="p">);</span>
 
 <span class="c1">// 오브젝트 생성 이후에 호출</span>
-<span class="n">Undo</span><span class="p">.</span><span class="nf">RegisterCreatedObjectUndo</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="s">"Create New"</span><span class="p">);</span>
+<span class="n">Undo</span><span class="p">.</span><span class="nf">RegisterCreatedObjectUndo</span><span class="p">(</span><span class="n">targetGameObject</span><span class="p">,</span> <span class="s">"Create New"</span><span class="p">);</span>
+
+
+<span class="cm">/* 2. Undo를 통해 직접 수행 */</span>
+
+<span class="c1">// 컴포넌트 추가</span>
+<span class="n">Undo</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">ComponentType</span><span class="p">&gt;(</span><span class="n">targetGameObject</span><span class="p">);</span>
 
 <span class="c1">// 오브젝트 파괴 및 Undo 등록</span>
-<span class="n">Undo</span><span class="p">.</span><span class="nf">DestroyObjectImmediate</span><span class="p">(</span><span class="n">selected</span><span class="p">.</span><span class="n">gameObject</span><span class="p">);</span>
+<span class="n">Undo</span><span class="p">.</span><span class="nf">DestroyObjectImmediate</span><span class="p">(</span><span class="n">targetGameObject</span><span class="p">);</span>
 
 <span class="c1">// 부모 변경 및 Undo 등록</span>
-<span class="n">Undo</span><span class="p">.</span><span class="nf">SetTransformParent</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="s">"Change Parent"</span><span class="p">);</span>
+<span class="n">Undo</span><span class="p">.</span><span class="nf">SetTransformParent</span><span class="p">(</span><span class="n">targetTransform</span><span class="p">,</span> <span class="n">parentTransform</span><span class="p">,</span> <span class="s">"Change Parent"</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <ul>
   <li>필드의 값 변경, 리스트나 딕셔너리의 구성요소 변경 : <code class="language-plaintext highlighter-rouge">RecordeObject(컴포넌트, "")</code></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+<hr />
+<ul>
+  <li><a href="https://docs.unity3d.com/ScriptReference/Undo.html">https://docs.unity3d.com/ScriptReference/Undo.html</a></li>
 </ul>
 
 
@@ -612,17 +636,17 @@
         
         
         
+        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
         
         
         
         <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-component-on-top/">컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</a></li>
       
         
         
@@ -1145,160 +1169,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1463,130 +1333,10 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2265,6 +2015,285 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2870,70 +2899,170 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -3214,10 +3343,10 @@
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/editor/">editor</a>
@@ -3226,10 +3355,10 @@
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
-        <a class="post-tag" href="/tags/ui/">ui</a>
+        <a class="post-tag" href="/tags/shaderlab/">shaderlab</a>
       
         
-        <a class="post-tag" href="/tags/performance/">performance</a>
+        <a class="post-tag" href="/tags/ui/">ui</a>
       
 
       </div>
@@ -3705,7 +3834,85 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -4818,7 +5025,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-playmode-state-change/">
+        <a href="/posts/unity-editor-menu-item/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4835,13 +5042,13 @@
   
 
   
-    Mar 11
+    Mar 12
   
 
-  <i class="unloaded">2021-03-11T03:33:00+09:00</i>
+  <i class="unloaded">2021-03-12T20:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>플레이모드 상태 변경에 따른 동작 구현하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Menu Item</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4850,7 +5057,77 @@
 
 
 
-                1
+                메뉴 아이템 기본
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+private const string MenuItemTitle = "Window/Rito/Menu Item";
+private const int MenuItemPriority = 123;
+
+[MenuItem(MenuItemTitle)]
+private static void Me...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-custom-editor/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 13
+  
+
+  <i class="unloaded">2021-03-13T17:40:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Editor (커스텀 에디터)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Begin
+
+
+
+   
+Custom Editor Example
+
+
+  1
 2
 3
 4
@@ -4875,37 +5152,12 @@
 23
 24
 25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
 #if UNITY_EDITOR
 
 using System;
-using System.Colle...
+using System.Collections;
+using System.Collections.Generic;
+...
               </p>
             </div>
           </div>
@@ -4915,7 +5167,7 @@ using System.Colle...
       
       
       <div class="card">
-        <a href="/posts/unity-editor-component-on-top/">
+        <a href="/posts/unity-editor-api/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -4932,13 +5184,13 @@ using System.Colle...
   
 
   
-    Mar 12
+    Feb 18
   
 
-  <i class="unloaded">2021-03-12T04:04:00+09:00</i>
+  <i class="unloaded">2021-02-18T01:50:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 관련 유용한 스크립트, 팁 모음</h3>
             <div class="text-muted small">
               <p>
                 
@@ -4947,77 +5199,24 @@ using System.Colle...
 
 
 
-                1
-2
-3
-4
-5
-6
-bool flag = true;
-while (flag)
-{
-    flag = UnityEditorInternal.ComponentUtility.MoveComponentUp(this);
-    // 맨 위로 올라갔을 경우 false 리턴
-}
+                
+  
+    다이얼로그 창 띄우기
+  
 
-
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
+  
     
-      
-      
-      <div class="card">
-        <a href="/posts/unity-editor-define-symbol/">
-          <div class="card-body">
-            <!--
-  Date format snippet
+      bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
+bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
 
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
+    
   
 
-  
-    Mar 12
-  
-
-  <i class="unloaded">2021-03-12T18:28:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Scripting Define Symbol 스크립트로 제어하기</h3>
-            <div class="text-muted small">
-              <p>
-                
 
 
 
 
 
-                Scripting Define Symbol?
-
-
-
-
-
-  
-    스크립트에서 #define으로 정의하듯, 프로젝트 전체에서 정의하여 사용할 수 있는 심볼
-  
-  
-    Project Settings - Player - Other Settings - Scripting Define Symbols
-  
-  
-    빌드 타겟마다 달라진다.
-  
-  
 ...
               </p>
             </div>
@@ -5620,160 +5819,6 @@ while (flag)
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -5938,130 +5983,10 @@ while (flag)
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -6740,6 +6665,285 @@ while (flag)
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -7345,70 +7549,170 @@ while (flag)
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -7684,10 +7988,10 @@ while (flag)
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/editor/">editor</a>
@@ -7696,10 +8000,10 @@ while (flag)
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
-        <a class="post-tag" href="/tags/ui/">ui</a>
+        <a class="post-tag" href="/tags/shaderlab/">shaderlab</a>
       
         
-        <a class="post-tag" href="/tags/performance/">performance</a>
+        <a class="post-tag" href="/tags/ui/">ui</a>
       
 
     </div>

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="UniRx (Reactive Extensions for Unity)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개요","datePublished":"2021-03-06T20:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-unirx/"},"url":"https://rito15.github.io/posts/unity-study-unirx/","author":{"@type":"Person","name":"Rito15"},"headline":"UniRx (Reactive Extensions for Unity)","dateModified":"2021-03-06T20:14:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"개요","datePublished":"2021-03-06T20:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-unirx/"},"url":"https://rito15.github.io/posts/unity-study-unirx/","author":{"@type":"Person","name":"Rito15"},"headline":"UniRx (Reactive Extensions for Unity)","dateModified":"2021-03-15T03:44:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -393,6 +393,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Mar 15, 2021,  3:44 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar 15
+  
+
+  <i class="unloaded">2021-03-15T03:44:44+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -405,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1468 words">8 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2535 words">14 min</span>
 
 
           <!-- page views -->
@@ -428,8 +457,9 @@
   <li>Reactive Extensions</li>
   <li>.NET에도 다양한 언어로 구현되어 있다.</li>
   <li>절차적 프로그래밍에서 다루기 쉽지 않은 비동기 프로그래밍을 손쉽게 다루기 위한 패러다임</li>
-  <li>비동기 데이터 스트림을</li>
+  <li>비동기 데이터 스트림을 중심으로 동작한다.</li>
   <li>스트림 내의 데이터에 변화가 발생했을 때 반응형으로 기능이 동작하는 방식을 사용한다.</li>
+  <li>시간을 상당히 간단하게 취급할 수 있게 된다.</li>
   <li>Observer Pattern + Iterator Pattern + Functional Programming</li>
 </ul>
 
@@ -455,8 +485,9 @@
   <li>이벤트 대체</li>
   <li>UI의 변화에 따른 동작 구현</li>
   <li>입력에 따른 동작 구현</li>
-  <li>네트워크로부터 비동기적으로 데이터 다운로드</li>
-  <li>특정 변수의 값이 바뀌는 순간의 처리</li>
+  <li>변수의 값이 바뀌는 순간의 처리</li>
+  <li>Update()의 로직을 모두 스트림화하여 Update() 없애기</li>
+  <li>코루틴과의 결합</li>
 </ul>
 
 <p><br /></p>
@@ -467,9 +498,10 @@
 <h2 id="기본-작동-방식">기본 작동 방식</h2>
 <ul>
   <li>Observable 객체를 만들거나, 대상을 Observable로 변환하여 스트림을 생성한다.</li>
-  <li>스트림의 동작을 정의한다. (다양한 연산자 사용)</li>
-  <li>대상을 구독(Subscribe)한다.</li>
-  <li>대상의 변화가 감지될 때 스트림에 OnNext() 메시지가 전달된다.</li>
+  <li>다양한 연산자를 통해 스트림을 가공한다.</li>
+  <li>스트림을 구독(Subscribe)한다.<br />
+(IObservable -&gt; IDisposable로 변환됨)</li>
+  <li>스트림의 변화가 감지될 때 옵저버에게 OnNext() 메시지가 전달된다.</li>
   <li>스트림이 종료될 때 OnCompleted() 메시지가 전달된다.</li>
 </ul>
 
@@ -500,13 +532,14 @@
 <h2 id="종료-조건-직접-지정-필요"><strong>종료 조건 직접 지정 필요</strong></h2>
 <ul>
   <li>일단 스트림이 생성되면 스트림에 설정한 종료 조건을 모두 달성하기 전까지는 끝나지 않는다.</li>
-  <li>스트림을 생성한 컴포넌트, 스트림에서 다루는 대상의 비활성화 및 파괴 여부도 직접 지정하지 않으면 확인하지 않는다.</li>
+  <li>스트림을 생성한 컴포넌트, 스트림에서 다루는 대상의 비활성화 및 파괴 여부도 직접 지정하지 않으면 확인하지 않는다.<br />
+(this.~ 처럼 컴포넌트에서 동적으로 생성하는 경우에는 게임오브젝트에 종속)</li>
   <li>따라서 스트림의 종료 조건을 섬세하게 지정해야 한다.</li>
 </ul>
 
 <p><br /></p>
 
-<h2 id="스트림의-자유로운-변환"><strong>스트림의 자유로운 변환</strong></h2>
+<h2 id="스트림의-자유로운-가공"><strong>스트림의 자유로운 가공</strong></h2>
 <ul>
   <li>
     <p>스트림의 메시지를 전달받아 조건을 설정하고 처리하는 방식이 자유롭다.</p>
@@ -520,43 +553,247 @@
 
 <p><br /></p>
 
-<h1 id="연산자">연산자</h1>
+<h1 id="observable-스트림의-생성">Observable 스트림의 생성</h1>
 <hr />
 
-<h2 id="생성"><strong>생성</strong></h2>
+<h2 id="1-observable-팩토리-메소드">1. Observable 팩토리 메소드</h2>
+
+<h2 id="2-unirxtriggers">2. UniRx.Triggers</h2>
+
+<h2 id="3-subject">3. Subject<T></T></h2>
+
+<h2 id="4-reactiveproperty">4. ReactiveProperty<T></T></h2>
+
+<ul>
+  <li>인스펙터에 표시하려면 <code class="language-plaintext highlighter-rouge">IntReactiveProperty</code>처럼 ~ReactiveProperty를 사용한다.</li>
+</ul>
+
+<h2 id="5-이벤트를-변환">5. 이벤트를 변환</h2>
+
+<h2 id="6-코루틴을-변환">6. 코루틴을 변환</h2>
 
 <p><br /></p>
 
-<h2 id="수명지속종료-조건"><strong>수명(지속/종료 조건)</strong></h2>
+<h1 id="연산자">연산자</h1>
+<hr />
 
-<h3 id="takewhile_--bool"><code class="language-plaintext highlighter-rouge">TakeWhile(_ =&gt; bool)</code></h3>
-<ul>
-  <li>지정한 값이 참일 경우에만 스트림 동작</li>
-  <li>스트림에 OnNext가 발생하는 순간마다 확인</li>
-  <li>스트림에 OnNext가 발생하여 확인했는데 지정한 값이 false이면 스트림 종료(+ OnCompleted 전달)</li>
-</ul>
+<details>
+  <summary> 
+스트림의 종료에 영향을 주는 필터
+</summary>
 
-<h3 id="takeuntildisablecomponent"><code class="language-plaintext highlighter-rouge">TakeUntilDisable(Component)</code></h3>
-<ul>
-  <li>OnNext마다 확인하지는 않음</li>
-  <li>지정한 컴포넌트의 게임오브젝트가 비활성화되는 순간 스트림 종료</li>
-</ul>
+  <h3 id="iobservabletakewhile--bool"><code class="language-plaintext highlighter-rouge">IObservable.TakeWhile(_ =&gt; bool)</code></h3>
+  <ul>
+    <li>지정한 값이 참일 경우에만 스트림 동작</li>
+    <li>스트림에 OnNext()가 발생하는 순간에만 확인</li>
+    <li>스트림에 OnNext()가 발생하여 확인했는데 지정한 값이 false이면 스트림 종료(+ OnCompleted() 전달)</li>
+  </ul>
 
-<h3 id="takeuntiledestroycomponent"><code class="language-plaintext highlighter-rouge">TakeUntileDestroy(Component)</code></h3>
-<ul>
-  <li>OnNext마다 확인하지는 않음</li>
-  <li>지정한 컴포넌트의 게임오브젝트가 파괴되는 순간 스트림 종료</li>
-</ul>
+  <h3 id="iobservabletakeuntiliobservableunit"><code class="language-plaintext highlighter-rouge">IObservable.TakeUntil(IObservable&lt;Unit&gt;)</code></h3>
+  <ul>
+    <li>매개변수로 등록한 다른 Observable의 이벤트가 발생하기 전까지만 통지</li>
+    <li>매개변수의 이벤트가 발생하면 스트림 종료, OnCompleted()</li>
+  </ul>
 
-<h3 id="takeuntiliobservableunit"><code class="language-plaintext highlighter-rouge">TakeUntil(IObservable&lt;Unit&gt;)</code></h3>
-<ul>
-  <li>매개변수로 등록한 다른 Observable의 이벤트가 발생하는 순간 스트림 종료</li>
-</ul>
+  <h3 id="iobservabletakeuntildisablecomponent"><code class="language-plaintext highlighter-rouge">IObservable.TakeUntilDisable(Component)</code></h3>
+  <ul>
+    <li>지정한 컴포넌트의 게임오브젝트가 비활성화되는 순간 스트림 종료, OnCompleted()</li>
+  </ul>
+
+  <h3 id="iobservabletakeuntildestroycomponent"><code class="language-plaintext highlighter-rouge">IObservable.TakeUntilDestroy(Component)</code></h3>
+  <ul>
+    <li>지정한 컴포넌트의 게임오브젝트가 비활성화되는 순간 스트림 종료, OnCompleted()</li>
+  </ul>
+
+  <h3 id="idisposableaddto"><code class="language-plaintext highlighter-rouge">IDisposable.AddTo()</code></h3>
+  <ul>
+    <li>매개변수는 GameObject, Component, IDisposable</li>
+    <li>대상 게임오브젝트가 파괴되거나 IDisposable.Dispose()를 호출한 경우, 함께 스트림 종료</li>
+    <li>OnCompleted()을 호출하지 않으므로 주의.</li>
+  </ul>
+
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+필터(조건)
+</summary>
+
+  <h3 id="where--bool"><code class="language-plaintext highlighter-rouge">Where(_ =&gt; bool)</code></h3>
+  <ul>
+    <li>조건이 true인 메시지만 통과</li>
+  </ul>
+
+  <h3 id="distinct"><code class="language-plaintext highlighter-rouge">Distinct()</code></h3>
+  <ul>
+    <li>기존에 OnNext()로 통지한 적 있는 값은 더이상 통지하지 않는다.</li>
+  </ul>
+
+  <h3 id="distinctuntilchanged"><code class="language-plaintext highlighter-rouge">DistinctUntilChanged()</code></h3>
+  <ul>
+    <li>값이 변화할 때만 통지</li>
+  </ul>
+
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+변환
+</summary>
+
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+합성
+</summary>
+
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+지연(딜레이)
+</summary>
+
+</details>
+
+<p><br /></p>
+
+<h1 id="note">NOTE</h1>
+<hr />
+
+<details>
+  <summary> 
+this.UpdateAsObservable(), Observable.EveryUpdate(), this.ObserveEveryValueChanged()
+</summary>
+
+  <h2 id="thisupdateasobservable">this.UpdateAsObservable()</h2>
+  <ul>
+    <li>해당 컴포넌트의 게임오브젝트가 활성화된 동안에만 OnNext()를 통지한다.</li>
+    <li>컴포넌트의 활성화 여부에는 영향 받지 않는다.</li>
+    <li>게임오브젝트가 파괴되면 OnCompleted()를 통지한다.</li>
+  </ul>
+
+  <h2 id="observableeveryupdate">Observable.EveryUpdate()</h2>
+  <ul>
+    <li>어디에 종속되지 않고 완전히 독자적으로 실행된다.</li>
+    <li>종료 조건을 직접 지정해야 한다.</li>
+  </ul>
+
+  <p><br />
++</p>
+
+  <h2 id="thisobserveeveryvaluechanged">this.ObserveEveryValueChanged()</h2>
+  <ul>
+    <li>값의 변화만 통지하는 스트림</li>
+    <li>대상 객체(컴포넌트)가 활성화된 동안에만 OnNext()를 통지한다.</li>
+    <li>대상 객체(컴포넌트)가 파괴되면 OnCompleted()를 통지한다.</li>
+    <li>스트림의 활성/생존이 객체에 종속적인, 가장 이상적인 형태</li>
+  </ul>
+
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+값의 변화를 매 프레임 검사할 때 주의점
+</summary>
+
+  <ul>
+    <li>
+      <p>ObserveEveryValueChanged(_ =&gt; __), DistinctUntilChanged() 등을 사용하여 값의 변화를 매 프레임 검사할 때, 게임 시작 후 첫 프레임에 무조건 OnNext()가 발생할 수 있다.</p>
+    </li>
+    <li>
+      <p>이럴 때는 Subscribe() 직전에 <code class="language-plaintext highlighter-rouge">.Skip(TimeSpan.Zero)</code>을 사용하여 게임 시작 직후 첫 프레임을 무시하도록 한다.</p>
+    </li>
+    <li>
+      <p>예시 :</p>
+    </li>
+  </ul>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">this</span><span class="p">.</span><span class="nf">ObserveEveryValueChanged</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="n">_intValue</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Skip</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="n">Zero</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Value : "</span> <span class="p">+</span> <span class="n">x</span><span class="p">));</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
 <h1 id="대표적인-활용-모음">대표적인 활용 모음</h1>
 <hr />
+
+<details>
+  <summary> 
+웹 통신 결과 비동기 통지
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1">// Obsolete : Use UnityEngine.Networking.UnityWebRequest Instead.</span>
+
+<span class="n">ObservableWWW</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">"http://google.co.kr/"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span>
+        <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="nf">Substring</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">20</span><span class="p">)),</span> <span class="c1">// onSuccess</span>
+        <span class="n">ex</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">LogException</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>       <span class="c1">// onError</span>
+    <span class="p">);</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+대상 스트림이 모두 결과를 얻으면 통지
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="n">parallel</span> <span class="p">=</span> <span class="n">Observable</span><span class="p">.</span><span class="nf">WhenAll</span><span class="p">(</span>
+    <span class="n">ObservableWWW</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">"http://google.com/"</span><span class="p">),</span>
+    <span class="n">ObservableWWW</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">"http://bing.com/"</span><span class="p">),</span>
+    <span class="n">ObservableWWW</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">"http://unity3d.com/"</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">parallel</span><span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">xs</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+    <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="nf">Substring</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">));</span> <span class="c1">// google</span>
+    <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="m">1</span><span class="p">].</span><span class="nf">Substring</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">));</span> <span class="c1">// bing</span>
+    <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="m">2</span><span class="p">].</span><span class="nf">Substring</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">));</span> <span class="c1">// unity</span>
+<span class="p">});</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
 
 <details>
   <summary> 
@@ -577,15 +814,140 @@
 
 <details>
   <summary> 
-객체의 필드 값 변화 감지
+값이 변화하는 순간을 포착하기
 </summary>
 
   <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
-</pre></td><td class="rouge-code"><pre><span class="c1">// ObserveEveryValueChanged : 클래스 타입에 대해 모두 사용 가능</span>
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+</pre></td><td class="rouge-code"><pre><span class="c1">// 마우스 클릭, 떼는 순간 모두 포착</span>
+<span class="k">this</span><span class="p">.</span><span class="nf">UpdateAsObservable</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">Select</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetMouseButton</span><span class="p">(</span><span class="m">0</span><span class="p">))</span>
+    <span class="p">.</span><span class="nf">DistinctUntilChanged</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">Skip</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="c1">// 시작하자마자 false값에 대한 판정 때문에 "Up" 호출되는 것 방지</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">down</span> <span class="p">=&gt;</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">down</span><span class="p">)</span>
+            <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">$"Down : </span><span class="p">{</span><span class="n">Time</span><span class="p">.</span><span class="n">frameCount</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">$"Up : </span><span class="p">{</span><span class="n">Time</span><span class="p">.</span><span class="n">frameCount</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">});</span>
+
+
+<span class="c1">// 값이 false -&gt; true로 바뀌는 순간만 포착</span>
+<span class="k">this</span><span class="p">.</span><span class="nf">UpdateAsObservable</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">Select</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="n">_boolValue</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">DistinctUntilChanged</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Skip</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="n">Zero</span><span class="p">)</span> <span class="c1">// 첫 프레임 때의 호출 방지</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"TRUE"</span><span class="p">));</span>
+
+<span class="c1">// 매 프레임, 값의 변화 포착만을 위한 간단한 구문 (위 구문을 간소화)</span>
+<span class="k">this</span><span class="p">.</span><span class="nf">ObserveEveryValueChanged</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="n">_boolValue</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Skip</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="n">Zero</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"TRUE 2"</span><span class="p">));</span>
+
+
+<span class="c1">// .Skip(TimeSpan.Zero)</span>
+<span class="c1">// =&gt; 초기값이 true일 때 첫 프레임에 바로 호출되는 것을 방지한다.</span>
+
+
+
+<span class="c1">// ObserveEveryValueChanged : 클래스 타입에 대해 모두 사용 가능</span>
 <span class="k">this</span><span class="p">.</span><span class="nf">ObserveEveryValueChanged</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">_value</span><span class="p">)</span>
     <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Value Changed : "</span> <span class="p">+</span> <span class="n">x</span><span class="p">));</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+급변하는 값을 정제하기
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="rouge-code"><pre><span class="c1">// ObserveEveryValueChanged : 값이 변화했을 때 통지</span>
+<span class="c1">// ThrottleFrame(5) : 마지막 통지로부터 5프레임동안 값의 통지를 받지 않으면 OnNext()</span>
+
+<span class="c1">// 따라서 값이 급변하는 동안에는 OnNext() 하지 않고</span>
+<span class="c1">// 5프레임 이내로 값이 변하지 않았을 때 마지막으로 기억하는 값을 전달</span>
+
+<span class="c1">// 5프레임 이내에서 순간적으로 급변하는 값들을 무시하여, 값을 정제하는 효과가 있음</span>
+
+<span class="c1">// 사용 예시 : 닿았는지 여부 검사, 비탈길에서의 isGrounded 검사</span>
+
+<span class="k">this</span><span class="p">.</span><span class="nf">ObserveEveryValueChanged</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="n">_isTouched</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">ThrottleFrame</span><span class="p">(</span><span class="m">5</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">_isTouchedRefined</span> <span class="p">=</span> <span class="n">x</span><span class="p">);</span>
+
+
+<span class="c1">// 위의 ObserveEveryValueChanged와 정확히 같은 용법</span>
+
+<span class="nf">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">CharacterController</span> <span class="n">cc</span><span class="p">);</span>
+<span class="n">cc</span><span class="p">.</span><span class="nf">UpdateAsObservable</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">Select</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">cc</span><span class="p">.</span><span class="n">isGrounded</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">DistinctUntilChanged</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">ThrottleFrame</span><span class="p">(</span><span class="m">5</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">_isGroundedRefined</span> <span class="p">=</span> <span class="n">x</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
 </details>
@@ -844,6 +1206,7 @@ UI 이벤트 대체
   <li><a href="https://skuld2000.tistory.com/31">https://skuld2000.tistory.com/31</a></li>
   <li><a href="https://www.slideshare.net/agebreak/160402-unirx">https://www.slideshare.net/agebreak/160402-unirx</a></li>
   <li><a href="https://kimsama.gitbooks.io/unirx/content/">https://kimsama.gitbooks.io/unirx/content/</a></li>
+  <li><a href="https://www.youtube.com/watch?v=NN1_41TE1N0&amp;ab_channel=UnityKorea">https://www.youtube.com/watch?v=NN1_41TE1N0&amp;ab_channel=UnityKorea</a></li>
 </ul>
 
 
@@ -980,17 +1343,17 @@ UI 이벤트 대체
         
         
         
+        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
         
         
         
         <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-component-on-top/">컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</a></li>
       
         
         
@@ -1513,160 +1876,6 @@ UI 이벤트 대체
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -1831,130 +2040,10 @@ UI 이벤트 대체
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2633,6 +2722,285 @@ UI 이벤트 대체
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3238,70 +3606,170 @@ UI 이벤트 대체
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -3582,10 +4050,10 @@ UI 이벤트 대체
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/editor/">editor</a>
@@ -3594,10 +4062,10 @@ UI 이벤트 대체
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
-        <a class="post-tag" href="/tags/ui/">ui</a>
+        <a class="post-tag" href="/tags/shaderlab/">shaderlab</a>
       
         
-        <a class="post-tag" href="/tags/performance/">performance</a>
+        <a class="post-tag" href="/tags/ui/">ui</a>
       
 
       </div>
@@ -3870,7 +4338,85 @@ UI 이벤트 대체
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -5960,160 +6506,6 @@ UI 이벤트 대체
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -6278,130 +6670,10 @@ UI 이벤트 대체
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -7080,6 +7352,285 @@ UI 이벤트 대체
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -7685,70 +8236,170 @@ UI 이벤트 대체
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -8024,10 +8675,10 @@ UI 이벤트 대체
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/editor/">editor</a>
@@ -8036,10 +8687,10 @@ UI 이벤트 대체
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
-        <a class="post-tag" href="/tags/ui/">ui</a>
+        <a class="post-tag" href="/tags/shaderlab/">shaderlab</a>
       
         
-        <a class="post-tag" href="/tags/performance/">performance</a>
+        <a class="post-tag" href="/tags/ui/">ui</a>
       
 
     </div>

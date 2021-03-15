@@ -1,6 +1,81 @@
 [
   
   {
+    "title": "Stencil Silhouette Shader",
+    "url": "/posts/unity-shader-script-stencil-silhouette/",
+    "categories": "Unity Shader, Shader Scripts",
+    "tags": "unity, csharp, shader, shaderlab",
+    "date": "2021-03-15 17:20:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Summary  가려질 경우 단색이 드러나는 실루엣 쉐이더  Ref 2번 사용PreviewSource Code   Silhouette.shader  Shader &quot;Custom/Silhouette&quot;{    Properties    {        _SilhouetteColor (&quot;Silhouette Color&quot;, Color) = (1, 0, 0, 0.5)        [Space]        _Color (&quot;Color&quot;, Color) = (1,1,1,1)        _Ma..."
+  },
+  
+  {
+    "title": "Stencil Mask Shader",
+    "url": "/posts/unity-shader-script-stencil-mask/",
+    "categories": "Unity Shader, Shader Scripts",
+    "tags": "unity, csharp, shader, shaderlab",
+    "date": "2021-03-15 17:10:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Summary  스텐실 마스크 &amp;amp; 마스크로 가려야 드러나는 타겟 쉐이더  Ref 1번 사용PreviewSource Code   StencilTarget01.shader  Shader &quot;Custom/StencilTarget01&quot;{    Properties    {        _Color (&quot;Color&quot;, Color) = (1,1,1,1)        _MainTex (&quot;Albedo (RGB)&quot;, 2D) = &quot;white&quot; {}    }    S..."
+  },
+  
+  {
+    "title": "Customizable Transparent Shader",
+    "url": "/posts/unity-shader-script-transparent-custom/",
+    "categories": "Unity Shader, Shader Scripts",
+    "tags": "unity, csharp, shader, shaderlab",
+    "date": "2021-03-15 17:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Summary  알파 블렌딩, ZTest 등의 옵션을 마테리얼에서 설정할 수 있는 반투명 쉐이더Source CodeShader &quot;Custom/CustomizableTransparent&quot;{    Properties    {        _MainTex (&quot;Albedo (RGB)&quot;, 2D) = &quot;white&quot; {}                _Color (&quot;Color&quot;, Color) = (1,1,1,1)        _Alpha (&quot;Alpha&quot;..."
+  },
+  
+  {
+    "title": "2-Pass Transparent Shader",
+    "url": "/posts/unity-shader-script-transparent-2pass/",
+    "categories": "Unity Shader, Shader Scripts",
+    "tags": "unity, csharp, shader, shaderlab",
+    "date": "2021-03-15 17:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Summary  2패스로 작성하여 내부가 드러나는 알파 소팅 문제가 발생하지 않는 쉐이더Source CodeShader &quot;Custom/Transparent2Pass&quot;{    Properties    {        _MainTex(&quot;Albedo (RGB)&quot;, 2D) = &quot;white&quot; {}        _Alpha(&quot;Alpha&quot;, Range(0, 1)) = 0.5    }    SubShader    {        Tags { &quot;RenderType..."
+  },
+  
+  {
+    "title": "Particle Shader",
+    "url": "/posts/unity-shader-script-particle/",
+    "categories": "Unity Shader, Shader Scripts",
+    "tags": "unity, csharp, shader, shaderlab",
+    "date": "2021-03-15 16:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Summary  블렌딩 옵션 선택 가능한 파티클 쉐이더(기본 : Additive)Source CodeShader &quot;Custom/Particle&quot;{    Properties    {        _TintColor (&quot;Tint Color&quot;, Color) = (1, 1, 1, 1)        _Intensity(&quot;Intensity&quot;, Range(0, 2)) = 1        _MainTex(&quot;Albedo (RGB)&quot;, 2D) = &quot;white&quo..."
+  },
+  
+  {
     "title": "키보드 연속 입력 유지 상태 감지하기",
     "url": "/posts/unity-memo-double-key-press/",
     "categories": "Unity, Unity Memo",
@@ -267,7 +342,7 @@
 
 
 
-    "snippet": "개요Rx란?  Reactive Extensions  .NET에도 다양한 언어로 구현되어 있다.  절차적 프로그래밍에서 다루기 쉽지 않은 비동기 프로그래밍을 손쉽게 다루기 위한 패러다임  비동기 데이터 스트림을  스트림 내의 데이터에 변화가 발생했을 때 반응형으로 기능이 동작하는 방식을 사용한다.  Observer Pattern + Iterator Pattern + Functional ProgrammingUniRx  .NET의 Rx를 유니티에서 사용할 수 없다는 한계를 극복하기 위해 만들어졌다.  유니티의 코루틴, 주요 이벤트 ..."
+    "snippet": "개요Rx란?  Reactive Extensions  .NET에도 다양한 언어로 구현되어 있다.  절차적 프로그래밍에서 다루기 쉽지 않은 비동기 프로그래밍을 손쉽게 다루기 위한 패러다임  비동기 데이터 스트림을 중심으로 동작한다.  스트림 내의 데이터에 변화가 발생했을 때 반응형으로 기능이 동작하는 방식을 사용한다.  시간을 상당히 간단하게 취급할 수 있게 된다.  Observer Pattern + Iterator Pattern + Functional ProgrammingUniRx  .NET의 Rx를 유니티에서 사용할 수 없다는..."
   },
   
   {
@@ -507,7 +582,7 @@
 
 
 
-    "snippet": "// 이름 변경, 기타 등등 수행하기 직전에 호출// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함Undo.RecordObject(target, &quot;Action&quot;);// 오브젝트 생성 이후에 호출Undo.RegisterCreatedObjectUndo(target, &quot;Create New&quot;);// 오브젝트 파괴 및 Undo 등록Undo.DestroyObjectImmediate(selected.gameObject);// 부모 변경 및 Undo 등록Undo.SetTran..."
+    "snippet": "/* 1. 다른 동작과 연계 */// 이름 변경, 기타 등등 수행하기 직전에 호출// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함Undo.RecordObject(target, &quot;Action&quot;);// 오브젝트 생성 이후에 호출Undo.RegisterCreatedObjectUndo(targetGameObject, &quot;Create New&quot;);/* 2. Undo를 통해 직접 수행 */// 컴포넌트 추가Undo.AddComponent&amp;lt;ComponentType..."
   },
   
   {
@@ -1663,6 +1738,21 @@
 
 
     "snippet": "레거시 파이프라인과 SRP  https://drive.google.com/file/d/1eR39KY_n_wuWF5S_zClCECE3ynmSfs-h/view"
+  },
+  
+  {
+    "title": "Rainy Window Shader",
+    "url": "/posts/unity-shader-script-rainy-window/",
+    "categories": "Unity Shader, Shader Scripts",
+    "tags": "unity, csharp, shader, shaderlab",
+    "date": "2020-12-01 22:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Summary  비내리는 유리창 쉐이더PreviewSource Code   Source Code  Shader &quot;Custom/RainyWindow&quot;{    Properties    {        [HideInInspector] _MainTex(&quot;Texture&quot;, 2D) = &quot;white&quot; {}        _SizeX(&quot;Size X&quot;, float) = 1        _SizeY(&quot;Size Y&quot;, float) = 1        [Spac..."
   },
   
   {

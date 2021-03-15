@@ -467,7 +467,6 @@ Source Code
 
 ``` hlsl
 Shader "Custom/Particle"
-Shader "Custom/Particle"
 {
     Properties
     {
