@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-16T04:15:03+09:00</updated>
+  <updated>2021-03-16T20:32:40+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,168 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>파티클 시스템 예제 - 07 - Fireworks [TODO]</title>
+    <link href="https://rito15.github.io/posts/unity-particle-system-example-07-fireworks/" rel="alternate" type="text/html" title="파티클 시스템 예제 - 07 - Fireworks [TODO]" />
+    <published>2021-03-16T17:10:00+09:00</published>
+  
+    <updated>2021-03-16T17:10:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-particle-system-example-07-fireworks/</id>
+    <content src="https://rito15.github.io/posts/unity-particle-system-example-07-fireworks/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Particle System" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목차
+
+
+
+  목표
+  준비물
+  1. Fireworks 이펙트
+  2. SubEmitter - Birth
+  3. SubEmitter - Death
+  4. SubEmitter - Death Flash
+  5. 완성
+
+
+Preview
+
+
+
+
+
+
+목표
+
+
+
+  
+    서브 이미터 모듈 이해하기
+  
+  
+    불꽃놀이 이펙트 완성하기
+  
+
+
+
+
+준비물
+
+
+
+  동그란 텍스쳐와 Additive 마테리얼
+
+
+
+
+
+
+1. Fireworks 이펙트
+
+
+불꽃을 하늘로 쏘아올리는, 간단한 형태의 이펙트를 우선 제작한다.
+
+
+
+준비
+
+
+  
+    하이라키 - 우클릭 - [Effects] - [Particle System]을 통해 파티클 시스템 게임오브젝트를 생성한다.
+  
+  
+    생성된 게임오브젝트를 ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>포스트 프로세싱 적용하기</title>
+    <link href="https://rito15.github.io/posts/unity-memo-post-processing/" rel="alternate" type="text/html" title="포스트 프로세싱 적용하기" />
+    <published>2021-03-16T17:00:00+09:00</published>
+  
+    <updated>2021-03-16T17:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-memo-post-processing/</id>
+    <content src="https://rito15.github.io/posts/unity-memo-post-processing/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. Built-in Pipeline
+
+
+
+  
+    Package Manager - [Post Processing] 설치
+  
+  
+    레이어 - [Post Processing] 추가
+  
+
+
+
+
+  메인 카메라
+    
+      컴포넌트 추가 : Post-process Layer
+      Volume blending - Layer : [Post Processing] 설정
+    
+  
+
+
+
+
+  빈 게임오브젝트 추가 : “Volume”
+    
+      레이어 설정 : [Post Processing]
+      컴포넌트 추가 : Post-process Volume
+        
+          Is Global 체크
+          Profile - [New]
+          [A...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -209,118 +371,6 @@ Shader "Custom/CustomizableTransparent"
 
         [Toggle] _ZWrite("Z Write", float) = 1
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("Z ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>2-Pass Transparent Shader</title>
-    <link href="https://rito15.github.io/posts/unity-shader-script-transparent-2pass/" rel="alternate" type="text/html" title="2-Pass Transparent Shader" />
-    <published>2021-03-15T17:00:00+09:00</published>
-  
-    <updated>2021-03-15T17:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-shader-script-transparent-2pass/</id>
-    <content src="https://rito15.github.io/posts/unity-shader-script-transparent-2pass/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Scripts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-
-  2패스로 작성하여 내부가 드러나는 알파 소팅 문제가 발생하지 않는 쉐이더
-
-
-Source Code
-
-
-Shader "Custom/Transparent2Pass"
-{
-    Properties
-    {
-        _MainTex("Albedo (RGB)", 2D) = "white" {}
-        _Alpha("Alpha", Range(0, 1)) = 0.5
-    }
-    SubShader
-    {
-        Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
-
-        /****************************************************************
-       ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Particle Shader</title>
-    <link href="https://rito15.github.io/posts/unity-shader-script-particle/" rel="alternate" type="text/html" title="Particle Shader" />
-    <published>2021-03-15T16:00:00+09:00</published>
-  
-    <updated>2021-03-15T16:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-shader-script-particle/</id>
-    <content src="https://rito15.github.io/posts/unity-shader-script-particle/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Scripts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-
-  블렌딩 옵션 선택 가능한 파티클 쉐이더(기본 : Additive)
-
-
-Source Code
-
-
-Shader "Custom/Particle"
-{
-    Properties
-    {
-        _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
-        _Intensity("Intensity", Range(0, 2)) = 1
-        _MainTex("Albedo (RGB)", 2D) = "white"{}
-        [Enum(UnityEngine.Rendering.BlendMode)]_SrcBlend("SrcBlend Mode", Float) = 5 // SrcAlpha
-        [Enum(UnityEngine.Render...
     </summary>
   
 
