@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 에디터 종료 확인 다이얼로그 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"datePublished":"2021-02-10T13:50:00+09:00","description":"Memo","dateModified":"2021-02-10T13:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/"},"url":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 에디터 종료 확인 다이얼로그 만들기","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Memo","datePublished":"2021-02-10T13:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/"},"url":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 에디터 종료 확인 다이얼로그 만들기","dateModified":"2021-02-10T13:50:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -4404,6 +4404,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5062,61 +5075,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-plugin-play-mode-saver/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar 13
-  
-
-  <i class="unloaded">2021-03-13T17:20:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-  
-    등록한 컴포넌트의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.
-  
-  
-    변경사항을 적용할 대상 컴포넌트들은 Play Mode Saver 컴포넌트 내에 관리된다.
-  
-  
-    유니티 에디터 내에서만 동작하며, 빌드 시 Play Mode Saver 컴포넌트는 자동으로 제거된다.
-  
-  
-    ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-custom-editor/">
           <div class="card-body">
             <!--
@@ -5247,6 +5205,74 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
 
    
 우클릭 MenuItem 메소...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-undo/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 28
+  
+
+  <i class="unloaded">2021-02-28T01:52:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Undo</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+/* 1. 다른 동작과 연계 */
+
+// 이름 변경, 기타 등등 수행하기 직전에 호출
+// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함
+Undo.RecordObject(target, "Action");
+
+// 오브젝트 생성 이후에...
               </p>
             </div>
           </div>

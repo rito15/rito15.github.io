@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="포스트 프로세싱 적용하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"datePublished":"2021-03-16T17:00:00+09:00","description":"1. Built-in Pipeline","dateModified":"2021-03-16T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-post-processing/"},"url":"https://rito15.github.io/posts/unity-memo-post-processing/","author":{"@type":"Person","name":"Rito15"},"headline":"포스트 프로세싱 적용하기","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"1. Built-in Pipeline","datePublished":"2021-03-16T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-post-processing/"},"url":"https://rito15.github.io/posts/unity-memo-post-processing/","author":{"@type":"Person","name":"Rito15"},"headline":"포스트 프로세싱 적용하기","dateModified":"2021-03-16T17:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -3426,6 +3426,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5175,7 +5188,7 @@ private GameObje...
       
       
       <div class="card">
-        <a href="/posts/unity-memo-editor-exit-dialog/">
+        <a href="/posts/unity-memo-double-key-press/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -5192,13 +5205,13 @@ private GameObje...
   
 
   
-    Feb 10
+    Mar 14
   
 
-  <i class="unloaded">2021-02-10T13:50:00+09:00</i>
+  <i class="unloaded">2021-03-14T23:23:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 종료 확인 다이얼로그 만들기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>키보드 연속 입력 유지 상태 감지하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -5207,22 +5220,22 @@ private GameObje...
 
 
 
-                Memo
+                활용
 
 
-기본적으로 유니티 에디터를 종료할 때는 확인창이 뜨지 않고 바로 종료된다.
 
-만약 실수로 닫기 버튼을 눌러버린다면 그대로 종료되어 버린다.
+  달리기 구현(WW, AA, SS, DD)
 
-그런데 유니티 에디터는 에디터의 종료도 이벤트로 구분하여, 메소드를 추가할 수 있도록 구현해놓았기 때문에
 
-이를 이용해 에디터의 종료를 시도할 경우 확인창을 띄우도록 할 수 있다.
-
+Source Code
 
 
 
   
-   ...
+    /// &lt;summary&gt; 키보드 연속 입력 유지 상태 감지 &lt;/summary&gt;
+private class KeyForDoublePressDetection
+{
+    public KeyCode Key { get; private set; ...
               </p>
             </div>
           </div>
@@ -5252,7 +5265,7 @@ private GameObje...
 
   
   <a href="/posts/unity-particle-system-example-07-fireworks/" class="btn btn-outline-primary">
-    <p>파티클 시스템 예제 - 07 - Fireworks [TODO]</p>
+    <p>파티클 시스템 예제 - 07 - Fireworks</p>
   </a>
   
 
