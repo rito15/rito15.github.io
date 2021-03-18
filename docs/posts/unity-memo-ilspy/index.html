@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="ILSpy로 유니티 내부 구현 뜯어보기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"다운로드 https://github.com/icsharpcode/ILSpy/releases vsix를 받을 경우, 비주얼 스튜디오의 확장으로 추가하여 [도구] - [ILSpy]를 통해 바로 실행할 수 있다.","datePublished":"2021-02-12T05:32:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-ilspy/"},"url":"https://rito15.github.io/posts/unity-memo-ilspy/","author":{"@type":"Person","name":"Rito15"},"headline":"ILSpy로 유니티 내부 구현 뜯어보기","dateModified":"2021-02-12T05:32:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"ILSpy로 유니티 내부 구현 뜯어보기","description":"다운로드 https://github.com/icsharpcode/ILSpy/releases vsix를 받을 경우, 비주얼 스튜디오의 확장으로 추가하여 [도구] - [ILSpy]를 통해 바로 실행할 수 있다.","dateModified":"2021-02-12T05:32:00+09:00","datePublished":"2021-02-12T05:32:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-ilspy/"},"url":"https://rito15.github.io/posts/unity-memo-ilspy/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -629,6 +629,11 @@
         
         
         
+        <li><a href="/posts/unity-particle-system-example-07-fireworks/">파티클 시스템 예제 - 07 - Fireworks</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
@@ -645,11 +650,6 @@
         
         
         <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
 
       </ul>
@@ -5098,7 +5098,7 @@
   <i class="unloaded">2021-02-01T03:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 드래그 앤 드롭으로 옮기기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 헤더 드래그 앤 드롭으로 옮기기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -5116,12 +5116,12 @@
 
   헤더 UI는 UI의 자식으로 구성한다.
   PopupUIHeader 스크립트를 헤더 UI의 컴포넌트로 넣어준다.
+  이동 대상 UI를 인스펙터에서 Target UI에 넣는다. (지정하지 않는 경우, 부모로 자동 초기화)
 
 
 
   
-    /// &lt;summary&gt; 헤더 드래그 앤 드롭에 의한 UI 이동 구현 &lt;/summary&gt;
-publi...
+    using U...
               </p>
             </div>
           </div>

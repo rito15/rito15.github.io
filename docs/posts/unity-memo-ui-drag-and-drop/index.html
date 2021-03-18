@@ -23,7 +23,7 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="UI 드래그 앤 드롭으로 옮기기" />
+<meta property="og:title" content="UI 헤더 드래그 앤 드롭으로 옮기기" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="기능 UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기" />
@@ -34,14 +34,14 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-02-01T03:00:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="UI 드래그 앤 드롭으로 옮기기" />
+<meta property="twitter:title" content="UI 헤더 드래그 앤 드롭으로 옮기기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"기능 UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기","datePublished":"2021-02-01T03:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-ui-drag-and-drop/"},"url":"https://rito15.github.io/posts/unity-memo-ui-drag-and-drop/","author":{"@type":"Person","name":"Rito15"},"headline":"UI 드래그 앤 드롭으로 옮기기","dateModified":"2021-02-01T03:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"UI 헤더 드래그 앤 드롭으로 옮기기","description":"기능 UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기","dateModified":"2021-02-01T03:00:00+09:00","datePublished":"2021-02-01T03:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-ui-drag-and-drop/"},"url":"https://rito15.github.io/posts/unity-memo-ui-drag-and-drop/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>UI 드래그 앤 드롭으로 옮기기 | Rito15
+  <title>UI 헤더 드래그 앤 드롭으로 옮기기 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>UI 드래그 앤 드롭으로 옮기기</span>
+        <span>UI 헤더 드래그 앤 드롭으로 옮기기</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -354,7 +354,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>UI 드래그 앤 드롭으로 옮기기</h1>
+      <h1 data-toc-skip>UI 헤더 드래그 앤 드롭으로 옮기기</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="173 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="280 words">1 min</span>
 
 
           <!-- page views -->
@@ -428,6 +428,7 @@
 <ul>
   <li>헤더 UI는 UI의 자식으로 구성한다.</li>
   <li>PopupUIHeader 스크립트를 헤더 UI의 컴포넌트로 넣어준다.</li>
+  <li>이동 대상 UI를 인스펙터에서 <code class="language-plaintext highlighter-rouge">Target UI</code>에 넣는다. (지정하지 않는 경우, 부모로 자동 초기화)</li>
 </ul>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -457,31 +458,45 @@
 25
 26
 27
-</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 헤더 드래그 앤 드롭에 의한 UI 이동 구현 &lt;/summary&gt;</span>
-<span class="k">public</span> <span class="k">class</span> <span class="nc">PopupUIHeader</span> <span class="p">:</span> <span class="n">MonoBehaviour</span><span class="p">,</span>
-    <span class="n">IPointerDownHandler</span><span class="p">,</span> <span class="n">IBeginDragHandler</span><span class="p">,</span> <span class="n">IDragHandler</span>
-<span class="p">{</span>
-    <span class="k">private</span> <span class="n">RectTransform</span> <span class="n">_parentRect</span><span class="p">;</span>
+28
+29
+30
+31
+32
+33
+34
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine.EventSystems</span><span class="p">;</span>
 
-    <span class="k">private</span> <span class="n">Vector2</span> <span class="n">_rectBegin</span><span class="p">;</span>
+<span class="c1">/// &lt;summary&gt; 헤더 드래그 앤 드롭에 의한 UI 이동 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">MovableUI</span> <span class="p">:</span> <span class="n">MonoBehaviour</span><span class="p">,</span> <span class="n">IPointerDownHandler</span><span class="p">,</span> <span class="n">IDragHandler</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
+    <span class="k">private</span> <span class="n">Transform</span> <span class="n">_targetTr</span><span class="p">;</span> <span class="c1">// 이동될 UI</span>
+
+    <span class="k">private</span> <span class="n">Vector2</span> <span class="n">_startingPoint</span><span class="p">;</span>
     <span class="k">private</span> <span class="n">Vector2</span> <span class="n">_moveBegin</span><span class="p">;</span>
     <span class="k">private</span> <span class="n">Vector2</span> <span class="n">_moveOffset</span><span class="p">;</span>
 
     <span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="n">_parentRect</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">RectTransform</span><span class="p">&gt;();</span>
+        <span class="c1">// 이동 대상 UI를 지정하지 않은 경우, 자동으로 부모로 초기화</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_targetTr</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="n">_targetTr</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">void</span> <span class="n">IBeginDragHandler</span><span class="p">.</span><span class="nf">OnBeginDrag</span><span class="p">(</span><span class="n">PointerEventData</span> <span class="n">eventData</span><span class="p">)</span>
+    <span class="c1">// 드래그 시작 위치 지정</span>
+    <span class="k">void</span> <span class="n">IPointerDownHandler</span><span class="p">.</span><span class="nf">OnPointerDown</span><span class="p">(</span><span class="n">PointerEventData</span> <span class="n">eventData</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">_rectBegin</span> <span class="p">=</span> <span class="n">_parentRect</span><span class="p">.</span><span class="n">anchoredPosition</span><span class="p">;</span>
+        <span class="n">_startingPoint</span> <span class="p">=</span> <span class="n">_targetTr</span><span class="p">.</span><span class="n">position</span><span class="p">;</span>
         <span class="n">_moveBegin</span> <span class="p">=</span> <span class="n">eventData</span><span class="p">.</span><span class="n">position</span><span class="p">;</span>
     <span class="p">}</span>
 
+    <span class="c1">// 드래그 : 마우스 커서 위치로 이동</span>
     <span class="k">void</span> <span class="n">IDragHandler</span><span class="p">.</span><span class="nf">OnDrag</span><span class="p">(</span><span class="n">PointerEventData</span> <span class="n">eventData</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">_moveOffset</span> <span class="p">=</span> <span class="n">eventData</span><span class="p">.</span><span class="n">position</span> <span class="p">-</span> <span class="n">_moveBegin</span><span class="p">;</span>
-        <span class="n">_parentRect</span><span class="p">.</span><span class="n">anchoredPosition</span> <span class="p">=</span> <span class="n">_rectBegin</span> <span class="p">+</span> <span class="n">_moveOffset</span><span class="p">;</span>
+        <span class="n">_targetTr</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="n">_startingPoint</span> <span class="p">+</span> <span class="n">_moveOffset</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
@@ -554,19 +569,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=UI 드래그 앤 드롭으로 옮기기 - Rito15&url=https://rito15.github.io/posts/unity-memo-ui-drag-and-drop/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=UI 헤더 드래그 앤 드롭으로 옮기기 - Rito15&url=https://rito15.github.io/posts/unity-memo-ui-drag-and-drop/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=UI 드래그 앤 드롭으로 옮기기 - Rito15&u=https://rito15.github.io/posts/unity-memo-ui-drag-and-drop/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=UI 헤더 드래그 앤 드롭으로 옮기기 - Rito15&u=https://rito15.github.io/posts/unity-memo-ui-drag-and-drop/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=UI 드래그 앤 드롭으로 옮기기 - Rito15&url=https://rito15.github.io/posts/unity-memo-ui-drag-and-drop/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=UI 헤더 드래그 앤 드롭으로 옮기기 - Rito15&url=https://rito15.github.io/posts/unity-memo-ui-drag-and-drop/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -629,6 +644,11 @@
         
         
         
+        <li><a href="/posts/unity-particle-system-example-07-fireworks/">파티클 시스템 예제 - 07 - Fireworks</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
@@ -645,11 +665,6 @@
         
         
         <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
 
       </ul>

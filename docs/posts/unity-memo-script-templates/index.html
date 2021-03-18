@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="스크립트 템플릿(Script Templates)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개념 Project - 우클릭 - Create를 통해 만드는 스크립트 또는 텍스트의 템플릿을 미리 지정하는 기능 스크립트 템플릿의 저장 경로 :","datePublished":"2021-01-29T16:55:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-script-templates/"},"url":"https://rito15.github.io/posts/unity-memo-script-templates/","author":{"@type":"Person","name":"Rito15"},"headline":"스크립트 템플릿(Script Templates)","dateModified":"2021-01-29T16:55:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"스크립트 템플릿(Script Templates)","description":"개념 Project - 우클릭 - Create를 통해 만드는 스크립트 또는 텍스트의 템플릿을 미리 지정하는 기능 스크립트 템플릿의 저장 경로 :","dateModified":"2021-01-29T16:55:00+09:00","datePublished":"2021-01-29T16:55:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-script-templates/"},"url":"https://rito15.github.io/posts/unity-memo-script-templates/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -687,6 +687,11 @@ public class #SCRIPTNAME# : MonoBehaviour
         
         
         
+        <li><a href="/posts/unity-particle-system-example-07-fireworks/">파티클 시스템 예제 - 07 - Fireworks</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
@@ -703,11 +708,6 @@ public class #SCRIPTNAME# : MonoBehaviour
         
         
         <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
 
       </ul>
@@ -5156,7 +5156,7 @@ public class #SCRIPTNAME# : MonoBehaviour
   <i class="unloaded">2021-02-01T03:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 드래그 앤 드롭으로 옮기기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 헤더 드래그 앤 드롭으로 옮기기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -5174,6 +5174,7 @@ public class #SCRIPTNAME# : MonoBehaviour
 
   헤더 UI는 UI의 자식으로 구성한다.
   PopupUIHeader 스크립트를 헤더 UI의 컴포넌트로 넣어준다.
+  이동 대상 UI를 인스펙터에서 Target UI에 넣는다. (지정하지 않는 경우, 부모로 자동 초기화)
 
 
 1
@@ -5183,27 +5184,7 @@ public class #SCRIPTNAME# : MonoBehaviour
 5
 6
 7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-///...
+8...
               </p>
             </div>
           </div>
