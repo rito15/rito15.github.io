@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-18T21:54:19+09:00</updated>
+  <updated>2021-03-19T21:34:39+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,75 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>트랜스폼과 방향벡터의 회전</title>
+    <link href="https://rito15.github.io/posts/unity-memo-rotation/" rel="alternate" type="text/html" title="트랜스폼과 방향벡터의 회전" />
+    <published>2021-03-19T17:08:00+09:00</published>
+  
+    <updated>2021-03-19T17:08:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-memo-rotation/</id>
+    <content src="https://rito15.github.io/posts/unity-memo-rotation/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+유니티엔진에서의 회전
+
+
+  각 축에 회전이 적용되는 순서는 Z축 -&amp;gt; X축 -&amp;gt; Y축
+
+
+
+
+트랜스폼을 자신의 축으로 회전시킬 때
+
+Local Rotation(Euler) X, Y, Z 값 중 회전시키려는 축을 제외하고 모두 0이라면
+
+(예 : X축으로 회전시키려는데 (34f, 0f, 0f)인 상태)
+
+해당 축의 오일러 값만 변경시키면 다른 축에 영향을 받지 않고 정상적으로 회전할 수 있다.
+
+
+
+정확히는, 유니티엔진의 회전 순서에 따라
+
+Z축 회전일 경우 X, Y 오일러 값에 상관 없이 회전이 가능하고
+
+X축 회전일 경우 Z 값이 0이 아니면 영향을 받고,
+
+Y축 회전일 경우 Z, X값이 0이 아니면 영향을 받는다.
+
+
+
+회전시키려는 축 외의 다른 값이 0이 아닌 상태라면
+
+...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -285,77 +354,6 @@ Silhouette.shader
     SubShader
     {
         Tags { "RenderType"="Opaque...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Stencil Mask Shader</title>
-    <link href="https://rito15.github.io/posts/unity-shader-script-stencil-mask/" rel="alternate" type="text/html" title="Stencil Mask Shader" />
-    <published>2021-03-15T17:10:00+09:00</published>
-  
-    <updated>2021-03-15T17:10:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-shader-script-stencil-mask/</id>
-    <content src="https://rito15.github.io/posts/unity-shader-script-stencil-mask/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Scripts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-
-  스텐실 마스크 &amp;amp; 마스크로 가려야 드러나는 타겟 쉐이더
-  Ref 1번 사용
-
-
-Preview
-
-
-
-
-Source Code
-
-
-
-   
-StencilTarget01.shader
-
-
-  Shader "Custom/StencilTarget01"
-{
-    Properties
-    {
-        _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
-    }
-    SubShader
-    {
-        Tags { "RenderType"="Opaque" }
-
-        Stencil
-        {
-            Ref 1
-            Comp ...
     </summary>
   
 
