@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-03-19T21:34:39+09:00</updated>
+  <updated>2021-03-21T00:45:01+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,88 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>베지어 곡선(Bezier Curve)</title>
+    <link href="https://rito15.github.io/posts/unity-study-bezier-curve/" rel="alternate" type="text/html" title="베지어 곡선(Bezier Curve)" />
+    <published>2021-03-20T19:19:00+09:00</published>
+  
+    <updated>2021-03-20T19:19:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-study-bezier-curve/</id>
+    <content src="https://rito15.github.io/posts/unity-study-bezier-curve/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      베지어 곡선
+
+
+  점과 점 사이의 선형 보간(Lerp, Linear interpolation)을 이용해 그려내는 곡선
+
+
+
+
+1차 베지어 곡선
+
+
+
+  
+    Linear Curve
+  
+  
+    2개의 점
+  
+  
+    단순히 두 점 사이의 선형 보간을 통해, 직선을 그린다.
+  
+
+
+
+
+
+
+2차 베지어 곡선
+
+
+
+  
+    Quadratic Curve
+  
+  
+    3개의 점 P0, P1, P2
+  
+  
+    Lerp(P0, P1, t)를 통해 보간된 지점 P01을 구한다.
+  
+  
+    Lerp(P1, P2, t)를 통해 보간된 지점 P02를 구한다.
+  
+  
+    P01, P02 역시 동일하게 보간하여, P012 = Lerp(P01, P02, t)를 구한다.
+  
+  ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -285,75 +367,6 @@ Preview
           Is Global 체크
           Profile - [New]
           [A...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Stencil Silhouette Shader</title>
-    <link href="https://rito15.github.io/posts/unity-shader-script-stencil-silhouette/" rel="alternate" type="text/html" title="Stencil Silhouette Shader" />
-    <published>2021-03-15T17:20:00+09:00</published>
-  
-    <updated>2021-03-15T17:20:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-shader-script-stencil-silhouette/</id>
-    <content src="https://rito15.github.io/posts/unity-shader-script-stencil-silhouette/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Scripts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-
-  가려질 경우 단색이 드러나는 실루엣 쉐이더
-  Ref 2번 사용
-
-
-Preview
-
-
-
-
-Source Code
-
-
-
-   
-Silhouette.shader
-
-
-  Shader "Custom/Silhouette"
-{
-    Properties
-    {
-        _SilhouetteColor ("Silhouette Color", Color) = (1, 0, 0, 0.5)
-
-        [Space]
-        _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
-    }
-    SubShader
-    {
-        Tags { "RenderType"="Opaque...
     </summary>
   
 
