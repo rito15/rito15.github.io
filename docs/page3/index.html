@@ -367,6 +367,181 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-memo-callback-overhead/">메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        테스트 대상
+
+
+[1] 문장(계산식)
+
+
+  
+    private static void TestInline()
+{
+    for (int i = 0; i &lt; count; i++)
+    {
+        _ = Math.Round(2.3f) * Math.Sin(2.5f);
+        _ = Math.Floor(4.4f) * Math.Log1...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Mar 11, 2021,  6:11 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar 11
+  
+
+  <i class="unloaded">2021-03-11T18:11:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="608 words">3 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-editor-playmode-state-change/">플레이모드 상태 변경에 따른 동작 구현하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+  
+    #if UNITY_EDITOR
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+
+namespace Rito
+{
+    [InitializeOnLoad]
+    public class P...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Mar 11, 2021,  3:33 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar 11
+  
+
+  <i class="unloaded">2021-03-11T03:33:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="171 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-editor-plugin-transform-custom-editor/">Custom Transform Editor</a>
     </h1>
 
@@ -1121,197 +1296,6 @@ Rx란?
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-plugin-model-pivot-resetter/">Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서
-  모델의 회전과 위치를 리셋한다.
-  모델의 정점 위치를 모두 계산하여, 피벗이 모델의 중심 하단으로 오게 한다.
-
-
-
-
-How To Use
-
-
-
-  
-    스크립트를 유니티 프로젝트 내에 넣는다.
-  
-  
-    [Window] - [Rito] - [Model Piv...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Mar  5, 2021, 10:22 PM +0900"
-  >
-
-  
-  
-
-  
-    Mar  5
-  
-
-  <i class="unloaded">2021-03-05T22:22:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="962 words">5 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 방지하는 작은 습관</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  
-    유니티 엔진에서 무한루프가 발생하면 에디터가 그대로 뻗어버린다.
-  
-  
-    따라서 혹시나 무한루프가 될 가능성이 있는 코드를 인지했다면, 간단한 체크 로직을 넣어주는 것이 좋다.
-  
-
-
-
-  
-    while( /* condition */ )
-{
-    // codes..
-}
-
-  
-
-
-이런 코드에서, 간단히 다음...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Mar  5, 2021,  4:00 AM +0900"
-  >
-
-  
-  
-
-  
-    Mar  5
-  
-
-  <i class="unloaded">2021-03-05T04:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="403 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1541,9 +1525,24 @@ How To Use
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page13/">13</a>
+        <a class="page-link btn-box-shadow" href="/page14/">14</a>
       </li>
     
 
