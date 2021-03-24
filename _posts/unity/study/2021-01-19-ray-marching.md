@@ -11,11 +11,11 @@ mermaid: true
 # 레이 마칭이란?
 ---
 
- - 모델의 정점 데이터를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 표면의 정보를 얻어 오브젝트를 그려내는 기법
+- 모델의 정점 데이터를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 카메라로부터 픽셀마다 가장 가까운 오브젝트 표면까지의 거리를 알아내고, 이를 활용해 오브젝트를 그려내는 기법
  
- - 레이 마칭의 모든 오브젝트들은 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.
+- 레이 마칭의 모든 오브젝트들은 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.
 
- - SDF의 기초적인 예시 : 구체(Sphere)
+- SDF의 기초적인 예시 : 구체(Sphere)
 
 ```glsl
 // point : 거리를 계산할 기준 좌표
@@ -26,47 +26,71 @@ float sdSphere(vec3 point, vec3 center, float radius)
     return length(point - center) - radius;
 }
 
-// sdSphere() 함수를 통해, 특정 좌표에서 구체의 표면까지의 최단 거리값을 계산할 수 있다.
+// 위 함수를 통해, 특정 좌표에서 구체의 표면까지의 최단 거리값을 계산할 수 있다.
 ```
 
 <br>
 
 <center><img src="https://user-images.githubusercontent.com/42164422/104993172-ce0bab00-5a65-11eb-9eda-705de2034f17.png" width="500"></center>
  
- - 한 점(RO : Ray Origin, 위의 그림에서 Camera)에서 스크린의 각각의 픽셀을 향한 방향(RD : Ray Direction, 위의 그림에서 Image)들을 향해 레이 캐스팅을 하여, 각 레이마다 여러 스텝(Step)으로 나누어 레이를 전진시키게 된다.
+ - 한 점(RO : Ray Origin, 위의 그림에서 Camera)에서 스크린의 모든 픽셀들을 향한 방향(RD : Ray Direction, 위의 그림에서 Camera -> Image)으로 레이 캐스팅을 하여, 각 레이마다 여러 스텝(Step)으로 나누어 레이를 전진시키게 된다.
    
 <br>
 
 <center> <img src="https://user-images.githubusercontent.com/42164422/104993811-c1d41d80-5a66-11eb-9ad3-a861471cce8e.png" width="500"> </center>
-   
- - 한 번의 스텝마다 존재하는 모든 SDF를 각각 계산하여 현재 레이 위치로부터 각 오브젝트와의 거리를 얻어낸다.
 
- - 그 중 현재 레이의 위치로부터 가장 가까운 거리값만큼 레이를 이동한다.
+> - i : 누적 스텝 수
+> - ro : 카메라의 위치
+> - rd : 레이의 전진 방향(카메라 -> 스크린의 모든 픽셀)
+
+> - dO : 현재 스텝까지 레이의 누적 전진 거리
+> - dS : 이번 스텝에서 전진할 거리(즉, 모든 SDF를 계산했을 때 가장 작은 값)
+> - p : 레이의 현재 위치
+
+> - MAX_STEPS : 최대 반복(스텝) 횟수
+> - SURFACE_DIST : 레이가 표면에 닿았다고 판단할 임계값
+> - MAX_DIST : 레이가 전진할 수 있는 최대 거리
+
+<br>
+
+## 각 픽셀에서의 레이마칭(거리 계산) 과정
+
+ - 매 스텝마다, 존재하는 모든 오브젝트들의 SDF를 계산하여 현재 레이의 위치로부터 가장 가까운 물체 표면까지의 거리(dS)를 얻어낸다.
+
+ - dS가 매우 작으면(dS < SURFACE_DIST) 레이가 오브젝트의 표면에 닿았다고 판단하고, 레이의 전진을 중단한다.
+ - 그렇지 않을 경우, 이번 스텝에서 레이를 dS만큼 전진시키고 다음 스텝으로 이어간다.
  
- - 레이의 다음 전진 거리가 매우 작으면(예: dS < 0.01) 레이가 표면에 닿았다고 판단하고, 레이의 전진을 중단한다.
+ - 레이의 전진 횟수가 MAX_STEPS에 도달하거나, 레이의 누적 전진 거리(dO)가 MAX_DIST를 넘어서면 해당 픽셀에는 오브젝트의 표면이 존재하지 않는다고 판단하고 레이의 전진을 중단한다.
  
- - 물체의 표면을 알아내지 못했는데 전진 횟수가 MAX_STEPS를 넘어서면 해당 픽셀에는 오브젝트의 표면이 존재하지 않는다고 판단한다.
- 
- - 각 픽셀들에 대한 계산이 끝나면 표면의 노말과 라이팅 계산을 적용한다.
+ - 위 과정을 스크린의 모든 픽셀에 대해 계산하여, 각 픽셀에서 카메라로부터 가장 가까운 오브젝트 표면까지의 거리를 모두 알아낸다.
  
 <br>
+
+# 전체 계산 과정
+---
  
 ### [1] 거리 계산
+
+- 스크린의 모든 픽셀에 대해 위의 레이마칭 과정을 통해 최단 거리 값을 계산한다.
 
  <center><img src="https://user-images.githubusercontent.com/42164422/104995624-f0072c80-5a69-11eb-9888-15b0f89edd41.png" width="500"></center>
 
 ### [2] 노멀 계산
 
+- [1]에서 얻어낸 거리값(d)을 이용해, 각 표면의 정확한 3D 공간 상 위치(p = ro + rd * d)를 계산한다.
+
+- 계산된 위치(p)로부터 x, y, z축 방향으로 각각 미세하게 떨어진 위치에서 GetDist() 함수를 통해 가장 가까운 물체 표면까지의 거리를 계산한다.
+
+- 이렇게 얻어낸 3개의 값을 각각 해당 표면에서의 x, y, z 노멀 벡터 성분으로 사용한다.
+
  <center><img src="https://user-images.githubusercontent.com/42164422/104995731-1927bd00-5a6a-11eb-8f0b-c63f60abe394.png" width="500"> </center>
 
 ### [3] 라이트(Directional Light) 계산
 
+- 픽셀 쉐이더에서의 디퓨즈 계산 방식과 동일하게, 가상 라이트 벡터(L)와 각 표면의 노멀 벡터(N)를 내적하여 라이팅을 계산한다.
+
  <center><img src="https://user-images.githubusercontent.com/42164422/104995793-2e045080-5a6a-11eb-86db-8c7601d12846.png" width="500"> </center>
  
-### 간단한 구현 예시 (https://github.com/SebLague/Ray-Marching 활용)
-
- <center><img src="https://user-images.githubusercontent.com/42164422/105003713-5f831900-5a76-11eb-8090-bd2e8d6f9b87.png" width="500"></center>
-
 <br>
 
 # ShaderToy에서의 구현 예시
@@ -100,21 +124,18 @@ struct Plane
 {
     vec3  normal; // 평면 법선 벡터의 방향
     float height; // 높이 : 원점에서 normal벡터 방향으로 더한 값
-    vec3  color; // TODO
 };
     
 struct Sphere
 {
     vec3  pos;
     float radius;
-    vec3  color;
 };
     
 struct Box
 {
     vec3 pos;
     vec3 size;
-    vec3 color;
 };
     
 // 속이 빈 박스
@@ -123,7 +144,6 @@ struct BoundingBox
     vec3  pos;
     vec3  size;
     float e;    // edge Thickness
-    vec3  color;
 };
 
 // 도넛형
@@ -346,17 +366,27 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
  
 <br>
  
+# 유니티 엔진에서의 간단한 구현 예시
+---
+
+- <https://github.com/SebLague/Ray-Marching> 활용
+
+ <center><img src="https://user-images.githubusercontent.com/42164422/105003713-5f831900-5a76-11eb-8090-bd2e8d6f9b87.png" width="500"></center>
+
+<br>
+ 
 # 장점
 ---
- - 곡면을 부드럽게 렌더링할 수 있다.
- - 거리 함수, 연산 함수들을 이용하여 모델들을 다양하고 부드럽게 블렌딩하기에 좋다.
+ - 모델링 데이터가 필요하지 않다.
+ - 부드러운 곡면이나 유체를 표현하기에 좋다.
+ - 거리 함수, 연산 함수들을 이용하여 오브젝트들을 다양한 형태로 부드럽게 섞어 렌더링할 수 있다.
  - 각 레이를 GPU 연산을 통해 병렬적으로 연산하기에 적합하다.
 
 <br>
 
 # 단점
 ---
- - 성능 소모가 크다.
+ - 기존의 렌더링 방식에 비해 성능 소모가 크다.
 
  <img src="https://user-images.githubusercontent.com/42164422/105004241-023b9780-5a77-11eb-9d91-015809da2d88.png" width="500">
  
@@ -364,14 +394,17 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 
 # 연관 개념
 ---
- - https://blog.hybrid3d.dev/2019-11-15-raytracing-pathtracing-denoising
+ - <https://blog.hybrid3d.dev/2019-11-15-raytracing-pathtracing-denoising>
 
- - 레이 트레이싱(Ray Traycing)
-   - 눈(RO)에서 출발한 빛이 광원에 도달할 때까지, 물체의 표면에 굴절되고 반사되는 것을 추적하는 기법
-   - 기본적인 레이 트레이싱은 주로 반사/스페큘러 계산에 사용
+ - **레이 트레이싱(Ray Traycing)**
+   - 빛이 물체의 표면에서 여러번 난반사되어 카메라에 도달하기까지의 경로를 모두 역추적하여 계산하는 기법
+   - 요구되는 연산량이 매우 많다.
+   - 기본적인 레이 트레이싱은 주로 반사/스페큘러 계산에 사용한다.
  
- - 패스 트레이싱(Path Traycing)
-   - 레이 트레이싱을 이용해 디퓨즈(Diffuse) 및 스페큘러(Specular), 전역 조명(GI, Global Illumination)을 계산하는 기법
+ - **패스 트레이싱(Path Traycing)**
+   - 레이 트레이싱의 일종
+   - 반사, 굴절이 없는 물체에도 모두 레이를 추적하여, 보다 현실적인 그래픽을 표현하는 기법
+   - 레이 트레이싱을 이용해 디퓨즈(Diffuse) 및 스페큘러(Specular), 전역 조명(GI, Global Illumination)을 주로 계산한다.
 
 <br>
 

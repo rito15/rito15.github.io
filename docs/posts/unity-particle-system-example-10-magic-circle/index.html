@@ -26,8 +26,8 @@
 <meta property="og:title" content="파티클 시스템 예제 - 10 - Magic Circle" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Preview" />
-<meta property="og:description" content="Preview" />
+<meta name="description" content="목차" />
+<meta property="og:description" content="목차" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-particle-system-example-10-magic-circle/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-particle-system-example-10-magic-circle/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="파티클 시스템 예제 - 10 - Magic Circle" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"파티클 시스템 예제 - 10 - Magic Circle","description":"Preview","dateModified":"2021-03-23T17:12:00+09:00","datePublished":"2021-03-23T17:12:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-particle-system-example-10-magic-circle/"},"url":"https://rito15.github.io/posts/unity-particle-system-example-10-magic-circle/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"파티클 시스템 예제 - 10 - Magic Circle","description":"목차","dateModified":"2021-03-23T17:12:00+09:00","datePublished":"2021-03-23T17:12:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-particle-system-example-10-magic-circle/"},"url":"https://rito15.github.io/posts/unity-particle-system-example-10-magic-circle/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1582 words">8 min</span>
 
 
           <!-- page views -->
@@ -433,14 +433,536 @@
 
         
 
-        <h1 id="preview">Preview</h1>
+        <h1 id="목차">목차</h1>
 <hr />
 
+<ul>
+  <li><a href="#목표">목표</a></li>
+  <li><a href="#준비물">준비물</a></li>
+  <li><a href="#1-magic-circle-이펙트">1. Magic Circle 이펙트</a></li>
+  <li><a href="#2-circle-loop-이펙트">2. Circle Loop 이펙트</a></li>
+  <li><a href="#3-dust-이펙트">3. Dust 이펙트</a></li>
+  <li><a href="#4-burn-이펙트">4. Burn 이펙트</a></li>
+  <li><a href="#5-다양한-연출-효과">5. 다양한 연출 효과</a></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="preview">Preview</h1>
+<hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112114689-b1255c80-8bfb-11eb-8067-c9ce6e589418.gif" alt="2021_0322_Magic Circle_Short2" /></p>
+
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112008554-ef257080-8b68-11eb-994e-d16639868103.gif" alt="2021_0322_Magic Circle_Short" /></p>
+
+<p><br /></p>
+
+<h1 id="목표">목표</h1>
+<hr />
+
+<ul>
+  <li>예쁜 마법진 이펙트 만들기</li>
+  <li>Trail 활용하기</li>
+  <li>Duration, Delay 활용하여 다양한 연출 효과 만들기</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="준비물">준비물</h1>
+<hr />
+<p><a href="https://github.com/rito15/Images/files/6197395/MagicCircle_Resources.zip">MagicCircle_Resources.zip</a></p>
+
+<ul>
+  <li>
+    <p>텍스쳐 : 마법진, Point, Trail</p>
+  </li>
+  <li>
+    <p>Trail 텍스쳐는 다양한 텍스쳐들을 사용하여 서로 다른 효과를 낼 수 있다.</p>
+    <ul>
+      <li>Default-Particle System도 가능하다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="1-magic-circle-이펙트">1. Magic Circle 이펙트</h1>
+<hr />
+
+<h2 id="빈-파티클-시스템-오브젝트-생성">빈 파티클 시스템 오브젝트 생성</h2>
+
+<ul>
+  <li>
+    <p>파티클 시스템 오브젝트를 하나 생성한다.</p>
+  </li>
+  <li>
+    <p>트랜스폼의 우측 상단 <code class="language-plaintext highlighter-rouge">...</code>을 누르고 [Reset]을 클릭한다.</p>
+  </li>
+  <li>
+    <p>Emission, Shape, Renderer 모듈을 모두 체크 해제한다.</p>
+  </li>
+  <li>
+    <p>이렇게 비어있는 형태의 파티클 시스템 게임오브젝트는 다른 파티클 시스템들의 부모로서 묶어주는 역할을 한다.</p>
+  </li>
+  <li>
+    <p>게임오브젝트의 이름을 [Magic Circle Effect]로 변경한다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="생성">생성</h2>
+
+<ul>
+  <li>
+    <p>위에서 생성한 [Magic Circle Effect] 게임오브젝트를 우클릭하고, [Effects] - [Particle System]을 통해 첫 번째 자식 파티클 시스템을 생성한다.</p>
+  </li>
+  <li>
+    <p>게임오브젝트의 이름을 [Magic Circle]로 변경한다.</p>
+  </li>
+  <li>
+    <p>마법진 텍스쳐가 적용된 Additive 마테리얼을 적용한다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="메인-모듈">메인 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> : 10</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Speed</code> : 0</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Size</code> : 10</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Color</code> : 원하는 색상 설정(단색)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="emission-모듈">Emission 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Rate over Time</code> : 0</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Bursts</code></p>
+    <ul>
+      <li>우측 하단의 <code class="language-plaintext highlighter-rouge">+</code>를 눌러 버스트 하나를 추가한다.</li>
+      <li>Count를 2로 설정한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="shape-모듈">Shape 모듈</h2>
+
+<ul>
+  <li>Shape 모듈을 체크 해제한다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="color-over-lifetime-모듈">Color over Lifetime 모듈</h2>
+
+<ul>
+  <li>알파값이 0 ~ 255 ~ 0으로 변화하도록 다음과 같이 설정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108849307-5c56ec00-7625-11eb-8637-f363e4a01709.gif" alt="" /></p>
+
+<p><br /></p>
+
+<h2 id="renderer-모듈">Renderer 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Render Mode</code> : Horizontal Billboard</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Max Particle Size</code> : 2</p>
+    <ul>
+      <li>기본 값은 0.5로, 파티클은 화면의 크기에 비례하여 50%가 넘도록 커지지 못하게 제한되어 있다.</li>
+      <li>넉넉히 2로 설정하여, 카메라가 가까이 가도 파티클이 정상적으로 확대되도록 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="현재-상태">현재 상태</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112316109-25402d00-8cee-11eb-99a6-2a979c435e6f.gif" alt="2021_0324_MagicCircle_01" /></p>
+
+<p><br /></p>
+
+<h1 id="2-circle-loop-이펙트">2. Circle Loop 이펙트</h1>
+<hr />
+
+<h2 id="생성-1">생성</h2>
+
+<ul>
+  <li>
+    <p>[Magic Circle Effect] 게임오브젝트를 우클릭하고 파티클 시스템 오브젝트를 생성한다.</p>
+  </li>
+  <li>
+    <p>이름을 [Circle Loop]로 변경한다.</p>
+  </li>
+  <li>
+    <p>Point(동그란 형태) 텍스쳐를 사용하는 마테리얼을 적용한다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="메인-모듈-1">메인 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> : 1</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Speed</code> : 0</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Size</code> ; 0.5</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Color</code> : 단색 적용(마법진 색상과 유사하게)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="emission-모듈-1">Emission 모듈</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Rate over Time</code> : 64</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="shape-모듈-1">Shape 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Shape</code> : Circle</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Radius</code> : 3.2</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Radius Thickness</code> : 0</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Arc</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Mode</code> : Loop</li>
+      <li><code class="language-plaintext highlighter-rouge">Spread</code> : 0</li>
+      <li><code class="language-plaintext highlighter-rouge">Speed</code> : -0.5</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Rotation</code> : (90, 0, 0)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="color-over-lifetime-모듈-1">Color over Lifetime 모듈</h2>
+
+<ul>
+  <li>알파값이 0 ~ 255 ~ 0으로 변화하도록 다음과 같이 설정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108849307-5c56ec00-7625-11eb-8637-f363e4a01709.gif" alt="" /></p>
+
+<p><br /></p>
+
+<h2 id="size-over-lifetime-모듈">Size over Lifetime 모듈</h2>
+
+<ul>
+  <li>모듈에 체크하고, 따로 수정하지 않는다. (점차 커지도록)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="게임오브젝트-복제">게임오브젝트 복제</h2>
+
+<ul>
+  <li>
+    <p>하이라키에서 [Circle Loop] 오브젝트를 선택하고, [Ctrl + D] 키를 눌러 복제한다.</p>
+  </li>
+  <li>
+    <p>복제된 게임오브젝트를 선택하고, <code class="language-plaintext highlighter-rouge">Shape</code> 모듈의 <code class="language-plaintext highlighter-rouge">Rotation Y</code> 값을 180으로 수정한다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="현재-상태-1">현재 상태</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112324587-50c71580-8cf6-11eb-8ba3-0a27a1f6f100.gif" alt="2021_0324_MagicCircle_02" /></p>
+
+<p><br /></p>
+
+<h1 id="3-dust-이펙트">3. Dust 이펙트</h1>
+<hr />
+
+<h2 id="생성-2">생성</h2>
+
+<ul>
+  <li>
+    <p>위와 동일한 방식으로 파티클 시스템 게임오브젝트를 생성하고 이름을 [Dust]로 변경한다.</p>
+  </li>
+  <li>
+    <p>Point 마테리얼을 적용한다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="메인-모듈-2">메인 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> - [Random Between Two Constants] : (3, 4)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Speed</code> : 0</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Size</code> - [Random Between Two Constants] : (0.2, 0.5)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Color</code> : 원하는 색상 지정</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Gravity Modifier</code> - [Random Between Two Constants] : (-0.1, -0.2)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="emission-모듈-2">Emission 모듈</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Rate over Time</code> : 24</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="shape-모듈-2">Shape 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Shape</code> : Circle</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Radius</code> : 2.4</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Rotation</code> : (90, 0, 0)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="color-over-lifetime-모듈-2">Color over Lifetime 모듈</h2>
+
+<ul>
+  <li>알파값이 0 ~ 255 ~ 0으로 변화하도록 다음과 같이 설정한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108849307-5c56ec00-7625-11eb-8637-f363e4a01709.gif" alt="" /></p>
+
+<p><br /></p>
+
+<h2 id="size-over-lifetime-모듈-1">Size over Lifetime 모듈</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Size</code>
+    <ul>
+      <li>좌상단에서 우하단으로 하강하는 그래프를 선택한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112325484-114cf900-8cf7-11eb-9a68-fd0c4731deaa.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="현재-상태-2">현재 상태</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112325974-79034400-8cf7-11eb-86e8-88bc88c0de57.gif" alt="2021_0324_MagicCircle_03" /></p>
+
+<p><br /></p>
+
+<h1 id="4-burn-이펙트">4. Burn 이펙트</h1>
+<hr />
+
+<h2 id="생성-3">생성</h2>
+
+<ul>
+  <li>
+    <p>위와 동일한 방식으로 파티클 시스템 게임오브젝트를 생성하고 이름을 [Burn]으로 변경한다.</p>
+  </li>
+  <li>
+    <p>Trail 마테리얼을 적용한다. (다양한 텍스쳐를 넣어서 활용해볼 수 있다.)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="메인-모듈-3">메인 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> : 2</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Speed</code> : 0</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Size</code> - [Random Between Two Constants] : (0.1, 1)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Color</code> : A 값을 0으로 지정한다.
+(파티클의 색상이 아예 보이지 않도록)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Gravity Modifier</code> - [Random Between Two Constants` : (-0.1, -0.7)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="emission-모듈-3">Emission 모듈</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Rate over Time</code> : 192</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="shape-모듈-3">Shape 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Shape</code> : Circle</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Radius</code> : 3.6</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Radius Thickness</code> : 0</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Rotation</code> : (90, 0, 0)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="velocity-over-lifetime-모듈">Velocity over Lifetime 모듈</h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Orbital</code> : (0, 1, 0)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Radial</code> : -1</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="trails-모듈">Trails 모듈</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Inherite Particle Color</code> : 체크 해제
+    <ul>
+      <li>트레일이 파티클의 색상에 영향받지 않도록 한다.</li>
+      <li>따라서 파티클은 알파 값이 0이므로 아예 보이지 않고, 트레일만 보이게 된다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Color over Lifetime</code>
+    <ul>
+      <li>[Gradient]</li>
+      <li>알파 값이 0 ~ 255 ~ 0 으로 변화하도록 설정한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112327186-8e2ca280-8cf8-11eb-8d27-163d3a897ba7.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Color over Trail</code>
+    <ul>
+      <li>원하는 색상을 지정한다.</li>
+      <li>이펙트가 너무 밝을 경우 알파 값을 낮춘다. (예제에서는 0.5)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="현재-상태-3">현재 상태</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112328340-96391200-8cf9-11eb-9b90-559371aa9673.gif" alt="2021_0324_MagicCircle_04" /></p>
+
+<p><br /></p>
+
+<h1 id="5-다양한-연출-효과">5. 다양한 연출 효과</h1>
+<hr />
+
+<h2 id="1-딜레이를-이용한-연출">[1] 딜레이를 이용한 연출</h2>
+
+<p>각 파티클 시스템마다 서로 다른 딜레이를 적용하여, 다양한 연출 효과를 줄 수 있다.</p>
+
+<ul>
+  <li>
+    <p>[Ctrl] 키를 누른 채로 [Magic Circle], [Dust], [Burn] 게임오브젝트를 선택한다.</p>
+  </li>
+  <li>
+    <p>선택된 오브젝트들의 <code class="language-plaintext highlighter-rouge">Start Delay</code>를 1로 지정한다.</p>
+  </li>
+</ul>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112114689-b1255c80-8bfb-11eb-8067-c9ce6e589418.gif" alt="2021_0322_Magic Circle_Short2" /></p>
 
 <p><br /></p>
+
+<h2 id="2-duration을-이용한-연출">[2] Duration을 이용한 연출</h2>
+
+<p>마법진이 영원히 지속되지 않고, 일정 시간이 지나면 순차적으로 사라지도록 한다.</p>
+
+<ul>
+  <li>
+    <p>[Magic Circle], [Circle Loop] 2개, [Dust], [Burn]을 모두 선택하고 <code class="language-plaintext highlighter-rouge">Looping</code>을 체크 해제한다.</p>
+  </li>
+  <li>
+    <p>[Circle Loop] 2개 이펙트를 모두 선택하고 <code class="language-plaintext highlighter-rouge">Duration</code>을 9로 지정한다.</p>
+  </li>
+  <li>
+    <p>[Dust] 이펙트의 <code class="language-plaintext highlighter-rouge">Duration</code>을 6으로 지정한다.</p>
+  </li>
+  <li>
+    <p>[Burn] 이펙트의 <code class="language-plaintext highlighter-rouge">Duration</code>을 7로 지정한다.</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112008554-ef257080-8b68-11eb-994e-d16639868103.gif" alt="2021_0322_Magic Circle_Short" /></p>
+
+<p><br /></p>
+
+<p>이처럼, 생성되는 타이밍(Delay), 지속시간(Duration)을 조절하여 다양한 연출을 꾸며볼 수 있다.</p>
+
 
 
       </div>
@@ -3389,6 +3911,11 @@
   
   </div> <!-- .access -->
 
+  
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
   
 
 </div> <!-- #panel-wrapper -->
