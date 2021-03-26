@@ -1,6 +1,81 @@
 [
   
   {
+    "title": "Voxel System",
+    "url": "/posts/unity-study-voxel/",
+    "categories": "Unity, Unity Study",
+    "tags": "unity, csharp",
+    "date": "2021-03-26 20:40:00 +0900",
+    
+
+
+
+
+
+    "snippet": "목차  개요  1. 청크 구현  개요유니티엔진에서 마인크래프트와 같은 복셀 시스템을 구현한다.모든 맵과 사물은 큐브 형태를 띠고 있으며, 생성하거나 파괴할 수 있다.각각의 큐브를 개별 오브젝트로 렌더링할 경우 부하가 굉장히 크기 때문에,일정 영역의 큐브들을 모아 하나의 청크(Chunk)이자 하나의 메시로 관리하는 것이 핵심이다.1. 청크 구현큐브의 정점 데이터 정의  복셀 시스템에서 사용하기 위해, 육면체 내에서 각 정점들의 인덱스 순서와 상대 위치를 미리 약속된 값으로 정의한다.LUT(LookUp Table)  육면체의 정점..."
+  },
+  
+  {
+    "title": "Prime Number(소수)",
+    "url": "/posts/memo-cs-prime-number/",
+    "categories": "Memo, Csharp Memo",
+    "tags": "csharp",
+    "date": "2021-03-26 18:12:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Memo1. 소수인지 확인하기/// &amp;lt;summary&amp;gt; 지정한 수가 소수인지 확인 &amp;lt;/summary&amp;gt;public static bool IsPrime(int value){    bool isEvenNumber = (value % 2) == 0;    // 짝수일 경우 2만 소수    if (isEvenNumber) return value == 2;    // 1은 소수 아님    if (value == 1) return false;    // 제곱근까지만 확인    int sqrt..."
+  },
+  
+  {
+    "title": "Cloaking(Refraction)",
+    "url": "/posts/unity-urp-sg-cloaking/",
+    "categories": "Unity Shader, URP Shader Graph",
+    "tags": "unity, csharp, urp, shadergraph",
+    "date": "2021-03-25 20:40:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Summary      뒤의 풍경을 왜곡시켜 보여주는 클로킹 쉐이더        Render Pipeline Asset에서 Opaque Texture에 체크해야 한다.        Opaque Texture를 사용할 때는 쉐이더그래프의 마스터 노드 Surface를 Transparent로 설정해야 한다.  PreviewOptions            프로퍼티      설명                  Normal Map      노멀맵 텍스쳐(없을 경우 기본 노멀 벡터 사용)              Refraction    ..."
+  },
+  
+  {
+    "title": "노멀맵에서 노멀 벡터 추출하기",
+    "url": "/posts/unity-urp-sg-memo-normal-map/",
+    "categories": "Unity Shader, URP Shader Graph Memo",
+    "tags": "unity, csharp, urp, shadergraph",
+    "date": "2021-03-25 17:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Memo      Tangent, Bitangent, Normal Vector로 이루어진 3x3 행렬과 샘플링된 노멀맵 벡터를 곱해줌으로써, 노멀맵으로부터 노멀 벡터를 추출하여 사용할 수 있다.        행렬을 만들 때 행벡터를 조립하여 만들지, 열벡터를 조립하여 만들지 여부에 주의해야 한다.        행렬과 벡터를 곱할 때 벡터가 앞에 나오면 행벡터, 뒤에 나오면 열벡터로 사용됨에 주의해야 한다.        T, B, N 벡터의 공간을 반드시 일치시켜줘야 한다.        각 벡터들의 공간은 노멀맵의 사용 대상에 ..."
+  },
+  
+  {
+    "title": "Directional Dissolve (2 Color)",
+    "url": "/posts/unity-urp-sg-directional-dissolve/",
+    "categories": "Unity Shader, URP Shader Graph",
+    "tags": "unity, csharp, urp, shadergraph",
+    "date": "2021-03-25 00:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Summary      디졸브 방향을 직접 지정할 수 있는 디졸브 쉐이더        디졸브 효과 색상 2가지를 지정할 수 있다.        포스트 프로세싱 Bloom 효과가 반드시 필요하다.  PreviewOptions            프로퍼티      설명                  Main Texture      메인 텍스쳐              Tint Color      메인 텍스쳐에 곱할 색상              Color A      디졸브 첫 번째 영역의 색상              Color B ..."
+  },
+  
+  {
     "title": "파티클 시스템 예제 - 10 - Magic Circle",
     "url": "/posts/unity-particle-system-example-10-magic-circle/",
     "categories": "Unity, Unity Particle System",
@@ -1877,7 +1952,7 @@
   
   {
     "title": "Outline Object",
-    "url": "/posts/unity-urp-shadergraph-outline-object/",
+    "url": "/posts/unity-urp-sg-outline-object/",
     "categories": "Unity Shader, URP Shader Graph",
     "tags": "unity, csharp, urp, shadergraph",
     "date": "2020-10-08 00:00:00 +0900",
@@ -1892,7 +1967,7 @@
   
   {
     "title": "Toon(Cel)",
-    "url": "/posts/unity-urp-shadergraph-toon-cel/",
+    "url": "/posts/unity-urp-sg-toon-cel/",
     "categories": "Unity Shader, URP Shader Graph",
     "tags": "unity, csharp, urp, shadergraph",
     "date": "2020-09-30 00:00:00 +0900",

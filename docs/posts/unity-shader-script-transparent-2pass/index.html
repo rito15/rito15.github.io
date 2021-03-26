@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="2-Pass Transparent Shader" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"2-Pass Transparent Shader","description":"Summary","dateModified":"2021-03-15T17:00:00+09:00","datePublished":"2021-03-15T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-script-transparent-2pass/"},"url":"https://rito15.github.io/posts/unity-shader-script-transparent-2pass/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Summary","datePublished":"2021-03-15T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-script-transparent-2pass/"},"url":"https://rito15.github.io/posts/unity-shader-script-transparent-2pass/","author":{"@type":"Person","name":"Rito15"},"headline":"2-Pass Transparent Shader","dateModified":"2021-03-15T17:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -708,27 +708,27 @@
         
         
         
+        <li><a href="/posts/unity-particle-system-example-09-rainfall/">파티클 시스템 예제 - 09 - Rainfall</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-particle-system-example-10-magic-circle/">파티클 시스템 예제 - 10 - Magic Circle</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
         
         
         
         <li><a href="/posts/unity-memo-ui-drag-and-drop/">UI 헤더 드래그 앤 드롭으로 옮기기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-particle-system-example-07-fireworks/">파티클 시스템 예제 - 07 - Fireworks</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-undo/">Undo</a></li>
       
 
       </ul>
@@ -3034,11 +3034,6 @@
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -3387,6 +3382,23 @@
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -3510,10 +3522,10 @@
         <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/shaderlab/">shaderlab</a>
+        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
-        <a class="post-tag" href="/tags/ui/">ui</a>
+        <a class="post-tag" href="/tags/urp/">urp</a>
       
 
       </div>
@@ -3555,6 +3567,71 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -5271,6 +5348,65 @@
       
       
       <div class="card">
+        <a href="/posts/unity-shader-script-particle/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 15
+  
+
+  <i class="unloaded">2021-03-15T16:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Particle Shader</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Summary
+
+
+
+  블렌딩 옵션 선택 가능한 파티클 쉐이더(기본 : Additive)
+
+
+Source Code
+
+
+
+  
+    Shader "Custom/Particle"
+{
+    Properties
+    {
+        _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
+        _Intensity(...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-shader-script-transparent-custom/">
           <div class="card-body">
             <!--
@@ -5449,103 +5585,6 @@ StencilTarget01.shader
 27
 28
 29...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-shader-script-stencil-silhouette/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar 15
-  
-
-  <i class="unloaded">2021-03-15T17:20:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Stencil Silhouette Shader</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Summary
-
-
-
-  가려질 경우 단색이 드러나는 실루엣 쉐이더
-  Ref 2번 사용
-
-
-Preview
-
-
-
-
-Source Code
-
-
-
-   
-Silhouette.shader
-
-
-  1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-...
               </p>
             </div>
           </div>
@@ -7940,11 +7979,6 @@ Silhouette.shader
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -8293,6 +8327,23 @@ Silhouette.shader
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -8411,10 +8462,10 @@ Silhouette.shader
         <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/shaderlab/">shaderlab</a>
+        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
-        <a class="post-tag" href="/tags/ui/">ui</a>
+        <a class="post-tag" href="/tags/urp/">urp</a>
       
 
     </div>

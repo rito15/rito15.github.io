@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="레이캐스트 오버헤드 테스트" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"레이캐스트 오버헤드 테스트","description":"조건 고정 레이캐스트 시작점 레이캐스트 방향 반복 횟수 : 10만 회","dateModified":"2021-02-19T16:18:00+09:00","datePublished":"2021-02-19T16:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-raycast-overhead/"},"url":"https://rito15.github.io/posts/unity-memo-raycast-overhead/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"조건 고정 레이캐스트 시작점 레이캐스트 방향 반복 횟수 : 10만 회","datePublished":"2021-02-19T16:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-raycast-overhead/"},"url":"https://rito15.github.io/posts/unity-memo-raycast-overhead/","author":{"@type":"Person","name":"Rito15"},"headline":"레이캐스트 오버헤드 테스트","dateModified":"2021-02-19T16:18:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -649,27 +649,27 @@
         
         
         
+        <li><a href="/posts/unity-particle-system-example-09-rainfall/">파티클 시스템 예제 - 09 - Rainfall</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-particle-system-example-10-magic-circle/">파티클 시스템 예제 - 10 - Magic Circle</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
         
         
         
         <li><a href="/posts/unity-memo-ui-drag-and-drop/">UI 헤더 드래그 앤 드롭으로 옮기기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-particle-system-example-07-fireworks/">파티클 시스템 예제 - 07 - Fireworks</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-undo/">Undo</a></li>
       
 
       </ul>
@@ -2975,11 +2975,6 @@
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -3328,6 +3323,23 @@
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -3451,10 +3463,10 @@
         <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/shaderlab/">shaderlab</a>
+        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
-        <a class="post-tag" href="/tags/ui/">ui</a>
+        <a class="post-tag" href="/tags/urp/">urp</a>
       
 
       </div>
@@ -3501,6 +3513,71 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -5341,7 +5418,7 @@ GIF
       
       
       <div class="card">
-        <a href="/posts/unity-memo-show-property-on-inspector/">
+        <a href="/posts/unity-memo-editor-exit-dialog/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -5358,13 +5435,13 @@ GIF
   
 
   
-    Feb  2
+    Feb 10
   
 
-  <i class="unloaded">2021-02-02T17:08:00+09:00</i>
+  <i class="unloaded">2021-02-10T13:50:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>인스펙터에 오토 프로퍼티 표시하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 종료 확인 다이얼로그 만들기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -5376,22 +5453,19 @@ GIF
                 Memo
 
 
+기본적으로 유니티 에디터를 종료할 때는 확인창이 뜨지 않고 바로 종료된다.
+
+만약 실수로 닫기 버튼을 눌러버린다면 그대로 종료되어 버린다.
+
+그런데 유니티 에디터는 에디터의 종료도 이벤트로 구분하여, 메소드를 추가할 수 있도록 구현해놓았기 때문에
+
+이를 이용해 에디터의 종료를 시도할 경우 확인창을 띄우도록 할 수 있다.
+
+
+
 
   
-    public GameObject Property1 =&gt; Field1;
-private GameObject Field1;
-
-  
-
-
-이렇게 다른 필드와 연결된 프로퍼티라면
-
-
-  
-    public GameObject Property1 =&gt; field1;
-
-[SerializeField]
-private GameObje...
+   ...
               </p>
             </div>
           </div>
@@ -7796,11 +7870,6 @@ private GameObje...
     
     
     
-  
-    
-    
-    
-    
       
         
         
@@ -8149,6 +8218,23 @@ private GameObje...
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -8267,10 +8353,10 @@ private GameObje...
         <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/shaderlab/">shaderlab</a>
+        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
-        <a class="post-tag" href="/tags/ui/">ui</a>
+        <a class="post-tag" href="/tags/urp/">urp</a>
       
 
     </div>
