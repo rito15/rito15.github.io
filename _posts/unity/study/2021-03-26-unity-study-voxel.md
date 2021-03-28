@@ -13,6 +13,7 @@ mermaid: true
 - [개요](#개요)
 - [1. 복셀 기본](#1-복셀-기본)
 - [2. 청크와 맵 데이터](#2-청크와-맵-데이터)
+- [3. 텍스쳐 입히기](#3-텍스쳐-입히기)
 - [](#)
 
 <br>
@@ -470,6 +471,346 @@ private void AddVoxelDataToChunk(Vector3 pos)
 - [2] voxelMap[x, y, z] = (x >= y && z >= y)
 
 ![image](https://user-images.githubusercontent.com/42164422/112720809-0044f780-8f44-11eb-8fb2-672e3367d2c0.png)
+
+<br>
+
+# 3. 텍스쳐 입히기
+---
+
+## **블록 타입 정의**
+
+현재 bool타입의 `voxelMap`으로는 해당 좌표에 블록이 존재하는지 여부만 판단할 수 있다.
+
+하지만 텍스쳐를 입히기 위해서는 블록의 타입을 구체적으로 정의할 필요가 있다.
+
+우선 `BlockType` 클래스를 작성한다.
+
+```cs
+[Serializable]
+public class BlockType
+{
+    public string blockName;
+    public bool isSolid;
+}
+```
+
+그리고 각 블록타입들에 대한 정보를 배열로 가지고 있도록 하기 위한 `World` 컴포넌트 클래스를 작성한다.
+
+```cs
+public class World : MonoBehaviour
+{
+    public Material material;
+    public BlockType[] blockTypes;
+}
+```
+
+하이라키에서 `World` 게임오브젝트를 만들고 여기에 컴포넌트로 추가한 다음, 배열의 0번 인덱스에 `Default` 블록 타입을 만들어준다.
+
+![image](https://user-images.githubusercontent.com/42164422/112747437-6b4c0800-8ff0-11eb-9e02-9b1636d778e6.png)
+
+<br>
+
+이제 `Chunk` 클래스의 내용을 수정한다.
+
+```cs
+// bool -> byte 타입 배열로 변경
+private byte [,,] voxelMap = 
+  new byte[VoxelData.ChunkWidth, VoxelData.ChunkHeight, VoxelData.ChunkWidth];
+
+// World 컴포넌트 참조(Start() 내부에서 FindObjectOfType<World>())
+private World world;
+
+
+private bool CheckVoxel(Vector3 pos)
+{
+    // ...
+
+    // voxelMap[]의 값은 blockTypes[]의 인덱스로 사용하여,
+    // 참조한 블록 타입에서 isSolid 값을 읽어온다.
+    return world.blockTypes[voxelMap[x, y, z]].isSolid;
+}
+
+```
+
+<br>
+
+## **텍스쳐 아틀라스 사용하기**
+
+서로 다른 텍스쳐를 통째로 준비하고, 각 블록마다 다르게 입혀주려면
+
+마테리얼을 분리하거나, 커스텀 쉐이더를 작성하여 필요한 텍스쳐 프로퍼티를 모두 만들어주어야 하는데
+
+이는 모두 비효율적이므로
+
+여러 장의 텍스쳐가 동일한 크기로 포함되어 있는 텍스쳐 아틀라스를 사용한다.
+
+<https://www.kenney.nl/> 에서 무료 복셀 텍스쳐 아틀라스를 다운받아 사용하였다.
+
+<br>
+
+예를 들어
+
+![image](https://user-images.githubusercontent.com/42164422/112750486-d226ec80-9003-11eb-93bb-cc52c4e64544.png)
+
+이런 텍스쳐 아틀라스를 준비했을 때,
+
+가로 세로 9x10 크기로 총 90개의 텍스쳐가 아틀라스 내에 들어갈 수 있다.
+
+그리고 다른 크기의 아틀라스를 사용할 것을 대비하여, 월드 내에서 사용할 텍스쳐 아틀라스의 크기를 변수값으로 정의한다.
+
+```cs
+// VoxelData.cs
+
+// 텍스쳐 아틀라스의 가로, 세로 텍스쳐 개수
+public static readonly int TextureAtlasWidth = 9;
+public static readonly int TextureAtlasHeight = 10;
+
+// 텍스쳐 아틀라스 내에서 각 행, 열마다 텍스쳐가 갖는 크기 비율
+public static float NormalizedTextureAtlasWidth
+    => 1f / TextureAtlasWidth;
+public static float NormalizedTextureAtlasHeight
+    => 1f / TextureAtlasHeight;
+```
+
+<br>
+
+이제 텍스쳐 아틀라스 내의 각 텍스쳐를 참조할 인덱스(텍스쳐ID)를 미리 정의해야 한다.
+
+유니티에서의 UV 좌표는 좌하단이 (0,0)이므로 좌하단의 텍스쳐를 인덱스 0으로 사용할 수도 있고,
+
+여기서는 강좌를 따라 좌상단의 텍스쳐를 인덱스 0으로 정의하여 사용할 것이다.
+
+![spritesheet_tiles_reference](https://user-images.githubusercontent.com/42164422/112750573-511c2500-9004-11eb-8a5b-3bc334c03bf9.png)
+
+그리고 텍스쳐의 인덱스를 통해 아틀라스 내의 해당 텍스쳐가 갖는 uv 좌표를 얻어오는 메소드를 작성한다.
+
+```cs
+// Chunk.cs
+
+/// <summary> 텍스쳐 아틀라스 내에서 해당하는 ID의 텍스쳐가 위치한 UV를 uvs 리스트에 추가 </summary>
+private void AddTextureUV(int textureID)
+{
+    // 아틀라스 내의 텍스쳐 가로, 세로 개수
+    (int w, int h) = (VoxelData.TextureAtlasWidth, VoxelData.TextureAtlasHeight);
+
+    int x = textureID % w;
+    int y = h - (textureID / w) - 1;
+
+    AddTextureUV(x, y);
+}
+
+// (x, y) : (0, 0) 기준은 좌하단
+/// <summary> 텍스쳐 아틀라스 내에서 (x, y) 위치의 텍스쳐 UV를 uvs 리스트에 추가 </summary>
+private void AddTextureUV(int x, int y)
+{
+    if (x < 0 || y < 0 || x >= VoxelData.TextureAtlasWidth || y >= VoxelData.TextureAtlasHeight)
+        throw new IndexOutOfRangeException($"텍스쳐 아틀라스의 범위를 벗어났습니다 : [x = {x}, y = {y}]");
+
+    float nw = VoxelData.NormalizedTextureAtlasWidth;
+    float nh = VoxelData.NormalizedTextureAtlasHeight;
+
+    float uvX = x * nw;
+    float uvY = y * nh;
+
+    // 해당 텍스쳐의 uv를 LB-LT-RB-RT 순서로 추가
+    uvs.Add(new Vector2(uvX, uvY));
+    uvs.Add(new Vector2(uvX, uvY + nh));
+    uvs.Add(new Vector2(uvX + nw, uvY));
+    uvs.Add(new Vector2(uvX + nw, uvY + nh));
+}
+```
+
+그리고 AddVoxelDataToChunk() 메소드에서 UV를 추가하던 부분을 변경한다.
+
+```cs
+// Chunk.cs - AddVoxelDataToChunk()
+
+// 기존
+for (int i = 0; i <= 3; i++)
+{
+    uvs.Add(VoxelData.voxelUvs[i]);
+}
+
+// 변경
+AddTextureUV(43); // 텍스쳐 ID
+```
+
+새로운 마테리얼을 생성하여, `Unlit/Texture` 쉐이더를 지정하고 텍스쳐 아틀라스를 넣어준다.
+
+그리고 이 마테리얼을 Chunk에 적용해준다.
+
+![image](https://user-images.githubusercontent.com/42164422/112750699-16ff5300-9005-11eb-894d-c90793553b3e.png)
+
+결과 :
+
+![image](https://user-images.githubusercontent.com/42164422/112750714-2bdbe680-9005-11eb-88de-f3d63a3c761c.png)
+
+<br>
+
+## **블록의 면마다 텍스쳐 ID 지정하기**
+
+하나의 블록이라도 윗면, 옆면, 아랫면에 따라 텍스쳐가 다르게 입혀져야 한다.
+
+따라서 `BlockType` 클래스를 수정한다.
+
+```cs
+// VoxelData class
+public const int BackFace   = 0;
+public const int FrontFace  = 1;
+public const int TopFace    = 2;
+public const int BottomFace = 3;
+public const int LeftFace   = 4;
+public const int RightFace  = 5;
+
+
+// BlockType class
+public string blockName;
+public bool isSolid;
+
+[Header("Texture IDs")]
+public int topFaceTextureID;
+public int frontFaceTextureID;
+public int backFaceTextureID;
+public int leftFaceTextureID;
+public int rightFaceTextureID;
+public int bottomFaceTextureID;
+
+// Order : Back, Front, Top, Bottom, Left, Right
+/// <summary> Face Index(0~5)에 해당하는 텍스쳐 ID 리턴 </summary>
+public int GetTextureID(int faceIndex)
+{
+    switch (faceIndex)
+    {
+        case VoxelData.TopFace:    return topFaceTextureID;
+        case VoxelData.FrontFace:  return frontFaceTextureID;
+        case VoxelData.BackFace:   return backFaceTextureID;
+        case VoxelData.LeftFace:   return leftFaceTextureID;
+        case VoxelData.RightFace:  return rightFaceTextureID;
+        case VoxelData.BottomFace: return bottomFaceTextureID;
+
+        default:
+            throw new IndexOutOfRangeException($"Face Index must be in 0 ~ 5, but input : {faceIndex}");
+    }
+}
+```
+
+<br>
+
+그리고 `Chunk` 클래스에 다음 메소드를 추가하고,
+
+```cs
+/// <summary> voxelMap으로부터 특정 위치에 해당하는 블록 ID 가져오기 </summary>
+private byte GetBlockID(in Vector3 pos)
+{
+    return voxelMap[(int)pos.x, (int)pos.y, (int)pos.z];
+}
+```
+
+`AddVoxelDataToChunk()` 메소드를 수정한다.
+
+```cs
+private void AddVoxelDataToChunk(in Vector3 pos)
+{
+    // 6방향의 면 그리기
+    // face : -Z, +Z, +Y, -Y, -X, +X 순서로 이루어진, 큐브의 각 면에 대한 인덱스
+    for (int face = 0; face < 6; face++)
+    {
+        // Face Check(면이 바라보는 방향으로 +1 이동하여 확인)를 했을 때 
+        // Solid가 아닌 경우에만 큐브의 면이 그려지도록 하기
+        // => 청크의 외곽 부분만 면이 그려지고, 내부에는 면이 그려지지 않도록
+
+        // 각 면(삼각형 2개) 그리기
+        if (CheckVoxel(pos) && !CheckVoxel(pos + VoxelData.faceChecks[face]))
+        {
+            byte blockID = GetBlockID(pos);
+
+            // 1. Vertex 4개 추가
+            for (int i = 0; i <= 3; i++)
+            {
+                vertices.Add(VoxelData.voxelVerts[VoxelData.voxelTris[face, i]] + pos);
+            }
+
+            // 2. 텍스쳐에 해당하는 UV 추가
+            AddTextureUV(world.blockTypes[blockID].GetTextureID(face));
+
+            // 3. Triangle의 버텍스 인덱스 6개 추가
+            triangles.Add(vertexIndex);
+            triangles.Add(vertexIndex + 1);
+            triangles.Add(vertexIndex + 2);
+
+            triangles.Add(vertexIndex + 2);
+            triangles.Add(vertexIndex + 1);
+            triangles.Add(vertexIndex + 3);
+
+            vertexIndex += 4;
+        }
+    }
+}
+```
+
+<br>
+
+World 컴포넌트의 인스펙터에서 블록 타입마다 알맞은 텍스쳐 인덱스들을 넣어준다.
+
+![image](https://user-images.githubusercontent.com/42164422/112751783-b246f700-900a-11eb-8c82-cec2ed0476ca.png)
+
+결과 :
+
+![image](https://user-images.githubusercontent.com/42164422/112751392-c1c54080-9008-11eb-8c6b-7aeaaca51739.png)
+
+<br>
+
+각 텍스쳐 아틀라스 내에서 각 텍스쳐의 uv를 참조할 때 인접한 텍스쳐를 살짝 참조하여 위처럼 보기 좋지 않은 경계선들이 생길 수 있다.
+
+이를 방지하기 위해, `AddTextureUV()` 메소드에서 각 uv의 offset을 연산하여 참조할 수 있도록 수정한다.
+
+```cs
+private void AddTextureUV(int x, int y)
+{
+    // 텍스쳐 내에서 의도치 않게 들어가는 부분 잘라내기
+    const float uvXBeginOffset = 0.005f;
+    const float uvXEndOffset   = 0.005f;
+    const float uvYBeginOffset = 0.01f;
+    const float uvYEndOffset   = 0.01f;
+
+    if (x < 0 || y < 0 || x >= VoxelData.TextureAtlasWidth || y >= VoxelData.TextureAtlasHeight)
+        throw new IndexOutOfRangeException($"텍스쳐 아틀라스의 범위를 벗어났습니다 : [x = {x}, y = {y}]");
+
+    float nw = VoxelData.NormalizedTextureAtlasWidth;
+    float nh = VoxelData.NormalizedTextureAtlasHeight;
+
+    float uvX = x * nw;
+    float uvY = y * nh;
+
+    // 해당 텍스쳐의 uv를 LB-LT-RB-RT 순서로 추가
+    uvs.Add(new Vector2(uvX + uvXBeginOffset, uvY + uvYBeginOffset));
+    uvs.Add(new Vector2(uvX + uvXBeginOffset, uvY + nh - uvYEndOffset));
+    uvs.Add(new Vector2(uvX + nw - uvXEndOffset, uvY + uvYBeginOffset));
+    uvs.Add(new Vector2(uvX + nw - uvXEndOffset, uvY + nh - uvYEndOffset));
+}
+```
+
+결과 :
+
+![image](https://user-images.githubusercontent.com/42164422/112751949-89733180-900b-11eb-9977-2074340123b3.png)
+
+<br>
+
+그리고 블록 구성과 `PopulateVoxelMap()` 메소드를 적절히 수정하면 다음과 같은 결과를 얻을 수 있다.
+
+![image](https://user-images.githubusercontent.com/42164422/112752006-c808ec00-900b-11eb-86b8-03d699487325.png)
+
+<br>
+
+## **밉맵 생성하지 않게 하기**
+
+씬뷰에서 카메라를 이리저리 움직여보면
+
+![image](https://user-images.githubusercontent.com/42164422/112752033-ef5fb900-900b-11eb-8975-97a6bbc7e81f.png)
+
+간혹 이렇게 흉하게 깨져보이는 경우를 볼 수 있다.
+
+이런 경우에는 텍스쳐 인스펙터에서 `Advanced` - `Generate Mip Maps`를 체크 해제하여 밉맵을 생성하지 않게 하면 된다.
 
 <br>
 

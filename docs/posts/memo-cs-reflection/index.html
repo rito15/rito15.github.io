@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Reflection(리플렉션)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Reflection(리플렉션)","description":"필요 네임스페이스 1 2 using System; using System.Reflection;","dateModified":"2021-03-12T04:34:16+09:00","datePublished":"2021-02-19T03:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-reflection/"},"url":"https://rito15.github.io/posts/memo-cs-reflection/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"필요 네임스페이스 1 2 using System; using System.Reflection;","datePublished":"2021-02-19T03:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-reflection/"},"url":"https://rito15.github.io/posts/memo-cs-reflection/","author":{"@type":"Person","name":"Rito15"},"headline":"Reflection(리플렉션)","dateModified":"2021-03-12T04:34:16+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="371 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="387 words">2 min</span>
 
 
           <!-- page views -->
@@ -515,14 +515,14 @@
 6
 7
 8
-</pre></td><td class="rouge-code"><pre><span class="kt">string</span> <span class="n">assName</span> <span class="p">=</span> <span class="s">"UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"</span><span class="p">;</span>
+</pre></td><td class="rouge-code"><pre><span class="kt">string</span> <span class="n">asmName</span> <span class="p">=</span> <span class="s">"UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"</span><span class="p">;</span>
 <span class="kt">string</span> <span class="n">nsName</span> <span class="p">=</span> <span class="s">"UnityEngine"</span><span class="p">;</span>
 
 <span class="kt">var</span> <span class="n">classTypes</span> <span class="p">=</span>
     <span class="n">AppDomain</span><span class="p">.</span><span class="n">CurrentDomain</span><span class="p">.</span><span class="nf">GetAssemblies</span><span class="p">()</span>    <span class="c1">// 모든 어셈블리 대상</span>
-        <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">ass</span> <span class="p">=&gt;</span> <span class="n">ass</span><span class="p">.</span><span class="n">FullName</span> <span class="p">==</span> <span class="n">assName</span><span class="p">)</span> <span class="c1">// 특정 어셈블리(exe, dll)로 필터링</span>
-        <span class="p">.</span><span class="nf">SelectMany</span><span class="p">(</span><span class="n">ass</span> <span class="p">=&gt;</span> <span class="n">ass</span><span class="p">.</span><span class="nf">GetTypes</span><span class="p">())</span>
-        <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">.</span><span class="n">IsClass</span> <span class="p">&amp;&amp;</span> <span class="n">t</span><span class="p">.</span><span class="n">Namespace</span> <span class="p">==</span> <span class="n">nsName</span><span class="p">);</span> <span class="c1">// 특정 네임스페이스로 필터링</span>
+        <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">asm</span> <span class="p">=&gt;</span> <span class="n">asm</span><span class="p">.</span><span class="n">FullName</span> <span class="p">==</span> <span class="n">asmName</span><span class="p">)</span> <span class="c1">// 특정 어셈블리(exe, dll)로 필터링</span>
+        <span class="p">.</span><span class="nf">SelectMany</span><span class="p">(</span><span class="n">asm</span> <span class="p">=&gt;</span> <span class="n">asm</span><span class="p">.</span><span class="nf">GetTypes</span><span class="p">())</span>     <span class="c1">// 모든 타입들 가져오기</span>
+        <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">.</span><span class="n">IsClass</span> <span class="p">&amp;&amp;</span> <span class="n">t</span><span class="p">.</span><span class="n">Namespace</span> <span class="p">==</span> <span class="n">nsName</span><span class="p">);</span> <span class="c1">// 클래스타입 &amp;&amp; 특정 네임스페이스로 필터링</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
@@ -674,6 +674,11 @@
         
         
         
+        <li><a href="/posts/unity-study-voxel/">Voxel System</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
@@ -690,11 +695,6 @@
         
         
         <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
 
       </ul>
@@ -5362,7 +5362,7 @@
 
 
 
-비교군
+테스트 대상
 
 
 
@@ -5371,8 +5371,7 @@
 {
     public long a,b,c,d,e,f,g;
 
-    public StructA(long value)
-...
+    public StructA(long valu...
               </p>
             </div>
           </div>

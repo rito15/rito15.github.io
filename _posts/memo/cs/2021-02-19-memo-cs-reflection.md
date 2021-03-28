@@ -60,14 +60,14 @@ targetMethod.Invoke(instance, new object[]{ 파라미터1, 파라미터2 });
 <br>
 ## 특정 네임스페이스의 모든 클래스 타입 가져오기(모든 어셈블리 확인)
 ```cs
-string assName = "UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null";
+string asmName = "UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null";
 string nsName = "UnityEngine";
 
 var classTypes =
     AppDomain.CurrentDomain.GetAssemblies()    // 모든 어셈블리 대상
-        .Where(ass => ass.FullName == assName) // 특정 어셈블리(exe, dll)로 필터링
-        .SelectMany(ass => ass.GetTypes())
-        .Where(t => t.IsClass && t.Namespace == nsName); // 특정 네임스페이스로 필터링
+        .Where(asm => asm.FullName == asmName) // 특정 어셈블리(exe, dll)로 필터링
+        .SelectMany(asm => asm.GetTypes())     // 모든 타입들 가져오기
+        .Where(t => t.IsClass && t.Namespace == nsName); // 클래스타입 && 특정 네임스페이스로 필터링
 ```
 
 <br>

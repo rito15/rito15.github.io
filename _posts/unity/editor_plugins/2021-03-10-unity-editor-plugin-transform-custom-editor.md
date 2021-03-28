@@ -1,5 +1,5 @@
 ---
-title: Custom Transform Editor
+title: Transform Custom Editor(트랜스폼 커스텀 에디터)
 author: Rito15
 date: 2021-03-10 15:15:00 +09:00
 categories: [Unity, Unity Editor Plugins]

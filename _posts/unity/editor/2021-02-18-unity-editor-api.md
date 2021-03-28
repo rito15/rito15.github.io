@@ -1,5 +1,5 @@
 ---
-title: 유니티 에디터 관련 유용한 스크립트, 팁 모음
+title: 유니티 에디터 관련 유용한 팁 모음
 author: Rito15
 date: 2021-02-18 01:50:00 +09:00
 categories: [Unity, Unity Editor]

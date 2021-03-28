@@ -1,5 +1,5 @@
 ---
-title: Menu Item
+title: Menu Item(메뉴 아이템)
 author: Rito15
 date: 2021-03-12 20:10:00 +09:00
 categories: [Unity, Unity Editor]
