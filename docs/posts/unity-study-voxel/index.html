@@ -23,7 +23,7 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Voxel System" />
+<meta property="og:title" content="Voxel System(유니티에서 마인크래프트 구현하기)" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="목차" />
@@ -34,14 +34,14 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-03-26T20:40:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Voxel System" />
+<meta property="twitter:title" content="Voxel System(유니티에서 마인크래프트 구현하기)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목차","datePublished":"2021-03-26T20:40:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-voxel/"},"url":"https://rito15.github.io/posts/unity-study-voxel/","author":{"@type":"Person","name":"Rito15"},"headline":"Voxel System","dateModified":"2021-03-28T02:13:04+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차","datePublished":"2021-03-26T20:40:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-voxel/"},"url":"https://rito15.github.io/posts/unity-study-voxel/","author":{"@type":"Person","name":"Rito15"},"headline":"Voxel System(유니티에서 마인크래프트 구현하기)","dateModified":"2021-03-28T21:29:24+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Voxel System | Rito15
+  <title>Voxel System(유니티에서 마인크래프트 구현하기) | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>Voxel System</span>
+        <span>Voxel System(유니티에서 마인크래프트 구현하기)</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Voxel System</h1>
+      <h1 data-toc-skip>Voxel System(유니티에서 마인크래프트 구현하기)</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -421,7 +421,7 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sun, Mar 28, 2021,  2:13 AM +0900"
+    title="Sun, Mar 28, 2021,  9:29 PM +0900"
   >
 
   
@@ -431,7 +431,7 @@
     Mar 28
   
 
-  <i class="unloaded">2021-03-28T02:13:04+09:00</i>
+  <i class="unloaded">2021-03-28T21:29:24+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5029 words">27 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="7469 words">41 min</span>
 
 
           <!-- page views -->
@@ -465,17 +465,24 @@
         <h1 id="목차">목차</h1>
 
 <ul>
-  <li><a href="#개요">개요</a></li>
+  <li><a href="#목표">목표</a></li>
   <li><a href="#1-복셀-기본">1. 복셀 기본</a></li>
   <li><a href="#2-청크와-맵-데이터">2. 청크와 맵 데이터</a></li>
   <li><a href="#3-텍스쳐-입히기">3. 텍스쳐 입히기</a></li>
+  <li><a href="#4-월드에서-청크-생성-및-관리하기">4. 월드에서 청크 생성 및 관리하기</a></li>
   <li><a href="#"></a></li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="개요">개요</h1>
+<h1 id="목표">목표</h1>
 <hr />
+
+<ul>
+  <li><a href="https://www.youtube.com/playlist?list=PLVsTSlfj0qsWEJ-5eMtXsYp03Y9yF1dEn">유튜브 강좌</a>를 따라가며 구현한다.</li>
+</ul>
+
+<p><br /></p>
 
 <p>유니티엔진에서 마인크래프트와 같은 복셀 시스템을 구현한다.</p>
 
@@ -1718,6 +1725,790 @@ Chunk.cs
 
 <p><br /></p>
 
+<h1 id="4-월드에서-청크-생성-및-관리하기">4. 월드에서 청크 생성 및 관리하기</h1>
+<hr />
+
+<h2 id="chunk-클래스-수정"><strong>Chunk 클래스 수정</strong></h2>
+
+<p>Chunk 클래스가 MonoBehaviour를 상속받지 않도록 변경한다.</p>
+
+<p>그리고 Start() 메소드에서 수행하던 동작들을 생성자로 옮긴다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="rouge-code"><pre><span class="c1">// Chunk class</span>
+
+<span class="k">private</span> <span class="n">GameObject</span> <span class="n">chunkObject</span><span class="p">;</span> <span class="c1">// 청크가 생성될 대상 게임오브젝트</span>
+<span class="k">private</span> <span class="n">MeshRenderer</span> <span class="n">meshRenderer</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">MeshFilter</span> <span class="n">meshFilter</span><span class="p">;</span>
+
+<span class="c1">// 생성자</span>
+<span class="k">public</span> <span class="nf">Chunk</span><span class="p">(</span><span class="n">World</span> <span class="n">world</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">world</span> <span class="p">=</span> <span class="n">world</span><span class="p">;</span>
+
+    <span class="n">chunkObject</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">GameObject</span><span class="p">();</span>
+    <span class="n">meshRenderer</span> <span class="p">=</span> <span class="n">chunkObject</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">MeshRenderer</span><span class="p">&gt;();</span>
+    <span class="n">meshFilter</span> <span class="p">=</span> <span class="n">chunkObject</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">MeshFilter</span><span class="p">&gt;();</span>
+
+    <span class="n">meshRenderer</span><span class="p">.</span><span class="n">material</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">world</span><span class="p">.</span><span class="n">material</span><span class="p">;</span>
+    <span class="n">chunkObject</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">SetParent</span><span class="p">(</span><span class="n">world</span><span class="p">.</span><span class="n">transform</span><span class="p">);</span>
+
+    <span class="nf">PopulateVoxelMap</span><span class="p">();</span>
+    <span class="nf">CreateMeshData</span><span class="p">();</span>
+    <span class="nf">CreateMesh</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<p>그리고 Chunk가 상대좌표를 갖도록 ChunkCoord 클래스를 작성한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">ChunkCoord</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">z</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">ChunkCoord</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">z</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">x</span> <span class="p">=</span> <span class="n">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">z</span> <span class="p">=</span> <span class="n">z</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>ChunkCoord 클래스는 Chunk 내에서 필드로 사용되도록 하고, Chunk의 생성자를 수정한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="rouge-code"><pre><span class="c1">// Chunk class</span>
+
+<span class="k">public</span> <span class="n">ChunkCoord</span> <span class="n">coord</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="nf">Chunk</span><span class="p">(</span><span class="n">ChunkCoord</span> <span class="n">coord</span><span class="p">,</span> <span class="n">World</span> <span class="n">world</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">coord</span> <span class="p">=</span> <span class="n">coord</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">world</span> <span class="p">=</span> <span class="n">world</span><span class="p">;</span>
+
+    <span class="n">chunkObject</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">GameObject</span><span class="p">();</span>
+    <span class="n">meshRenderer</span> <span class="p">=</span> <span class="n">chunkObject</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">MeshRenderer</span><span class="p">&gt;();</span>
+    <span class="n">meshFilter</span> <span class="p">=</span> <span class="n">chunkObject</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">MeshFilter</span><span class="p">&gt;();</span>
+
+    <span class="n">meshRenderer</span><span class="p">.</span><span class="n">material</span> <span class="p">=</span> <span class="n">world</span><span class="p">.</span><span class="n">material</span><span class="p">;</span>
+    <span class="n">chunkObject</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="nf">SetParent</span><span class="p">(</span><span class="n">world</span><span class="p">.</span><span class="n">transform</span><span class="p">);</span>
+    <span class="n">chunkObject</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> 
+        <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">coord</span><span class="p">.</span><span class="n">x</span> <span class="p">*</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkWidth</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="n">coord</span><span class="p">.</span><span class="n">z</span> <span class="p">*</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkWidth</span><span class="p">);</span>
+    <span class="n">chunkObject</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">$"Chunk [</span><span class="p">{</span><span class="n">coord</span><span class="p">.</span><span class="n">x</span><span class="p">}</span><span class="s">, </span><span class="p">{</span><span class="n">coord</span><span class="p">.</span><span class="n">z</span><span class="p">}</span><span class="s">]"</span><span class="p">;</span>
+
+    <span class="nf">PopulateVoxelMap</span><span class="p">();</span>
+    <span class="nf">CreateMeshData</span><span class="p">();</span>
+    <span class="nf">CreateMesh</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<p>이제 World 클래스에서 Chunk들을 생성하여 관리할 수 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">World</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">Material</span> <span class="n">material</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">BlockType</span><span class="p">[]</span> <span class="n">blockTypes</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Chunk</span> <span class="n">chunk0</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Chunk</span><span class="p">(</span><span class="k">new</span> <span class="nf">ChunkCoord</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="k">this</span><span class="p">);</span>
+        <span class="n">Chunk</span> <span class="n">chunk1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Chunk</span><span class="p">(</span><span class="k">new</span> <span class="nf">ChunkCoord</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="world-클래스-수정"><strong>World 클래스 수정</strong></h2>
+
+<p>Chunk에서 국지적으로 수행하던 기능을 World에서 담당하도록 수정한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+</pre></td><td class="rouge-code"><pre><span class="c1">// World class</span>
+
+<span class="c1">// 월드 내의 모든 청크</span>
+<span class="k">private</span> <span class="n">Chunk</span><span class="p">[,]</span> <span class="n">chunks</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chunk</span><span class="p">[</span><span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInChunks</span><span class="p">,</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInChunks</span><span class="p">];</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">GenerateWorld</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">GenerateWorld</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">x</span> <span class="p">&lt;</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInChunks</span><span class="p">;</span> <span class="n">x</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">z</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">z</span> <span class="p">&lt;</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInChunks</span><span class="p">;</span> <span class="n">z</span><span class="p">++)</span>
+        <span class="p">{</span>
+            <span class="nf">CreateNewChunk</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">CreateNewChunk</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">chunks</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Chunk</span><span class="p">(</span><span class="k">new</span> <span class="nf">ChunkCoord</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span> <span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 해당 위치의 블록 타입을 결정</span>
+<span class="k">public</span> <span class="kt">byte</span> <span class="nf">GetBlockType</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">pos</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">y</span> <span class="p">&gt;=</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkHeight</span> <span class="p">-</span> <span class="m">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Grass</span><span class="p">;</span> <span class="c1">// 1</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">Ground</span><span class="p">;</span> <span class="c1">// 2</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>그리고 Chunk 클래스의 <code class="language-plaintext highlighter-rouge">PopulateVoxelMap()</code> 메소드를 수정한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">PopulateVoxelMap</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">y</span> <span class="p">&lt;</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkHeight</span><span class="p">;</span> <span class="n">y</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">x</span> <span class="p">&lt;</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkWidth</span><span class="p">;</span> <span class="n">x</span><span class="p">++)</span>
+        <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">z</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">z</span> <span class="p">&lt;</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkWidth</span><span class="p">;</span> <span class="n">z</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="n">voxelMap</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span> <span class="p">=</span> <span class="n">world</span><span class="p">.</span><span class="nf">GetBlockType</span><span class="p">(</span><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">));</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>그런데 생성된 청크들의 내부를 들여다보면</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112816743-ac115300-90bc-11eb-96a6-f5a6acec235c.png" alt="image" /></p>
+
+<p>이렇게 각각의 청크가 독립된 큐브 형태의 메시를 지니기 때문에, 결국 바깥에서 보이지 않는 부분도 그려지게 되는, 초기의 문제가 동일하게 발생하는 것을 확인할 수 있다.</p>
+
+<p><br /></p>
+
+<p>해결을 위해 우선 World 클래스 내에 메소드들을 작성 및 수정한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+</pre></td><td class="rouge-code"><pre><span class="c1">// World class</span>
+
+<span class="c1">/// &lt;summary&gt; 해당 위치의 복셀이 월드 내에 있는지 검사 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="kt">bool</span> <span class="nf">IsBlockInWorld</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">worldPos</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span>
+        <span class="n">worldPos</span><span class="p">.</span><span class="n">x</span> <span class="p">&gt;=</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="n">worldPos</span><span class="p">.</span><span class="n">x</span> <span class="p">&lt;</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInVoxels</span> <span class="p">&amp;&amp;</span>
+        <span class="n">worldPos</span><span class="p">.</span><span class="n">z</span> <span class="p">&gt;=</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="n">worldPos</span><span class="p">.</span><span class="n">z</span> <span class="p">&lt;</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInVoxels</span> <span class="p">&amp;&amp;</span>
+        <span class="n">worldPos</span><span class="p">.</span><span class="n">y</span> <span class="p">&gt;=</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="n">worldPos</span><span class="p">.</span><span class="n">y</span> <span class="p">&lt;</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkHeight</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 해당 위치의 블록 타입 검사&lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">byte</span> <span class="nf">GetBlockType</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">worldPos</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(!</span><span class="nf">IsBlockInWorld</span><span class="p">(</span><span class="n">worldPos</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">Air</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">worldPos</span><span class="p">.</span><span class="n">y</span> <span class="p">&gt;=</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkHeight</span> <span class="p">-</span> <span class="m">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Grass</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">Ground</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 해당 위치의 블록이 단단한지 검사&lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">bool</span> <span class="nf">IsBlockSolid</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">worldPos</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">blockTypes</span><span class="p">[</span><span class="nf">GetBlockType</span><span class="p">(</span><span class="n">worldPos</span><span class="p">)].</span><span class="n">isSolid</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>그리고 청크 내부의 Solid 여부만 검사하던 Chunk.IsSolid() 메소드를 수정한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>// Chunk class
+
+private bool IsSolid(in Vector3 pos)
+{
+    return world.IsBlockSolid(pos + WorldPos);
+}
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112828193-5ba0f200-90ca-11eb-931a-cafbd439ca41.png" alt="image" /></p>
+
+<p>이제 청크가 아니라 월드 단위로 내부와 외부를 판단하여 바깥 폴리곤만 그리게 된다.</p>
+
+<p><br /></p>
+
+<h2 id="시야-범위-내에서만-청크-생성"><strong>시야 범위 내에서만 청크 생성</strong></h2>
+
+<p>현재로서는 월드 내의 모든 청크가 생성되고, 렌더링된다.</p>
+
+<p>하지만 성능을 위해서는 지정된 플레이어 주변의 일정 영역 내에 존재하는 청크들만 생성되도록 해야 한다.</p>
+
+<p>VoxelData 클래스에 새로운 필드를 추가하고, 기존의 필드값 하나를 수정한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="c1">// VoxelData class</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">int</span> <span class="n">WorldSizeInChunks</span> <span class="p">=</span> <span class="m">100</span><span class="p">;</span> <span class="c1">// 5 -&gt; 100</span>
+
+<span class="c1">// 시야 범위(청크 개수)</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">int</span> <span class="n">ViewDistanceInChunks</span> <span class="p">=</span> <span class="m">5</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>‘시야’라는 것은 특정 대상을 중심으로 고려되어야 한다.</p>
+
+<p>따라서 World 클래스에 다음 내용을 추가한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+</pre></td><td class="rouge-code"><pre><span class="c1">// World class</span>
+
+<span class="k">public</span> <span class="n">Transform</span> <span class="n">player</span><span class="p">;</span>
+<span class="k">public</span> <span class="n">Vector3</span> <span class="n">spawnPosition</span><span class="p">;</span>
+
+<span class="c1">/// &lt;summary&gt; 해당 청크 좌표가 월드 XZ 범위 내에 있는지 검사 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="kt">bool</span> <span class="nf">IsChunkPosInWorld</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="p">&gt;=</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="n">x</span> <span class="p">&lt;</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInChunks</span> <span class="p">&amp;&amp;</span>
+           <span class="n">z</span> <span class="p">&gt;=</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="n">z</span> <span class="p">&lt;</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInChunks</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 월드 위치의 청크 좌표 리턴 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="n">ChunkCoord</span> <span class="nf">GetChunkCoordFromWorldPos</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">worldPos</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">worldPos</span><span class="p">.</span><span class="n">x</span> <span class="p">/</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkWidth</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">z</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">worldPos</span><span class="p">.</span><span class="n">z</span> <span class="p">/</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkWidth</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">ChunkCoord</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">InitPositions</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">spawnPosition</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span>
+        <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInVoxels</span> <span class="p">*</span> <span class="m">0.5f</span><span class="p">,</span>
+        <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkHeight</span><span class="p">,</span>
+        <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInVoxels</span> <span class="p">*</span> <span class="m">0.5f</span>
+    <span class="p">);</span>
+    <span class="n">player</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="n">spawnPosition</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">GenerateWorld</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">center</span> <span class="p">=</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInChunks</span> <span class="p">/</span> <span class="m">2</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">viewMin</span> <span class="p">=</span> <span class="n">center</span> <span class="p">-</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ViewDistanceInChunks</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">viewMax</span> <span class="p">=</span> <span class="n">center</span> <span class="p">+</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ViewDistanceInChunks</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="n">viewMin</span><span class="p">;</span> <span class="n">x</span> <span class="p">&lt;</span> <span class="n">viewMax</span><span class="p">;</span> <span class="n">x</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">z</span> <span class="p">=</span> <span class="n">viewMin</span><span class="p">;</span> <span class="n">z</span> <span class="p">&lt;</span> <span class="n">viewMax</span><span class="p">;</span> <span class="n">z</span><span class="p">++)</span>
+        <span class="p">{</span>
+            <span class="nf">CreateNewChunk</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 시야범위 내의 청크 생성 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">UpdateChunksInViewRange</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ChunkCoord</span> <span class="n">coord</span> <span class="p">=</span> <span class="nf">GetChunkCoordFromWorldPos</span><span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">viewDist</span> <span class="p">=</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ViewDistanceInChunks</span><span class="p">;</span>
+    <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">z</span><span class="p">)</span> <span class="n">viewMin</span> <span class="p">=</span> <span class="p">(</span><span class="n">coord</span><span class="p">.</span><span class="n">x</span> <span class="p">-</span> <span class="n">viewDist</span><span class="p">,</span> <span class="n">coord</span><span class="p">.</span><span class="n">z</span> <span class="p">-</span> <span class="n">viewDist</span><span class="p">);</span>
+    <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">z</span><span class="p">)</span> <span class="n">viewMax</span> <span class="p">=</span> <span class="p">(</span><span class="n">coord</span><span class="p">.</span><span class="n">x</span> <span class="p">+</span> <span class="n">viewDist</span><span class="p">,</span> <span class="n">coord</span><span class="p">.</span><span class="n">z</span> <span class="p">+</span> <span class="n">viewDist</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="n">viewMin</span><span class="p">.</span><span class="n">x</span><span class="p">;</span> <span class="n">x</span> <span class="p">&lt;</span> <span class="n">viewMax</span><span class="p">.</span><span class="n">x</span><span class="p">;</span> <span class="n">x</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">z</span> <span class="p">=</span> <span class="n">viewMin</span><span class="p">.</span><span class="n">z</span><span class="p">;</span> <span class="n">z</span> <span class="p">&lt;</span> <span class="n">viewMax</span><span class="p">.</span><span class="n">z</span><span class="p">;</span> <span class="n">z</span><span class="p">++)</span>
+        <span class="p">{</span>
+            <span class="c1">// 청크 좌표가 월드 범위 내에 있는지 검사</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nf">IsChunkPosInWorld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span>
+                <span class="k">continue</span><span class="p">;</span>
+
+            <span class="c1">// 시야 범위 내에 청크가 생성되지 않은 영역이 있을 경우, 새로 생성</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">chunks</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                <span class="nf">CreateNewChunk</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">InitPositions</span><span class="p">();</span>
+    <span class="nf">GenerateWorld</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">UpdateChunksInViewRange</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이제 플레이어가 이동했을 때 시야 범위가 닿는 곳에 청크가 존재하지 않으면 새롭게 생성한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112835539-606aa380-90d4-11eb-9d42-24251335693a.gif" alt="2021_0329_VoxelSystem_1" /></p>
+
+<p><br /></p>
+
+<h2 id="시야-범위-내에서만-청크-유지"><strong>시야 범위 내에서만 청크 유지</strong></h2>
+
+<p>플레이어의 시야 범위를 벗어나는 범위의 청크는 파괴하거나 비활성화할 필요가 있다.</p>
+
+<p>생성/파괴는 비싼 작업이므로, 오브젝트 풀링하듯 시야 범위를 벗어나는 청크들은 비활성화하고, 시야 범위 내에 들어온 청크들만 실시간으로 활성화하도록 한다.</p>
+
+<p>우선 두 개의 리스트를 만든다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1">// World class</span>
+
+<span class="c1">// 이전 프레임에 활성화 되었던 청크 목록</span>
+<span class="k">private</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Chunk</span><span class="p">&gt;</span> <span class="n">prevActiveChunkList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Chunk</span><span class="p">&gt;();</span>
+
+<span class="c1">// 현재 프레임에 활성화된 청크 목록</span>
+<span class="k">private</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Chunk</span><span class="p">&gt;</span> <span class="n">currentActiveChunkList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Chunk</span><span class="p">&gt;();</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>그리고 UpdateChunksInViewRange() 메소드를 수정한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 시야범위 내의 청크들만 유지 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">UpdateChunksInViewRange</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ChunkCoord</span> <span class="n">coord</span> <span class="p">=</span> <span class="nf">GetChunkCoordFromWorldPos</span><span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">viewDist</span> <span class="p">=</span> <span class="n">VoxelData</span><span class="p">.</span><span class="n">ViewDistanceInChunks</span><span class="p">;</span>
+    <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">z</span><span class="p">)</span> <span class="n">viewMin</span> <span class="p">=</span> <span class="p">(</span><span class="n">coord</span><span class="p">.</span><span class="n">x</span> <span class="p">-</span> <span class="n">viewDist</span><span class="p">,</span> <span class="n">coord</span><span class="p">.</span><span class="n">z</span> <span class="p">-</span> <span class="n">viewDist</span><span class="p">);</span>
+    <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">z</span><span class="p">)</span> <span class="n">viewMax</span> <span class="p">=</span> <span class="p">(</span><span class="n">coord</span><span class="p">.</span><span class="n">x</span> <span class="p">+</span> <span class="n">viewDist</span><span class="p">,</span> <span class="n">coord</span><span class="p">.</span><span class="n">z</span> <span class="p">+</span> <span class="n">viewDist</span><span class="p">);</span>
+
+    <span class="c1">// 활성 목록 : 현재 -&gt; 이전으로 이동</span>
+    <span class="n">prevActiveChunkList</span> <span class="p">=</span> <span class="n">currentActiveChunkList</span><span class="p">;</span>
+    <span class="n">currentActiveChunkList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Chunk</span><span class="p">&gt;();</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="n">viewMin</span><span class="p">.</span><span class="n">x</span><span class="p">;</span> <span class="n">x</span> <span class="p">&lt;</span> <span class="n">viewMax</span><span class="p">.</span><span class="n">x</span><span class="p">;</span> <span class="n">x</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">z</span> <span class="p">=</span> <span class="n">viewMin</span><span class="p">.</span><span class="n">z</span><span class="p">;</span> <span class="n">z</span> <span class="p">&lt;</span> <span class="n">viewMax</span><span class="p">.</span><span class="n">z</span><span class="p">;</span> <span class="n">z</span><span class="p">++)</span>
+        <span class="p">{</span>
+            <span class="c1">// 청크 좌표가 월드 범위 내에 있는지 검사</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nf">IsChunkPosInWorld</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span>
+                <span class="k">continue</span><span class="p">;</span>
+
+            <span class="n">Chunk</span> <span class="n">currentChunk</span> <span class="p">=</span> <span class="n">chunks</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">];</span>
+
+            <span class="c1">// 시야 범위 내에 청크가 생성되지 않은 영역이 있을 경우, 새로 생성</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">chunks</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="nf">CreateNewChunk</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+                <span class="n">currentChunk</span> <span class="p">=</span> <span class="n">chunks</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">];</span> <span class="c1">// 참조 갱신</span>
+            <span class="p">}</span>
+            <span class="c1">// 비활성화 되어있던 경우에는 활성화</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">chunks</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">].</span><span class="n">IsActive</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">chunks</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">].</span><span class="n">IsActive</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 현재 활성 목록에 추가</span>
+            <span class="n">currentActiveChunkList</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">currentChunk</span><span class="p">);</span>
+
+            <span class="c1">// 이전 활성 목록에서 제거</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">prevActiveChunkList</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="n">currentChunk</span><span class="p">))</span>
+                <span class="n">prevActiveChunkList</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="n">currentChunk</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 차집합으로 남은 청크들 비활성화</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">chunk</span> <span class="k">in</span> <span class="n">prevActiveChunkList</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">chunk</span><span class="p">.</span><span class="n">IsActive</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이전 프레임에 활성화되었던 청크들이 현재 프레임에는 활성화되지 않은 경우,</p>
+
+<p>해당 청크들을 비활성화 해주기만 하면 된다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/112843745-e3442c00-90dd-11eb-9a2e-d1fd99e09a94.gif" alt="2021_0329_VoxelSystem_2" /></p>
+
+<p>그러면 이렇게 시야 범위 내에서만 청크들을 활성화 상태로 유지할 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="최적화">최적화</h2>
+
+<p>현재 Update()에서 매 프레임마다 시야 범위를 갱신해주고 있는데,</p>
+
+<p>이를 두 가지 방법으로 최적화 해줄 수 있다.</p>
+
+<ol>
+  <li>
+    <p>플레이어가 다른 청크로 이동했을 때만 갱신한다.</p>
+  </li>
+  <li>
+    <p>Update()가 아니라 코루틴에서 더 긴 주기마다 갱신한다.</p>
+  </li>
+</ol>
+
+<p>여기서는 일단 1번 방식만 이용하도록 한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre></td><td class="rouge-code"><pre><span class="c1">// World.cs</span>
+
+<span class="c1">// 플레이어의 이전 프레임 위치</span>
+<span class="k">private</span> <span class="n">ChunkCoord</span> <span class="n">prevPlayerCoord</span><span class="p">;</span>
+
+<span class="c1">// 플레이어의 현재 프레임 위치</span>
+<span class="k">private</span> <span class="n">ChunkCoord</span> <span class="n">currentPlayerCoord</span><span class="p">;</span>
+
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">InitPositions</span><span class="p">();</span>
+    <span class="c1">//GenerateWorld(); // 필요 X (UpdateChunksInViewRange()에서 수행)</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">currentPlayerCoord</span> <span class="p">=</span> <span class="nf">GetChunkCoordFromWorldPos</span><span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+
+    <span class="c1">// 플레이어가 청크 위치를 이동한 경우, 시야 범위 갱신</span>
+    <span class="k">if</span><span class="p">(!</span><span class="n">prevPlayerCoord</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">currentPlayerCoord</span><span class="p">))</span>
+        <span class="nf">UpdateChunksInViewRange</span><span class="p">();</span>
+
+    <span class="n">prevPlayerCoord</span> <span class="p">=</span> <span class="n">currentPlayerCoord</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c1">// 수정</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">InitPositions</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">spawnPosition</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span>
+        <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInVoxels</span> <span class="p">*</span> <span class="m">0.5f</span><span class="p">,</span>
+        <span class="n">VoxelData</span><span class="p">.</span><span class="n">ChunkHeight</span><span class="p">,</span>
+        <span class="n">VoxelData</span><span class="p">.</span><span class="n">WorldSizeInVoxels</span> <span class="p">*</span> <span class="m">0.5f</span>
+    <span class="p">);</span>
+    <span class="n">player</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="n">spawnPosition</span><span class="p">;</span>
+
+    <span class="n">prevPlayerCoord</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ChunkCoord</span><span class="p">(-</span><span class="m">1</span><span class="p">,</span> <span class="p">-</span><span class="m">1</span><span class="p">);</span>
+    <span class="n">currentPlayerCoord</span> <span class="p">=</span> <span class="nf">GetChunkCoordFromWorldPos</span><span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
 <h1 id="source-code">Source Code</h1>
 <hr />
 <ul>
@@ -1789,19 +2580,19 @@ Chunk.cs
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Voxel System - Rito15&url=https://rito15.github.io/posts/unity-study-voxel/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=Voxel System(유니티에서 마인크래프트 구현하기) - Rito15&url=https://rito15.github.io/posts/unity-study-voxel/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Voxel System - Rito15&u=https://rito15.github.io/posts/unity-study-voxel/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Voxel System(유니티에서 마인크래프트 구현하기) - Rito15&u=https://rito15.github.io/posts/unity-study-voxel/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Voxel System - Rito15&url=https://rito15.github.io/posts/unity-study-voxel/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=Voxel System(유니티에서 마인크래프트 구현하기) - Rito15&url=https://rito15.github.io/posts/unity-study-voxel/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1864,27 +2655,27 @@ Chunk.cs
         
         
         
-        <li><a href="/posts/unity-study-voxel/">Voxel System</a></li>
+        <li><a href="/posts/memo-cs-ref-in-performance/">매개변수 한정자 ref, in의 성능</a></li>
       
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
+        <li><a href="/posts/unity-editor-api/">유니티 에디터 관련 유용한 팁 모음</a></li>
       
         
         
         
-        <li><a href="/posts/unity-particle-system-example-09-rainfall/">파티클 시스템 예제 - 09 - Rainfall</a></li>
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-particle-system-example-10-magic-circle/">파티클 시스템 예제 - 10 - Magic Circle</a></li>
+        <li><a href="/posts/unity-editor-scriptable-object/">Scriptable Object(스크립터블 오브젝트)</a></li>
       
         
         
         
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
+        <li><a href="/posts/unity-editor-custom-editor-window/">Custom Editor Window(커스텀 에디터 윈도우)</a></li>
       
 
       </ul>

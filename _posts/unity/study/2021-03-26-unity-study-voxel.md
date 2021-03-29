@@ -1,5 +1,5 @@
 ---
-title: Voxel System
+title: Voxel System(유니티에서 마인크래프트 구현하기)
 author: Rito15
 date: 2021-03-26 20:40:00 +09:00
 categories: [Unity, Unity Study]
@@ -10,16 +10,21 @@ mermaid: true
 
 # 목차
 
-- [개요](#개요)
+- [목표](#목표)
 - [1. 복셀 기본](#1-복셀-기본)
 - [2. 청크와 맵 데이터](#2-청크와-맵-데이터)
 - [3. 텍스쳐 입히기](#3-텍스쳐-입히기)
+- [4. 월드에서 청크 생성 및 관리하기](#4-월드에서-청크-생성-및-관리하기)
 - [](#)
 
 <br>
 
-# 개요
+# 목표
 ---
+
+- [유튜브 강좌](https://www.youtube.com/playlist?list=PLVsTSlfj0qsWEJ-5eMtXsYp03Y9yF1dEn)를 따라가며 구현한다.
+
+<br>
 
 유니티엔진에서 마인크래프트와 같은 복셀 시스템을 구현한다.
 
@@ -811,6 +816,470 @@ private void AddTextureUV(int x, int y)
 간혹 이렇게 흉하게 깨져보이는 경우를 볼 수 있다.
 
 이런 경우에는 텍스쳐 인스펙터에서 `Advanced` - `Generate Mip Maps`를 체크 해제하여 밉맵을 생성하지 않게 하면 된다.
+
+<br>
+
+# 4. 월드에서 청크 생성 및 관리하기
+---
+
+## **Chunk 클래스 수정**
+
+Chunk 클래스가 MonoBehaviour를 상속받지 않도록 변경한다.
+
+그리고 Start() 메소드에서 수행하던 동작들을 생성자로 옮긴다.
+
+```cs
+// Chunk class
+
+private GameObject chunkObject; // 청크가 생성될 대상 게임오브젝트
+private MeshRenderer meshRenderer;
+private MeshFilter meshFilter;
+
+// 생성자
+public Chunk(World world)
+{
+    this.world = world;
+
+    chunkObject = new GameObject();
+    meshRenderer = chunkObject.AddComponent<MeshRenderer>();
+    meshFilter = chunkObject.AddComponent<MeshFilter>();
+
+    meshRenderer.material = this.world.material;
+    chunkObject.transform.SetParent(world.transform);
+
+    PopulateVoxelMap();
+    CreateMeshData();
+    CreateMesh();
+}
+```
+
+<br>
+
+그리고 Chunk가 상대좌표를 갖도록 ChunkCoord 클래스를 작성한다.
+
+```cs
+public class ChunkCoord
+{
+    public int x;
+    public int z;
+
+    public ChunkCoord(int x, int z)
+    {
+        this.x = x;
+        this.z = z;
+    }
+}
+```
+
+ChunkCoord 클래스는 Chunk 내에서 필드로 사용되도록 하고, Chunk의 생성자를 수정한다.
+
+```cs
+// Chunk class
+
+public ChunkCoord coord;
+
+public Chunk(ChunkCoord coord, World world)
+{
+    this.coord = coord;
+    this.world = world;
+
+    chunkObject = new GameObject();
+    meshRenderer = chunkObject.AddComponent<MeshRenderer>();
+    meshFilter = chunkObject.AddComponent<MeshFilter>();
+
+    meshRenderer.material = world.material;
+    chunkObject.transform.SetParent(world.transform);
+    chunkObject.transform.position = 
+        new Vector3(coord.x * VoxelData.ChunkWidth, 0f, coord.z * VoxelData.ChunkWidth);
+    chunkObject.name = $"Chunk [{coord.x}, {coord.z}]";
+
+    PopulateVoxelMap();
+    CreateMeshData();
+    CreateMesh();
+}
+```
+
+<br>
+
+이제 World 클래스에서 Chunk들을 생성하여 관리할 수 있다.
+
+```cs
+public class World : MonoBehaviour
+{
+    public Material material;
+    public BlockType[] blockTypes;
+
+    private void Start()
+    {
+        Chunk chunk0 = new Chunk(new ChunkCoord(0, 0), this);
+        Chunk chunk1 = new Chunk(new ChunkCoord(1, 0), this);
+    }
+}
+```
+
+<br>
+
+## **World 클래스 수정**
+
+Chunk에서 국지적으로 수행하던 기능을 World에서 담당하도록 수정한다.
+
+```cs
+// World class
+
+// 월드 내의 모든 청크
+private Chunk[,] chunks = new Chunk[VoxelData.WorldSizeInChunks, VoxelData.WorldSizeInChunks];
+
+private void Start()
+{
+    GenerateWorld();
+}
+
+private void GenerateWorld()
+{
+    for (int x = 0; x < VoxelData.WorldSizeInChunks; x++)
+    {
+        for (int z = 0; z < VoxelData.WorldSizeInChunks; z++)
+        {
+            CreateNewChunk(x, z);
+        }
+    }
+}
+
+private void CreateNewChunk(int x, int z)
+{
+    chunks[x, z] = new Chunk(new ChunkCoord(x, z), this);
+}
+
+// 해당 위치의 블록 타입을 결정
+public byte GetBlockType(in Vector3 pos)
+{
+    if(pos.y >= VoxelData.ChunkHeight - 1)
+        return Grass; // 1
+    else
+        return Ground; // 2
+}
+```
+
+그리고 Chunk 클래스의 `PopulateVoxelMap()` 메소드를 수정한다.
+
+```cs
+private void PopulateVoxelMap()
+{
+    for (int y = 0; y < VoxelData.ChunkHeight; y++)
+    {
+        for (int x = 0; x < VoxelData.ChunkWidth; x++)
+        {
+            for (int z = 0; z < VoxelData.ChunkWidth; z++)
+            {
+                voxelMap[x, y, z] = world.GetBlockType(new Vector3(x, y, z));
+            }
+        }
+    }
+}
+```
+
+그런데 생성된 청크들의 내부를 들여다보면
+
+![image](https://user-images.githubusercontent.com/42164422/112816743-ac115300-90bc-11eb-96a6-f5a6acec235c.png)
+
+이렇게 각각의 청크가 독립된 큐브 형태의 메시를 지니기 때문에, 결국 바깥에서 보이지 않는 부분도 그려지게 되는, 초기의 문제가 동일하게 발생하는 것을 확인할 수 있다.
+
+<br>
+
+해결을 위해 우선 World 클래스 내에 메소드들을 작성 및 수정한다.
+
+```cs
+// World class
+
+/// <summary> 해당 위치의 복셀이 월드 내에 있는지 검사 </summary>
+private bool IsBlockInWorld(in Vector3 worldPos)
+{
+    return
+        worldPos.x >= 0 && worldPos.x < VoxelData.WorldSizeInVoxels &&
+        worldPos.z >= 0 && worldPos.z < VoxelData.WorldSizeInVoxels &&
+        worldPos.y >= 0 && worldPos.y < VoxelData.ChunkHeight;
+}
+
+/// <summary> 해당 위치의 블록 타입 검사</summary>
+public byte GetBlockType(in Vector3 worldPos)
+{
+    if(!IsBlockInWorld(worldPos))
+        return Air;
+
+    if(worldPos.y >= VoxelData.ChunkHeight - 1)
+        return Grass;
+    else
+        return Ground;
+}
+
+/// <summary> 해당 위치의 블록이 단단한지 검사</summary>
+public bool IsBlockSolid(in Vector3 worldPos)
+{
+    return blockTypes[GetBlockType(worldPos)].isSolid;
+}
+```
+
+그리고 청크 내부의 Solid 여부만 검사하던 Chunk.IsSolid() 메소드를 수정한다.
+
+```
+// Chunk class
+
+private bool IsSolid(in Vector3 pos)
+{
+    return world.IsBlockSolid(pos + WorldPos);
+}
+```
+
+![image](https://user-images.githubusercontent.com/42164422/112828193-5ba0f200-90ca-11eb-931a-cafbd439ca41.png)
+
+이제 청크가 아니라 월드 단위로 내부와 외부를 판단하여 바깥 폴리곤만 그리게 된다.
+
+<br>
+
+## **시야 범위 내에서만 청크 생성**
+
+현재로서는 월드 내의 모든 청크가 생성되고, 렌더링된다.
+
+하지만 성능을 위해서는 지정된 플레이어 주변의 일정 영역 내에 존재하는 청크들만 생성되도록 해야 한다.
+
+VoxelData 클래스에 새로운 필드를 추가하고, 기존의 필드값 하나를 수정한다.
+
+```cs
+// VoxelData class
+
+public static readonly int WorldSizeInChunks = 100; // 5 -> 100
+
+// 시야 범위(청크 개수)
+public static readonly int ViewDistanceInChunks = 5;
+```
+
+'시야'라는 것은 특정 대상을 중심으로 고려되어야 한다.
+
+따라서 World 클래스에 다음 내용을 추가한다.
+
+```cs
+// World class
+
+public Transform player;
+public Vector3 spawnPosition;
+
+/// <summary> 해당 청크 좌표가 월드 XZ 범위 내에 있는지 검사 </summary>
+private bool IsChunkPosInWorld(int x, int z)
+{
+    return x >= 0 && x < VoxelData.WorldSizeInChunks &&
+           z >= 0 && z < VoxelData.WorldSizeInChunks;
+}
+
+/// <summary> 월드 위치의 청크 좌표 리턴 </summary>
+private ChunkCoord GetChunkCoordFromWorldPos(in Vector3 worldPos)
+{
+    int x = (int)(worldPos.x / VoxelData.ChunkWidth);
+    int z = (int)(worldPos.z / VoxelData.ChunkWidth);
+    return new ChunkCoord(x, z);
+}
+
+private void InitPositions()
+{
+    spawnPosition = new Vector3(
+        VoxelData.WorldSizeInVoxels * 0.5f,
+        VoxelData.ChunkHeight,
+        VoxelData.WorldSizeInVoxels * 0.5f
+    );
+    player.position = spawnPosition;
+}
+
+private void GenerateWorld()
+{
+    int center = VoxelData.WorldSizeInChunks / 2;
+    int viewMin = center - VoxelData.ViewDistanceInChunks;
+    int viewMax = center + VoxelData.ViewDistanceInChunks;
+
+    for (int x = viewMin; x < viewMax; x++)
+    {
+        for (int z = viewMin; z < viewMax; z++)
+        {
+            CreateNewChunk(x, z);
+        }
+    }
+}
+
+/// <summary> 시야범위 내의 청크 생성 </summary>
+private void UpdateChunksInViewRange()
+{
+    ChunkCoord coord = GetChunkCoordFromWorldPos(player.position);
+    int viewDist = VoxelData.ViewDistanceInChunks;
+    (int x, int z) viewMin = (coord.x - viewDist, coord.z - viewDist);
+    (int x, int z) viewMax = (coord.x + viewDist, coord.z + viewDist);
+
+    for (int x = viewMin.x; x < viewMax.x; x++)
+    {
+        for (int z = viewMin.z; z < viewMax.z; z++)
+        {
+            // 청크 좌표가 월드 범위 내에 있는지 검사
+            if (IsChunkPosInWorld(x, z) == false)
+                continue;
+
+            // 시야 범위 내에 청크가 생성되지 않은 영역이 있을 경우, 새로 생성
+            if (chunks[x, z] == null)
+                CreateNewChunk(x, z);
+        }
+    }
+}
+
+private void Start()
+{
+    InitPositions();
+    GenerateWorld();
+}
+
+private void Update()
+{
+    UpdateChunksInViewRange();
+}
+```
+
+이제 플레이어가 이동했을 때 시야 범위가 닿는 곳에 청크가 존재하지 않으면 새롭게 생성한다.
+
+![2021_0329_VoxelSystem_1](https://user-images.githubusercontent.com/42164422/112835539-606aa380-90d4-11eb-9d42-24251335693a.gif)
+
+<br>
+
+## **시야 범위 내에서만 청크 유지**
+
+플레이어의 시야 범위를 벗어나는 범위의 청크는 파괴하거나 비활성화할 필요가 있다.
+
+생성/파괴는 비싼 작업이므로, 오브젝트 풀링하듯 시야 범위를 벗어나는 청크들은 비활성화하고, 시야 범위 내에 들어온 청크들만 실시간으로 활성화하도록 한다.
+
+우선 두 개의 리스트를 만든다.
+
+```cs
+// World class
+
+// 이전 프레임에 활성화 되었던 청크 목록
+private List<Chunk> prevActiveChunkList = new List<Chunk>();
+
+// 현재 프레임에 활성화된 청크 목록
+private List<Chunk> currentActiveChunkList = new List<Chunk>();
+```
+
+그리고 UpdateChunksInViewRange() 메소드를 수정한다.
+
+```cs
+/// <summary> 시야범위 내의 청크들만 유지 </summary>
+private void UpdateChunksInViewRange()
+{
+    ChunkCoord coord = GetChunkCoordFromWorldPos(player.position);
+    int viewDist = VoxelData.ViewDistanceInChunks;
+    (int x, int z) viewMin = (coord.x - viewDist, coord.z - viewDist);
+    (int x, int z) viewMax = (coord.x + viewDist, coord.z + viewDist);
+
+    // 활성 목록 : 현재 -> 이전으로 이동
+    prevActiveChunkList = currentActiveChunkList;
+    currentActiveChunkList = new List<Chunk>();
+
+    for (int x = viewMin.x; x < viewMax.x; x++)
+    {
+        for (int z = viewMin.z; z < viewMax.z; z++)
+        {
+            // 청크 좌표가 월드 범위 내에 있는지 검사
+            if (IsChunkPosInWorld(x, z) == false)
+                continue;
+
+            Chunk currentChunk = chunks[x, z];
+
+            // 시야 범위 내에 청크가 생성되지 않은 영역이 있을 경우, 새로 생성
+            if (chunks[x, z] == null)
+            {
+                CreateNewChunk(x, z);
+                currentChunk = chunks[x, z]; // 참조 갱신
+            }
+            // 비활성화 되어있던 경우에는 활성화
+            else if(chunks[x, z].IsActive == false)
+            {
+                chunks[x, z].IsActive = true;
+            }
+
+            // 현재 활성 목록에 추가
+            currentActiveChunkList.Add(currentChunk);
+
+            // 이전 활성 목록에서 제거
+            if (prevActiveChunkList.Contains(currentChunk))
+                prevActiveChunkList.Remove(currentChunk);
+        }
+    }
+
+    // 차집합으로 남은 청크들 비활성화
+    foreach (var chunk in prevActiveChunkList)
+    {
+        chunk.IsActive = false;
+    }
+}
+```
+
+이전 프레임에 활성화되었던 청크들이 현재 프레임에는 활성화되지 않은 경우,
+
+해당 청크들을 비활성화 해주기만 하면 된다.
+
+![2021_0329_VoxelSystem_2](https://user-images.githubusercontent.com/42164422/112843745-e3442c00-90dd-11eb-9a2e-d1fd99e09a94.gif)
+
+그러면 이렇게 시야 범위 내에서만 청크들을 활성화 상태로 유지할 수 있다.
+
+<br>
+
+## 최적화
+
+현재 Update()에서 매 프레임마다 시야 범위를 갱신해주고 있는데,
+
+이를 두 가지 방법으로 최적화 해줄 수 있다.
+
+1. 플레이어가 다른 청크로 이동했을 때만 갱신한다.
+
+2. Update()가 아니라 코루틴에서 더 긴 주기마다 갱신한다.
+
+여기서는 일단 1번 방식만 이용하도록 한다.
+
+```cs
+// World.cs
+
+// 플레이어의 이전 프레임 위치
+private ChunkCoord prevPlayerCoord;
+
+// 플레이어의 현재 프레임 위치
+private ChunkCoord currentPlayerCoord;
+
+
+private void Start()
+{
+    InitPositions();
+    //GenerateWorld(); // 필요 X (UpdateChunksInViewRange()에서 수행)
+}
+
+private void Update()
+{
+    currentPlayerCoord = GetChunkCoordFromWorldPos(player.position);
+
+    // 플레이어가 청크 위치를 이동한 경우, 시야 범위 갱신
+    if(!prevPlayerCoord.Equals(currentPlayerCoord))
+        UpdateChunksInViewRange();
+
+    prevPlayerCoord = currentPlayerCoord;
+}
+
+
+// 수정
+private void InitPositions()
+{
+    spawnPosition = new Vector3(
+        VoxelData.WorldSizeInVoxels * 0.5f,
+        VoxelData.ChunkHeight,
+        VoxelData.WorldSizeInVoxels * 0.5f
+    );
+    player.position = spawnPosition;
+
+    prevPlayerCoord = new ChunkCoord(-1, -1);
+    currentPlayerCoord = GetChunkCoordFromWorldPos(player.position);
+}
+```
 
 <br>
 
