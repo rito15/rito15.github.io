@@ -23,23 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="templates" />
+<meta property="og:title" content="파티클 시스템 예제 - 11 - Sword Effect" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Unity Csharp Developer" />
-<meta property="og:description" content="Unity Csharp Developer" />
-<link rel="canonical" href="https://rito15.github.io/tags/templates/" />
-<meta property="og:url" content="https://rito15.github.io/tags/templates/" />
+<meta name="description" content="목차" />
+<meta property="og:description" content="목차" />
+<link rel="canonical" href="https://rito15.github.io/posts/unity-particle-system-example-11-sword-effect/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unity-particle-system-example-11-sword-effect/" />
 <meta property="og:site_name" content="Rito15" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-30T23:23:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="templates" />
+<meta property="twitter:title" content="파티클 시스템 예제 - 11 - Sword Effect" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"templates","description":"Unity Csharp Developer","url":"https://rito15.github.io/tags/templates/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"파티클 시스템 예제 - 11 - Sword Effect","description":"목차","dateModified":"2021-03-30T23:23:00+09:00","datePublished":"2021-03-30T23:23:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-particle-system-example-11-sword-effect/"},"url":"https://rito15.github.io/posts/unity-particle-system-example-11-sword-effect/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>templates | Rito15
+  <title>파티클 시스템 예제 - 11 - Sword Effect | Rito15
   </title>
 
   <!--
@@ -115,9 +117,14 @@
 
 
 
-<link rel="preload" href="/assets/css/category-tag.css" as="style">
-<link rel="stylesheet" href="/assets/css/category-tag.css">
+<link rel="preload" href="/assets/css/post.css" as="style">
+<link rel="stylesheet" href="/assets/css/post.css">
 
+
+  
+    <link rel="preload" as="style" href="/assets/css/lib/bootstrap-toc.min.css">
+    <link rel="stylesheet" href="/assets/css/lib/bootstrap-toc.min.css" />
+  
 
 
 
@@ -140,8 +147,12 @@
 
 
 
-<script async src="/assets/js/page.min.js"></script>
+<script async src="/assets/js/post.min.js"></script>
 
+
+  <!-- MathJax -->
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 
 
@@ -278,22 +289,14 @@
         
         <span>
           <a href="/">
-            Home
-          </a>
-        </span>
-        
-      
-        
-        <span>
-          <a href="/tabs/tags/">
-            Tags
+            Posts
           </a>
         </span>
         
       
 
       
-        <span>templates</span>
+        <span>파티클 시스템 예제 - 11 - Sword Effect</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -301,7 +304,7 @@
     <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
 
     <div id="topbar-title">
-      Tag
+      Post
     </div>
 
     <i id="search-trigger" class="fas fa-search fa-fw"></i>
@@ -344,31 +347,558 @@
 
 
 
+  
+
+  
+
+  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
+  
+  
+
+  
+
+  
+
+
+
 <!-- return -->
 <div class="row">
-  <div class="col-12 col-lg-11 col-xl-8">
-    <div id="page" class="post pb-5 pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4 mb-md-4">
+
+  <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+
+    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+      <h1 data-toc-skip>파티클 시스템 예제 - 11 - Sword Effect</h1>
+
+      <div class="post-meta text-muted d-flex flex-column">
+        <!-- Published date and author -->
+        <div>
+          <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, Mar 30, 2021, 11:23 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar 30
+  
+
+  <i class="unloaded">2021-03-30T23:23:00+09:00</i>
+
+</span>
+          by
+          <span class="author">
+            Rito15
+          </span>
+        </div>
+
+        <div>
+          <!-- lastmod -->
+          
+
+          <!-- read time -->
+          <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1044 words">5 min</span>
+
+
+          <!-- page views -->
+          
+
+        </div>
+
+      </div> <!-- .post-meta -->
+
+      <div class="post-content">
+
+        
+
+        <h1 id="목차">목차</h1>
+<hr />
+
+<ul>
+  <li><a href="#목표">목표</a></li>
+  <li><a href="#준비물">준비물</a></li>
+  <li><a href="#1-하이라키-구성">1. 하이라키 구성</a></li>
+  <li><a href="#2-glow-이펙트">2. Glow 이펙트</a></li>
+  <li><a href="#3-sparkle-이펙트">3. Sparkle 이펙트</a></li>
+  <li><a href="#4-aura-이펙트">4. Aura 이펙트</a></li>
+  <li><a href="#5-결과">5. 결과</a></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="preview">Preview</h1>
+<hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113001565-e1489e80-91ab-11eb-8051-83e7256c89ad.gif" alt="2021_0330_SwordEffect" /></p>
+
+<p><br /></p>
+
+<h1 id="목표">목표</h1>
+<hr />
+
+<ul>
+  <li>검 모델링에 부착하여 사용할 수 있는 이펙트(무기 강화 이펙트) 만들기</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="준비물">준비물</h1>
+<hr />
+
+<ul>
+  <li>검 모델링
+    <ul>
+      <li><a href="https://assetstore.unity.com/packages/3d/props/weapons/free-low-poly-swords-189978">https://assetstore.unity.com/packages/3d/props/weapons/free-low-poly-swords-189978</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<ul>
+  <li>Sparkle, PointGlow 텍스쳐를 사용하는 Additive 마테리얼
+    <ul>
+      <li><a href="https://github.com/rito15/Images/files/6229470/Sparkle_PointGlow.zip">Sparkle_PointGlow.zip</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="1-하이라키-구성">1. 하이라키 구성</h1>
+<hr />
+
+<p>위의 검 모델링 무료 애셋을 사용하는 경우를 예시로 한다.</p>
+
+<ol>
+  <li>
+    <p>우선 [PP_Sword_1039] 프리팹을 하이라키로 드래그하여 가져온다.</p>
+  </li>
+  <li>
+    <p>해당 게임오브젝트를 우클릭하고 [Unpack Prefab]을 클릭한다.</p>
+  </li>
+  <li>
+    <p>다시 게임오브젝트를 우클릭하고 [Effects] - [Particle System]을 클릭한다.</p>
+  </li>
+  <li>
+    <p>추가된 파티클 시스템 게임오브젝트의 이름을 [Enhancement Effect]로 변경한다.</p>
+  </li>
+  <li>
+    <p>[Enhancement Effect] 게임오브젝트의 <code class="language-plaintext highlighter-rouge">Particle System</code> 컴포넌트에서 <code class="language-plaintext highlighter-rouge">Emission</code>, <code class="language-plaintext highlighter-rouge">Shape</code>, <code class="language-plaintext highlighter-rouge">Renderer</code> 모듈을 모두 체크 해제한다.</p>
+  </li>
+</ol>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113035317-14038e80-91ce-11eb-8aaf-bddccf371345.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h1 id="2-glow-이펙트">2. Glow 이펙트</h1>
+<hr />
+
+<p>[Enhancement Effect] 게임오브젝트를 우클릭하고, [Effects] - [Particle System]을 클릭하여 새로운 파티클 시스템 게임오브젝트를 자식으로 추가한다.</p>
+
+<p>그리고 해당 게임오브젝트의 이름을 [Glow]로 변경한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113035614-5cbb4780-91ce-11eb-801e-111a8e5c513f.png" alt="image" /></p>
+
+<p>파티클 시스템에 <code class="language-plaintext highlighter-rouge">Additive_PointGlow</code> 마테리얼을 적용한다.</p>
+
+<p><br /></p>
+
+<h2 id="메인-모듈"><strong>메인 모듈</strong></h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> - [Random Between Two Constants] : (2, 3)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Speed</code> : 0</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Size</code> : 0.5</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Color</code> : 원하는 색상 설정</p>
+  </li>
+  <li>
+    <p>색상 예시(Random Color)</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113044564-c3456300-91d8-11eb-961c-a6982831c216.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="emission-모듈"><strong>Emission 모듈</strong></h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Rate over Lifetime</code> : 48</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="shape-모듈"><strong>Shape 모듈</strong></h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Shape</code> : Mesh</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Type</code> : Triangle</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Mesh</code> : 우측의 ◎를 눌러 검 모델링의 메시 선택</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="color-over-lifetime-모듈"><strong>Color over Lifetime 모듈</strong></h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Color</code> : 알파값이 0 ~ 255 ~ 0으로 변하도록 지정</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113037593-81182380-91d0-11eb-82eb-481e30b81ebe.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="size-over-lifetime-모듈"><strong>Size over Lifetime 모듈</strong></h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Size</code> : 0.0 ~ 1.0으로 증가하는 그래프(기본값)</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113037781-b4f34900-91d0-11eb-8f18-db61bf107d19.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="현재-상태"><strong>현재 상태</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113037352-40200f00-91d0-11eb-893e-669556cd5529.gif" alt="2021_0331_SwordEffect_1" /></p>
+
+<p><br /></p>
+
+<h1 id="3-sparkle-이펙트">3. Sparkle 이펙트</h1>
+<hr />
+
+<p>[Enhancement Effect] 게임오브젝트를 우클릭하고, [Effects] - [Particle System]을 클릭하여 새로운 파티클 시스템 게임오브젝트를 자식으로 추가한다.</p>
+
+<p>그리고 해당 게임오브젝트의 이름을 [Sparkle]로 변경한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113037975-e66c1480-91d0-11eb-88bb-3b63c95b6668.png" alt="image" /></p>
+
+<p>파티클 시스템에 <code class="language-plaintext highlighter-rouge">Additive_Sparkle</code> 마테리얼을 적용한다.</p>
+
+<p><br /></p>
+
+<h2 id="메인-모듈-1"><strong>메인 모듈</strong></h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> - [Random Between Two Constants] : (1, 2)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Speed</code> : 0</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Size</code> - [Random Between Two Constants] : (0.1, 0.5)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Color</code> : 원하는 색상 지정</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Gravity Modifier</code> - [Random Between Two Constants] : (0, -0.05)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="emission-모듈-1"><strong>Emission 모듈</strong></h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Rate over Lifetime</code> : 48</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="shape-모듈-1"><strong>Shape 모듈</strong></h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Shape</code> : Sphere</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Radius</code> : 0.3</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Radius Thickness</code> : 0.3</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Position</code> : (0, 0.5, 0)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Scale</code> : (1, 3, 1)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p>만약 다른 검 모델을 사용하는 경우, 아래처럼 Shape가 검을 완전히 감싸도록 <code class="language-plaintext highlighter-rouge">Radius</code>, <code class="language-plaintext highlighter-rouge">Position</code>, <code class="language-plaintext highlighter-rouge">Scale</code>을 적절히 조절한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113038921-09e38f00-91d2-11eb-9ffd-cf27fd56dab7.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="color-over-lifetime-모듈-1"><strong>Color over Lifetime 모듈</strong></h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Color</code> : 알파값이 0 ~ 255 ~ 0으로 변하도록 지정</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113037593-81182380-91d0-11eb-82eb-481e30b81ebe.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="size-over-lifetime-모듈-1"><strong>Size over Lifetime 모듈</strong></h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Size</code> : 1.0 ~ 0.0으로 감소하는 그래프</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113039266-7068ad00-91d2-11eb-8ed4-be9106b92082.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="현재-상태-1"><strong>현재 상태</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113040146-6eebb480-91d3-11eb-8778-00d17f46305e.gif" alt="2021_0331_SwordEffect_2" /></p>
+
+<p><br /></p>
+
+<h1 id="4-aura-이펙트">4. Aura 이펙트</h1>
+<hr />
+
+<p>[Enhancement Effect] 게임오브젝트를 우클릭하고, [Effects] - [Particle System]을 클릭하여 새로운 파티클 시스템 게임오브젝트를 자식으로 추가한다.</p>
+
+<p>그리고 해당 게임오브젝트의 이름을 [Aura]로 변경한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113040280-96428180-91d3-11eb-9df4-f3f404203473.png" alt="image" /></p>
+
+<p>파티클 시스템에 <code class="language-plaintext highlighter-rouge">Additive_Sparkle</code> 마테리얼을 적용한다.</p>
+
+<p><br /></p>
+
+<h2 id="메인-모듈-2"><strong>메인 모듈</strong></h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> - [Random Between Two Constants] : (3, 5)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Speed</code> : 0</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Size</code> - [Random Between Two Constants] : (0.1, 0.3)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Start Color</code> : A 값을 0으로 지정하여 파티클이 아예 보이지 않도록 한다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="emission-모듈-2"><strong>Emission 모듈</strong></h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Rate over Lifetime</code> : 48</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="shape-모듈-2"><strong>Shape 모듈</strong></h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Radius</code> : 0.3</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Position</code> : (0, -0.1, 0)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Rotaion</code> : (90, 0, 0)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p>다른 검 모델링을 사용할 경우, Circle 형태의 Shape가 손잡이 중간 ~ 위쪽을 감싸도록 <code class="language-plaintext highlighter-rouge">Shape</code> 내의 프로퍼티를 적절히 설정한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113041098-837c7c80-91d4-11eb-8ba2-674415feef5a.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="velocity-over-lifetime-모듈"><strong>Velocity over Lifetime 모듈</strong></h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Linear</code> - [Random Between Two Constants] : (0, 0.5, 0) ~ (0, 1, 0)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Orbital</code> - [Random Between Two Constants] : (0, 1, 0) ~ (0, 3, 0)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Radial</code> - [Random Between Two Constants] : 0 ~ -0.5</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113041348-d22a1680-91d4-11eb-95cd-f986527450d5.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="trails-모듈"><strong>Trails 모듈</strong></h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Inherit Particle Color</code> : 체크 해제</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Color over Lifetime</code> - [Gradient] - 알파값이 0 ~ 255 ~ 0으로 변화하도록 지정</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113041658-2a611880-91d5-11eb-9498-811deaa64dfb.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Color over Trail</code> - [Gradient] - 원하는 색상 지정</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="5-결과">5. 결과</h1>
+<hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/113042543-4b763900-91d6-11eb-89d0-b22a97fa383a.gif" alt="2021_0331_SwordEffect_3" /></p>
+
+
+
+      </div>
+
+      <div class="post-tail-wrapper text-muted">
+
+        <!-- categories -->
+        
+        <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+          
+            <a href='/categories/unity/'>Unity</a>,
+            <a href='/categories/unity-particle-system/'>Unity Particle System</a>
+        </div>
+        
+
+        <!-- tags -->
+        
+        <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          
+          <a href="/tags/unity/"
+            class="post-tag no-text-decoration" >unity</a>
+          
+          <a href="/tags/csharp/"
+            class="post-tag no-text-decoration" >csharp</a>
+          
+          <a href="/tags/particle/"
+            class="post-tag no-text-decoration" >particle</a>
+          
+          </div>
+        
+
+        <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+          
+          <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+          </div>
+          
+
+          <!--
+ Post sharing snippet
+
+ v2.1
+ https://github.com/cotes2020/jekyll-theme-chirpy
+ © 2019 Cotes Chung
+ Published under the MIT License
+-->
+
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
     
-      <div id="page-tag">
-  <h1 class="pl-lg-2">
-    <i class="fa fa-tag fa-fw text-muted"></i>
-    templates
-    <span class="lead text-muted pl-2">1</span>
-  </h1>
-  <ul class="post-content pl-0">
     
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-memo-script-templates/">스크립트 템플릿(Script Templates)</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Jan 29, 2021</span>
-    </li>
-    
-  </ul>
-</div>
 
     
-    </div> <!-- #page -->
-  </div><!-- .col-12 -->
+      
+        <a href="https://twitter.com/intent/tweet?text=파티클 시스템 예제 - 11 - Sword Effect - Rito15&url=https://rito15.github.io/posts/unity-particle-system-example-11-sword-effect/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+    
+      
+        <a href="https://www.facebook.com/sharer/sharer.php?title=파티클 시스템 예제 - 11 - Sword Effect - Rito15&u=https://rito15.github.io/posts/unity-particle-system-example-11-sword-effect/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+    
+      
+        <a href="https://telegram.me/share?text=파티클 시스템 예제 - 11 - Sword Effect - Rito15&url=https://rito15.github.io/posts/unity-particle-system-example-11-sword-effect/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    
+
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+
+  </span>
+</div>
+
+
+        </div><!-- .post-tail-bottom -->
+
+      </div><!-- div.post-tail -->
+
+    </div> <!-- .post -->
+
+
+  </div> <!-- #post-wrapper -->
+
+  
+
+  
 
   <!--
   The Pannel on right side (Desktop views)
@@ -3233,14 +3763,2103 @@
   </div> <!-- .access -->
 
   
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
 
+</div> <!-- .row -->
+
+<div class="row">
+  <div class="col-12 col-lg-11 col-xl-8">
+    <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+    <!--
+ Recommend the other 3 posts according to the tags and categories of the current post,
+ if the number is not enough, use the other latest posts to supplement.
+
+ v2.0
+ https://github.com/cotes2020/jekyll-theme-chirpy
+ © 2019 Cotes Chung
+ Published under the MIT License
+-->
+
+<!-- The total size of related posts  -->
+
+
+<!-- An random integer that bigger than 0  -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy}  -->
+
+
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+<!-- Fill with the other newlest posts  -->
+
+
+
+
+
+
+  <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+    <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3>
+    <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-particle-system-example-09-rainfall/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 23
+  
+
+  <i class="unloaded">2021-03-23T17:10:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>파티클 시스템 예제 - 09 - Rainfall</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목차
+
+
+
+  목표
+  준비물
+  씬 준비
+  1. Rainfall 이펙트
+  2. Splash 이펙트
+  3. Ripple 이펙트
+  4. 결과
+
+
+
+
+Preview
+
+
+[1]
+
+
+
+[2]
+
+
+
+
+
+목표
+
+
+
+  
+    비내리는 이펙트 만들기
+  
+  
+    빗줄기가 바닥에 충돌했을 때 물 튀기는 이펙트, 파문이 번져나가는 이펙트 만들기
+  
+
+...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-particle-system-example-10-magic-circle/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 23
+  
+
+  <i class="unloaded">2021-03-23T17:12:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>파티클 시스템 예제 - 10 - Magic Circle</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목차
+
+
+
+  목표
+  준비물
+  1. Magic Circle 이펙트
+  2. Circle Loop 이펙트
+  3. Dust 이펙트
+  4. Burn 이펙트
+  5. 다양한 연출 효과
+
+
+
+
+Preview
+
+
+
+
+
+
+
+
+목표
+
+
+
+  예쁜 마법진 이펙트 만들기
+  Trail 활용하기
+  Duration, Delay 활용하여 다양한 연출 효과 만들기
+
+...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-particle-system-tutorial-01/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 22
+  
+
+  <i class="unloaded">2021-02-22T15:04:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>파티클 시스템 기초 - 01 - 파티클 시스템 만들기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1. 파티클 시스템 개요
+
+
+
+  
+    주로 유니티 내에서 VFX(Visual Effect)를 표현하는데 사용한다.
+  
+  
+    이름이 ‘파티클’이 아니고 ‘파티클 시스템’인 이유는 마치 시스템처럼 하나의 파티클 시스템이 여러 개의 작은 파티클들을 생성 및 관리하기 때문이다.
+  
+  
+    기본적으로 빈 게임오브젝트에 Particle Sy...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+    </div> <!-- .card-deck -->
+  </div> <!-- #related-posts -->
+
+
+
+    <!--
+  Navigation buttons at the bottom of the post.
+
+  v2.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+
+<div class="post-navigation d-flex justify-content-between">
+  
+  <a href="/posts/memo-cs-static-readonly-vs-const/" class="btn btn-outline-primary">
+    <p>Static Readonly vs. Const</p>
+  </a>
+  
+
+  
+  <span class="btn btn-outline-primary disabled">
+    <p>-</p>
+  </span>
+  
+
 </div>
 
+    
+
+    </div> <!-- #post-extend-wrapper -->
+
+  </div> <!-- .col-* -->
+
+</div> <!-- .row -->
 
 
+
+  <!-- image lazy load: https://github.com/ApoorvSaxena/lozad.js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+
+<script type="text/javascript">
+  const imgs = document.querySelectorAll('.post-content img');
+  const observer = lozad(imgs);
+  observer.observe();
+</script>
 
 
 
@@ -6088,6 +8707,36 @@
 
 
     </div> <!-- #main-wrapper -->
+
+    
+      <!--
+  mermaid-js loader
+-->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(function() {
+    let initTheme = "default";
+
+    if ($("html[mode=dark]").length > 0
+      || ($("html[mode]").length == 0
+        && window.matchMedia("(prefers-color-scheme: dark)").matches ) ) {
+      initTheme = "dark";
+    }
+
+    let mermaidConf = {
+      theme: initTheme  /* <default|dark|forest|neutral> */
+    };
+
+    /* Markdown converts to HTML */
+    $("pre").has("code.language-mermaid").each(function() {
+      let svgCode = $(this).children().html();
+      $(this).addClass("unloaded");
+      $(this).after(`<div class=\"mermaid\">${svgCode}</div>`);
+    });
+
+    mermaid.initialize(mermaidConf);
+  });
+</script>
 
     
 
