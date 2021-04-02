@@ -15,6 +15,8 @@ mermaid: true
 - [2. 청크와 맵 데이터](#2-청크와-맵-데이터)
 - [3. 텍스쳐 입히기](#3-텍스쳐-입히기)
 - [4. 월드에서 청크 생성 및 관리하기](#4-월드에서-청크-생성-및-관리하기)
+- [5. 지형 만들기](#5-지형-만들기)
+- [6. 캐릭터 컨트롤러 만들기](#6-캐릭터-컨트롤러-만들기)
 - [](#)
 
 <br>
@@ -1280,6 +1282,586 @@ private void InitPositions()
     currentPlayerCoord = GetChunkCoordFromWorldPos(player.position);
 }
 ```
+
+<br>
+
+# 5. 지형 만들기
+---
+
+## **펄린 노이즈**
+
+랜덤랜덤한 지형을 만들기 위해서 펄린 노이즈를 이용한다.
+
+펄린 노이즈를 계산할 정적 클래스를 작성한다.
+
+```cs
+// Noise.cs
+
+public static class Noise
+{
+    public static float Get2DPerlin(in Vector2 position, float offset, float scale)
+    {
+        // 각자 0.1을 더해주는 이유 : 버그가 있어서
+        return Mathf.PerlinNoise 
+        (
+            (position.x + 0.1f) / VoxelData.ChunkWidth * scale + offset,
+            (position.y + 0.1f) / VoxelData.ChunkWidth * scale + offset
+        );
+    }
+}
+```
+
+그리고 `World` 클래스에서 이를 이용해 표면을 2가지 블록으로 그려본다.
+
+```cs
+// World class
+
+[Space]
+public int seed;
+
+private void Start()
+{
+    Random.InitState(seed);
+
+    InitPositions();
+}
+
+/// <summary> 해당 위치의 블록 타입 검사</summary>
+public byte GetBlockType(in Vector3 worldPos)
+{
+    // 월드 범위 밖이면 공기
+    if(!IsBlockInWorld(worldPos))
+        return Air;
+    
+    // 높이 0까지는 기반암
+    if(worldPos.y < 1)
+        return Bedrock;
+
+    // 맨 위 표면
+    if (worldPos.y >= VoxelData.ChunkHeight - 1)
+    {
+        float noise = Noise.Get2DPerlin(new Vector2(worldPos.x, worldPos.z), 0f, 0.1f);
+
+        if(noise < 0.5f)
+            return Grass;
+        else
+            return Sand;
+    }
+    // 표면 ~ 기반암 사이 : 돌멩이
+    else
+        return Stone;
+}
+```
+
+![2021_0331_Voxel_Noise](https://user-images.githubusercontent.com/42164422/113118519-831ec880-924a-11eb-88d8-75d498118900.gif)
+
+<br>
+
+## **3D 지형 그리기**
+
+펄린 노이즈로 얻어낸 값을 높이로 사용하여
+
+청크에서 y축 높이가 펄린 노이즈 값과 일치하는 좌표에는 표면을 그리고,
+
+더 높은 경우에는 비워놓고(Air),
+
+더 낮은 경우에는 지반을 그리는 형태로 수정한다.
+
+```cs
+// World class
+
+public byte GetBlockType(in Vector3 worldPos)
+{
+    // NOTE : 모든 값은 0보다 크거나 같기 때문에 Mathf.FloorToInt() 할 필요 없음
+
+    int yPos = (int)worldPos.y;
+
+    /* -----------------------------------------------
+                        Immutable Pass
+    ----------------------------------------------- */
+    // 월드 밖 : 공기
+    if (!IsBlockInWorld(worldPos))
+        return Air;
+            
+    // 높이 0은 기반암
+    if(yPos == 0)
+        return Bedrock;
+
+    /* -----------------------------------------------
+                    Basic Terrain Pass
+    ----------------------------------------------- */
+    // noise : 0.0 ~ 1.0
+    float noise = Noise.Get2DPerlin(new Vector2(worldPos.x, worldPos.z), 500f, 0.25f);
+    float terrainHeight = (int)(VoxelData.ChunkHeight * noise);
+
+    // terrainHeight : 0 ~ VoxelData.ChunkHeight(15)
+
+    // 지면
+    if (yPos == terrainHeight)
+    {
+        return Grass;
+    }
+    // 땅속
+    else if (yPos < terrainHeight)
+    {
+        return Stone;
+    }
+    else
+    {
+        return Air;
+    }
+}
+```
+
+![2021_0331_Voxel_Noise2](https://user-images.githubusercontent.com/42164422/113122024-33da9700-924e-11eb-800e-e0abd1c580ca.gif)
+
+<br>
+
+## **Biome 정의**
+
+지정한 환경 데이터에 따라 지형 분포를 다르게 할 수 있도록, Biome을 정의하고 이를 World 클래스에서 사용하도록 한다.
+
+Biome은 생태계 정도로 해석하면 될 것 같다.
+
+```cs
+/// <summary> 지형 분포 데이터 </summary>
+[CreateAssetMenu(fileName = "BiomeData", menuName = "Voxel System/Biome Attribute")]
+public class BiomeData : ScriptableObject
+{
+    public string biomeName;
+
+    // 이 값 이하의 높이는 모두 solid
+    public int solidGroundHeight;
+
+    // solidGroundHeight로부터 증가할 수 있는 최대 높이값
+    public int terrainHeightRange;
+
+    public float terrainScale;
+
+    /*
+        예시
+
+        solidGroundHeight  = 40;
+        terrainHeightRange = 30;
+
+        => 지형의 최소 높이 : 40, 지형의 최대 높이(고지) : 70
+    */
+}
+
+
+// VoxelData class
+
+// 청크 내의 X, Z 성분 복셀 개수
+public static readonly int ChunkWidth = 16;
+
+// 청크 내의 Y 성분 복셀 개수
+public static readonly int ChunkHeight = 128;
+
+/// <summary> 월드의 각 X, Z 성분 청크 개수 </summary>
+public static readonly int WorldSizeInChunks = 10;
+
+
+// World class
+
+public BiomeData biome;
+
+public byte GetBlockType(in Vector3 worldPos)
+{
+    int yPos = (int)worldPos.y;
+
+    /* -----------------------------------------------
+                        Immutable Pass
+    ----------------------------------------------- */
+    // 월드 밖 : 공기
+    if (!IsBlockInWorld(worldPos))
+        return Air;
+            
+    // 높이 0은 기반암
+    if(yPos == 0)
+        return Bedrock;
+
+    /* -----------------------------------------------
+                    Basic Terrain Pass
+    ----------------------------------------------- */
+    // noise : 0.0 ~ 1.0
+    float noise = Noise.Get2DPerlin(new Vector2(worldPos.x, worldPos.z), 0f, biome.terrainScale);
+
+    // 지형 높이 : solidGroundHeight ~ (solidGroundHeight + terrainHeightRange)
+    float terrainHeight = (int)(biome.terrainHeightRange * noise) + biome.solidGroundHeight;
+
+
+    // 공기
+    if (yPos > terrainHeight)
+    {
+        return Air;
+    }
+
+    // 지면
+    if (yPos == terrainHeight)
+    {
+        return Grass;
+    }
+    // 얕은 땅속
+    else if (terrainHeight - 4 < yPos && yPos < terrainHeight)
+    {
+        return Dirt;
+    }
+    // 깊은 땅속
+    else
+    {
+        return Stone;
+    }
+}
+```
+
+![image](https://user-images.githubusercontent.com/42164422/113137733-e2d39e80-925f-11eb-87f5-3033910e5de6.png)
+
+biome은 기본 값으로 SolidGroundHeight, terrainHeightRange는 42, terrainScale은 0.25로 지정한 상태.
+
+<br>
+
+## **3D 펄린 노이즈**
+
+이제 3D 펄린 노이즈를 구현하고, 이를 이용한다.
+
+3D 노이즈를 이용하면 동굴 등 훨씬 다양한 지형들을 그려낼 수 있다.
+
+```cs
+// Noise class
+
+// Return : isSolid
+public static bool Get3DPerlin(in Vector3 position, float offset, float scale, float threshold)
+{
+    // https://www.youtube.com/watch?v=Aga0TBJkchM&ab_channel=Carlpilot
+
+    float x = (position.x + offset + 0.1f) * scale;
+    float y = (position.y + offset + 0.1f) * scale;
+    float z = (position.z + offset + 0.1f) * scale;
+
+    float AB = Mathf.PerlinNoise(x, y);
+    float BC = Mathf.PerlinNoise(y, z);
+    float CA = Mathf.PerlinNoise(z, x);
+
+    float BA = Mathf.PerlinNoise(y, x);
+    float CB = Mathf.PerlinNoise(z, y);
+    float AC = Mathf.PerlinNoise(x, z);
+
+    return (AB + BC + CA + BA + CB + AC) / 6f > threshold;
+}
+```
+
+그리고 BiomeData에 Lode 배열을 추가한다.
+
+이 배열의 데이터들은 광맥 또는 동굴을 의미하여,
+
+TerrainPass에서 그린 지형을 2차적으로 3D 노이즈를 통해 얻은 값으로 수정하고
+
+지형의 사이사이에 광맥 또는 동굴 지형을 추가해줄 수 있다.
+
+
+```cs
+// BiomeData class
+
+public class BiomeData : ScriptableObject
+{
+    // ...
+
+    public Lode[] lodes;
+}
+
+/// <summary> 광맥 </summary>
+[System.Serializable]
+public class Lode
+{
+    public string loadName;
+    public byte blockID;
+    public int minHeight;
+    public int maxHeight;
+    public float scale;
+    public float threshold;
+    public float noiseOffset;
+}
+
+
+// World class
+
+public byte GetBlockType(in Vector3 worldPos)
+{
+    int yPos = (int)worldPos.y;
+    byte blockType = Air;
+
+    /* --------------------------------------------- *
+     *                Immutable Pass                 *
+     * --------------------------------------------- */
+    // 월드 밖 : 공기
+    if (!IsBlockInWorld(worldPos))
+        return Air;
+            
+    // 높이 0은 기반암
+    if(yPos == 0)
+        return Bedrock;
+
+    /* --------------------------------------------- *
+     *              Basic Terrain Pass               *
+     * --------------------------------------------- */
+    // noise : 0.0 ~ 1.0
+    float noise = Noise.Get2DPerlin(new Vector2(worldPos.x, worldPos.z), 0f, biome.terrainScale);
+
+    // 지형 높이 : solidGroundHeight ~ (solidGroundHeight + terrainHeightRange)
+    float terrainHeight = (int)(biome.terrainHeightRange * noise) + biome.solidGroundHeight;
+
+
+    // 공기
+    if (yPos > terrainHeight)
+    {
+        return Air;
+    }
+
+    // 지면
+    if (yPos == terrainHeight)
+    {
+        blockType = Grass;
+    }
+    // 얕은 땅속
+    else if (terrainHeight - 4 < yPos && yPos < terrainHeight)
+    {
+        blockType = Dirt;
+    }
+    // 깊은 땅속
+    else
+    {
+        blockType = Stone;
+    }
+
+    /* --------------------------------------------- *
+     *              Second Terrain Pass              *
+     * --------------------------------------------- */
+
+    if (blockType == Stone)
+    {
+        foreach (var lode in biome.lodes)
+        {
+            if (lode.minHeight < yPos && yPos < lode.maxHeight)
+            {
+                if (Noise.Get3DPerlin(worldPos, lode.noiseOffset, lode.scale, lode.threshold))
+                {
+                    blockType = lode.blockID;
+                }
+            }
+        }
+    }
+
+    return blockType;
+}
+```
+
+![image](https://user-images.githubusercontent.com/42164422/113143261-e61e5880-9266-11eb-88ec-cbe28377aae3.png)
+
+![image](https://user-images.githubusercontent.com/42164422/113143213-dc94f080-9266-11eb-995d-741fde80bf9d.png)
+
+<br>
+
+# 6. 캐릭터 컨트롤러 만들기
+---
+
+만약 모든 청크에 Mesh Collider를 사용한다면, 메시가 수정될 때마다 다시 전체를 계산해서 그려져야 하므로 굉장히 비싼 연산이 될 것이다.
+
+따라서 유니티의 물리 엔진을 사용하지 않고, 복셀 월드 내에서만 사용될 수 있는 물리 계산을 직접 하여 캐릭터 컨트롤러를 구현할 것이다.
+
+<br>
+
+## **초기 세팅**
+
+(0, 0, 0)에 위치한 게임오브젝트를 만들고 이름을 [Player]로 변경한다.
+
+그리고 카메라 게임오브젝트를 [Player]의 자식으로 넣고 위치를 (0, 1.8, 0)으로 변경한다.
+
+[World] 게임오브젝트에 있는 `World` 컴포넌트의 `Player` 필드에 [Player]를 넣어준다.
+
+새로운 스크립트를 생성하고 이름을 `Player`로 지정한다.
+
+<br>
+
+## **Player 클래스 작성**
+
+간단히 키보드에 의한 이동, 마우스에 의한 회전을 할 수 있으며 중력이 적용되는 플레이어 클래스를 작성한다.
+
+```cs
+public class Player : MonoBehaviour
+{
+    /***********************************************************************
+    *                               Inspector Fields
+    ***********************************************************************/
+    #region .
+    [SerializeField] World world;
+
+    [Range(1f, 10f)]
+    [SerializeField] private float walkSpeed = 5f;
+
+    [Range(-20, -9.8f)]
+    [SerializeField] private float gravity = -9.8f;
+
+    #endregion
+    /***********************************************************************
+    *                               Private Reference Fields
+    ***********************************************************************/
+    #region .
+    private Transform camTr;
+
+    #endregion
+    /***********************************************************************
+    *                               Private Fields
+    ***********************************************************************/
+    #region .
+    private float h;
+    private float v;
+    private float mouseX;
+    private float mouseY;
+    private float deltaTime;
+
+    private Vector3 velocity;
+
+    #endregion
+    /***********************************************************************
+    *                               Unity Events
+    ***********************************************************************/
+    #region .
+    private void Awake()
+    {
+        Init();
+    }
+
+    private void Update()
+    {
+        deltaTime = Time.deltaTime;
+        GetPlayerInputs();
+        CalculateVelocity();
+        MoveAndRotate();
+    }
+
+    #endregion
+    /***********************************************************************
+    *                               Private Methods
+    ***********************************************************************/
+    #region .
+    private void Init()
+    {
+        var cam = GetComponentInChildren<Camera>();
+        camTr = cam.transform;
+    }
+
+    private void GetPlayerInputs()
+    {
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
+        mouseX = Input.GetAxis("Mouse X");
+        mouseY = Input.GetAxis("Mouse Y");
+    }
+
+    private void CalculateVelocity()
+    {
+        velocity = ((transform.forward * v) + (transform.right * h)) * deltaTime * walkSpeed;
+        velocity += Vector3.up * CalculateDownSpeedAndSetGroundState(gravity * deltaTime); // 중력 적용
+    }
+
+    private void MoveAndRotate()
+    {
+        // Rotate
+        transform.Rotate(Vector3.up * mouseX);
+        camTr.Rotate(Vector3.right * -mouseY);
+
+        // Move
+        transform.Translate(velocity, Space.World);
+    }
+
+    #endregion
+}
+```
+
+이 상태에서는 이동 및 회전을 할 수 있지만 바닥을 인식할 수 없어 무한정 아래로 떨어지게 된다.
+
+<br>
+
+## **바닥 인식하기(-Y방향 충돌 구현)**
+
+다음 필드들을 추가한다.
+
+```cs
+private float playerWidth = 0.3f;       // 플레이어의 XZ 반지름
+private float boundsTolerance = 0.3f;
+private float verticalMomentum = 0f;
+
+private bool isGrounded = false;
+private bool isJumping = false;
+private bool isRunning = false;
+private bool jumpRequested = false;
+```
+
+그리고 바닥을 인식하도록 메소드를 작성한다.
+
+```cs
+/// <summary> -Y 방향의 속력을 계산하고 isGrounded 초기화 </summary>
+private float CalculateDownSpeedAndSetGroundState(float yVelocity)
+{
+    // playerWidth * 2를 변의 길이로 하는 XZ 평면 정사각형의 네 꼭짓점에서 하단으로 grounded 체크
+    // gounded 체크가 플레이어 회전의 영향을 받지 않도록, transform 로컬벡터가 아니라 월드벡터 기준으로 검사
+    // 즉, 플레이어가 회전해도 큐브 모양의 콜라이더가 회전하지 않는 효과
+
+    Vector3 pos = transform.position;
+
+    isGrounded = 
+        world.IsBlockSolid(new Vector3(pos.x - playerWidth, pos.y + yVelocity, pos.z - playerWidth)) ||
+        world.IsBlockSolid(new Vector3(pos.x + playerWidth, pos.y + yVelocity, pos.z - playerWidth)) ||
+        world.IsBlockSolid(new Vector3(pos.x + playerWidth, pos.y + yVelocity, pos.z + playerWidth)) ||
+        world.IsBlockSolid(new Vector3(pos.x - playerWidth, pos.y + yVelocity, pos.z + playerWidth));
+
+    return isGrounded ? 0 : yVelocity;
+}
+
+private void CalculateVelocity()
+{
+    velocity = ((transform.forward * v) + (transform.right * h)) * deltaTime * walkSpeed;
+    velocity += Vector3.up * CalculateDownSpeedAndSetGroundState(gravity * deltaTime); // 중력 적용, 바닥 인식
+}
+```
+
+원리는 간단하다.
+
+![image](https://user-images.githubusercontent.com/42164422/113419545-9f656580-9402-11eb-8be0-97b42b68dc87.png)
+
+이렇게 캐릭터의 콜라이더 하단 사각형의 각 꼭짓점에서 이번 프레임에 이동할 Y축 거리를 각각 우선 이동하여, 해당 위치 중 하나라도 Solid이면 Y축 이동속도를 0으로 만드는 것이다.
+
+<br>
+
+## **XZ평면 충돌 구현**
+
+콜라이더의 XZ 평면 사각형이 캐릭터를 따라 항상 회전하도록 구현하려면 선분 교차 알고리즘을 이용해야 하며,
+
+벽에 닿은 상태에서 캐릭터가 회전하면 콜라이더가 지형과 겹쳐버리기 때문에 2차적인 처리가 필요해진다.
+
+따라서 다른 대안으로는 콜라이더를 원형으로 구현하거나 회전하지 않는 사각형으로 구현하는 방법이 있다.
+
+이미 -Y 충돌 구현에서 회전하지 않는 사각형으로 콜라이더의 바닥면을 구현했기 때문에, XZ평면 충돌 역시 회전하지 않는 사각형으로 구현한다.
+
+그리고 충돌 검사 중 가장 단순하고 저렴하다는 장점이 있다.
+
+
+
+TODO : 튜토리얼 06 - 44:36 ==> position + a 로 바로 더해서 검사하는 점, +y(0), +y(1) 밖에 검사 안한다는 점 수정해야 함 ..... 너무 단순하고 허점 많은 검사..
+
+
+
+검사하려는 XZ 4방향으로 예를 들어 +X 방향이면 ZY 평면의 네 꼭지점에서 +X 방향으로 전진시켜, 교차할 수 있는 최대 4개(Z는 0.6 길이이므로 최대 2개 교차 * Y는 1.999 길이로  최대 2개 교차(하단 시작점 좌표가 .0이므로))의 큐브 Solid 상태 검사하여 4개 중 하나라도 Solid이면 X방향 속도 0으로 만들기
+
+
+
+TODO : 콜라이더 육면체 기즈모로 표시
+
+
+
+<br>
+
+
 
 <br>
 

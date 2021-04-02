@@ -50,10 +50,15 @@ using UniRx.Triggers;
 
 ## 기본 작동 방식
  - Observable 객체를 만들거나, 대상을 Observable로 변환하여 스트림을 생성한다.
+
  - 다양한 연산자를 통해 스트림을 가공한다.
+
  - 스트림을 구독(Subscribe)한다.<br>
-   (IObservable -> IDisposable로 변환됨)
+   - IObservable -> IDisposable로 변환된다.
+   - 여기에 Dispose()를 호출하여 간단히 구독을 종료할 수 있다.
+
  - 스트림의 변화가 감지될 때 옵저버에게 OnNext() 메시지가 전달된다.
+
  - 스트림이 종료될 때 OnCompleted() 메시지가 전달된다.
 
 <br>
@@ -103,6 +108,24 @@ using UniRx.Triggers;
 
 
 ## 3. Subject<T>
+
+- Subject<T>는 델리게이트 또는 이벤트처럼 사용될 수 있다.
+
+- 하지만 스트림의 다양한 연산자를 활용할 수 있으므로, 이벤트의 상위호환이라고 할 수 있다.
+
+```cs
+Subject<string> strSubject = new Subject<string>();
+
+strSubject.Subscribe(str => Debug.Log("Next : " + str));
+strSubject
+    .DelayFrame(10)
+    .Subscribe(str => Debug.Log("Delayed Next : " + str));
+
+strSubject.OnNext("A"); // OnNext()는 이벤트의 Invoke()와 같은 역할
+strSubject.OnNext("B");
+
+strSubject.OnCompleted(); // 스트림 종료
+```
 
 
 ## 4. ReactiveProperty<T>

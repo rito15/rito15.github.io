@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="UniRx (Reactive Extensions for Unity)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"UniRx (Reactive Extensions for Unity)","description":"개요","dateModified":"2021-03-16T04:16:36+09:00","datePublished":"2021-03-06T20:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-unirx/"},"url":"https://rito15.github.io/posts/unity-study-unirx/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"개요","datePublished":"2021-03-06T20:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-unirx/"},"url":"https://rito15.github.io/posts/unity-study-unirx/","author":{"@type":"Person","name":"Rito15"},"headline":"UniRx (Reactive Extensions for Unity)","dateModified":"2021-03-16T04:16:36+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2535 words">14 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2673 words">14 min</span>
 
 
           <!-- page views -->
@@ -497,11 +497,21 @@
 
 <h2 id="기본-작동-방식">기본 작동 방식</h2>
 <ul>
-  <li>Observable 객체를 만들거나, 대상을 Observable로 변환하여 스트림을 생성한다.</li>
-  <li>다양한 연산자를 통해 스트림을 가공한다.</li>
+  <li>
+    <p>Observable 객체를 만들거나, 대상을 Observable로 변환하여 스트림을 생성한다.</p>
+  </li>
+  <li>
+    <p>다양한 연산자를 통해 스트림을 가공한다.</p>
+  </li>
   <li>스트림을 구독(Subscribe)한다.<br />
-(IObservable -&gt; IDisposable로 변환됨)</li>
-  <li>스트림의 변화가 감지될 때 옵저버에게 OnNext() 메시지가 전달된다.</li>
+    <ul>
+      <li>IObservable -&gt; IDisposable로 변환된다.</li>
+      <li>여기에 Dispose()를 호출하여 간단히 구독을 종료할 수 있다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>스트림의 변화가 감지될 때 옵저버에게 OnNext() 메시지가 전달된다.</p>
+  </li>
   <li>스트림이 종료될 때 OnCompleted() 메시지가 전달된다.</li>
 </ul>
 
@@ -561,6 +571,39 @@
 <h2 id="2-unirxtriggers">2. UniRx.Triggers</h2>
 
 <h2 id="3-subject">3. Subject<T></T></h2>
+
+<ul>
+  <li>
+    <p>Subject<T>는 델리게이트 또는 이벤트처럼 사용될 수 있다.</T></p>
+  </li>
+  <li>
+    <p>하지만 스트림의 다양한 연산자를 활용할 수 있으므로, 이벤트의 상위호환이라고 할 수 있다.</p>
+  </li>
+</ul>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="n">Subject</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">strSubject</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Subject</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
+
+<span class="n">strSubject</span><span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">str</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Next : "</span> <span class="p">+</span> <span class="n">str</span><span class="p">));</span>
+<span class="n">strSubject</span>
+    <span class="p">.</span><span class="nf">DelayFrame</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">str</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Delayed Next : "</span> <span class="p">+</span> <span class="n">str</span><span class="p">));</span>
+
+<span class="n">strSubject</span><span class="p">.</span><span class="nf">OnNext</span><span class="p">(</span><span class="s">"A"</span><span class="p">);</span> <span class="c1">// OnNext()는 이벤트의 Invoke()와 같은 역할</span>
+<span class="n">strSubject</span><span class="p">.</span><span class="nf">OnNext</span><span class="p">(</span><span class="s">"B"</span><span class="p">);</span>
+
+<span class="n">strSubject</span><span class="p">.</span><span class="nf">OnCompleted</span><span class="p">();</span> <span class="c1">// 스트림 종료</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 <h2 id="4-reactiveproperty">4. ReactiveProperty<T></T></h2>
 
