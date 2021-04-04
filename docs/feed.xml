@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-04-03T01:45:09+09:00</updated>
+  <updated>2021-04-04T23:06:13+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,71 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티의 멀티스레딩과 Job의 활용</title>
+    <link href="https://rito15.github.io/posts/unity-study-multithread-job/" rel="alternate" type="text/html" title="유니티의 멀티스레딩과 Job의 활용" />
+    <published>2021-04-04T22:00:00+09:00</published>
+  
+    <updated>2021-04-04T22:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-study-multithread-job/</id>
+    <content src="https://rito15.github.io/posts/unity-study-multithread-job/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      유니티에서의 멀티스레딩
+
+유니티엔진에서는 기본적으로 모든 CPU 연산이 메인 스레드에서 이루어진다.
+
+그렇다고 다중 스레드를 사용할 수 없다는 것은 아니지만
+
+메인 스레드가 아닌 다른 스레드에서 유니티의 메인 로직에 접근할 수 없도록 막혀있다.
+
+다시 말해, 다른 스레드에서는 게임오브젝트, 컴포넌트 등에 접근하면 에러가 발생한다.
+
+예를 들어
+
+private async void TaskTest()
+{
+    await Task.Run(() =&amp;gt;
+    {
+        transform.Translate(1f, 0f, 0f);
+    });
+}
+
+
+이런 메소드를 실행하면
+
+
+
+이런 에러를 만날 수 있다.
+
+
+
+따라서 다른 스레드에서 유니티 메인 로직에 접근해야 한다면 MainThreadDispat...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -199,7 +264,7 @@ Const
     <link href="https://rito15.github.io/posts/unity-study-voxel/" rel="alternate" type="text/html" title="Voxel System(유니티에서 마인크래프트 구현하기)" />
     <published>2021-03-26T20:40:00+09:00</published>
   
-    <updated>2021-03-29T22:55:18+09:00</updated>
+    <updated>2021-04-03T03:04:19+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-study-voxel/</id>
     <content src="https://rito15.github.io/posts/unity-study-voxel/" />
@@ -320,88 +385,6 @@ public static bool IsPrime(int value)
 
     // 제곱근보다 작은 홀수들을 순회하여, 약수가 존재하면 소수가 아님
     for (int i = 3; i &amp;lt;...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Cloaking(Refraction)</title>
-    <link href="https://rito15.github.io/posts/unity-urp-sg-cloaking/" rel="alternate" type="text/html" title="Cloaking(Refraction)" />
-    <published>2021-03-25T20:40:00+09:00</published>
-  
-    <updated>2021-03-25T20:40:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-urp-sg-cloaking/</id>
-    <content src="https://rito15.github.io/posts/unity-urp-sg-cloaking/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="URP Shader Graph" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-
-  
-    뒤의 풍경을 왜곡시켜 보여주는 클로킹 쉐이더
-  
-  
-    Render Pipeline Asset에서 Opaque Texture에 체크해야 한다.
-  
-  
-    Opaque Texture를 사용할 때는 쉐이더그래프의 마스터 노드 Surface를 Transparent로 설정해야 한다.
-  
-
-
-Preview
-
-
-
-
-
-
-Options
-
-
-
-  
-    
-      프로퍼티
-      설명
-    
-  
-  
-    
-      Normal Map
-      노멀맵 텍스쳐(없을 경우 기본 노멀 벡터 사용)
-    
-    
-      Refraction
-      왜곡 강도
-    
-    
-      Fresnel Color
-      프레넬 색상
-    
-    
-...
     </summary>
   
 
