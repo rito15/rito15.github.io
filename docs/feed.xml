@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-04-06T21:26:13+09:00</updated>
+  <updated>2021-04-09T21:02:57+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,90 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Quick Sort(빠른 정렬)</title>
+    <link href="https://rito15.github.io/posts/algorithm-quick-sort/" rel="alternate" type="text/html" title="Quick Sort(빠른 정렬)" />
+    <published>2021-04-07T22:00:00+09:00</published>
+  
+    <updated>2021-04-07T22:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/algorithm-quick-sort/</id>
+    <content src="https://rito15.github.io/posts/algorithm-quick-sort/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Algorithm" />
+    
+    <category term="Sort Algorithm" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  
+    
+      시간복잡도
+      평균 \(O(n log n)\), 최악 \(O(n^2)\)
+    
+    
+      공간복잡도
+      \(O(n)\)
+    
+    
+      정렬 특징
+      불안정 정렬
+    
+  
+
+
+특징
+
+  분할 정복
+  재귀
+
+
+
+
+Details
+
+
+메소드 구성
+
+QuickSort(arr, left, right)
+
+  배열의 left ~ right 인덱스 내에서만 정렬을 수행한다.
+
+
+Partition(arr, left, right)
+
+  배열의 left ~ right 인덱스 내에서 피벗을 선정한다.
+  내부적으로 정렬을 수행하고, 피벗의 인덱스를 리턴한다.
+
+
+
+
+정렬 과정
+
+[1] QuickSort(arr, 0, arr.L...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -314,82 +398,6 @@ Const
   
   
     어셈블리가 나뉘었을 때(const 필드가 존...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Voxel System(유니티에서 마인크래프트 구현하기)</title>
-    <link href="https://rito15.github.io/posts/unity-study-voxel/" rel="alternate" type="text/html" title="Voxel System(유니티에서 마인크래프트 구현하기)" />
-    <published>2021-03-26T20:40:00+09:00</published>
-  
-    <updated>2021-04-03T03:04:19+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-study-voxel/</id>
-    <content src="https://rito15.github.io/posts/unity-study-voxel/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목차
-
-
-  목표
-  1. 복셀 기본
-  2. 청크와 맵 데이터
-  3. 텍스쳐 입히기
-  4. 월드에서 청크 생성 및 관리하기
-  5. 지형 만들기
-  6. 캐릭터 컨트롤러 만들기
-  
-
-
-
-
-목표
-
-
-
-  유튜브 강좌를 따라가며 구현한다.
-
-
-
-
-유니티엔진에서 마인크래프트와 같은 복셀 시스템을 구현한다.
-
-모든 맵과 사물은 큐브 형태를 띠고 있으며, 생성하거나 파괴할 수 있다.
-
-각각의 큐브를 개별 오브젝트로 렌더링할 경우 부하가 굉장히 크기 때문에,
-
-일정 영역의 큐브들을 모아 하나의 청크(Chunk)이자 하나의 메시로 관리하는 것이 핵심이다.
-
-
-
-1. 복셀 기본
-
-
-큐브의 정점 데이터 정의
-
-
-  복셀 시스템에서 사용하기 위해, 육면체 내에서 각 정점들의 인덱스 순서와 상대 위치를 미리 약속된...
     </summary>
   
 

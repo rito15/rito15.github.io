@@ -367,6 +367,93 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/memo-cs-fileio/">C# 파일 입출력</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        간단 정리
+
+
+파일에 쓰려면
+
+  대상이 string, string[], byte[] 타입 중 하나여야 한다.
+  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
+
+
+한 파일에 대한 연속 입출력 횟수에 따라
+
+  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
+  여러 번에 걸쳐 읽거나 쓰려면 스트림 ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Jan 28, 2021,  9:10 PM +0900"
+  >
+
+  
+  
+
+  
+    Jan 28
+  
+
+  <i class="unloaded">2021-01-28T21:10:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1189 words">6 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/opengl-study-01/">OpenGL 공부 - 01 - 시작</a>
     </h1>
 
@@ -1210,103 +1297,6 @@ How To Use
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/urp-unlit-custom-lit/">Unlit 쉐이더그래프로 만드는 Custom Lit 쉐이더</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  URP 쉐이더그래프 중 Unlit 그래프를 이용해 직접 Lit 쉐이더 만들기
-
-
-
-
-1. Diffuse 구현
-
-
-
-  커스텀 함수를 이용하여 메인라이트의 방향, 색상, 감쇠를 얻어낸다.
-
-
-
-
-Custom_Mainlight.hlsl
-
-
-  
-    void MainLight_half(float3 WorldPos, out half3 Dir...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sat, Jan 16, 2021, 10:14 PM +0900"
-  >
-
-  
-  
-
-  
-    Jan 16
-  
-
-  <i class="unloaded">2021-01-16T22:14:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="567 words">3 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1552,6 +1542,23 @@ Custom_Mainlight.hlsl
       <!-- show number -->
       <li class="page-item ">
         <a class="page-link btn-box-shadow" href="/page14/">14</a>
+      </li>
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      <!-- show number -->
+      <li class="page-item ">
+        <a class="page-link btn-box-shadow" href="/page15/">15</a>
       </li>
     
 

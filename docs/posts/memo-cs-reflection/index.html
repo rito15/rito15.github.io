@@ -4499,6 +4499,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5580,7 +5593,7 @@ public class CustomAttribute : System.Attribute
       
       
       <div class="card">
-        <a href="/posts/memo-cs-enum/">
+        <a href="/posts/memo-cs-prime-number/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -5597,13 +5610,13 @@ public class CustomAttribute : System.Attribute
   
 
   
-    Feb 28
+    Mar 26
   
 
-  <i class="unloaded">2021-02-28T04:00:00+09:00</i>
+  <i class="unloaded">2021-03-26T18:12:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Enum 관련 메모</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Prime Number(소수)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -5612,28 +5625,38 @@ public class CustomAttribute : System.Attribute
 
 
 
-                enum의 모든 요소를 배열로 가져오기
-
-1
-2
-3
-enum MyEnum { A, B }
-
-Array allValues = Enum.GetValues(typeof(MyEnum));
+                Memo
 
 
-
-
-enum의 마지막 요소 가져오기
+1. 소수인지 확인하기
 
 1
 2
 3
 4
-// System.Linq;
-
-MyEnum last = 
-    Enum.GetValues(typeof(EditorW...
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+/// &lt;summary&gt; 지정한 수가 소수인지 확인 &lt;/summary&gt;
+public static bool IsPrime(int value)
+{
+    bool isEvenNumber = ...
               </p>
             </div>
           </div>

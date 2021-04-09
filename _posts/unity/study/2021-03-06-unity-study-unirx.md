@@ -103,11 +103,69 @@ using UniRx.Triggers;
 
 ## 1. Observable 팩토리 메소드
 
+<details>
+<summary markdown="span"> 
+
+</summary>
+
+- 미리 만들어져 있는 기능들을 이용해 빠르게 스트림을 생성할 수 있다.
+
+- [참고 : Wiki](https://github.com/neuecc/UniRx/wiki/UniRx#observable)
+
+```cs
+// 매 프레임마다 OnNext()
+Observable.EveryUpdate()
+    .Subscribe(_ => Debug.Log("Every Update"));
+
+// 5부터 14까지 10번 OnNext()
+Observable.Range(5, 10)
+    .Subscribe(x => Debug.Log($"Range : {x}"));
+
+// 1초마다 OnNext()
+Observable.Interval(TimeSpan.FromSeconds(1))
+    .Subscribe(_ => Debug.Log("Interval"));
+
+// 2초 후 OnNext()
+Observable.Timer(TimeSpan.FromSeconds(2))
+    .Subscribe(_ => Debug.Log("Timer"));
+```
+
+</details>
+
+<br>
 
 ## 2. UniRx.Triggers
 
+<details>
+<summary markdown="span"> 
+
+</summary>
+
+- `using UniRx.Triggers;` 필요
+
+- 유니티의 모노비헤이비어 콜백 메소드들을 스트림으로 빠르게 변환하여 사용할 수 있다.
+
+- 이를 활용하여 콜백 메소드를 완전히 대체할 수 있다.
+
+- [참고 : UniRx.Triggers 위키](https://github.com/neuecc/UniRx/wiki/UniRx.Triggers)
+
+```cs
+// 필드 값을 매 프레임 조건 없이 출력
+this.UpdateAsObservable()
+    .Select(_ => this._intValue)
+    .Subscribe(x => Debug.Log(x));
+```
+
+</details>
+
+<br>
 
 ## 3. Subject<T>
+
+<details>
+<summary markdown="span"> 
+
+</summary>
 
 - Subject<T>는 델리게이트 또는 이벤트처럼 사용될 수 있다.
 
@@ -127,19 +185,148 @@ strSubject.OnNext("B");
 strSubject.OnCompleted(); // 스트림 종료
 ```
 
+</details>
+
+<br>
 
 ## 4. ReactiveProperty<T>
 
+<details>
+<summary markdown="span"> 
+
+</summary>
+
+- 값이 초기화될 때마다 스트림에 `OnNext(T)` 메시지가 전달된다.
+
 - 인스펙터에 표시하려면 `IntReactiveProperty`처럼 ~ReactiveProperty를 사용한다.
 
+```cs
+private ReactiveProperty<int> _intProperty = new ReactiveProperty<int>();
+private IntReactiveProperty _intProperty2 = new IntReactiveProperty();
 
-## 5. 이벤트를 변환
+private void TestReactiveProperties()
+{
+    // 값 초기화할 때마다 OnNext(int)
+    _intProperty
+        .Subscribe(x => Debug.Log(x));
 
+    // 5의 배수인 값이 초기화될 때마다 값을 10배로 증가시켜 OnNext(int)
+    _intProperty
+        .Where(x => x % 5 == 0)
+        .Select(x => x * 10)
+        .Subscribe(x => Debug.Log(x));
 
+    for(int i = 0; i <= 5; i++)
+        _intProperty.Value = i;
+}
+```
 
-## 6. 코루틴을 변환
+</details>
 
+<br>
 
+## 5. 이벤트를 스트림으로 변환
+
+<details>
+<summary markdown="span"> 
+
+</summary>
+
+- C#의 이벤트는 스트림으로 변환할 수 없다.
+
+- UnityEvent 타입은 스트림으로 변환할 수 있다.
+
+- UGUI의 이벤트들 역시 스트림으로 변환할 수 있다.
+
+```cs
+private UnityEngine.Events.UnityEvent MyEvent;
+
+private void EventToStream()
+{
+    MyEvent = new UnityEngine.Events.UnityEvent();
+
+    MyEvent
+        .AsObservable()
+        .Subscribe(_ => Debug.Log("Event Call"));
+
+    MyEvent.Invoke();
+    MyEvent.Invoke();
+}
+```
+
+</details>
+
+<br>
+
+## 6. 코루틴을 스트림으로 변환
+
+<details>
+<summary markdown="span"> 
+
+</summary>
+
+- 코루틴을 스트림으로 변환하여 사용할 수 있다.
+
+- `Coroutine().ToObservable()` 또는 `Observable.FromCoroutine(Coroutine))`
+
+- `Subscribe()`를 호출하는 순간 코루틴이 시작된다.
+
+<br>
+
+### **[1] 코루틴 단순 변환**
+
+- 코루틴이 종료되는 순간 `OnNext()`, `OnCompleted()`가 호출된다.
+
+<br>
+
+### **[2] 코루틴으로부터 리턴값 전달받기**
+
+- `Observable.FromCoroutineValue<T>`를 통해 코루틴으로부터 리턴 값을 받아 사용할 수 있다.
+
+- 지정한 `T` 타입으로 값을 넘기면 `OnNext(T)`의 인자로 들어오며, `OnNext(T)`가 호출된다.
+
+- 다른 타입으로 값을 넘기면 `InvalidCastException`이 발생한다.
+
+- `WaitForSeconds()`, `null` 등을 리턴할 때는 `OnNext(T)`를 호출하지 않고, 프레임을 넘기는 역할만 수행한다.
+
+- 비동기 수행 후 값을 리턴받아 특정 동작을 수행해야 할 때 아주 유용할듯
+
+```cs
+private void CoroutineToStream()
+{
+    // 코루틴 변환 방법 1
+    TestRoutine()
+        .ToObservable()
+        .Subscribe(_ => Debug.Log("Next 1"), () => Debug.Log("Completed 1"));
+
+    // 코루틴 변환 방법 2
+    Observable.FromCoroutine(TestRoutine)
+        .Subscribe(_ => Debug.Log("Next 2"));
+
+    // 코루틴에서 정수형 yield return 값 받아 사용하기
+    // WaitForSeconds, null 등은 무시하며
+    // 값을 리턴하는 경우 OnNext()의 인자로 들어온다.
+    // 타입이 다른 값을 리턴하는 경우에는 InvalidCastException 발생
+    Observable.FromCoroutineValue<int>(TestRoutine)
+        .Subscribe(x => Debug.Log("Next : " + x), () => Debug.Log("Completed 3"));
+}
+
+private IEnumerator TestRoutine()
+{
+    Debug.Log("TestRoutine - 1");
+    yield return new WaitForSeconds(1.0f);
+
+    Debug.Log("TestRoutine - 2");
+    yield return Time.frameCount; // 여기부터
+    yield return 123;
+    yield return Time.frameCount; // 여기까지 같은 프레임
+    yield return null;
+    yield return Time.frameCount; // 프레임 넘어감
+    yield return 12.3;            // InvalidCastException
+}
+```
+
+</details>
 
 <br>
 
@@ -151,25 +338,26 @@ strSubject.OnCompleted(); // 스트림 종료
 스트림의 종료에 영향을 주는 필터
 </summary>
 
-### `IObservable.TakeWhile(_ => bool)`
- - 지정한 값이 참일 경우에만 스트림 동작
- - 스트림에 OnNext()가 발생하는 순간에만 확인
- - 스트림에 OnNext()가 발생하여 확인했는데 지정한 값이 false이면 스트림 종료(+ OnCompleted() 전달)
+### `Take(int)`
+ - 지정한 갯수의 메시지만 전달하고 종료한다.
 
-### `IObservable.TakeUntil(IObservable<Unit>)`
- - 매개변수로 등록한 다른 Observable의 이벤트가 발생하기 전까지만 통지
- - 매개변수의 이벤트가 발생하면 스트림 종료, OnCompleted()
+### `TakeWhile(_ => bool)`
+ - OnNext()가 발생했을 때 지정한 조건이 참이면 메시지를 전달하고, 거짓이면 스트림을 종료한다.
 
-### `IObservable.TakeUntilDisable(Component)`
- - 지정한 컴포넌트의 게임오브젝트가 비활성화되는 순간 스트림 종료, OnCompleted()
+### `TakeUntil(IObservable)`
+ - 매개변수로 등록한 다른 스트림의 이벤트가 발생하기 전까지만 메시지를 전달한다.
+ - 매개변수의 이벤트가 발생하면 스트림을 종료한다. (OnCompleted())
 
-### `IObservable.TakeUntilDestroy(Component)`
- - 지정한 컴포넌트의 게임오브젝트가 비활성화되는 순간 스트림 종료, OnCompleted()
+### `TakeUntilDisable(Component)`
+ - 지정한 컴포넌트의 게임오브젝트가 비활성화되는 순간 스트림을 종료한다.
+
+### `TakeUntilDestroy(Component)`
+ - 지정한 컴포넌트의 게임오브젝트가 파괴되는 순간 스트림을 종료한다.
 
 ### `IDisposable.AddTo()`
  - 매개변수는 GameObject, Component, IDisposable
  - 대상 게임오브젝트가 파괴되거나 IDisposable.Dispose()를 호출한 경우, 함께 스트림 종료
- - OnCompleted()을 호출하지 않으므로 주의.
+ - OnCompleted()을 호출하지 않으므로 주의한다.
 
 </details>
 
@@ -182,13 +370,35 @@ strSubject.OnCompleted(); // 스트림 종료
 </summary>
 
 ### `Where(_ => bool)`
- - 조건이 true인 메시지만 통과
+ - 조건이 true인 메시지만 통과시킨다.
 
 ### `Distinct()`
  - 기존에 OnNext()로 통지한 적 있는 값은 더이상 통지하지 않는다.
 
 ### `DistinctUntilChanged()`
- - 값이 변화할 때만 통지
+ - 값이 변화할 때만 메시지를 전달한다.
+
+### `Throttle(TimeSpan.~)`
+ - 마지막 메시지로부터 지정한 시간만큼 추가적인 메시지가 발생하지 않으면 전달한다.
+ - 메시지가 들어올 때마다 지정한 시간을 새롭게 체크하므로, 마지막 메시지로부터 실제 전달까지 지정한 시간만큼의 지연시간이 발생한다.
+
+### `ThrottleFrame(int)`
+ - 마지막 메시지로부터 지정한 프레임만큼 추가적인 메시지가 발생하지 않으면 전달한다.
+
+### `ThrottleFirst(TimeSpan.~)`
+ - 메시지를 받으면 지정한 시간 동안 들어오는 메시지들을 모두 무시한다.
+
+### `ThrottleFirstFrame(int)`
+ - 메시지를 받으면 지정한 프레임 동안 들어오는 메시지들을 모두 무시한다.
+
+### `Skip(int)` or `Skip(TimeSpan)`
+ - 지정한 개수만큼 또는 지정한 시간 동안 메시지를 무시한다.
+
+### `SkipWhile(_ => bool)`
+ - 조건이 true인 동안 메시지를 무시한다.
+
+### `SkipUntil(IObservable)`
+ - 매개변수의 스트림에 OnNext()가 발생할 때까지 계속 메시지를 무시하며, 그 이후에는 메시지를 모두 전달한다. (1회성)
 
 </details>
 
@@ -200,6 +410,14 @@ strSubject.OnCompleted(); // 스트림 종료
 변환
 </summary>
 
+### `Select(x => value)`
+ - 스트림의 값을 변경하는 역할을 한다.
+ - `x` 값을 가공하여 변경할 수 있다.
+ - `x` 값과 관계 없는 값을 제공할 수도 있다.
+
+SelectMany
+
+Cast<T>
 
 
 </details>
@@ -209,10 +427,39 @@ strSubject.OnCompleted(); // 스트림 종료
 
 <details>
 <summary markdown="span"> 
-합성
+메시지 합성
 </summary>
 
+Scan
 
+Buffer
+
+
+</details>
+
+<br>
+
+
+<details>
+<summary markdown="span"> 
+스트림 합성
+</summary>
+
+Zip
+
+ZipLatest
+
+CombineLatest
+
+WithLatestFrom
+
+Amb
+
+Merge
+
+Concat
+
+Catch
 
 </details>
 
@@ -224,7 +471,34 @@ strSubject.OnCompleted(); // 스트림 종료
 지연(딜레이)
 </summary>
 
+Delay
 
+DelayFrame
+
+TimeInterval
+
+TimeStamp
+
+
+</details>
+
+<br>
+
+
+<details>
+<summary markdown="span"> 
+스트림 종료 시 처리
+</summary>
+
+Repeat
+
+RepeatSafe
+
+RepeatUntilDisable
+
+RepeatUntilDestroy
+
+Finally
 
 </details>
 
