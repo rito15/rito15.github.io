@@ -101,7 +101,7 @@ using UniRx.Triggers;
 # Observable 스트림의 생성
 ---
 
-## 1. Observable 팩토리 메소드
+## 1. Observable 팩토리 메소드(생성 연산자)
 
 <details>
 <summary markdown="span"> 
@@ -113,21 +113,44 @@ using UniRx.Triggers;
 - [참고 : Wiki](https://github.com/neuecc/UniRx/wiki/UniRx#observable)
 
 ```cs
-// 매 프레임마다 OnNext()
-Observable.EveryUpdate()
-    .Subscribe(_ => Debug.Log("Every Update"));
+// Empty : OnCompleted()를 즉시 전달
+Observable.Empty<Unit>()
+    .Subscribe(x => Debug.Log("Next"), () => Debug.Log("Completed"));
 
+// Return : 한 개의 메시지만 전달
+Observable.Return(2.5f)
+    .Subscribe(x => Debug.Log("value : " + x));
+
+// Range(a, b) : a부터 (a + b - 1)까지 b번 OnNext()
 // 5부터 14까지 10번 OnNext()
 Observable.Range(5, 10)
     .Subscribe(x => Debug.Log($"Range : {x}"));
 
-// 1초마다 OnNext()
+// Interval : 지정한 시간 간격마다 OnNext()
 Observable.Interval(TimeSpan.FromSeconds(1))
     .Subscribe(_ => Debug.Log("Interval"));
 
-// 2초 후 OnNext()
+// Timer : 지정한 시간 이후에 OnNext()
 Observable.Timer(TimeSpan.FromSeconds(2))
     .Subscribe(_ => Debug.Log("Timer"));
+
+// EveryUpdate : 매 프레임마다 OnNext()
+Observable.EveryUpdate()
+    .Subscribe(_ => Debug.Log("Every Update"));
+
+// Start : 무거운 작업을 병렬로 처리할 때 사용된다.
+//         멀티스레딩으로 동작한다.
+Debug.Log($"Frame : {Time.frameCount}");
+Observable.Start(() =>
+{
+    Thread.Sleep(TimeSpan.FromMilliseconds(2000));
+    MainThreadDispatcher.Post(_ => Debug.Log($"Frame : {Time.frameCount}"), new object());
+    return Thread.CurrentThread.ManagedThreadId;
+})
+    .Subscribe(
+        id => Debug.Log($"Finished : {id}"),
+        err => Debug.Log(err)
+    );
 ```
 
 </details>
@@ -415,10 +438,29 @@ private IEnumerator TestRoutine()
  - `x` 값을 가공하여 변경할 수 있다.
  - `x` 값과 관계 없는 값을 제공할 수도 있다.
 
-SelectMany
+### `SelectMany(_ => IObservable)`
+ - 기존의 스트림을 새로운 스트림으로 대체한다.
+ - 기존의 스트림에서 `OnNext()`가 발생하면, 매개변수로 입력한 스트림으로 기존 스트림이 대체된다.
 
-Cast<T>
+<details>
+<summary markdown="span"> 
+예제 : 드래그 앤 드롭
+</summary>
 
+```cs
+this.OnMouseDownAsObservable()
+    .SelectMany(_ => this.UpdateAsObservable())
+    .TakeUntil(this.OnMouseUpAsObservable())
+    .Select(_ => Input.mousePosition)
+    .RepeatUntilDestroy(this) // Safe Repeating
+    .Subscribe(x => Debug.Log(x));
+```
+
+</details>
+
+### `Cast<T, V>()`
+ - `T` 타입의 메시지를 `V` 타입으로 형변환한다.
+ - 박싱과 언박싱이 발생한다.
 
 </details>
 
@@ -430,9 +472,13 @@ Cast<T>
 메시지 합성
 </summary>
 
-Scan
+### `Scan((a, b) => c)`
+ - 지난 메시지와 현재 메시지의 값을 `a`, `b` 매개변수로 받아 `c`로 합성한다.
 
-Buffer
+### `Buffer(int)` or `Buffer(TimeSpan)`
+ - 지정한 횟수 또는 시간에 도달할 때까지 OnNext()를 하지 않고 메시지를 누적한다.
+ - 도달할 경우, 누적된 메시지들을 리스트의 형태로 한번에 전달한다.
+ - 시간을 지정하는 경우, OnNext() 타이밍과 관계 없이 스트림 시작 직후부터 반복적으로 시간 간격을 체크한다.
 
 
 </details>
@@ -445,11 +491,85 @@ Buffer
 스트림 합성
 </summary>
 
-Zip
+### `Zip(IObservable, (a, b) => c)`
+ - 두 스트림에 모두 OnNext()가 발생했을 때, 두 스트림의 메시지를 합성하여 전달한다.
+ - 두 스트림 중 하나만 OnNext()가 발생하는 경우, 해당 스트림의 메시지를 큐에 차례로 보관한다.
+ - 예를 들어 좌클릭과 우클릭 스트림을 합성했을 때, 좌클릭만 3번 했을 때는 아무 반응 없다가 이후 우클릭을 최대 3번까지 할 경우, n번째 좌클릭과 우클릭의 메시지를 합성하여 차례대로 전달한다.
 
-ZipLatest
+|Index|`Left(a)`|`Right(b)`|`OnNext("${a} / {b}")`|
+|:---:|:---:|:---:|:---:|
+|0|`1`|||
+|1|`2`|||
+|2|`3`|||
+|3||`1`|`1 / 1`|
+|4||`2`|`2 / 2`|
+|5||`3`|`3 / 3`|
+|6||`4`||
 
-CombineLatest
+<details>
+<summary markdown="span"> 
+예제
+</summary>
+
+```cs
+var leftMouseDownStream = this.UpdateAsObservable()
+    .Where(_ => Input.GetMouseButtonDown(0));
+var rightMouseDownStream = this.UpdateAsObservable()
+    .Where(_ => Input.GetMouseButtonDown(1));
+
+leftMouseDownStream
+    .Select(_ => 1)
+    .Scan((a, b) => a + b)
+    .Zip
+    (
+        rightMouseDownStream
+            .Select(_ => 1)
+            .Scan((a, b) => a + b), 
+        (a, b) => $"Left[{a}], Right[{b}]"
+    )
+    .Subscribe(x => Debug.Log(x));
+```
+
+</details>
+
+<br>
+
+
+### `ZipLatest(IObservable, (a, b) => c)`
+ - 두 스트림에 모두 OnNext()가 발생했을 때, 두 스트림의 가장 최근 메시지를 합성하여 전달한다.
+ - 두 스트림 중 하나만 OnNext()가 발생하는 경우에, 메시지들을 큐에 누적하여 보관하지 않고 가장 최근의 메시지만 갱신하며 저장한다.
+ - 따라서 좌클릭과 우클릭 스트림을 합성했을 때, 좌클릭 3번 이후 우클릭을 할 경우 좌클릭 스트림에서 메시지를 하나씩 꺼내는 것이 아니라, '3번째 좌클릭과 1번째 우클릭'을 합성하여 전달한다.
+ - 그리고 양측 모두에 OnNext()가 발생하여 합성 메시지를 전달한 이후, 다시 양측 모두에 OnNext()가 발생해야만 메시지를 전달한다.
+
+|Index|`Left(a)`|`Right(b)`|`OnNext("${a} / {b}")`|
+|:---:|:---:|:---:|:---:|
+|0|`1`|||
+|1|`2`|||
+|2|`3`|||
+|3||`1`|`3 / 1`|
+|4||`2`||
+|5||`3`||
+|6|`4`||`4 / 3`|
+
+<br>
+
+
+### `CombineLatest(IObservable, (a, b) => c)`
+ - ZipLatest처럼 두 스트림의 가장 최근 메시지를 합성하여 전달한다.
+ - ZipLatest와는 달리, 한쪽의 스트림에만 연속으로 OnNext()가 발생해도 다른쪽 스트림의 가장 최근 메시지를 계속 재활용하고 합성하여 전달한다.
+
+|Index|`Left(a)`|`Right(b)`|`OnNext("${a} / {b}")`|
+|:---:|:---:|:---:|:---:|
+|0|`1`|||
+|1|`2`|||
+|2|`3`|||
+|3||`1`|`3 / 1`|
+|4||`2`|`3 / 2`|
+|5||`3`|`3 / 3`|
+|6|`4`||`4 / 3`|
+
+<br>
+
 
 WithLatestFrom
 

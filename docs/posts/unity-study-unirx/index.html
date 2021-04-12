@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="UniRx (Reactive Extensions for Unity)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개요","datePublished":"2021-03-06T20:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-unirx/"},"url":"https://rito15.github.io/posts/unity-study-unirx/","author":{"@type":"Person","name":"Rito15"},"headline":"UniRx (Reactive Extensions for Unity)","dateModified":"2021-04-03T03:04:19+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"개요","datePublished":"2021-03-06T20:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-unirx/"},"url":"https://rito15.github.io/posts/unity-study-unirx/","author":{"@type":"Person","name":"Rito15"},"headline":"UniRx (Reactive Extensions for Unity)","dateModified":"2021-04-09T21:35:56+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,17 +407,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sat, Apr  3, 2021,  3:04 AM +0900"
+    title="Fri, Apr  9, 2021,  9:35 PM +0900"
   >
 
   
   
 
   
-    Apr  3
+    Apr  9
   
 
-  <i class="unloaded">2021-04-03T03:04:19+09:00</i>
+  <i class="unloaded">2021-04-09T21:35:56+09:00</i>
 
 </span>
           </span>
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3905 words">21 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4974 words">27 min</span>
 
 
           <!-- page views -->
@@ -566,7 +566,7 @@
 <h1 id="observable-스트림의-생성">Observable 스트림의 생성</h1>
 <hr />
 
-<h2 id="1-observable-팩토리-메소드">1. Observable 팩토리 메소드</h2>
+<h2 id="1-observable-팩토리-메소드생성-연산자">1. Observable 팩토리 메소드(생성 연산자)</h2>
 
 <details>
   <summary> 
@@ -597,21 +597,67 @@
 13
 14
 15
-</pre></td><td class="rouge-code"><pre><span class="c1">// 매 프레임마다 OnNext()</span>
-<span class="n">Observable</span><span class="p">.</span><span class="nf">EveryUpdate</span><span class="p">()</span>
-    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Every Update"</span><span class="p">));</span>
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+</pre></td><td class="rouge-code"><pre><span class="c1">// Empty : OnCompleted()를 즉시 전달</span>
+<span class="n">Observable</span><span class="p">.</span><span class="n">Empty</span><span class="p">&lt;</span><span class="n">Unit</span><span class="p">&gt;()</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Next"</span><span class="p">),</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Completed"</span><span class="p">));</span>
 
+<span class="c1">// Return : 한 개의 메시지만 전달</span>
+<span class="n">Observable</span><span class="p">.</span><span class="nf">Return</span><span class="p">(</span><span class="m">2.5f</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"value : "</span> <span class="p">+</span> <span class="n">x</span><span class="p">));</span>
+
+<span class="c1">// Range(a, b) : a부터 (a + b - 1)까지 b번 OnNext()</span>
 <span class="c1">// 5부터 14까지 10번 OnNext()</span>
 <span class="n">Observable</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="m">10</span><span class="p">)</span>
     <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">$"Range : </span><span class="p">{</span><span class="n">x</span><span class="p">}</span><span class="s">"</span><span class="p">));</span>
 
-<span class="c1">// 1초마다 OnNext()</span>
+<span class="c1">// Interval : 지정한 시간 간격마다 OnNext()</span>
 <span class="n">Observable</span><span class="p">.</span><span class="nf">Interval</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">))</span>
     <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Interval"</span><span class="p">));</span>
 
-<span class="c1">// 2초 후 OnNext()</span>
+<span class="c1">// Timer : 지정한 시간 이후에 OnNext()</span>
 <span class="n">Observable</span><span class="p">.</span><span class="nf">Timer</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromSeconds</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
     <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Timer"</span><span class="p">));</span>
+
+<span class="c1">// EveryUpdate : 매 프레임마다 OnNext()</span>
+<span class="n">Observable</span><span class="p">.</span><span class="nf">EveryUpdate</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Every Update"</span><span class="p">));</span>
+
+<span class="c1">// Start : 무거운 작업을 병렬로 처리할 때 사용된다.</span>
+<span class="c1">//         멀티스레딩으로 동작한다.</span>
+<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">$"Frame : </span><span class="p">{</span><span class="n">Time</span><span class="p">.</span><span class="n">frameCount</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+<span class="n">Observable</span><span class="p">.</span><span class="nf">Start</span><span class="p">(()</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+    <span class="n">Thread</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="n">TimeSpan</span><span class="p">.</span><span class="nf">FromMilliseconds</span><span class="p">(</span><span class="m">2000</span><span class="p">));</span>
+    <span class="n">MainThreadDispatcher</span><span class="p">.</span><span class="nf">Post</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">$"Frame : </span><span class="p">{</span><span class="n">Time</span><span class="p">.</span><span class="n">frameCount</span><span class="p">}</span><span class="s">"</span><span class="p">),</span> <span class="k">new</span> <span class="kt">object</span><span class="p">());</span>
+    <span class="k">return</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">;</span>
+<span class="p">})</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span>
+        <span class="n">id</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">$"Finished : </span><span class="p">{</span><span class="n">id</span><span class="p">}</span><span class="s">"</span><span class="p">),</span>
+        <span class="n">err</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    <span class="p">);</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
 </details>
@@ -1043,9 +1089,38 @@
     <li><code class="language-plaintext highlighter-rouge">x</code> 값과 관계 없는 값을 제공할 수도 있다.</li>
   </ul>
 
-  <p>SelectMany</p>
+  <h3 id="selectmany--iobservable"><code class="language-plaintext highlighter-rouge">SelectMany(_ =&gt; IObservable)</code></h3>
+  <ul>
+    <li>기존의 스트림을 새로운 스트림으로 대체한다.</li>
+    <li>기존의 스트림에서 <code class="language-plaintext highlighter-rouge">OnNext()</code>가 발생하면, 매개변수로 입력한 스트림으로 기존 스트림이 대체된다.</li>
+  </ul>
 
-  <p>Cast<T></T></p>
+  <details>
+    <summary> 
+예제 : 드래그 앤 드롭
+</summary>
+
+    <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">this</span><span class="p">.</span><span class="nf">OnMouseDownAsObservable</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">SelectMany</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">UpdateAsObservable</span><span class="p">())</span>
+    <span class="p">.</span><span class="nf">TakeUntil</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nf">OnMouseUpAsObservable</span><span class="p">())</span>
+    <span class="p">.</span><span class="nf">Select</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Input</span><span class="p">.</span><span class="n">mousePosition</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">RepeatUntilDestroy</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="c1">// Safe Repeating</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <h3 id="castt-v"><code class="language-plaintext highlighter-rouge">Cast&lt;T, V&gt;()</code></h3>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">T</code> 타입의 메시지를 <code class="language-plaintext highlighter-rouge">V</code> 타입으로 형변환한다.</li>
+    <li>박싱과 언박싱이 발생한다.</li>
+  </ul>
 
 </details>
 
@@ -1056,9 +1131,17 @@
 메시지 합성
 </summary>
 
-  <p>Scan</p>
+  <h3 id="scana-b--c"><code class="language-plaintext highlighter-rouge">Scan((a, b) =&gt; c)</code></h3>
+  <ul>
+    <li>지난 메시지와 현재 메시지의 값을 <code class="language-plaintext highlighter-rouge">a</code>, <code class="language-plaintext highlighter-rouge">b</code> 매개변수로 받아 <code class="language-plaintext highlighter-rouge">c</code>로 합성한다.</li>
+  </ul>
 
-  <p>Buffer</p>
+  <h3 id="bufferint-or-buffertimespan"><code class="language-plaintext highlighter-rouge">Buffer(int)</code> or <code class="language-plaintext highlighter-rouge">Buffer(TimeSpan)</code></h3>
+  <ul>
+    <li>지정한 횟수 또는 시간에 도달할 때까지 OnNext()를 하지 않고 메시지를 누적한다.</li>
+    <li>도달할 경우, 누적된 메시지들을 리스트의 형태로 한번에 전달한다.</li>
+    <li>시간을 지정하는 경우, OnNext() 타이밍과 관계 없이 스트림 시작 직후부터 반복적으로 시간 간격을 체크한다.</li>
+  </ul>
 
 </details>
 
@@ -1069,11 +1152,238 @@
 스트림 합성
 </summary>
 
-  <p>Zip</p>
+  <h3 id="zipiobservable-a-b--c"><code class="language-plaintext highlighter-rouge">Zip(IObservable, (a, b) =&gt; c)</code></h3>
+  <ul>
+    <li>두 스트림에 모두 OnNext()가 발생했을 때, 두 스트림의 메시지를 합성하여 전달한다.</li>
+    <li>두 스트림 중 하나만 OnNext()가 발생하는 경우, 해당 스트림의 메시지를 큐에 차례로 보관한다.</li>
+    <li>예를 들어 좌클릭과 우클릭 스트림을 합성했을 때, 좌클릭만 3번 했을 때는 아무 반응 없다가 이후 우클릭을 최대 3번까지 할 경우, n번째 좌클릭과 우클릭의 메시지를 합성하여 차례대로 전달한다.</li>
+  </ul>
 
-  <p>ZipLatest</p>
+  <div class="table-wrapper"><table>
+    <thead>
+      <tr>
+        <th style="text-align: center">Index</th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">Left(a)</code></th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">Right(b)</code></th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">OnNext("${a} / {b}")</code></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center">0</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">1</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">1</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">2</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">2</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">3</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">1</code></td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">1 / 1</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: center">4</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">2</code></td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">2 / 2</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: center">5</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3</code></td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3 / 3</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: center">6</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">4</code></td>
+        <td style="text-align: center"> </td>
+      </tr>
+    </tbody>
+  </table></div>
 
-  <p>CombineLatest</p>
+  <details>
+    <summary> 
+예제
+</summary>
+
+    <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="n">leftMouseDownStream</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="nf">UpdateAsObservable</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetMouseButtonDown</span><span class="p">(</span><span class="m">0</span><span class="p">));</span>
+<span class="kt">var</span> <span class="n">rightMouseDownStream</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="nf">UpdateAsObservable</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetMouseButtonDown</span><span class="p">(</span><span class="m">1</span><span class="p">));</span>
+
+<span class="n">leftMouseDownStream</span>
+    <span class="p">.</span><span class="nf">Select</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="m">1</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Scan</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Zip</span>
+    <span class="p">(</span>
+        <span class="n">rightMouseDownStream</span>
+            <span class="p">.</span><span class="nf">Select</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="m">1</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">Scan</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">),</span> 
+        <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="s">$"Left[</span><span class="p">{</span><span class="n">a</span><span class="p">}</span><span class="s">], Right[</span><span class="p">{</span><span class="n">b</span><span class="p">}</span><span class="s">]"</span>
+    <span class="p">)</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h3 id="ziplatestiobservable-a-b--c"><code class="language-plaintext highlighter-rouge">ZipLatest(IObservable, (a, b) =&gt; c)</code></h3>
+  <ul>
+    <li>두 스트림에 모두 OnNext()가 발생했을 때, 두 스트림의 가장 최근 메시지를 합성하여 전달한다.</li>
+    <li>두 스트림 중 하나만 OnNext()가 발생하는 경우에, 메시지들을 큐에 누적하여 보관하지 않고 가장 최근의 메시지만 갱신하며 저장한다.</li>
+    <li>따라서 좌클릭과 우클릭 스트림을 합성했을 때, 좌클릭 3번 이후 우클릭을 할 경우 좌클릭 스트림에서 메시지를 하나씩 꺼내는 것이 아니라, ‘3번째 좌클릭과 1번째 우클릭’을 합성하여 전달한다.</li>
+    <li>그리고 양측 모두에 OnNext()가 발생하여 합성 메시지를 전달한 이후, 다시 양측 모두에 OnNext()가 발생해야만 메시지를 전달한다.</li>
+  </ul>
+
+  <div class="table-wrapper"><table>
+    <thead>
+      <tr>
+        <th style="text-align: center">Index</th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">Left(a)</code></th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">Right(b)</code></th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">OnNext("${a} / {b}")</code></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center">0</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">1</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">1</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">2</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">2</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">3</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">1</code></td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3 / 1</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: center">4</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">2</code></td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">5</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3</code></td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">6</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">4</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">4 / 3</code></td>
+      </tr>
+    </tbody>
+  </table></div>
+
+  <p><br /></p>
+
+  <h3 id="combinelatestiobservable-a-b--c"><code class="language-plaintext highlighter-rouge">CombineLatest(IObservable, (a, b) =&gt; c)</code></h3>
+  <ul>
+    <li>ZipLatest처럼 두 스트림의 가장 최근 메시지를 합성하여 전달한다.</li>
+    <li>ZipLatest와는 달리, 한쪽의 스트림에만 연속으로 OnNext()가 발생해도 다른쪽 스트림의 가장 최근 메시지를 계속 재활용하고 합성하여 전달한다.</li>
+  </ul>
+
+  <div class="table-wrapper"><table>
+    <thead>
+      <tr>
+        <th style="text-align: center">Index</th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">Left(a)</code></th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">Right(b)</code></th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">OnNext("${a} / {b}")</code></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center">0</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">1</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">1</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">2</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">2</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">3</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">1</code></td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3 / 1</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: center">4</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">2</code></td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3 / 2</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: center">5</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3</code></td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3 / 3</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: center">6</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">4</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">4 / 3</code></td>
+      </tr>
+    </tbody>
+  </table></div>
+
+  <p><br /></p>
 
   <p>WithLatestFrom</p>
 
@@ -1801,12 +2111,12 @@ UI 이벤트 대체
         
         
         
-        <li><a href="/posts/unity-study-voxel/">Voxel System(유니티에서 마인크래프트 구현하기)</a></li>
+        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
+        <li><a href="/posts/unity-study-voxel/">Voxel System(유니티에서 마인크래프트 구현하기)</a></li>
       
         
         
