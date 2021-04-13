@@ -190,9 +190,14 @@ this.UpdateAsObservable()
 
 </summary>
 
-- Subject<T>는 델리게이트 또는 이벤트처럼 사용될 수 있다.
+- `Subject<T>`는 델리게이트 또는 이벤트처럼 사용될 수 있다.
 
 - 하지만 스트림의 다양한 연산자를 활용할 수 있으므로, 이벤트의 상위호환이라고 할 수 있다.
+
+- `Subject<T>`를 잘 활용하면 커스텀한 Observable을 만들어 사용할 수 있다.
+  - => 원하는 타이밍에 OnNext() 호출
+
+- `Subject<T>`에는 직접 OnNext()를 호출할 수 있으므로, OnNext()를 호출할 수 없는 구독 전용 스트림을 제공하려면 `.AsObservable()`로 변환하면 된다.
 
 ```cs
 Subject<string> strSubject = new Subject<string>();
@@ -206,6 +211,10 @@ strSubject.OnNext("A"); // OnNext()는 이벤트의 Invoke()와 같은 역할
 strSubject.OnNext("B");
 
 strSubject.OnCompleted(); // 스트림 종료
+
+// 구독 전용 스트림
+var obs = strSubject.AsObservable();
+obs.Subscribe(str => Debug.Log(str));
 ```
 
 </details>
@@ -480,6 +489,13 @@ this.OnMouseDownAsObservable()
  - 도달할 경우, 누적된 메시지들을 리스트의 형태로 한번에 전달한다.
  - 시간을 지정하는 경우, OnNext() 타이밍과 관계 없이 스트림 시작 직후부터 반복적으로 시간 간격을 체크한다.
 
+### `Buffer(int, int)` or `Buffer(TimeSpan, int)`
+ - 정수형의 두 번째 매개변수는 `Skip`을 나타낸다.
+ - 예를 들어, `Buffer(2, 3)`으로 지정한 경우, 2개의 메시지가 모이면 OnNext()를 호출하고, 이후 3개의 메시지를 모두 무시한 뒤 그다음 2개의 메시지가 모이면 다시 OnNext()를 호출한다.
+
+### `Pairwise()`
+ - 지난 메시지와 현재 메시지를 `Pair<T>` 구조체로 합성한다.
+ - `.Previous`로 지난 메시지를, `.Current`로 현재 메시지를 참조할 수 있다.
 
 </details>
 
@@ -498,13 +514,13 @@ this.OnMouseDownAsObservable()
 
 |Index|`Left(a)`|`Right(b)`|`OnNext("${a} / {b}")`|
 |:---:|:---:|:---:|:---:|
-|0|`1`|||
-|1|`2`|||
-|2|`3`|||
-|3||`1`|`1 / 1`|
-|4||`2`|`2 / 2`|
-|5||`3`|`3 / 3`|
-|6||`4`||
+|0    |`1`  |     |     |
+|1    |`2`  |     |     |
+|2    |`3`  |     |     |
+|3    |     |`1`  |`1 / 1`|
+|4    |     |`2`  |`2 / 2`|
+|5    |     |`3`  |`3 / 3`|
+|6    |     |`4`  |     |
 
 <details>
 <summary markdown="span"> 
@@ -543,13 +559,13 @@ leftMouseDownStream
 
 |Index|`Left(a)`|`Right(b)`|`OnNext("${a} / {b}")`|
 |:---:|:---:|:---:|:---:|
-|0|`1`|||
-|1|`2`|||
-|2|`3`|||
-|3||`1`|`3 / 1`|
-|4||`2`||
-|5||`3`||
-|6|`4`||`4 / 3`|
+|0    |`1`  |     |     |
+|1    |`2`  |     |     |
+|2    |`3`  |     |     |
+|3    |     |`1`  |`3 / 1`|
+|4    |     |`2`  |     |
+|5    |     |`3`  |     |
+|6    |`4`  |     |`4 / 3`|
 
 <br>
 
@@ -560,24 +576,44 @@ leftMouseDownStream
 
 |Index|`Left(a)`|`Right(b)`|`OnNext("${a} / {b}")`|
 |:---:|:---:|:---:|:---:|
-|0|`1`|||
-|1|`2`|||
-|2|`3`|||
-|3||`1`|`3 / 1`|
-|4||`2`|`3 / 2`|
-|5||`3`|`3 / 3`|
-|6|`4`||`4 / 3`|
+|0    |`1`  |     |     |
+|1    |`2`  |     |     |
+|2    |`3`  |     |     |
+|3    |     |`1`  |`3 / 1`|
+|4    |     |`2`  |`3 / 2`|
+|5    |     |`3`  |`3 / 3`|
+|6    |`4`  |     |`4 / 3`|
 
 <br>
 
 
-WithLatestFrom
+`WithLatestFrom(IObservable, (a, b) => c)`
+ - CombineLatest 연산자와 매우 흡사하지만, 주체가 되는 스트림에 OnNext()가 발생했을 때만 메시지를 전달한다.
+ - 주체를 `left`, 매개변수 스트림을 `right`라고 했을 때, `right` 스트림에 OnNext()가 발생한 이력이 있는 상태에서 `left` 스트림에 OnNext()가 발생할 때마다 메시지를 전달한다.
 
-Amb
+|Index|`Left(a)`|`Right(b)`|`OnNext("${a} / {b}")`|
+|:---:|:---:|:---:|:---:|
+|0    |`1`  |     |     |
+|1    |`2`  |     |     |
+|2    |     |`1`  |     |
+|3    |     |`2`  |     |
+|4    |`3`  |     |`3 / 2`|
+|5    |     |`3`  |     |
+|6    |`4`  |     |`4 / 3`|
 
-Merge
+<br>
 
-Concat
+`Amb(IObservable)`
+ - 두 개의 스트림 중 먼저 OnNext()가 발생한 스트림만 유지시킨다.
+ - 선택되지 못한 나머지 스트림은 즉시 종료된다.(OnCompleted() 발생 X)
+
+`Merge(params[] IObservable)`
+ - 여러 개의 스트림을 OR 연산처럼 합성한다.
+ - 각 스트림의 반복, 종료 조건 등은 개별적으로 유지된다.
+
+`Concat(params[] IObservable)`
+ - 여러 개의 스트림을 차례로 연결한다.
+ - 앞의 스트림이 종료(OnCompleted())될 경우, 그 다음 스트림으로 대체된다.
 
 Catch
 
@@ -909,7 +945,6 @@ var dbKeyStreamDisposable =
         .SelectMany(_ => keyPressStream)
         .TakeUntilDisable(this)
         .Subscribe(_ => action());
-
 ```
 
 </details>
@@ -942,7 +977,6 @@ var dbKeyStreamDisposable =
         .SelectMany(_ => keyPressStream)
         .TakeUntilDisable(this)
         .Subscribe(_ => action());
-
 ```
 
 </details>
@@ -964,6 +998,33 @@ _targetButton.onClick.AsObservable()
         _  => Debug.Log("Error"),
         () => Debug.Log("Completed")
     );
+```
+
+</details>
+
+<br>
+
+
+<details>
+<summary markdown="span"> 
+시작 ~ 종료 트리거 사이에서 매 프레임 메시지 전달
+</summary>
+
+```cs
+// 시작 트리거
+var beginStream = this.UpdateAsObservable()
+    .Where(_ => Input.GetMouseButtonDown(0));
+
+// 종료 트리거
+var endStream = this.UpdateAsObservable()
+    .Where(_ => Input.GetMouseButtonUp(0));
+
+// 시작~종료 트리거 사이에서 매 프레임 OnNext()
+this.UpdateAsObservable()
+    .SkipUntil(beginStream)
+    .TakeUntil(endStream)
+    .RepeatUntilDisable(this)
+    .Subscribe(_ => Debug.Log("Press"));
 ```
 
 </details>
@@ -997,6 +1058,150 @@ this.OnMouseDownAsObservable()
 
 ```cs
 
+```
+
+</details>
+
+<br>
+
+# Custom Observables
+---
+
+- 싱글톤을 활용하여 원하는 동작의 스트림을 직접 작성
+
+<br>
+
+## **목록**
+ - 깔끔한 마우스 왼쪽 더블 클릭 감지
+
+## **TODO**
+ - 
+
+## **Source Code**
+
+<details>
+<summary markdown="span"> 
+
+</summary>
+
+```cs
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
+
+// 날짜 : 2021-04-13 PM 5:27:28
+// 작성자 : Rito
+
+namespace Rito.UniRx
+{
+    public class CustomObservables : MonoBehaviour
+    {
+        /***********************************************************************
+        *                               Singleton
+        ***********************************************************************/
+        #region .
+
+        public static CustomObservables Instance
+        {
+            get
+            {
+                if(_instance == null)
+                    CreateSingletonInstance();
+
+                return _instance;
+            }
+        }
+        private static CustomObservables _instance;
+
+        /// <summary> 싱글톤 인스턴스 생성 </summary>
+        private static void CreateSingletonInstance()
+        {
+            GameObject go = new GameObject("Custom Observables (Singleton Instance)");
+            _instance = go.AddComponent<CustomObservables>();
+            DontDestroyOnLoad(go);
+        }
+
+        /// <summary> 싱글톤 인스턴스를 유일하게 유지 </summary>
+        private void CheckSingletonInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else if (_instance != this)
+            {
+                Destroy(this);
+            }
+        }
+
+        #endregion
+        /***********************************************************************
+        *                               Unity Events
+        ***********************************************************************/
+        #region .
+
+        private float _deltaTime;
+
+        private void Awake()
+        {
+            CheckSingletonInstance();
+            MouseDoubleClickAsObservable = _mouseDoubleClickSubject.AsObservable();
+        }
+
+        private void Update()
+        {
+            _deltaTime = Time.deltaTime;
+            CheckDoubleClick();
+        }
+
+        #endregion
+        /***********************************************************************
+        *                           Mouse Double Click Checker
+        ***********************************************************************/
+        #region .
+        public IObservable<Unit> MouseDoubleClickAsObservable { get; private set; }
+        private Subject<Unit> _mouseDoubleClickSubject = new Subject<Unit>();
+
+        private bool _checkingDoubleClick;
+        private float _doubleClickTimer;
+        private const float DoubleClickThreshold = 0.3f;
+
+        private void CheckDoubleClick()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _doubleClickTimer = 0f;
+                if (!_checkingDoubleClick)
+                {
+                    _checkingDoubleClick = true;
+                }
+                else
+                {
+                    _checkingDoubleClick = false;
+                    _mouseDoubleClickSubject.OnNext(Unit.Default);
+                }
+            }
+
+            if (_checkingDoubleClick)
+            {
+                if (_doubleClickTimer >= DoubleClickThreshold)
+                {
+                    _checkingDoubleClick = false;
+                }
+                else
+                {
+                    _doubleClickTimer += _deltaTime;
+                }
+            }
+        }
+
+        #endregion
+    }
+}
 ```
 
 </details>

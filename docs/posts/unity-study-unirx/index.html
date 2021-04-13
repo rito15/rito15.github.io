@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="UniRx (Reactive Extensions for Unity)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개요","datePublished":"2021-03-06T20:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-unirx/"},"url":"https://rito15.github.io/posts/unity-study-unirx/","author":{"@type":"Person","name":"Rito15"},"headline":"UniRx (Reactive Extensions for Unity)","dateModified":"2021-04-09T21:35:56+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"개요","datePublished":"2021-03-06T20:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-unirx/"},"url":"https://rito15.github.io/posts/unity-study-unirx/","author":{"@type":"Person","name":"Rito15"},"headline":"UniRx (Reactive Extensions for Unity)","dateModified":"2021-04-12T19:03:01+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,17 +407,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Apr  9, 2021,  9:35 PM +0900"
+    title="Mon, Apr 12, 2021,  7:03 PM +0900"
   >
 
   
   
 
   
-    Apr  9
+    Apr 12
   
 
-  <i class="unloaded">2021-04-09T21:35:56+09:00</i>
+  <i class="unloaded">2021-04-12T19:03:01+09:00</i>
 
 </span>
           </span>
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4974 words">27 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5973 words">33 min</span>
 
 
           <!-- page views -->
@@ -709,11 +709,17 @@
 
   <ul>
     <li>
-      <p>Subject<T>는 델리게이트 또는 이벤트처럼 사용될 수 있다.</T></p>
+      <p><code class="language-plaintext highlighter-rouge">Subject&lt;T&gt;</code>는 델리게이트 또는 이벤트처럼 사용될 수 있다.</p>
     </li>
     <li>
       <p>하지만 스트림의 다양한 연산자를 활용할 수 있으므로, 이벤트의 상위호환이라고 할 수 있다.</p>
     </li>
+    <li><code class="language-plaintext highlighter-rouge">Subject&lt;T&gt;</code>를 잘 활용하면 커스텀한 Observable을 만들어 사용할 수 있다.
+      <ul>
+        <li>=&gt; 원하는 타이밍에 OnNext() 호출</li>
+      </ul>
+    </li>
+    <li><code class="language-plaintext highlighter-rouge">Subject&lt;T&gt;</code>에는 직접 OnNext()를 호출할 수 있으므로, OnNext()를 호출할 수 없는 구독 전용 스트림을 제공하려면 <code class="language-plaintext highlighter-rouge">.AsObservable()</code>로 변환하면 된다.</li>
   </ul>
 
   <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -727,6 +733,10 @@
 9
 10
 11
+12
+13
+14
+15
 </pre></td><td class="rouge-code"><pre><span class="n">Subject</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">strSubject</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Subject</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
 
 <span class="n">strSubject</span><span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">str</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Next : "</span> <span class="p">+</span> <span class="n">str</span><span class="p">));</span>
@@ -738,6 +748,10 @@
 <span class="n">strSubject</span><span class="p">.</span><span class="nf">OnNext</span><span class="p">(</span><span class="s">"B"</span><span class="p">);</span>
 
 <span class="n">strSubject</span><span class="p">.</span><span class="nf">OnCompleted</span><span class="p">();</span> <span class="c1">// 스트림 종료</span>
+
+<span class="c1">// 구독 전용 스트림</span>
+<span class="kt">var</span> <span class="n">obs</span> <span class="p">=</span> <span class="n">strSubject</span><span class="p">.</span><span class="nf">AsObservable</span><span class="p">();</span>
+<span class="n">obs</span><span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">str</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">str</span><span class="p">));</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
 </details>
@@ -1143,6 +1157,18 @@
     <li>시간을 지정하는 경우, OnNext() 타이밍과 관계 없이 스트림 시작 직후부터 반복적으로 시간 간격을 체크한다.</li>
   </ul>
 
+  <h3 id="bufferint-int-or-buffertimespan-int"><code class="language-plaintext highlighter-rouge">Buffer(int, int)</code> or <code class="language-plaintext highlighter-rouge">Buffer(TimeSpan, int)</code></h3>
+  <ul>
+    <li>정수형의 두 번째 매개변수는 <code class="language-plaintext highlighter-rouge">Skip</code>을 나타낸다.</li>
+    <li>예를 들어, <code class="language-plaintext highlighter-rouge">Buffer(2, 3)</code>으로 지정한 경우, 2개의 메시지가 모이면 OnNext()를 호출하고, 이후 3개의 메시지를 모두 무시한 뒤 그다음 2개의 메시지가 모이면 다시 OnNext()를 호출한다.</li>
+  </ul>
+
+  <h3 id="pairwise"><code class="language-plaintext highlighter-rouge">Pairwise()</code></h3>
+  <ul>
+    <li>지난 메시지와 현재 메시지를 <code class="language-plaintext highlighter-rouge">Pair&lt;T&gt;</code> 구조체로 합성한다.</li>
+    <li><code class="language-plaintext highlighter-rouge">.Previous</code>로 지난 메시지를, <code class="language-plaintext highlighter-rouge">.Current</code>로 현재 메시지를 참조할 수 있다.</li>
+  </ul>
+
 </details>
 
 <p><br /></p>
@@ -1385,13 +1411,86 @@
 
   <p><br /></p>
 
-  <p>WithLatestFrom</p>
+  <p><code class="language-plaintext highlighter-rouge">WithLatestFrom(IObservable, (a, b) =&gt; c)</code></p>
+  <ul>
+    <li>CombineLatest 연산자와 매우 흡사하지만, 주체가 되는 스트림에 OnNext()가 발생했을 때만 메시지를 전달한다.</li>
+    <li>주체를 <code class="language-plaintext highlighter-rouge">left</code>, 매개변수 스트림을 <code class="language-plaintext highlighter-rouge">right</code>라고 했을 때, <code class="language-plaintext highlighter-rouge">right</code> 스트림에 OnNext()가 발생한 이력이 있는 상태에서 <code class="language-plaintext highlighter-rouge">left</code> 스트림에 OnNext()가 발생할 때마다 메시지를 전달한다.</li>
+  </ul>
 
-  <p>Amb</p>
+  <div class="table-wrapper"><table>
+    <thead>
+      <tr>
+        <th style="text-align: center">Index</th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">Left(a)</code></th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">Right(b)</code></th>
+        <th style="text-align: center"><code class="language-plaintext highlighter-rouge">OnNext("${a} / {b}")</code></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center">0</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">1</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">1</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">2</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">2</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">1</code></td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">3</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">2</code></td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">4</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3 / 2</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: center">5</td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">3</code></td>
+        <td style="text-align: center"> </td>
+      </tr>
+      <tr>
+        <td style="text-align: center">6</td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">4</code></td>
+        <td style="text-align: center"> </td>
+        <td style="text-align: center"><code class="language-plaintext highlighter-rouge">4 / 3</code></td>
+      </tr>
+    </tbody>
+  </table></div>
 
-  <p>Merge</p>
+  <p><br /></p>
 
-  <p>Concat</p>
+  <p><code class="language-plaintext highlighter-rouge">Amb(IObservable)</code></p>
+  <ul>
+    <li>두 개의 스트림 중 먼저 OnNext()가 발생한 스트림만 유지시킨다.</li>
+    <li>선택되지 못한 나머지 스트림은 즉시 종료된다.(OnCompleted() 발생 X)</li>
+  </ul>
+
+  <p><code class="language-plaintext highlighter-rouge">Merge(params[] IObservable)</code></p>
+  <ul>
+    <li>여러 개의 스트림을 OR 연산처럼 합성한다.</li>
+    <li>각 스트림의 반복, 종료 조건 등은 개별적으로 유지된다.</li>
+  </ul>
+
+  <p><code class="language-plaintext highlighter-rouge">Concat(params[] IObservable)</code></p>
+  <ul>
+    <li>여러 개의 스트림을 차례로 연결한다.</li>
+    <li>앞의 스트림이 종료(OnCompleted())될 경우, 그 다음 스트림으로 대체된다.</li>
+  </ul>
 
   <p>Catch</p>
 
@@ -1824,7 +1923,6 @@ this.UpdateAsObservable(), Observable.EveryUpdate(), this.ObserveEveryValueChang
 17
 18
 19
-20
 </pre></td><td class="rouge-code"><pre><span class="c1">// * 마지막 입력으로부터 인식 딜레이 존재</span>
 
 <span class="kt">var</span> <span class="n">keyDownStream</span> <span class="p">=</span> 
@@ -1844,7 +1942,6 @@ this.UpdateAsObservable(), Observable.EveryUpdate(), this.ObserveEveryValueChang
         <span class="p">.</span><span class="nf">SelectMany</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">keyPressStream</span><span class="p">)</span>
         <span class="p">.</span><span class="nf">TakeUntilDisable</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
         <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="nf">action</span><span class="p">());</span>
-
 </pre></td></tr></tbody></table></code></div>  </div>
 
 </details>
@@ -1875,7 +1972,6 @@ this.UpdateAsObservable(), Observable.EveryUpdate(), this.ObserveEveryValueChang
 17
 18
 19
-20
 </pre></td><td class="rouge-code"><pre><span class="c1">// * 마지막 입력으로부터 인식 딜레이는 없지만, 홀수 입력 인식 불가</span>
 
 <span class="kt">var</span> <span class="n">keyDownStream</span> <span class="p">=</span> 
@@ -1895,7 +1991,6 @@ this.UpdateAsObservable(), Observable.EveryUpdate(), this.ObserveEveryValueChang
         <span class="p">.</span><span class="nf">SelectMany</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">keyPressStream</span><span class="p">)</span>
         <span class="p">.</span><span class="nf">TakeUntilDisable</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
         <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="nf">action</span><span class="p">());</span>
-
 </pre></td></tr></tbody></table></code></div>  </div>
 
 </details>
@@ -1923,6 +2018,45 @@ UI 이벤트 대체
         <span class="n">_</span>  <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Error"</span><span class="p">),</span>
         <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Completed"</span><span class="p">)</span>
     <span class="p">);</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+시작 ~ 종료 트리거 사이에서 매 프레임 메시지 전달
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="c1">// 시작 트리거</span>
+<span class="kt">var</span> <span class="n">beginStream</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="nf">UpdateAsObservable</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetMouseButtonDown</span><span class="p">(</span><span class="m">0</span><span class="p">));</span>
+
+<span class="c1">// 종료 트리거</span>
+<span class="kt">var</span> <span class="n">endStream</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="nf">UpdateAsObservable</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetMouseButtonUp</span><span class="p">(</span><span class="m">0</span><span class="p">));</span>
+
+<span class="c1">// 시작~종료 트리거 사이에서 매 프레임 OnNext()</span>
+<span class="k">this</span><span class="p">.</span><span class="nf">UpdateAsObservable</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">SkipUntil</span><span class="p">(</span><span class="n">beginStream</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">TakeUntil</span><span class="p">(</span><span class="n">endStream</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">RepeatUntilDisable</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Press"</span><span class="p">));</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
 </details>
@@ -1959,6 +2093,272 @@ UI 이벤트 대체
 
   <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<h1 id="custom-observables">Custom Observables</h1>
+<hr />
+
+<ul>
+  <li>싱글톤을 활용하여 원하는 동작의 스트림을 직접 작성</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="목록"><strong>목록</strong></h2>
+<ul>
+  <li>깔끔한 마우스 왼쪽 더블 클릭 감지</li>
+</ul>
+
+<h2 id="todo"><strong>TODO</strong></h2>
+<ul>
+  <li></li>
+</ul>
+
+<h2 id="source-code"><strong>Source Code</strong></h2>
+
+<details>
+  <summary> 
+
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UniRx</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UniRx.Triggers</span><span class="p">;</span>
+
+<span class="c1">// 날짜 : 2021-04-13 PM 5:27:28</span>
+<span class="c1">// 작성자 : Rito</span>
+
+<span class="k">namespace</span> <span class="nn">Rito.UniRx</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">CustomObservables</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+    <span class="p">{</span>
+        <span class="cm">/***********************************************************************
+        *                               Singleton
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+
+        <span class="k">public</span> <span class="k">static</span> <span class="n">CustomObservables</span> <span class="n">Instance</span>
+        <span class="p">{</span>
+            <span class="k">get</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">_instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                    <span class="nf">CreateSingletonInstance</span><span class="p">();</span>
+
+                <span class="k">return</span> <span class="n">_instance</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">private</span> <span class="k">static</span> <span class="n">CustomObservables</span> <span class="n">_instance</span><span class="p">;</span>
+
+        <span class="c1">/// &lt;summary&gt; 싱글톤 인스턴스 생성 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">CreateSingletonInstance</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">GameObject</span> <span class="n">go</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">GameObject</span><span class="p">(</span><span class="s">"Custom Observables (Singleton Instance)"</span><span class="p">);</span>
+            <span class="n">_instance</span> <span class="p">=</span> <span class="n">go</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">CustomObservables</span><span class="p">&gt;();</span>
+            <span class="nf">DontDestroyOnLoad</span><span class="p">(</span><span class="n">go</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt; 싱글톤 인스턴스를 유일하게 유지 &lt;/summary&gt;</span>
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">CheckSingletonInstance</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">_instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">_instance</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
+                <span class="nf">DontDestroyOnLoad</span><span class="p">(</span><span class="n">gameObject</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">_instance</span> <span class="p">!=</span> <span class="k">this</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="nf">Destroy</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                               Unity Events
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_deltaTime</span><span class="p">;</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="nf">CheckSingletonInstance</span><span class="p">();</span>
+            <span class="n">MouseDoubleClickAsObservable</span> <span class="p">=</span> <span class="n">_mouseDoubleClickSubject</span><span class="p">.</span><span class="nf">AsObservable</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">_deltaTime</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+            <span class="nf">CheckDoubleClick</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+        <span class="cm">/***********************************************************************
+        *                           Mouse Double Click Checker
+        ***********************************************************************/</span>
+        <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
+        <span class="k">public</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="n">Unit</span><span class="p">&gt;</span> <span class="n">MouseDoubleClickAsObservable</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">private</span> <span class="n">Subject</span><span class="p">&lt;</span><span class="n">Unit</span><span class="p">&gt;</span> <span class="n">_mouseDoubleClickSubject</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Subject</span><span class="p">&lt;</span><span class="n">Unit</span><span class="p">&gt;();</span>
+
+        <span class="k">private</span> <span class="kt">bool</span> <span class="n">_checkingDoubleClick</span><span class="p">;</span>
+        <span class="k">private</span> <span class="kt">float</span> <span class="n">_doubleClickTimer</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">DoubleClickThreshold</span> <span class="p">=</span> <span class="m">0.3f</span><span class="p">;</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">CheckDoubleClick</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetMouseButtonDown</span><span class="p">(</span><span class="m">0</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="n">_doubleClickTimer</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(!</span><span class="n">_checkingDoubleClick</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">_checkingDoubleClick</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="n">_checkingDoubleClick</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+                    <span class="n">_mouseDoubleClickSubject</span><span class="p">.</span><span class="nf">OnNext</span><span class="p">(</span><span class="n">Unit</span><span class="p">.</span><span class="n">Default</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">_checkingDoubleClick</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">_doubleClickTimer</span> <span class="p">&gt;=</span> <span class="n">DoubleClickThreshold</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">_checkingDoubleClick</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="n">_doubleClickTimer</span> <span class="p">+=</span> <span class="n">_deltaTime</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="err">#</span><span class="n">endregion</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
 </details>
