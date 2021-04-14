@@ -14,8 +14,8 @@ mermaid: true
 ## Rx란?
 
 - Reactive Extensions
-- .NET에도 다양한 언어로 구현되어 있다.
 - 절차적 프로그래밍에서 다루기 쉽지 않은 비동기 프로그래밍을 손쉽게 다루기 위한 패러다임
+- .NET에도 다양한 언어로 구현되어 있다.
 - 비동기 데이터 스트림을 중심으로 동작한다.
 - 스트림 내의 데이터에 변화가 발생했을 때 반응형으로 기능이 동작하는 방식을 사용한다.
 - 시간을 상당히 간단하게 취급할 수 있게 된다.
@@ -25,7 +25,7 @@ mermaid: true
 
 ## UniRx
 - .NET의 Rx를 유니티에서 사용할 수 없다는 한계를 극복하기 위해 만들어졌다.
-- 유니티의 코루틴, 주요 이벤트 함수, UGUI 등과 상호작용하기 편하게 구현되어 있다.
+- 유니티의 MonoBehaviour, 코루틴, UGUI 등과 상호작용하기 편하게 구현되어 있다.
 
 ```cs
 using UniRx;
@@ -43,6 +43,11 @@ using UniRx.Triggers;
 - Update()의 로직을 모두 스트림화하여 Update() 없애기
 - 코루틴과의 결합
 
+- MVP 패턴 구현
+ - M(Model) : 내부 처리를 위한 스트림 보유
+ - V(View) : 입력 또는 UI의 변화를 감지하는 스트림 보유
+ - P(Presenter) : M, V 양측의 스트림을 구독하고, V의 이벤트를 감지하여 M에 전달하고 그 결과를 다시 V에 전달
+
 <br>
 
 # 구성과 작동 방식
@@ -53,7 +58,7 @@ using UniRx.Triggers;
 
  - 다양한 연산자를 통해 스트림을 가공한다.
 
- - 스트림을 구독(Subscribe)한다.<br>
+ - 옵저버는 스트림을 구독(Subscribe)한다.
    - IObservable -> IDisposable로 변환된다.
    - 여기에 Dispose()를 호출하여 간단히 구독을 종료할 수 있다.
 
@@ -65,13 +70,13 @@ using UniRx.Triggers;
 
 ## 메시지의 구성
 
-### **OnNext**
- - 일반적으로 사용되는 메시지
+### **OnNext()**
+ - 일반적으로 전달되는 메시지
 
-### **OnError**
+### **OnError()**
  - 에러 발생 시 전달되는 메시지
 
-### **OnCompleted**
+### **OnCompleted()**
  - 스트림이 완료되었을 때 전달되는 메시지
 
 <br>
@@ -80,7 +85,7 @@ using UniRx.Triggers;
 ---
 
 ## **종료 조건 직접 지정 필요**
-- 일단 스트림이 생성되면 스트림에 설정한 종료 조건을 모두 달성하기 전까지는 끝나지 않는다.
+- 일단 스트림이 생성되면 스트림에 설정한 종료 조건을 모두 충족하기 전까지는 끝나지 않는다.
 - 스트림을 생성한 컴포넌트, 스트림에서 다루는 대상의 비활성화 및 파괴 여부도 직접 지정하지 않으면 확인하지 않는다.<br>
   (this.~ 처럼 컴포넌트에서 동적으로 생성하는 경우에는 게임오브젝트에 종속)
 - 따라서 스트림의 종료 조건을 섬세하게 지정해야 한다.
@@ -93,7 +98,7 @@ using UniRx.Triggers;
 - 예를 들어 클릭 이벤트 발생 시 2초 후 다른 동작이 이어진다고 할 때, 기본적으로는 Invoke나 코루틴을 활용해야 한다.
 - 클릭 이벤트가 3초 내로 2번 발생해야 다른 동작이 이어진다고 할 때, 이를 구현하려면 굉장히 번거롭다.
 
-- 하지만 UniRx를 이용하면 연산자를 활용하여 간단히 스트림을 변환하여 구현할 수 있다.
+- 하지만 UniRx를 이용하면 연산자를 활용해, 간단히 스트림을 가공하여 구현할 수 있다.
 
 
 <br>
@@ -370,6 +375,11 @@ private IEnumerator TestRoutine()
 스트림의 종료에 영향을 주는 필터
 </summary>
 
+### `First()`
+ - 스트림에 최초로 발생한 메시지만 전달한다.
+ - 첫 OnNext() 직후 OnCompleted()를 발생시키며 종료한다.
+ - `First().Repeat()`으로 조합할 경우, 진행될수록 달라지는 조건을 가진 스트림을 첫 메시지 발동 조건을 반복하는 형태로 고정할 수 있다.
+
 ### `Take(int)`
  - 지정한 갯수의 메시지만 전달하고 종료한다.
 
@@ -382,9 +392,11 @@ private IEnumerator TestRoutine()
 
 ### `TakeUntilDisable(Component)`
  - 지정한 컴포넌트의 게임오브젝트가 비활성화되는 순간 스트림을 종료한다.
+ - 정확히는, 해당 게임오브젝트에 부착되는 `ObservableEnableTrigger`가 비활성화되는 순간 스트림을 종료한다.
 
 ### `TakeUntilDestroy(Component)`
  - 지정한 컴포넌트의 게임오브젝트가 파괴되는 순간 스트림을 종료한다.
+ - 마찬가지로, 정확히는 해당 게임오브젝트에 부착되는 `ObservableDestoryTrigger`에 영향
 
 ### `IDisposable.AddTo()`
  - 매개변수는 GameObject, Component, IDisposable
@@ -412,6 +424,7 @@ private IEnumerator TestRoutine()
 
 ### `Throttle(TimeSpan.~)`
  - 마지막 메시지로부터 지정한 시간만큼 추가적인 메시지가 발생하지 않으면 전달한다.
+ - 지정한 시간 동안 새로운 메시지가 발생하면 기존 메시지는 무시하고 다시 새로운 메시지로부터 시간을 체크한다.
  - 메시지가 들어올 때마다 지정한 시간을 새롭게 체크하므로, 마지막 메시지로부터 실제 전달까지 지정한 시간만큼의 지연시간이 발생한다.
 
 ### `ThrottleFrame(int)`
@@ -471,6 +484,16 @@ this.OnMouseDownAsObservable()
  - `T` 타입의 메시지를 `V` 타입으로 형변환한다.
  - 박싱과 언박싱이 발생한다.
 
+### `TimeInterval()`
+ - `T` 타입의 메시지를 `TimeInterval<T>` 타입으로 가공한다.
+ - `.Value`로 현재 메시지 값을 참조할 수 있다.
+ - `.Interval`로 이전 메시지와 현재 메시지 사이의 시간 간격을 참조할 수 있다.
+
+### `Timestamp()`
+ - `T` 타입의 메시지를 `Timestamp<T>` 타입으로 가공한다.
+ - `.Value`로 현재 메시지 값을 참조할 수 있다.
+ - `.Timestamp`로 OnNext()가 발생한 시각을 `DateTimeOffset` 타입으로 참조할 수 있다.
+
 </details>
 
 <br>
@@ -492,6 +515,10 @@ this.OnMouseDownAsObservable()
 ### `Buffer(int, int)` or `Buffer(TimeSpan, int)`
  - 정수형의 두 번째 매개변수는 `Skip`을 나타낸다.
  - 예를 들어, `Buffer(2, 3)`으로 지정한 경우, 2개의 메시지가 모이면 OnNext()를 호출하고, 이후 3개의 메시지를 모두 무시한 뒤 그다음 2개의 메시지가 모이면 다시 OnNext()를 호출한다.
+
+### `Buffer(IObservable)`
+ - 매개변수로 지정한 스트림에 OnNext()가 발생할 때까지 메시지를 모은다.
+ - 매개변수로 지정한 스트림에 OnNext()가 발생하면 OnNext()를 호출하고 버퍼를 비운다.
 
 ### `Pairwise()`
  - 지난 메시지와 현재 메시지를 `Pair<T>` 구조체로 합성한다.
@@ -615,8 +642,6 @@ leftMouseDownStream
  - 여러 개의 스트림을 차례로 연결한다.
  - 앞의 스트림이 종료(OnCompleted())될 경우, 그 다음 스트림으로 대체된다.
 
-Catch
-
 </details>
 
 <br>
@@ -627,14 +652,11 @@ Catch
 지연(딜레이)
 </summary>
 
-Delay
+### `Delay(TimeSpan)`
+ - 지정한 시간만큼 대기한 후, Subscribe가 시작된다.
 
-DelayFrame
-
-TimeInterval
-
-TimeStamp
-
+### `DelayFrame(int)`
+ - 지정한 프레임만큼 대기한 후, Subscribe가 시작된다.
 
 </details>
 
@@ -643,18 +665,28 @@ TimeStamp
 
 <details>
 <summary markdown="span"> 
-스트림 종료 시 처리
+반복 및 스트림 종료 시 처리
 </summary>
 
-Repeat
+### `Repeat()`
+ - 스트림이 종료될 때 OnCompleted()를 호출하지 않고 Subscribe()를 다시 호출한다.
+ - 종료 조건을 지정하지 않으면 무한루프가 발생할 수 있으므로 `RepeatSafe` 사용 권장
+ - Repeat을 써야 한다면 종료 조건을 반드시 지정해야 한다.
 
-RepeatSafe
+### `RepeatSafe()`
+ - `Repeat`의 안전한 버전
 
-RepeatUntilDisable
+### `RepeatUntilDisable(Component or GameObject)`
+ - 지정한 게임오브젝트가 비활성화되면 반복을 종료하고 OnCompleted()를 호출한다.
+ - 정확히는, 해당 게임오브젝트에 부착되는 `ObservableEnableTrigger` 컴포넌트가 비활성화되는 경우 종료된다.
 
-RepeatUntilDestroy
+### `RepeatUntilDestroy(Component or GameObject)`
+ - 지정한 게임오브젝트가 파괴되면 반복을 종료하고 OnCompleted()를 호출한다.
 
-Finally
+### `Finally(Action)`
+ - 스트림이 파괴(Dispose())될 때 호출할 동작을 지정한다.
+ - OnCompleted() 이후에 호출된다.
+
 
 </details>
 
@@ -909,7 +941,8 @@ var dbClickStreamDisposable =
 // * 인식 딜레이는 없지만, 간혹 제대로 인식하지 못하는 버그 존재
 
 // 0.3초 내로 두 번의 클릭을 인지하면 더블클릭 판정
-Observable.EveryUpdate().Where(_ => Input.GetMouseButtonDown(0))
+Observable.EveryUpdate()
+    .Where(_ => Input.GetMouseButtonDown(0))
     .Buffer(TimeSpan.FromMilliseconds(300), 2)
     .Where(buffer => buffer.Count >= 2)
     .Subscribe(_ => Debug.Log("DoubleClicked!"));
