@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-04-14T23:15:01+09:00</updated>
+  <updated>2021-04-22T20:06:42+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,143 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Drag and Drop Recorder</title>
+    <link href="https://rito15.github.io/posts/unity-toy-drag-and-drop-recorder/" rel="alternate" type="text/html" title="Drag and Drop Recorder" />
+    <published>2021-04-19T21:00:00+09:00</published>
+  
+    <updated>2021-04-19T21:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-toy-drag-and-drop-recorder/</id>
+    <content src="https://rito15.github.io/posts/unity-toy-drag-and-drop-recorder/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Toys" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+  드래그 앤 드롭으로 게임오브젝트를 커서를 따라 이동시킨다.
+  이동 경로를 기록하고, 반복재생할 수 있다.
+
+
+How To Use
+
+
+  빈 게임오브젝트에 DDRecorder 컴포넌트를 추가한다.
+  드래그 앤 드롭으로 이동시킬 게임오브젝트에 콜라이더와 DDTarget 컴포넌트를 추가한다.
+  DDRecorder 컴포넌트의 Replay Target 필드에 반복 재생시킬 게임오브젝트를 등록한다.
+  스페이스바를 누를 때마다 등록된 경로대로 타겟 게임오브젝트가 이동한다.
+
+
+Preview
+
+
+
+
+Download
+
+
+  Drag and Drop Recorder.zip
+
+
+Source Code
+
+
+  https://github.com/rito15/Unity_Toys
+
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>RPG Inventory System(RPG 게임용 인벤토리 제작하기)</title>
+    <link href="https://rito15.github.io/posts/unity-study-rpg-inventory/" rel="alternate" type="text/html" title="RPG Inventory System(RPG 게임용 인벤토리 제작하기)" />
+    <published>2021-04-15T22:00:00+09:00</published>
+  
+    <updated>2021-04-15T22:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-study-rpg-inventory/</id>
+    <content src="https://rito15.github.io/posts/unity-study-rpg-inventory/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      개요
+
+
+
+  RPG 게임에서 사용할 수 있는 기본적인 인벤토리를 제작한다.
+
+
+
+
+클래스 구조 설계
+
+
+
+
+1. 인벤토리
+
+  Inventory : 전체 아이템들을 관리하고, 인벤토리 내부의 실질적 동작들을 담당한다.
+
+
+2. 아이템
+
+  Item : 인벤토리의 각 슬롯에 들어가는 실제 아이템. 각각의 아이템이 개별적으로 갖는 데이터들을 보관한다.
+    
+      CountableItem : 수량을 셀 수 있는 아이템
+        
+          PortionItem : 소모 아이템(포션)
+        
+      
+      EquipmentItem : 장비 아이템
+        
+          WeaponItem : 무기 아이템
+          ArmorItem : 방어구 아이템
+...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -223,181 +360,6 @@ private async void TaskTest()
 
 
 따라서 다른 스레드에서 유니티 메인 로직에 접근해야 한다면 MainThreadDispat...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>파티클 시스템 예제 - 11 - Sword Effect</title>
-    <link href="https://rito15.github.io/posts/unity-particle-system-example-11-sword-effect/" rel="alternate" type="text/html" title="파티클 시스템 예제 - 11 - Sword Effect" />
-    <published>2021-03-30T23:23:00+09:00</published>
-  
-    <updated>2021-03-30T23:23:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-particle-system-example-11-sword-effect/</id>
-    <content src="https://rito15.github.io/posts/unity-particle-system-example-11-sword-effect/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Particle System" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목차
-
-
-
-  목표
-  준비물
-  1. 하이라키 구성
-  2. Glow 이펙트
-  3. Sparkle 이펙트
-  4. Aura 이펙트
-  5. 결과
-
-
-
-
-Preview
-
-
-
-
-
-
-목표
-
-
-
-  검 모델링에 부착하여 사용할 수 있는 이펙트(무기 강화 이펙트) 만들기
-
-
-
-
-준비물
-
-
-
-  검 모델링
-    
-      https://assetstore.unity.com/packages/3d/props/weapons/free-low-poly-swords-189978
-    
-  
-
-
-
-
-
-  Sparkle, PointGlow 텍스쳐를 사용하는 Additive 마테리얼
-    
-      Sparkle_PointGlow.zip
-    
-  
-
-
-
-
-1. 하이라키 구성
-
-
-위의 검 모델링 무료 애셋을 사용하...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Static Readonly vs. Const</title>
-    <link href="https://rito15.github.io/posts/memo-cs-static-readonly-vs-const/" rel="alternate" type="text/html" title="Static Readonly vs. Const" />
-    <published>2021-03-30T00:50:00+09:00</published>
-  
-    <updated>2021-03-30T00:50:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-cs-static-readonly-vs-const/</id>
-    <content src="https://rito15.github.io/posts/memo-cs-static-readonly-vs-const/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Csharp Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      공통점
-
-
-  런타임에 값을 변경할 수 없다.
-
-
-
-
-차이점
-
-
-Static Readonly
-
-
-  
-    필드 선언문 또는 정적 생성자에서만 값을 초기화할 수 있다.
-  
-  
-    값을 초기화하지 않으면 해당 타입의 기본값으로 초기화된다.
-  
-  
-    런타임 초기에 값이 고정된다.
-  
-  
-    값이 정해지면 변하지 않지만, 결국 변수이기 때문에 참조 오버헤드가 발생한다.
-  
-
-
-
-
-Const
-
-
-  
-    필드 선언문에서만 값을 초기화할 수 있다.
-  
-  
-    값을 초기화해야만 한다.
-  
-  
-    컴파일 타임에 값이 고정된다.
-  
-  
-    리터럴처럼 사용될 수 있다.(예 : switch문의 case 값)
-  
-  
-    어셈블리가 나뉘었을 때(const 필드가 존...
     </summary>
   
 

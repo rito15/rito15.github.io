@@ -1,0 +1,195 @@
+# Memo
+---
+
+## **HDRP 주의사항**
+ - 에디터 모드의 변경사항이 바로 적용되지 않을 수 있으므로, 좀 이상하다 싶으면 플레이모드 진입
+
+================================================
+
+<br>
+
+# 초기 설정
+---
+
+## **HDRP Wizard**
+ - 프로젝트의 설정을 HDRP에 맞게 수정한다.(Fix All)
+
+## **Project Settings**
+ - Graphics에서 HDRP 애셋을 등록해야 한다.
+ - HDRP Default Settings에서 지정한 옵션들은 씬에서 따로 직접 지정하지 않은 경우 기본적으로 씬에 적용된다.
+
+<br>
+
+## **Volume 분리**
+ - 똑같은 Volume이지만, 게임오브젝트를 분리하여 각각의 효과를 따로 관리하는 것이 좋다.
+ - 글로벌 효과 / 포스트 프로세싱 효과
+
+<br>
+
+# Volume
+---
+
+## **Global Volume**
+ - `Visual Environment`
+   - Type : 사용할 스카이박스 설정
+   - Ambient Mode : Static(베이크된 간접광 적용) / Dynamic(Sky에 의한 실시간 간접광 적용)
+ - `HDRI Sky`
+   - Volumetric Fog : Volumetric Light를 적용하려면 꼭 필요
+ - `Fog`
+ - `Shadows`
+ - `Exposure`
+   - 조리개의 F값 설정. 값이 클수록 빛을 받아들이는 양이 적어진다.
+   - `Light` 컴포넌트의 Intensity, Volume - `HDRI Sky`의 Exposure를 상대값으로 함께 조절해야 한다.
+ 
+## **PostProcessing Volume**
+ - `Tonemapping` : HDR -> LDR 색상 값 매핑.
+   - ACES : 많이 쓰이는 톤매핑 방식. 톤을 차분하게 가라앉혀준다.
+   - 커스텀 톤매핑을 통해 사용자가 원하는대로 씬의 전체적인 톤을 잡아줄 수 있다.
+ - `Bloom` : HDRP의 Bloom은 기존의 포스트프로세싱과는 다르게 더 뿌옇고 호불호 갈리니 주의
+ - `Ambient Occlusion`
+   - SSAO가 아니라 GTAO(Ground Truth Ambient Occlusion) 적용
+   - SSAO보다 지면과의 음영이 더 짙게 표현됨
+ - `Shadows, Midtones, Highlights`
+   - 포스트 프로세싱 마지막 단계에서 포인트를 주기 위해 사용
+ - `Color Adjustments`
+   - 포스트 프로세싱의 마지막 단계에서 전체 색감 조정을 위해 사용
+   - `Post Exposure` : 밝기 조정
+   - `Contrast` : 대비 조정
+   - `Saturation` : 채도 조정
+ - `Split Toning` : 밝은 부분과 어두운 부분의 색감을 나누어 보정할 수 있는 효과
+
+<br>
+
+# 안티 앨리어싱
+---
+
+- **앨리어싱(Aliasing)**
+  - 화면의 샘플링 과정에서 물체의 좌표를 스크린의 불연속적인 픽셀로 렌더링하여 발생하는 계단 현상
+
+- **안티 앨리어싱(Anti-Aliasing)**
+  - 앨리어싱을 방지하기 위한 기법
+  - 공간적 AA(Spatial AA) : 렌더링 과정 중에 이루어지는 AA 기법
+  - 후처리 AA(Post-prosessing AA) : 렌더링이 끝난 뒤의 픽셀을 처리하는 AA 기법
+
+- 안티 앨리어싱은 카메라 컴포넌트를 통해 설정할 수 있다.
+
+<br>
+
+## **FXAA**
+ - Fast Approximate Anti-Aliasing(빠른 근사 안티 앨리어싱)
+ - 휘도(밝기)가 급격히 바뀌는 곳을 기반으로 외곽선을 추출하고, 이 외곽선에 수직으로 AA 효과를 넣는다.
+ - AA 중 가장 성능소모가 적으면서 나쁘지 않은 품질을 보여준다.
+ - 텍스트나 고해상도 텍스처 등 세밀한 표현이 일어나는 곳에서 심한 블러 현상이 일어날 수 있다.
+
+<br>
+
+## **TAA**
+ - Temporal Anti-Aliasing(시간적 안티 앨리어싱)
+ - 공간이 아닌 시간의 안티 앨리어싱 기법
+ - 이전 프레임버퍼와 현재 프레임버퍼를 보간하는 방식을 사용한다.
+ - 정지 화면에서는 AA 연산을 하지 않으며, 프레임간의 변화가 큰 경우에 효과가 좋다.
+
+<br>
+
+## **SMAA**
+ - Subpixel Morphological Anti-Aliasing(서브픽셀 변환 안티 앨리어싱)
+ - MLAA(Morphological Anti-Aliasing)의 한 기법
+ - MLAA는 원본 이미지를 후처리하여 외곽선을 파악하고, 보간된 중간 색상들을 추가하여 외곽선에 발생하는 계단 현상을 완화시키는 방식이며, 연산량이 많다.
+ - SMAA는 이에 각 형태에 맞는 필터들을 미리 생성해놓고 적용하여 연산량을 줄인 방식이다.
+
+<br>
+
+# Reflections
+---
+
+## **SSR(Screen Space Reflection)**
+
+- HDRP 애셋에서 Screen Space Reflection 활성화
+
+- Volume - `Screen Space Reflection`을 통해 세부 수치 조정 가능
+
+- 스크린의 영역 내에서 이루어지기 때문에, 스크린을 벗어난 영역은 반사되지 않는다는 단점 존재
+
+<br>
+
+## **Reflection Probe**
+
+- 하이라키 - Light - Reflection Probe를 통해 생성 가능
+
+- `Baked` 또는 `Realtime`으로 설정
+
+- Realtime - OnEnable로 설정한 경우, 씬을 수정할 때마다 Reflection Probe를 재활성화 해주어야 변화가 적용된다.
+
+- Baked로 설정한 경우, 반사 표현에 포함될 오브젝트들에 인스펙터 우측 상단에서 `Reflection Probe Static`을 체크한 뒤 `Lighting` 윈도우에서 베이크해야 한다.
+
+<br>
+
+# 간접광 베이크
+---
+
+## **대상 오브젝트**
+  - 인스펙터 - `Contribute GI` 체크
+
+## **라이트**
+  - General - Mode - `Baked` 또는 `Mixed` 설정
+
+## **굽기**
+  - Lighting - Mixed Lighting - `Lighting Mode` - 적절히 설정
+  - `Generate Lighting`
+
+<br>
+
+# 시각적 연출
+---
+
+## **현실적인 라이트 강도 설정**
+
+- **관련 요소**
+  - `Light` - `Intensity`
+  - `Volume` - `HDRI Sky` - `Exposure`
+  - `Volume` - `Exposure`
+
+기본적으로 Directional Light에 적용된 한자리~두자리 수 Lux 값은 실제로 한밤중의 조도값이라고 할 수 있다.
+
+그런데 이를 조정하여 실제 한낮의 값인 30,000 ~ 100,000 정도로 설정하면 빛이 너무 강하게 적용된다.
+
+따라서 이를 현실적인 값으로 조정하기 위해서는 Exposure를 알맞게 맞춰주어야 한다.
+
+Volume의 Exposure 값을 증가시키면 조리개 F값을 증가시킨 효과와 비슷하며, 받아들이는 빛의 양이 줄어든다.
+
+따라서 Light의 Intensity를 현실적인 값으로 적절히 높인 상태에서 HDRI Sky의 Exposure 역시 높여주고 Volume의 Exposure를 낮추면 균형을 맞추어 현실적인 라이트 값을 적용할 수 있다.
+
+<br>
+
+## **Volumetric Lighting**
+
+- 관련 요소
+  - `Light` - `Volumetrics`
+  - `Volume` - `Fog` - `Volumetric Fog`
+  - `Volume` - `Fog` - `Fog Attenuation DIstance`
+  - `Density Volume`
+    - Size를 통해 지정한 큐브 영역 내의 Volumetric 효과가 강화된다.
+    - Fog Distance, Distance Fade End 값을 통해 강도를 조정할 수 있다.
+    - 지정한 영역 내에서만 Fog 색상을 바꿀 수 있다(Single Scattering Albedo).
+
+
+### [1] Volumetric Light, Fog 적용
+
+![image](https://user-images.githubusercontent.com/42164422/115121786-8ad2c100-9fef-11eb-8a90-eab7cadb5ab0.png)
+
+
+### [2] Density Volume 추가 적용
+
+![image](https://user-images.githubusercontent.com/42164422/115121819-adfd7080-9fef-11eb-8f08-6b3b025cc943.png)
+
+
+### [3] Density Volume을 3가지 색상으로 각 영역에 적용
+
+![image](https://user-images.githubusercontent.com/42164422/115121844-c9687b80-9fef-11eb-810e-092f3e8f557b.png)
+
+<br>
+
+# References
+---
+- <https://www.youtube.com/watch?v=n5NzQfpVb54&ab_channel=UnityKorea>
+- <https://cutemoomin.tistory.com/entry/안티엘리어싱-SSAA-MSAA-FXAA-SMAA>
