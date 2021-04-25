@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-04-22T20:06:42+09:00</updated>
+  <updated>2021-04-26T02:06:24+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,126 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>브레즌햄(픽셀에 직선 그리기) 알고리즘</title>
+    <link href="https://rito15.github.io/posts/bresenham-algorithm/" rel="alternate" type="text/html" title="브레즌햄(픽셀에 직선 그리기) 알고리즘" />
+    <published>2021-04-25T17:32:00+09:00</published>
+  
+    <updated>2021-04-25T17:32:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/bresenham-algorithm/</id>
+    <content src="https://rito15.github.io/posts/bresenham-algorithm/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Algorithm" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+직선을 그릴 때 직선 위의 점들은 실수 값을 가질 수밖에 없다.
+
+그래서 불연속 정수 값만을 갖는 픽셀에 직선을 그릴 때는
+
+실수 값의 소수점을 버리거나 반올림하여 정수로 변환해야 하는데,
+
+브레즌햄 알고리즘은 실수 연산 없이 정수 연산만으로 직선을 그릴 수 있게 해준다.
+
+
+
+Details
+
+
+2가지 경우로 나눈다.
+
+
+
+
+  기울기 절댓값이 1 미만인 경우
+  기울기 절댓값이 1 이상인 경우
+
+
+
+
+1번의 경우에는 x 좌표를 1씩 증가 또는 감소시키며 해당하는 y 좌표를 구하고,
+
+2번의 경우에는 y 좌표를 1씩 증가 또는 감소시키며 해당하는 x 좌표를 구한다.
+
+
+
+1번을 예시로 했을 때
+
+x 좌표를 1씩 증가 또는 감소시켰을 때 y좌표 역시 1 증가 또는 감소시킬지 여부를 결정...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Debug.Log에 색상 넣기</title>
+    <link href="https://rito15.github.io/posts/unity-memo-color-debug-log/" rel="alternate" type="text/html" title="Debug.Log에 색상 넣기" />
+    <published>2021-04-25T17:10:00+09:00</published>
+  
+    <updated>2021-04-25T17:10:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-memo-color-debug-log/</id>
+    <content src="https://rito15.github.io/posts/unity-memo-color-debug-log/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+  &amp;lt;color=&amp;gt;&amp;lt;/color&amp;gt; 태그를 사용하여 로그 메시지에 색상을 넣을 수 있다.
+  color= 뒤에는 색상 이름 또는 HTML 색상코드를 입력한다.
+
+
+
+
+Debug.Log("Default");
+Debug.Log("&amp;lt;color=white&amp;gt;White&amp;lt;/color&amp;gt;");
+Debug.Log("&amp;lt;color=grey&amp;gt;Grey&amp;lt;/color&amp;gt;");
+Debug.Log("&amp;lt;color=black&amp;gt;Black&amp;lt;/color&amp;gt;");
+Debug.Log("&amp;lt;color=red&amp;gt;Red&amp;lt;/color&amp;gt;");
+Debug.Log("&amp;lt;color=green&amp;gt;Green&amp;lt;/color&amp;gt;");
+Debug...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -234,132 +354,6 @@ Partition(arr, left, right)
 정렬 과정
 
 [1] QuickSort(arr, 0, arr.L...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>O(logn) 거듭제곱 알고리즘</title>
-    <link href="https://rito15.github.io/posts/algorithm-pow/" rel="alternate" type="text/html" title="O(logn) 거듭제곱 알고리즘" />
-    <published>2021-04-06T18:00:00+09:00</published>
-  
-    <updated>2021-04-06T18:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/algorithm-pow/</id>
-    <content src="https://rito15.github.io/posts/algorithm-pow/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Algorithm" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-
-  
-    일반적으로 \(O(n)\) 시간복잡도로 수행하는 거듭제곱 계산을 \(O(log_{2}n)\) 의 시간복잡도로 수행할 수 있는 알고리즘
-  
-  
-    2진수 연산을 이용한다.
-  
-
-
-
-
-Details
-
-
-\(a^n\)을 계산하는 가장 쉬운 방법은 \(a\)를 \(n\) 번 곱하는 것이다.
-
-예를 들어 \(4^9\)을 구하려면 \(4 \cdot 4 \cdot 4 \cdot 4 \cdot 4 \cdot 4 \cdot 4 \cdot 4 \cdot 4\)를 계산하면 된다.
-
-하지만 이렇게 되면 \(n - 1\) 번의 곱셈을 수행하므로 시간복잡도는 \(O(n)\)에 해당한다.
-
-
-
-거듭제곱의 특징은 같은 숫자(밑)을 연달아 곱한다는 것이다.
-
-이때 지수를 살펴보면 곱셈이 아닌...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티의 멀티스레딩과 Job의 활용</title>
-    <link href="https://rito15.github.io/posts/unity-study-multithread-job/" rel="alternate" type="text/html" title="유니티의 멀티스레딩과 Job의 활용" />
-    <published>2021-04-04T22:00:00+09:00</published>
-  
-    <updated>2021-04-04T22:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-study-multithread-job/</id>
-    <content src="https://rito15.github.io/posts/unity-study-multithread-job/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      유니티에서의 멀티스레딩
-
-유니티엔진에서는 기본적으로 모든 CPU 연산이 메인 스레드에서 이루어진다.
-
-그렇다고 다중 스레드를 사용할 수 없다는 것은 아니지만
-
-메인 스레드가 아닌 다른 스레드에서 유니티의 메인 로직에 접근할 수 없도록 막혀있다.
-
-다시 말해, 다른 스레드에서는 게임오브젝트, 컴포넌트 등에 접근하면 에러가 발생한다.
-
-예를 들어
-
-private async void TaskTest()
-{
-    await Task.Run(() =&amp;gt;
-    {
-        transform.Translate(1f, 0f, 0f);
-    });
-}
-
-
-이런 메소드를 실행하면
-
-
-
-이런 에러를 만날 수 있다.
-
-
-
-따라서 다른 스레드에서 유니티 메인 로직에 접근해야 한다면 MainThreadDispat...
     </summary>
   
 

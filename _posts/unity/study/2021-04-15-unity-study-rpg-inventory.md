@@ -98,6 +98,15 @@ Inventory 게임오브젝트에 `InventoryUI` 컴포넌트를 넣는다.
 
 <br>
 
+# InventoryUI 작성
+---
+
+`InventoryUI` 클래스는 인벤토리 UI의 모든 사용자 상호작용과 그래픽 레이캐스트를 담당한다.
+
+그리고 아이템 슬롯 UI들을 리스트로 전부 관리한다.
+
+<br>
+
 ## **아이템 슬롯 동적 생성**
 
 환경에 따라 아이템 슬롯의 개수는 8x8일 수도, 6x2일 수도 있고 다양하게 바뀔 수 있다.
@@ -390,7 +399,7 @@ private static class Destroyer
 
 <br>
 
-# 헤더 영역 드래그 앤 드롭 구현
+# 헤더 영역 드래그 앤 드롭 이동 구현
 ---
 
 UI의 드래그 앤 드롭을 구현하려면 기본적으로 GraphicRaycaster를 이용해야 한다.
@@ -456,7 +465,7 @@ public class MovableHeaderUI : MonoBehaviour, IPointerDownHandler, IDragHandler
 
 <br>
 
-# 아이템 드래그 앤 드롭 구현
+# 아이템 드래그 앤 드롭 이동 구현
 ---
 
 아이템의 드래그 앤 드롭을 구현하는 다양한 방법들이 있다.
@@ -617,6 +626,10 @@ private void OnPointerUp()
 
 <br>
 
+![2021_0426_InventoryDrag](https://user-images.githubusercontent.com/42164422/116001990-68195b80-a632-11eb-98a1-12410041247c.gif)
+
+<br>
+
 # ItemSlotUI 클래스 구현
 ---
 
@@ -643,27 +656,265 @@ private void OnPointerUp()
 
 <br>
 
-# Inventory 클래스 구현
----
++
 
-인벤토리 클래스는 실질적으로 모든 아이템을 배열로 관리하고,
+`ItemSlotUI`와 `Item`은 서로를 참조하지 않는다.
 
-인벤토리 내부의 동작을 담당한다.
+`ItemSlotUI`는 `InventoryUI`가 관리하며, `Item`은 `Inventory`가 관리한다.
 
+`ItemSlotUI`와 `Item`의 상태 공유는 `IntentoryUI`, `Inventory`에 의해 간접적으로 이루어진다.
 
-
-
-
-==> 작성중
-
-
-
+<br>
 
 # 아이템과 아이템 데이터
 ---
 
-== Item, ItemData, 아이템 스크립터블 오브젝트 관련 ==
+아이템에는 각 아이템마다 개별적으로 가질 데이터와 공통으로 가질 데이터가 존재한다.
 
+예를 들어 아이템 이름은 공통 데이터이며, 아이템 수량이나 장비 내구도는 개별 데이터이다.
+
+그런데 공통 데이터도 아이템 객체가 필드로 갖게 되면 아이템 개수에 비례해서 그만큼의 메모리를 낭비하게 되는 셈이므로, 이를 분리할 필요가 있다.
+
+따라서 각각의 아이템을 의미하며 개별 데이터를 관리할 클래스는 `Item`, 
+
+공통 데이터를 관리할 클래스는 `ItemData`로 작성한다.
+
+공통 데이터는 스크립터블 오브젝트를 상속하여 미리 애셋 형태로 유니티 내에서 관리할 수 있게 한다.
+
+<br>
+
+
+<details>
+<summary markdown="span"> 
+ItemData.cs
+</summary>
+
+```cs
+public abstract class ItemData : ScriptableObject
+{
+    public int ID => _id;
+    public string Name => _name;
+    public string Tooltip => _tooltip;
+    public Sprite IconSprite => _iconSprite;
+
+    [SerializeField] private int      _id;
+    [SerializeField] private string   _name;    // 아이템 이름
+    [Multiline]
+    [SerializeField] private string   _tooltip; // 아이템 설명
+    [SerializeField] private Sprite   _iconSprite; // 아이템 아이콘
+    [SerializeField] private GameObject _dropItemPrefab; // 바닥에 떨어질 때 생성할 프리팹
+
+    /// <summary> 타입에 맞는 새로운 아이템 생성 </summary>
+    public abstract Item CreateItem();
+}
+```
+
+</details>
+
+
+<details>
+<summary markdown="span"> 
+CountableItemData.cs
+</summary>
+
+```cs
+/// <summary> 셀 수 있는 아이템 데이터 </summary>
+public abstract class CountableItemData : ItemData
+{
+    public int MaxAmount => _maxAmount;
+    [SerializeField] private int _maxAmount = 99;
+}
+```
+
+</details>
+
+
+<details>
+<summary markdown="span"> 
+PortionItemData.cs
+</summary>
+
+```cs
+/// <summary> 소비 아이템 정보 </summary>
+[CreateAssetMenu(fileName = "Item_Portion_", menuName = "Inventory System/Item Data/Portion", order = 3)]
+public class PortionItemData : CountableItemData
+{
+    /// <summary> 효과량(회복량 등) </summary>
+    public float Value => _value;
+    [SerializeField] private float _value;
+    public override Item CreateItem()
+    {
+        return new PortionItem(this);
+    }
+}
+```
+
+</details>
+
+
+`ItemData` 클래스는 `ScriptableObject` 클래스를 상속하며, 아이템의 공통 데이터들을 저장한다.
+
+그리고 이를 상속받는 하위 클래스들을 작성하고 유니티 내에서 미리 애셋을 만들어 관리한다.
+
+![image](https://user-images.githubusercontent.com/42164422/115995280-9d638080-a615-11eb-945c-b13558c15240.png)
+
+<br>
+
+
+<details>
+<summary markdown="span"> 
+Item.cs
+</summary>
+
+```cs
+public abstract class Item
+{
+    public ItemData Data { get; private set; }
+
+    public Item(ItemData data) => Data = data;
+}
+```
+
+</details>
+
+
+<details>
+<summary markdown="span"> 
+CountableItem.cs
+</summary>
+
+```cs
+/// <summary> 수량을 셀 수 있는 아이템 </summary>
+public abstract class CountableItem : Item
+{
+    public CountableItemData CountableData { get; private set; }
+
+    /// <summary> 현재 아이템 개수 </summary>
+    public int Amount { get; protected set; }
+
+    /// <summary> 하나의 슬롯이 가질 수 있는 최대 개수(기본 99) </summary>
+    public int MaxAmount => CountableData.MaxAmount;
+
+    /// <summary> 수량이 가득 찼는지 여부 </summary>
+    public bool IsMax => Amount >= CountableData.MaxAmount;
+
+    /// <summary> 개수가 없는지 여부 </summary>
+    public bool IsEmpty => Amount <= 0;
+
+
+    public CountableItem(CountableItemData data, int amount = 1) : base(data)
+    {
+        CountableData = data;
+        SetAmount(amount);
+    }
+
+    /// <summary> 개수 지정(범위 제한) </summary>
+    public void SetAmount(int amount)
+    {
+        Amount = Mathf.Clamp(amount, 0, MaxAmount);
+    }
+
+    /// <summary> 개수 추가 및 최대치 초과량 반환(초과량 없을 경우 0) </summary>
+    public int AddAmountAndGetExcess(int amount)
+    {
+        int nextAmount = Amount + amount;
+        SetAmount(nextAmount);
+
+        return (nextAmount > MaxAmount) ? (nextAmount - MaxAmount) : 0;
+    }
+
+    /// <summary> 개수를 나누어 복제 </summary>
+    public CountableItem SeperateAndClone(int amount)
+    {
+        // 수량이 한개 이하일 경우, 복제 불가
+        if(Amount <= 1) return null;
+
+        if(amount > Amount - 1)
+            amount = Amount - 1;
+
+        Amount -= amount;
+        return Clone(amount);
+    }
+
+    protected abstract CountableItem Clone(int amount);
+}
+```
+
+</details>
+
+
+<details>
+<summary markdown="span"> 
+PortionItem.cs
+</summary>
+
+```cs
+/// <summary> 수량 아이템 - 포션 아이템 </summary>
+public class PortionItem : CountableItem, IUsableItem
+{
+    public PortionItem(PortionItemData data, int amount = 1) : base(data, amount) { }
+
+    public bool Use()
+    {
+        // 임시 : 개수 하나 감소
+        Amount--;
+
+        return true;
+    }
+
+    protected override CountableItem Clone(int amount)
+    {
+        return new PortionItem(CountableData as PortionItemData, amount);
+    }
+}
+```
+
+</details>
+
+`Item` 클래스는 아이템의 실체라고 할 수 있다.
+
+따라서 필드로 각각의 아이템이 가질 개별 데이터를 작성하고,
+
+메소드로는 아이템의 동작들을 구현한다.
+
+<br>
+
+# Inventory 클래스 구현
+---
+
+`Inventory` 클래스는 실질적으로 모든 아이템을 `Item` 배열로 관리하고,
+
+인벤토리 내부의 동작을 담당한다.
+
+인벤토리의 각 슬롯은 아이템 배열의 각 `Item`과 1:1 대응되며,
+
+따라서 빈 슬롯이 존재할 수 있으므로 리스트가 아닌 배열을 사용한다.
+
+<br>
+
+`Inventory` 클래스는 `InventoryUI` 클래스와 상호작용하게 된다.
+
+예를 들어 새로운 아이템이 추가되었을 때 `InventoryUI`를 참조하여 UI를 갱신하고,
+
+UI에서 사용자 이벤트가 발생했을 때 `InventoryUI`는 `Inventory`를 참조하여 `Item` 또는 배열을 갱신한다.
+
+<br>
+
+`Inventory` 클래스가 관리할 데이터(필드)는 다음과 같다.
+
+- `Item` 배열
+
+그리고 `Inventory` 클래스 내에 작성할 동작(메소드)들은
+
+- 아이템 정보 확인
+- 아이템 정보 갱신
+- 아이템 추가
+- 아이템 제거
+- 아이템 이동
+- 아이템 정렬
+- 아이템 사용
+
+등이 있다.
 
 <br>
 

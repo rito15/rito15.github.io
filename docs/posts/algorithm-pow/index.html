@@ -3803,6 +3803,32 @@ return res
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5706,7 +5732,7 @@ QuickS...
       
       
       <div class="card">
-        <a href="/posts/unity-transparent-stencil/">
+        <a href="/posts/bresenham-algorithm/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -5723,13 +5749,13 @@ QuickS...
   
 
   
-    Feb  6
+    Apr 25
   
 
-  <i class="unloaded">2021-02-06T01:29:00+09:00</i>
+  <i class="unloaded">2021-04-25T17:32:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 반투명, 스텐실 개념 익히기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>브레즌햄(픽셀에 직선 그리기) 알고리즘</h3>
             <div class="text-muted small">
               <p>
                 
@@ -5738,27 +5764,28 @@ QuickS...
 
 
 
-                목차
+                Summary
+
+
+직선을 그릴 때 직선 위의 점들은 실수 값을 가질 수밖에 없다.
+
+그래서 불연속 정수 값만을 갖는 픽셀에 직선을 그릴 때는
+
+실수 값의 소수점을 버리거나 반올림하여 정수로 변환해야 하는데,
+
+브레즌햄 알고리즘은 실수 연산 없이 정수 연산만으로 직선을 그릴 수 있게 해준다.
 
 
 
-  1. 불투명과 반투명
-  2. 알파 블렌딩, 알파 소팅
-  3. 알파 테스트
-  4. 커스텀 알파 블렌딩
-  5. 파티클 쉐이더 만들어보기
-  6. 깨끗한 알파 블렌딩 쉐이더 만들기
-  7. ZTest와 ZWrite
-  8. 알파 블렌딩 쉐이더에서 발생하는 문제점들
-  9. 스텐실
-  10. References
+Details
+
+
+2가지 경우로 나눈다.
 
 
 
 
-불투명과 반투명
-
-...
+  기울...
               </p>
             </div>
           </div>
