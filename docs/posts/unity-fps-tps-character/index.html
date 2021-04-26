@@ -3531,6 +3531,11 @@ CharacterMainController.cs
         
         
         
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
       
         
@@ -3547,11 +3552,6 @@ CharacterMainController.cs
         
         
         <li><a href="/posts/unity-editor-api/">유니티 에디터 관련 유용한 팁 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -7631,6 +7631,19 @@ CharacterMainController.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8380,7 +8393,7 @@ CharacterMainController.cs
       
       
       <div class="card">
-        <a href="/posts/unity-study-voxel/">
+        <a href="/posts/unity-study-multithread-job/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8397,13 +8410,13 @@ CharacterMainController.cs
   
 
   
-    Mar 26
+    Apr  4
   
 
-  <i class="unloaded">2021-03-26T20:40:00+09:00</i>
+  <i class="unloaded">2021-04-04T22:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Voxel System(유니티에서 마인크래프트 구현하기)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티의 멀티스레딩과 Job의 활용</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8412,33 +8425,20 @@ CharacterMainController.cs
 
 
 
-                목차
+                유니티에서의 멀티스레딩
 
+유니티엔진에서는 기본적으로 모든 CPU 연산이 메인 스레드에서 이루어진다.
 
-  목표
-  1. 복셀 기본
-  2. 청크와 맵 데이터
-  3. 텍스쳐 입히기
-  4. 월드에서 청크 생성 및 관리하기
-  5. 지형 만들기
-  6. 캐릭터 컨트롤러 만들기
-  
+그렇다고 다중 스레드를 사용할 수 없다는 것은 아니지만
 
+메인 스레드가 아닌 다른 스레드에서 유니티의 메인 로직에 접근할 수 없도록 막혀있다.
 
+다시 말해, 다른 스레드에서는 게임오브젝트, 컴포넌트 등에 접근하면 에러가 발생한다.
 
+예를 들어
 
-목표
-
-
-
-  유튜브 강좌를 따라가며 구현한다.
-
-
-
-
-유니티엔진에서 마인크래프트와 같은 복셀 시스템을 구현한다.
-
-모든 맵과 사물은 큐브 형태를 띠고 있으며...
+1
+2...
               </p>
             </div>
           </div>
@@ -8514,7 +8514,7 @@ CharacterMainController.cs
       
       
       <div class="card">
-        <a href="/posts/unity-study-multithread-job/">
+        <a href="/posts/unity-study-unirx/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8531,13 +8531,13 @@ CharacterMainController.cs
   
 
   
-    Apr  4
+    Mar  6
   
 
-  <i class="unloaded">2021-04-04T22:00:00+09:00</i>
+  <i class="unloaded">2021-03-06T20:14:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티의 멀티스레딩과 Job의 활용</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UniRx (Reactive Extensions for Unity)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8546,20 +8546,18 @@ CharacterMainController.cs
 
 
 
-                유니티에서의 멀티스레딩
+                개요
 
-유니티엔진에서는 기본적으로 모든 CPU 연산이 메인 스레드에서 이루어진다.
 
-그렇다고 다중 스레드를 사용할 수 없다는 것은 아니지만
+Rx란?
 
-메인 스레드가 아닌 다른 스레드에서 유니티의 메인 로직에 접근할 수 없도록 막혀있다.
 
-다시 말해, 다른 스레드에서는 게임오브젝트, 컴포넌트 등에 접근하면 에러가 발생한다.
-
-예를 들어
-
-1
-2...
+  Reactive Extensions
+  절차적 프로그래밍에서 다루기 쉽지 않은 비동기 프로그래밍을 손쉽게 다루기 위한 패러다임
+  .NET에도 다양한 언어로 구현되어 있다.
+  비동기 데이터 스트림을 중심으로 동작한다.
+  스트림 내의 데이터에 변화가 발생했을 때 반응형으로 기능이 동작하는 방식을 사용한다.
+  시간을 상당히 ...
               </p>
             </div>
           </div>

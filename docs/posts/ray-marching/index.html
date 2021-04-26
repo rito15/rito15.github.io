@@ -1312,6 +1312,11 @@ Source Code
         
         
         
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
       
         
@@ -1328,11 +1333,6 @@ Source Code
         
         
         <li><a href="/posts/unity-editor-api/">유니티 에디터 관련 유용한 팁 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -5958,6 +5958,19 @@ Source Code
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6161,74 +6174,6 @@ Source Code
       
       
       <div class="card">
-        <a href="/posts/unity-study-voxel/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar 26
-  
-
-  <i class="unloaded">2021-03-26T20:40:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Voxel System(유니티에서 마인크래프트 구현하기)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목차
-
-
-  목표
-  1. 복셀 기본
-  2. 청크와 맵 데이터
-  3. 텍스쳐 입히기
-  4. 월드에서 청크 생성 및 관리하기
-  5. 지형 만들기
-  6. 캐릭터 컨트롤러 만들기
-  
-
-
-
-
-목표
-
-
-
-  유튜브 강좌를 따라가며 구현한다.
-
-
-
-
-유니티엔진에서 마인크래프트와 같은 복셀 시스템을 구현한다.
-
-모든 맵과 사물은 큐브 형태를 띠고 있으며...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-fps-tps-character/">
           <div class="card-body">
             <!--
@@ -6277,6 +6222,61 @@ Source Code
   11. 점프 버그 수정
   12. 이동 스크립트 분리하기
   13. 소...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-study-multithread-job/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Apr  4
+  
+
+  <i class="unloaded">2021-04-04T22:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티의 멀티스레딩과 Job의 활용</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                유니티에서의 멀티스레딩
+
+유니티엔진에서는 기본적으로 모든 CPU 연산이 메인 스레드에서 이루어진다.
+
+그렇다고 다중 스레드를 사용할 수 없다는 것은 아니지만
+
+메인 스레드가 아닌 다른 스레드에서 유니티의 메인 로직에 접근할 수 없도록 막혀있다.
+
+다시 말해, 다른 스레드에서는 게임오브젝트, 컴포넌트 등에 접근하면 에러가 발생한다.
+
+예를 들어
+
+1
+2...
               </p>
             </div>
           </div>

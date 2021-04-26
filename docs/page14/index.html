@@ -367,6 +367,101 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/fog-of-war/">전장의 안개(Fog of War)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목차
+
+
+
+  1. 개념
+  2. 구현 방법
+  3. 타일맵을 이용한 구현
+  4. 구현 결과
+  5. 프로파일링, 최적화
+  6. Reference
+
+
+
+
+개념
+
+
+
+  맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다.
+  지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0,
+  지정한...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Jan 20, 2021,  9:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Jan 20
+  
+
+  <i class="unloaded">2021-01-20T21:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3033 words">16 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a>
     </h1>
 
@@ -1188,108 +1283,6 @@ Source Code
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-urp-sg-outline-object/">Outline Object</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  
-    CameraDepthNormal 텍스쳐를 이용하여 개별 오브젝트마다 아웃라인을 적용한다.
-  
-  
-    URP Asset의 Depth Texture에 체크해야 한다.
-  
-  
-    MSAA 2x 이상 사용해야 한다.
-  
-
-
-Preview
-
-
-
-
-Options
-
-
-
-  
-    
-      프로퍼티
-      설...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Oct  8, 2020, 12:00 AM +0900"
-  >
-
-  
-  
-
-  
-    Oct  8, 2020
-  
-
-  <i class="unloaded">2020-10-08T00:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="112 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1608,6 +1601,11 @@ Options
         
         
         
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
       
         
@@ -1624,11 +1622,6 @@ Options
         
         
         <li><a href="/posts/unity-editor-api/">유니티 에디터 관련 유용한 팁 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>
