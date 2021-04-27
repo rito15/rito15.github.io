@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2149 words">11 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3601 words">20 min</span>
 
 
           <!-- page views -->
@@ -470,7 +470,7 @@
   <li>Polar Coordinate System</li>
 </ul>
 
-<p>직교 좌표계와는 달리 거리(radius)와 각도(angle)를 통해 특정 좌표를 표현한다.</p>
+<p>직교 좌표계와는 달리, 거리(radius)와 각도(angle)를 통해 특정 좌표를 표현한다.</p>
 
 <p>이 때 거리는 중심으로부터의 거리, 각도는 직교 좌표계의 +X 축으로부터의 각도를 의미한다.</p>
 
@@ -479,6 +479,14 @@
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116060989-50d38000-a6bd-11eb-9bf0-ef1759dbe317.png" alt="image" /></p>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116075534-06a6ca80-a6ce-11eb-9676-84f1d3de4723.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="극좌표계가-필요한-이유">극좌표계가 필요한 이유</h2>
+
+<p>Radial Menu를 만들기 위해서는 각각의 이미지가 중심을 기준으로 동일한 거리만큼 떨어져 원형으로 위치해야 한다.</p>
+
+<p>이를 직교 좌표계로 표현하기에는 복잡하고 번거롭지만, 극좌표계를 이용하면 단순히 각도만 변경하여 손쉽게 표현할 수 있다.</p>
 
 <p><br /></p>
 
@@ -808,7 +816,7 @@ ClockwisePolarCoord.cs
 
 <p><br /></p>
 
-<h1 id="하이라키-구성">하이라키 구성</h1>
+<h1 id="radial-menu-하이라키-구성">Radial Menu 하이라키 구성</h1>
 <hr />
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116083138-3e664000-a6d7-11eb-8eea-6ace0200bbcc.png" alt="image" /></p>
@@ -851,7 +859,7 @@ ClockwisePolarCoord.cs
   <li>특정 키를 눌러 RadialMenu가 나타나게 한다.</li>
   <li>각각의 조각 이미지들이 원형으로 퍼진 형태로 등장한다.</li>
   <li>키를 누른 상태에서 마우스를 움직여 조각들 중 하나를 선택한다.</li>
-  <li>키를 떼면 선택된 조각 인덱스를 받아오며, RadialMenu가 사라진다.</li>
+  <li>키를 떼면 선택된 조각의 인덱스를 받아오며, RadialMenu가 사라진다.</li>
 </ul>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116089489-e4b54400-a6dd-11eb-957d-70b832b55b01.gif" alt="2021_0426_RadialMenu" /></p>
@@ -996,6 +1004,43 @@ ClockwisePolarCoord.cs
 74
 75
 76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
 </pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="nf">InitPieceImages</span><span class="p">();</span>
@@ -1048,6 +1093,7 @@ ClockwisePolarCoord.cs
     <span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 <span class="p">}</span>
 
+<span class="c1">/// &lt;summary&gt; 모든 조각의 색상 변경 &lt;/summary&gt;</span>
 <span class="k">private</span> <span class="k">void</span> <span class="nf">ResetAllPieceColors</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">_pieceCount</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
@@ -1056,6 +1102,7 @@ ClockwisePolarCoord.cs
     <span class="p">}</span>
 <span class="p">}</span>
 
+<span class="c1">/// &lt;summary&gt; 현재 선택된 조각의 색상 변경 &lt;/summary&gt;</span>
 <span class="k">private</span> <span class="k">void</span> <span class="nf">SetSelectedPieceColors</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="nf">ResetAllPieceColors</span><span class="p">();</span>
@@ -1063,6 +1110,7 @@ ClockwisePolarCoord.cs
         <span class="n">_pieceImages</span><span class="p">[</span><span class="n">_selectedIndex</span><span class="p">].</span><span class="n">color</span> <span class="p">=</span> <span class="n">SelectedPieceColor</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="c1">/// &lt;summary&gt; 화살표 이미지의 회전 설정 &lt;/summary&gt;</span>
 <span class="k">private</span> <span class="k">void</span> <span class="nf">SetArrowRotation</span><span class="p">(</span><span class="kt">bool</span> <span class="n">show</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">_arrow</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="n">show</span><span class="p">);</span>
@@ -1070,6 +1118,40 @@ ClockwisePolarCoord.cs
     <span class="k">if</span> <span class="p">(</span><span class="n">show</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">_arrow</span><span class="p">.</span><span class="n">eulerAngles</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">forward</span> <span class="p">*</span> <span class="n">_arrowRotationZ</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 등장 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">Show</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">ShowGameObject</span><span class="p">();</span>
+    <span class="nf">ResetAllPieceColors</span><span class="p">();</span>
+    <span class="nf">SetArrowRotation</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+    <span class="n">_selectedIndex</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+
+    <span class="nf">StartCoroutine</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="n">MainRoutine</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 사라지면서 인덱스 리턴 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">int</span> <span class="nf">Hide</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">StopCoroutine</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="n">MainRoutine</span><span class="p">));</span>
+    <span class="nf">HideGameObject</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="n">_selectedIndex</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 각각 피스 이미지(스프라이트) 등록 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">SetPieceImageSprites</span><span class="p">(</span><span class="n">Sprite</span><span class="p">[]</span> <span class="n">sprites</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="p">=</span> <span class="n">sprites</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">_pieceCount</span> <span class="p">&amp;&amp;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sprites</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_pieceImages</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">sprite</span> <span class="p">=</span> <span class="n">sprites</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
@@ -1100,6 +1182,170 @@ ClockwisePolarCoord.cs
 
 <h2 id="코루틴"><strong>코루틴</strong></h2>
 
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">IEnumerator</span> <span class="nf">MainRoutine</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">float</span> <span class="n">t</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">prevSelectedIndex</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+
+    <span class="c1">// 1. 등장</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">t</span> <span class="p">&lt;</span> <span class="n">_appearanceDuration</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 중앙으로부터의 거리 계산</span>
+        <span class="kt">float</span> <span class="n">dist</span> <span class="p">=</span> <span class="n">t</span> <span class="p">*</span> <span class="n">_pieceDist</span> <span class="p">/</span> <span class="n">_appearanceDuration</span><span class="p">;</span>
+
+        <span class="c1">// 각 조각들을 중앙에서부터 서서히 이동</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">_pieceCount</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+        <span class="p">{</span>
+            <span class="n">_pieceRects</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">anchoredPosition</span> <span class="p">=</span> <span class="n">_pieceDirections</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">*</span> <span class="n">dist</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">t</span> <span class="p">+=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+        <span class="k">yield</span> <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 2. 유지</span>
+    <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">bool</span> <span class="n">showArrow</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+
+        <span class="c1">// 마우스의 스크린 내 좌표(0.0 ~ 1.0 범위)</span>
+        <span class="kt">var</span> <span class="n">mViewportPos</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="nf">ScreenToViewportPoint</span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="n">mousePosition</span><span class="p">);</span>
+
+        <span class="c1">// 스크린의 중앙을 (0, 0)으로 하는 마우스 좌표(-0.5 ~ 0.5 범위)</span>
+        <span class="kt">var</span> <span class="n">mPos</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector2</span><span class="p">(</span><span class="n">mViewportPos</span><span class="p">.</span><span class="n">x</span> <span class="p">-</span> <span class="m">0.5f</span><span class="p">,</span> <span class="n">mViewportPos</span><span class="p">.</span><span class="n">y</span> <span class="p">-</span> <span class="m">0.5f</span><span class="p">);</span>
+
+        <span class="c1">// 중앙에서 마우스까지의 거리</span>
+        <span class="kt">var</span> <span class="n">mDist</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector2</span><span class="p">(</span><span class="n">mPos</span><span class="p">.</span><span class="n">x</span> <span class="p">*</span> <span class="n">Screen</span><span class="p">.</span><span class="n">width</span> <span class="p">/</span> <span class="n">Screen</span><span class="p">.</span><span class="n">height</span><span class="p">,</span> <span class="n">mPos</span><span class="p">.</span><span class="n">y</span><span class="p">).</span><span class="n">magnitude</span><span class="p">;</span>
+
+        <span class="c1">// 마우스가 중앙에 가까이 위치하면 조각 선택 해제</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mDist</span> <span class="p">&lt;</span> <span class="n">_centerDistThreshold</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_selectedIndex</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="c1">// 마우스 위치의 직교 좌표를 시계 극좌표로 변환</span>
+            <span class="n">ClockwisePolarCoord</span> <span class="n">mousePC</span> <span class="p">=</span> <span class="n">ClockwisePolarCoord</span><span class="p">.</span><span class="nf">FromVector2</span><span class="p">(</span><span class="n">mPos</span><span class="p">);</span>
+
+            <span class="c1">// Arrow 회전 설정</span>
+            <span class="n">_arrowRotationZ</span> <span class="p">=</span> <span class="p">-</span><span class="n">mousePC</span><span class="p">.</span><span class="n">Angle</span><span class="p">;</span>
+            <span class="n">showArrow</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+
+            <span class="c1">// 각도로부터 배열 인덱스 계산</span>
+            <span class="kt">float</span> <span class="n">fIndex</span> <span class="p">=</span> <span class="p">(</span><span class="n">mousePC</span><span class="p">.</span><span class="n">Angle</span> <span class="p">/</span> <span class="m">360f</span><span class="p">)</span> <span class="p">*</span> <span class="n">_pieceCount</span><span class="p">;</span>
+            <span class="n">_selectedIndex</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">RoundToInt</span><span class="p">(</span><span class="n">fIndex</span><span class="p">)</span> <span class="p">%</span> <span class="n">_pieceCount</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 선택된 조각 색상 변경</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">prevSelectedIndex</span> <span class="p">!=</span> <span class="n">_selectedIndex</span><span class="p">)</span>
+            <span class="nf">SetSelectedPieceColors</span><span class="p">();</span>
+
+        <span class="c1">// 화살표 회전</span>
+        <span class="nf">SetArrowRotation</span><span class="p">(</span><span class="n">showArrow</span><span class="p">);</span>
+
+        <span class="k">yield</span> <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+
+        <span class="n">prevSelectedIndex</span> <span class="p">=</span> <span class="n">_selectedIndex</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<p>코루틴 내부는 총 두 부분으로 나뉜다.</p>
+
+<p>첫 번째는 메뉴가 나타날 때 애니메이션을 표현하는 부분이다.</p>
+
+<p>인스펙터를 통해 지정한 <code class="language-plaintext highlighter-rouge">_appearanceDuration</code> 시간(초) 만큼 지속되며,</p>
+
+<p>지속 시간 동안 매 프레임마다 화면 중앙으로부터 각 조각들까지의 거리를 계산하여</p>
+
+<p>조각들을 점차 중심으로부터 멀리 이동시킨다.</p>
+
+<p><br /></p>
+
+<p>두 번째는 등장 애니메이션이 종료되고 메뉴가 유지되는 부분이다.</p>
+
+<p>역시 <code class="language-plaintext highlighter-rouge">yield return null;</code>을 통해 매 프레임 검사하며,</p>
+
+<p>우선 마우스의 스크린 내 좌표를 (-0.5, -0.5) ~ (0.5, 0.5) 범위로 얻어낸다.</p>
+
+<p>마우스가 스크린 중앙에 위치할 경우 좌표는 (0, 0)이다.</p>
+
+<p>그리고 이 좌표를 시계 극좌표로 변환하면 마우스가 위치한 곳의 각도를 간단히 얻어낼 수 있다.</p>
+
+<p>이 각도를 이용해 Arrow 이미지의 회전을 결정하고, 0 ~ <code class="language-plaintext highlighter-rouge">_pieceCount - 1</code> 사이에서 알맞은 조각 인덱스 값을 계산한다.</p>
+
+<p>그리고 계산된 인덱스를 <code class="language-plaintext highlighter-rouge">_selectedIndex</code>에 초기화한다.</p>
+
+<p>마우스의 위치에 따라 상단에서부터 시계방향으로 조각의 인덱스가 결정된다.</p>
+
 <p><br /></p>
 
 <h1 id="동작-테스트">동작 테스트</h1>
@@ -1107,7 +1353,86 @@ ClockwisePolarCoord.cs
 
 <h2 id="radial-menu-인스펙터-설정"><strong>Radial Menu 인스펙터 설정</strong></h2>
 
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116211584-eedb4f00-a77e-11eb-9a07-62944e68345c.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Piece Count</code> : 생성될 조각의 개수</li>
+  <li><code class="language-plaintext highlighter-rouge">Appearance Duration</code> : 등장 애니메이션 지속 시간(초)</li>
+  <li><code class="language-plaintext highlighter-rouge">Piece Dist</code> : 중심으로부터 각 조각까지의 거리</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Center Dist Threshold</code> : 중심으로부터 조각들을 인식하지 않을 범위</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Piece Sample</code> : 복제될 조각 게임오브젝트</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Arrow</code> : 화살표 이미지의 부모 게임오브젝트</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Selected Index</code> : 현재 선택된 조각의 인덱스</li>
+</ul>
+
+<p><br /></p>
+
 <h2 id="테스트-스크립트-작성"><strong>테스트 스크립트 작성</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Test_RadialMenu</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">RadialMenu</span> <span class="n">radialMenu</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">key</span> <span class="p">=</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">G</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">radialMenu</span><span class="p">.</span><span class="nf">Show</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyUp</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">selected</span> <span class="p">=</span> <span class="n">radialMenu</span><span class="p">.</span><span class="nf">Hide</span><span class="p">();</span>
+            <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">$"Selected : </span><span class="p">{</span><span class="n">selected</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>테스트를 위한 스크립트는 위와 같이 간단히 작성할 수 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">RadialMenu</code>의 참조와 테스트를 위한 키값이 필요하며</p>
+
+<p>해당 키를 눌렀을 때 메뉴가 등장하고, 키를 유지하는 동안 마우스를 움직이며 각각의 조각들을 선택할 수 있다.</p>
+
+<p>그리고 키를 뗐을 때 메뉴가 사라지며, 마지막으로 선택된 조각의 인덱스가 콘솔 창의 로그를 통해 기록된다.</p>
+
+<p><br /></p>
+
+<h1 id="상태-분리">상태 분리</h1>
+<hr />
+
+<p>Radial Menu는 Show(나타나기) - Keep(유지) - Hide(사라지기) 이렇게 세 가지 상태로 구분할 수 있다.</p>
+
+<p>위에서는 Show - Update를 하나의 코루틴 내에서 작성하고 Hide는 단순히 비활성화로 구현했지만,</p>
+
+<p>각각의 상태를 분리하고 스크립트 애니메이션을 구현하면 원하는대로 다양한 효과들을 독립적으로 만들고 적용할 수 있다.</p>
+
+<p>여기에 상태 패턴, 그 중에서도 FSM(Finite State Machine, 유한 상태 머신)을 이용한다.</p>
+
+<p><br /></p>
 
 <p><br /></p>
 
@@ -1120,7 +1445,7 @@ ClockwisePolarCoord.cs
 <h1 id="download">Download</h1>
 <hr />
 <ul>
-  <li></li>
+  <li><a href="https://github.com/rito15/Images/files/6382713/2021_0426_Radial.Menu_v1.zip">Radial Menu_v1.zip</a></li>
 </ul>
 
 <h1 id="references">References</h1>
