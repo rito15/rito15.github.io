@@ -309,7 +309,7 @@ public struct ClockwisePolarCoord
 
 [Range(0.2f, 1f)]
 [SerializeField] private float _appearanceDuration = .3f; // 등장에 걸리는 시간
-[SerializeField] private float _pieceDist = 180f; // 중앙으로부터 각 조각의 거리
+[SerializeField] private float _pieceDist = 180f; // 중앙으로부터 각 조각까지의 거리
 
 [Range(0.01f, 0.5f)]
 [SerializeField] private float _centerDistThreshold = 0.1f; // 중앙에서부터의 마우스 거리 기준
@@ -609,6 +609,14 @@ public class Test_RadialMenu : MonoBehaviour
     public RadialMenu radialMenu;
     public KeyCode key = KeyCode.G;
 
+    [Space]
+    public Sprite[] sprites;
+
+    private void Start()
+    {
+        radialMenu.SetPieceImageSprites(sprites);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(key))
@@ -628,16 +636,23 @@ public class Test_RadialMenu : MonoBehaviour
 
 `RadialMenu`의 참조와 테스트를 위한 키값이 필요하며
 
-해당 키를 눌렀을 때 메뉴가 등장하고, 키를 유지하는 동안 마우스를 움직이며 각각의 조각들을 선택할 수 있다.
+Radial Menu 각각의 조각 이미지에 등록할 스프라이트를 인스펙터에서 받는다.
+
+그리고 게임 시작 시 Start() 메소드에서 이미지들을 등록한다.
+
+
+게임 내에서 정해진 키를 눌렀을 때 메뉴가 등장하고, 키를 유지하는 동안 마우스를 움직이며 각각의 조각들을 선택할 수 있다.
 
 그리고 키를 뗐을 때 메뉴가 사라지며, 마지막으로 선택된 조각의 인덱스가 콘솔 창의 로그를 통해 기록된다.
+
+![2021_0428_RadialMenu_Sprites](https://user-images.githubusercontent.com/42164422/116368413-45aa5c80-a843-11eb-84e3-76e0726c0b62.gif)
 
 <br>
 
 # 상태 분리
 ---
 
-Radial Menu는 Show(나타나기) - Keep(유지) - Hide(사라지기) 이렇게 세 가지 상태로 구분할 수 있다.
+Radial Menu는 Appearance(나타나기) - Main(유지) - Disappearance(사라지기) 이렇게 세 가지 상태로 구분할 수 있다.
 
 위에서는 Show - Update를 하나의 코루틴 내에서 작성하고 Hide는 단순히 비활성화로 구현했지만,
 
@@ -646,6 +661,302 @@ Radial Menu는 Show(나타나기) - Keep(유지) - Hide(사라지기) 이렇게 
 여기에 상태 패턴, 그 중에서도 FSM(Finite State Machine, 유한 상태 머신)을 이용한다.
 
 <br>
+
+## **상태 클래스 정의**
+
+각각의 상태는 클래스 단위로 정의한다.
+
+그리고 하나의 상태 클래스 내에서도 크게 3가지 동작으로 구분되며,
+
+이는 `Enter()`, `Update()`, `Exit()` 메소드로 구현된다.
+
+`Enter()` 메소드는 해당 상태에 진입할 때 호출된다.
+
+`Update()` 메소드는 상태가 지속되는 동안 매 프레임 상태 관리자에 의해 호출되며,
+
+`Exit()` 메소드는 상태가 끝날 때 호출된다.
+
+따라서 `A` 상태로부터 `B` 상태로 전이될 때,
+
+`A.Exit()`, `B.Enter()` 메소드가 순차적으로 실행된다.
+
+<br>
+
+따라서 상태 클래스의 기본 구조는 다음과 같다.
+
+```cs
+private abstract class MenuState
+{
+    public abstract void OnEnter();
+    public abstract void Update();
+    public abstract void OnExit();
+}
+```
+
+그리고 각각의 상태 객체에서는 `RadialMenu`에 접근할 수 있어야 하므로,
+
+```
+protected readonly RadialMenu menu;
+
+public MenuState(RadialMenu menu)
+    => this.menu = menu;
+```
+
+이렇게 필드와 생성자를 추가해준다.
+
+<br>
+
+상태 클래스를 `RadialMenu` 클래스 외부에 분리하여 작성하면 `RadialMenu` 클래스의 public 멤버들에만 접근할 수 있지만,
+
+내부 클래스로 작성하면 private 멤버들에도 모두 접근할 수 있다는 이점이 있다.
+
+따라서 `RadialMenu` 클래스 내에 모든 상태 클래스를 작성한다.
+
+<br>
+
+## **세부 상태 클래스 정의**
+
+앞서 언급했듯, 모든 상태는 Appearance, Main, Disappearance 3가지로 구분할 수 있다.
+
+따라서 `MenuState` 클래스를 상속받는 세 개의 클래스를 정의한다.
+
+<details>
+<summary markdown="span"> 
+Source Code
+</summary>
+
+```cs
+// 1. 등장
+private abstract class AppearanceState : MenuState
+{
+    public AppearanceState(RadialMenu menu) : base(menu) { }
+
+    public override void OnEnter()
+    {
+        menu._selectedIndex = -1;
+        menu.ShowGameObject();
+        menu.SetArrow(false);
+    }
+
+    public override void Update()
+    {
+        Execute();
+        menu._stateProgress += Time.deltaTime / menu._appearanceDuration;
+
+        if (menu._stateProgress >= 1f)
+        {
+            menu._stateProgress = 1f;
+            menu.ChangeToNextState();
+        }
+    }
+
+    protected abstract void Execute();
+
+    public override void OnExit() { }
+}
+
+// 2. 유지
+private abstract class MainState : MenuState
+{
+    // 이전 프레임의 선택 인덱스
+    protected int prevSelectedIndex = -1;
+
+    public MainState(RadialMenu menu) : base(menu) { }
+
+    public override void OnEnter()
+    {
+        prevSelectedIndex = -1;
+    }
+
+    public override void Update()
+    {
+        bool showArrow = false;
+
+        // 마우스의 스크린 내 좌표(0.0 ~ 1.0 범위)
+        var mViewportPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+
+        // 스크린의 중앙을 (0, 0)으로 하는 마우스 좌표(-0.5 ~ 0.5 범위)
+        var mPos = new Vector2(mViewportPos.x - 0.5f, mViewportPos.y - 0.5f);
+
+        // 중심에서 마우스까지의 거리
+        var mDist = new Vector2(mPos.x * Screen.width / Screen.height, mPos.y).magnitude;
+
+        if (mDist < menu._centerDistThreshold)
+        {
+            menu._selectedIndex = -1;
+        }
+        else
+        {
+            // 마우스 위치의 직교 좌표를 시계 극좌표로 변환
+            ClockwisePolarCoord mousePC = ClockwisePolarCoord.FromVector2(mPos);
+
+            // Arrow 회전 설정
+            menu._arrowRotationZ = -mousePC.Angle;
+            showArrow = true;
+
+            // 각도로부터 배열 인덱스 계산
+            float fIndex = (mousePC.Angle / 360f) * menu._pieceCount;
+            menu._selectedIndex = Mathf.RoundToInt(fIndex) % menu._pieceCount;
+        }
+
+        // 화살표 회전
+        menu.SetArrow(showArrow);
+
+        // 선택 인덱스 변경
+        if (prevSelectedIndex != menu._selectedIndex)
+            OnSelectedIndexChanged(prevSelectedIndex, menu._selectedIndex);
+
+        // 이전 인덱스 기억
+        prevSelectedIndex = menu._selectedIndex;
+    }
+
+    /// <summary> 선택된 인덱스 변경 </summary>
+    public abstract void OnSelectedIndexChanged(int prevIndex, int currentIndex);
+
+    public override void OnExit() { }
+}
+
+// 3. 소멸
+private abstract class DisappearanceState : MenuState
+{
+    public DisappearanceState(RadialMenu menu) : base(menu) { }
+
+    public override void OnEnter()
+    {
+    }
+
+    public override void Update()
+    {
+        Execute();
+        menu._stateProgress -= Time.deltaTime / menu._appearanceDuration;
+
+        if (menu._stateProgress <= 0f)
+        {
+            menu._stateProgress = 0f;
+            menu.ChangeToNextState();
+        }
+    }
+
+    protected abstract void Execute();
+
+    public override void OnExit()
+    {
+        menu.HideGameObject();
+    }
+}
+```
+
+</details>
+
+각 상태 클래스의 `OnEnter()` 메소드에는 상태 진입 시 단 한 번만 수행될 기능을 작성한다.
+
+예를 들어 `AppearanceState`의 `OnEnter()` 메소드 내에는 선택 인덱스 초기화, 게임오브젝트 활성화 기능을 작성한다.
+
+`Update()` 메소드는 상태가 유지되는 동안 매 프레임 실행될 기능들을 작성한다.
+
+`AppearanceState`, `DisappearanceState`는 등장 및 소멸 애니메이션을 담당하므로
+
+`Update()`에서 각각 상태 진행도를 매프레임 변수에 더하고 빼서 기록한다.
+
+이 때 상태 진행도는 `RadialMenu` 클래스에서 `_stateProgress` 변수로 관리한다.
+
+이를 이용해 등장 및 소멸 애니메이션에서 상태 진행도를 서로 공유하여,
+
+등장 상태에서 메인 상태로 이어지기 전에 소멸 상태로 곧바로 이어져도 자연스럽게 애니메이션이 연결되도록 한다.
+
+`MainState`의 `Update()` 메소드에는 이전에 코루틴 내에 작성된 기능을 그대로 옮겨온다.
+
+대신 인덱스 변경 시 수행될 동작만 분리하여 하위 클래스에서 재정의할 수 있도록,
+
+`OnSelectedIndexChanged(int, int)` 메소드를 abstract로 남겨둔다.
+
+마찬가지로 `AppearanceState`, `DisappearanceState`의 `Update()` 메소드 내에서도
+
+상태 진행도 변수를 초기화하는 공통 부분을 작성하고
+
+세부 상태마다 다르게 구현될 부분을 abstract `Execute()` 메소드로 남겨둔다.
+
+<br>
+
+그리고 `Update()` 메소드 내에서는 조건에 따른 다음 상태 전이 기능을 작성할 필요가 있다.
+
+따라서 `AppearanceState`, `DisappearanceState`에서는 상태 진행도에 따라 상태를 전이하며,
+
+반면에 `MainState`에서는 외부에서 메뉴 호출자가 메뉴를 종료하는 것을 트리거로 하여
+
+외부에 의해 상태가 전이되므로 `Update()` 내에 상태 전이 조건을 작성하지 않는다.
+
+<br>
+
+마지막으로 `OnExit()` 메소드에는 상태 종료 시 수행될 기능을 작성한다.
+
+각 상태의 특성상 `AppearanceState`, `MainState`에서는 상태 종료 시 별다른 동작을 취하지 않으므로 비워두고,
+
+`DisappearanceState`에서는 게임오브젝트를 숨기도록 `menu.HideGameObject()` 메소드를 호출한다.
+
+<br>
+
+## **구체적 상태 클래스들 작성**
+
+실제로 사용될 상태 클래스들을 작성한다. (예시)
+
+```cs
+/// <summary> 서서히 알파값 증가 </summary>
+private sealed class FadeIn : AppearanceState
+{
+    public FadeIn(RadialMenu menu) : base(menu) { }
+
+    protected override void Execute()
+    {
+        // 알파값 서서히 증가
+        menu.SetAllPieceAlpha(menu._stateProgress);
+    }
+}
+
+private sealed class MainAlphaChange : MainState
+{
+    public MainAlphaChange(RadialMenu menu) : base(menu) { }
+
+    public override void OnSelectedIndexChanged(int prevIndex, int currentIndex)
+    {
+        if(prevIndex >= 0)
+            menu.SetPieceAlpha(prevIndex, NotSelectedPieceAlpha);
+
+        if (currentIndex >= 0)
+            menu.SetPieceAlpha(currentIndex, 1f);
+    }
+
+    public override void OnExit()
+    {
+        if (menu._selectedIndex >= 0)
+        {
+            menu.SetPieceAlpha(menu._selectedIndex, NotSelectedPieceAlpha);
+        }
+    }
+}
+
+/// <summary> 점점 작아지기 </summary>
+private sealed class ScaleDown : DisappearanceState
+{
+    public ScaleDown(RadialMenu menu) : base(menu) { }
+
+    protected override void Execute()
+    {
+        // 스케일 감소
+        menu.SetAllPieceScale(menu._stateProgress);
+    }
+}
+```
+
+<br>
+
+## **상태 관리 코드 작성**
+
+`RadialMenu` 내에서 상태 전이 및 상태 관리를 위한 코드를 작성한다.
+
+우선, 인스펙터에서 상태의 종류를 enum으로 간편히 변경할 수 있도록 하기 위해
+
+각 상태 애니메이션을 enum으로 정의한다.
 
 
 
@@ -659,6 +970,7 @@ Radial Menu는 Show(나타나기) - Keep(유지) - Hide(사라지기) 이렇게 
 # Download
 ---
 - [Radial Menu_v1.zip](https://github.com/rito15/Images/files/6382713/2021_0426_Radial.Menu_v1.zip)
+- [Radial Menu_v2.zip](https://github.com/rito15/Images/files/6393475/2021_0428_Radial.Menu_v2.zip)
 
 
 # References
