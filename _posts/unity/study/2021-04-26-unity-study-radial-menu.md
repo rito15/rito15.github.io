@@ -17,7 +17,7 @@ mermaid: true
 # Preview
 ---
 
-![2021_0426_RadialMenu](https://user-images.githubusercontent.com/42164422/116089489-e4b54400-a6dd-11eb-957d-70b832b55b01.gif)
+![2021_0429_RadialMenu_v3_2](https://user-images.githubusercontent.com/42164422/116588062-0de00980-a956-11eb-940d-5cc93bd5cd2e.gif)
 
 <br>
 
@@ -302,6 +302,11 @@ public struct ClockwisePolarCoord
 
 ## **필드**
 
+<details>
+<summary markdown="span"> 
+Source Code
+</summary>
+
 ```cs
 [Header("Options")]
 [Range(2, 16)]
@@ -332,10 +337,16 @@ private static readonly Color SelectedPieceColor    = new Color(1f, 1f, 1f, 1f);
 private static readonly Color NotSelectedPieceColor = new Color(1f, 1f, 1f, 0.3f);
 ```
 
+</details>
 
 <br>
 
 ## **메소드**
+
+<details>
+<summary markdown="span"> 
+Source Code
+</summary>
 
 ```cs
 private void Awake()
@@ -453,6 +464,8 @@ public void SetPieceImageSprites(Sprite[] sprites)
 }
 ```
 
+</details>
+
 게임 시작 시, `InitPieceImages()` 메소드를 통해 미리 준비한 Piece 게임오브젝트를 목표한 조각의 개수만큼 복제한다.
 
 그리고 복제된 게임오브젝트들로부터 `Image`, `RectTransform` 컴포넌트를 가져와 각각 `_pieceImages`, `_pieceRects` 배열에 담아놓는다.
@@ -479,6 +492,11 @@ public void SetPieceImageSprites(Sprite[] sprites)
 <br>
 
 ## **코루틴**
+
+<details>
+<summary markdown="span"> 
+Source Code
+</summary>
 
 ```cs
 private IEnumerator MainRoutine()
@@ -548,6 +566,8 @@ private IEnumerator MainRoutine()
     }
 }
 ```
+
+</details>
 
 <br>
 
@@ -649,16 +669,16 @@ Radial Menu 각각의 조각 이미지에 등록할 스프라이트를 인스펙
 
 <br>
 
-# 상태 분리
+# 상태 분리 및 FSM 구현
 ---
 
-Radial Menu는 Appearance(나타나기) - Main(유지) - Disappearance(사라지기) 이렇게 세 가지 상태로 구분할 수 있다.
+Radial Menu는 **Appearance(등장)** - **Main(유지)** - **Disappearance(소멸)** 이렇게 세 가지 상태로 구분할 수 있다.
 
-위에서는 Show - Update를 하나의 코루틴 내에서 작성하고 Hide는 단순히 비활성화로 구현했지만,
+위에서는 **Appearance - Main**을 하나의 코루틴 내에서 작성하고 **Disappearance**는 단순히 비활성화로 구현했지만,
 
 각각의 상태를 분리하고 스크립트 애니메이션을 구현하면 원하는대로 다양한 효과들을 독립적으로 만들고 적용할 수 있다.
 
-여기에 상태 패턴, 그 중에서도 FSM(Finite State Machine, 유한 상태 머신)을 이용한다.
+여기에 상태 패턴, 그 중에서도 **FSM(Finite State Machine, 유한 상태 머신)**을 이용한다.
 
 <br>
 
@@ -695,7 +715,7 @@ private abstract class MenuState
 
 그리고 각각의 상태 객체에서는 `RadialMenu`에 접근할 수 있어야 하므로,
 
-```
+```cs
 protected readonly RadialMenu menu;
 
 public MenuState(RadialMenu menu)
@@ -716,7 +736,7 @@ public MenuState(RadialMenu menu)
 
 ## **세부 상태 클래스 정의**
 
-앞서 언급했듯, 모든 상태는 Appearance, Main, Disappearance 3가지로 구분할 수 있다.
+앞서 언급했듯, 모든 상태는 크게 Appearance, Main, Disappearance 3가지로 구분할 수 있다.
 
 따라서 `MenuState` 클래스를 상속받는 세 개의 클래스를 정의한다.
 
@@ -880,11 +900,9 @@ private abstract class DisappearanceState : MenuState
 
 그리고 `Update()` 메소드 내에서는 조건에 따른 다음 상태 전이 기능을 작성할 필요가 있다.
 
-따라서 `AppearanceState`, `DisappearanceState`에서는 상태 진행도에 따라 상태를 전이하며,
+따라서 `AppearanceState`, `DisappearanceState`의 `Update()` 메소드 내에서는 조건문을 통해 상태 진행도를 검사하여, 각각 상태 진행도가 1까지 증가하거나 0까지 감소하면 다음 상태로 전이하도록 작성한다.
 
-반면에 `MainState`에서는 외부에서 메뉴 호출자가 메뉴를 종료하는 것을 트리거로 하여
-
-외부에 의해 상태가 전이되므로 `Update()` 내에 상태 전이 조건을 작성하지 않는다.
+반면에 `MainState`에서는 외부에서 메뉴 호출자가 메뉴를 종료하는 것을 트리거로 하여 외부에 의해 상태가 전이되므로 `Update()` 내에 상태 전이 조건을 작성하지 않는다.
 
 <br>
 
@@ -913,6 +931,7 @@ private sealed class FadeIn : AppearanceState
     }
 }
 
+/// <summary> 선택된 조각의 알파값만 증가 </summary>
 private sealed class MainAlphaChange : MainState
 {
     public MainAlphaChange(RadialMenu menu) : base(menu) { }
@@ -958,7 +977,247 @@ private sealed class ScaleDown : DisappearanceState
 
 각 상태 애니메이션을 enum으로 정의한다.
 
+```cs
+private enum AppearanceType
+{
+    None,
+    Fade,
+    ScaleChange,
+    Spread,
+}
 
+private enum MainType
+{
+    AlphaChange,
+    ScaleChange,
+}
+```
+
+enum으로 각 상태 종류를 정의하지 않아도 FSM의 구현에는 문제 없지만,
+
+enum과 상태를 1대1로 연결하고 인스펙터에서 빠르게 옵션을 변경할 수 있다는 장점이 있다.
+
+대신 새로운 상태를 구현할 때마다 enum 역시 추가하고 객체를 연결해줘야 한다는 번거로움이 있다.
+
+<br>
+
+## **관련 필드 정의**
+
+```cs
+[Header("Animation Types")]
+[SerializeField] private AppearanceType _appearanceType;
+[SerializeField] private MainType _mainType;
+[SerializeField] private AppearanceType _disappearanceType;
+
+private Dictionary<AppearanceType, AppearanceState> _appStateDict = 
+    new Dictionary<AppearanceType, AppearanceState>();
+
+private Dictionary<MainType, MainState> _mainStateDict =
+    new Dictionary<MainType, MainState>();
+
+private Dictionary<AppearanceType, DisappearanceState> _disStateDict =
+    new Dictionary<AppearanceType, DisappearanceState>();
+
+private MenuState _currentState;
+private MenuState AState => _appStateDict[_appearanceType];
+private MenuState MState => _mainStateDict[_mainType];
+private MenuState DState => _disStateDict[_disappearanceType];
+
+// 현재 등장/소멸 상태 진행도
+private float _stateProgress = 0f;
+```
+
+enum들은 인스펙터에서 지정할 수 있도록 필드로 작성하고, `[SerializeField]`를 통해 인스펙터에 노출시킨다.
+
+그리고 enum과 상태 객체의 1대1 연결을 위해 각 상태 종류마다 딕셔너리로 관리한다.
+
+프로퍼티를 통해 현재 설정된 enum 타입에 따라 각 상태 객체를 곧바로 참조할 수 있도록 하고,
+
+현재 적용된 상태는 `_currentState` 필드로 관리한다.
+
+<br>
+
+## **관련 메소드 구현**
+
+```cs
+private void Update()
+{
+    _currentState.Update();
+}
+
+private void InitStateDicts()
+{
+    _currentState = NullState.Instance;
+
+    // 1. Appearance
+    _appStateDict.Add(AppearanceType.None, new DefaultAppearance(this));
+    _appStateDict.Add(AppearanceType.Fade, new FadeIn(this));
+    _appStateDict.Add(AppearanceType.ScaleChange, new ScaleUp(this));
+    _appStateDict.Add(AppearanceType.Spread, new Spread(this));
+
+    // 2. Main
+    _mainStateDict.Add(MainType.AlphaChange, new MainAlphaChange(this));
+    _mainStateDict.Add(MainType.ScaleChange, new MainScaleChange(this));
+
+    // 3. Disappearance
+    _disStateDict.Add(AppearanceType.None, new DefaultDisappearance(this));
+    _disStateDict.Add(AppearanceType.Fade, new FadeOut(this));
+    _disStateDict.Add(AppearanceType.ScaleChange, new ScaleDown(this));
+    _disStateDict.Add(AppearanceType.Spread, new Gather(this));
+}
+```
+
+`RadialMenu`가 FSM의 관리자 역할을 하므로, `Update()` 메소드에서 매 프레임마다 현재 적용된 상태의 `.Update()` 메소드를 호출해준다.
+
+그리고 `InitStateDicts()` 메소드는 `Awake()` 메소드 내에서 호출하여 게임 시작 시 enum과 객체를 연결해주는 역할을 수행한다.
+
+<br>
+
+```cs
+/// <summary> 다음 상태로 진입 </summary>
+private void ChangeToNextState()
+{
+    _currentState.OnExit();
+
+    if (_currentState == NullState.Instance) _currentState = AState;
+    else if(_currentState == AState) _currentState = MState;
+    else if(_currentState == MState) _currentState = DState;
+    else _currentState = NullState.Instance;
+
+    _currentState.OnEnter();
+}
+
+/// <summary> 강제로 등장 상태에 진입 </summary>
+private void ForceToEnterAppearanceState()
+{
+    _currentState.OnExit();
+    _currentState = AState;
+    _currentState.OnEnter();
+}
+
+/// <summary> 강제로 소멸 상태에 진입 </summary>
+private void ForceToEnterDisappearanceState()
+{
+    _currentState.OnExit();
+    _currentState = DState;
+    _currentState.OnEnter();
+}
+```
+
+`ChangeToNextState()` 메소드는 FSM의 핵심 기능 중 하나로, 현재 적용 중인 상태의 종류에 따라 다음 상태로 전이하는 역할을 한다.
+
+기본적으로 FSM은 모든 상태의 `Update()` 내에서 전이 조건을 직접 지정하고, 그에 따라 알맞은 상태로 직접 전이시키지만
+
+지금 구현하는 FSM은 상태에 종류(3가지)에 따라 전이될 다음 상태가 정해져 있으므로 각 상태에서 전이 조건을 지저분하게 작성하지 않아도 이렇게 관리자 클래스의 메소드로 깔끔하게 구현할 수 있다.
+
+그리고 `NullState`는 널 패턴(Null Pattern)을 사용하여 '비어있는 상태'를 정의한다.
+
+```cs
+private sealed class NullState : MenuState
+{
+    public static NullState Instance { get; } = new NullState();
+
+    public NullState() : base(null) { }
+    public override void OnEnter() { }
+    public override void OnExit() { }
+    public override void Update() { }
+}
+```
+
+또한 싱글톤 패턴(Singleton Pattern)을 사용하여 `NullState` 클래스명으로 유일한 객체를 항상 참조할 수 있도록 한다.
+
+`NullState`는 아무런 역할을 수행하지 않으며, 단순히 NullReferenceException을 방지하고 `RadialMenu`가 나타날 때 `AppearanceState`의 `OnEnter()` 메소드가 올바르게 호출되도록 징검다리 역할을 수행한다.
+
+그리고 `ForceToEnterAppearanceState()`, `ForceToEnterDisappearanceState()` 메소드는 각각 `RadialMenu`의 `Show()`, `Hide()` 메소드에서 호출되어 `RadialMenu`가 지정된 타이밍에 따라 즉시 알맞은 상태로 진입하도록 한다.
+
+<br>
+
+## **GIF**
+
+### **[1]**
+ - Appearance : `Spread`
+ - Main : `Alpha Change`
+ - Disappearance : `Scale Change`
+
+![2021_0429_RadialMenu_v2_1](https://user-images.githubusercontent.com/42164422/116522191-dfd7d680-a90f-11eb-9564-78b8939bb46b.gif)
+
+### **[2]**
+ - Appearance : `Scale Change`
+ - Main : `Scale Change`
+ - Disappearance : `Fade`
+
+![2021_0429_RadialMenu_v2_2](https://user-images.githubusercontent.com/42164422/116522198-e1090380-a90f-11eb-9bb8-79275fd23315.gif)
+
+<br>
+
+# 추가 : Easing Function 적용
+---
+
+시간의 흐름에 따른 `Appearance`, `Disapearance`의 진행도(`_stateProgress`)는 기본적으로 $$ y=x $$ 직선 그래프를 따른다.
+
+그런데 여기에
+
+![image](https://user-images.githubusercontent.com/42164422/116583301-2ac60e00-a951-11eb-82aa-cdbbacdef3f7.png){:.normal}
+
+이런 형태의 다양한 그래프를 적용하면 굉장히 다채로운 애니메이션을 만들 수 있게 된다.
+
+<br>
+
+방법은 간단하다.
+
+```cs
+// 예시
+public static class Easing
+{
+    public static float EaseInExpo(float x)
+    {
+        return x == 0f ? 0f : Mathf.Pow(2f, 10f * x - 10f);
+    }
+}
+```
+
+위와 같이 x값을 받아 해당 Easing Function의 y값을 결과로 리턴해주는 메소드를 정의하고,
+
+예를 들어
+
+```cs
+/// <summary> 크기 증가 </summary>
+private sealed class ScaleUp : AppearanceState
+{
+    public ScaleUp(RadialMenu menu) : base(menu) { }
+
+    protected override void Execute()
+    {
+        // 스케일 변경
+        menu.SetAllPieceScale(menu._stateProgress);
+    }
+}
+```
+
+이런 상태 애니메이션 클래스에서
+
+`menu._stateProgress` 값을 `Easing.EaseInExpo(menu._stateProgress)` 처럼 바꿔주면 된다.
+
+Easing Function 소스 코드는 <https://easings.net/ko>에서 찾을 수 있다.
+
+<br>
+
+## **적용 예시**
+
+ - Appearance : `Scale Change`
+ - Disappearance : `Spread`
+
+
+### **[1] 기본**
+
+![2021_0429_RadialMenu_v2_3](https://user-images.githubusercontent.com/42164422/116585271-2c90d100-a953-11eb-9422-93276f05b166.gif)
+
+### **[2] Easing Function 적용**
+
+ - Appearance : **Ease Out Bounce**
+ - Disappearance : **Ease In Bounce**
+
+![2021_0429_RadialMenu_v3_1](https://user-images.githubusercontent.com/42164422/116585279-2ef32b00-a953-11eb-9432-cc527eeacf17.gif)
 
 <br>
 
@@ -969,11 +1228,18 @@ private sealed class ScaleDown : DisappearanceState
 
 # Download
 ---
-- [Radial Menu_v1.zip](https://github.com/rito15/Images/files/6382713/2021_0426_Radial.Menu_v1.zip)
-- [Radial Menu_v2.zip](https://github.com/rito15/Images/files/6393475/2021_0428_Radial.Menu_v2.zip)
+
+### **[1] 코루틴 버전**
+- [RadialMenu_v1.zip](https://github.com/rito15/Images/files/6400174/RadialMenu_v1.zip)
+
+### **[2] FSM 적용**
+- [RadialMenu_v2.zip](https://github.com/rito15/Images/files/6400176/RadialMenu_v2.zip)
+
+### **[3] Easing Function 적용**
+- [RadialMenu_v3.zip](https://github.com/rito15/Images/files/6400178/RadialMenu_v3.zip)
 
 
 # References
 ---
-- 
+- <https://easings.net/ko>
 

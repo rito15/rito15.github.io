@@ -4579,6 +4579,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5536,72 +5549,6 @@
       
       
       <div class="card">
-        <a href="/posts/memo-cs-static-readonly-vs-const/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar 30
-  
-
-  <i class="unloaded">2021-03-30T00:50:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Static Readonly vs. Const</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                공통점
-
-
-  런타임에 값을 변경할 수 없다.
-
-
-
-
-차이점
-
-
-Static Readonly
-
-
-  
-    필드 선언문 또는 정적 생성자에서만 값을 초기화할 수 있다.
-  
-  
-    값을 초기화하지 않으면 해당 타입의 기본값으로 초기화된다.
-  
-  
-    런타임 초기에 값이 고정된다.
-  
-  
-    값이 정해지면 변하지 않지만, 결국 변수...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/memo-cs-ref-in-performance/">
           <div class="card-body">
             <!--
@@ -5717,6 +5664,69 @@ using System.Linq;
 public class CustomAttribute : System.Attribute
 {
     public...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/memo-cs-enum/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 28
+  
+
+  <i class="unloaded">2021-02-28T04:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Enum 관련 메모</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                enum의 모든 요소를 배열로 가져오기
+
+1
+2
+3
+enum MyEnum { A, B }
+
+Array allValues = Enum.GetValues(typeof(MyEnum));
+
+
+
+
+enum의 마지막 요소 가져오기
+
+1
+2
+3
+4
+// System.Linq;
+
+MyEnum last = 
+    Enum.GetValues(typeof(EditorW...
               </p>
             </div>
           </div>

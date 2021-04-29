@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Radial Menu 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Radial Menu 만들기","description":"목표 극좌표계를 이용하여 원형 분포 형태의 메뉴 UI 만들기","dateModified":"2021-04-28T03:59:58+09:00","datePublished":"2021-04-26T18:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-radial-menu/"},"url":"https://rito15.github.io/posts/unity-study-radial-menu/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Radial Menu 만들기","description":"목표 극좌표계를 이용하여 원형 분포 형태의 메뉴 UI 만들기","dateModified":"2021-04-29T02:10:24+09:00","datePublished":"2021-04-26T18:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-radial-menu/"},"url":"https://rito15.github.io/posts/unity-study-radial-menu/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Apr 28, 2021,  3:59 AM +0900"
+    title="Thu, Apr 29, 2021,  2:10 AM +0900"
   >
 
   
   
 
   
-    Apr 28
+    Apr 29
   
 
-  <i class="unloaded">2021-04-28T03:59:58+09:00</i>
+  <i class="unloaded">2021-04-29T02:10:24+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5493 words">30 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6939 words">38 min</span>
 
 
           <!-- page views -->
@@ -473,7 +473,7 @@
 <h1 id="preview">Preview</h1>
 <hr />
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116089489-e4b54400-a6dd-11eb-957d-70b832b55b01.gif" alt="2021_0426_RadialMenu" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116588062-0de00980-a956-11eb-940d-5cc93bd5cd2e.gif" alt="2021_0429_RadialMenu_v3_2" /></p>
 
 <p><br /></p>
 
@@ -897,7 +897,12 @@ ClockwisePolarCoord.cs
 
 <h2 id="필드"><strong>필드</strong></h2>
 
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<details>
+  <summary> 
+Source Code
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -951,13 +956,20 @@ ClockwisePolarCoord.cs
 
 <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">Color</span> <span class="n">SelectedPieceColor</span>    <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">1f</span><span class="p">);</span>
 <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">Color</span> <span class="n">NotSelectedPieceColor</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">1f</span><span class="p">,</span> <span class="m">0.3f</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></div></div>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
 <h2 id="메소드"><strong>메소드</strong></h2>
 
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<details>
+  <summary> 
+Source Code
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -1183,7 +1195,9 @@ ClockwisePolarCoord.cs
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p>게임 시작 시, <code class="language-plaintext highlighter-rouge">InitPieceImages()</code> 메소드를 통해 미리 준비한 Piece 게임오브젝트를 목표한 조각의 개수만큼 복제한다.</p>
 
@@ -1211,7 +1225,12 @@ ClockwisePolarCoord.cs
 
 <h2 id="코루틴"><strong>코루틴</strong></h2>
 
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<details>
+  <summary> 
+Source Code
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -1343,7 +1362,9 @@ ClockwisePolarCoord.cs
         <span class="n">prevSelectedIndex</span> <span class="p">=</span> <span class="n">_selectedIndex</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
@@ -1472,16 +1493,16 @@ ClockwisePolarCoord.cs
 
 <p><br /></p>
 
-<h1 id="상태-분리">상태 분리</h1>
+<h1 id="상태-분리-및-fsm-구현">상태 분리 및 FSM 구현</h1>
 <hr />
 
-<p>Radial Menu는 Appearance(나타나기) - Main(유지) - Disappearance(사라지기) 이렇게 세 가지 상태로 구분할 수 있다.</p>
+<p>Radial Menu는 <strong>Appearance(등장)</strong> - <strong>Main(유지)</strong> - <strong>Disappearance(소멸)</strong> 이렇게 세 가지 상태로 구분할 수 있다.</p>
 
-<p>위에서는 Show - Update를 하나의 코루틴 내에서 작성하고 Hide는 단순히 비활성화로 구현했지만,</p>
+<p>위에서는 <strong>Appearance - Main</strong>을 하나의 코루틴 내에서 작성하고 <strong>Disappearance</strong>는 단순히 비활성화로 구현했지만,</p>
 
 <p>각각의 상태를 분리하고 스크립트 애니메이션을 구현하면 원하는대로 다양한 효과들을 독립적으로 만들고 적용할 수 있다.</p>
 
-<p>여기에 상태 패턴, 그 중에서도 FSM(Finite State Machine, 유한 상태 머신)을 이용한다.</p>
+<p>여기에 상태 패턴, 그 중에서도 <strong>FSM(Finite State Machine, 유한 상태 머신)</strong>을 이용한다.</p>
 
 <p><br /></p>
 
@@ -1523,14 +1544,14 @@ ClockwisePolarCoord.cs
 
 <p>그리고 각각의 상태 객체에서는 <code class="language-plaintext highlighter-rouge">RadialMenu</code>에 접근할 수 있어야 하므로,</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
-</pre></td><td class="rouge-code"><pre>protected readonly RadialMenu menu;
+</pre></td><td class="rouge-code"><pre><span class="k">protected</span> <span class="k">readonly</span> <span class="n">RadialMenu</span> <span class="n">menu</span><span class="p">;</span>
 
-public MenuState(RadialMenu menu)
-    =&gt; this.menu = menu;
+<span class="k">public</span> <span class="nf">MenuState</span><span class="p">(</span><span class="n">RadialMenu</span> <span class="n">menu</span><span class="p">)</span>
+    <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="n">menu</span> <span class="p">=</span> <span class="n">menu</span><span class="p">;</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p>이렇게 필드와 생성자를 추가해준다.</p>
@@ -1547,7 +1568,7 @@ public MenuState(RadialMenu menu)
 
 <h2 id="세부-상태-클래스-정의"><strong>세부 상태 클래스 정의</strong></h2>
 
-<p>앞서 언급했듯, 모든 상태는 Appearance, Main, Disappearance 3가지로 구분할 수 있다.</p>
+<p>앞서 언급했듯, 모든 상태는 크게 Appearance, Main, Disappearance 3가지로 구분할 수 있다.</p>
 
 <p>따라서 <code class="language-plaintext highlighter-rouge">MenuState</code> 클래스를 상속받는 세 개의 클래스를 정의한다.</p>
 
@@ -1828,11 +1849,9 @@ Source Code
 
 <p>그리고 <code class="language-plaintext highlighter-rouge">Update()</code> 메소드 내에서는 조건에 따른 다음 상태 전이 기능을 작성할 필요가 있다.</p>
 
-<p>따라서 <code class="language-plaintext highlighter-rouge">AppearanceState</code>, <code class="language-plaintext highlighter-rouge">DisappearanceState</code>에서는 상태 진행도에 따라 상태를 전이하며,</p>
+<p>따라서 <code class="language-plaintext highlighter-rouge">AppearanceState</code>, <code class="language-plaintext highlighter-rouge">DisappearanceState</code>의 <code class="language-plaintext highlighter-rouge">Update()</code> 메소드 내에서는 조건문을 통해 상태 진행도를 검사하여, 각각 상태 진행도가 1까지 증가하거나 0까지 감소하면 다음 상태로 전이하도록 작성한다.</p>
 
-<p>반면에 <code class="language-plaintext highlighter-rouge">MainState</code>에서는 외부에서 메뉴 호출자가 메뉴를 종료하는 것을 트리거로 하여</p>
-
-<p>외부에 의해 상태가 전이되므로 <code class="language-plaintext highlighter-rouge">Update()</code> 내에 상태 전이 조건을 작성하지 않는다.</p>
+<p>반면에 <code class="language-plaintext highlighter-rouge">MainState</code>에서는 외부에서 메뉴 호출자가 메뉴를 종료하는 것을 트리거로 하여 외부에 의해 상태가 전이되므로 <code class="language-plaintext highlighter-rouge">Update()</code> 내에 상태 전이 조건을 작성하지 않는다.</p>
 
 <p><br /></p>
 
@@ -1893,6 +1912,7 @@ Source Code
 43
 44
 45
+46
 </pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 서서히 알파값 증가 &lt;/summary&gt;</span>
 <span class="k">private</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">FadeIn</span> <span class="p">:</span> <span class="n">AppearanceState</span>
 <span class="p">{</span>
@@ -1905,6 +1925,7 @@ Source Code
     <span class="p">}</span>
 <span class="p">}</span>
 
+<span class="c1">/// &lt;summary&gt; 선택된 조각의 알파값만 증가 &lt;/summary&gt;</span>
 <span class="k">private</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">MainAlphaChange</span> <span class="p">:</span> <span class="n">MainState</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="nf">MainAlphaChange</span><span class="p">(</span><span class="n">RadialMenu</span> <span class="n">menu</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
@@ -1950,6 +1971,363 @@ Source Code
 
 <p>각 상태 애니메이션을 enum으로 정의한다.</p>
 
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">enum</span> <span class="n">AppearanceType</span>
+<span class="p">{</span>
+    <span class="n">None</span><span class="p">,</span>
+    <span class="n">Fade</span><span class="p">,</span>
+    <span class="n">ScaleChange</span><span class="p">,</span>
+    <span class="n">Spread</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">enum</span> <span class="n">MainType</span>
+<span class="p">{</span>
+    <span class="n">AlphaChange</span><span class="p">,</span>
+    <span class="n">ScaleChange</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>enum으로 각 상태 종류를 정의하지 않아도 FSM의 구현에는 문제 없지만,</p>
+
+<p>enum과 상태를 1대1로 연결하고 인스펙터에서 빠르게 옵션을 변경할 수 있다는 장점이 있다.</p>
+
+<p>대신 새로운 상태를 구현할 때마다 enum 역시 추가하고 객체를 연결해줘야 한다는 번거로움이 있다.</p>
+
+<p><br /></p>
+
+<h2 id="관련-필드-정의"><strong>관련 필드 정의</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nf">Header</span><span class="p">(</span><span class="s">"Animation Types"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">AppearanceType</span> <span class="n">_appearanceType</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">MainType</span> <span class="n">_mainType</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">AppearanceType</span> <span class="n">_disappearanceType</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">AppearanceType</span><span class="p">,</span> <span class="n">AppearanceState</span><span class="p">&gt;</span> <span class="n">_appStateDict</span> <span class="p">=</span> 
+    <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">AppearanceType</span><span class="p">,</span> <span class="n">AppearanceState</span><span class="p">&gt;();</span>
+
+<span class="k">private</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">MainType</span><span class="p">,</span> <span class="n">MainState</span><span class="p">&gt;</span> <span class="n">_mainStateDict</span> <span class="p">=</span>
+    <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">MainType</span><span class="p">,</span> <span class="n">MainState</span><span class="p">&gt;();</span>
+
+<span class="k">private</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">AppearanceType</span><span class="p">,</span> <span class="n">DisappearanceState</span><span class="p">&gt;</span> <span class="n">_disStateDict</span> <span class="p">=</span>
+    <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">AppearanceType</span><span class="p">,</span> <span class="n">DisappearanceState</span><span class="p">&gt;();</span>
+
+<span class="k">private</span> <span class="n">MenuState</span> <span class="n">_currentState</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">MenuState</span> <span class="n">AState</span> <span class="p">=&gt;</span> <span class="n">_appStateDict</span><span class="p">[</span><span class="n">_appearanceType</span><span class="p">];</span>
+<span class="k">private</span> <span class="n">MenuState</span> <span class="n">MState</span> <span class="p">=&gt;</span> <span class="n">_mainStateDict</span><span class="p">[</span><span class="n">_mainType</span><span class="p">];</span>
+<span class="k">private</span> <span class="n">MenuState</span> <span class="n">DState</span> <span class="p">=&gt;</span> <span class="n">_disStateDict</span><span class="p">[</span><span class="n">_disappearanceType</span><span class="p">];</span>
+
+<span class="c1">// 현재 등장/소멸 상태 진행도</span>
+<span class="k">private</span> <span class="kt">float</span> <span class="n">_stateProgress</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>enum들은 인스펙터에서 지정할 수 있도록 필드로 작성하고, <code class="language-plaintext highlighter-rouge">[SerializeField]</code>를 통해 인스펙터에 노출시킨다.</p>
+
+<p>그리고 enum과 상태 객체의 1대1 연결을 위해 각 상태 종류마다 딕셔너리로 관리한다.</p>
+
+<p>프로퍼티를 통해 현재 설정된 enum 타입에 따라 각 상태 객체를 곧바로 참조할 수 있도록 하고,</p>
+
+<p>현재 적용된 상태는 <code class="language-plaintext highlighter-rouge">_currentState</code> 필드로 관리한다.</p>
+
+<p><br /></p>
+
+<h2 id="관련-메소드-구현"><strong>관련 메소드 구현</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_currentState</span><span class="p">.</span><span class="nf">Update</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">InitStateDicts</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_currentState</span> <span class="p">=</span> <span class="n">NullState</span><span class="p">.</span><span class="n">Instance</span><span class="p">;</span>
+
+    <span class="c1">// 1. Appearance</span>
+    <span class="n">_appStateDict</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">AppearanceType</span><span class="p">.</span><span class="n">None</span><span class="p">,</span> <span class="k">new</span> <span class="nf">DefaultAppearance</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+    <span class="n">_appStateDict</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">AppearanceType</span><span class="p">.</span><span class="n">Fade</span><span class="p">,</span> <span class="k">new</span> <span class="nf">FadeIn</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+    <span class="n">_appStateDict</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">AppearanceType</span><span class="p">.</span><span class="n">ScaleChange</span><span class="p">,</span> <span class="k">new</span> <span class="nf">ScaleUp</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+    <span class="n">_appStateDict</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">AppearanceType</span><span class="p">.</span><span class="n">Spread</span><span class="p">,</span> <span class="k">new</span> <span class="nf">Spread</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+
+    <span class="c1">// 2. Main</span>
+    <span class="n">_mainStateDict</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">MainType</span><span class="p">.</span><span class="n">AlphaChange</span><span class="p">,</span> <span class="k">new</span> <span class="nf">MainAlphaChange</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+    <span class="n">_mainStateDict</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">MainType</span><span class="p">.</span><span class="n">ScaleChange</span><span class="p">,</span> <span class="k">new</span> <span class="nf">MainScaleChange</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+
+    <span class="c1">// 3. Disappearance</span>
+    <span class="n">_disStateDict</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">AppearanceType</span><span class="p">.</span><span class="n">None</span><span class="p">,</span> <span class="k">new</span> <span class="nf">DefaultDisappearance</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+    <span class="n">_disStateDict</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">AppearanceType</span><span class="p">.</span><span class="n">Fade</span><span class="p">,</span> <span class="k">new</span> <span class="nf">FadeOut</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+    <span class="n">_disStateDict</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">AppearanceType</span><span class="p">.</span><span class="n">ScaleChange</span><span class="p">,</span> <span class="k">new</span> <span class="nf">ScaleDown</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+    <span class="n">_disStateDict</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">AppearanceType</span><span class="p">.</span><span class="n">Spread</span><span class="p">,</span> <span class="k">new</span> <span class="nf">Gather</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">RadialMenu</code>가 FSM의 관리자 역할을 하므로, <code class="language-plaintext highlighter-rouge">Update()</code> 메소드에서 매 프레임마다 현재 적용된 상태의 <code class="language-plaintext highlighter-rouge">.Update()</code> 메소드를 호출해준다.</p>
+
+<p>그리고 <code class="language-plaintext highlighter-rouge">InitStateDicts()</code> 메소드는 <code class="language-plaintext highlighter-rouge">Awake()</code> 메소드 내에서 호출하여 게임 시작 시 enum과 객체를 연결해주는 역할을 수행한다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 다음 상태로 진입 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">ChangeToNextState</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_currentState</span><span class="p">.</span><span class="nf">OnExit</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">_currentState</span> <span class="p">==</span> <span class="n">NullState</span><span class="p">.</span><span class="n">Instance</span><span class="p">)</span> <span class="n">_currentState</span> <span class="p">=</span> <span class="n">AState</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">_currentState</span> <span class="p">==</span> <span class="n">AState</span><span class="p">)</span> <span class="n">_currentState</span> <span class="p">=</span> <span class="n">MState</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">_currentState</span> <span class="p">==</span> <span class="n">MState</span><span class="p">)</span> <span class="n">_currentState</span> <span class="p">=</span> <span class="n">DState</span><span class="p">;</span>
+    <span class="k">else</span> <span class="n">_currentState</span> <span class="p">=</span> <span class="n">NullState</span><span class="p">.</span><span class="n">Instance</span><span class="p">;</span>
+
+    <span class="n">_currentState</span><span class="p">.</span><span class="nf">OnEnter</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 강제로 등장 상태에 진입 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">ForceToEnterAppearanceState</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_currentState</span><span class="p">.</span><span class="nf">OnExit</span><span class="p">();</span>
+    <span class="n">_currentState</span> <span class="p">=</span> <span class="n">AState</span><span class="p">;</span>
+    <span class="n">_currentState</span><span class="p">.</span><span class="nf">OnEnter</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 강제로 소멸 상태에 진입 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">ForceToEnterDisappearanceState</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_currentState</span><span class="p">.</span><span class="nf">OnExit</span><span class="p">();</span>
+    <span class="n">_currentState</span> <span class="p">=</span> <span class="n">DState</span><span class="p">;</span>
+    <span class="n">_currentState</span><span class="p">.</span><span class="nf">OnEnter</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ChangeToNextState()</code> 메소드는 FSM의 핵심 기능 중 하나로, 현재 적용 중인 상태의 종류에 따라 다음 상태로 전이하는 역할을 한다.</p>
+
+<p>기본적으로 FSM은 모든 상태의 <code class="language-plaintext highlighter-rouge">Update()</code> 내에서 전이 조건을 직접 지정하고, 그에 따라 알맞은 상태로 직접 전이시키지만</p>
+
+<p>지금 구현하는 FSM은 상태에 종류(3가지)에 따라 전이될 다음 상태가 정해져 있으므로 각 상태에서 전이 조건을 지저분하게 작성하지 않아도 이렇게 관리자 클래스의 메소드로 깔끔하게 구현할 수 있다.</p>
+
+<p>그리고 <code class="language-plaintext highlighter-rouge">NullState</code>는 널 패턴(Null Pattern)을 사용하여 ‘비어있는 상태’를 정의한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">NullState</span> <span class="p">:</span> <span class="n">MenuState</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">NullState</span> <span class="n">Instance</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">NullState</span><span class="p">();</span>
+
+    <span class="k">public</span> <span class="nf">NullState</span><span class="p">()</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="k">null</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnEnter</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnExit</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>또한 싱글톤 패턴(Singleton Pattern)을 사용하여 <code class="language-plaintext highlighter-rouge">NullState</code> 클래스명으로 유일한 객체를 항상 참조할 수 있도록 한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">NullState</code>는 아무런 역할을 수행하지 않으며, 단순히 NullReferenceException을 방지하고 <code class="language-plaintext highlighter-rouge">RadialMenu</code>가 나타날 때 <code class="language-plaintext highlighter-rouge">AppearanceState</code>의 <code class="language-plaintext highlighter-rouge">OnEnter()</code> 메소드가 올바르게 호출되도록 징검다리 역할을 수행한다.</p>
+
+<p>그리고 <code class="language-plaintext highlighter-rouge">ForceToEnterAppearanceState()</code>, <code class="language-plaintext highlighter-rouge">ForceToEnterDisappearanceState()</code> 메소드는 각각 <code class="language-plaintext highlighter-rouge">RadialMenu</code>의 <code class="language-plaintext highlighter-rouge">Show()</code>, <code class="language-plaintext highlighter-rouge">Hide()</code> 메소드에서 호출되어 <code class="language-plaintext highlighter-rouge">RadialMenu</code>가 지정된 타이밍에 따라 즉시 알맞은 상태로 진입하도록 한다.</p>
+
+<p><br /></p>
+
+<h2 id="gif"><strong>GIF</strong></h2>
+
+<h3 id="1"><strong>[1]</strong></h3>
+<ul>
+  <li>Appearance : <code class="language-plaintext highlighter-rouge">Spread</code></li>
+  <li>Main : <code class="language-plaintext highlighter-rouge">Alpha Change</code></li>
+  <li>Disappearance : <code class="language-plaintext highlighter-rouge">Scale Change</code></li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116522191-dfd7d680-a90f-11eb-9564-78b8939bb46b.gif" alt="2021_0429_RadialMenu_v2_1" /></p>
+
+<h3 id="2"><strong>[2]</strong></h3>
+<ul>
+  <li>Appearance : <code class="language-plaintext highlighter-rouge">Scale Change</code></li>
+  <li>Main : <code class="language-plaintext highlighter-rouge">Scale Change</code></li>
+  <li>Disappearance : <code class="language-plaintext highlighter-rouge">Fade</code></li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116522198-e1090380-a90f-11eb-9bb8-79275fd23315.gif" alt="2021_0429_RadialMenu_v2_2" /></p>
+
+<p><br /></p>
+
+<h1 id="추가--easing-function-적용">추가 : Easing Function 적용</h1>
+<hr />
+
+<p>시간의 흐름에 따른 <code class="language-plaintext highlighter-rouge">Appearance</code>, <code class="language-plaintext highlighter-rouge">Disapearance</code>의 진행도(<code class="language-plaintext highlighter-rouge">_stateProgress</code>)는 기본적으로 \(y=x\) 직선 그래프를 따른다.</p>
+
+<p>그런데 여기에</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116583301-2ac60e00-a951-11eb-82aa-cdbbacdef3f7.png" alt="image" class="normal" /></p>
+
+<p>이런 형태의 다양한 그래프를 적용하면 굉장히 다채로운 애니메이션을 만들 수 있게 된다.</p>
+
+<p><br /></p>
+
+<p>방법은 간단하다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c1">// 예시</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Easing</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="kt">float</span> <span class="nf">EaseInExpo</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="p">==</span> <span class="m">0f</span> <span class="p">?</span> <span class="m">0f</span> <span class="p">:</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Pow</span><span class="p">(</span><span class="m">2f</span><span class="p">,</span> <span class="m">10f</span> <span class="p">*</span> <span class="n">x</span> <span class="p">-</span> <span class="m">10f</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위와 같이 x값을 받아 해당 Easing Function의 y값을 결과로 리턴해주는 메소드를 정의하고,</p>
+
+<p>예를 들어</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 크기 증가 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">ScaleUp</span> <span class="p">:</span> <span class="n">AppearanceState</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">ScaleUp</span><span class="p">(</span><span class="n">RadialMenu</span> <span class="n">menu</span><span class="p">)</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Execute</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// 스케일 변경</span>
+        <span class="n">menu</span><span class="p">.</span><span class="nf">SetAllPieceScale</span><span class="p">(</span><span class="n">menu</span><span class="p">.</span><span class="n">_stateProgress</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이런 상태 애니메이션 클래스에서</p>
+
+<p><code class="language-plaintext highlighter-rouge">menu._stateProgress</code> 값을 <code class="language-plaintext highlighter-rouge">Easing.EaseInExpo(menu._stateProgress)</code> 처럼 바꿔주면 된다.</p>
+
+<p>Easing Function 소스 코드는 <a href="https://easings.net/ko">https://easings.net/ko</a>에서 찾을 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="적용-예시"><strong>적용 예시</strong></h2>
+
+<ul>
+  <li>Appearance : <code class="language-plaintext highlighter-rouge">Scale Change</code></li>
+  <li>Disappearance : <code class="language-plaintext highlighter-rouge">Spread</code></li>
+</ul>
+
+<h3 id="1-기본"><strong>[1] 기본</strong></h3>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116585271-2c90d100-a953-11eb-9422-93276f05b166.gif" alt="2021_0429_RadialMenu_v2_3" /></p>
+
+<h3 id="2-easing-function-적용"><strong>[2] Easing Function 적용</strong></h3>
+
+<ul>
+  <li>Appearance : <strong>Ease Out Bounce</strong></li>
+  <li>Disappearance : <strong>Ease In Bounce</strong></li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116585279-2ef32b00-a953-11eb-9432-cc527eeacf17.gif" alt="2021_0429_RadialMenu_v3_1" /></p>
+
 <p><br /></p>
 
 <h1 id="source-code">Source Code</h1>
@@ -1960,15 +2338,26 @@ Source Code
 
 <h1 id="download">Download</h1>
 <hr />
+
+<h3 id="1-코루틴-버전"><strong>[1] 코루틴 버전</strong></h3>
 <ul>
-  <li><a href="https://github.com/rito15/Images/files/6382713/2021_0426_Radial.Menu_v1.zip">Radial Menu_v1.zip</a></li>
-  <li><a href="https://github.com/rito15/Images/files/6393475/2021_0428_Radial.Menu_v2.zip">Radial Menu_v2.zip</a></li>
+  <li><a href="https://github.com/rito15/Images/files/6400174/RadialMenu_v1.zip">RadialMenu_v1.zip</a></li>
+</ul>
+
+<h3 id="2-fsm-적용"><strong>[2] FSM 적용</strong></h3>
+<ul>
+  <li><a href="https://github.com/rito15/Images/files/6400176/RadialMenu_v2.zip">RadialMenu_v2.zip</a></li>
+</ul>
+
+<h3 id="3-easing-function-적용"><strong>[3] Easing Function 적용</strong></h3>
+<ul>
+  <li><a href="https://github.com/rito15/Images/files/6400178/RadialMenu_v3.zip">RadialMenu_v3.zip</a></li>
 </ul>
 
 <h1 id="references">References</h1>
 <hr />
 <ul>
-  <li></li>
+  <li><a href="https://easings.net/ko">https://easings.net/ko</a></li>
 </ul>
 
 
@@ -5059,6 +5448,19 @@ Source Code
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7165,9 +7567,9 @@ Source Code
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/unity-editor-show-private-fields/" class="btn btn-outline-primary">
+    <p>커스텀 에디터로 인스펙터에 Private 필드 나타내기</p>
+  </a>
   
 
 </div>
