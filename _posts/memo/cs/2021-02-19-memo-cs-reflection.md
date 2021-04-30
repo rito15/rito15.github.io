@@ -79,6 +79,31 @@ var classTypes =
 ```
 
 <br>
+
+## 제네릭 메소드에 원하는 타입 넣어서 호출하기
+
+```cs
+private class TargetClass
+{
+    public void GMethod<T>()
+    {
+        Console.WriteLine($"Generic Method Call : {default(T)}");
+    }
+}
+
+public static void Run()
+{
+    Type type = typeof(TargetClass);
+
+    // 제네릭 메소드의 T에 int 타입 넣어서 메소드 정보 가져오기
+    MethodInfo method = type.GetMethod("GMethod").MakeGenericMethod(new Type[] { typeof(int) });
+
+    object instance = Activator.CreateInstance(type);
+    method.Invoke(instance, null);
+}
+```
+
+<br>
 # References
 ---
 - <https://docs.microsoft.com/ko-kr/dotnet/api/system.reflection.assembly.gettype>

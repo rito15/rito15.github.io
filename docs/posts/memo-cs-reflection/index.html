@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Reflection(리플렉션)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Reflection(리플렉션)","description":"필요 네임스페이스 1 2 using System; using System.Reflection;","dateModified":"2021-03-28T21:29:24+09:00","datePublished":"2021-02-19T03:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-reflection/"},"url":"https://rito15.github.io/posts/memo-cs-reflection/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"필요 네임스페이스 1 2 using System; using System.Reflection;","datePublished":"2021-02-19T03:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-reflection/"},"url":"https://rito15.github.io/posts/memo-cs-reflection/","author":{"@type":"Person","name":"Rito15"},"headline":"Reflection(리플렉션)","dateModified":"2021-03-28T21:29:24+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="387 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="488 words">2 min</span>
 
 
           <!-- page views -->
@@ -533,6 +533,48 @@
 </pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="n">classTypes</span> <span class="p">=</span> 
     <span class="n">Assembly</span><span class="p">.</span><span class="nf">GetExecutingAssembly</span><span class="p">().</span><span class="nf">GetTypes</span><span class="p">()</span>
         <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">.</span><span class="n">IsClass</span> <span class="cm">/*&amp;&amp; t.Namespace == nsName*/</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="제네릭-메소드에-원하는-타입-넣어서-호출하기">제네릭 메소드에 원하는 타입 넣어서 호출하기</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">class</span> <span class="nc">TargetClass</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="n">GMethod</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Generic Method Call : </span><span class="p">{</span><span class="k">default</span><span class="p">(</span><span class="n">T</span><span class="p">)}</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Run</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Type</span> <span class="n">type</span> <span class="p">=</span> <span class="k">typeof</span><span class="p">(</span><span class="n">TargetClass</span><span class="p">);</span>
+
+    <span class="c1">// 제네릭 메소드의 T에 int 타입 넣어서 메소드 정보 가져오기</span>
+    <span class="n">MethodInfo</span> <span class="n">method</span> <span class="p">=</span> <span class="n">type</span><span class="p">.</span><span class="nf">GetMethod</span><span class="p">(</span><span class="s">"GMethod"</span><span class="p">).</span><span class="nf">MakeGenericMethod</span><span class="p">(</span><span class="k">new</span> <span class="n">Type</span><span class="p">[]</span> <span class="p">{</span> <span class="k">typeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="p">});</span>
+
+    <span class="kt">object</span> <span class="n">instance</span> <span class="p">=</span> <span class="n">Activator</span><span class="p">.</span><span class="nf">CreateInstance</span><span class="p">(</span><span class="n">type</span><span class="p">);</span>
+    <span class="n">method</span><span class="p">.</span><span class="nf">Invoke</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
