@@ -40,12 +40,14 @@ while( /* condition */ )
 
 <br>
 
-하지만 매번 이러면 번거롭기도 하고, 혹시나 작성하고 잊을 수도 있으니 에디터 전용으로 래핑해줄 수 있다.
+하지만 매번 이러면 번거롭기도 하고, 혹시나 작성하고 잊을 수도 있으니 에디터 전용으로 래핑해주는 것이 좋다.
+
+<br>
 
 ## **InfiniteLoopChecker**
 
 ```cs
-/// <summary> 무한 루프 검사 및 방지 </summary>
+/// <summary> 무한 루프 검사 및 방지(에디터 전용) </summary>
 public static class InfiniteLoopChecker
 {
     private static int infiniteLoopNum = 0;
