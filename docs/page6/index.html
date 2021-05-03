@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page6/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page6/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,103 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-toy-depth-texture-renderer/">Depth Texture Renderer (Z-Buffer 렌더러)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+
+  
+    현재 메인 카메라의 뎁스 텍스쳐를 화면에 렌더링한다.
+  
+  
+    각 쉐이더의 ZWrite 여부에 관계 없이 모두 렌더링하는 단점이 있다.
+  
+  
+    렌더 큐 값이 2500(Skybox) 이하인 오브젝트들만 인식한다.
+  
+
+
+
+
+How to Use
+
+
+
+  
+    DepthRenderer.cs 스크립트를 메인...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Mar  3, 2021,  7:08 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar  3
+  
+
+  <i class="unloaded">2021-03-03T19:08:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="543 words">3 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1302,97 +1399,6 @@ GIF
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-toy-free-look-camera/">Free Look Camera (자유 시점 카메라)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  자유롭게 회전, 이동이 가능한 자유 시점 카메라
-
-
-How To Use
-
-
-
-  카메라가 존재하는 게임오브젝트에 FreeLookCamera 컴포넌트를 추가한다.
-  게임 시작 후, Left Alt 키를 눌러 커서가 사라지도록 한다.
-  WASD 키로 카메라를 움직이며, 마우스 이동을 통해 카메라를 회전시킬 수 있다.
-
-
-Preview...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Feb 28, 2021,  5:45 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 28
-  
-
-  <i class="unloaded">2021-02-28T17:45:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="822 words">4 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1718,6 +1724,11 @@ Preview...
         
         
         
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-study-radial-menu/">Radial Menu 만들기</a></li>
       
         
@@ -1734,11 +1745,6 @@ Preview...
         
         
         <li><a href="/posts/unity-study-voxel/">Voxel System(유니티에서 마인크래프트 구현하기)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-ref-in-performance/">매개변수 한정자 ref, in의 성능</a></li>
       
 
       </ul>

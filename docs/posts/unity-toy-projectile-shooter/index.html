@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Projectile Shooter (투사체 발사 컴포넌트)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note 마우스 클릭 시 등록된 게임오브젝트를 생성하여, 지정된 방향으로 발사하는 스크립트","datePublished":"2021-03-02T03:28:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-projectile-shooter/"},"url":"https://rito15.github.io/posts/unity-toy-projectile-shooter/","author":{"@type":"Person","name":"Rito15"},"headline":"Projectile Shooter (투사체 발사 컴포넌트)","dateModified":"2021-03-02T03:28:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Projectile Shooter (투사체 발사 컴포넌트)","description":"Note 마우스 클릭 시 등록된 게임오브젝트를 생성하여, 지정된 방향으로 발사하는 스크립트","dateModified":"2021-03-02T03:28:00+09:00","datePublished":"2021-03-02T03:28:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-projectile-shooter/"},"url":"https://rito15.github.io/posts/unity-toy-projectile-shooter/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -985,6 +985,11 @@
         
         
         
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-study-radial-menu/">Radial Menu 만들기</a></li>
       
         
@@ -1001,11 +1006,6 @@
         
         
         <li><a href="/posts/unity-study-voxel/">Voxel System(유니티에서 마인크래프트 구현하기)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-ref-in-performance/">매개변수 한정자 ref, in의 성능</a></li>
       
 
       </ul>
@@ -4612,6 +4612,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5855,59 +5868,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-toy-custom-mouse-events/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  8
-  
-
-  <i class="unloaded">2021-02-08T21:54:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Mouse Events (성능 향상된 마우스 이벤트 처리)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                구현 동기
-
-
-유니티 모노비헤이비어는 OnMouse로 시작하는 이벤트 메소드들을 작성하여 사용할 수 있다.
-
-이 이벤트 메소드들은 레이캐스트 기반으로 동작하며, 해당 마우스 동작이 발생하면 메소드가 호출된다.
-
-하지만 여러가지 단점들이 있다.
-
-
-  마우스 좌클릭에 대해서만 동작한다.
-  이벤트 메소드 작성 시, 비워놓거나 해당 이벤트가 발생하지 않는...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-toy-free-look-camera/">
           <div class="card-body">
             <!--
@@ -6017,6 +5977,70 @@ How To Use
   
   
     Chasing Speed를 통해 마우스를 따라올 속도를 지정할...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-toy-depth-texture-renderer/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  3
+  
+
+  <i class="unloaded">2021-03-03T19:08:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Depth Texture Renderer (Z-Buffer 렌더러)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+
+  
+    현재 메인 카메라의 뎁스 텍스쳐를 화면에 렌더링한다.
+  
+  
+    각 쉐이더의 ZWrite 여부에 관계 없이 모두 렌더링하는 단점이 있다.
+  
+  
+    렌더 큐 값이 2500(Skybox) 이하인 오브젝트들만 인식한다.
+  
+
+
+
+
+How to Use
+
+
+
+  
+    DepthRenderer.cs 스크립트를 메인...
               </p>
             </div>
           </div>
