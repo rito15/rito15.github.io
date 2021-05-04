@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="무한 루프를 방지하는 작은 습관" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"무한 루프를 방지하는 작은 습관","description":"Note 유니티 엔진에서 무한루프가 발생하면 에디터가 그대로 뻗어버린다.","dateModified":"2021-03-05T04:00:00+09:00","datePublished":"2021-03-05T04:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-prevent-infinite-loop/"},"url":"https://rito15.github.io/posts/unity-memo-prevent-infinite-loop/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note 유니티 엔진에서 무한루프가 발생하면 에디터가 그대로 뻗어버린다.","datePublished":"2021-03-05T04:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-prevent-infinite-loop/"},"url":"https://rito15.github.io/posts/unity-memo-prevent-infinite-loop/","author":{"@type":"Person","name":"Rito15"},"headline":"무한 루프를 방지하는 작은 습관","dateModified":"2021-05-04T03:31:47+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,6 +407,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, May  4, 2021,  3:31 AM +0900"
+  >
+
+  
+  
+
+  
+    May  4
+  
+
+  <i class="unloaded">2021-05-04T03:31:47+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -419,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="403 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="412 words">2 min</span>
 
 
           <!-- page views -->
@@ -480,7 +509,9 @@
 
 <p><br /></p>
 
-<p>하지만 매번 이러면 번거롭기도 하고, 혹시나 작성하고 잊을 수도 있으니 에디터 전용으로 래핑해줄 수 있다.</p>
+<p>하지만 매번 이러면 번거롭기도 하고, 혹시나 작성하고 잊을 수도 있으니 에디터 전용으로 래핑해주는 것이 좋다.</p>
+
+<p><br /></p>
 
 <h2 id="infiniteloopchecker"><strong>InfiniteLoopChecker</strong></h2>
 
@@ -499,7 +530,7 @@
 13
 14
 15
-</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 무한 루프 검사 및 방지 &lt;/summary&gt;</span>
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 무한 루프 검사 및 방지(에디터 전용) &lt;/summary&gt;</span>
 <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">InfiniteLoopChecker</span>
 <span class="p">{</span>
     <span class="k">private</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">infiniteLoopNum</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
@@ -677,7 +708,17 @@
         
         
         
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+        <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 방지하는 작은 습관</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
         
         
@@ -687,17 +728,7 @@
         
         
         
-        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-voxel/">Voxel System(유니티에서 마인크래프트 구현하기)</a></li>
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>

@@ -27,7 +27,7 @@ mermaid: true
 ## **2. 아이템**
  - `Item` : 인벤토리의 각 슬롯에 들어가는 실제 아이템. 각각의 아이템이 개별적으로 갖는 데이터들을 보관한다.
    - `CountableItem` : 수량을 셀 수 있는 아이템
-     - `PortionItem` : 소모 아이템(포션) 
+     - `PortionItem` : 소모 아이템(포션)
    - `EquipmentItem` : 장비 아이템
      - `WeaponItem` : 무기 아이템
      - `ArmorItem` : 방어구 아이템
@@ -36,7 +36,7 @@ mermaid: true
 ## **3. 아이템 데이터**
  - `ItemData` : 각 아이템이 공통으로 가질 데이터들을 보관하는 클래스. 스크립터블 오브젝트를 상속한다.
    - `CountableItemData` : 수량을 셀 수 있는 아이템
-     - `PortionItemData` : 소모 아이템(포션) 
+     - `PortionItemData` : 소모 아이템(포션)
    - `EquipmentItemData` : 장비 아이템
      - `WeaponItemData` : 무기 아이템
      - `ArmorItemData` : 방어구 아이템
@@ -118,7 +118,7 @@ Inventory 게임오브젝트에 `InventoryUI` 컴포넌트를 넣는다.
 하나의 슬롯을 동적으로 복제하는 방식으로 작성하였다.
 
 <details>
-<summary markdown="span"> 
+<summary markdown="span">
 InventoryUI.cs
 </summary>
 
@@ -197,7 +197,7 @@ private void InitSlots()
 ![2021_0421_InventoryUI Preview](https://user-images.githubusercontent.com/42164422/115549467-a7b70f00-a2e3-11eb-84d6-58c22fac5c59.gif)
 
 <details>
-<summary markdown="span"> 
+<summary markdown="span">
 InventoryUI.cs
 </summary>
 
@@ -380,7 +380,7 @@ private static class Destroyer
     private static Queue<GameObject> targetQueue = new Queue<GameObject>();
 
     static Destroyer()
-    { 
+    {
         UnityEditor.EditorApplication.update += () =>
         {
             for (int i = 0; targetQueue.Count > 0 && i < 100000; i++)
@@ -412,7 +412,7 @@ UI의 드래그 앤 드롭을 구현하려면 기본적으로 GraphicRaycaster�
 
 
 <details>
-<summary markdown="span"> 
+<summary markdown="span">
 MovableHeaderUI.cs
 </summary>
 
@@ -520,7 +520,7 @@ public class MovableHeaderUI : MonoBehaviour, IPointerDownHandler, IDragHandler
 
 
 <details>
-<summary markdown="span"> 
+<summary markdown="span">
 InventoryUI.cs
 </summary>
 
@@ -550,7 +550,7 @@ private T RaycastAndGetFirstComponent<T>() where T : Component
     _rrList.Clear();
 
     _gr.Raycast(_ped, _rrList);
-            
+
     if(_rrList.Count == 0)
         return null;
 
@@ -613,7 +613,7 @@ private void OnPointerUp()
 
             // 드래그 완료 처리
             EndDrag();
-			
+
             // 참조 제거
             _beginDragSlot = null;
             _beginDragIconTransform = null;
@@ -675,7 +675,7 @@ private void OnPointerUp()
 
 그런데 공통 데이터도 아이템 객체가 필드로 갖게 되면 아이템 개수에 비례해서 그만큼의 메모리를 낭비하게 되는 셈이므로, 이를 분리할 필요가 있다.
 
-따라서 각각의 아이템을 의미하며 개별 데이터를 관리할 클래스는 `Item`, 
+따라서 각각의 아이템을 의미하며 개별 데이터를 관리할 클래스는 `Item`,
 
 공통 데이터를 관리할 클래스는 `ItemData`로 작성한다.
 
@@ -685,7 +685,7 @@ private void OnPointerUp()
 
 
 <details>
-<summary markdown="span"> 
+<summary markdown="span">
 ItemData.cs
 </summary>
 
@@ -713,7 +713,7 @@ public abstract class ItemData : ScriptableObject
 
 
 <details>
-<summary markdown="span"> 
+<summary markdown="span">
 CountableItemData.cs
 </summary>
 
@@ -730,7 +730,7 @@ public abstract class CountableItemData : ItemData
 
 
 <details>
-<summary markdown="span"> 
+<summary markdown="span">
 PortionItemData.cs
 </summary>
 
@@ -762,7 +762,7 @@ public class PortionItemData : CountableItemData
 
 
 <details>
-<summary markdown="span"> 
+<summary markdown="span">
 Item.cs
 </summary>
 
@@ -779,7 +779,7 @@ public abstract class Item
 
 
 <details>
-<summary markdown="span"> 
+<summary markdown="span">
 CountableItem.cs
 </summary>
 
@@ -844,7 +844,7 @@ public abstract class CountableItem : Item
 
 
 <details>
-<summary markdown="span"> 
+<summary markdown="span">
 PortionItem.cs
 </summary>
 
@@ -948,6 +948,79 @@ UI에서 사용자 이벤트가 발생했을 때 `InventoryUI`는 `Inventory`를
 # 아이템 추가하기
 ---
 
+아이템을 추가하는 기능은 다음과 같이 이루어진다.
+
+1. 외부 객체에 의한 아이템 습득
+2. `Inventory`의 Item 배열 내에 습득한 아이템 추가
+3. `InventoryUI`에서 해당 슬롯 정보 갱신
+4. 해당 `ItemSlotUI` 갱신
+
+그리고 이를 단순한 코드로 표현해보면
+
+```
+1. someone.AcquireItem( newItem );
+2. inventory.Add( newItem );
+3. inventoryUI.UpdateSlot( itemIndex );
+4. itemSlotUI.Update( );
+```
+
+위처럼 표현해볼 수 있다.
+
+<br>
+
+## **[1] Inventory : 아이템 추가**
+
+새로운 아이템을 인벤토리 내의 배열에 추가할 때, 두 가지 정보가 필요하다.
+
+해당 아이템의 고유 데이터와, 추가할 아이템의 개수.
+
+그리고 수량이 있는 아이템인지 여부에 따라 나누어 구현해야 한다.
+
+수량이 없는 아이템이라면 배열의 앞에서부터 빈 슬롯을 찾아 차례대로 넣고,
+
+수량이 있는 아이템이라면 이미 존재하는 동일 아이템을 찾아 수량을 합산하고,
+
+최대 수량에 도달한 경우 앞에서부터 빈 슬롯을 찾아 차례대로 넣는다.
+
+그리고 인벤토리가 가득차 모든 아이템을 넣지 못했다면, 해당 수량만큼 메소드에서 리턴해준다.
+
+의사 코드로 표현하면 다음과 같다.
+
+```
+function AddItem(ItemData data, int amount) : return int
+
+// 1. 수량이 있는 아이템
+if (data is CountableItemData)
+    while (amount > 0)
+        existedItem = GetExistedCountableItem(data)
+
+        // 1-1. 여유 수량이 있는 동일 아이템이 존재하는 경우
+        while (existedItem)
+            spareAmount = GetSpareAmount(existedItemIndex)
+            existedItem.amount += spareAmount
+            amount -= spareAmount
+            UpdateSlot(existedItem.index)
+            existedItem = GetExistedCountableItem(data)
+
+        // 1-2. 빈 슬롯이 존재하는 경우
+        slotIndex = FindEmptySlotIndex()
+        while (slotIndex >= 0)
+            newItem = data.CreateItem()
+            newItem.amount = Min(newItem.maxAmount, amount)
+            amount -= newItem.amount
+            itemArray[slotIndex] = newItem
+            UpdateSlot(slotIndex)
+            slotIndex = FindEmptySlotIndex()
+
+// 2. 수량이 없는 아이템
+else
+    while (slotIndex = FindEmptySlotIndex() >= 0)
+        itemArray[slotIndex] = data.CreateItem()
+        UpdateSlot(slotIndex)
+        amount--
+
+return amount
+```
 
 <br>
 
@@ -1001,5 +1074,5 @@ UI에서 사용자 이벤트가 발생했을 때 `InventoryUI`는 `Inventory`를
 
 # Download
 ---
-- 
+-
 

@@ -26,8 +26,8 @@
 <meta property="og:title" content="깃 관련 메모 모음" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="PAT 사용하여 Push하기" />
-<meta property="og:description" content="PAT 사용하여 Push하기" />
+<meta name="description" content="Unity Csharp Developer" />
+<meta property="og:description" content="Unity Csharp Developer" />
 <link rel="canonical" href="https://rito15.github.io/posts/memo-git/" />
 <meta property="og:url" content="https://rito15.github.io/posts/memo-git/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="깃 관련 메모 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"깃 관련 메모 모음","description":"PAT 사용하여 Push하기","dateModified":"2021-05-03T17:00:00+09:00","datePublished":"2021-05-03T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git/"},"url":"https://rito15.github.io/posts/memo-git/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Unity Csharp Developer","datePublished":"2021-05-03T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git/"},"url":"https://rito15.github.io/posts/memo-git/","author":{"@type":"Person","name":"Rito15"},"headline":"깃 관련 메모 모음","dateModified":"2021-05-04T03:31:47+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -347,6 +347,20 @@
 
 
 
+  
+
+  
+
+  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
+  
+  
+
+  
+
+  
+
+
+
 <!-- return -->
 <div class="row">
 
@@ -393,6 +407,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, May  4, 2021,  3:31 AM +0900"
+  >
+
+  
+  
+
+  
+    May  4
+  
+
+  <i class="unloaded">2021-05-04T03:31:47+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -405,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="58 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="713 words">3 min</span>
 
 
           <!-- page views -->
@@ -419,28 +462,211 @@
 
         
 
-        <h1 id="pat-사용하여-push하기">PAT 사용하여 Push하기</h1>
+        <p><br /></p>
+
+<h1 id="git-구성">Git 구성</h1>
 <hr />
+
+<h2 id="1-local">[1] Local</h2>
+
+<h3 id="1-1-working-directory">[1-1] Working Directory</h3>
+<ul>
+  <li>작업 디렉토리 : 윈도우 내 폴더</li>
+  <li><code class="language-plaintext highlighter-rouge">git add</code> 명령어를 통해 변경된 파일들을 <code class="language-plaintext highlighter-rouge">Staging Area</code>로 옮길 수 있다.</li>
+</ul>
+
+<h3 id="1-2-staging-area">[1-2] Staging Area</h3>
+<ul>
+  <li>커밋할 대상들을 저장하는 임시 저장소</li>
+  <li>파일 변경사항 스냅샷을 안전하게 보관하지는 않는다.</li>
+  <li><code class="language-plaintext highlighter-rouge">git commit</code> 명령어를 통해 스테이징 영역 내의 파일들을 <code class="language-plaintext highlighter-rouge">.git Directory</code>로 옮길 수 있다.</li>
+</ul>
+
+<h3 id="1-3-git-directory">[1-3] .git Directory</h3>
+<ul>
+  <li>커밋 히스토리를 저장한다.</li>
+  <li>원격 리포지토리에 push하기 전까지, 로컬 <code class="language-plaintext highlighter-rouge">.git</code> 폴더 내부에서 변경된 파일들의 스냅샷을 보관한다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="2-remote">[2] Remote</h2>
+<ul>
+  <li>Git 원격 리포지토리</li>
+  <li><code class="language-plaintext highlighter-rouge">git push</code> 명령어를 통해 <code class="language-plaintext highlighter-rouge">.git Dir</code>에서 <code class="language-plaintext highlighter-rouge">Remote</code>로 업로드</li>
+  <li><code class="language-plaintext highlighter-rouge">git pull</code> 명령어를 통해 <code class="language-plaintext highlighter-rouge">Remote</code>에서 <code class="language-plaintext highlighter-rouge">.git Dir</code>로 다운로드</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="명령어">명령어</h1>
+<hr />
+
+<h2 id="임의-단축-명령어-만들기"><strong>임의 단축 명령어 만들기</strong></h2>
+
+<ul>
+  <li>예시 : <code class="language-plaintext highlighter-rouge">git status</code>를 <code class="language-plaintext highlighter-rouge">git st</code>로 사용하도록 단축 명령어 등록</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>git config --global alias.st status
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="로컬-리포지토리로-만들기"><strong>로컬 리포지토리로 만들기</strong></h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>git init
+</pre></td></tr></tbody></table></code></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">.git</code> 폴더가 생성된다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="변경된-파일들-상태-확인하기"><strong>변경된 파일들 상태 확인하기</strong></h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>git status
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116910243-4cd8cc80-ac80-11eb-91bf-80f15dd05538.png" alt="image" /></p>
+
+<ul>
+  <li><strong>Changes to be committed:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">git add</code>를 통해 <code class="language-plaintext highlighter-rouge">Staging Area</code>로 이동된 파일들 목록</li>
+    </ul>
+  </li>
+  <li><strong>Changes not staged for commit:</strong>
+    <ul>
+      <li>변경되었지만 아직 스테이징 되지 않은 파일들 목록</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="파일-변경-내용-확인하기"><strong>파일 변경 내용 확인하기</strong></h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>git diff [파일명]
+</pre></td></tr></tbody></table></code></div></div>
 
 <ul>
   <li>
-    <p>PAT : Personal Access Token</p>
+    <p>스테이징 되지 않은, 변경된 파일들의 내용 변경사항을 보여준다.</p>
   </li>
   <li>
-    <p><strong>예시</strong></p>
-    <ul>
-      <li>내 Github ID : rito01</li>
-      <li>내가 가진 토큰(PAT) ID : <code class="language-plaintext highlighter-rouge">abcd1234</code></li>
-      <li>대상 리포지토리 소유자 ID : rito02</li>
-      <li>대상 리포지토리 이름 : repo01</li>
-    </ul>
+    <p><code class="language-plaintext highlighter-rouge">git diff 파일명</code>으로 특정 파일만 변경사항을 확인할 수 있다.</p>
   </li>
+</ul>
+
+<p><br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>git diff --cached [파일명]
+</pre></td></tr></tbody></table></code></div></div>
+
+<ul>
+  <li>스테이징 된 파일들의 변경사항을 최근 커밋과 비교하여 보여준다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="커밋-히스토리-확인하기"><strong>커밋 히스토리 확인하기</strong></h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>git log
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116913266-359bde00-ac84-11eb-8836-30e91070beba.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git log -2</code> 처럼 뒤에 <code class="language-plaintext highlighter-rouge">-숫자</code>를 붙여서 확인할 커밋 개수를 지정할 수 있다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git log --p</code> : 구체적인 변경사항을 직접 보여준다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>git log --stat
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116913673-bb1f8e00-ac84-11eb-8cbe-8d48908ad6bb.png" alt="image" /></p>
+
+<ul>
+  <li>각 커밋마다 변경된 파일 정보를 확인할 수 있다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="restore"><strong>Restore</strong></h2>
+
+<h3 id="1-작업-중인-파일-상태-되돌리기">[1] 작업 중인 파일 상태 되돌리기</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>git restore abc.txt
+</pre></td></tr></tbody></table></code></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">modified</code> 상태인 파일의 변경사항을 마지막 커밋 상태로 되돌린다.</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="2-스테이징-취소하기">[2] 스테이징 취소하기</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>git restore --staged abc.txt
+</pre></td></tr></tbody></table></code></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Staging Area</code>에 있는 특정 파일을 <code class="language-plaintext highlighter-rouge">modified</code> 상태로 되돌린다.</li>
+  <li>파일 내용에 영향을 주지 않는다.</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="pat-사용하여-push하기">PAT 사용하여 Push하기</h1>
+<hr />
+
+<h2 id="pat"><strong>PAT</strong></h2>
+<ul>
+  <li>Personal Access Token</li>
+</ul>
+
+<h2 id="예시"><strong>예시</strong></h2>
+<ul>
+  <li>내 Github ID : rito01</li>
+  <li>내가 가진 토큰(PAT) ID : <code class="language-plaintext highlighter-rouge">abcd1234</code></li>
+  <li>대상 리포지토리 소유자 ID : rito02</li>
+  <li>대상 리포지토리 이름 : repo01</li>
 </ul>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>git push https://abcd1234@github.com/rito02/repo01.git
 </pre></td></tr></tbody></table></code></div></div>
 
+<h2 id="활용"><strong>활용</strong></h2>
+<ul>
+  <li>“refusing to allow an OAuth App to create or update workflow” 에러 발생 시, workflow 체크된 PAT를 이용하여 push</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+<hr />
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=Z9dvM7qgN9s">https://www.youtube.com/watch?v=Z9dvM7qgN9s</a></li>
+  <li><a href="https://blog.outsider.ne.kr/1505">https://blog.outsider.ne.kr/1505</a></li>
+</ul>
 
 
       </div>
@@ -575,7 +801,17 @@
         
         
         
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+        <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 방지하는 작은 습관</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
         
         
@@ -585,17 +821,7 @@
         
         
         
-        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-voxel/">Voxel System(유니티에서 마인크래프트 구현하기)</a></li>
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -3488,6 +3714,11 @@
   </div> <!-- .access -->
 
   
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
@@ -5673,6 +5904,16 @@
 
 </div> <!-- .row -->
 
+
+
+  <!-- image lazy load: https://github.com/ApoorvSaxena/lozad.js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+
+<script type="text/javascript">
+  const imgs = document.querySelectorAll('.post-content img');
+  const observer = lozad(imgs);
+  observer.observe();
+</script>
 
 
 

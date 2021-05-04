@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-05-03T17:24:32+09:00</updated>
+  <updated>2021-05-04T19:42:56+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -24,7 +24,7 @@
     <link href="https://rito15.github.io/posts/memo-git/" rel="alternate" type="text/html" title="깃 관련 메모 모음" />
     <published>2021-05-03T17:00:00+09:00</published>
   
-    <updated>2021-05-03T17:00:00+09:00</updated>
+    <updated>2021-05-04T03:31:47+09:00</updated>
   
     <id>https://rito15.github.io/posts/memo-git/</id>
     <content src="https://rito15.github.io/posts/memo-git/" />
@@ -46,28 +46,38 @@
 
 
 
-      PAT 사용하여 Push하기
+      
+
+Git 구성
+
+
+[1] Local
+
+[1-1] Working Directory
+
+  작업 디렉토리 : 윈도우 내 폴더
+  git add 명령어를 통해 변경된 파일들을 Staging Area로 옮길 수 있다.
+
+
+[1-2] Staging Area
+
+  커밋할 대상들을 저장하는 임시 저장소
+  파일 변경사항 스냅샷을 안전하게 보관하지는 않는다.
+  git commit 명령어를 통해 스테이징 영역 내의 파일들을 .git Directory로 옮길 수 있다.
+
+
+[1-3] .git Directory
+
+  커밋 히스토리를 저장한다.
+  원격 리포지토리에 push하기 전까지, 로컬 .git 폴더 내부에서 변경된 파일들의 스냅샷을 보관한다.
 
 
 
-  
-    PAT : Personal Access Token
-  
-  
-    예시
-    
-      내 Github ID : rito01
-      내가 가진 토큰(PAT) ID : abcd1234
-      대상 리포지토리 소유자 ID : rito02
-      대상 리포지토리 이름 : repo01
-    
-  
 
+[2] Remote
 
-git push https://abcd1234@github.com/rito02/repo01.git
-
-
-
+  Git 원격 리포지토리
+  git pus...
     </summary>
   
 
@@ -135,7 +145,7 @@ public partial class RadialMenu : MonoBehaviour
     <link href="https://rito15.github.io/posts/unity-study-radial-menu/" rel="alternate" type="text/html" title="Radial Menu 만들기" />
     <published>2021-04-26T18:00:00+09:00</published>
   
-    <updated>2021-04-30T01:55:13+09:00</updated>
+    <updated>2021-05-03T17:25:13+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-study-radial-menu/</id>
     <content src="https://rito15.github.io/posts/unity-study-radial-menu/" />

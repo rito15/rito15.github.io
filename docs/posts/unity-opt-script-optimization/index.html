@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 스크립트 최적화" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 스크립트 최적화","description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. StartCoroutine() 자주 호출하지 않기 4. 코루틴의 yield 캐싱하기 5. 참조 캐싱하기 6. 빌드 이후 Debug.Log() 사용하지 않기 7. Transform 변경은 한번에 8. ScriptableObject 활용하기 9. 오브젝트 풀링 사용하기 10. 필요하지 않은 경우, 리턴하지 않기 11. 필요하지 않은 경우, new로 생성하지 않기 12. 구조체 사용하기 13. 컬렉션 재사용하기 14. List 사용할 때 주의할 점 15. StringBuilder 사용하기 16. LINQ 사용하지 않기 17. Enum HasFlag() 박싱 이슈 18. 메소드 호출 줄이기 19. 박싱, 언박싱 피하기 20. 비싼 수학 계산 피하기","dateModified":"2021-03-19T23:07:39+09:00","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. StartCoroutine() 자주 호출하지 않기 4. 코루틴의 yield 캐싱하기 5. 참조 캐싱하기 6. 빌드 이후 Debug.Log() 사용하지 않기 7. Transform 변경은 한번에 8. ScriptableObject 활용하기 9. 오브젝트 풀링 사용하기 10. 필요하지 않은 경우, 리턴하지 않기 11. 필요하지 않은 경우, new로 생성하지 않기 12. 구조체 사용하기 13. 컬렉션 재사용하기 14. List 사용할 때 주의할 점 15. StringBuilder 사용하기 16. LINQ 사용하지 않기 17. Enum HasFlag() 박싱 이슈 18. 메소드 호출 줄이기 19. 박싱, 언박싱 피하기 20. 비싼 수학 계산 피하기","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 스크립트 최적화","dateModified":"2021-03-19T23:07:39+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1467,7 +1467,17 @@
         
         
         
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+        <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 방지하는 작은 습관</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
         
         
@@ -1477,17 +1487,7 @@
         
         
         
-        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-voxel/">Voxel System(유니티에서 마인크래프트 구현하기)</a></li>
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -6511,7 +6511,7 @@ No...
   <i class="unloaded">2021-02-19T16:18:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>레이캐스트 오버헤드 테스트</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>레이캐스트 성능 테스트</h3>
             <div class="text-muted small">
               <p>
                 
