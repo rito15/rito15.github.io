@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="레이 마칭(Ray Marching)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"레이 마칭이란?","datePublished":"2021-01-19T23:15:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/ray-marching/"},"url":"https://rito15.github.io/posts/ray-marching/","author":{"@type":"Person","name":"Rito15"},"headline":"레이 마칭(Ray Marching)","dateModified":"2021-03-24T23:55:16+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"레이 마칭(Ray Marching)","description":"레이 마칭이란?","dateModified":"2021-03-24T23:55:16+09:00","datePublished":"2021-01-19T23:15:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/ray-marching/"},"url":"https://rito15.github.io/posts/ray-marching/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1312,6 +1312,16 @@ Source Code
         
         
         
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
       
         
@@ -1322,17 +1332,7 @@ Source Code
         
         
         
-        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-study-radial-menu/">Radial Menu 만들기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -5997,6 +5997,32 @@ Source Code
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6257,7 +6283,7 @@ Source Code
       
       
       <div class="card">
-        <a href="/posts/unity-study-multithread-job/">
+        <a href="/posts/unity-study-rpg-inventory/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6274,13 +6300,13 @@ Source Code
   
 
   
-    Apr  4
+    Apr 15
   
 
-  <i class="unloaded">2021-04-04T22:00:00+09:00</i>
+  <i class="unloaded">2021-04-15T22:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티의 멀티스레딩과 Job의 활용</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>RPG Inventory System(RPG 게임용 인벤토리 제작하기)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6289,20 +6315,29 @@ Source Code
 
 
 
-                유니티에서의 멀티스레딩
+                개요
 
-유니티엔진에서는 기본적으로 모든 CPU 연산이 메인 스레드에서 이루어진다.
 
-그렇다고 다중 스레드를 사용할 수 없다는 것은 아니지만
 
-메인 스레드가 아닌 다른 스레드에서 유니티의 메인 로직에 접근할 수 없도록 막혀있다.
+  RPG 게임에서 사용할 수 있는 기본적인 인벤토리를 제작한다.
 
-다시 말해, 다른 스레드에서는 게임오브젝트, 컴포넌트 등에 접근하면 에러가 발생한다.
 
-예를 들어
 
-1
-2...
+
+클래스 구조 설계
+
+
+
+
+1. 인벤토리
+
+  Inventory : 전체 아이템들을 관리하고, 인벤토리 내부의 실질적 동작들을 담당한다.
+
+
+2. 아이템
+
+  Item : 인벤토리의 각 슬롯에 들어가는 실제 아이템. 각각의 아이템이 개별적으로 갖는 데이터들을 보관한다.
+...
               </p>
             </div>
           </div>

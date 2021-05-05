@@ -1,6 +1,36 @@
 [
   
   {
+    "title": "윈폼 중복 실행 방지",
+    "url": "/posts/memo-cs-winform-prevent-duplication/",
+    "categories": "Memo, Csharp Winform Memo",
+    "tags": "csharp, winform",
+    "date": "2021-05-06 02:02:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Memo  Program.cs에서 Main() 메소드 지우고 아래 내용 복붙하기/// &amp;lt;summary&amp;gt;/// 해당 응용 프로그램의 주 진입점입니다./// &amp;lt;/summary&amp;gt;[STAThread]static void Main(){    if (!IsDuplicated())        RunApplication();}// 이미 실행 중인 프로세스(중복 프로세스)가 있는지 확인private static bool IsDuplicated(){    try    {        int p..."
+  },
+  
+  {
+    "title": "Notify Icon 사용하기",
+    "url": "/posts/memo-cs-winform-notifyicon/",
+    "categories": "Memo, Csharp Winform Memo",
+    "tags": "csharp, winform",
+    "date": "2021-05-06 02:02:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Memo1. 도구  NotifyIcon 추가  ContextMenuStrip 추가2. 속성  Form - Icon에 .ico 아이콘 파일 등록  NotifyIcon - Icon에 아이콘 등록(안하면 컨텍스트 안생김)  NotifyIcon - ContextMenuStrip 연결3. 필드, 메소드 추가//FormClosing 이벤트로 종료 가능 여부private bool closeAllowed = false;private void ShowForm(){    // 폼 등장    this.Show();    //창의 속성을 최소화-&..."
+  },
+  
+  {
     "title": "깃 관련 메모 모음",
     "url": "/posts/memo-git/",
     "categories": "Memo",

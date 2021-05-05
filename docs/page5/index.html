@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page5/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page5/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,198 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-editor-playmode-state-change/">플레이모드 상태 변경에 따른 동작 구현하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+  
+    #if UNITY_EDITOR
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+
+namespace Rito
+{
+    [InitializeOnLoad]
+    public class P...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Mar 11, 2021,  3:33 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar 11
+  
+
+  <i class="unloaded">2021-03-11T03:33:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="171 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-editor-plugin-transform-custom-editor/">Transform Custom Editor(트랜스폼 커스텀 에디터)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+
+  
+    트랜스폼의 커스텀 에디터
+  
+  
+    트랜스폼의 로컬 정보 뿐만 아니라, 글로벌 위치, 회전, 크기 값을 확인 및 조작할 수 있다.
+  
+  
+    총 8개의 리셋 버튼으로 트랜스폼의 로컬, 글로벌 값들을 초기화할 수 있다.
+  
+
+
+
+
+Preview
+
+
+
+
+
+
+
+  Global - Reset 버튼을 누를 경우
+
+
+
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Mar 10, 2021,  3:15 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar 10
+  
+
+  <i class="unloaded">2021-03-10T15:15:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="131 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1111,216 +1303,6 @@ How To Use
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 방지하는 작은 습관</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  
-    유니티 엔진에서 무한루프가 발생하면 에디터가 그대로 뻗어버린다.
-  
-  
-    따라서 혹시나 무한루프가 될 가능성이 있는 코드를 인지했다면, 간단한 체크 로직을 넣어주는 것이 좋다.
-  
-
-
-
-  
-    while( /* condition */ )
-{
-    // codes..
-}
-
-  
-
-
-이런 코드에서, 간단히 다음...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Mar  5, 2021,  4:00 AM +0900"
-  >
-
-  
-  
-
-  
-    Mar  5
-  
-
-  <i class="unloaded">2021-03-05T04:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="412 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-shader-property-attributes/">유니티 쉐이더 프로퍼티 애트리뷰트 모음</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Space
-
-
-
-  
-    [Space(10)]
-
-  
-
-
-
-  단순 공백을 크기로 지정한다.
-
-
-
-
-Header
-
-
-
-  
-    [Header(Header Text)]
-
-  
-
-
-
-  헤더 문자열을 지정한다.
-  큰따옴표로 묶지 않아야 한다.
-
-
-
-
-Toggle
-
-
-
-  
-    [Toggle] _MyToggle ("My Toggle", Floa...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Mar  4, 2021,  9:58 PM +0900"
-  >
-
-  
-  
-
-  
-    Mar  4
-  
-
-  <i class="unloaded">2021-03-04T21:58:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="935 words">5 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1646,6 +1628,16 @@ Toggle
         
         
         
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
       
         
@@ -1656,17 +1648,7 @@ Toggle
         
         
         
-        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-study-radial-menu/">Radial Menu 만들기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>

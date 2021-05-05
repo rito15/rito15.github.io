@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="OpenGL 공부 - 16 - Transform, Input" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 오브젝트 기본 트랜스폼 정의하기 키보드 입력 처리하기","datePublished":"2021-02-12T15:11:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-16/"},"url":"https://rito15.github.io/posts/opengl-study-16/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 16 - Transform, Input","dateModified":"2021-02-12T15:11:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"OpenGL 공부 - 16 - Transform, Input","description":"목표 오브젝트 기본 트랜스폼 정의하기 키보드 입력 처리하기","dateModified":"2021-02-12T15:11:00+09:00","datePublished":"2021-02-12T15:11:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-16/"},"url":"https://rito15.github.io/posts/opengl-study-16/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1947,6 +1947,16 @@
         
         
         
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
       
         
@@ -1957,17 +1967,7 @@
         
         
         
-        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-study-radial-menu/">Radial Menu 만들기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -6112,6 +6112,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6835,78 +6861,6 @@
       
       
       <div class="card">
-        <a href="/posts/opengl-study-13/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 10
-  
-
-  <i class="unloaded">2021-02-10T01:30:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 13 - Texture</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목표
-
-
-
-  폴리곤에 텍스쳐 씌워보기(1장, 여러 장)
-
-
-
-
-1. 텍스쳐 한 장 사용
-
-
-이미지 준비
-
-  프로젝트 디렉토리 내에 Images 폴더를 만들고 PNG 이미지 파일을 준비한다.
-
-
-
-
-소스코드 작성
-
-
-  위치 : VertexAttribPointer ~ Main Loop 사이
-
-
-
-[1] 이미지 로드
-
-
-  
-    int imageW...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/opengl-study-14/">
           <div class="card-body">
             <!--
@@ -7030,6 +6984,92 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
 
 
 모델링의 피벗이 원점인 Local Space(Model Space 또는 Object Space)에 Model Matrix를 곱...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/opengl-study-17/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 13
+  
+
+  <i class="unloaded">2021-02-13T15:32:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 17 - Ambient, Diffuse Lighting</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+  Ambient, Diffuse 라이팅 구현
+
+
+
+
+공부 내용
+
+
+버텍스에 노멀 정보 추가
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+struct Vertex
+{
+    glm::vec3 position;
+    glm::vec3 color;
+    gl...
               </p>
             </div>
           </div>

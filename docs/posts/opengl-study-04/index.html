@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="OpenGL 공부 - 04 - VAO, VBO, Attributes" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 Vertex Attributes, Layout, VBO, VAO에 대한 이해","datePublished":"2021-01-31T13:31:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-04/"},"url":"https://rito15.github.io/posts/opengl-study-04/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 04 - VAO, VBO, Attributes","dateModified":"2021-01-31T13:31:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"OpenGL 공부 - 04 - VAO, VBO, Attributes","description":"목표 Vertex Attributes, Layout, VBO, VAO에 대한 이해","dateModified":"2021-01-31T13:31:00+09:00","datePublished":"2021-01-31T13:31:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-04/"},"url":"https://rito15.github.io/posts/opengl-study-04/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -924,6 +924,16 @@
         
         
         
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
       
         
@@ -934,17 +944,7 @@
         
         
         
-        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-study-radial-menu/">Radial Menu 만들기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -5466,6 +5466,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5812,79 +5838,6 @@
       
       
       <div class="card">
-        <a href="/posts/opengl-study-13/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 10
-  
-
-  <i class="unloaded">2021-02-10T01:30:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 13 - Texture</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목표
-
-
-  폴리곤에 텍스쳐 씌워보기(1장, 여러 장)
-
-
-
-
-1. 텍스쳐 한 장 사용
-
-
-이미지 준비
-
-  프로젝트 디렉토리 내에 Images 폴더를 만들고 PNG 이미지 파일을 준비한다.
-
-
-
-
-소스코드 작성
-
-
-  위치 : VertexAttribPointer ~ Main Loop 사이
-
-
-
-[1] 이미지 로드
-
-1
-2
-3
-4
-int imageWi...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/opengl-study-14/">
           <div class="card-body">
             <!--
@@ -6003,6 +5956,72 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
 
 
 모델링의 피벗이 원점인 Local Space(Model Space 또는 Object Space)에 Model Matrix를 곱하...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/opengl-study-16/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 12
+  
+
+  <i class="unloaded">2021-02-12T15:11:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 16 - Transform, Input</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+  오브젝트 기본 트랜스폼 정의하기
+  키보드 입력 처리하기
+
+
+
+
+트랜스폼 정의
+
+
+트랜스폼의 3요소(위치, 회전, 크기)를 정의한다.
+
+1
+2
+3
+glm::vec3 position(0.0f);
+glm::vec3 rotation(0.0f);
+glm::vec3 scale(1.0f);
+
+
+그리고 모델 행렬에 트랜스폼 연산을 모두 넣어준다.
+
+1...
               </p>
             </div>
           </div>

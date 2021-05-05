@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="RPG Inventory System(RPG 게임용 인벤토리 제작하기)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개요","datePublished":"2021-04-15T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-rpg-inventory/"},"url":"https://rito15.github.io/posts/unity-study-rpg-inventory/","author":{"@type":"Person","name":"Rito15"},"headline":"RPG Inventory System(RPG 게임용 인벤토리 제작하기)","dateModified":"2021-04-26T02:07:12+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"RPG Inventory System(RPG 게임용 인벤토리 제작하기)","description":"개요","dateModified":"2021-05-04T19:51:11+09:00","datePublished":"2021-04-15T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-rpg-inventory/"},"url":"https://rito15.github.io/posts/unity-study-rpg-inventory/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Mon, Apr 26, 2021,  2:07 AM +0900"
+    title="Tue, May  4, 2021,  7:51 PM +0900"
   >
 
   
   
 
   
-    Apr 26
+    May  4
   
 
-  <i class="unloaded">2021-04-26T02:07:12+09:00</i>
+  <i class="unloaded">2021-05-04T19:51:11+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5706 words">31 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5810 words">32 min</span>
 
 
           <!-- page views -->
@@ -2019,6 +2019,43 @@ return amount
 
 <p><br /></p>
 
+<h2 id="2-슬롯-업데이트"><strong>[2] 슬롯 업데이트</strong></h2>
+
+<p>인벤토리의 아이템에 변화가 생겼을 때, 슬롯 UI에서 갱신할 정보들은 두 가지가 있다.</p>
+
+<ol>
+  <li>아이템 스프라이트</li>
+  <li>수량</li>
+</ol>
+
+<p>그리고 이를 각 객체마다 의사코드로 표현하면 다음과 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre>// 1. Inventory
+function UpdateSlot(int index)
+    // 
+
+
+// 2. InventoryUI
+    // 
+
+
+// 3. ItemSlotUI
+    //
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
 <h1 id="아이템-버리기">아이템 버리기</h1>
 <hr />
 
@@ -2196,6 +2233,16 @@ return amount
         
         
         
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
       
         
@@ -2206,17 +2253,7 @@ return amount
         
         
         
-        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-study-radial-menu/">Radial Menu 만들기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -5230,6 +5267,32 @@ return amount
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7142,62 +7205,6 @@ return amount
       
       
       <div class="card">
-        <a href="/posts/unity-study-multithread-job/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Apr  4
-  
-
-  <i class="unloaded">2021-04-04T22:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티의 멀티스레딩과 Job의 활용</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                유니티에서의 멀티스레딩
-
-
-유니티엔진에서는 기본적으로 모든 CPU 연산이 메인 스레드에서 이루어진다.
-
-그렇다고 다중 스레드를 사용할 수 없다는 것은 아니지만
-
-메인 스레드가 아닌 다른 스레드에서 유니티의 메인 로직에 접근할 수 없도록 막혀있다.
-
-다시 말해, 다른 스레드에서는 게임오브젝트, 컴포넌트 등에 접근하면 에러가 발생한다.
-
-예를 들어
-
-
- ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-physics-based-movement/">
           <div class="card-body">
             <!--
@@ -7256,6 +7263,59 @@ return amount
 
   Transform
   Rigidbo...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-study-unirx/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  6
+  
+
+  <i class="unloaded">2021-03-06T20:14:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UniRx (Reactive Extensions for Unity)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                개요
+
+
+Rx란?
+
+
+  Reactive Extensions
+  절차적 프로그래밍에서 다루기 쉽지 않은 비동기 프로그래밍을 손쉽게 다루기 위한 패러다임
+  .NET에도 다양한 언어로 구현되어 있다.
+  비동기 데이터 스트림을 중심으로 동작한다.
+  스트림 내의 데이터에 변화가 발생했을 때 반응형으로 기능이 동작하는 방식을 사용한다.
+  시간을 상당히 ...
               </p>
             </div>
           </div>

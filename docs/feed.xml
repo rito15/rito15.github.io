@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-05-04T19:42:56+09:00</updated>
+  <updated>2021-05-06T03:45:37+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,140 @@
 
   
   <entry>
+    <title>윈폼 중복 실행 방지</title>
+    <link href="https://rito15.github.io/posts/memo-cs-winform-prevent-duplication/" rel="alternate" type="text/html" title="윈폼 중복 실행 방지" />
+    <published>2021-05-06T02:02:00+09:00</published>
+  
+    <updated>2021-05-06T02:02:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/memo-cs-winform-prevent-duplication/</id>
+    <content src="https://rito15.github.io/posts/memo-cs-winform-prevent-duplication/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Memo" />
+    
+    <category term="Csharp Winform Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+
+  Program.cs에서 Main() 메소드 지우고 아래 내용 복붙하기
+
+
+/// &amp;lt;summary&amp;gt;
+/// 해당 응용 프로그램의 주 진입점입니다.
+/// &amp;lt;/summary&amp;gt;
+[STAThread]
+static void Main()
+{
+    if (!IsDuplicated())
+        RunApplication();
+}
+
+// 이미 실행 중인 프로세스(중복 프로세스)가 있는지 확인
+private static bool IsDuplicated()
+{
+    try
+    {
+        int processCount = 0;
+
+        System.Diagnostics.Process[] processes = System.Diagnostics.Process....
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Notify Icon 사용하기</title>
+    <link href="https://rito15.github.io/posts/memo-cs-winform-notifyicon/" rel="alternate" type="text/html" title="Notify Icon 사용하기" />
+    <published>2021-05-06T02:02:00+09:00</published>
+  
+    <updated>2021-05-06T02:02:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/memo-cs-winform-notifyicon/</id>
+    <content src="https://rito15.github.io/posts/memo-cs-winform-notifyicon/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Memo" />
+    
+    <category term="Csharp Winform Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+1. 도구
+
+  NotifyIcon 추가
+  ContextMenuStrip 추가
+
+
+
+
+2. 속성
+
+  Form - Icon에 .ico 아이콘 파일 등록
+  NotifyIcon - Icon에 아이콘 등록(안하면 컨텍스트 안생김)
+  NotifyIcon - ContextMenuStrip 연결
+
+
+
+
+3. 필드, 메소드 추가
+
+//FormClosing 이벤트로 종료 가능 여부
+private bool closeAllowed = false;
+
+private void ShowForm()
+{
+    // 폼 등장
+    this.Show();
+
+    //창의 속성을 최소화-&amp;gt;보통으로 바꿔줌
+    this.WindowState = FormWindowState.Normal;
+
+    // 폼에 ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>깃 관련 메모 모음</title>
     <link href="https://rito15.github.io/posts/memo-git/" rel="alternate" type="text/html" title="깃 관련 메모 모음" />
     <published>2021-05-03T17:00:00+09:00</published>
   
-    <updated>2021-05-04T03:31:47+09:00</updated>
+    <updated>2021-05-04T19:51:11+09:00</updated>
   
     <id>https://rito15.github.io/posts/memo-git/</id>
     <content src="https://rito15.github.io/posts/memo-git/" />
@@ -221,126 +350,6 @@ Preview
 극좌표계가 필요한 이유
 
 Radial Menu를 만들...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>브레즌햄(픽셀에 직선 그리기) 알고리즘</title>
-    <link href="https://rito15.github.io/posts/bresenham-algorithm/" rel="alternate" type="text/html" title="브레즌햄(픽셀에 직선 그리기) 알고리즘" />
-    <published>2021-04-25T17:32:00+09:00</published>
-  
-    <updated>2021-04-25T17:32:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/bresenham-algorithm/</id>
-    <content src="https://rito15.github.io/posts/bresenham-algorithm/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Algorithm" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-직선을 그릴 때 직선 위의 점들은 실수 값을 가질 수밖에 없다.
-
-그래서 불연속 정수 값만을 갖는 픽셀에 직선을 그릴 때는
-
-실수 값의 소수점을 버리거나 반올림하여 정수로 변환해야 하는데,
-
-브레즌햄 알고리즘은 실수 연산 없이 정수 연산만으로 직선을 그릴 수 있게 해준다.
-
-
-
-Details
-
-
-2가지 경우로 나눈다.
-
-
-
-
-  기울기 절댓값이 1 미만인 경우
-  기울기 절댓값이 1 이상인 경우
-
-
-
-
-1번의 경우에는 x 좌표를 1씩 증가 또는 감소시키며 해당하는 y 좌표를 구하고,
-
-2번의 경우에는 y 좌표를 1씩 증가 또는 감소시키며 해당하는 x 좌표를 구한다.
-
-
-
-1번을 예시로 했을 때
-
-x 좌표를 1씩 증가 또는 감소시켰을 때 y좌표 역시 1 증가 또는 감소시킬지 여부를 결정...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Debug.Log에 색상 넣기</title>
-    <link href="https://rito15.github.io/posts/unity-memo-color-debug-log/" rel="alternate" type="text/html" title="Debug.Log에 색상 넣기" />
-    <published>2021-04-25T17:10:00+09:00</published>
-  
-    <updated>2021-04-25T17:10:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-memo-color-debug-log/</id>
-    <content src="https://rito15.github.io/posts/unity-memo-color-debug-log/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-  &amp;lt;color=&amp;gt;&amp;lt;/color&amp;gt; 태그를 사용하여 로그 메시지에 색상을 넣을 수 있다.
-  color= 뒤에는 색상 이름 또는 HTML 색상코드를 입력한다.
-
-
-
-
-Debug.Log("Default");
-Debug.Log("&amp;lt;color=white&amp;gt;White&amp;lt;/color&amp;gt;");
-Debug.Log("&amp;lt;color=grey&amp;gt;Grey&amp;lt;/color&amp;gt;");
-Debug.Log("&amp;lt;color=black&amp;gt;Black&amp;lt;/color&amp;gt;");
-Debug.Log("&amp;lt;color=red&amp;gt;Red&amp;lt;/color&amp;gt;");
-Debug.Log("&amp;lt;color=green&amp;gt;Green&amp;lt;/color&amp;gt;");
-Debug...
     </summary>
   
 

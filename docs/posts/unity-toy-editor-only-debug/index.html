@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Unity Editor-only Debug (에디터 전용 디버그 클래스)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note 유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있다. 이를 방지할 수 있게 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스","datePublished":"2020-07-06T15:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-editor-only-debug/"},"url":"https://rito15.github.io/posts/unity-toy-editor-only-debug/","author":{"@type":"Person","name":"Rito15"},"headline":"Unity Editor-only Debug (에디터 전용 디버그 클래스)","dateModified":"2020-07-06T15:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Unity Editor-only Debug (에디터 전용 디버그 클래스)","description":"Note 유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있다. 이를 방지할 수 있게 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스","dateModified":"2020-07-06T15:00:00+09:00","datePublished":"2020-07-06T15:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-editor-only-debug/"},"url":"https://rito15.github.io/posts/unity-toy-editor-only-debug/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1102,6 +1102,16 @@
         
         
         
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
       
         
@@ -1112,17 +1122,7 @@
         
         
         
-        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-study-radial-menu/">Radial Menu 만들기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -5938,6 +5938,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5981,6 +6007,60 @@
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
     <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-toy-drag-and-drop-recorder/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Apr 19
+  
+
+  <i class="unloaded">2021-04-19T21:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Drag and Drop Recorder</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Summary
+
+
+  드래그 앤 드롭으로 게임오브젝트를 커서를 따라 이동시킨다.
+  이동 경로를 기록하고, 반복재생할 수 있다.
+
+
+How To Use
+
+
+  빈 게임오브젝트에 DDRecorder 컴포넌트를 추가한다.
+  드래그 앤 드롭으로 이동시킬 게임오브젝트에 콜라이더와 DDTarget 컴포넌트를 추가한다.
+  DDRecorder 컴포넌트의 Rep...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     
       
       
@@ -6092,68 +6172,6 @@ How To Use
   
   
     Chasing Speed를 통해 마우스를 따라올 속도를 지정할 수...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-toy-projectile-shooter/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar  2
-  
-
-  <i class="unloaded">2021-03-02T03:28:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Projectile Shooter (투사체 발사 컴포넌트)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-  
-    마우스 클릭 시 등록된 게임오브젝트를 생성하여, 지정된 방향으로 발사하는 스크립트
-  
-  
-    생성된 게임오브젝트는 카메라의 시선에 수직인 평면 방향으로 이동하며, 수명이 다하면 제거된다.
-  
-  
-    오브젝트 풀링이 적용된다.
-  
-
-
-
-
-How To Use
-
-
-  
-    빈 게임오브젝트를 생성하고, Partic...
               </p>
             </div>
           </div>
