@@ -958,8 +958,9 @@ UI에서 사용자 이벤트가 발생했을 때 `InventoryUI`는 `Inventory`를
 그리고 이를 단순한 코드로 표현해보면
 
 ```
-1. someone.AcquireItem( newItem );
-2. inventory.Add( newItem );
+0. someone.AcquireItem( newItem );
+1. inventory.Add( newItem );
+2. inventory.UpdateSlot( itemIndex );
 3. inventoryUI.UpdateSlot( itemIndex );
 4. itemSlotUI.Update( );
 ```
@@ -1026,44 +1027,117 @@ return amount
 
 ## **[2] 슬롯 업데이트**
 
-인벤토리의 아이템에 변화가 생겼을 때, 슬롯 UI에서 갱신할 정보들은 두 가지가 있다.
+인벤토리의 아이템에 변화가 생겼을 때, 인벤토리에서 UI에 전달할 정보는
 
-1. 아이템 스프라이트
-2. 수량
+1. 해당 슬롯에 아이템이 존재하는지 여부
+2. 아이템 이미지
+3. 아이템 수량
 
-그리고 이를 각 객체마다 의사코드로 표현하면 다음과 같다.
+이렇게 세 가지가 있다.
+
+이를 간단히 의사코드로 표현해보면 다음과 같다.
 
 ```
-// 1. Inventory
 function UpdateSlot(int index)
-    // 
 
-
-// 2. InventoryUI
-    // 
-
-
-// 3. ItemSlotUI
-    //
+Item item = items[index]
+if (item == null)
+    inventoryUI.RemoveSlot(index)
+else
+    inventoryUI.SetImage(index, item.image)
+    if (item is CountableItem)
+        inventoryUI.SetAmount(index, item.amount)
 ```
 
+<br>
+
+## **[3] UI에서 슬롯 업데이트**
+
+인벤토리 UI에서 슬롯을 업데이트할 때는 다음 정보들을 변경한다.
+
+1. 아이템 이미지
+2. 아이템 텍스트
+
+인벤토리로부터 전달받은 아이템이 null이라면 이미지와 텍스트를 모두 비활성화하고,
+
+null이 아니라면 이미지를 해당 아이템의 이미지로 변경한다.
+
+그리고 수량이 있는 아이템인 경우에만 텍스트를 활성화하고 텍스트에 수량을 적용한다.
 
 <br>
 
 # 아이템 버리기
 ---
 
+아이템을 버리는 기능은 다음 순서로 동작한다.
+
+1. InventoryUI - 드래그 앤 드롭으로 UI가 아닌 영역에 아이템 끌어다 놓기
+2. Inventory - 해당 인덱스의 아이템을 제거
+3. Inventory - 슬롯 업데이트
+4. InventoryUI - 슬롯 업데이트
+5. ItemSlotUI - 이미지, 텍스트 업데이트
 
 <br>
 
 # 아이템 사용하기
 ---
 
+## **[1] 구조 설계**
+
+보통의 RPG 게임에서 인벤토리의 아이템은 우클릭을 통해 사용한다.
+
+그리고 장비, 소비 아이템 등 사용할 수 있는 아이템과 재료 아이템 등 사용할 수 없는 아이템으로 구분된다.
+
+그런데 아이템 사용을 단순히 클래스 상속 구조로 구현하려면 구조 설계에 제약이 생긴다.
+
+예를 들어 장비 아이템(`EquimentItem`)은 수량이 없는 아이템(`Item`)이고, 소비 아이템은 수량이 있는 아이템(`CountableItem`)이다.
+
+CountableItem 클래스는 Item 클래스의 하위 클래스이다.
+
+<br>
+
+따라서 아이템 사용을 상속 관계를 통해 구현하려면
+
+1. `Item`과 `CountableItem`의 공통 부모 클래스로 `UsableItem`을 만든다.<br>
+  => 부모-자식관계의 역전이 발생한다.
+
+2. `Item`의 자식클래스로 `UsableItem`, 그리고 `UsableItem`을 다시 `EquimentItem`, `CountableItem`이 상속받는 형태로 만든다.<br>
+  => 계층관계가 더 깊어져 관리가 까다로워지고, `UsableItem`이 아닌 `CountableItem`은 구현할 수 없다.
+
+이런 문제들이 발생한다.
+
+<br>
+
+위의 모든 문제를 해결하기 위해, 우선 인터페이스를 준비한다.
+
+```cs
+interface IUsableItem
+{
+    // 아이템 사용 : 성공 여부 리턴
+    bool Use();
+}
+```
+
+그리고 장비 아이템과 소비아이템 등, 사용할 수 있는 아이템들은 `IUsableItem`을 상속하고 메소드를 구현한다.
+
+<br>
+
+## **[2] 시퀀스 설계**
+
+아이템 사용 기능은 아래 순서로 이루어진다.
+
+1. 인벤토리의 슬롯 우클릭
+2. InventoryUI - 아이템 사용
+3. Inventory - `IUsableItem`인지 확인 후, 아이템 사용 및 결과 적용
+4. Inventory - 슬롯 업데이트
+5. InventoryUI - 슬롯 업데이트
+6. ItemSlotUI - 이미지, 텍스트 업데이트
 
 <br>
 
 # 슬롯 하이라이트
 ---
+
 
 
 <br>
