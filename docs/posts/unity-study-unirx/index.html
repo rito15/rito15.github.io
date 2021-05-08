@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="UniRx (Reactive Extensions for Unity)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개요","datePublished":"2021-03-06T20:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-unirx/"},"url":"https://rito15.github.io/posts/unity-study-unirx/","author":{"@type":"Person","name":"Rito15"},"headline":"UniRx (Reactive Extensions for Unity)","dateModified":"2021-04-14T23:16:21+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"UniRx (Reactive Extensions for Unity)","description":"개요","dateModified":"2021-04-14T23:16:21+09:00","datePublished":"2021-03-06T20:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-unirx/"},"url":"https://rito15.github.io/posts/unity-study-unirx/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6681 words">37 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6690 words">37 min</span>
 
 
           <!-- page views -->
@@ -2179,7 +2179,7 @@ UI 이벤트 대체
 
 <details>
   <summary> 
-
+CustomObservables.cs
 </summary>
 
   <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -2416,6 +2416,19 @@ UI 이벤트 대체
         <span class="err">#</span><span class="n">endregion</span>
     <span class="p">}</span>
 <span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<details>
+  <summary> 
+Example
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="n">CustomObservables</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">MouseDoubleClickAsObservable</span>
+    <span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="n">_</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Double Click"</span><span class="p">));</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
 </details>
@@ -7581,7 +7594,7 @@ UI 이벤트 대체
 
 
 
-클래스 구조 설계
+클래스 구성
 
 
 
@@ -7594,7 +7607,7 @@ UI 이벤트 대체
 2. 아이템
 
   Item : 인벤토리의 각 슬롯에 들어가는 실제 아이템. 각각의 아이템이 개별적으로 갖는 데이터들을 보관한다.
-...
+   ...
               </p>
             </div>
           </div>

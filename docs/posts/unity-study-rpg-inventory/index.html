@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="RPG Inventory System(RPG 게임용 인벤토리 제작하기)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개요","datePublished":"2021-04-15T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-rpg-inventory/"},"url":"https://rito15.github.io/posts/unity-study-rpg-inventory/","author":{"@type":"Person","name":"Rito15"},"headline":"RPG Inventory System(RPG 게임용 인벤토리 제작하기)","dateModified":"2021-05-06T03:46:19+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"RPG Inventory System(RPG 게임용 인벤토리 제작하기)","description":"개요","dateModified":"2021-05-07T02:00:05+09:00","datePublished":"2021-04-15T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-rpg-inventory/"},"url":"https://rito15.github.io/posts/unity-study-rpg-inventory/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Thu, May  6, 2021,  3:46 AM +0900"
+    title="Fri, May  7, 2021,  2:00 AM +0900"
   >
 
   
   
 
   
-    May  6
+    May  7
   
 
-  <i class="unloaded">2021-05-06T03:46:19+09:00</i>
+  <i class="unloaded">2021-05-07T02:00:05+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6559 words">36 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8909 words">49 min</span>
 
 
           <!-- page views -->
@@ -471,7 +471,7 @@
 
 <p><br /></p>
 
-<h1 id="클래스-구조-설계">클래스 구조 설계</h1>
+<h1 id="클래스-구성">클래스 구성</h1>
 <hr />
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/115534030-52263680-a2d2-11eb-8c23-4a139d5f878f.png" alt="image" /></p>
@@ -570,6 +570,8 @@
 <p>가장 뒤쪽에 슬롯 이미지, 그리고 안쪽으로 아이콘 이미지가 위치하며</p>
 
 <p>아이템 수량을 표시할 텍스트, 마우스를 슬롯 위에 올렸을 때 표시할 하이라이트 이미지가 존재한다.</p>
+
+<p>하이라이트 이미지는 아이콘 이미지와 동일한 크기로, 반투명한 색상으로 설정하며 미리 비활성화 해둔다.</p>
 
 <p>그리고 [Item Slot] 게임오브젝트에는 <code class="language-plaintext highlighter-rouge">ItemSlotUI</code> 컴포넌트를 넣어준다.</p>
 
@@ -1127,6 +1129,10 @@ InventoryUI.cs
 <h1 id="헤더-영역-드래그-앤-드롭-이동-구현">헤더 영역 드래그 앤 드롭 이동 구현</h1>
 <hr />
 
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/115679424-89a5e900-a38d-11eb-88b9-e873fa68d39d.gif" alt="2021_0421_InventoryUI_Move2" /></p>
+
+<p><br /></p>
+
 <p>UI의 드래그 앤 드롭을 구현하려면 기본적으로 GraphicRaycaster를 이용해야 한다.</p>
 
 <p>그리고 클릭, 클릭 유지, 클릭을 뗄 경우를 모두 고려하여 작성해야 하는 번거로움이 있다.</p>
@@ -1212,12 +1218,12 @@ MovableHeaderUI.cs
 
 <p><br /></p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/115679424-89a5e900-a38d-11eb-88b9-e873fa68d39d.gif" alt="2021_0421_InventoryUI_Move2" /></p>
-
-<p><br /></p>
-
 <h1 id="아이템-드래그-앤-드롭-이동-구현">아이템 드래그 앤 드롭 이동 구현</h1>
 <hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116001990-68195b80-a632-11eb-98a1-12410041247c.gif" alt="2021_0426_InventoryDrag" /></p>
+
+<p><br /></p>
 
 <p>아이템의 드래그 앤 드롭을 구현하는 다양한 방법들이 있다.</p>
 
@@ -1476,10 +1482,6 @@ InventoryUI.cs
 
 <p><br /></p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/116001990-68195b80-a632-11eb-98a1-12410041247c.gif" alt="2021_0426_InventoryDrag" /></p>
-
-<p><br /></p>
-
 <h1 id="itemslotui-클래스-구현">ItemSlotUI 클래스 구현</h1>
 <hr />
 
@@ -1633,6 +1635,8 @@ PortionItemData.cs
 </pre></td></tr></tbody></table></code></div>  </div>
 
 </details>
+
+<p><br /></p>
 
 <p><code class="language-plaintext highlighter-rouge">ItemData</code> 클래스는 <code class="language-plaintext highlighter-rouge">ScriptableObject</code> 클래스를 상속하며, 아이템의 공통 데이터들을 저장한다.</p>
 
@@ -1825,6 +1829,8 @@ PortionItem.cs
 
 </details>
 
+<p><br /></p>
+
 <p><code class="language-plaintext highlighter-rouge">Item</code> 클래스는 아이템의 실체라고 할 수 있다.</p>
 
 <p>따라서 필드로 각각의 아이템이 가질 개별 데이터를 작성하고,</p>
@@ -1860,6 +1866,8 @@ PortionItem.cs
   <li><code class="language-plaintext highlighter-rouge">Item</code> 배열</li>
 </ul>
 
+<p><br /></p>
+
 <p>그리고 <code class="language-plaintext highlighter-rouge">Inventory</code> 클래스 내에 작성할 동작(메소드)들은</p>
 
 <ul>
@@ -1876,8 +1884,188 @@ PortionItem.cs
 
 <p><br /></p>
 
+<h1 id="인벤토리-슬롯-업데이트-기능-구현">인벤토리 슬롯 업데이트 기능 구현</h1>
+<hr />
+
+<p>슬롯의 업데이트는 정말 많은 경우에 사용된다.</p>
+
+<ul>
+  <li>아이템 위치 이동</li>
+  <li>아이템 추가</li>
+  <li>아이템 제거</li>
+  <li>아이템 사용</li>
+  <li>..</li>
+</ul>
+
+<p>따라서 각 기능 수행 후에 개별적으로 서로 다른 정보를 UI에 전달하고 업데이트하는 것보다</p>
+
+<p><code class="language-plaintext highlighter-rouge">Inventory</code> 클래스에서 하나의 메소드로 작성하여 사용하는 것이 효율적이고 코드 유지보수에 큰 장점을 가진다.</p>
+
+<p><br /></p>
+
+<h2 id="1-pseudo-code"><strong>[1] Pseudo Code</strong></h2>
+
+<p>인벤토리의 아이템에 변화가 생겼을 때, 인벤토리에서 인벤토리 UI에 전달할 정보는</p>
+
+<ol>
+  <li>해당 슬롯에 아이템이 존재하는지 여부</li>
+  <li>아이템 이미지</li>
+  <li>아이템 수량</li>
+</ol>
+
+<p>이렇게 세 가지가 있다.</p>
+
+<p><br /></p>
+
+<p>그리고 수량이 있는 아이템의 경우, 수량이 0이라면 아이템을 제거해야 한다.</p>
+
+<p>이를 간단히 의사코드로 표현해보면 다음과 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>function UpdateSlot(int index)
+
+Item item = items[index]
+if (item == null)
+    inventoryUI.RemoveSlot(index)
+else
+    inventoryUI.SetImage(index, item.image)
+    if (item is CountableItem)
+        if(item.amount &lt;= 0)
+            inventoryUI.RemoveSlot(index)
+            items[index] = null
+        else
+            inventoryUI.SetAmount(index, item.amount)
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="2-source-code"><strong>[2] Source Code</strong></h2>
+
+<details>
+  <summary>
+Source Code
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 해당하는 인덱스의 슬롯 상태 및 UI 갱신 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">UpdateSlot</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="nf">IsValidIndex</span><span class="p">(</span><span class="n">index</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="n">Item</span> <span class="n">item</span> <span class="p">=</span> <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+
+    <span class="c1">// 1. 아이템이 슬롯에 존재하는 경우</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">item</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 아이콘 등록</span>
+        <span class="n">_inventoryUI</span><span class="p">.</span><span class="nf">SetItemIcon</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">IconSprite</span><span class="p">);</span>
+
+        <span class="c1">// 1-1. 셀 수 있는 아이템</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">item</span> <span class="k">is</span> <span class="n">CountableItem</span> <span class="n">ci</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 1-1-1. 수량이 0인 경우, 아이템 제거</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ci</span><span class="p">.</span><span class="n">IsEmpty</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+                <span class="nf">RemoveIcon</span><span class="p">();</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">// 1-1-2. 수량 텍스트 표시</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">_inventoryUI</span><span class="p">.</span><span class="nf">SetItemAmountText</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">ci</span><span class="p">.</span><span class="n">Amount</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// 1-2. 셀 수 없는 아이템인 경우 수량 텍스트 제거</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">_inventoryUI</span><span class="p">.</span><span class="nf">HideItemAmountText</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// 2. 빈 슬롯인 경우 : 아이콘 제거</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="nf">RemoveIcon</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 로컬 : 아이콘 제거하기</span>
+    <span class="k">void</span> <span class="nf">RemoveIcon</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">_inventoryUI</span><span class="p">.</span><span class="nf">RemoveItem</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+        <span class="n">_inventoryUI</span><span class="p">.</span><span class="nf">HideItemAmountText</span><span class="p">(</span><span class="n">index</span><span class="p">);</span> <span class="c1">// 수량 텍스트 숨기기</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
 <h1 id="아이템-위치-이동-및-교환">아이템 위치 이동 및 교환</h1>
 <hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117529666-c02d6600-b013-11eb-9f71-7e7988ee92e9.gif" alt="2021_0508_Inventory_Swap" /></p>
+
+<p><br /></p>
 
 <p>아이템의 드래그 앤 드롭 기능은 앞서 구현하였다.</p>
 
@@ -1903,8 +2091,109 @@ PortionItem.cs
 
 <p><br /></p>
 
+<h2 id="3-수량-합치기"><strong>[3] 수량 합치기</strong></h2>
+
+<p>수량이 있는 동일한 아이템을 드래그 앤 드롭으로 교환하는 경우,</p>
+
+<p>드래그 앤 드롭 시작 아이템으로부터 종료 아이템에 수량을 합치는 기능을 구현한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117532612-574dea00-b023-11eb-8f4d-f46d45ecb8f4.gif" alt="2021_0508_Inventory_SumAmount" /></p>
+
+<p><br /></p>
+
+<details>
+  <summary>
+Inventory.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">void</span> <span class="nf">Swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">indexA</span><span class="p">,</span> <span class="kt">int</span> <span class="n">indexB</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="nf">IsValidIndex</span><span class="p">(</span><span class="n">indexA</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="nf">IsValidIndex</span><span class="p">(</span><span class="n">indexB</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="n">Item</span> <span class="n">itemA</span> <span class="p">=</span> <span class="n">_items</span><span class="p">[</span><span class="n">indexA</span><span class="p">];</span>
+    <span class="n">Item</span> <span class="n">itemB</span> <span class="p">=</span> <span class="n">_items</span><span class="p">[</span><span class="n">indexB</span><span class="p">];</span>
+
+    <span class="c1">// 1. 셀 수 있는 아이템이고, 동일한 아이템일 경우</span>
+    <span class="c1">//    indexA -&gt; indexB로 개수 합치기</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">itemA</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">itemB</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span>
+        <span class="n">itemA</span><span class="p">.</span><span class="n">Data</span> <span class="p">==</span> <span class="n">itemB</span><span class="p">.</span><span class="n">Data</span> <span class="p">&amp;&amp;</span>
+        <span class="n">itemA</span> <span class="k">is</span> <span class="n">CountableItem</span> <span class="n">ciA</span> <span class="p">&amp;&amp;</span> <span class="n">itemB</span> <span class="k">is</span> <span class="n">CountableItem</span> <span class="n">ciB</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">maxAmount</span> <span class="p">=</span> <span class="n">ciB</span><span class="p">.</span><span class="n">MaxAmount</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">sum</span> <span class="p">=</span> <span class="n">ciA</span><span class="p">.</span><span class="n">Amount</span> <span class="p">+</span> <span class="n">ciB</span><span class="p">.</span><span class="n">Amount</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="p">&lt;=</span> <span class="n">maxAmount</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ciA</span><span class="p">.</span><span class="nf">SetAmount</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
+            <span class="n">ciB</span><span class="p">.</span><span class="nf">SetAmount</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">ciA</span><span class="p">.</span><span class="nf">SetAmount</span><span class="p">(</span><span class="n">sum</span> <span class="p">-</span> <span class="n">maxAmount</span><span class="p">);</span>
+            <span class="n">ciB</span><span class="p">.</span><span class="nf">SetAmount</span><span class="p">(</span><span class="n">maxAmount</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// 2. 일반적인 경우 : 슬롯 교체</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">_items</span><span class="p">[</span><span class="n">indexA</span><span class="p">]</span> <span class="p">=</span> <span class="n">itemB</span><span class="p">;</span>
+        <span class="n">_items</span><span class="p">[</span><span class="n">indexB</span><span class="p">]</span> <span class="p">=</span> <span class="n">itemA</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 두 슬롯 정보 갱신</span>
+    <span class="nf">UpdateSlot</span><span class="p">(</span><span class="n">indexA</span><span class="p">,</span> <span class="n">indexB</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
 <h1 id="아이템-추가하기">아이템 추가하기</h1>
 <hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117530087-3763f980-b016-11eb-97cd-def732c7e848.gif" alt="2021_0508_Inventory_Add" /></p>
+
+<p><br /></p>
 
 <p>아이템을 추가하는 기능은 다음과 같이 이루어진다.</p>
 
@@ -1933,7 +2222,7 @@ PortionItem.cs
 
 <p><br /></p>
 
-<h2 id="1-inventory--아이템-추가"><strong>[1] Inventory : 아이템 추가</strong></h2>
+<h2 id="1-pseudo-code-1"><strong>[1] Pseudo Code</strong></h2>
 
 <p>새로운 아이템을 인벤토리 내의 배열에 추가할 때, 두 가지 정보가 필요하다.</p>
 
@@ -2021,21 +2310,14 @@ return amount
 
 <p><br /></p>
 
-<h2 id="2-슬롯-업데이트"><strong>[2] 슬롯 업데이트</strong></h2>
+<h2 id="2-source-code--inventory"><strong>[2] Source Code : Inventory</strong></h2>
 
-<p>인벤토리의 아이템에 변화가 생겼을 때, 인벤토리에서 UI에 전달할 정보는</p>
+<details>
+  <summary>
+Inventory.cs
+</summary>
 
-<ol>
-  <li>해당 슬롯에 아이템이 존재하는지 여부</li>
-  <li>아이템 이미지</li>
-  <li>아이템 수량</li>
-</ol>
-
-<p>이렇게 세 가지가 있다.</p>
-
-<p>이를 간단히 의사코드로 표현해보면 다음과 같다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -2044,53 +2326,235 @@ return amount
 7
 8
 9
-</pre></td><td class="rouge-code"><pre>function UpdateSlot(int index)
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 인벤토리에 아이템 추가</span>
+<span class="c1">/// &lt;para/&gt; 넣는 데 실패한 잉여 아이템 개수 리턴</span>
+<span class="c1">/// &lt;para/&gt; 리턴이 0이면 넣는데 모두 성공했다는 의미</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">int</span> <span class="nf">Add</span><span class="p">(</span><span class="n">ItemData</span> <span class="n">itemData</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amount</span> <span class="p">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">index</span><span class="p">;</span>
 
-Item item = items[index]
-if (item == null)
-    inventoryUI.RemoveSlot(index)
-else
-    inventoryUI.SetImage(index, item.image)
-    if (item is CountableItem)
-        inventoryUI.SetAmount(index, item.amount)
-</pre></td></tr></tbody></table></code></div></div>
+    <span class="c1">// 1. 수량이 있는 아이템</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">itemData</span> <span class="k">is</span> <span class="n">CountableItemData</span> <span class="n">ciData</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">bool</span> <span class="n">findNextCountable</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="n">index</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
 
-<p><br /></p>
+        <span class="k">while</span> <span class="p">(</span><span class="n">amount</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 1-1. 이미 해당 아이템이 인벤토리 내에 존재하고, 개수 여유 있는지 검사</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">findNextCountable</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">index</span> <span class="p">=</span> <span class="nf">FindCountableItemSlotIndex</span><span class="p">(</span><span class="n">ciData</span><span class="p">,</span> <span class="n">index</span> <span class="p">+</span> <span class="m">1</span><span class="p">);</span>
 
-<h2 id="3-ui에서-슬롯-업데이트"><strong>[3] UI에서 슬롯 업데이트</strong></h2>
+                <span class="c1">// 개수 여유있는 기존재 슬롯이 더이상 없다고 판단될 경우, 빈 슬롯부터 탐색 시작</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="p">==</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">findNextCountable</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="c1">// 기존재 슬롯을 찾은 경우, 양 증가시키고 초과량 존재 시 amount에 초기화</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="n">CountableItem</span> <span class="n">ci</span> <span class="p">=</span> <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">as</span> <span class="n">CountableItem</span><span class="p">;</span>
+                    <span class="n">amount</span> <span class="p">=</span> <span class="n">ci</span><span class="p">.</span><span class="nf">AddAmountAndGetExcess</span><span class="p">(</span><span class="n">amount</span><span class="p">);</span>
 
-<p>인벤토리 UI에서 슬롯을 업데이트할 때는 다음 정보들을 변경한다.</p>
+                    <span class="nf">UpdateSlot</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="c1">// 1-2. 빈 슬롯 탐색</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">index</span> <span class="p">=</span> <span class="nf">FindEmptySlotIndex</span><span class="p">(</span><span class="n">index</span> <span class="p">+</span> <span class="m">1</span><span class="p">);</span>
 
-<ol>
-  <li>아이템 이미지</li>
-  <li>아이템 텍스트</li>
-</ol>
+                <span class="c1">// 빈 슬롯조차 없는 경우 종료</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="p">==</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="c1">// 빈 슬롯 발견 시, 슬롯에 아이템 추가 및 잉여량 계산</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="c1">// 새로운 아이템 생성</span>
+                    <span class="n">CountableItem</span> <span class="n">ci</span> <span class="p">=</span> <span class="n">ciData</span><span class="p">.</span><span class="nf">CreateItem</span><span class="p">()</span> <span class="k">as</span> <span class="n">CountableItem</span><span class="p">;</span>
+                    <span class="n">ci</span><span class="p">.</span><span class="nf">SetAmount</span><span class="p">(</span><span class="n">amount</span><span class="p">);</span>
 
-<p>인벤토리로부터 전달받은 아이템이 null이라면 이미지와 텍스트를 모두 비활성화하고,</p>
+                    <span class="c1">// 슬롯에 추가</span>
+                    <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">ci</span><span class="p">;</span>
 
-<p>null이 아니라면 이미지를 해당 아이템의 이미지로 변경한다.</p>
+                    <span class="c1">// 남은 개수 계산</span>
+                    <span class="n">amount</span> <span class="p">=</span> <span class="p">(</span><span class="n">amount</span> <span class="p">&gt;</span> <span class="n">ciData</span><span class="p">.</span><span class="n">MaxAmount</span><span class="p">)</span> <span class="p">?</span> <span class="p">(</span><span class="n">amount</span> <span class="p">-</span> <span class="n">ciData</span><span class="p">.</span><span class="n">MaxAmount</span><span class="p">)</span> <span class="p">:</span> <span class="m">0</span><span class="p">;</span>
 
-<p>그리고 수량이 있는 아이템인 경우에만 텍스트를 활성화하고 텍스트에 수량을 적용한다.</p>
+                    <span class="nf">UpdateSlot</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// 2. 수량이 없는 아이템</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="c1">// 2-1. 1개만 넣는 경우, 간단히 수행</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">amount</span> <span class="p">==</span> <span class="m">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">index</span> <span class="p">=</span> <span class="nf">FindEmptySlotIndex</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="p">!=</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// 아이템을 생성하여 슬롯에 추가</span>
+                <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">itemData</span><span class="p">.</span><span class="nf">CreateItem</span><span class="p">();</span>
+                <span class="n">amount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+
+                <span class="nf">UpdateSlot</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 2-2. 2개 이상의 수량 없는 아이템을 동시에 추가하는 경우</span>
+        <span class="n">index</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(;</span> <span class="n">amount</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">;</span> <span class="n">amount</span><span class="p">--)</span>
+        <span class="p">{</span>
+            <span class="c1">// 아이템 넣은 인덱스의 다음 인덱스부터 슬롯 탐색</span>
+            <span class="n">index</span> <span class="p">=</span> <span class="nf">FindEmptySlotIndex</span><span class="p">(</span><span class="n">index</span> <span class="p">+</span> <span class="m">1</span><span class="p">);</span>
+
+            <span class="c1">// 다 넣지 못한 경우 루프 종료</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="p">==</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 아이템을 생성하여 슬롯에 추가</span>
+            <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">itemData</span><span class="p">.</span><span class="nf">CreateItem</span><span class="p">();</span>
+
+            <span class="nf">UpdateSlot</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">amount</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
 <h1 id="아이템-버리기">아이템 버리기</h1>
 <hr />
 
-<p>아이템을 버리는 기능은 다음 순서로 동작한다.</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117530089-38952680-b016-11eb-9d5c-3b485c767ae3.gif" alt="2021_0508_Inventory_Remove" /></p>
+
+<p>아이템을 버리는 기능은 다음 순서대로 구현한다.</p>
 
 <ol>
-  <li>InventoryUI - 드래그 앤 드롭으로 UI가 아닌 영역에 아이템 끌어다 놓기</li>
-  <li>Inventory - 해당 인덱스의 아이템을 제거</li>
-  <li>Inventory - 슬롯 업데이트</li>
+  <li>사용자 - 드래그 앤 드롭으로 UI가 아닌 영역에 아이템 끌어다 놓기</li>
+  <li>InventoryUI - Inventory에 해당 인덱스의 아이템 제거 요청</li>
+  <li>Inventory - 아이템 제거(<code class="language-plaintext highlighter-rouge">items[index] = null</code>)</li>
+  <li>Inventory - UI에 슬롯 업데이트 요청</li>
   <li>InventoryUI - 슬롯 업데이트</li>
   <li>ItemSlotUI - 이미지, 텍스트 업데이트</li>
 </ol>
+
+<p>(코드 생략)</p>
 
 <p><br /></p>
 
 <h1 id="아이템-사용하기">아이템 사용하기</h1>
 <hr />
+
+<p>아이템에 우클릭 시 아이템을 사용하는 기능을 구현한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117530090-392dbd00-b016-11eb-877f-81a8d62fe612.gif" alt="2021_0508_Inventory_Use" /></p>
+
+<p><br /></p>
 
 <h2 id="1-구조-설계"><strong>[1] 구조 설계</strong></h2>
 
@@ -2146,18 +2610,405 @@ else
 <p>아이템 사용 기능은 아래 순서로 이루어진다.</p>
 
 <ol>
-  <li>인벤토리의 슬롯 우클릭</li>
-  <li>InventoryUI - 아이템 사용</li>
+  <li>사용자 - 인벤토리의 슬롯 우클릭</li>
+  <li>InventoryUI - Inventory에 아이템 사용 요청</li>
   <li>Inventory - <code class="language-plaintext highlighter-rouge">IUsableItem</code>인지 확인 후, 아이템 사용 및 결과 적용</li>
-  <li>Inventory - 슬롯 업데이트</li>
+  <li>Inventory - UI에 슬롯 업데이트 요청</li>
   <li>InventoryUI - 슬롯 업데이트</li>
   <li>ItemSlotUI - 이미지, 텍스트 업데이트</li>
 </ol>
 
 <p><br /></p>
 
+<h2 id="3-source-code---inventory"><strong>[3] Source Code - Inventory</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 해당 슬롯의 아이템 사용 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">Use</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="c1">// 사용 가능한 아이템인 경우</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">is</span> <span class="n">IUsableItem</span> <span class="n">uItem</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 아이템 사용</span>
+        <span class="kt">bool</span> <span class="n">succeeded</span> <span class="p">=</span> <span class="n">uItem</span><span class="p">.</span><span class="nf">Use</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">succeeded</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nf">UpdateSlot</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
 <h1 id="슬롯-하이라이트">슬롯 하이라이트</h1>
 <hr />
+
+<p>인벤토리의 각 슬롯에 마우스를 올릴 때 반투명한 하이라이트가 나타나고, 슬롯에서 마우스를 떼면 사라지는 기능을 구현한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117533106-cfb5aa80-b025-11eb-905b-295fce41c51e.gif" alt="2021_0508_Inventory_Highlight2" /></p>
+
+<p><br /></p>
+
+<h2 id="1-하이라키-구성"><strong>[1] 하이라키 구성</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117531450-76497d80-b01d-11eb-882b-a89647d406a9.png" alt="image" /></p>
+
+<p>하이라이트로 사용될 이미지는 반투명한 단색을 적용한다.</p>
+
+<p>그리고 아이콘 이미지의 위에 나타나야 하므로, 하이라키에서 더 아래쪽에 위치시킨다.</p>
+
+<p><br /></p>
+
+<h2 id="2-itemslotui-클래스"><strong>[2] ItemSlotUI 클래스</strong></h2>
+
+<details>
+  <summary>
+Fields
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"슬롯이 포커스될 때 나타나는 하이라이트 이미지"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Image</span> <span class="n">_highlightImage</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">Space</span><span class="p">]</span>
+<span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"하이라이트 이미지 알파 값"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">float</span> <span class="n">_highlightAlpha</span> <span class="p">=</span> <span class="m">0.5f</span><span class="p">;</span>
+
+<span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"하이라이트 소요 시간"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">float</span> <span class="n">_highlightFadeDuration</span> <span class="p">=</span> <span class="m">0.2f</span><span class="p">;</span>
+
+<span class="c1">// 현재 하이라이트 알파값</span>
+<span class="k">private</span> <span class="kt">float</span> <span class="n">_currentHLAlpha</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<p>위와 같이 필드들을 작성하고, <code class="language-plaintext highlighter-rouge">_highlightImage</code>에는 하이라키에서 [Highlight Image]를 드래그하여 등록한다.</p>
+
+<p><br /></p>
+
+<details>
+  <summary>
+Methods
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 슬롯에 하이라이트 표시/해제 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">Highlight</span><span class="p">(</span><span class="kt">bool</span> <span class="n">show</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">show</span><span class="p">)</span>
+        <span class="nf">StartCoroutine</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="n">HighlightFadeInRoutine</span><span class="p">));</span>
+    <span class="k">else</span>
+        <span class="nf">StartCoroutine</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="n">HighlightFadeOutRoutine</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 하이라이트 알파값 서서히 증가 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="n">IEnumerator</span> <span class="nf">HighlightFadeInRoutine</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">StopCoroutine</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="n">HighlightFadeOutRoutine</span><span class="p">));</span>
+    <span class="n">_highlightGo</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+
+    <span class="kt">float</span> <span class="n">unit</span> <span class="p">=</span> <span class="n">_highlightAlpha</span> <span class="p">/</span> <span class="n">_highlightFadeDuration</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(;</span> <span class="n">_currentHLAlpha</span> <span class="p">&lt;=</span> <span class="n">_highlightAlpha</span><span class="p">;</span> <span class="n">_currentHLAlpha</span> <span class="p">+=</span> <span class="n">unit</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_highlightImage</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span>
+            <span class="n">_highlightImage</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">r</span><span class="p">,</span>
+            <span class="n">_highlightImage</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">g</span><span class="p">,</span>
+            <span class="n">_highlightImage</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">b</span><span class="p">,</span>
+            <span class="n">_currentHLAlpha</span>
+        <span class="p">);</span>
+
+        <span class="k">yield</span> <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 하이라이트 알파값 0%까지 서서히 감소 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="n">IEnumerator</span> <span class="nf">HighlightFadeOutRoutine</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">StopCoroutine</span><span class="p">(</span><span class="k">nameof</span><span class="p">(</span><span class="n">HighlightFadeInRoutine</span><span class="p">));</span>
+
+    <span class="kt">float</span> <span class="n">unit</span> <span class="p">=</span> <span class="n">_highlightAlpha</span> <span class="p">/</span> <span class="n">_highlightFadeDuration</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(;</span> <span class="n">_currentHLAlpha</span> <span class="p">&gt;=</span> <span class="m">0f</span><span class="p">;</span> <span class="n">_currentHLAlpha</span> <span class="p">-=</span> <span class="n">unit</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_highlightImage</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span>
+            <span class="n">_highlightImage</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">r</span><span class="p">,</span>
+            <span class="n">_highlightImage</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">g</span><span class="p">,</span>
+            <span class="n">_highlightImage</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">b</span><span class="p">,</span>
+            <span class="n">_currentHLAlpha</span>
+        <span class="p">);</span>
+
+        <span class="k">yield</span> <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">_highlightGo</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<p>하이라이트 표시/해제는 코루틴을 이용한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">FadeIn</code> 코루틴은 서서히 하이라이트 이미지의 알파값을 증가시키고,</p>
+
+<p><code class="language-plaintext highlighter-rouge">FadeOut</code> 코루틴은 서서히 알파값을 감소시킨다.</p>
+
+<p><br /></p>
+
+<h2 id="3-inventoryui"><strong>[3] InventoryUI</strong></h2>
+
+<details>
+  <summary>
+InventoryUI.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">ItemSlotUI</span> <span class="n">_pointerOverSlot</span><span class="p">;</span> <span class="c1">// 현재 포인터가 위치한 곳의 슬롯</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_ped</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="n">mousePosition</span><span class="p">;</span>
+
+    <span class="nf">OnPointerEnterAndExit</span><span class="p">();</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 슬롯에 포인터가 올라가는 경우, 슬롯에서 포인터가 빠져나가는 경우 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">OnPointerEnterAndExit</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 이전 프레임의 슬롯</span>
+    <span class="kt">var</span> <span class="n">prevSlot</span> <span class="p">=</span> <span class="n">_pointerOverSlot</span><span class="p">;</span>
+
+    <span class="c1">// 현재 프레임의 슬롯</span>
+    <span class="kt">var</span> <span class="n">curSlot</span> <span class="p">=</span> <span class="n">_pointerOverSlot</span> <span class="p">=</span> <span class="n">RaycastAndGetFirstComponent</span><span class="p">&lt;</span><span class="n">ItemSlotUI</span><span class="p">&gt;();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">prevSlot</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Enter</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">curSlot</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nf">OnCurrentEnter</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="c1">// Exit</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">curSlot</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nf">OnPrevExit</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Change</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">prevSlot</span> <span class="p">!=</span> <span class="n">curSlot</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nf">OnPrevExit</span><span class="p">();</span>
+            <span class="nf">OnCurrentEnter</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ===================== Local Methods ===============================</span>
+    <span class="k">void</span> <span class="nf">OnCurrentEnter</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">curSlot</span><span class="p">.</span><span class="nf">Highlight</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">void</span> <span class="nf">OnPrevExit</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">prevSlot</span><span class="p">.</span><span class="nf">Highlight</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<p>매 프레임마다 이전 프레임에 마우스가 위치했던 슬롯, 현재 프레임에 마우스가 위치한 슬롯을 확인하여</p>
+
+<p>위와 같이 하이라이트 표시/해제를 구현한다.</p>
+
+<p><br /></p>
+
+<h1 id="아이템-툴팁">아이템 툴팁</h1>
+<hr />
+
+<p>인벤토리의 각 아이템에 마우스를 올릴 때 아이템 정보를 간략하게 표시하는 툴팁을 구현한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117533171-54a0c400-b026-11eb-80b8-f6788f7461b5.gif" alt="2021_0508_Inventory_Tooltip" /></p>
+
+<p><br /></p>
+
+<p>T          O            D            O</p>
+
+<p><br /></p>
+
+<h1 id="팝업-ui">팝업 UI</h1>
+<hr />
+
+<p>인벤토리 시스템에서 사용할 팝업은 확인/취소(아이템 버리기), 수량 입력 이렇게 2가지가 있으며,</p>
+
+<p><code class="language-plaintext highlighter-rouge">InventoryPopupUI</code> 클래스에서 모두 관리하도록 구현한다.</p>
+
+<p>팝업 UI의 동작은 다음과 같다.</p>
+
+<ol>
+  <li>사용자 - 인벤토리 UI 상호작용(버리기, 수량 나누기)</li>
+  <li><code class="language-plaintext highlighter-rouge">InventoryUI</code> - 팝업 호출 및 콜백 메소드 전달</li>
+  <li><code class="language-plaintext highlighter-rouge">InventoryPopupUI</code> - 알맞은 팝업 띄우기</li>
+  <li>사용자 - 팝업 UI 상호작용(수량 선택, 확인/취소 버튼 클릭)</li>
+  <li><code class="language-plaintext highlighter-rouge">InventoryPopupUI</code> - 전달받은 콜백 메소드 호출 또는 종료(취소)</li>
+</ol>
+
+<p><br /></p>
+
+<h2 id="하이라키-구성"><strong>하이라키 구성</strong></h2>
+
+<p>-</p>
+
+<h2 id="아이템-버리기---확인취소-팝업"><strong>아이템 버리기 - 확인/취소 팝업</strong></h2>
+
+<p>아이템을 버리려고 시도할 때, 바로 아이템을 제거하지 않고 “정말로 버리시겠습니까?”와 같은 팝업을 구현한다.</p>
+
+<p>T          O            D            O</p>
 
 <p><br /></p>
 

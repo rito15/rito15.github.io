@@ -1114,7 +1114,7 @@ this.OnMouseDownAsObservable()
 
 <details>
 <summary markdown="span"> 
-
+CustomObservables.cs
 </summary>
 
 ```cs
@@ -1238,6 +1238,21 @@ namespace Rito.UniRx
 ```
 
 </details>
+
+
+
+<details>
+<summary markdown="span"> 
+Example
+</summary>
+
+```cs
+CustomObservables.Instance.MouseDoubleClickAsObservable
+    .Subscribe(_ => Debug.Log("Double Click"));
+```
+
+</details>
+
 
 <br>
 

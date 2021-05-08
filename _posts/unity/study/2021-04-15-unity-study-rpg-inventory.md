@@ -15,7 +15,7 @@ mermaid: true
 
 <br>
 
-# 클래스 구조 설계
+# 클래스 구성
 ---
 
 ![image](https://user-images.githubusercontent.com/42164422/115534030-52263680-a2d2-11eb-8c23-4a139d5f878f.png)
@@ -93,6 +93,8 @@ Inventory 게임오브젝트에 `InventoryUI` 컴포넌트를 넣는다.
 가장 뒤쪽에 슬롯 이미지, 그리고 안쪽으로 아이콘 이미지가 위치하며
 
 아이템 수량을 표시할 텍스트, 마우스를 슬롯 위에 올렸을 때 표시할 하이라이트 이미지가 존재한다.
+
+하이라이트 이미지는 아이콘 이미지와 동일한 크기로, 반투명한 색상으로 설정하며 미리 비활성화 해둔다.
 
 그리고 [Item Slot] 게임오브젝트에는 `ItemSlotUI` 컴포넌트를 넣어준다.
 
@@ -402,6 +404,10 @@ private static class Destroyer
 # 헤더 영역 드래그 앤 드롭 이동 구현
 ---
 
+![2021_0421_InventoryUI_Move2](https://user-images.githubusercontent.com/42164422/115679424-89a5e900-a38d-11eb-88b9-e873fa68d39d.gif)
+
+<br>
+
 UI의 드래그 앤 드롭을 구현하려면 기본적으로 GraphicRaycaster를 이용해야 한다.
 
 그리고 클릭, 클릭 유지, 클릭을 뗄 경우를 모두 고려하여 작성해야 하는 번거로움이 있다.
@@ -461,12 +467,12 @@ public class MovableHeaderUI : MonoBehaviour, IPointerDownHandler, IDragHandler
 
 <br>
 
-![2021_0421_InventoryUI_Move2](https://user-images.githubusercontent.com/42164422/115679424-89a5e900-a38d-11eb-88b9-e873fa68d39d.gif)
-
-<br>
-
 # 아이템 드래그 앤 드롭 이동 구현
 ---
+
+![2021_0426_InventoryDrag](https://user-images.githubusercontent.com/42164422/116001990-68195b80-a632-11eb-98a1-12410041247c.gif)
+
+<br>
 
 아이템의 드래그 앤 드롭을 구현하는 다양한 방법들이 있다.
 
@@ -626,10 +632,6 @@ private void OnPointerUp()
 
 <br>
 
-![2021_0426_InventoryDrag](https://user-images.githubusercontent.com/42164422/116001990-68195b80-a632-11eb-98a1-12410041247c.gif)
-
-<br>
-
 # ItemSlotUI 클래스 구현
 ---
 
@@ -751,6 +753,7 @@ public class PortionItemData : CountableItemData
 
 </details>
 
+<br>
 
 `ItemData` 클래스는 `ScriptableObject` 클래스를 상속하며, 아이템의 공통 데이터들을 저장한다.
 
@@ -871,6 +874,8 @@ public class PortionItem : CountableItem, IUsableItem
 
 </details>
 
+<br>
+
 `Item` 클래스는 아이템의 실체라고 할 수 있다.
 
 따라서 필드로 각각의 아이템이 가질 개별 데이터를 작성하고,
@@ -904,6 +909,8 @@ UI에서 사용자 이벤트가 발생했을 때 `InventoryUI`는 `Inventory`를
 
 - `Item` 배열
 
+<br>
+
 그리고 `Inventory` 클래스 내에 작성할 동작(메소드)들은
 
 - 아이템 정보 확인
@@ -918,8 +925,125 @@ UI에서 사용자 이벤트가 발생했을 때 `InventoryUI`는 `Inventory`를
 
 <br>
 
+# 인벤토리 슬롯 업데이트 기능 구현
+---
+
+슬롯의 업데이트는 정말 많은 경우에 사용된다.
+
+- 아이템 위치 이동
+- 아이템 추가
+- 아이템 제거
+- 아이템 사용
+- ..
+
+따라서 각 기능 수행 후에 개별적으로 서로 다른 정보를 UI에 전달하고 업데이트하는 것보다
+
+`Inventory` 클래스에서 하나의 메소드로 작성하여 사용하는 것이 효율적이고 코드 유지보수에 큰 장점을 가진다.
+
+<br>
+
+## **[1] Pseudo Code**
+
+인벤토리의 아이템에 변화가 생겼을 때, 인벤토리에서 인벤토리 UI에 전달할 정보는
+
+1. 해당 슬롯에 아이템이 존재하는지 여부
+2. 아이템 이미지
+3. 아이템 수량
+
+이렇게 세 가지가 있다.
+
+<br>
+
+그리고 수량이 있는 아이템의 경우, 수량이 0이라면 아이템을 제거해야 한다.
+
+이를 간단히 의사코드로 표현해보면 다음과 같다.
+
+```
+function UpdateSlot(int index)
+
+Item item = items[index]
+if (item == null)
+    inventoryUI.RemoveSlot(index)
+else
+    inventoryUI.SetImage(index, item.image)
+    if (item is CountableItem)
+        if(item.amount <= 0)
+            inventoryUI.RemoveSlot(index)
+            items[index] = null
+        else
+            inventoryUI.SetAmount(index, item.amount)
+```
+
+<br>
+
+## **[2] Source Code**
+
+<details>
+<summary markdown="span">
+Source Code
+</summary>
+
+```cs
+/// <summary> 해당하는 인덱스의 슬롯 상태 및 UI 갱신 </summary>
+public void UpdateSlot(int index)
+{
+    if (!IsValidIndex(index)) return;
+
+    Item item = _items[index];
+
+    // 1. 아이템이 슬롯에 존재하는 경우
+    if (item != null)
+    {
+        // 아이콘 등록
+        _inventoryUI.SetItemIcon(index, item.Data.IconSprite);
+
+        // 1-1. 셀 수 있는 아이템
+        if (item is CountableItem ci)
+        {
+            // 1-1-1. 수량이 0인 경우, 아이템 제거
+            if (ci.IsEmpty)
+            {
+                _items[index] = null;
+                RemoveIcon();
+                return;
+            }
+            // 1-1-2. 수량 텍스트 표시
+            else
+            {
+                _inventoryUI.SetItemAmountText(index, ci.Amount);
+            }
+        }
+        // 1-2. 셀 수 없는 아이템인 경우 수량 텍스트 제거
+        else
+        {
+            _inventoryUI.HideItemAmountText(index);
+        }
+    }
+    // 2. 빈 슬롯인 경우 : 아이콘 제거
+    else
+    {
+        RemoveIcon();
+    }
+
+    // 로컬 : 아이콘 제거하기
+    void RemoveIcon()
+    {
+        _inventoryUI.RemoveItem(index);
+        _inventoryUI.HideItemAmountText(index); // 수량 텍스트 숨기기
+    }
+}
+```
+
+</details>
+
+<br>
+
 # 아이템 위치 이동 및 교환
 ---
+
+![2021_0508_Inventory_Swap](https://user-images.githubusercontent.com/42164422/117529666-c02d6600-b013-11eb-9f71-7e7988ee92e9.gif)
+
+<br>
 
 아이템의 드래그 앤 드롭 기능은 앞서 구현하였다.
 
@@ -945,8 +1069,72 @@ UI에서 사용자 이벤트가 발생했을 때 `InventoryUI`는 `Inventory`를
 
 <br>
 
+## **[3] 수량 합치기**
+
+수량이 있는 동일한 아이템을 드래그 앤 드롭으로 교환하는 경우,
+
+드래그 앤 드롭 시작 아이템으로부터 종료 아이템에 수량을 합치는 기능을 구현한다.
+
+![2021_0508_Inventory_SumAmount](https://user-images.githubusercontent.com/42164422/117532612-574dea00-b023-11eb-8f4d-f46d45ecb8f4.gif)
+
+<br>
+
+<details>
+<summary markdown="span">
+Inventory.cs
+</summary>
+
+```cs
+public void Swap(int indexA, int indexB)
+{
+    if (!IsValidIndex(indexA)) return;
+    if (!IsValidIndex(indexB)) return;
+
+    Item itemA = _items[indexA];
+    Item itemB = _items[indexB];
+
+    // 1. 셀 수 있는 아이템이고, 동일한 아이템일 경우
+    //    indexA -> indexB로 개수 합치기
+    if (itemA != null && itemB != null &&
+        itemA.Data == itemB.Data &&
+        itemA is CountableItem ciA && itemB is CountableItem ciB)
+    {
+        int maxAmount = ciB.MaxAmount;
+        int sum = ciA.Amount + ciB.Amount;
+
+        if (sum <= maxAmount)
+        {
+            ciA.SetAmount(0);
+            ciB.SetAmount(sum);
+        }
+        else
+        {
+            ciA.SetAmount(sum - maxAmount);
+            ciB.SetAmount(maxAmount);
+        }
+    }
+    // 2. 일반적인 경우 : 슬롯 교체
+    else
+    {
+        _items[indexA] = itemB;
+        _items[indexB] = itemA;
+    }
+
+    // 두 슬롯 정보 갱신
+    UpdateSlot(indexA, indexB);
+}
+```
+
+</details>
+
+<br>
+
 # 아이템 추가하기
 ---
+
+![2021_0508_Inventory_Add](https://user-images.githubusercontent.com/42164422/117530087-3763f980-b016-11eb-97cd-def732c7e848.gif)
+
+<br>
 
 아이템을 추가하는 기능은 다음과 같이 이루어진다.
 
@@ -969,7 +1157,7 @@ UI에서 사용자 이벤트가 발생했을 때 `InventoryUI`는 `Inventory`를
 
 <br>
 
-## **[1] Inventory : 아이템 추가**
+## **[1] Pseudo Code**
 
 새로운 아이템을 인벤토리 내의 배열에 추가할 때, 두 가지 정보가 필요하다.
 
@@ -1025,62 +1213,149 @@ return amount
 
 <br>
 
-## **[2] 슬롯 업데이트**
+## **[2] Source Code : Inventory**
 
-인벤토리의 아이템에 변화가 생겼을 때, 인벤토리에서 UI에 전달할 정보는
+<details>
+<summary markdown="span">
+Inventory.cs
+</summary>
 
-1. 해당 슬롯에 아이템이 존재하는지 여부
-2. 아이템 이미지
-3. 아이템 수량
+```cs
+/// <summary> 인벤토리에 아이템 추가
+/// <para/> 넣는 데 실패한 잉여 아이템 개수 리턴
+/// <para/> 리턴이 0이면 넣는데 모두 성공했다는 의미
+/// </summary>
+public int Add(ItemData itemData, int amount = 1)
+{
+    int index;
 
-이렇게 세 가지가 있다.
+    // 1. 수량이 있는 아이템
+    if (itemData is CountableItemData ciData)
+    {
+        bool findNextCountable = true;
+        index = -1;
 
-이를 간단히 의사코드로 표현해보면 다음과 같다.
+        while (amount > 0)
+        {
+            // 1-1. 이미 해당 아이템이 인벤토리 내에 존재하고, 개수 여유 있는지 검사
+            if (findNextCountable)
+            {
+                index = FindCountableItemSlotIndex(ciData, index + 1);
 
+                // 개수 여유있는 기존재 슬롯이 더이상 없다고 판단될 경우, 빈 슬롯부터 탐색 시작
+                if (index == -1)
+                {
+                    findNextCountable = false;
+                }
+                // 기존재 슬롯을 찾은 경우, 양 증가시키고 초과량 존재 시 amount에 초기화
+                else
+                {
+                    CountableItem ci = _items[index] as CountableItem;
+                    amount = ci.AddAmountAndGetExcess(amount);
+
+                    UpdateSlot(index);
+                }
+            }
+            // 1-2. 빈 슬롯 탐색
+            else
+            {
+                index = FindEmptySlotIndex(index + 1);
+
+                // 빈 슬롯조차 없는 경우 종료
+                if (index == -1)
+                {
+                    break;
+                }
+                // 빈 슬롯 발견 시, 슬롯에 아이템 추가 및 잉여량 계산
+                else
+                {
+                    // 새로운 아이템 생성
+                    CountableItem ci = ciData.CreateItem() as CountableItem;
+                    ci.SetAmount(amount);
+
+                    // 슬롯에 추가
+                    _items[index] = ci;
+
+                    // 남은 개수 계산
+                    amount = (amount > ciData.MaxAmount) ? (amount - ciData.MaxAmount) : 0;
+
+                    UpdateSlot(index);
+                }
+            }
+        }
+    }
+    // 2. 수량이 없는 아이템
+    else
+    {
+        // 2-1. 1개만 넣는 경우, 간단히 수행
+        if (amount == 1)
+        {
+            index = FindEmptySlotIndex();
+            if (index != -1)
+            {
+                // 아이템을 생성하여 슬롯에 추가
+                _items[index] = itemData.CreateItem();
+                amount = 0;
+
+                UpdateSlot(index);
+            }
+        }
+
+        // 2-2. 2개 이상의 수량 없는 아이템을 동시에 추가하는 경우
+        index = -1;
+        for (; amount > 0; amount--)
+        {
+            // 아이템 넣은 인덱스의 다음 인덱스부터 슬롯 탐색
+            index = FindEmptySlotIndex(index + 1);
+
+            // 다 넣지 못한 경우 루프 종료
+            if (index == -1)
+            {
+                break;
+            }
+
+            // 아이템을 생성하여 슬롯에 추가
+            _items[index] = itemData.CreateItem();
+
+            UpdateSlot(index);
+        }
+    }
+
+    return amount;
+}
 ```
-function UpdateSlot(int index)
 
-Item item = items[index]
-if (item == null)
-    inventoryUI.RemoveSlot(index)
-else
-    inventoryUI.SetImage(index, item.image)
-    if (item is CountableItem)
-        inventoryUI.SetAmount(index, item.amount)
-```
+</details>
 
-<br>
-
-## **[3] UI에서 슬롯 업데이트**
-
-인벤토리 UI에서 슬롯을 업데이트할 때는 다음 정보들을 변경한다.
-
-1. 아이템 이미지
-2. 아이템 텍스트
-
-인벤토리로부터 전달받은 아이템이 null이라면 이미지와 텍스트를 모두 비활성화하고,
-
-null이 아니라면 이미지를 해당 아이템의 이미지로 변경한다.
-
-그리고 수량이 있는 아이템인 경우에만 텍스트를 활성화하고 텍스트에 수량을 적용한다.
 
 <br>
 
 # 아이템 버리기
 ---
 
-아이템을 버리는 기능은 다음 순서로 동작한다.
+![2021_0508_Inventory_Remove](https://user-images.githubusercontent.com/42164422/117530089-38952680-b016-11eb-9d5c-3b485c767ae3.gif)
 
-1. InventoryUI - 드래그 앤 드롭으로 UI가 아닌 영역에 아이템 끌어다 놓기
-2. Inventory - 해당 인덱스의 아이템을 제거
-3. Inventory - 슬롯 업데이트
-4. InventoryUI - 슬롯 업데이트
-5. ItemSlotUI - 이미지, 텍스트 업데이트
+아이템을 버리는 기능은 다음 순서대로 구현한다.
+
+1. 사용자 - 드래그 앤 드롭으로 UI가 아닌 영역에 아이템 끌어다 놓기
+2. InventoryUI - Inventory에 해당 인덱스의 아이템 제거 요청
+3. Inventory - 아이템 제거(`items[index] = null`)
+4. Inventory - UI에 슬롯 업데이트 요청
+5. InventoryUI - 슬롯 업데이트
+6. ItemSlotUI - 이미지, 텍스트 업데이트
+
+(코드 생략)
 
 <br>
 
 # 아이템 사용하기
 ---
+
+아이템에 우클릭 시 아이템을 사용하는 기능을 구현한다.
+
+![2021_0508_Inventory_Use](https://user-images.githubusercontent.com/42164422/117530090-392dbd00-b016-11eb-877f-81a8d62fe612.gif)
+
+<br>
 
 ## **[1] 구조 설계**
 
@@ -1126,22 +1401,305 @@ interface IUsableItem
 
 아이템 사용 기능은 아래 순서로 이루어진다.
 
-1. 인벤토리의 슬롯 우클릭
-2. InventoryUI - 아이템 사용
+1. 사용자 - 인벤토리의 슬롯 우클릭
+2. InventoryUI - Inventory에 아이템 사용 요청
 3. Inventory - `IUsableItem`인지 확인 후, 아이템 사용 및 결과 적용
-4. Inventory - 슬롯 업데이트
+4. Inventory - UI에 슬롯 업데이트 요청
 5. InventoryUI - 슬롯 업데이트
 6. ItemSlotUI - 이미지, 텍스트 업데이트
+
+<br>
+
+## **[3] Source Code - Inventory**
+
+```cs
+/// <summary> 해당 슬롯의 아이템 사용 </summary>
+public void Use(int index)
+{
+    if (_items[index] == null) return;
+
+    // 사용 가능한 아이템인 경우
+    if (_items[index] is IUsableItem uItem)
+    {
+        // 아이템 사용
+        bool succeeded = uItem.Use();
+
+        if (succeeded)
+        {
+            UpdateSlot(index);
+        }
+    }
+}
+```
 
 <br>
 
 # 슬롯 하이라이트
 ---
 
+인벤토리의 각 슬롯에 마우스를 올릴 때 반투명한 하이라이트가 나타나고, 슬롯에서 마우스를 떼면 사라지는 기능을 구현한다.
+
+![2021_0508_Inventory_Highlight2](https://user-images.githubusercontent.com/42164422/117533106-cfb5aa80-b025-11eb-905b-295fce41c51e.gif)
+
+<br>
+
+## **[1] 하이라키 구성**
+
+![image](https://user-images.githubusercontent.com/42164422/117531450-76497d80-b01d-11eb-882b-a89647d406a9.png)
+
+하이라이트로 사용될 이미지는 반투명한 단색을 적용한다.
+
+그리고 아이콘 이미지의 위에 나타나야 하므로, 하이라키에서 더 아래쪽에 위치시킨다.
+
+<br>
+
+## **[2] ItemSlotUI 클래스**
+
+<details>
+<summary markdown="span">
+Fields
+</summary>
+
+```cs
+[Tooltip("슬롯이 포커스될 때 나타나는 하이라이트 이미지")]
+[SerializeField] private Image _highlightImage;
+
+[Space]
+[Tooltip("하이라이트 이미지 알파 값")]
+[SerializeField] private float _highlightAlpha = 0.5f;
+
+[Tooltip("하이라이트 소요 시간")]
+[SerializeField] private float _highlightFadeDuration = 0.2f;
+
+// 현재 하이라이트 알파값
+private float _currentHLAlpha = 0f;
+```
+
+</details>
+
+<br>
+
+위와 같이 필드들을 작성하고, `_highlightImage`에는 하이라키에서 [Highlight Image]를 드래그하여 등록한다.
+
+<br>
+
+<details>
+<summary markdown="span">
+Methods
+</summary>
+
+```cs
+/// <summary> 슬롯에 하이라이트 표시/해제 </summary>
+public void Highlight(bool show)
+{
+    if (show)
+        StartCoroutine(nameof(HighlightFadeInRoutine));
+    else
+        StartCoroutine(nameof(HighlightFadeOutRoutine));
+}
+
+/// <summary> 하이라이트 알파값 서서히 증가 </summary>
+private IEnumerator HighlightFadeInRoutine()
+{
+    StopCoroutine(nameof(HighlightFadeOutRoutine));
+    _highlightGo.SetActive(true);
+
+    float unit = _highlightAlpha / _highlightFadeDuration;
+
+    for (; _currentHLAlpha <= _highlightAlpha; _currentHLAlpha += unit * Time.deltaTime)
+    {
+        _highlightImage.color = new Color(
+            _highlightImage.color.r,
+            _highlightImage.color.g,
+            _highlightImage.color.b,
+            _currentHLAlpha
+        );
+
+        yield return null;
+    }
+}
+
+/// <summary> 하이라이트 알파값 0%까지 서서히 감소 </summary>
+private IEnumerator HighlightFadeOutRoutine()
+{
+    StopCoroutine(nameof(HighlightFadeInRoutine));
+
+    float unit = _highlightAlpha / _highlightFadeDuration;
+
+    for (; _currentHLAlpha >= 0f; _currentHLAlpha -= unit * Time.deltaTime)
+    {
+        _highlightImage.color = new Color(
+            _highlightImage.color.r,
+            _highlightImage.color.g,
+            _highlightImage.color.b,
+            _currentHLAlpha
+        );
+
+        yield return null;
+    }
+
+    _highlightGo.SetActive(false);
+}
+```
+
+</details>
+
+<br>
+
+하이라이트 표시/해제는 코루틴을 이용한다.
+
+`FadeIn` 코루틴은 서서히 하이라이트 이미지의 알파값을 증가시키고,
+
+`FadeOut` 코루틴은 서서히 알파값을 감소시킨다.
+
+<br>
+
+## **[3] InventoryUI**
+
+<details>
+<summary markdown="span">
+InventoryUI.cs
+</summary>
+
+```cs
+private ItemSlotUI _pointerOverSlot; // 현재 포인터가 위치한 곳의 슬롯
+
+private void Update()
+{
+    _ped.position = Input.mousePosition;
+
+    OnPointerEnterAndExit();
+
+    // ...
+}
+
+/// <summary> 슬롯에 포인터가 올라가는 경우, 슬롯에서 포인터가 빠져나가는 경우 </summary>
+private void OnPointerEnterAndExit()
+{
+    // 이전 프레임의 슬롯
+    var prevSlot = _pointerOverSlot;
+
+    // 현재 프레임의 슬롯
+    var curSlot = _pointerOverSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
+
+    if (prevSlot == null)
+    {
+        // Enter
+        if (curSlot != null)
+        {
+            OnCurrentEnter();
+        }
+    }
+    else
+    {
+        // Exit
+        if (curSlot == null)
+        {
+            OnPrevExit();
+        }
+
+        // Change
+        else if (prevSlot != curSlot)
+        {
+            OnPrevExit();
+            OnCurrentEnter();
+        }
+    }
+
+    // ===================== Local Methods ===============================
+    void OnCurrentEnter()
+    {
+        curSlot.Highlight(true);
+    }
+    void OnPrevExit()
+    {
+        prevSlot.Highlight(false);
+    }
+}
+```
+
+</details>
+
+<br>
+
+매 프레임마다 이전 프레임에 마우스가 위치했던 슬롯, 현재 프레임에 마우스가 위치한 슬롯을 확인하여
+
+위와 같이 하이라이트 표시/해제를 구현한다.
+
+<br>
+
+# 아이템 툴팁
+---
+
+인벤토리의 각 아이템에 마우스를 올릴 때 아이템 정보를 간략하게 표시하는 툴팁을 구현한다.
+
+![2021_0508_Inventory_Tooltip](https://user-images.githubusercontent.com/42164422/117533171-54a0c400-b026-11eb-80b8-f6788f7461b5.gif)
+
+<br>
+
+
+
+
+
+
+
+T          O            D            O
+
+
+
+
+
+
+
 
 
 <br>
 
+# 팝업 UI
+---
+
+인벤토리 시스템에서 사용할 팝업은 확인/취소(아이템 버리기), 수량 입력 이렇게 2가지가 있으며,
+
+`InventoryPopupUI` 클래스에서 모두 관리하도록 구현한다.
+
+팝업 UI의 동작은 다음과 같다.
+
+1. 사용자 - 인벤토리 UI 상호작용(버리기, 수량 나누기)
+2. `InventoryUI` - 팝업 호출 및 콜백 메소드 전달
+3. `InventoryPopupUI` - 알맞은 팝업 띄우기
+4. 사용자 - 팝업 UI 상호작용(수량 선택, 확인/취소 버튼 클릭)
+5. `InventoryPopupUI` - 전달받은 콜백 메소드 호출 또는 종료(취소)
+
+<br>
+
+## **하이라키 구성**
+
+-
+
+## **아이템 버리기 - 확인/취소 팝업**
+
+아이템을 버리려고 시도할 때, 바로 아이템을 제거하지 않고 "정말로 버리시겠습니까?"와 같은 팝업을 구현한다.
+
+
+
+
+
+
+
+
+
+T          O            D            O
+
+
+
+
+
+
+
+
+
+
+<br>
 
 # 아이템 나누기
 ---
