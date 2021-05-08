@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기",
+    "url": "/posts/memo-cs-winform-pass-through-mouse-events/",
+    "categories": "Memo, Csharp Winform Memo",
+    "tags": "csharp, winform",
+    "date": "2021-05-09 01:30:00 +0900",
+    
+
+
+
+
+
+    "snippet": "목표  마우스 이벤트를 모두 무시할 수 있는 컨트롤(버튼, 레이블 등) 만들기방법      특정 컨트롤 클래스(Button, Label, …)를 상속받는 클래스를 작성한다.        아래와 같이 프로퍼티와 메소드를 작성한다.  public bool Ignored { get; set; } = false;protected override void WndProc(ref Message m){    const int WM_NCHITTEST = 0x0084;    const int HTTRANSPARENT = (-1);    if (..."
+  },
+  
+  {
     "title": "윈폼 중복 실행 방지",
     "url": "/posts/memo-cs-winform-prevent-duplication/",
     "categories": "Memo, Csharp Winform Memo",

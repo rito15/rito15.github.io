@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-05-08T17:59:25+09:00</updated>
+  <updated>2021-05-09T01:54:04+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,72 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기</title>
+    <link href="https://rito15.github.io/posts/memo-cs-winform-pass-through-mouse-events/" rel="alternate" type="text/html" title="마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기" />
+    <published>2021-05-09T01:30:00+09:00</published>
+  
+    <updated>2021-05-09T01:30:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/memo-cs-winform-pass-through-mouse-events/</id>
+    <content src="https://rito15.github.io/posts/memo-cs-winform-pass-through-mouse-events/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Memo" />
+    
+    <category term="Csharp Winform Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+
+  마우스 이벤트를 모두 무시할 수 있는 컨트롤(버튼, 레이블 등) 만들기
+
+
+
+
+방법
+
+
+
+  
+    특정 컨트롤 클래스(Button, Label, …)를 상속받는 클래스를 작성한다.
+  
+  
+    아래와 같이 프로퍼티와 메소드를 작성한다.
+  
+
+
+public bool Ignored { get; set; } = false;
+
+protected override void WndProc(ref Message m)
+{
+    const int WM_NCHITTEST = 0x0084;
+    const int HTTRANSPARENT = (-1);
+
+    if (Ignored &amp;amp;&amp;amp; m.Msg == WM_NCHITTEST)
+    {
+        m.Result = (IntP...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -261,93 +327,6 @@ public partial class RadialMenu : MonoBehaviour
         private void OnEnable()
         {
             rm = target as Radial...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Radial Menu 만들기</title>
-    <link href="https://rito15.github.io/posts/unity-study-radial-menu/" rel="alternate" type="text/html" title="Radial Menu 만들기" />
-    <published>2021-04-26T18:00:00+09:00</published>
-  
-    <updated>2021-05-03T17:25:13+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-study-radial-menu/</id>
-    <content src="https://rito15.github.io/posts/unity-study-radial-menu/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  극좌표계를 이용하여 원형 분포 형태의 메뉴 UI 만들기
-
-
-
-
-Preview
-
-
-
-
-
-
-직교 좌표계
-
-
-
-  Cartesian Coordinate System
-
-
-유니티2D에서 사용하는 좌표계는 x, y 축으로 이루어진 직교 좌표계이다.
-
-데카르트 좌표계라고도 하며, x, y 값을 통해 좌표를 표현한다.
-
-
-
-
-
-극좌표계
-
-
-
-  Polar Coordinate System
-
-
-직교 좌표계와는 달리, 거리(radius)와 각도(angle)를 통해 특정 좌표를 표현한다.
-
-이 때 거리는 중심으로부터의 거리, 각도는 직교 좌표계의 +X 축으로부터의 각도를 의미한다.
-
-좌표가 중심을 기준으로 반시계방향으로 이동할수록 각도가 커진다.
-
-
-
-
-
-
-
-극좌표계가 필요한 이유
-
-Radial Menu를 만들...
     </summary>
   
 
