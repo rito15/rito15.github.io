@@ -1637,18 +1637,162 @@ private void OnPointerEnterAndExit()
 
 <br>
 
+## **[1] 툴팁 표시에 필요한 데이터**
+
+1. 아이템 이름(string)
+2. 아이템 설명(string)
+3. 대상 슬롯 UI 위치, 크기 (Rect)
+
+<br>
+
+## **[2] 시퀀스 설계**
+
+1. 사용자 - 슬롯에 마우스 올리기
+2. InventoryUI - 해당 슬롯에 아이템이 존재하는 경우, `Inventory`에 `ItemData` 요청
+3. Inventory - `InventoryUI`에 `ItemData` 전달
+4. InventoryUI - `ItemTooltipUI`에 `ItemData` 및 해당 슬롯의 `Rect` 전달
+5. ItemTooptipUI - 툴팁 위치 설정, 툴팁 보여주기
+
+<br>
+
+## **[3] 하이라키 구성**
+
+![image](https://user-images.githubusercontent.com/42164422/117564868-351e9f80-b0e9-11eb-91d6-ebc798378bd6.png)
+
+![image](https://user-images.githubusercontent.com/42164422/117564883-52ec0480-b0e9-11eb-8fd0-a8e2b47fc13a.png)
+
+[Item Name Text], [Item Tooltip Text]는 `Text` 컴포넌트를 넣어주고
+
+[Line]은 `Image` 컴포넌트로 길쭉하게 구분선을 만들어준다.
+
+그리고 [Item Tooltip]에는 `Image` 컴포넌트로 검은색 반투명 이미지를 만들고,
+
+새로운 스크립트 `ItemTooltipUI`를 만들어서 컴포넌트로 넣어준다.
+
+<br>
+
+## **[4] 구현 - ItemTooltipUI**
+
+### **[4-1] 필드, 초기 설정**
+
+<details>
+<summary markdown="span">
+ItemTooltipUI.cs - Fields
+</summary>
+
+```cs
+[SerializeField]
+private Text _titleText;   // 아이템 이름 텍스트
+
+[SerializeField]
+private Text _contentText; // 아이템 설명 텍스트
+
+private RectTransform _rt;
+private CanvasScaler _canvasScaler;
+```
+
+</details>
+
+<br>
+
+자식으로 넣은 두 텍스트를 인스펙터에서 각각 드래그하여 할당해준다.
+
+`RectTransform`과 `CanvasScaler`는 툴팁의 위치 조정을 위해 필요하다.
+
+<br>
+
+<details>
+<summary markdown="span">
+ItemTooltipUI.cs - Methods
+</summary>
+
+```cs
+private void Awake()
+{
+    Init();
+    Hide();
+}
+
+public void Show() => gameObject.SetActive(true);
+public void Hide() => gameObject.SetActive(false);
+
+private void Init()
+{
+    TryGetComponent(out _rt);
+    _rt.pivot = new Vector2(0f, 1f); // Left Top
+    _canvasScaler = GetComponentInParent<CanvasScaler>();
+
+    DisableAllChildrenRaycastTarget(transform);
+}
+
+/// <summary> 모든 자식 UI에 레이캐스트 타겟 해제 </summary>
+private void DisableAllChildrenRaycastTarget(Transform tr)
+{
+    // 본인이 Graphic(UI)를 상속하면 레이캐스트 타겟 해제
+    tr.TryGetComponent(out Graphic gr);
+    if(gr != null)
+        gr.raycastTarget = false;
+
+    // 자식이 없으면 종료
+    int childCount = tr.childCount;
+    if (childCount == 0) return;
+
+    for (int i = 0; i < childCount; i++)
+    {
+        DisableAllChildrenRaycastTarget(tr.GetChild(i));
+    }
+}
+```
+
+</details>
+
+<br>
+
+게임 시작 시, 피벗을 Left Top으로 설정해준다.
+
+그리고 위처럼 메소드를 통해 자신과 모든 자식 UI들의 `raycastTarget`을 해제해준다.
+
+하이라키에서 직접 `Image`, `Text` 컴포넌트의 `Raycast Target`을 체크 해제해도 된다.
+
+<br>
+
+### **[4-2] 데이터 설정**
+
+툴팁 표시를 위한 데이터를 전달받고, 설정하는 것은 매우 간단하다.
+
+```cs
+/// <summary> 툴팁 UI에 아이템 정보 등록 </summary>
+public void SetItemInfo(ItemData data)
+{
+    _titleText.text = data.Name;
+    _contentText.text = data.Tooltip;
+}
+```
+
+필요한 데이터는 `ItemData`에 모두 있으므로, 참조를 전달받아 위처럼 설정하면 된다.
+
+<br>
+
+## **[4-3] 위치 조정**
+
+툴팁의 위치는 기본적으로 해당 슬롯의 우측 하단에 겹치지 않게 표시할 것이다.
+
+이를 위해서는 슬롯의 위치와 크기가 필요하며,
+
+모든 해상도에 유동적으로 대응하기 위해 `CanvasScaler`의 정보가 필요하다.
+
+![image](https://user-images.githubusercontent.com/42164422/117568320-9ac75780-b0fa-11eb-8358-d35161c3555a.png)
+
+`CanvasScaler`의 UI Scale Mode를 `Scale With Screen Size`로 설정했을 경우,
+
+`Reference Resolution` 값, `Match` 비율과 현재 해상도의 값에 따라
 
 
 
 
+<br>
 
-
-T          O            D            O
-
-
-
-
-
+## **[5] 구현 - InventoryUI**
 
 
 
@@ -1678,7 +1822,7 @@ T          O            D            O
 
 ## **아이템 버리기 - 확인/취소 팝업**
 
-아이템을 버리려고 시도할 때, 바로 아이템을 제거하지 않고 "정말로 버리시겠습니까?"와 같은 팝업을 구현한다.
+아이템을 버리려고 시도할 때, 바로 아이템을 제거하지 않고 "정말로 버리시겠습니까?"와 같은 팝업을 띄운다.
 
 
 

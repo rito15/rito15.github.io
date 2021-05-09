@@ -2,7 +2,7 @@
 title: C++ 스택 메모리 동적 할당
 author: Rito15
 date: 2021-02-01 18:45:00 +09:00
-categories: [Memo, C++ Memo]
+categories: [Memo, Cpp Memo]
 tags: [cpp]
 math: true
 mermaid: true

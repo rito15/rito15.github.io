@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-05-09T01:54:04+09:00</updated>
+  <updated>2021-05-10T03:42:07+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,23 +20,122 @@
 
   
   <entry>
-    <title>마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기</title>
-    <link href="https://rito15.github.io/posts/memo-cs-winform-pass-through-mouse-events/" rel="alternate" type="text/html" title="마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기" />
-    <published>2021-05-09T01:30:00+09:00</published>
+    <title>스트링 포맷 정리</title>
+    <link href="https://rito15.github.io/posts/cs-string-format/" rel="alternate" type="text/html" title="스트링 포맷 정리" />
+    <published>2021-05-09T21:00:00+09:00</published>
   
-    <updated>2021-05-09T01:30:00+09:00</updated>
+    <updated>2021-05-09T21:00:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/memo-cs-winform-pass-through-mouse-events/</id>
-    <content src="https://rito15.github.io/posts/memo-cs-winform-pass-through-mouse-events/" />
+    <id>https://rito15.github.io/posts/cs-string-format/</id>
+    <content src="https://rito15.github.io/posts/cs-string-format/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Memo" />
+    <category term="C#" />
     
-    <category term="Csharp Winform Memo" />
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      NOTE
+
+
+
+  , : 스트링의 범위(공간) 설정
+  : : 출력 포맷 설정
+
+
+
+
+좌우 정렬
+
+
+$"{value, 10}"
+
+
+
+  10칸 범위 내에서 우측 정렬
+
+
+
+
+$"{value, -10}"
+
+
+
+  10칸 범위 내에서 좌측 정렬
+
+
+
+
+숫자 왼쪽에 공백 삽입하기
+
+
+$"{value :   0}"
+
+
+
+  :, 0 사이의 공백 크기만큼 고정된 공백을 삽입
+  값의 왼쪽에 공백 3칸을 항상 삽입
+  오른쪽은 설정 불가
+
+
+
+
+자리수 설정
+
+
+$"{value :000}"
+
+
+
+  세 번째 자리까지 채워서 표현(빈 칸은 0으로 채움)
+  실수일 경우, 소수점 첫째자리에서 반올림하여 정수로 표현
+
+
+
+
+$"{value :0.00}"
+
+
+
+  정수부는 첫째 자리까지 반드시 표현(빈칸 0으로 채움)
+ ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기</title>
+    <link href="https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/" rel="alternate" type="text/html" title="마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기" />
+    <published>2021-05-09T01:30:00+09:00</published>
+  
+    <updated>2021-05-09T01:30:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/</id>
+    <content src="https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Winform" />
     
   
 
@@ -87,22 +186,22 @@ protected override void WndProc(ref Message m)
   
   <entry>
     <title>윈폼 중복 실행 방지</title>
-    <link href="https://rito15.github.io/posts/memo-cs-winform-prevent-duplication/" rel="alternate" type="text/html" title="윈폼 중복 실행 방지" />
+    <link href="https://rito15.github.io/posts/cs-winform-prevent-duplication/" rel="alternate" type="text/html" title="윈폼 중복 실행 방지" />
     <published>2021-05-06T02:02:00+09:00</published>
   
     <updated>2021-05-06T02:02:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/memo-cs-winform-prevent-duplication/</id>
-    <content src="https://rito15.github.io/posts/memo-cs-winform-prevent-duplication/" />
+    <id>https://rito15.github.io/posts/cs-winform-prevent-duplication/</id>
+    <content src="https://rito15.github.io/posts/cs-winform-prevent-duplication/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Memo" />
+    <category term="C#" />
     
-    <category term="Csharp Winform Memo" />
+    <category term="C# Winform" />
     
   
 
@@ -147,22 +246,22 @@ private static bool IsDuplicated()
   
   <entry>
     <title>Notify Icon 사용하기</title>
-    <link href="https://rito15.github.io/posts/memo-cs-winform-notifyicon/" rel="alternate" type="text/html" title="Notify Icon 사용하기" />
+    <link href="https://rito15.github.io/posts/cs-winform-notifyicon/" rel="alternate" type="text/html" title="Notify Icon 사용하기" />
     <published>2021-05-06T02:02:00+09:00</published>
   
     <updated>2021-05-06T02:02:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/memo-cs-winform-notifyicon/</id>
-    <content src="https://rito15.github.io/posts/memo-cs-winform-notifyicon/" />
+    <id>https://rito15.github.io/posts/cs-winform-notifyicon/</id>
+    <content src="https://rito15.github.io/posts/cs-winform-notifyicon/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Memo" />
+    <category term="C#" />
     
-    <category term="Csharp Winform Memo" />
+    <category term="C# Winform" />
     
   
 
@@ -271,62 +370,6 @@ Git 구성
 
 
 [2...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>커스텀 에디터로 인스펙터에 Private 필드 나타내기</title>
-    <link href="https://rito15.github.io/posts/unity-editor-show-private-fields/" rel="alternate" type="text/html" title="커스텀 에디터로 인스펙터에 Private 필드 나타내기" />
-    <published>2021-04-29T20:30:00+09:00</published>
-  
-    <updated>2021-04-29T20:30:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-show-private-fields/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-show-private-fields/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-커스텀 에디터를 통해서 private 필드를 인스펙터에 표시하려면 일단 두 가지 방법이 있다.
-
-
-
-1. 내부 클래스로 작성
-
-커스텀 에디터 클래스를 대상 모노비헤이비어 클래스의 내부에 작성하면 private 필드에도 접근할 수 있다.
-
-public partial class RadialMenu : MonoBehaviour
-{
-    [CustomEditor(typeof(RadialMenu))]
-    public class RadialMenuEditor : UnityEditor.Editor
-    {
-        private RadialMenu rm;
-
-        private void OnEnable()
-        {
-            rm = target as Radial...
     </summary>
   
 

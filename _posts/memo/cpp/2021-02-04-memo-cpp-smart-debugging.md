@@ -2,7 +2,7 @@
 title: C++ Smart Debugging
 author: Rito15
 date: 2021-02-04 16:56:00 +09:00
-categories: [Memo, C++ Memo]
+categories: [Memo, Cpp Memo]
 tags: [cpp]
 math: true
 mermaid: true
