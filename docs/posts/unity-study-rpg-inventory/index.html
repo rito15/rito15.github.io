@@ -23,7 +23,7 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="RPG Inventory System(RPG 게임용 인벤토리 제작하기)" />
+<meta property="og:title" content="RPG Inventory System(RPG 게임 인벤토리 만들기)" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="개요" />
@@ -34,14 +34,14 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-04-15T22:00:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="RPG Inventory System(RPG 게임용 인벤토리 제작하기)" />
+<meta property="twitter:title" content="RPG Inventory System(RPG 게임 인벤토리 만들기)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개요","datePublished":"2021-04-15T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-rpg-inventory/"},"url":"https://rito15.github.io/posts/unity-study-rpg-inventory/","author":{"@type":"Person","name":"Rito15"},"headline":"RPG Inventory System(RPG 게임용 인벤토리 제작하기)","dateModified":"2021-05-08T18:03:34+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"개요","datePublished":"2021-04-15T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-rpg-inventory/"},"url":"https://rito15.github.io/posts/unity-study-rpg-inventory/","author":{"@type":"Person","name":"Rito15"},"headline":"RPG Inventory System(RPG 게임 인벤토리 만들기)","dateModified":"2021-05-10T03:44:51+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>RPG Inventory System(RPG 게임용 인벤토리 제작하기) | Rito15
+  <title>RPG Inventory System(RPG 게임 인벤토리 만들기) | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>RPG Inventory System(RPG 게임용 인벤토리 제작하기)</span>
+        <span>RPG Inventory System(RPG 게임 인벤토리 만들기)</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>RPG Inventory System(RPG 게임용 인벤토리 제작하기)</h1>
+      <h1 data-toc-skip>RPG Inventory System(RPG 게임 인벤토리 만들기)</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sat, May  8, 2021,  6:03 PM +0900"
+    title="Mon, May 10, 2021,  3:44 AM +0900"
   >
 
   
   
 
   
-    May  8
+    May 10
   
 
-  <i class="unloaded">2021-05-08T18:03:34+09:00</i>
+  <i class="unloaded">2021-05-10T03:44:51+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="9676 words">53 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="10808 words">60 min</span>
 
 
           <!-- page views -->
@@ -3169,17 +3169,286 @@ ItemTooltipUI.cs - Methods
 
 <p>이를 위해서는 슬롯의 위치와 크기가 필요하며,</p>
 
-<p>모든 해상도에 유동적으로 대응하기 위해 <code class="language-plaintext highlighter-rouge">CanvasScaler</code>의 정보가 필요하다.</p>
+<p>슬롯의 피벗은 Left-Top으로 설정되어 있으므로</p>
+
+<p>기본적으로 툴팁은 <code class="language-plaintext highlighter-rouge">슬롯의 위치 + Vector2(슬롯 너비, -슬롯 높이)</code>로 위치를 조정하면 된다.</p>
+
+<p><br /></p>
+
+<p>그런데 여기서 문제점이 하나 발생한다.</p>
+
+<p>해상도에 따라 UI의 실제 크기가 달라지는데, 이를 스크립트를 통해 직접 얻을 수 없다는 점이다.</p>
+
+<p>따라서 이를 계산하기 위해 <code class="language-plaintext highlighter-rouge">CanvasScaler</code>의 정보가 필요하다.</p>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117568320-9ac75780-b0fa-11eb-8358-d35161c3555a.png" alt="image" /></p>
 
 <p><code class="language-plaintext highlighter-rouge">CanvasScaler</code>의 UI Scale Mode를 <code class="language-plaintext highlighter-rouge">Scale With Screen Size</code>로 설정했을 경우,</p>
 
-<p><code class="language-plaintext highlighter-rouge">Reference Resolution</code> 값, <code class="language-plaintext highlighter-rouge">Match</code> 비율과 현재 해상도의 값에 따라</p>
+<p><code class="language-plaintext highlighter-rouge">Reference Resolution</code> 값, <code class="language-plaintext highlighter-rouge">Match</code> 비율과 현재 해상도의 값에 따라 UI의 실제 크기가 달라진다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Match</code>는 <code class="language-plaintext highlighter-rouge">0</code> ~ <code class="language-plaintext highlighter-rouge">1</code> 값을 가지며,</p>
+
+<p><code class="language-plaintext highlighter-rouge">0</code>일 때는 기준 해상도와 현재 해상도의 너비 비율에 따라 <code class="language-plaintext highlighter-rouge">RectTransform</code>의 크기를 계산하고,</p>
+
+<p><code class="language-plaintext highlighter-rouge">1</code>일 때는 기준 해상도와 현재 해상도의 높이 비율에 따라 계산한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">0</code> ~ <code class="language-plaintext highlighter-rouge">1</code> 사이일 때는 너비, 높이 각각의 비율을 합산하여 결과 비율값을 계산한다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="n">CanvasScaler</span> <span class="n">cs</span><span class="p">;</span>
+<span class="n">RectTransform</span> <span class="n">rt</span><span class="p">;</span>
+
+<span class="kt">float</span> <span class="n">wRatio</span> <span class="p">=</span> <span class="n">Screen</span><span class="p">.</span><span class="n">width</span>  <span class="p">/</span> <span class="n">cs</span><span class="p">.</span><span class="n">referenceResolution</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">hRatio</span> <span class="p">=</span> <span class="n">Screen</span><span class="p">.</span><span class="n">height</span> <span class="p">/</span> <span class="n">cs</span><span class="p">.</span><span class="n">referenceResolution</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+
+<span class="c1">// 결과 비율값</span>
+<span class="kt">float</span> <span class="n">ratio</span> <span class="p">=</span>
+    <span class="n">wRatio</span> <span class="p">*</span> <span class="p">(</span><span class="m">1f</span> <span class="p">-</span> <span class="n">cs</span><span class="p">.</span><span class="n">matchWidthOrHeight</span><span class="p">)</span> <span class="p">+</span>
+    <span class="n">hRatio</span> <span class="p">*</span> <span class="p">(</span><span class="n">cs</span><span class="p">.</span><span class="n">matchWidthOrHeight</span><span class="p">);</span>
+
+<span class="c1">// 현재 스크린에서 RectTransform의 실제 너비, 높이</span>
+<span class="kt">float</span> <span class="n">pixelWidth</span>  <span class="p">=</span> <span class="n">rt</span><span class="p">.</span><span class="n">rect</span><span class="p">.</span><span class="n">width</span>  <span class="p">*</span> <span class="n">ratio</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">pixelHeight</span> <span class="p">=</span> <span class="n">rt</span><span class="p">.</span><span class="n">rect</span><span class="p">.</span><span class="n">height</span> <span class="p">*</span> <span class="n">ratio</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위와 같이 기준 해상도와 현재 해상도에 따른 실제 크기 변화 비율값을 계산하고,</p>
+
+<p>현재 스크린에서 실제 너비와 높이를 계산할 수 있다.</p>
+
+<p><br /></p>
+
+<p>그리고 인벤토리 슬롯이 화면 우측 또는 하단에 가까이 위치한 경우,</p>
+
+<p>툴팁 UI가 스크린을 벗어나 잘리는 경우도 고려해야 한다.</p>
+
+<p>이를 네 가지 경우로 분리하여 작성한다.</p>
+
+<ol>
+  <li>잘리지 않는 경우 - 슬롯 우측 하단에 툴팁 위치하기</li>
+  <li>우측이 잘리는 경우 - 슬롯 좌측 하단</li>
+  <li>하단이 잘리는 경우 - 슬롯 우측 상단</li>
+  <li>우측, 하단 모두 잘리는 경우 - 슬롯 좌측 상단</li>
+</ol>
+
+<p><br /></p>
+
+<details>
+  <summary>
+Source Code
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 툴팁의 위치 조정 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">SetRectPosition</span><span class="p">(</span><span class="n">RectTransform</span> <span class="n">slotRect</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// 캔버스 스케일러에 따른 해상도 대응</span>
+    <span class="kt">float</span> <span class="n">wRatio</span> <span class="p">=</span> <span class="n">Screen</span><span class="p">.</span><span class="n">width</span> <span class="p">/</span> <span class="n">_canvasScaler</span><span class="p">.</span><span class="n">referenceResolution</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">hRatio</span> <span class="p">=</span> <span class="n">Screen</span><span class="p">.</span><span class="n">height</span> <span class="p">/</span> <span class="n">_canvasScaler</span><span class="p">.</span><span class="n">referenceResolution</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">ratio</span> <span class="p">=</span>
+        <span class="n">wRatio</span> <span class="p">*</span> <span class="p">(</span><span class="m">1f</span> <span class="p">-</span> <span class="n">_canvasScaler</span><span class="p">.</span><span class="n">matchWidthOrHeight</span><span class="p">)</span> <span class="p">+</span>
+        <span class="n">hRatio</span> <span class="p">*</span> <span class="p">(</span><span class="n">_canvasScaler</span><span class="p">.</span><span class="n">matchWidthOrHeight</span><span class="p">);</span>
+
+    <span class="kt">float</span> <span class="n">slotWidth</span> <span class="p">=</span> <span class="n">slotRect</span><span class="p">.</span><span class="n">rect</span><span class="p">.</span><span class="n">width</span> <span class="p">*</span> <span class="n">ratio</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">slotHeight</span> <span class="p">=</span> <span class="n">slotRect</span><span class="p">.</span><span class="n">rect</span><span class="p">.</span><span class="n">height</span> <span class="p">*</span> <span class="n">ratio</span><span class="p">;</span>
+
+    <span class="c1">// 툴팁 초기 위치(슬롯 우하단) 설정</span>
+    <span class="n">_rt</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="n">slotRect</span><span class="p">.</span><span class="n">position</span> <span class="p">+</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">slotWidth</span><span class="p">,</span> <span class="p">-</span><span class="n">slotHeight</span><span class="p">);</span>
+    <span class="n">Vector2</span> <span class="n">pos</span> <span class="p">=</span> <span class="n">_rt</span><span class="p">.</span><span class="n">position</span><span class="p">;</span>
+
+    <span class="c1">// 툴팁의 크기</span>
+    <span class="kt">float</span> <span class="n">width</span> <span class="p">=</span> <span class="n">_rt</span><span class="p">.</span><span class="n">rect</span><span class="p">.</span><span class="n">width</span> <span class="p">*</span> <span class="n">ratio</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">height</span> <span class="p">=</span> <span class="n">_rt</span><span class="p">.</span><span class="n">rect</span><span class="p">.</span><span class="n">height</span> <span class="p">*</span> <span class="n">ratio</span><span class="p">;</span>
+
+    <span class="c1">// 우측, 하단이 잘렸는지 여부</span>
+    <span class="kt">bool</span> <span class="n">rightTruncated</span> <span class="p">=</span> <span class="n">pos</span><span class="p">.</span><span class="n">x</span> <span class="p">+</span> <span class="n">width</span> <span class="p">&gt;</span> <span class="n">Screen</span><span class="p">.</span><span class="n">width</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">bottomTruncated</span> <span class="p">=</span> <span class="n">pos</span><span class="p">.</span><span class="n">y</span> <span class="p">-</span> <span class="n">height</span> <span class="p">&lt;</span> <span class="m">0f</span><span class="p">;</span>
+
+    <span class="k">ref</span> <span class="kt">bool</span> <span class="n">R</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">rightTruncated</span><span class="p">;</span>
+    <span class="k">ref</span> <span class="kt">bool</span> <span class="n">B</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">bottomTruncated</span><span class="p">;</span>
+
+    <span class="c1">// 오른쪽만 잘림 =&gt; 슬롯의 Left Bottom 방향으로 표시</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">R</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">B</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_rt</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector2</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span> <span class="p">-</span> <span class="n">width</span> <span class="p">-</span> <span class="n">slotWidth</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// 아래쪽만 잘림 =&gt; 슬롯의 Right Top 방향으로 표시</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(!</span><span class="n">R</span> <span class="p">&amp;&amp;</span> <span class="n">B</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_rt</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector2</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">y</span> <span class="p">+</span> <span class="n">height</span> <span class="p">+</span> <span class="n">slotHeight</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// 모두 잘림 =&gt; 슬롯의 Left Top 방향으로 표시</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">R</span> <span class="p">&amp;&amp;</span> <span class="n">B</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_rt</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector2</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span> <span class="p">-</span> <span class="n">width</span> <span class="p">-</span> <span class="n">slotWidth</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">y</span> <span class="p">+</span> <span class="n">height</span> <span class="p">+</span> <span class="n">slotHeight</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// 잘리지 않음 =&gt; 슬롯의 Right Bottom 방향으로 표시</span>
+    <span class="c1">// Do Nothing</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
 <h2 id="5-구현---inventoryui"><strong>[5] 구현 - InventoryUI</strong></h2>
+
+<details>
+  <summary>
+InventoryUI.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_ped</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="n">mousePosition</span><span class="p">;</span>
+    <span class="nf">OnPointerEnterAndExit</span><span class="p">();</span>
+
+    <span class="nf">ShowOrHideItemTooltip</span><span class="p">();</span>
+
+    <span class="nf">OnPointerDown</span><span class="p">();</span>
+    <span class="nf">OnPointerDrag</span><span class="p">();</span>
+    <span class="nf">OnPointerUp</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 아이템 정보 툴팁 보여주거나 감추기 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">ShowOrHideItemTooltip</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 마우스가 유효한 아이템 아이콘 위에 올라와 있다면 툴팁 보여주기</span>
+    <span class="kt">bool</span> <span class="n">isValid</span> <span class="p">=</span>
+        <span class="n">_pointerOverSlot</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">_pointerOverSlot</span><span class="p">.</span><span class="n">HasItem</span> <span class="p">&amp;&amp;</span> <span class="n">_pointerOverSlot</span><span class="p">.</span><span class="n">IsAccessible</span>
+        <span class="p">&amp;&amp;</span> <span class="p">(</span><span class="n">_pointerOverSlot</span> <span class="p">!=</span> <span class="n">_beginDragSlot</span><span class="p">);</span> <span class="c1">// 드래그 시작한 슬롯이면 보여주지 않기</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">isValid</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nf">UpdateTooltipUI</span><span class="p">(</span><span class="n">_pointerOverSlot</span><span class="p">);</span>
+        <span class="n">_itemTooltip</span><span class="p">.</span><span class="nf">Show</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+        <span class="n">_itemTooltip</span><span class="p">.</span><span class="nf">Hide</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 툴팁 UI의 슬롯 데이터 갱신 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">UpdateTooltipUI</span><span class="p">(</span><span class="n">ItemSlotUI</span> <span class="n">slot</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// 툴팁 정보 갱신</span>
+    <span class="n">_itemTooltip</span><span class="p">.</span><span class="nf">SetItemInfo</span><span class="p">(</span><span class="n">_inventory</span><span class="p">.</span><span class="nf">GetItemData</span><span class="p">(</span><span class="n">slot</span><span class="p">.</span><span class="n">Index</span><span class="p">));</span>
+
+    <span class="c1">// 툴팁 위치 조정</span>
+    <span class="n">_itemTooltip</span><span class="p">.</span><span class="nf">SetRectPosition</span><span class="p">(</span><span class="n">slot</span><span class="p">.</span><span class="n">SlotRect</span><span class="p">);</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<p>인벤토리 UI에서의 구현은 간단하다.</p>
+
+<p>현재 마우스가 위치한 슬롯에 아이템이 존재할 경우 툴팁 정보를 갱신하고 활성화하며,</p>
+
+<p>그렇지 않다면 툴팁을 비활성화하면 된다.</p>
 
 <p><br /></p>
 
@@ -3198,13 +3467,20 @@ ItemTooltipUI.cs - Methods
   <li><code class="language-plaintext highlighter-rouge">InventoryPopupUI</code> - 알맞은 팝업 띄우기</li>
   <li>사용자 - 팝업 UI 상호작용(수량 선택, 확인/취소 버튼 클릭)</li>
   <li><code class="language-plaintext highlighter-rouge">InventoryPopupUI</code> - 전달받은 콜백 메소드 호출 또는 종료(취소)</li>
+  <li><code class="language-plaintext highlighter-rouge">Inventory</code> - 결과에 따른 아이템 정보 수정</li>
 </ol>
 
 <p><br /></p>
 
-<h2 id="하이라키-구성"><strong>하이라키 구성</strong></h2>
+<h2 id="1-하이라키-구성-1"><strong>[1] 하이라키 구성</strong></h2>
 
-<p>-</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117660992-c456b080-b1d8-11eb-91bc-ea49d02f3c0b.png" alt="image" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117661414-4c3cba80-b1d9-11eb-813d-e0ec470946c0.png" alt="image" /></p>
+
+<p>위와 같은 형태로 UI를 구성하고, 팝업이 등장할 위치(인벤토리 중앙)에 미리 각 팝업 UI를 배치시켜 놓는다.</p>
+
+<p><br /></p>
 
 <h2 id="아이템-버리기---확인취소-팝업"><strong>아이템 버리기 - 확인/취소 팝업</strong></h2>
 
@@ -3301,19 +3577,19 @@ ItemTooltipUI.cs - Methods
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=RPG Inventory System(RPG 게임용 인벤토리 제작하기) - Rito15&url=https://rito15.github.io/posts/unity-study-rpg-inventory/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=RPG Inventory System(RPG 게임 인벤토리 만들기) - Rito15&url=https://rito15.github.io/posts/unity-study-rpg-inventory/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=RPG Inventory System(RPG 게임용 인벤토리 제작하기) - Rito15&u=https://rito15.github.io/posts/unity-study-rpg-inventory/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=RPG Inventory System(RPG 게임 인벤토리 만들기) - Rito15&u=https://rito15.github.io/posts/unity-study-rpg-inventory/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=RPG Inventory System(RPG 게임용 인벤토리 제작하기) - Rito15&url=https://rito15.github.io/posts/unity-study-rpg-inventory/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=RPG Inventory System(RPG 게임 인벤토리 만들기) - Rito15&url=https://rito15.github.io/posts/unity-study-rpg-inventory/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -3376,27 +3652,27 @@ ItemTooltipUI.cs - Methods
         
         
         
+        <li><a href="/posts/memo-cpp-stack-memory-allocation/">C++ 스택 메모리 동적 할당</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임 인벤토리 만들기)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-cpp-smart-debugging/">C++ Smart Debugging</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
       
         
         
         
         <li><a href="/posts/fog-of-war/">전장의 안개(Fog of War)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
       
 
       </ul>
@@ -6472,6 +6748,32 @@ ItemTooltipUI.cs - Methods
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8384,73 +8686,6 @@ ItemTooltipUI.cs - Methods
       
       
       <div class="card">
-        <a href="/posts/unity-physics-based-movement/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 25
-  
-
-  <i class="unloaded">2021-02-25T04:11:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>물리 기반 캐릭터 이동 구현하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목차
-
-
-
-  1. 서론
-  2. 이동 스크립트 분리
-  3. 요구사항 정리
-  4. 필드, 프로퍼티 정의
-  5. 상태 검사 구현
-  6. 중력 적용
-  7. 이동 구현
-  8. 물리 상호작용
-  9. 구현 결과
-  10. 소스 코드
-
-
-
-
-서론
-
-
-유니티에서 캐릭터 이동을 구현하기 위한 방법들은 다양하다.
-
-
-  Transform
-  Rigidbo...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-study-radial-menu/">
           <div class="card-body">
             <!--
@@ -8518,6 +8753,73 @@ Preview
 
 
   Pola...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-physics-based-movement/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 25
+  
+
+  <i class="unloaded">2021-02-25T04:11:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>물리 기반 캐릭터 이동 구현하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목차
+
+
+
+  1. 서론
+  2. 이동 스크립트 분리
+  3. 요구사항 정리
+  4. 필드, 프로퍼티 정의
+  5. 상태 검사 구현
+  6. 중력 적용
+  7. 이동 구현
+  8. 물리 상호작용
+  9. 구현 결과
+  10. 소스 코드
+
+
+
+
+서론
+
+
+유니티에서 캐릭터 이동을 구현하기 위한 방법들은 다양하다.
+
+
+  Transform
+  Rigidbo...
               </p>
             </div>
           </div>

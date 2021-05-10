@@ -731,27 +731,27 @@ private void Form1_Shown(object sender, EventArgs e)
         
         
         
+        <li><a href="/posts/memo-cpp-stack-memory-allocation/">C++ 스택 메모리 동적 할당</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임 인벤토리 만들기)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-cpp-smart-debugging/">C++ Smart Debugging</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
       
         
         
         
         <li><a href="/posts/fog-of-war/">전장의 안개(Fog of War)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
       
 
       </ul>
@@ -3736,6 +3736,32 @@ private void Form1_Shown(object sender, EventArgs e)
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5681,122 +5707,6 @@ private void Form1_Shown(object sender, EventArgs e)
       
       
       <div class="card">
-        <a href="/posts/unity-memo-textmeshpro/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 12
-  
-
-  <i class="unloaded">2021-02-12T02:09:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>텍스트 메쉬 프로(TMPro) 사용하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                특징
-
-
-
-  
-    SDF(Signed Distance Field)를 이용하여 UGUI 텍스트보다 외곽선을 더 깔끔하게 표현한다.
-  
-  
-    마테리얼을 이용하여 다양한 효과를 줄 수 있다.
-  
-  
-    UGUI 텍스트에 비해 성능이 좋다.
-  
-  
-    미리 고해상도의 Font Texture Atlas를 생성하여 사용하기 때문에 실...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-memo-ilspy/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 12
-  
-
-  <i class="unloaded">2021-02-12T05:32:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>ILSpy로 유니티 내부 구현 뜯어보기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                다운로드
-
-
-
-  https://github.com/icsharpcode/ILSpy/releases
-  vsix를 받을 경우, 비주얼 스튜디오의 확장으로 추가하여 [도구] - [ILSpy]를 통해 바로 실행할 수 있다.
-
-
-
-
-사용법
-
-
-
-  
-    ILSpy를 실행한다.
-  
-  
-    File - Open으로 대상 어셈블리(dll, exe 등)...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-memo-cooldown-icon-ui/">
           <div class="card-body">
             <!--
@@ -5853,6 +5763,143 @@ private void Form1_Shown(object sender, EventArgs e)
   RectTransform : Anchor Preset [stretch &amp; stretch] 설정
   Left, Top, Right, Bottom 4픽셀 설정
  ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-fps-tps-character/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 12
+  
+
+  <i class="unloaded">2021-02-12T18:06:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>1인칭, 3인칭 전환 가능한 캐릭터 제작하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목차
+
+
+
+  1. 하이라키 구성
+  2. 스크립트 기초
+  3. 1인칭 이동, 회전
+  4. 3인칭 이동, 회전
+  5. 카메라 전환
+  6. 점프
+  7. 애니메이션 적용
+  8. 애니메이션 블렌딩
+  9. 카메라 전환 시 시점 방향 유지하기
+  10. 3인칭 카메라 줌 구현
+  11. 점프 버그 수정
+  12. 이동 스크립트 분리하기
+  13. ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/water-shader/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 13
+  
+
+  <i class="unloaded">2021-02-13T19:24:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>물 쉐이더 만들기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+
+  서피스 쉐이더로 물 쉐이더 만들기
+
+
+
+
+목차
+
+
+
+  1. 물 쉐이더 기초
+  2. 프레넬 공식 적용
+  3. 물 흐르게 하기
+  4. 스페큘러 적용
+  5. 파도 만들기
+  6. 투과율 제어하기
+  7. 최종 결과
+
+
+
+
+준비물
+
+
+
+  큐브맵 텍스쳐 기반 스카이박스
+  물 노멀맵 텍스쳐
+  물에 빠질 로봇
+
+
+
+
+물 쉐이더 기초
+
+...
               </p>
             </div>
           </div>

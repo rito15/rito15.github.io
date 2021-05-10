@@ -1,5 +1,5 @@
 ---
-title: RPG Inventory System(RPG 게임용 인벤토리 제작하기)
+title: RPG Inventory System(RPG 게임 인벤토리 만들기)
 author: Rito15
 date: 2021-04-15 22:00:00 +09:00
 categories: [Unity, Unity Study]
@@ -1779,23 +1779,188 @@ public void SetItemInfo(ItemData data)
 
 이를 위해서는 슬롯의 위치와 크기가 필요하며,
 
-모든 해상도에 유동적으로 대응하기 위해 `CanvasScaler`의 정보가 필요하다.
+슬롯의 피벗은 Left-Top으로 설정되어 있으므로
+
+기본적으로 툴팁은 `슬롯의 위치 + Vector2(슬롯 너비, -슬롯 높이)`로 위치를 조정하면 된다.
+
+<br>
+
+그런데 여기서 문제점이 하나 발생한다.
+
+해상도에 따라 UI의 실제 크기가 달라지는데, 이를 스크립트를 통해 직접 얻을 수 없다는 점이다.
+
+따라서 이를 계산하기 위해 `CanvasScaler`의 정보가 필요하다.
 
 ![image](https://user-images.githubusercontent.com/42164422/117568320-9ac75780-b0fa-11eb-8358-d35161c3555a.png)
 
 `CanvasScaler`의 UI Scale Mode를 `Scale With Screen Size`로 설정했을 경우,
 
-`Reference Resolution` 값, `Match` 비율과 현재 해상도의 값에 따라
+`Reference Resolution` 값, `Match` 비율과 현재 해상도의 값에 따라 UI의 실제 크기가 달라진다.
 
+<br>
 
+`Match`는 `0` ~ `1` 값을 가지며,
 
+`0`일 때는 기준 해상도와 현재 해상도의 너비 비율에 따라 `RectTransform`의 크기를 계산하고,
+
+`1`일 때는 기준 해상도와 현재 해상도의 높이 비율에 따라 계산한다.
+
+`0` ~ `1` 사이일 때는 너비, 높이 각각의 비율을 합산하여 결과 비율값을 계산한다.
+
+<br>
+
+```cs
+CanvasScaler cs;
+RectTransform rt;
+
+float wRatio = Screen.width  / cs.referenceResolution.x;
+float hRatio = Screen.height / cs.referenceResolution.y;
+
+// 결과 비율값
+float ratio =
+    wRatio * (1f - cs.matchWidthOrHeight) +
+    hRatio * (cs.matchWidthOrHeight);
+
+// 현재 스크린에서 RectTransform의 실제 너비, 높이
+float pixelWidth  = rt.rect.width  * ratio;
+float pixelHeight = rt.rect.height * ratio;
+```
+
+위와 같이 기준 해상도와 현재 해상도에 따른 실제 크기 변화 비율값을 계산하고,
+
+현재 스크린에서 실제 너비와 높이를 계산할 수 있다.
+
+<br>
+
+그리고 인벤토리 슬롯이 화면 우측 또는 하단에 가까이 위치한 경우,
+
+툴팁 UI가 스크린을 벗어나 잘리는 경우도 고려해야 한다.
+
+이를 네 가지 경우로 분리하여 작성한다.
+
+1. 잘리지 않는 경우 - 슬롯 우측 하단에 툴팁 위치하기
+2. 우측이 잘리는 경우 - 슬롯 좌측 하단
+3. 하단이 잘리는 경우 - 슬롯 우측 상단
+4. 우측, 하단 모두 잘리는 경우 - 슬롯 좌측 상단
+
+<br>
+
+<details>
+<summary markdown="span">
+Source Code
+</summary>
+
+```cs
+/// <summary> 툴팁의 위치 조정 </summary>
+public void SetRectPosition(RectTransform slotRect)
+{
+    // 캔버스 스케일러에 따른 해상도 대응
+    float wRatio = Screen.width / _canvasScaler.referenceResolution.x;
+    float hRatio = Screen.height / _canvasScaler.referenceResolution.y;
+    float ratio =
+        wRatio * (1f - _canvasScaler.matchWidthOrHeight) +
+        hRatio * (_canvasScaler.matchWidthOrHeight);
+
+    float slotWidth = slotRect.rect.width * ratio;
+    float slotHeight = slotRect.rect.height * ratio;
+
+    // 툴팁 초기 위치(슬롯 우하단) 설정
+    _rt.position = slotRect.position + new Vector3(slotWidth, -slotHeight);
+    Vector2 pos = _rt.position;
+
+    // 툴팁의 크기
+    float width = _rt.rect.width * ratio;
+    float height = _rt.rect.height * ratio;
+
+    // 우측, 하단이 잘렸는지 여부
+    bool rightTruncated = pos.x + width > Screen.width;
+    bool bottomTruncated = pos.y - height < 0f;
+
+    ref bool R = ref rightTruncated;
+    ref bool B = ref bottomTruncated;
+
+    // 오른쪽만 잘림 => 슬롯의 Left Bottom 방향으로 표시
+    if (R && !B)
+    {
+        _rt.position = new Vector2(pos.x - width - slotWidth, pos.y);
+    }
+    // 아래쪽만 잘림 => 슬롯의 Right Top 방향으로 표시
+    else if (!R && B)
+    {
+        _rt.position = new Vector2(pos.x, pos.y + height + slotHeight);
+    }
+    // 모두 잘림 => 슬롯의 Left Top 방향으로 표시
+    else if (R && B)
+    {
+        _rt.position = new Vector2(pos.x - width - slotWidth, pos.y + height + slotHeight);
+    }
+    // 잘리지 않음 => 슬롯의 Right Bottom 방향으로 표시
+    // Do Nothing
+}
+```
+
+</details>
 
 <br>
 
 ## **[5] 구현 - InventoryUI**
 
+<details>
+<summary markdown="span">
+InventoryUI.cs
+</summary>
 
+```cs
+private void Update()
+{
+    _ped.position = Input.mousePosition;
+    OnPointerEnterAndExit();
 
+    ShowOrHideItemTooltip();
+
+    OnPointerDown();
+    OnPointerDrag();
+    OnPointerUp();
+}
+
+/// <summary> 아이템 정보 툴팁 보여주거나 감추기 </summary>
+private void ShowOrHideItemTooltip()
+{
+    // 마우스가 유효한 아이템 아이콘 위에 올라와 있다면 툴팁 보여주기
+    bool isValid =
+        _pointerOverSlot != null && _pointerOverSlot.HasItem && _pointerOverSlot.IsAccessible
+        && (_pointerOverSlot != _beginDragSlot); // 드래그 시작한 슬롯이면 보여주지 않기
+
+    if (isValid)
+    {
+        UpdateTooltipUI(_pointerOverSlot);
+        _itemTooltip.Show();
+    }
+    else
+        _itemTooltip.Hide();
+}
+
+/// <summary> 툴팁 UI의 슬롯 데이터 갱신 </summary>
+private void UpdateTooltipUI(ItemSlotUI slot)
+{
+    // 툴팁 정보 갱신
+    _itemTooltip.SetItemInfo(_inventory.GetItemData(slot.Index));
+
+    // 툴팁 위치 조정
+    _itemTooltip.SetRectPosition(slot.SlotRect);
+}
+
+```
+
+</details>
+
+<br>
+
+인벤토리 UI에서의 구현은 간단하다.
+
+현재 마우스가 위치한 슬롯에 아이템이 존재할 경우 툴팁 정보를 갱신하고 활성화하며,
+
+그렇지 않다면 툴팁을 비활성화하면 된다.
 
 <br>
 
@@ -1813,12 +1978,19 @@ public void SetItemInfo(ItemData data)
 3. `InventoryPopupUI` - 알맞은 팝업 띄우기
 4. 사용자 - 팝업 UI 상호작용(수량 선택, 확인/취소 버튼 클릭)
 5. `InventoryPopupUI` - 전달받은 콜백 메소드 호출 또는 종료(취소)
+6. `Inventory` - 결과에 따른 아이템 정보 수정
 
 <br>
 
-## **하이라키 구성**
+## **[1] 하이라키 구성**
 
--
+![image](https://user-images.githubusercontent.com/42164422/117660992-c456b080-b1d8-11eb-91bc-ea49d02f3c0b.png)
+
+![image](https://user-images.githubusercontent.com/42164422/117661414-4c3cba80-b1d9-11eb-813d-e0ec470946c0.png)
+
+위와 같은 형태로 UI를 구성하고, 팝업이 등장할 위치(인벤토리 중앙)에 미리 각 팝업 UI를 배치시켜 놓는다.
+
+<br>
 
 ## **아이템 버리기 - 확인/취소 팝업**
 

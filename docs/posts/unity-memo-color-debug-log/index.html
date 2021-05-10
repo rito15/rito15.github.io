@@ -611,27 +611,27 @@
         
         
         
+        <li><a href="/posts/memo-cpp-stack-memory-allocation/">C++ 스택 메모리 동적 할당</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임 인벤토리 만들기)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-cpp-smart-debugging/">C++ Smart Debugging</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
       
         
         
         
         <li><a href="/posts/fog-of-war/">전장의 안개(Fog of War)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임용 인벤토리 제작하기)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a></li>
       
 
       </ul>
@@ -3676,6 +3676,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5556,122 +5582,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-memo-textmeshpro/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 12
-  
-
-  <i class="unloaded">2021-02-12T02:09:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>텍스트 메쉬 프로(TMPro) 사용하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                특징
-
-
-
-  
-    SDF(Signed Distance Field)를 이용하여 UGUI 텍스트보다 외곽선을 더 깔끔하게 표현한다.
-  
-  
-    마테리얼을 이용하여 다양한 효과를 줄 수 있다.
-  
-  
-    UGUI 텍스트에 비해 성능이 좋다.
-  
-  
-    미리 고해상도의 Font Texture Atlas를 생성하여 사용하기 때문에 실...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-memo-ilspy/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 12
-  
-
-  <i class="unloaded">2021-02-12T05:32:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>ILSpy로 유니티 내부 구현 뜯어보기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                다운로드
-
-
-
-  https://github.com/icsharpcode/ILSpy/releases
-  vsix를 받을 경우, 비주얼 스튜디오의 확장으로 추가하여 [도구] - [ILSpy]를 통해 바로 실행할 수 있다.
-
-
-
-
-사용법
-
-
-
-  
-    ILSpy를 실행한다.
-  
-  
-    File - Open으로 대상 어셈블리(dll, exe 등)...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-memo-cooldown-icon-ui/">
           <div class="card-body">
             <!--
@@ -5728,6 +5638,154 @@
   RectTransform : Anchor Preset [stretch &amp; stretch] 설정
   Left, Top, Right, Bottom 4픽셀 설정
  ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-memo-raycast-overhead/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 19
+  
+
+  <i class="unloaded">2021-02-19T16:18:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>레이캐스트 성능 테스트</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                조건
+
+
+고정
+
+  레이캐스트 시작점
+  레이캐스트 방향
+  반복 횟수 : 10만 회
+
+
+변동
+
+  레이캐스트 종류
+  레이어마스크
+  레이캐스트 거리
+  레이캐스트 도형 크기(Sphere, Box)
+  레이캐스트 히트 여부
+
+
+결과
+
+
+
+
+결론
+
+
+성능에 영향을 주는 것
+
+  레이캐스트 종류
+  레이캐스트 히트 여부
+
+
+성능에 영향을 주지 않는 것
+...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-memo-gameobject-over-ui/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 28
+  
+
+  <i class="unloaded">2021-02-28T22:30:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 위에 게임오브젝트 띄우기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Preview
+
+
+
+
+
+  Green : Default
+  Red : Over UI
+
+
+
+
+1. Standard Rendering Pipeline
+
+
+
+  
+    .
+  
+
+  [1] 레이어 준비
+  
+    [Over UI] 레이어를 만든다.
+  
+
+  
+
+  [2] Over UI 카메라 준비
+  
+    
+      카메라를 하나 더 만들고, A...
               </p>
             </div>
           </div>
