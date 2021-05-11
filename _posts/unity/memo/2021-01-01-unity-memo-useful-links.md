@@ -8,9 +8,18 @@ math: true
 mermaid: true
 ---
 
+# 유니티 코리아 유튜브
+
+- <https://www.youtube.com/c/UnityKoreaHi/playlists>
+
 # 유니티, 쉐이더 튜토리얼
 
 - <https://catlikecoding.com/unity/tutorials/>
+- <https://www.youtube.com/watch?v=mlNWoROvavY>
+
+# URP Shader Basic (Scripting)
+
+- <https://docs.google.com/document/d/1UX0319CXa29fCFAgg0qa5vnH-U6875jt0KLKUk5mke8/edit>
 
 # 레거시 파이프라인과 SRP
 
