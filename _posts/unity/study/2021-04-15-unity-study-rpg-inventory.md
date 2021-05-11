@@ -1964,16 +1964,16 @@ private void UpdateTooltipUI(ItemSlotUI slot)
 
 <br>
 
-# 팝업 UI
+# 팝업 UI 구현
 ---
 
-인벤토리 시스템에서 사용할 팝업은 확인/취소(아이템 버리기), 수량 입력 이렇게 2가지가 있으며,
+인벤토리 시스템에서 사용할 팝업은 확인/취소(아이템 버리기), 수량 입력(아이템 나누기) 이렇게 2가지가 있으며,
 
 `InventoryPopupUI` 클래스에서 모두 관리하도록 구현한다.
 
 팝업 UI의 동작은 다음과 같다.
 
-1. 사용자 - 인벤토리 UI 상호작용(버리기, 수량 나누기)
+1. 사용자 - 인벤토리 UI 상호작용(버리기, 아이템 나누기)
 2. `InventoryUI` - 팝업 호출 및 콜백 메소드 전달
 3. `InventoryPopupUI` - 알맞은 팝업 띄우기
 4. 사용자 - 팝업 UI 상호작용(수량 선택, 확인/취소 버튼 클릭)
@@ -1990,41 +1990,413 @@ private void UpdateTooltipUI(ItemSlotUI slot)
 
 위와 같은 형태로 UI를 구성하고, 팝업이 등장할 위치(인벤토리 중앙)에 미리 각 팝업 UI를 배치시켜 놓는다.
 
+Popup panel에는 인벤토리와 동일한 크기의 반투명 이미지를 준비하고,
+
+`Raycast Target`으로 설정하여 팝업이 띄워진 동안 인벤토리의 슬롯들을 클릭하지 못하게 막는다.
+
 <br>
 
-## **아이템 버리기 - 확인/취소 팝업**
+## **[2] 아이템 버리기 - 확인/취소 팝업**
 
 아이템을 버리려고 시도할 때, 바로 아이템을 제거하지 않고 "정말로 버리시겠습니까?"와 같은 팝업을 띄운다.
 
+<details>
+<summary markdown="span">
+Fields
+</summary>
 
+```cs
+[Header("Confirmation Popup")]
+[SerializeField] private GameObject _confirmationPopupObject;
+[SerializeField] private Text   _confirmationItemNameText;
+[SerializeField] private Text   _confirmationText;
+[SerializeField] private Button _confirmationOkButton;     // Ok
+[SerializeField] private Button _confirmationCancelButton; // Cancel
 
+private event Action OnConfirmationOK; // 확인 버튼 누를 경우 실행할 이벤트
+```
 
-
-
-
-
-
-T          O            D            O
-
-
-
-
-
-
-
-
-
+</details>
 
 <br>
 
-# 아이템 나누기
----
+필드는 각각의 UI 요소, 확인 버튼을 누를 경우 호출될 이벤트로 구성된다.
 
+<br>
+
+<details>
+<summary markdown="span">
+Methods
+</summary>
+
+```cs
+private void Awake()
+{
+    // 1. 확인 버튼 누를 경우 이벤트
+    _confirmationOkButton.onClick.AddListener(HidePanel);
+    _confirmationOkButton.onClick.AddListener(HideConfirmationPopup);
+    _confirmationOkButton.onClick.AddListener(() => OnConfirmationOK?.Invoke());
+
+    // 2. 취소 버튼 누를 경우 이벤트
+    _confirmationCancelButton.onClick.AddListener(HidePanel);
+    _confirmationCancelButton.onClick.AddListener(HideConfirmationPopup);
+}
+
+private void ShowPanel() => gameObject.SetActive(true);
+private void HidePanel() => gameObject.SetActive(false);
+
+private void ShowConfirmationPopup(string itemName)
+{
+    _confirmationItemNameText.text = itemName;
+    _confirmationPopupObject.SetActive(true);
+}
+
+private void HideConfirmationPopup() => _confirmationPopupObject.SetActive(false);
+private void SetConfirmationOKEvent(Action handler) => OnConfirmationOK = handler;
+
+/// <summary> 확인/취소 팝업 띄우기 </summary>
+public void OpenConfirmationPopup(Action okCallback, string itemName)
+{
+    ShowPanel();
+    ShowConfirmationPopup(itemName);
+    OnConfirmationOK = okCallback;
+}
+```
+
+</details>
+
+`InventoryUI`에서 확인/취소 팝업을 호출할 경우, 팝업 패널과 확인/취소 팝업 게임오브젝트를 활성화한다.
+
+그리고 OK 이벤트에 전달받은 콜백 메소드를 등록한다.
+
+팝업이 활성화된 상태에서 OK 버튼을 누르면 콜백 메소드가 등록된 이벤트가 호출되며 팝업이 비활성화되고,
+
+Cancel 버튼을 누르면 아무런 동작을 하지 않고 팝업이 비활성화된다.
+
+<br>
+
+## **[3] 아이템 나누기 - 수량 입력 팝업**
+
+<details>
+<summary markdown="span">
+Fields
+</summary>
+
+```cs
+[Header("Amount Input Popup")]
+[SerializeField] private GameObject _amountInputPopupObject;
+[SerializeField] private Text       _amountInputItemNameText;
+[SerializeField] private InputField _amountInputField;
+[SerializeField] private Button _amountPlusButton;        // +
+[SerializeField] private Button _amountMinusButton;       // -
+[SerializeField] private Button _amountInputOkButton;     // Ok
+[SerializeField] private Button _amountInputCancelButton; // Cancel
+
+// 확인 버튼 눌렀을 때 동작할 이벤트
+private event Action<int> OnAmountInputOK;
+
+// 수량 입력 제한 개수
+private int _maxAmount;
+```
+
+</details>
+
+<br>
+
+수량 입력 팝업 역시 확인 팝업과 같은 메커니즘으로 동작하지만,
+
+콜백 메소드에 정수 타입 매개변수가 하나 추가된다.
+
+수량 입력을 완료하고 OK 버튼을 누를 때,
+
+사용자가 지정한 수량이 콜백 메소드의 인자로 전달되는 방식이다.
+
+<br>
+
+<details>
+<summary markdown="span">
+UI Events
+</summary>
+
+```cs
+private void Awake()
+{
+    _amountInputOkButton.onClick.AddListener(HidePanel);
+    _amountInputOkButton.onClick.AddListener(HideAmountInputPopup);
+    _amountInputOkButton.onClick.AddListener(() => OnAmountInputOK?.Invoke(int.Parse(_amountInputField.text)));
+
+    _amountInputCancelButton.onClick.AddListener(HidePanel);
+    _amountInputCancelButton.onClick.AddListener(HideAmountInputPopup);
+
+    // [-] 버튼 이벤트
+    _amountMinusButton.onClick.AddListener(() =>
+    {
+        int.TryParse(_amountInputField.text, out int amount);
+        if (amount > 1)
+        {
+            // Shift 누르면 10씩 감소
+            int nextAmount = Input.GetKey(KeyCode.LeftShift) ? amount - 10 : amount - 1;
+            if(nextAmount < 1)
+                nextAmount = 1;
+            _amountInputField.text = nextAmount.ToString();
+        }
+    });
+
+    // [+] 버튼 이벤트
+    _amountPlusButton.onClick.AddListener(() =>
+    {
+        int.TryParse(_amountInputField.text, out int amount);
+        if (amount < _maxAmount)
+        {
+            // Shift 누르면 10씩 증가
+            int nextAmount = Input.GetKey(KeyCode.LeftShift) ? amount + 10 : amount + 1;
+            if (nextAmount > _maxAmount)
+                nextAmount = _maxAmount;
+            _amountInputField.text = nextAmount.ToString();
+        }
+    });
+
+    // 입력 값 범위 제한
+    _amountInputField.onValueChanged.AddListener(str =>
+    {
+        int.TryParse(str, out int amount);
+        bool flag = false;
+
+        if (amount < 1)
+        {
+            flag = true;
+            amount = 1;
+        }
+        else if (amount > _maxAmount)
+        {
+            flag = true;
+            amount = _maxAmount;
+        }
+
+        if(flag)
+            _amountInputField.text = amount.ToString();
+    });
+}
+```
+
+</details>
+
+<br>
+
+OK, Cancel 버튼 클릭 이벤트는 확인 팝업과 동일하게 추가한다.
+
+그리고 [-], [+] 버튼 이벤트, `InputField` 값 변경 이벤트를 위와 같이 등록한다.
+
+<br>
+
+
+<details>
+<summary markdown="span">
+Methods
+</summary>
+
+```cs
+/// <summary> 수량 입력 팝업 띄우기 </summary>
+public void OpenAmountInputPopup(Action<int> okCallback, int currentAmount, string itemName)
+{
+    _maxAmount = currentAmount - 1;
+    _amountInputField.text = "1";
+
+    ShowPanel();
+    ShowAmountInputPopup(itemName);
+    OnAmountInputOK = okCallback;
+}
+
+private void ShowAmountInputPopup(string itemName)
+{
+    _amountInputItemNameText.text = itemName;
+    _amountInputPopupObject.SetActive(true);
+}
+```
+
+</details>
+
+<br>
+
+팝업 표시 메소드 역시 확인 팝업과 유사하며,
+
+팝업을 띄울 때 현재 아이템 개수를 전달받아 해당 개수 이상으로 선택할 수 없도록 제한한다.
+
+<br>
+
+## **[4] InventoryUI**
+
+드래그 앤 드롭을 구현할 때 작성한 `OnPointerUp()` 메소드 내에서 `EndDrag()` 메소드를 호출하는 부분이 존재한다.
+
+`EndDrag()` 메소드는 드래그 종료 시 동작할 기능을 구현하며
+
+조건에 따라 아이템 교환 또는 이동, 수량 나누기, 버리기 동작으로 이어진다.
+
+<br>
+
+<details>
+<summary markdown="span">
+InventoryUI.cs
+</summary>
+
+```cs
+private void EndDrag()
+{
+    ItemSlotUI endDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
+
+    // 아이템 슬롯끼리 아이콘 교환 또는 이동
+    if (endDragSlot != null && endDragSlot.IsAccessible)
+    {
+        // 수량 나누기 조건
+        // 1) 마우스 클릭 떼는 순간 좌측 Ctrl 또는 Shift 키 유지
+        // 2) begin : 셀 수 있는 아이템 / end : 비어있는 슬롯
+        // 3) begin 아이템의 수량 > 1
+        bool isSeparatable =
+            (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftShift)) &&
+            (_inventory.IsCountableItem(_beginDragSlot.Index) && !_inventory.HasItem(endDragSlot.Index));
+
+        // true : 수량 나누기, false : 교환 또는 이동
+        bool isSeparation = false;
+        int currentAmount = 0;
+
+        // 현재 개수 확인
+        if (isSeparatable)
+        {
+            currentAmount = _inventory.GetCurrentAmount(_beginDragSlot.Index);
+            if (currentAmount > 1)
+            {
+                isSeparation = true;
+            }
+        }
+
+        // 1. 개수 나누기
+        if(isSeparation)
+            TrySeparateAmount(_beginDragSlot.Index, endDragSlot.Index, currentAmount);
+        // 2. 교환 또는 이동
+        else
+            TrySwapItems(_beginDragSlot, endDragSlot);
+
+        // 툴팁 갱신
+        UpdateTooltipUI(endDragSlot);
+        return;
+    }
+
+    // 버리기(커서가 UI 레이캐스트 타겟 위에 있지 않은 경우)
+    if (!IsOverUI())
+    {
+        int index = _beginDragSlot.Index;
+        string itemName = _inventory.GetItemName(index);
+        int amount = _inventory.GetCurrentAmount(index);
+
+        // 셀 수 있는 아이템의 경우, 수량 표시
+        if(amount > 1)
+            itemName += $" x{amount}";
+
+        // 확인 팝업 띄우고 콜백 위임
+        _popup.OpenConfirmationPopup(() => TryRemoveItem(index), itemName);
+    }
+}
+
+/// <summary> UI 및 인벤토리에서 아이템 제거 </summary>
+private void TryRemoveItem(int index)
+{
+    _inventory.Remove(index);
+}
+
+/// <summary> 셀 수 있는 아이템 개수 나누기 </summary>
+private void TrySeparateAmount(int indexA, int indexB, int amount)
+{
+    if (indexA == indexB)
+    {
+        return;
+    }
+    string itemName = _inventory.GetItemName(indexA);
+
+    _popup.OpenAmountInputPopup(
+        amt => _inventory.SeparateAmount(indexA, indexB, amt),
+        amount, itemName
+    );
+}
+```
+
+</details>
+
+<br>
+
+단순히 아이템을 제거하던 부분을 팝업 호출 및 콜백 전달로 바꾸고,
+
+아이템 수량을 나누는 부분 역시 팝업을 호출하고 콜백 메소드를 전달하는 방식으로 구현하며
+
+수량 나누기 기능은 셀 수 있는 아이템을 `Ctrl` 또는 `Shift` 버튼을 누른 채로 드래그했을 때 동작하도록 조건을 지정한다.
+
+<br>
+
+## **[5] Inventory**
+
+<details>
+<summary markdown="span">
+Inventory.cs
+</summary>
+
+```cs
+/// <summary> 셀 수 있는 아이템의 수량 나누기(A -> B 슬롯으로) </summary>
+public void SeparateAmount(int indexA, int indexB, int amount)
+{
+    // amount : 나눌 목표 수량
+
+    if(!IsValidIndex(indexA)) return;
+    if(!IsValidIndex(indexB)) return;
+
+    Item _itemA = _items[indexA];
+    Item _itemB = _items[indexB];
+
+    CountableItem _ciA = _itemA as CountableItem;
+
+    // 조건 : A 슬롯 - 셀 수 있는 아이템 / B 슬롯 - Null
+    // 조건에 맞는 경우, 복제하여 슬롯 B에 추가
+    if (_ciA != null && _itemB == null)
+    {
+        _items[indexB] = _ciA.SeperateAndClone(amount);
+
+        UpdateSlot(indexA, indexB);
+    }
+}
+```
+
+</details>
+
+<br>
+
+인벤토리에서 수량을 나누는 기능은 비교적 간단하다.
+
+A 슬롯의 아이템의 수량을 나누어 B 슬롯으로 복제하며,
+
+이때 A 슬롯 아이템의 수량을 얻어내고 `SeperateAndClone(int)` 메소드를 호출하여
+
+사용자가 입력한 개수만큼 수량을 나누어 적용하면 된다.
+
+그리고 두 슬롯의 UI를 갱신한다.
+
+<br>
+
+## **GIF**
+
+- 아이템 버리기 팝업
+
+![2021_0511_Inventory_RemovePopup](https://user-images.githubusercontent.com/42164422/117789477-59ae7f00-b283-11eb-989b-cb095c4b47fc.gif)
+
+<br>
+
+- 아이템 수량 나누기 팝업
+
+![2021_0511_Inventory_SeparatePopup](https://user-images.githubusercontent.com/42164422/117789483-5b784280-b283-11eb-9c99-4c49ee952f0e.gif)
 
 <br>
 
 # 인벤토리 빈 칸 채우기(Trim)
 ---
+
+
 
 
 <br>

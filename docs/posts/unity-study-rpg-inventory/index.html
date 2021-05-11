@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="RPG Inventory System(RPG 게임 인벤토리 만들기)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개요","datePublished":"2021-04-15T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-rpg-inventory/"},"url":"https://rito15.github.io/posts/unity-study-rpg-inventory/","author":{"@type":"Person","name":"Rito15"},"headline":"RPG Inventory System(RPG 게임 인벤토리 만들기)","dateModified":"2021-05-10T03:44:51+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"개요","datePublished":"2021-04-15T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-rpg-inventory/"},"url":"https://rito15.github.io/posts/unity-study-rpg-inventory/","author":{"@type":"Person","name":"Rito15"},"headline":"RPG Inventory System(RPG 게임 인벤토리 만들기)","dateModified":"2021-05-11T01:41:43+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Mon, May 10, 2021,  3:44 AM +0900"
+    title="Tue, May 11, 2021,  1:41 AM +0900"
   >
 
   
   
 
   
-    May 10
+    May 11
   
 
-  <i class="unloaded">2021-05-10T03:44:51+09:00</i>
+  <i class="unloaded">2021-05-11T01:41:43+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="10808 words">60 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="12694 words">70 min</span>
 
 
           <!-- page views -->
@@ -3452,17 +3452,17 @@ InventoryUI.cs
 
 <p><br /></p>
 
-<h1 id="팝업-ui">팝업 UI</h1>
+<h1 id="팝업-ui-구현">팝업 UI 구현</h1>
 <hr />
 
-<p>인벤토리 시스템에서 사용할 팝업은 확인/취소(아이템 버리기), 수량 입력 이렇게 2가지가 있으며,</p>
+<p>인벤토리 시스템에서 사용할 팝업은 확인/취소(아이템 버리기), 수량 입력(아이템 나누기) 이렇게 2가지가 있으며,</p>
 
 <p><code class="language-plaintext highlighter-rouge">InventoryPopupUI</code> 클래스에서 모두 관리하도록 구현한다.</p>
 
 <p>팝업 UI의 동작은 다음과 같다.</p>
 
 <ol>
-  <li>사용자 - 인벤토리 UI 상호작용(버리기, 수량 나누기)</li>
+  <li>사용자 - 인벤토리 UI 상호작용(버리기, 아이템 나누기)</li>
   <li><code class="language-plaintext highlighter-rouge">InventoryUI</code> - 팝업 호출 및 콜백 메소드 전달</li>
   <li><code class="language-plaintext highlighter-rouge">InventoryPopupUI</code> - 알맞은 팝업 띄우기</li>
   <li>사용자 - 팝업 UI 상호작용(수량 선택, 확인/취소 버튼 클릭)</li>
@@ -3480,18 +3480,628 @@ InventoryUI.cs
 
 <p>위와 같은 형태로 UI를 구성하고, 팝업이 등장할 위치(인벤토리 중앙)에 미리 각 팝업 UI를 배치시켜 놓는다.</p>
 
+<p>Popup panel에는 인벤토리와 동일한 크기의 반투명 이미지를 준비하고,</p>
+
+<p><code class="language-plaintext highlighter-rouge">Raycast Target</code>으로 설정하여 팝업이 띄워진 동안 인벤토리의 슬롯들을 클릭하지 못하게 막는다.</p>
+
 <p><br /></p>
 
-<h2 id="아이템-버리기---확인취소-팝업"><strong>아이템 버리기 - 확인/취소 팝업</strong></h2>
+<h2 id="2-아이템-버리기---확인취소-팝업"><strong>[2] 아이템 버리기 - 확인/취소 팝업</strong></h2>
 
 <p>아이템을 버리려고 시도할 때, 바로 아이템을 제거하지 않고 “정말로 버리시겠습니까?”와 같은 팝업을 띄운다.</p>
 
-<p>T          O            D            O</p>
+<details>
+  <summary>
+Fields
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nf">Header</span><span class="p">(</span><span class="s">"Confirmation Popup"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">GameObject</span> <span class="n">_confirmationPopupObject</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Text</span>   <span class="n">_confirmationItemNameText</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Text</span>   <span class="n">_confirmationText</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Button</span> <span class="n">_confirmationOkButton</span><span class="p">;</span>     <span class="c1">// Ok</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Button</span> <span class="n">_confirmationCancelButton</span><span class="p">;</span> <span class="c1">// Cancel</span>
+
+<span class="k">private</span> <span class="k">event</span> <span class="n">Action</span> <span class="n">OnConfirmationOK</span><span class="p">;</span> <span class="c1">// 확인 버튼 누를 경우 실행할 이벤트</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
-<h1 id="아이템-나누기">아이템 나누기</h1>
-<hr />
+<p>필드는 각각의 UI 요소, 확인 버튼을 누를 경우 호출될 이벤트로 구성된다.</p>
+
+<p><br /></p>
+
+<details>
+  <summary>
+Methods
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 1. 확인 버튼 누를 경우 이벤트</span>
+    <span class="n">_confirmationOkButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">HidePanel</span><span class="p">);</span>
+    <span class="n">_confirmationOkButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">HideConfirmationPopup</span><span class="p">);</span>
+    <span class="n">_confirmationOkButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">OnConfirmationOK</span><span class="p">?.</span><span class="nf">Invoke</span><span class="p">());</span>
+
+    <span class="c1">// 2. 취소 버튼 누를 경우 이벤트</span>
+    <span class="n">_confirmationCancelButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">HidePanel</span><span class="p">);</span>
+    <span class="n">_confirmationCancelButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">HideConfirmationPopup</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">ShowPanel</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">HidePanel</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">gameObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">ShowConfirmationPopup</span><span class="p">(</span><span class="kt">string</span> <span class="n">itemName</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">_confirmationItemNameText</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">itemName</span><span class="p">;</span>
+    <span class="n">_confirmationPopupObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">HideConfirmationPopup</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">_confirmationPopupObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">SetConfirmationOKEvent</span><span class="p">(</span><span class="n">Action</span> <span class="n">handler</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">OnConfirmationOK</span> <span class="p">=</span> <span class="n">handler</span><span class="p">;</span>
+
+<span class="c1">/// &lt;summary&gt; 확인/취소 팝업 띄우기 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">OpenConfirmationPopup</span><span class="p">(</span><span class="n">Action</span> <span class="n">okCallback</span><span class="p">,</span> <span class="kt">string</span> <span class="n">itemName</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nf">ShowPanel</span><span class="p">();</span>
+    <span class="nf">ShowConfirmationPopup</span><span class="p">(</span><span class="n">itemName</span><span class="p">);</span>
+    <span class="n">OnConfirmationOK</span> <span class="p">=</span> <span class="n">okCallback</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><code class="language-plaintext highlighter-rouge">InventoryUI</code>에서 확인/취소 팝업을 호출할 경우, 팝업 패널과 확인/취소 팝업 게임오브젝트를 활성화한다.</p>
+
+<p>그리고 OK 이벤트에 전달받은 콜백 메소드를 등록한다.</p>
+
+<p>팝업이 활성화된 상태에서 OK 버튼을 누르면 콜백 메소드가 등록된 이벤트가 호출되며 팝업이 비활성화되고,</p>
+
+<p>Cancel 버튼을 누르면 아무런 동작을 하지 않고 팝업이 비활성화된다.</p>
+
+<p><br /></p>
+
+<h2 id="3-아이템-나누기---수량-입력-팝업"><strong>[3] 아이템 나누기 - 수량 입력 팝업</strong></h2>
+
+<details>
+  <summary>
+Fields
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nf">Header</span><span class="p">(</span><span class="s">"Amount Input Popup"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">GameObject</span> <span class="n">_amountInputPopupObject</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Text</span>       <span class="n">_amountInputItemNameText</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">InputField</span> <span class="n">_amountInputField</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Button</span> <span class="n">_amountPlusButton</span><span class="p">;</span>        <span class="c1">// +</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Button</span> <span class="n">_amountMinusButton</span><span class="p">;</span>       <span class="c1">// -</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Button</span> <span class="n">_amountInputOkButton</span><span class="p">;</span>     <span class="c1">// Ok</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Button</span> <span class="n">_amountInputCancelButton</span><span class="p">;</span> <span class="c1">// Cancel</span>
+
+<span class="c1">// 확인 버튼 눌렀을 때 동작할 이벤트</span>
+<span class="k">private</span> <span class="k">event</span> <span class="n">Action</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">OnAmountInputOK</span><span class="p">;</span>
+
+<span class="c1">// 수량 입력 제한 개수</span>
+<span class="k">private</span> <span class="kt">int</span> <span class="n">_maxAmount</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<p>수량 입력 팝업 역시 확인 팝업과 같은 메커니즘으로 동작하지만,</p>
+
+<p>콜백 메소드에 정수 타입 매개변수가 하나 추가된다.</p>
+
+<p>수량 입력을 완료하고 OK 버튼을 누를 때,</p>
+
+<p>사용자가 지정한 수량이 콜백 메소드의 인자로 전달되는 방식이다.</p>
+
+<p><br /></p>
+
+<details>
+  <summary>
+UI Events
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_amountInputOkButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">HidePanel</span><span class="p">);</span>
+    <span class="n">_amountInputOkButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">HideAmountInputPopup</span><span class="p">);</span>
+    <span class="n">_amountInputOkButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">OnAmountInputOK</span><span class="p">?.</span><span class="nf">Invoke</span><span class="p">(</span><span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">_amountInputField</span><span class="p">.</span><span class="n">text</span><span class="p">)));</span>
+
+    <span class="n">_amountInputCancelButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">HidePanel</span><span class="p">);</span>
+    <span class="n">_amountInputCancelButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">HideAmountInputPopup</span><span class="p">);</span>
+
+    <span class="c1">// [-] 버튼 이벤트</span>
+    <span class="n">_amountMinusButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(()</span> <span class="p">=&gt;</span>
+    <span class="p">{</span>
+        <span class="kt">int</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">_amountInputField</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="k">out</span> <span class="kt">int</span> <span class="n">amount</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">amount</span> <span class="p">&gt;</span> <span class="m">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Shift 누르면 10씩 감소</span>
+            <span class="kt">int</span> <span class="n">nextAmount</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftShift</span><span class="p">)</span> <span class="p">?</span> <span class="n">amount</span> <span class="p">-</span> <span class="m">10</span> <span class="p">:</span> <span class="n">amount</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">nextAmount</span> <span class="p">&lt;</span> <span class="m">1</span><span class="p">)</span>
+                <span class="n">nextAmount</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+            <span class="n">_amountInputField</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">nextAmount</span><span class="p">.</span><span class="nf">ToString</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="c1">// [+] 버튼 이벤트</span>
+    <span class="n">_amountPlusButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(()</span> <span class="p">=&gt;</span>
+    <span class="p">{</span>
+        <span class="kt">int</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">_amountInputField</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="k">out</span> <span class="kt">int</span> <span class="n">amount</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">amount</span> <span class="p">&lt;</span> <span class="n">_maxAmount</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Shift 누르면 10씩 증가</span>
+            <span class="kt">int</span> <span class="n">nextAmount</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftShift</span><span class="p">)</span> <span class="p">?</span> <span class="n">amount</span> <span class="p">+</span> <span class="m">10</span> <span class="p">:</span> <span class="n">amount</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">nextAmount</span> <span class="p">&gt;</span> <span class="n">_maxAmount</span><span class="p">)</span>
+                <span class="n">nextAmount</span> <span class="p">=</span> <span class="n">_maxAmount</span><span class="p">;</span>
+            <span class="n">_amountInputField</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">nextAmount</span><span class="p">.</span><span class="nf">ToString</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="c1">// 입력 값 범위 제한</span>
+    <span class="n">_amountInputField</span><span class="p">.</span><span class="n">onValueChanged</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">str</span> <span class="p">=&gt;</span>
+    <span class="p">{</span>
+        <span class="kt">int</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="k">out</span> <span class="kt">int</span> <span class="n">amount</span><span class="p">);</span>
+        <span class="kt">bool</span> <span class="n">flag</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">amount</span> <span class="p">&lt;</span> <span class="m">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">flag</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="n">amount</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">amount</span> <span class="p">&gt;</span> <span class="n">_maxAmount</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">flag</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="n">amount</span> <span class="p">=</span> <span class="n">_maxAmount</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+            <span class="n">_amountInputField</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">amount</span><span class="p">.</span><span class="nf">ToString</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<p>OK, Cancel 버튼 클릭 이벤트는 확인 팝업과 동일하게 추가한다.</p>
+
+<p>그리고 [-], [+] 버튼 이벤트, <code class="language-plaintext highlighter-rouge">InputField</code> 값 변경 이벤트를 위와 같이 등록한다.</p>
+
+<p><br /></p>
+
+<details>
+  <summary>
+Methods
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 수량 입력 팝업 띄우기 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">OpenAmountInputPopup</span><span class="p">(</span><span class="n">Action</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">okCallback</span><span class="p">,</span> <span class="kt">int</span> <span class="n">currentAmount</span><span class="p">,</span> <span class="kt">string</span> <span class="n">itemName</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">_maxAmount</span> <span class="p">=</span> <span class="n">currentAmount</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span>
+    <span class="n">_amountInputField</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">"1"</span><span class="p">;</span>
+
+    <span class="nf">ShowPanel</span><span class="p">();</span>
+    <span class="nf">ShowAmountInputPopup</span><span class="p">(</span><span class="n">itemName</span><span class="p">);</span>
+    <span class="n">OnAmountInputOK</span> <span class="p">=</span> <span class="n">okCallback</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">ShowAmountInputPopup</span><span class="p">(</span><span class="kt">string</span> <span class="n">itemName</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">_amountInputItemNameText</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">itemName</span><span class="p">;</span>
+    <span class="n">_amountInputPopupObject</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<p>팝업 표시 메소드 역시 확인 팝업과 유사하며,</p>
+
+<p>팝업을 띄울 때 현재 아이템 개수를 전달받아 해당 개수 이상으로 선택할 수 없도록 제한한다.</p>
+
+<p><br /></p>
+
+<h2 id="4-inventoryui"><strong>[4] InventoryUI</strong></h2>
+
+<p>드래그 앤 드롭을 구현할 때 작성한 <code class="language-plaintext highlighter-rouge">OnPointerUp()</code> 메소드 내에서 <code class="language-plaintext highlighter-rouge">EndDrag()</code> 메소드를 호출하는 부분이 존재한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">EndDrag()</code> 메소드는 드래그 종료 시 동작할 기능을 구현하며</p>
+
+<p>조건에 따라 아이템 교환 또는 이동, 수량 나누기, 버리기 동작으로 이어진다.</p>
+
+<p><br /></p>
+
+<details>
+  <summary>
+InventoryUI.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">EndDrag</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ItemSlotUI</span> <span class="n">endDragSlot</span> <span class="p">=</span> <span class="n">RaycastAndGetFirstComponent</span><span class="p">&lt;</span><span class="n">ItemSlotUI</span><span class="p">&gt;();</span>
+
+    <span class="c1">// 아이템 슬롯끼리 아이콘 교환 또는 이동</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">endDragSlot</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">endDragSlot</span><span class="p">.</span><span class="n">IsAccessible</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 수량 나누기 조건</span>
+        <span class="c1">// 1) 마우스 클릭 떼는 순간 좌측 Ctrl 또는 Shift 키 유지</span>
+        <span class="c1">// 2) begin : 셀 수 있는 아이템 / end : 비어있는 슬롯</span>
+        <span class="c1">// 3) begin 아이템의 수량 &gt; 1</span>
+        <span class="kt">bool</span> <span class="n">isSeparatable</span> <span class="p">=</span>
+            <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftControl</span><span class="p">)</span> <span class="p">||</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetKey</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">LeftShift</span><span class="p">))</span> <span class="p">&amp;&amp;</span>
+            <span class="p">(</span><span class="n">_inventory</span><span class="p">.</span><span class="nf">IsCountableItem</span><span class="p">(</span><span class="n">_beginDragSlot</span><span class="p">.</span><span class="n">Index</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">_inventory</span><span class="p">.</span><span class="nf">HasItem</span><span class="p">(</span><span class="n">endDragSlot</span><span class="p">.</span><span class="n">Index</span><span class="p">));</span>
+
+        <span class="c1">// true : 수량 나누기, false : 교환 또는 이동</span>
+        <span class="kt">bool</span> <span class="n">isSeparation</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">currentAmount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+
+        <span class="c1">// 현재 개수 확인</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isSeparatable</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">currentAmount</span> <span class="p">=</span> <span class="n">_inventory</span><span class="p">.</span><span class="nf">GetCurrentAmount</span><span class="p">(</span><span class="n">_beginDragSlot</span><span class="p">.</span><span class="n">Index</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">currentAmount</span> <span class="p">&gt;</span> <span class="m">1</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">isSeparation</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 1. 개수 나누기</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">isSeparation</span><span class="p">)</span>
+            <span class="nf">TrySeparateAmount</span><span class="p">(</span><span class="n">_beginDragSlot</span><span class="p">.</span><span class="n">Index</span><span class="p">,</span> <span class="n">endDragSlot</span><span class="p">.</span><span class="n">Index</span><span class="p">,</span> <span class="n">currentAmount</span><span class="p">);</span>
+        <span class="c1">// 2. 교환 또는 이동</span>
+        <span class="k">else</span>
+            <span class="nf">TrySwapItems</span><span class="p">(</span><span class="n">_beginDragSlot</span><span class="p">,</span> <span class="n">endDragSlot</span><span class="p">);</span>
+
+        <span class="c1">// 툴팁 갱신</span>
+        <span class="nf">UpdateTooltipUI</span><span class="p">(</span><span class="n">endDragSlot</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 버리기(커서가 UI 레이캐스트 타겟 위에 있지 않은 경우)</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="nf">IsOverUI</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="p">=</span> <span class="n">_beginDragSlot</span><span class="p">.</span><span class="n">Index</span><span class="p">;</span>
+        <span class="kt">string</span> <span class="n">itemName</span> <span class="p">=</span> <span class="n">_inventory</span><span class="p">.</span><span class="nf">GetItemName</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">amount</span> <span class="p">=</span> <span class="n">_inventory</span><span class="p">.</span><span class="nf">GetCurrentAmount</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+
+        <span class="c1">// 셀 수 있는 아이템의 경우, 수량 표시</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">amount</span> <span class="p">&gt;</span> <span class="m">1</span><span class="p">)</span>
+            <span class="n">itemName</span> <span class="p">+=</span> <span class="s">$" x</span><span class="p">{</span><span class="n">amount</span><span class="p">}</span><span class="s">"</span><span class="p">;</span>
+
+        <span class="c1">// 확인 팝업 띄우고 콜백 위임</span>
+        <span class="n">_popup</span><span class="p">.</span><span class="nf">OpenConfirmationPopup</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nf">TryRemoveItem</span><span class="p">(</span><span class="n">index</span><span class="p">),</span> <span class="n">itemName</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; UI 및 인벤토리에서 아이템 제거 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">TryRemoveItem</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">_inventory</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 셀 수 있는 아이템 개수 나누기 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">TrySeparateAmount</span><span class="p">(</span><span class="kt">int</span> <span class="n">indexA</span><span class="p">,</span> <span class="kt">int</span> <span class="n">indexB</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">indexA</span> <span class="p">==</span> <span class="n">indexB</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">string</span> <span class="n">itemName</span> <span class="p">=</span> <span class="n">_inventory</span><span class="p">.</span><span class="nf">GetItemName</span><span class="p">(</span><span class="n">indexA</span><span class="p">);</span>
+
+    <span class="n">_popup</span><span class="p">.</span><span class="nf">OpenAmountInputPopup</span><span class="p">(</span>
+        <span class="n">amt</span> <span class="p">=&gt;</span> <span class="n">_inventory</span><span class="p">.</span><span class="nf">SeparateAmount</span><span class="p">(</span><span class="n">indexA</span><span class="p">,</span> <span class="n">indexB</span><span class="p">,</span> <span class="n">amt</span><span class="p">),</span>
+        <span class="n">amount</span><span class="p">,</span> <span class="n">itemName</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<p>단순히 아이템을 제거하던 부분을 팝업 호출 및 콜백 전달로 바꾸고,</p>
+
+<p>아이템 수량을 나누는 부분 역시 팝업을 호출하고 콜백 메소드를 전달하는 방식으로 구현하며</p>
+
+<p>수량 나누기 기능은 셀 수 있는 아이템을 <code class="language-plaintext highlighter-rouge">Ctrl</code> 또는 <code class="language-plaintext highlighter-rouge">Shift</code> 버튼을 누른 채로 드래그했을 때 동작하도록 조건을 지정한다.</p>
+
+<p><br /></p>
+
+<h2 id="5-inventory"><strong>[5] Inventory</strong></h2>
+
+<details>
+  <summary>
+Inventory.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 셀 수 있는 아이템의 수량 나누기(A -&gt; B 슬롯으로) &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">SeparateAmount</span><span class="p">(</span><span class="kt">int</span> <span class="n">indexA</span><span class="p">,</span> <span class="kt">int</span> <span class="n">indexB</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// amount : 나눌 목표 수량</span>
+
+    <span class="k">if</span><span class="p">(!</span><span class="nf">IsValidIndex</span><span class="p">(</span><span class="n">indexA</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(!</span><span class="nf">IsValidIndex</span><span class="p">(</span><span class="n">indexB</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="n">Item</span> <span class="n">_itemA</span> <span class="p">=</span> <span class="n">_items</span><span class="p">[</span><span class="n">indexA</span><span class="p">];</span>
+    <span class="n">Item</span> <span class="n">_itemB</span> <span class="p">=</span> <span class="n">_items</span><span class="p">[</span><span class="n">indexB</span><span class="p">];</span>
+
+    <span class="n">CountableItem</span> <span class="n">_ciA</span> <span class="p">=</span> <span class="n">_itemA</span> <span class="k">as</span> <span class="n">CountableItem</span><span class="p">;</span>
+
+    <span class="c1">// 조건 : A 슬롯 - 셀 수 있는 아이템 / B 슬롯 - Null</span>
+    <span class="c1">// 조건에 맞는 경우, 복제하여 슬롯 B에 추가</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_ciA</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">_itemB</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_items</span><span class="p">[</span><span class="n">indexB</span><span class="p">]</span> <span class="p">=</span> <span class="n">_ciA</span><span class="p">.</span><span class="nf">SeperateAndClone</span><span class="p">(</span><span class="n">amount</span><span class="p">);</span>
+
+        <span class="nf">UpdateSlot</span><span class="p">(</span><span class="n">indexA</span><span class="p">,</span> <span class="n">indexB</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<p>인벤토리에서 수량을 나누는 기능은 비교적 간단하다.</p>
+
+<p>A 슬롯의 아이템의 수량을 나누어 B 슬롯으로 복제하며,</p>
+
+<p>이때 A 슬롯 아이템의 수량을 얻어내고 <code class="language-plaintext highlighter-rouge">SeperateAndClone(int)</code> 메소드를 호출하여</p>
+
+<p>사용자가 입력한 개수만큼 수량을 나누어 적용하면 된다.</p>
+
+<p>그리고 두 슬롯의 UI를 갱신한다.</p>
+
+<p><br /></p>
+
+<h2 id="gif"><strong>GIF</strong></h2>
+
+<ul>
+  <li>아이템 버리기 팝업</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117789477-59ae7f00-b283-11eb-989b-cb095c4b47fc.gif" alt="2021_0511_Inventory_RemovePopup" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>아이템 수량 나누기 팝업</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117789483-5b784280-b283-11eb-9c99-4c49ee952f0e.gif" alt="2021_0511_Inventory_SeparatePopup" /></p>
 
 <p><br /></p>
 
@@ -3652,12 +4262,12 @@ InventoryUI.cs
         
         
         
-        <li><a href="/posts/memo-cpp-stack-memory-allocation/">C++ 스택 메모리 동적 할당</a></li>
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임 인벤토리 만들기)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임 인벤토리 만들기)</a></li>
+        <li><a href="/posts/memo-cpp-stack-memory-allocation/">C++ 스택 메모리 동적 할당</a></li>
       
         
         
