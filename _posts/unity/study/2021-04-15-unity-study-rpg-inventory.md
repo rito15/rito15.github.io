@@ -757,9 +757,11 @@ public class PortionItemData : CountableItemData
 
 `ItemData` 클래스는 `ScriptableObject` 클래스를 상속하며, 아이템의 공통 데이터들을 저장한다.
 
-그리고 이를 상속받는 하위 클래스들을 작성하고 유니티 내에서 미리 애셋을 만들어 관리한다.
+그리고 이를 상속받는 하위 클래스들을 작성하고 유니티 내에서 미리 아이템 애셋들을 만들어 관리한다.
 
 ![image](https://user-images.githubusercontent.com/42164422/115995280-9d638080-a615-11eb-945c-b13558c15240.png)
+
+![image](https://user-images.githubusercontent.com/42164422/118019293-c7e26700-b393-11eb-93f2-ff640501ab9e.png)
 
 <br>
 
@@ -2396,19 +2398,218 @@ A 슬롯의 아이템의 수량을 나누어 B 슬롯으로 복제하며,
 # 인벤토리 빈 칸 채우기(Trim)
 ---
 
+![2021_0512_Inventory_Trim](https://user-images.githubusercontent.com/42164422/117974145-327dad80-b368-11eb-8b90-29d409e2209b.gif)
 
+<br>
 
+## **[1] 하이라키 구성**
+
+![image](https://user-images.githubusercontent.com/42164422/117974306-62c54c00-b368-11eb-89da-9815dff3852d.png)
+
+인벤토리 좌측 상단에 `Trim`, `Sort` 버튼을 준비한다.
+
+<br>
+
+## **[2] 배열 빈 칸 채우기 알고리즘**
+
+배열의 빈 칸을 앞에서부터 채우는 아주 간단한 알고리즘이 있다.
+
+기존 배열(A)와 크기가 동일한 빈 배열(B)을 새로 만들고,
+
+A의 처음부터 끝까지 순회하며 null이 아닌 요소를 B 배열의 앞에서부터 차례로 넣으면 된다.
+
+하지만 알고리즘을 실행할 때마다 새로운 배열 공간이 필요하다는 단점이 있다.
+
+<br>
+
+두 번째 알고리즘은 다음과 같다.
+
+```
+i 커서와 j 커서가 존재한다.
+i 커서 : 가장 앞에 있는 빈칸을 찾는 커서
+j 커서 : i 커서 위치에서부터 뒤로 이동하며 빈칸이 아닌 곳을 찾는 커서
+
+i커서가 빈칸을 찾으면 j 커서는 i+1 위치부터 뒤로 이동하며 빈칸이 아닌 곳을 찾는다.
+j커서가 아이템을 찾으면 아이템을 i커서 위치로 옮기고, i 커서는 i+1 위치로 이동한다.
+j커서가 배열 범위를 벗어나면 종료한다.
+```
+
+두 번째 알고리즘을 이용해 인벤토리의 슬롯 빈 칸 채우기 메소드를 구현한다.
+
+<br>
+
+<details>
+<summary markdown="span">
+Inventory.cs
+</summary>
+
+```cs
+/// <summary> 업데이트 할 인덱스 목록 </summary>
+private HashSet<int> _indexSetForUpdate = new HashSet<int>();
+
+public void TrimAll()
+{
+    _indexSetForUpdate.Clear();
+
+    int i = -1;
+    while (_items[++i] != null) ;
+    int j = i;
+
+    while (true)
+    {
+        while (++j < Capacity && _items[j] == null);
+
+        if (j == Capacity)
+            break;
+
+        _indexSetForUpdate.Add(i);
+        _indexSetForUpdate.Add(j);
+
+        _items[i] = _items[j];
+        _items[j] = null;
+        i++;
+    }
+
+    foreach (var index in _indexSetForUpdate)
+    {
+        UpdateSlot(index);
+    }
+}
+```
+
+</details>
+
+<br>
+
+## **[3] InventoryUI**
+
+```cs
+[SerializeField] private Button _trimButton;
+[SerializeField] private Button _sortButton;
+
+void Awake()
+{
+    _trimButton.onClick.AddListener(() => _inventory.TrimAll());
+    _sortButton.onClick.AddListener(() => _inventory.SortAll());
+}
+```
+
+버튼 필드에 인스펙터의 버튼을 끌어 등록하고,
+
+`onClick` 이벤트에 위처럼 메소드를 추가한다.
+
+반드시 위와 같이 람다식으로 추가해야 한다.
 
 <br>
 
 # 인벤토리 정렬하기
 ---
 
+![2021_0512_Inventory_Sort](https://user-images.githubusercontent.com/42164422/117974153-34e00780-b368-11eb-9ad6-4a1eb014531d.gif)
+
+<br>
+
+아이템 정렬은 다음 순서로 이루어진다.
+
+1. 앞에서부터 빈 칸을 채운다(Trim 알고리즘).
+2. 아이템이 존재하는 범위 내에서 가중치에 따라 아이템들을 정렬한다.
+
+<br>
+
+## **[1] 정렬 가중치**
+
+아이템을 정렬할 때는 기준값 또는 우선순위가 반드시 필요하다.
+
+이를 위해 미리 아이템의 타입에 따라 가중치 값들을 준비한다.
+
+```cs
+/// <summary> 아이템 데이터 타입별 정렬 가중치 </summary>
+private readonly static Dictionary<Type, int> _sortWeightDict = new Dictionary<Type, int>
+{
+    { typeof(PortionItemData), 10000 },
+    { typeof(WeaponItemData),  20000 },
+    { typeof(ArmorItemData),   30000 },
+};
+```
+
+현재 아이템의 타입은 세부적으로 소비, 무기, 방어구 아이템으로 나뉘며
+
+각각의 타입에 따라 위와 같이 가중치를 딕셔너리를 통해 정의한다.
+
+<br>
+
+## **[2] Comparer**
+
+정렬에는 `Array.Sort()` 메소드를 이용한다.
+
+각 요소의 비교를 위해서는 `Comparison<T>` 또는 `IComparer<T>`가 필요하며,
+
+따라서 `IComparer<T>` 구현하는 클래스를 작성하여 정렬에 사용한다.
+
+```cs
+private class ItemComparer : IComparer<Item>
+{
+    public int Compare(Item a, Item b)
+    {
+        return (a.Data.ID + _sortWeightDict[a.Data.GetType()])
+             - (b.Data.ID + _sortWeightDict[b.Data.GetType()]);
+    }
+}
+private static readonly ItemComparer _itemComparer = new ItemComparer();
+```
+
+`Compare(a,b)` 메소드는 아이템의 정렬 우선순위를 음수, 0, 양수 값으로 반환함으로써 결정한다.
+
+예를들어 `Compare(a,b)`의 결과가 음수이면 정렬 시 a가 b보다 앞에, 양수이면 b가 a보다 앞에 위치한다는 의미이다.
+
+여기에 위에서 정의한 정렬 가중치와 아이템 ID의 합산값을 이용해 정렬 우선순위를 결정하도록 한다.
+
+<br>
+
+## **[3] 메소드 작성**
+
+```cs
+/// <summary> 빈 슬롯 없이 채우면서 아이템 종류별로 정렬하기 </summary>
+public void SortAll()
+{
+    // 1. Trim
+    int i = -1;
+    while (_items[++i] != null) ;
+    int j = i;
+
+    while (true)
+    {
+        while (++j < Capacity && _items[j] == null) ;
+
+        if (j == Capacity)
+            break;
+
+        _items[i] = _items[j];
+        _items[j] = null;
+        i++;
+    }
+
+    // 2. Sort
+    Array.Sort(_items, 0, i, _itemComparer);
+
+    // 3. Update
+    UpdateAllSlot();
+}
+```
+
+우선 Trim 알고리즘을 통해 아이템 배열의 앞에서부터 빈 칸을 채운다.
+
+그리고 미리 만들어놓은 Comparer 객체를 이용해 배열의 `0` ~ `i - 1` 인덱스 범위를 정렬한 뒤,
+
+모든 슬롯을 업데이트한다.
 
 <br>
 
 # 아이템 필터링
 ---
+
+![2021_0512_Inventory_Filter](https://user-images.githubusercontent.com/42164422/117974160-36113480-b368-11eb-969f-fcfc05b37669.gif)
+
 
 
 <br>

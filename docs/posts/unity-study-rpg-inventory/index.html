@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="RPG Inventory System(RPG 게임 인벤토리 만들기)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"개요","datePublished":"2021-04-15T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-rpg-inventory/"},"url":"https://rito15.github.io/posts/unity-study-rpg-inventory/","author":{"@type":"Person","name":"Rito15"},"headline":"RPG Inventory System(RPG 게임 인벤토리 만들기)","dateModified":"2021-05-12T02:43:46+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"RPG Inventory System(RPG 게임 인벤토리 만들기)","description":"개요","dateModified":"2021-05-12T02:43:46+09:00","datePublished":"2021-04-15T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-study-rpg-inventory/"},"url":"https://rito15.github.io/posts/unity-study-rpg-inventory/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="12694 words">70 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="13891 words">77 min</span>
 
 
           <!-- page views -->
@@ -1640,9 +1640,11 @@ PortionItemData.cs
 
 <p><code class="language-plaintext highlighter-rouge">ItemData</code> 클래스는 <code class="language-plaintext highlighter-rouge">ScriptableObject</code> 클래스를 상속하며, 아이템의 공통 데이터들을 저장한다.</p>
 
-<p>그리고 이를 상속받는 하위 클래스들을 작성하고 유니티 내에서 미리 애셋을 만들어 관리한다.</p>
+<p>그리고 이를 상속받는 하위 클래스들을 작성하고 유니티 내에서 미리 아이템 애셋들을 만들어 관리한다.</p>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/115995280-9d638080-a615-11eb-945c-b13558c15240.png" alt="image" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/118019293-c7e26700-b393-11eb-93f2-ff640501ab9e.png" alt="image" /></p>
 
 <p><br /></p>
 
@@ -4108,15 +4110,301 @@ Inventory.cs
 <h1 id="인벤토리-빈-칸-채우기trim">인벤토리 빈 칸 채우기(Trim)</h1>
 <hr />
 
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117974145-327dad80-b368-11eb-8b90-29d409e2209b.gif" alt="2021_0512_Inventory_Trim" /></p>
+
+<p><br /></p>
+
+<h2 id="1-하이라키-구성-2"><strong>[1] 하이라키 구성</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117974306-62c54c00-b368-11eb-89da-9815dff3852d.png" alt="image" /></p>
+
+<p>인벤토리 좌측 상단에 <code class="language-plaintext highlighter-rouge">Trim</code>, <code class="language-plaintext highlighter-rouge">Sort</code> 버튼을 준비한다.</p>
+
+<p><br /></p>
+
+<h2 id="2-배열-빈-칸-채우기-알고리즘"><strong>[2] 배열 빈 칸 채우기 알고리즘</strong></h2>
+
+<p>배열의 빈 칸을 앞에서부터 채우는 아주 간단한 알고리즘이 있다.</p>
+
+<p>기존 배열(A)와 크기가 동일한 빈 배열(B)을 새로 만들고,</p>
+
+<p>A의 처음부터 끝까지 순회하며 null이 아닌 요소를 B 배열의 앞에서부터 차례로 넣으면 된다.</p>
+
+<p>하지만 알고리즘을 실행할 때마다 새로운 배열 공간이 필요하다는 단점이 있다.</p>
+
+<p><br /></p>
+
+<p>두 번째 알고리즘은 다음과 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>i 커서와 j 커서가 존재한다.
+i 커서 : 가장 앞에 있는 빈칸을 찾는 커서
+j 커서 : i 커서 위치에서부터 뒤로 이동하며 빈칸이 아닌 곳을 찾는 커서
+
+i커서가 빈칸을 찾으면 j 커서는 i+1 위치부터 뒤로 이동하며 빈칸이 아닌 곳을 찾는다.
+j커서가 아이템을 찾으면 아이템을 i커서 위치로 옮기고, i 커서는 i+1 위치로 이동한다.
+j커서가 배열 범위를 벗어나면 종료한다.
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>두 번째 알고리즘을 이용해 인벤토리의 슬롯 빈 칸 채우기 메소드를 구현한다.</p>
+
+<p><br /></p>
+
+<details>
+  <summary>
+Inventory.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 업데이트 할 인덱스 목록 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">_indexSetForUpdate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+
+<span class="k">public</span> <span class="k">void</span> <span class="nf">TrimAll</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_indexSetForUpdate</span><span class="p">.</span><span class="nf">Clear</span><span class="p">();</span>
+
+    <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">_items</span><span class="p">[++</span><span class="n">i</span><span class="p">]</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">;</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(++</span><span class="n">j</span> <span class="p">&lt;</span> <span class="n">Capacity</span> <span class="p">&amp;&amp;</span> <span class="n">_items</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">==</span> <span class="k">null</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="p">==</span> <span class="n">Capacity</span><span class="p">)</span>
+            <span class="k">break</span><span class="p">;</span>
+
+        <span class="n">_indexSetForUpdate</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="n">_indexSetForUpdate</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+
+        <span class="n">_items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">_items</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="n">_items</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+        <span class="n">i</span><span class="p">++;</span>
+    <span class="p">}</span>
+
+    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">index</span> <span class="k">in</span> <span class="n">_indexSetForUpdate</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nf">UpdateSlot</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<h2 id="3-inventoryui-1"><strong>[3] InventoryUI</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Button</span> <span class="n">_trimButton</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Button</span> <span class="n">_sortButton</span><span class="p">;</span>
+
+<span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_trimButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">_inventory</span><span class="p">.</span><span class="nf">TrimAll</span><span class="p">());</span>
+    <span class="n">_sortButton</span><span class="p">.</span><span class="n">onClick</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">_inventory</span><span class="p">.</span><span class="nf">SortAll</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>버튼 필드에 인스펙터의 버튼을 끌어 등록하고,</p>
+
+<p><code class="language-plaintext highlighter-rouge">onClick</code> 이벤트에 위처럼 메소드를 추가한다.</p>
+
+<p>반드시 위와 같이 람다식으로 추가해야 한다.</p>
+
 <p><br /></p>
 
 <h1 id="인벤토리-정렬하기">인벤토리 정렬하기</h1>
 <hr />
 
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117974153-34e00780-b368-11eb-9ad6-4a1eb014531d.gif" alt="2021_0512_Inventory_Sort" /></p>
+
+<p><br /></p>
+
+<p>아이템 정렬은 다음 순서로 이루어진다.</p>
+
+<ol>
+  <li>앞에서부터 빈 칸을 채운다(Trim 알고리즘).</li>
+  <li>아이템이 존재하는 범위 내에서 가중치에 따라 아이템들을 정렬한다.</li>
+</ol>
+
+<p><br /></p>
+
+<h2 id="1-정렬-가중치"><strong>[1] 정렬 가중치</strong></h2>
+
+<p>아이템을 정렬할 때는 기준값 또는 우선순위가 반드시 필요하다.</p>
+
+<p>이를 위해 미리 아이템의 타입에 따라 가중치 값들을 준비한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 아이템 데이터 타입별 정렬 가중치 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">readonly</span> <span class="k">static</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">Type</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">_sortWeightDict</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">Type</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="p">{</span> <span class="k">typeof</span><span class="p">(</span><span class="n">PortionItemData</span><span class="p">),</span> <span class="m">10000</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="k">typeof</span><span class="p">(</span><span class="n">WeaponItemData</span><span class="p">),</span>  <span class="m">20000</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="k">typeof</span><span class="p">(</span><span class="n">ArmorItemData</span><span class="p">),</span>   <span class="m">30000</span> <span class="p">},</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>현재 아이템의 타입은 세부적으로 소비, 무기, 방어구 아이템으로 나뉘며</p>
+
+<p>각각의 타입에 따라 위와 같이 가중치를 딕셔너리를 통해 정의한다.</p>
+
+<p><br /></p>
+
+<h2 id="2-comparer"><strong>[2] Comparer</strong></h2>
+
+<p>정렬에는 <code class="language-plaintext highlighter-rouge">Array.Sort()</code> 메소드를 이용한다.</p>
+
+<p>각 요소의 비교를 위해서는 <code class="language-plaintext highlighter-rouge">Comparison&lt;T&gt;</code> 또는 <code class="language-plaintext highlighter-rouge">IComparer&lt;T&gt;</code>가 필요하며,</p>
+
+<p>따라서 <code class="language-plaintext highlighter-rouge">IComparer&lt;T&gt;</code> 구현하는 클래스를 작성하여 정렬에 사용한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">class</span> <span class="nc">ItemComparer</span> <span class="p">:</span> <span class="n">IComparer</span><span class="p">&lt;</span><span class="n">Item</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="nf">Compare</span><span class="p">(</span><span class="n">Item</span> <span class="n">a</span><span class="p">,</span> <span class="n">Item</span> <span class="n">b</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">ID</span> <span class="p">+</span> <span class="n">_sortWeightDict</span><span class="p">[</span><span class="n">a</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="nf">GetType</span><span class="p">()])</span>
+             <span class="p">-</span> <span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">ID</span> <span class="p">+</span> <span class="n">_sortWeightDict</span><span class="p">[</span><span class="n">b</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="nf">GetType</span><span class="p">()]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">ItemComparer</span> <span class="n">_itemComparer</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ItemComparer</span><span class="p">();</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Compare(a,b)</code> 메소드는 아이템의 정렬 우선순위를 음수, 0, 양수 값으로 반환함으로써 결정한다.</p>
+
+<p>예를들어 <code class="language-plaintext highlighter-rouge">Compare(a,b)</code>의 결과가 음수이면 정렬 시 a가 b보다 앞에, 양수이면 b가 a보다 앞에 위치한다는 의미이다.</p>
+
+<p>여기에 위에서 정의한 정렬 가중치와 아이템 ID의 합산값을 이용해 정렬 우선순위를 결정하도록 한다.</p>
+
+<p><br /></p>
+
+<h2 id="3-메소드-작성"><strong>[3] 메소드 작성</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 빈 슬롯 없이 채우면서 아이템 종류별로 정렬하기 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">SortAll</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 1. Trim</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">_items</span><span class="p">[++</span><span class="n">i</span><span class="p">]</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">;</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(++</span><span class="n">j</span> <span class="p">&lt;</span> <span class="n">Capacity</span> <span class="p">&amp;&amp;</span> <span class="n">_items</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="p">==</span> <span class="n">Capacity</span><span class="p">)</span>
+            <span class="k">break</span><span class="p">;</span>
+
+        <span class="n">_items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">_items</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="n">_items</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+        <span class="n">i</span><span class="p">++;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 2. Sort</span>
+    <span class="n">Array</span><span class="p">.</span><span class="nf">Sort</span><span class="p">(</span><span class="n">_items</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">_itemComparer</span><span class="p">);</span>
+
+    <span class="c1">// 3. Update</span>
+    <span class="nf">UpdateAllSlot</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>우선 Trim 알고리즘을 통해 아이템 배열의 앞에서부터 빈 칸을 채운다.</p>
+
+<p>그리고 미리 만들어놓은 Comparer 객체를 이용해 배열의 <code class="language-plaintext highlighter-rouge">0</code> ~ <code class="language-plaintext highlighter-rouge">i - 1</code> 인덱스 범위를 정렬한 뒤,</p>
+
+<p>모든 슬롯을 업데이트한다.</p>
+
 <p><br /></p>
 
 <h1 id="아이템-필터링">아이템 필터링</h1>
 <hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117974160-36113480-b368-11eb-969f-fcfc05b37669.gif" alt="2021_0512_Inventory_Filter" /></p>
 
 <p><br /></p>
 
@@ -4262,6 +4550,11 @@ Inventory.cs
         
         
         
+        <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임 인벤토리 만들기)</a></li>
       
         
@@ -4278,11 +4571,6 @@ Inventory.cs
         
         
         <li><a href="/posts/memo-cpp-smart-debugging/">C++ Smart Debugging</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
       
 
       </ul>
