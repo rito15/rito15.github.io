@@ -367,6 +367,115 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-memo-raycast-overhead/">레이캐스트 성능 테스트</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        조건
+
+
+고정
+
+  레이캐스트 시작점
+  레이캐스트 방향
+  반복 횟수 : 10만 회
+
+
+변동
+
+  레이캐스트 종류
+  레이어마스크
+  레이캐스트 거리
+  레이캐스트 도형 크기(Sphere, Box)
+  레이캐스트 히트 여부
+
+
+결과
+
+
+
+
+결론
+
+
+성능에 영향을 주는 것
+
+  레이캐스트 종류
+  레이캐스트 히트 여부
+
+
+성능에 영향을 주지 않는 것
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Feb 19, 2021,  4:18 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 19
+  
+
+  <i class="unloaded">2021-02-19T16:18:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="314 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/memo-cs-custom-attribute/">커스텀 애트리뷰트</a>
     </h1>
 
@@ -1211,103 +1320,6 @@ struct Material
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-20/">OpenGL 공부 - 20 - Texture Class</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  텍스쳐 클래스화하기
-
-
-
-
-텍스쳐 클래스 작성
-
-
-기존에 메소드화하여 사용하던 텍스쳐를 클래스화하려고 한다.
-
-function.hpp 파일에 LoadTextureImage() 메소드에 작성했던 내용을 클래스로 옮겨 작성한다.
-
-
-  
-    class Texture
-{
-private:
-    GLuint id;
-    GLenum typ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Feb 16, 2021, 10:22 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 16
-  
-
-  <i class="unloaded">2021-02-16T22:22:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="209 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1648,12 +1660,17 @@ private:
         
         
         
-        <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
+        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
         
         
         
         <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임 인벤토리 만들기)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
       
         
         
@@ -1664,11 +1681,6 @@ private:
         
         
         <li><a href="/posts/memo-cpp-stack-memory-allocation/">C++ 스택 메모리 동적 할당</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cpp-smart-debugging/">C++ Smart Debugging</a></li>
       
 
       </ul>

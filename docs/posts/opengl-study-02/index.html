@@ -835,12 +835,17 @@ and call glewInit() to initialize the extension entry points.
         
         
         
-        <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
+        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
         
         
         
         <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임 인벤토리 만들기)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
       
         
         
@@ -851,11 +856,6 @@ and call glewInit() to initialize the extension entry points.
         
         
         <li><a href="/posts/memo-cpp-stack-memory-allocation/">C++ 스택 메모리 동적 할당</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cpp-smart-debugging/">C++ Smart Debugging</a></li>
       
 
       </ul>
@@ -5512,6 +5512,19 @@ and call glewInit() to initialize the extension entry points.
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5806,72 +5819,6 @@ and call glewInit() to initialize the extension entry points.
       
       
       <div class="card">
-        <a href="/posts/opengl-study-16/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 12
-  
-
-  <i class="unloaded">2021-02-12T15:11:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 16 - Transform, Input</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목표
-
-
-  오브젝트 기본 트랜스폼 정의하기
-  키보드 입력 처리하기
-
-
-
-
-트랜스폼 정의
-
-
-트랜스폼의 3요소(위치, 회전, 크기)를 정의한다.
-
-1
-2
-3
-glm::vec3 position(0.0f);
-glm::vec3 rotation(0.0f);
-glm::vec3 scale(1.0f);
-
-
-그리고 모델 행렬에 트랜스폼 연산을 모두 넣어준다.
-
-1...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/opengl-study-17/">
           <div class="card-body">
             <!--
@@ -6011,6 +5958,81 @@ World View 벡터가 필요하므로, 이를 구하기 위한 카메라 위치�
 // main.cpp
 
 glUniform3fv(glGetUniformLocation(shaderProgram, "cameraPos")...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/opengl-study-19/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 15
+  
+
+  <i class="unloaded">2021-02-15T15:30:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 19 - Shader, Transform Class</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+  쉐이더, 트랜스폼 클래스화하기
+
+
+
+
+1. 쉐이더의 클래스화
+
+
+shader.hpp 작성
+
+shader.hpp 파일에 Shader 클래스를 작성한다.
+
+기존에 functions.hpp와 main.cpp에서 사용하던 쉐이더 부분을 모두 Shader 클래스로 옮겨준다.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+1...
               </p>
             </div>
           </div>
