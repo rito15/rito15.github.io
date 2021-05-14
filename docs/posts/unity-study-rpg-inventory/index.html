@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="13891 words">77 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="16417 words">91 min</span>
 
 
           <!-- page views -->
@@ -466,7 +466,24 @@
 <hr />
 
 <ul>
-  <li>RPG 게임에서 사용할 수 있는 기본적인 인벤토리를 제작한다.</li>
+  <li>RPG 게임에서 사용할 수 있는 기본적인 인벤토리를 구현한다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="구현할-기능"><strong>구현할 기능</strong></h2>
+<ul>
+  <li>아이템 추가(습득)</li>
+  <li>아이템 제거(버리기)</li>
+  <li>아이템 사용</li>
+  <li>아이템 이동</li>
+  <li>슬롯 하이라이트</li>
+  <li>아이템 툴팁</li>
+  <li>아이템 버리기 팝업</li>
+  <li>아이템 개수 나누기 팝업</li>
+  <li>인벤토리 빈칸 채우기</li>
+  <li>인벤토리 정렬</li>
+  <li>아이템 필터링</li>
 </ul>
 
 <p><br /></p>
@@ -474,7 +491,7 @@
 <h1 id="클래스-구성">클래스 구성</h1>
 <hr />
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/115534030-52263680-a2d2-11eb-8c23-4a139d5f878f.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/118279947-abb30700-b506-11eb-8223-62946273a547.png" alt="image" /></p>
 
 <h2 id="1-인벤토리"><strong>1. 인벤토리</strong></h2>
 <ul>
@@ -660,7 +677,35 @@ InventoryUI.cs
 57
 58
 59
-</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 지정된 개수만큼 슬롯 영역 내에 슬롯들 동적 생성 &lt;/summary&gt;</span>
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nf">Header</span><span class="p">(</span><span class="s">"Options"</span><span class="p">)]</span>
+<span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">int</span> <span class="n">_horizontalSlotCount</span> <span class="p">=</span> <span class="m">8</span><span class="p">;</span>  <span class="c1">// 슬롯 가로 개수</span>
+<span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">int</span> <span class="n">_verticalSlotCount</span> <span class="p">=</span> <span class="m">8</span><span class="p">;</span>      <span class="c1">// 슬롯 세로 개수</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">float</span> <span class="n">_slotMargin</span> <span class="p">=</span> <span class="m">8f</span><span class="p">;</span>          <span class="c1">// 한 슬롯의 상하좌우 여백</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">float</span> <span class="n">_contentAreaPadding</span> <span class="p">=</span> <span class="m">20f</span><span class="p">;</span> <span class="c1">// 인벤토리 영역의 내부 여백</span>
+<span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">32</span><span class="p">,</span> <span class="m">64</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">float</span> <span class="n">_slotSize</span> <span class="p">=</span> <span class="m">64f</span><span class="p">;</span>      <span class="c1">// 각 슬롯의 크기</span>
+
+<span class="p">[</span><span class="nf">Header</span><span class="p">(</span><span class="s">"Connected Objects"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">RectTransform</span> <span class="n">_contentAreaRT</span><span class="p">;</span> <span class="c1">// 슬롯들이 위치할 영역</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">GameObject</span> <span class="n">_slotUiPrefab</span><span class="p">;</span>     <span class="c1">// 슬롯의 원본 프리팹</span>
+
+<span class="c1">/// &lt;summary&gt; 지정된 개수만큼 슬롯 영역 내에 슬롯들 동적 생성 &lt;/summary&gt;</span>
 <span class="k">private</span> <span class="k">void</span> <span class="nf">InitSlots</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="c1">// 슬롯 프리팹 설정</span>
@@ -1522,6 +1567,346 @@ InventoryUI.cs
 
 <p><br /></p>
 
+<h2 id="source-code"><strong>Source Code</strong></h2>
+
+<details>
+  <summary>
+Fields
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"아이템 아이콘 이미지"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Image</span> <span class="n">_iconImage</span><span class="p">;</span>
+
+<span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"아이템 개수 텍스트"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Text</span> <span class="n">_amountText</span><span class="p">;</span>
+
+<span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"슬롯이 포커스될 때 나타나는 하이라이트 이미지"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Image</span> <span class="n">_highlightImage</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">Space</span><span class="p">]</span>
+<span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"하이라이트 이미지 알파 값"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">float</span> <span class="n">_highlightAlpha</span> <span class="p">=</span> <span class="m">0.5f</span><span class="p">;</span>
+
+<span class="p">[</span><span class="nf">Tooltip</span><span class="p">(</span><span class="s">"하이라이트 소요 시간"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">float</span> <span class="n">_highlightFadeDuration</span> <span class="p">=</span> <span class="m">0.2f</span><span class="p">;</span>
+
+
+<span class="c1">/// &lt;summary&gt; 슬롯의 인덱스 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">int</span> <span class="n">Index</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 슬롯이 아이템을 보유하고 있는지 여부 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">bool</span> <span class="n">HasItem</span> <span class="p">=&gt;</span> <span class="n">_iconImage</span><span class="p">.</span><span class="n">sprite</span> <span class="p">!=</span> <span class="k">null</span><span class="p">;</span>
+
+<span class="c1">/// &lt;summary&gt; 접근 가능한 슬롯인지 여부 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">bool</span> <span class="n">IsAccessible</span> <span class="p">=&gt;</span> <span class="n">_isAccessibleSlot</span> <span class="p">&amp;&amp;</span> <span class="n">_isAccessibleItem</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="n">RectTransform</span> <span class="n">SlotRect</span> <span class="p">=&gt;</span> <span class="n">_slotRect</span><span class="p">;</span>
+<span class="k">public</span> <span class="n">RectTransform</span> <span class="n">IconRect</span> <span class="p">=&gt;</span> <span class="n">_iconRect</span><span class="p">;</span>
+
+
+<span class="k">private</span> <span class="n">InventoryUI</span> <span class="n">_inventoryUI</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="n">RectTransform</span> <span class="n">_slotRect</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">RectTransform</span> <span class="n">_iconRect</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">RectTransform</span> <span class="n">_highlightRect</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="n">GameObject</span> <span class="n">_iconGo</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">GameObject</span> <span class="n">_textGo</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">GameObject</span> <span class="n">_highlightGo</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="n">Image</span> <span class="n">_slotImage</span><span class="p">;</span>
+
+<span class="c1">// 현재 하이라이트 알파값</span>
+<span class="k">private</span> <span class="kt">float</span> <span class="n">_currentHLAlpha</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="kt">bool</span> <span class="n">_isAccessibleSlot</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// 슬롯 접근가능 여부</span>
+<span class="k">private</span> <span class="kt">bool</span> <span class="n">_isAccessibleItem</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// 아이템 접근가능 여부</span>
+
+<span class="c1">/// &lt;summary&gt; 비활성화된 슬롯의 색상 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">Color</span> <span class="n">InaccessibleSlotColor</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span><span class="m">0.2f</span><span class="p">,</span> <span class="m">0.2f</span><span class="p">,</span> <span class="m">0.2f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">);</span>
+<span class="c1">/// &lt;summary&gt; 비활성화된 아이콘 색상 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">Color</span> <span class="n">InaccessibleIconColor</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span><span class="m">0.5f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary>
+Methods
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">ShowIcon</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">_iconGo</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">HideIcon</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">_iconGo</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">ShowText</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">_textGo</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">HideText</span><span class="p">()</span> <span class="p">=&gt;</span> <span class="n">_textGo</span><span class="p">.</span><span class="nf">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+<span class="k">public</span> <span class="k">void</span> <span class="nf">SetSlotIndex</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">Index</span> <span class="p">=</span> <span class="n">index</span><span class="p">;</span>
+
+<span class="c1">/// &lt;summary&gt; 슬롯 자체의 활성화/비활성화 여부 설정 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">SetSlotAccessibleState</span><span class="p">(</span><span class="kt">bool</span> <span class="k">value</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// 중복 처리는 지양</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_isAccessibleSlot</span> <span class="p">==</span> <span class="k">value</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_slotImage</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">black</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">_slotImage</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">InaccessibleSlotColor</span><span class="p">;</span>
+        <span class="nf">HideIcon</span><span class="p">();</span>
+        <span class="nf">HideText</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">_isAccessibleSlot</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 아이템 활성화/비활성화 여부 설정 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">SetItemAccessibleState</span><span class="p">(</span><span class="kt">bool</span> <span class="k">value</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">_isAccessibleItem</span> <span class="p">==</span> <span class="k">value</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_iconImage</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">white</span><span class="p">;</span>
+        <span class="n">_amountText</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">white</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">_iconImage</span><span class="p">.</span><span class="n">color</span>  <span class="p">=</span> <span class="n">InaccessibleIconColor</span><span class="p">;</span>
+        <span class="n">_amountText</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">InaccessibleIconColor</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">_isAccessibleItem</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 다른 슬롯과 아이템 아이콘 교환 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">SwapOrMoveIcon</span><span class="p">(</span><span class="n">ItemSlotUI</span> <span class="n">other</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="p">==</span> <span class="k">this</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span> <span class="c1">// 자기 자신과 교환 불가</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">IsAccessible</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="n">other</span><span class="p">.</span><span class="n">IsAccessible</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="kt">var</span> <span class="n">temp</span> <span class="p">=</span> <span class="n">_iconImage</span><span class="p">.</span><span class="n">sprite</span><span class="p">;</span>
+
+    <span class="c1">// 1. 대상에 아이템이 있는 경우 : 교환</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">HasItem</span><span class="p">)</span> <span class="nf">SetItem</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">_iconImage</span><span class="p">.</span><span class="n">sprite</span><span class="p">);</span>
+
+    <span class="c1">// 2. 없는 경우 : 이동</span>
+    <span class="k">else</span> <span class="nf">RemoveItem</span><span class="p">();</span>
+
+    <span class="n">other</span><span class="p">.</span><span class="nf">SetItem</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 슬롯에 아이템 등록 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">SetItem</span><span class="p">(</span><span class="n">Sprite</span> <span class="n">itemSprite</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">itemSprite</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_iconImage</span><span class="p">.</span><span class="n">sprite</span> <span class="p">=</span> <span class="n">itemSprite</span><span class="p">;</span>
+        <span class="nf">ShowIcon</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="nf">RemoveItem</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 슬롯에서 아이템 제거 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">RemoveItem</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_iconImage</span><span class="p">.</span><span class="n">sprite</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+    <span class="nf">HideIcon</span><span class="p">();</span>
+    <span class="nf">HideText</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 아이템 이미지 투명도 설정 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">SetIconAlpha</span><span class="p">(</span><span class="kt">float</span> <span class="n">alpha</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">_iconImage</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Color</span><span class="p">(</span>
+        <span class="n">_iconImage</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">_iconImage</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">g</span><span class="p">,</span> <span class="n">_iconImage</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">b</span><span class="p">,</span> <span class="n">alpha</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 아이템 개수 텍스트 설정(amount가 1 이하일 경우 텍스트 미표시) &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">SetItemAmount</span><span class="p">(</span><span class="kt">int</span> <span class="n">amount</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">HasItem</span> <span class="p">&amp;&amp;</span> <span class="n">amount</span> <span class="p">&gt;</span> <span class="m">1</span><span class="p">)</span>
+        <span class="nf">ShowText</span><span class="p">();</span>
+    <span class="k">else</span>
+        <span class="nf">HideText</span><span class="p">();</span>
+
+    <span class="n">_amountText</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">amount</span><span class="p">.</span><span class="nf">ToString</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
 <h1 id="아이템과-아이템-데이터">아이템과 아이템 데이터</h1>
 <hr />
 
@@ -1866,6 +2251,7 @@ PortionItem.cs
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">Item</code> 배열</li>
+  <li><code class="language-plaintext highlighter-rouge">Capacity</code> : 인벤토리의 아이템 수용 한도</li>
 </ul>
 
 <p><br /></p>
@@ -1883,6 +2269,226 @@ PortionItem.cs
 </ul>
 
 <p>등이 있다.</p>
+
+<p><br /></p>
+
+<h2 id="source-code-1"><strong>Source Code</strong></h2>
+
+<details>
+  <summary>
+Fields
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 아이템 수용 한도 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">int</span> <span class="n">Capacity</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="c1">// 초기 수용 한도</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">,</span> <span class="nf">Range</span><span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="m">64</span><span class="p">)]</span>
+<span class="k">private</span> <span class="kt">int</span> <span class="n">_initalCapacity</span> <span class="p">=</span> <span class="m">32</span><span class="p">;</span>
+
+<span class="c1">// 최대 수용 한도(아이템 배열 크기)</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">,</span> <span class="nf">Range</span><span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="m">64</span><span class="p">)]</span>
+<span class="k">private</span> <span class="kt">int</span> <span class="n">_maxCapacity</span> <span class="p">=</span> <span class="m">64</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
+<span class="k">private</span> <span class="n">InventoryUI</span> <span class="n">_inventoryUI</span><span class="p">;</span> <span class="c1">// 연결된 인벤토리 UI</span>
+
+<span class="c1">/// &lt;summary&gt; 아이템 목록 &lt;/summary&gt;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
+<span class="k">private</span> <span class="n">Item</span><span class="p">[]</span> <span class="n">_items</span><span class="p">;</span>
+
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<details>
+  <summary>
+Methods
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_items</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Item</span><span class="p">[</span><span class="n">_maxCapacity</span><span class="p">];</span>
+    <span class="n">Capacity</span> <span class="p">=</span> <span class="n">_initalCapacity</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">UpdateAccessibleStatesAll</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 인덱스가 수용 범위 내에 있는지 검사 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="kt">bool</span> <span class="nf">IsValidIndex</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">index</span> <span class="p">&gt;=</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="n">index</span> <span class="p">&lt;</span> <span class="n">Capacity</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 앞에서부터 비어있는 슬롯 인덱스 탐색 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="kt">int</span> <span class="nf">FindEmptySlotIndex</span><span class="p">(</span><span class="kt">int</span> <span class="n">startIndex</span> <span class="p">=</span> <span class="m">0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="n">startIndex</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">Capacity</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c1">/// &lt;summary&gt; 모든 슬롯 UI에 접근 가능 여부 업데이트 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">UpdateAccessibleStatesAll</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_inventoryUI</span><span class="p">.</span><span class="nf">SetAccessibleSlotRange</span><span class="p">(</span><span class="n">Capacity</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 해당 슬롯이 아이템을 갖고 있는지 여부 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">bool</span> <span class="nf">HasItem</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nf">IsValidIndex</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">!=</span> <span class="k">null</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 해당 슬롯이 셀 수 있는 아이템인지 여부 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">bool</span> <span class="nf">IsCountableItem</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nf">HasItem</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">is</span> <span class="n">CountableItem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 해당 슬롯의 현재 아이템 개수 리턴</span>
+<span class="c1">/// &lt;para/&gt; - 잘못된 인덱스 : -1 리턴</span>
+<span class="c1">/// &lt;para/&gt; - 빈 슬롯 : 0 리턴</span>
+<span class="c1">/// &lt;para/&gt; - 셀 수 없는 아이템 : 1 리턴</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">int</span> <span class="nf">GetCurrentAmount</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="nf">IsValidIndex</span><span class="p">(</span><span class="n">index</span><span class="p">))</span> <span class="k">return</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+
+    <span class="n">CountableItem</span> <span class="n">ci</span> <span class="p">=</span> <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">as</span> <span class="n">CountableItem</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ci</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+        <span class="k">return</span> <span class="m">1</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">ci</span><span class="p">.</span><span class="n">Amount</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 해당 슬롯의 아이템 정보 리턴 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="n">ItemData</span> <span class="nf">GetItemData</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="nf">IsValidIndex</span><span class="p">(</span><span class="n">index</span><span class="p">))</span> <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">].</span><span class="n">Data</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 해당 슬롯의 아이템 이름 리턴 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="kt">string</span> <span class="nf">GetItemName</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="nf">IsValidIndex</span><span class="p">(</span><span class="n">index</span><span class="p">))</span> <span class="k">return</span> <span class="s">""</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="k">return</span> <span class="s">""</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">].</span><span class="n">Data</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
@@ -1940,12 +2546,12 @@ PortionItem.cs
 
 Item item = items[index]
 if (item == null)
-    inventoryUI.RemoveSlot(index)
+    inventoryUI.RemoveItem(index)
 else
     inventoryUI.SetImage(index, item.image)
     if (item is CountableItem)
         if(item.amount &lt;= 0)
-            inventoryUI.RemoveSlot(index)
+            inventoryUI.RemoveItem(index)
             items[index] = null
         else
             inventoryUI.SetAmount(index, item.amount)
@@ -2102,6 +2708,59 @@ Source Code
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117532612-574dea00-b023-11eb-8f4d-f46d45ecb8f4.gif" alt="2021_0508_Inventory_SumAmount" /></p>
 
 <p><br /></p>
+
+<h2 id="source-code-2"><strong>Source Code</strong></h2>
+
+<details>
+  <summary>
+InventoryUI.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">EndDrag</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ItemSlotUI</span> <span class="n">endDragSlot</span> <span class="p">=</span> <span class="n">RaycastAndGetFirstComponent</span><span class="p">&lt;</span><span class="n">ItemSlotUI</span><span class="p">&gt;();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">endDragSlot</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">endDragSlot</span><span class="p">.</span><span class="n">IsAccessible</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nf">TrySwapItems</span><span class="p">(</span><span class="n">_beginDragSlot</span><span class="p">,</span> <span class="n">endDragSlot</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 두 슬롯의 아이템 교환 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">TrySwapItems</span><span class="p">(</span><span class="n">ItemSlotUI</span> <span class="k">from</span><span class="p">,</span> <span class="n">ItemSlotUI</span> <span class="n">to</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">from</span> <span class="p">==</span> <span class="n">to</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">from</span><span class="p">.</span><span class="nf">SwapOrMoveIcon</span><span class="p">(</span><span class="n">to</span><span class="p">);</span>
+    <span class="n">_inventory</span><span class="p">.</span><span class="nf">Swap</span><span class="p">(</span><span class="k">from</span><span class="p">.</span><span class="n">Index</span><span class="p">,</span> <span class="n">to</span><span class="p">.</span><span class="n">Index</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <details>
   <summary>
@@ -2545,7 +3204,93 @@ Inventory.cs
   <li>ItemSlotUI - 이미지, 텍스트 업데이트</li>
 </ol>
 
-<p>(코드 생략)</p>
+<p><br /></p>
+
+<h2 id="source-code-3"><strong>Source Code</strong></h2>
+
+<details>
+  <summary>
+InventoryUI.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">EndDrag</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ItemSlotUI</span> <span class="n">endDragSlot</span> <span class="p">=</span> <span class="n">RaycastAndGetFirstComponent</span><span class="p">&lt;</span><span class="n">ItemSlotUI</span><span class="p">&gt;();</span>
+
+    <span class="c1">// 아이템 슬롯끼리 아이콘 교환 또는 이동</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">endDragSlot</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">endDragSlot</span><span class="p">.</span><span class="n">IsAccessible</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nf">TrySwapItems</span><span class="p">(</span><span class="n">_beginDragSlot</span><span class="p">,</span> <span class="n">endDragSlot</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 버리기(커서가 UI 레이캐스트 타겟 위에 있지 않은 경우)</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="nf">IsOverUI</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="nf">TryRemoveItem</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; UI 및 인벤토리에서 아이템 제거 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">TryRemoveItem</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">_inventory</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="kt">bool</span> <span class="nf">IsOverUI</span><span class="p">()</span>
+    <span class="p">=&gt;</span> <span class="n">EventSystem</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="nf">IsPointerOverGameObject</span><span class="p">();</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<details>
+  <summary>
+Inventory.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 해당 슬롯의 아이템 제거 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">Remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="nf">IsValidIndex</span><span class="p">(</span><span class="n">index</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="n">_items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+    <span class="nf">UpdateSlot</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
@@ -2604,6 +3349,28 @@ Inventory.cs
 </pre></td></tr></tbody></table></code></div></div>
 
 <p>그리고 장비 아이템과 소비아이템 등, 사용할 수 있는 아이템들은 <code class="language-plaintext highlighter-rouge">IUsableItem</code>을 상속하고 메소드를 구현한다.</p>
+
+<p>예시 :</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">PortionItem</span> <span class="p">:</span> <span class="n">CountableItem</span><span class="p">,</span> <span class="n">IUsableItem</span>
+<span class="p">{</span>
+    <span class="c1">// 인터페이스 메소드 구현</span>
+    <span class="k">public</span> <span class="kt">bool</span> <span class="nf">Use</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Amount</span><span class="p">--;</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
 
@@ -3594,6 +4361,8 @@ Methods
 
 </details>
 
+<p><br /></p>
+
 <p><code class="language-plaintext highlighter-rouge">InventoryUI</code>에서 확인/취소 팝업을 호출할 경우, 팝업 패널과 확인/취소 팝업 게임오브젝트를 활성화한다.</p>
 
 <p>그리고 OK 이벤트에 전달받은 콜백 메소드를 등록한다.</p>
@@ -4406,9 +5175,214 @@ Inventory.cs
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/117974160-36113480-b368-11eb-969f-fcfc05b37669.gif" alt="2021_0512_Inventory_Filter" /></p>
 
+<p>아이템의 종류에 따라 슬롯 활성화/비활성화 상태를 변경할 수 있는 필터링 기능을 만든다.</p>
+
+<p>UGUI의 토글, 토글 그룹을 이용해 구현한다.</p>
+
 <p><br /></p>
 
-<h1 id="source-code">Source Code</h1>
+<h2 id="1-하이라키-구성-3"><strong>[1] 하이라키 구성</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/118275314-3c86e400-b501-11eb-80a5-93f9504fec3f.png" alt="image" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/118275447-62ac8400-b501-11eb-8a5d-af2f2f92dac2.png" alt="image" /></p>
+
+<ul>
+  <li><strong>Toggle Group</strong>
+    <ul>
+      <li>컴포넌트 : <code class="language-plaintext highlighter-rouge">Toggle Group</code></li>
+    </ul>
+  </li>
+  <li>**Toggle Filter ~ **
+    <ul>
+      <li>컴포넌트 : <code class="language-plaintext highlighter-rouge">Image</code></li>
+      <li>컴포넌트 : <code class="language-plaintext highlighter-rouge">Toggle</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Toggle</code> 컴포넌트의 하이라키에서 <code class="language-plaintext highlighter-rouge">Group</code> 프로퍼티에 <strong>Toggle Group</strong>을 드래그하여 넣는다.</li>
+      <li><code class="language-plaintext highlighter-rouge">Toggle</code> 컴포넌트의 하이라키에서 <code class="language-plaintext highlighter-rouge">Graphic</code> 프로퍼티에 자식 <strong>Toggle Mask</strong>를 드래그하여 넣는다.</li>
+    </ul>
+  </li>
+  <li><strong>Text</strong>
+    <ul>
+      <li>컴포넌트 : <code class="language-plaintext highlighter-rouge">Text</code></li>
+      <li>각각 <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">E</code>, <code class="language-plaintext highlighter-rouge">P</code> 텍스트</li>
+    </ul>
+  </li>
+  <li><strong>Toggle Mask</strong>
+    <ul>
+      <li>컴포넌트 : <code class="language-plaintext highlighter-rouge">Image</code></li>
+      <li>토글과 크기가 같은 반투명 이미지</li>
+      <li>해당 토글 버튼의 활성화 상태를 나타낸다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="2-inventory"><strong>[2] Inventory</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nf">Header</span><span class="p">(</span><span class="s">"Filter Toggles"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Toggle</span> <span class="n">_toggleFilterAll</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Toggle</span> <span class="n">_toggleFilterEquipments</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Toggle</span> <span class="n">_toggleFilterPortions</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위의 필드들을 작성하고, 인스펙터에서 해당 토글들을 드래그하여 넣어준다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 인벤토리 UI 내 아이템 필터링 옵션 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">enum</span> <span class="n">FilterOption</span>
+<span class="p">{</span>
+    <span class="n">All</span><span class="p">,</span> <span class="n">Equipment</span><span class="p">,</span> <span class="n">Portion</span>
+<span class="p">}</span>
+<span class="k">private</span> <span class="n">FilterOption</span> <span class="n">_currentFilterOption</span> <span class="p">=</span> <span class="n">FilterOption</span><span class="p">.</span><span class="n">All</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="nf">InitToggleEvents</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">InitToggleEvents</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_toggleFilterAll</span><span class="p">.</span><span class="n">onValueChanged</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span>       <span class="n">flag</span> <span class="p">=&gt;</span> <span class="nf">UpdateFilter</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">FilterOption</span><span class="p">.</span><span class="n">All</span><span class="p">));</span>
+    <span class="n">_toggleFilterEquipments</span><span class="p">.</span><span class="n">onValueChanged</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span><span class="n">flag</span> <span class="p">=&gt;</span> <span class="nf">UpdateFilter</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">FilterOption</span><span class="p">.</span><span class="n">Equipment</span><span class="p">));</span>
+    <span class="n">_toggleFilterPortions</span><span class="p">.</span><span class="n">onValueChanged</span><span class="p">.</span><span class="nf">AddListener</span><span class="p">(</span>  <span class="n">flag</span> <span class="p">=&gt;</span> <span class="nf">UpdateFilter</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">FilterOption</span><span class="p">.</span><span class="n">Portion</span><span class="p">));</span>
+
+    <span class="c1">// Local Method</span>
+    <span class="k">void</span> <span class="nf">UpdateFilter</span><span class="p">(</span><span class="kt">bool</span> <span class="n">flag</span><span class="p">,</span> <span class="n">FilterOption</span> <span class="n">option</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_currentFilterOption</span> <span class="p">=</span> <span class="n">option</span><span class="p">;</span>
+            <span class="nf">UpdateAllSlotFilters</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">FilterOption</code>은 현재 필터 설정 상태를 나타낸다.</p>
+
+<p>게임 시작 시 위와 같이 모든 토글의 <code class="language-plaintext highlighter-rouge">onValueChanged</code> 이벤트에 핸들러를 추가해준다.</p>
+
+<p>사용자가 각 토글을 클릭하면 해당 토글이 활성화되며, <code class="language-plaintext highlighter-rouge">UpdateAllSlotFilters()</code> 메소드를 호출한다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 특정 슬롯의 필터 상태 업데이트 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">UpdateSlotFilterState</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="n">ItemData</span> <span class="n">itemData</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">isFiltered</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+
+    <span class="c1">// null인 슬롯은 타입 검사 없이 필터 활성화</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">itemData</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">_currentFilterOption</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">case</span> <span class="n">FilterOption</span><span class="p">.</span><span class="n">Equipment</span><span class="p">:</span>
+                <span class="n">isFiltered</span> <span class="p">=</span> <span class="p">(</span><span class="n">itemData</span> <span class="k">is</span> <span class="n">EquipmentItemData</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+
+            <span class="k">case</span> <span class="n">FilterOption</span><span class="p">.</span><span class="n">Portion</span><span class="p">:</span>
+                <span class="n">isFiltered</span> <span class="p">=</span> <span class="p">(</span><span class="n">itemData</span> <span class="k">is</span> <span class="n">PortionItemData</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="n">_slotUIList</span><span class="p">[</span><span class="n">index</span><span class="p">].</span><span class="nf">SetItemAccessibleState</span><span class="p">(</span><span class="n">isFiltered</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; 모든 슬롯 필터 상태 업데이트 &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">UpdateAllSlotFilters</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">capacity</span> <span class="p">=</span> <span class="n">_inventory</span><span class="p">.</span><span class="n">Capacity</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">capacity</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="n">ItemData</span> <span class="n">data</span> <span class="p">=</span> <span class="n">_inventory</span><span class="p">.</span><span class="nf">GetItemData</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="nf">UpdateSlotFilterState</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>필터 상태가 변할 때, 모든 슬롯에 있는 아이템의 종류를 검사한다.</p>
+
+<p>예를 들어 현재 필터 상태가 <code class="language-plaintext highlighter-rouge">Equipment</code>일 경우,</p>
+
+<p>슬롯의 아이템 데이터 타입이 <code class="language-plaintext highlighter-rouge">EquipmentItemData</code>와 같거나 그 자식이면 해당 슬롯은 활성화되고</p>
+
+<p>그 외의, 아이템이 존재하는 모든 슬롯은 비활성화된다.</p>
+
+<p>그리고 아이템이 존재하지 않는 슬롯은 항상 활성화된다.</p>
+
+<p>비활성화된 슬롯은 UI 상호작용의 대상으로 지정되지 않는다.</p>
+
+<p><br /></p>
+
+<h1 id="source-code-4">Source Code</h1>
 <hr />
 <ul>
   <li><a href="https://github.com/rito15/UnityStudy2/tree/master/Rito/2.%20Study/2021_0307_Inventory">Github Link</a></li>
@@ -4416,7 +5390,9 @@ Inventory.cs
 
 <h1 id="download">Download</h1>
 <hr />
-<p>-</p>
+<ul>
+  <li><a href="https://github.com/rito15/Images/files/6479094/2021_0514_Inventory.zip">2021_0514_Inventory.zip</a></li>
+</ul>
 
 
 

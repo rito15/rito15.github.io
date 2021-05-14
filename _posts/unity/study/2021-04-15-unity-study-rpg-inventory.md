@@ -11,14 +11,29 @@ mermaid: true
 # 개요
 ---
 
-- RPG 게임에서 사용할 수 있는 기본적인 인벤토리를 제작한다.
+- RPG 게임에서 사용할 수 있는 기본적인 인벤토리를 구현한다.
+
+<br>
+
+## **구현할 기능**
+- 아이템 추가(습득)
+- 아이템 제거(버리기)
+- 아이템 사용
+- 아이템 이동
+- 슬롯 하이라이트
+- 아이템 툴팁
+- 아이템 버리기 팝업
+- 아이템 개수 나누기 팝업
+- 인벤토리 빈칸 채우기
+- 인벤토리 정렬
+- 아이템 필터링
 
 <br>
 
 # 클래스 구성
 ---
 
-![image](https://user-images.githubusercontent.com/42164422/115534030-52263680-a2d2-11eb-8c23-4a139d5f878f.png)
+![image](https://user-images.githubusercontent.com/42164422/118279947-abb30700-b506-11eb-8223-62946273a547.png)
 
 ## **1. 인벤토리**
  - `Inventory` : 전체 아이템들을 관리하고, 인벤토리 내부의 실질적 동작들을 담당한다.
@@ -125,6 +140,20 @@ InventoryUI.cs
 </summary>
 
 ```cs
+[Header("Options")]
+[Range(0, 10)]
+[SerializeField] private int _horizontalSlotCount = 8;  // 슬롯 가로 개수
+[Range(0, 10)]
+[SerializeField] private int _verticalSlotCount = 8;      // 슬롯 세로 개수
+[SerializeField] private float _slotMargin = 8f;          // 한 슬롯의 상하좌우 여백
+[SerializeField] private float _contentAreaPadding = 20f; // 인벤토리 영역의 내부 여백
+[Range(32, 64)]
+[SerializeField] private float _slotSize = 64f;      // 각 슬롯의 크기
+
+[Header("Connected Objects")]
+[SerializeField] private RectTransform _contentAreaRT; // 슬롯들이 위치할 영역
+[SerializeField] private GameObject _slotUiPrefab;     // 슬롯의 원본 프리팹
+
 /// <summary> 지정된 개수만큼 슬롯 영역 내에 슬롯들 동적 생성 </summary>
 private void InitSlots()
 {
@@ -668,6 +697,190 @@ private void OnPointerUp()
 
 <br>
 
+## **Source Code**
+
+<details>
+<summary markdown="span">
+Fields
+</summary>
+
+```cs
+[Tooltip("아이템 아이콘 이미지")]
+[SerializeField] private Image _iconImage;
+
+[Tooltip("아이템 개수 텍스트")]
+[SerializeField] private Text _amountText;
+
+[Tooltip("슬롯이 포커스될 때 나타나는 하이라이트 이미지")]
+[SerializeField] private Image _highlightImage;
+
+[Space]
+[Tooltip("하이라이트 이미지 알파 값")]
+[SerializeField] private float _highlightAlpha = 0.5f;
+
+[Tooltip("하이라이트 소요 시간")]
+[SerializeField] private float _highlightFadeDuration = 0.2f;
+
+
+/// <summary> 슬롯의 인덱스 </summary>
+public int Index { get; private set; }
+
+/// <summary> 슬롯이 아이템을 보유하고 있는지 여부 </summary>
+public bool HasItem => _iconImage.sprite != null;
+
+/// <summary> 접근 가능한 슬롯인지 여부 </summary>
+public bool IsAccessible => _isAccessibleSlot && _isAccessibleItem;
+
+public RectTransform SlotRect => _slotRect;
+public RectTransform IconRect => _iconRect;
+
+
+private InventoryUI _inventoryUI;
+
+private RectTransform _slotRect;
+private RectTransform _iconRect;
+private RectTransform _highlightRect;
+
+private GameObject _iconGo;
+private GameObject _textGo;
+private GameObject _highlightGo;
+
+private Image _slotImage;
+
+// 현재 하이라이트 알파값
+private float _currentHLAlpha = 0f;
+
+private bool _isAccessibleSlot = true; // 슬롯 접근가능 여부
+private bool _isAccessibleItem = true; // 아이템 접근가능 여부
+
+/// <summary> 비활성화된 슬롯의 색상 </summary>
+private static readonly Color InaccessibleSlotColor = new Color(0.2f, 0.2f, 0.2f, 0.5f);
+/// <summary> 비활성화된 아이콘 색상 </summary>
+private static readonly Color InaccessibleIconColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+```
+
+</details>
+
+<br>
+
+<details>
+<summary markdown="span">
+Methods
+</summary>
+
+```cs
+private void ShowIcon() => _iconGo.SetActive(true);
+private void HideIcon() => _iconGo.SetActive(false);
+
+private void ShowText() => _textGo.SetActive(true);
+private void HideText() => _textGo.SetActive(false);
+
+public void SetSlotIndex(int index) => Index = index;
+
+/// <summary> 슬롯 자체의 활성화/비활성화 여부 설정 </summary>
+public void SetSlotAccessibleState(bool value)
+{
+    // 중복 처리는 지양
+    if (_isAccessibleSlot == value) return;
+
+    if (value)
+    {
+        _slotImage.color = Color.black;
+    }
+    else
+    {
+        _slotImage.color = InaccessibleSlotColor;
+        HideIcon();
+        HideText();
+    }
+
+    _isAccessibleSlot = value;
+}
+
+/// <summary> 아이템 활성화/비활성화 여부 설정 </summary>
+public void SetItemAccessibleState(bool value)
+{
+    if(_isAccessibleItem == value) return;
+
+    if (value)
+    {
+        _iconImage.color = Color.white;
+        _amountText.color = Color.white;
+    }
+    else
+    {
+        _iconImage.color  = InaccessibleIconColor;
+        _amountText.color = InaccessibleIconColor;
+    }
+
+    _isAccessibleItem = value;
+}
+
+/// <summary> 다른 슬롯과 아이템 아이콘 교환 </summary>
+public void SwapOrMoveIcon(ItemSlotUI other)
+{
+    if (other == null) return;
+    if (other == this) return; // 자기 자신과 교환 불가
+    if (!this.IsAccessible) return;
+    if (!other.IsAccessible) return;
+
+    var temp = _iconImage.sprite;
+
+    // 1. 대상에 아이템이 있는 경우 : 교환
+    if (other.HasItem) SetItem(other._iconImage.sprite);
+
+    // 2. 없는 경우 : 이동
+    else RemoveItem();
+
+    other.SetItem(temp);
+}
+
+/// <summary> 슬롯에 아이템 등록 </summary>
+public void SetItem(Sprite itemSprite)
+{
+    if (itemSprite != null)
+    {
+        _iconImage.sprite = itemSprite;
+        ShowIcon();
+    }
+    else
+    {
+        RemoveItem();
+    }
+}
+
+/// <summary> 슬롯에서 아이템 제거 </summary>
+public void RemoveItem()
+{
+    _iconImage.sprite = null;
+    HideIcon();
+    HideText();
+}
+
+/// <summary> 아이템 이미지 투명도 설정 </summary>
+public void SetIconAlpha(float alpha)
+{
+    _iconImage.color = new Color(
+        _iconImage.color.r, _iconImage.color.g, _iconImage.color.b, alpha
+    );
+}
+
+/// <summary> 아이템 개수 텍스트 설정(amount가 1 이하일 경우 텍스트 미표시) </summary>
+public void SetItemAmount(int amount)
+{
+    if (HasItem && amount > 1)
+        ShowText();
+    else
+        HideText();
+
+    _amountText.text = amount.ToString();
+}
+```
+
+</details>
+
+<br>
+
 # 아이템과 아이템 데이터
 ---
 
@@ -910,6 +1123,7 @@ UI에서 사용자 이벤트가 발생했을 때 `InventoryUI`는 `Inventory`를
 `Inventory` 클래스가 관리할 데이터(필드)는 다음과 같다.
 
 - `Item` 배열
+- `Capacity` : 인벤토리의 아이템 수용 한도
 
 <br>
 
@@ -924,6 +1138,130 @@ UI에서 사용자 이벤트가 발생했을 때 `InventoryUI`는 `Inventory`를
 - 아이템 사용
 
 등이 있다.
+
+<br>
+
+## **Source Code**
+
+<details>
+<summary markdown="span">
+Fields
+</summary>
+
+```cs
+/// <summary> 아이템 수용 한도 </summary>
+public int Capacity { get; private set; }
+
+// 초기 수용 한도
+[SerializeField, Range(8, 64)]
+private int _initalCapacity = 32;
+
+// 최대 수용 한도(아이템 배열 크기)
+[SerializeField, Range(8, 64)]
+private int _maxCapacity = 64;
+
+[SerializeField]
+private InventoryUI _inventoryUI; // 연결된 인벤토리 UI
+
+/// <summary> 아이템 목록 </summary>
+[SerializeField]
+private Item[] _items;
+
+```
+
+</details>
+
+<br>
+
+<details>
+<summary markdown="span">
+Methods
+</summary>
+
+```cs
+private void Awake()
+{
+    _items = new Item[_maxCapacity];
+    Capacity = _initalCapacity;
+}
+
+private void Start()
+{
+    UpdateAccessibleStatesAll();
+}
+
+/// <summary> 인덱스가 수용 범위 내에 있는지 검사 </summary>
+private bool IsValidIndex(int index)
+{
+    return index >= 0 && index < Capacity;
+}
+
+/// <summary> 앞에서부터 비어있는 슬롯 인덱스 탐색 </summary>
+private int FindEmptySlotIndex(int startIndex = 0)
+{
+    for (int i = startIndex; i < Capacity; i++)
+        if (_items[i] == null)
+            return i;
+    return -1;
+}
+
+
+/// <summary> 모든 슬롯 UI에 접근 가능 여부 업데이트 </summary>
+public void UpdateAccessibleStatesAll()
+{
+    _inventoryUI.SetAccessibleSlotRange(Capacity);
+}
+
+/// <summary> 해당 슬롯이 아이템을 갖고 있는지 여부 </summary>
+public bool HasItem(int index)
+{
+    return IsValidIndex(index) && _items[index] != null;
+}
+
+/// <summary> 해당 슬롯이 셀 수 있는 아이템인지 여부 </summary>
+public bool IsCountableItem(int index)
+{
+    return HasItem(index) && _items[index] is CountableItem;
+}
+
+/// <summary>
+/// 해당 슬롯의 현재 아이템 개수 리턴
+/// <para/> - 잘못된 인덱스 : -1 리턴
+/// <para/> - 빈 슬롯 : 0 리턴
+/// <para/> - 셀 수 없는 아이템 : 1 리턴
+/// </summary>
+public int GetCurrentAmount(int index)
+{
+    if (!IsValidIndex(index)) return -1;
+    if (_items[index] == null) return 0;
+
+    CountableItem ci = _items[index] as CountableItem;
+    if (ci == null)
+        return 1;
+
+    return ci.Amount;
+}
+
+/// <summary> 해당 슬롯의 아이템 정보 리턴 </summary>
+public ItemData GetItemData(int index)
+{
+    if (!IsValidIndex(index)) return null;
+    if (_items[index] == null) return null;
+
+    return _items[index].Data;
+}
+
+/// <summary> 해당 슬롯의 아이템 이름 리턴 </summary>
+public string GetItemName(int index)
+{
+    if (!IsValidIndex(index)) return "";
+    if (_items[index] == null) return "";
+
+    return _items[index].Data.Name;
+}
+```
+
+</details>
 
 <br>
 
@@ -965,12 +1303,12 @@ function UpdateSlot(int index)
 
 Item item = items[index]
 if (item == null)
-    inventoryUI.RemoveSlot(index)
+    inventoryUI.RemoveItem(index)
 else
     inventoryUI.SetImage(index, item.image)
     if (item is CountableItem)
         if(item.amount <= 0)
-            inventoryUI.RemoveSlot(index)
+            inventoryUI.RemoveItem(index)
             items[index] = null
         else
             inventoryUI.SetAmount(index, item.amount)
@@ -1080,6 +1418,39 @@ public void UpdateSlot(int index)
 ![2021_0508_Inventory_SumAmount](https://user-images.githubusercontent.com/42164422/117532612-574dea00-b023-11eb-8f4d-f46d45ecb8f4.gif)
 
 <br>
+
+## **Source Code**
+
+<details>
+<summary markdown="span">
+InventoryUI.cs
+</summary>
+
+```cs
+private void EndDrag()
+{
+    ItemSlotUI endDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
+
+    if (endDragSlot != null && endDragSlot.IsAccessible)
+    {
+        TrySwapItems(_beginDragSlot, endDragSlot);
+    }
+}
+
+/// <summary> 두 슬롯의 아이템 교환 </summary>
+private void TrySwapItems(ItemSlotUI from, ItemSlotUI to)
+{
+    if (from == to)
+    {
+        return;
+    }
+
+    from.SwapOrMoveIcon(to);
+    _inventory.Swap(from.Index, to.Index);
+}
+```
+
+</details>
 
 <details>
 <summary markdown="span">
@@ -1346,7 +1717,62 @@ public int Add(ItemData itemData, int amount = 1)
 5. InventoryUI - 슬롯 업데이트
 6. ItemSlotUI - 이미지, 텍스트 업데이트
 
-(코드 생략)
+<br>
+
+## **Source Code**
+
+<details>
+<summary markdown="span">
+InventoryUI.cs
+</summary>
+
+```cs
+private void EndDrag()
+{
+    ItemSlotUI endDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
+
+    // 아이템 슬롯끼리 아이콘 교환 또는 이동
+    if (endDragSlot != null && endDragSlot.IsAccessible)
+    {
+        TrySwapItems(_beginDragSlot, endDragSlot);
+    }
+
+    // 버리기(커서가 UI 레이캐스트 타겟 위에 있지 않은 경우)
+    if (!IsOverUI())
+    {
+        TryRemoveItem(index);
+    }
+}
+
+/// <summary> UI 및 인벤토리에서 아이템 제거 </summary>
+private void TryRemoveItem(int index)
+{
+    _inventory.Remove(index);
+}
+
+private bool IsOverUI()
+    => EventSystem.current.IsPointerOverGameObject();
+```
+
+</details>
+
+<details>
+<summary markdown="span">
+Inventory.cs
+</summary>
+
+```cs
+/// <summary> 해당 슬롯의 아이템 제거 </summary>
+public void Remove(int index)
+{
+    if (!IsValidIndex(index)) return;
+
+    _items[index] = null;
+    UpdateSlot(index);
+}
+```
+
+</details>
 
 <br>
 
@@ -1396,6 +1822,20 @@ interface IUsableItem
 ```
 
 그리고 장비 아이템과 소비아이템 등, 사용할 수 있는 아이템들은 `IUsableItem`을 상속하고 메소드를 구현한다.
+
+예시 :
+
+```cs
+public class PortionItem : CountableItem, IUsableItem
+{
+    // 인터페이스 메소드 구현
+    public bool Use()
+    {
+        Amount--;
+        return true;
+    }
+}
+```
 
 <br>
 
@@ -2067,6 +2507,8 @@ public void OpenConfirmationPopup(Action okCallback, string itemName)
 
 </details>
 
+<br>
+
 `InventoryUI`에서 확인/취소 팝업을 호출할 경우, 팝업 패널과 확인/취소 팝업 게임오브젝트를 활성화한다.
 
 그리고 OK 이벤트에 전달받은 콜백 메소드를 등록한다.
@@ -2610,7 +3052,137 @@ public void SortAll()
 
 ![2021_0512_Inventory_Filter](https://user-images.githubusercontent.com/42164422/117974160-36113480-b368-11eb-969f-fcfc05b37669.gif)
 
+아이템의 종류에 따라 슬롯 활성화/비활성화 상태를 변경할 수 있는 필터링 기능을 만든다.
 
+UGUI의 토글, 토글 그룹을 이용해 구현한다.
+
+<br>
+
+## **[1] 하이라키 구성**
+
+![image](https://user-images.githubusercontent.com/42164422/118275314-3c86e400-b501-11eb-80a5-93f9504fec3f.png)
+
+![image](https://user-images.githubusercontent.com/42164422/118275447-62ac8400-b501-11eb-8a5d-af2f2f92dac2.png)
+
+- **Toggle Group**
+  - 컴포넌트 : `Toggle Group`
+
+- **Toggle Filter ~ **
+  - 컴포넌트 : `Image`
+  - 컴포넌트 : `Toggle`
+  - `Toggle` 컴포넌트의 하이라키에서 `Group` 프로퍼티에 **Toggle Group**을 드래그하여 넣는다.
+  - `Toggle` 컴포넌트의 하이라키에서 `Graphic` 프로퍼티에 자식 **Toggle Mask**를 드래그하여 넣는다.
+
+- **Text**
+  - 컴포넌트 : `Text`
+  - 각각 `A`, `E`, `P` 텍스트
+
+- **Toggle Mask**
+  - 컴포넌트 : `Image`
+  - 토글과 크기가 같은 반투명 이미지
+  - 해당 토글 버튼의 활성화 상태를 나타낸다.
+
+<br>
+
+## **[2] Inventory**
+
+```cs
+[Header("Filter Toggles")]
+[SerializeField] private Toggle _toggleFilterAll;
+[SerializeField] private Toggle _toggleFilterEquipments;
+[SerializeField] private Toggle _toggleFilterPortions;
+```
+
+위의 필드들을 작성하고, 인스펙터에서 해당 토글들을 드래그하여 넣어준다.
+
+<br>
+
+```cs
+/// <summary> 인벤토리 UI 내 아이템 필터링 옵션 </summary>
+private enum FilterOption
+{
+    All, Equipment, Portion
+}
+private FilterOption _currentFilterOption = FilterOption.All;
+
+private void Awake()
+{
+    // ...
+    InitToggleEvents();
+}
+
+private void InitToggleEvents()
+{
+    _toggleFilterAll.onValueChanged.AddListener(       flag => UpdateFilter(flag, FilterOption.All));
+    _toggleFilterEquipments.onValueChanged.AddListener(flag => UpdateFilter(flag, FilterOption.Equipment));
+    _toggleFilterPortions.onValueChanged.AddListener(  flag => UpdateFilter(flag, FilterOption.Portion));
+
+    // Local Method
+    void UpdateFilter(bool flag, FilterOption option)
+    {
+        if (flag)
+        {
+            _currentFilterOption = option;
+            UpdateAllSlotFilters();
+        }
+    }
+}
+```
+
+`FilterOption`은 현재 필터 설정 상태를 나타낸다.
+
+게임 시작 시 위와 같이 모든 토글의 `onValueChanged` 이벤트에 핸들러를 추가해준다.
+
+사용자가 각 토글을 클릭하면 해당 토글이 활성화되며, `UpdateAllSlotFilters()` 메소드를 호출한다.
+
+<br>
+
+```cs
+/// <summary> 특정 슬롯의 필터 상태 업데이트 </summary>
+public void UpdateSlotFilterState(int index, ItemData itemData)
+{
+    bool isFiltered = true;
+
+    // null인 슬롯은 타입 검사 없이 필터 활성화
+    if(itemData != null)
+        switch (_currentFilterOption)
+        {
+            case FilterOption.Equipment:
+                isFiltered = (itemData is EquipmentItemData);
+                break;
+
+            case FilterOption.Portion:
+                isFiltered = (itemData is PortionItemData);
+                break;
+        }
+
+    _slotUIList[index].SetItemAccessibleState(isFiltered);
+}
+
+/// <summary> 모든 슬롯 필터 상태 업데이트 </summary>
+public void UpdateAllSlotFilters()
+{
+    int capacity = _inventory.Capacity;
+
+    for (int i = 0; i < capacity; i++)
+    {
+        ItemData data = _inventory.GetItemData(i);
+        UpdateSlotFilterState(i, data);
+    }
+}
+```
+
+필터 상태가 변할 때, 모든 슬롯에 있는 아이템의 종류를 검사한다.
+
+예를 들어 현재 필터 상태가 `Equipment`일 경우,
+
+슬롯의 아이템 데이터 타입이 `EquipmentItemData`와 같거나 그 자식이면 해당 슬롯은 활성화되고
+
+그 외의, 아이템이 존재하는 모든 슬롯은 비활성화된다.
+
+그리고 아이템이 존재하지 않는 슬롯은 항상 활성화된다.
+
+비활성화된 슬롯은 UI 상호작용의 대상으로 지정되지 않는다.
 
 <br>
 
@@ -2618,8 +3190,7 @@ public void SortAll()
 ---
 - [Github Link](https://github.com/rito15/UnityStudy2/tree/master/Rito/2.%20Study/2021_0307_Inventory)
 
-
 # Download
 ---
--
+- [2021_0514_Inventory.zip](https://github.com/rito15/Images/files/6479094/2021_0514_Inventory.zip)
 
