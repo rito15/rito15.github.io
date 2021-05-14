@@ -103,15 +103,22 @@ Inventory 게임오브젝트에 `InventoryUI` 컴포넌트를 넣는다.
 
 ![image](https://user-images.githubusercontent.com/42164422/115550437-d1bd0100-a2e4-11eb-88f5-5df146ab3534.png)
 
-아이템 슬롯 UI 프리팹은 위와 같이 구성된다.
+아이템 슬롯 UI는 위와 같이 구성되며,
 
-가장 뒤쪽에 슬롯 이미지, 그리고 안쪽으로 아이콘 이미지가 위치하며
+미리 프리팹 또는 하이라키 내 비활성화 상태의 게임오브젝트로 준비해놓고
+
+`Inventory` 클래스에서 아이템 슬롯 프리팹을 필요한 개수만큼 복제하여 사용하게 된다.
+
+<br>
+
+가장 뒤쪽에 슬롯 이미지(검정색), 그리고 안쪽으로 아이콘 이미지(하얀색)가 위치하며
 
 아이템 수량을 표시할 텍스트, 마우스를 슬롯 위에 올렸을 때 표시할 하이라이트 이미지가 존재한다.
 
 하이라이트 이미지는 아이콘 이미지와 동일한 크기로, 반투명한 색상으로 설정하며 미리 비활성화 해둔다.
 
 그리고 [Item Slot] 게임오브젝트에는 `ItemSlotUI` 컴포넌트를 넣어준다.
+
 
 <br>
 
@@ -437,13 +444,21 @@ private static class Destroyer
 
 <br>
 
-UI의 드래그 앤 드롭을 구현하려면 기본적으로 GraphicRaycaster를 이용해야 한다.
+UI의 드래그 앤 드롭을 구현하려면 기본적으로 `GraphicRaycaster`를 이용해야 한다.
 
-그리고 클릭, 클릭 유지, 클릭을 뗄 경우를 모두 고려하여 작성해야 하는 번거로움이 있다.
+하지만 클릭, 클릭 유지, 클릭을 뗄 경우를 모두 고려하여 작성해야 하는 번거로움이 있다.
 
 유니티에는 이런 번거로움을 단번에 해결해주는 친절한 API가 존재한다.
 
-`UnityEngine.EventSystems` 네임스페이스 내에는 `IPointerDownHandler`, `IDragHandler` 등의 포인터 관련 인터페이스들이 존재하며, 이 인터페이스들을 상속하여 해당하는 메소드들을 구현하면 내부적으로 알맞은 포인터 이벤트를 제공해준다.
+<br>
+
+`UnityEngine.EventSystems` 네임스페이스 내에는
+
+`IPointerDownHandler`, `IDragHandler` 등의 포인터 관련 인터페이스들이 존재하며,
+
+이 인터페이스들을 상속하여 해당하는 메소드들을 구현하면
+
+내부적으로 알맞은 포인터 이벤트를 제공해준다.
 
 
 <details>
@@ -484,6 +499,8 @@ public class MovableHeaderUI : MonoBehaviour, IPointerDownHandler, IDragHandler
 
 </details>
 
+<br>
+
 드래그 앤 드롭은 이를 이용하여 간단히 구현할 수 있다.
 
 마우스 버튼을 누르는 `OnPointerDown` 이벤트가 발생할 때의 트랜스폼 위치와 마우스 위치를 기억하고,
@@ -504,6 +521,8 @@ public class MovableHeaderUI : MonoBehaviour, IPointerDownHandler, IDragHandler
 <br>
 
 아이템의 드래그 앤 드롭을 구현하는 다양한 방법들이 있다.
+
+<br>
 
 ## **[1] 각각의 아이템 아이콘마다 스크립트로 구현하기**
 
@@ -3067,7 +3086,7 @@ UGUI의 토글, 토글 그룹을 이용해 구현한다.
 - **Toggle Group**
   - 컴포넌트 : `Toggle Group`
 
-- **Toggle Filter ~ **
+- **Toggle Filter** ~
   - 컴포넌트 : `Image`
   - 컴포넌트 : `Toggle`
   - `Toggle` 컴포넌트의 하이라키에서 `Group` 프로퍼티에 **Toggle Group**을 드래그하여 넣는다.
