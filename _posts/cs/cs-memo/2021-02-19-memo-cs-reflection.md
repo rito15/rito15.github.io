@@ -104,6 +104,27 @@ public static void Run()
 ```
 
 <br>
+
+## 필드의 값 가져오기
+
+```cs
+public class TestClass
+{
+    private float value;
+}
+```
+
+```cs
+TestClass tc = new TestClass();
+BindingFlags bf = BindingFlags.NonPublic | BindingFlags.Instance;
+FieldInfo fi = tc.GetType().GetField("value", bf);
+
+float value = (float)fi.GetValue(tc);
+```
+
+
+<br>
+
 # References
 ---
 - <https://docs.microsoft.com/ko-kr/dotnet/api/system.reflection.assembly.gettype>
