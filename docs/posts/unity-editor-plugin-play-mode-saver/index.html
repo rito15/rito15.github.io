@@ -26,8 +26,8 @@
 <meta property="og:title" content="Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Note 등록한 컴포넌트의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다." />
-<meta property="og:description" content="Note 등록한 컴포넌트의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다." />
+<meta name="description" content="Note 등록한 컴포넌트들의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다." />
+<meta property="og:description" content="Note 등록한 컴포넌트들의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다." />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note 등록한 컴포넌트의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.","datePublished":"2021-03-13T17:20:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/"},"url":"https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/","author":{"@type":"Person","name":"Rito15"},"headline":"Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)","dateModified":"2021-05-15T22:24:53+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)","description":"Note 등록한 컴포넌트들의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.","dateModified":"2021-05-15T22:24:53+09:00","datePublished":"2021-03-13T17:20:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/"},"url":"https://rito15.github.io/posts/unity-editor-plugin-play-mode-saver/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="484 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="493 words">2 min</span>
 
 
           <!-- page views -->
@@ -466,10 +466,10 @@
 <hr />
 <ul>
   <li>
-    <p>등록한 컴포넌트의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.</p>
+    <p>등록한 컴포넌트들의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.</p>
   </li>
   <li>
-    <p>변경사항을 적용할 대상 컴포넌트들은 <code class="language-plaintext highlighter-rouge">Play Mode Saver</code> 컴포넌트 내에 관리된다.</p>
+    <p>변경사항을 적용할 대상들은 <code class="language-plaintext highlighter-rouge">Play Mode Saver</code> 컴포넌트 내의 목록으로 관리된다.</p>
   </li>
   <li>
     <p>유니티 에디터 내에서만 동작하며, 빌드 시 <code class="language-plaintext highlighter-rouge">Play Mode Saver</code> 컴포넌트는 자동으로 제거된다.</p>
@@ -496,8 +496,11 @@
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/111024194-a6f7a700-8420-11eb-8019-b215be6b42e5.png" alt="image" /></p>
 
+<p><br /></p>
+
 <ul>
-  <li>자동으로 <code class="language-plaintext highlighter-rouge">Play Mode Saver</code> 컴포넌트가 해당 게임오브젝트에 추가된다.</li>
+  <li>자동으로 <code class="language-plaintext highlighter-rouge">Play Mode Saver</code> 컴포넌트가 해당 게임오브젝트에 추가되며,<br />
+<code class="language-plaintext highlighter-rouge">Components</code> 항목에서 목록을 확인할 수 있다.</li>
 </ul>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/111024242-f047f680-8420-11eb-8762-ac7190b30c35.png" alt="image" /></p>
@@ -505,7 +508,7 @@
 <p><br /></p>
 
 <ul>
-  <li>더이상 변경사항 유지를 원하지 않는 경우, 컴포넌트에 우클릭하여 <code class="language-plaintext highlighter-rouge">Don't Save Play Mode Changes</code>를 클릭하면 변경사항 유지 대상에서 제거된다.</li>
+  <li>더이상 변경사항 유지를 원하지 않는 경우, 컴포넌트에 우클릭하여 <code class="language-plaintext highlighter-rouge">Don't Save Play Mode Changes</code>를 클릭하면 목록에서 제거된다.</li>
 </ul>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/111024315-7e23e180-8421-11eb-93aa-36f8898c16fa.png" alt="image" /></p>
@@ -536,10 +539,10 @@
 <h2 id="functions-1">Functions</h2>
 <ul>
   <li>
-    <p><code class="language-plaintext highlighter-rouge">Add All Components</code> : 해당 게임오브젝트 내의 모든 컴포넌트를 대상으로 등록한다.</p>
+    <p><code class="language-plaintext highlighter-rouge">Add All Components</code> : 해당 게임오브젝트 내의 모든 컴포넌트를 목록에 추가한다.</p>
   </li>
   <li>
-    <p><code class="language-plaintext highlighter-rouge">Remove All Components</code> : 대상으로 등록된 모든 컴포넌트를 대상에서 제외한다.</p>
+    <p><code class="language-plaintext highlighter-rouge">Remove All Components</code> : 대상으로 등록된 모든 컴포넌트를 목록에서 제거한다.</p>
   </li>
 </ul>
 

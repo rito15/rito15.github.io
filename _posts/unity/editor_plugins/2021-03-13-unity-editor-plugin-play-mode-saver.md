@@ -10,9 +10,9 @@ mermaid: true
 
 # Note
 ---
-- 등록한 컴포넌트의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.
+- 등록한 컴포넌트들의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.
 
-- 변경사항을 적용할 대상 컴포넌트들은 `Play Mode Saver` 컴포넌트 내에 관리된다.
+- 변경사항을 적용할 대상들은 `Play Mode Saver` 컴포넌트 내의 목록으로 관리된다.
 
 - 유니티 에디터 내에서만 동작하며, 빌드 시 `Play Mode Saver` 컴포넌트는 자동으로 제거된다.
 
@@ -33,13 +33,16 @@ mermaid: true
 
 ![image](https://user-images.githubusercontent.com/42164422/111024194-a6f7a700-8420-11eb-8019-b215be6b42e5.png)
 
-- 자동으로 `Play Mode Saver` 컴포넌트가 해당 게임오브젝트에 추가된다.
+<br>
+
+- 자동으로 `Play Mode Saver` 컴포넌트가 해당 게임오브젝트에 추가되며,<br>
+  `Components` 항목에서 목록을 확인할 수 있다.
 
 ![image](https://user-images.githubusercontent.com/42164422/111024242-f047f680-8420-11eb-8762-ac7190b30c35.png)
 
 <br>
 
-- 더이상 변경사항 유지를 원하지 않는 경우, 컴포넌트에 우클릭하여 `Don't Save Play Mode Changes`를 클릭하면 변경사항 유지 대상에서 제거된다.
+- 더이상 변경사항 유지를 원하지 않는 경우, 컴포넌트에 우클릭하여 `Don't Save Play Mode Changes`를 클릭하면 목록에서 제거된다.
 
 ![image](https://user-images.githubusercontent.com/42164422/111024315-7e23e180-8421-11eb-93aa-36f8898c16fa.png)
 
@@ -62,9 +65,9 @@ mermaid: true
 <br>
 
 ## Functions
-- `Add All Components` : 해당 게임오브젝트 내의 모든 컴포넌트를 대상으로 등록한다.
+- `Add All Components` : 해당 게임오브젝트 내의 모든 컴포넌트를 목록에 추가한다.
 
-- `Remove All Components` : 대상으로 등록된 모든 컴포넌트를 대상에서 제외한다.
+- `Remove All Components` : 대상으로 등록된 모든 컴포넌트를 목록에서 제거한다.
 
 <br>
 
