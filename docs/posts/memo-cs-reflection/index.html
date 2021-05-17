@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Reflection(리플렉션)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Reflection(리플렉션)","description":"필요 네임스페이스 1 2 using System; using System.Reflection;","dateModified":"2021-05-15T22:24:53+09:00","datePublished":"2021-02-19T03:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-reflection/"},"url":"https://rito15.github.io/posts/memo-cs-reflection/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"필요 네임스페이스 1 2 using System; using System.Reflection;","datePublished":"2021-02-19T03:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-reflection/"},"url":"https://rito15.github.io/posts/memo-cs-reflection/","author":{"@type":"Person","name":"Rito15"},"headline":"Reflection(리플렉션)","dateModified":"2021-05-15T22:24:53+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -743,12 +743,12 @@
         
         
         
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
         
         
@@ -4841,6 +4841,45 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5922,7 +5961,7 @@ public class CustomAttribute : System.Attribute
       
       
       <div class="card">
-        <a href="/posts/memo-cs-enum/">
+        <a href="/posts/cs-string-format/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -5939,13 +5978,13 @@ public class CustomAttribute : System.Attribute
   
 
   
-    Feb 28
+    May  9
   
 
-  <i class="unloaded">2021-02-28T04:00:00+09:00</i>
+  <i class="unloaded">2021-05-09T21:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Enum 관련 메모</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>스트링 포맷 정리</h3>
             <div class="text-muted small">
               <p>
                 
@@ -5954,28 +5993,48 @@ public class CustomAttribute : System.Attribute
 
 
 
-                enum의 모든 요소를 배열로 가져오기
+                NOTE
+
+
+
+  , : 스트링의 범위(공간) 설정
+  : : 출력 포맷 설정
+
+
+
+
+좌우 정렬
+
 
 1
-2
-3
-enum MyEnum { A, B }
-
-Array allValues = Enum.GetValues(typeof(MyEnum));
+$"{value, 10}"
 
 
 
+  10칸 범위 내에서 우측 정렬
 
-enum의 마지막 요소 가져오기
+
+
 
 1
-2
-3
-4
-// System.Linq;
+$"{value, -10}"
 
-MyEnum last = 
-    Enum.GetValues(typeof(EditorW...
+
+
+  10칸 범위 내에서 좌측 정렬
+
+
+
+
+숫자 왼쪽에 공백 삽입하기
+
+
+1
+$"{value :   0}"
+
+
+
+  :, 0 사이의 공백 크...
               </p>
             </div>
           </div>

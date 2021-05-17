@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Custom Editor (커스텀 에디터)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Custom Editor (커스텀 에디터)","description":"Begin","dateModified":"2021-03-13T17:40:00+09:00","datePublished":"2021-03-13T17:40:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-custom-editor/"},"url":"https://rito15.github.io/posts/unity-editor-custom-editor/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Begin","datePublished":"2021-03-13T17:40:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-custom-editor/"},"url":"https://rito15.github.io/posts/unity-editor-custom-editor/","author":{"@type":"Person","name":"Rito15"},"headline":"Custom Editor (커스텀 에디터)","dateModified":"2021-03-13T17:40:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1393,12 +1393,12 @@ Color Scope
         
         
         
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
         
         
@@ -4901,6 +4901,45 @@ Color Scope
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6535,16 +6574,28 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
 
 
 
-                
+                Note
+
+
+
   
-    /* 1. 다른 동작과 연계 */
+    필드의 값 변경, 리스트나 딕셔너리의 구성요소 변경 : RecordeObject(컴포넌트, "")
+  
+  
+    커스텀 에디터에서 대상의 필드를 Undo에 등록하려면, 반드시 해당 필드가 직렬화되어야 한다.
+  
 
-// 이름 변경, 기타 등등 수행하기 직전에 호출
-// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함
-Undo.RecordObject(target, "Action");
 
-// 오브젝트 생성 이후에 호출
-Undo.RegisterCreatedObjectUndo(targetGa...
+
+
+Memo
+
+
+1. 다른 동작에 Undo 등록
+
+
+  
+    // 이름 변경, 기타 등등 수행하기 직전...
               </p>
             </div>
           </div>

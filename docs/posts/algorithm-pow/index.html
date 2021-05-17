@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="O(logn) 거듭제곱 알고리즘" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"O(logn) 거듭제곱 알고리즘","description":"Summary","dateModified":"2021-04-06T18:00:00+09:00","datePublished":"2021-04-06T18:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/algorithm-pow/"},"url":"https://rito15.github.io/posts/algorithm-pow/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Summary","datePublished":"2021-04-06T18:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/algorithm-pow/"},"url":"https://rito15.github.io/posts/algorithm-pow/","author":{"@type":"Person","name":"Rito15"},"headline":"O(logn) 거듭제곱 알고리즘","dateModified":"2021-04-06T18:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -809,12 +809,12 @@ return res
         
         
         
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
         
         
@@ -4036,6 +4036,45 @@ return res
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6002,7 +6041,7 @@ QuickS...
       
       
       <div class="card">
-        <a href="/posts/water-shader/">
+        <a href="/posts/unity-urp-shader-coding/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6019,13 +6058,13 @@ QuickS...
   
 
   
-    Feb 13
+    Feb 15
   
 
-  <i class="unloaded">2021-02-13T19:24:00+09:00</i>
+  <i class="unloaded">2021-02-15T18:07:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>물 쉐이더 만들기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>URP에서 쉐이더 코딩하기 [작성 중]</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6034,44 +6073,24 @@ QuickS...
 
 
 
-                목표
+                기본 구조
 
 
 
-  서피스 쉐이더로 물 쉐이더 만들기
+  
+
+
+Starting Point
 
 
 
-
-목차
-
-
-
-  1. 물 쉐이더 기초
-  2. 프레넬 공식 적용
-  3. 물 흐르게 하기
-  4. 스페큘러 적용
-  5. 파도 만들기
-  6. 투과율 제어하기
-  7. 최종 결과
-
-
-
-
-준비물
-
-
-
-  큐브맵 텍스쳐 기반 스카이박스
-  물 노멀맵 텍스쳐
-  물에 빠질 로봇
-
-
-
-
-물 쉐이더 기초
-
-...
+  
+    Shader "RitoURP/VertexFragmentStartPoint"
+{
+    Properties
+    {
+        _MainTex ("Main Map", 2D) = "white" {}
+        _BumpMap ("Normal Map", 2D) = "bump" {...
               </p>
             </div>
           </div>

@@ -26,8 +26,8 @@
 <meta property="og:title" content="Undo" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="```cs /* 1. 다른 동작과 연계 */" />
-<meta property="og:description" content="```cs /* 1. 다른 동작과 연계 */" />
+<meta name="description" content="Note" />
+<meta property="og:description" content="Note" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-editor-undo/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-editor-undo/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Undo" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Undo","description":"```cs /* 1. 다른 동작과 연계 */","dateModified":"2021-03-16T04:16:36+09:00","datePublished":"2021-02-28T01:52:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-undo/"},"url":"https://rito15.github.io/posts/unity-editor-undo/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note","datePublished":"2021-02-28T01:52:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-undo/"},"url":"https://rito15.github.io/posts/unity-editor-undo/","author":{"@type":"Person","name":"Rito15"},"headline":"Undo","dateModified":"2021-03-16T04:16:36+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="177 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="249 words">1 min</span>
 
 
           <!-- page views -->
@@ -448,7 +448,44 @@
 
         
 
-        <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+        <h1 id="note">Note</h1>
+<hr />
+
+<ul>
+  <li>
+    <p>필드의 값 변경, 리스트나 딕셔너리의 구성요소 변경 : <code class="language-plaintext highlighter-rouge">RecordeObject(컴포넌트, "")</code></p>
+  </li>
+  <li>
+    <p>커스텀 에디터에서 대상의 필드를 Undo에 등록하려면, 반드시 해당 필드가 직렬화되어야 한다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="memo">Memo</h1>
+<hr />
+
+<h2 id="1-다른-동작에-undo-등록">1. 다른 동작에 Undo 등록</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="c1">// 이름 변경, 기타 등등 수행하기 직전에 호출</span>
+<span class="c1">// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함</span>
+<span class="n">Undo</span><span class="p">.</span><span class="nf">RecordObject</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="s">"Action"</span><span class="p">);</span>
+
+<span class="c1">// 오브젝트 생성 직후에 호출</span>
+<span class="n">Undo</span><span class="p">.</span><span class="nf">RegisterCreatedObjectUndo</span><span class="p">(</span><span class="n">targetGameObject</span><span class="p">,</span> <span class="s">"Create New"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="2-undo를-통해-직접-기능-수행">2. Undo를 통해 직접 기능 수행</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -456,31 +493,7 @@
 6
 7
 8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-</pre></td><td class="rouge-code"><pre><span class="cm">/* 1. 다른 동작과 연계 */</span>
-
-<span class="c1">// 이름 변경, 기타 등등 수행하기 직전에 호출</span>
-<span class="c1">// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함</span>
-<span class="n">Undo</span><span class="p">.</span><span class="nf">RecordObject</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="s">"Action"</span><span class="p">);</span>
-
-<span class="c1">// 오브젝트 생성 이후에 호출</span>
-<span class="n">Undo</span><span class="p">.</span><span class="nf">RegisterCreatedObjectUndo</span><span class="p">(</span><span class="n">targetGameObject</span><span class="p">,</span> <span class="s">"Create New"</span><span class="p">);</span>
-
-
-<span class="cm">/* 2. Undo를 통해 직접 수행 */</span>
-
-<span class="c1">// 컴포넌트 추가</span>
+</pre></td><td class="rouge-code"><pre><span class="c1">// 컴포넌트 추가</span>
 <span class="n">Undo</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">ComponentType</span><span class="p">&gt;(</span><span class="n">targetGameObject</span><span class="p">);</span>
 
 <span class="c1">// 오브젝트 파괴 및 Undo 등록</span>
@@ -490,9 +503,19 @@
 <span class="n">Undo</span><span class="p">.</span><span class="nf">SetTransformParent</span><span class="p">(</span><span class="n">targetTransform</span><span class="p">,</span> <span class="n">parentTransform</span><span class="p">,</span> <span class="s">"Change Parent"</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<ul>
-  <li>필드의 값 변경, 리스트나 딕셔너리의 구성요소 변경 : <code class="language-plaintext highlighter-rouge">RecordeObject(컴포넌트, "")</code></li>
-</ul>
+<h2 id="3-커스텀-에디터에서-필드-undo-등록">3. 커스텀 에디터에서 필드 Undo 등록</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="c1">// 1. Record Undo</span>
+<span class="n">Undo</span><span class="p">.</span><span class="nf">RecordObject</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s">"Change Mesh Name"</span><span class="p">);</span>
+
+<span class="c1">// 2. Draw Field</span>
+<span class="n">m</span><span class="p">.</span><span class="n">meshName</span> <span class="p">=</span> <span class="n">EditorGUILayout</span><span class="p">.</span><span class="nf">TextField</span><span class="p">(</span><span class="s">"Mesh Name"</span><span class="p">,</span> <span class="n">m</span><span class="p">.</span><span class="n">meshName</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
 
@@ -500,6 +523,8 @@
 <hr />
 <ul>
   <li><a href="https://docs.unity3d.com/ScriptReference/Undo.html">https://docs.unity3d.com/ScriptReference/Undo.html</a></li>
+  <li><a href="https://m.blog.naver.com/hammerimpact/220775012493">https://m.blog.naver.com/hammerimpact/220775012493</a></li>
+  <li><a href="https://m.blog.naver.com/hammerimpact/220775389020">https://m.blog.naver.com/hammerimpact/220775389020</a></li>
 </ul>
 
 
@@ -636,12 +661,12 @@
         
         
         
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
         
         
@@ -3599,6 +3624,11 @@
   </div> <!-- .access -->
 
   
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
@@ -3632,6 +3662,45 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   

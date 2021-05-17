@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="OpenGL 공부 - 21 - Material Class" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"OpenGL 공부 - 21 - Material Class","description":"목표 Material 클래스 작성","dateModified":"2021-02-17T22:43:00+09:00","datePublished":"2021-02-17T22:43:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-21/"},"url":"https://rito15.github.io/posts/opengl-study-21/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 Material 클래스 작성","datePublished":"2021-02-17T22:43:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-21/"},"url":"https://rito15.github.io/posts/opengl-study-21/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 21 - Material Class","dateModified":"2021-02-17T22:43:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -848,12 +848,12 @@
         
         
         
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
         
         
@@ -4985,6 +4985,45 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5903,72 +5942,6 @@
       
       
       <div class="card">
-        <a href="/posts/opengl-study-17/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 13
-  
-
-  <i class="unloaded">2021-02-13T15:32:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 17 - Ambient, Diffuse Lighting</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목표
-
-
-
-  Ambient, Diffuse 라이팅 구현
-
-
-
-
-공부 내용
-
-
-버텍스에 노멀 정보 추가
-
-
-  
-    struct Vertex
-{
-    glm::vec3 position;
-    glm::vec3 color;
-    glm::vec2 texcoord;
-    glm::vec3 normal;
-};
-
-Vertex vertices[] =...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/opengl-study-18/">
           <div class="card-body">
             <!--
@@ -6088,6 +6061,70 @@ shader.hpp 파일에 Shader 클래스를 작성한다.
 class Shader
 {
 p...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/opengl-study-20/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 16
+  
+
+  <i class="unloaded">2021-02-16T22:22:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>OpenGL 공부 - 20 - Texture Class</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+
+  텍스쳐 클래스화하기
+
+
+
+
+텍스쳐 클래스 작성
+
+
+기존에 메소드화하여 사용하던 텍스쳐를 클래스화하려고 한다.
+
+function.hpp 파일에 LoadTextureImage() 메소드에 작성했던 내용을 클래스로 옮겨 작성한다.
+
+
+  
+    class Texture
+{
+private:
+    GLuint id;
+    GLenum typ...
               </p>
             </div>
           </div>

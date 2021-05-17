@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 에디터 종료 확인 다이얼로그 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 에디터 종료 확인 다이얼로그 만들기","description":"Memo","dateModified":"2021-02-10T13:50:00+09:00","datePublished":"2021-02-10T13:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/"},"url":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Memo","datePublished":"2021-02-10T13:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/"},"url":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 에디터 종료 확인 다이얼로그 만들기","dateModified":"2021-02-10T13:50:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -629,12 +629,12 @@
         
         
         
-        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
         
         
@@ -5021,6 +5021,45 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5770,33 +5809,32 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
 
 
 
-                1
+                Note
+
+
+
+  
+    필드의 값 변경, 리스트나 딕셔너리의 구성요소 변경 : RecordeObject(컴포넌트, "")
+  
+  
+    커스텀 에디터에서 대상의 필드를 Undo에 등록하려면, 반드시 해당 필드가 직렬화되어야 한다.
+  
+
+
+
+
+Memo
+
+
+1. 다른 동작에 Undo 등록
+
+1
 2
 3
 4
 5
 6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-/* 1. 다른 동작과 연계 */
-
-// 이름 변경, 기타 등등 수행하기 직전에 호출
-// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함
-Undo.RecordObject(target, "Action");
-
-// 오브젝트 생성 이후에...
+// 이름 변경, 기타 등등 수행하...
               </p>
             </div>
           </div>

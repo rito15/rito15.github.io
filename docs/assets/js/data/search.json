@@ -1,6 +1,51 @@
 [
   
   {
+    "title": "GUI 스타일 지정하기",
+    "url": "/posts/unity-editor-gui-style/",
+    "categories": "Unity, Unity Editor",
+    "tags": "unity, editor, csharp",
+    "date": "2021-05-18 02:02:00 +0900",
+    
+
+
+
+
+
+    "snippet": "인라인 방식으로 스타일 설정하기  GUI.___ 프로퍼티 값들을 수정하고 돌려놓기// OnInspectorGUIvar oldBgColor = GUI.backgroundColor;// GUIsGUI.backgroundColor = oldBgColor;GUIStyle 객체 이용하기      GUIStyle 객체를 만들 때 매개변수로 GUI.skin을 알맞게 지정해야 한다.        GUI.skin은 OnGUI 종류의 메소드에서만 호출할 수 있으므로가비지를 감수하고 OnInspectorGUI() 내에서 항상 초기화한다.    스..."
+  },
+  
+  {
+    "title": "컴포넌트를 인스펙터 최상단에 올리기",
+    "url": "/posts/unity-put-component-on-top/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, csharp",
+    "date": "2021-05-17 21:12:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Memo/// &amp;lt;summary&amp;gt; 컴포넌트를 최상단에 올리기 &amp;lt;/summary&amp;gt;[System.Diagnostics.Conditional(&quot;UNITY_EDITOR&quot;)]private static void PutComponentOnTop(Component component){    for (int i = 0; i &amp;lt; 100 &amp;amp;&amp;amp; UnityEditorInternal.ComponentUtility.MoveComponentUp(co..."
+  },
+  
+  {
+    "title": "Obj Exporter(메시를 OBJ 파일로 저장하기)",
+    "url": "/posts/unity-obj-exporter/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, csharp",
+    "date": "2021-05-17 05:17:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Source Code   ObjExporter.cs  #if UNITY_EDITORusing System;using System.Text;using System.Collections;using System.Collections.Generic;using UnityEngine;using System.IO;namespace Rito{    // http://wiki.unity3d.com/index.php?title=ObjExporter    public static class ObjExporter    {        public ..."
+  },
+  
+  {
     "title": "Graphic Raycaster - 마우스 이벤트 예제",
     "url": "/posts/unity-graphic-raycaster-mouse-event-examples/",
     "categories": "Unity, Unity Memo",
@@ -1077,7 +1122,7 @@
 
 
 
-    "snippet": "/* 1. 다른 동작과 연계 */// 이름 변경, 기타 등등 수행하기 직전에 호출// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함Undo.RecordObject(target, &quot;Action&quot;);// 오브젝트 생성 이후에 호출Undo.RegisterCreatedObjectUndo(targetGameObject, &quot;Create New&quot;);/* 2. Undo를 통해 직접 수행 */// 컴포넌트 추가Undo.AddComponent&amp;lt;ComponentType..."
+    "snippet": "Note      필드의 값 변경, 리스트나 딕셔너리의 구성요소 변경 : RecordeObject(컴포넌트, &quot;&quot;)        커스텀 에디터에서 대상의 필드를 Undo에 등록하려면, 반드시 해당 필드가 직렬화되어야 한다.  Memo1. 다른 동작에 Undo 등록// 이름 변경, 기타 등등 수행하기 직전에 호출// 주의 : 게임오브젝트의 변경사항은 트랜스폼이 아니라 게임오브젝트를 넣어야 함Undo.RecordObject(target, &quot;Action&quot;);// 오브젝트 생성 직후에 호출Undo...."
   },
   
   {
