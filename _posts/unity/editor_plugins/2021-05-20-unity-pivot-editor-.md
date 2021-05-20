@@ -1,5 +1,5 @@
 ---
-title: Pivot Editor(메시의 피벗 위치 수정하기)
+title: Pivot Editor(메시의 피벗 위치 수정)
 author: Rito15
 date: 2021-05-20 15:00:00 +09:00
 categories: [Unity, Unity Editor Plugins]
@@ -11,7 +11,7 @@ mermaid: true
 # Summary
 ---
 - 메시의 피벗 위치를 직접 수정할 수 있는 기능을 제공한다.
-- 기준 위치, 회전, 크기를 변경할 수 있다.
+- 메시의 위치, 회전, 크기를 직접 변경할 수 있다.
 
 <br>
 
@@ -57,7 +57,7 @@ mermaid: true
 
 ## **Options**
 
-|이름|기능|
+|이름|설명|
 |---|---|
 |`Hide Transform Tool`|씬뷰에서 트랜스폼 도구 비활성화|
 |`Edit Pivot`|씬뷰에서 피벗 위치 이동 도구 활성화|
@@ -68,7 +68,7 @@ mermaid: true
 
 ## **Bounds**
 
-|이름|기능|
+|이름|설명|
 |---|---|
 |`Show Bounds`|메시의 영역을 직육면체로 씬뷰에 표시|
 |`Confine Pivot In Bounds`|메시 영역 내에서만 피벗을 지정하도록 설정|
@@ -78,7 +78,7 @@ mermaid: true
 
 ## **Set Pivot**
 
-|이름|기능|
+|이름|설명|
 |---|---|
 |`Reset`|수정 이전의 피벗 위치로 복귀|
 |`Bottom Center`|메시 영역 내에서 XZ평면 중앙, Y축 하단으로 피벗 설정|
@@ -89,7 +89,7 @@ mermaid: true
 
 ## **Reset Transform**
 
-|이름|기능|
+|이름|설명|
 |---|---|
 |`All`|위치, 회전, 크기를 모두 기본값으로 지정|
 |`Position`|로컬 위치 값을 (0, 0, 0)으로 지정|
@@ -100,7 +100,7 @@ mermaid: true
 
 ## **Save**
 
-|이름|기능|
+|이름|설명|
 |---|---|
 |`Mesh Name`|새롭게 지정할 메시 이름|
 |`Apply`|수정사항을 현재 메시 필터에 적용|
