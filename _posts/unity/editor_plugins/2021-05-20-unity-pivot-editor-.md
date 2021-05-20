@@ -1,5 +1,5 @@
 ---
-title: Pivot Editor
+title: Pivot Editor(메시의 피벗 위치 수정하기)
 author: Rito15
 date: 2021-05-20 15:00:00 +09:00
 categories: [Unity, Unity Editor Plugins]
