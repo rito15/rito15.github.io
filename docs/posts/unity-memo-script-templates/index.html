@@ -687,6 +687,11 @@ public class #SCRIPTNAME# : MonoBehaviour
         
         
         
+        <li><a href="/posts/unity-editor-undo/">Undo</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
       
         
@@ -703,11 +708,6 @@ public class #SCRIPTNAME# : MonoBehaviour
         
         
         <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
       
 
       </ul>
@@ -2285,8 +2285,6 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
     
-    
-      
     
   
     
@@ -5469,6 +5467,45 @@ public class #SCRIPTNAME# : MonoBehaviour
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5776,6 +5813,59 @@ public class #SCRIPTNAME# : MonoBehaviour
       
       
       <div class="card">
+        <a href="/posts/unity-calculate-ui-pixel-size/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    May 10
+  
+
+  <i class="unloaded">2021-05-10T18:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI(RectTransform)의 스크린 픽셀 크기 계산하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+모든 UGUI 요소는 RectTransform을 통해 크기를 결정한다.
+
+그리고 RectTransform.rect로 크기를 참조할 수 있다.
+
+그런데 이 크기는 해상도가 변해도 항상 같은 값을 반환한다.
+
+따라서 해상도를 기반으로 하는 드래그 등의 기능을 구현할 때
+
+마우스 변위를 해상도 값으로 가져오고, 이를 RectTransform에 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-memo-raycast-overhead/">
           <div class="card-body">
             <!--
@@ -5914,69 +6004,6 @@ public class #SCRIPTNAME# : MonoBehaviour
   
     
       카메라를 하나 더 만들고, Audio ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-memo-prevent-infinite-loop/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar  5
-  
-
-  <i class="unloaded">2021-03-05T04:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>무한 루프를 방지하는 작은 습관</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-  
-    유니티 엔진에서 무한루프가 발생하면 에디터가 그대로 뻗어버린다.
-  
-  
-    따라서 혹시나 무한루프가 될 가능성이 있는 코드를 인지했다면, 간단한 체크 로직을 넣어주는 것이 좋다.
-  
-
-
-1
-2
-3
-4
-while( /* condition */ )
-{
-    // codes..
-}
-
-
-이런 코드에서, 간단히 다음처럼 추가...
               </p>
             </div>
           </div>
@@ -7643,8 +7670,6 @@ while( /* condition */ )
     
     
     
-    
-      
     
   
     

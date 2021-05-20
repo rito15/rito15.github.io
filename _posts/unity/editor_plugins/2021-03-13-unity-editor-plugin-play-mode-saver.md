@@ -8,7 +8,7 @@ math: true
 mermaid: true
 ---
 
-# Note
+# Summary
 ---
 - 등록한 컴포넌트들의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.
 
@@ -84,8 +84,17 @@ mermaid: true
 
 <br>
 
-# Source Code
+# Download(UPM)
 ---
-- <https://github.com/rito15/Unity-Library/tree/main/Unity%20Library/Editor%20Plugins>
+- https://github.com/rito15/Unity-Play-Mode-Saver.git
 
+## UPM을 통한 임포트 방법
+ - `[Window]` - `[Package Manager]` - 좌측 상단 `[+]` - `[Add package from git URL]`
 
+![2021_0520_HowToUseUPM](https://user-images.githubusercontent.com/42164422/118945484-7425de00-b990-11eb-93d6-17853a4836c6.gif)
+
+<br>
+
+# Github
+---
+- <https://github.com/rito15/Unity-Play-Mode-Saver>

@@ -1,6 +1,51 @@
 [
   
   {
+    "title": "Pivot Editor",
+    "url": "/posts/unity-pivot-editor/",
+    "categories": "Unity, Unity Editor Plugins",
+    "tags": "unity, editor, csharp, plugin",
+    "date": "2021-05-20 15:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Summary  메시의 피벗 위치를 직접 수정할 수 있는 기능을 제공한다.  기준 위치, 회전, 크기를 변경할 수 있다.PreviewInspectorScenePreview(GIF)How To UsePivot Editor 컴포넌트 추가      Mesh Filter 컴포넌트를 우클릭하고 Edit Pivot을 클릭한다.        게임오브젝트에 Mesh Filter, Mesh Renderer 컴포넌트가 모두 존재해야 한다.  Edit/Cancel 버튼  피벗 수정 기능을 활성화/비활성화한다.Options            이름..."
+  },
+  
+  {
+    "title": "Position Fixer",
+    "url": "/posts/unity-position-fixer/",
+    "categories": "Unity, Unity Toys",
+    "tags": "unity, csharp, plugin",
+    "date": "2021-05-19 20:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Summary  부모 게임오브젝트의 이동에 영향받지 않고 트랜스폼 위치를 고정시키는 컴포넌트How To Use  위치를 고정/해제할 게임오브젝트에 컴포넌트로 넣는다.  인스펙터에서 Activated를 체크하거나 스페이스바를 눌러 기능을 활성화한다.Download  PositionFixer.zipSource Code  https://github.com/rito15/Unity_Toys   .  using System;using System.Collections;using System.Collections.Generic;using ..."
+  },
+  
+  {
+    "title": "새로고침하기 - 씬뷰, 프로젝트뷰",
+    "url": "/posts/unity-editor-refresh-windows/",
+    "categories": "Unity, Unity Editor",
+    "tags": "unity, editor, csharp",
+    "date": "2021-05-19 01:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "씬뷰인스펙터의 변경사항이 씬뷰에 곧바로 적용되지 않고씬뷰에 마우스를 올리거나 키보드 입력이 있어야 적용될 경우,SceneView.RepaintAll()을 호출하면 된다.커스텀 에디터에서 인스펙터와 씬뷰의 동기화가 필요한 경우OnInspectorGUI() 내에서 호출하면 된다.프로젝트뷰프로젝트 내의 파일 변경사항이 생겨도프로젝트뷰에 곧바로 적용되지 않을 수 있다.이럴 때는 AssetDatabase.Refresh()를 호출하면 된다."
+  },
+  
+  {
     "title": "GUI 스타일 지정하기",
     "url": "/posts/unity-editor-gui-style/",
     "categories": "Unity, Unity Editor",
@@ -657,7 +702,7 @@
 
 
 
-    "snippet": "Note      등록한 컴포넌트들의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.        변경사항을 적용할 대상들은 Play Mode Saver 컴포넌트 내의 목록으로 관리된다.        유니티 에디터 내에서만 동작하며, 빌드 시 Play Mode Saver 컴포넌트는 자동으로 제거된다.        플레이 모드 내에서 Play Mode Saver를 수정한 사항도 플레이 모드가 종료되었을 때 유지된다.  PreviewHow To Use  변경사항 유지를 원하는 컴포넌트에 우클릭 후, Save Pla..."
+    "snippet": "Summary      등록한 컴포넌트들의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킨다.        변경사항을 적용할 대상들은 Play Mode Saver 컴포넌트 내의 목록으로 관리된다.        유니티 에디터 내에서만 동작하며, 빌드 시 Play Mode Saver 컴포넌트는 자동으로 제거된다.        플레이 모드 내에서 Play Mode Saver를 수정한 사항도 플레이 모드가 종료되었을 때 유지된다.  PreviewHow To Use  변경사항 유지를 원하는 컴포넌트에 우클릭 후, Save ..."
   },
   
   {
@@ -777,7 +822,7 @@
 
 
 
-    "snippet": "Note      트랜스폼의 커스텀 에디터        트랜스폼의 로컬 정보 뿐만 아니라, 글로벌 위치, 회전, 크기 값을 확인 및 조작할 수 있다.        총 8개의 리셋 버튼으로 트랜스폼의 로컬, 글로벌 값들을 초기화할 수 있다.  Preview  Global - Reset 버튼을 누를 경우  Global Position - Reset 버튼을 누를 경우  Global Rotation - Reset 버튼을 누를 경우  Global Scale - Reset 버튼을 누를 경우Download  CustomTransformEd..."
+    "snippet": "Summary      트랜스폼의 커스텀 에디터        트랜스폼의 로컬 정보 뿐만 아니라, 글로벌 위치, 회전, 크기 값을 확인 및 조작할 수 있다.        총 8개의 리셋 버튼으로 트랜스폼의 로컬, 글로벌 값들을 초기화할 수 있다.  Preview  Global - Reset 버튼을 누를 경우  Global Position - Reset 버튼을 누를 경우  Global Rotation - Reset 버튼을 누를 경우  Global Scale - Reset 버튼을 누를 경우Download  CustomTransfor..."
   },
   
   {
@@ -837,7 +882,7 @@
 
 
 
-    "snippet": "Note      일정 시간 주기로 현재 활성화된 씬을 자동 저장한다.        씬이 저장되지 않은 상태일 때만 타이머가 동작한다.  How To Use  스크립트 2개를 모두 다운로드 받아 유니티 프로젝트에 넣는다.      [Window] - [Rito] - [Scene Auto Saver]를 통해 윈도우를 연다.    On에 체크/해제하여 기능 실행 여부를 설정할 수 있다.  Show Log 옵션으로 자동 저장 시 로그 출력 여부를 설정할 수 있다.  Save Cycle 옵션으로 저장 주기를 설정할 수 있다. (기본 ..."
+    "snippet": "Summary      일정 시간 주기로 현재 활성화된 씬을 자동 저장한다.        씬이 저장되지 않은 상태일 때만 타이머가 동작한다.  How To Use  스크립트 2개를 모두 다운로드 받아 유니티 프로젝트에 넣는다.      [Window] - [Rito] - [Scene Auto Saver]를 통해 윈도우를 연다.    On에 체크/해제하여 기능 실행 여부를 설정할 수 있다.  Show Log 옵션으로 자동 저장 시 로그 출력 여부를 설정할 수 있다.  Save Cycle 옵션으로 저장 주기를 설정할 수 있다. (..."
   },
   
   {
@@ -897,7 +942,7 @@
 
 
 
-    "snippet": "Note  모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서  모델의 회전과 위치를 리셋한다.  모델의 정점 위치를 모두 계산하여, 피벗이 모델의 중심 하단으로 오게 한다.How To Use      스크립트를 유니티 프로젝트 내에 넣는다.        [Window] - [Rito] - [Model Pivot Resetter] - [Activated]를 체크한다.          체크 해제되어 있을 경우 동작하지 않는다.        임포트 할 때마다 대화상자를 통해 선택하게 하려면[Window] - [Rito] ..."
+    "snippet": "Summary  모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서  모델의 회전과 위치를 리셋한다.  모델의 정점 위치를 모두 계산하여, 피벗이 모델의 중심 하단으로 오게 한다.How To Use      스크립트를 유니티 프로젝트 내에 넣는다.        [Window] - [Rito] - [Model Pivot Resetter] - [Activated]를 체크한다.          체크 해제되어 있을 경우 동작하지 않는다.        임포트 할 때마다 대화상자를 통해 선택하게 하려면[Window] - [Rit..."
   },
   
   {

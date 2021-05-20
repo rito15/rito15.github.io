@@ -8,7 +8,7 @@ math: true
 mermaid: true
 ---
 
-# Note
+# Summary
 ---
 - 트랜스폼의 커스텀 에디터
 
@@ -55,8 +55,17 @@ mermaid: true
 
 <br>
 
-# Source Code
+# Download(UPM)
 ---
-- <https://github.com/rito15/Unity-Library/tree/main/Unity%20Library/Editor%20Plugins>
+- https://github.com/rito15/Unity-Custom-Transform-Editor.git
 
+## UPM을 통한 임포트 방법
+ - `[Window]` - `[Package Manager]` - 좌측 상단 `[+]` - `[Add package from git URL]`
 
+![2021_0520_HowToUseUPM](https://user-images.githubusercontent.com/42164422/118945484-7425de00-b990-11eb-93d6-17853a4836c6.gif)
+
+<br>
+
+# Github
+---
+- <https://github.com/rito15/Unity-Custom-Transform-Editor>

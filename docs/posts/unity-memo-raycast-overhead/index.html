@@ -678,6 +678,11 @@
         
         
         
+        <li><a href="/posts/unity-editor-undo/">Undo</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a></li>
       
         
@@ -694,11 +699,6 @@
         
         
         <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
       
 
       </ul>
@@ -2276,8 +2276,6 @@
     
     
     
-    
-      
     
   
     
@@ -4789,6 +4787,45 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -5896,7 +5933,7 @@ GIF
       
       
       <div class="card">
-        <a href="/posts/unity-memo-gameobject-over-ui/">
+        <a href="/posts/unity-calculate-ui-pixel-size/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -5913,13 +5950,13 @@ GIF
   
 
   
-    Feb 28
+    May 10
   
 
-  <i class="unloaded">2021-02-28T22:30:00+09:00</i>
+  <i class="unloaded">2021-05-10T18:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 위에 게임오브젝트 띄우기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI(RectTransform)의 스크린 픽셀 크기 계산하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -5928,37 +5965,18 @@ GIF
 
 
 
-                Preview
+                Note
 
 
+모든 UGUI 요소는 RectTransform을 통해 크기를 결정한다.
 
+그리고 RectTransform.rect로 크기를 참조할 수 있다.
 
+그런데 이 크기는 해상도가 변해도 항상 같은 값을 반환한다.
 
-  Green : Default
-  Red : Over UI
+따라서 해상도를 기반으로 하는 드래그 등의 기능을 구현할 때
 
-
-
-
-1. Standard Rendering Pipeline
-
-
-
-   
-.
-
-
-  [1] 레이어 준비
-  
-    [Over UI] 레이어를 만든다.
-  
-
-  
-
-  [2] Over UI 카메라 준비
-  
-    
-      카메라를 하나 더 만들고, Audio ...
+마우스 변위를 해상도 값으로 가져오고, 이를 RectTransform에 ...
               </p>
             </div>
           </div>
@@ -7635,8 +7653,6 @@ GIF
     
     
     
-    
-      
     
   
     

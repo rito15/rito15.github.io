@@ -8,7 +8,7 @@ math: true
 mermaid: true
 ---
 
-# Note
+# Summary
 ---
 - 모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서
 - 모델의 회전과 위치를 리셋한다.
@@ -68,160 +68,22 @@ mermaid: true
 
 <br>
 
-# Source Code
+# Download(UPM)
 ---
-- <https://github.com/rito15/Unity-Library/tree/main/Unity%20Library/Editor%20Plugins>
+- https://github.com/rito15/Unity-Model-Pivot-Resetter.git
 
-<details>
-<summary markdown="span"> 
-.
-</summary>
+## UPM을 통한 임포트 방법
+ - `[Window]` - `[Package Manager]` - 좌측 상단 `[+]` - `[Add package from git URL]`
 
-```cs
+![2021_0520_HowToUseUPM](https://user-images.githubusercontent.com/42164422/118945484-7425de00-b990-11eb-93d6-17853a4836c6.gif)
 
-#if UNITY_EDITOR
+<br>
 
-using UnityEngine;
-using UnityEditor;
+# Github
+---
+- <https://github.com/rito15/Unity-Model-Pivot-Resetter>
 
-// 날짜 : 2021-03-05 PM 9:38:46
-// 작성자 : Rito
-
-// 기능
-//  - 임포트되는 모델의 트랜스폼을 자동 리셋한다.
-//  - 피벗을 모델의 중심 하단 좌표로 위치시킨다.
-
-// 옵션
-//  - [Window] - [Rito] - [Model Pivot Resetter] - [Activated]를 통해 동작 여부를 결정할 수 있다.
-//  - [Window] - [Rito] - [Model Pivot Resetter] - [Show Dialog]를 체크할 경우,
-//    모델을 임포트할 때마다 기능 적용 여부를 다이얼로그를 통해 선택할 수 있다.
-
-namespace Rito
-{
-    public class ModelPivotResetter : AssetPostprocessor
-    {
-        private void OnPostprocessModel(GameObject go)
-        {
-            if(!Activated) return;
-
-            if(!ShowDialog)
-                ResetModelPivot(go);
-
-            else if (EditorUtility.DisplayDialog("Model Pivot Resetter", $"Reset Pivot of {go.name}", "Yes", "No"))
-                ResetModelPivot(go);
-        }
-
-        private void ResetModelPivot(GameObject go)
-        {
-            var meshes = go.GetComponentsInChildren<MeshFilter>();
-
-            foreach (var meshFilter in meshes)
-            {
-                Mesh m = meshFilter.sharedMesh;
-                Vector3[] vertices = m.vertices;
-
-                // 1. 로컬 트랜스폼 초기화하면서 정점 돌려놓기
-                for (int i = 0; i < m.vertexCount; i++)
-                {
-                    vertices[i] = go.transform.TransformPoint(m.vertices[i]);
-                }
-
-                go.transform.localRotation = Quaternion.identity;
-                go.transform.localPosition = Vector3.zero;
-                go.transform.localScale = Vector3.one;
-
-                // 2. 피벗을 모델 중심 하단으로 변경
-                Vector3 modelToPivotDist = -GetBottomCenterPosition(vertices);
-
-                for (int i = 0; i < m.vertexCount; i++)
-                {
-                    vertices[i] += modelToPivotDist;
-                }
-
-                // 3. 메시에 적용
-                m.vertices = vertices;
-                m.RecalculateBounds();
-                m.RecalculateNormals();
-
-                Debug.Log($"Pivot Reset - {go.name}::{meshFilter.gameObject.name}");
-            }
-        }
-
-        /// <summary> 모델의 XZ 중심, Y 하단 위치 구하기 </summary>
-        private Vector3 GetBottomCenterPosition(Vector3[] vertices)
-        {
-            float minX = float.MaxValue, minZ = float.MaxValue, minY = float.MaxValue;
-            float maxX = float.MinValue, maxZ = float.MinValue;
-
-            foreach (var vert in vertices)
-            {
-                if(minX > vert.x) minX = vert.x;
-                if(minZ > vert.z) minZ = vert.z;
-                if(minY > vert.y) minY = vert.y;
-
-                if(maxX < vert.x) maxX = vert.x;
-                if(maxZ < vert.z) maxZ = vert.z;
-            }
-            float x = (minX + maxX) * 0.5f;
-            float z = (minZ + maxZ) * 0.5f;
-            float y = minY;
-
-            return new Vector3(x, y, z);
-        }
-
-        /***********************************************************************
-        *                               Menu Item
-        ***********************************************************************/
-        #region .
-        // 1. On/Off
-        private const string ActivationMenuName = "Window/Rito/Model Pivot Resetter/Activated";
-        private const string ActivationSettingName = "ModelPivotResetterActivated";
-
-        public static bool Activated
-        {
-            get { return EditorPrefs.GetBool(ActivationSettingName, true); }
-            set { EditorPrefs.SetBool(ActivationSettingName, value); }
-        }
-
-        [MenuItem(ActivationMenuName)]
-        private static void ActivationToggle() => Activated = !Activated;
-
-        [MenuItem(ActivationMenuName, true)]
-        private static bool ActivationToggleValidate()
-        {
-            Menu.SetChecked(ActivationMenuName, Activated);
-            return true;
-        }
-
-        // 2. Show Dialog
-        private const string ShowDialogMenuName = "Window/Rito/Model Pivot Resetter/Show Dialog";
-        private const string ShowDialogSettingName = "ModelPivotResetterShowDialog";
-
-        public static bool ShowDialog
-        {
-            get { return EditorPrefs.GetBool(ShowDialogSettingName, true); }
-            set { EditorPrefs.SetBool(ShowDialogSettingName, value); }
-        }
-
-        [MenuItem(ShowDialogMenuName)]
-        private static void ShowDialogToggle() => ShowDialog = !ShowDialog;
-
-        [MenuItem(ShowDialogMenuName, true)]
-        private static bool ShowDialogToggleValidate()
-        {
-            Menu.SetChecked(ShowDialogMenuName, ShowDialog);
-            return true;
-        }
-
-        #endregion
-    }
-}
-
-#endif
-```
-
-</details>
-
+<br>
 
 # References
 ---

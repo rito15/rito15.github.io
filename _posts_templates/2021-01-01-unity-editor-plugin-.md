@@ -8,30 +8,34 @@ math: true
 mermaid: true
 ---
 
-# Note
+# Summary
 ---
 - 
 
-
-# How To Use
----
-- 
-
+<br>
 
 # Preview
 ---
 
 
+<br>
 
-# Download
+# How To Use
 ---
 - 
 
+<br>
 
-# Source Code
+# Download(UPM)
 ---
-- <https://github.com/rito15/Unity-Library/tree/main/Unity%20Library/Editor%20Plugins>
+- .git
 
+## UPM을 통한 임포트 방법
+ - `[Window]` - `[Package Manager]` - 좌측 상단 `[+]` - `[Add package from git URL]`
 
-# References
+<br>
+
+# Github
 ---
+- <>
+

@@ -8,7 +8,7 @@ math: true
 mermaid: true
 ---
 
-# Note
+# Summary
 ---
 - 일정 시간 주기로 현재 활성화된 씬을 자동 저장한다.
 
@@ -41,7 +41,17 @@ mermaid: true
 
 
 
-# Source Code
+# Download(UPM)
 ---
-- <https://github.com/rito15/Unity-Library/tree/main/Unity%20Library/Editor%20Plugins>
+- https://github.com/rito15/Unity-Scene-Auto-Saver.git
 
+## UPM을 통한 임포트 방법
+ - `[Window]` - `[Package Manager]` - 좌측 상단 `[+]` - `[Add package from git URL]`
+
+![2021_0520_HowToUseUPM](https://user-images.githubusercontent.com/42164422/118945484-7425de00-b990-11eb-93d6-17853a4836c6.gif)
+
+
+
+# Github
+---
+- <https://github.com/rito15/Unity-Scene-Auto-Saver>

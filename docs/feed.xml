@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-05-18T03:40:47+09:00</updated>
+  <updated>2021-05-20T17:27:36+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,245 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Pivot Editor</title>
+    <link href="https://rito15.github.io/posts/unity-pivot-editor/" rel="alternate" type="text/html" title="Pivot Editor" />
+    <published>2021-05-20T15:00:00+09:00</published>
+  
+    <updated>2021-05-20T15:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-pivot-editor/</id>
+    <content src="https://rito15.github.io/posts/unity-pivot-editor/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Plugins" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+  메시의 피벗 위치를 직접 수정할 수 있는 기능을 제공한다.
+  기준 위치, 회전, 크기를 변경할 수 있다.
+
+
+
+
+Preview
+
+
+Inspector
+
+
+Scene
+
+
+
+
+
+Preview(GIF)
+
+
+
+
+
+
+
+
+How To Use
+
+
+Pivot Editor 컴포넌트 추가
+
+
+  
+    Mesh Filter 컴포넌트를 우클릭하고 Edit Pivot을 클릭한다.
+  
+  
+    게임오브젝트에 Mesh Filter, Mesh Renderer 컴포넌트가 모두 존재해야 한다.
+  
+
+
+
+
+
+
+Edit/Cancel 버튼
+
+
+  피벗 수정 기능을 활성화/비활성화한다.
+
+
+
+
+Options
+
+
+  
+    
+      이름
+      기능
+    
+  
+  
+    
+      Hide Tr...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Position Fixer</title>
+    <link href="https://rito15.github.io/posts/unity-position-fixer/" rel="alternate" type="text/html" title="Position Fixer" />
+    <published>2021-05-19T20:00:00+09:00</published>
+  
+    <updated>2021-05-19T20:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-position-fixer/</id>
+    <content src="https://rito15.github.io/posts/unity-position-fixer/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Toys" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+  부모 게임오브젝트의 이동에 영향받지 않고 트랜스폼 위치를 고정시키는 컴포넌트
+
+
+How To Use
+
+
+  위치를 고정/해제할 게임오브젝트에 컴포넌트로 넣는다.
+  인스펙터에서 Activated를 체크하거나 스페이스바를 눌러 기능을 활성화한다.
+
+
+Download
+
+
+  PositionFixer.zip
+
+
+Source Code
+
+
+  https://github.com/rito15/Unity_Toys
+
+
+
+   
+.
+
+
+  using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+// 날짜 : 2021-05-19 PM 7:53:20
+// 작성자 : Rito
+
+public c...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>새로고침하기 - 씬뷰, 프로젝트뷰</title>
+    <link href="https://rito15.github.io/posts/unity-editor-refresh-windows/" rel="alternate" type="text/html" title="새로고침하기 - 씬뷰, 프로젝트뷰" />
+    <published>2021-05-19T01:00:00+09:00</published>
+  
+    <updated>2021-05-19T01:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-refresh-windows/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-refresh-windows/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      씬뷰
+
+
+인스펙터의 변경사항이 씬뷰에 곧바로 적용되지 않고
+
+씬뷰에 마우스를 올리거나 키보드 입력이 있어야 적용될 경우,
+
+SceneView.RepaintAll()을 호출하면 된다.
+
+
+
+커스텀 에디터에서 인스펙터와 씬뷰의 동기화가 필요한 경우
+
+OnInspectorGUI() 내에서 호출하면 된다.
+
+
+
+프로젝트뷰
+
+
+프로젝트 내의 파일 변경사항이 생겨도
+
+프로젝트뷰에 곧바로 적용되지 않을 수 있다.
+
+이럴 때는 AssetDatabase.Refresh()를 호출하면 된다.
+
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -130,202 +369,6 @@ private static void PutComponentOnTop(Component component)
 }
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Obj Exporter(메시를 OBJ 파일로 저장하기)</title>
-    <link href="https://rito15.github.io/posts/unity-obj-exporter/" rel="alternate" type="text/html" title="Obj Exporter(메시를 OBJ 파일로 저장하기)" />
-    <published>2021-05-17T05:17:00+09:00</published>
-  
-    <updated>2021-05-17T05:17:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-obj-exporter/</id>
-    <content src="https://rito15.github.io/posts/unity-obj-exporter/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Source Code
-
-
-
-   
-ObjExporter.cs
-
-
-  #if UNITY_EDITOR
-
-using System;
-using System.Text;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.IO;
-
-namespace Rito
-{
-    // http://wiki.unity3d.com/index.php?title=ObjExporter
-    public static class ObjExporter
-    {
-        public static string MeshToString(Mesh mesh, MeshRenderer mr, string name)
-        {
-...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Graphic Raycaster - 마우스 이벤트 예제</title>
-    <link href="https://rito15.github.io/posts/unity-graphic-raycaster-mouse-event-examples/" rel="alternate" type="text/html" title="Graphic Raycaster - 마우스 이벤트 예제" />
-    <published>2021-05-16T03:21:00+09:00</published>
-  
-    <updated>2021-05-16T03:21:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-graphic-raycaster-mouse-event-examples/</id>
-    <content src="https://rito15.github.io/posts/unity-graphic-raycaster-mouse-event-examples/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Preview
-
-
-Enter, Exit, Down
-
-
-
-
-
-Drag
-
-
-
-
-
-Drag(Grid)
-
-
-
-
-
-Source Code
-
-
-
-   
-Icon.cs
-
-
-  using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class Icon : MonoBehaviour
-{
-    private Image image;
-    private int siblingIndex;
-
-    private static readonly Color DefaultColor = Color.white;
-    private static readonly Color Foc...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>실수를 스트링으로 변환할 때 포맷 지정하기</title>
-    <link href="https://rito15.github.io/posts/cpp-float-to-string-format/" rel="alternate" type="text/html" title="실수를 스트링으로 변환할 때 포맷 지정하기" />
-    <published>2021-05-16T01:33:00+09:00</published>
-  
-    <updated>2021-05-16T01:33:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cpp-float-to-string-format/</id>
-    <content src="https://rito15.github.io/posts/cpp-float-to-string-format/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Cpp Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Headers
-
-
-#include &amp;lt;iostream&amp;gt;
-#include &amp;lt;sstream&amp;gt;
-#include &amp;lt;iomanip&amp;gt;
-
-
-
-
-Cout Format
-
-
-
-  출력하기 전에 std::cout &amp;lt;&amp;lt; std::fixed &amp;lt;&amp;lt; std::setprecision() 호출
-
-
-// 소수 첫째 자리에서 반올림
-std::cout &amp;lt;&amp;lt; std::fixed &amp;lt;&amp;lt; std::setprecision(0);
-std::cout &amp;lt;&amp;lt; 12.345f &amp;lt;&amp;lt; std::endl;
-std::cout &amp;lt;&amp;lt; 123.456f &amp;lt;&amp;lt; std::endl;
-
-// 소수 둘째 자리에서 반올림
-std::cout &amp;lt;&amp;lt; std::f...
     </summary>
   
 
