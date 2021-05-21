@@ -18,6 +18,7 @@ mermaid: true
 - 카메라가 존재하는 게임오브젝트에 FreeLookCamera 컴포넌트를 추가한다.
 - 게임 시작 후, Left Alt 키를 눌러 커서가 사라지도록 한다.
 - WASD 키로 카메라를 움직이며, 마우스 이동을 통해 카메라를 회전시킬 수 있다.
+- QE 키로 카메라를 상하로 움직일 수 있다.
 
 
 # Preview
@@ -28,7 +29,7 @@ mermaid: true
 
 # Download
 ---
-- [FreeLookCamera.zip](https://github.com/rito15/Images/files/6056761/FreeLookCamera.zip)
+- [FreeLookCamera.zip](https://github.com/rito15/Images/files/6524356/FreeLookCamera.zip)
 
 
 # Source Code
@@ -52,6 +53,7 @@ using UnityEngine;
 namespace Rito
 {
     /// <summary> 자유 시점 카메라 </summary>
+    [DisallowMultipleComponent]
     public class FreeLookCamera : MonoBehaviour
     {
         /***********************************************************************
@@ -69,6 +71,8 @@ namespace Rito
         public KeyCode _moveBackward = KeyCode.S;
         public KeyCode _moveLeft = KeyCode.A;
         public KeyCode _moveRight = KeyCode.D;
+        public KeyCode _moveUp = KeyCode.E;
+        public KeyCode _moveDown = KeyCode.Q;
 
         [Space]
         public KeyCode _run = KeyCode.LeftShift;
@@ -143,20 +147,19 @@ namespace Rito
         private void GetInputs()
         {
             // 1. Movement
-            float h = 0, v = 0;
+            _moveDir = new Vector3(0, 0, 0);
 
-            if(Input.GetKey(_moveForward))  v += 1f;
-            if(Input.GetKey(_moveBackward)) v -= 1f;
-            if(Input.GetKey(_moveLeft))  h -= 1f;
-            if(Input.GetKey(_moveRight)) h += 1f;
+            if (Input.GetKey(_moveForward))  _moveDir.z += 1f;
+            if (Input.GetKey(_moveBackward)) _moveDir.z -= 1f;
+            if (Input.GetKey(_moveRight)) _moveDir.x += 1f;
+            if (Input.GetKey(_moveLeft))  _moveDir.x -= 1f;
+            if (Input.GetKey(_moveUp))   _moveDir.y += 1f;
+            if (Input.GetKey(_moveDown)) _moveDir.y -= 1f;
 
             if (Input.GetKey(_run))
             {
-                h *= 2f;
-                v *= 2f;
+                _moveDir *= 2f;
             }
-
-            _moveDir = new Vector3(h, 0f, v);
 
             // 가속/감속
             if (_wheelAcceleration)

@@ -1,0 +1,172 @@
+
+★ 포스팅을 3개로 나누어 연속 작성!!!!
+1. HDRP Initial Setting Guide : 보고 순서대로 따라하기만 하면 되도록 친절하게 작성하기
+2. HDRP Settings (Basic) : HDRP의 기능들 나열하며 설명
+3. HDRP Settings (Advanced) : 추가적으로 성능/최적화에 따라 옵션 제공
+4. HDRP Lighting Guide
+
+
+★ M E M O of YTB
+
+# Project Settings
+---
+
+## Quality - HDRP
+
+Rendering - Lit Shader Mode
+ - `Deferred Only` : 성능에 민감한 실시간 게임에 적용
+ - `Forward Only` : 성능 우려가 없는 애플리케이션에 적용
+ - `Both` : Project Settings - HDRP Default Settings에서 대상에 따라 선택할 수 있다.
+
+ - Lit Shader Mode - Forward를 선택한 경우, MSAA 적용 가능
+   - Quality - HDRP - Rendering에서 MSAA 품질 2x ~ 8x 지정
+   - HDRP Default Settings - MSAA within Forward 체크
+
+## HDRP Default Settings
+ - 씬에서 개별적으로 지정하지 않아도 기본적으로 적용될 옵션들을 설정한다.
+
+
+<br>
+# Camera
+---
+General - Custom Frame Settings
+ - HDRP Default Settings의 옵션들을 카메라 단위로 개별 설정할 수 있다.
+
+
+<br>
+# Light
+---
+
+
+<br>
+# Volume
+---
+- Weight : 수치를 점진적으로 조정해서 페이드 인/아웃 효과를 줄 수 있다.
+- Priority : 더 큰 값을 갖는 Volume의 설정이 적용된다.
+
+<br>
+
+## **필수적인 효과들**
+ - `Visual Environment`, `HDRI Sky` : 스카이박스 설정
+ - `Shadows` : 그림자 설정
+ - `Exposure` : 노출값 설정
+ - `Fog` : 안개, 볼류메트릭 안개 설정
+
+ - `Tonemapping` : HDR -> LDR 색상 값을 매핑하며 톤 다운
+ - `Bloom` : 필수
+ - `Ambient Occlusion` : 음영을 더 현실감 있게 표현
+ - `Vignette` : 화면 가장자리를 부드럽고 자연스럽게 표현
+ - `Split Toning` : 밝은 부분, 어두운 부분 색감을 나누어 보정
+
+ - `Shadows, Midtones, Highlights` : 후처리 마지막 단계에서 화면 느낌 조정
+ - `Color Adjustments` : 후처리 마지막 단계에서 전체 색감 조정
+
+<br>
+
+## Exposure
+ - 카메라 조리개 f값
+ - 카메라의 센서에 영향을 미치는 광원의 양
+ - 달빛이 비치는 밤 : [-1] ~ 쨍쨍한 한낮 [14]
+ - 동일 환경에서 노출값이 커지면 화면은 어두워진다.
+
+|---|---|---|
+|`Mode`|||
+|      |`Fixed`|고정된 노출값을 적용한다.|
+|      |`Automatic`|현재 씬 화면에 따라 노출값을 자동으로 조정한다.|
+|      |`Curve Mapping`|커브를 이용해 노출값을 조정한다.(전문가용)|
+|      |`Use Physical Camera`|카메라에서 Aparture(조리개 F값), Shutter Speed,<br>ISO 값을 직접 설정한다.<br>고정된 씬에서 사용하는 것이 좋다.|
+|`Metering Mode`||노출값을 자동으로 조정하는 방식|
+|               |`Average`|씬의 모든 픽셀의 밝기 평균을 통해 노출값을 조정한다.|
+|               |`Spot`|씬 중앙의 일부 픽셀을 통해 노출값을 조정한다.|
+|               |`Center Weighted`|모든 픽셀을 평가하지만, 중앙에 더 가중치를 부여|
+|`Limit Min`|노출값을 자동으로 설정할 때 최소 노출값.<br>어두운 부분에 카메라를 두고 더 밝아지지 않을 최대 밝기를 설정한다.|
+|`Limit Max`|노출값을 자동으로 설정할 때 최대 노출값.<br>밝은 부분에 카메라를 두고 더 어두워지지 않을 최소 밝기를 설정한다.|
+|`Compensation`|노출 값을 미세하게 조정할 때 사용한다.<br> |
+|||
+ 
+
+<br>
+# Debug
+---
+
+- [Window] - [Render Pipeline] - [Render Pipeline Debug]
+
+## Scene Camera
+ - 씬뷰에서 각 렌더링 옵션을 켜고 끄면서 디버깅할 수 있다.
+
+## Main Camera
+ - 게임 뷰에서 각 렌더링 옵션을 켜고 끄면서 디버깅할 수 있다.
+
+
+----
+★ Additional Options
+
+## Anti-aliasing
+ - 두 가지 안티 앨리어싱을 동시에 적용할 수 있다.
+
+ 1. MSAA
+   - HDRP Default Settings 또는 Camera - Custom Frame Settings
+   - Lit Shader Mode : Forward일 경우 사용할 수 있다.
+
+ 2. FXAA/TAA/SMAA
+   - Camera - General - Anti-aliasing
+
+## Quality - HDRP
+ - Lighting - Volumetrics - High Quality
+   - Volumetric Light가 자글거려서 보기 흉하면 사용
+   - 성능을 무지막지하게 잡아먹으니 비추천
+
+
+
+
+==================================================================
+
+# Note
+---
+
+## **HDRP 주의사항**
+ - 에디터 모드의 변경사항이 바로 적용되지 않을 수 있으므로, <br>
+   좀 이상하다 싶으면 플레이모드를 진입해서 확인한다.
+
+ - 씬 뷰에서 보이는 것보다 게임 뷰에서 보이는 것을 항상 더 신뢰해야 한다.
+
+<br>
+
+# 간단 체크리스트(따라하기)
+---
+
+[x] HDRP Wizard : Fix All
+
+## Project Settings
+  [x] Graphics - HDRP Asset 등록
+  [x] Quality - HDRP Asset 등록
+  [x] 
+
+
+<br>
+
+# 초기 설정
+---
+
+## **HDRP Wizard**
+ - 프로젝트의 설정을 HDRP에 맞게 수정한다.(Fix All)
+
+## **Project Settings**
+ - Graphics에서 HDRP 애셋을 등록해야 한다.
+ - HDRP Default Settings에서 지정한 옵션들은 씬에서 따로 직접 지정하지 않은 경우 기본적으로 씬에 적용된다.
+
+## **Quality - HDRP**
+ - Lit Shader Mode
+   - `Forward` : 이론상으로 가장 정밀한 그림자 구현. 리소스 소모 큼
+   - `Deferred` : 성능이 민감한 게임에서 사용하면 좋다. MSAA를 지원하지 않는다.
+
+## **HDRP Default Settings**
+ - `Camera`, `Baked Reflection`, `RealtimeReflection`에 따라 원하는 옵션을 지정할 수 있다.
+
+<br>
+
+
+
+<br>
+
+
