@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-05-22T03:07:48+09:00</updated>
+  <updated>2021-05-22T22:35:49+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,82 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Material Property Block을 통해 프로퍼티 값 변경하기</title>
+    <link href="https://rito15.github.io/posts/unity-material-property-block/" rel="alternate" type="text/html" title="Material Property Block을 통해 프로퍼티 값 변경하기" />
+    <published>2021-05-22T18:00:00+09:00</published>
+  
+    <updated>2021-05-22T18:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-material-property-block/</id>
+    <content src="https://rito15.github.io/posts/unity-material-property-block/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Optimization" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      드로우 콜과 배칭의 개념
+
+
+Draw Call
+
+  
+    CPU가 GPU에게 오브젝트를 그리라고 요청하는 것
+  
+  
+    주요 CPU 병목 요소 중 하나
+  
+
+
+SetPass Call
+
+  
+    쉐이더 렌더링 패스 수
+  
+  
+    쉐이더 요소(예 : 프로퍼티)변경 시 SetPass Call 증가
+  
+  
+    간단히, 쉐이더와 마테리얼에 관련된 Batch라고 할 수 있다.
+  
+
+
+Batch
+
+  
+    드로우 콜을 포함하는 상위 개념
+  
+  
+    각각의 드로우 콜 사이에서 GPU에 의해 접근되는 리소스들을 변경하는 일련의 모든 작업
+  
+  
+    Batch = Draw Call + Set Pass Call + Set Transform + …
+  
+
+
+Batching
+...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -323,52 +399,6 @@ GUIStyle 객체 이용하기
 
   스트링 리터럴로 지정할 수도 있다.
   https://gist.github.com/MadLittleMods/ea3e707...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>컴포넌트를 인스펙터 최상단에 올리기</title>
-    <link href="https://rito15.github.io/posts/unity-put-component-on-top/" rel="alternate" type="text/html" title="컴포넌트를 인스펙터 최상단에 올리기" />
-    <published>2021-05-17T21:12:00+09:00</published>
-  
-    <updated>2021-05-17T21:12:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-put-component-on-top/</id>
-    <content src="https://rito15.github.io/posts/unity-put-component-on-top/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-/// &amp;lt;summary&amp;gt; 컴포넌트를 최상단에 올리기 &amp;lt;/summary&amp;gt;
-[System.Diagnostics.Conditional("UNITY_EDITOR")]
-private static void PutComponentOnTop(Component component)
-{
-    for (int i = 0; i &amp;lt; 100 &amp;amp;&amp;amp; UnityEditorInternal.ComponentUtility.MoveComponentUp(component); i++);
-}
-
-
     </summary>
   
 
