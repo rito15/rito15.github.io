@@ -366,6 +366,96 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-gui-events/">에디터 GUI 이벤트 모음</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Mouse Over Control
+
+
+
+  특정 컨트롤에 마우스가 위치해 있는지 확인
+
+
+[1] Layout 요소가 아닌 경우
+
+
+  
+    Rect rect = /* Set Rect */;
+
+EditorGUI.LabelField(rect, "Label"); // Draw Field Control
+
+bool mouseOver = rect.Contai...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, May 25, 2021,  2:22 AM +0900"
+  >
+
+  
+  
+
+  
+    May 25
+  
+
+  <i class="unloaded">2021-05-25T02:22:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="355 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-material-property-block/">Material Property Block을 통해 프로퍼티 값 변경하기</a>
     </h1>
 
@@ -673,7 +763,7 @@ Source Cod...
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-editor-refresh-windows/">새로고침하기 - 씬뷰, 프로젝트뷰</a>
+      <a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a>
     </h1>
 
     <div class="post-content">
@@ -684,27 +774,31 @@ Source Cod...
 
 
 
-        씬뷰
+        커스텀 에디터 - 인스펙터뷰
+
+
+
+  Editor.Repaint()
+
+
+
+  
+    // 해당 CustomEditor 내에서 호출
+this.Repaint();
+
+  
+
+
+
+
+씬뷰
 
 
 인스펙터의 변경사항이 씬뷰에 곧바로 적용되지 않고
 
 씬뷰에 마우스를 올리거나 키보드 입력이 있어야 적용될 경우,
 
-SceneView.RepaintAll()을 호출하면 된다.
-
-
-
-커스텀 에디터에서 인스펙터와 씬뷰의 동기화가 필요한 경우
-
-OnInspectorGUI() 내에서 호출하면 된다.
-
-
-
-프로젝트뷰
-
-
-프로젝트 내의 파일 변경사항이 생...
+SceneView.RepaintAll()을 호출하면 된...
       </p>
     </div>
 
@@ -751,7 +845,7 @@ OnInspectorGUI() 내에서 호출하면 된다.
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="148 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="173 words">1 min</span>
 
 
         <!-- page views -->
@@ -1237,108 +1331,6 @@ Cout Format
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="191 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-urp-sg-magical-orb/">Magical Orb</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  
-    꿀렁이며 움직이는 구체 쉐이더
-  
-  
-    Scene Color 노드를 사용하므로, Render Pipeline Asset에서 Opaque Texture에 체크해야 한다.
-  
-  
-    마스터 노드의 Surface를 Transparent로 설정해야 한다.
-  
-
-
-Preview
-
-
-
-
-
-
-
-
-Options
-
-
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, May 14, 2021,  2:00 AM +0900"
-  >
-
-  
-  
-
-  
-    May 14
-  
-
-  <i class="unloaded">2021-05-14T02:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="241 words">1 min</span>
 
 
         <!-- page views -->
@@ -3549,41 +3541,10 @@ Options
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -3705,9 +3666,42 @@ Options
     
     
       
-        
-        
-
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -4729,10 +4723,10 @@ Options
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/particle/">particle</a>
+        <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/editor/">editor</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
@@ -6628,41 +6622,10 @@ Options
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -6784,9 +6747,42 @@ Options
     
     
       
-        
-        
-
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -7803,10 +7799,10 @@ Options
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/particle/">particle</a>
+        <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/editor/">editor</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>

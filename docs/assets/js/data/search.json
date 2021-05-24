@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "에디터 GUI 이벤트 모음",
+    "url": "/posts/unity-editor-gui-events/",
+    "categories": "Unity, Unity Editor",
+    "tags": "unity, editor, csharp",
+    "date": "2021-05-25 02:22:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Mouse Over Control  특정 컨트롤에 마우스가 위치해 있는지 확인[1] Layout 요소가 아닌 경우Rect rect = /* Set Rect */;EditorGUI.LabelField(rect, &quot;Label&quot;); // Draw Field Controlbool mouseOver = rect.Contains(Event.current.mousePosition);[2] Layout 요소인 경우EditorGUILayout.TextField(&quot;Text&quot;);bool mouseOver = G..."
+  },
+  
+  {
     "title": "Material Property Block을 통해 프로퍼티 값 변경하기",
     "url": "/posts/unity-material-property-block/",
     "categories": "Unity, Unity Optimization",
@@ -46,7 +61,7 @@
   },
   
   {
-    "title": "새로고침하기 - 씬뷰, 프로젝트뷰",
+    "title": "각종 윈도우 새로고침하기",
     "url": "/posts/unity-editor-refresh-windows/",
     "categories": "Unity, Unity Editor",
     "tags": "unity, editor, csharp",
@@ -57,7 +72,7 @@
 
 
 
-    "snippet": "씬뷰인스펙터의 변경사항이 씬뷰에 곧바로 적용되지 않고씬뷰에 마우스를 올리거나 키보드 입력이 있어야 적용될 경우,SceneView.RepaintAll()을 호출하면 된다.커스텀 에디터에서 인스펙터와 씬뷰의 동기화가 필요한 경우OnInspectorGUI() 내에서 호출하면 된다.프로젝트뷰프로젝트 내의 파일 변경사항이 생겨도프로젝트뷰에 곧바로 적용되지 않을 수 있다.이럴 때는 AssetDatabase.Refresh()를 호출하면 된다."
+    "snippet": "커스텀 에디터 - 인스펙터뷰  Editor.Repaint()// 해당 CustomEditor 내에서 호출this.Repaint();씬뷰인스펙터의 변경사항이 씬뷰에 곧바로 적용되지 않고씬뷰에 마우스를 올리거나 키보드 입력이 있어야 적용될 경우,SceneView.RepaintAll()을 호출하면 된다.커스텀 에디터에서 인스펙터와 씬뷰의 동기화가 필요한 경우OnInspectorGUI() 내에서 호출하면 된다.프로젝트뷰프로젝트 내의 파일 변경사항이 생겨도프로젝트뷰에 곧바로 적용되지 않을 수 있다.이럴 때는 AssetDatabase.R..."
   },
   
   {

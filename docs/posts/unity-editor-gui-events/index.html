@@ -23,23 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="editor" />
+<meta property="og:title" content="에디터 GUI 이벤트 모음" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Unity Csharp Developer" />
-<meta property="og:description" content="Unity Csharp Developer" />
-<link rel="canonical" href="https://rito15.github.io/tags/editor/" />
-<meta property="og:url" content="https://rito15.github.io/tags/editor/" />
+<meta name="description" content="Mouse Over Control" />
+<meta property="og:description" content="Mouse Over Control" />
+<link rel="canonical" href="https://rito15.github.io/posts/unity-editor-gui-events/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unity-editor-gui-events/" />
 <meta property="og:site_name" content="Rito15" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-25T02:22:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="editor" />
+<meta property="twitter:title" content="에디터 GUI 이벤트 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/tags/editor/","author":{"@type":"Person","name":"Rito15"},"headline":"editor","@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Mouse Over Control","datePublished":"2021-05-25T02:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-gui-events/"},"url":"https://rito15.github.io/posts/unity-editor-gui-events/","author":{"@type":"Person","name":"Rito15"},"headline":"에디터 GUI 이벤트 모음","dateModified":"2021-05-25T02:22:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>editor | Rito15
+  <title>에디터 GUI 이벤트 모음 | Rito15
   </title>
 
   <!--
@@ -115,9 +117,14 @@
 
 
 
-<link rel="preload" href="/assets/css/category-tag.css" as="style">
-<link rel="stylesheet" href="/assets/css/category-tag.css">
+<link rel="preload" href="/assets/css/post.css" as="style">
+<link rel="stylesheet" href="/assets/css/post.css">
 
+
+  
+    <link rel="preload" as="style" href="/assets/css/lib/bootstrap-toc.min.css">
+    <link rel="stylesheet" href="/assets/css/lib/bootstrap-toc.min.css" />
+  
 
 
 
@@ -140,8 +147,12 @@
 
 
 
-<script async src="/assets/js/page.min.js"></script>
+<script async src="/assets/js/post.min.js"></script>
 
+
+  <!-- MathJax -->
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 
 
@@ -278,22 +289,14 @@
         
         <span>
           <a href="/">
-            Home
-          </a>
-        </span>
-        
-      
-        
-        <span>
-          <a href="/tabs/tags/">
-            Tags
+            Posts
           </a>
         </span>
         
       
 
       
-        <span>editor</span>
+        <span>에디터 GUI 이벤트 모음</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -301,7 +304,7 @@
     <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
 
     <div id="topbar-title">
-      Tag
+      Post
     </div>
 
     <i id="search-trigger" class="fas fa-search fa-fw"></i>
@@ -346,119 +349,319 @@
 
 <!-- return -->
 <div class="row">
-  <div class="col-12 col-lg-11 col-xl-8">
-    <div id="page" class="post pb-5 pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4 mb-md-4">
+
+  <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+
+    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+      <h1 data-toc-skip>에디터 GUI 이벤트 모음</h1>
+
+      <div class="post-meta text-muted d-flex flex-column">
+        <!-- Published date and author -->
+        <div>
+          <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, May 25, 2021,  2:22 AM +0900"
+  >
+
+  
+  
+
+  
+    May 25
+  
+
+  <i class="unloaded">2021-05-25T02:22:00+09:00</i>
+
+</span>
+          by
+          <span class="author">
+            Rito15
+          </span>
+        </div>
+
+        <div>
+          <!-- lastmod -->
+          
+
+          <!-- read time -->
+          <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="355 words">1 min</span>
+
+
+          <!-- page views -->
+          
+
+        </div>
+
+      </div> <!-- .post-meta -->
+
+      <div class="post-content">
+
+        
+
+        <h1 id="mouse-over-control">Mouse Over Control</h1>
+<hr />
+
+<ul>
+  <li>특정 컨트롤에 마우스가 위치해 있는지 확인</li>
+</ul>
+
+<h2 id="1-layout-요소가-아닌-경우">[1] Layout 요소가 아닌 경우</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="n">Rect</span> <span class="n">rect</span> <span class="p">=</span> <span class="cm">/* Set Rect */</span><span class="p">;</span>
+
+<span class="n">EditorGUI</span><span class="p">.</span><span class="nf">LabelField</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span> <span class="s">"Label"</span><span class="p">);</span> <span class="c1">// Draw Field Control</span>
+
+<span class="kt">bool</span> <span class="n">mouseOver</span> <span class="p">=</span> <span class="n">rect</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">mousePosition</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="2-layout-요소인-경우">[2] Layout 요소인 경우</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="n">EditorGUILayout</span><span class="p">.</span><span class="nf">TextField</span><span class="p">(</span><span class="s">"Text"</span><span class="p">);</span>
+
+<span class="kt">bool</span> <span class="n">mouseOver</span> <span class="p">=</span> <span class="n">GUILayoutUtility</span><span class="p">.</span><span class="nf">GetLastRect</span><span class="p">()</span>
+                <span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">mousePosition</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h1 id="mouse-down-up-drag">Mouse Down, Up, Drag</h1>
+<hr />
+
+<ul>
+  <li>컨트롤에 포커싱된 상태에서는 검사 불가</li>
+</ul>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="kt">bool</span> <span class="n">mouseDown</span> <span class="p">=</span> <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">type</span> <span class="p">==</span> <span class="n">EventType</span><span class="p">.</span><span class="n">MouseDown</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">mouseUp</span>   <span class="p">=</span> <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">type</span> <span class="p">==</span> <span class="n">EventType</span><span class="p">.</span><span class="n">MouseUp</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">mouseDrag</span> <span class="p">=</span> <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">type</span> <span class="p">==</span> <span class="n">EventType</span><span class="p">.</span><span class="n">MouseDrag</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h1 id="focused-on-control">Focused On Control</h1>
+<hr />
+
+<ul>
+  <li>특정 컨트롤에 포커싱되어 있는지 확인</li>
+</ul>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="n">GUI</span><span class="p">.</span><span class="nf">SetNextControlName</span><span class="p">(</span><span class="s">"Control"</span><span class="p">);</span> <span class="c1">// 이어지는 컨트롤에 이름 부여</span>
+
+<span class="c1">// &lt;- Draw Field (Layout 요소 상관 없음)</span>
+
+<span class="kt">bool</span> <span class="n">focused</span> <span class="p">=</span> <span class="p">(</span><span class="n">GUI</span><span class="p">.</span><span class="nf">GetNameOfFocusedControl</span><span class="p">()</span> <span class="p">==</span> <span class="s">"Control"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h1 id="keydown-keyup">KeyDown, KeyUp</h1>
+<hr />
+
+<h2 id="1-컨트롤에-포커싱되지-않은-경우">[1] 컨트롤에 포커싱되지 않은 경우</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="kt">bool</span> <span class="n">keyDown</span> <span class="p">=</span> 
+    <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">keyCode</span> <span class="p">==</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">A</span> <span class="p">&amp;&amp;</span> 
+    <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">type</span> <span class="p">==</span> <span class="n">EventType</span><span class="p">.</span><span class="n">KeyDown</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="n">keyUp</span> <span class="p">=</span> 
+    <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">keyCode</span> <span class="p">==</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">A</span> <span class="p">&amp;&amp;</span> 
+    <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">type</span> <span class="p">==</span> <span class="n">EventType</span><span class="p">.</span><span class="n">KeyUp</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="2-컨트롤에-포커싱된-상태에서-검사">[2] 컨트롤에 포커싱된 상태에서 검사</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="kt">bool</span> <span class="n">keyDown</span> <span class="p">=</span> 
+    <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">keyCode</span> <span class="p">==</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">A</span> <span class="p">&amp;&amp;</span> 
+    <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">type</span> <span class="p">==</span> <span class="n">EventType</span><span class="p">.</span><span class="n">Used</span><span class="p">;</span>  <span class="c1">// KeyDown 대신 Used</span>
+
+<span class="kt">bool</span> <span class="n">keyUp</span> <span class="p">=</span> 
+    <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">keyCode</span> <span class="p">==</span> <span class="n">KeyCode</span><span class="p">.</span><span class="n">A</span> <span class="p">&amp;&amp;</span> 
+    <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">type</span> <span class="p">==</span> <span class="n">EventType</span><span class="p">.</span><span class="n">KeyUp</span><span class="p">;</span> <span class="c1">// KeyUp은 동일</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h1 id="force-to-focus-on-control">Force to Focus on Control</h1>
+<hr />
+
+<ul>
+  <li>특정 컨트롤에 포커싱하기</li>
+</ul>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="n">GUI</span><span class="p">.</span><span class="nf">SetNextControlName</span><span class="p">(</span><span class="s">"TextField"</span><span class="p">);</span> <span class="c1">// 컨트롤에 이름 부여</span>
+<span class="n">EditorGUILayout</span><span class="p">.</span><span class="nf">TextField</span><span class="p">(</span><span class="s">"Text"</span><span class="p">);</span>
+
+<span class="c1">// 이름 부여된 컨트롤에 포커싱</span>
+<span class="n">EditorGUI</span><span class="p">.</span><span class="nf">FocusTextInControl</span><span class="p">(</span><span class="s">"TextField"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<ul>
+  <li>응용 : 현재 포커스 제거하기</li>
+</ul>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="c1">// 컨트롤이 없는 부분에 마우스 클릭할 경우</span>
+<span class="c1">// 강제로 포커스 제거</span>
+<span class="k">if</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">type</span> <span class="p">==</span> <span class="n">EventType</span><span class="p">.</span><span class="n">MouseDown</span><span class="p">)</span>
+    <span class="n">EditorGUI</span><span class="p">.</span><span class="nf">FocusTextInControl</span><span class="p">(</span><span class="s">""</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+
+      </div>
+
+      <div class="post-tail-wrapper text-muted">
+
+        <!-- categories -->
+        
+        <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+          
+            <a href='/categories/unity/'>Unity</a>,
+            <a href='/categories/unity-editor/'>Unity Editor</a>
+        </div>
+        
+
+        <!-- tags -->
+        
+        <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          
+          <a href="/tags/unity/"
+            class="post-tag no-text-decoration" >unity</a>
+          
+          <a href="/tags/editor/"
+            class="post-tag no-text-decoration" >editor</a>
+          
+          <a href="/tags/csharp/"
+            class="post-tag no-text-decoration" >csharp</a>
+          
+          </div>
+        
+
+        <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+          
+          <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+          </div>
+          
+
+          <!--
+ Post sharing snippet
+
+ v2.1
+ https://github.com/cotes2020/jekyll-theme-chirpy
+ © 2019 Cotes Chung
+ Published under the MIT License
+-->
+
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
     
-      <div id="page-tag">
-  <h1 class="pl-lg-2">
-    <i class="fa fa-tag fa-fw text-muted"></i>
-    editor
-    <span class="lead text-muted pl-2">16</span>
-  </h1>
-  <ul class="post-content pl-0">
     
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-gui-events/">에디터 GUI 이벤트 모음</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">May 25, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-pivot-editor/">Pivot Editor(메시의 피벗 위치 수정)</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">May 20, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">May 19, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-gui-style/">GUI 스타일 지정하기</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">May 18, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-show-private-fields/">커스텀 에디터로 인스펙터에 Private 필드 나타내기</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Apr 29, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-custom-editor/">Custom Editor (커스텀 에디터)</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Mar 13, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-plugin-play-mode-saver/">Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Mar 13, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-menu-item/">Menu Item(메뉴 아이템)</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Mar 12, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-define-symbol/">Scripting Define Symbol 스크립트로 제어하기</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Mar 12, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-component-on-top/">컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Mar 12, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-playmode-state-change/">플레이모드 상태 변경에 따른 동작 구현하기</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Mar 11, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-init-events/">컴파일, 게임 시작 시 실행되는 애트리뷰트 정리</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Mar  8, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-custom-editor-window/">Custom Editor Window(커스텀 에디터 윈도우)</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Mar  8, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-undo/">Undo</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Feb 28, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-editor-api/">유니티 에디터 관련 유용한 팁 모음</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Feb 18, 2021</span>
-    </li>
-    
-    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/unity-memo-editor-exit-dialog/">유니티 에디터 종료 확인 다이얼로그 만들기</a>
-      <span class="dash flex-grow-1"></span>
-      <span class="text-muted small">Feb 10, 2021</span>
-    </li>
-    
-  </ul>
-</div>
 
     
-    </div> <!-- #page -->
-  </div><!-- .col-12 -->
+      
+        <a href="https://twitter.com/intent/tweet?text=에디터 GUI 이벤트 모음 - Rito15&url=https://rito15.github.io/posts/unity-editor-gui-events/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+    
+      
+        <a href="https://www.facebook.com/sharer/sharer.php?title=에디터 GUI 이벤트 모음 - Rito15&u=https://rito15.github.io/posts/unity-editor-gui-events/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+    
+      
+        <a href="https://telegram.me/share?text=에디터 GUI 이벤트 모음 - Rito15&url=https://rito15.github.io/posts/unity-editor-gui-events/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    
+
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+
+  </span>
+</div>
+
+
+        </div><!-- .post-tail-bottom -->
+
+      </div><!-- div.post-tail -->
+
+    </div> <!-- .post -->
+
+
+  </div> <!-- #post-wrapper -->
+
+  
+
+  
 
   <!--
   The Pannel on right side (Desktop views)
@@ -3545,13 +3748,2426 @@
   </div> <!-- .access -->
 
   
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
 
+</div> <!-- .row -->
+
+<div class="row">
+  <div class="col-12 col-lg-11 col-xl-8">
+    <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+    <!--
+ Recommend the other 3 posts according to the tags and categories of the current post,
+ if the number is not enough, use the other latest posts to supplement.
+
+ v2.0
+ https://github.com/cotes2020/jekyll-theme-chirpy
+ © 2019 Cotes Chung
+ Published under the MIT License
+-->
+
+<!-- The total size of related posts  -->
+
+
+<!-- An random integer that bigger than 0  -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy}  -->
+
+
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+<!-- Fill with the other newlest posts  -->
+
+
+
+
+
+
+  <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+    <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3>
+    <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-api/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 18
+  
+
+  <i class="unloaded">2021-02-18T01:50:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 관련 유용한 팁 모음</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+  
+    다이얼로그 창 띄우기
+  
+
+  
+    
+      bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
+bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
+
+    
+  
+
+
+
+
+
+
+...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-undo/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 28
+  
+
+  <i class="unloaded">2021-02-28T01:52:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Undo</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+
+  
+    필드의 값 변경, 리스트나 딕셔너리의 구성요소 변경 : RecordeObject(컴포넌트, "")
+  
+  
+    커스텀 에디터에서 대상의 필드를 Undo에 등록하려면, 반드시 해당 필드가 직렬화되어야 한다.
+  
+
+
+
+
+Memo
+
+
+1. 다른 동작에 Undo 등록
+
+
+  
+    // 이름 변경, 기타 등등 수행하기 직전...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-custom-editor-window/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  8
+  
+
+  <i class="unloaded">2021-03-08T00:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Editor Window(커스텀 에디터 윈도우)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+
+  에디터 윈도우를 직접 만들어 사용할 수 있다.
+
+
+Preview
+
+
+
+
+
+
+Source Code Example
+
+
+
+  
+    #if UNITY_EDITOR
+
+using UnityEngine;
+using UnityEditor;
+
+public class ExampleWindow : EditorWindow
+{
+    private bo...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+    </div> <!-- .card-deck -->
+  </div> <!-- #related-posts -->
+
+
+
+    <!--
+  Navigation buttons at the bottom of the post.
+
+  v2.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+
+<div class="post-navigation d-flex justify-content-between">
+  
+  <a href="/posts/unity-material-property-block/" class="btn btn-outline-primary">
+    <p>Material Property Block을 통해 프로퍼티 값 변경하기</p>
+  </a>
+  
+
+  
+  <span class="btn btn-outline-primary disabled">
+    <p>-</p>
+  </span>
+  
+
 </div>
 
+    
 
+    </div> <!-- #post-extend-wrapper -->
+
+  </div> <!-- .col-* -->
+
+</div> <!-- .row -->
 
 
 
@@ -6622,6 +9238,36 @@
 
 
     </div> <!-- #main-wrapper -->
+
+    
+      <!--
+  mermaid-js loader
+-->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(function() {
+    let initTheme = "default";
+
+    if ($("html[mode=dark]").length > 0
+      || ($("html[mode]").length == 0
+        && window.matchMedia("(prefers-color-scheme: dark)").matches ) ) {
+      initTheme = "dark";
+    }
+
+    let mermaidConf = {
+      theme: initTheme  /* <default|dark|forest|neutral> */
+    };
+
+    /* Markdown converts to HTML */
+    $("pre").has("code.language-mermaid").each(function() {
+      let svgCode = $(this).children().html();
+      $(this).addClass("unloaded");
+      $(this).after(`<div class=\"mermaid\">${svgCode}</div>`);
+    });
+
+    mermaid.initialize(mermaidConf);
+  });
+</script>
 
     
 

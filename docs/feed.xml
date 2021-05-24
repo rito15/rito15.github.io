@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-05-22T22:35:49+09:00</updated>
+  <updated>2021-05-25T04:18:56+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,68 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>에디터 GUI 이벤트 모음</title>
+    <link href="https://rito15.github.io/posts/unity-editor-gui-events/" rel="alternate" type="text/html" title="에디터 GUI 이벤트 모음" />
+    <published>2021-05-25T02:22:00+09:00</published>
+  
+    <updated>2021-05-25T02:22:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-gui-events/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-gui-events/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Mouse Over Control
+
+
+
+  특정 컨트롤에 마우스가 위치해 있는지 확인
+
+
+[1] Layout 요소가 아닌 경우
+
+Rect rect = /* Set Rect */;
+
+EditorGUI.LabelField(rect, "Label"); // Draw Field Control
+
+bool mouseOver = rect.Contains(Event.current.mousePosition);
+
+
+[2] Layout 요소인 경우
+
+EditorGUILayout.TextField("Text");
+
+bool mouseOver = GUILayoutUtility.GetLastRect()
+                .Contains(Event.current.mousePosition);
+
+
+
+
+Mouse Down...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -273,8 +335,8 @@ public c...
 
   
   <entry>
-    <title>새로고침하기 - 씬뷰, 프로젝트뷰</title>
-    <link href="https://rito15.github.io/posts/unity-editor-refresh-windows/" rel="alternate" type="text/html" title="새로고침하기 - 씬뷰, 프로젝트뷰" />
+    <title>각종 윈도우 새로고침하기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-refresh-windows/" rel="alternate" type="text/html" title="각종 윈도우 새로고침하기" />
     <published>2021-05-19T01:00:00+09:00</published>
   
     <updated>2021-05-19T01:00:00+09:00</updated>
@@ -301,7 +363,20 @@ public c...
 
 
 
-      씬뷰
+      커스텀 에디터 - 인스펙터뷰
+
+
+
+  Editor.Repaint()
+
+
+// 해당 CustomEditor 내에서 호출
+this.Repaint();
+
+
+
+
+씬뷰
 
 
 인스펙터의 변경사항이 씬뷰에 곧바로 적용되지 않고
@@ -328,77 +403,6 @@ OnInspectorGUI() 내에서 호출하면 된다.
 이럴 때는 AssetDatabase.Refresh()를 호출하면 된다.
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>GUI 스타일 지정하기</title>
-    <link href="https://rito15.github.io/posts/unity-editor-gui-style/" rel="alternate" type="text/html" title="GUI 스타일 지정하기" />
-    <published>2021-05-18T02:02:00+09:00</published>
-  
-    <updated>2021-05-18T02:02:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-gui-style/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-gui-style/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      인라인 방식으로 스타일 설정하기
-
-
-
-  GUI.___ 프로퍼티 값들을 수정하고 돌려놓기
-
-
-// OnInspectorGUI
-
-var oldBgColor = GUI.backgroundColor;
-
-// GUIs
-
-GUI.backgroundColor = oldBgColor;
-
-
-
-
-GUIStyle 객체 이용하기
-
-
-
-  
-    GUIStyle 객체를 만들 때 매개변수로 GUI.skin을 알맞게 지정해야 한다.
-  
-  
-    GUI.skin은 OnGUI 종류의 메소드에서만 호출할 수 있으므로
-가비지를 감수하고 OnInspectorGUI() 내에서 항상 초기화한다.
-  
-
-
-
-
-
-  스트링 리터럴로 지정할 수도 있다.
-  https://gist.github.com/MadLittleMods/ea3e707...
     </summary>
   
 

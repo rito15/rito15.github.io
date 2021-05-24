@@ -44,9 +44,9 @@ using UniRx.Triggers;
 - 코루틴과의 결합
 
 - MVP 패턴 구현
- - M(Model) : 내부 처리를 위한 스트림 보유
- - V(View) : 입력 또는 UI의 변화를 감지하는 스트림 보유
- - P(Presenter) : M, V 양측의 스트림을 구독하고, V의 이벤트를 감지하여 M에 전달하고 그 결과를 다시 V에 전달
+  - M(Model) : 내부 처리를 위한 스트림 보유
+  - V(View) : 입력 또는 UI의 변화를 감지하는 스트림 보유
+  - P(Presenter) : M, V 양측의 스트림을 구독하고, V의 이벤트를 감지하여 M에 전달하고 그 결과를 다시 V에 전달
 
 <br>
 
@@ -1083,19 +1083,6 @@ this.OnMouseDownAsObservable()
 
 <br>
 
-
-<details>
-<summary markdown="span"> 
-??
-</summary>
-
-```cs
-
-```
-
-</details>
-
-<br>
 
 # Custom Observables
 ---

@@ -1,5 +1,5 @@
 ---
-title: 새로고침하기 - 씬뷰, 프로젝트뷰
+title: 각종 윈도우 새로고침하기
 author: Rito15
 date: 2021-05-19 01:00:00 +09:00
 categories: [Unity, Unity Editor]
@@ -7,6 +7,18 @@ tags: [unity, editor, csharp]
 math: true
 mermaid: true
 ---
+
+# 커스텀 에디터 - 인스펙터뷰
+---
+
+- `Editor.Repaint()`
+
+```cs
+// 해당 CustomEditor 내에서 호출
+this.Repaint();
+```
+
+<br>
 
 # 씬뷰
 ---
@@ -21,7 +33,7 @@ mermaid: true
 
 커스텀 에디터에서 인스펙터와 씬뷰의 동기화가 필요한 경우
 
-`OnInspectorGUI()` 내에서 호출하면 된다.
+**OnInspectorGUI()** 내에서 호출하면 된다.
 
 <br>
 
