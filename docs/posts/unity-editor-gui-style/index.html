@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="195 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="373 words">2 min</span>
 
 
           <!-- page views -->
@@ -433,11 +433,13 @@
 5
 6
 7
+8
 </pre></td><td class="rouge-code"><pre><span class="c1">// OnInspectorGUI</span>
 
 <span class="kt">var</span> <span class="n">oldBgColor</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="n">backgroundColor</span><span class="p">;</span>
+<span class="n">GUI</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">red</span><span class="p">;</span>
 
-<span class="c1">// GUIs</span>
+<span class="c1">// &lt;- Draw GUIs</span>
 
 <span class="n">GUI</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="p">=</span> <span class="n">oldBgColor</span><span class="p">;</span>
 </pre></td></tr></tbody></table></code></div></div>
@@ -449,24 +451,41 @@
 
 <ul>
   <li>
-    <p><code class="language-plaintext highlighter-rouge">GUIStyle</code> 객체를 만들 때 매개변수로 <code class="language-plaintext highlighter-rouge">GUI.skin</code>을 알맞게 지정해야 한다.</p>
+    <p>GUI 컨트롤을 생성하는 메소드의 매개변수로 <code class="language-plaintext highlighter-rouge">GUIStyle</code> 객체를 넣어서 스타일을 지정할 수 있다.</p>
   </li>
   <li>
-    <p><code class="language-plaintext highlighter-rouge">GUI.skin</code>은 <strong>OnGUI</strong> 종류의 메소드에서만 호출할 수 있으므로<br />
-가비지를 감수하고 <code class="language-plaintext highlighter-rouge">OnInspectorGUI()</code> 내에서 항상 초기화한다.</p>
+    <p>미리 만들어진 스타일들을 그대로 사용하거나,<br />
+<code class="language-plaintext highlighter-rouge">GUIStyle</code> 생성자의 매개변수로 스타일을 집어넣어서 복제할 수 있다.</p>
+  </li>
+  <li>
+    <p>미리 만들어진 스타일들</p>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">GUI.skin.~</code></li>
+      <li><code class="language-plaintext highlighter-rouge">EditorStyles.~</code></li>
+    </ul>
   </li>
 </ul>
 
 <p><br /></p>
 
 <ul>
+  <li><code class="language-plaintext highlighter-rouge">GUI.skin</code>은 <strong>OnGUI</strong> 종류의 메소드에서만 호출할 수 있으므로<br />
+<code class="language-plaintext highlighter-rouge">OnInspectorGUI()</code> 내에서 초기화해야 한다.</li>
+</ul>
+
+<p><br /></p>
+
+<ul>
   <li>스트링 리터럴로 지정할 수도 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">EditorStyles.~</code>와 동일</li>
   <li><a href="https://gist.github.com/MadLittleMods/ea3e7076f0f59a702ecb">https://gist.github.com/MadLittleMods/ea3e7076f0f59a702ecb</a></li>
 </ul>
 
 <p><br /></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<h2 id="예제-1--버튼-스타일-지정">예제 1 : 버튼 스타일 지정</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -479,25 +498,75 @@
 11
 12
 13
-</pre></td><td class="rouge-code"><pre>// OnInspectorGUI
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">GUIStyleState</span> <span class="n">buttonStyleState</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">GUIStyle</span> <span class="n">buttonStyle</span><span class="p">;</span>
 
-GUIStyleState buttonStyleState = new GUIStyleState()
-{
-    textColor = Color.yellow,
-};
-GUIStyle buttonStyle = new GUIStyle(GUI.skin.button)
-{
-    fontStyle = FontStyle.Bold,
-    normal = buttonStyleState,
-};
+<span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnInspectorGUI</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">buttonStyleState</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+        <span class="n">buttonStyleState</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">GUIStyleState</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">textColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">yellow</span><span class="p">,</span>
+        <span class="p">};</span>
 
-GUILayout.Button("Button", buttonStyle /*, Layouts */)
+    <span class="k">if</span><span class="p">(</span><span class="n">buttonStyle</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+        <span class="n">buttonStyle</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">GUIStyle</span><span class="p">(</span><span class="n">GUI</span><span class="p">.</span><span class="n">skin</span><span class="p">.</span><span class="n">button</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">fontStyle</span> <span class="p">=</span> <span class="n">FontStyle</span><span class="p">.</span><span class="n">Bold</span><span class="p">,</span>
+            <span class="n">normal</span> <span class="p">=</span> <span class="n">buttonStyleState</span><span class="p">,</span>
+        <span class="p">};</span>
+
+    <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Button</span><span class="p">(</span><span class="s">"Button"</span><span class="p">,</span> <span class="n">buttonStyle</span> <span class="cm">/*, Layouts */</span><span class="p">)</span>
+<span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
 
-<h1 id="레이아웃-스타일-지정하기">레이아웃 스타일 지정하기</h1>
+<h2 id="예제-2--토글-버튼">예제 2 : 토글 버튼</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="kt">bool</span> <span class="n">toggle</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">GUIStyle</span> <span class="n">toggleButtonStyle</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnInspectorGUI</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">toggleButtonStyle</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+        <span class="n">toggleButtonStyle</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">GUIStyle</span><span class="p">(</span><span class="n">GUI</span><span class="p">.</span><span class="n">skin</span><span class="p">.</span><span class="n">button</span><span class="p">);</span>
+
+    <span class="n">toggle</span> <span class="p">=</span> <span class="n">GUILayout</span><span class="p">.</span><span class="nf">Toggle</span><span class="p">(</span><span class="n">toggle</span><span class="p">,</span> <span class="s">"Toggle Button"</span><span class="p">,</span> <span class="n">toggleButtonStyle</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h1 id="레이아웃-지정하기">레이아웃 지정하기</h1>
 <hr />
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">EditorGUILayout</code> 클래스로 GUI 요소를 생성할 때 매개변수로 넣어서<br />
+레이아웃을 지정할 수 있다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">GUILayout.~()</code></p>
+  </li>
+</ul>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>GUILayout.Button("Button", GUILayout.Width(100f), GUILayout.Height(20f));
@@ -3692,6 +3761,11 @@ GUILayout.Button("Button", buttonStyle /*, Layouts */)
   
   </div> <!-- .access -->
 
+  
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
   
 
 </div> <!-- #panel-wrapper -->

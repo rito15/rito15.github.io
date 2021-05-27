@@ -17,8 +17,9 @@ mermaid: true
 // OnInspectorGUI
 
 var oldBgColor = GUI.backgroundColor;
+GUI.backgroundColor = Color.red;
 
-// GUIs
+// <- Draw GUIs
 
 GUI.backgroundColor = oldBgColor;
 ```
@@ -28,38 +29,79 @@ GUI.backgroundColor = oldBgColor;
 # GUIStyle 객체 이용하기
 ---
 
-- `GUIStyle` 객체를 만들 때 매개변수로 `GUI.skin`을 알맞게 지정해야 한다.
+- GUI 컨트롤을 생성하는 메소드의 매개변수로 `GUIStyle` 객체를 넣어서 스타일을 지정할 수 있다.
+
+- 미리 만들어진 스타일들을 그대로 사용하거나,<br>
+  `GUIStyle` 생성자의 매개변수로 스타일을 집어넣어서 복제할 수 있다.
+
+- 미리 만들어진 스타일들
+  - `GUI.skin.~`
+  - `EditorStyles.~`
+
+<br>
 
 - `GUI.skin`은 **OnGUI** 종류의 메소드에서만 호출할 수 있으므로<br>
-  가비지를 감수하고 `OnInspectorGUI()` 내에서 항상 초기화한다.
+  `OnInspectorGUI()` 내에서 초기화해야 한다.
 
 <br>
 
 - 스트링 리터럴로 지정할 수도 있다.
+ - `EditorStyles.~`와 동일
  - <https://gist.github.com/MadLittleMods/ea3e7076f0f59a702ecb>
 
 <br>
 
-```
-// OnInspectorGUI
+## 예제 1 : 버튼 스타일 지정
 
-GUIStyleState buttonStyleState = new GUIStyleState()
-{
-    textColor = Color.yellow,
-};
-GUIStyle buttonStyle = new GUIStyle(GUI.skin.button)
-{
-    fontStyle = FontStyle.Bold,
-    normal = buttonStyleState,
-};
+```cs
+private GUIStyleState buttonStyleState;
+private GUIStyle buttonStyle;
 
-GUILayout.Button("Button", buttonStyle /*, Layouts */)
+public override void OnInspectorGUI()
+{
+    if(buttonStyleState == null)
+        buttonStyleState = new GUIStyleState()
+        {
+            textColor = Color.yellow,
+        };
+
+    if(buttonStyle == null)
+        buttonStyle = new GUIStyle(GUI.skin.button)
+        {
+            fontStyle = FontStyle.Bold,
+            normal = buttonStyleState,
+        };
+
+    GUILayout.Button("Button", buttonStyle /*, Layouts */)
+}
 ```
 
 <br>
 
-# 레이아웃 스타일 지정하기
+## 예제 2 : 토글 버튼
+
+```cs
+private bool toggle;
+private GUIStyle toggleButtonStyle;
+
+public override void OnInspectorGUI()
+{
+    if(toggleButtonStyle == null)
+        toggleButtonStyle = new GUIStyle(GUI.skin.button);
+
+    toggle = GUILayout.Toggle(toggle, "Toggle Button", toggleButtonStyle);
+}
+```
+
+<br>
+
+# 레이아웃 지정하기
 ---
+
+- `EditorGUILayout` 클래스로 GUI 요소를 생성할 때 매개변수로 넣어서<br>
+  레이아웃을 지정할 수 있다.
+
+- `GUILayout.~()`
 
 ```
 GUILayout.Button("Button", GUILayout.Width(100f), GUILayout.Height(20f));
