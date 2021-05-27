@@ -2,8 +2,8 @@
 title: Scene Auto Saver (현재 씬 자동 저장)
 author: Rito15
 date: 2021-03-08 02:22:00 +09:00
-categories: [Unity, Unity Editor Plugins]
-tags: [unity, csharp, plugin, autosave]
+categories: [Unity, Unity Editor Utilities]
+tags: [unity, csharp, utility, autosave]
 math: true
 mermaid: true
 ---

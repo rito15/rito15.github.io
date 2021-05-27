@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Scene Auto Saver (현재 씬 자동 저장)" />
+<meta property="og:title" content="Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Summary 일정 시간 주기로 현재 활성화된 씬을 자동 저장한다." />
-<meta property="og:description" content="Summary 일정 시간 주기로 현재 활성화된 씬을 자동 저장한다." />
-<link rel="canonical" href="https://rito15.github.io/posts/unity-editor-plugin-scene-auto-saver/" />
-<meta property="og:url" content="https://rito15.github.io/posts/unity-editor-plugin-scene-auto-saver/" />
+<meta name="description" content="Summary 모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서 모델의 회전과 위치를 리셋한다. 모델의 정점 위치를 모두 계산하여, 피벗이 모델의 중심 하단으로 오게 한다." />
+<meta property="og:description" content="Summary 모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서 모델의 회전과 위치를 리셋한다. 모델의 정점 위치를 모두 계산하여, 피벗이 모델의 중심 하단으로 오게 한다." />
+<link rel="canonical" href="https://rito15.github.io/posts/unity-model-pivot-resetter/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unity-model-pivot-resetter/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-03-08T02:22:00+09:00" />
+<meta property="article:published_time" content="2021-03-05T22:22:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Scene Auto Saver (현재 씬 자동 저장)" />
+<meta property="twitter:title" content="Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Summary 일정 시간 주기로 현재 활성화된 씬을 자동 저장한다.","datePublished":"2021-03-08T02:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-plugin-scene-auto-saver/"},"url":"https://rito15.github.io/posts/unity-editor-plugin-scene-auto-saver/","author":{"@type":"Person","name":"Rito15"},"headline":"Scene Auto Saver (현재 씬 자동 저장)","dateModified":"2021-05-20T17:29:17+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Summary 모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서 모델의 회전과 위치를 리셋한다. 모델의 정점 위치를 모두 계산하여, 피벗이 모델의 중심 하단으로 오게 한다.","datePublished":"2021-03-05T22:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-model-pivot-resetter/"},"url":"https://rito15.github.io/posts/unity-model-pivot-resetter/","author":{"@type":"Person","name":"Rito15"},"headline":"Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)","dateModified":"2021-03-05T22:22:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Scene Auto Saver (현재 씬 자동 저장) | Rito15
+  <title>Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화) | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>Scene Auto Saver (현재 씬 자동 저장)</span>
+        <span>Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Scene Auto Saver (현재 씬 자동 저장)</h1>
+      <h1 data-toc-skip>Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Mon, Mar  8, 2021,  2:22 AM +0900"
+    title="Fri, Mar  5, 2021, 10:22 PM +0900"
   >
 
   
   
 
   
-    Mar  8
+    Mar  5
   
 
-  <i class="unloaded">2021-03-08T02:22:00+09:00</i>
+  <i class="unloaded">2021-03-05T22:22:00+09:00</i>
 
 </span>
           by
@@ -406,35 +406,6 @@
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, May 20, 2021,  5:29 PM +0900"
-  >
-
-  
-  
-
-  
-    May 20
-  
-
-  <i class="unloaded">2021-05-20T17:29:17+09:00</i>
-
-</span>
-          </span>
           
 
           <!-- read time -->
@@ -448,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="205 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="327 words">1 min</span>
 
 
           <!-- page views -->
@@ -465,43 +436,92 @@
         <h1 id="summary">Summary</h1>
 <hr />
 <ul>
-  <li>
-    <p>일정 시간 주기로 현재 활성화된 씬을 자동 저장한다.</p>
-  </li>
-  <li>
-    <p>씬이 저장되지 않은 상태일 때만 타이머가 동작한다.</p>
-  </li>
+  <li>모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서</li>
+  <li>모델의 회전과 위치를 리셋한다.</li>
+  <li>모델의 정점 위치를 모두 계산하여, 피벗이 모델의 중심 하단으로 오게 한다.</li>
 </ul>
+
+<p><br /></p>
 
 <h1 id="how-to-use">How To Use</h1>
 <hr />
 <ul>
-  <li>스크립트 2개를 모두 다운로드 받아 유니티 프로젝트에 넣는다.</li>
   <li>
-    <p>[Window] - [Rito] - [Scene Auto Saver]를 통해 윈도우를 연다.</p>
+    <p>스크립트를 유니티 프로젝트 내에 넣는다.</p>
   </li>
-  <li><code class="language-plaintext highlighter-rouge">On</code>에 체크/해제하여 기능 실행 여부를 설정할 수 있다.</li>
-  <li><code class="language-plaintext highlighter-rouge">Show Log</code> 옵션으로 자동 저장 시 로그 출력 여부를 설정할 수 있다.</li>
-  <li><code class="language-plaintext highlighter-rouge">Save Cycle</code> 옵션으로 저장 주기를 설정할 수 있다. (기본 : 10초, 최소 : 5초)</li>
+  <li>
+    <p>[Window] - [Rito] - [Model Pivot Resetter] - [Activated]를 체크한다.</p>
+    <ul>
+      <li>체크 해제되어 있을 경우 동작하지 않는다.</li>
+    </ul>
+  </li>
 </ul>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110288473-67e5e200-802b-11eb-9d2f-4ab392e77f6d.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110126112-6dfb7900-7e07-11eb-8145-eb635f7b8761.png" alt="image" /></p>
+
+<ul>
+  <li>임포트 할 때마다 대화상자를 통해 선택하게 하려면<br />
+[Window] - [Rito] - [Model Pivot Resetter] - [Show Dialog]에 체크한다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110122641-3559a080-7e03-11eb-8db9-4d3247738a35.png" alt="image" /></p>
+
+<p><br /></p>
 
 <h1 id="preview">Preview</h1>
 <hr />
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110287071-48e65080-8029-11eb-8832-80ba04d7816e.gif" alt="2021_0308_Scene Auto Saver2" /></p>
+<h2 id="기본">기본</h2>
+
+<ul>
+  <li>모델 임포트, 하이라키로 가져왔을 때
+    <ul>
+      <li>트랜스폼 위치, 회전, 크기, 피벗 모두 제각각이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110127359-e282e780-7e08-11eb-8fbc-9c7fe9debc58.png" alt="image" /></p>
+
+<ul>
+  <li>이 상태에서 트랜스폼을 리셋한 경우
+    <ul>
+      <li>(0, 0, 0) 위치로 와서 드러누워 버린다. (기존 rotation.x 값 : 270)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110122836-7a7dd280-7e03-11eb-96e0-ad1baf381101.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="pivot-resetter-사용">Pivot Resetter 사용</h2>
+
+<ul>
+  <li>
+    <p>트랜스폼 위치, 회전, 크기 모두 기본 값으로 정상 리셋된다.</p>
+  </li>
+  <li>
+    <p>피벗 위치는 모델의 중앙 하단으로 변경된다.</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110123018-bd3faa80-7e03-11eb-9c25-25f4d8e3fe58.png" alt="image" /></p>
+
+<p><br /></p>
 
 <h1 id="download">Download</h1>
 <hr />
 <ul>
-  <li><a href="https://github.com/rito15/Images/files/6099673/Scene_Auto_Saver.zip">Scene Auto Saver.zip</a></li>
+  <li><a href="https://github.com/rito15/Images/files/6090997/ModelPivotResetter.zip">ModelPivotResetter.zip</a></li>
 </ul>
+
+<p><br /></p>
 
 <h1 id="downloadupm">Download(UPM)</h1>
 <hr />
 <ul>
-  <li>https://github.com/rito15/Unity-Scene-Auto-Saver.git</li>
+  <li>https://github.com/rito15/Unity-Model-Pivot-Resetter.git</li>
 </ul>
 
 <h2 id="upm을-통한-임포트-방법">UPM을 통한 임포트 방법</h2>
@@ -511,10 +531,20 @@
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/118945484-7425de00-b990-11eb-93d6-17853a4836c6.gif" alt="2021_0520_HowToUseUPM" /></p>
 
+<p><br /></p>
+
 <h1 id="github">Github</h1>
 <hr />
 <ul>
-  <li><a href="https://github.com/rito15/Unity-Scene-Auto-Saver">https://github.com/rito15/Unity-Scene-Auto-Saver</a></li>
+  <li><a href="https://github.com/rito15/Unity-Model-Pivot-Resetter">https://github.com/rito15/Unity-Model-Pivot-Resetter</a></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+<hr />
+<ul>
+  <li><a href="https://alqu.tistory.com/?page=4">https://alqu.tistory.com/?page=4</a></li>
 </ul>
 
 
@@ -528,7 +558,7 @@
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
             <a href='/categories/unity/'>Unity</a>,
-            <a href='/categories/unity-editor-plugins/'>Unity Editor Plugins</a>
+            <a href='/categories/unity-editor-utilities/'>Unity Editor Utilities</a>
         </div>
         
 
@@ -543,11 +573,14 @@
           <a href="/tags/csharp/"
             class="post-tag no-text-decoration" >csharp</a>
           
-          <a href="/tags/plugin/"
-            class="post-tag no-text-decoration" >plugin</a>
+          <a href="/tags/model/"
+            class="post-tag no-text-decoration" >model</a>
           
-          <a href="/tags/autosave/"
-            class="post-tag no-text-decoration" >autosave</a>
+          <a href="/tags/pivot/"
+            class="post-tag no-text-decoration" >pivot</a>
+          
+          <a href="/tags/postprocessor/"
+            class="post-tag no-text-decoration" >postprocessor</a>
           
           </div>
         
@@ -579,19 +612,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Scene Auto Saver (현재 씬 자동 저장) - Rito15&url=https://rito15.github.io/posts/unity-editor-plugin-scene-auto-saver/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화) - Rito15&url=https://rito15.github.io/posts/unity-model-pivot-resetter/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Scene Auto Saver (현재 씬 자동 저장) - Rito15&u=https://rito15.github.io/posts/unity-editor-plugin-scene-auto-saver/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화) - Rito15&u=https://rito15.github.io/posts/unity-model-pivot-resetter/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Scene Auto Saver (현재 씬 자동 저장) - Rito15&url=https://rito15.github.io/posts/unity-editor-plugin-scene-auto-saver/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화) - Rito15&url=https://rito15.github.io/posts/unity-model-pivot-resetter/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -654,27 +687,27 @@
         
         
         
+        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-toy-free-look-camera/">Free Look Camera (자유 시점 카메라)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-pivot-editor/">Pivot Editor(메시의 피벗 위치 수정)</a></li>
+        <li><a href="/posts/unity-editor-undo/">Undo</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-plugin-model-pivot-resetter/">Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-plugin-scene-auto-saver/">Scene Auto Saver (현재 씬 자동 저장)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-plugin-transform-custom-editor/">Transform Custom Editor(트랜스폼 커스텀 에디터)</a></li>
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -1994,315 +2027,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2627,6 +2351,315 @@
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -3678,9 +3711,6 @@
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
-      
-        
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
@@ -3688,6 +3718,9 @@
       
         
         <a class="post-tag" href="/tags/particle/">particle</a>
+      
+        
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
@@ -4525,59 +4558,72 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
   
 
   
@@ -5898,7 +5944,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-plugin-model-pivot-resetter/">
+        <a href="/posts/unity-scene-auto-saver/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -5915,13 +5961,13 @@
   
 
   
-    Mar  5
+    Mar  8
   
 
-  <i class="unloaded">2021-03-05T22:22:00+09:00</i>
+  <i class="unloaded">2021-03-08T02:22:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Scene Auto Saver (현재 씬 자동 저장)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -5933,23 +5979,20 @@
                 Summary
 
 
-
-  모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서
-  모델의 회전과 위치를 리셋한다.
-  모델의 정점 위치를 모두 계산하여, 피벗이 모델의 중심 하단으로 오게 한다.
-
-
+  
+    일정 시간 주기로 현재 활성화된 씬을 자동 저장한다.
+  
+  
+    씬이 저장되지 않은 상태일 때만 타이머가 동작한다.
+  
 
 
 How To Use
 
 
-
+  스크립트 2개를 모두 다운로드 받아 유니티 프로젝트에 넣는다.
   
-    스크립트를 유니티 프로젝트 내에 넣는다.
-  
-  
-    [Window] - [Rito] - [Model ...
+    [Window] - [Rito] - [Scene Auto Saver]를 통해 윈도우를 연...
               </p>
             </div>
           </div>
@@ -5959,7 +6002,7 @@ How To Use
       
       
       <div class="card">
-        <a href="/posts/unity-editor-plugin-transform-custom-editor/">
+        <a href="/posts/unity-transform-custom-editor/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6027,7 +6070,7 @@ Preview
       
       
       <div class="card">
-        <a href="/posts/unity-editor-plugin-play-mode-saver/">
+        <a href="/posts/unity-play-mode-saver/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6095,14 +6138,14 @@ Preview
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/unity-editor-custom-editor-window/" class="btn btn-outline-primary">
-    <p>Custom Editor Window(커스텀 에디터 윈도우)</p>
+  <a href="/posts/unity-memo-prevent-infinite-loop/" class="btn btn-outline-primary">
+    <p>무한 루프를 방지하는 작은 습관</p>
   </a>
   
 
   
-  <a href="/posts/unity-editor-init-events/" class="btn btn-outline-primary">
-    <p>컴파일, 게임 시작 시 실행되는 애트리뷰트 정리</p>
+  <a href="/posts/unity-study-unirx/" class="btn btn-outline-primary">
+    <p>UniRx (Reactive Extensions for Unity)</p>
   </a>
   
 
@@ -7491,315 +7534,6 @@ Preview
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -8124,6 +7858,315 @@ Preview
     
     
       
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
     
   
     
@@ -9170,9 +9213,6 @@ Preview
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
-      
-        
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
@@ -9180,6 +9220,9 @@ Preview
       
         
         <a class="post-tag" href="/tags/particle/">particle</a>
+      
+        
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>

@@ -2,8 +2,8 @@
 title: Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)
 author: Rito15
 date: 2021-03-13 17:20:00 +09:00
-categories: [Unity, Unity Editor Plugins]
-tags: [unity, editor, csharp, plugin]
+categories: [Unity, Unity Editor Utilities]
+tags: [unity, editor, csharp, utility]
 math: true
 mermaid: true
 ---
