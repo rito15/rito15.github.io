@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="11288 words">62 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="11352 words">63 min</span>
 
 
           <!-- page views -->
@@ -486,7 +486,7 @@
 <p><strong>불투명(Opaque)</strong>과 <strong>반투명(Transparent)</strong> 오브젝트는 그려지는 타이밍도, 그리기 위한 고려사항도 다르다.</p>
 
 <p>유니티에서는 오브젝트를 렌더링하는 순서를 쉐이더와 마테리얼의 <strong>렌더 큐(Render Queue)</strong>를 통해 정수 값으로 지정하는데, 
-지정한 값이 작은 순서대로 그리게 되며 기본적으로 Opaque는 <strong>2000</strong>, Transparent는 <strong>3000</strong>의 값을 가진다.</p>
+작은 값부터 순서대로 그리게 되며 기본적으로 Opaque는 <strong>2000</strong>, Transparent는 <strong>3000</strong>의 값을 가진다.</p>
 
 <p>따라서 불투명 오브젝트가 전부 그려진 후에 반투명 오브젝트가 그려진다.</p>
 
@@ -549,7 +549,7 @@
 
 <p><br /></p>
 
-<h2 id="알파-소팅을-하는-이유">알파 소팅을 하는 이유?</h2>
+<h2 id="알파-소팅을-하는-이유"><strong>알파 소팅을 하는 이유?</strong></h2>
 
 <p>바로 이런 문제를 해결하기 위함이다.</p>
 
@@ -561,6 +561,8 @@
 
 <p>“불투명보다 반투명을 무조건 나중에 그리기”로 합의해서 불투명-반투명 오브젝트간의 문제는 해결했다.</p>
 
+<p><br /></p>
+
 <p>그런데 이번에는 똑같은 문제가 반투명 오브젝트 사이에서도 발생한다.</p>
 
 <p>따라서 이를 해결하기 위해 반투명 오브젝트를 그릴 때 카메라로부터 피벗까지의 거리를 기준으로 멀리 있는 오브젝트부터 그리도록 하여,</p>
@@ -568,6 +570,8 @@
 <p>앞의 오브젝트를 먼저 그려서 뒤의 오브젝트가 가려지는 일이 발생하지 않게 하는 것이다.</p>
 
 <p><br /></p>
+
+<h2 id="알파-블렌딩-쉐이더-작성하기"><strong>알파 블렌딩 쉐이더 작성하기</strong></h2>
 
 <details>
   <summary> 
@@ -656,9 +660,15 @@ Source Code
 (Fallback에 지정한 쉐이더가 그림자의 생성에 영향을 준다.)</li>
 </ul>
 
+<p><br /></p>
+
+<h2 id="그래도-해결되지-않는-문제"><strong>그래도 해결되지 않는 문제</strong></h2>
+
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/107119845-7aa2b500-68cd-11eb-89d6-75ff0a3e6ccd.gif" alt="2021_0206_Grass" class="normal" /></p>
 
-<p>알파 소팅은 카메라에서 각 오브젝트의 피벗까지의 거리값을 기반으로 하기 때문에, 카메라 시점이 회전함에 따라 뒤에 있던 오브젝트가 불쑥 튀어나오는 현상이 발생한다.</p>
+<p>알파 소팅은 카메라에서 각 오브젝트의 피벗까지의 거리값을 기반으로 하기 때문에,</p>
+
+<p>카메라 시점이 회전함에 따라 뒤에 있던 오브젝트의 피벗이 더 가깝다고 판정되면 불쑥 앞으로 튀어나와 앞에 있는 오브젝트를 가리게 된다.</p>
 
 <p>이는 고질적인 문제로, 순수한 알파 블렌딩 쉐이더에서는 해결할 수 없다.</p>
 
@@ -671,11 +681,11 @@ Source Code
 
 <p>DirectX에서는 <strong>알파 테스트(Alpha Test)</strong>, OpenGL에서는 <strong>컷아웃(Cutout)</strong>이라고 부르며, 유니티에서도 컷아웃이라고 부른다.</p>
 
-<p>(그런데 키워드로는 AlphaTest를 쓰고, 기본 프로퍼티명은 _Cutoff라고 쓴다…)</p>
+<p>(그런데 키워드로는 AlphaTest를 쓰고, 기본 프로퍼티명은 _Cutoff라고 쓴다.)</p>
 
 <p><br /></p>
 
-<h2 id="특징">특징</h2>
+<h2 id="특징"><strong>특징</strong></h2>
 <ul>
   <li>풀, 나뭇잎 등의 환경 표현에 주로 사용된다.</li>
   <li>지정한 Cutoff 값보다 큰 알파값을 가지는 부분만 그려주고, 작은 값을 가지는 부분은 잘라낸다.</li>
@@ -683,13 +693,13 @@ Source Code
 (다시 말해, 알파 테스트 쉐이더는 불투명으로 그려진다.)</li>
 </ul>
 
-<h2 id="장점">장점</h2>
+<h2 id="장점"><strong>장점</strong></h2>
 <ul>
   <li>알파 블렌딩 쉐이더보다 가볍다.</li>
   <li>알파 소팅 문제가 발생하지 않는다.</li>
 </ul>
 
-<h2 id="단점">단점</h2>
+<h2 id="단점"><strong>단점</strong></h2>
 <ul>
   <li>외곽선이 자글자글하고 거칠어 보인다.</li>
 </ul>
@@ -975,9 +985,9 @@ Source Code
 
 <p>알파 블렌딩 쉐이더에서는 <code class="language-plaintext highlighter-rouge">Blend</code> 키워드를 통해 블렌딩 연산 방식을 지정할 수 있다.</p>
 
-<p>그리고 ZWrite는 off로 설정해주고, pragma에 alpha, alpha:fade나 alpha:blend 대신 <code class="language-plaintext highlighter-rouge">keepalpha</code>를 작성한다.</p>
+<p>그리고 <code class="language-plaintext highlighter-rouge">ZWrite off</code>로 설정해주고, pragma에 alpha, alpha:fade나 alpha:blend 대신 <code class="language-plaintext highlighter-rouge">keepalpha</code>를 작성한다.</p>
 
-<p>(유니티 5.0부터 서피스 쉐이더에서는 기본적으로 모든 불투명 쉐이더 알파값이 1.0으로 강제되는데, keepalpha를 쓰면 이것을 막아준다.)</p>
+<p>(유니티 5.0부터 서피스 쉐이더에서는 기본적으로 모든 불투명 쉐이더 알파값이 1.0으로 강제되는데, keepalpha를 쓰면 이것을 막아준다고 한다.)</p>
 
 <p><code class="language-plaintext highlighter-rouge">Blend</code> 키워드를 통해 커스텀 알파 블렌딩을 지정해도 <code class="language-plaintext highlighter-rouge">keepalpha</code> 대신 다른 키워드를 pragma에 넣으면 적용되지 않으니 주의한다.</p>
 
@@ -990,7 +1000,7 @@ Source Code
 </pre></td></tr></tbody></table></code></div></div>
 
 <ul>
-  <li>Blend A B 라고 했을 때, <code class="language-plaintext highlighter-rouge">A * Source + B * Destination</code> 으로 계산한다.</li>
+  <li>Blend A B 라고 했을 때, <code class="language-plaintext highlighter-rouge">(A * Source) + (B * Destination)</code> 으로 계산한다.</li>
   <li><code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">B</code> : 블렌딩 팩터</li>
   <li><code class="language-plaintext highlighter-rouge">Source</code> : 오브젝트 자신의 픽셀 색상(RGB)</li>
   <li><code class="language-plaintext highlighter-rouge">Destination</code> : 배경의 픽셀 색상(RGB)</li>
@@ -1092,7 +1102,7 @@ Source Code
       <li><code class="language-plaintext highlighter-rouge">o.Emission = lerp(float3(1,1,1), c.rgb, c.a);</code></li>
     </ul>
   </li>
-  <li>2x Multiplicative 쉐이더는 이렇게 작성하여 RGB의 까만 영역을 모두 회색으로 바꿔주었다.
+  <li>2x Multiplicative 쉐이더는 아래처럼 작성하여 RGB의 까만 영역을 모두 회색으로 바꿔주었다.
     <ul>
       <li><code class="language-plaintext highlighter-rouge">o.Emission = lerp(float3(.5, .5, .5), c.rgb, c.a);</code></li>
     </ul>
@@ -1333,9 +1343,9 @@ Source Code
 </pre></td></tr></tbody></table></code></div></div>
 
 <ul>
-  <li>텍스쳐 샘플링을 통해 얻은 색상에 _TintColor를 곱해줌으로써 마테리얼에서 지정한 색상을 적용시켜주고, IN.color를 곱해줌으로써 파티클 시스템에서 지정한 색상도 적용시켜준다.</li>
-  <li>o.Albedo가 아니라 o.Emission에 rgb값을 지정하여, 라이팅의 영향을 받지 않도록 한다.</li>
-  <li>o.Emissiom에 색상을 지정할 때 _Intensity를 곱해줌으로써 마테리얼에서 지정한 색상의 강도를 적용시켜준다.</li>
+  <li>텍스쳐 샘플링을 통해 얻은 색상에 <code class="language-plaintext highlighter-rouge">_TintColor</code>를 곱해줌으로써 마테리얼에서 지정한 색상을 적용시켜주고, <code class="language-plaintext highlighter-rouge">IN.color</code>를 곱해줌으로써 파티클 시스템에서 지정한 색상도 적용시켜준다.</li>
+  <li><code class="language-plaintext highlighter-rouge">o.Albedo</code>가 아니라 <code class="language-plaintext highlighter-rouge">o.Emission</code>에 rgb값을 지정하여, 라이팅의 영향을 받지 않도록 한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">o.Emission</code>에 색상을 지정할 때 <code class="language-plaintext highlighter-rouge">_Intensity</code>를 곱해줌으로써 마테리얼에서 지정한 색상의 강도를 적용시켜준다.</li>
 </ul>
 
 <p><br /></p>
@@ -1580,9 +1590,9 @@ Source Code
 
 <p>그런데 먼저 그린 오브젝트가 나중에 그린 오브젝트에 가려질까? 아니면 반대로 나중에 그린 오브젝트가 먼저 그린 오브젝트에 가려질까?</p>
 
-<p>둘 중 하나가 맞긴 할텐데, 정확히는 둘 다 아니다.</p>
+<p>둘 중 하나라고 생각할 수 있지만, 둘 다 아니다.</p>
 
-<p>그려진 순서만으로는 어떻게 가릴지 판단하지 못한다.</p>
+<p>단순히 그려진 순서만으로는 어떻게 가릴지 판단하지 못한다.</p>
 
 <p>이걸 판단하기 위해 존재하는 것이 바로 ZBuffer와 ZTest, ZWrite의 개념이다.</p>
 
@@ -1592,25 +1602,25 @@ Source Code
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109923539-42db3180-7d02-11eb-8b1e-c6152cfcf71d.png" alt="image" /></p>
 
-<p>ZBuffer는 화면의 각 픽셀마다 카메라와 가장 가까운 오브젝트의 표면까지의 거리값을 0.0 ~ 1.0 로 기록해놓은 텍스쳐이다.</p>
+<p><strong>ZBuffer</strong>는 화면의 각 픽셀마다 카메라와 가장 가까운 오브젝트의 표면까지의 거리값을 0.0 ~ 1.0 로 기록해놓은 텍스쳐이다.</p>
 
 <p>카메라의 Near Plane(뷰 프러스텀 내에서 카메라와 가장 가까운 위치)에 있으면 0.0 값을 갖고,</p>
 
 <p>Far Plane(뷰 프러스텀 내에서 카메라와 가장 먼 위치)에 있으면 1.0 값을 갖는다.</p>
 
-<p>그리고 아무 오브젝트도 기록하지 않은 순수한 상태라면 ZBuffer의 모든 값은 1.0이다.</p>
+<p>그리고 아무 오브젝트도 기록하지 않은 순수한 상태라면 <strong>ZBuffer</strong>의 모든 값은 1.0이다.</p>
 
 <p><br /></p>
 
 <h2 id="ztest"><strong>ZTest</strong></h2>
 
-<p>ZTest는 ZRead라고도 한다. 오브젝트가 그려질 때 ZBuffer의 해당 픽셀에 이미 기록된 깊이 값과 자신의 깊이 값을 비교하여, 자신의 픽셀을 화면에 그릴지 여부를 결정하게 된다.</p>
+<p><strong>ZTest</strong>는 <strong>ZRead</strong>라고도 한다. 오브젝트가 그려질 때 <strong>ZBuffer</strong>의 해당 픽셀에 이미 기록된 깊이 값과 자신의 깊이 값을 비교하여, 자신의 픽셀을 화면에 그릴지 여부를 결정하게 된다.</p>
 
-<p>유니티에서는 ZTest <code class="language-plaintext highlighter-rouge">Less</code>, <code class="language-plaintext highlighter-rouge">Greater</code>, <code class="language-plaintext highlighter-rouge">LEqual</code>, <code class="language-plaintext highlighter-rouge">GEqual</code>, <code class="language-plaintext highlighter-rouge">Equal</code>, <code class="language-plaintext highlighter-rouge">NotEqual</code>, <code class="language-plaintext highlighter-rouge">Always</code> 옵션으로 쉐이더에서 해당 오브젝트의 ZTest를 어떻게 수행할지 결정 할 수 있다.</p>
+<p>유니티에서는 <strong>ZTest</strong> <code class="language-plaintext highlighter-rouge">Less</code>, <code class="language-plaintext highlighter-rouge">Greater</code>, <code class="language-plaintext highlighter-rouge">LEqual</code>, <code class="language-plaintext highlighter-rouge">GEqual</code>, <code class="language-plaintext highlighter-rouge">Equal</code>, <code class="language-plaintext highlighter-rouge">NotEqual</code>, <code class="language-plaintext highlighter-rouge">Always</code> 옵션으로 쉐이더에서 해당 오브젝트의 <strong>ZTest</strong>를 어떻게 수행할지 결정 할 수 있다.</p>
 
-<p>다시 말해, “ZBuffer에 이미 기록된 값에 자신의 깊이 값을 비교하여 자신의 픽셀을 렌더링할지 여부”를 결정하는 연산을 나타낸다.</p>
+<p>다시 말해, <strong>“ZBuffer에 이미 기록된 값에 자신의 깊이 값을 비교하여, 자신의 픽셀을 렌더링할지 여부를 결정”</strong>하는 연산을 나타낸다.</p>
 
-<p>예를 들어 <code class="language-plaintext highlighter-rouge">Less</code>일 경우, 해당 픽셀에 존재하는 자신의 깊이 값이 ZBuffer에 기록된 깊이 값보다 작으면(Less) 자신의 픽셀을 화면에 그린다.</p>
+<p>예를 들어 <code class="language-plaintext highlighter-rouge">Less</code>일 경우, 해당 픽셀에 존재하는 자신의 깊이 값이 <strong>ZBuffer</strong>에 기록된 깊이 값보다 작으면(Less) 자신의 픽셀을 화면에 그린다.</p>
 
 <p>그리고 <code class="language-plaintext highlighter-rouge">Always</code>는 비교하지 않고 무조건 자기를 그린다.</p>
 
@@ -1620,37 +1630,39 @@ Source Code
 
 <h2 id="zwrite"><strong>ZWrite</strong></h2>
 
-<p>ZWrite는 오브젝트가 그려질 때 해당 픽셀에 이미 적힌 깊이 값과 자신의 깊이 값을 비교하여, 더 작은 값을 ZBuffer의 해당 픽셀에 기록하는 것을 의미한다.</p>
+<p><strong>ZWrite</strong>는 오브젝트가 그려질 때 해당 픽셀에 이미 적힌 깊이 값과 자신의 깊이 값을 비교하여, 더 작은 값을 <strong>ZBuffer</strong>의 해당 픽셀에 기록하는 것을 의미한다.</p>
 
-<p>그렇게 되면 결국 모든 오브젝트의 깊이 값을 기록했을 때 ZBuffer는 픽셀마다 카메라에서 가장 가까운 오브젝트의 깊이 값만을 갖게 된다.</p>
+<p>그렇게 되면 결국 모든 오브젝트의 깊이 값을 기록했을 때 <strong>ZBuffer</strong>는 픽셀마다 카메라에서 가장 가까운 오브젝트의 깊이 값만을 갖게 된다.</p>
 
-<p>유니티에서는 쉐이더에 <code class="language-plaintext highlighter-rouge">ZWrite On</code>, <code class="language-plaintext highlighter-rouge">ZWrite Off</code>를 작성하여 해당 오브젝트의 ZWrite를 수행할지 여부를 결정할 수 있다.</p>
-
-<p><br /></p>
-
-<p>알아둬야 할 점은, 오브젝트를 그릴 때 ZTest를 먼저 수행한 다음에 ZWrite를 한다는 것이다.</p>
-
-<p>예를 들어 Equal로 비교한다고 해서</p>
-
-<p>“일단 내 깊이 값을 버퍼에 써놓고(ZWrite), ZBuffer 값 읽어와서 내 깊이 값이랑 비교(ZTest) 해야지~”</p>
-
-<p>하고, 같으니까(Equal) 자신을 그려버리는게 아니고,</p>
-
-<p>“일단 쓰여있는 ZBuffer 값을 내 깊이 값이랑 비교해서 그릴지 안그릴지 결정하고(ZTest), 그 이후에 ZBuffer에 내 깊이 값 적어놔야지!(ZWrite)”</p>
-
-<p>이게 맞다는 것이다.</p>
+<p>유니티에서는 쉐이더에 <code class="language-plaintext highlighter-rouge">ZWrite On</code>, <code class="language-plaintext highlighter-rouge">ZWrite Off</code>를 작성하여 해당 오브젝트의 <strong>ZWrite</strong>를 수행할지 여부를 결정할 수 있다.</p>
 
 <p><br /></p>
 
-<p>그러니까 ZTest에는 자기 자신의 ZWrite가 영향을 미치지 않고, (중요)</p>
+<p>알아둬야 할 점은, 오브젝트를 그릴 때 <strong>ZTest</strong>를 먼저 수행한 다음에 <strong>ZWrite</strong>를 한다는 것이다.</p>
 
-<p>ZWrite에는 ZTest의 결과가 영향을 미친다.</p>
+<p>예를 들어 <code class="language-plaintext highlighter-rouge">Equal</code>로 비교한다고 하면</p>
 
-<p>ZTest의 비교 연산이 참의 값을 가져서 자신의 픽셀을 그리는데 성공했을 때, 이를 “ZTest를 통과했다”라고 한다.</p>
+<p>“일단 내 깊이 값을 버퍼에 써놓고(<strong>ZWrite</strong>), ZBuffer 값 읽어와서 내 깊이 값이랑 비교(<strong>ZTest</strong>)”</p>
 
-<p>반대로, ZTest의 결과가 거짓이라 픽셀을 그리지 못했다면 “ZTest에 실패했다”고 하며</p>
+<p>하고, 같으니까(<strong>Equal</strong>) 자신을 그려버리는게 아니고,</p>
+
+<p>“일단 쓰여있는 ZBuffer 값을 내 깊이 값이랑 비교해서 그릴지 안그릴지 결정하고(<strong>ZTest</strong>), 그 이후에 ZBuffer에 내 깊이 값을 기록(<strong>ZWrite</strong>)”</p>
+
+<p>하는 것이 맞다.</p>
 
 <p><br /></p>
+
+<p>그러니까 <strong>ZTest</strong>에는 자기 자신의 <strong>ZWrite</strong>가 영향을 미치지 않고,</p>
+
+<p><strong>ZWrite</strong>에는 <strong>ZTest</strong>의 결과가 영향을 미친다.</p>
+
+<p><strong>ZTest</strong>의 비교 연산이 참의 값을 가져서 자신의 픽셀을 그리는데 성공했을 때, 이를 <strong>“ZTest를 통과했다”</strong>라고 한다.</p>
+
+<p>반대로, <strong>ZTest</strong>의 결과가 거짓이라 픽셀을 그리지 못했다면 <strong>“ZTest에 실패했다”</strong>라고 하며</p>
+
+<p><br /></p>
+
+<p>결론적으로</p>
 
 <p><strong>ZTest를 통과해야 ZWrite를 수행한다.</strong></p>
 
@@ -1877,38 +1889,42 @@ Source Code
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109831526-dd942b80-7c82-11eb-8e83-f5894c46bc0f.gif" alt="2021_0304_AlphaOverwrite" /></p>
 
-<p>알파소팅을 하는 근본적인 이유가 바로 이 현상을 해결하기 위함인데, 카메라의 회전에 따라 아직도 발생하는 문제이다.</p>
+<p>알파소팅을 하는 근본적인 이유가 바로 이 현상을 해결하기 위함인데,</p>
+
+<p>그래도 카메라의 회전에 따라 아직도 발생하는 문제.</p>
 
 <p><code class="language-plaintext highlighter-rouge">keepalpha</code>로 지정하고, 커스텀 알파 블렌딩을 했을 경우 발생한다.</p>
 
 <p>알파 소팅 방식에 따라 피벗 지점이 카메라로부터 멀리 있는 오브젝트부터 그려내는데,</p>
 
-<p>픽셀 상으로 가까이 있는 것(초록색 풀)이 피벗 거리는 더 멀리 있다고 판정될 때 위처럼 된다.</p>
+<p>픽셀 상으로 가까이 있는 것(초록색 풀)이 피벗 거리는 더 멀리 있다고 판정될 때 위와 같은 현상이 발생한다.</p>
 
-<p>알파 소팅에 의해 초록색 풀을 먼저 그리고 ZWrite로 초록색 풀의 모든 픽셀(완전히 투명한 부분 포함)을 ZBuffer에 기록한 상태에서</p>
+<p><br /></p>
 
-<p>빨간색 풀의 ZTest를 할 때, 초록색 풀과 겹치는 부분에서는 당연히 초록색 풀의 픽셀이 더 가까이 있으니까</p>
+<p>알파 소팅에 의해 초록색 풀을 먼저 그리고 <strong>ZWrite</strong>로 초록색 풀의 모든 픽셀(완전히 투명한 부분 포함)을 <strong>ZBuffer</strong>에 기록한 상태에서</p>
 
-<p>ZTest <code class="language-plaintext highlighter-rouge">LEqual</code>로 비교했을 때 초록색 풀 &lt; 빨간색 풀이므로 ZTest를 실패하여 빨간색 풀은 그려지지 않는다.</p>
+<p>빨간색 풀의 <strong>ZTest</strong>를 할 때, 초록색 풀과 겹치는 부분에서는 당연히 초록색 풀의 픽셀이 더 가까이 있으니까</p>
 
-<p>결국 “피벗은 더 멀리 있는데 픽셀은 더 가까이 있는” 어이없는 현상에 의해 발생하는 문제.</p>
+<p><code class="language-plaintext highlighter-rouge">ZTest LEqual</code>로 비교했을 때 초록색 풀 &lt; 빨간색 풀이므로 <strong>ZTest</strong>를 실패하여 빨간색 풀은 그려지지 않는다.</p>
+
+<p>결국 <strong>“피벗은 더 멀리 있는데 픽셀은 더 가까이 있는”</strong> 어이없는 현상에 의해 발생하는 문제.</p>
 
 <p><br /></p>
 
 <p>해결책은 여러 가지가 있는데,</p>
 
-<h3 id="1-알파값이-필요-없다면-알파-테스팅을-사용한다">(1) 알파값이 필요 없다면, 알파 테스팅을 사용한다.</h3>
+<h3 id="1-알파값이-필요-없다면-알파-테스팅을-사용한다"><strong>(1) 알파값이 필요 없다면, 알파 테스팅을 사용한다.</strong></h3>
 <ul>
   <li>투명도가 필요하다면 사용할 수 없는 방법이다.</li>
   <li>외곽선이 거칠어보이는 단점이 있다.</li>
 </ul>
 
-<h3 id="2-오브젝트를-잘게-쪼갠다">(2) 오브젝트를 잘게 쪼갠다.</h3>
+<h3 id="2-오브젝트를-잘게-쪼갠다"><strong>(2) 오브젝트를 잘게 쪼갠다.</strong></h3>
 <ul>
   <li>당연히 성능에 더 큰 부하가 생기므로, 여유가 있을 때 사용한다.</li>
 </ul>
 
-<h3 id="3-렌더링-레이어를-나눈다">(3) 렌더링 레이어를 나눈다.</h3>
+<h3 id="3-렌더링-레이어를-나눈다"><strong>(3) 렌더링 레이어를 나눈다.</strong></h3>
 <ul>
   <li>오브젝트의 종류에 따라서 지형지물, 물, 이펙트, … 등으로 나누어, 같은 반투명 오브젝트라도 그려질 순서를 크게 나눈다.</li>
   <li>
@@ -1918,13 +1934,14 @@ Source Code
   <li>단점 : 같은 레이어 내에서는 전혀 해결할 수 없다.</li>
 </ul>
 
-<h3 id="4-zwrite를-off로-지정한다">(4) ZWrite를 Off로 지정한다.</h3>
+<h3 id="4-zwrite를-off로-지정한다"><strong>(4) ZWrite를 Off로 지정한다.</strong></h3>
 <ul>
   <li>반투명 오브젝트가 모두 ZWrite를 하지 않게 함으로써, ZTest를 할 때 뒤늦게 그려지는 오브젝트가 무조건 앞에 보이게 한다.</li>
   <li>완전히 가리는 문제는 해결할 수 있지만, 또다른 문제가 발생한다. ([3]에서 계속)</li>
+  <li><strong>대부분의 경우에 사용하는 방법이다.</strong></li>
 </ul>
 
-<h3 id="5-ztest를-always로-지정한다">(5) ZTest를 Always로 지정한다.</h3>
+<h3 id="5-ztest를-always로-지정한다"><strong>(5) ZTest를 Always로 지정한다.</strong></h3>
 <ul>
   <li>반투명 쉐이더’만’ 그린다면, 혹은 반투명 앞에 불투명 오브젝트가 존재하지 않는다면 (4)와 같은 결과를 낼 수 있는 해결 방법.</li>
   <li>하지만 자신의 렌더큐보다 작은 값을 갖는 오브젝트와 겹치면 무조건 자신이 앞에 그려지는 대참사가 일어날 수 있다.</li>
@@ -1935,9 +1952,9 @@ Source Code
 
 <h2 id="3-뒤에-있는-오브젝트가-앞에-그려지는-문제"><strong>[3] 뒤에 있는 오브젝트가 앞에 그려지는 문제</strong></h2>
 
-<p>알파 블렌딩 쉐이더(keepalpha)에서 위의 [2]-(4), [2]-(5)를 통해 완전히 가리는 문제를 해결했을 때,</p>
+<p>알파 블렌딩 쉐이더(<code class="language-plaintext highlighter-rouge">keepalpha</code>)에서 위의 [2]-(4), [2]-(5)를 통해 완전히 가리는 문제를 해결했을 때,</p>
 
-<p>그리고 쉐이더에 alpha:fade, alpha:blend라고 작성했을 때 여전히 발생하는 문제이다.</p>
+<p>또는 쉐이더에 <code class="language-plaintext highlighter-rouge">alpha:fade</code>, <code class="language-plaintext highlighter-rouge">alpha:blend</code>라고 작성했을 때 여전히 발생하는 문제이다.</p>
 
 <p>알파 블렌딩과 알파 소팅을 사용하는 이상 해결할 수 없는 문제이기도 하다.</p>
 
@@ -2447,7 +2464,7 @@ StencilMask01.shader
 Silhouette.shader
 </summary>
 
-  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+  <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -2534,15 +2551,15 @@ Silhouette.shader
 <span class="p">{</span>
     <span class="n">Properties</span>
     <span class="p">{</span>
-        <span class="nf">_SilhouetteColor</span> <span class="p">(</span><span class="s">"Silhouette Color"</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.5</span><span class="p">)</span>
+        <span class="n">_SilhouetteColor</span> <span class="p">(</span><span class="s">"Silhouette Color"</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">)</span>
 
         <span class="p">[</span><span class="n">Space</span><span class="p">]</span>
-        <span class="nf">_Color</span> <span class="p">(</span><span class="s">"Color"</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>
-        <span class="nf">_MainTex</span> <span class="p">(</span><span class="s">"Albedo (RGB)"</span><span class="p">,</span> <span class="m">2D</span><span class="p">)</span> <span class="p">=</span> <span class="s">"white"</span> <span class="p">{}</span>
+        <span class="n">_Color</span> <span class="p">(</span><span class="s">"Color"</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">_MainTex</span> <span class="p">(</span><span class="s">"Albedo (RGB)"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"white"</span> <span class="p">{}</span>
     <span class="p">}</span>
     <span class="n">SubShader</span>
     <span class="p">{</span>
-        <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span><span class="p">=</span><span class="s">"Opaque"</span> <span class="p">}</span>
+        <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span><span class="o">=</span><span class="s">"Opaque"</span> <span class="p">}</span>
         
         <span class="cm">/****************************************************************
         *                            Pass 1
@@ -2554,27 +2571,27 @@ Silhouette.shader
 
         <span class="n">Stencil</span>
         <span class="p">{</span>
-            <span class="n">Ref</span> <span class="m">2</span>
+            <span class="n">Ref</span> <span class="mi">2</span>
             <span class="n">Pass</span> <span class="n">Replace</span> <span class="c1">// Stencil, Z Test 모두 성공한 부분에 2 기록</span>
         <span class="p">}</span>
 
         <span class="n">CGPROGRAM</span>
-        <span class="err">#</span><span class="n">pragma</span> <span class="n">surface</span> <span class="n">surf</span> <span class="n">Lambert</span>
-        <span class="err">#</span><span class="n">pragma</span> <span class="n">target</span> <span class="m">3.0</span>
-        
+        <span class="cp">#pragma surface surf Lambert
+</span>        <span class="cp">#pragma target 3.0
+</span>        
         <span class="n">fixed4</span> <span class="n">_Color</span><span class="p">;</span>
         <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
 
-        <span class="k">struct</span> <span class="nc">Input</span>
+        <span class="k">struct</span> <span class="n">Input</span>
         <span class="p">{</span>
-            <span class="n">float2</span> <span class="n">uv_MainTex</span><span class="p">;</span>
+            <span class="kt">float2</span> <span class="n">uv_MainTex</span><span class="p">;</span>
         <span class="p">};</span>
 
-        <span class="k">void</span> <span class="nf">surf</span> <span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="n">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">)</span>
+        <span class="kt">void</span> <span class="n">surf</span> <span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="k">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">fixed4</span> <span class="n">c</span> <span class="p">=</span> <span class="nf">tex2D</span> <span class="p">(</span><span class="n">_MainTex</span><span class="p">,</span> <span class="n">IN</span><span class="p">.</span><span class="n">uv_MainTex</span><span class="p">)</span> <span class="p">*</span> <span class="n">_Color</span><span class="p">;</span>
-            <span class="n">o</span><span class="p">.</span><span class="n">Albedo</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
-            <span class="n">o</span><span class="p">.</span><span class="n">Alpha</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+            <span class="n">fixed4</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">tex2D</span> <span class="p">(</span><span class="n">_MainTex</span><span class="p">,</span> <span class="n">IN</span><span class="p">.</span><span class="n">uv_MainTex</span><span class="p">)</span> <span class="o">*</span> <span class="n">_Color</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Albedo</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Alpha</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="n">ENDCG</span>
 
@@ -2590,24 +2607,24 @@ Silhouette.shader
 
         <span class="n">Stencil</span>
         <span class="p">{</span>
-            <span class="n">Ref</span> <span class="m">2</span>
+            <span class="n">Ref</span> <span class="mi">2</span>
             <span class="n">Comp</span> <span class="n">NotEqual</span> <span class="c1">// 패스 1에서 렌더링 성공한 부분에는 그리지 않도록 한다</span>
         <span class="p">}</span>
 
         <span class="n">CGPROGRAM</span>
-        <span class="err">#</span><span class="n">pragma</span> <span class="n">surface</span> <span class="n">surf</span> <span class="n">nolight</span> <span class="n">alpha</span><span class="p">:</span><span class="n">fade</span> <span class="n">noforwardadd</span> <span class="n">nolightmap</span> <span class="n">noambient</span> <span class="n">novertexlights</span> <span class="n">noshadow</span>
+        <span class="cp">#pragma surface surf nolight alpha:fade noforwardadd nolightmap noambient novertexlights noshadow
+</span>        
+        <span class="k">struct</span> <span class="n">Input</span> <span class="p">{</span> <span class="kt">float4</span> <span class="n">color</span><span class="o">:</span><span class="nb">COLOR</span><span class="p">;</span> <span class="p">};</span>
+        <span class="kt">float4</span> <span class="n">_SilhouetteColor</span><span class="p">;</span>
         
-        <span class="k">struct</span> <span class="nc">Input</span> <span class="p">{</span> <span class="n">float4</span> <span class="n">color</span><span class="p">:</span><span class="n">COLOR</span><span class="p">;</span> <span class="p">};</span>
-        <span class="n">float4</span> <span class="n">_SilhouetteColor</span><span class="p">;</span>
-        
-        <span class="k">void</span> <span class="nf">surf</span> <span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="n">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">)</span>
+        <span class="kt">void</span> <span class="n">surf</span> <span class="p">(</span><span class="n">Input</span> <span class="n">IN</span><span class="p">,</span> <span class="k">inout</span> <span class="n">SurfaceOutput</span> <span class="n">o</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">o</span><span class="p">.</span><span class="n">Emission</span> <span class="p">=</span> <span class="n">_SilhouetteColor</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
-            <span class="n">o</span><span class="p">.</span><span class="n">Alpha</span> <span class="p">=</span> <span class="n">_SilhouetteColor</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Emission</span> <span class="o">=</span> <span class="n">_SilhouetteColor</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">Alpha</span> <span class="o">=</span> <span class="n">_SilhouetteColor</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="n">float4</span> <span class="nf">Lightingnolight</span><span class="p">(</span><span class="n">SurfaceOutput</span> <span class="n">s</span><span class="p">,</span> <span class="n">float3</span> <span class="n">lightDir</span><span class="p">,</span> <span class="kt">float</span> <span class="n">atten</span><span class="p">)</span>
+        <span class="kt">float4</span> <span class="n">Lightingnolight</span><span class="p">(</span><span class="n">SurfaceOutput</span> <span class="n">s</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">lightDir</span><span class="p">,</span> <span class="n">float</span> <span class="n">atten</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="k">return</span> <span class="nf">float4</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">Emission</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">Alpha</span><span class="p">);</span>
+            <span class="k">return</span> <span class="kt">float4</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">Emission</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">Alpha</span><span class="p">);</span>
         <span class="p">}</span>
         <span class="n">ENDCG</span>
     <span class="p">}</span>
@@ -2773,6 +2790,16 @@ Silhouette.shader
         
         
         
+        <li><a href="/posts/unity-memo-rotation/">트랜스폼과 방향벡터의 회전</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-study-rpg-inventory/">RPG Inventory System(RPG 게임 인벤토리 만들기)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-gui-style/">GUI 스타일 지정하기</a></li>
       
         
@@ -2784,16 +2811,6 @@ Silhouette.shader
         
         
         <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-toy-free-look-camera/">Free Look Camera (자유 시점 카메라)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-undo/">Undo</a></li>
       
 
       </ul>
