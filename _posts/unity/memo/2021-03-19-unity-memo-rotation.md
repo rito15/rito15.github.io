@@ -100,5 +100,42 @@ Vector3 axisVec = new Vector3(-1f, 1f, 0f).normalized; // 회전 기준축 벡�
 Vector3 rotatedDirVec = Quaternion.AngleAxis(45f, axisVec) * dirVec;
 ```
 
+<br>
 
+# 5. 대상 지점 천천히 바라보기
+---
 
+## [1] XYZ 모두 회전
+
+```cs
+private void LookAtSlowly(Transform target, float speed = 1f)
+{
+    if (target == null) return;
+
+    Vector3 dir = target.position - transform.position;
+    var nextRot = Quaternion.LookRotation(dir);
+
+    transform.rotation = Quaternion.Slerp(transform.rotation, nextRot, Time.deltaTime * speed);
+}
+```
+
+![2021_0528_LookRotation](https://user-images.githubusercontent.com/42164422/119984789-c30cec80-bffc-11eb-8df4-b9667752677f.gif)
+
+<br>
+
+## [2] X만 회전
+
+```cs
+private void LookAtSlowlyX(Transform target, float speed = 1f)
+{
+    if (target == null) return;
+
+    Vector3 dir = target.position - transform.position;
+    dir.x = 0f; // 방향 벡터 X 성분 제거
+
+    var nextRot = Quaternion.LookRotation(dir);
+    transform.rotation = Quaternion.Slerp(transform.rotation, nextRot, Time.deltaTime * speed);
+}
+```
+
+![2021_0528_LookRotation2](https://user-images.githubusercontent.com/42164422/119984795-c43e1980-bffc-11eb-95a5-2ad748f2a3e8.gif)

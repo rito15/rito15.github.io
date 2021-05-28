@@ -3207,7 +3207,7 @@ public void UpdateAllSlotFilters()
 
 # Source Code
 ---
-- [Github Link](https://github.com/rito15/UnityStudy2/tree/master/Rito/2.%20Study/2021_0307_Inventory)
+- [Github Link](https://github.com/rito15/Unity-RPG-Inventory)
 
 # Download
 ---
