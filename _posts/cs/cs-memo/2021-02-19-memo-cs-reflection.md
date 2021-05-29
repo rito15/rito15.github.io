@@ -34,6 +34,12 @@ Type targetType = Type.GetType("네임스페이스명.클래스명, 어셈블리
 // 어셈블리명 예시
 string shortName = "UnityEngine";
 string fullName  = "UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null";
+
+// 실제 예시 - shortName 이용
+Type.GetType("UnityEngine.Rigidbody, UnityEngine");
+
+// 실제 예시 - fullName 이용
+Type.GetType("UnityEngine.Rigidbody, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
 ```
 
 <br>
@@ -48,6 +54,16 @@ object instance = Activator.CreateInstance(targetType);
 MethodInfo targetMethod = targetType.GetMethod (
     "메소드명",
     new Type[] { typeof(파라미터1타입), typeof(파라미터2타입) }
+);
+
+// Binding Flag를 지정해야 하는 경우
+targetType.GetMethod
+(
+    "메소드명",
+    BindingFlags.~~, 
+    null, // Binder -> null로 둔다.
+    new Type[] { ~~ },
+    null, // ParameterModifier[] -> null로 둔다.
 );
 ```
 
@@ -107,19 +123,34 @@ public static void Run()
 
 ## 필드의 값 가져오기
 
+- 필드의 값을 가져오려면 `FieldInfo`가 필요하다.
+
+- 대상 필드가 동적일 경우 `GetValue(object)`의 인수로 객체가 필요하며,<br>
+  정적일 경우 객체가 필요하지 않다. (`GetValue(null)`)
+
 ```cs
 public class TestClass
 {
-    private float value;
+    private float value = 4f;
+    private static float staticValue = 5f;
 }
 ```
 
 ```cs
 TestClass tc = new TestClass();
-BindingFlags bf = BindingFlags.NonPublic | BindingFlags.Instance;
-FieldInfo fi = tc.GetType().GetField("value", bf);
+Type t = tc.GetType();
 
-float value = (float)fi.GetValue(tc);
+// 1. 동적 필드의 값 가져오기
+BindingFlags bf1 = BindingFlags.NonPublic | BindingFlags.Instance;
+FieldInfo fi1 = t.GetField("value", bf1);
+
+float value1 = (float)fi1.GetValue(tc);
+
+// 2. 정적 필드의 값 가져오기
+BindingFlags bf2 = BindingFlags.NonPublic | BindingFlags.Static;
+FieldInfo fi2 = t.GetField("staticValue", bf2);
+
+float value2 = (float)fi2.GetValue(null);
 ```
 
 

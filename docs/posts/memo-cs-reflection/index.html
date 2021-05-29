@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="533 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="736 words">4 min</span>
 
 
           <!-- page views -->
@@ -474,11 +474,23 @@
 3
 4
 5
+6
+7
+8
+9
+10
+11
 </pre></td><td class="rouge-code"><pre><span class="n">Type</span> <span class="n">targetType</span> <span class="p">=</span> <span class="n">Type</span><span class="p">.</span><span class="nf">GetType</span><span class="p">(</span><span class="s">"네임스페이스명.클래스명, 어셈블리명"</span><span class="p">);</span>
 
 <span class="c1">// 어셈블리명 예시</span>
 <span class="kt">string</span> <span class="n">shortName</span> <span class="p">=</span> <span class="s">"UnityEngine"</span><span class="p">;</span>
 <span class="kt">string</span> <span class="n">fullName</span>  <span class="p">=</span> <span class="s">"UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"</span><span class="p">;</span>
+
+<span class="c1">// 실제 예시 - shortName 이용</span>
+<span class="n">Type</span><span class="p">.</span><span class="nf">GetType</span><span class="p">(</span><span class="s">"UnityEngine.Rigidbody, UnityEngine"</span><span class="p">);</span>
+
+<span class="c1">// 실제 예시 - fullName 이용</span>
+<span class="n">Type</span><span class="p">.</span><span class="nf">GetType</span><span class="p">(</span><span class="s">"UnityEngine.Rigidbody, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
@@ -493,9 +505,29 @@
 2
 3
 4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
 </pre></td><td class="rouge-code"><pre><span class="n">MethodInfo</span> <span class="n">targetMethod</span> <span class="p">=</span> <span class="n">targetType</span><span class="p">.</span><span class="nf">GetMethod</span> <span class="p">(</span>
     <span class="s">"메소드명"</span><span class="p">,</span>
     <span class="k">new</span> <span class="n">Type</span><span class="p">[]</span> <span class="p">{</span> <span class="k">typeof</span><span class="p">(</span><span class="err">파라미터</span><span class="m">1</span><span class="err">타입</span><span class="p">),</span> <span class="k">typeof</span><span class="p">(</span><span class="err">파라미터</span><span class="m">2</span><span class="err">타입</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="c1">// Binding Flag를 지정해야 하는 경우</span>
+<span class="n">targetType</span><span class="p">.</span><span class="nf">GetMethod</span>
+<span class="p">(</span>
+    <span class="s">"메소드명"</span><span class="p">,</span>
+    <span class="n">BindingFlags</span><span class="p">.~~,</span> 
+    <span class="k">null</span><span class="p">,</span> <span class="c1">// Binder -&gt; null로 둔다.</span>
+    <span class="k">new</span> <span class="n">Type</span><span class="p">[]</span> <span class="p">{</span> <span class="p">~~</span> <span class="p">},</span>
+    <span class="k">null</span><span class="p">,</span> <span class="c1">// ParameterModifier[] -&gt; null로 둔다.</span>
 <span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -581,13 +613,25 @@
 
 <h2 id="필드의-값-가져오기">필드의 값 가져오기</h2>
 
+<ul>
+  <li>
+    <p>필드의 값을 가져오려면 <code class="language-plaintext highlighter-rouge">FieldInfo</code>가 필요하다.</p>
+  </li>
+  <li>
+    <p>대상 필드가 동적일 경우 <code class="language-plaintext highlighter-rouge">GetValue(object)</code>의 인수로 객체가 필요하며,<br />
+정적일 경우 객체가 필요하지 않다. (<code class="language-plaintext highlighter-rouge">GetValue(null)</code>)</p>
+  </li>
+</ul>
+
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
+5
 </pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">TestClass</span>
 <span class="p">{</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="k">value</span><span class="p">;</span>
+    <span class="k">private</span> <span class="kt">float</span> <span class="k">value</span> <span class="p">=</span> <span class="m">4f</span><span class="p">;</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="kt">float</span> <span class="n">staticValue</span> <span class="p">=</span> <span class="m">5f</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -596,11 +640,29 @@
 3
 4
 5
+6
+7
+8
+9
+10
+11
+12
+13
+14
 </pre></td><td class="rouge-code"><pre><span class="n">TestClass</span> <span class="n">tc</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TestClass</span><span class="p">();</span>
-<span class="n">BindingFlags</span> <span class="n">bf</span> <span class="p">=</span> <span class="n">BindingFlags</span><span class="p">.</span><span class="n">NonPublic</span> <span class="p">|</span> <span class="n">BindingFlags</span><span class="p">.</span><span class="n">Instance</span><span class="p">;</span>
-<span class="n">FieldInfo</span> <span class="n">fi</span> <span class="p">=</span> <span class="n">tc</span><span class="p">.</span><span class="nf">GetType</span><span class="p">().</span><span class="nf">GetField</span><span class="p">(</span><span class="s">"value"</span><span class="p">,</span> <span class="n">bf</span><span class="p">);</span>
+<span class="n">Type</span> <span class="n">t</span> <span class="p">=</span> <span class="n">tc</span><span class="p">.</span><span class="nf">GetType</span><span class="p">();</span>
 
-<span class="kt">float</span> <span class="k">value</span> <span class="p">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">fi</span><span class="p">.</span><span class="nf">GetValue</span><span class="p">(</span><span class="n">tc</span><span class="p">);</span>
+<span class="c1">// 1. 동적 필드의 값 가져오기</span>
+<span class="n">BindingFlags</span> <span class="n">bf1</span> <span class="p">=</span> <span class="n">BindingFlags</span><span class="p">.</span><span class="n">NonPublic</span> <span class="p">|</span> <span class="n">BindingFlags</span><span class="p">.</span><span class="n">Instance</span><span class="p">;</span>
+<span class="n">FieldInfo</span> <span class="n">fi1</span> <span class="p">=</span> <span class="n">t</span><span class="p">.</span><span class="nf">GetField</span><span class="p">(</span><span class="s">"value"</span><span class="p">,</span> <span class="n">bf1</span><span class="p">);</span>
+
+<span class="kt">float</span> <span class="n">value1</span> <span class="p">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">fi1</span><span class="p">.</span><span class="nf">GetValue</span><span class="p">(</span><span class="n">tc</span><span class="p">);</span>
+
+<span class="c1">// 2. 정적 필드의 값 가져오기</span>
+<span class="n">BindingFlags</span> <span class="n">bf2</span> <span class="p">=</span> <span class="n">BindingFlags</span><span class="p">.</span><span class="n">NonPublic</span> <span class="p">|</span> <span class="n">BindingFlags</span><span class="p">.</span><span class="n">Static</span><span class="p">;</span>
+<span class="n">FieldInfo</span> <span class="n">fi2</span> <span class="p">=</span> <span class="n">t</span><span class="p">.</span><span class="nf">GetField</span><span class="p">(</span><span class="s">"staticValue"</span><span class="p">,</span> <span class="n">bf2</span><span class="p">);</span>
+
+<span class="kt">float</span> <span class="n">value2</span> <span class="p">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">fi2</span><span class="p">.</span><span class="nf">GetValue</span><span class="p">(</span><span class="k">null</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
@@ -743,6 +805,11 @@
         
         
         
+        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-rotation/">트랜스폼과 방향벡터의 회전</a></li>
       
         
@@ -759,11 +826,6 @@
         
         
         <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
       
 
       </ul>
