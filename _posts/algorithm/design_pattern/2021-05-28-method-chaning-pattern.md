@@ -63,8 +63,8 @@ class MethodChaining
 ```cs
 class Box
 {
-    private float width;
-    private float height;
+    protected float width;
+    protected float height;
 
     public Box SetWidth(float width)
     {
@@ -80,7 +80,7 @@ class Box
 
 class OutlinedBox : Box
 {
-    private float outlineWidth;
+    protected float outlineWidth;
 
     public OutlinedBox SetOutlineWidth(float outlineWidth)
     {
@@ -166,8 +166,8 @@ OutlinedBox olBox5 = (new OutlinedBox()
 class Box : Box<Box> { }
 class Box<T> where T : Box<T>
 {
-    private float width;
-    private float height;
+    protected float width;
+    protected float height;
 
     public T SetWidth(float width)
     {
@@ -183,7 +183,7 @@ class Box<T> where T : Box<T>
 
 class OutlinedBox : Box<OutlinedBox>
 {
-    private float outlineWidth;
+    protected float outlineWidth;
 
     public OutlinedBox SetOutlineWidth(float outlineWidth)
     {
@@ -230,6 +230,12 @@ class MethodChaining
 
 <br>
 
+그리고 `Box` 타입 역시 `new Box()` 형태로 객체를 생성할 수 있도록
+
+`class Box : Box<Box> { }`처럼 빈 클래스를 작성해놓는다.
+
+<br>
+
 ## 자식의 자식으로 상속이 이어지는 경우
 
 - 같은 방식으로 이어나가면 된다.
@@ -238,7 +244,7 @@ class MethodChaining
 class OutlinedBox : OutlinedBox<OutlinedBox> { }
 class OutlinedBox<T> : Box<T> where T : OutlinedBox<T>
 {
-    private float outlineWidth;
+    protected float outlineWidth;
 
     public T SetOutlineWidth(float outlineWidth)
     {
@@ -249,7 +255,88 @@ class OutlinedBox<T> : Box<T> where T : OutlinedBox<T>
 
 class OutlinedColorBox : OutlinedBox<OutlinedColorBox>
 {
-    private Color color;
+    protected Color color;
+
+    public OutlinedColorBox SetColor(Color color)
+    {
+        this.color = color;
+        return this;
+    }
+}
+```
+
+<br>
+
+## 추가1
+
+위와 같이 작성하면 `Box<T>`,  `OutlinedBox<T>` 타입 역시 `T`를 직접 지정하여 객체를 생성할 수 있게 된다.
+
+이를 막으려면 다음과 같이 클래스 선언에 `abstract`를 넣어 작성한다.
+
+```cs
+abstract class Box<T> where T : Box<T>
+abstract class OutlinedBox<T> : Box<T> where T : OutlinedBox<T>
+```
+
+<br>
+
+## 추가2
+
+`Box` 타입과 `Box<T>` 타입은 이름이 같아 동일해 보일 수 있지만,
+
+엄연히 서로 다른 타입이다.
+
+`OutlinedBox`와 `OutlinedBox<T>` 타입 역시 마찬가지.
+
+제네릭화 과정에서 자연스럽게 동일한 이름으로 남겨두었지만,
+
+혼동할 가능성이 있으므로 다음과 같이 바꾸면 확실히 구분할 수 있다.
+
+```cs
+abstract class BoxBase<T> where T : BoxBase<T>
+abstract class OutlinedBoxBase<T> : BoxBase<T> where T : OutlinedBoxBase<T>
+```
+
+<br>
+
+## 결론
+
+```cs
+abstract class BoxBase<T> where T : BoxBase<T>
+{
+    protected float width;
+    protected float height;
+
+    public T SetWidth(float width)
+    {
+        this.width = width;
+        return this as T;
+    }
+    public T SetHeight(float height)
+    {
+        this.height = height;
+        return this as T;
+    }
+}
+
+abstract class OutlinedBoxBase<T> : BoxBase<T> where T : OutlinedBoxBase<T>
+{
+    protected float outlineWidth;
+
+    public T SetOutlineWidth(float outlineWidth)
+    {
+        this.outlineWidth = outlineWidth;
+        return this as T;
+    }
+}
+
+class Box : BoxBase<Box> { }
+
+class OutlinedBox : OutlinedBoxBase<OutlinedBox> { }
+
+class OutlinedColorBox : OutlinedBoxBase<OutlinedColorBox>
+{
+    protected Color color;
 
     public OutlinedColorBox SetColor(Color color)
     {
@@ -268,22 +355,22 @@ class OutlinedColorBox : OutlinedBox<OutlinedColorBox>
 
 
 ```cs
-class Slider<T> where T : struct
+abstract class SliderBase<T> where T : struct
 {
-    private T value;
-    private T minValue;
-    private T maxValue;
+    protected T value;
+    protected T minValue;
+    protected T maxValue;
 
-    public Slider<T> SetValue(T value)
+    public SliderBase<T> SetValue(T value)
     {
         this.value = value;
         return this;
     }
 }
 
-class IntSlider : Slider<int>
+class IntSlider : SliderBase<int>
 {
-    private string id;
+    protected string id;
 
     public IntSlider SetID(string id)
     {
@@ -302,16 +389,13 @@ class IntSlider : Slider<int>
 <br>
 
 ```cs
-class Slider<T> : Slider<T, Slider<T>>
-    where T : struct { }
-
-class Slider<T, R> 
+abstract class SliderBase<T, R>
     where T : struct
-    where R : Slider<T, R>
+    where R : SliderBase<T, R>
 {
-    private T value;
-    private T minValue;
-    private T maxValue;
+    protected T value;
+    protected T minValue;
+    protected T maxValue;
 
     public R SetValue(T value)
     {
@@ -320,9 +404,9 @@ class Slider<T, R>
     }
 }
 
-class IntSlider : Slider<int, IntSlider>
+class IntSlider : SliderBase<int, IntSlider>
 {
-    private string id;
+    protected string id;
 
     public IntSlider SetID(string id)
     {

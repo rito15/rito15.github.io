@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1483 words">8 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1863 words">10 min</span>
 
 
           <!-- page views -->
@@ -529,8 +529,8 @@
 27
 </pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Box</span>
 <span class="p">{</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">width</span><span class="p">;</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">height</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">float</span> <span class="n">width</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">float</span> <span class="n">height</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="n">Box</span> <span class="nf">SetWidth</span><span class="p">(</span><span class="kt">float</span> <span class="n">width</span><span class="p">)</span>
     <span class="p">{</span>
@@ -546,7 +546,7 @@
 
 <span class="k">class</span> <span class="nc">OutlinedBox</span> <span class="p">:</span> <span class="n">Box</span>
 <span class="p">{</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">outlineWidth</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">float</span> <span class="n">outlineWidth</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="n">OutlinedBox</span> <span class="nf">SetOutlineWidth</span><span class="p">(</span><span class="kt">float</span> <span class="n">outlineWidth</span><span class="p">)</span>
     <span class="p">{</span>
@@ -704,8 +704,8 @@
 </pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Box</span> <span class="p">:</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">Box</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">}</span>
 <span class="k">class</span> <span class="nc">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
 <span class="p">{</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">width</span><span class="p">;</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">height</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">float</span> <span class="n">width</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">float</span> <span class="n">height</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="n">T</span> <span class="nf">SetWidth</span><span class="p">(</span><span class="kt">float</span> <span class="n">width</span><span class="p">)</span>
     <span class="p">{</span>
@@ -721,7 +721,7 @@
 
 <span class="k">class</span> <span class="nc">OutlinedBox</span> <span class="p">:</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">OutlinedBox</span><span class="p">&gt;</span>
 <span class="p">{</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">outlineWidth</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">float</span> <span class="n">outlineWidth</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="n">OutlinedBox</span> <span class="nf">SetOutlineWidth</span><span class="p">(</span><span class="kt">float</span> <span class="n">outlineWidth</span><span class="p">)</span>
     <span class="p">{</span>
@@ -768,6 +768,12 @@
 
 <p><br /></p>
 
+<p>그리고 <code class="language-plaintext highlighter-rouge">Box</code> 타입 역시 <code class="language-plaintext highlighter-rouge">new Box()</code> 형태로 객체를 생성할 수 있도록</p>
+
+<p><code class="language-plaintext highlighter-rouge">class Box : Box&lt;Box&gt; { }</code>처럼 빈 클래스를 작성해놓는다.</p>
+
+<p><br /></p>
+
 <h2 id="자식의-자식으로-상속이-이어지는-경우">자식의 자식으로 상속이 이어지는 경우</h2>
 
 <ul>
@@ -799,7 +805,7 @@
 </pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">OutlinedBox</span> <span class="p">:</span> <span class="n">OutlinedBox</span><span class="p">&lt;</span><span class="n">OutlinedBox</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">}</span>
 <span class="k">class</span> <span class="nc">OutlinedBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">OutlinedBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
 <span class="p">{</span>
-    <span class="k">private</span> <span class="kt">float</span> <span class="n">outlineWidth</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">float</span> <span class="n">outlineWidth</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="n">T</span> <span class="nf">SetOutlineWidth</span><span class="p">(</span><span class="kt">float</span> <span class="n">outlineWidth</span><span class="p">)</span>
     <span class="p">{</span>
@@ -810,7 +816,131 @@
 
 <span class="k">class</span> <span class="nc">OutlinedColorBox</span> <span class="p">:</span> <span class="n">OutlinedBox</span><span class="p">&lt;</span><span class="n">OutlinedColorBox</span><span class="p">&gt;</span>
 <span class="p">{</span>
-    <span class="k">private</span> <span class="n">Color</span> <span class="n">color</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="n">Color</span> <span class="n">color</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="n">OutlinedColorBox</span> <span class="nf">SetColor</span><span class="p">(</span><span class="n">Color</span> <span class="n">color</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">color</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="추가1">추가1</h2>
+
+<p>위와 같이 작성하면 <code class="language-plaintext highlighter-rouge">Box&lt;T&gt;</code>,  <code class="language-plaintext highlighter-rouge">OutlinedBox&lt;T&gt;</code> 타입 역시 <code class="language-plaintext highlighter-rouge">T</code>를 직접 지정하여 객체를 생성할 수 있게 된다.</p>
+
+<p>이를 막으려면 다음과 같이 클래스 선언에 <code class="language-plaintext highlighter-rouge">abstract</code>를 넣어 작성한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">OutlinedBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">OutlinedBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="추가2">추가2</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Box</code> 타입과 <code class="language-plaintext highlighter-rouge">Box&lt;T&gt;</code> 타입은 이름이 같아 동일해 보일 수 있지만,</p>
+
+<p>엄연히 서로 다른 타입이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">OutlinedBox</code>와 <code class="language-plaintext highlighter-rouge">OutlinedBox&lt;T&gt;</code> 타입 역시 마찬가지.</p>
+
+<p>제네릭화 과정에서 자연스럽게 동일한 이름으로 남겨두었지만,</p>
+
+<p>혼동할 가능성이 있으므로 다음과 같이 바꾸면 확실히 구분할 수 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">abstract</span> <span class="k">class</span> <span class="nc">BoxBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">BoxBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">OutlinedBoxBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">BoxBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">OutlinedBoxBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="결론">결론</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre></td><td class="rouge-code"><pre><span class="k">abstract</span> <span class="k">class</span> <span class="nc">BoxBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">BoxBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">float</span> <span class="n">width</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">float</span> <span class="n">height</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="n">T</span> <span class="nf">SetWidth</span><span class="p">(</span><span class="kt">float</span> <span class="n">width</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">width</span> <span class="p">=</span> <span class="n">width</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">this</span> <span class="k">as</span> <span class="n">T</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="n">T</span> <span class="nf">SetHeight</span><span class="p">(</span><span class="kt">float</span> <span class="n">height</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">height</span> <span class="p">=</span> <span class="n">height</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">this</span> <span class="k">as</span> <span class="n">T</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">OutlinedBoxBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">BoxBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">OutlinedBoxBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">float</span> <span class="n">outlineWidth</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="n">T</span> <span class="nf">SetOutlineWidth</span><span class="p">(</span><span class="kt">float</span> <span class="n">outlineWidth</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">outlineWidth</span> <span class="p">=</span> <span class="n">outlineWidth</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">this</span> <span class="k">as</span> <span class="n">T</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Box</span> <span class="p">:</span> <span class="n">BoxBase</span><span class="p">&lt;</span><span class="n">Box</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">OutlinedBox</span> <span class="p">:</span> <span class="n">OutlinedBoxBase</span><span class="p">&lt;</span><span class="n">OutlinedBox</span><span class="p">&gt;</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">OutlinedColorBox</span> <span class="p">:</span> <span class="n">OutlinedBoxBase</span><span class="p">&lt;</span><span class="n">OutlinedColorBox</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="n">Color</span> <span class="n">color</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="n">OutlinedColorBox</span> <span class="nf">SetColor</span><span class="p">(</span><span class="n">Color</span> <span class="n">color</span><span class="p">)</span>
     <span class="p">{</span>
@@ -850,22 +980,22 @@
 21
 22
 23
-</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Slider</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="k">struct</span>
+</pre></td><td class="rouge-code"><pre><span class="k">abstract</span> <span class="k">class</span> <span class="nc">SliderBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="k">struct</span>
 <span class="err">{</span>
-    <span class="nc">private</span> <span class="n">T</span> <span class="k">value</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">T</span> <span class="n">minValue</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">T</span> <span class="n">maxValue</span><span class="p">;</span>
+    <span class="nc">protected</span> <span class="n">T</span> <span class="k">value</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="n">T</span> <span class="n">minValue</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="n">T</span> <span class="n">maxValue</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="n">Slider</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="nf">SetValue</span><span class="p">(</span><span class="n">T</span> <span class="k">value</span><span class="p">)</span>
+    <span class="k">public</span> <span class="n">SliderBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="nf">SetValue</span><span class="p">(</span><span class="n">T</span> <span class="k">value</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="k">value</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
         <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">class</span> <span class="nc">IntSlider</span> <span class="p">:</span> <span class="n">Slider</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">IntSlider</span> <span class="p">:</span> <span class="n">SliderBase</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span>
 <span class="p">{</span>
-    <span class="k">private</span> <span class="kt">string</span> <span class="n">id</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">id</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="n">IntSlider</span> <span class="nf">SetID</span><span class="p">(</span><span class="kt">string</span> <span class="n">id</span><span class="p">)</span>
     <span class="p">{</span>
@@ -908,19 +1038,13 @@
 23
 24
 25
-26
-27
-28
-</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Slider</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">Slider</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Slider</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span>
-    <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="k">struct</span> <span class="err">{</span> <span class="err">}</span>
-
-<span class="nc">class</span> <span class="n">Slider</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">&gt;</span> 
+</pre></td><td class="rouge-code"><pre><span class="k">abstract</span> <span class="k">class</span> <span class="nc">SliderBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">&gt;</span>
     <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="k">struct</span>
-    <span class="nc">where</span> <span class="n">R</span> <span class="p">:</span> <span class="n">Slider</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">&gt;</span>
+    <span class="nc">where</span> <span class="n">R</span> <span class="p">:</span> <span class="n">SliderBase</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">R</span><span class="p">&gt;</span>
 <span class="p">{</span>
-    <span class="k">private</span> <span class="n">T</span> <span class="k">value</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">T</span> <span class="n">minValue</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">T</span> <span class="n">maxValue</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="n">T</span> <span class="k">value</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="n">T</span> <span class="n">minValue</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="n">T</span> <span class="n">maxValue</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="n">R</span> <span class="nf">SetValue</span><span class="p">(</span><span class="n">T</span> <span class="k">value</span><span class="p">)</span>
     <span class="p">{</span>
@@ -929,9 +1053,9 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">class</span> <span class="nc">IntSlider</span> <span class="p">:</span> <span class="n">Slider</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">IntSlider</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">IntSlider</span> <span class="p">:</span> <span class="n">SliderBase</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">IntSlider</span><span class="p">&gt;</span>
 <span class="p">{</span>
-    <span class="k">private</span> <span class="kt">string</span> <span class="n">id</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">id</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="n">IntSlider</span> <span class="nf">SetID</span><span class="p">(</span><span class="kt">string</span> <span class="n">id</span><span class="p">)</span>
     <span class="p">{</span>
@@ -1076,6 +1200,11 @@
         
         
         
+        <li><a href="/posts/memo-cs-reflection/">Reflection(리플렉션)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
@@ -1092,11 +1221,6 @@
         
         
         <li><a href="/posts/unity-editor-gui-style/">GUI 스타일 지정하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
       
 
       </ul>
