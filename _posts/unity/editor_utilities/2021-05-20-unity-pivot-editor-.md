@@ -10,8 +10,8 @@ mermaid: true
 
 # Summary
 ---
-- 메시의 피벗 위치를 직접 수정할 수 있는 기능을 제공한다.
-- 메시의 위치, 회전, 크기를 직접 변경할 수 있다.
+- 메시의 피벗 위치를 직접 수정할 수 있는 기능을 제공합니다.
+- 메시의 위치, 회전, 크기를 직접 변경할 수 있습니다.
 
 <br>
 
@@ -41,9 +41,9 @@ mermaid: true
 
 ## **Pivot Editor 컴포넌트 추가**
 
-- `Mesh Filter` 컴포넌트를 우클릭하고 `Edit Pivot`을 클릭한다.
+- `Mesh Filter` 컴포넌트를 우클릭하고 `Edit Pivot`을 클릭합니다.
 
-- 게임오브젝트에 `Mesh Filter`, `Mesh Renderer` 컴포넌트가 모두 존재해야 한다.
+- 게임오브젝트에 `Mesh Filter`, `Mesh Renderer` 컴포넌트가 모두 존재해야 합니다.
 
 ![image](https://user-images.githubusercontent.com/42164422/118944426-83f0f280-b98f-11eb-8201-fd5dbc0c330b.png)
 
@@ -51,7 +51,7 @@ mermaid: true
 
 ## **Edit/Cancel 버튼**
 
-- 피벗 수정 기능을 활성화/비활성화한다.
+- 피벗 수정 기능을 활성화/비활성화합니다.
 
 <br>
 
