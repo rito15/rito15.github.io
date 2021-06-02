@@ -40,17 +40,19 @@ C:\Program Files\유니티 버전\Editor\Data\Managed\UnityEngine
 # 예시
 ---
 
-![image](https://user-images.githubusercontent.com/42164422/107696587-8212f580-6cf5-11eb-9ee3-1fef0ab19b23.png){:.normal}
+![image](https://user-images.githubusercontent.com/42164422/120445296-6e35f100-c3c3-11eb-8b3c-4387bf4e9fed.png)
 
-UnityEngine.Mathf.Sin() 메소드는 System.Math.Sin() 메소드를 호출하고,
+.dll 내에 존재하여 평소에는 곧바로 확인할 수 없었던 내부 구현 코드를
 
-(그 결괏값은 double이므로 float로 캐스팅도 해주고,)
+위와 같이 ILSpy를 통해 찾아볼 수 있다.
 
-System.Math.Sin() 메소드는 네이티브 C++의 Sin() 메소드를 호출한다.
+이를 이용해 평소에 궁금하던 내부 구현을 확인하거나,
 
-이를 통해 UnityEngine.Mathf 대신 System.Math를 사용하는 것이 성능상 이득이라는 것을 알 수 있다.
+특히 유니티 에디터 스크립팅을 할 때
 
-이렇게 찾다보면, 메소드를 직접 구현해 사용하는 것이 대부분의 경우 가장 이득이라는 결론도 내릴 수 있다.
+private/internal로 막혀 있던 기능들을 찾아 리플렉션으로 가져와서
+
+자유로운 기능 구현을 해볼 수 있다.
 
 <br>
 
