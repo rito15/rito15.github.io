@@ -70,7 +70,14 @@ targetType.GetMethod
 <br>
 ## 가져온 메소드 호출하기
 ```cs
+// 1. 정적 메소드가 아니고, 매개변수가 존재하는 경우
 targetMethod.Invoke(instance, new object[]{ 파라미터1, 파라미터2 });
+
+// 2. 정적 메소드가 아니고, 매개변수가 0개인 경우
+targetMethod.Invoke(instance, null);
+
+// 3. 정적 메소드이고, 매개변수가 0개인 경우
+targetMethod.Invoke(null, null);
 ```
 
 <br>
