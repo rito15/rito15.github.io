@@ -1,8 +1,23 @@
+TODO : 접고 펼치기 적용
+TODO : 접고 펼치기 적용
+TODO : 접고 펼치기 적용
+TODO : 접고 펼치기 적용
+TODO : 접고 펼치기 적용
+TODO : 접고 펼치기 적용
+TODO : 접고 펼치기 적용
+TODO : 접고 펼치기 적용
+TODO : 접고 펼치기 적용
+TODO : 접고 펼치기 적용
+TODO : 접고 펼치기 적용
+TODO : 접고 펼치기 적용
+
+
+
 # 특징
 
-- 인스펙터의 커스텀 에디터를 편리하게 작성하기 위한 기능들을 제공합니다.
+- 커스텀 에디터를 편리하게 작성하기 위한 기능들을 제공합니다.
 
-- 30가지의 GUI 요소들을 사용하기 편리하도록 클래스화하였습니다.
+- 30가지 이상의 GUI 요소들을 사용하기 편리하도록 클래스화하였습니다.
 - GUI 요소를 미리 객체로 생성하여 원하는 스타일을 지정하고, 언제든 재사용할 수 있습니다.
 - 메소드 체인 방식을 통해 직관적인 스크립팅이 가능합니다.
 - 기존의 `EditorGUI`, `EditorGUILayout` 요소들과 함께 사용할 수 있습니다.
@@ -33,6 +48,8 @@
 # 사용법
 
 ## [1] 커스텀 에디터 준비
+
+### **[1-1] 커스텀 에디터(인스펙터)**
 
 ```cs
 public class MyComponent : MonoBehaviour {}
@@ -81,6 +98,43 @@ public class MyComponentEditor : RitoEditor
 
 <br>
 
+### **[1-2] 커스텀 에디터 윈도우**
+
+커스텀 에디터 윈도우 역시 기존의 작성 방식과 유사합니다.
+
+`EditorWindow` 클래스 대신 `RitoEditorWindow` 클래스를 상속받아 작성합니다.
+
+```cs
+public class TestWindow : RitoEditorWindow
+{
+    [MenuItem("Test/Test")] // 메뉴 등록
+    private static void Init()
+    {
+        // 현재 활성화된 윈도우를 가져오며, 없으면 새로 생성
+        TestWindow window = (TestWindow)GetWindow(typeof(TestWindow));
+        window.Show();
+    }
+
+    protected override void OnSetup(RitoEditorGUI.Setting setting)
+    {
+        // Settings
+    }
+
+    protected override void OnDrawGUI()
+    {
+        // GUI
+    }
+}
+```
+
+커스텀 에디터 작성 방식과 마친가지로
+
+`OnSetup()` 메소드를 통해 필요한 설정들을 작성하고,
+
+`OnGUI()` 메소드 대신 `OnDrawGUI()` 메소드에 GUI 코드를 작성합니다.
+
+<br>
+
 ## [2] 옵션 설정
 
 `OnSetup` 메소드 내에서 다양한 옵션들을 설정할 수 있습니다.
@@ -95,13 +149,13 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
     setting
         .SetMargins(top: 12f, left: 12f, right: 20f, bottom: 16f)
         .SetLayoutControlHeight(18f, 2f)
-        .SetLayoutControlXPositions(0.01f, 0.99f, 0f, 0f)
+        .SetLayoutControlWidth(0.01f, 0.99f, 0f, 0f)
         .SetEditorBackgroundColor(Color.white)
         .KeepSameViewWidth()
         .ActivateRectDebugger()
         .ActivateTooltipDebugger()
         .SetDebugRectColor(Color.red)
-        .SetDebugTooltipColor(Color.blue);
+        .SetDebugTooltipColor(Color.cyan);
 }
 ```
 
@@ -112,14 +166,15 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
   - 레이아웃 요소(너비, 높이, 여백(Space)을 직접 지정하지 않아도 자동으로 설정되는 요소)의<br>
     높이(기본값 : 18f), 하단 여백(기본값 : 2f)을 일괄 지정합니다.
 
-- **SetLayoutControlXPositions()**
-  - 레이아웃 요소들의 기본 가로 너비 비율 및 오프셋을 지정합니다.
+- **SetLayoutControlWidth()**
+  - 레이아웃 요소들의 가로 비율 및 오프셋을 통해 기본 너비를 지정합니다.
 
 - **SetEditorBackgroundColor()**
   - 커스텀 에디터(해당 컴포넌트 영역)의 배경 색상을 지정합니다.
 
 - **KeepSameViewWidth()**
   - 에디터 우측의 스크롤바 존재 여부 관계 없이 항상 같은 전체 너비를 유지합니다.
+  - 커스텀 에디터 윈도우는 해당하지 않습니다.
 
 - **ActivateRectDebugger()**
   - Rect Debugger 토글을 커스텀 에디터 상단에 표시합니다.
@@ -144,7 +199,7 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
 <br>
 
 ### **[3-1] 클래스 종류**
- - 레이블 : `Label`, `SelectableLabel`
+ - 레이블 : `Label`, `SelectableLabel`, `EditableLabel`
  - 필드 : `IntField`, `LongField`, `FloatField`, `DoubleField`, `BoolField`, `StringField`, `ObjectField<T>`, `ColorField`
  - 벡터 필드 : `Vector2Field`, `Vector3Field`, `Vector4Field`, `Vector2IntField`, `Vector3IntField`
  - 슬라이더 : `IntSlider`, `FloatSlider`, `DoubleSlider`
@@ -291,7 +346,49 @@ proteced override void OnDrawInspector()
 
 <br>
 
-### [4-4] 그리기(필수)
+### [4-4] 툴팁 설정(선택)
+
+레이블 영역에 마우스를 올려놓으면 잠시 후 반응하여 내용을 표시하는 기본 툴팁과 달리,
+
+GUI의 영역 내에 마우를 올리는 동안 내용을 계속 보여주는 툴팁 기능을 제공합니다.
+
+마찬가지로 메소드 체인을 통해 `.SetTooltip()`을 호출하여 간편히 등록할 수 있으며,
+
+툴팁 영역의 너비 및 높이와 텍스트 색상, 배경 색상을 직접 지정할 수 있습니다.
+
+- 주의사항
+  - 반드시 `.Draw()` 이전에 `.SetTooltip()`을 사용해야 합니다.
+
+```cs
+Box.White
+    .SetData(2f)
+    .SetTooltip("BOX");
+    // 툴팁 텍스트만 지정
+    // 기본 너비 : 100f, 높이 : 20f,
+    // 기본 텍스트 색상 : Color.white,
+    // 기본 배경 색상 : Color.black (alpha : 0.5)
+
+Label.White
+    .SetData("Label")
+    .SetTooltip("Label", 60f, 20f);
+    // 툴팁 텍스트, 너비, 높이 지정
+
+SelectableLabel.White
+    .SetData("Selectable Label")
+    .SetTooltip("Label 2", Color.white, Color.black);
+    // 툴팁 텍스트, 텍스트 색상, 배경 색상 지정
+
+Button.Black
+    .SetData("Button")
+    .SetTooltip("Button", Color.black, Color.white, 80f, 20f);
+    // 툴팁 텍스트, 텍스트 색상, 배경 색상, 너비, 높이 지정
+```
+
+![2021_0602_Tooltips](https://user-images.githubusercontent.com/42164422/120375526-dcdc6580-c355-11eb-9930-58a1a7ed3be1.gif)
+
+<br>
+
+### [4-5] 그리기(필수)
 
 `.Draw()` 또는 `.DrawLayout()` 메소드를 통해, 지정한 영역에 GUI요소를 그릴 수 있습니다.
 
@@ -452,7 +549,7 @@ Label.Default
 
 <br>
 
-### [4-5] 하단 여백 설정(선택)
+### [4-6] 하단 여백 설정(선택)
 
 기존의 커스텀 에디터를 작성할 때 `EditorGUILayout.Space()`를 호출하듯이
 
@@ -830,49 +927,6 @@ protected override void OnDrawInspector()
 
 <br>
 
-### [4-6] 툴팁 설정(선택)
-
-레이블 영역에 마우스를 올려놓으면 잠시 후 반응하여 내용을 표시하는 기본 툴팁과 달리,
-
-GUI의 영역 내에 마우를 올리는 동안 내용을 계속 보여주는 툴팁 기능을 제공합니다.
-
-마찬가지로 메소드 체인을 통해 아주 간편하게 등록할 수 있으며,
-
-툴팁 영역의 너비 및 높이와 텍스트 색상, 배경 색상을 직접 지정할 수 있습니다.
-
-```cs
-Box.White
-    .SetData(2f)
-    .DrawLayout(3)
-    .SetTooltip("BOX");
-    // 툴팁 텍스트만 지정
-    // 기본 너비 : 100f, 높이 : 20f,
-    // 기본 텍스트 색상 : Color.white,
-    // 기본 배경 색상 : Color.black (alpha : 0.5)
-
-Label.White
-    .SetData("Label")
-    .DrawLayout(0f, 0.3f)
-    .SetTooltip("Label", 60f, 20f);
-    // 툴팁 텍스트, 너비, 높이 지정
-
-SelectableLabel.White
-    .SetData("Selectable Label")
-    .DrawLayout(0f, 0.3f)
-    .SetTooltip("Label 2", Color.white, Color.black);
-    // 툴팁 텍스트, 텍스트 색상, 배경 색상 지정
-
-Button.Black
-    .SetData("Button")
-    .DrawLayout()
-    .SetTooltip("Button", Color.black, Color.white, 80f, 20f);
-    // 툴팁 텍스트, 텍스트 색상, 배경 색상, 너비, 높이 지정
-```
-
-![2021_0602_Tooltips](https://user-images.githubusercontent.com/42164422/120375526-dcdc6580-c355-11eb-9930-58a1a7ed3be1.gif)
-
-<br>
-
 ### [4-7] 값 참조하기(선택)
 
 기존의 에디터 스크립팅에서는 `IntField`, `FloatField`처럼 값을 입력하는 요소의 경우에
@@ -919,19 +973,69 @@ FloatField.Brown
 
 <br>
 
-### [4-8] 정리
+### [4-8] 변화 감지하기(선택)
+
+#### **1) GetChangeState(out bool variable)**
+
+기존의 커스텀 에디터에서는 `BeginChangeCheck`, `EndChangeCheck`를 통해 GUI의 변화 여부를 감지할 수 있습니다.
+
+여기서는 더 간편한 방식으로 변화 여부를 감지할 수 있도록 메소드를 제공합니다.
 
 ```cs
+FloatField.Brown
+    .SetData("Float FIeld", floatVariable)
+    .DrawLayout()
+    .GetValue(out floatVariable)
+    .GetChangeState(out bool isChanged); // 변화 여부 감지
+
+if(isChanged)
+    Debug.Log("Changed");
+```
+
+`.GetValue(out)`을 통해 값을 가져오는 것처럼,
+
+`.GetChangeState(out bool)` 메소드를 통해 변화 여부를 bool 타입으로 간단히 가져올 수 있습니다.
+
+`Label`, `Box`처럼 항상 변화가 없이 일정한 GUI 요소에 대해서는 동작하지 않습니다.
+
+<br>
+
+#### **2) OnValueChanged(Action&lt;T&gt; action)**
+
+값이 변화할 때 수행할 동작을 등록하는 메소드도 제공합니다.
+
+```cs
+FloatField.Brown
+    .SetData("Float FIeld", floatVariable)
+    .DrawLayout()
+    .GetValue(out floatVariable)
+    .OnValueChanged(v => Debug.Log(v)); // 값 변화 시 동작
+```
+
+위 코드의 경우, 입력 값이 변화할 때마다 `Debug.Log(입력값)`이 호출되어
+
+콘솔 창에 현재 값을 출력합니다.
+
+<br>
+
+### [4-9] 정리
+
+```cs
+// * 객체 참조 : 직접 생성한 객체 또는 미리 만들어진 테마 객체
 FloatField.Brown
 
     // 선택사항 : 스타일 지정
     .SetLabelColor(Color.red)
     .SetInputFontSize(15)
+    .Set~()
 
-    // 필수사항 : 값 지정
-    .SetData("Float FIeld", floatVariable)
+    // * 필수사항 : 값 지정
+    .SetData("Float Field", floatVariable)
 
-    // 필수사항 : 그리기
+    // 선택사항 : 툴팁 정보 등록
+    .SetTooltip("Tooltip Text")
+
+    // * 필수사항 : 그리기
     .Draw(0f, 1f, 18f)
     .DrawLayout()
 
@@ -940,11 +1044,13 @@ FloatField.Brown
     .Margin(1f)
     .Layout()
 
-    // 선택사항 : 툴팁 정보 등록
-    .SetTooltip("Tooltip Text")
+    // * 필요한 경우 : 값 전달받기
+    .GetValue(out floatVariable)
 
-    // 필요한 경우 : 값 전달받기
-    .GetValue(out floatVariable);
+    // 선택사항 : 값 변화 감지
+    .GetValueChanged(out bool isChanged)
+    .OnValueChanged(v => Debug.Log(v))
+    ;
 ```
 
 <br>
@@ -953,8 +1059,419 @@ FloatField.Brown
 
 인스펙터에서 직접 GUI 요소들의 영역과 정보를 확인할 수 있는 기능을 제공합니다.
 
+디버깅을 위해서는 `OnSetup()` 메소드 내에서 다음과 같이 옵션을 활성화해야 합니다.
+
+```cs
+protected override void OnSetup(RitoEditorGUI.Setting setting)
+{
+    setting
+        .ActivateRectDebugger()            // Rect Debugger 활성화
+        .ActivateTooltipDebugger()         // Tooltip Debugger 활성화
+        .SetDebugRectColor(Color.red)      // Rect Debugger 색상 설정(선택사항)
+        .SetDebugTooltipColor(Color.cyan); // Tooltip Debugger 색상 설정(선택사항)
+}
+```
+
+<br>
+
+## **[1] Rect Debugger**
+
+`setting.ActivateRectDebugger()` 설정을 통해 활성화할 경우,
+
+아래와 같이 에디터 영역 상단에 토글이 나타납니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120636119-348ae600-c4a8-11eb-939b-5ca4c5da2544.png)
+
+토글에 체크하면 모든 GUI 요소의 영역을 개별적인 Wire Rect 형태로 표시하고,
+
+가장자리의 여백 영역을 반투명한 Rect로 나타냅니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120636402-921f3280-c4a8-11eb-9097-04afde97b7a7.png)
+
+`setting.SetDebugRectColor()` 설정을 통해 색상을 변경할 수 있습니다.
+
+
+<br>
+
+## **[2] Tooltip Debugger**
+
+`setting.ActivateTooltipDebugger()` 설정을 통해 활성화할 경우,
+
+마찬가지로 에디터 영역 상단에 토글이 표시됩니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120637026-5b95e780-c4a9-11eb-8fec-835f41777d44.png)
+
+토글에 체크한 상태에서 각 GUI 요소 위에 마우스 커서를 올리게 되면
+
+![image](https://user-images.githubusercontent.com/42164422/120637273-a879be00-c4a9-11eb-8e2a-4fcd1e438b96.png)
+
+해당 요소의 Rect에 대한 정보가 툴팁으로 표시됩니다.
+
+<br>
+
+`xMin`, `xMax`, `yMin`, `yMax`는 각각 Rect의 꼭짓점 좌표를 나타내며,
+
+`Width`, `Height`는 각각 너비와 높이의 픽셀값을 나타냅니다.
+
+괄호 내의 숫자는 여백을 제외한 영역 내에서의 비율 값을 의미합니다.
+
+<br>
+
+위의 예시에서 좌측 여백은 `18px`, 우측 여백은 `8px`, 총 너비는 `400px`이며
+
+따라서 여백을 제외한 가로 영역은 `18px` ~ `392px` 입니다.
+
+`xMin : 18 (0.000)`은 x좌표가 `18px`인 지점이
+
+여백을 제외한 가로 영역 내에서 가장 좌측에 위치해 있다는 것을 의미합니다.
+
+<br>
+
+마찬가지로 상단 여백은 `8px`, 하단 여백은 `10px`, 전체 높이는 `64px`이고
+
+여백을 제외한 세로 영역은 `8px` ~ `54px`이며,
+
+여백을 제외한 총 높이는 `44px`입니다.
+
+<br>
+
+`yMin : 8 (0.000)`은 y좌표가 `8px`인 지점이
+
+여백을 제외한 세로 영역 내에서 가장 상단에 위치해 있다는 것을 의미합니다.
+
+그리고 `yMax : 26 (0.391)`은 `8px ~ 54px` 범위에서 `26px`인 지점이 갖는 비율이
+
+(26 - 8) / (54 - 8) = `0.391`이라는 것을 나타내며,
+
+`Height : 18 (0.391)`은 여백을 제외한 전체 높이 `46px` 내에서 `18px`가 갖는 비율이
+
+18 / 46 = `0.391`이라는 것을 의미합니다.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/120638939-c3e5c880-c4ab-11eb-96f5-3ad6a20311a5.png)
+
+위와 같이 여백 영역에 커서를 위치할 경우, 해당 여백에 대한 정보를 표시합니다.
 
 <br>
 
 # API
+
+## **RitoEditor**, **RitoEditorWindow**
+
+- 프로퍼티
+  - `float Cursor` : 현재 커서의 위치를 참조합니다.
+
+- 메소드
+  - `Space(float height)` : 커서를 하단으로 지정한 높이만큼 이동시킵니다.
+
+<br>
+
+## **GUIElement** 공통
+
+### **메소드**
+
+- **Clone()**
+  - 스타일을 유지한 채로 객체를 복제합니다.
+
+- **SetTooltip(string text, float width, float height)**
+  - 마우스를 올리면 표시할 툴팁 텍스트와 툴팁의 너비, 높이를 지정합니다.
+  - 텍스트의 색상은 흰색, 배경 색상은 반투명한 검정색으로 지정됩니다.
+  - `.Draw()` 이전에 호출해야 합니다.
+
+- **SetTooltip(string text, float width, float height, Color textColor, Color backgroundColor)**
+  - 텍스트의 색상과 배경 색상까지 직접 지정합니다.
+
+- **SetTooltip(string text, Color textColor, Color backgroundColor, float width, float height)**
+  - 텍스트의 색상과 배경 색상까지 직접 지정합니다.
+
+- **Draw(float height)**
+  - 높이를 지정하여 그립니다.
+  - 너비는 여백을 제외한 좌측 끝부터 우측 끝까지 지정됩니다.
+
+- **Draw(float xLeft, float xRight)**
+  - rect의 좌측, 우측 지점 비율을 지정하여 그립니다.
+  - 높이는 레이아웃 요소 기본 높이(18f)로 자동 지정됩니다.
+
+- **Draw(float xLeft, float xRight, float height)**
+  - 좌우 비율, 높이를 지정하여 그립니다.
+
+- **Draw(float xLeft, float xRight, float yOffset, float height, float xLeftOffset, float xRightOffset)**
+  - 좌우 비율, y축 시작 좌표, 높이를 지정하여 그립니다.
+  - 좌측 및 우측 지점의 위치를 각각 `xLeftOffset`, `xRightOffset`을 통해 픽셀값으로 보정할 수 있습니다.
+
+- **Space(float height)**
+  - 커서를 height만큼 하단으로 이동합니다.
+
+- **Margin(float height)**
+  - 커서를 (GUI 요소의 높이 + height)만큼 하단으로 이동합니다.
+
+- **Layout()**
+  - 커서를 (GUI 요소의 높이 + 레이아웃 요소 기본 여백(2f))만큼 하단으로 이동합니다.
+
+- **DrawLayout()**
+  - 너비, 높이를 자동으로 지정하여 그립니다.
+  - 너비는 여백을 제외한 좌측 끝부터 우측 끝까지 지정됩니다.
+  - 높이는 레이아웃 요소 기본 높이(18f)로 자동 지정됩니다.
+  - 그려진 높이 + 레이아웃 요소 기본 여백(2f)만큼 커서도 이동합니다.
+
+- **DrawLayout(float xLeft, float xRight)**
+  - rect의 좌측, 우측 지점 비율을 지정하여 그립니다.
+  - 높이는 레이아웃 요소 기본 높이(18f)로 자동 지정됩니다.
+  - 그려진 높이 + 레이아웃 요소 기본 여백(2f)만큼 커서도 이동합니다.
+
+- **DrawLayout(float xLeft, float xRight, float xLeftOffset, float xRightOffset)**
+  - rect의 좌측, 우측 지점 비율을 지정하여 그립니다.
+  - 좌측 및 우측 지점의 위치를 각각 `xLeftOffset`, `xRightOffset`을 통해 픽셀값으로 보정할 수 있습니다.
+  - 높이는 레이아웃 요소 기본 높이(18f)로 자동 지정됩니다.
+  - 그려진 높이 + 레이아웃 요소 기본 여백(2f)만큼 커서도 이동합니다.
+
+- **Set~()**
+  - 특정 필드의 스타일을 지정하는 메소드입니다.
+  - 각 메소드의 이름은 `Set`으로 시작하며, 각 스타일의 필드와 동일한 이름으로 이어집니다.
+  - 해당 GUI 요소의 필드 개수만큼 존재합니다.
+
+- **GetValue()**
+  - 값이 존재하는 GUI 요소의 경우에만 해당합니다.<br>
+    (`Box`, `HeaderBox`, `HelpBox` 제외)
+  - 현재 입력 값을 반환합니다.
+  - 반환 타입은 각 GUI 요소의 입력 값에 따라 결정됩니다.
+  - 값의 입력이 없는 는 항상 false를 반환합니다.
+
+- **GetValue(out T variable)**
+  - 값이 존재하는 GUI 요소의 경우에만 해당합니다.
+  - 현재 입력 값을 매개변수 variable에 전달합니다.
+  - T 타입은 각 GUI 요소의 입력 값에 따라 결정됩니다.
+
+- **GetChangeState(out bool variable)
+  - 입력된 값이 여부를 `variable` 변수에 전달합니다.
+  - 입력 값이 없는 `Label`, `SelectableLabel`, `Box`, `HeaderBox`, `HelpBox`는 항상 false를 반환합니다.
+
+- **OnValueChanged(Action&lt;T&gt; action)**
+  - 입력된 값이 변화했을 때의 동작을 등록합니다.
+
+<br>
+
+## **Label**
+
+- 레이블 텍스트를 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120794438-34a3e800-c573-11eb-9d6f-1a276a4fdd1a.png)
+
+```cs
+Label.Default
+    .SetData("Label")
+    .DrawLayout();
+```
+
+<br>
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|textColor|텍스트 색상|
+|TextAnchor|textAlignment|텍스트 정렬|
+|int|fontSize|폰트 크기|
+|FontStyle|fontStyle|폰트 스타일(굵게, 기울임)|
+
+### **메소드**
+
+- **SetData(string text)**
+  - 레이블 텍스트를 지정합니다.
+
+<br>
+
+## **SelectableLabel**
+
+- 드래그할 수 있는 레이블 텍스트를 표시합니다.
+
+![2021_0604_SelectableLabel](https://user-images.githubusercontent.com/42164422/120794879-bf84e280-c573-11eb-86a3-203ef0d46bbc.gif)
+
+```cs
+SelectableLabel.Default
+    .SetData("Selectable Label")
+    .DrawLayout();
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|textColor|텍스트 색상|
+|TextAnchor|textAlignment|텍스트 정렬|
+|int|fontSize|폰트 크기|
+|FontStyle|fontStyle|폰트 스타일(굵게, 기울임)|
+
+### **메소드**
+
+- **SetData(string text)**
+  - 레이블 텍스트를 지정합니다.
+
+<br>
+
+## **EditableLabel**
+
+- 편집할 수 있는 레이블 텍스트를 표시합니다.
+
+TODO
+TODO
+TODO
+TODO
+TODO
+TODO
+TODO
+TODO
+TODO
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|textColor|텍스트 색상|
+|TextAnchor|textAlignment|텍스트 정렬|
+|int|fontSize|폰트 크기|
+|FontStyle|fontStyle|폰트 스타일(굵게, 기울임)|
+
+### **메소드**
+
+- **SetData(string text)**
+  - 레이블 텍스트를 지정합니다.
+
+<br>
+
+## **ValueField 공통**
+ - `IntField`
+ - `LongField`
+ - `FloatField`
+ - `DoubleField`
+ - `StringField`
+ - `Vector2Field`
+ - `Vector3Field`
+ - `Vector4Field`
+ - `Vector2IntField`
+ - `Vector3IntField`
+ - `ObjectField<T>`
+
+### **필드**
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, T value, float widthThreshold)**
+  - 필수 데이터들을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - T 타입은 각 필드의 종류에 따라 결정됩니다. (예: IntField -> int)
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+
+## **StringField**
+
+### **메소드**
+
+- **SetData(string label, string value, string placeholder, float widthThreshold)**
+  - 필수 데이터들을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - placeholder : 입력 필드에 지정된 값이 없을 경우 표시할 텍스트
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+
+<br>
+
+
+## **BoolField**
+
+### **필드**
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|toggleColor|토글(체크박스) 색상|
+
+### **메소드**
+
+- **SetData(string label, bool value, bool toggleLeft, float widthThreshold)**
+  - 필수 데이터들을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 현재 토글 체크 여부
+  - toggleLeft : 토글을 좌측에, 레이블을 우측에 배치할지 여부(기본값 : false)
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+
+<br>
+
+## **ValueSlider 공통**
+ - `IntSlider`
+ - `FloatSlider`
+ - `DoubleSlider`
+
+### **필드**
+|타입|이름|설명|
+|---|---|---|
+|int|labelFontSize|레이블 폰트 크기|
+|Color|labelColor|레이블 텍스트 색상|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|sliderColor|슬라이더 및 입력 필드 색상|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+
+### **메소드**
+
+- **SetData(string label, T value, T minValue, T maxValue, float widthThreshold)**
+  - 필수 데이터들을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 현재 값
+  - minValue : 슬라이더 최솟값
+  - maxValue : 슬라이더 최댓값
+  - T 타입은 슬라이더 종류에 따라 결정됩니다. (예: IntSlider -> int)
+  - widthThreshold : 좌측 레이블과 우측 슬라이더 및 입력 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+
+## **ColorField**
+
+### **필드**
+|타입|이름|설명|
+|---|---|---|
+||||
+
+### **메소드**
+
+- **SetData()**
+  - .
+
+<br>
+
+## ****
+
+### **필드**
+|타입|이름|설명|
+|---|---|---|
+||||
+
+### **메소드**
+
+- **SetData()**
+  - .
+
+<br>
+
 

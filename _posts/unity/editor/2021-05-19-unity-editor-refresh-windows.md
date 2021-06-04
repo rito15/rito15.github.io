@@ -20,6 +20,17 @@ this.Repaint();
 
 <br>
 
+# 커스텀 에디터 윈도우
+---
+
+- `EditorWindow.Repaint()`
+
+```cs
+this.Repaint();
+```
+
+<br>
+
 # 씬뷰
 ---
 
