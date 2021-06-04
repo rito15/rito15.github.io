@@ -11,7 +11,12 @@ TODO : 접고 펼치기 적용
 TODO : 접고 펼치기 적용
 TODO : 접고 펼치기 적용
 
-
+-IN UNITY TODO-
+1) 컨트롤명.Current
+ - 18가지 ColorType enum (기본값 : None)
+ - RitoEditorGUI.CurrentTheme
+ - RitoEditor - Init()에서 CurrentTheme = None
+ - Setting.Set
 
 # 특징
 
