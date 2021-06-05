@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-06T04:51:55+09:00</updated>
+  <updated>2021-06-06T05:33:37+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,57 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 이벤트 함수는 어떻게 실행되는 것일까?</title>
+    <link href="https://rito15.github.io/posts/unity-event-functions/" rel="alternate" type="text/html" title="유니티 이벤트 함수는 어떻게 실행되는 것일까?" />
+    <published>2021-06-06T05:05:00+09:00</published>
+  
+    <updated>2021-06-06T05:05:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-event-functions/</id>
+    <content src="https://rito15.github.io/posts/unity-event-functions/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Unity Event Functions
+
+
+유니티엔진에서 ‘스크립트’를 작성한다고 하면, 보통 MonoBahaviour를 상속받는 클래스의 스크립트를 작성하는 것을 떠올릴 것이다.
+
+그리고 자연스럽게 이 클래스 내에 Awake(), Start(), Update() 등의 메소드를 작성하게 된다.
+
+심지어 비주얼 스튜디오 같은 개발 환경에서는 이런 메소드들에 대해 자동 완성도 해주고, 메소드 위에는 Unity 메시지라는 글자도 띄워준다.
+
+이런 메소드들은 ‘Unity Event Function’, ‘Unity Message’ 또는 ‘Magic Method’라고 불린다.
+
+
+
+그런데 생각해보면 이 메소드들은 MonoBehaviour 또는 그 부모 클래스로부터 상속받은 메소드도 아닌데,
+
+어떻게 유니티가 알아...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -278,82 +329,6 @@ bool mouseOver = GUILayoutUtility.GetLastRect()
 
 
 Mouse Down...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Material Property Block을 통해 프로퍼티 값 변경하기</title>
-    <link href="https://rito15.github.io/posts/unity-material-property-block/" rel="alternate" type="text/html" title="Material Property Block을 통해 프로퍼티 값 변경하기" />
-    <published>2021-05-22T18:00:00+09:00</published>
-  
-    <updated>2021-05-22T18:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-material-property-block/</id>
-    <content src="https://rito15.github.io/posts/unity-material-property-block/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Optimization" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      드로우 콜과 배칭의 개념
-
-
-Draw Call
-
-  
-    CPU가 GPU에게 오브젝트를 그리라고 요청하는 것
-  
-  
-    주요 CPU 병목 요소 중 하나
-  
-
-
-SetPass Call
-
-  
-    쉐이더 렌더링 패스 수
-  
-  
-    쉐이더 요소(예 : 프로퍼티)변경 시 SetPass Call 증가
-  
-  
-    간단히, 쉐이더와 마테리얼에 관련된 Batch라고 할 수 있다.
-  
-
-
-Batch
-
-  
-    드로우 콜을 포함하는 상위 개념
-  
-  
-    각각의 드로우 콜 사이에서 GPU에 의해 접근되는 리소스들을 변경하는 일련의 모든 작업
-  
-  
-    Batch = Draw Call + Set Pass Call + Set Transform + …
-  
-
-
-Batching
-...
     </summary>
   
 

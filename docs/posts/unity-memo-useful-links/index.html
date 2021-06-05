@@ -6015,6 +6015,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6215,61 +6228,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-put-component-on-top/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    May 17
-  
-
-  <i class="unloaded">2021-05-17T21:12:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>컴포넌트를 인스펙터 최상단에 올리기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Memo
-
-
-1
-2
-3
-4
-5
-6
-/// &lt;summary&gt; 컴포넌트를 최상단에 올리기 &lt;/summary&gt;
-[System.Diagnostics.Conditional("UNITY_EDITOR")]
-private static void PutComponentOnTop(Component component)
-{
-    for (int i =...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-memo-gameobject-over-ui/">
           <div class="card-body">
             <!--
@@ -6333,6 +6291,69 @@ private static void PutComponentOnTop(Component component)
   
     
       카메라를 하나 더 만들고, Audio ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-memo-prevent-infinite-loop/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  5
+  
+
+  <i class="unloaded">2021-03-05T04:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>무한 루프를 방지하는 작은 습관</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+  
+    유니티 엔진에서 무한루프가 발생하면 에디터가 그대로 뻗어버린다.
+  
+  
+    따라서 혹시나 무한루프가 될 가능성이 있는 코드를 인지했다면, 간단한 체크 로직을 넣어주는 것이 좋다.
+  
+
+
+1
+2
+3
+4
+while( /* condition */ )
+{
+    // codes..
+}
+
+
+이런 코드에서, 간단히 다음처럼 추가...
               </p>
             </div>
           </div>

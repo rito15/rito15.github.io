@@ -4442,6 +4442,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6493,7 +6506,7 @@
       
       
       <div class="card">
-        <a href="/posts/memo-game-server-engines/">
+        <a href="/posts/memo-cpp-stack-memory-allocation/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6510,13 +6523,13 @@
   
 
   
-    Feb 17
+    Feb  1
   
 
-  <i class="unloaded">2021-02-17T21:40:00+09:00</i>
+  <i class="unloaded">2021-02-01T18:45:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>게임 서버 엔진</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C++ 스택 메모리 동적 할당</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6525,23 +6538,18 @@
 
 
 
-                게임 서버 엔진
+                Memo
 
 
 
-  완성된 형태의 게임 서버 기능 제공
-
-
-
-
-설치형(On-premise, Self-hosted)
-
-  ProudNet(국내)
+  
+    _alloca
     
-      개인 무료 라이센스 제공
-      마비노기 영웅전, 세븐나이츠 등 190여개 프로젝트에 사용
-      실시간 대규모 RPG, FPS에 적합
-      https://www.youtu...
+      스택에 메모리를 동적으로 할당해준다.
+      함수의 리턴으로 전달하면 안된다.
+      블록이 종료되면 자동으로 할당 해제된다.
+      공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의
+      예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 ...
               </p>
             </div>
           </div>

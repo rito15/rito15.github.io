@@ -4729,6 +4729,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6417,7 +6430,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-put-component-on-top/">
+        <a href="/posts/unity-memo-gameobject-over-ui/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6434,13 +6447,13 @@
   
 
   
-    May 17
+    Feb 28
   
 
-  <i class="unloaded">2021-05-17T21:12:00+09:00</i>
+  <i class="unloaded">2021-02-28T22:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>컴포넌트를 인스펙터 최상단에 올리기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 위에 게임오브젝트 띄우기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6449,20 +6462,37 @@
 
 
 
-                Memo
+                Preview
 
 
-1
-2
-3
-4
-5
-6
-/// &lt;summary&gt; 컴포넌트를 최상단에 올리기 &lt;/summary&gt;
-[System.Diagnostics.Conditional("UNITY_EDITOR")]
-private static void PutComponentOnTop(Component component)
-{
-    for (int i =...
+
+
+
+  Green : Default
+  Red : Over UI
+
+
+
+
+1. Standard Rendering Pipeline
+
+
+
+  
+    .
+  
+
+  [1] 레이어 준비
+  
+    [Over UI] 레이어를 만든다.
+  
+
+  
+
+  [2] Over UI 카메라 준비
+  
+    
+      카메라를 하나 더 만들고, A...
               </p>
             </div>
           </div>

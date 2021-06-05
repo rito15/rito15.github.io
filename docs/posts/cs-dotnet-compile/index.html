@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2509 words">13 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2552 words">14 min</span>
 
 
           <!-- page views -->
@@ -463,6 +463,8 @@
   <p><code class="language-plaintext highlighter-rouge">JIT</code> : Just-In-Time</p>
 </blockquote>
 
+<p><br /></p>
+
 <p>그렇다면 <code class="language-plaintext highlighter-rouge">JIT</code> 컴파일이란 무엇일까?</p>
 
 <p>우선, C언어로 작성된 프로그램은 다른 언어에 비해 빠르다고 알려져 있다.</p>
@@ -502,6 +504,8 @@
   <p><code class="language-plaintext highlighter-rouge">AOT</code> : Ahead-Of-Time</p>
 </blockquote>
 
+<p><br /></p>
+
 <p><code class="language-plaintext highlighter-rouge">JIT</code> 컴파일 방식의 느린 속도를 해결하기 위해 만들어진 컴파일 방식.</p>
 
 <p><strong>컴파일 타임</strong>에 중간 코드를 실행 환경에 적합한 <code class="language-plaintext highlighter-rouge">Native Code</code>로 컴파일을 모두 완료한다.</p>
@@ -519,9 +523,11 @@
 <h1 id="개념-정리">개념 정리</h1>
 <hr />
 
-<h2 id="native-code는-exe-dll을-의미하나요">Native Code는 <code class="language-plaintext highlighter-rouge">.exe</code>, <code class="language-plaintext highlighter-rouge">.dll</code>을 의미하나요?</h2>
+<h2 id="native-code는-exe-dll을-의미하나요"><strong>Native Code는 <code class="language-plaintext highlighter-rouge">.exe</code>, <code class="language-plaintext highlighter-rouge">.dll</code>을 의미하나요?</strong></h2>
 
-<p>Yes.</p>
+<ul>
+  <li>Yes.</li>
+</ul>
 
 <p>그런데 <code class="language-plaintext highlighter-rouge">CIL Code</code>도 <code class="language-plaintext highlighter-rouge">.exe</code>, <code class="language-plaintext highlighter-rouge">.dll</code> 내부에 포함되어 있다.</p>
 
@@ -529,17 +535,19 @@
 
 <p>애초에 특정 실행 환경에 맞게 딱 정적으로 만들어진 바이너리를 <code class="language-plaintext highlighter-rouge">Native Code</code>라고 부르고,</p>
 
-<p><code class="language-plaintext highlighter-rouge">.NET</code> 환경에서 <code class="language-plaintext highlighter-rouge">CLR</code> 가상머신이 런타임에 <code class="language-plaintext highlighter-rouge">JIT</code> 컴파일을 통해 입맛대로 맛보고 즐길 수 있도록 만들어진 <code class="language-plaintext highlighter-rouge">CIL</code>을 통해 만들어진 바이너리 내부에 있는 프로그램 코드 부분을 <code class="language-plaintext highlighter-rouge">CIL Code</code>라고 한다.</p>
+<p><code class="language-plaintext highlighter-rouge">.NET</code> 환경에서 <code class="language-plaintext highlighter-rouge">CLR</code> 가상머신이 런타임에 <code class="language-plaintext highlighter-rouge">JIT</code> 컴파일을 통해 입맛대로 맛보고 즐길 수 있도록 만들어진 바이너리 내부에 있는 프로그램 코드 부분을 <code class="language-plaintext highlighter-rouge">CIL Code</code>라고 한다.</p>
 
 <p><br /></p>
 
-<h2 id="그래서-exe-dll이-뭐라구요">그래서 <code class="language-plaintext highlighter-rouge">.exe</code>, <code class="language-plaintext highlighter-rouge">.dll</code>이 뭐라구요?</h2>
+<h2 id="그래서-exe-dll이-뭐라구요"><strong>그래서 <code class="language-plaintext highlighter-rouge">.exe</code>, <code class="language-plaintext highlighter-rouge">.dll</code>이 뭐라구요?</strong></h2>
 
 <p>한마디로 정리하면 바이너리 파일(<code class="language-plaintext highlighter-rouge">Binary File</code>).</p>
 
 <p>특정 실행 환경에 맞게 정적으로 만들어진 바이너리이면 <code class="language-plaintext highlighter-rouge">Native Code</code>,</p>
 
-<p><code class="language-plaintext highlighter-rouge">.NET</code> 환경에서 <code class="language-plaintext highlighter-rouge">JIT</code> 컴파일이 가능하도록 만들어진 바이너리이면 그냥 뭐.. <code class="language-plaintext highlighter-rouge">.NET Binary Code</code>라고 불러야 할 것 같다.</p>
+<p><code class="language-plaintext highlighter-rouge">.NET</code> 환경에서 <code class="language-plaintext highlighter-rouge">JIT</code> 컴파일이 가능하도록 만들어진 바이너리이면 그냥 뭐..</p>
+
+<p><code class="language-plaintext highlighter-rouge">.NET Binary Code</code>라고 불러야 할 것 같다.</p>
 
 <p>그리고 그 내부에는 다양한 데이터들을 담고 있으며, <code class="language-plaintext highlighter-rouge">CIL Code</code>도 포함되어 있다.</p>
 
@@ -547,9 +555,11 @@
 
 <p><br /></p>
 
-<h2 id="어셈블리-어셈블리어-어셈블러-바이너리">어셈블리? 어셈블리어? 어셈블러? 바이너리?</h2>
+<h2 id="어셈블리-어셈블리어-어셈블러-바이너리"><strong>어셈블리? 어셈블리어? 어셈블러? 바이너리?</strong></h2>
 
 <p>이것도 용어가 참 헷갈리는데, 정리해보면</p>
+
+<p><br /></p>
 
 <p><strong>어셈블리어(Assembly Language)</strong></p>
 <ul>
@@ -579,7 +589,7 @@
 
 <p><br /></p>
 
-<h2 id="cil-code는-어셈블리라고-부르던데요"><code class="language-plaintext highlighter-rouge">CIL Code</code>는 ‘어셈블리’라고 부르던데요?</h2>
+<h2 id="cil-code는-어셈블리라고-부르던데요"><strong>CIL Code는 ‘어셈블리’라고 부르던데요?</strong></h2>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">.NET</code>에서의 어셈블리는 단순히 어셈블리어로 작성된 어셈블리 코드를 의미하지 않는다.</li>
   <li><code class="language-plaintext highlighter-rouge">.NET</code>의 어셈블리는 <strong>“버전 관리되고 배포 되는 프로그램의 단위”</strong>를 의미한다.</li>
@@ -589,13 +599,11 @@
 
 <p><br /></p>
 
-<h2 id="net-assembly-구조"><code class="language-plaintext highlighter-rouge">.NET Assembly</code> 구조</h2>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/120902267-4a500500-c67a-11eb-999b-1ba314ea399d.png" alt="image" /></p>
+<h2 id="net-assembly-구조"><strong>.NET Assembly 구조</strong></h2>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/120902627-55a43000-c67c-11eb-947f-8268f9c64c52.png" alt="image" /></p>
 
-<p>**.NET Assembly`</p>
+<p><strong>.NET Assembly</strong></p>
 <ul>
   <li>1개 이상의 <code class="language-plaintext highlighter-rouge">Module</code>로 구성된다.</li>
   <li>모듈 중 하나는 반드시 다른 모듈 목록을 관리하는 <code class="language-plaintext highlighter-rouge">Manifest</code> 데이터를 담고 있어야 한다.</li>
@@ -627,11 +635,18 @@
 
 <p><br /></p>
 
-<h2 id="결국-cil의-정체는">결국 <code class="language-plaintext highlighter-rouge">CIL</code>의 정체는?</h2>
+<h2 id="결국-cil의-정체는"><strong>결국 <code class="language-plaintext highlighter-rouge">CIL</code>의 정체는?</strong></h2>
 
-<p><code class="language-plaintext highlighter-rouge">.NET</code> 고유의 객체 지향 어셈블리 언어.</p>
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">.NET</code> 고유의 객체 지향 어셈블리 언어.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">.NET</code> 환경에서 인간이 이해할 수 있는 가장 낮은 수준의 프로그래밍 언어.</p>
+  </li>
+</ul>
 
-<p><code class="language-plaintext highlighter-rouge">.NET</code> 환경에서 인간이 이해할 수 있는 가장 낮은 수준의 프로그래밍 언어.</p>
+<p><br /></p>
 
 <p><code class="language-plaintext highlighter-rouge">CIL</code> 코드 예시 :</p>
 
@@ -659,17 +674,27 @@
 }
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>그럼 <code class="language-plaintext highlighter-rouge">CIL</code>로 만들어진 파일의 확장자는?</p>
+<p><br /></p>
+
+<p><strong>그럼 <code class="language-plaintext highlighter-rouge">CIL</code>로 만들어진 파일의 확장자는?</strong></p>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">.il</code></li>
 </ul>
 
-<p><code class="language-plaintext highlighter-rouge">Ilasm.exe</code>(IL 어셈블러)를 통해 <code class="language-plaintext highlighter-rouge">.il</code> -&gt; <code class="language-plaintext highlighter-rouge">.dll</code> or <code class="language-plaintext highlighter-rouge">.exe</code> 생성
-<code class="language-plaintext highlighter-rouge">Ildasm.exe</code>(IL 디스어셈블러)를 통해 <code class="language-plaintext highlighter-rouge">.dll</code> or <code class="language-plaintext highlighter-rouge">.exe</code> -&gt; <code class="language-plaintext highlighter-rouge">.il</code> 생성</p>
+<p><br /></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Ilasm.exe</code>(IL 어셈블러)를 통해 <code class="language-plaintext highlighter-rouge">.il</code> -&gt; <code class="language-plaintext highlighter-rouge">.dll</code> or <code class="language-plaintext highlighter-rouge">.exe</code> 생성</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Ildasm.exe</code>(IL 디스어셈블러)를 통해 <code class="language-plaintext highlighter-rouge">.dll</code> or <code class="language-plaintext highlighter-rouge">.exe</code> -&gt; <code class="language-plaintext highlighter-rouge">.il</code> 생성</p>
+  </li>
+</ul>
 
 <p><br /></p>
 
-<h2 id="그러니까-도대체-net-환경의-가상머신은-누구인가요">그러니까 도대체 .NET 환경의 가상머신은 누구인가요?</h2>
+<h2 id="그러니까-도대체-net-환경의-가상머신은-누구인가요"><strong>그러니까 도대체 .NET 환경의 가상머신은 누구인가요?</strong></h2>
 
 <p><code class="language-plaintext highlighter-rouge">CLR</code>이 가상머신인가 하니 이건 가상 머신의 일부 구성요소라고 하고,</p>
 
@@ -679,11 +704,11 @@
 
 <p>가상머신이란 녀석은 도대체 누구인가..</p>
 
-<p>결국 <code class="language-plaintext highlighter-rouge">CLR</code>이 맞다.</p>
+<p><strong>결국 <code class="language-plaintext highlighter-rouge">CLR</code>이 맞다.</strong></p>
 
 <p><br /></p>
 
-<h2 id="그럼-net-framework의-정체는-무엇인가요">그럼 .NET Framework의 정체는 무엇인가요?</h2>
+<h2 id="그럼-net-framework의-정체는-무엇인가요"><strong>그럼 .NET Framework의 정체는 무엇인가요?</strong></h2>
 
 <p>= <code class="language-plaintext highlighter-rouge">FCL</code>(Framework Class Library) + <code class="language-plaintext highlighter-rouge">CLR</code></p>
 
@@ -693,7 +718,7 @@
 
 <p><br /></p>
 
-<h2 id="c언어가-상대적으로-빠른-이유">C언어가 (상대적으로) 빠른 이유</h2>
+<h2 id="c언어가-상대적으로-빠른-이유"><strong>C언어가 (상대적으로) 빠른 이유</strong></h2>
 <ul>
   <li>컴파일을 완료하면 정적인(특정 환경에서 실행 가능한) 네이티브 코드를 생성한다.</li>
   <li>이를 실행하면 <code class="language-plaintext highlighter-rouge">JIT</code> 컴파일 과정 거칠 것 없이 바로 실행되므로 빠르다.</li>
@@ -701,10 +726,29 @@
 
 <p><br /></p>
 
-<h2 id="java와-c이-상대적으로-느린-이유">Java와 C#이 (상대적으로) 느린 이유</h2>
+<h2 id="java와-c이-상대적으로-느린-이유"><strong>Java와 C#이 (상대적으로) 느린 이유</strong></h2>
 <ul>
   <li>컴파일을 완료하면 <code class="language-plaintext highlighter-rouge">IL</code>(중간 언어) 코드인 <code class="language-plaintext highlighter-rouge">.class</code>, <code class="language-plaintext highlighter-rouge">CIL</code> 코드를 생성하고, 이를 바이너리에 포함시킨다.</li>
-  <li>각각 <code class="language-plaintext highlighter-rouge">JVM</code>과 <code class="language-plaintext highlighter-rouge">CLR</code>이 런타임에 <code class="language-plaintext highlighter-rouge">JIT</code> 컴파일을 통해 네이티브 코드를 생성하는 과정을 거쳐야 하므로 느리다.</li>
+  <li>각각 <code class="language-plaintext highlighter-rouge">JVM</code>과 <code class="language-plaintext highlighter-rouge">CLR</code>이 런타임에 <code class="language-plaintext highlighter-rouge">JIT</code> 컴파일을 통해 <code class="language-plaintext highlighter-rouge">Native Code</code>를 생성하는 과정을 거쳐야 하므로 느리다.</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="컴파일-과정-간략-정리">컴파일 과정 간략 정리</h1>
+<hr />
+
+<blockquote>
+  <p>(c) : Compile Time<br />
+(r) : Runtime</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Source Code</code> -&gt; <strong>컴파일</strong>(c) -&gt; <code class="language-plaintext highlighter-rouge">CIL Code</code> -&gt; <strong>JIT 컴파일</strong>(r) -&gt; <code class="language-plaintext highlighter-rouge">Native Code</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Source Code</code> -&gt; <strong>컴파일</strong>(c) -&gt; <code class="language-plaintext highlighter-rouge">CIL Code</code> -&gt; <strong>AOT 컴파일</strong>(c) -&gt; <code class="language-plaintext highlighter-rouge">.NET Native Code</code></p>
+  </li>
 </ul>
 
 <p><br /></p>
@@ -4213,6 +4257,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6609,9 +6666,9 @@ MyEnum last =
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/unity-event-functions/" class="btn btn-outline-primary">
+    <p>유니티 이벤트 함수는 어떻게 실행되는 것일까?</p>
+  </a>
   
 
 </div>
