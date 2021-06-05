@@ -11,12 +11,25 @@ TODO : 접고 펼치기 적용
 TODO : 접고 펼치기 적용
 TODO : 접고 펼치기 적용
 
+
+
 -IN UNITY TODO-
-1) 컨트롤명.Current
+1) 컨트롤명.Current : 현재 테마 접근
  - 18가지 ColorType enum (기본값 : None)
  - RitoEditorGUI.CurrentTheme
  - RitoEditor - Init()에서 CurrentTheme = None
  - Setting.Set
+
+ - 확장 메소드로 만들 때 기본값을 각각 컨트롤명.Default 대신 .Current
+
+
+2) 타입별 확장 메소드
+ - 현재 Bool 작성중
+
+
+
+
+
 
 # 특징
 
