@@ -13,23 +13,6 @@ TODO : 접고 펼치기 적용
 
 
 
--IN UNITY TODO-
-1) 컨트롤명.Current : 현재 테마 접근
- - 18가지 ColorType enum (기본값 : None)
- - RitoEditorGUI.CurrentTheme
- - RitoEditor - Init()에서 CurrentTheme = None
- - Setting.Set
-
- - 확장 메소드로 만들 때 기본값을 각각 컨트롤명.Default 대신 .Current
-
-
-2) 타입별 확장 메소드
- - 현재 Bool 작성중
-
-
-
-
-
 
 # 특징
 
@@ -169,6 +152,7 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
         .SetLayoutControlHeight(18f, 2f)
         .SetLayoutControlWidth(0.01f, 0.99f, 0f, 0f)
         .SetEditorBackgroundColor(Color.white)
+        .SetDefaultColorTheme(EColor.Brown)
         .KeepSameViewWidth()
         .ActivateRectDebugger()
         .ActivateTooltipDebugger()
@@ -189,6 +173,9 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
 
 - **SetEditorBackgroundColor()**
   - 커스텀 에디터(해당 컴포넌트 영역)의 배경 색상을 지정합니다.
+
+- **SetDefaultColorTheme()**
+  - Label.Default처럼 각 GUI 요소.Default를 참조했을 때 사용할 테마를 지정합니다.
 
 - **KeepSameViewWidth()**
   - 에디터 우측의 스크롤바 존재 여부 관계 없이 항상 같은 전체 너비를 유지합니다.
