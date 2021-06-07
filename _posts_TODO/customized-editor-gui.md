@@ -16,7 +16,7 @@ TODO : 접고 펼치기 적용
 
 # 특징
 
-- 커스텀 에디터를 편리하게 작성하기 위한 기능들을 제공합니다.
+- 커스텀 에디터를 편리하고 예쁘게 작성하기 위한 기능들을 제공합니다.
 
 - 30가지 이상의 GUI 요소들을 사용하기 편리하도록 클래스화하였습니다.
 - GUI 요소를 미리 객체로 생성하여 원하는 스타일을 지정하고, 언제든 재사용할 수 있습니다.
@@ -176,9 +176,10 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
 
 - **SetDefaultColorTheme()**
   - Label.Default처럼 각 GUI 요소.Default를 참조했을 때 사용할 테마를 지정합니다.
+  - 기본 테마는 `Gray`입니다.
 
 - **KeepSameViewWidth()**
-  - 에디터 우측의 스크롤바 존재 여부 관계 없이 항상 같은 전체 너비를 유지합니다.
+  - 에디터 우측의 스크롤바 존재 여부에 관계 없이 항상 같은 전체 너비를 유지합니다.
   - 커스텀 에디터 윈도우는 해당하지 않습니다.
 
 - **ActivateRectDebugger()**
@@ -248,18 +249,19 @@ private void OnEnable()
 
 ### **[3-3] 미리 만들어진 객체 참조하기**
 
-총 30가지 GUI 클래스에는 미리 만들어진 각각 18가지의 객체들이 존재합니다.
+총 30가지 이상의 GUI 클래스에는 미리 만들어진 각각 17가지의 객체들이 존재합니다.
 
 해당 객체들의 이름은 다음과 같으며, 서로 다른 테마가 적용되어 있습니다.
 
-- `Default`, `Gray` `Black`, `White`, `Red`, `Green`, `Blue`, `Pink`, `Magenta`, `Violet`, `Purple`, `Brown`, `Orange`, `Gold`, `Yellow`, `Lime`, `Mint`, `Cyan`
+- `Gray` `Black`, `White`, `Red`, `Green`, `Blue`, `Pink`, `Magenta`, `Violet`, `Purple`, `Brown`, `Orange`, `Gold`, `Yellow`, `Lime`, `Mint`, `Cyan`
 
+`Default`를 참조할 경우, 17가지 테마 중 현재 기본 테마로 설정된 테마의 객체를 참조합니다.
 
 <br>
 
 ## [4] 그리기
 
-GUI 요소들의 객체에 직관적인 메소드 체인 방식을 통해
+GUI 요소들의 객체에 메소드 체인 방식을 통해
 
 값과 스타일, 레이아웃 등을 지정하고, 화면에 그려낼 수 있습니다.
 
@@ -327,12 +329,6 @@ GUI 요소들을 그리기 위해서, 해당 요소에 필요한 값을 지정�
 
 GUI 요소마다 지정할 수 있는 값의 종류가 각각 다릅니다.
 
-좌측에는 레이블, 우측에는 필드로 나뉘는 요소들의 경우
-
-`widthThreshold` 매개변수의 값을 `0.0f` ~ `1.0f` 사이로 설정하여
-
-레이블과 필드 영역의 너비 비율을 결정할 수 있습니다. (기본값 : 0.4f)
-
 ```cs
 private float floatValue = 2f;
 
@@ -342,12 +338,22 @@ proteced override void OnDrawInspector()
         .SetData("Label Text") // 레이블 텍스트 지정
 
     FloatField.Gray
-        .SetData("Float Field", floatValue) // 레이블 텍스트, 필드 값 지정
+        .SetData("Float Field", floatValue) // 레이블 텍스트, float 필드 값 지정
 
     FloatField.White
         .SetData("Float Field2", floatValue, 0.5f) // widthThreshold = 0.5f 지정
 }
 ```
+
+<br>
+
+좌측에는 레이블, 우측에는 필드로 나뉘는 요소들의 경우
+
+`widthThreshold` 매개변수의 값을 `0.0f` ~ `1.0f` 사이로 설정하여
+
+레이블과 필드 영역의 너비 비율을 결정할 수 있습니다. (기본값 : 0.4f)
+
+![image](https://user-images.githubusercontent.com/42164422/120968902-78316880-c7a4-11eb-9c7e-1c9559a3bf8b.png)
 
 <br>
 
@@ -407,6 +413,8 @@ GUI 요소를 에디터에 그려내기 위해서는 Rect를 통해 영역을 �
 
 <br>
 
+#### **Cursor**
+
 커스텀 에디터에서는 내부적으로 아래 방향(+y)으로 이동하는 커서가 존재합니다.
 
 `.Draw()` 또는 `.DrawLayout()` 메소드를 통해 GUI요소를 그려낼 때
@@ -417,6 +425,8 @@ GUI 요소를 에디터에 그려내기 위해서는 Rect를 통해 영역을 �
 
 <br>
 
+#### **Draw()**
+
 `.Draw()`를 통해 그리는 경우에는 커서가 자동으로 이동하지 않으며,
 
 따라서 `Space(float)`를 통해 커서를 직접 이동시켜야 합니다.
@@ -426,6 +436,8 @@ GUI 요소를 에디터에 그려내기 위해서는 Rect를 통해 영역을 �
 레이아웃 요소의 기본 높이(18f) + 기본 하단 여백(2f) 만큼 커서가 자동으로 이동합니다.
 
 <br>
+
+#### **xLeft, xRight**
 
 `.Draw()` 메소드는 좌표 및 여백을 수동적으로 설정합니다.
 
@@ -445,6 +457,8 @@ x 좌표 시작점(좌측)과 끝점(우측)을
 
 <br>
 
+#### **xLeftOffset, xRightOffset**
+
 또한 `xLeftOffset`, `xRightOffset` 매개변수를 통해
 
 지정된 `xLeft`, `xRight` 지점으로부터 비율이 아닌 픽셀값으로 오프셋을 설정하여,
@@ -461,6 +475,8 @@ x 좌표의 우측은 10f + (1.0f * (430f - 10f - 20f)) - 8.0f = `402f`를 나�
 
 <br>
 
+#### **yOffset**
+
 `yOffset` 매개변수는 현재 커서(`CurrentY`) 값에 픽셀 값을 추가적으로 더합니다.
 
 예를 들어 현재 커서가 `120f` 지점에 위치해있을 때 `yOffset = 2f`로 지정할 경우
@@ -468,6 +484,8 @@ x 좌표의 우측은 10f + (1.0f * (430f - 10f - 20f)) - 8.0f = `402f`를 나�
 y좌표 120f + 2f = `122f`에 GUI요소를 그리게 됩니다.
 
 <br>
+
+#### **height**
 
 `height` 매개변수는 GUI요소의 전체 높이를 결정합니다.
 
@@ -516,15 +534,19 @@ Label.Default
 Space(22f);
 ```
 
+![image](https://user-images.githubusercontent.com/42164422/120970415-5f29b700-c7a6-11eb-9ca5-033fe9220248.png)
+
 <br>
+
+#### **DrawLayout()**
 
 `.DrawLayout()` 메소드는 GUI를 레이아웃 요소로 그려냅니다.
 
-레이아웃 요소는 높이와 하단 여백이 자동적으로 지정된다는 특징이 있습니다.
+레이아웃 요소는 높이와 하단 여백이 자동으로 지정된다는 특징이 있습니다.
 
-`setting.SetLayoutControlHeight()`을 통해 직접 지정하지 않은 경우,
+레이아웃 요소의 기본 높이는 `18f`, 하단 여백은 `2f` 값을 가지며,
 
-레이아웃 요소의 기본 높이는 `18f`, 하단 여백은 `2f` 값을 가집니다.
+`setting.SetLayoutControlHeight()`를 통해 값을 바꿀 수 있습니다.
 
 <br>
 
@@ -552,13 +574,15 @@ Label.Default
     //xLeft = 0f, xRight = 1f로 자동 지정
 ```
 
+![image](https://user-images.githubusercontent.com/42164422/120970758-cf383d00-c7a6-11eb-99b1-21e0b4758488.png)
+
 <br>
 
-### [4-6] 하단 여백 설정(선택)
+### [4-6] 하단 여백 설정 및 커서 이동(선택)
 
 기존의 커스텀 에디터를 작성할 때 `EditorGUILayout.Space()`를 호출하듯이
 
-매번 개별적으로 `Space()`를 통해 커서를 이동시켜야 한다면
+매번 개별적으로 `Space()`를 통해 커서를 이동시켜야 한다면,
 
 굉장히 불편하고 번거로울 것입니다.
 
@@ -586,6 +610,8 @@ Label.Default
     .Draw(0f, 1f, 18f)
     .Space(20f);
 ```
+
+![image](https://user-images.githubusercontent.com/42164422/120970970-145c6f00-c7a7-11eb-9b4b-d1f6a2433017.png)
 
 <br>
 
@@ -630,13 +656,16 @@ Label.Default
     .Draw(0f, 1f, 18f).Margin(2f);
 ```
 
+![image](https://user-images.githubusercontent.com/42164422/120971118-3e159600-c7a7-11eb-9e83-32820d0eebf0.png)
+
+
 <br>
 
 #### **Layout(float)**
 
 `.Layout()` 메소드는 `.Draw()`를 통해 그려낸 요소를 마치 `.DrawLayout()`으로 그려낸 것처럼
 
-(`.Draw()`에 지정된 높이 + 레이아웃 요소의 기본 하단 여백(2f))만큼 커서를 이동시킵니다.
+(`.Draw()`에 지정된 높이 + 레이아웃 요소의 기본 하단 여백(2f)) 만큼 커서를 이동시킵니다.
 
 따라서 `.Draw(0f, 1f).Layout()` 또는 `.Draw(18f).Layout()` 호출은
 
@@ -654,20 +683,22 @@ Space(20f);
 
 // 2. 메소드 체인 - Margin()
 Label.Default
-    .SetData("Label Text 1")
+    .SetData("Label Text 2")
     .Draw(0f, 1f, 18f)
     .Margin(2f);
 
 // 3. 메소드 체인 - Layout()
 Label.Default
-    .SetData("Label Text 1")
+    .SetData("Label Text 3")
     .Draw(0f, 1f, 18f)
     .Layout();
 ```
 
+![image](https://user-images.githubusercontent.com/42164422/120971409-8cc33000-c7a7-11eb-8d01-d0474bd6a258.png)
+
 <br>
 
-#### **박스 요소 그리기**
+### **참고 : 박스 요소 그리기**
 
 - `Box`, `HeaderBox`, `FoldoutHeaderBox`의 `.DrawLayout()`, `.Margin()`, `Layout()` 메소드의 동작은 다른 GUI 요소들과는 조금 다릅니다.
 
@@ -740,6 +771,26 @@ Box.Brown
 
 <br>
 
+이를 이용해 실제로 작성한다면 다음과 같습니다.
+
+```cs
+Box.Brown
+    .SetData(2f)
+    .DrawLayout(2);
+
+IntField.Brown
+    .SetData("Int Field", 123)
+    .DrawLayout();
+
+FloatField.Brown
+    .SetData("Float FIeld", 123f)
+    .DrawLayout();
+```
+
+![image](https://user-images.githubusercontent.com/42164422/120972136-64880100-c7a8-11eb-888d-08260e107e21.png)
+
+<br>
+
 또한, 단순히 추가적인 하단 높이가 필요한 경우,
 
 좌우 또는 상하 확장이 필요한 경우를 위해 추가적인 API를 제공합니다.
@@ -753,7 +804,7 @@ Box.Brown
     // 하단 높이 20f 추가
 ```
 
-![image](https://user-images.githubusercontent.com/42164422/120449165-2a92b580-c3ca-11eb-8658-217ee3d4f789.png)
+![image](https://user-images.githubusercontent.com/42164422/120972278-8b463780-c7a8-11eb-8890-3ea8afe2c7a8.png)
 
 <br>
 
@@ -764,7 +815,7 @@ Box.Brown
     // 상하 각각 12f 확장, 좌우 4f씩 확장
 ```
 
-![image](https://user-images.githubusercontent.com/42164422/120449353-4eee9200-c3ca-11eb-96de-f6c7a674ee4e.png)
+![image](https://user-images.githubusercontent.com/42164422/120972392-aadd6000-c7a8-11eb-8673-33558891a220.png)
 
 <br>
 
@@ -775,7 +826,7 @@ Box.Brown
     // 너비 확장 - 상 : 20f, 하 : 12f, 좌 : 8f, 우 : 4f
 ```
 
-![image](https://user-images.githubusercontent.com/42164422/120449671-9ecd5900-c3ca-11eb-8e44-fb5d3ad58782.png)
+![image](https://user-images.githubusercontent.com/42164422/120972498-c3e61100-c7a8-11eb-9df7-cdd1e3c097d6.png)
 
 <br>
 
@@ -802,7 +853,7 @@ FloatField.Brown
     .DrawLayout();
 ```
 
-![image](https://user-images.githubusercontent.com/42164422/120450484-71cd7600-c3cb-11eb-849c-4bbe701383bc.png)
+![image](https://user-images.githubusercontent.com/42164422/120972620-e37d3980-c7a8-11eb-964c-62d081518287.png)
 
 외곽선 두께를 설정할 경우, 헤더와 내용 사이에도 동일한 두께의 구분선이 포함되므로
 
@@ -883,11 +934,17 @@ HeaderBox.Brown
 
 헤더 부분을 마우스로 클릭하면 컨텐츠 부분이 접혀 사라지고,
 
-다시 클릭하면 펼쳐져 나타나는 기능을 수행합니다.
+다시 클릭하면 펼쳐져 나타나는 동작을 수행합니다.
 
 ```cs
 // 펼쳐진 상태를 저장하기 위한 필드
 private bool foldout = true;
+
+protected override void OnSetup(RitoEditorGUI.Setting setting)
+{
+    setting
+        .SetLayoutControlWidth(0.01f, 0.985f);
+}
 
 protected override void OnDrawInspector()
 {
@@ -988,7 +1045,7 @@ FloatField.Brown
 
 ```cs
 FloatField.Brown
-    .SetData("Float FIeld", floatVariable)
+    .SetData("Float Field", floatVariable)
     .DrawLayout()
     .GetValue(out floatVariable)
     .GetChangeState(out bool isChanged); // 변화 여부 감지
@@ -1011,7 +1068,7 @@ if(isChanged)
 
 ```cs
 FloatField.Brown
-    .SetData("Float FIeld", floatVariable)
+    .SetData("Float Field", floatVariable)
     .DrawLayout()
     .GetValue(out floatVariable)
     .OnValueChanged(v => Debug.Log(v)); // 값 변화 시 동작
@@ -1164,11 +1221,12 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
 
 ## **RitoEditor**, **RitoEditorWindow**
 
-- 프로퍼티
+### **프로퍼티**
   - `float Cursor` : 현재 커서의 위치를 참조합니다.
 
-- 메소드
-  - `Space(float height)` : 커서를 하단으로 지정한 높이만큼 이동시킵니다.
+### **메소드**
+- `Space(float height)`
+  - 커서를 하단으로 지정한 높이만큼 이동시킵니다.
 
 <br>
 
@@ -1319,15 +1377,16 @@ SelectableLabel.Default
 
 - 편집할 수 있는 레이블 텍스트를 표시합니다.
 
-TODO
-TODO
-TODO
-TODO
-TODO
-TODO
-TODO
-TODO
-TODO
+![2021_0607_EditableLabel](https://user-images.githubusercontent.com/42164422/120985646-c6e7fe00-c7b6-11eb-95bd-899ba5271a3f.gif)
+
+```cs
+//private string editableLabel = "Editable Label";
+
+EditableLabel.Default
+    .SetData(editableLabel)
+    .DrawLayout()
+    .GetValue(out editableLabel);
+```
 
 ### **필드**
 
@@ -1344,6 +1403,507 @@ TODO
   - 레이블 텍스트를 지정합니다.
 
 <br>
+
+## **IntField**
+
+- int 타입 필드를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120986820-f2b7b380-c7b7-11eb-922a-f1b5ed3effe1.png)
+
+```cs
+//private int intValue = 123;
+
+IntField.Default
+    .SetData("Int Field", intValue)
+    .DrawLayout()
+    .GetValue(out intValue);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, int value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **LongField**
+
+- long 타입 필드를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120986812-f0edf000-c7b7-11eb-85ce-5b24432280e7.png)
+
+```cs
+//private long longValue = 123;
+
+LongField.Default
+    .SetData("Long Field", longValue)
+    .DrawLayout()
+    .GetValue(out longValue);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, long value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **FloatField**
+
+- float 타입 필드를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120986805-ee8b9600-c7b7-11eb-9482-ddc3ea6c01a1.png)
+
+```cs
+//private float floatValue = 123f;
+
+FloatField.Default
+    .SetData("Float Field", floatValue)
+    .DrawLayout()
+    .GetValue(out floatValue);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, float value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **DoubleField**
+
+- double 타입 필드를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120986790-eaf80f00-c7b7-11eb-80ad-44ec653ddf3e.png)
+
+```cs
+//private double doubleValue = 123.0;
+
+DoubleField.Default
+    .SetData("Double Field", doubleValue)
+    .DrawLayout()
+    .GetValue(out doubleValue);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, double value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **StringField**
+
+- string 타입 필드를 레이블과 함께 표시합니다.
+
+![2021_0607_StringField](https://user-images.githubusercontent.com/42164422/120990253-51326100-c7bb-11eb-9b0b-5b1f76bab304.gif)
+
+```cs
+//private string stringValue = "abcde";
+//private string stringValue2 = "";
+
+StringField.Default
+    .SetData("String Field", stringValue)
+    .DrawLayout()
+    .GetValue(out stringValue);
+
+StringField.Default
+    .SetData("String Field", stringValue2, "placeholder")
+    .DrawLayout()
+    .GetValue(out stringValue2);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, string value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+- **SetData(string label, string value, string placeholder, float widthThreshold)**
+  - placeholder : 필드에 값이 존재하지 않을 경우 표시할 텍스트를 지정합니다.
+
+<br>
+
+## **Vector2Field**
+
+- Vector2 타입 필드를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120994425-6c9f6b00-c7bf-11eb-978f-da9ef36a46ec.png)
+
+```cs
+//private Vector2 vector2Value = new Vector2(1f, 2f);
+
+Vector2Field.Default
+    .SetData("Vector2 Field", vector2Value)
+    .DrawLayout()
+    .GetValue(out vector2Value);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, Vector2 value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **Vector3Field**
+
+- Vector3 타입 필드를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120994442-71fcb580-c7bf-11eb-92b3-a2a672f08227.png)
+
+```cs
+//private Vector3 vector3Value = new Vector3(1f, 2f, 3f);
+
+Vector3Field.Default
+    .SetData("Vector3 Field", vector3Value)
+    .DrawLayout()
+    .GetValue(out vector3Value);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, Vector3 value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **Vector4Field**
+
+- Vector4 타입 필드를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120994465-788b2d00-c7bf-11eb-897b-f30feb9d9498.png)
+
+```cs
+//private Vector4 vector4Value = new Vector4(1f, 2f, 3f, 4f);
+
+Vector4Field.Default
+    .SetData("Vector4 Field", vector4Value)
+    .DrawLayout()
+    .GetValue(out vector4Value);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, Vector4 value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **Vector2IntField**
+
+- Vector2Int 타입 필드를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120994516-8345c200-c7bf-11eb-885b-672b6a35414d.png)
+
+```cs
+//private Vector2Int vector2IntValue = new Vector2Int(1, 2);
+
+Vector2IntField.Default
+    .SetData("Vector2Int Field", vector2IntValue)
+    .DrawLayout()
+    .GetValue(out vector2IntValue);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, Vector2Int value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **Vector3IntField**
+
+- Vector3Int 타입 필드를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/120994558-8c369380-c7bf-11eb-964f-a0d4a9ecbf6a.png)
+
+```cs
+//private Vector3Int vector3IntValue = new Vector3Int(1, 2, 3);
+
+Vector3IntField.Default
+    .SetData("Vector3Int Field", vector3IntValue)
+    .DrawLayout()
+    .GetValue(out vector3IntValue);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, Vector3Int value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **ObjectField<T>**
+
+- UnityEngine.Object 타입을 상속받는 타입의 필드를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/121003793-e1c36e00-c7c8-11eb-9b20-ee27effcbcc0.png)
+
+```cs
+//private UnityEngine.Object obj;
+//private Material mat;
+
+ObjectField<UnityEngine.Object>.Default
+    .SetData("Object Field", obj)
+    .DrawLayout()
+    .GetValue(out obj);
+
+ObjectField<Material>.Default
+    .SetData("Material Field", mat)
+    .DrawLayout()
+    .GetValue(out mat);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, T value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - T : 제네릭으로 지정한 타입 (UnityEngine.Object을 상속하는 타입)
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+- **SetData(string label, T value, bool allowSceneObjects, float widthThreshold)**
+  - allowSceneObjects : 씬에 존재하는 오브젝트를 필드의 값으로 사용할 수 있는지 여부를 결정합니다. (기본값 : true)
+
+<br>
+
+## **ColorFIeld**
+
+- Color 타입의 필드를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/121004827-1683f500-c7ca-11eb-8e6f-78cb60ab79c5.png)
+
+```cs
+//private Color color;
+
+ColorField.Default
+    .SetData("Color Field", color)
+    .DrawLayout()
+    .GetValue(out color);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|colorPickerColor|우측 색상 선택기 색상|
+
+### **메소드**
+
+- **SetData(string label, Color value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 색상 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 색상 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+
+
+
+
+
+
 
 ## **ValueField 공통**
  - `IntField`
