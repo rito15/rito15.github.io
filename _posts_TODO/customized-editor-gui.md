@@ -1813,7 +1813,7 @@ Vector3IntField.Default
 
 <br>
 
-## **ObjectField<T>**
+## **ObjectField&lt;T&gt;**
 
 - UnityEngine.Object 타입을 상속받는 타입의 필드를 레이블과 함께 표시합니다.
 
@@ -1863,7 +1863,51 @@ ObjectField<Material>.Default
 
 <br>
 
-## **ColorFIeld**
+## **BoolField**
+
+- 토글(체크박스)을 레이블과 함께 표시합니다.
+- 토글을 좌측에 표시할 수 있습니다.
+
+![2021_0607_BoolField](https://user-images.githubusercontent.com/42164422/121017940-d0825d80-c7d8-11eb-913f-cb41bcd45e90.gif)
+
+```cs
+//private bool boolValue1, boolValue2;
+
+BoolField.Default
+    .SetData("Bool Field", boolValue1)
+    .DrawLayout()
+    .GetValue(out boolValue1);
+
+BoolField.Default
+    .SetData("Bool Field(Left)", boolValue2, true)
+    .DrawLayout()
+    .GetValue(out boolValue2);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|toggleColor|토글(체크박스) 색상|
+
+### **메소드**
+
+- **SetData(string label, bool value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 토글 체크 여부
+  - widthThreshold : 좌측 레이블과 우측 색상 필드의 너비 비율(기본값 : 0.4f)
+
+- **SetData(string label, bool value, bool toggleLeft, float widthThreshold)**
+  - toggleLeft : 토글을 좌측에 표시할지 여부
+
+<br>
+
+## **ColorField**
 
 - Color 타입의 필드를 레이블과 함께 표시합니다.
 
@@ -1895,6 +1939,325 @@ ColorField.Default
   - label : 좌측 레이블 텍스트
   - value : 우측의 색상 필드에 지정할 값
   - widthThreshold : 좌측 레이블과 우측 색상 필드의 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **IntSlider**
+
+- int 타입 슬라이더를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/121005759-1a644700-c7cb-11eb-9f99-a5dea94d3e93.png)
+
+```cs
+//private int intValue = 5;
+
+IntSlider.Default
+    .SetData("Int Slider", intValue, 0, 10)
+    .DrawLayout()
+    .GetValue(out intValue);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|sliderColor|슬라이더 및 입력 필드의 색상|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+
+### **메소드**
+
+- **SetData(string label, int value, int minValue, int maxValue, float widthThreshold)**
+  - 레이블 텍스트와 필드의 현재값, 최소 및 최댓값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 필드의 현재 값
+  - minValue : 슬라이더의 최소 범위값
+  - maxValue : 슬라이더의 최대 범위값
+  - widthThreshold : 좌측 레이블과 우측 슬라이더 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **FloatSlider**
+
+- float 타입 슬라이더를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/121006376-ca39b480-c7cb-11eb-897e-f888c9cbea49.png)
+
+```cs
+//private float floatValue = 4.25f;
+
+FloatSlider.Default
+    .SetData("Float Slider", floatValue, 0, 10)
+    .DrawLayout()
+    .GetValue(out floatValue);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|sliderColor|슬라이더 및 입력 필드의 색상|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+
+### **메소드**
+
+- **SetData(string label, float value, float minValue, float maxValue, float widthThreshold)**
+  - 레이블 텍스트와 필드의 현재값, 최소 및 최댓값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 필드의 현재 값
+  - minValue : 슬라이더의 최소 범위값
+  - maxValue : 슬라이더의 최대 범위값
+  - widthThreshold : 좌측 레이블과 우측 슬라이더 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **DoubleSlider**
+
+- double 타입 슬라이더를 레이블과 함께 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/121006395-cefe6880-c7cb-11eb-82e9-c35690797ac5.png)
+
+```cs
+//private double doubleValue = 6.78;
+
+DoubleSlider.Default
+    .SetData("Double Slider", doubleValue, 0, 10)
+    .DrawLayout()
+    .GetValue(out doubleValue);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|sliderColor|슬라이더 및 입력 필드의 색상|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+
+### **메소드**
+
+- **SetData(string label, double value, double minValue, double maxValue, float widthThreshold)**
+  - 레이블 텍스트와 필드의 현재값, 최소 및 최댓값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 필드의 현재 값
+  - minValue : 슬라이더의 최소 범위값
+  - maxValue : 슬라이더의 최대 범위값
+  - widthThreshold : 좌측 레이블과 우측 슬라이더 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **Dropdown&lt;T&gt;**
+
+- 원하는 타입의 드롭다운을 레이블과 함께 표시합니다.
+
+![2021_0607_Dropdown2](https://user-images.githubusercontent.com/42164422/121011401-85b11780-c7d1-11eb-8bb1-951ca5399b2b.gif)
+
+```cs
+//private float[] floatArray = { 0.1f, 0.2f, 0.3f, 1f, 2f };
+//private List<string> stringList = new List<string>(){ "ABC", "BCD", "012" };
+//private int selectedIndex1 = 0;
+//private int selectedIndex2 = 0;
+
+Dropdown<float>.Default
+    .SetData("Float Dropdown", floatArray, selectedIndex1)
+    .DrawLayout()
+    .GetValue(out selectedIndex1);
+
+Dropdown<string>.Default
+    .SetData("String Dropdown", stringList, selectedIndex2)
+    .DrawLayout()
+    .GetValue(out selectedIndex2);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, T[] options, int selectedIndex, float widthThreshold)**
+  - 레이블 텍스트와 목록으로 사용할 배열, 현재 선택된 인덱스를 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - options : 목록으로 사용할 배열
+  - selectedIndex : 현재 선택된 항목의 인덱스
+  - widthThreshold : 좌측 레이블과 우측 드롭다운 너비 비율(기본값 : 0.4f)
+
+- **SetData(string label, IList&lt;T&gt; options, int selectedIndex, float widthThreshold)**
+  - options : 목록으로 사용할 리스트
+
+- **GetSelectedValue(out T variable)**
+  - 현재 선택된 항목의 값을 참조합니다.
+  - 참고 : GetValue() 메소드는 현재 선택된 항목의 인덱스를 참조합니다.
+
+<br>
+
+## **EnumDropdown**
+
+- Enum 타입의 드롭다운을 레이블과 함께 표시합니다.
+- 값을 받아올 때, 대상 열거형 타입으로 형변환이 필요합니다.
+
+![2021_0607_EnumDropdown](https://user-images.githubusercontent.com/42164422/121014228-b5155380-c7d4-11eb-9149-a8e14725021b.gif)
+
+```cs
+// private Space enumValue;
+
+EnumDropdown.Default
+    .SetData("Enum Dropdown", enumValue)
+    .DrawLayout()
+    .GetValue(out Enum outEnumValue);
+enumValue = (Space)outEnumValue;
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, Enum selectedValue, float widthThreshold)**
+  - 레이블 텍스트와 Enum 타입의 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - selectedValue : 현재 선택된 값
+  - widthThreshold : 좌측 레이블과 우측 드롭다운 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **EnumDropdown&lt;T&gt;**
+
+- 제네릭으로 지정한 열거형 타입의 드롭다운을 레이블과 함께 표시합니다.
+- 제네릭을 이용하므로, 값을 받아올 때 형변환이 별도로 필요하지 않습니다.
+
+![2021_0607_EnumDropdown](https://user-images.githubusercontent.com/42164422/121014228-b5155380-c7d4-11eb-9149-a8e14725021b.gif)
+
+```cs
+// private Space enumValue;
+
+EnumDropdown<Space>.Default
+    .SetData("Enum Dropdown", enumValue)
+    .DrawLayout()
+    .GetValue(out enumValue);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, T selectedValue, float widthThreshold)**
+  - 레이블 텍스트와 열거형 타입의 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - selectedValue : 현재 선택된 값
+  - widthThreshold : 좌측 레이블과 우측 드롭다운 너비 비율(기본값 : 0.4f)
+
+<br>
+
+## **TextArea**
+
+- 문자열 입력 필드를 표시합니다.
+
+
+
+```cs
+
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|labelColor|좌측 레이블 텍스트 색상|
+|int|labelFontSize|레이블 폰트 크기|
+|FontStyle|labelFontStyle|레이블 폰트 스타일|
+|TextAnchor|labelAlignment|레이블 텍스트 정렬|
+|Color|inputTextColor|입력 필드 텍스트 색상|
+|Color|inputTextFocusedColor|입력 상태의 입력 필드 텍스트 색상|
+|Color|inputBackgroundColor|입력 필드의 배경 색상|
+|int|inputFontSize|입력 필드 폰트 크기|
+|FontStyle|inputFontStyle|입력 필드 폰트 스타일|
+|TextAnchor|inputTextAlignment|입력 필드 텍스트 정렬|
+
+### **메소드**
+
+- **SetData(string label, string value, float widthThreshold)**
+  - 레이블 텍스트와 필드 값을 지정합니다.
+  - label : 좌측 레이블 텍스트
+  - value : 우측의 입력 필드에 지정할 값
+  - widthThreshold : 좌측 레이블과 우측 입력 필드의 너비 비율(기본값 : 0.4f)
+
+- **SetData(string label, string value, string placeholder, float widthThreshold)**
+  - placeholder : 필드에 값이 존재하지 않을 경우 표시할 텍스트를 지정합니다.
+
+<br>
+
+## **Toggle**
+
+- 토글(체크박스)을 표시합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/121018941-ec3a3380-c7d9-11eb-9417-83fbe25a7004.png)
+
+```cs
+//private bool boolValue;
+
+Toggle.Default
+    .SetData(boolValue)
+    .DrawLayout()
+    .GetValue(out boolValue);
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|color|토글 색상|
+
+### **메소드**
+
+- **SetData(bool Value)**
+  - 토글 체크 여부를 지정합니다.
 
 <br>
 
