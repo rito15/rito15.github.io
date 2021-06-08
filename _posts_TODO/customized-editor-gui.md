@@ -12,14 +12,11 @@ TODO : 접고 펼치기 적용
 TODO : 접고 펼치기 적용
 
 
-
-
-# 특징
+# Rito Custom Editor
 
 - 커스텀 에디터를 편리하고 예쁘게 작성하기 위한 기능들을 제공합니다.
 
 - 30가지 이상의 GUI 요소들을 사용하기 편리하도록 클래스화하였습니다.
-- GUI 요소를 미리 객체로 생성하여 원하는 스타일을 지정하고, 언제든 재사용할 수 있습니다.
 - 메소드 체인 방식을 통해 직관적인 스크립팅이 가능합니다.
 - 기존의 `EditorGUI`, `EditorGUILayout` 요소들과 함께 사용할 수 있습니다.
 
@@ -27,8 +24,13 @@ TODO : 접고 펼치기 적용
 - 미리 만들어진 17가지 색상의 테마를 사용할 수 있습니다.
 - 그려낸 GUI 요소들의 영역을 인스펙터에서 시각적으로 확인하고 디버깅할 수 있습니다.
 
-
 <br>
+
+# How To Import
+
+`[Window]` - `[Package Manager]` - `[+]` - `[Add package from git URL]` - `https://github.com/rito15/Unity-Rito-Custom-Editor.git`
+
+<br
 
 # 기존 소스코드와 비교
 
@@ -48,6 +50,10 @@ TODO : 접고 펼치기 적용
 
 # 사용법
 
+- 네임스페이스 : `Rito.EditorUtilities`
+
+<br>
+
 ## [1] 커스텀 에디터 준비
 
 ### **[1-1] 커스텀 에디터(인스펙터)**
@@ -63,6 +69,7 @@ public class MyComponent : MonoBehaviour {}
 ```cs
 #if UNITY_EDITOR
 
+using UnityEngine;
 using UnityEditor;
 using Rito.EditorUtilities;
 
@@ -106,6 +113,12 @@ public class MyComponentEditor : RitoEditor
 `EditorWindow` 클래스 대신 `RitoEditorWindow` 클래스를 상속받아 작성합니다.
 
 ```cs
+#if UNITY_EDITOR
+
+using UnityEngine;
+using UnityEditor;
+using Rito.EditorUtilities;
+
 public class TestWindow : RitoEditorWindow
 {
     [MenuItem("Test/Test")] // 메뉴 등록
@@ -126,6 +139,8 @@ public class TestWindow : RitoEditorWindow
         // GUI
     }
 }
+
+#endif
 ```
 
 커스텀 에디터 작성 방식과 마친가지로
@@ -2554,9 +2569,410 @@ Button.Default
 
 <br>
 
+## **FoldoutHeaderBox**
 
-TODO : FoldoutHeaderBox
+- 헤더 부분을 클릭하여 접고 펼칠 수 있는 헤더박스를 그립니다.
+
+![2021_0608_FoldoutHeaderBox](https://user-images.githubusercontent.com/42164422/121147275-b057aa80-c87b-11eb-901b-210a60008a98.gif)
+
+```cs
+//private bool foldout1, foldout2;
+
+FoldoutHeaderBox.Default
+    .SetData(foldout1, "Foldout Header Box 1", 0f)
+    .Draw(20f, 40f)
+    .GetValue(out foldout1)
+    .Space(!foldout1? 30f : 70f);
+
+FoldoutHeaderBox.Default
+    .SetData(foldout2, "Foldout Header Box 2", 2f)
+    .DrawLayout(2)
+    .GetValue(out foldout2);
+
+if (foldout2)
+{
+    IntField.Default
+        .SetData("Int Field", 1)
+        .DrawLayout();
+
+    Button.Default
+        .SetData("Button")
+        .DrawLayout();
+}
+```
+
+### **필드**
+
+|타입|이름|설명|
+|---|---|---|
+|Color|headerTextColor|헤더 텍스트 색상|
+|int|headerFontSize|헤더 텍스트 크기|
+|FontStyle|headerFontStyle|헤더 텍스트 스타일|
+|TextAnchor|headerTextAlignment|헤더 텍스트 정렬|
+|Color|headerColor|헤더 영역 박스 색상|
+|Color|contentColor|컨텐츠 영역 박스 색상|
+|Color|outlineColor|외곽선 색상|
+
+### **메소드**
+
+- **SetData(bool foldout, string headerText, float outlineWidth, float headerTextIndent)**
+  - foldout : 현재 박스가 펼쳐졌는지 여부
+  - headerText : 헤더 영역의 레이블 텍스트
+  - outlineWidth : 외곽선 두께(기본값 : 0f)
+  - headerTextIndent : 헤더 레이블의 들여쓰기 너비(기본값 : 2f)
+
+- **Draw(float headerHeight, float contentHeight)**
+  - 헤더 영역과 컨텐츠 영역의 높이를 각각 지정하여 그립니다.
+  - 너비는 여백을 제외한 좌측 끝부터 우측 끝까지 지정됩니다.
+
+- **Draw(float xLeft, float xRight, float headerHeight, float contentHeight)**
+  - rect의 좌측, 우측 지점 비율, 헤더 영역 높이, 컨텐츠 영역 높이를 지정하여 그립니다.
+
+- **Draw(float xLeft, float xRight, float yOffset, float headerHeight, float contentHeight, float xLeftOffset, float xRightOffset)**
+  - 좌우 비율, y축 시작 좌표, 헤더 영역 높이, 컨텐츠 영역 높이를 지정하여 그립니다.
+  - 좌측 및 우측 지점의 위치를 각각 `xLeftOffset`, `xRightOffset`을 통해 픽셀값으로 보정할 수 있습니다.
+
+- **DrawLayout(int contentCount)**
+  - contentCount : 컨텐츠 영역 내부에 포함될 레이아웃 요소의 개수
+  - 너비, 높이를 자동으로 지정하여 그립니다.
+  - 너비는 여백을 제외한 좌측 끝부터 우측 끝까지 지정됩니다.
+  - 헤더 영역 높이는 20f로 지정됩니다.
+  - 컨텐츠 영역 높이는 레이아웃 요소 기본 높이(18f) * contentCount로 지정됩니다.
+  - 헤더 영역 높이 + 외곽선 두께 + 레이아웃 요소 기본 여백(2f)만큼 커서도 이동합니다.
+
+- **DrawLayout(int contentCount, float bonusContentHeight)**
+  - contentCount : 박스 내부에 포함될 레이아웃 요소의 개수
+  - bonusContentHeight : 추가 하단 높이
+  - contentCount로 자동 계산된 높이에 bonusHeight만큼 컨텐츠 영역 하단에 추가로 더해진 높이만큼 그립니다.
+
+- **DrawLayout(int contentCount, float paddingVertical, float paddingHorizontal)**
+  - contentCount : 박스 내부에 포함될 레이아웃 요소의 개수
+  - 자동 계산된 너비와 높이에 더하여, 컨텐츠 영역을 paddingVertical(픽셀)만큼 상하로 높이를 더하고 paddingHorizontal(픽셀)만큼 좌우로 너비를 더한만큼 그립니다.
+
+- **DrawLayout(int contentCount, float paddingTop, float paddingBottom, float paddingLeft, float paddingRight)**
+  - contentCount : 박스 내부에 포함될 레이아웃 요소의 개수
+  - 자동 계산된 너비와 높이에 더하여, 컨텐츠 영역을 상하좌우로 각각 더해진 크기만큼 그립니다.
+
+- **Margin(float height)**
+  - 접힌 상태에서는 헤더 영역 높이만큼 커서를 이동합니다.
+  - 펼친 상태에서는 헤더 영역 높이 + 외곽선 두께 + height 값만큼 커서를 이동합니다.
+
+- **Layout()**
+  - 접힌 상태에서는 헤더 영역 높이만큼 커서를 이동합니다.
+  - 펼친 상태에서는 헤더 영역 높이 + 외곽선 두께 + 레이아웃 요소 기본 하단 여백(2f)만큼 커서를 이동합니다.
+
+<br>
+
+# 확장 메소드
+
+보다 편리하게 커스텀 에디터를 작성할 수 있도록,
+
+주로 사용되는 타입마다 확장 메소드를 제공합니다.
+
+<br>
+
+## **특징**
+- 모든 확장 메소드의 이름은 `Draw`로 시작합니다.
+- 모든 확장 메소드는 `DrawLayout()`을 통해 그립니다.
+- 인스펙터에서 값을 변경하기 위해서는 이름이 `Ref`로 끝나는 확장 메소드를 사용하거나,
+  `GetValue()` 메소드를 추가로 호출해야 합니다.
+
+<br>
+
+### **예시**
+
+**[1] 그냥 그리는 경우(값 변경 불가)**
+
+```cs
+int intValue = 10;
+
+// 1. 상수로 즉시 그리기
+10.DrawField("Int Field");
+
+// 2. 변수로 그리기
+intValue.DrawField("Int Field");
+```
+
+**[2] 값을 변경할 수 있는 경우**
+
+```cs
+// 정수형 필드
+//private int intValue = 10;
+
+// 1. Ref 메소드 사용
+intValue.DrawFieldRef("Int Field");
+
+// 2. GetValue(out) 사용
+intValue.DrawField("Int Field").GetValue(out intValue);
+
+// 3. GetValue() 사용
+intValue = intValue.DrawField("Int Field").GetValue();
+```
+
+<br>
+
+## **string**
+
+### **DrawLabel()**
+ - 해당 문자열을 Label로 그립니다.
+
+```cs
+string s = "Label";
+s.DrawLabel();
+```
+
+### **DrawSelectableLabel()**
+ - 해당 문자열을 SelectableLabel로 그립니다.
+
+```cs
+string s = "Label";
+s.DrawSelectableLabel();
+```
+
+### **DrawEditableLabel()**
+ - 해당 문자열을 EditableLabel로 그립니다.
+
+```cs
+string s = "Label";
+s.DrawEditableLabel();
+```
+
+### **DrawStringField(string label)**
+ - 해당 문자열을 값으로 사용하는 StringField를 그립니다.
+ - `label`은 좌측의 레이블 텍스트로 사용됩니다.
+
+```cs
+string s = "ABCDE";
+s.DrawStringField("String Field");
+```
+
+### **DrawTextArea()**
+ - 해당 문자열을 값으로 사용하는 TextArea를 그립니다.
+
+```cs
+string s = "ABCDE";
+s.DrawTextArea();
+```
+
+### **DrawTextArea(string placeholder)**
+ - 해당 문자열을 값으로 사용하는 TextArea를 그립니다.
+ - `placeholder`는 문자열이 없을 경우 나타내는 Placeholder로 사용됩니다.
+
+```cs
+string s = "ABCDE";
+s.DrawTextArea("placeholder");
+```
+
+### **DrawHeaderBox(int contentCount, float outlineWidth = 0f, float headerTextIndent)**
+ - 해당 문자열을 헤더 텍스트로 사용하는 HeaderBox를 그립니다.
+ - contentCount : 박스 내부에 들어갈 레이아웃 요소 개수
+ - outlineWidth : 박스의 외곽선 두께(기본값 : 0f)
+ - headerTextIndent : 헤더 텍스트의 들여쓰기 너비(기본값 : 2f)
+
+```cs
+string s = "Header Box";
+s.DrawHeaderBox(2, 2f);
+```
+
+### **FoldoutHeaderBox(ref bool toggle, int contentCount, float outlineWidth = 0f, float headerTextIndent)**
+ - 해당 문자열을 헤더 텍스트로 사용하는 FoldoutHeaderBox를 그립니다.
+ - toggle : 박스가 펼쳐져 있는지 여부. 반드시 필드 변수를 사용해야 합니다.
+ - contentCount : 박스 내부에 들어갈 레이아웃 요소 개수
+ - outlineWidth : 박스의 외곽선 두께(기본값 : 0f)
+ - headerTextIndent : 헤더 텍스트의 들여쓰기 너비(기본값 : 2f)
+
+```cs
+//private bool foldout;
+
+string s = "Header Box";
+s.DrawHeaderBox(ref foldout, 2, 2f);
+```
+
+<br>
+
+## **int**
+
+### **DrawField(string label)**
+ - 해당 정수를 필드 값으로 사용하는 IntField를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+### **DrawFieldRef(string label)**
+ - int 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+### **DrawSlider(string label, int min, int max)**
+ - 해당 정수를 필드 값으로 사용하는 IntSlider를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+ - `min` : 슬라이더 최솟값
+ - `max` : 슬라이더 최댓값
+
+### **DrawSliderRef(string label, int min, int max)**
+ - 정수형 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+<br>
+
+## **long**
+
+### **DrawField(string label)**
+ - 해당 정수를 필드 값으로 사용하는 LongField를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+### **DrawFieldRef(string label)**
+ - long 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+<br>
+
+## **float**
+
+### **DrawField(string label)**
+ - 해당 실수를 필드 값으로 사용하는 FloatField를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+### **DrawFieldRef(string label)**
+ - float 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+### **DrawSlider(string label, float min, float max)**
+ - 해당 실수를 필드 값으로 사용하는 FloatSlider를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+ - `min` : 슬라이더 최솟값
+ - `max` : 슬라이더 최댓값
+
+### **DrawSliderRef(string label, float min, float max)**
+ - float 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+<br>
+
+## **double**
+
+### **DrawField(string label)**
+ - 해당 실수를 필드 값으로 사용하는 DoubleField를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+### **DrawFieldRef(string label)**
+ - double 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+### **DrawSlider(string label, double min, double max)**
+ - 해당 실수를 필드 값으로 사용하는 DoubleSlider를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+ - `min` : 슬라이더 최솟값
+ - `max` : 슬라이더 최댓값
+
+### **DrawSliderRef(string label, double min, double max)**
+ - double 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+<br>
+
+## **bool**
+
+### **DrawField(string label)**
+ - 해당 값을 필드로 사용하는 BoolField를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+### **DrawFieldRef(string label)**
+ - bool 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+### **DrawToggle()**
+ - 해당 값을 필드로 사용하는 Toggle을 그립니다.
+
+### **DrawToggleRef()**
+ - bool 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+<br>
+
+## **Vector2**
+
+### **DrawField(string label)**
+ - 해당 값을 필드로 사용하는 Vector2Field를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+### **DrawFieldRef(string label)**
+ - Vector2 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+<br>
+
+## **Vector3**
+
+### **DrawField(string label)**
+ - 해당 값을 필드로 사용하는 Vector3Field를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+### **DrawFieldRef(string label)**
+ - Vector3 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+<br>
+
+## **Vector4**
+
+### **DrawField(string label)**
+ - 해당 값을 필드로 사용하는 Vector4Field를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+### **DrawFieldRef(string label)**
+ - Vector4 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+<br>
+
+## **Vector2Int**
+
+### **DrawField(string label)**
+ - 해당 값을 필드로 사용하는 Vector2IntField를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+### **DrawFieldRef(string label)**
+ - Vector2Int 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+<br>
+
+## **Vector3Int**
+
+### **DrawField(string label)**
+ - 해당 값을 필드로 사용하는 Vector3IntField를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+### **DrawFieldRef(string label)**
+ - Vector3Int 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+<br>
+
+## **Color**
+
+### **DrawField(string label)**
+ - 해당 값을 필드로 사용하는 BoolField를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+### **DrawFieldRef(string label)**
+ - Color 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+### **DrawColorPicker()**
+ - 해당 값을 필드로 사용하는 ColorPicker를 그립니다.
+
+### **DrawColorPickerRef()**
+ - Color 타입 필드를 통해 호출해야 합니다.
+ - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+<br>
 
 
-TODO : Type Extensions
+
+T : Object
+- ObjectField<T>
+
+T : Enum
+- EnumDropdown<T>
+
+TODO : Array, List
 
