@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-07T23:20:36+09:00</updated>
+  <updated>2021-06-10T02:38:59+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,45 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>마우스 커서가 UI 위에 있는지 검사하는 간단한 코드</title>
+    <link href="https://rito15.github.io/posts/unity-check-cursor-over-ui/" rel="alternate" type="text/html" title="마우스 커서가 UI 위에 있는지 검사하는 간단한 코드" />
+    <published>2021-06-10T02:22:00+09:00</published>
+  
+    <updated>2021-06-10T02:22:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-check-cursor-over-ui/</id>
+    <content src="https://rito15.github.io/posts/unity-check-cursor-over-ui/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      private static bool IsPointerOverUI()
+    =&amp;gt; UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -75,7 +114,7 @@
     <link href="https://rito15.github.io/posts/cs-dotnet-compile/" rel="alternate" type="text/html" title=".NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT" />
     <published>2021-06-06T04:43:00+09:00</published>
   
-    <updated>2021-06-06T05:35:33+09:00</updated>
+    <updated>2021-06-07T23:22:17+09:00</updated>
   
     <id>https://rito15.github.io/posts/cs-dotnet-compile/</id>
     <content src="https://rito15.github.io/posts/cs-dotnet-compile/" />
@@ -269,68 +308,6 @@ Old Version
 
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>에디터 GUI 이벤트 모음</title>
-    <link href="https://rito15.github.io/posts/unity-editor-gui-events/" rel="alternate" type="text/html" title="에디터 GUI 이벤트 모음" />
-    <published>2021-05-25T02:22:00+09:00</published>
-  
-    <updated>2021-05-25T02:22:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-gui-events/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-gui-events/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Mouse Over Control
-
-
-
-  특정 컨트롤에 마우스가 위치해 있는지 확인
-
-
-[1] Layout 요소가 아닌 경우
-
-Rect rect = /* Set Rect */;
-
-EditorGUI.LabelField(rect, "Label"); // Draw Field Control
-
-bool mouseOver = rect.Contains(Event.current.mousePosition);
-
-
-[2] Layout 요소인 경우
-
-EditorGUILayout.TextField("Text");
-
-bool mouseOver = GUILayoutUtility.GetLastRect()
-                .Contains(Event.current.mousePosition);
-
-
-
-
-Mouse Down...
     </summary>
   
 

@@ -1,17 +1,3 @@
-TODO : 접고 펼치기 적용
-TODO : 접고 펼치기 적용
-TODO : 접고 펼치기 적용
-TODO : 접고 펼치기 적용
-TODO : 접고 펼치기 적용
-TODO : 접고 펼치기 적용
-TODO : 접고 펼치기 적용
-TODO : 접고 펼치기 적용
-TODO : 접고 펼치기 적용
-TODO : 접고 펼치기 적용
-TODO : 접고 펼치기 적용
-TODO : 접고 펼치기 적용
-
-
 # Rito Custom Editor
 
 - 커스텀 에디터를 편리하고 예쁘게 작성하기 위한 기능들을 제공합니다.
@@ -30,25 +16,255 @@ TODO : 접고 펼치기 적용
 
 `[Window]` - `[Package Manager]` - `[+]` - `[Add package from git URL]` - `https://github.com/rito15/Unity-Rito-Custom-Editor.git`
 
-<br
+<br>
 
 # 기존 소스코드와 비교
 
- ==> 작성중 : Demo_Old, Demo_New
+![2021_0610_OldAndNew](https://user-images.githubusercontent.com/42164422/121400566-b4c2b700-c992-11eb-8d7e-1f8178b3a240.gif)
 
+<br>
+
+## [1] 기존 방식으로 작성하기
+
+<details>
+<summary markdown="span">
+.
+</summary>
+
+```cs
+public class Demo_Old : MonoBehaviour
+{
+    public string stringValue = "String Value";
+    public bool foldout, toggleButtonPressed;
+
+    public float[] floatArray = { 0.1f, 0.2f, 0.3f, 0.4f };
+    public int floatSelected;
+
+    [UnityEditor.CustomEditor(typeof(Demo_Old))]
+    private class CE : Editor
+    {
+        private Demo_Old m;
+        private string[] strFloatArray;
+
+        private readonly Color BoxOutlineColor = Color.blue;
+        private readonly Color HeaderBoxColor = Color.blue + Color.gray;
+        private readonly Color ContentBoxColor = new Color(0f, 0f, 0.15f, 1f);
+        private readonly Color HeaderLabelColor = new Color(0f, 0f, 0.1f, 1f);
+        private readonly Color FieldBackgroundColor = new Color(1f, 1f, 4f, 1f);
+        private readonly Color DropdownBackgroundColor = new Color(0.5f, 0.5f, 2f, 1f);
+        private readonly Color ControlBackgroundColor = new Color(0f, 0f, 2f, 1f);
+
+        private void OnEnable()
+        {
+            m = target as Demo_Old;
+
+            strFloatArray = new string[m.floatArray.Length];
+            for (int i = 0; i < m.floatArray.Length; i++)
+                strFloatArray[i] = m.floatArray[i].ToString();
+        }
+
+        public override void OnInspectorGUI()
+        {
+            SetStyles();
+            DrawControls();
+            RestoreStyles();
+        }
+
+        private void DrawControls()
+        {
+            const float PosX = 18f; // Left Margin
+            const float BoxPaddingRight = 8f;
+            float viewWidth = EditorGUIUtility.currentViewWidth - PosX - 4f;
+            float insideBoxWidth = viewWidth - BoxPaddingRight;
+
+            GUILayoutOption boxViewWidthOption = GUILayout.Width(insideBoxWidth);
+
+            // W : Width, H : Height
+
+            const float BoxPaddingLeft = 4f;
+            const float Outline = 2f;
+            const float BoxX = PosX - BoxPaddingLeft;
+            const float OutBoxX = BoxX - Outline;
+
+            const float HeaderBoxH = 20f;
+            float contentBoxH = m.foldout ? 64f : 0f;
+            float outBoxH = HeaderBoxH + contentBoxH + Outline * (m.foldout ? 3f : 2f);
+
+            float boxW = viewWidth;
+            float outBoxW = boxW + Outline * 2f;
+
+            const float OutBoxY = 4f;
+            const float HeaderBoxY = 4f + Outline;
+            const float ContentBoxY = HeaderBoxY + HeaderBoxH + Outline;
+
+            Rect outBoxRect     = new Rect(OutBoxX, OutBoxY, outBoxW, outBoxH);
+            Rect headerBoxRect  = new Rect(BoxX, HeaderBoxY, boxW, HeaderBoxH);
+            Rect contentBoxRect = new Rect(BoxX, ContentBoxY, boxW, contentBoxH);
+            Rect foldoutRect    = new Rect(headerBoxRect);
+            foldoutRect.xMin += 12f;
+
+            // Header Foldout
+            m.foldout =
+                EditorGUI.Foldout(foldoutRect, m.foldout, "", true);
+
+            // Box
+            EditorGUI.DrawRect(outBoxRect, BoxOutlineColor);
+            EditorGUI.DrawRect(headerBoxRect, HeaderBoxColor);
+            EditorGUI.DrawRect(contentBoxRect, ContentBoxColor);
+
+            EditorGUILayout.Space(1f);
+            EditorGUILayout.LabelField("Header Box", headerLabelStyle);
+
+            EditorGUILayout.Space(Outline);
+
+            if (m.foldout)
+            {
+                GUI.backgroundColor = FieldBackgroundColor;
+
+                // String
+                m.stringValue =
+                    EditorGUILayout.TextField("String FIeld", m.stringValue, boxViewWidthOption);
+
+                GUI.backgroundColor = DropdownBackgroundColor;
+
+                // Dropdown
+                m.floatSelected =
+                    EditorGUILayout.Popup("Float Dropdown", m.floatSelected, strFloatArray, boxViewWidthOption);
+
+                GUI.backgroundColor = ControlBackgroundColor;
+
+                // Buttons
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    const float buttonPart = 0.7f;
+
+                    GUILayout.Button("Button", GUILayout.Width(insideBoxWidth * buttonPart));
+                    m.toggleButtonPressed =
+                        GUILayout.Toggle(m.toggleButtonPressed, "Toggle Button",
+                        "Button", GUILayout.Width(insideBoxWidth * (1f - buttonPart) - 4f));
+                }
+            }
+        }
+
+        private GUIStyle headerLabelStyle;
+        private Color oldBackgroundColor;
+
+        private void SetStyles()
+        {
+            if (headerLabelStyle == null)
+            {
+                headerLabelStyle = new GUIStyle(GUI.skin.label);
+                headerLabelStyle.normal.textColor = HeaderLabelColor;
+                headerLabelStyle.fontStyle = FontStyle.Bold;
+            }
+
+            oldBackgroundColor = GUI.backgroundColor;
+        }
+
+        private void RestoreStyles()
+        {
+            GUI.backgroundColor = oldBackgroundColor;
+        }
+    }
+}
+```
+
+</details>
+
+<br>
+
+## [2] RitoCustomEditor 사용
+
+<details>
+<summary markdown="span">
+.
+</summary>
+
+```cs
+public class Demo_New : MonoBehaviour
+{
+    public string stringValue = "String Value";
+    public bool foldout, toggleButtonPressed;
+
+    public float[] floatArray = { 0.1f, 0.2f, 0.3f, 0.4f };
+    public int floatSelected;
+
+    [UnityEditor.CustomEditor(typeof(Demo_New))]
+    private class CE : RitoEditor
+    {
+        private Demo_New m;
+        private void OnEnable() => m = target as Demo_New;
+
+        private const float XLeft = 0.01f;
+        private const float XRight = 0.985f;
+
+        protected override void OnSetup(RitoEditorGUI.Setting setting)
+        {
+            setting
+                .SetLayoutControlWidth(XLeft, XRight);
+        }
+
+        protected override void OnDrawInspector()
+        {
+            FoldoutHeaderBox.Blue
+                .SetData("Header Box", m.foldout, 2f, 4f)
+                .DrawLayout(3, 2f)
+                .GetValue(out m.foldout);
+
+            if (m.foldout)
+            {
+                StringField.Blue
+                    .SetData("String Field", m.stringValue)
+                    .DrawLayout().GetValue(out m.stringValue);
+
+                Dropdown<float>.Blue
+                    .SetData("Float Dropdown", m.floatArray, m.floatSelected)
+                    .DrawLayout().GetValue(out m.floatSelected);
+
+                const float buttonPart = 0.7f;
+
+                Button.Blue
+                    .SetData("Button")
+                    .Draw(XLeft, buttonPart, 20f);
+
+                ToggleButton.Blue
+                    .SetData("Toggle Button", m.toggleButtonPressed)
+                    .Draw(buttonPart + 0.01f, XRight, 20f).Layout()
+                    .GetValue(out m.toggleButtonPressed);
+            }
+        }
+    }
+}
+```
+
+</details>
 
 <br>
 
 # 테마 미리보기
 
+<details>
+<summary markdown="span">
+.
+</summary>
+
  - 미리 만들어진 17가지 색상의 테마가 제공됩니다.
- - Gray(Default), Black, White, Red, Green, Blue, Pink, Magenta, Violet, Purple, Brown, Orange, Gold, Yellow, Lime, Mint, Cyan
+ - `Gray(Default)`, `Black`, `White`, `Red`, `Green`, `Blue`, `Pink`, `Magenta`, `Violet`, `Purple`, `Brown`, `Orange`, `Gold`, `Yellow`, `Lime`, `Mint`, `Cyan`
+
+<br>
 
 ![2021_0601_EditorGUISamples](https://user-images.githubusercontent.com/42164422/120315975-e21abf80-c317-11eb-9e42-6c65193ca672.gif)
+
+</details>
 
 <br>
 
 # 사용법
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 네임스페이스 : `Rito.EditorUtilities`
 
@@ -56,7 +272,17 @@ TODO : 접고 펼치기 적용
 
 ## [1] 커스텀 에디터 준비
 
+<details>
+<summary markdown="span">
+.
+</summary>
+
 ### **[1-1] 커스텀 에디터(인스펙터)**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ```cs
 public class MyComponent : MonoBehaviour {}
@@ -90,11 +316,15 @@ public class MyComponentEditor : RitoEditor
 #endif
 ```
 
+<br>
+
 기존의 커스텀 에디터 작성 방식과 매우 유사합니다.
 
 `CustomEditor` 애트리뷰트를 사용하는 점은 동일하며,
 
 `Editor` 클래스 대신 `RitoEditor` 클래스를 상속받습니다.
+
+<br>
 
 그리고 `OnSetup()` 메소드와 `OnDrawInspector()` 메소드를 위와 같이 작성해야 하며,
 
@@ -104,9 +334,16 @@ public class MyComponentEditor : RitoEditor
 
 에디터 내의 GUI 요소들을 화면에 그리는 코드를 작성합니다.
 
+</details>
+
 <br>
 
 ### **[1-2] 커스텀 에디터 윈도우**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 커스텀 에디터 윈도우 역시 기존의 작성 방식과 유사합니다.
 
@@ -149,9 +386,18 @@ public class TestWindow : RitoEditorWindow
 
 `OnGUI()` 메소드 대신 `OnDrawGUI()` 메소드에 GUI 코드를 작성합니다.
 
+</details>
+
+</details>
+
 <br>
 
 ## [2] 옵션 설정
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 `OnSetup` 메소드 내에서 다양한 옵션들을 설정할 수 있습니다.
 
@@ -209,9 +455,16 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
 - **SetDebugTooltipColor()**
   - Tooltip Debugger로 표시되는 영역의 색상을 지정합니다.
 
+</details>
+
 <br>
 
 ## [3] GUI 클래스와 객체
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 `FloatField`, `Button` 등 기존 에디터 GUI의 정적 메소드로 사용하던 요소들을 클래스 타입으로 제공합니다.
 
@@ -220,6 +473,12 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
 <br>
 
 ### **[3-1] 클래스 종류**
+
+<details>
+<summary markdown="span">
+.
+</summary>
+
  - 레이블 : `Label`, `SelectableLabel`, `EditableLabel`
  - 필드 : `IntField`, `LongField`, `FloatField`, `DoubleField`, `BoolField`, `StringField`, `ObjectField<T>`, `ColorField`
  - 벡터 필드 : `Vector2Field`, `Vector3Field`, `Vector4Field`, `Vector2IntField`, `Vector3IntField`
@@ -229,9 +488,16 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
  - 드롭다운 : `Dropdown<T>`, `EnumDropdown`, `EnumDropdown<T>`
  - 단일 요소 : `Toggle`, `TextArea`, `ColorPicker`, `HelpBox`
 
+</details>
+
 <br>
 
 ### **[3-2] 객체 생성하기**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 객체를 생성하면서 필드를 초기화하거나,
 
@@ -260,9 +526,16 @@ private void OnEnable()
 }
 ```
 
+</details>
+
 <br>
 
 ### **[3-3] 미리 만들어진 객체 참조하기**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 총 30가지 이상의 GUI 클래스에는 미리 만들어진 각각 17가지의 객체들이 존재합니다.
 
@@ -272,9 +545,18 @@ private void OnEnable()
 
 `Default`를 참조할 경우, 17가지 테마 중 현재 기본 테마로 설정된 테마의 객체를 참조합니다.
 
+</details>
+
+</details>
+
 <br>
 
 ## [4] 그리기
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 GUI 요소들의 객체에 메소드 체인 방식을 통해
 
@@ -283,6 +565,11 @@ GUI 요소들의 객체에 메소드 체인 방식을 통해
 <br>
 
 ### [4-1] 객체 참조하기(필수)
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 직접 생성한 객체 또는 미리 만들어진 정적 객체들을 참조합니다.
 
@@ -307,7 +594,14 @@ protected override void OnDrawInspector()
 
 <br>
 
+</details>
+
 ### [4-2] 스타일 지정하기(선택)
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 객체를 생성하면서 필드에 스타일을 지정하거나, 직접 필드 값을 수정할 수 있지만
 
@@ -336,7 +630,14 @@ boldRedLabel
 
 <br>
 
+</details>
+
 ### [4-3] 값 지정하기(필수)
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 GUI 요소들을 그리기 위해서, 해당 요소에 필요한 값을 지정해야 합니다.
 
@@ -372,7 +673,14 @@ proteced override void OnDrawInspector()
 
 <br>
 
+</details>
+
 ### [4-4] 툴팁 설정(선택)
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 레이블 영역에 마우스를 올려놓으면 잠시 후 반응하여 내용을 표시하는 기본 툴팁과 달리,
 
@@ -414,7 +722,14 @@ Button.Black
 
 <br>
 
+</details>
+
 ### [4-5] 그리기(필수)
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 `.Draw()` 또는 `.DrawLayout()` 메소드를 통해, 지정한 영역에 GUI요소를 그릴 수 있습니다.
 
@@ -593,7 +908,14 @@ Label.Default
 
 <br>
 
+</details>
+
 ### [4-6] 하단 여백 설정 및 커서 이동(선택)
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 기존의 커스텀 에디터를 작성할 때 `EditorGUILayout.Space()`를 호출하듯이
 
@@ -713,13 +1035,20 @@ Label.Default
 
 <br>
 
+</details>
+
 ### **참고 : 박스 요소 그리기**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - `Box`, `HeaderBox`, `FoldoutHeaderBox`의 `.DrawLayout()`, `.Margin()`, `Layout()` 메소드의 동작은 다른 GUI 요소들과는 조금 다릅니다.
 
 <br>
 
-**1) Box**
+#### **1) Box**
 
 ```cs
 Box.Brown
@@ -845,7 +1174,7 @@ Box.Brown
 
 <br>
 
-**2) HeaderBox**
+#### **2) HeaderBox**
 
 HeaderBox는 Box의 상단부에 헤더 부분이 존재하는 형태의 GUI를 그립니다.
 
@@ -943,7 +1272,7 @@ HeaderBox.Brown
 
 <br>
 
-**3) FoldoutHeaderBox**
+#### **3) FoldoutHeaderBox**
 
 `FoldoutHeaderBox`는 생김새가 `HeaderBox`와 동일하지만
 
@@ -1004,7 +1333,14 @@ protected override void OnDrawInspector()
 
 <br>
 
+</details>
+
 ### [4-7] 값 참조하기(선택)
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 기존의 에디터 스크립팅에서는 `IntField`, `FloatField`처럼 값을 입력하는 요소의 경우에
 
@@ -1050,7 +1386,14 @@ FloatField.Brown
 
 <br>
 
+</details>
+
 ### [4-8] 변화 감지하기(선택)
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 #### **1) GetChangeState(out bool variable)**
 
@@ -1095,6 +1438,8 @@ FloatField.Brown
 
 <br>
 
+</details>
+
 ### [4-9] 정리
 
 ```cs
@@ -1130,9 +1475,20 @@ FloatField.Brown
     ;
 ```
 
+</details>
+
+</details>
+
+<br>
+
 <br>
 
 # 디버깅
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 인스펙터에서 직접 GUI 요소들의 영역과 정보를 확인할 수 있는 기능을 제공합니다.
 
@@ -1153,6 +1509,11 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
 
 ## **[1] Rect Debugger**
 
+<details>
+<summary markdown="span">
+.
+</summary>
+
 `setting.ActivateRectDebugger()` 설정을 통해 활성화할 경우,
 
 아래와 같이 에디터 영역 상단에 토글이 나타납니다.
@@ -1167,10 +1528,16 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
 
 `setting.SetDebugRectColor()` 설정을 통해 색상을 변경할 수 있습니다.
 
+</details>
 
 <br>
 
 ## **[2] Tooltip Debugger**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 `setting.ActivateTooltipDebugger()` 설정을 통해 활성화할 경우,
 
@@ -1230,11 +1597,27 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
 
 위와 같이 여백 영역에 커서를 위치할 경우, 해당 여백에 대한 정보를 표시합니다.
 
+</details>
+
+</details>
+
+<br>
+
 <br>
 
 # API
 
+<details>
+<summary markdown="span">
+.
+</summary>
+
 ## **RitoEditor**, **RitoEditorWindow**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **프로퍼티**
   - `float Cursor` : 현재 커서의 위치를 참조합니다.
@@ -1245,92 +1628,106 @@ protected override void OnSetup(RitoEditorGUI.Setting setting)
 
 <br>
 
+</details>
+
 ## **GUIElement** 공통
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **메소드**
 
-- **Clone()**
+#### **Clone()**
   - 스타일을 유지한 채로 객체를 복제합니다.
 
-- **SetTooltip(string text, float width, float height)**
+#### **SetTooltip(string text, float width, float height)**
   - 마우스를 올리면 표시할 툴팁 텍스트와 툴팁의 너비, 높이를 지정합니다.
   - 텍스트의 색상은 흰색, 배경 색상은 반투명한 검정색으로 지정됩니다.
   - `.Draw()` 이전에 호출해야 합니다.
 
-- **SetTooltip(string text, float width, float height, Color textColor, Color backgroundColor)**
+#### **SetTooltip(string text, float width, float height, Color textColor, Color backgroundColor)**
   - 텍스트의 색상과 배경 색상까지 직접 지정합니다.
 
-- **SetTooltip(string text, Color textColor, Color backgroundColor, float width, float height)**
+#### **SetTooltip(string text, Color textColor, Color backgroundColor, float width, float height)**
   - 텍스트의 색상과 배경 색상까지 직접 지정합니다.
 
-- **Draw(float height)**
+#### **Draw(float height)**
   - 높이를 지정하여 그립니다.
   - 너비는 여백을 제외한 좌측 끝부터 우측 끝까지 지정됩니다.
 
-- **Draw(float xLeft, float xRight)**
+#### **Draw(float xLeft, float xRight)**
   - rect의 좌측, 우측 지점 비율을 지정하여 그립니다.
   - 높이는 레이아웃 요소 기본 높이(18f)로 자동 지정됩니다.
 
-- **Draw(float xLeft, float xRight, float height)**
+#### **Draw(float xLeft, float xRight, float height)**
   - 좌우 비율, 높이를 지정하여 그립니다.
 
-- **Draw(float xLeft, float xRight, float yOffset, float height, float xLeftOffset, float xRightOffset)**
+#### **Draw(float xLeft, float xRight, float yOffset, float height, float xLeftOffset, float xRightOffset)**
   - 좌우 비율, y축 시작 좌표, 높이를 지정하여 그립니다.
   - 좌측 및 우측 지점의 위치를 각각 `xLeftOffset`, `xRightOffset`을 통해 픽셀값으로 보정할 수 있습니다.
 
-- **Space(float height)**
+#### **Space(float height)**
   - 커서를 height만큼 하단으로 이동합니다.
 
-- **Margin(float height)**
+#### **Margin(float height)**
   - 커서를 (GUI 요소의 높이 + height)만큼 하단으로 이동합니다.
 
-- **Layout()**
+#### **Layout()**
   - 커서를 (GUI 요소의 높이 + 레이아웃 요소 기본 여백(2f))만큼 하단으로 이동합니다.
 
-- **DrawLayout()**
+#### **DrawLayout()**
   - 너비, 높이를 자동으로 지정하여 그립니다.
   - 너비는 여백을 제외한 좌측 끝부터 우측 끝까지 지정됩니다.
   - 높이는 레이아웃 요소 기본 높이(18f)로 자동 지정됩니다.
   - 그려진 높이 + 레이아웃 요소 기본 여백(2f)만큼 커서도 이동합니다.
 
-- **DrawLayout(float xLeft, float xRight)**
+#### **DrawLayout(float xLeft, float xRight)**
   - rect의 좌측, 우측 지점 비율을 지정하여 그립니다.
   - 높이는 레이아웃 요소 기본 높이(18f)로 자동 지정됩니다.
   - 그려진 높이 + 레이아웃 요소 기본 여백(2f)만큼 커서도 이동합니다.
 
-- **DrawLayout(float xLeft, float xRight, float xLeftOffset, float xRightOffset)**
+#### **DrawLayout(float xLeft, float xRight, float xLeftOffset, float xRightOffset)**
   - rect의 좌측, 우측 지점 비율을 지정하여 그립니다.
   - 좌측 및 우측 지점의 위치를 각각 `xLeftOffset`, `xRightOffset`을 통해 픽셀값으로 보정할 수 있습니다.
   - 높이는 레이아웃 요소 기본 높이(18f)로 자동 지정됩니다.
   - 그려진 높이 + 레이아웃 요소 기본 여백(2f)만큼 커서도 이동합니다.
 
-- **Set~()**
+#### **Set~()**
   - 특정 필드의 스타일을 지정하는 메소드입니다.
   - 각 메소드의 이름은 `Set`으로 시작하며, 각 스타일의 필드와 동일한 이름으로 이어집니다.
   - 해당 GUI 요소의 필드 개수만큼 존재합니다.
 
-- **GetValue()**
+#### **GetValue()**
   - 값이 존재하는 GUI 요소의 경우에만 해당합니다.<br>
     (`Box`, `HeaderBox`, `HelpBox` 제외)
   - 현재 입력 값을 반환합니다.
   - 반환 타입은 각 GUI 요소의 입력 값에 따라 결정됩니다.
   - 값의 입력이 없는 는 항상 false를 반환합니다.
 
-- **GetValue(out T variable)**
+#### **GetValue(out T variable)**
   - 값이 존재하는 GUI 요소의 경우에만 해당합니다.
   - 현재 입력 값을 매개변수 variable에 전달합니다.
   - T 타입은 각 GUI 요소의 입력 값에 따라 결정됩니다.
 
-- **GetChangeState(out bool variable)
+#### **GetChangeState(out bool variable)**
   - 입력된 값이 여부를 `variable` 변수에 전달합니다.
   - 입력 값이 없는 `Label`, `SelectableLabel`, `Box`, `HeaderBox`, `HelpBox`는 항상 false를 반환합니다.
 
-- **OnValueChanged(Action&lt;T&gt; action)**
+#### **OnValueChanged(Action&lt;T&gt; action)**
   - 입력된 값이 변화했을 때의 동작을 등록합니다.
 
 <br>
 
+</details>
+
 ## **Label**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 레이블 텍스트를 표시합니다.
 
@@ -1360,7 +1757,14 @@ Label.Default
 
 <br>
 
+</details>
+
 ## **SelectableLabel**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 드래그할 수 있는 레이블 텍스트를 표시합니다.
 
@@ -1388,7 +1792,14 @@ SelectableLabel.Default
 
 <br>
 
+</details>
+
 ## **EditableLabel**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 편집할 수 있는 레이블 텍스트를 표시합니다.
 
@@ -1419,7 +1830,14 @@ EditableLabel.Default
 
 <br>
 
+</details>
+
 ## **IntField**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - int 타입 필드를 레이블과 함께 표시합니다.
 
@@ -1459,7 +1877,14 @@ IntField.Default
 
 <br>
 
+</details>
+
 ## **LongField**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - long 타입 필드를 레이블과 함께 표시합니다.
 
@@ -1499,7 +1924,14 @@ LongField.Default
 
 <br>
 
+</details>
+
 ## **FloatField**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - float 타입 필드를 레이블과 함께 표시합니다.
 
@@ -1539,7 +1971,14 @@ FloatField.Default
 
 <br>
 
+</details>
+
 ## **DoubleField**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - double 타입 필드를 레이블과 함께 표시합니다.
 
@@ -1579,7 +2018,14 @@ DoubleField.Default
 
 <br>
 
+</details>
+
 ## **StringField**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - string 타입 필드를 레이블과 함께 표시합니다.
 
@@ -1628,7 +2074,14 @@ StringField.Default
 
 <br>
 
+</details>
+
 ## **Vector2Field**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - Vector2 타입 필드를 레이블과 함께 표시합니다.
 
@@ -1668,7 +2121,14 @@ Vector2Field.Default
 
 <br>
 
+</details>
+
 ## **Vector3Field**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - Vector3 타입 필드를 레이블과 함께 표시합니다.
 
@@ -1708,7 +2168,14 @@ Vector3Field.Default
 
 <br>
 
+</details>
+
 ## **Vector4Field**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - Vector4 타입 필드를 레이블과 함께 표시합니다.
 
@@ -1748,7 +2215,14 @@ Vector4Field.Default
 
 <br>
 
+</details>
+
 ## **Vector2IntField**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - Vector2Int 타입 필드를 레이블과 함께 표시합니다.
 
@@ -1788,7 +2262,14 @@ Vector2IntField.Default
 
 <br>
 
+</details>
+
 ## **Vector3IntField**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - Vector3Int 타입 필드를 레이블과 함께 표시합니다.
 
@@ -1828,7 +2309,14 @@ Vector3IntField.Default
 
 <br>
 
+</details>
+
 ## **ObjectField&lt;T&gt;**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - UnityEngine.Object 타입을 상속받는 타입의 필드를 레이블과 함께 표시합니다.
 
@@ -1878,7 +2366,14 @@ ObjectField<Material>.Default
 
 <br>
 
+</details>
+
 ## **BoolField**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 토글(체크박스)을 레이블과 함께 표시합니다.
 - 토글을 좌측에 표시할 수 있습니다.
@@ -1922,7 +2417,14 @@ BoolField.Default
 
 <br>
 
+</details>
+
 ## **ColorField**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - Color 타입의 필드를 레이블과 함께 표시합니다.
 
@@ -1957,7 +2459,14 @@ ColorField.Default
 
 <br>
 
+</details>
+
 ## **IntSlider**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - int 타입 슬라이더를 레이블과 함께 표시합니다.
 
@@ -1995,7 +2504,14 @@ IntSlider.Default
 
 <br>
 
+</details>
+
 ## **FloatSlider**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - float 타입 슬라이더를 레이블과 함께 표시합니다.
 
@@ -2033,7 +2549,14 @@ FloatSlider.Default
 
 <br>
 
+</details>
+
 ## **DoubleSlider**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - double 타입 슬라이더를 레이블과 함께 표시합니다.
 
@@ -2071,7 +2594,14 @@ DoubleSlider.Default
 
 <br>
 
+</details>
+
 ## **Dropdown&lt;T&gt;**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 원하는 타입의 드롭다운을 레이블과 함께 표시합니다.
 
@@ -2127,7 +2657,14 @@ Dropdown<string>.Default
 
 <br>
 
+</details>
+
 ## **EnumDropdown**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - Enum 타입의 드롭다운을 레이블과 함께 표시합니다.
 - 값을 받아올 때, 대상 열거형 타입으로 형변환이 필요합니다.
@@ -2169,7 +2706,14 @@ enumValue = (Space)outEnumValue;
 
 <br>
 
+</details>
+
 ## **EnumDropdown&lt;T&gt;**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 제네릭으로 지정한 열거형 타입의 드롭다운을 레이블과 함께 표시합니다.
 - 제네릭을 이용하므로, 값을 받아올 때 형변환이 별도로 필요하지 않습니다.
@@ -2210,7 +2754,14 @@ EnumDropdown<Space>.Default
 
 <br>
 
+</details>
+
 ## **TextArea**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 문자열 입력 필드를 표시합니다.
 
@@ -2250,7 +2801,14 @@ TextArea.Default
 
 <br>
 
+</details>
+
 ## **Toggle**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 토글(체크박스)을 표시합니다.
 
@@ -2278,7 +2836,14 @@ Toggle.Default
 
 <br>
 
+</details>
+
 ## **ColorPicker**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 색상 선택 필드를 표시합니다.
 
@@ -2306,7 +2871,14 @@ ColorPicker.Default
 
 <br>
 
+</details>
+
 ## **HelpBox**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 도움말 상자를 표시합니다.
 
@@ -2337,7 +2909,14 @@ HelpBox.Default
 
 <br>
 
+</details>
+
 ## **Button**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 클릭할 수 있는 버튼을 표시합니다.
 
@@ -2368,7 +2947,14 @@ Button.Default
 
 <br>
 
+</details>
+
 ## **ToggleButton**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 누른 상태를 유지할 수 있는 버튼을 표시합니다.
 
@@ -2404,7 +2990,14 @@ ToggleButton.Default
 
 <br>
 
+</details>
+
 ## **Box**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 네모난 박스를 그립니다.
 
@@ -2485,7 +3078,14 @@ Button.Default
 
 <br>
 
+</details>
+
 ## **HeaderBox**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 헤더 영역과 레이블이 존재하는 네모난 박스를 그립니다.
 
@@ -2569,7 +3169,14 @@ Button.Default
 
 <br>
 
+</details>
+
 ## **FoldoutHeaderBox**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 - 헤더 부분을 클릭하여 접고 펼칠 수 있는 헤더박스를 그립니다.
 
@@ -2661,9 +3268,18 @@ if (foldout2)
   - 접힌 상태에서는 헤더 영역 높이만큼 커서를 이동합니다.
   - 펼친 상태에서는 헤더 영역 높이 + 외곽선 두께 + 레이아웃 요소 기본 하단 여백(2f)만큼 커서를 이동합니다.
 
+</details>
+
+</details>
+
 <br>
 
 # 확장 메소드
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 보다 편리하게 커스텀 에디터를 작성할 수 있도록,
 
@@ -2673,13 +3289,18 @@ if (foldout2)
 
 ## **특징**
 - 모든 확장 메소드의 이름은 `Draw`로 시작합니다.
-- 모든 확장 메소드는 `DrawLayout()`을 통해 그립니다.
+- 확장 메소드를 통해 그리면 `DrawLayout()`으로 그려집니다.
 - 인스펙터에서 값을 변경하기 위해서는 이름이 `Ref`로 끝나는 확장 메소드를 사용하거나,
   `GetValue()` 메소드를 추가로 호출해야 합니다.
 
 <br>
 
 ### **예시**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 **[1] 그냥 그리는 경우(값 변경 불가)**
 
@@ -2711,30 +3332,37 @@ intValue = intValue.DrawField("Int Field").GetValue();
 
 <br>
 
+</details>
+
 ## **string**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **DrawLabel()**
  - 해당 문자열을 Label로 그립니다.
 
 ```cs
-string s = "Label";
-s.DrawLabel();
+//private string s = "Label";
+s.DrawLabel().GetValue(out s);
 ```
 
 ### **DrawSelectableLabel()**
  - 해당 문자열을 SelectableLabel로 그립니다.
 
 ```cs
-string s = "Label";
-s.DrawSelectableLabel();
+//private string s = "Label";
+s.DrawSelectableLabel().GetValue(out s);
 ```
 
 ### **DrawEditableLabel()**
  - 해당 문자열을 EditableLabel로 그립니다.
 
 ```cs
-string s = "Label";
-s.DrawEditableLabel();
+//private string s = "Label";
+s.DrawEditableLabel().GetValue(out s);
 ```
 
 ### **DrawStringField(string label)**
@@ -2742,16 +3370,16 @@ s.DrawEditableLabel();
  - `label`은 좌측의 레이블 텍스트로 사용됩니다.
 
 ```cs
-string s = "ABCDE";
-s.DrawStringField("String Field");
+//private string s = "ABCDE";
+s.DrawStringField("String Field").GetValue(out s);
 ```
 
 ### **DrawTextArea()**
  - 해당 문자열을 값으로 사용하는 TextArea를 그립니다.
 
 ```cs
-string s = "ABCDE";
-s.DrawTextArea();
+//private string s = "ABCDE";
+s.DrawTextArea().GetValue(out s);
 ```
 
 ### **DrawTextArea(string placeholder)**
@@ -2759,8 +3387,8 @@ s.DrawTextArea();
  - `placeholder`는 문자열이 없을 경우 나타내는 Placeholder로 사용됩니다.
 
 ```cs
-string s = "ABCDE";
-s.DrawTextArea("placeholder");
+//private string s = "ABCDE";
+s.DrawTextArea("placeholder").GetValue(out s);
 ```
 
 ### **DrawHeaderBox(int contentCount, float outlineWidth = 0f, float headerTextIndent)**
@@ -2774,9 +3402,9 @@ string s = "Header Box";
 s.DrawHeaderBox(2, 2f);
 ```
 
-### **FoldoutHeaderBox(ref bool toggle, int contentCount, float outlineWidth = 0f, float headerTextIndent)**
+### **FoldoutHeaderBox(ref bool foldout, int contentCount, float outlineWidth = 0f, float headerTextIndent)**
  - 해당 문자열을 헤더 텍스트로 사용하는 FoldoutHeaderBox를 그립니다.
- - toggle : 박스가 펼쳐져 있는지 여부. 반드시 필드 변수를 사용해야 합니다.
+ - foldout : 박스가 펼쳐져 있는지 여부. 반드시 필드 변수를 사용해야 합니다.
  - contentCount : 박스 내부에 들어갈 레이아웃 요소 개수
  - outlineWidth : 박스의 외곽선 두께(기본값 : 0f)
  - headerTextIndent : 헤더 텍스트의 들여쓰기 너비(기본값 : 2f)
@@ -2788,17 +3416,53 @@ string s = "Header Box";
 s.DrawHeaderBox(ref foldout, 2, 2f);
 ```
 
+### **Button()**
+ - 해당 문자열을 텍스트로 사용하는 Button을 그립니다.
+
+```cs
+string s = "Button";
+s.DrawButton();
+```
+
+### **ToggleButton(ref bool pressed)**
+ - 해당 문자열을 텍스트로 사용하는 ToggleButton을 그립니다.
+ - pressed : 버튼이 눌렸는지 여부. 반드시 필드 변수를 사용해야 합니다.
+
+```cs
+//private bool pressed;
+
+string s = "Toggle Button";
+s.ToggleButton(ref pressed);
+```
+
 <br>
 
+</details>
+
 ## **int**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **DrawField(string label)**
  - 해당 정수를 필드 값으로 사용하는 IntField를 그립니다.
  - `label` : 좌측의 레이블 텍스트
 
+```cs
+//private int i = 0;
+i.DrawField("Int Field").GetValue(out i);
+```
+
 ### **DrawFieldRef(string label)**
  - int 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+```cs
+//private int i = 0;
+i.DrawFieldRef("Int Field");
+```
 
 ### **DrawSlider(string label, int min, int max)**
  - 해당 정수를 필드 값으로 사용하는 IntSlider를 그립니다.
@@ -2806,33 +3470,77 @@ s.DrawHeaderBox(ref foldout, 2, 2f);
  - `min` : 슬라이더 최솟값
  - `max` : 슬라이더 최댓값
 
+```cs
+//private int i = 0;
+i.DrawSlider("Int Slider", 0, 10).GetValue(out i);
+```
+
 ### **DrawSliderRef(string label, int min, int max)**
  - 정수형 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private int i = 0;
+i.DrawSliderRef("Int Slider", 0, 10);
+```
+
 <br>
 
+</details>
+
 ## **long**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **DrawField(string label)**
  - 해당 정수를 필드 값으로 사용하는 LongField를 그립니다.
  - `label` : 좌측의 레이블 텍스트
 
+```cs
+//private long l = 0;
+l.DrawField("Long Field").GetValue(out l);
+```
+
 ### **DrawFieldRef(string label)**
  - long 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private long l = 0;
+l.DrawFieldRef("Long Field");
+```
+
 <br>
 
+</details>
+
 ## **float**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **DrawField(string label)**
  - 해당 실수를 필드 값으로 사용하는 FloatField를 그립니다.
  - `label` : 좌측의 레이블 텍스트
 
+```cs
+//private float f = 0f;
+f.DrawField("Float Field").GetValue(out f);
+```
+
 ### **DrawFieldRef(string label)**
  - float 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+```cs
+//private float f = 0f;
+f.DrawFieldRef("Float Field");
+```
 
 ### **DrawSlider(string label, float min, float max)**
  - 해당 실수를 필드 값으로 사용하는 FloatSlider를 그립니다.
@@ -2840,21 +3548,48 @@ s.DrawHeaderBox(ref foldout, 2, 2f);
  - `min` : 슬라이더 최솟값
  - `max` : 슬라이더 최댓값
 
+```cs
+//private float f = 0f;
+f.DrawSlider("Float Slider", 0f, 1f).GetValue(out f);
+```
+
 ### **DrawSliderRef(string label, float min, float max)**
  - float 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private float f = 0f;
+f.DrawSliderRef("Float Slider", 0f, 1f);
+```
+
 <br>
 
+</details>
+
 ## **double**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **DrawField(string label)**
  - 해당 실수를 필드 값으로 사용하는 DoubleField를 그립니다.
  - `label` : 좌측의 레이블 텍스트
 
+```cs
+//private double d = 0;
+d.DrawField("Double Field").GetValue(out d);
+```
+
 ### **DrawFieldRef(string label)**
  - double 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
+
+```cs
+//private double d = 0;
+d.DrawFieldRef("Double Field");
+```
 
 ### **DrawSlider(string label, double min, double max)**
  - 해당 실수를 필드 값으로 사용하는 DoubleSlider를 그립니다.
@@ -2862,117 +3597,331 @@ s.DrawHeaderBox(ref foldout, 2, 2f);
  - `min` : 슬라이더 최솟값
  - `max` : 슬라이더 최댓값
 
+```cs
+//private double d = 0;
+d.DrawSlider("Double Slider", 0, 1).GetValue(out d);
+```
+
 ### **DrawSliderRef(string label, double min, double max)**
  - double 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private double d = 0;
+d.DrawSliderRef("Double Slider", 0, 1);
+```
+
 <br>
 
+</details>
+
 ## **bool**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **DrawField(string label)**
  - 해당 값을 필드로 사용하는 BoolField를 그립니다.
  - `label` : 좌측의 레이블 텍스트
 
+```cs
+//private bool b = false;
+b.DrawField("Bool Field").GetValue(out b);
+```
+
 ### **DrawFieldRef(string label)**
  - bool 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private bool b = false;
+b.DrawFieldRef("Bool Field");
+```
+
 ### **DrawToggle()**
  - 해당 값을 필드로 사용하는 Toggle을 그립니다.
+
+```cs
+//private bool b = false;
+b.DrawToggle().GetValue(out b);
+```
 
 ### **DrawToggleRef()**
  - bool 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private bool b = false;
+b.DrawToggleRef();
+```
+
 <br>
 
+</details>
+
 ## **Vector2**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **DrawField(string label)**
  - 해당 값을 필드로 사용하는 Vector2Field를 그립니다.
  - `label` : 좌측의 레이블 텍스트
 
+```cs
+//private Vector2 v2;
+v2.DrawField("Vector2 Field").GetValue(out v2);
+```
+
 ### **DrawFieldRef(string label)**
  - Vector2 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private Vector2 v2;
+v2.DrawFieldRef("Vector2 Field");
+```
+
 <br>
 
+</details>
+
 ## **Vector3**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **DrawField(string label)**
  - 해당 값을 필드로 사용하는 Vector3Field를 그립니다.
  - `label` : 좌측의 레이블 텍스트
 
+```cs
+//private Vector3 v3;
+v3.DrawField("Vector3 Field").GetValue(out v3);
+```
+
 ### **DrawFieldRef(string label)**
  - Vector3 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private Vector3 v3;
+v3.DrawFieldRef("Vector3 Field");
+```
+
 <br>
 
+</details>
+
 ## **Vector4**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **DrawField(string label)**
  - 해당 값을 필드로 사용하는 Vector4Field를 그립니다.
  - `label` : 좌측의 레이블 텍스트
 
+```cs
+//private Vector4 v4;
+v4.DrawField("Vector4 Field").GetValue(out v4);
+```
+
 ### **DrawFieldRef(string label)**
  - Vector4 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private Vector4 v4;
+v4.DrawFieldRef("Vector4 Field");
+```
+
 <br>
 
+</details>
+
 ## **Vector2Int**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **DrawField(string label)**
  - 해당 값을 필드로 사용하는 Vector2IntField를 그립니다.
  - `label` : 좌측의 레이블 텍스트
 
+```cs
+//private Vector2Int v2i;
+v2i.DrawField("Vector2Int Field").GetValue(out v2i);
+```
+
 ### **DrawFieldRef(string label)**
  - Vector2Int 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private Vector2Int v2i;
+v2i.DrawFieldRef("Vector2Int Field");
+```
+
 <br>
 
+</details>
+
 ## **Vector3Int**
+
+<details>
+<summary markdown="span">
+.
+</summary>
 
 ### **DrawField(string label)**
  - 해당 값을 필드로 사용하는 Vector3IntField를 그립니다.
  - `label` : 좌측의 레이블 텍스트
 
+```cs
+//private Vector3Int v3i;
+v3i.DrawField("Vector3Int Field").GetValue(out v3i);
+```
+
 ### **DrawFieldRef(string label)**
  - Vector3Int 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private Vector3Int v3i;
+v3i.DrawFieldRef("Vector3Int Field");
+```
+
 <br>
+
+</details>
 
 ## **Color**
 
+<details>
+<summary markdown="span">
+.
+</summary>
+
 ### **DrawField(string label)**
- - 해당 값을 필드로 사용하는 BoolField를 그립니다.
+ - 해당 값을 필드로 사용하는 ColorField를 그립니다.
  - `label` : 좌측의 레이블 텍스트
+
+```cs
+//private Color c;
+c.DrawField("Color Field").GetValue(out c);
+```
 
 ### **DrawFieldRef(string label)**
  - Color 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private Color c;
+c.DrawFieldRef("Color Field");
+```
+
 ### **DrawColorPicker()**
  - 해당 값을 필드로 사용하는 ColorPicker를 그립니다.
+
+```cs
+//private Color c;
+c.DrawColorPicker().GetValue(out c);
+```
 
 ### **DrawColorPickerRef()**
  - Color 타입 필드를 통해 호출해야 합니다.
  - `GetValue()`를 따로 호출하지 않아도 값의 변경이 적용됩니다.
 
+```cs
+//private Color c;
+c.DrawColorPickerRef();
+```
+
 <br>
 
+</details>
 
+## **UnityEngine.Object 상속 타입**
 
-T : Object
-- ObjectField<T>
+<details>
+<summary markdown="span">
+.
+</summary>
 
-T : Enum
-- EnumDropdown<T>
+### **DrawField(string label)**
+ - 해당 값을 필드로 사용하는 ObjectField를 그립니다.
+ - `label` : 좌측의 레이블 텍스트
 
-TODO : Array, List
+```cs
+//private GameObject go;
+//private Transform tr;
 
+go.DrawField("Game Object").GetValue(out go);
+tr.DrawField("Transform").GetValue(out tr);
+```
+
+<br>
+
+</details>
+
+## **enum**
+
+<details>
+<summary markdown="span">
+.
+</summary>
+
+### **DrawDropdown(string label)**
+ - 해당 enum 값들을 목록으로 사용하는 EnumDropdown을 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+
+```cs
+// private enum MyEnum { A, B, C }
+// private MyEnum e;
+
+e.DrawDropdown("Enum").GetValue(out e);
+```
+
+<br>
+
+</details>
+
+## **배열, 리스트**
+
+<details>
+<summary markdown="span">
+.
+</summary>
+
+### **DrawDropdown(string label, int selectedIndex)**
+ - 배열 또는 리스트를 목록으로 사용하는 Dropdown을 그립니다.
+ - `label` : 좌측의 레이블 텍스트
+ - `selectedIndex` : 현재 선택된 항목의 인덱스
+
+```cs
+//private float[] floatArray = { 0.1f, 0.2f, 0.3f };
+//private List<string> stringList = new List<string>() { "ABC", "abc", "012" };
+//private int fIndex, sIndex;
+
+floatArray.DrawDropdown("Float Array", fIndex).GetValue(out fIndex);
+stringList.DrawDropdown("String List", sIndex).GetValue(out sIndex);
+```
+
+</details>
+
+</details>
+
+<br>
+
+<br>

@@ -637,17 +637,17 @@
         
         
         
+        <li><a href="/posts/cs-dotnet-compile/">.NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
         
         
         
         <li><a href="/posts/unity-event-functions/">유니티 이벤트 함수는 어떻게 실행되는 것일까?</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-dotnet-compile/">.NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT</a></li>
       
         
         
@@ -4082,6 +4082,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6243,64 +6256,6 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
       
       
       <div class="card">
-        <a href="/posts/unity-editor-gui-style/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    May 18
-  
-
-  <i class="unloaded">2021-05-18T02:02:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>GUI 스타일 지정하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                인라인 방식으로 스타일 설정하기
-
-
-
-  GUI.___ 프로퍼티 값들을 수정하고 돌려놓기
-
-
-
-  
-    // OnInspectorGUI
-
-var oldBgColor = GUI.backgroundColor;
-GUI.backgroundColor = Color.red;
-
-// &lt;- Draw GUIs
-
-GUI.backgroundColor = oldB...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-undo/">
           <div class="card-body">
             <!--
@@ -6355,6 +6310,74 @@ Memo
 
   
     // 이름 변경, 기타 등등 수행하기 직전...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-custom-editor-window/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  8
+  
+
+  <i class="unloaded">2021-03-08T00:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Editor Window(커스텀 에디터 윈도우)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+
+  에디터 윈도우를 직접 만들어 사용할 수 있다.
+
+
+Preview
+
+
+
+
+
+
+Source Code Example
+
+
+
+  
+    #if UNITY_EDITOR
+
+using UnityEngine;
+using UnityEditor;
+
+public class ExampleWindow : EditorWindow
+{
+    private bo...
               </p>
             </div>
           </div>

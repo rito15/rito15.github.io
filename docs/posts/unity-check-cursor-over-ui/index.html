@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Depth Texture Renderer (Z-Buffer 렌더러)" />
+<meta property="og:title" content="마우스 커서가 UI 위에 있는지 검사하는 간단한 코드" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Note" />
-<meta property="og:description" content="Note" />
-<link rel="canonical" href="https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" />
-<meta property="og:url" content="https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" />
+<meta name="description" content="1 2 private static bool IsPointerOverUI() =&gt; UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();" />
+<meta property="og:description" content="1 2 private static bool IsPointerOverUI() =&gt; UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();" />
+<link rel="canonical" href="https://rito15.github.io/posts/unity-check-cursor-over-ui/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unity-check-cursor-over-ui/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-03-03T19:08:00+09:00" />
+<meta property="article:published_time" content="2021-06-10T02:22:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Depth Texture Renderer (Z-Buffer 렌더러)" />
+<meta property="twitter:title" content="마우스 커서가 UI 위에 있는지 검사하는 간단한 코드" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Depth Texture Renderer (Z-Buffer 렌더러)","description":"Note","dateModified":"2021-03-03T19:08:00+09:00","datePublished":"2021-03-03T19:08:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-depth-texture-renderer/"},"url":"https://rito15.github.io/posts/unity-toy-depth-texture-renderer/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"마우스 커서가 UI 위에 있는지 검사하는 간단한 코드","description":"1 2 private static bool IsPointerOverUI() =&gt; UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();","dateModified":"2021-06-10T02:22:00+09:00","datePublished":"2021-06-10T02:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-check-cursor-over-ui/"},"url":"https://rito15.github.io/posts/unity-check-cursor-over-ui/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Depth Texture Renderer (Z-Buffer 렌더러) | Rito15
+  <title>마우스 커서가 UI 위에 있는지 검사하는 간단한 코드 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>Depth Texture Renderer (Z-Buffer 렌더러)</span>
+        <span>마우스 커서가 UI 위에 있는지 검사하는 간단한 코드</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -347,20 +347,6 @@
 
 
 
-  
-
-  
-
-  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
-  
-  
-
-  
-
-  
-
-
-
 <!-- return -->
 <div class="row">
 
@@ -368,7 +354,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>Depth Texture Renderer (Z-Buffer 렌더러)</h1>
+      <h1 data-toc-skip>마우스 커서가 UI 위에 있는지 검사하는 간단한 코드</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +371,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Mar  3, 2021,  7:08 PM +0900"
+    title="Thu, Jun 10, 2021,  2:22 AM +0900"
   >
 
   
   
 
   
-    Mar  3
+    Jun 10
   
 
-  <i class="unloaded">2021-03-03T19:08:00+09:00</i>
+  <i class="unloaded">2021-06-10T02:22:00+09:00</i>
 
 </span>
           by
@@ -419,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="543 words">3 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8 words">1 min</span>
 
 
           <!-- page views -->
@@ -433,339 +419,11 @@
 
         
 
-        <h1 id="note">Note</h1>
-<hr />
-
-<ul>
-  <li>
-    <p>현재 메인 카메라의 뎁스 텍스쳐를 화면에 렌더링한다.</p>
-  </li>
-  <li>
-    <p>각 쉐이더의 ZWrite 여부에 관계 없이 모두 렌더링하는 단점이 있다.</p>
-  </li>
-  <li>
-    <p>렌더 큐 값이 2500(Skybox) 이하인 오브젝트들만 인식한다.</p>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="how-to-use">How to Use</h1>
-<hr />
-
-<ul>
-  <li>
-    <p>DepthRenderer.cs 스크립트를 메인 카메라에 넣는다.</p>
-  </li>
-  <li>
-    <p>enabled를 체크/해제하여 화면에 렌더 텍스쳐를 보여줄지 여부를 결정할 수 있다.</p>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="preview">Preview</h1>
-<hr />
-
-<ul>
-  <li>원래 화면</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109798735-795f7080-7c5e-11eb-91b1-9e5a49490d5b.png" alt="image" /></p>
-
-<ul>
-  <li>뎁스 텍스쳐 렌더링</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/109798762-80867e80-7c5e-11eb-9594-24b378f2a69e.png" alt="image" /></p>
-
-<p><br /></p>
-
-<h1 id="download">Download</h1>
-<hr />
-
-<ul>
-  <li><a href="https://github.com/rito15/Images/files/6075674/DepthRenderer.zip">DepthRenderer.zip</a></li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="source-code">Source Code</h1>
-<hr />
-
-<details>
-  <summary> 
-RenderDepth.shader
-</summary>
-
-  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+        <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-</pre></td><td class="rouge-code"><pre> <span class="n">Shader</span> <span class="s">"Custom/RenderDepth"</span>
- <span class="p">{</span>
-     <span class="n">Properties</span>
-     <span class="p">{</span>
-         <span class="nf">_MainTex</span> <span class="p">(</span><span class="s">"Base (RGB)"</span><span class="p">,</span> <span class="m">2D</span><span class="p">)</span> <span class="p">=</span> <span class="s">"white"</span> <span class="p">{}</span>
-         <span class="nf">_DepthLevel</span> <span class="p">(</span><span class="s">"Depth Level"</span><span class="p">,</span> <span class="nf">Range</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">))</span> <span class="p">=</span> <span class="m">1</span>
-         <span class="nf">_DepthMul</span> <span class="p">(</span><span class="s">"Depth Mul"</span><span class="p">,</span> <span class="nf">Range</span><span class="p">(-</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span> <span class="p">=</span> <span class="m">0</span>
-     <span class="p">}</span>
-     <span class="n">SubShader</span>
-     <span class="p">{</span>
-         <span class="n">Pass</span>
-         <span class="p">{</span>
-             <span class="n">CGPROGRAM</span>
- 
-             <span class="err">#</span><span class="n">pragma</span> <span class="n">vertex</span> <span class="n">vert</span>
-             <span class="err">#</span><span class="n">pragma</span> <span class="n">fragment</span> <span class="n">frag</span>
-             <span class="err">#</span><span class="n">include</span> <span class="s">"UnityCG.cginc"</span>
-             
-             <span class="n">uniform</span> <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
-             <span class="n">uniform</span> <span class="n">sampler2D</span> <span class="n">_CameraDepthTexture</span><span class="p">;</span>
-             <span class="n">uniform</span> <span class="k">fixed</span> <span class="n">_DepthLevel</span><span class="p">;</span>
-             <span class="n">uniform</span> <span class="k">fixed</span> <span class="n">_DepthMul</span><span class="p">;</span>
-             <span class="n">uniform</span> <span class="n">half4</span> <span class="n">_MainTex_TexelSize</span><span class="p">;</span>
- 
-             <span class="k">struct</span> <span class="nc">input</span>
-             <span class="p">{</span>
-                 <span class="n">float4</span> <span class="n">pos</span> <span class="p">:</span> <span class="n">POSITION</span><span class="p">;</span>
-                 <span class="n">half2</span> <span class="n">uv</span> <span class="p">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
-             <span class="p">};</span>
- 
-             <span class="k">struct</span> <span class="nc">output</span>
-             <span class="p">{</span>
-                 <span class="n">float4</span> <span class="n">pos</span> <span class="p">:</span> <span class="n">SV_POSITION</span><span class="p">;</span>
-                 <span class="n">half2</span> <span class="n">uv</span> <span class="p">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
-             <span class="p">};</span>
- 
- 
-             <span class="n">output</span> <span class="nf">vert</span><span class="p">(</span><span class="n">input</span> <span class="n">i</span><span class="p">)</span>
-             <span class="p">{</span>
-                 <span class="n">output</span> <span class="n">o</span><span class="p">;</span>
-                 <span class="n">o</span><span class="p">.</span><span class="n">pos</span> <span class="p">=</span> <span class="nf">UnityObjectToClipPos</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">pos</span><span class="p">);</span>
-                 <span class="n">o</span><span class="p">.</span><span class="n">uv</span> <span class="p">=</span> <span class="nf">MultiplyUV</span><span class="p">(</span><span class="n">UNITY_MATRIX_TEXTURE0</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">uv</span><span class="p">);</span>
-                 <span class="c1">// why do we need this? cause sometimes the image I get is flipped. see: http://docs.unity3d.com/Manual/SL-PlatformDifferences.html</span>
-                 <span class="err">#</span><span class="k">if</span> <span class="n">UNITY_UV_STARTS_AT_TOP</span>
-                 <span class="k">if</span> <span class="p">(</span><span class="n">_MainTex_TexelSize</span><span class="p">.</span><span class="n">y</span> <span class="p">&lt;</span> <span class="m">0</span><span class="p">)</span>
-                         <span class="n">o</span><span class="p">.</span><span class="n">uv</span><span class="p">.</span><span class="n">y</span> <span class="p">=</span> <span class="m">1</span> <span class="p">-</span> <span class="n">o</span><span class="p">.</span><span class="n">uv</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-                 <span class="err">#</span><span class="n">endif</span>
- 
-                 <span class="k">return</span> <span class="n">o</span><span class="p">;</span>
-             <span class="p">}</span>
-             
-             <span class="n">fixed4</span> <span class="nf">frag</span><span class="p">(</span><span class="n">output</span> <span class="n">o</span><span class="p">)</span> <span class="p">:</span> <span class="n">COLOR</span>
-             <span class="p">{</span>
-                 <span class="kt">float</span> <span class="n">depth</span> <span class="p">=</span> <span class="nf">UNITY_SAMPLE_DEPTH</span><span class="p">(</span><span class="nf">tex2D</span><span class="p">(</span><span class="n">_CameraDepthTexture</span><span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="n">uv</span><span class="p">));</span>
-                 <span class="n">depth</span> <span class="p">=</span> <span class="nf">pow</span><span class="p">(</span><span class="nf">Linear01Depth</span><span class="p">(</span><span class="n">depth</span><span class="p">),</span> <span class="n">_DepthLevel</span><span class="p">)</span> <span class="p">*</span> <span class="n">_DepthMul</span><span class="p">;</span>
-                 <span class="k">return</span> <span class="n">depth</span><span class="p">;</span>
-             <span class="p">}</span>
-             
-             <span class="n">ENDCG</span>
-         <span class="p">}</span>
-     <span class="p">}</span> 
- <span class="p">}</span>
-</pre></td></tr></tbody></table></code></div>  </div>
-
-</details>
-
-<p><br /></p>
-
-<details>
-  <summary> 
-DepthRenderer.cs
-</summary>
-
-  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-
-<span class="p">[</span><span class="n">ExecuteInEditMode</span><span class="p">]</span>
-<span class="k">public</span> <span class="k">class</span> <span class="nc">DepthRenderer</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
-<span class="p">{</span>
-    <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">3f</span><span class="p">)]</span>
-    <span class="k">public</span> <span class="kt">float</span> <span class="n">depthLevel</span> <span class="p">=</span> <span class="m">1.0f</span><span class="p">;</span>
-
-    <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">50f</span><span class="p">)]</span>
-    <span class="k">public</span> <span class="kt">float</span> <span class="n">depthMul</span> <span class="p">=</span> <span class="m">20.0f</span><span class="p">;</span>
-
-    <span class="k">private</span> <span class="n">Shader</span> <span class="n">_shader</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">Shader</span> <span class="n">RdShader</span>
-        <span class="p">=&gt;</span> <span class="n">_shader</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">?</span> <span class="n">_shader</span> <span class="p">:</span> <span class="p">(</span><span class="n">_shader</span> <span class="p">=</span> <span class="n">Shader</span><span class="p">.</span><span class="nf">Find</span><span class="p">(</span><span class="s">"Custom/RenderDepth"</span><span class="p">));</span>
-
-    <span class="k">private</span> <span class="n">Material</span> <span class="n">_material</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">Material</span> <span class="n">RdMaterial</span>
-    <span class="p">{</span>
-        <span class="k">get</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">_material</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">_material</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Material</span><span class="p">(</span><span class="n">RdShader</span><span class="p">);</span>
-                <span class="n">_material</span><span class="p">.</span><span class="n">hideFlags</span> <span class="p">=</span> <span class="n">HideFlags</span><span class="p">.</span><span class="n">HideAndDontSave</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">return</span> <span class="n">_material</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">OnEnable</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">RdShader</span> <span class="p">==</span> <span class="k">null</span> <span class="p">||</span> <span class="p">!</span><span class="n">RdShader</span><span class="p">.</span><span class="n">isSupported</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">enabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-            <span class="nf">print</span><span class="p">(</span><span class="s">"Shader "</span> <span class="p">+</span> <span class="n">RdShader</span><span class="p">.</span><span class="n">name</span> <span class="p">+</span> <span class="s">" is not supported"</span><span class="p">);</span>
-            <span class="k">return</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">depthTextureMode</span> <span class="p">=</span> <span class="n">DepthTextureMode</span><span class="p">.</span><span class="n">None</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">OnDisable</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">_material</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-            <span class="nf">DestroyImmediate</span><span class="p">(</span><span class="n">_material</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">OnRenderImage</span><span class="p">(</span><span class="n">RenderTexture</span> <span class="n">src</span><span class="p">,</span> <span class="n">RenderTexture</span> <span class="n">dest</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">RdShader</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">RdMaterial</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="s">"_DepthLevel"</span><span class="p">,</span> <span class="n">depthLevel</span><span class="p">);</span>
-            <span class="n">RdMaterial</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="s">"_DepthMul"</span><span class="p">,</span> <span class="n">depthMul</span><span class="p">);</span>
-            <span class="n">Graphics</span><span class="p">.</span><span class="nf">Blit</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">RdMaterial</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">else</span>
-        <span class="p">{</span>
-            <span class="n">Graphics</span><span class="p">.</span><span class="nf">Blit</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></div>  </div>
-
-</details>
-
-<p><br /></p>
-
-<h1 id="references">References</h1>
-<hr />
-<ul>
-  <li><a href="https://answers.unity.com/questions/877170/render-scene-depth-to-a-texture.html">https://answers.unity.com/questions/877170/render-scene-depth-to-a-texture.html</a></li>
-</ul>
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">static</span> <span class="kt">bool</span> <span class="nf">IsPointerOverUI</span><span class="p">()</span>
+    <span class="p">=&gt;</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">EventSystems</span><span class="p">.</span><span class="n">EventSystem</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="nf">IsPointerOverGameObject</span><span class="p">();</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 
       </div>
@@ -778,7 +436,7 @@ DepthRenderer.cs
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
             <a href='/categories/unity/'>Unity</a>,
-            <a href='/categories/unity-toys/'>Unity Toys</a>
+            <a href='/categories/unity-memo/'>Unity Memo</a>
         </div>
         
 
@@ -792,9 +450,6 @@ DepthRenderer.cs
           
           <a href="/tags/csharp/"
             class="post-tag no-text-decoration" >csharp</a>
-          
-          <a href="/tags/plugin/"
-            class="post-tag no-text-decoration" >plugin</a>
           
           </div>
         
@@ -826,19 +481,19 @@ DepthRenderer.cs
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=Depth Texture Renderer (Z-Buffer 렌더러) - Rito15&url=https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=마우스 커서가 UI 위에 있는지 검사하는 간단한 코드 - Rito15&url=https://rito15.github.io/posts/unity-check-cursor-over-ui/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=Depth Texture Renderer (Z-Buffer 렌더러) - Rito15&u=https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=마우스 커서가 UI 위에 있는지 검사하는 간단한 코드 - Rito15&u=https://rito15.github.io/posts/unity-check-cursor-over-ui/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=Depth Texture Renderer (Z-Buffer 렌더러) - Rito15&url=https://rito15.github.io/posts/unity-toy-depth-texture-renderer/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=마우스 커서가 UI 위에 있는지 검사하는 간단한 코드 - Rito15&url=https://rito15.github.io/posts/unity-check-cursor-over-ui/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -4242,943 +3897,943 @@ DepthRenderer.cs
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -6460,7 +6115,83 @@ DepthRenderer.cs
       
       
       <div class="card">
-        <a href="/posts/unity-toy-free-look-camera/">
+        <a href="/posts/unity-memo-raycast-overhead/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 19
+  
+
+  <i class="unloaded">2021-02-19T16:18:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>레이캐스트 성능 테스트</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                조건
+
+
+고정
+
+  레이캐스트 시작점
+  레이캐스트 방향
+  반복 횟수 : 10만 회
+
+
+변동
+
+  레이캐스트 종류
+  레이어마스크
+  레이캐스트 거리
+  레이캐스트 도형 크기(Sphere, Box)
+  레이캐스트 히트 여부
+
+
+결과
+
+
+
+
+결론
+
+
+성능에 영향을 주는 것
+
+  레이캐스트 종류
+  레이캐스트 히트 여부
+
+
+성능에 영향을 주지 않는 것
+...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-memo-gameobject-over-ui/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6480,10 +6211,10 @@ DepthRenderer.cs
     Feb 28
   
 
-  <i class="unloaded">2021-02-28T17:45:00+09:00</i>
+  <i class="unloaded">2021-02-28T22:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Free Look Camera (자유 시점 카메라)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 위에 게임오브젝트 띄우기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6492,21 +6223,37 @@ DepthRenderer.cs
 
 
 
-                Note
+                Preview
 
 
 
-  자유롭게 회전, 이동이 가능한 자유 시점 카메라
 
 
-How To Use
+  Green : Default
+  Red : Over UI
 
 
 
-  카메라가 존재하는 게임오브젝트에 FreeLookCamera 컴포넌트를 추가한다.
-  게임 시작 후, Left Alt 키를 눌러 커서가 사라지도록 한다.
-  WASD 키로 카메라를 움직이며, 마우스 이동을 통해 카메라를 회전시킬 수 있다.
-  QE 키로 카...
+
+1. Standard Rendering Pipeline
+
+
+
+  
+    .
+  
+
+  [1] 레이어 준비
+  
+    [Over UI] 레이어를 만든다.
+  
+
+  
+
+  [2] Over UI 카메라 준비
+  
+    
+      카메라를 하나 더 만들고, A...
               </p>
             </div>
           </div>
@@ -6516,7 +6263,7 @@ How To Use
       
       
       <div class="card">
-        <a href="/posts/unity-position-fixer/">
+        <a href="/posts/unity-memo-prevent-infinite-loop/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6533,76 +6280,13 @@ How To Use
   
 
   
-    May 19
+    Mar  5
   
 
-  <i class="unloaded">2021-05-19T20:00:00+09:00</i>
+  <i class="unloaded">2021-03-05T04:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Position Fixer</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Summary
-
-
-  부모 게임오브젝트의 이동에 영향받지 않고 트랜스폼 위치를 고정시키는 컴포넌트
-
-
-How To Use
-
-
-  위치를 고정/해제할 게임오브젝트에 컴포넌트로 넣는다.
-  인스펙터에서 Activated를 체크하거나 스페이스바를 눌러 기능을 활성화한다.
-
-
-Download
-
-
-  PositionFixer.zip
-
-
-Source Code
-
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-toy-mouse-chaser/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar  2
-  
-
-  <i class="unloaded">2021-03-02T03:14:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Mouse Chaser (마우스 커서 추적 컴포넌트)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>무한 루프를 방지하는 작은 습관</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6615,21 +6299,25 @@ Source Code
 
 
 
-  게임오브젝트가 마우스 커서를 따라오게 하는 스크립트
-
-
-How To Use
+  
+    유니티 엔진에서 무한루프가 발생하면 에디터가 그대로 뻗어버린다.
+  
+  
+    따라서 혹시나 무한루프가 될 가능성이 있는 코드를 인지했다면, 간단한 체크 로직을 넣어주는 것이 좋다.
+  
 
 
 
   
-    마우스 커서를 따라오게 할 게임오브젝트에 컴포넌트로 넣는다.
+    while( /* condition */ )
+{
+    // codes..
+}
+
   
-  
-    Distance From Camera를 통해 카메라로부터의 거리를 지정할 수 있다.
-  
-  
-    Chasing Speed를 통해 마우스를 따라올 속도를 지정할...
+
+
+이런 코드에서, 간단히 다음...
               </p>
             </div>
           </div>
@@ -6652,15 +6340,15 @@ How To Use
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/unity-particle-system-example-06-blue-portal/" class="btn btn-outline-primary">
-    <p>파티클 시스템 예제 - 06 - Blue Portal [TODO]</p>
+  <a href="/posts/unity-event-functions/" class="btn btn-outline-primary">
+    <p>유니티 이벤트 함수는 어떻게 실행되는 것일까?</p>
   </a>
   
 
   
-  <a href="/posts/unity-shader-property-attributes/" class="btn btn-outline-primary">
-    <p>유니티 쉐이더 프로퍼티 애트리뷰트 모음</p>
-  </a>
+  <span class="btn btn-outline-primary disabled">
+    <p>-</p>
+  </span>
   
 
 </div>
@@ -6673,16 +6361,6 @@ How To Use
 
 </div> <!-- .row -->
 
-
-
-  <!-- image lazy load: https://github.com/ApoorvSaxena/lozad.js -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-
-<script type="text/javascript">
-  const imgs = document.querySelectorAll('.post-content img');
-  const observer = lozad(imgs);
-  observer.observe();
-</script>
 
 
 

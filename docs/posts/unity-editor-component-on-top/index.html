@@ -596,17 +596,17 @@
         
         
         
+        <li><a href="/posts/cs-dotnet-compile/">.NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
         
         
         
         <li><a href="/posts/unity-event-functions/">유니티 이벤트 함수는 어떻게 실행되는 것일까?</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-dotnet-compile/">.NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT</a></li>
       
         
         
@@ -4678,6 +4678,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6202,7 +6215,7 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
       
       
       <div class="card">
-        <a href="/posts/unity-editor-gui-style/">
+        <a href="/posts/unity-editor-refresh-windows/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6219,13 +6232,13 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
   
 
   
-    May 18
+    May 19
   
 
-  <i class="unloaded">2021-05-18T02:02:00+09:00</i>
+  <i class="unloaded">2021-05-19T01:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>GUI 스타일 지정하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>각종 윈도우 새로고침하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6234,29 +6247,40 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
 
 
 
-                인라인 방식으로 스타일 설정하기
+                커스텀 에디터 - 인스펙터뷰
 
 
 
-  GUI.___ 프로퍼티 값들을 수정하고 돌려놓기
+  Editor.Repaint()
 
 
 1
 2
-3
-4
-5
-6
-7
-8
-// OnInspectorGUI
+// 해당 CustomEditor 내에서 호출
+this.Repaint();
 
-var oldBgColor = GUI.backgroundColor;
-GUI.backgroundColor = Color.red;
 
-// &lt;- Draw GUIs
 
-GUI.backgroundColo...
+
+커스텀 에디터 윈도우
+
+
+
+  EditorWindow.Repaint()
+
+
+1
+this.Repaint();
+
+
+
+
+씬뷰
+
+
+인스펙터의 변경사항이 씬뷰에 곧바로 적용되지 않고
+
+씬뷰에 마우스를 ...
               </p>
             </div>
           </div>
