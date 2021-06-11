@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 에디터 관련 유용한 팁 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"다이얼로그 창 띄우기","datePublished":"2021-02-18T01:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-api/"},"url":"https://rito15.github.io/posts/unity-editor-api/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 에디터 관련 유용한 팁 모음","dateModified":"2021-03-28T21:29:24+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 에디터 관련 유용한 팁 모음","description":"다이얼로그 창 띄우기","dateModified":"2021-03-28T21:29:24+09:00","datePublished":"2021-02-18T01:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-api/"},"url":"https://rito15.github.io/posts/unity-editor-api/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -858,6 +858,11 @@ Enum - EditorWindowType
         
         
         
+        <li><a href="/posts/unity-memo-ilspy/">ILSpy로 유니티 내부 구현 뜯어보기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
         
@@ -874,11 +879,6 @@ Enum - EditorWindowType
         
         
         <li><a href="/posts/unity-event-functions/">유니티 이벤트 함수는 어떻게 실행되는 것일까?</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
       
 
       </ul>
@@ -5486,6 +5486,19 @@ Enum - EditorWindowType
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6417,81 +6430,6 @@ Enum - EditorWindowType
       
       
       <div class="card">
-        <a href="/posts/unity-editor-refresh-windows/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    May 19
-  
-
-  <i class="unloaded">2021-05-19T01:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>각종 윈도우 새로고침하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                커스텀 에디터 - 인스펙터뷰
-
-
-
-  Editor.Repaint()
-
-
-1
-2
-// 해당 CustomEditor 내에서 호출
-this.Repaint();
-
-
-
-
-커스텀 에디터 윈도우
-
-
-
-  EditorWindow.Repaint()
-
-
-1
-this.Repaint();
-
-
-
-
-씬뷰
-
-
-인스펙터의 변경사항이 씬뷰에 곧바로 적용되지 않고
-
-씬뷰에 마우스를 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-undo/">
           <div class="card-body">
             <!--
@@ -6652,6 +6590,73 @@ Source Code Example
 43
 44
 4...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-init-events/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  8
+  
+
+  <i class="unloaded">2021-03-08T03:03:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>컴파일, 게임 시작 시 실행되는 애트리뷰트 정리</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                공통 특징
+
+
+
+  
+    클래스 또는 메소드 상단에 애트리뷰트를 명시한다.
+  
+  
+    컴포넌트로 넣지 않고, 스크립트로만 존재해도 실행된다.
+  
+  
+    정적 클래스나 상속에 관계 없이 동작한다.
+  
+  
+    메소드 애트리뷰트는 정적 메소드에만 동작한다.
+  
+
+
+
+
+컴파일, 플레이모드 진입 시 실행
+
+
+Note
+
+  Editor...
               </p>
             </div>
           </div>

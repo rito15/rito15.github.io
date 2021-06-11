@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-11T15:59:34+09:00</updated>
+  <updated>2021-06-12T04:08:59+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,81 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Singleton Pattern(싱글톤 패턴)</title>
+    <link href="https://rito15.github.io/posts/singleton-pattern/" rel="alternate" type="text/html" title="Singleton Pattern(싱글톤 패턴)" />
+    <published>2021-06-11T17:17:00+09:00</published>
+  
+    <updated>2021-06-11T17:17:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/singleton-pattern/</id>
+    <content src="https://rito15.github.io/posts/singleton-pattern/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Algorithm" />
+    
+    <category term="Design Pattern" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Singleton Pattern
+
+
+특징
+
+  정적 참조로부터 인스턴스 참조를 가져올 수 있다.
+  특정 클래스에 단 한 개의 객체만 존재하도록 보장할 수 있다.
+
+
+사용처
+
+  프로그램 내에 반드시 하나만 존재해야 하는 클래스
+
+
+고려사항
+
+  싱글톤 객체 생성 타이밍을 고려해야 한다. (정적 or 동적)
+  기본적으로 스레드 안전하지 않으므로, 추가적인 처리가 필요하다.
+
+
+
+
+싱글톤 인스턴스를 통한 호출(공통)
+
+class SingletonTest
+{
+    public static void Method()
+    {
+        // 클래스명.Instance.멤버참조
+        SingletonClass.Instance.Method();
+    }
+}
+
+
+
+
+Source Code
+
+
+[1]...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -161,8 +236,8 @@ CLR(Common Language Runtime, 공통 언어 런타임)은 이 가상머신의 구
 
   
   <entry>
-    <title>Method Chaining &amp; Generic</title>
-    <link href="https://rito15.github.io/posts/method-chaning-pattern/" rel="alternate" type="text/html" title="Method Chaining &amp; Generic" />
+    <title>Method Chaining &amp; Generic(메소드 체인 패턴)</title>
+    <link href="https://rito15.github.io/posts/method-chaning-pattern/" rel="alternate" type="text/html" title="Method Chaining &amp; Generic(메소드 체인 패턴)" />
     <published>2021-05-28T22:02:00+09:00</published>
   
     <updated>2021-05-30T18:51:30+09:00</updated>
@@ -221,93 +296,6 @@ class Box
         this.width = width;
         return this;
     ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>FBX Exporter</title>
-    <link href="https://rito15.github.io/posts/unity-fbx-exporter/" rel="alternate" type="text/html" title="FBX Exporter" />
-    <published>2021-05-27T17:02:00+09:00</published>
-  
-    <updated>2021-05-27T17:02:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-fbx-exporter/</id>
-    <content src="https://rito15.github.io/posts/unity-fbx-exporter/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-  유니티 내에 존재하는 메시를 .fbx 파일로 추출해주는 애셋
-
-
-
-
-Import
-
-
-
-  
-    [Window] - [Package Manager]
-  
-  
-    좌측 상단 [Unity Registry] 설정
-  
-  
-    FBX Exporter 검색 및 Install
-  
-
-
-
-
-
-
-How to Use
-
-
-
-  
-    하이라키에서 내보낼 게임오브젝트에 우클릭 후 Export To FBX 클릭
-  
-  
-    Export Name, Export Path 설정 후 Export
-  
-
-
-
-
-
-
-Old Version
-
-
-
-  https://github.com/unity3d-jp/FbxExporter
-  FbxExporter.zip
-
-
-
     </summary>
   
 

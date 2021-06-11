@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page2/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page2/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,117 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        커스텀 에디터 - 인스펙터뷰
+
+
+
+  Editor.Repaint()
+
+
+
+  
+    // 해당 CustomEditor 내에서 호출
+this.Repaint();
+
+  
+
+
+
+
+커스텀 에디터 윈도우
+
+
+
+  EditorWindow.Repaint()
+
+
+
+  
+    this.Repaint();
+
+  
+
+
+
+
+씬뷰
+
+
+인스펙터의 변경사항이 씬뷰에 곧바로 ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, May 19, 2021,  1:00 AM +0900"
+  >
+
+  
+  
+
+  
+    May 19
+  
+
+  <i class="unloaded">2021-05-19T01:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="185 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1243,104 +1354,6 @@ unsafe
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-winform-pass-through-mouse-events/">마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  마우스 이벤트를 모두 무시할 수 있는 컨트롤(버튼, 레이블 등) 만들기
-
-
-
-
-방법
-
-
-
-  
-    특정 컨트롤 클래스(Button, Label, …)를 상속받는 클래스를 작성한다.
-  
-  
-    아래와 같이 프로퍼티와 메소드를 작성한다.
-  
-
-
-
-  
-    public bool Ignored { get; set; } = fal...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, May  9, 2021,  1:30 AM +0900"
-  >
-
-  
-  
-
-  
-    May  9
-  
-
-  <i class="unloaded">2021-05-09T01:30:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="417 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1628,9 +1641,24 @@ unsafe
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page17/">17</a>
+        <a class="page-link btn-box-shadow" href="/page18/">18</a>
       </li>
     
 
@@ -1689,6 +1717,11 @@ unsafe
         
         
         
+        <li><a href="/posts/unity-memo-ilspy/">ILSpy로 유니티 내부 구현 뜯어보기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
         
@@ -1705,11 +1738,6 @@ unsafe
         
         
         <li><a href="/posts/unity-event-functions/">유니티 이벤트 함수는 어떻게 실행되는 것일까?</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
       
 
       </ul>

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 에디터 종료 확인 다이얼로그 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Memo","datePublished":"2021-02-10T13:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/"},"url":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 에디터 종료 확인 다이얼로그 만들기","dateModified":"2021-02-10T13:50:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 에디터 종료 확인 다이얼로그 만들기","description":"Memo","dateModified":"2021-02-10T13:50:00+09:00","datePublished":"2021-02-10T13:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/"},"url":"https://rito15.github.io/posts/unity-memo-editor-exit-dialog/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -629,6 +629,11 @@
         
         
         
+        <li><a href="/posts/unity-memo-ilspy/">ILSpy로 유니티 내부 구현 뜯어보기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
         
@@ -645,11 +650,6 @@
         
         
         <li><a href="/posts/unity-event-functions/">유니티 이벤트 함수는 어떻게 실행되는 것일까?</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
       
 
       </ul>
@@ -5530,6 +5530,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6188,140 +6201,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-api/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 18
-  
-
-  <i class="unloaded">2021-02-18T01:50:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 관련 유용한 팁 모음</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                
-   
-다이얼로그 창 띄우기
-
-
-  1
-2
-bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
-bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
-  
-
-
-
-
-
-
-   
-우클릭 MenuItem 메소...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-editor-refresh-windows/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    May 19
-  
-
-  <i class="unloaded">2021-05-19T01:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>각종 윈도우 새로고침하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                커스텀 에디터 - 인스펙터뷰
-
-
-
-  Editor.Repaint()
-
-
-1
-2
-// 해당 CustomEditor 내에서 호출
-this.Repaint();
-
-
-
-
-커스텀 에디터 윈도우
-
-
-
-  EditorWindow.Repaint()
-
-
-1
-this.Repaint();
-
-
-
-
-씬뷰
-
-
-인스펙터의 변경사항이 씬뷰에 곧바로 적용되지 않고
-
-씬뷰에 마우스를 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-undo/">
           <div class="card-body">
             <!--
@@ -6380,6 +6259,187 @@ Memo
 5
 6
 // 이름 변경, 기타 등등 수행하...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-pivot-editor/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    May 20
+  
+
+  <i class="unloaded">2021-05-20T15:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pivot Editor(메시의 피벗 위치 수정)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Summary
+
+
+  메시의 피벗 위치를 직접 수정할 수 있는 기능을 제공합니다.
+  메시의 위치, 회전, 크기를 직접 변경할 수 있습니다.
+
+
+
+
+Preview
+
+
+Inspector
+
+
+Scene
+
+
+
+
+
+Preview(GIF)
+
+
+
+
+
+
+
+
+How To Use
+
+
+Pivot Editor 컴포넌트 추가
+
+
+  
+    Mesh Filter 컴포넌트를...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-custom-editor-window/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  8
+  
+
+  <i class="unloaded">2021-03-08T00:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Editor Window(커스텀 에디터 윈도우)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+  에디터 윈도우를 직접 만들어 사용할 수 있다.
+
+
+Preview
+
+
+
+
+
+
+Source Code Example
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+4...
               </p>
             </div>
           </div>

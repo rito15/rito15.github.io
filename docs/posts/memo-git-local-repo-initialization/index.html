@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="깃 로컬 리포지토리 초기 세팅하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"조건","datePublished":"2021-02-21T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git-local-repo-initialization/"},"url":"https://rito15.github.io/posts/memo-git-local-repo-initialization/","author":{"@type":"Person","name":"Rito15"},"headline":"깃 로컬 리포지토리 초기 세팅하기","dateModified":"2021-02-21T00:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"깃 로컬 리포지토리 초기 세팅하기","description":"조건","dateModified":"2021-02-21T00:00:00+09:00","datePublished":"2021-02-21T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git-local-repo-initialization/"},"url":"https://rito15.github.io/posts/memo-git-local-repo-initialization/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -717,6 +717,11 @@ git push -u origin main
         
         
         
+        <li><a href="/posts/unity-memo-ilspy/">ILSpy로 유니티 내부 구현 뜯어보기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
         
@@ -733,11 +738,6 @@ git push -u origin main
         
         
         <li><a href="/posts/unity-event-functions/">유니티 이벤트 함수는 어떻게 실행되는 것일까?</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
       
 
       </ul>
@@ -5259,6 +5259,19 @@ git push -u origin main
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6396,7 +6409,7 @@ Git 구성
       
       
       <div class="card">
-        <a href="/posts/memo-cpp-stack-memory-allocation/">
+        <a href="/posts/cpp-float-to-string-format/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6413,13 +6426,13 @@ Git 구성
   
 
   
-    Feb  1
+    May 16
   
 
-  <i class="unloaded">2021-02-01T18:45:00+09:00</i>
+  <i class="unloaded">2021-05-16T01:33:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C++ 스택 메모리 동적 할당</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>실수를 스트링으로 변환할 때 포맷 지정하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6428,18 +6441,33 @@ Git 구성
 
 
 
-                Memo
+                Headers
+
+
+1
+2
+3
+#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+#include &lt;iomanip&gt;
 
 
 
-  
-    _alloca
-    
-      스택에 메모리를 동적으로 할당해준다.
-      함수의 리턴으로 전달하면 안된다.
-      블록이 종료되면 자동으로 할당 해제된다.
-      공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의
-      예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 ...
+
+Cout Format
+
+
+
+  출력하기 전에 std::cout &lt;&lt; std::fixed &lt;&lt; std::setprecision() 호출
+
+
+1
+2
+3
+4
+5
+6
+...
               </p>
             </div>
           </div>

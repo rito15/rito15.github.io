@@ -1,5 +1,5 @@
 ---
-title: Method Chaining & Generic
+title: Method Chaining & Generic(메소드 체인 패턴)
 author: Rito15
 date: 2021-05-28 22:02:00 +09:00
 categories: [Algorithm, Design Pattern]
