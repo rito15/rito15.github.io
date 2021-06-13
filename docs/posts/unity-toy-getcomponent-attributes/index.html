@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Getcomponent Attributes" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Getcomponent Attributes","description":"Note 메소드로만 사용하던 GetComponent(), Find() 기능들을 필드/프로퍼티 애트리뷰트로 간편하게 사용할 수 있다.","dateModified":"2020-04-12T23:30:00+09:00","datePublished":"2020-04-12T23:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-getcomponent-attributes/"},"url":"https://rito15.github.io/posts/unity-toy-getcomponent-attributes/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note 메소드로만 사용하던 GetComponent(), Find() 기능들을 필드/프로퍼티 애트리뷰트로 간편하게 사용할 수 있다.","datePublished":"2020-04-12T23:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-getcomponent-attributes/"},"url":"https://rito15.github.io/posts/unity-toy-getcomponent-attributes/","author":{"@type":"Person","name":"Rito15"},"headline":"Getcomponent Attributes","dateModified":"2020-04-12T23:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -922,6 +922,11 @@ Catalog
         
         
         
+        <li><a href="/posts/method-chaning-pattern/">Method Chaining & Generic(메소드 체인 패턴)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-ilspy/">ILSpy로 유니티 내부 구현 뜯어보기</a></li>
       
         
@@ -938,11 +943,6 @@ Catalog
         
         
         <li><a href="/posts/cs-dotnet-compile/">.NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-event-functions/">유니티 이벤트 함수는 어떻게 실행되는 것일까?</a></li>
       
 
       </ul>
@@ -2744,8 +2744,6 @@ Catalog
     
     
     
-    
-      
     
   
     
@@ -6460,6 +6458,19 @@ Catalog
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6490,69 +6501,6 @@ Catalog
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
     <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-position-fixer/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    May 19
-  
-
-  <i class="unloaded">2021-05-19T20:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Position Fixer</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Summary
-
-
-  부모 게임오브젝트의 이동에 영향받지 않고 트랜스폼 위치를 고정시키는 컴포넌트
-
-
-How To Use
-
-
-  위치를 고정/해제할 게임오브젝트에 컴포넌트로 넣는다.
-  인스펙터에서 Activated를 체크하거나 스페이스바를 눌러 기능을 활성화한다.
-
-
-Download
-
-
-  PositionFixer.zip
-
-
-Source Code
-
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
     
       
       
@@ -6660,6 +6608,68 @@ How To Use
   
   
     Chasing Speed를 통해 마우스를 따라올 속도를 지정할 수...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-toy-projectile-shooter/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  2
+  
+
+  <i class="unloaded">2021-03-02T03:28:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Projectile Shooter (투사체 발사 컴포넌트)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+  
+    마우스 클릭 시 등록된 게임오브젝트를 생성하여, 지정된 방향으로 발사하는 스크립트
+  
+  
+    생성된 게임오브젝트는 카메라의 시선에 수직인 평면 방향으로 이동하며, 수명이 다하면 제거된다.
+  
+  
+    오브젝트 풀링이 적용된다.
+  
+
+
+
+
+How To Use
+
+
+  
+    빈 게임오브젝트를 생성하고, Partic...
               </p>
             </div>
           </div>
@@ -8560,8 +8570,6 @@ How To Use
     
     
     
-    
-      
     
   
     

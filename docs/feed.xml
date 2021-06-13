@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-12T04:08:59+09:00</updated>
+  <updated>2021-06-14T01:06:46+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,69 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-view-width-considering-scroll/" rel="alternate" type="text/html" title="커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기" />
+    <published>2021-06-13T23:33:00+09:00</published>
+  
+    <updated>2021-06-13T23:33:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-view-width-considering-scroll/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-view-width-considering-scroll/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+커스텀 에디터에서 EditorGUIUtility.currentViewWidth를 통해 현재 에디터의 너비를 구할 수 있지만,
+
+
+
+위처럼 컴포넌트 창이 상하로 길어져 우측에 스크롤바가 생기는 경우
+
+스크롤바가 컨트롤들을 가림에도 불구하고, currentViewWidth는 스크롤바를 포함한 너비를 알려주며
+
+스크롤바를 제외한 너비를 구하는 API가 제공되지 않는다.
+
+심지어 스크롤바의 존재 여부조차 스크립트를 통해서는 알 수 없다.
+
+따라서 편법을 통해 구해야 한다.
+
+
+
+How to
+
+
+Layout API들을 통해 만들어진 Rect는 항상 에디터창의 우측 스크롤바의 너비를 제외한 영역에 만들어지므로,
+
+이렇게 참조한 Rect의 너비는 스크롤바의 존재유무에 따라 유동적으로 변하게 된다.
+
+
+...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -229,73 +292,6 @@ Source Code
 
 
 CLR(Common Language Runtime, 공통 언어 런타임)은 이 가상머신의 구성...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Method Chaining &amp; Generic(메소드 체인 패턴)</title>
-    <link href="https://rito15.github.io/posts/method-chaning-pattern/" rel="alternate" type="text/html" title="Method Chaining &amp; Generic(메소드 체인 패턴)" />
-    <published>2021-05-28T22:02:00+09:00</published>
-  
-    <updated>2021-05-30T18:51:30+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/method-chaning-pattern/</id>
-    <content src="https://rito15.github.io/posts/method-chaning-pattern/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Algorithm" />
-    
-    <category term="Design Pattern" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      메소드 체이닝 패턴
-
-
-특징
-
-  메소드가 객체를 반환하는 형태로 작성한다.
-  문장을 마치지 않고 메소드 호출을 이어나갈 수 있다.
-  가독성을 향상시킬 수 있다.
-
-
-
-
-주의사항
-
-  한 문장에 여러번의 메소드 호출이 존재할 수 있으므로, 에러가 발생할 경우 정확한 지점을 한 번에 찾기 힘들다.
-  C# 구조체의 메소드를 체이닝으로 구현할 경우, 매 번 구조체 전체의 복제가 발생하므로 바람직하지 않다.
-
-
-
-
-예시
-
-class Box
-{
-    private float width;
-    private float height;
-
-    public Box SetWidth(float width)
-    {
-        this.width = width;
-        return this;
-    ...
     </summary>
   
 

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Custom Attributes (커스텀 애트리뷰트 모음)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Custom Attributes (커스텀 애트리뷰트 모음)","description":"목차 1. MemoBox 2. BoxHeader 3. MethodButton 4. AutoInject 5. Required 6. LayerDropdown, TagDropdown 7. Readonly 8. ProgressBar 9. Label 10. SpaceTop 11. SpaceBottom","dateModified":"2021-01-17T22:18:00+09:00","datePublished":"2021-01-17T22:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-custom-attributes/"},"url":"https://rito15.github.io/posts/unity-toy-custom-attributes/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. MemoBox 2. BoxHeader 3. MethodButton 4. AutoInject 5. Required 6. LayerDropdown, TagDropdown 7. Readonly 8. ProgressBar 9. Label 10. SpaceTop 11. SpaceBottom","datePublished":"2021-01-17T22:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-custom-attributes/"},"url":"https://rito15.github.io/posts/unity-toy-custom-attributes/","author":{"@type":"Person","name":"Rito15"},"headline":"Custom Attributes (커스텀 애트리뷰트 모음)","dateModified":"2021-01-17T22:18:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1016,6 +1016,11 @@
         
         
         
+        <li><a href="/posts/method-chaning-pattern/">Method Chaining & Generic(메소드 체인 패턴)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-ilspy/">ILSpy로 유니티 내부 구현 뜯어보기</a></li>
       
         
@@ -1032,11 +1037,6 @@
         
         
         <li><a href="/posts/cs-dotnet-compile/">.NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-event-functions/">유니티 이벤트 함수는 어떻게 실행되는 것일까?</a></li>
       
 
       </ul>
@@ -2838,8 +2838,6 @@
     
     
     
-    
-      
     
   
     
@@ -6424,6 +6422,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6650,69 +6661,6 @@ public class CustomAttribute : System.Attribute
       
       
       <div class="card">
-        <a href="/posts/unity-position-fixer/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    May 19
-  
-
-  <i class="unloaded">2021-05-19T20:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Position Fixer</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Summary
-
-
-  부모 게임오브젝트의 이동에 영향받지 않고 트랜스폼 위치를 고정시키는 컴포넌트
-
-
-How To Use
-
-
-  위치를 고정/해제할 게임오브젝트에 컴포넌트로 넣는다.
-  인스펙터에서 Activated를 체크하거나 스페이스바를 눌러 기능을 활성화한다.
-
-
-Download
-
-
-  PositionFixer.zip
-
-
-Source Code
-
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-toy-free-look-camera/">
           <div class="card-body">
             <!--
@@ -6758,6 +6706,64 @@ How To Use
   게임 시작 후, Left Alt 키를 눌러 커서가 사라지도록 한다.
   WASD 키로 카메라를 움직이며, 마우스 이동을 통해 카메라를 회전시킬 수 있다.
   QE 키로 카메라...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-toy-mouse-chaser/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  2
+  
+
+  <i class="unloaded">2021-03-02T03:14:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Mouse Chaser (마우스 커서 추적 컴포넌트)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+  게임오브젝트가 마우스 커서를 따라오게 하는 스크립트
+
+
+How To Use
+
+
+  
+    마우스 커서를 따라오게 할 게임오브젝트에 컴포넌트로 넣는다.
+  
+  
+    Distance From Camera를 통해 카메라로부터의 거리를 지정할 수 있다.
+  
+  
+    Chasing Speed를 통해 마우스를 따라올 속도를 지정할 수...
               </p>
             </div>
           </div>
@@ -8658,8 +8664,6 @@ How To Use
     
     
     
-    
-      
     
   
     
