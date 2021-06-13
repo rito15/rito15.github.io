@@ -2,7 +2,7 @@
 title: 유니티 에디터 종료 확인 다이얼로그 만들기
 author: Rito15
 date: 2021-02-10 13:50:00 +09:00
-categories: [Unity, Unity Memo]
+categories: [Unity, Unity Editor Memo]
 tags: [unity, editor, dialog, csharp]
 math: true
 mermaid: true

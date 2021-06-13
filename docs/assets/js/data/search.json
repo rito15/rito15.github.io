@@ -1,9 +1,39 @@
 [
   
   {
+    "title": "스크립트로 콘솔 내용 지우기",
+    "url": "/posts/unity-clear-console-through-script/",
+    "categories": "Unity, Unity Editor Memo",
+    "tags": "unity, editor, csharp",
+    "date": "2021-06-14 02:22:00 +0900",
+    
+
+
+
+
+
+    "snippet": "private static MethodInfo clearMethodInfo;private static void ClearLog(){    if (clearMethodInfo == null)    {        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));        var type = assembly.GetType(&quot;UnityEditor.LogEntries&quot;);        clearMethodInfo = type.GetMethod(&q..."
+  },
+  
+  {
+    "title": "에디터 윈도우 관련 유용한 코드 모음",
+    "url": "/posts/unity-editor-window-codes/",
+    "categories": "Unity, Unity Editor",
+    "tags": "unity, csharp, editor",
+    "date": "2021-06-14 01:50:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Enum - EditorWindowType[Flags]private enum EditorWindowType{    Scene = 1,    Game  = 2,    Inspector = 4,    Hierarchy = 8,    Project   = 16,    Console   = 32}특정 윈도우에 포커스하기private static void FocusOnWindow(EditorWindowType windowType){    EditorApplication.ExecuteMenuItem(&quot;Window/General/..."
+  },
+  
+  {
     "title": "커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기",
     "url": "/posts/unity-editor-view-width-considering-scroll/",
-    "categories": "Unity, Unity Editor",
+    "categories": "Unity, Unity Editor Memo",
     "tags": "unity, editor, csharp",
     "date": "2021-06-13 23:33:00 +0900",
     
@@ -33,8 +63,8 @@
   {
     "title": "마우스 커서가 UI 위에 있는지 검사하는 간단한 코드",
     "url": "/posts/unity-check-cursor-over-ui/",
-    "categories": "Unity, Unity Memo",
-    "tags": "unity, csharp",
+    "categories": "Unity, Unity Memo - Shorts",
+    "tags": "unity, csharp, shorts",
     "date": "2021-06-10 02:22:00 +0900",
     
 
@@ -168,7 +198,7 @@
   {
     "title": "각종 윈도우 새로고침하기",
     "url": "/posts/unity-editor-refresh-windows/",
-    "categories": "Unity, Unity Editor",
+    "categories": "Unity, Unity Editor Memo",
     "tags": "unity, editor, csharp",
     "date": "2021-05-19 01:00:00 +0900",
     
@@ -198,8 +228,8 @@
   {
     "title": "컴포넌트를 인스펙터 최상단에 올리기",
     "url": "/posts/unity-put-component-on-top/",
-    "categories": "Unity, Unity Memo",
-    "tags": "unity, csharp",
+    "categories": "Unity, Unity Memo - Shorts",
+    "tags": "unity, csharp, shorts",
     "date": "2021-05-17 21:12:00 +0900",
     
 
@@ -273,8 +303,8 @@
   {
     "title": "UI(RectTransform)의 스크린 픽셀 크기 계산하기",
     "url": "/posts/unity-calculate-ui-pixel-size/",
-    "categories": "Unity, Unity Memo",
-    "tags": "unity, csharp",
+    "categories": "Unity, Unity Memo - Shorts",
+    "tags": "unity, csharp, shorts",
     "date": "2021-05-10 18:00:00 +0900",
     
 
@@ -423,8 +453,8 @@
   {
     "title": "Debug.Log에 색상 넣기",
     "url": "/posts/unity-memo-color-debug-log/",
-    "categories": "Unity, Unity Memo",
-    "tags": "unity, csharp",
+    "categories": "Unity, Unity Memo - Shorts",
+    "tags": "unity, csharp, shorts",
     "date": "2021-04-25 17:10:00 +0900",
     
 
@@ -798,8 +828,8 @@
   {
     "title": "키보드 연속 입력 유지 상태 감지하기",
     "url": "/posts/unity-memo-double-key-press/",
-    "categories": "Unity, Unity Memo",
-    "tags": "unity, csharp, input",
+    "categories": "Unity, Unity Memo - Shorts",
+    "tags": "unity, csharp, input, shorts",
     "date": "2021-03-14 23:23:00 +0900",
     
 
@@ -838,6 +868,21 @@
 
 
     "snippet": "Summary      등록한 컴포넌트들의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킵니다.        변경사항을 적용할 대상들은 Play Mode Saver 컴포넌트 내의 목록으로 관리됩니다.        유니티 에디터 내에서만 동작하며, 빌드 시 Play Mode Saver 컴포넌트는 자동으로 제거됩니다.        플레이 모드 내에서 Play Mode Saver를 수정한 사항도 플레이 모드가 종료되었을 때 유지됩니다.  PreviewHow To Use  변경사항 유지를 원하는 컴포넌트에 우클릭 후, S..."
+  },
+  
+  {
+    "title": "유니티 하이라키 우클릭 메뉴 아이템",
+    "url": "/posts/unity-editor-menu-item-hierarchy/",
+    "categories": "Unity, Unity Editor",
+    "tags": "unity, csharp, editor",
+    "date": "2021-03-12 22:50:00 +0900",
+    
+
+
+
+
+
+    "snippet": "우클릭 MenuItem 메소드 중복 호출 방지하기      게임오브젝트를 다중 선택하고 우클릭 메뉴를 통해 실행했을 때 생기는 중복 호출 버그 방지        다이얼로그를 띄우면 방지 안되니 주의  private static string _prevMethodCallInfo = &quot;&quot;;/// &amp;lt;summary&amp;gt; 같은 메소드가 이미 실행됐었는지 검사 (중복 메소드 호출 제한용) &amp;lt;/summary&amp;gt;private static bool IsDuplicatedMethodC..."
   },
   
   {
@@ -903,7 +948,7 @@
   {
     "title": "컴포넌트의 인스펙터 내 순서를 맨 위로 올리기",
     "url": "/posts/unity-editor-component-on-top/",
-    "categories": "Unity, Unity Editor",
+    "categories": "Unity, Unity Editor Memo",
     "tags": "unity, editor, csharp",
     "date": "2021-03-12 04:04:00 +0900",
     
@@ -1516,21 +1561,6 @@
   },
   
   {
-    "title": "유니티 에디터 관련 유용한 팁 모음",
-    "url": "/posts/unity-editor-api/",
-    "categories": "Unity, Unity Editor",
-    "tags": "unity, csharp, editor",
-    "date": "2021-02-18 01:50:00 +0900",
-    
-
-
-
-
-
-    "snippet": "   다이얼로그 창 띄우기  bool res1 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;);bool res2 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;, &quot;Cancel&quot;);     우클릭 MenuItem 메소드 중복 호출 방지하기            게임오브젝트를 다중 선택하고 우클릭 메뉴를 통..."
-  },
-  
-  {
     "title": "OpenGL 공부 - 21 - Material Class",
     "url": "/posts/opengl-study-21/",
     "categories": "OpenGL, OpenGL Study",
@@ -1833,7 +1863,7 @@
   {
     "title": "유니티 에디터 종료 확인 다이얼로그 만들기",
     "url": "/posts/unity-memo-editor-exit-dialog/",
-    "categories": "Unity, Unity Memo",
+    "categories": "Unity, Unity Editor Memo",
     "tags": "unity, editor, dialog, csharp",
     "date": "2021-02-10 13:50:00 +0900",
     
@@ -1858,6 +1888,21 @@
 
 
     "snippet": "목표  폴리곤에 텍스쳐 씌워보기(1장, 여러 장)1. 텍스쳐 한 장 사용이미지 준비  프로젝트 디렉토리 내에 Images 폴더를 만들고 PNG 이미지 파일을 준비한다.소스코드 작성  위치 : VertexAttribPointer ~ Main Loop 사이[1] 이미지 로드int imageWidth = 0;int imageHeight = 0;unsigned char* image = SOIL_load_image(&quot;Images/MoonCat.png&quot;,    &amp;amp;imageWidth, &amp;amp;ima..."
+  },
+  
+  {
+    "title": "유니티 에디터 다이얼로그 창 띄우기",
+    "url": "/posts/unity-editor-dialog/",
+    "categories": "Unity, Unity Editor Memo",
+    "tags": "unity, editor, dialog, csharp",
+    "date": "2021-02-09 13:50:00 +0900",
+    
+
+
+
+
+
+    "snippet": "bool res1 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;);bool res2 = EditorUtility.DisplayDialog(&quot;Title&quot;, &quot;Message&quot;, &quot;OK&quot;, &quot;Cancel&quot;);"
   },
   
   {
@@ -2163,8 +2208,8 @@
   {
     "title": "UI 헤더 드래그 앤 드롭으로 옮기기",
     "url": "/posts/unity-memo-ui-drag-and-drop/",
-    "categories": "Unity, Unity Memo",
-    "tags": "unity, csharp, ui, memo, drag, drop",
+    "categories": "Unity, Unity Memo - Shorts",
+    "tags": "unity, csharp, ui, memo, drag, drop, shorts",
     "date": "2021-02-01 03:00:00 +0900",
     
 

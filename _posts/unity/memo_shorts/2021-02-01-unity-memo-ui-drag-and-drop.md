@@ -2,8 +2,8 @@
 title: UI 헤더 드래그 앤 드롭으로 옮기기
 author: Rito15
 date: 2021-02-01 03:00:00 +09:00
-categories: [Unity, Unity Memo]
-tags: [unity, csharp, ui, memo, drag, drop]
+categories: [Unity, Unity Memo - Shorts]
+tags: [unity, csharp, ui, memo, drag, drop, shorts]
 math: true
 mermaid: true
 ---

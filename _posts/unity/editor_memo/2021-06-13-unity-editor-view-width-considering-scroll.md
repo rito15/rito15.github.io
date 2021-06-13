@@ -2,7 +2,7 @@
 title: 커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기
 author: Rito15
 date: 2021-06-13 23:33:00 +09:00
-categories: [Unity, Unity Editor]
+categories: [Unity, Unity Editor Memo]
 tags: [unity, editor, csharp]
 math: true
 mermaid: true

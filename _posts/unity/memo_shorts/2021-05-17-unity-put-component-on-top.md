@@ -2,8 +2,8 @@
 title: 컴포넌트를 인스펙터 최상단에 올리기
 author: Rito15
 date: 2021-05-17 21:12:00 +09:00
-categories: [Unity, Unity Memo]
-tags: [unity, csharp]
+categories: [Unity, Unity Memo - Shorts]
+tags: [unity, csharp, shorts]
 math: true
 mermaid: true
 ---

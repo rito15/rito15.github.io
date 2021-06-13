@@ -2,8 +2,8 @@
 title: 키보드 연속 입력 유지 상태 감지하기
 author: Rito15
 date: 2021-03-14 23:23:00 +09:00
-categories: [Unity, Unity Memo]
-tags: [unity, csharp, input]
+categories: [Unity, Unity Memo - Shorts]
+tags: [unity, csharp, input, shorts]
 math: true
 mermaid: true
 ---

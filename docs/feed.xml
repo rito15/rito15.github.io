@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-14T01:06:46+09:00</updated>
+  <updated>2021-06-14T02:26:18+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,127 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>스크립트로 콘솔 내용 지우기</title>
+    <link href="https://rito15.github.io/posts/unity-clear-console-through-script/" rel="alternate" type="text/html" title="스크립트로 콘솔 내용 지우기" />
+    <published>2021-06-14T02:22:00+09:00</published>
+  
+    <updated>2021-06-14T02:22:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-clear-console-through-script/</id>
+    <content src="https://rito15.github.io/posts/unity-clear-console-through-script/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      private static MethodInfo clearMethodInfo;
+private static void ClearLog()
+{
+    if (clearMethodInfo == null)
+    {
+        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+        var type = assembly.GetType("UnityEditor.LogEntries");
+        clearMethodInfo = type.GetMethod("Clear");
+    }
+    clearMethodInfo.Invoke(new object(), null);
+}
+
+
+
+
+Reference
+
+
+  https://www.codegrepp...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>에디터 윈도우 관련 유용한 코드 모음</title>
+    <link href="https://rito15.github.io/posts/unity-editor-window-codes/" rel="alternate" type="text/html" title="에디터 윈도우 관련 유용한 코드 모음" />
+    <published>2021-06-14T01:50:00+09:00</published>
+  
+    <updated>2021-06-14T01:50:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-window-codes/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-window-codes/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Enum - EditorWindowType
+
+
+[Flags]
+private enum EditorWindowType
+{
+    Scene = 1,
+    Game  = 2,
+    Inspector = 4,
+    Hierarchy = 8,
+    Project   = 16,
+    Console   = 32
+}
+
+
+
+
+특정 윈도우에 포커스하기
+
+
+private static void FocusOnWindow(EditorWindowType windowType)
+{
+    EditorApplication.ExecuteMenuItem("Window/General/" + windowType.ToString());
+}
+
+
+
+
+현재 선택된 윈도우에 키 이벤트 발생시키기
+
+
+/// &amp;lt;summary&amp;gt; 현재 ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -36,7 +157,7 @@
     
     <category term="Unity" />
     
-    <category term="Unity Editor" />
+    <category term="Unity Editor Memo" />
     
   
 
@@ -174,7 +295,7 @@ Source Code
     
     <category term="Unity" />
     
-    <category term="Unity Memo" />
+    <category term="Unity Memo - Shorts" />
     
   
 
@@ -190,108 +311,6 @@ Source Code
     =&amp;gt; UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 이벤트 함수는 어떻게 실행되는 것일까?</title>
-    <link href="https://rito15.github.io/posts/unity-event-functions/" rel="alternate" type="text/html" title="유니티 이벤트 함수는 어떻게 실행되는 것일까?" />
-    <published>2021-06-06T05:05:00+09:00</published>
-  
-    <updated>2021-06-06T17:07:01+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-event-functions/</id>
-    <content src="https://rito15.github.io/posts/unity-event-functions/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Unity Event Functions
-
-
-유니티엔진에서 ‘스크립트’를 작성한다고 하면, 보통 MonoBahaviour를 상속받는 클래스의 스크립트를 작성하는 것을 떠올릴 것이다.
-
-그리고 자연스럽게 이 클래스 내에 Awake(), Start(), Update() 등의 메소드를 작성하게 된다.
-
-심지어 비주얼 스튜디오 같은 개발 환경에서는 이런 메소드들에 대해 자동 완성도 해주고, 메소드 위에는 Unity 메시지라는 글자도 띄워준다.
-
-이런 메소드들은 ‘Unity Event Function’, ‘Unity Message’ 또는 ‘Magic Method’라고 불린다.
-
-
-
-그런데 생각해보면 이 메소드들은 MonoBehaviour 또는 그 부모 클래스로부터 상속받은 메소드도 아닌데,
-
-어떻게 유니티가 알아...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>.NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT</title>
-    <link href="https://rito15.github.io/posts/cs-dotnet-compile/" rel="alternate" type="text/html" title=".NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT" />
-    <published>2021-06-06T04:43:00+09:00</published>
-  
-    <updated>2021-06-07T23:22:17+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-dotnet-compile/</id>
-    <content src="https://rito15.github.io/posts/cs-dotnet-compile/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      .NET 환경의 컴파일 과정
-
-
-예전의 C, C++의 경우 개별 환경이 프로그램의 실행 시간에 영향을 미치는 문제가 있었다.
-
-하지만 Java가 나오면서 컴파일된 바이트코드는 윈도우, 리눅스, 그 어떤 실행환경이든 JVM만 실행 가능하다면 실행할 수 있다는 장점을 통해 인기를 끌었고,
-
-마이크로소프트는 이를 이용해 기존 문제를 해결할 수 있도록 .NET 환경에 가상 머신을 만들어서
-
-.NET 환경의 언어로 개발된 IL(Intermediate Language, 중간 언어) 코드들은 .NET Framework가 설치된 어떠한 환경에서도 실행할 수 있도록 하였다.
-
-대표적인 예시로 VB .NET, C#이 있다.
-
-
-
-CLR(Common Language Runtime, 공통 언어 런타임)은 이 가상머신의 구성...
     </summary>
   
 
