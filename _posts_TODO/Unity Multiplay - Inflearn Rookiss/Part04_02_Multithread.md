@@ -209,8 +209,121 @@ static void Main(string[] args)
 
 <br>
 
-# 결론
+## **API**
+
+### `Task.Wait()`
+ - 부모 스레드가 Task 스레드를 기다린다. (`Thread.Join()` 과 일맥상통)
+
+<br>
+
+# 코드 최적화로 인해 발생하는 문제
 ---
+
+`Release` 모드로 코드를 컴파일하게 되면,
+
+성능을 위해 내부적으로 다양한 코드 최적화가 이루어진다.
+
+예를 들어
+
+```cs
+class Program
+{
+    private static bool _stop = false;
+
+    private static void ThreadBody()
+    {
+        Console.WriteLine($"Thread Start - {Thread.CurrentThread.ManagedThreadId}");
+
+        // _stop == true가 되기 전까지 대기
+        while (!_stop);
+
+        Console.WriteLine($"Thread End - {Thread.CurrentThread.ManagedThreadId}");
+    }
+
+    static void Main(string[] args)
+    {
+        Task task = new Task(ThreadBody);
+        task.Start();
+
+        Thread.Sleep(1000);
+
+        _stop = true;
+
+        Console.WriteLine("종료 요청 및 대기");
+        task.Wait();
+
+        Console.WriteLine("종료 성공");
+    }
+}
+```
+
+이런 코드가 있을 때
+
+`Debug` 모드에서는 아무런 문제 없이 종료까지 이어질 수 있지만
+
+`Release` 모드에서는 `ThreadBody`의
+
+```cs
+while (!_stop);
+```
+
+이 부분이
+
+```cs
+// 그저 예시..
+if(!_stop)
+{
+    while(true);
+}
+```
+
+이런식으로 바뀌어 버린다던가,
+
+프로그래머가 예측하지 못한 방향으로 최적화가 되어
+
+버그를 낼 수 있다.
+
+<br>
+
+이럴 때는
+
+```cs
+private volatile static bool _stop = false;
+```
+
+이렇게 `volatile` 키워드를 접근제어자 뒤에 넣어주면 된다.
+
+`volatile` 키워드를 명시한 필드는 릴리즈 빌드에서 코드 최적화가 일어나지 않게 되어,
+
+여러 스레드가 같은 필드를 참조하는 경우에 발생하는 예기치 못한 문제를 방지할 수 있다.
+
+하지만 `volatile`은 코드 최적화 방지 뿐만 아니라,
+
+읽고 쓰는 명령에 대해서 무조건 메모리에 직접 읽고 쓰게 하는 등
+
+복잡한 문제가 있으므로 사용을 권장하지 않는다고 한다.
+
+<br>
+
+그러니까 결국 공유 자원에 대해서는 앞으로 비권장 `volatile` 안쓰고 `lock`을 쓰겠다는 의미.
+
+<br>
+
+# 정리
+---
+
+- 전경 스레드는 부모 스레드가 죽어도 알아서 돌아간다.
+- 배경 스레드는 부모 스레드가 죽으면 함께 죽는다.
+- `Thread`는 기본적으로 전경 스레드, `ThreadPool`과 `Task`의 스레드는 기본적으로 배경 스레드로 동작한다.
+- 혹시나 `Thread`를 쓸 때, 의도치 않게 전경 스레드로 동작시켜 미아로 남기지 않도록 주의한다.
+
+<br>
+
+- `ThreadPool`은 워커 스레드를 미리 준비해놓고, 큐에 담겨 오는 작업들을 내부적으로 `Thread`를 할당시켜 동작한다.
+- `Task`는 `ThreadPool`을 이용한 라이브러리의 일종이다.
+- 그러니까 `ThreadPool`, `Task`는 모두 `Thread`의 응용이다.
+
+<br>
 
 - 금방 끝나는 작업에는 `Task`를 이용한다.
 - 오래 걸리는 작업에는 `Thread` 또는 `LongRunning`으로 지정된 `Task`를 이용한다.
@@ -221,3 +334,4 @@ static void Main(string[] args)
 ---
 - <https://wikidocs.net/691>
 - <https://jungwoong.tistory.com/40>
+- <https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/keywords/volatile>
