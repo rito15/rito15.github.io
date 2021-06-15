@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-15T02:34:54+09:00</updated>
+  <updated>2021-06-15T15:17:59+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,88 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Jekyll 블로그 만들기 간단 메모</title>
+    <link href="https://rito15.github.io/posts/memo-init-jekyll-blog/" rel="alternate" type="text/html" title="Jekyll 블로그 만들기 간단 메모" />
+    <published>2021-06-15T14:55:00+09:00</published>
+  
+    <updated>2021-06-15T14:55:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/memo-init-jekyll-blog/</id>
+    <content src="https://rito15.github.io/posts/memo-init-jekyll-blog/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. Ruby 설치
+
+
+  https://rubyinstaller.org/downloads/
+  2.7.3
+
+
+
+
+2. Jekyll Bundler 설치
+
+
+  cmd 켰을 때 나오는 사용자 기본 경로에 설치
+
+
+gem install jekyll bundler
+
+
+
+
+3. 블로그용 깃헙 원격 리포 준비
+
+
+  리포 이름은 닉네임.github.io
+
+
+
+
+4. 로컬 리포 준비
+
+
+  원격 리포랑 연결
+
+
+git init
+git add .
+git commit -m "init"
+git branch -M main
+git remote add origin [깃헙 원격 리포 주소]
+git push -u origin main
+
+
+
+
+5. Jekyll 테마 다운로드
+
+
+  
+    http://jekyllthemes.o...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -259,81 +341,6 @@ Layout API들을 통해 만들어진 Rect는 항상 에디터창의 우측 스�
 
 
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Singleton Pattern(싱글톤 패턴)</title>
-    <link href="https://rito15.github.io/posts/singleton-pattern/" rel="alternate" type="text/html" title="Singleton Pattern(싱글톤 패턴)" />
-    <published>2021-06-11T17:17:00+09:00</published>
-  
-    <updated>2021-06-11T17:17:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/singleton-pattern/</id>
-    <content src="https://rito15.github.io/posts/singleton-pattern/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Algorithm" />
-    
-    <category term="Design Pattern" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Singleton Pattern
-
-
-특징
-
-  정적 참조로부터 인스턴스 참조를 가져올 수 있다.
-  특정 클래스에 단 한 개의 객체만 존재하도록 보장할 수 있다.
-
-
-사용처
-
-  프로그램 내에 반드시 하나만 존재해야 하는 클래스
-
-
-고려사항
-
-  싱글톤 객체 생성 타이밍을 고려해야 한다. (정적 or 동적)
-  기본적으로 스레드 안전하지 않으므로, 추가적인 처리가 필요하다.
-
-
-
-
-싱글톤 인스턴스를 통한 호출(공통)
-
-class SingletonTest
-{
-    public static void Method()
-    {
-        // 클래스명.Instance.멤버참조
-        SingletonClass.Instance.Method();
-    }
-}
-
-
-
-
-Source Code
-
-
-[1]...
     </summary>
   
 

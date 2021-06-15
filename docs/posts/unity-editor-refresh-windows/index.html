@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="각종 윈도우 새로고침하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"커스텀 에디터 - 인스펙터뷰","datePublished":"2021-05-19T01:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-refresh-windows/"},"url":"https://rito15.github.io/posts/unity-editor-refresh-windows/","author":{"@type":"Person","name":"Rito15"},"headline":"각종 윈도우 새로고침하기","dateModified":"2021-05-19T01:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"각종 윈도우 새로고침하기","description":"커스텀 에디터 - 인스펙터뷰","dateModified":"2021-05-19T01:00:00+09:00","datePublished":"2021-05-19T01:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-refresh-windows/"},"url":"https://rito15.github.io/posts/unity-editor-refresh-windows/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -4184,6 +4184,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6404,7 +6417,7 @@ while (flag)
       
       
       <div class="card">
-        <a href="/posts/unity-editor-dialog/">
+        <a href="/posts/unity-clear-console-through-script/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6421,13 +6434,13 @@ while (flag)
   
 
   
-    Feb  9
+    Jun 14
   
 
-  <i class="unloaded">2021-02-09T13:50:00+09:00</i>
+  <i class="unloaded">2021-06-14T02:22:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 다이얼로그 창 띄우기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>스크립트로 콘솔 내용 지우기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6436,14 +6449,23 @@ while (flag)
 
 
 
-                
-  
-    bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
-bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
-
-  
-
-
+                1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+private static MethodInfo clearMethodInfo;
+private static void ClearLog()
+{
+    if (clearMethodInfo == null)
+    {
+        var assembly = Assembly.GetAssembly(typeof(UnityEd...
               </p>
             </div>
           </div>
