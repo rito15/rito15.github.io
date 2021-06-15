@@ -62,6 +62,8 @@ git push -u origin main
 bundle install
 ```
 
+<br>
+
 간혹 에러를 띄우는 경우가 있는데, 에러 메시지에
 
 ```

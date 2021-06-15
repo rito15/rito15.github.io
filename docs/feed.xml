@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-15T15:17:59+09:00</updated>
+  <updated>2021-06-15T20:09:08+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,89 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>CIL 코드 뜯어보기</title>
+    <link href="https://rito15.github.io/posts/cs-memo-show-cil/" rel="alternate" type="text/html" title="CIL 코드 뜯어보기" />
+    <published>2021-06-15T20:00:00+09:00</published>
+  
+    <updated>2021-06-15T20:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-memo-show-cil/</id>
+    <content src="https://rito15.github.io/posts/cs-memo-show-cil/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. 소스코드 컴파일
+
+
+  컴파일을 완료하고 .exe 또는 .dll 파일을 생성한다.
+
+
+
+
+2. 디스어셈블러 실행
+
+
+C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
+
+
+이런 경로로 들어가서
+
+ildasm.exe 파일을 찾아 실행한다.
+
+경로는 버전마다 조금씩 차이가 있다.
+
+
+
+3. 대상 어셈블리 열기
+
+
+파일 - 열기를 통해 앞서 컴파일 완료한 파일을 열어준다.
+
+
+
+
+
+4. CIL 코드 확인
+
+
+3에서 원하는 메소드를 찾아 더블클릭한다.
+
+
+
+
+
+주의사항
+
+
+
+  디스어셈블러에서 특정 어셈블리를 열어둔 상태에서는 해당 어셈블리를 컴파일 할 수 없으므로, 다시 컴파일하고 싶다면 디스어셈블러를 꺼야 한다.
+
+
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -278,69 +361,6 @@ private static void FocusOnWindow(EditorWindowType windowType)
 
 
 /// &amp;lt;summary&amp;gt; 현재 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기</title>
-    <link href="https://rito15.github.io/posts/unity-editor-view-width-considering-scroll/" rel="alternate" type="text/html" title="커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기" />
-    <published>2021-06-13T23:33:00+09:00</published>
-  
-    <updated>2021-06-13T23:33:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-view-width-considering-scroll/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-view-width-considering-scroll/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-커스텀 에디터에서 EditorGUIUtility.currentViewWidth를 통해 현재 에디터의 너비를 구할 수 있지만,
-
-
-
-위처럼 컴포넌트 창이 상하로 길어져 우측에 스크롤바가 생기는 경우
-
-스크롤바가 컨트롤들을 가림에도 불구하고, currentViewWidth는 스크롤바를 포함한 너비를 알려주며
-
-스크롤바를 제외한 너비를 구하는 API가 제공되지 않는다.
-
-심지어 스크롤바의 존재 여부조차 스크립트를 통해서는 알 수 없다.
-
-따라서 편법을 통해 구해야 한다.
-
-
-
-How to
-
-
-Layout API들을 통해 만들어진 Rect는 항상 에디터창의 우측 스크롤바의 너비를 제외한 영역에 만들어지므로,
-
-이렇게 참조한 Rect의 너비는 스크롤바의 존재유무에 따라 유동적으로 변하게 된다.
-
-
-...
     </summary>
   
 
