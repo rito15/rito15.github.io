@@ -26,8 +26,8 @@
 <meta property="og:title" content="유니티 스크립트 최적화" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. StartCoroutine() 자주 호출하지 않기 4. 코루틴의 yield 캐싱하기 5. 참조 캐싱하기 6. 빌드 이후 Debug.Log() 사용하지 않기 7. Transform 변경은 한번에 8. 불필요하게 부모 자식 구조 늘리지 않기 9. ScriptableObject 활용하기 10. 오브젝트 풀링 사용하기 11. 필요하지 않은 경우, 리턴하지 않기 12. 필요하지 않은 경우, new로 생성하지 않기 13. 구조체 사용하기 14. 컬렉션 재사용하기 15. List 사용할 때 주의할 점 16. StringBuilder 사용하기 17. LINQ 사용하지 않기 18. Enum HasFlag() 박싱 이슈 19. 메소드 호출 줄이기 20. 박싱, 언박싱 피하기 21. 비싼 수학 계산 피하기" />
-<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. StartCoroutine() 자주 호출하지 않기 4. 코루틴의 yield 캐싱하기 5. 참조 캐싱하기 6. 빌드 이후 Debug.Log() 사용하지 않기 7. Transform 변경은 한번에 8. 불필요하게 부모 자식 구조 늘리지 않기 9. ScriptableObject 활용하기 10. 오브젝트 풀링 사용하기 11. 필요하지 않은 경우, 리턴하지 않기 12. 필요하지 않은 경우, new로 생성하지 않기 13. 구조체 사용하기 14. 컬렉션 재사용하기 15. List 사용할 때 주의할 점 16. StringBuilder 사용하기 17. LINQ 사용하지 않기 18. Enum HasFlag() 박싱 이슈 19. 메소드 호출 줄이기 20. 박싱, 언박싱 피하기 21. 비싼 수학 계산 피하기" />
+<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. 비어있는 유니티 이벤트 메소드 방치하지 않기 4. StartCoroutine() 자주 호출하지 않기 5. 코루틴의 yield 캐싱하기 6. 참조 캐싱하기 7. 빌드 이후 Debug.Log() 사용하지 않기 8. Transform 변경은 한번에 9. 불필요하게 부모 자식 구조 늘리지 않기 10. ScriptableObject 활용하기 11. 오브젝트 풀링 사용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. 필요하지 않은 경우, new로 생성하지 않기 14. 구조체 사용하기 15. 컬렉션 재사용하기 16. List 사용할 때 주의할 점 17. StringBuilder 사용하기 18. LINQ 사용하지 않기 19. Enum HasFlag() 박싱 이슈 20. 메소드 호출 줄이기 21. 박싱, 언박싱 피하기 22. 비싼 수학 계산 피하기" />
+<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. 비어있는 유니티 이벤트 메소드 방치하지 않기 4. StartCoroutine() 자주 호출하지 않기 5. 코루틴의 yield 캐싱하기 6. 참조 캐싱하기 7. 빌드 이후 Debug.Log() 사용하지 않기 8. Transform 변경은 한번에 9. 불필요하게 부모 자식 구조 늘리지 않기 10. ScriptableObject 활용하기 11. 오브젝트 풀링 사용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. 필요하지 않은 경우, new로 생성하지 않기 14. 구조체 사용하기 15. 컬렉션 재사용하기 16. List 사용할 때 주의할 점 17. StringBuilder 사용하기 18. LINQ 사용하지 않기 19. Enum HasFlag() 박싱 이슈 20. 메소드 호출 줄이기 21. 박싱, 언박싱 피하기 22. 비싼 수학 계산 피하기" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-opt-script-optimization/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-opt-script-optimization/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 스크립트 최적화" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 스크립트 최적화","description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. 비어있는 유니티 이벤트 메소드 방치하지 않기 3. StartCoroutine() 자주 호출하지 않기 4. 코루틴의 yield 캐싱하기 5. 참조 캐싱하기 6. 빌드 이후 Debug.Log() 사용하지 않기 7. Transform 변경은 한번에 8. 불필요하게 부모 자식 구조 늘리지 않기 9. ScriptableObject 활용하기 10. 오브젝트 풀링 사용하기 11. 필요하지 않은 경우, 리턴하지 않기 12. 필요하지 않은 경우, new로 생성하지 않기 13. 구조체 사용하기 14. 컬렉션 재사용하기 15. List 사용할 때 주의할 점 16. StringBuilder 사용하기 17. LINQ 사용하지 않기 18. Enum HasFlag() 박싱 이슈 19. 메소드 호출 줄이기 20. 박싱, 언박싱 피하기 21. 비싼 수학 계산 피하기","dateModified":"2021-05-12T02:43:46+09:00","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 스크립트 최적화","description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. 비어있는 유니티 이벤트 메소드 방치하지 않기 4. StartCoroutine() 자주 호출하지 않기 5. 코루틴의 yield 캐싱하기 6. 참조 캐싱하기 7. 빌드 이후 Debug.Log() 사용하지 않기 8. Transform 변경은 한번에 9. 불필요하게 부모 자식 구조 늘리지 않기 10. ScriptableObject 활용하기 11. 오브젝트 풀링 사용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. 필요하지 않은 경우, new로 생성하지 않기 14. 구조체 사용하기 15. 컬렉션 재사용하기 16. List 사용할 때 주의할 점 17. StringBuilder 사용하기 18. LINQ 사용하지 않기 19. Enum HasFlag() 박싱 이슈 20. 메소드 호출 줄이기 21. 박싱, 언박싱 피하기 22. 비싼 수학 계산 피하기","dateModified":"2021-05-12T02:43:46+09:00","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5153 words">28 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5241 words">29 min</span>
 
 
           <!-- page views -->
@@ -466,26 +466,27 @@
 <hr />
 <ul>
   <li><a href="#getcomponent-find-메소드-사용-줄이기">1. GetComponent(), Find() 메소드 사용 줄이기</a></li>
-  <li><a href="#비어있는-유니티-이벤트-메소드-방치하지-않기">2. 비어있는 유니티 이벤트 메소드 방치하지 않기</a></li>
-  <li><a href="#startcoroutine-자주-호출하지-않기">3. StartCoroutine() 자주 호출하지 않기</a></li>
-  <li><a href="#코루틴의-yield-캐싱하기">4. 코루틴의 yield 캐싱하기</a></li>
-  <li><a href="#참조-캐싱하기">5. 참조 캐싱하기</a></li>
-  <li><a href="#빌드-이후-debuglog-사용하지-않기">6. 빌드 이후 Debug.Log() 사용하지 않기</a></li>
-  <li><a href="#transform-변경은-한번에">7. Transform 변경은 한번에</a></li>
-  <li><a href="#불필요하게-부모-자식-구조-늘리지-않기">8. 불필요하게 부모 자식 구조 늘리지 않기</a></li>
-  <li><a href="#scriptableobject-활용하기">9. ScriptableObject 활용하기</a></li>
-  <li><a href="#오브젝트-풀링-사용하기">10. 오브젝트 풀링 사용하기</a></li>
-  <li><a href="#필요하지-않은-경우-리턴하지-않기">11. 필요하지 않은 경우, 리턴하지 않기</a></li>
-  <li><a href="#필요하지-않은-경우-new로-생성하지-않기">12. 필요하지 않은 경우, new로 생성하지 않기</a></li>
-  <li><a href="#구조체-사용하기">13. 구조체 사용하기</a></li>
-  <li><a href="#컬렉션-재사용하기">14. 컬렉션 재사용하기</a></li>
-  <li><a href="#list-사용할-때-주의할-점">15. List 사용할 때 주의할 점</a></li>
-  <li><a href="#stringbuilder-사용하기">16. StringBuilder 사용하기</a></li>
-  <li><a href="#linq-사용하지-않기">17. LINQ 사용하지 않기</a></li>
-  <li><a href="#enum-hasflag-박싱-이슈">18. Enum HasFlag() 박싱 이슈</a></li>
-  <li><a href="#메소드-호출-줄이기">19. 메소드 호출 줄이기</a></li>
-  <li><a href="#박싱-언박싱-피하기">20. 박싱, 언박싱 피하기</a></li>
-  <li><a href="#비싼-수학-계산-피하기">21. 비싼 수학 계산 피하기</a></li>
+  <li><a href="#getcomponent-대신-trygetcomponent-사용하기">2. GetComponent() 대신 TryGetComponent() 사용하기</a></li>
+  <li><a href="#비어있는-유니티-이벤트-메소드-방치하지-않기">3. 비어있는 유니티 이벤트 메소드 방치하지 않기</a></li>
+  <li><a href="#startcoroutine-자주-호출하지-않기">4. StartCoroutine() 자주 호출하지 않기</a></li>
+  <li><a href="#코루틴의-yield-캐싱하기">5. 코루틴의 yield 캐싱하기</a></li>
+  <li><a href="#참조-캐싱하기">6. 참조 캐싱하기</a></li>
+  <li><a href="#빌드-이후-debuglog-사용하지-않기">7. 빌드 이후 Debug.Log() 사용하지 않기</a></li>
+  <li><a href="#transform-변경은-한번에">8. Transform 변경은 한번에</a></li>
+  <li><a href="#불필요하게-부모-자식-구조-늘리지-않기">9. 불필요하게 부모 자식 구조 늘리지 않기</a></li>
+  <li><a href="#scriptableobject-활용하기">10. ScriptableObject 활용하기</a></li>
+  <li><a href="#오브젝트-풀링-사용하기">11. 오브젝트 풀링 사용하기</a></li>
+  <li><a href="#필요하지-않은-경우-리턴하지-않기">12. 필요하지 않은 경우, 리턴하지 않기</a></li>
+  <li><a href="#필요하지-않은-경우-new로-생성하지-않기">13. 필요하지 않은 경우, new로 생성하지 않기</a></li>
+  <li><a href="#구조체-사용하기">14. 구조체 사용하기</a></li>
+  <li><a href="#컬렉션-재사용하기">15. 컬렉션 재사용하기</a></li>
+  <li><a href="#list-사용할-때-주의할-점">16. List 사용할 때 주의할 점</a></li>
+  <li><a href="#stringbuilder-사용하기">17. StringBuilder 사용하기</a></li>
+  <li><a href="#linq-사용하지-않기">18. LINQ 사용하지 않기</a></li>
+  <li><a href="#enum-hasflag-박싱-이슈">19. Enum HasFlag() 박싱 이슈</a></li>
+  <li><a href="#메소드-호출-줄이기">20. 메소드 호출 줄이기</a></li>
+  <li><a href="#박싱-언박싱-피하기">21. 박싱, 언박싱 피하기</a></li>
+  <li><a href="#비싼-수학-계산-피하기">22. 비싼 수학 계산 피하기</a></li>
 </ul>
 
 <p><br /></p>
@@ -539,6 +540,31 @@
     <span class="n">rb</span><span class="p">.</span><span class="nf">AddForce</span><span class="p">(</span><span class="n">Vector3</span><span class="p">.</span><span class="n">right</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h1 id="getcomponent-대신-trygetcomponent-사용하기">GetComponent() 대신 TryGetComponent() 사용하기</h1>
+<hr />
+
+<ul>
+  <li><a href="https://medium.com/chenjd-xyz/unity-tip-use-trygetcomponent-instead-of-getcomponent-to-avoid-memory-allocation-in-the-editor-fe0c3121daf6">https://medium.com/chenjd-xyz/unity-tip-use-trygetcomponent-instead-of-getcomponent-to-avoid-memory-allocation-in-the-editor-fe0c3121daf6</a></li>
+</ul>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">GetComponent()</code> 메소드는 할당에 실패하면</p>
+
+<p><code class="language-plaintext highlighter-rouge">GetComponentNullErrorWrapper</code>라는 객체를 통해 GC Allocation이 발생한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/122180393-5a11e980-cec3-11eb-9b3a-8c471da252f4.png" alt="image" /></p>
+
+<p><br /></p>
+
+<p>하지만 <code class="language-plaintext highlighter-rouge">TryGetComponent()</code>를 이용하면 GC 걱정 없이 깔끔하게 사용할 수 있다.</p>
+
+<p>그리고 심지어 속도도 <code class="language-plaintext highlighter-rouge">TryGetComponent()</code>가 훨씬 빠르다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/122182611-6303ba80-cec5-11eb-9940-909333b028c0.png" alt="image" /></p>
 
 <p><br /></p>
 
@@ -1500,6 +1526,11 @@
         
         
         
+        <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
+      
+        
+        
+        
         <li><a href="/posts/method-chaning-pattern/">Method Chaining & Generic(메소드 체인 패턴)</a></li>
       
         
@@ -1516,11 +1547,6 @@
         
         
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-dotnet-compile/">.NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT</a></li>
       
 
       </ul>

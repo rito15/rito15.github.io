@@ -8,6 +8,9 @@ math: true
 mermaid: true
 ---
 
+# Start Jekyll Blog
+---
+
 ## 1. Ruby 설치
 
 - <https://rubyinstaller.org/downloads/>
@@ -112,3 +115,45 @@ git push
 - 원격 리포 - `Settings` - `Pages`
 - `Source` - `Branch:main` - `/docs` - `Save`
 
+<br>
+
+# Themes
+---
+
+## 1. 깔끔한 블로그 테마
+
+- <http://jekyllthemes.org/themes/lokmont/>
+- <https://supunkavinda.github.io/jekyll-theme-leaf/>
+- <http://jekyllthemes.org/themes/agency/>
+- <http://jekyllthemes.org/themes/jekyll-for-everyone/>
+- <http://jekyllthemes.org/themes/jekyll-theme-prologue/>
+- <http://jekyllthemes.org/themes/business-jekyll-theme/>
+- <http://jekyllthemes.org/themes/future-imperfect/>
+- <http://jekyllthemes.org/themes/massively/>
+- <http://jekyllthemes.org/themes/adam-blog/>
+- <http://jekyllthemes.org/themes/panelcvagain/>
+- <http://jekyllthemes.org/themes/bef/>
+- <http://jekyllthemes.org/themes/hydeout/>
+- <http://jekyllthemes.org/themes/millennial/>
+- <http://jekyllthemes.org/themes/basically-basic/>
+- <http://jekyllthemes.org/themes/fullit/>
+- <http://jekyllthemes.org/themes/console/>
+- <http://jekyllthemes.org/themes/sleek/>
+
+<br>
+
+## 2. 개발 블로그용 테마
+
+- <http://jekyllthemes.org/themes/jekyll-theme-chirpy/>
+
+<br>
+
+## 3. 포트폴리오용 테마
+
+- <http://jekyllthemes.org/themes/zolan/>
+- <http://jekyllthemes.org/themes/slate-and-simple/>
+- <http://jekyllthemes.org/themes/flexible-jekyll/>
+- <http://jekyllthemes.org/themes/panelcv/>
+- <http://jekyllthemes.org/themes/dactl/>
+- <http://jekyllthemes.org/themes/particle/>
+- <http://jekyllthemes.org/themes/materialbliss/>

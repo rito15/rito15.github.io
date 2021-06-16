@@ -11,26 +11,27 @@ mermaid: true
 # 목차
 ---
 - [1. GetComponent(), Find() 메소드 사용 줄이기](#getcomponent-find-메소드-사용-줄이기)
-- [2. 비어있는 유니티 이벤트 메소드 방치하지 않기](#비어있는-유니티-이벤트-메소드-방치하지-않기)
-- [3. StartCoroutine() 자주 호출하지 않기](#startcoroutine-자주-호출하지-않기)
-- [4. 코루틴의 yield 캐싱하기](#코루틴의-yield-캐싱하기)
-- [5. 참조 캐싱하기](#참조-캐싱하기)
-- [6. 빌드 이후 Debug.Log() 사용하지 않기](#빌드-이후-debuglog-사용하지-않기)
-- [7. Transform 변경은 한번에](#transform-변경은-한번에)
-- [8. 불필요하게 부모 자식 구조 늘리지 않기](#불필요하게-부모-자식-구조-늘리지-않기)
-- [9. ScriptableObject 활용하기](#scriptableobject-활용하기)
-- [10. 오브젝트 풀링 사용하기](#오브젝트-풀링-사용하기)
-- [11. 필요하지 않은 경우, 리턴하지 않기](#필요하지-않은-경우-리턴하지-않기)
-- [12. 필요하지 않은 경우, new로 생성하지 않기](#필요하지-않은-경우-new로-생성하지-않기)
-- [13. 구조체 사용하기](#구조체-사용하기)
-- [14. 컬렉션 재사용하기](#컬렉션-재사용하기)
-- [15. List 사용할 때 주의할 점](#list-사용할-때-주의할-점)
-- [16. StringBuilder 사용하기](#stringbuilder-사용하기)
-- [17. LINQ 사용하지 않기](#linq-사용하지-않기)
-- [18. Enum HasFlag() 박싱 이슈](#enum-hasflag-박싱-이슈)
-- [19. 메소드 호출 줄이기](#메소드-호출-줄이기)
-- [20. 박싱, 언박싱 피하기](#박싱-언박싱-피하기)
-- [21. 비싼 수학 계산 피하기](#비싼-수학-계산-피하기)
+- [2. GetComponent() 대신 TryGetComponent() 사용하기](#getcomponent-대신-trygetcomponent-사용하기)
+- [3. 비어있는 유니티 이벤트 메소드 방치하지 않기](#비어있는-유니티-이벤트-메소드-방치하지-않기)
+- [4. StartCoroutine() 자주 호출하지 않기](#startcoroutine-자주-호출하지-않기)
+- [5. 코루틴의 yield 캐싱하기](#코루틴의-yield-캐싱하기)
+- [6. 참조 캐싱하기](#참조-캐싱하기)
+- [7. 빌드 이후 Debug.Log() 사용하지 않기](#빌드-이후-debuglog-사용하지-않기)
+- [8. Transform 변경은 한번에](#transform-변경은-한번에)
+- [9. 불필요하게 부모 자식 구조 늘리지 않기](#불필요하게-부모-자식-구조-늘리지-않기)
+- [10. ScriptableObject 활용하기](#scriptableobject-활용하기)
+- [11. 오브젝트 풀링 사용하기](#오브젝트-풀링-사용하기)
+- [12. 필요하지 않은 경우, 리턴하지 않기](#필요하지-않은-경우-리턴하지-않기)
+- [13. 필요하지 않은 경우, new로 생성하지 않기](#필요하지-않은-경우-new로-생성하지-않기)
+- [14. 구조체 사용하기](#구조체-사용하기)
+- [15. 컬렉션 재사용하기](#컬렉션-재사용하기)
+- [16. List 사용할 때 주의할 점](#list-사용할-때-주의할-점)
+- [17. StringBuilder 사용하기](#stringbuilder-사용하기)
+- [18. LINQ 사용하지 않기](#linq-사용하지-않기)
+- [19. Enum HasFlag() 박싱 이슈](#enum-hasflag-박싱-이슈)
+- [20. 메소드 호출 줄이기](#메소드-호출-줄이기)
+- [21. 박싱, 언박싱 피하기](#박싱-언박싱-피하기)
+- [22. 비싼 수학 계산 피하기](#비싼-수학-계산-피하기)
 
 
 <br>
@@ -69,6 +70,29 @@ private void Update()
     rb.AddForce(Vector3.right);
 }
 ```
+
+<br>
+
+# GetComponent() 대신 TryGetComponent() 사용하기
+---
+
+- <https://medium.com/chenjd-xyz/unity-tip-use-trygetcomponent-instead-of-getcomponent-to-avoid-memory-allocation-in-the-editor-fe0c3121daf6>
+
+<br>
+
+`GetComponent()` 메소드는 할당에 실패하면
+
+`GetComponentNullErrorWrapper`라는 객체를 통해 GC Allocation이 발생한다.
+
+![image](https://user-images.githubusercontent.com/42164422/122180393-5a11e980-cec3-11eb-9b3a-8c471da252f4.png)
+
+<br>
+
+하지만 `TryGetComponent()`를 이용하면 GC 걱정 없이 깔끔하게 사용할 수 있다.
+
+그리고 심지어 속도도 `TryGetComponent()`가 훨씬 빠르다.
+
+![image](https://user-images.githubusercontent.com/42164422/122182611-6303ba80-cec5-11eb-9940-909333b028c0.png)
 
 <br>
 
