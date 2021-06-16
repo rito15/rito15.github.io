@@ -90,10 +90,6 @@ private void Update()
 
 하지만 `TryGetComponent()`를 이용하면 GC 걱정 없이 깔끔하게 사용할 수 있다.
 
-그리고 심지어 속도도 `TryGetComponent()`가 훨씬 빠르다.
-
-![image](https://user-images.githubusercontent.com/42164422/122182611-6303ba80-cec5-11eb-9940-909333b028c0.png)
-
 <br>
 
 # 비어있는 유니티 이벤트 메소드 방치하지 않기

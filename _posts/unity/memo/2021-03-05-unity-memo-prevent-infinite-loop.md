@@ -53,7 +53,7 @@ while( /* condition */ )
 
 <br>
 
-# InfiniteLoopPreventer
+# InfiniteLoopDetector
 ---
 
 ```cs
@@ -61,7 +61,7 @@ using UnityEngine;
 using System;
 
 /// <summary> 무한 루프 검사 및 방지(에디터 전용) </summary>
-public static class InfiniteLoopPreventer
+public static class InfiniteLoopDetector
 {
     private static string prevPoint = "";
     private static int detectionCount = 0;
@@ -112,7 +112,7 @@ while( /* condition */ )
 {
     // codes..
 
-    InfiniteLoopPreventer.Run(); // 이렇게 한 줄 추가 작성
+    InfiniteLoopDetector.Run(); // 이렇게 한 줄 추가 작성
 }
 ```
 

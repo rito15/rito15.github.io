@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="무한 루프를 간편히 방지하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"2021. 06. 17. 무한루프를 보다 간편히 방지할 수 있도록 코드 개선","datePublished":"2021-03-05T04:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-prevent-infinite-loop/"},"url":"https://rito15.github.io/posts/unity-memo-prevent-infinite-loop/","author":{"@type":"Person","name":"Rito15"},"headline":"무한 루프를 간편히 방지하기","dateModified":"2021-05-04T03:31:47+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"2021. 06. 17. 무한루프를 보다 간편히 방지할 수 있도록 코드 개선","datePublished":"2021-03-05T04:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-prevent-infinite-loop/"},"url":"https://rito15.github.io/posts/unity-memo-prevent-infinite-loop/","author":{"@type":"Person","name":"Rito15"},"headline":"무한 루프를 간편히 방지하기","dateModified":"2021-06-17T01:11:50+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Tue, May  4, 2021,  3:31 AM +0900"
+    title="Thu, Jun 17, 2021,  1:11 AM +0900"
   >
 
   
   
 
   
-    May  4
+    Jun 17
   
 
-  <i class="unloaded">2021-05-04T03:31:47+09:00</i>
+  <i class="unloaded">2021-06-17T01:11:50+09:00</i>
 
 </span>
           </span>
@@ -524,7 +524,7 @@
 
 <p><br /></p>
 
-<h1 id="infinitelooppreventer">InfiniteLoopPreventer</h1>
+<h1 id="infiniteloopdetector">InfiniteLoopDetector</h1>
 <hr />
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -572,7 +572,7 @@
 <span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 
 <span class="c1">/// &lt;summary&gt; 무한 루프 검사 및 방지(에디터 전용) &lt;/summary&gt;</span>
-<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">InfiniteLoopPreventer</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">InfiniteLoopDetector</span>
 <span class="p">{</span>
     <span class="k">private</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">prevPoint</span> <span class="p">=</span> <span class="s">""</span><span class="p">;</span>
     <span class="k">private</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">detectionCount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
@@ -629,7 +629,7 @@
 <span class="p">{</span>
     <span class="c1">// codes..</span>
 
-    <span class="n">InfiniteLoopPreventer</span><span class="p">.</span><span class="nf">Run</span><span class="p">();</span> <span class="c1">// 이렇게 한 줄 추가 작성</span>
+    <span class="n">InfiniteLoopDetector</span><span class="p">.</span><span class="nf">Run</span><span class="p">();</span> <span class="c1">// 이렇게 한 줄 추가 작성</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -773,6 +773,11 @@
         
         
         
+        <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 간편히 방지하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
         
@@ -789,11 +794,6 @@
         
         
         <li><a href="/posts/unity-memo-ilspy/">ILSpy로 유니티 내부 구현 뜯어보기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-git/">깃 관련 메모 모음</a></li>
       
 
       </ul>
