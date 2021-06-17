@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-17T02:13:40+09:00</updated>
+  <updated>2021-06-17T23:52:03+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,67 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Strategy Pattern(전략 패턴)</title>
+    <link href="https://rito15.github.io/posts/strategy-pattern/" rel="alternate" type="text/html" title="Strategy Pattern(전략 패턴)" />
+    <published>2021-06-17T21:12:00+09:00</published>
+  
+    <updated>2021-06-17T21:12:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/strategy-pattern/</id>
+    <content src="https://rito15.github.io/posts/strategy-pattern/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Algorithm" />
+    
+    <category term="Design Pattern" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Strategy Pattern(전략 패턴)
+
+
+설명
+
+
+  
+    행동 패턴(Behaviour Pattern)의 일종
+  
+  
+    알고리즘을 클래스화하여, 실행 중에 알고리즘(전략)을 통째로 교체하며 사용한다. (핵심)
+  
+  
+    if-else 또는 switch-case 구문을 통해 어떤 기준에 따라 분기로 작성하던 기능을 각각 클래스화시킨다.
+  
+  
+    베이스 클래스를 각각 상속받는 전략 클래스들과 이를 교체하며 사용하는 클래스로 이루어진다.
+  
+  
+    각 전략 클래스는 베이스 클래스를 통해 통일된 행동을 기반으로 구현해야 한다. (중요)
+  
+  
+    필요에 따라 각 전략 클래스를 싱글톤화하여 재사용할 수 있다.
+  
+  
+    전략 클래스 내부에서 컨텍스트의 상태...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -297,73 +358,6 @@ Reference
 
 
   https://www.codegrepp...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>에디터 윈도우 관련 유용한 코드 모음</title>
-    <link href="https://rito15.github.io/posts/unity-editor-window-codes/" rel="alternate" type="text/html" title="에디터 윈도우 관련 유용한 코드 모음" />
-    <published>2021-06-14T01:50:00+09:00</published>
-  
-    <updated>2021-06-14T01:50:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-window-codes/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-window-codes/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Enum - EditorWindowType
-
-
-[Flags]
-private enum EditorWindowType
-{
-    Scene = 1,
-    Game  = 2,
-    Inspector = 4,
-    Hierarchy = 8,
-    Project   = 16,
-    Console   = 32
-}
-
-
-
-
-특정 윈도우에 포커스하기
-
-
-private static void FocusOnWindow(EditorWindowType windowType)
-{
-    EditorApplication.ExecuteMenuItem("Window/General/" + windowType.ToString());
-}
-
-
-
-
-현재 선택된 윈도우에 키 이벤트 발생시키기
-
-
-/// &amp;lt;summary&amp;gt; 현재 ...
     </summary>
   
 

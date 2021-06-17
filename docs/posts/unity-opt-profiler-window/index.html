@@ -5946,6 +5946,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6593,7 +6606,7 @@ GIF
       
       
       <div class="card">
-        <a href="/posts/unity-opt-script-optimization/">
+        <a href="/posts/unity-material-property-block/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6610,13 +6623,13 @@ GIF
   
 
   
-    Feb  4
+    May 22
   
 
-  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
+  <i class="unloaded">2021-05-22T18:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 스크립트 최적화</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Material Property Block을 통해 프로퍼티 값 변경하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6625,16 +6638,29 @@ GIF
 
 
 
-                목차
+                드로우 콜과 배칭의 개념
 
 
-  1. GetComponent(), Find() 메소드 사용 줄이기
-  2. GetComponent() 대신 TryGetComponent() 사용하기
-  3. 비어있는 유니티 이벤트 메소드 방치하지 않기
-  4. StartCoroutine() 자주 호출하지 않기
-  5. 코루틴의 yield 캐싱하기
-  6. 참조 캐싱하기
-  7. 빌드 이후...
+Draw Call
+
+  
+    CPU가 GPU에게 오브젝트를 그리라고 요청하는 것
+  
+  
+    주요 CPU 병목 요소 중 하나
+  
+
+
+SetPass Call
+
+  
+    쉐이더 렌더링 패스 수
+  
+  
+    쉐이더 요소(예 : 프로퍼티)변경 시 SetPass Call 증가
+  
+  
+    간단히, 쉐이더와 ...
               </p>
             </div>
           </div>
