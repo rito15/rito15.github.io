@@ -76,21 +76,7 @@ mermaid: true
 
 ## **[1] 기존 코드**
 
-
-
-
-
-
-
-
-클 래 스 다 이 어 그 램
-
-
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/122581212-c6dade80-d091-11eb-83c9-b23da6253208.png)
 
 <details>
 <summary markdown="span"> 
@@ -161,7 +147,9 @@ public class PlayerCharacter : MonoBehaviour
         Debug.Log("돌진 공격");
     }
 }
+```
 
+```cs
 /// <summary> 적 </summary>
 public class Enemy : MonoBehaviour { }
 ```
@@ -173,26 +161,9 @@ public class Enemy : MonoBehaviour { }
 
 ## **[2] 전략 패턴 적용**
 
-- 싱글톤 패턴, 널 패턴도 함께 적용
+- 싱글톤 패턴, 널 오브젝트 패턴도 함께 적용
 
-<br>
-
-
-
-
-
-
-
-
-클 래 스 다 이 어 그 램
-
-
-
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/122584441-533ad080-d095-11eb-9041-6b6940301fb3.png)
 
 <details>
 <summary markdown="span"> 
@@ -258,21 +229,21 @@ public class PlayerCharacter : MonoBehaviour
         return Vector3.Distance(targetEnemy.transform.position, transform.position);
     }
 }
+```
 
-
-
+```cs
 /// <summary> 적 </summary>
 public class Enemy : MonoBehaviour { }
+```
 
-
-
+```cs
 /// <summary> 공격 전략 인터페이스 </summary>
 public interface IAttackStrategy
 {
     void Attack(Enemy target);
 }
 
-/// <summary> 공격 전략 </summary>
+/// <summary> 공격 전략 베이스 클래스 </summary>
 public abstract class AttackStrategy<T> : IAttackStrategy where T :  AttackStrategy<T>, new()
 {
     // 각 하위 클래스마다 생성될 싱글톤 인스턴스

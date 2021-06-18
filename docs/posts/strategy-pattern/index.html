@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1368 words">7 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1371 words">7 min</span>
 
 
           <!-- page views -->
@@ -532,6 +532,8 @@
 
 <h2 id="1-기존-코드"><strong>[1] 기존 코드</strong></h2>
 
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/122581212-c6dade80-d091-11eb-83c9-b23da6253208.png" alt="image" /></p>
+
 <details>
   <summary> 
 Source Code
@@ -600,9 +602,6 @@ Source Code
 61
 62
 63
-64
-65
-66
 </pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 플레이어 캐릭터(컨텍스트 역할) &lt;/summary&gt;</span>
 <span class="k">public</span> <span class="k">class</span> <span class="nc">PlayerCharacter</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
 <span class="p">{</span>
@@ -666,8 +665,11 @@ Source Code
         <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"돌진 공격"</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
 
-<span class="c1">/// &lt;summary&gt; 적 &lt;/summary&gt;</span>
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 적 &lt;/summary&gt;</span>
 <span class="k">public</span> <span class="k">class</span> <span class="nc">Enemy</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span> <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
@@ -675,11 +677,13 @@ Source Code
 
 <p><br /></p>
 
-<h2 id="2-전략-패턴-사용"><strong>[2] 전략 패턴 사용</strong></h2>
+<h2 id="2-전략-패턴-적용"><strong>[2] 전략 패턴 적용</strong></h2>
 
 <ul>
-  <li>싱글톤 패턴, 널 패턴도 함께 사용</li>
+  <li>싱글톤 패턴, 널 오브젝트 패턴도 함께 적용</li>
 </ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/122584441-533ad080-d095-11eb-9041-6b6940301fb3.png" alt="image" /></p>
 
 <details>
   <summary> 
@@ -744,63 +748,6 @@ Source Code
 56
 57
 58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
 </pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 플레이어 캐릭터(컨텍스트 역할) &lt;/summary&gt;</span>
 <span class="k">public</span> <span class="k">class</span> <span class="nc">PlayerCharacter</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
 <span class="p">{</span>
@@ -859,21 +806,70 @@ Source Code
         <span class="k">return</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Distance</span><span class="p">(</span><span class="n">targetEnemy</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
 
-
-
-<span class="c1">/// &lt;summary&gt; 적 &lt;/summary&gt;</span>
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 적 &lt;/summary&gt;</span>
 <span class="k">public</span> <span class="k">class</span> <span class="nc">Enemy</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
 
-
-
-<span class="c1">/// &lt;summary&gt; 공격 전략 인터페이스 &lt;/summary&gt;</span>
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 공격 전략 인터페이스 &lt;/summary&gt;</span>
 <span class="k">public</span> <span class="k">interface</span> <span class="nc">IAttackStrategy</span>
 <span class="p">{</span>
     <span class="k">void</span> <span class="nf">Attack</span><span class="p">(</span><span class="n">Enemy</span> <span class="n">target</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="c1">/// &lt;summary&gt; 공격 전략 &lt;/summary&gt;</span>
+<span class="c1">/// &lt;summary&gt; 공격 전략 베이스 클래스 &lt;/summary&gt;</span>
 <span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">AttackStrategy</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">IAttackStrategy</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span>  <span class="n">AttackStrategy</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;,</span> <span class="k">new</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="c1">// 각 하위 클래스마다 생성될 싱글톤 인스턴스</span>
