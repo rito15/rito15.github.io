@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-19T00:32:41+09:00</updated>
+  <updated>2021-06-19T05:33:17+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,86 @@
 
   
   <entry>
+    <title>Texture Painter(텍스쳐에 그림 그리기)</title>
+    <link href="https://rito15.github.io/posts/unity-texture-painter/" rel="alternate" type="text/html" title="Texture Painter(텍스쳐에 그림 그리기)" />
+    <published>2021-06-19T04:32:00+09:00</published>
+  
+    <updated>2021-06-19T04:32:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-texture-painter/</id>
+    <content src="https://rito15.github.io/posts/unity-texture-painter/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Toys" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+  실시간으로 마우스 클릭, 드래그를 통해 게임 오브젝트의 텍스쳐에 그림 그리기
+
+
+
+
+How To Use
+
+
+그림 그려질 대상 게임오브젝트
+
+
+  
+    알맞은 콜라이더를 넣는다.
+  
+  
+    Rito/PaintTexture 쉐이더로 생성한 마테리얼을 적용한다.
+  
+  
+    TexturePaintTarget 컴포넌트를 추가는다.
+  
+
+
+
+
+브러시
+
+
+  
+    씬에 빈 게임오브젝트를 생성하고 TexturePaintBrush 컴포넌트를 추가는다.
+  
+  
+    Brush Size로 브러시의 크기를 조절할 수 있다.
+  
+  
+    Brush Texture로 브러시의 모양으로 사용할 텍스쳐를 등록할 수 있다.
+등록하지 않은 경우, 기본 브러시로 자동 초기화된다.
+ ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>Strategy Pattern(전략 패턴)</title>
     <link href="https://rito15.github.io/posts/strategy-pattern/" rel="alternate" type="text/html" title="Strategy Pattern(전략 패턴)" />
     <published>2021-06-17T21:12:00+09:00</published>
   
-    <updated>2021-06-17T21:12:00+09:00</updated>
+    <updated>2021-06-19T00:34:25+09:00</updated>
   
     <id>https://rito15.github.io/posts/strategy-pattern/</id>
     <content src="https://rito15.github.io/posts/strategy-pattern/" />
@@ -304,60 +379,6 @@ git push -u origin main
 
 5. Windows10 WSL
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>스크립트로 콘솔 내용 지우기</title>
-    <link href="https://rito15.github.io/posts/unity-clear-console-through-script/" rel="alternate" type="text/html" title="스크립트로 콘솔 내용 지우기" />
-    <published>2021-06-14T02:22:00+09:00</published>
-  
-    <updated>2021-06-14T02:22:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-clear-console-through-script/</id>
-    <content src="https://rito15.github.io/posts/unity-clear-console-through-script/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      private static MethodInfo clearMethodInfo;
-private static void ClearLog()
-{
-    if (clearMethodInfo == null)
-    {
-        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-        var type = assembly.GetType("UnityEditor.LogEntries");
-        clearMethodInfo = type.GetMethod("Clear");
-    }
-    clearMethodInfo.Invoke(new object(), null);
-}
-
-
-
-
-Reference
-
-
-  https://www.codegrepp...
     </summary>
   
 

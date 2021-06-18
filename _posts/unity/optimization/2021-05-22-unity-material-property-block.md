@@ -148,7 +148,7 @@ private void SetRandomProperty()
 
 `MeshRenderer.SetPropertyBlock()` 메소드를 통해 수정된 값을 적용한다.
 
-마테리얼마다 `MaterialPropertyBlock` 객체를 따로 생성할 필요는 없다.
+마테리얼마다 `MaterialPropertyBlock` 객체를 따로 생성해도 되고, 객체를 재사용해도 된다.
 
 ```cs
 private MeshRenderer[] renderers;

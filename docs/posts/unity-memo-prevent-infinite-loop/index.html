@@ -773,6 +773,11 @@
         
         
         
+        <li><a href="/posts/strategy-pattern/">Strategy Pattern(전략 패턴)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 간편히 방지하기</a></li>
       
         
@@ -789,11 +794,6 @@
         
         
         <li><a href="/posts/method-chaning-pattern/">Method Chaining & Generic(메소드 체인 패턴)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-ilspy/">ILSpy로 유니티 내부 구현 뜯어보기</a></li>
       
 
       </ul>
@@ -3095,6 +3095,8 @@
     
     
     
+      
+    
   
     
     
@@ -4167,6 +4169,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -6579,55 +6594,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-event-functions/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jun  6
-  
-
-  <i class="unloaded">2021-06-06T05:05:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 이벤트 함수는 어떻게 실행되는 것일까?</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Unity Event Functions
-
-
-유니티엔진에서 ‘스크립트’를 작성한다고 하면, 보통 MonoBahaviour를 상속받는 클래스의 스크립트를 작성하는 것을 떠올릴 것이다.
-
-그리고 자연스럽게 이 클래스 내에 Awake(), Start(), Update() 등의 메소드를 작성하게 된다.
-
-심지어 비주얼 스튜디오 같은 개발 환경에서는 이런 메소드...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-memo-bool-as-a-button/">
           <div class="card-body">
             <!--
@@ -6674,6 +6640,67 @@
 하지만 잠깐 테스트용으로 쓰려는데 스크립트 하나 더 만들고, 커스텀 에디터 선언하고, …
 
 심지어 에디터 GUI좀...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-memo-callback-overhead/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 11
+  
+
+  <i class="unloaded">2021-03-11T18:11:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                테스트 대상
+
+
+[1] 문장(계산식)
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+private static void TestInline()
+{
+    for (int i = 0; i &lt; count; i++)
+    {
+        _ = Math.Round(2.3f) * Math.Sin(2.5f);
+        _ = Math.Floor(4.4f) *...
               </p>
             </div>
           </div>
@@ -9073,6 +9100,8 @@
     
     
     
+    
+      
     
   
     
