@@ -367,6 +367,88 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-check-cursor-over-ui/">마우스 커서가 UI 위에 있는지 검사하는 간단한 코드</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+  
+    private static bool IsPointerOverUI()
+    =&gt; UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+
+  
+
+
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Jun 10, 2021,  2:22 AM +0900"
+  >
+
+  
+  
+
+  
+    Jun 10
+  
+
+  <i class="unloaded">2021-06-10T02:22:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-event-functions/">유니티 이벤트 함수는 어떻게 실행되는 것일까?</a>
     </h1>
 
@@ -1235,97 +1317,6 @@ this.Repaint();
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-gui-style/">GUI 스타일 지정하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        인라인 방식으로 스타일 설정하기
-
-
-
-  GUI.___ 프로퍼티 값들을 수정하고 돌려놓기
-
-
-
-  
-    // OnInspectorGUI
-
-var oldBgColor = GUI.backgroundColor;
-GUI.backgroundColor = Color.red;
-
-// &lt;- Draw GUIs
-
-GUI.backgroundColor = oldB...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, May 18, 2021,  2:02 AM +0900"
-  >
-
-  
-  
-
-  
-    May 18
-  
-
-  <i class="unloaded">2021-05-18T02:02:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="373 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1628,9 +1619,24 @@ GUI.backgroundColor = oldB...
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page18/">18</a>
+        <a class="page-link btn-box-shadow" href="/page19/">19</a>
       </li>
     
 
@@ -1689,6 +1695,11 @@ GUI.backgroundColor = oldB...
         
         
         
+        <li><a href="/posts/unity-material-property-block/">Material Property Block을 통해 프로퍼티 값 변경하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/strategy-pattern/">Strategy Pattern(전략 패턴)</a></li>
       
         
@@ -1705,11 +1716,6 @@ GUI.backgroundColor = oldB...
         
         
         <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/method-chaning-pattern/">Method Chaining & Generic(메소드 체인 패턴)</a></li>
       
 
       </ul>

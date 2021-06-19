@@ -754,6 +754,11 @@
         
         
         
+        <li><a href="/posts/unity-material-property-block/">Material Property Block을 통해 프로퍼티 값 변경하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/strategy-pattern/">Strategy Pattern(전략 패턴)</a></li>
       
         
@@ -770,11 +775,6 @@
         
         
         <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/method-chaning-pattern/">Method Chaining & Generic(메소드 체인 패턴)</a></li>
       
 
       </ul>
@@ -4930,6 +4930,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6498,53 +6511,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-check-cursor-over-ui/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jun 10
-  
-
-  <i class="unloaded">2021-06-10T02:22:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>마우스 커서가 UI 위에 있는지 검사하는 간단한 코드</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                1
-2
-private static bool IsPointerOverUI()
-    =&gt; UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
-
-
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-memo-color-debug-log/">
           <div class="card-body">
             <!--
@@ -6654,6 +6620,61 @@ Debug.Log("&lt;color=white&gt;Whit...
 따라서 해상도를 기반으로 하는 드래그 등의 기능을 구현할 때
 
 마우스 변위를 해상도 값으로 가져오고, 이를 RectTransform에 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-put-component-on-top/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    May 17
+  
+
+  <i class="unloaded">2021-05-17T21:12:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>컴포넌트를 인스펙터 최상단에 올리기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+1
+2
+3
+4
+5
+6
+/// &lt;summary&gt; 컴포넌트를 최상단에 올리기 &lt;/summary&gt;
+[System.Diagnostics.Conditional("UNITY_EDITOR")]
+private static void PutComponentOnTop(Component component)
+{
+    for (int i =...
               </p>
             </div>
           </div>
