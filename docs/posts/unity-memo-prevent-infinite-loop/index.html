@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="582 words">3 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="765 words">4 min</span>
 
 
           <!-- page views -->
@@ -611,9 +611,9 @@
 </span><span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p><br /></p>
+<p>위 스크립트를 작성하여 유니티 프로젝트 내에 넣어준다.</p>
 
-<p>그리고 무한루프가 발생할 가능성이 있는 코드에</p>
+<p>그리고 무한루프가 발생할 가능성이 있는 for 또는 while문 내에</p>
 
 <p>다음처럼 간단히 작성하면 된다.</p>
 
@@ -623,9 +623,7 @@
 4
 5
 6
-7
-</pre></td><td class="rouge-code"><pre>
-<span class="k">while</span><span class="p">(</span> <span class="cm">/* condition */</span> <span class="p">)</span>
+</pre></td><td class="rouge-code"><pre><span class="k">while</span><span class="p">(</span> <span class="cm">/* condition */</span> <span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// codes..</span>
 
@@ -641,6 +639,53 @@
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/122255002-aaf80100-cf08-11eb-986e-63060ee94bcd.png" alt="image" /></p>
 
+<p><br /></p>
+
+<h2 id="주의사항"><strong>주의사항</strong></h2>
+
+<p>루프 내에서 단 한 번씩만 호출해야 한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="k">while</span><span class="p">(</span> <span class="cm">/* condition */</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">InfiniteLoopDetector</span><span class="p">.</span><span class="nf">Run</span><span class="p">();</span>
+
+    <span class="c1">// codes..</span>
+
+    <span class="n">InfiniteLoopDetector</span><span class="p">.</span><span class="nf">Run</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위와 같이 작성하면 의도대로 동작하지 않는다.</p>
+
+<p><br /></p>
+
+<h2 id="동작-원리"><strong>동작 원리</strong></h2>
+
+<ol>
+  <li>
+    <p>메소드를 호출할 때마다 호출 위치를 기억하고, 이전과 동일하면 카운트를 누적한다.<br />
+이전과 다를 경우 카운트를 0으로 초기화한다.</p>
+  </li>
+  <li>
+    <p>누적된 카운트가 일정 값을 넘어서는 순간, 예외를 발생시키고 루프를 탈출한다.</p>
+  </li>
+</ol>
+
+<p><br /></p>
+
+<h1 id="download">Download</h1>
+<hr />
+<ul>
+  <li><a href="https://github.com/rito15/Images/files/6680557/InfiniteLoopDetector.zip">InfiniteLoopDetector.zip</a></li>
+</ul>
 
 
       </div>

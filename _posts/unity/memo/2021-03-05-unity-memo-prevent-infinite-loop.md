@@ -100,14 +100,14 @@ public static class InfiniteLoopDetector
 }
 ```
 
-<br>
+위 스크립트를 작성하여 유니티 프로젝트 내에 넣어준다.
 
-그리고 무한루프가 발생할 가능성이 있는 코드에
+
+그리고 무한루프가 발생할 가능성이 있는 for 또는 while문 내에
 
 다음처럼 간단히 작성하면 된다.
 
 ```cs
-
 while( /* condition */ )
 {
     // codes..
@@ -124,4 +124,36 @@ while( /* condition */ )
 
 ![image](https://user-images.githubusercontent.com/42164422/122255002-aaf80100-cf08-11eb-986e-63060ee94bcd.png)
 
+<br>
 
+## **주의사항**
+
+루프 내에서 단 한 번씩만 호출해야 한다.
+
+```cs
+while( /* condition */ )
+{
+    InfiniteLoopDetector.Run();
+
+    // codes..
+
+    InfiniteLoopDetector.Run();
+}
+```
+
+위와 같이 작성하면 의도대로 동작하지 않는다.
+
+<br>
+
+## **동작 원리**
+
+1. 메소드를 호출할 때마다 호출 위치를 기억하고, 이전과 동일하면 카운트를 누적한다.<br>
+   이전과 다를 경우 카운트를 0으로 초기화한다.
+
+2. 누적된 카운트가 일정 값을 넘어서는 순간, 예외를 발생시키고 루프를 탈출한다.
+
+<br>
+
+# Download
+---
+- [InfiniteLoopDetector.zip](https://github.com/rito15/Images/files/6680557/InfiniteLoopDetector.zip)
