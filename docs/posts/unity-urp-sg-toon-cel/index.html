@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Toon(Cel)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Summary","datePublished":"2020-09-30T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-urp-sg-toon-cel/"},"url":"https://rito15.github.io/posts/unity-urp-sg-toon-cel/","author":{"@type":"Person","name":"Rito15"},"headline":"Toon(Cel)","dateModified":"2020-09-30T00:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2020-09-30T00:00:00+09:00","description":"Summary","dateModified":"2020-09-30T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-urp-sg-toon-cel/"},"url":"https://rito15.github.io/posts/unity-urp-sg-toon-cel/","author":{"@type":"Person","name":"Rito15"},"headline":"Toon(Cel)","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="131 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="189 words">1 min</span>
 
 
           <!-- page views -->
@@ -498,6 +498,45 @@
     </tr>
   </tbody>
 </table></div>
+
+<h1 id="graph">Graph</h1>
+<hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/122684757-6048f280-d242-11eb-9a55-723fa0b6f583.png" alt="image" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/122684743-3bed1600-d242-11eb-8740-00416c544bd6.png" alt="image" /></p>
+
+<div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="c1">// Custom Function : MainLight.hlsl</span>
+
+<span class="kt">void</span> <span class="nf">GetLightingInformation_float</span><span class="p">(</span><span class="k">out</span> <span class="kt">float3</span> <span class="n">Direction</span><span class="p">,</span> <span class="k">out</span> <span class="kt">float3</span> <span class="n">Color</span><span class="p">,</span><span class="k">out</span> <span class="n">float</span> <span class="n">Attenuation</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cp">#ifdef SHADERGRAPH_PREVIEW
+</span>        <span class="n">Direction</span> <span class="o">=</span> <span class="kt">float3</span><span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">);</span>
+        <span class="n">Color</span> <span class="o">=</span> <span class="kt">float3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">Attenuation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">;</span>
+    <span class="cp">#else
+</span>        <span class="n">Light</span> <span class="n">light</span> <span class="o">=</span> <span class="n">GetMainLight</span><span class="p">();</span>
+        <span class="n">Direction</span> <span class="o">=</span> <span class="n">light</span><span class="p">.</span><span class="n">direction</span><span class="p">;</span>
+        <span class="n">Attenuation</span> <span class="o">=</span> <span class="n">light</span><span class="p">.</span><span class="n">distanceAttenuation</span><span class="p">;</span>
+        <span class="n">Color</span> <span class="o">=</span> <span class="n">light</span><span class="p">.</span><span class="n">color</span><span class="p">;</span>
+    <span class="cp">#endif
+</span><span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 <h1 id="download">Download</h1>
 <hr />
@@ -643,17 +682,17 @@
         
         
         
+        <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 간편히 방지하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-material-property-block/">Material Property Block을 통해 프로퍼티 값 변경하기</a></li>
       
         
         
         
         <li><a href="/posts/strategy-pattern/">Strategy Pattern(전략 패턴)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 간편히 방지하기</a></li>
       
         
         
@@ -4034,6 +4073,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   

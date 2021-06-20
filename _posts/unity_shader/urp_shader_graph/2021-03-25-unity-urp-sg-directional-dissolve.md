@@ -41,6 +41,12 @@ mermaid: true
 |`Dissolve`|디졸브 진행도(0 ~ 1)|
 
 
+# Graph
+---
+
+![image](https://user-images.githubusercontent.com/42164422/122684927-6ab7bc00-d243-11eb-9f4b-c7ee98f0d598.png)
+
+
 # Download
 ---
 - [2021_0325_Dissolve_Directional_2Color.zip](https://github.com/rito15/Images/files/6202820/2021_0325_Dissolve_Directional_2Color.zip)

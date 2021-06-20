@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Scripting Define Symbol 스크립트로 제어하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Scripting Define Symbol?","datePublished":"2021-03-12T18:28:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-define-symbol/"},"url":"https://rito15.github.io/posts/unity-editor-define-symbol/","author":{"@type":"Person","name":"Rito15"},"headline":"Scripting Define Symbol 스크립트로 제어하기","dateModified":"2021-03-12T18:28:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2021-03-12T18:28:00+09:00","description":"Scripting Define Symbol?","dateModified":"2021-03-12T18:28:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-define-symbol/"},"url":"https://rito15.github.io/posts/unity-editor-define-symbol/","author":{"@type":"Person","name":"Rito15"},"headline":"Scripting Define Symbol 스크립트로 제어하기","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -714,17 +714,17 @@
         
         
         
+        <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 간편히 방지하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-material-property-block/">Material Property Block을 통해 프로퍼티 값 변경하기</a></li>
       
         
         
         
         <li><a href="/posts/strategy-pattern/">Strategy Pattern(전략 패턴)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 간편히 방지하기</a></li>
       
         
         
@@ -4981,6 +4981,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6534,6 +6547,72 @@ Memo
       
       
       <div class="card">
+        <a href="/posts/unity-editor-window-codes/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jun 14
+  
+
+  <i class="unloaded">2021-06-14T01:50:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>에디터 윈도우 관련 유용한 코드 모음</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Enum - EditorWindowType
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[Flags]
+private enum EditorWindowType
+{
+    Scene = 1,
+    Game  = 2,
+    Inspector = 4,
+    Hierarchy = 8,
+    Project   = 16,
+    Console   = 32
+}
+
+...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-editor-custom-editor-window/">
           <div class="card-body">
             <!--
@@ -6593,73 +6672,6 @@ using UnityEditor;
 public class ExampleWindow : EditorWindow
 {
     private bo...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-editor-init-events/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar  8
-  
-
-  <i class="unloaded">2021-03-08T03:03:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>컴파일, 게임 시작 시 실행되는 애트리뷰트 정리</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                공통 특징
-
-
-
-  
-    클래스 또는 메소드 상단에 애트리뷰트를 명시한다.
-  
-  
-    컴포넌트로 넣지 않고, 스크립트로만 존재해도 실행된다.
-  
-  
-    정적 클래스나 상속에 관계 없이 동작한다.
-  
-  
-    메소드 애트리뷰트는 정적 메소드에만 동작한다.
-  
-
-
-
-
-컴파일, 플레이모드 진입 시 실행
-
-
-Note
-
-  Editor...
               </p>
             </div>
           </div>

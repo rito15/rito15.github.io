@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Custom Editor Window(커스텀 에디터 윈도우)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note 에디터 윈도우를 직접 만들어 사용할 수 있다.","datePublished":"2021-03-08T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-custom-editor-window/"},"url":"https://rito15.github.io/posts/unity-editor-custom-editor-window/","author":{"@type":"Person","name":"Rito15"},"headline":"Custom Editor Window(커스텀 에디터 윈도우)","dateModified":"2021-03-28T21:29:24+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2021-03-08T00:00:00+09:00","description":"Note 에디터 윈도우를 직접 만들어 사용할 수 있다.","dateModified":"2021-03-28T21:29:24+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-custom-editor-window/"},"url":"https://rito15.github.io/posts/unity-editor-custom-editor-window/","author":{"@type":"Person","name":"Rito15"},"headline":"Custom Editor Window(커스텀 에디터 윈도우)","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -746,17 +746,17 @@
         
         
         
+        <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 간편히 방지하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-material-property-block/">Material Property Block을 통해 프로퍼티 값 변경하기</a></li>
       
         
         
         
         <li><a href="/posts/strategy-pattern/">Strategy Pattern(전략 패턴)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 간편히 방지하기</a></li>
       
         
         
@@ -5143,6 +5143,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6566,6 +6579,72 @@ Memo
       
       
       <div class="card">
+        <a href="/posts/unity-editor-window-codes/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jun 14
+  
+
+  <i class="unloaded">2021-06-14T01:50:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>에디터 윈도우 관련 유용한 코드 모음</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Enum - EditorWindowType
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[Flags]
+private enum EditorWindowType
+{
+    Scene = 1,
+    Game  = 2,
+    Inspector = 4,
+    Hierarchy = 8,
+    Project   = 16,
+    Console   = 32
+}
+
+...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-editor-init-events/">
           <div class="card-body">
             <!--
@@ -6624,103 +6703,6 @@ Memo
 Note
 
   Editor...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-editor-playmode-state-change/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar 11
-  
-
-  <i class="unloaded">2021-03-11T03:33:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>플레이모드 상태 변경에 따른 동작 구현하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-#if UNITY_EDITOR
-
-using System;
-using System.Colle...
               </p>
             </div>
           </div>

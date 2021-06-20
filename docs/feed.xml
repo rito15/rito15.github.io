@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-19T20:16:41+09:00</updated>
+  <updated>2021-06-21T03:50:41+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,91 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Black Hole &amp;amp; World Position Offset</title>
+    <link href="https://rito15.github.io/posts/unity-black-hole-effect-shadergraph/" rel="alternate" type="text/html" title="Black Hole &amp;amp; World Position Offset" />
+    <published>2021-06-20T03:33:00+09:00</published>
+  
+    <updated>2021-06-20T03:33:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-black-hole-effect-shadergraph/</id>
+    <content src="https://rito15.github.io/posts/unity-black-hole-effect-shadergraph/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="URP Shader Graph" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+World Position Offset Shader
+
+
+  정점이 순차적으로 월드의 특정 좌표에 빨려 들어가는 쉐이더
+
+
+
+
+Black Hole Shader
+
+
+  영역 내의 색상을 왜곡하는 쉐이더
+
+
+
+
+Preview
+
+
+
+
+
+
+WPO - Step 1 : 정점 좌표의 이동
+
+
+World Space의 좌표에 대해 계산해야 하지만,
+
+마스터 노드의 Vertex Position 입력은 Object Space여야 한다.
+
+따라서 두 가지 선택지가 있다.
+
+
+
+[1] World Space에서 계산하고 최종적으로 Object Space로 변환
+
+
+
+
+
+[2] 처음부터 Object Space로 변환하고 Object Space에서 계산
+
+
+
+
+
+기본적으로 쉐이더 내에서의 계산은 대부분 Object...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -303,91 +388,6 @@ ildasm.exe 파일을 찾아 실행한다.
 
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Jekyll 블로그 만들기 간단 메모</title>
-    <link href="https://rito15.github.io/posts/memo-init-jekyll-blog/" rel="alternate" type="text/html" title="Jekyll 블로그 만들기 간단 메모" />
-    <published>2021-06-15T14:55:00+09:00</published>
-  
-    <updated>2021-06-16T17:11:21+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-init-jekyll-blog/</id>
-    <content src="https://rito15.github.io/posts/memo-init-jekyll-blog/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Start Jekyll Blog
-
-
-1. Ruby 설치
-
-
-  https://rubyinstaller.org/downloads/
-  2.7.3
-
-
-
-
-2. Jekyll Bundler 설치
-
-
-  cmd 켰을 때 나오는 사용자 기본 경로에 설치
-
-
-gem install jekyll bundler
-
-
-
-
-3. 블로그용 깃헙 원격 리포 준비
-
-
-  리포 이름은 닉네임.github.io
-
-
-
-
-4. 로컬 리포 준비
-
-
-  원격 리포랑 연결
-
-
-git init
-git add .
-git commit -m "init"
-git branch -M main
-git remote add origin [깃헙 원격 리포 주소]
-git push -u origin main
-
-
-
-
-5. Jekyll 테마 다운로드
-
-
-  
-    h...
     </summary>
   
 

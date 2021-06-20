@@ -38,6 +38,10 @@ mermaid: true
 |`Transition Speed`|프레넬 노이즈 이동속도|
 |`Noise Frequency`|프레넬 노이즈 조밀도|
 
+# Graph
+---
+
+![image](https://user-images.githubusercontent.com/42164422/122684642-83bf6d80-d241-11eb-99be-6fe3b1cabd77.png)
 
 # Download
 ---
