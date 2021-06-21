@@ -24,6 +24,7 @@ mermaid: true
 <br>
 
 ## UniRx
+
 - .NET의 Rx를 유니티에서 사용할 수 없다는 한계를 극복하기 위해 만들어졌다.
 - 유니티의 MonoBehaviour, 코루틴, UGUI 등과 상호작용하기 편하게 구현되어 있다.
 
@@ -35,6 +36,7 @@ using UniRx.Triggers;
 <br>
 
 ## UniRx의 대표적인 활용
+
 - 비동기 구현
 - 이벤트 대체
 - UI의 변화에 따른 동작 구현
@@ -50,10 +52,25 @@ using UniRx.Triggers;
 
 <br>
 
+# Rx 간단 요약
+---
+
+## [1] **Publisher**
+- 스트림(Observable)을 만든다.
+- 연산자(Operator)들로 스트림을 가공한다.
+- 스트림에 메시지를 전송한다. (OnNext)
+
+## [2] **Subscriber**
+- 스트림을 구독한다. (Subscribe)
+- 스트림에 메시지가 발생하면 반응하여 동작한다.
+
+<br>
+
 # 구성과 작동 방식
 ---
 
 ## 기본 작동 방식
+
  - Observable 객체를 만들거나, 대상을 Observable로 변환하여 스트림을 생성한다.
 
  - 다양한 연산자를 통해 스트림을 가공한다.
