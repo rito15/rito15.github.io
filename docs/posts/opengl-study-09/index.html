@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="OpenGL 공부 - 09 - uniform, VAO" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 uniform 변수, VAO에 대한 이해 및 사용","datePublished":"2021-02-05T15:20:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-09/"},"url":"https://rito15.github.io/posts/opengl-study-09/","author":{"@type":"Person","name":"Rito15"},"headline":"OpenGL 공부 - 09 - uniform, VAO","dateModified":"2021-02-05T15:20:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"OpenGL 공부 - 09 - uniform, VAO","description":"목표 uniform 변수, VAO에 대한 이해 및 사용","dateModified":"2021-02-05T15:20:00+09:00","datePublished":"2021-02-05T15:20:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/opengl-study-09/"},"url":"https://rito15.github.io/posts/opengl-study-09/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2482 words">13 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2521 words">14 min</span>
 
 
           <!-- page views -->
@@ -436,6 +436,7 @@
 </ul>
 
 <p><br /></p>
+
 <h2 id="쉐이더에서-uniform-변수-선언-및-사용">쉐이더에서 uniform 변수 선언 및 사용</h2>
 
 <div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -458,7 +459,7 @@
 
 <span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
-	<span class="n">color</span> <span class="o">=</span> <span class="n">u_Color</span><span class="p">;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">u_Color</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -467,18 +468,21 @@
 </ul>
 
 <p><br /></p>
+
 <h2 id="opengl에서-uniform-변수-선언-및-전달">OpenGL에서 uniform 변수 선언 및 전달</h2>
 
+<h3 id="glgetuniformlocation"><strong>glGetUniformLocation</strong></h3>
 <ul>
-  <li>
-    <h3 id="glgetuniformlocation">glGetUniformLocation</h3>
-    <ul>
-      <li>대상 프로그램(쉐이더)에 uniform 변수의 위치를 생성하고, 그 위치를 리턴한다.</li>
-    </ul>
-  </li>
+  <li>대상 프로그램(쉐이더)에 uniform 변수의 위치를 생성하고, 그 위치를 리턴한다.</li>
 </ul>
 
 <div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>파라미터, 리턴</th>
+      <th>설명</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
       <td>GLuint <code class="language-plaintext highlighter-rouge">program</code></td>
@@ -496,18 +500,21 @@
 </table></div>
 
 <p><br /></p>
+
+<h3 id="gluniform"><strong>glUniform</strong></h3>
 <ul>
-  <li>
-    <h3 id="gluniform">glUniform</h3>
-    <ul>
-      <li>uniform 변수의 값을 초기화한다.</li>
-      <li>변수의 차원에 따라 함수명 접미어로 우선 숫자가 1~4까지 붙는다.</li>
-      <li>변수의ㅣ 타입에 따라 함수명 접미어로 f, i, ui 등이 붙는다.</li>
-    </ul>
-  </li>
+  <li>uniform 변수의 값을 초기화한다.</li>
+  <li>변수의 차원에 따라 함수명 접미어로 우선 숫자가 1~4까지 붙는다.</li>
+  <li>변수의ㅣ 타입에 따라 함수명 접미어로 f, i, ui 등이 붙는다.</li>
 </ul>
 
 <div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>파라미터, 리턴</th>
+      <th>설명</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
       <td>GLint <code class="language-plaintext highlighter-rouge">location</code></td>
@@ -541,6 +548,7 @@
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
+
 <h2 id="실시간으로-변화하는-uniform-변수값-전달하기">실시간으로 변화하는 uniform 변수값 전달하기</h2>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -660,28 +668,49 @@
 
 <h2 id="basicshader">Basic.shader</h2>
 
-<pre><code class="language-shader">#shader vertex
+<div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre><span class="cp">#shader vertex
 #version 330 core
+</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">in</span> <span class="kt">vec4</span> <span class="n">position</span><span class="p">;</span>
 
-layout(location = 0) in vec4 position;
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="nb">gl_Position</span> <span class="o">=</span> <span class="n">position</span><span class="p">;</span>
+<span class="p">};</span>
 
-void main()
-{
-   gl_Position = position;
-};
-
-#shader fragment
+<span class="cp">#shader fragment
 #version 330 core
+</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">out</span> <span class="kt">vec4</span> <span class="n">color</span><span class="p">;</span>
 
-layout(location = 0) out vec4 color;
+<span class="k">uniform</span> <span class="kt">vec4</span> <span class="n">u_Color</span><span class="p">;</span>
 
-uniform vec4 u_Color;
-
-void main()
-{
-	color = u_Color;
-};
-</code></pre>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">u_Color</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 <h2 id="errorhandlerhpp">ErrorHandler.hpp</h2>
 
@@ -1505,6 +1534,11 @@ void main()
         
         
         
+        <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-urp-sg-directional-dissolve/">Directional Dissolve (2 Color)</a></li>
       
         
@@ -1521,11 +1555,6 @@ void main()
         
         
         <li><a href="/posts/unity-urp-sg-outline-object/">Outline Object</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
       
 
       </ul>

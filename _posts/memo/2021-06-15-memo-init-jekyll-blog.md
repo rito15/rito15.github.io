@@ -157,3 +157,7 @@ git push
 - <http://jekyllthemes.org/themes/dactl/>
 - <http://jekyllthemes.org/themes/particle/>
 - <http://jekyllthemes.org/themes/materialbliss/>
+
+## 4. 설명 문서용 테마
+
+- <http://jekyllthemes.org/themes/edition/>

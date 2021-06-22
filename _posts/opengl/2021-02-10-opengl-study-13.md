@@ -1,7 +1,7 @@
 ---
 title: OpenGL 공부 - 13 - Texture
 author: Rito15
-date: 2021-02-10 01:30:00 +09:00    ==================================== 변경!
+date: 2021-02-10 01:30:00 +09:00
 categories: [OpenGL, OpenGL Study]
 tags: [graphics, opengl]
 math: true

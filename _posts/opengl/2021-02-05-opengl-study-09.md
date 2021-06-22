@@ -21,6 +21,7 @@ mermaid: true
  - OpenGL에서 쉐이더로 전달하는 글로벌 변수
 
 <br>
+
 ## 쉐이더에서 uniform 변수 선언 및 사용
 
 ```glsl
@@ -33,29 +34,33 @@ uniform vec4 u_Color;
 
 void main()
 {
-	color = u_Color;
+    color = u_Color;
 };
 ```
 
 - uniform 변수는 기본적으로 u_를 붙여 네이밍한다.
 
 <br>
+
 ## OpenGL에서 uniform 변수 선언 및 전달
 
-- ### glGetUniformLocation
+### **glGetUniformLocation**
   - 대상 프로그램(쉐이더)에 uniform 변수의 위치를 생성하고, 그 위치를 리턴한다.
 
+|파라미터, 리턴|설명|
 |---|---|
 |GLuint `program`|uniform 변수가 사용될 프로그램 객체|
 |const GLchar* `name`|uniform 변수의 이름|
 |return `GLint`|생성된 uniform 변수의 위치값|
 
 <br>
-- ### glUniform
+
+### **glUniform**
   - uniform 변수의 값을 초기화한다.
   - 변수의 차원에 따라 함수명 접미어로 우선 숫자가 1~4까지 붙는다.
   - 변수의ㅣ 타입에 따라 함수명 접미어로 f, i, ui 등이 붙는다.
   
+|파라미터, 리턴|설명|
 |---|---|
 |GLint `location`|uniform 변수의 위치값|
 |parameters|초기화할 값들|
@@ -72,6 +77,7 @@ glUniform4f(uColorLocation, 0.2f, 0.3f, 0.8f, 1.0f);
 ```
 
 <br>
+
 ## 실시간으로 변화하는 uniform 변수값 전달하기
 
 ```cpp
@@ -150,7 +156,7 @@ glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 ## Basic.shader
 
-```shader
+```glsl
 #shader vertex
 #version 330 core
 
@@ -170,7 +176,7 @@ uniform vec4 u_Color;
 
 void main()
 {
-	color = u_Color;
+    color = u_Color;
 };
 ```
 
