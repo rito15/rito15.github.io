@@ -139,12 +139,16 @@ git push
 - <http://jekyllthemes.org/themes/fullit/>
 - <http://jekyllthemes.org/themes/console/>
 - <http://jekyllthemes.org/themes/sleek/>
+- <http://jekyllthemes.org/themes/karna/>
+- <http://jekyllthemes.org/themes/vyaasa/>
 
 <br>
 
 ## 2. 개발 블로그용 테마
 
 - <http://jekyllthemes.org/themes/jekyll-theme-chirpy/>
+- <http://jekyllthemes.org/themes/alembic/>
+
 
 <br>
 
@@ -157,7 +161,9 @@ git push
 - <http://jekyllthemes.org/themes/dactl/>
 - <http://jekyllthemes.org/themes/particle/>
 - <http://jekyllthemes.org/themes/materialbliss/>
+- <http://jekyllthemes.org/themes/online-cv/>
 
 ## 4. 설명 문서용 테마
 
 - <http://jekyllthemes.org/themes/edition/>
+- <http://jekyllthemes.org/themes/papyrus-theme/>
