@@ -1,5 +1,5 @@
 ---
-title: 입문자를 위한 60가지 앰플리파이 쉐이더 노드 모음
+title: 앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음
 author: Rito15
 date: 2021-06-24 01:23:00 +09:00
 categories: [Unity Shader, Amplify Shader]
