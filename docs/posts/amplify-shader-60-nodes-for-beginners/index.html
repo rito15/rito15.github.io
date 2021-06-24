@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표","datePublished":"2021-06-24T01:23:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/"},"url":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/","author":{"@type":"Person","name":"Rito15"},"headline":"앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음","dateModified":"2021-06-24T01:23:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음","description":"목표","dateModified":"2021-06-25T02:04:34+09:00","datePublished":"2021-06-24T01:23:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/"},"url":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,6 +407,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Jun 25, 2021,  2:04 AM +0900"
+  >
+
+  
+  
+
+  
+    Jun 25
+  
+
+  <i class="unloaded">2021-06-25T02:04:34+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -419,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5832 words">32 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6153 words">34 min</span>
 
 
           <!-- page views -->
@@ -1942,8 +1971,10 @@
 
 <h3 id="예시-40"><strong>예시</strong></h3>
 <ul>
-  <li>.</li>
+  <li><strong>UV</strong>와 <strong>Length</strong>를 이용해 간단히 원 그리기</li>
 </ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123304885-7284a280-d55a-11eb-9d58-8fb06ff5de44.png" alt="image" /></p>
 
 <h3 id="wiki-47"><strong>Wiki</strong></h3>
 <ul>
@@ -1967,12 +1998,21 @@
 <ul>
   <li>단축키 : 없음</li>
   <li><code class="language-plaintext highlighter-rouge">Sin(Input)</code> 값을 출력한다.</li>
+  <li>사인 함수는 <code class="language-plaintext highlighter-rouge">2 * PI</code>의 주기를 갖는 주기 함수이다.</li>
+  <li>사인 함수의 출력 값의 범위는 <code class="language-plaintext highlighter-rouge">-1 ~ 1</code>이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Sin(0) = 0</code>이다.</li>
+  <li>일정한 주기와 깔끔한 출력 값 범위를 갖는 특성 덕분에 <code class="language-plaintext highlighter-rouge">Time</code> 노드와 연계하여 많이 사용된다.</li>
 </ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123308214-5d117780-d55e-11eb-8615-7de519dce748.png" alt="image" /></p>
 
 <h3 id="예시-41"><strong>예시</strong></h3>
 <ul>
-  <li>.</li>
+  <li><strong>Time</strong> 노드의 출력을 <strong>Sin</strong> 노드의 입력으로 넣고 <code class="language-plaintext highlighter-rouge">0.1</code>을 곱하여 시간에 따라 <code class="language-plaintext highlighter-rouge">-0.1 ~ 0.1</code> 범위로 변하는 값을 만든다.</li>
+  <li>이 값을 <strong>Vertex Normal</strong> 노드에 곱하여 시간에 따라 정점 노멀 방향과 역방향을 오가는 벡터를 생성하고, 마스터 노드의 <strong>Local Vertex Offset</strong> 입력으로 넣어 정점이 노멀 방향으로 박동하게 한다.</li>
 </ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123306240-00ad5880-d55c-11eb-847a-feeba45ffa89.gif" alt="2021_0625_Sin_Example" /></p>
 
 <h3 id="wiki-48"><strong>Wiki</strong></h3>
 <ul>
@@ -1991,12 +2031,13 @@
 <ul>
   <li>단축키 : 없음</li>
   <li><code class="language-plaintext highlighter-rouge">Cos(Input)</code> 값을 출력한다.</li>
+  <li>코사인 함수는 <code class="language-plaintext highlighter-rouge">2 * PI</code>의 주기를 갖는 주기 함수이다.</li>
+  <li>코사인 함수의 출력 값의 범위는 <code class="language-plaintext highlighter-rouge">-1 ~ 1</code>이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Cos(0) = 1</code>이다.</li>
+  <li>코사인 함수는 사인 함수를 x축 방향으로 <code class="language-plaintext highlighter-rouge">-0.5 * PI</code> 또는 <code class="language-plaintext highlighter-rouge">1.5 * PI</code> 만큼 옮긴 것과 같다.</li>
 </ul>
 
-<h3 id="예시-42"><strong>예시</strong></h3>
-<ul>
-  <li>.</li>
-</ul>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123308372-88946200-d55e-11eb-9b0c-92a81c682f32.png" alt="image" /></p>
 
 <h3 id="wiki-49"><strong>Wiki</strong></h3>
 <ul>
@@ -2015,12 +2056,10 @@
 <ul>
   <li>단축키 : 없음</li>
   <li><code class="language-plaintext highlighter-rouge">Tan(Input)</code> 값을 출력한다.</li>
+  <li>탄젠트 함수는 잘 쓰이지는 않지만, 대표적인 삼각함수 중 하나이므로 개념을 알고 있는 것이 좋다.</li>
 </ul>
 
-<h3 id="예시-43"><strong>예시</strong></h3>
-<ul>
-  <li>.</li>
-</ul>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123310330-ef1a7f80-d560-11eb-8bbe-3f8ffeffe705.png" alt="image" /></p>
 
 <h3 id="wiki-50"><strong>Wiki</strong></h3>
 <ul>
@@ -2056,7 +2095,7 @@
   <li><code class="language-plaintext highlighter-rouge">Out</code> : <strong>Scale</strong>이 곱해진 결과값을 출력한다.</li>
 </ul>
 
-<h3 id="예시-44"><strong>예시</strong></h3>
+<h3 id="예시-42"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2088,7 +2127,7 @@
   <li><code class="language-plaintext highlighter-rouge">t/8</code> : <code class="language-plaintext highlighter-rouge">Sin(Time / 8)</code> 값을 출력한다.</li>
 </ul>
 
-<h3 id="예시-45"><strong>예시</strong></h3>
+<h3 id="예시-43"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2120,7 +2159,7 @@
   <li><code class="language-plaintext highlighter-rouge">t/8</code> : <code class="language-plaintext highlighter-rouge">Cos(Time / 8)</code> 값을 출력한다.</li>
 </ul>
 
-<h3 id="예시-46"><strong>예시</strong></h3>
+<h3 id="예시-44"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2152,7 +2191,7 @@
   <li><strong>Vector3</strong> 타입의 위치 벡터를 입력으로 넣을 때, 바로 넣지 말고 <code class="language-plaintext highlighter-rouge">Append</code> 노드를 통해 <code class="language-plaintext highlighter-rouge">W</code> 값을 1로 입력하여 <strong>Vector4</strong> 타입으로 전달해야 한다.</li>
 </ul>
 
-<h3 id="예시-47"><strong>예시</strong></h3>
+<h3 id="예시-45"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2179,7 +2218,7 @@
   <li><strong>Vector3</strong> 타입의 위치 벡터를 입력으로 넣을 때, 바로 넣지 말고 <code class="language-plaintext highlighter-rouge">Append</code> 노드를 통해 <code class="language-plaintext highlighter-rouge">W</code> 값을 1로 입력하여 <strong>Vector4</strong> 타입으로 전달해야 한다.</li>
 </ul>
 
-<h3 id="예시-48"><strong>예시</strong></h3>
+<h3 id="예시-46"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2221,7 +2260,7 @@
   <li><code class="language-plaintext highlighter-rouge">X</code>, <code class="language-plaintext highlighter-rouge">Y</code>, <code class="language-plaintext highlighter-rouge">Z</code>, <code class="language-plaintext highlighter-rouge">W</code> : 각 채널의 <strong>Float</strong> 값</li>
 </ul>
 
-<h3 id="예시-49"><strong>예시</strong></h3>
+<h3 id="예시-47"><strong>예시</strong></h3>
 <ul>
   <li>화면의 UV를 그대로 색상 값으로 출력하기</li>
 </ul>
@@ -2262,7 +2301,7 @@
   <li><code class="language-plaintext highlighter-rouge">R</code>, <code class="language-plaintext highlighter-rouge">G</code>, <code class="language-plaintext highlighter-rouge">B</code>, <code class="language-plaintext highlighter-rouge">A</code> : 출력 색상의 각 채널 <strong>Float</strong> 값</li>
 </ul>
 
-<h3 id="예시-50"><strong>예시</strong></h3>
+<h3 id="예시-48"><strong>예시</strong></h3>
 <ul>
   <li>뒤에 보이는 화면의 일렁임 효과</li>
 </ul>
@@ -2308,7 +2347,7 @@
   <li><code class="language-plaintext highlighter-rouge">Out</code> : Fresnel 계산 결과값</li>
 </ul>
 
-<h3 id="예시-51"><strong>예시</strong></h3>
+<h3 id="예시-49"><strong>예시</strong></h3>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123135507-d771c700-d48c-11eb-8b7e-aee274833e43.gif" alt="2021_0624_Fresnel_Example" /></p>
 
@@ -2464,6 +2503,11 @@
         
         
         
+        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
       
         
@@ -2480,11 +2524,6 @@
         
         
         <li><a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-urp-sg-directional-dissolve/">Directional Dissolve (2 Color)</a></li>
       
 
       </ul>

@@ -1376,12 +1376,9 @@ mermaid: true
  - 입력 벡터의 길이를 **Float**로 출력한다.
 
 ### **예시**
- - .
+ - **UV**와 **Length**를 이용해 간단히 원 그리기
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/123304885-7284a280-d55a-11eb-9d58-8fb06ff5de44.png)
 
 
 ### **Wiki**
@@ -1404,15 +1401,18 @@ mermaid: true
 ### **설명**
  - 단축키 : 없음
  - `Sin(Input)` 값을 출력한다.
+ - 사인 함수는 `2 * PI`의 주기를 갖는 주기 함수이다.
+ - 사인 함수의 출력 값의 범위는 `-1 ~ 1`이다.
+ - `Sin(0) = 0`이다.
+ - 일정한 주기와 깔끔한 출력 값 범위를 갖는 특성 덕분에 `Time` 노드와 연계하여 많이 사용된다.
+
+![image](https://user-images.githubusercontent.com/42164422/123308214-5d117780-d55e-11eb-8615-7de519dce748.png)
 
 ### **예시**
- - .
+ - **Time** 노드의 출력을 **Sin** 노드의 입력으로 넣고 `0.1`을 곱하여 시간에 따라 `-0.1 ~ 0.1` 범위로 변하는 값을 만든다.
+ - 이 값을 **Vertex Normal** 노드에 곱하여 시간에 따라 정점 노멀 방향과 역방향을 오가는 벡터를 생성하고, 마스터 노드의 **Local Vertex Offset** 입력으로 넣어 정점이 노멀 방향으로 박동하게 한다.
 
-
-
-
-
-
+![2021_0625_Sin_Example](https://user-images.githubusercontent.com/42164422/123306240-00ad5880-d55c-11eb-847a-feeba45ffa89.gif)
 
 ### **Wiki**
  - <https://wiki.amplify.pt/index.php?title=Unity_Products:Amplify_Shader_Editor/Sin>
@@ -1429,15 +1429,12 @@ mermaid: true
 ### **설명**
  - 단축키 : 없음
  - `Cos(Input)` 값을 출력한다.
+ - 코사인 함수는 `2 * PI`의 주기를 갖는 주기 함수이다.
+ - 코사인 함수의 출력 값의 범위는 `-1 ~ 1`이다.
+ - `Cos(0) = 1`이다.
+ - 코사인 함수는 사인 함수를 x축 방향으로 `-0.5 * PI` 또는 `1.5 * PI` 만큼 옮긴 것과 같다.
 
-### **예시**
- - .
-
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/123308372-88946200-d55e-11eb-9b0c-92a81c682f32.png)
 
 ### **Wiki**
  - <https://wiki.amplify.pt/index.php?title=Unity_Products:Amplify_Shader_Editor/Cos>
@@ -1454,15 +1451,9 @@ mermaid: true
 ### **설명**
  - 단축키 : 없음
  - `Tan(Input)` 값을 출력한다.
+ - 탄젠트 함수는 잘 쓰이지는 않지만, 대표적인 삼각함수 중 하나이므로 개념을 알고 있는 것이 좋다.
 
-### **예시**
- - .
-
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/123310330-ef1a7f80-d560-11eb-8bbe-3f8ffeffe705.png)
 
 ### **Wiki**
  - <https://wiki.amplify.pt/index.php?title=Unity_Products:Amplify_Shader_Editor/Tan>
