@@ -18,7 +18,7 @@ mermaid: true
 
 <br>
 
-# 1. Standard Rendering Pipeline
+# 1. Built-in Render Pipeline
 ---
 
 <details>
@@ -63,7 +63,7 @@ mermaid: true
 
 <br>
 
-# 2. Universal Rendering Pipeline
+# 2. Universal Render Pipeline
 ---
 
 <details>

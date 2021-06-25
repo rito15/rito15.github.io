@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-25T03:05:27+09:00</updated>
+  <updated>2021-06-26T02:29:55+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,163 @@
 
   
   <entry>
+    <title>Process, Thread, ThreadPool, Task 개념 간단 정리</title>
+    <link href="https://rito15.github.io/posts/cs-process-thread-threadpool-task/" rel="alternate" type="text/html" title="Process, Thread, ThreadPool, Task 개념 간단 정리" />
+    <published>2021-06-25T21:21:00+09:00</published>
+  
+    <updated>2021-06-25T21:21:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-process-thread-threadpool-task/</id>
+    <content src="https://rito15.github.io/posts/cs-process-thread-threadpool-task/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Process
+
+
+
+  
+    메모리에 적재되어 실행되는 프로그램
+  
+  
+    운영체제로부터 자원을 할당받아 수행되는 작업의 단위
+  
+  
+    Code, Data, Heap, Stack 메모리 공간을 독립적으로 갖는다.
+  
+
+
+
+
+Thread
+
+
+
+  
+    프로세스의 자원을 사용하는 실행 흐름의 단위
+  
+  
+    프로세스의 Code, Data, Heap 영역을 공유한다.
+  
+  
+    각 스레드마다 Stack 영역만 독립적으로 갖는다.
+  
+  
+    컨텍스트 스위칭이 발생할 때 Stack 정보를 비롯해 간단한 정보만 저장하기 때문에, 프로세스의 컨텍스트 스위칭보다 빠르다.
+  
+  
+    C#에는 Thread 클래스가 있다.
+  
+  
+    기본적으로 Foregroun...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Camera Depth, Sorting Layer, Sorting Group</title>
+    <link href="https://rito15.github.io/posts/unity-depth-sorting-layer-sorting-group/" rel="alternate" type="text/html" title="Camera Depth, Sorting Layer, Sorting Group" />
+    <published>2021-06-25T20:40:00+09:00</published>
+  
+    <updated>2021-06-25T20:40:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-depth-sorting-layer-sorting-group/</id>
+    <content src="https://rito15.github.io/posts/unity-depth-sorting-layer-sorting-group/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo - Shorts" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Camera Depth(Z)
+
+
+
+  
+    카메라로부터의 거리
+  
+  
+    가까울수록 먼저 보인다.
+  
+
+
+
+
+Sorting Layer vs. Camera Depth
+
+
+
+  
+    Sorting Layer가 Camera Depth보다 우선적으로 깊이를 결정한다.
+  
+  
+    Sorting Layer 설정이 같은 경우, Camera Depth가 깊이를 결정한다.
+  
+
+
+
+
+Sorting Layer
+
+
+
+  
+    서로 다른 Sorting Layer의 경우, 인덱스의 값이 클수록(0 &amp;lt; 1 &amp;lt; 2 &amp;lt; …) 먼저 보인다.
+  
+  
+    같은 Sorting Layer 내에서는 Order In layer 값이 클수록 먼저 보인다.
+  
+
+
+
+
+Sorting Group
+...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</title>
     <link href="https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/" rel="alternate" type="text/html" title="앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음" />
     <published>2021-06-24T01:23:00+09:00</published>
   
-    <updated>2021-06-25T02:04:34+09:00</updated>
+    <updated>2021-06-25T03:15:16+09:00</updated>
   
     <id>https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/</id>
     <content src="https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/" />
@@ -246,142 +398,6 @@ CPU 입장에서 매우 부담되는 일이므로 성능 저하가 막심하다.
 
 [2] 대상 마테리얼의 텍스쳐 타입 프로퍼티에 렌더 텍스쳐를 적용한다.
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Texture Painter(텍스쳐에 그림 그리기)</title>
-    <link href="https://rito15.github.io/posts/unity-texture-painter/" rel="alternate" type="text/html" title="Texture Painter(텍스쳐에 그림 그리기)" />
-    <published>2021-06-19T04:32:00+09:00</published>
-  
-    <updated>2021-06-19T04:32:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-texture-painter/</id>
-    <content src="https://rito15.github.io/posts/unity-texture-painter/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Toys" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-  실시간으로 마우스 클릭, 드래그를 통해 게임 오브젝트의 텍스쳐에 그림 그리기
-
-
-
-
-How To Use
-
-
-그림 그려질 대상 게임오브젝트
-
-
-  
-    알맞은 콜라이더를 넣는다.
-  
-  
-    Rito/PaintTexture 쉐이더로 생성한 마테리얼을 적용한다.
-  
-  
-    TexturePaintTarget 컴포넌트를 추가는다.
-  
-
-
-
-
-브러시
-
-
-  
-    씬에 빈 게임오브젝트를 생성하고 TexturePaintBrush 컴포넌트를 추가는다.
-  
-  
-    Brush Size로 브러시의 크기를 조절할 수 있다.
-  
-  
-    Brush Texture로 브러시의 모양으로 사용할 텍스쳐를 등록할 수 있다.
-등록하지 않은 경우, 기본 브러시로 자동 초기화된다.
- ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Strategy Pattern(전략 패턴)</title>
-    <link href="https://rito15.github.io/posts/strategy-pattern/" rel="alternate" type="text/html" title="Strategy Pattern(전략 패턴)" />
-    <published>2021-06-17T21:12:00+09:00</published>
-  
-    <updated>2021-06-19T00:34:25+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/strategy-pattern/</id>
-    <content src="https://rito15.github.io/posts/strategy-pattern/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Algorithm" />
-    
-    <category term="Design Pattern" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Strategy Pattern(전략 패턴)
-
-
-설명
-
-
-  
-    행동 패턴(Behaviour Pattern)의 일종
-  
-  
-    알고리즘을 클래스화하여, 실행 중에 알고리즘(전략)을 통째로 교체하며 사용한다. (핵심)
-  
-  
-    if-else 또는 switch-case 구문을 통해 어떤 기준에 따라 분기로 작성하던 기능을 각각 클래스화시킨다.
-  
-  
-    베이스 클래스를 각각 상속받는 전략 클래스들과 이를 교체하며 사용하는 클래스로 이루어진다.
-  
-  
-    각 전략 클래스는 베이스 클래스를 통해 통일된 행동을 기반으로 구현해야 한다. (중요)
-  
-  
-    필요에 따라 각 전략 클래스를 싱글톤화하여 재사용할 수 있다.
-  
-  
-    전략 클래스 내부에서 컨텍스트의 상태...
     </summary>
   
 
