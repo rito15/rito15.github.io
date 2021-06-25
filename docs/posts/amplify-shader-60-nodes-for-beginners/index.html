@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음","description":"목표","dateModified":"2021-06-25T03:15:16+09:00","datePublished":"2021-06-24T01:23:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/"},"url":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표","datePublished":"2021-06-24T01:23:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/"},"url":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/","author":{"@type":"Person","name":"Rito15"},"headline":"앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음","dateModified":"2021-06-25T03:15:16+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6153 words">34 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6421 words">35 min</span>
 
 
           <!-- page views -->
@@ -860,8 +860,18 @@
 
 <h3 id="예시-2"><strong>예시</strong></h3>
 <ul>
-  <li>.</li>
+  <li>
+    <p>0부터 1까지 변화하는 <strong>T</strong> 값에 따라 기존의 정점 위치에서 타겟 월드 좌표로 정점을 이동시킨다.</p>
+  </li>
+  <li>
+    <p>위치값의 공간 변환 수행 시, <code class="language-plaintext highlighter-rouge">Append</code> 노드를 이용해 <code class="language-plaintext highlighter-rouge">W</code> 채널을 <code class="language-plaintext highlighter-rouge">1</code>로 넣어야 한다.</p>
+  </li>
+  <li>
+    <p>앰플리파이 쉐이더의 마스터 노드는 <code class="language-plaintext highlighter-rouge">Local Vertex</code>가 아니라 <code class="language-plaintext highlighter-rouge">Local Vertex Offset</code>을 입력받으므로, 이 경우에는 최종 계산 결과에서 <code class="language-plaintext highlighter-rouge">Vertex Position</code>을 빼주어야 한다.</p>
+  </li>
 </ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123471653-150f5500-d631-11eb-98f6-b6480c3d65d2.gif" alt="2021_0626_MoveToWPos1" /></p>
 
 <h3 id="wiki-9"><strong>Wiki</strong></h3>
 <ul>
@@ -892,8 +902,10 @@
 
 <h3 id="예시-3"><strong>예시</strong></h3>
 <ul>
-  <li>.</li>
+  <li>0부터 1까지 변화하는 <strong>T</strong> 값에 따라 기존의 정점 위치에서 타겟 월드 좌표를 향해 오브젝트 크기를 유지시킨 채로 정점을 이동시킨다.</li>
 </ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123471661-16408200-d631-11eb-9092-fb65e96208d9.gif" alt="2021_0626_MoveToWPos2" /></p>
 
 <h3 id="wiki-10"><strong>Wiki</strong></h3>
 <ul>
@@ -1368,8 +1380,13 @@
 
 <h3 id="예시-17"><strong>예시</strong></h3>
 <ul>
-  <li>.</li>
+  <li><code class="language-plaintext highlighter-rouge">UV</code>를 타일링시켜 범위를 늘린다.</li>
+  <li>예시 : <strong>Tiling = 4 -&gt; UV : 0.0 ~ 4.0</strong></li>
+  <li>그리고 <code class="language-plaintext highlighter-rouge">U</code>와 <code class="language-plaintext highlighter-rouge">V</code>를 각각 내림하여 서로 더한다.</li>
+  <li>더한 결과를 <code class="language-plaintext highlighter-rouge">2</code>로 나머지 연산하면 짝수였던 부분은 <code class="language-plaintext highlighter-rouge">0</code>, 홀수였던 부분은 <code class="language-plaintext highlighter-rouge">1</code>이 되어 각각 검은색, 흰색이 된다.</li>
 </ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123473821-0fffd500-d634-11eb-988c-3ed1c20f4130.gif" alt="2021_0626_CheckerBoard" /></p>
 
 <h3 id="wiki-24"><strong>Wiki</strong></h3>
 <ul>

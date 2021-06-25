@@ -321,11 +321,13 @@ mermaid: true
  - `X`, `Y`, `Z` : Float 타입의 값
 
 ### **예시**
- - .
+ - 0부터 1까지 변화하는 **T** 값에 따라 기존의 정점 위치에서 타겟 월드 좌표로 정점을 이동시킨다.
 
+ - 위치값의 공간 변환 수행 시, `Append` 노드를 이용해 `W` 채널을 `1`로 넣어야 한다.
 
+ - 앰플리파이 쉐이더의 마스터 노드는 `Local Vertex`가 아니라 `Local Vertex Offset`을 입력받으므로, 이 경우에는 최종 계산 결과에서 `Vertex Position`을 빼주어야 한다.
 
-
+![2021_0626_MoveToWPos1](https://user-images.githubusercontent.com/42164422/123471653-150f5500-d631-11eb-98f6-b6480c3d65d2.gif)
 
 
 ### **Wiki**
@@ -351,12 +353,9 @@ mermaid: true
  - `X`, `Y`, `Z` : Float 타입의 값
 
 ### **예시**
- - .
+ - 0부터 1까지 변화하는 **T** 값에 따라 기존의 정점 위치에서 타겟 월드 좌표를 향해 오브젝트 크기를 유지시킨 채로 정점을 이동시킨다.
 
-
-
-
-
+![2021_0626_MoveToWPos2](https://user-images.githubusercontent.com/42164422/123471661-16408200-d631-11eb-9092-fb65e96208d9.gif)
 
 ### **Wiki**
  - <https://wiki.amplify.pt/index.php?title=Unity_Products:Amplify_Shader_Editor/World_Position>
@@ -786,13 +785,12 @@ mermaid: true
  - 예를 들어 **1.1**은 `1`, **5**는 `5`, **-2.3**은 `-3`이 된다.
  
 ### **예시**
- - .
+ - `UV`를 타일링시켜 범위를 늘린다.
+ - 예시 : **Tiling = 4 -> UV : 0.0 ~ 4.0**
+ - 그리고 `U`와 `V`를 각각 내림하여 서로 더한다.
+ - 더한 결과를 `2`로 나머지 연산하면 짝수였던 부분은 `0`, 홀수였던 부분은 `1`이 되어 각각 검은색, 흰색이 된다.
 
-
-
-
-
-
+![2021_0626_CheckerBoard](https://user-images.githubusercontent.com/42164422/123473821-0fffd500-d634-11eb-988c-3ed1c20f4130.gif)
 
 ### **Wiki**
  - <https://wiki.amplify.pt/index.php?title=Unity_Products:Amplify_Shader_Editor/Floor>

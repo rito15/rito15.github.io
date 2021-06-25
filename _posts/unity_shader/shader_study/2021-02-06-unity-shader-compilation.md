@@ -1,5 +1,5 @@
 ---
-title: 유니티 쉐이더 모음
+title: 유니티 쉐이더 모음 [예정]
 author: Rito15
 date: 2021-02-06 01:25:00 +09:00
 categories: [Unity Shader, Shader Study]
