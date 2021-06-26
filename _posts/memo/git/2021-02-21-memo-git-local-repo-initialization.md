@@ -2,7 +2,7 @@
 title: 깃 로컬 리포지토리 초기 세팅하기
 author: Rito15
 date: 2021-02-21 00:00:00 +09:00
-categories: [Memo]
+categories: [Memo, Git]
 tags: [memo, git, github]
 math: true
 mermaid: true

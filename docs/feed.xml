@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-26T04:11:56+09:00</updated>
+  <updated>2021-06-27T04:52:01+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,112 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>간단한 앰플리파이 쉐이더 예제 모음</title>
+    <link href="https://rito15.github.io/posts/simple-amplify-shader-examples/" rel="alternate" type="text/html" title="간단한 앰플리파이 쉐이더 예제 모음" />
+    <published>2021-06-27T04:24:00+09:00</published>
+  
+    <updated>2021-06-27T04:24:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/simple-amplify-shader-examples/</id>
+    <content src="https://rito15.github.io/posts/simple-amplify-shader-examples/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Amplify Shader" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. Vertex
+
+
+Scale Up and Down
+
+
+
+
+
+Heartbeat
+
+
+
+( max( sin(T * F), 1-S ) - (1-S) ) * A
+
+T : Time
+F : Frequency
+S : Sensitivity
+A : Amplitude
+
+
+
+
+World Position Offset
+
+
+
+
+
+World Position Offset (Same Scale)
+
+
+
+
+
+2. Color
+
+
+UV Mask
+
+
+
+
+  Step의 A, B 입력을 서로 바꿀 경우, 마스크 색상 반전
+
+
+
+
+Smooth UV Mask
+
+
+
+
+  Smoothstep의 Min, Max 입력을 서로 바꿀 경우, 마스크 색상 반전
+
+
+
+
+UV Circle
+
+
+
+
+
+Smooth UV Circle
+
+
+
+
+
+UV Mask Dissol...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -176,7 +282,7 @@ Sorting Group
     <link href="https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/" rel="alternate" type="text/html" title="앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음" />
     <published>2021-06-24T01:23:00+09:00</published>
   
-    <updated>2021-06-25T03:15:16+09:00</updated>
+    <updated>2021-06-26T04:17:19+09:00</updated>
   
     <id>https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/</id>
     <content src="https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/" />
@@ -327,77 +433,6 @@ World Space의 좌표에 대해 계산해야 하지만,
 
 
 기본적으로 쉐이더 내에서의 계산은 대부분 Object...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>런타임에 큰 성능 저하 없이 텍스쳐에 그림 그리기</title>
-    <link href="https://rito15.github.io/posts/unity-how-to-paint-texture/" rel="alternate" type="text/html" title="런타임에 큰 성능 저하 없이 텍스쳐에 그림 그리기" />
-    <published>2021-06-19T17:17:00+09:00</published>
-  
-    <updated>2021-06-19T17:17:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-how-to-paint-texture/</id>
-    <content src="https://rito15.github.io/posts/unity-how-to-paint-texture/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      텍스쳐의 특정 픽셀 색상 변경하기
-
-
-텍스쳐의 특정 픽셀 색상을 변경하는건 매우 간단하다.
-
-
-
-[1] 텍스쳐의 Read/Write Enabled를 체크한다.
-
-[2] 대상 마테리얼에서 텍스쳐를 가져온다.
-
-[3] SetPixel() 메소드로 원하는 픽셀의 색상을 변경한다.
-
-[4] Apply() 메소드로 적용한다.
-
-
-
-하지만 메모리에 적재된 텍스쳐를 저렇게 직접 수정하는건
-
-CPU 입장에서 매우 부담되는 일이므로 성능 저하가 막심하다.
-
-
-
-렌더 텍스쳐를 거쳐 색상 변경하기
-
-
-위와 같은 큰 성능 저하 없이 런타임에 텍스쳐 픽셀을 수정하려면,
-
-렌더 텍스쳐를 거쳐야 한다.
-
-
-
-[1] 렌더 텍스쳐를 준비하거나 새로 생성한다.
-
-[2] 대상 마테리얼의 텍스쳐 타입 프로퍼티에 렌더 텍스쳐를 적용한다.
-...
     </summary>
   
 

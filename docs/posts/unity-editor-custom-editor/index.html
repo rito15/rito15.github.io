@@ -1397,27 +1397,27 @@ Color Scope
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">UI 위에 게임오브젝트 띄우기</a></li>
-      
-        
-        
-        
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
       
         
         
         
+        <li><a href="/posts/unity-surface-shader-bible/">Surface Shader Bible [예정]</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-shader-compilation/">유니티 쉐이더 모음 [예정]</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-gameobject-over-ui/">UI 위에 게임오브젝트 띄우기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/opengl-study-13/">OpenGL 공부 - 13 - Texture</a></li>
       
 
       </ul>
@@ -2870,6 +2870,8 @@ Color Scope
     
     
     
+    
+      
     
   
     
@@ -5741,6 +5743,19 @@ Color Scope
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7296,69 +7311,6 @@ Color Scope
       
       
       <div class="card">
-        <a href="/posts/unity-editor-undo/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 28
-  
-
-  <i class="unloaded">2021-02-28T01:52:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Undo</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-
-  
-    필드의 값 변경, 리스트나 딕셔너리의 구성요소 변경 : RecordeObject(컴포넌트, "")
-  
-  
-    커스텀 에디터에서 대상의 필드를 Undo에 등록하려면, 반드시 해당 필드가 직렬화되어야 한다.
-  
-
-
-
-
-Memo
-
-
-1. 다른 동작에 Undo 등록
-
-
-  
-    // 이름 변경, 기타 등등 수행하기 직전...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-custom-editor-window/">
           <div class="card-body">
             <!--
@@ -7485,6 +7437,61 @@ public class ExampleWindow : EditorWindow
 Note
 
   Editor...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-playmode-state-change/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 11
+  
+
+  <i class="unloaded">2021-03-11T03:33:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>플레이모드 상태 변경에 따른 동작 구현하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+  
+    #if UNITY_EDITOR
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+
+namespace Rito
+{
+    [InitializeOnLoad]
+    public class P...
               </p>
             </div>
           </div>
@@ -9026,6 +9033,8 @@ Note
     
     
     
+    
+      
     
   
     
