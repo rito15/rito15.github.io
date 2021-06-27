@@ -74,7 +74,7 @@ public static class InfiniteLoopDetector
         [System.Runtime.CompilerServices.CallerLineNumber] int ln = 0
     )
     {
-        string currentPoint = $"{fp}{ln} : {mn}()";
+        string currentPoint = $"{fp}:{ln}, {mn}()";
 
         if (prevPoint == currentPoint)
             detectionCount++;
