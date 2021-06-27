@@ -78,6 +78,16 @@ mermaid: true
 # Unity Profiler
 ---
 
+## **빌드 이후 간단 프로파일링**
+- Build Settings
+  - `Development Build` 체크
+  - `Autoconnect Profiler` 체크
+  - Build and Run
+
+- 프로파일러 창(Ctrl + 7) 확인
+
+<br>
+
 # **Custom Profiler Tags**
 
 ```cs
@@ -190,3 +200,7 @@ private void SomeMethod()
 - <https://coderzero.tistory.com/entry/유니티-최적화-유니티-최적화에-대한-이해>
 - <https://docs.unity3d.com/Manual/profiler-markers.html>
 - <https://learn.unity.com/tutorial/fixing-performance-problems>
+
+- <https://docs.unity3d.com/kr/2019.3/Manual/profiler-profiling-applications.html>
+- <https://docs.unity3d.com/kr/530/Manual/Profiler.html>
+
