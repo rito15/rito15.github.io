@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="간단한 앰플리파이 쉐이더 예제 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"간단한 앰플리파이 쉐이더 예제 모음","description":"1. Vertex","dateModified":"2021-06-27T04:24:00+09:00","datePublished":"2021-06-27T04:24:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/simple-amplify-shader-examples/"},"url":"https://rito15.github.io/posts/simple-amplify-shader-examples/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"1. Vertex","datePublished":"2021-06-27T04:24:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/simple-amplify-shader-examples/"},"url":"https://rito15.github.io/posts/simple-amplify-shader-examples/","author":{"@type":"Person","name":"Rito15"},"headline":"간단한 앰플리파이 쉐이더 예제 모음","dateModified":"2021-06-27T04:24:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="117 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="229 words">1 min</span>
 
 
           <!-- page views -->
@@ -542,13 +542,46 @@ A : Amplitude
 <h1 id="3-lighting">3. Lighting</h1>
 <hr />
 
-<h2 id="lighting-with-lamp-texture">Lighting with Lamp Texture</h2>
+<h2 id="simple-lambert">Simple Lambert</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123553686-b32d2780-d7b7-11eb-883f-97094b9fc710.png" alt="image" /></p>
+
+<ul>
+  <li>마스터 노드 속성 - <code class="language-plaintext highlighter-rouge">General</code> - <code class="language-plaintext highlighter-rouge">Light Model</code> - <code class="language-plaintext highlighter-rouge">Custom Lighting</code> 선택</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="diffuse-warping">Diffuse Warping</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123554382-a78f3000-d7ba-11eb-8fd4-feb09a3fb9d3.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p><strong>Ramp Texture</strong>를 이용한 커스텀 라이팅 기법</p>
+  </li>
+  <li>
+    <p><strong>Ramp Texture</strong>는 반드시 <code class="language-plaintext highlighter-rouge">Wrap Mode : Clamp</code>, <code class="language-plaintext highlighter-rouge">Filter Mode : Point</code>로 설정해야 한다.</p>
+  </li>
+  <li>
+    <p>메인 텍스쳐 색상은 <code class="language-plaintext highlighter-rouge">Albedo</code>나 <code class="language-plaintext highlighter-rouge">Emission</code>이 아니라 <strong>Custom Lighting</strong> 입력 앞에 있는 <code class="language-plaintext highlighter-rouge">Multiply</code> 노드에 곱해주어야 한다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123554613-c80bba00-d7bb-11eb-8e4d-3bcc19cedac4.gif" alt="2021_0628_DiffuseWarping" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Scale And Offset</code> 노드를 통해 각 색상의 영역을 조절해줄 수 있다.</li>
+</ul>
 
 <p><br /></p>
 
 <h2 id="tooncel-shading">Toon(Cel) Shading</h2>
 
-<p>https://www.youtube.com/watch?v=dyiLJ1PFhM0</p>
+<p>https://www.youtube.com/watch?v=dyiLJ1PFhM0
+https://www.youtube.com/watch?v=MawzivWLCoo</p>
 
 <p><br /></p>
 
@@ -694,6 +727,11 @@ A : Amplitude
         
         
         
+        <li><a href="/posts/unity-opt-profiling/">유니티 프로파일링을 통한 최적화</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 간편히 방지하기</a></li>
       
         
@@ -710,11 +748,6 @@ A : Amplitude
         
         
         <li><a href="/posts/unity-shader-compilation/">유니티 쉐이더 모음 [예정]</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">UI 위에 게임오브젝트 띄우기</a></li>
       
 
       </ul>

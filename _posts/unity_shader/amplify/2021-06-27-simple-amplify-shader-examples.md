@@ -109,7 +109,29 @@ A : Amplitude
 # 3. Lighting
 ---
 
-## Lighting with Lamp Texture
+## Simple Lambert
+
+![image](https://user-images.githubusercontent.com/42164422/123553686-b32d2780-d7b7-11eb-883f-97094b9fc710.png)
+
+- 마스터 노드 속성 - `General` - `Light Model` - `Custom Lighting` 선택
+
+<br>
+
+## Diffuse Warping
+
+![image](https://user-images.githubusercontent.com/42164422/123554382-a78f3000-d7ba-11eb-8fd4-feb09a3fb9d3.png)
+
+- **Ramp Texture**를 이용한 커스텀 라이팅 기법
+
+- **Ramp Texture**는 반드시 `Wrap Mode : Clamp`, `Filter Mode : Point`로 설정해야 한다.
+
+- 메인 텍스쳐 색상은 `Albedo`나 `Emission`이 아니라 **Custom Lighting** 입력 앞에 있는 `Multiply` 노드에 곱해주어야 한다.
+
+<br>
+
+![2021_0628_DiffuseWarping](https://user-images.githubusercontent.com/42164422/123554613-c80bba00-d7bb-11eb-8e4d-3bcc19cedac4.gif)
+
+- `Scale And Offset` 노드를 통해 각 색상의 영역을 조절해줄 수 있다.
 
 
 <br>
@@ -117,6 +139,7 @@ A : Amplitude
 ## Toon(Cel) Shading
 
 https://www.youtube.com/watch?v=dyiLJ1PFhM0
+https://www.youtube.com/watch?v=MawzivWLCoo
 
 <br>
 

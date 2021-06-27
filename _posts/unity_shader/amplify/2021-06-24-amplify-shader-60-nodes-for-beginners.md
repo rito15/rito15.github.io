@@ -410,11 +410,9 @@ mermaid: true
  - `X`, `Y`, `Z` : Float 타입의 값
 
 ### **예시**
- - .
+ - 커스텀 라이팅에서 `Dot(N, L)`의 `N`으로 사용
 
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/123553686-b32d2780-d7b7-11eb-883f-97094b9fc710.png)
 
 
 ### **Wiki**
@@ -540,10 +538,9 @@ mermaid: true
  - `Out` : Vector2 타입. 최종적으로 계산된 **UV**를 출력한다.
 
 ### **예시**
- - .
+ - `UV`의 `U`를 시간에 따라 이동시키기
 
-
-
+![2021_0628_PannerExample](https://user-images.githubusercontent.com/42164422/123555197-2edea280-d7bf-11eb-93b6-026442aeba3d.gif)
 
 
 ### **Wiki**
@@ -1085,12 +1082,9 @@ mermaid: true
  - `A`, `B`가 선형 보간된 결과값
 
 ### **예시**
- - .
+ - `UV`의 `U` 값을 기준으로 색상 혼합하기
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/123555001-eecaf000-d7bd-11eb-9a1b-9353a561d5a3.png)
 
 
 ### **Wiki**
