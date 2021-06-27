@@ -1,11 +1,29 @@
 T O D O
 
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+★★★ 현 재 진 행 :::::
+
+ https://youtu.be/EP3pvPAcHSo?t=680
+
+ 보는중
+
+ 코딩으로 어드레서블 사용하는법 총정리 할 예정
+
+ 그리고 이거 유튜브 다 보면 아래 써있는 Learn부터 진행 ㄱㄱ
+
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 
 0. 유튜브 다 보기
 
 - https://www.youtube.com/watch?v=Z9LrkQUDzJw   22:30
 - https://www.youtube.com/watch?v=yoBzTpJYN44
 - https://www.youtube.com/watch?v=EP3pvPAcHSo
+
+0.1. Learn
+- https://learn.unity.com/project/getting-started-with-addressables
+
+0.2. Manual
+- https://docs.unity3d.com/Packages/com.unity.addressables@1.18/manual/index.html
 
 1. 깃헙 페이지에서 예제 설명 모두 읽기
 - https://github.com/Unity-Technologies/Addressables-Sample
@@ -43,17 +61,126 @@ T O D O
 
 
 
+# [최적화]
+
+- 씬 전환의 이점
+- 씬 A -> 씬 B로 갈때 내부적으로 Resources.UnloadUnusedAssets()를 호출하는데,
+  이는 씬 B 로드가 모두 된 이후에 호출된다.
+- 따라서 씬 A, B가 모두 로드된 순간이 존재하게 되는데,
+  이 순간에 메모리를 과도하게 잡아먹을 수 있다.
+
+- 이를 방지하려면 가벼운 로딩 씬을 사이에 넣으면 된다.
+- 씬 A -> 로딩 씬 -> 씬 B 구조
+
+
+
+# [어드레서블 내부 구조와 동작]
+
+## [1] 초기화
+
+- 프로그래머가 관여하지 않고, 내부적으로 동작하는 부분
+
+### Addressables
+ - 애셋 관리
+ - 로드, 생성, 해제 등의 API 제공
+
+### Content Catalog
+ - 애셋과 주소의 매핑 정보를 JSON 파일로 직렬화하여 관리
+ - 앱을 시작하면 이 정보를 읽어서 Resource Locator에게 제공
+
+### Resource Locator
+ - 주소와 애셋의 매핑 정보를 실시간으로 관리
+
+### Resource Manager
+ - 실제로 애셋들을 메모리에 로드/언로드하는 내부 동작 수행
+
+### Providers
+ - 애셋의 타입마다 실제로 로드하는 동작을 수행
+
+![image](https://user-images.githubusercontent.com/42164422/123542529-118ce280-d785-11eb-85e4-e7ccb2ab4de6.png)
+
+
+
+## [2] 애셋 로드
+
+- 로드 과정의 모든 작업은 비동기적으로 처리된다.
+
+- 사용자는 로드 시작/완료 처리만 해주면 된다.
+
+
+### 로드 과정
+
+- 로드 시작 시 프로그래머가 Addressable에 애셋 주소를 전달한다.
+
+- Addressable 내의 Resource Locator가 실제 애셋 위치를 Resource Manager에 전달한다.
+
+- Resource Manager는 애셋 종류에 따라 알맞은 Provider를 찾아 로드하고, AsyncOperation을 반환한다.
+
+- 비동기 로드 작업이 모두 수행되면 프로그래머가 등록했던 완료 콜백이 수행된다.
+
+![image](https://user-images.githubusercontent.com/42164422/123542546-223d5880-d785-11eb-94e5-600941554908.png)
+
+
+
+# [사용법]
+
+## 로드와 생성
+ - 로드 : 참조하여 사용할 수 있도록 메모리에 적재
+ - 생성 : 씬 내에 생성(대표적으로 게임오브젝트)
+
+## [1] Address(string) 이용
+
+- 로드 : Addressables.LoadAsset<TObject>("Address")
+- 바로 생성 : Addressables.Instantiate<TObject>("Address")
+
+## [2] AssetReference 이용
+
+- 로드 : assRef.LoadAsset<TObject();
+- 생성 : assRef.Instantiate<TObject>(pos, rot);
+
+
+## [비동기 콜백 등록]
+
+Addressables.LoadAsset<TObject>(address).Completed += CALLBACK;
+
+
+## [해제]
+- LoadAsset -> Addressables.ReleaseAsset<TObject>(target);
+- Instantiate -> Addressables.ReleaseInstance<TObject>(target);
 
 
 
 
+
+# [어드레서블 윈도우]
+
+
+## [Group]
+
+### Build
+ - New Build - Default Build Script : 에디터에서 컨텐츠를 빌드한다.
+ - AddressableAssetSettings.BuildPlayerContent()를 호출하는 것과 같다.
+
+
+### Play Mode Script(Build Mode)
+ - Use Asset Database : 에디터에서 테스트용으로 사용하며, 실제 런타임 동작과는 다르다.
+ - Simulate Groups : Address를 이용하지만, 실제로 번들을 빌드하지는 않는다. 주소 지정 방식 시뮬레이션용
+ - Use Existing Build : 빌드 환경과 동일하게 작동한다. CDN 등을 사용하여 리모트 환경에 대한 테스트도 가능하다.
+
+### Labels
+ - 각 애셋에는 하나 이상의 레이블을 붙여줄 수 있다.
+ - 애셋을 로드할 때 레이블로 필터링하여 그 레이블에 해당되는 애셋들만 로드할 수 있다.
+
+
+## [Analyze]
+ - 종속성 문제 등등 다양한 문제들을 확인해볼 수 있다.
 
 
 --------------------------------------------------------------------
 
 
 ---
-title: Addressable(어드레서블)
+title: Addressables(어드레서블)
 author: Rito15
 date: 2021-06-26 15:15:00 +09:00
 categories: [Unity, Unity Study]
@@ -79,18 +206,22 @@ mermaid: true
 
 ## **문제점**
 
-- 단순히 애셋 번들만으로 동적 로드를 하고 참조 관리를 하기는 힘들고, 추가적인 커스터마이징이 필요하다.
+- 애셋 번들을 사용하려면 대부분 추가적인 커스터마이징이 필요하다.
 
 - 여러 번들에 공통적으로 사용되는 애셋이 중복 로드 되는 등, 종속성 문제가 발생할 수 있다.
 
 - 애셋의 위치를 직접 참조해야만 하는 불편함이 있다.
 
+- 초기 개발 시에는 바로 사용하기 번거로우므로, 개발 진행에 따라 코드 변경이 불가피하다.
+
 <br>
 
-# 어드레서블(Addressable)
+# 어드레서블 애셋 시스템(Addressable Asset System)
 ---
 
 - 애셋 번들의 불편함을 해소하고 더욱 편리하게 사용할 수 있도록 제작되었다.
+
+- 어드레서블 = 리소스 폴더 장점 + 애셋 번들 장점 + 개발 편의성
 
 <br>
 
@@ -99,6 +230,10 @@ mermaid: true
 - 애셋의 종속성과 메모리 현황을 손쉽게 파악할 수 있다.
 
 - 애셋의 실제 위치가 로컬, 서버 어디에 있든 관계 없이 주소(Address)만 알고 있으면 참조하여 로드할 수 있다.
+
+- 개발 단계 언제든 바로 사용할 수 있다.
+
+- 개발 중에도 Play Mode 설정을 통해 실제와 같은 테스트가 가능하다.
 
 <br>
 
