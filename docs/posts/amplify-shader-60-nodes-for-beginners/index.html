@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표","datePublished":"2021-06-24T01:23:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/"},"url":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/","author":{"@type":"Person","name":"Rito15"},"headline":"앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음","dateModified":"2021-06-28T03:22:13+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음","description":"목표","dateModified":"2021-06-28T03:22:13+09:00","datePublished":"2021-06-24T01:23:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/"},"url":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6463 words">35 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6565 words">36 min</span>
 
 
           <!-- page views -->
@@ -1898,12 +1898,15 @@
 <ul>
   <li>단축키 : <code class="language-plaintext highlighter-rouge">[N]</code></li>
   <li>입력 벡터를 정규화하여 크기가 1인 벡터로 출력한다.</li>
+  <li>방향 벡터를 만들기 위해 주로 사용된다.</li>
 </ul>
 
 <h3 id="예시-36"><strong>예시</strong></h3>
 <ul>
-  <li>.</li>
+  <li>버텍스의 월드 위치로부터 특정 월드 위치를 향하는 방향 벡터를 구하기 위해, 두 위치 벡터를 서로 뺀 뒤 <code class="language-plaintext highlighter-rouge">Normalize</code> 노드의 입력으로 넣어주었다.</li>
 </ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123691289-65382280-d890-11eb-8442-52698c2c6295.gif" alt="2021_0629_NormalizeExample" /></p>
 
 <h3 id="wiki-43"><strong>Wiki</strong></h3>
 <ul>
@@ -1926,8 +1929,10 @@
 
 <h3 id="예시-37"><strong>예시</strong></h3>
 <ul>
-  <li>.</li>
+  <li>흔히 사용되는 <code class="language-plaintext highlighter-rouge">Fresnel</code> 노드는 내부적으로 <code class="language-plaintext highlighter-rouge">World Normal</code>과 <code class="language-plaintext highlighter-rouge">View Dir</code>의 내적 연산을 이용한다.</li>
 </ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123689008-b266c500-d88d-11eb-8790-65f2ec4865a3.png" alt="image" /></p>
 
 <h3 id="wiki-44"><strong>Wiki</strong></h3>
 <ul>

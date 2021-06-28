@@ -1266,14 +1266,12 @@ mermaid: true
 ### **설명**
  - 단축키 : `[N]`
  - 입력 벡터를 정규화하여 크기가 1인 벡터로 출력한다.
+ - 방향 벡터를 만들기 위해 주로 사용된다.
 
 ### **예시**
- - .
+ - 버텍스의 월드 위치로부터 특정 월드 위치를 향하는 방향 벡터를 구하기 위해, 두 위치 벡터를 서로 뺀 뒤 `Normalize` 노드의 입력으로 넣어주었다.
 
-
-
-
-
+![2021_0629_NormalizeExample](https://user-images.githubusercontent.com/42164422/123691289-65382280-d890-11eb-8442-52698c2c6295.gif)
 
 
 ### **Wiki**
@@ -1293,12 +1291,9 @@ mermaid: true
  - 두 입력 벡터를 내적한 결과를 **Float**로 출력한다.
 
 ### **예시**
- - .
+ - 흔히 사용되는 `Fresnel` 노드는 내부적으로 `World Normal`과 `View Dir`의 내적 연산을 이용한다.
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/123689008-b266c500-d88d-11eb-8790-65f2ec4865a3.png)
 
 
 ### **Wiki**
