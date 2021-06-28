@@ -37,32 +37,40 @@
 # 동기화 방법론에 따른 구분
 ---
 
-## 1. 대기
+## 1. 대기(Busy Waiting)
 
-- 크리티컬 섹션에 진입할 때까지 무한 대기한다.
+- 락을 얻을 때까지 CPU를 점유하면서 무한 대기한다.
+- Spin Lock
 
-## 2. 양보
+## 2. 양보(Yield)
 
-- 크리티컬 섹션에 진입하지 못할 경우, 다른 스레드에 양보한다.
+- 락을 얻지 못할 경우, CPU 자원을 다른 스레드에 양보한다.
+- Lock (Monitor)
 
-## 3. 이벤트
+## 3. 통보(Event)
 
 - 크리티컬 섹션에 진입하기 위해 대기하지 않고, 진입 가능한 타이밍을 커널로부터 통보받는다.
 
 <br>
 
-# 크리티컬 섹션 vs. 스핀 락
+# Lock vs. Spin Lock
 ---
 
-## **Critical Section**
+## **공통**
 
-- 한 번에 하나의 스레드만 접근 가능한 영역을 만든다.
+- 한 번에 하나의 스레드만 접근 가능한 영역(Critical Section)을 만든다.
 
 - 하나의 스레드가 이미 영역을 점유한 경우, 진입을 원하는 다른 스레드는 대기한다.
+
+<br>
+
+## **Lock**
 
 - 락을 기다리며 대기하는 스레드는 블록(Block)되며, CPU 점유를 하지 않게 된다.
 
 - 블록될 때 CPU 자원을 다른 스레드에게 넘기므로 컨텍스트 스위칭으로 인한 오버헤드가 발생한다.
+
+- 오래 걸리는 작업에 사용한다.
 
 <br>
 
@@ -74,16 +82,9 @@
 
 - 락이 길게 유지되는 동안에는 대기하는 스레드가 CPU 자원을 계속 소모하므로 낭비가 발생할 수 있다.
 
-- 컨텍스트 스위칭이 발생하지 않아, 비교적 짧은 동작을 자주 수행해야 한다면 크리티컬 섹션보다 스핀 락을 사용하는 것이 좋다.
+- 컨텍스트 스위칭이 발생하지 않는다.
 
-<br>
-
-## CS vs. SL
-
-- CS : 컨텍스트 스위칭 오버헤드 발생
-- SL : 바쁜 대기로 인한 오버헤드 발생
-- 길고 무거운 동작 -> CS
-- 짧고 가벼운 동작 -> SL
+- 비교적 짧은 동작을 자주 수행해야 한다면 스핀 락을 사용하는 것이 좋다.
 
 <br>
 
@@ -99,7 +100,7 @@
 ## **2. Monitor**
  - 크리티컬 섹션을 만들고(진입하고), 해제한다.
  - `object` 타입 매개체가 필요하다.
- - `Monitor.Enter(obj)` ~ `Monitor.Exit()`
+ - `Monitor.Enter(obj)` ~ `Monitor.Exit(obj)`
  - 크리티컬 섹션 내부에서 예외가 발생했을 경우를 위한 `try-finally` 처리가 필요하다.
 
 <br>
@@ -112,7 +113,8 @@
 
 ## **4. SpinLock**
  - 직접 구현하거나 SpinLock 클래스를 사용한다.
- - 
+ - 락 진입/해제의 간격이 짧고 빈번한 경우에 사용한다.
+ - `try-finally` 처리가 필요하다.
 
 <br>
 
@@ -128,14 +130,131 @@
 
 <br>
 
-## **6. Mutex**
- - 
+## **6. ReaderWriterLock**
+ - 직접 구현하거나, `ReaderWriterLock` 클래스를 사용한다.
+ - 최신 버전인 `ReaderWriterLockSlim` 클래스를 사용한다.
+ - 읽기 스레드와 쓰기 스레드가 애초에 구분되는 경우에 사용한다.
+ - 자주 읽고, 가끔 쓰는 경우에 사용하면 좋다.
+ - `try-finally` 처리가 필요하다.
 
 <br>
 
-## **7. Semaphore**
- - 
+## **7. Mutex**
+ - 커널 영역에서의 동기화를 수행하므로 비교적 느리다.
+ - 프로세스 간의 데이터 동기화가 필요한 경우 사용한다.
 
+<br>
+
+## **8. Semaphore**
+ - 커널 영역에서의 동기화를 수행하므로 비교적 느리다.
+ - 프로세스 간의 데이터 동기화가 필요한 경우 사용한다.
+ - 다수의 프로세스 또는 스레드가 동시에 크리티컬 섹션에 진입하도록 할 수 있다.
+
+<br>
+
+# 최종 정리 : 락 선택하기
+---
+
+## **상황**
+ - 스레드 간의 데이터 동기화
+
+<br>
+
+## **1. lock 구문**
+
+- 락을 걸고 짧지 않은 동작들을 수행하는 경우에 사용한다.
+
+- 간편히 `lock(){}` 구문을 사용하면 된다.
+
+```cs
+private readonly object _lock = new object();
+
+private void ThreadBodyMethod()
+{
+    lock (_lock)
+    {
+        // Do Something
+    }
+}
+```
+
+<br>
+
+## **2. SpinLock 클래스**
+
+- 락을 빈번하게 걸고 짧은 동작들을 수행하는 경우에 사용한다.
+
+- `try-finally` 처리가 필요하다.
+
+```cs
+private SpinLock spinLock = new SpinLock();
+
+private void ThreadBodyMethod()
+{
+    bool lockTaken = false; // 락을 획득했는지 여부
+    try
+    {
+        spinLock.Enter(ref lockTaken);
+
+        // Do Something Here =========
+
+        // ===========================
+    }
+    finally
+    {
+        if (lockTaken)
+        {
+            spinLock.Exit();
+        }
+    }
+}
+```
+
+<br>
+
+## **3. ReaderWriterLockSlim 클래스**
+
+- 자주 읽어들이지만 쓰기 수행이 적은 경우에 사용한다.
+
+- 소수의 쓰기 스레드, 다수의 읽기 스레드로 나뉜 경우에 사용하면 좋다.
+
+- `try-finally` 처리가 필요하다.
+
+```cs
+private ReaderWriterLockSlim rwLock = new ReaderWriterLockSlim();
+
+private void WriterThreadBody()
+{
+    try
+    {
+        rwLock.EnterWriteLock();
+
+        // Do Something Here =========
+
+        // ===========================
+    }
+    finally
+    {
+        rwLock.ExitWriteLock();
+    }
+}
+
+private void ReaderThreadBody()
+{
+    try
+    {
+        rwLock.EnterReadLock();
+
+        // Do Something Here =========
+
+        // ===========================
+    }
+    finally
+    {
+        rwLock.ExitReadLock();
+    }
+}
+```
 
 <br>
 
