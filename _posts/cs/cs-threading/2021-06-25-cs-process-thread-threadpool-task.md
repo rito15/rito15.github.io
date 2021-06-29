@@ -2,7 +2,7 @@
 title: Process, Thread, ThreadPool, Task 개념 간단 정리
 author: Rito15
 date: 2021-06-25 21:21:00 +09:00
-categories: [C#, C# Memo]
+categories: [C#, C# Threading]
 tags: [csharp, process, thread, task]
 math: true
 mermaid: true

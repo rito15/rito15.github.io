@@ -141,10 +141,26 @@ git push
 - <http://jekyllthemes.org/themes/sleek/>
 - <http://jekyllthemes.org/themes/karna/>
 - <http://jekyllthemes.org/themes/vyaasa/>
+- <http://jekyllthemes.org/themes/hcz-jekyll-material/>
+- <http://jekyllthemes.org/themes/minimal-mistakes/>
+- <http://jekyllthemes.org/themes/moon/>
+- <http://jekyllthemes.org/themes/clean/>
+- <http://jekyllthemes.org/themes/hyde/>
+- <http://jekyllthemes.org/themes/mickey/>
+- <http://jekyllthemes.org/themes/carte-noire/>
+- <http://jekyllthemes.org/themes/grayscale/>
+
 
 <br>
 
-## 2. 개발 블로그용 테마
+## 2. 독특한 느낌
+
+- <http://jekyllthemes.org/themes/modernblog/>
+- <http://jekyllthemes.org/themes/twenty/>
+
+<br>
+
+## 3. 개발 블로그용 테마
 
 - <http://jekyllthemes.org/themes/jekyll-theme-chirpy/>
 - <http://jekyllthemes.org/themes/alembic/>
@@ -152,7 +168,7 @@ git push
 
 <br>
 
-## 3. 포트폴리오용 테마
+## 4. 포트폴리오용 테마
 
 - <http://jekyllthemes.org/themes/zolan/>
 - <http://jekyllthemes.org/themes/slate-and-simple/>
@@ -162,8 +178,15 @@ git push
 - <http://jekyllthemes.org/themes/particle/>
 - <http://jekyllthemes.org/themes/materialbliss/>
 - <http://jekyllthemes.org/themes/online-cv/>
+- <http://jekyllthemes.org/themes/Jalpc-jekyll-theme/>
+- <https://le4ker.github.io/personal-jekyll-theme/>
+- <http://jekyllthemes.org/themes/resumecard/>
+- <http://jekyllthemes.org/themes/sleek-blog/>
+
 
 ## 4. 설명 문서용 테마
 
 - <http://jekyllthemes.org/themes/edition/>
 - <http://jekyllthemes.org/themes/papyrus-theme/>
+- <http://jekyllthemes.org/themes/documentation-theme-jekyll/>
+
