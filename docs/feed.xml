@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-29T23:04:49+09:00</updated>
+  <updated>2021-06-30T04:18:22+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,68 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Main Thread Dispatcher</title>
+    <link href="https://rito15.github.io/posts/unity-main-thread-dispatcher/" rel="alternate" type="text/html" title="Main Thread Dispatcher" />
+    <published>2021-06-30T04:04:00+09:00</published>
+  
+    <updated>2021-06-30T04:04:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-main-thread-dispatcher/</id>
+    <content src="https://rito15.github.io/posts/unity-main-thread-dispatcher/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Toys" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+  
+    워커 스레드에서 유니티 메인 스레드에 작업을 위임할 수 있게 하는 싱글톤 클래스
+  
+  
+    https://github.com/PimDeWitte/UnityMainThreadDispatcher의 코드를 조금 더 사용하기 편리하게 살짝 수정
+  
+
+
+Usage Example
+
+
+private MainThreadDispatcher mtd;
+
+private void Start()
+{
+    mtd = MainThreadDispatcher.Instance;
+    Task.Run(() =&amp;gt; TestBody());
+}
+
+private async void TestBody()
+{
+    int res1 = -1, res2 = -1;
+
+    await Task.Delay(5...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -348,91 +410,6 @@ Sorting Group
   UV
     
       Vertex ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Black Hole &amp;amp; World Position Offset</title>
-    <link href="https://rito15.github.io/posts/unity-black-hole-effect-shadergraph/" rel="alternate" type="text/html" title="Black Hole &amp;amp; World Position Offset" />
-    <published>2021-06-20T03:33:00+09:00</published>
-  
-    <updated>2021-06-20T03:33:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-black-hole-effect-shadergraph/</id>
-    <content src="https://rito15.github.io/posts/unity-black-hole-effect-shadergraph/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="URP Shader Graph" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-World Position Offset Shader
-
-
-  정점이 순차적으로 월드의 특정 좌표에 빨려 들어가는 쉐이더
-
-
-
-
-Black Hole Shader
-
-
-  영역 내의 색상을 왜곡하는 쉐이더
-
-
-
-
-Preview
-
-
-
-
-
-
-WPO - Step 1 : 정점 좌표의 이동
-
-
-World Space의 좌표에 대해 계산해야 하지만,
-
-마스터 노드의 Vertex Position 입력은 Object Space여야 한다.
-
-따라서 두 가지 선택지가 있다.
-
-
-
-[1] World Space에서 계산하고 최종적으로 Object Space로 변환
-
-
-
-
-
-[2] 처음부터 Object Space로 변환하고 Object Space에서 계산
-
-
-
-
-
-기본적으로 쉐이더 내에서의 계산은 대부분 Object...
     </summary>
   
 
