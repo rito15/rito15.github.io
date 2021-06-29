@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-30T04:18:22+09:00</updated>
+  <updated>2021-06-30T04:59:43+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -82,6 +82,76 @@ private async void TestBody()
 
   
   <entry>
+    <title>워커 스레드에서 메인 스레드에 작업 요청하기</title>
+    <link href="https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/" rel="alternate" type="text/html" title="워커 스레드에서 메인 스레드에 작업 요청하기" />
+    <published>2021-06-30T01:11:00+09:00</published>
+  
+    <updated>2021-06-30T01:11:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/</id>
+    <content src="https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      삽질
+
+
+  문득 떠오른 순수한 호기심에 삽질해보는 포스팅입니다.
+  의식의 흐름에 따라 작성합니다.
+
+
+
+
+목표
+
+
+  워커 스레드에서 메인 스레드에 작업 요청하고, 결과를 기다렸다가 받아서 처리하기
+
+
+
+
+배경지식
+
+
+
+  
+    메인 스레드가 아닌, 다른 스레드들을 워커 스레드(Worker Thread, 작업자 스레드)라고 부른다.
+  
+  
+    유니티 API(트랜스폼, 컴포넌트, 게임오브젝트, …)의 호출은 메인 스레드에서만 가능하다.
+  
+  
+    워커 스레드에서 유니티 API를 호출하면 UnityException이 호출되면서 해당 작업이 거부된다.
+  
+  
+    멀티 스레드 작업에서는 읽고 쓰는 작업에 대해 반드시 동기화를 수행해야 한다.
+  
+  
+    동기화를 하지 않으면 ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>간단한 앰플리파이 쉐이더 예제 모음</title>
     <link href="https://rito15.github.io/posts/simple-amplify-shader-examples/" rel="alternate" type="text/html" title="간단한 앰플리파이 쉐이더 예제 모음" />
     <published>2021-06-27T04:24:00+09:00</published>
@@ -139,7 +209,20 @@ World Position Offset
 
 
 
-World Position Offset (Same Scale)
+World Position Offset (Keep Scale)
+
+
+
+
+
+Vertex Displacement
+
+
+   
+TODO
+
+
+  https://rito15.github.io/posts/unity-urp-sg-magical-orb/
 
 
 
@@ -163,24 +246,7 @@ Smooth UV Mask
 
 
 
-  Smoothstep의 Min, Max 입력을 서로 바꿀 경우, 마스크 색상 반전
-
-
-
-
-UV Circle
-
-
-
-
-
-Smooth UV Circle
-
-
-
-
-
-UV Mask Dissol...
+  Smo...
     </summary>
   
 
@@ -333,83 +399,6 @@ Sorting Layer
 
 Sorting Group
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</title>
-    <link href="https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/" rel="alternate" type="text/html" title="앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음" />
-    <published>2021-06-24T01:23:00+09:00</published>
-  
-    <updated>2021-06-29T04:20:24+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/</id>
-    <content src="https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Amplify Shader" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-
-  앰플리파이 쉐이더 그래프를 다루기 위해 필요한, 아주 기초적인 60가지 노드 익히기
-
-
-
-
-목차
-
-
-
-  프로퍼티(변수)
-    
-      Int (0)
-      Float (1)
-      Vector2 (2)
-      Vector3 (3)
-      Vector4 (4)
-      Color (5)
-      Texture Sample (T)
-    
-  
-  상수
-    
-      PI
-      Tau
-    
-  
-  정점 데이터
-    
-      Vertex Position
-      World Position
-      Vertex Normal
-      World Normal
-      Vertex Color
-    
-  
-  UV
-    
-      Vertex ...
     </summary>
   
 

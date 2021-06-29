@@ -4646,6 +4646,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6762,7 +6775,7 @@ public b...
       
       
       <div class="card">
-        <a href="/posts/cs-memo-show-cil/">
+        <a href="/posts/memo-cs-regex/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6779,13 +6792,13 @@ public b...
   
 
   
-    Jun 15
+    Mar  8
   
 
-  <i class="unloaded">2021-06-15T20:00:00+09:00</i>
+  <i class="unloaded">2021-03-08T17:42:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>CIL 코드 뜯어보기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Regex (정규표현식)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6794,26 +6807,27 @@ public b...
 
 
 
-                1. 소스코드 컴파일
+                Memo
 
 
-  컴파일을 완료하고 .exe 또는 .dll 파일을 생성한다.
+Using
+
+
+  
+    using System.Text.RegularExpressions;
+
+  
 
 
 
 
-2. 디스어셈블러 실행
+정확한 단어 찾기
 
 
-1
-C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
-
-
-이런 경로로 들어가서
-
-ildasm.exe 파일을 찾아 실행한다.
-
-경로는 버전마다 조금씩 차...
+  
+    string input = "AA,AAA,AAAA";
+string pattern = @"\bAA\b"; // 단어 경계를 \b로 구분
+string result = Regex.Match(input, ...
               </p>
             </div>
           </div>

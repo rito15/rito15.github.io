@@ -16,6 +16,21 @@
   },
   
   {
+    "title": "워커 스레드에서 메인 스레드에 작업 요청하기",
+    "url": "/posts/unity-request-job-from-worker-to-main-thread/",
+    "categories": "Unity, Unity Study",
+    "tags": "unity, csharp, mainthreaddispatcher",
+    "date": "2021-06-30 01:11:00 +0900",
+    
+
+
+
+
+
+    "snippet": "삽질  문득 떠오른 순수한 호기심에 삽질해보는 포스팅입니다.  의식의 흐름에 따라 작성합니다.목표  워커 스레드에서 메인 스레드에 작업 요청하고, 결과를 기다렸다가 받아서 처리하기배경지식      메인 스레드가 아닌, 다른 스레드들을 워커 스레드(Worker Thread, 작업자 스레드)라고 부른다.        유니티 API(트랜스폼, 컴포넌트, 게임오브젝트, …)의 호출은 메인 스레드에서만 가능하다.        워커 스레드에서 유니티 API를 호출하면 UnityException이 호출되면서 해당 작업이 거부된다.     ..."
+  },
+  
+  {
     "title": "간단한 앰플리파이 쉐이더 예제 모음",
     "url": "/posts/simple-amplify-shader-examples/",
     "categories": "Unity Shader, Amplify Shader",
@@ -27,7 +42,7 @@
 
 
 
-    "snippet": "1. VertexScale Up and DownHeartbeat( max( sin(T * F), 1-S ) - (1-S) ) * AT : TimeF : FrequencyS : SensitivityA : AmplitudeWorld Position OffsetWorld Position Offset (Same Scale)2. ColorUV Mask  Step의 A, B 입력을 서로 바꿀 경우, 마스크 색상 반전Smooth UV Mask  Smoothstep의 Min, Max 입력을 서로 바꿀 경우, 마스크 색상 반전UV Circle..."
+    "snippet": "1. VertexScale Up and DownHeartbeat( max( sin(T * F), 1-S ) - (1-S) ) * AT : TimeF : FrequencyS : SensitivityA : AmplitudeWorld Position OffsetWorld Position Offset (Keep Scale)Vertex Displacement   TODO  https://rito15.github.io/posts/unity-urp-sg-magical-orb/2. ColorUV Mask  Step의 A, B 입력을 서로 바..."
   },
   
   {

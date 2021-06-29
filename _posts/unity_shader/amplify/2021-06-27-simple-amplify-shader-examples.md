@@ -39,9 +39,22 @@ A : Amplitude
 
 <br>
 
-## World Position Offset (Same Scale)
+## World Position Offset (Keep Scale)
 
 ![image](https://user-images.githubusercontent.com/42164422/123471661-16408200-d631-11eb-9092-fb65e96208d9.gif)
+
+<br>
+
+## Vertex Displacement
+
+<details>
+<summary markdown="span"> 
+TODO
+</summary>
+
+https://rito15.github.io/posts/unity-urp-sg-magical-orb/
+
+</details>
 
 <br>
 
@@ -97,10 +110,25 @@ A : Amplitude
 ## Distortion
 
 
+<details>
+<summary markdown="span"> 
+TODO
+</summary>
+
+후보 1 : 
+https://trello-attachments.s3.amazonaws.com/5f6ef967ac784309c54911d3/5f8f75411c8d323993da6c3e/64fb13750de544e516cc4ced2e354cf6/image.png
+
+
+여러가지 더 작성
+
+</details>
+
 
 <br>
 
-## _
+## World Position-Based Color Variation
+
+TODO
 
 
 
@@ -121,7 +149,7 @@ A : Amplitude
 
 ![image](https://user-images.githubusercontent.com/42164422/123554382-a78f3000-d7ba-11eb-8fd4-feb09a3fb9d3.png)
 
-- **Ramp Texture**를 이용한 커스텀 라이팅 기법
+- [Ramp Texture](https://user-images.githubusercontent.com/42164422/123857489-50759080-d95d-11eb-8d1d-24215df18856.png)를 이용한 커스텀 라이팅 기법
 
 - **Ramp Texture**는 반드시 `Wrap Mode : Clamp`, `Filter Mode : Point`로 설정해야 한다.
 
@@ -133,18 +161,28 @@ A : Amplitude
 
 - `Scale And Offset` 노드를 통해 각 색상의 영역을 조절해줄 수 있다.
 
+<br>
+
+- 사용된 **Ramp Texture** :
+
+![](https://user-images.githubusercontent.com/42164422/123857489-50759080-d95d-11eb-8d1d-24215df18856.png)
 
 <br>
 
 ## Toon(Cel) Shading
 
+<details>
+<summary markdown="span"> 
+TODO
+</summary>
+
 https://www.youtube.com/watch?v=dyiLJ1PFhM0
 https://www.youtube.com/watch?v=MawzivWLCoo
 
-<br>
-
-## _
+</details>
 
 
 <br>
+
+
 

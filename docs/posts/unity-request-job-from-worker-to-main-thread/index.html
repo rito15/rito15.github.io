@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="파티클 시스템 예제 - 05 - Dr. Strange Portal" />
+<meta property="og:title" content="워커 스레드에서 메인 스레드에 작업 요청하기" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목차" />
-<meta property="og:description" content="목차" />
-<link rel="canonical" href="https://rito15.github.io/posts/unity-particle-system-example-05-dr-strange-portal/" />
-<meta property="og:url" content="https://rito15.github.io/posts/unity-particle-system-example-05-dr-strange-portal/" />
+<meta name="description" content="삽질 문득 떠오른 순수한 호기심에 삽질해보는 포스팅입니다. 의식의 흐름에 따라 작성합니다." />
+<meta property="og:description" content="삽질 문득 떠오른 순수한 호기심에 삽질해보는 포스팅입니다. 의식의 흐름에 따라 작성합니다." />
+<link rel="canonical" href="https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-03-03T03:33:00+09:00" />
+<meta property="article:published_time" content="2021-06-30T01:11:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="파티클 시스템 예제 - 05 - Dr. Strange Portal" />
+<meta property="twitter:title" content="워커 스레드에서 메인 스레드에 작업 요청하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"파티클 시스템 예제 - 05 - Dr. Strange Portal","description":"목차","dateModified":"2021-03-11T04:16:16+09:00","datePublished":"2021-03-03T03:33:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-particle-system-example-05-dr-strange-portal/"},"url":"https://rito15.github.io/posts/unity-particle-system-example-05-dr-strange-portal/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"워커 스레드에서 메인 스레드에 작업 요청하기","description":"삽질 문득 떠오른 순수한 호기심에 삽질해보는 포스팅입니다. 의식의 흐름에 따라 작성합니다.","dateModified":"2021-06-30T01:11:00+09:00","datePublished":"2021-06-30T01:11:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/"},"url":"https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>파티클 시스템 예제 - 05 - Dr. Strange Portal | Rito15
+  <title>워커 스레드에서 메인 스레드에 작업 요청하기 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>파티클 시스템 예제 - 05 - Dr. Strange Portal</span>
+        <span>워커 스레드에서 메인 스레드에 작업 요청하기</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>파티클 시스템 예제 - 05 - Dr. Strange Portal</h1>
+      <h1 data-toc-skip>워커 스레드에서 메인 스레드에 작업 요청하기</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -385,17 +385,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Mar  3, 2021,  3:33 AM +0900"
+    title="Wed, Jun 30, 2021,  1:11 AM +0900"
   >
 
   
   
 
   
-    Mar  3
+    Jun 30
   
 
-  <i class="unloaded">2021-03-03T03:33:00+09:00</i>
+  <i class="unloaded">2021-06-30T01:11:00+09:00</i>
 
 </span>
           by
@@ -406,35 +406,6 @@
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Mar 11, 2021,  4:16 AM +0900"
-  >
-
-  
-  
-
-  
-    Mar 11
-  
-
-  <i class="unloaded">2021-03-11T04:16:16+09:00</i>
-
-</span>
-          </span>
           
 
           <!-- read time -->
@@ -448,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2868 words">15 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2252 words">12 min</span>
 
 
           <!-- page views -->
@@ -456,7 +427,7 @@
 
           <!-- HITS -->
           &nbsp;
-          <a href="https://hits.seeyoufarm.com"><img min-width="94" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://rito15.github.io/posts/unity-particle-system-example-05-dr-strange-portal/%2F&count_bg=%23AC58FA&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false"/></a> 
+          <a href="https://hits.seeyoufarm.com"><img min-width="94" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/%2F&count_bg=%23AC58FA&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false"/></a> 
 
         </div>
 
@@ -466,593 +437,557 @@
 
         
 
-        <h1 id="목차">목차</h1>
+        <h1 id="삽질">삽질</h1>
 <hr />
-
 <ul>
-  <li><a href="#목표">목표</a></li>
-  <li><a href="#준비물">준비물</a></li>
-  <li><a href="#1-계층형-파티클-시스템">1. 계층형 파티클 시스템</a></li>
-  <li><a href="#2-portal-이펙트-만들기">2. Portal 이펙트 만들기</a></li>
-  <li><a href="#3-spiral-a-이펙트-만들기">3. Spiral A 이펙트 만들기</a></li>
-  <li><a href="#4-spiral-b-이펙트-만들기">4. Spiral B 이펙트 만들기</a></li>
-  <li><a href="#5-burst-이펙트-만들기">5. Burst 이펙트 만들기</a></li>
-  <li><a href="#6-완성">6. 완성</a></li>
+  <li>문득 떠오른 순수한 호기심에 삽질해보는 포스팅입니다.</li>
+  <li>의식의 흐름에 따라 작성합니다.</li>
 </ul>
-
-<p><br /></p>
-
-<h1 id="preview">Preview</h1>
-<hr />
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110457627-2ed26e00-810e-11eb-9770-c5c5c9d7576c.gif" alt="2021_0309_drStrange_10" /></p>
 
 <p><br /></p>
 
 <h1 id="목표">목표</h1>
 <hr />
-
 <ul>
-  <li>
-    <p>계층형 파티클 시스템 만들기</p>
-  </li>
-  <li>
-    <p>닥터 스트레인지 포탈 이펙트 완성하기</p>
-  </li>
+  <li>워커 스레드에서 메인 스레드에 작업 요청하고, 결과를 기다렸다가 받아서 처리하기</li>
 </ul>
 
 <p><br /></p>
 
-<h1 id="준비물">준비물</h1>
-<hr />
-
-<ul>
-  <li>글로우 모양의 동그란 텍스쳐와 Additive 마테리얼</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110457764-53c6e100-810e-11eb-87f9-6e260bc0b85c.png" alt="image" /></p>
-
-<p><br /></p>
-
-<h1 id="1-계층형-파티클-시스템">1. 계층형 파티클 시스템</h1>
-<hr />
-
-<p>지금까지는 이펙트 하나 당 파티클 시스템을 하나씩만 사용해서 제작했다.</p>
-
-<p>하지만 대부분의 이펙트는 실제로 하나의 파티클 시스템으로 표현하기 어려운 경우가 많고,</p>
-
-<p>여러 개의 파티클 시스템 게임오브젝트를 하나의 부모 게임오브젝트로 묶어서 계층형으로 제작한다.</p>
-
-<p><br /></p>
-
-<h2 id="계층-구조-만들기"><strong>계층 구조 만들기</strong></h2>
-
-<ul>
-  <li>
-    <p>하이라키에서 우클릭 - [Create Empty]를 눌러 게임오브젝트 하나를 만든다.</p>
-  </li>
-  <li>
-    <p>트랜스폼의 우측 상단 <code class="language-plaintext highlighter-rouge">...</code>을 누르고, <code class="language-plaintext highlighter-rouge">Reset</code>을 클릭한다.</p>
-  </li>
-  <li>
-    <p>생성한 게임오브젝트를 우클릭하고 [Effects] - [Particle System]을 누른다.</p>
-  </li>
-  <li>
-    <p>다시 부모 게임오브젝트를 우클릭하고 [Effects] - [Particle System]을 눌러 자식으로 파티클 시스템을 하나 더 생성한다.</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110439266-9a124500-80fa-11eb-8701-7a6ab97764b1.png" alt="image" /></p>
-
-<ul>
-  <li>하지만 이렇게 하면 두 자식 오브젝트의 파티클 시스템이 함께 재생되지 않는 것을 볼 수 있다.</li>
-</ul>
-
-<p><br /></p>
-
-<h2 id="파티클-시스템을-위한-계층구조-만들기"><strong>파티클 시스템을 위한 계층구조 만들기</strong></h2>
-
-<ul>
-  <li>
-    <p>따라서 파티클 시스템을 하나로 묶어서 함께 재생하려면, 부모 게임오브젝트 역시 파티클 시스템이어야 한다.</p>
-  </li>
-  <li>
-    <p>일단 위에서 생성한 3개의 게임오브젝트를 모두 지운다(Delete).</p>
-  </li>
-  <li>이 상태에서 하이라키 우클릭으로 파티클 시스템을 만든다.
-    <ul>
-      <li>만들고 항상 트랜스폼을 리셋해준다.(필수)</li>
-    </ul>
-  </li>
-  <li>생성한 파티클 시스템을 우클릭하여, 자식 파티클 시스템을 마찬가지로 두 개 만들어본다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110439641-0bea8e80-80fb-11eb-87bd-0f9adf132b64.png" alt="image" /></p>
-
-<ul>
-  <li>이제는 파티클 시스템이 모두 연결되어 함께 재생되는 것을 확인할 수 있다.</li>
-</ul>
-
-<p><br /></p>
-
-<h2 id="부모-파티클-시스템-수정"><strong>부모 파티클 시스템 수정</strong></h2>
-
-<ul>
-  <li>
-    <p>하지만 원래 원했던 것은, 빈 부모 오브젝트 아래에 여러 개의 파티클 시스템을 묶어 하나로 관리하는 것이다.</p>
-  </li>
-  <li>
-    <p>따라서 부모 게임오브젝트는 아무런 파티클도 생성하고 싶지 않지만, 부모 파티클 시스템도 자식들처럼 계속 파티클을 생성하고 있다.</p>
-  </li>
-  <li>
-    <p>이를 수정하기 위해, 부모 게임오브젝트를 선택한다.</p>
-  </li>
-  <li>
-    <p>인스펙터의 파티클 시스템 컴포넌트에서 <code class="language-plaintext highlighter-rouge">Emission</code>, <code class="language-plaintext highlighter-rouge">Shape</code>, <code class="language-plaintext highlighter-rouge">Renderer</code> 모듈을 모두 체크 해제한다.</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110439955-76033380-80fb-11eb-8456-fcd375d6ad5b.png" alt="image" /></p>
-
-<ul>
-  <li>이제 더이상 부모 게임오브젝트는 파티클을 생성하지 않고, 자식 파티클 시스템들을 묶어주는 역할만 하게 된다.</li>
-</ul>
-
-<p><br /></p>
-
-<h1 id="2-portal-이펙트-만들기">2. Portal 이펙트 만들기</h1>
+<h1 id="배경지식">배경지식</h1>
 <hr />
 
 <ul>
   <li>
-    <p>총 네 개로 이루어진 닥터 스트레인지 포탈의 파티클 시스템 중, 첫 번째를 만든다.</p>
+    <p>메인 스레드가 아닌, 다른 스레드들을 워커 스레드(Worker Thread, 작업자 스레드)라고 부른다.</p>
   </li>
   <li>
-    <p>우선 부모 게임오브젝트의 이름을 [Doctor Strange Portal]로 바꿔준다.</p>
+    <p>유니티 API(트랜스폼, 컴포넌트, 게임오브젝트, …)의 호출은 메인 스레드에서만 가능하다.</p>
   </li>
   <li>
-    <p>그리고 첫 번째 자식의 이름을 [Portal]로 변경한다.</p>
+    <p>워커 스레드에서 유니티 API를 호출하면 <code class="language-plaintext highlighter-rouge">UnityException</code>이 호출되면서 해당 작업이 거부된다.</p>
   </li>
   <li>
-    <p>두 번째 자식 게임오브젝트는 Delete 키를 눌러 제거한다.</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110445315-5111bf00-8101-11eb-8e9a-cea91a87029d.png" alt="image" /></p>
-
-<p><br /></p>
-
-<h2 id="메인-모듈-설정">메인 모듈 설정</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> - [Random Between Two Constants] : (0.2, 2)</p>
+    <p>멀티 스레드 작업에서는 읽고 쓰는 작업에 대해 반드시 동기화를 수행해야 한다.</p>
   </li>
   <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Speed</code> : 0</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Size</code> - [Random Between Two Constants] : (0.5, 1)</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Color</code> - [Random Color]</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110441004-a13a5280-80fc-11eb-9de7-d911c14feffc.png" alt="image" /></p>
-
-<p><br /></p>
-
-<h2 id="shape-모듈">Shape 모듈</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Shape</code> : Circle</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Radius</code> : 2</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Radius Thickness</code> : 0</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Arc</code> - <code class="language-plaintext highlighter-rouge">Mode</code> : Loop</p>
+    <p>동기화를 하지 않으면 잘못된 값을 참조하거나, 복제되거나, 의도치 않은 다양한 모습을 볼 수 있다.</p>
   </li>
 </ul>
 
 <p><br /></p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110442782-8537b080-80fe-11eb-8020-9262d3e4f627.gif" alt="2021_0309_drStrange_01" /></p>
-
-<p>Shape를 Circle로 설정하면 3차원 공간에서도 2차원의 원형 범위에서 파티클이 생성된다.</p>
-
-<p>Radius Thickness는 원 내에서 파티클이 생성될 영역의 두께를 설정하는데, 기본 설정인 1로 두면 원 범위 전체에서 파티클을 생성하고</p>
-
-<p>점차 감소시키면 도넛 형태의 범위에서 파티클을 생성하며, 0으로 두면 원의 테두리 부분에서만 파티클을 생성하게 된다.</p>
-
-<p><br /></p>
-
-<p>Arc Mode를 Random으로 두면 생성 범위 내에서 무작위로 파티클이 생성되며, Loop로 설정하면 원의 테두리를 차근차근 순회하며 생성된다.</p>
-
-<p>그리고 Loop을 때 파티클이 생성되는 지점들은 <code class="language-plaintext highlighter-rouge">Spread</code>, <code class="language-plaintext highlighter-rouge">Speed</code> 속성, Emission 모듈의 <code class="language-plaintext highlighter-rouge">Rate over Time</code> 속성의 영향을 받는다.</p>
-
-<p>따라서 Emission 모듈의 <code class="language-plaintext highlighter-rouge">Rate over Time</code>을 임시로 64 정도로 높여두면 다음과 같은 모습을 확인할 수 있다.</p>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110443439-435b3a00-80ff-11eb-949b-f0e0e7af21a6.gif" alt="2021_0309_drStrange_02" /></p>
-
-<p><br /></p>
-
-<h2 id="color-over-lifetime-모듈">Color over Lifetime 모듈</h2>
-
-<ul>
-  <li>알파값이 0 ~ 1 ~ 0으로 변화하도록 다음처럼 설정한다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/108849307-5c56ec00-7625-11eb-8637-f363e4a01709.gif" alt="" /></p>
-
-<p><br /></p>
-
-<h2 id="size-over-lifetime-모듈">Size over Lifetime 모듈</h2>
-
-<ul>
-  <li>생성되는 파티클이 점차 작아지며 사라지도록, 다음처럼 설정한다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110443732-97feb500-80ff-11eb-80a2-f594af73de9a.png" alt="image" /></p>
-
-<p><br /></p>
-
-<h2 id="velocity-over-lifetime-모듈">Velocity over Lifetime 모듈</h2>
-
-<ul>
-  <li>
-    <p>일단 <code class="language-plaintext highlighter-rouge">Radial</code>에 2를 입력한다.</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Radial</code>의 우측에 있는 화살표를 눌러 [Curve]로 바꾸고, 다음처럼 설정한다.</p>
-    <ul>
-      <li>하단의 프리셋 우측 두번째를 클릭하면 빠르게 설정할 수 있다.</li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110444375-46a2f580-8100-11eb-8b17-1aa573394c52.png" alt="image" /></p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Orbital</code>의 Z 값을 -2로 설정한다.</li>
-</ul>
-
-<p><br /></p>
-
-<p>Radial 속성은 생성된 파티클이 중심으로부터 멀어지는 속도를 지정한다.</p>
-
-<p>커브를 통해 0부터 2까지 증가하도록 설정하였으므로, 파티클이 생성되는 순간에는 가만히 있다가 점차 중심으로부터 빠르게 멀어지게 된다.</p>
-
-<p>Orbital 속성은 각 축(X, Y, Z)에 대한 회전 속도를 지정한다.</p>
-
-<p>Z축 회전 속도를 지정하였으므로, 아래 그림에서 보이는 파란색 축(Z축) 을 기준축으로 하여 파티클이 회전하게 된다.</p>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110444661-a4374200-8100-11eb-9120-78658850c12e.png" alt="image" /></p>
-
-<p><br /></p>
-
-<ul>
-  <li>현재 상태 :</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110444919-ec566480-8100-11eb-9d9d-580cb64cb24b.gif" alt="2021_0309_drStrange_03" /></p>
-
-<p><br /></p>
-
-<h2 id="emission-모듈">Emission 모듈</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Rate over Time</code> : 512</p>
-  </li>
-  <li>
-    <p>결과 :</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110445048-14de5e80-8101-11eb-8b99-10ffe37e2475.gif" alt="2021_0309_drStrange_04" /></p>
-
-<p><br /></p>
-
-<h1 id="3-spiral-a-이펙트-만들기">3. Spiral A 이펙트 만들기</h1>
+<h1 id="서론">서론</h1>
 <hr />
 
-<ul>
-  <li>
-    <p>[Portal] 게임오브젝트를 클릭하고 [Ctrl + D]를 눌러 복제한 뒤, 이름을 [Spiral A]로 변경한다.</p>
-  </li>
-  <li>
-    <p>[Portal] 게임오브젝트를 다시 클릭하고 인스펙터 좌측 상단의 체크박스를 클릭하거나, [Alt + Shift + A]를 눌러 잠시 게임오브젝트를 비활성화 해둔다.</p>
-  </li>
-</ul>
+<p>다른 스레드에서 유니티 API 호출을 해야 하는 경우,</p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110446190-40157d80-8102-11eb-9b04-a2d4d741eac0.png" alt="image" /></p>
+<p>사실 메인 스레드 디스패처(Main Thread Dispatcher)라는 녀석을 만들어서</p>
 
-<p><br /></p>
+<p>거기에 요청을 하는 방식을 사용하면 된다.</p>
 
-<h2 id="메인-모듈-수정">메인 모듈 수정</h2>
+<p><a href="https://github.com/PimDeWitte/UnityMainThreadDispatcher">https://github.com/PimDeWitte/UnityMainThreadDispatcher</a></p>
 
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Delay</code> : 0.5</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> - [Random Between Two Constants] : (0.5, 1)</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Size</code> - [Random Between Two Constants] : (0.2, 1)</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Color</code> - [Random Color] : 노란색 ~ 좀 더 진한 주황색 정도로 설정한다.</p>
-  </li>
-</ul>
+<p>이런 것도 있고, UniRx에도 디스패처가 있고</p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110445949-05abe080-8102-11eb-9cd3-8263769784e6.png" alt="image" /></p>
+<p>동작만 이해하면 구현하기도 그렇게 어렵지는 않다.</p>
 
 <p><br /></p>
 
-<p>Start Delay 0.5로 설정했으므로, 파티클 시스템이 재생될 때 0.5초가 지나고 시작하게 된다.</p>
+<p>그런데 이건 워커 스레드에서 메인 스레드에 “해줘”라고만 할 뿐이지</p>
+
+<p>해당 작업이 언제 수행되는지, 언제 완료되는지 추적할 수는 없다.</p>
+
+<p>물론 콜백으로 <code class="language-plaintext highlighter-rouge">isCompleted = true;</code>를 담아서 보내면 되기는 하겠지만</p>
+
+<p>매번 하드코딩이 필요하므로 우아하지 않다.</p>
+
+<p>그래서 이 기능을 해줄 수 있는 디스패처를 만들어본다.</p>
+
+<p>그리고 모두 <code class="language-plaintext highlighter-rouge">Task</code>를 기반으로 작성할 것이다.</p>
 
 <p><br /></p>
 
-<h2 id="shape-모듈-수정">Shape 모듈 수정</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Arc</code> - <code class="language-plaintext highlighter-rouge">Speed</code> : 6</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110446767-e19ccf00-8102-11eb-9f09-f55dd8926616.gif" alt="2021_0309_drStrange_05" /></p>
-
-<p><br /></p>
-
-<h2 id="trails-모듈">Trails 모듈</h2>
-
-<ul>
-  <li>
-    <p>트레일 모듈을 그냥 체크만 해준다.</p>
-  </li>
-  <li>
-    <p>트레일 모듈이 활성화된 경우, 생성되는 모든 파티클은 잔상을 남기게 된다.</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110447045-2cb6e200-8103-11eb-81e0-994bddb9ce2a.gif" alt="2021_0309_drStrange_06" /></p>
-
-<ul>
-  <li>
-    <p>위처럼 보이지 않고 이상하게 보이는 경우, Renderer 모듈을 열어서 <code class="language-plaintext highlighter-rouge">Trail Material</code>에 <code class="language-plaintext highlighter-rouge">Material</code>과 동일한 마테리얼이 등록되어 있는지 확인한다.</p>
-  </li>
-  <li>
-    <p>만약 등록되어 있지 않거나 다르다면, 동일한 마테리얼을 지정해준다.</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110447387-84ede400-8103-11eb-989f-9f87f79f4160.png" alt="image" /></p>
-
-<p><br /></p>
-
-<h2 id="velocity-over-lifetime-모듈-1">Velocity over Lifetime 모듈</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Orbital</code>의 Z 값을 -2에서 -4로 변경한다.</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Radial</code>의 커브를 클릭하고, 하단의 커브 에디터를 클릭하여 연다.</p>
-  </li>
-  <li>
-    <p>Radial의 Y축 값을 2에서 6으로 변경한다.</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110449829-f038b580-8105-11eb-96e2-1f43ada1d076.png" alt="image" /></p>
-
-<p><br /></p>
-
-<h2 id="결과">결과</h2>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110449949-0e9eb100-8106-11eb-9b15-7bcfc94cade7.gif" alt="2021_0309_drStrange_07" /></p>
-
-<p><br /></p>
-
-<h1 id="4-spiral-b-이펙트-만들기">4. Spiral B 이펙트 만들기</h1>
+<h1 id="기능-구현">기능 구현</h1>
 <hr />
 
+<h2 id="1-테스트-작업-형태-구현">[1] 테스트 작업 형태 구현</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Task</span><span class="p">.</span><span class="nf">Run</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nf">JobTest</span><span class="p">(</span><span class="m">1000</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">async</span> <span class="n">Task</span> <span class="nf">JobTest</span><span class="p">(</span><span class="kt">int</span> <span class="n">delay</span> <span class="p">=</span> <span class="m">1000</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"ID : "</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">result</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">try</span>
+    <span class="p">{</span>
+        <span class="c1">// Do Something Busy..</span>
+        <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="n">delay</span><span class="p">);</span>
+
+        <span class="n">result</span> <span class="p">=</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Random</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1000</span><span class="p">);</span>
+        <span class="n">transform</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">one</span> <span class="p">*</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 작업 결과 확인</span>
+    <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">$"Random Int : </span><span class="p">{</span><span class="n">result</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>간단히 위와 같은 작업을 워커 스레드에서 수행시켜본다.</p>
+
+<p>당연히</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123839980-c3c0d780-d948-11eb-85fc-123adcb58306.png" alt="image" /></p>
+
+<p>이런 결과를 얻을 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="2-구현-목표-재확인">[2] 구현 목표 재확인</h2>
+
+<p>구현 목표를 다시 확인해보면 다음과 같다.</p>
+
 <ul>
   <li>
-    <p>[Spiral A] 게임오브젝트를 선택하고, [Ctrl + D]를 눌러 복제한다.</p>
+    <p>워커 스레드에서 메인 스레드에 작업을 요청하고</p>
   </li>
   <li>
-    <p>복제한 게임오브젝트의 이름을 [Spiral B]로 변경한다.</p>
+    <p>워커 스레드는 메인 스레드의 작업 완료를 기다리고</p>
   </li>
   <li>
-    <p>[Spiral A] 게임오브젝트를 선택하고, 인스펙터 좌측 상단의 체크박스를 클릭하거나 [Alt + Shift + A]를 눌러 잠시 비활성화 해둔다.</p>
+    <p>메인 스레드는 이 작업을 수행하고 완료 여부를 알려주면</p>
+  </li>
+  <li>
+    <p>워커 스레드가 이 결과를 받아서 다시 흐름을 이어나가는데</p>
+  </li>
+  <li>
+    <p>동기화도 꼭 해줘야 한다.</p>
   </li>
 </ul>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110450428-88369f00-8106-11eb-8175-908f5037c678.png" alt="image" /></p>
+<p><br /></p>
+
+<p>워커 스레드에서 메인 스레드에 작업을 요청하고 처리하기 위해 큐를 사용할 것이다.</p>
+
+<p>그리고 마침 C#에서 제공하는 좋은 것이 있다.</p>
+
+<p>바로 <code class="language-plaintext highlighter-rouge">ConcurrentQueue&lt;T&gt;</code>이다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="c1">// 네임스페이스 필요</span>
+<span class="c1">//using System.Collections.Concurrent;</span>
+
+<span class="k">private</span> <span class="k">readonly</span> <span class="n">ConcurrentQueue</span><span class="p">&lt;</span><span class="n">Action</span><span class="p">&gt;</span> <span class="n">jobQueue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ConcurrentQueue</span><span class="p">&lt;</span><span class="n">Action</span><span class="p">&gt;();</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ConcurrentQueue&lt;T&gt;</code>는 스레드 안전성을 보장한다고 하니</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">lock</span><span class="p">(</span><span class="n">_queue</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">_queue</span><span class="p">.</span><span class="nf">DoSomething</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이런걸 굳이 안해줘도 된다.</p>
+
+<p>아마 내부에서 예쁘게 해줄 것 같다.</p>
 
 <p><br /></p>
 
-<h2 id="메인-모듈-수정-1">메인 모듈 수정</h2>
+<p><code class="language-plaintext highlighter-rouge">T</code>에 들어가는 <code class="language-plaintext highlighter-rouge">Action</code>은 물론 워커 스레드가 메인 스레드에 요청할 작업을 의미한다.</p>
 
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Delay</code> : 0.75</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> - [Random Between Two Constants] : (1, 1.2)</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Color</code> - [Random Color] : Spiral A보다 약간 더 진하게, 주황색 ~ 갈색 정도로 설정한다.</p>
-  </li>
-</ul>
+<p>그런데 해당 작업의 완료 여부도 깔끔하게 받아올 수 있어야 하므로</p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110450912-0004c980-8107-11eb-8c92-8b0428ae8b64.png" alt="image" /></p>
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Job</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">Action</span> <span class="n">job</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">bool</span> <span class="n">completed</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
 
-<p><br /></p>
+<p>대략 이런 형태로 묶어준다.</p>
 
-<h2 id="emission-모듈-수정">Emission 모듈 수정</h2>
+<p>가비지가 발생하지 않게 <code class="language-plaintext highlighter-rouge">struct</code>로,</p>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Rate over Time</code> : 256</li>
-</ul>
+<p>그것도 <code class="language-plaintext highlighter-rouge">readonly struct</code>로 구현하면 예쁘겠지만</p>
 
-<p><br /></p>
+<p>워커 스레드가 메인 스레드에 작업을 던져주고, 다시 확인하는 과정을 거칠 것이므로</p>
 
-<h2 id="velocity-over-lifetime-모듈-수정">Velocity over Lifetime 모듈 수정</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Orbital</code> : Z값을 -8로 수정한다.</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Radial</code>의 커브를 클릭하고, 하단의 커브 에디터를 클릭하여 연다.</p>
-  </li>
-  <li>
-    <p>Radial의 Y축 값을 6에서 4로 변경한다.</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110451442-8caf8780-8107-11eb-87c8-51e3446ff997.png" alt="image" /></p>
+<p>GC에게는 미안하지만 클래스로 작성한다.</p>
 
 <p><br /></p>
 
-<h2 id="결과-1">결과</h2>
+<h2 id="3-job-클래스-작성">[3] Job 클래스 작성</h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110451633-b9639f00-8107-11eb-9140-104e90337cf3.gif" alt="2021_0309_drStrange_08" /></p>
+<p>그런데 <code class="language-plaintext highlighter-rouge">Job</code>이라는 이름은 너무 일반적이고</p>
+
+<p>해당 작업을 처리할 주체는 메인 스레드니까</p>
+
+<p><code class="language-plaintext highlighter-rouge">MainThreadJob</code> 정도로 이름을 바꿔서 구현해준다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">JobForMainThread</code>도 생각했지만 이건 너무 설명적인 느낌이다.</p>
 
 <p><br /></p>
 
-<h1 id="5-burst-이펙트-만들기">5. Burst 이펙트 만들기</h1>
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 메인 스레드에서 처리할 작업 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">class</span> <span class="nc">MainThreadJob</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">ReaderWriterLockSlim</span> <span class="n">rwLock</span><span class="p">;</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">Action</span> <span class="n">job</span><span class="p">;</span>
+    <span class="k">private</span> <span class="k">volatile</span> <span class="kt">bool</span> <span class="n">completed</span><span class="p">;</span>
+
+    <span class="k">static</span> <span class="nf">MainThreadJob</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">rwLock</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ReaderWriterLockSlim</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="nf">MainThreadJob</span><span class="p">(</span><span class="n">Action</span> <span class="n">job</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">completed</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">job</span> <span class="p">=</span> <span class="n">job</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// &lt;summary&gt; 메인 스레드에서 호출 : 작업 수행 &lt;/summary&gt;</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Run</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// 작업 실행</span>
+        <span class="n">job</span><span class="p">?.</span><span class="nf">Invoke</span><span class="p">();</span>
+
+        <span class="c1">// 작업 종료 통지</span>
+        <span class="n">rwLock</span><span class="p">.</span><span class="nf">EnterWriteLock</span><span class="p">();</span>
+        <span class="n">completed</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="n">rwLock</span><span class="p">.</span><span class="nf">ExitWriteLock</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// &lt;summary&gt; 워커 스레드에서 호출 : 작업 완료 대기 &lt;/summary&gt;</span>
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span> <span class="nf">Wait</span><span class="p">(</span><span class="kt">int</span> <span class="n">timeoutMS</span> <span class="p">=</span> <span class="m">100</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 작업 종료 여부 확인</span>
+            <span class="n">rwLock</span><span class="p">.</span><span class="nf">EnterReadLock</span><span class="p">();</span>
+            <span class="kt">bool</span> <span class="n">flag</span> <span class="p">=</span> <span class="n">completed</span><span class="p">;</span>
+            <span class="n">rwLock</span><span class="p">.</span><span class="nf">ExitReadLock</span><span class="p">();</span>
+
+            <span class="c1">// 작업 종료시 탈출</span>
+            <span class="c1">// 미종료시 대기</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="n">timeoutMS</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>락을 구현하는 방법은 다양하다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Interlocked</code>, <code class="language-plaintext highlighter-rouge">Monitor</code>, <code class="language-plaintext highlighter-rouge">lock(){}</code>, <code class="language-plaintext highlighter-rouge">AutoResetEvent</code>, <code class="language-plaintext highlighter-rouge">Mutex</code>, <code class="language-plaintext highlighter-rouge">Semaphore</code>, …</p>
+
+<p>그런데 락이 필요한 부분은 <code class="language-plaintext highlighter-rouge">completed</code> 필드이고,</p>
+
+<p>워커 스레드는 이 값을 읽기만 하고</p>
+
+<p>메인 스레드는 이 값에 쓰기만 수행하므로</p>
+
+<p><code class="language-plaintext highlighter-rouge">ReaderWriterLockSlim</code>을 이용한다.</p>
+
+<p>그리고 해당 객체가 Job마다 생성되지는 않도록, <code class="language-plaintext highlighter-rouge">static</code>으로 만들어준다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Run()</code> 메소드는 메인 스레드가 호출한다.</p>
+
+<p>메인 스레드에서 작업을 수행하고, WriterLock을 걸고 작업 완료 여부를 통지한다.</p>
+
+<p>그리고 워커 스레드는 ReaderLock을 걸고 작업 완료 여부를 확인한다.</p>
+
+<p><br /></p>
+
+<p>근데 아무리 생각해봐도 각각의 Job은 메인스레드와 워커스레드 하나씩만 접근한다.</p>
+
+<p>그러니까 애초에 <code class="language-plaintext highlighter-rouge">completed</code>가 <code class="language-plaintext highlighter-rouge">false</code>로 시작해서</p>
+
+<p>메인 스레드가 접근해서 <code class="language-plaintext highlighter-rouge">true</code>로 바꿔주기만 하면 되는 일이고,</p>
+
+<p>여기서 메인 스레드가 <code class="language-plaintext highlighter-rouge">true</code>로 쓰는 작업과 워커 스레드가 이걸 읽는 작업이</p>
+
+<p>동시에 수행되더라도 딱히 문제가 없다.</p>
+
+<p>워커 스레드는 어쨌든 이 값이 <code class="language-plaintext highlighter-rouge">false</code> -&gt; <code class="language-plaintext highlighter-rouge">true</code>로 변하는 타이밍만 캐치하면 된다.</p>
+
+<p><br /></p>
+
+<p>결국 중요한 것은 메인 스레드와 워커 스레드가 작업을 주고받을 큐가 동기화 되는 것이지,</p>
+
+<p>저기서 동기화시키는 것은 불필요하다는 것이 결론.</p>
+
+<p>그래서 다이어트를 시켜보니</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 메인 스레드에서 처리할 작업 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">class</span> <span class="nc">MainThreadJob</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">Action</span> <span class="n">job</span><span class="p">;</span>
+    <span class="k">private</span> <span class="k">volatile</span> <span class="kt">bool</span> <span class="n">completed</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">MainThreadJob</span><span class="p">(</span><span class="n">Action</span> <span class="n">job</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">completed</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">job</span> <span class="p">=</span> <span class="n">job</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// &lt;summary&gt; 메인 스레드에서 호출 : 작업 수행 &lt;/summary&gt;</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Run</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// 작업 실행</span>
+        <span class="n">job</span><span class="p">?.</span><span class="nf">Invoke</span><span class="p">();</span>
+
+        <span class="c1">// 작업 종료 통지</span>
+        <span class="n">completed</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// &lt;summary&gt; 워커 스레드에서 호출 : 작업 완료 대기 &lt;/summary&gt;</span>
+    <span class="k">public</span> <span class="k">async</span> <span class="n">Task</span> <span class="nf">Wait</span><span class="p">(</span><span class="kt">int</span> <span class="n">timeoutMS</span> <span class="p">=</span> <span class="m">100</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 작업 종료시 탈출</span>
+            <span class="c1">// 미종료시 대기</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">completed</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="n">timeoutMS</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 깔끔해졌다.</p>
+
+<p>그리고 큐의 제네릭 인수를 <code class="language-plaintext highlighter-rouge">MainThreadJob</code>으로 바꿔준다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">readonly</span> <span class="n">ConcurrentQueue</span><span class="p">&lt;</span><span class="n">MainThreadJob</span><span class="p">&gt;</span> <span class="n">jobQueue</span>
+    <span class="p">=</span> <span class="k">new</span> <span class="n">ConcurrentQueue</span><span class="p">&lt;</span><span class="n">MainThreadJob</span><span class="p">&gt;();</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="4-메인-스레드에서-작업-처리">[4] 메인 스레드에서 작업 처리</h2>
+
+<p>업데이트로 해도 되고, 코루틴으로 해도 된다.</p>
+
+<p>코루틴으로 작성해본다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">IEnumerator</span> <span class="nf">MainThreadJobProcessor</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">jobQueue</span><span class="p">.</span><span class="nf">TryDequeue</span><span class="p">(</span><span class="k">out</span> <span class="n">MainThreadJob</span> <span class="n">job</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">job</span><span class="p">.</span><span class="nf">Run</span><span class="p">();</span>
+            <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">$"Processed"</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">yield</span> <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>큐에 작업이 있으면 받아와서 처리하고 없으면 해당 프레임을 넘기는 방식으로 구현한다.</p>
+
+<p>큐에 작업이 있는 동안 모두 꺼내서 작업해도 되고,</p>
+
+<p>위에서 소개했던 메인 스레드 디스패처의 방식으로</p>
+
+<p>각각의 작업을 개별 코루틴으로 넘겨서 실행해도 되지만</p>
+
+<p>일단은 이렇게 한 프레임에 하나씩 수행시킨다.</p>
+
+<p><br /></p>
+
+<h2 id="5-테스트">[5] 테스트</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">StartCoroutine</span><span class="p">(</span><span class="nf">MainThreadJobProcessor</span><span class="p">());</span>
+    
+    <span class="n">Task</span><span class="p">.</span><span class="nf">Run</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nf">JobTest</span><span class="p">(</span><span class="m">2000</span><span class="p">));</span>
+    <span class="n">Task</span><span class="p">.</span><span class="nf">Run</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nf">JobTest</span><span class="p">(</span><span class="m">1500</span><span class="p">));</span>
+    <span class="n">Task</span><span class="p">.</span><span class="nf">Run</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nf">JobTest</span><span class="p">(</span><span class="m">1200</span><span class="p">));</span>
+    <span class="n">Task</span><span class="p">.</span><span class="nf">Run</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nf">JobTest</span><span class="p">(</span><span class="m">1500</span><span class="p">));</span>
+    <span class="n">Task</span><span class="p">.</span><span class="nf">Run</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nf">JobTest</span><span class="p">(</span><span class="m">1200</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123844540-2072c100-d94e-11eb-91b8-87a4a24cb27c.png" alt="image" /></p>
+
+<p>원하는 대로 구현됨을 확인하였다.</p>
+
+<p><br /></p>
+
+<h1 id="메인-스레드-디스패처-작성">메인 스레드 디스패처 작성</h1>
 <hr />
 
-<ul>
-  <li>
-    <p>[Spiral B] 게임오브젝트를 선택하고, [Ctrl + D]를 눌러 복제한다.</p>
-  </li>
-  <li>
-    <p>복제한 게임오브젝트의 이름을 [Burst]로 변경한다.</p>
-  </li>
-  <li>
-    <p>[Spiral B] 게임오브젝트를 선택하고, 인스펙터 좌측 상단의 체크박스를 클릭하거나 [Alt + Shift + A]를 눌러 잠시 비활성화 해둔다.</p>
-  </li>
-</ul>
+<p>하려고 했는데</p>
+
+<p>깃헙의 메인 스레드 디스패처에 <code class="language-plaintext highlighter-rouge">EnqueueAsync()</code> 메소드가 이미 다 해주므로</p>
+
+<p>중단</p>
 
 <p><br /></p>
 
-<h2 id="메인-모듈-수정-2">메인 모듈 수정</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Looping</code> : 체크 해제한다.</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Delay</code> : 1</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Start Lifetime</code> - [Random Between Two Constants] : (0.5, 0.8)</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Max Particles</code> : 4096</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Stop Action</code> : Disable</p>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<p>Burst 이펙트는 다른 이펙트들과 달리, 파티클 시스템 재생 시 반복되는 것이 아니라 한 번만 반짝 뿜어내고 사라지는 이펙트이다.</p>
-
-<p>따라서 Looping을 해제하여 반복되지 않게 하며, Stop Action을 Disable로 설정하고 재생이 끝나면 파티클 시스템 게임오브젝트가 비활성화 되도록 해준다.</p>
-
-<p>그리고 한 번에 많은 파티클을 생성해야 하는데 Max Particle 이하의 파티클만 동시에 존재할 수 있으므로, Max Particle 한도를 늘려준다.</p>
-
-<p><br /></p>
-
-<h2 id="emission-모듈-수정-1">Emission 모듈 수정</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Rate over Time</code> : 0</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Bursts</code>의 우측 하단 <code class="language-plaintext highlighter-rouge">+</code> 버튼을 눌러, 버스트 하나를 추가한다.</p>
-  </li>
-  <li>
-    <p>생성한 버스트의 <code class="language-plaintext highlighter-rouge">Count</code>를 128, <code class="language-plaintext highlighter-rouge">Cycles</code>를 48로 설정한다.</p>
-  </li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110452875-ef555300-8108-11eb-9a99-ac70c958b3fc.png" alt="image" /></p>
-
-<p><br /></p>
-
-<p>Emission 모듈의 버스트 설정이 [Burst] 이펙트의 핵심이다.</p>
-
-<p>Rate over Time은 지속적으로 생성할 파티클의 개수를 초당 개수로 지정하는데 반해,</p>
-
-<p>Bursts는 지정된 타이밍(Time)에 지정한 개수(Count)의 파티클을 지정한 횟수(Cycles)만큼 지정한 시간 간격(Inteval)로 반복하여 생성하도록 한다.</p>
-
-<p>따라서 파티클을 재생하면 0초에 0.01초 간격으로 48번, 0.48초까지 매 번 128개의 파티클을 생성하게 된다.</p>
-
-<p>(메인 모듈에서 Start Delay를 지정하였으므로 실제로는 1초부터 시작된다.)</p>
-
-<p><br /></p>
-
-<h2 id="shape-모듈-수정-1">Shape 모듈 수정</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Arc</code> - <code class="language-plaintext highlighter-rouge">Mode</code> : Burst Spread</li>
-</ul>
-
-<p>Burst Spread는 Emission의 Burst로 생성하는 파티클들이 생성 영역 내에서 골고루 생성되도록 해준다.</p>
-
-<p><br /></p>
-
-<h2 id="velocity-over-lifetime-모듈-2">Velocity over Lifetime 모듈</h2>
-
-<ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Orbital</code> : Z 값을 -4로 수정한다.</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Radial</code> 커브를 클릭하여 커브 에디터를 열고, Y축의 값을 -10으로 수정한다.</p>
-  </li>
-</ul>
-
-<p><br /></p>
-
-<h2 id="trails-모듈-수정">Trails 모듈 수정</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Color over Lifetime</code> - [Gradient] : 알파값이 0 ~ 1 ~ 0으로 변화하도록 다음처럼 설정한다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110458348-01d28b00-810f-11eb-8726-f9090d863d54.png" alt="image" /></p>
-
-<p><br /></p>
-
-<h2 id="결과-2">결과</h2>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110457241-c5525f80-810d-11eb-82c2-768a89614618.gif" alt="2021_0309_drStrange_09" /></p>
-
-<p><br /></p>
-
-<h1 id="6-완성">6. 완성</h1>
+<h1 id="source-code">Source Code</h1>
 <hr />
-
-<ul>
-  <li>4개의 게임오브젝트를 모두 활성화하고, 파티클 시스템을 재생해본다.</li>
-</ul>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/110457627-2ed26e00-810e-11eb-9770-c5c5c9d7576c.gif" alt="2021_0309_drStrange_10" /></p>
 
 
 
@@ -1066,7 +1001,7 @@
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
             <a href='/categories/unity/'>Unity</a>,
-            <a href='/categories/unity-particle-system/'>Unity Particle System</a>
+            <a href='/categories/unity-study/'>Unity Study</a>
         </div>
         
 
@@ -1081,8 +1016,8 @@
           <a href="/tags/csharp/"
             class="post-tag no-text-decoration" >csharp</a>
           
-          <a href="/tags/particle/"
-            class="post-tag no-text-decoration" >particle</a>
+          <a href="/tags/mainthreaddispatcher/"
+            class="post-tag no-text-decoration" >mainthreaddispatcher</a>
           
           </div>
         
@@ -1114,19 +1049,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=파티클 시스템 예제 - 05 - Dr. Strange Portal - Rito15&url=https://rito15.github.io/posts/unity-particle-system-example-05-dr-strange-portal/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=워커 스레드에서 메인 스레드에 작업 요청하기 - Rito15&url=https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=파티클 시스템 예제 - 05 - Dr. Strange Portal - Rito15&u=https://rito15.github.io/posts/unity-particle-system-example-05-dr-strange-portal/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=워커 스레드에서 메인 스레드에 작업 요청하기 - Rito15&u=https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=파티클 시스템 예제 - 05 - Dr. Strange Portal - Rito15&url=https://rito15.github.io/posts/unity-particle-system-example-05-dr-strange-portal/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=워커 스레드에서 메인 스레드에 작업 요청하기 - Rito15&url=https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -4728,1190 +4663,1190 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
   
 
   
@@ -7167,7 +7102,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-particle-system-example-02-mouse-chaser/">
+        <a href="/posts/unity-main-thread-dispatcher/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7184,13 +7119,13 @@
   
 
   
-    Mar  1
+    Jun 30
   
 
-  <i class="unloaded">2021-03-01T21:07:00+09:00</i>
+  <i class="unloaded">2021-06-30T04:04:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>파티클 시스템 예제 - 02 - Mouse Chaser</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Main Thread Dispatcher</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7199,51 +7134,31 @@
 
 
 
-                목차
-
-
-
-  목표
-  준비물
-  1. 기본 준비
-  2. Heart
-  3. Twinkle
-
-
-
-
-Preview
-
-
-기본
-
-
-
-Heart
-
-
-
-Twinkle
-
-
-
-
-
-목표
-
-
-
-  실시간으로 마우스를 따라다니는 예쁜 이펙트 만들기
-
-
-
-
-준비물
-
+                Summary
 
 
   
-    원하는 모양의 파티클 텍스쳐 (예제에서는 Heart, Twinkle), Additive ...
+    워커 스레드에서 유니티 메인 스레드에 작업을 위임할 수 있게 하는 싱글톤 클래스
+  
+  
+    https://github.com/PimDeWitte/UnityMainThreadDispatcher의 코드를 조금 더 사용하기 편리하게 살짝 수정
+  
+
+
+Usage Example
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+1...
               </p>
             </div>
           </div>
@@ -7253,7 +7168,7 @@ Twinkle
       
       
       <div class="card">
-        <a href="/posts/unity-particle-system-example-03-firefly/">
+        <a href="/posts/unity-study-unirx/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7270,13 +7185,13 @@ Twinkle
   
 
   
-    Mar  1
+    Mar  6
   
 
-  <i class="unloaded">2021-03-01T22:57:00+09:00</i>
+  <i class="unloaded">2021-03-06T20:14:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>파티클 시스템 예제 - 03 - Firefly</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UniRx (Reactive Extensions for Unity)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7285,49 +7200,18 @@ Twinkle
 
 
 
-                Preview
+                개요
 
 
+Rx란?
 
 
-
-
-목표
-
-
-
-  
-    Light 모듈, Collision 모듈 간단히 사용해보고 이해하기
-  
-  
-    반딧불이 이펙트 만들기
-  
-
-
-
-
-Firefly Effect
-
-
-마테리얼 준비
-
-
-  
-    Addtive
-  
-  
-    작은 Glow 모양의 텍스쳐
-  
-
-
-
-
-
-
-씬 준비
-
-
-  새로운 씬 생성 (Projec...
+  Reactive Extensions
+  절차적 프로그래밍에서 다루기 쉽지 않은 비동기 프로그래밍을 손쉽게 다루기 위한 패러다임
+  .NET에도 다양한 언어로 구현되어 있다.
+  비동기 데이터 스트림을 중심으로 동작한다.
+  스트림 내의 데이터에 변화가 발생했을 때 반응형으로 기능이 동작하는 방식을 사용한다.
+  시간을 상당히 ...
               </p>
             </div>
           </div>
@@ -7337,7 +7221,7 @@ Firefly Effect
       
       
       <div class="card">
-        <a href="/posts/unity-particle-system-example-04-fireball/">
+        <a href="/posts/unity-study-bezier-curve/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7354,13 +7238,13 @@ Firefly Effect
   
 
   
-    Mar  2
+    Mar 20
   
 
-  <i class="unloaded">2021-03-02T03:03:00+09:00</i>
+  <i class="unloaded">2021-03-20T19:19:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>파티클 시스템 예제 - 04 - Fire Ball</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>베지어 곡선(Bezier Curve)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7369,48 +7253,40 @@ Firefly Effect
 
 
 
-                목차
+                베지어 곡선
 
 
 
-  목표
-  준비물
-  1. 파티클 시스템 제작
-  2. 서브 이미터 설정
-  3. Projectile Shooter 적용
-  4. 결과
+  점과 점 사이의 선형 보간(Lerp, Linear interpolation)을 이용해 그려내는 곡선
 
 
 
 
-Preview
-
-
-
-
-
-
-
-
-목표
+1차 베지어 곡선
 
 
 
   
-    Sub Emitters(서브 이미터) 모듈 이해하기
+    Linear Curve
   
   
-    파이어볼 이펙트 만들기
+    2개의 점
+  
+  
+    단순히 두 점 사이의 선형 보간을 통해, 직선을 그린다.
   
 
 
 
 
-준비물
+
+
+2차 베지어 곡선
 
 
 
-  글로우 모양의 동그란 텍...
+  
+    Quadr...
               </p>
             </div>
           </div>
@@ -7433,14 +7309,14 @@ Preview
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/unity-toy-projectile-shooter/" class="btn btn-outline-primary">
-    <p>Projectile Shooter (투사체 발사 컴포넌트)</p>
+  <a href="/posts/simple-amplify-shader-examples/" class="btn btn-outline-primary">
+    <p>간단한 앰플리파이 쉐이더 예제 모음</p>
   </a>
   
 
   
-  <a href="/posts/unity-particle-system-example-06-blue-portal/" class="btn btn-outline-primary">
-    <p>파티클 시스템 예제 - 06 - Blue Portal [TODO]</p>
+  <a href="/posts/unity-main-thread-dispatcher/" class="btn btn-outline-primary">
+    <p>Main Thread Dispatcher</p>
   </a>
   
 
