@@ -47,14 +47,11 @@ A : Amplitude
 
 ## Vertex Displacement
 
-<details>
-<summary markdown="span"> 
-TODO
-</summary>
+![image](https://user-images.githubusercontent.com/42164422/123921004-864c6080-d9c1-11eb-97b0-4b08b1ac58c7.png)
 
-https://rito15.github.io/posts/unity-urp-sg-magical-orb/
+![2021_0630_VertexDisplacement](https://user-images.githubusercontent.com/42164422/123919002-6c118300-d9bf-11eb-94d2-e5ced763c5c7.gif)
 
-</details>
+- `Noise Generator` 노드에 `UV` 입력이 있다고 해서 진짜로 `UV`를 넣으면 안되고, 대신 `Vertex Position`을 넣어야 한다.
 
 <br>
 
@@ -109,39 +106,56 @@ https://rito15.github.io/posts/unity-urp-sg-magical-orb/
 
 ## Distortion
 
+![image](https://user-images.githubusercontent.com/42164422/123935349-1a70f480-d9cf-11eb-8e17-026c610e2009.png)
 
-<details>
-<summary markdown="span"> 
-TODO
-</summary>
+![2021_0630_Distortion](https://user-images.githubusercontent.com/42164422/123935354-1c3ab800-d9cf-11eb-8caa-dfdde3e4ee88.gif)
 
-후보 1 : 
-https://trello-attachments.s3.amazonaws.com/5f6ef967ac784309c54911d3/5f8f75411c8d323993da6c3e/64fb13750de544e516cc4ced2e354cf6/image.png
+- 마스터 노드의 속성에서 `Blend Mode`를 `Transparent`로 지정한다.
 
-
-여러가지 더 작성
-
-</details>
-
+- 마찬가지로 `General - Light Model`을 `Unlit`으로 변경한다.
 
 <br>
 
 ## World Position-Based Color Variation
 
-TODO
+![image](https://user-images.githubusercontent.com/42164422/123928240-b1867e00-d9c8-11eb-8c35-fff6ee009084.png)
 
+![image](https://user-images.githubusercontent.com/42164422/123928341-c9f69880-d9c8-11eb-936f-bddbe1abf096.png)
 
+- 게임 오브젝트의 현재 월드 위치를 기반으로 색상을 지정한다.
+
+- `Distribution`, `Seed` 프로퍼티를 이용해 다양한 연출이 가능하다.
+
+<br>
+
+## World Position-Based Color Variation (From-To)
+
+![image](https://user-images.githubusercontent.com/42164422/123930182-75541d00-d9ca-11eb-9610-8830222c9000.png)
+
+![image](https://user-images.githubusercontent.com/42164422/123930087-5fdef300-d9ca-11eb-9805-c92d664ebe57.png)
+
+- 지정한 두 색상 사이에서만 월드 위치 기반으로 색상이 분포하도록 한다.
 
 <br>
 
 # 3. Lighting
 ---
 
-## Simple Lambert
+## Lambert
 
 ![image](https://user-images.githubusercontent.com/42164422/123553686-b32d2780-d7b7-11eb-883f-97094b9fc710.png)
 
 - 마스터 노드 속성 - `General` - `Light Model` - `Custom Lighting` 선택
+
+<br>
+
+## Half Lambert
+
+
+
+## Blinn-Phong Specular
+
+
 
 <br>
 

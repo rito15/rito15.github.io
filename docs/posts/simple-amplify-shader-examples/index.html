@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="간단한 앰플리파이 쉐이더 예제 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"간단한 앰플리파이 쉐이더 예제 모음","description":"1. Vertex","dateModified":"2021-06-28T03:22:13+09:00","datePublished":"2021-06-27T04:24:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/simple-amplify-shader-examples/"},"url":"https://rito15.github.io/posts/simple-amplify-shader-examples/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"1. Vertex","datePublished":"2021-06-27T04:24:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/simple-amplify-shader-examples/"},"url":"https://rito15.github.io/posts/simple-amplify-shader-examples/","author":{"@type":"Person","name":"Rito15"},"headline":"간단한 앰플리파이 쉐이더 예제 모음","dateModified":"2021-06-30T05:02:29+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Mon, Jun 28, 2021,  3:22 AM +0900"
+    title="Wed, Jun 30, 2021,  5:02 AM +0900"
   >
 
   
   
 
   
-    Jun 28
+    Jun 30
   
 
-  <i class="unloaded">2021-06-28T03:22:13+09:00</i>
+  <i class="unloaded">2021-06-30T05:02:29+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="256 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="400 words">2 min</span>
 
 
           <!-- page views -->
@@ -509,14 +509,13 @@ A : Amplitude
 
 <h2 id="vertex-displacement">Vertex Displacement</h2>
 
-<details>
-  <summary> 
-TODO
-</summary>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123921004-864c6080-d9c1-11eb-97b0-4b08b1ac58c7.png" alt="image" /></p>
 
-  <p>https://rito15.github.io/posts/unity-urp-sg-magical-orb/</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123919002-6c118300-d9bf-11eb-94d2-e5ced763c5c7.gif" alt="2021_0630_VertexDisplacement" /></p>
 
-</details>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Noise Generator</code> 노드에 <code class="language-plaintext highlighter-rouge">UV</code> 입력이 있다고 해서 진짜로 <code class="language-plaintext highlighter-rouge">UV</code>를 넣으면 안되고, 대신 <code class="language-plaintext highlighter-rouge">Vertex Position</code>을 넣어야 한다.</li>
+</ul>
 
 <p><br /></p>
 
@@ -575,36 +574,66 @@ TODO
 
 <h2 id="distortion">Distortion</h2>
 
-<details>
-  <summary> 
-TODO
-</summary>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123935349-1a70f480-d9cf-11eb-8e17-026c610e2009.png" alt="image" /></p>
 
-  <p>후보 1 : 
-https://trello-attachments.s3.amazonaws.com/5f6ef967ac784309c54911d3/5f8f75411c8d323993da6c3e/64fb13750de544e516cc4ced2e354cf6/image.png</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123935354-1c3ab800-d9cf-11eb-8caa-dfdde3e4ee88.gif" alt="2021_0630_Distortion" /></p>
 
-  <p>여러가지 더 작성</p>
-
-</details>
+<ul>
+  <li>
+    <p>마스터 노드의 속성에서 <code class="language-plaintext highlighter-rouge">Blend Mode</code>를 <code class="language-plaintext highlighter-rouge">Transparent</code>로 지정한다.</p>
+  </li>
+  <li>
+    <p>마찬가지로 <code class="language-plaintext highlighter-rouge">General - Light Model</code>을 <code class="language-plaintext highlighter-rouge">Unlit</code>으로 변경한다.</p>
+  </li>
+</ul>
 
 <p><br /></p>
 
 <h2 id="world-position-based-color-variation">World Position-Based Color Variation</h2>
 
-<p>TODO</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123928240-b1867e00-d9c8-11eb-8c35-fff6ee009084.png" alt="image" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123928341-c9f69880-d9c8-11eb-936f-bddbe1abf096.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>게임 오브젝트의 현재 월드 위치를 기반으로 색상을 지정한다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Distribution</code>, <code class="language-plaintext highlighter-rouge">Seed</code> 프로퍼티를 이용해 다양한 연출이 가능하다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="world-position-based-color-variation-from-to">World Position-Based Color Variation (From-To)</h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123930182-75541d00-d9ca-11eb-9610-8830222c9000.png" alt="image" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123930087-5fdef300-d9ca-11eb-9805-c92d664ebe57.png" alt="image" /></p>
+
+<ul>
+  <li>지정한 두 색상 사이에서만 월드 위치 기반으로 색상이 분포하도록 한다.</li>
+</ul>
 
 <p><br /></p>
 
 <h1 id="3-lighting">3. Lighting</h1>
 <hr />
 
-<h2 id="simple-lambert">Simple Lambert</h2>
+<h2 id="lambert">Lambert</h2>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123553686-b32d2780-d7b7-11eb-883f-97094b9fc710.png" alt="image" /></p>
 
 <ul>
   <li>마스터 노드 속성 - <code class="language-plaintext highlighter-rouge">General</code> - <code class="language-plaintext highlighter-rouge">Light Model</code> - <code class="language-plaintext highlighter-rouge">Custom Lighting</code> 선택</li>
 </ul>
+
+<p><br /></p>
+
+<h2 id="half-lambert">Half Lambert</h2>
+
+<h2 id="blinn-phong-specular">Blinn-Phong Specular</h2>
 
 <p><br /></p>
 
@@ -794,6 +823,11 @@ https://www.youtube.com/watch?v=MawzivWLCoo</p>
         
         
         
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
       
         
@@ -805,11 +839,6 @@ https://www.youtube.com/watch?v=MawzivWLCoo</p>
         
         
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
         
@@ -2277,8 +2306,6 @@ https://www.youtube.com/watch?v=MawzivWLCoo</p>
     
     
     
-    
-      
     
   
     
@@ -4315,6 +4342,32 @@ https://www.youtube.com/watch?v=MawzivWLCoo</p>
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8526,8 +8579,6 @@ Source Code
     
     
     
-    
-      
     
   
     

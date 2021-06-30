@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="스크립트 템플릿(Script Templates)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"스크립트 템플릿(Script Templates)","description":"개념 Project - 우클릭 - Create를 통해 만드는 스크립트 또는 텍스트의 템플릿을 미리 지정하는 기능 스크립트 템플릿의 저장 경로 :","dateModified":"2021-01-29T16:55:00+09:00","datePublished":"2021-01-29T16:55:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-script-templates/"},"url":"https://rito15.github.io/posts/unity-memo-script-templates/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"개념 Project - 우클릭 - Create를 통해 만드는 스크립트 또는 텍스트의 템플릿을 미리 지정하는 기능 스크립트 템플릿의 저장 경로 :","datePublished":"2021-01-29T16:55:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-script-templates/"},"url":"https://rito15.github.io/posts/unity-memo-script-templates/","author":{"@type":"Person","name":"Rito15"},"headline":"스크립트 템플릿(Script Templates)","dateModified":"2021-01-29T16:55:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -691,6 +691,11 @@ public class #SCRIPTNAME# : MonoBehaviour
         
         
         
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
       
         
@@ -702,11 +707,6 @@ public class #SCRIPTNAME# : MonoBehaviour
         
         
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
         
@@ -2174,8 +2174,6 @@ public class #SCRIPTNAME# : MonoBehaviour
     
     
     
-    
-      
     
   
     
@@ -6357,6 +6355,32 @@ public class #SCRIPTNAME# : MonoBehaviour
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6664,78 +6688,6 @@ public class #SCRIPTNAME# : MonoBehaviour
       
       
       <div class="card">
-        <a href="/posts/unity-memo-gameobject-over-ui/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb 28
-  
-
-  <i class="unloaded">2021-02-28T22:30:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 위에 게임오브젝트 띄우기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Preview
-
-
-
-
-
-  Green : Default
-  Red : Over UI
-
-
-
-
-1. Built-in Render Pipeline
-
-
-
-   
-.
-
-
-  [1] 레이어 준비
-  
-    [Over UI] 레이어를 만든다.
-  
-
-  
-
-  [2] Over UI 카메라 준비
-  
-    
-      카메라를 하나 더 만들고, Audio Lis...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-memo-prevent-infinite-loop/">
           <div class="card-body">
             <!--
@@ -6783,6 +6735,65 @@ Note
   
   
     따라서 혹시나 무한 루프가 될 가능성이 있는 코드를 인지했다면 간단한 체크 로직을 넣어주는 것이 좋다...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-how-to-paint-texture/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jun 19
+  
+
+  <i class="unloaded">2021-06-19T17:17:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>런타임에 큰 성능 저하 없이 텍스쳐에 그림 그리기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                텍스쳐의 특정 픽셀 색상 변경하기
+
+
+텍스쳐의 특정 픽셀 색상을 변경하는건 매우 간단하다.
+
+
+
+[1] 텍스쳐의 Read/Write Enabled를 체크한다.
+
+[2] 대상 마테리얼에서 텍스쳐를 가져온다.
+
+[3] SetPixel() 메소드로 원하는 픽셀의 색상을 변경한다.
+
+[4] Apply() 메소드로 적용한다.
+
+
+
+하지만 메모리에 적재된 텍스쳐...
               </p>
             </div>
           </div>
@@ -8389,8 +8400,6 @@ Note
     
     
     
-    
-      
     
   
     

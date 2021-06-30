@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-30T04:59:43+09:00</updated>
+  <updated>2021-06-30T22:39:15+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,136 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>에디터 모드에서 게임 뷰 자동으로 갱신하기</title>
+    <link href="https://rito15.github.io/posts/unity-auto-update-game-view/" rel="alternate" type="text/html" title="에디터 모드에서 게임 뷰 자동으로 갱신하기" />
+    <published>2021-06-30T22:00:00+09:00</published>
+  
+    <updated>2021-06-30T22:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-auto-update-game-view/</id>
+    <content src="https://rito15.github.io/posts/unity-auto-update-game-view/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Utilities" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+플레이 모드에 진입하지 않으면 게임 뷰는 GUI에 변화가 있을 때만 갱신됩니다.
+
+따라서 쉐이더를 통해 각종 애니메이션이나 효과를 만들고 마테리얼을 통해 적용해도
+
+에디터 모드에서는 이를 정상적으로 확인할 수 없습니다.
+
+이 애셋은 에디터 모드에서도 마테리얼 효과를 정상적으로 확인할 수 있게 합니다.
+
+
+
+How To Use
+
+
+  
+    첨부된 Game View Auto Updater 폴더를 통째로 유니티 프로젝트에 넣습니다.
+  
+  
+    에디터 상단의 플레이 버튼 좌측에 위치한 Auto Update Game View 버튼을 활성화/비활성화합니다.
+  
+
+
+
+
+
+
+Download
+
+
+  Game-View-Auto-Updater.zip
+
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>게임 뷰를 강제로 업데이트하기</title>
+    <link href="https://rito15.github.io/posts/unity-update-game-view/" rel="alternate" type="text/html" title="게임 뷰를 강제로 업데이트하기" />
+    <published>2021-06-30T21:00:00+09:00</published>
+  
+    <updated>2021-06-30T21:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-update-game-view/</id>
+    <content src="https://rito15.github.io/posts/unity-update-game-view/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+  
+    플레이 모드에 진입하지 않고 게임 뷰에서 쉐이더 애니메이션을 확인하고 싶을 때 사용한다.
+  
+  
+    아무 게임오브젝트나 붙잡고 Dirty로 만들어주면 게임 뷰가 업데이트 된다.
+  
+
+
+EditorUtility.SetDirty(GameObject.FindObjectOfType&amp;lt;Transform&amp;gt;());
+
+
+
+
+
+  다음과 같은 Repaint 메소드들은 통하지 않는다.
+
+
+EditorWindow focused = EditorWindow.focusedWindow;
+focused.Repaint();
+UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
+SceneView.RepaintAll();
+if (GUI.c...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -156,7 +286,7 @@ private async void TestBody()
     <link href="https://rito15.github.io/posts/simple-amplify-shader-examples/" rel="alternate" type="text/html" title="간단한 앰플리파이 쉐이더 예제 모음" />
     <published>2021-06-27T04:24:00+09:00</published>
   
-    <updated>2021-06-28T03:22:13+09:00</updated>
+    <updated>2021-06-30T05:02:29+09:00</updated>
   
     <id>https://rito15.github.io/posts/simple-amplify-shader-examples/</id>
     <content src="https://rito15.github.io/posts/simple-amplify-shader-examples/" />
@@ -218,12 +348,11 @@ World Position Offset (Keep Scale)
 Vertex Displacement
 
 
-   
-TODO
 
 
-  https://rito15.github.io/posts/unity-urp-sg-magical-orb/
 
+
+  Noise Generator 노드에 UV 입력이 있다고 해서 진짜로 UV를 넣으면 안되고, 대신 Vertex Position을 넣어야 한다.
 
 
 
@@ -241,164 +370,7 @@ UV Mask
 
 
 
-Smooth UV Mask
-
-
-
-
-  Smo...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Process, Thread, ThreadPool, Task 개념 간단 정리</title>
-    <link href="https://rito15.github.io/posts/cs-process-thread-threadpool-task/" rel="alternate" type="text/html" title="Process, Thread, ThreadPool, Task 개념 간단 정리" />
-    <published>2021-06-25T21:21:00+09:00</published>
-  
-    <updated>2021-06-25T21:21:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-process-thread-threadpool-task/</id>
-    <content src="https://rito15.github.io/posts/cs-process-thread-threadpool-task/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Threading" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Process
-
-
-
-  
-    메모리에 적재되어 실행되는 프로그램
-  
-  
-    운영체제로부터 자원을 할당받아 수행되는 작업의 단위
-  
-  
-    Code, Data, Heap, Stack 메모리 공간을 독립적으로 갖는다.
-  
-
-
-
-
-Thread
-
-
-
-  
-    프로세스의 자원을 사용하는 실행 흐름의 단위
-  
-  
-    프로세스의 Code, Data, Heap 영역을 공유한다.
-  
-  
-    각 스레드마다 Stack 영역만 독립적으로 갖는다.
-  
-  
-    컨텍스트 스위칭이 발생할 때 Stack 정보를 비롯해 간단한 정보만 저장하기 때문에, 프로세스의 컨텍스트 스위칭보다 빠르다.
-  
-  
-    C#에는 Thread 클래스가 있다.
-  
-  
-    기본적으로 Foregroun...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Camera Depth, Sorting Layer, Sorting Group</title>
-    <link href="https://rito15.github.io/posts/unity-depth-sorting-layer-sorting-group/" rel="alternate" type="text/html" title="Camera Depth, Sorting Layer, Sorting Group" />
-    <published>2021-06-25T20:40:00+09:00</published>
-  
-    <updated>2021-06-25T20:40:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-depth-sorting-layer-sorting-group/</id>
-    <content src="https://rito15.github.io/posts/unity-depth-sorting-layer-sorting-group/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo - Shorts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Camera Depth(Z)
-
-
-
-  
-    카메라로부터의 거리
-  
-  
-    가까울수록 먼저 보인다.
-  
-
-
-
-
-Sorting Layer vs. Camera Depth
-
-
-
-  
-    Sorting Layer가 Camera Depth보다 우선적으로 깊이를 결정한다.
-  
-  
-    Sorting Layer 설정이 같은 경우, Camera Depth가 깊이를 결정한다.
-  
-
-
-
-
-Sorting Layer
-
-
-
-  
-    서로 다른 Sorting Layer의 경우, 인덱스의 값이 클수록(0 &amp;lt; 1 &amp;lt; 2 &amp;lt; …) 먼저 보인다.
-  
-  
-    같은 Sorting Layer 내에서는 Order In layer 값이 클수록 먼저 보인다.
-  
-
-
-
-
-Sorting Group
-...
+Smooth UV ...
     </summary>
   
 

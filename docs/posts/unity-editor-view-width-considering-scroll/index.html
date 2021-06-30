@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기","description":"Note","dateModified":"2021-06-13T23:33:00+09:00","datePublished":"2021-06-13T23:33:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-view-width-considering-scroll/"},"url":"https://rito15.github.io/posts/unity-editor-view-width-considering-scroll/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note","datePublished":"2021-06-13T23:33:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-view-width-considering-scroll/"},"url":"https://rito15.github.io/posts/unity-editor-view-width-considering-scroll/","author":{"@type":"Person","name":"Rito15"},"headline":"커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기","dateModified":"2021-06-13T23:33:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -675,6 +675,11 @@
         
         
         
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
       
         
@@ -686,11 +691,6 @@
         
         
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
         
@@ -2158,8 +2158,6 @@
     
     
     
-    
-      
     
   
     
@@ -4191,6 +4189,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -6779,7 +6803,7 @@ this.Repaint();
       
       
       <div class="card">
-        <a href="/posts/unity-editor-dialog/">
+        <a href="/posts/unity-clear-console-through-script/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6796,13 +6820,13 @@ this.Repaint();
   
 
   
-    Feb  9
+    Jun 14
   
 
-  <i class="unloaded">2021-02-09T13:50:00+09:00</i>
+  <i class="unloaded">2021-06-14T02:22:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 다이얼로그 창 띄우기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>스크립트로 콘솔 내용 지우기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6811,14 +6835,23 @@ this.Repaint();
 
 
 
-                
-  
-    bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
-bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
-
-  
-
-
+                1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+private static MethodInfo clearMethodInfo;
+private static void ClearLog()
+{
+    if (clearMethodInfo == null)
+    {
+        var assembly = Assembly.GetAssembly(typeof(UnityEd...
               </p>
             </div>
           </div>
@@ -8380,8 +8413,6 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
     
     
     
-    
-      
     
   
     
