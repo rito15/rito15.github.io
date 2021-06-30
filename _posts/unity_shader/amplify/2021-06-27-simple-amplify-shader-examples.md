@@ -149,15 +149,15 @@ A : Amplitude
 
 <br>
 
+<!--
+
 ## Half Lambert
-
-
 
 ## Blinn-Phong Specular
 
-
-
 <br>
+
+-->
 
 ## Diffuse Warping
 
@@ -183,6 +183,10 @@ A : Amplitude
 
 <br>
 
+
+
+<!--
+
 ## Toon(Cel) Shading
 
 <details>
@@ -198,5 +202,6 @@ https://www.youtube.com/watch?v=MawzivWLCoo
 
 <br>
 
+-->
 
 

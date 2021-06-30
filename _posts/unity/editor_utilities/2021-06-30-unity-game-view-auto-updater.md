@@ -1,5 +1,5 @@
 ---
-title: 에디터 모드에서 게임 뷰 자동으로 갱신하기
+title: Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)
 author: Rito15
 date: 2021-06-30 22:00:00 +09:00
 categories: [Unity, Unity Editor Utilities]
