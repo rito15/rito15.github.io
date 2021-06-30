@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-06-30T22:47:54+09:00</updated>
+  <updated>2021-06-30T22:52:42+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -212,81 +212,11 @@ private async void TestBody()
 
   
   <entry>
-    <title>워커 스레드에서 메인 스레드에 작업 요청하기</title>
-    <link href="https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/" rel="alternate" type="text/html" title="워커 스레드에서 메인 스레드에 작업 요청하기" />
-    <published>2021-06-30T01:11:00+09:00</published>
-  
-    <updated>2021-06-30T01:11:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/</id>
-    <content src="https://rito15.github.io/posts/unity-request-job-from-worker-to-main-thread/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      삽질
-
-
-  문득 떠오른 순수한 호기심에 삽질해보는 포스팅입니다.
-  의식의 흐름에 따라 작성합니다.
-
-
-
-
-목표
-
-
-  워커 스레드에서 메인 스레드에 작업 요청하고, 결과를 기다렸다가 받아서 처리하기
-
-
-
-
-배경지식
-
-
-
-  
-    메인 스레드가 아닌, 다른 스레드들을 워커 스레드(Worker Thread, 작업자 스레드)라고 부른다.
-  
-  
-    유니티 API(트랜스폼, 컴포넌트, 게임오브젝트, …)의 호출은 메인 스레드에서만 가능하다.
-  
-  
-    워커 스레드에서 유니티 API를 호출하면 UnityException이 호출되면서 해당 작업이 거부된다.
-  
-  
-    멀티 스레드 작업에서는 읽고 쓰는 작업에 대해 반드시 동기화를 수행해야 한다.
-  
-  
-    동기화를 하지 않으면 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
     <title>간단한 앰플리파이 쉐이더 예제 모음</title>
     <link href="https://rito15.github.io/posts/simple-amplify-shader-examples/" rel="alternate" type="text/html" title="간단한 앰플리파이 쉐이더 예제 모음" />
     <published>2021-06-27T04:24:00+09:00</published>
   
-    <updated>2021-06-30T22:40:33+09:00</updated>
+    <updated>2021-06-30T22:49:35+09:00</updated>
   
     <id>https://rito15.github.io/posts/simple-amplify-shader-examples/</id>
     <content src="https://rito15.github.io/posts/simple-amplify-shader-examples/" />
@@ -371,6 +301,79 @@ UV Mask
 
 
 Smooth UV ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Process, Thread, ThreadPool, Task 개념 간단 정리</title>
+    <link href="https://rito15.github.io/posts/cs-process-thread-threadpool-task/" rel="alternate" type="text/html" title="Process, Thread, ThreadPool, Task 개념 간단 정리" />
+    <published>2021-06-25T21:21:00+09:00</published>
+  
+    <updated>2021-06-25T21:21:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-process-thread-threadpool-task/</id>
+    <content src="https://rito15.github.io/posts/cs-process-thread-threadpool-task/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Threading" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Process
+
+
+
+  
+    메모리에 적재되어 실행되는 프로그램
+  
+  
+    운영체제로부터 자원을 할당받아 수행되는 작업의 단위
+  
+  
+    Code, Data, Heap, Stack 메모리 공간을 독립적으로 갖는다.
+  
+
+
+
+
+Thread
+
+
+
+  
+    프로세스의 자원을 사용하는 실행 흐름의 단위
+  
+  
+    프로세스의 Code, Data, Heap 영역을 공유한다.
+  
+  
+    각 스레드마다 Stack 영역만 독립적으로 갖는다.
+  
+  
+    컨텍스트 스위칭이 발생할 때 Stack 정보를 비롯해 간단한 정보만 저장하기 때문에, 프로세스의 컨텍스트 스위칭보다 빠르다.
+  
+  
+    C#에는 Thread 클래스가 있다.
+  
+  
+    기본적으로 Foregroun...
     </summary>
   
 

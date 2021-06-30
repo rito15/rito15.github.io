@@ -5607,19 +5607,6 @@ DepthRenderer.cs
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
   
 
@@ -7026,7 +7013,7 @@ How To Use
       
       
       <div class="card">
-        <a href="/posts/unity-toy-weighted-random-picker/">
+        <a href="/posts/unity-texture-painter/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7043,13 +7030,13 @@ How To Use
   
 
   
-    Mar  9
+    Jun 19
   
 
-  <i class="unloaded">2021-03-09T03:22:00+09:00</i>
+  <i class="unloaded">2021-06-19T04:32:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Weighted Random Picker (가중치 랜덤 뽑기)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Texture Painter(텍스쳐에 그림 그리기)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7058,20 +7045,28 @@ How To Use
 
 
 
-                Note
+                Summary
+
+
+  실시간으로 마우스 클릭, 드래그를 통해 게임 오브젝트의 텍스쳐에 그림 그리기
+
+
+
+
+How To Use
+
+
+그림 그려질 대상 게임오브젝트
 
 
   
-    게임에서 각각 n% 확률로 존재하는 요소들의 뽑기를 수행할 때, 단순히 Random.Range()를 통해서는 계산할 수 없다.
+    알맞은 콜라이더를 넣는다.
   
   
-    이 때, ‘가중치 랜덤 뽑기’를 이용한다.
+    Rito/PaintTexture 쉐이더로 생성한 마테리얼을 적용한다.
   
   
-    제네릭을 활용하여, 아이템들과 가중치의 목록을 넣으면 간단히 뽑기를 수행할 수 있도록 작성하였다.
-  
-  
-    아이템...
+    TexturePaintTarget 컴포넌트를 ...
               </p>
             </div>
           </div>

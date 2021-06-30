@@ -5091,19 +5091,6 @@
   
 
   
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
     
   
 
@@ -6696,7 +6683,7 @@ this.Repaint();
       
       
       <div class="card">
-        <a href="/posts/unity-clear-console-through-script/">
+        <a href="/posts/unity-editor-dialog/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6713,13 +6700,13 @@ this.Repaint();
   
 
   
-    Jun 14
+    Feb  9
   
 
-  <i class="unloaded">2021-06-14T02:22:00+09:00</i>
+  <i class="unloaded">2021-02-09T13:50:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>스크립트로 콘솔 내용 지우기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 다이얼로그 창 띄우기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6728,23 +6715,14 @@ this.Repaint();
 
 
 
-                1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-private static MethodInfo clearMethodInfo;
-private static void ClearLog()
-{
-    if (clearMethodInfo == null)
-    {
-        var assembly = Assembly.GetAssembly(typeof(UnityEd...
+                
+  
+    bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
+bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
+
+  
+
+
               </p>
             </div>
           </div>
