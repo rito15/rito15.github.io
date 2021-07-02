@@ -410,7 +410,8 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 
 # References
 ---
-  - <http://jamie-wong.com/2016/07/15/ray-marching-signed-distance-functions>
-  - <https://www.youtube.com/watch?v=PGtv-dBi2wE> [The Art of Code]
-  - <https://www.youtube.com/watch?v=Cp5WWtMoeKg> [Sebastian Lague]
-  - <https://github.com/SebLague/Ray-Marching>
+ - <http://jamie-wong.com/2016/07/15/ray-marching-signed-distance-functions>
+ - <https://github.com/SebLague/Ray-Marching>
+ - [Youtube: Sebastian Lague](https://www.youtube.com/watch?v=Cp5WWtMoeKg)
+ - [Youtube: The Art of Code](https://www.youtube.com/playlist?list=PLGmrMu-IwbgtMxMiV3x4IrHPlPmg7FD-P)
+ - [Youtube: Peer Play](https://www.youtube.com/playlist?list=PL3POsQzaCw53iK_EhOYR39h1J9Lvg-m-g)
