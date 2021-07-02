@@ -23,7 +23,9 @@ mermaid: true
 
 # How To Use
 ---
-- 첨부된 `Game View Auto Updater` 폴더를 통째로 유니티 프로젝트에 넣습니다.
+- 첨부된 `Game-View-Auto-Updater.unitypackage` 파일을 다운받습니다.
+
+- 유니티 프로젝트가 켜진 상태로 해당 파일을 실행하여 프로젝트 내에 임포트합니다.
 
 - 에디터 상단의 플레이 버튼 좌측에 위치한 `Auto Update Game View` 버튼을 활성화/비활성화합니다.
 
@@ -31,7 +33,20 @@ mermaid: true
 
 <br>
 
+# Preview
+---
+
+![2021_0702_GameViewUpdater](https://user-images.githubusercontent.com/42164422/124244150-972fda00-db59-11eb-9dc0-7a2607272dd2.gif)
+
+<br>
+
 # Download
 ---
-- [Game-View-Auto-Updater.zip](https://github.com/rito15/Images/files/6741301/Game-View-Auto-Updater.zip)
+- [Game-View-Auto-Updater.unitypackage](https://github.com/rito15/Images/releases/download/0.1/Game-View-Auto-Updater.unitypackage)
 
+
+<br>
+
+# References
+---
+- <https://github.com/marijnz/unity-toolbar-extender>
