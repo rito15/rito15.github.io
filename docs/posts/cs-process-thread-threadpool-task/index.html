@@ -781,12 +781,17 @@
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
         
         
         
         <li><a href="/posts/unity-game-view-auto-updater/">Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
         
@@ -797,11 +802,6 @@
         
         
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
       
 
       </ul>
@@ -2264,6 +2264,8 @@
     
     
     
+    
+      
     
   
     
@@ -4300,6 +4302,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -6770,164 +6798,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-opt-occlusion-culling/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar  1
-  
-
-  <i class="unloaded">2021-03-01T01:40:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>오클루전 컬링</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                프러스텀 컬링 (Frustum Culling)
-
-
-
-  
-    카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것
-  
-  
-    따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.
-  
-
-
-
-
-
-
-그냥 이렇게 두어도
-
-
-
-실제로 이렇게 컬링된다.
-
-
-
-GIF
-
-
-
-
-
-오클루전 컬링 (Occlusion C...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-particle-system-example-02-mouse-chaser/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar  1
-  
-
-  <i class="unloaded">2021-03-01T21:07:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>파티클 시스템 예제 - 02 - Mouse Chaser</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목차
-
-
-
-  목표
-  준비물
-  1. 기본 준비
-  2. Heart
-  3. Twinkle
-
-
-
-
-Preview
-
-
-기본
-
-
-
-Heart
-
-
-
-Twinkle
-
-
-
-
-
-목표
-
-
-
-  실시간으로 마우스를 따라다니는 예쁜 이펙트 만들기
-
-
-
-
-준비물
-
-
-
-  
-    원하는 모양의 파티클 텍스쳐 (예제에서는 Heart, Twinkle), Additive ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-particle-system-example-03-firefly/">
           <div class="card-body">
             <!--
@@ -7003,6 +6873,149 @@ Firefly Effect
 
 
   새로운 씬 생성 (Projec...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-particle-system-example-04-fireball/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  2
+  
+
+  <i class="unloaded">2021-03-02T03:03:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>파티클 시스템 예제 - 04 - Fire Ball</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목차
+
+
+
+  목표
+  준비물
+  1. 파티클 시스템 제작
+  2. 서브 이미터 설정
+  3. Projectile Shooter 적용
+  4. 결과
+
+
+
+
+Preview
+
+
+
+
+
+
+
+
+목표
+
+
+
+  
+    Sub Emitters(서브 이미터) 모듈 이해하기
+  
+  
+    파이어볼 이펙트 만들기
+  
+
+
+
+
+준비물
+
+
+
+  글로우 모양의 동그란 텍...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-toy-mouse-chaser/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  2
+  
+
+  <i class="unloaded">2021-03-02T03:14:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Mouse Chaser (마우스 커서 추적 컴포넌트)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+
+  게임오브젝트가 마우스 커서를 따라오게 하는 스크립트
+
+
+How To Use
+
+
+
+  
+    마우스 커서를 따라오게 할 게임오브젝트에 컴포넌트로 넣는다.
+  
+  
+    Distance From Camera를 통해 카메라로부터의 거리를 지정할 수 있다.
+  
+  
+    Chasing Speed를 통해 마우스를 따라올 속도를 지정할...
               </p>
             </div>
           </div>
@@ -8554,6 +8567,8 @@ Firefly Effect
     
     
     
+    
+      
     
   
     

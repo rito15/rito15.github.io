@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-02T17:59:00+09:00</updated>
+  <updated>2021-07-04T03:48:49+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,186 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(Amplify) Directional 2 Color Dissolve Shader</title>
+    <link href="https://rito15.github.io/posts/unity-amplify-2-color-dissolve/" rel="alternate" type="text/html" title="(Amplify) Directional 2 Color Dissolve Shader" />
+    <published>2021-07-03T18:00:00+09:00</published>
+  
+    <updated>2021-07-03T18:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-amplify-2-color-dissolve/</id>
+    <content src="https://rito15.github.io/posts/unity-amplify-2-color-dissolve/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Amplify Shader" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  
+    디졸브 방향을 직접 지정할 수 있는 디졸브 쉐이더
+  
+  
+    디졸브 효과 색상 2가지를 지정할 수 있다.
+  
+  
+    포스트 프로세싱 Bloom 효과가 반드시 필요하다.
+    
+      Preview 설정 : Intensity 3, Threshold 0.9
+    
+  
+
+
+
+
+Preview
+
+
+
+
+
+
+Properties
+
+
+
+
+
+
+Settings
+
+
+Blend Mode
+
+  Transparent
+
+
+
+
+Nodes
+
+
+
+
+
+
+Note
+
+
+쉐이더 프로퍼티 중, Min Offset, Max Offset은 각각 디졸브의 시작과 끝 지점을 조정한다.
+
+메시 정보 또는 디졸브 방향이 다르면 이 값들은 모두 달라질 수 있다.
+
+이를 직접 계산하려면 굉장히 번거로우므...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>(Amplify) Magical Orb Shader</title>
+    <link href="https://rito15.github.io/posts/unity-amplify-magical-orb/" rel="alternate" type="text/html" title="(Amplify) Magical Orb Shader" />
+    <published>2021-07-03T17:00:00+09:00</published>
+  
+    <updated>2021-07-03T17:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-amplify-magical-orb/</id>
+    <content src="https://rito15.github.io/posts/unity-amplify-magical-orb/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Amplify Shader" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Preview
+
+
+
+
+
+
+Properties
+
+
+
+
+
+
+Settings
+
+
+General
+
+  Light Model - Unlit
+
+
+Blend Mode
+
+  Transparent
+
+
+
+
+Nodes
+
+
+
+
+
+
+Download
+
+
+
+  2021_0703_Magical Orb.zip
+
+
+
+
+References
+
+
+  https://www.youtube.com/watch?v=DpXPhGeCqus
+
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -202,175 +382,6 @@ private async void TestBody()
     int res1 = -1, res2 = -1;
 
     await Task.Delay(5...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>간단한 앰플리파이 쉐이더 예제 모음</title>
-    <link href="https://rito15.github.io/posts/simple-amplify-shader-examples/" rel="alternate" type="text/html" title="간단한 앰플리파이 쉐이더 예제 모음" />
-    <published>2021-06-27T04:24:00+09:00</published>
-  
-    <updated>2021-06-30T22:49:35+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/simple-amplify-shader-examples/</id>
-    <content src="https://rito15.github.io/posts/simple-amplify-shader-examples/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Amplify Shader" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      1. Vertex
-
-
-Scale Up and Down
-
-
-
-
-
-Heartbeat
-
-
-
-( max( sin(T * F), 1-S ) - (1-S) ) * A
-
-T : Time
-F : Frequency
-S : Sensitivity
-A : Amplitude
-
-
-
-
-World Position Offset
-
-
-
-
-
-World Position Offset (Keep Scale)
-
-
-
-
-
-Vertex Displacement
-
-
-
-
-
-
-  Noise Generator 노드에 UV 입력이 있다고 해서 진짜로 UV를 넣으면 안되고, 대신 Vertex Position을 넣어야 한다.
-
-
-
-
-2. Color
-
-
-UV Mask
-
-
-
-
-  Step의 A, B 입력을 서로 바꿀 경우, 마스크 색상 반전
-
-
-
-
-Smooth UV ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Process, Thread, ThreadPool, Task 개념 간단 정리</title>
-    <link href="https://rito15.github.io/posts/cs-process-thread-threadpool-task/" rel="alternate" type="text/html" title="Process, Thread, ThreadPool, Task 개념 간단 정리" />
-    <published>2021-06-25T21:21:00+09:00</published>
-  
-    <updated>2021-06-25T21:21:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-process-thread-threadpool-task/</id>
-    <content src="https://rito15.github.io/posts/cs-process-thread-threadpool-task/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Threading" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Process
-
-
-
-  
-    메모리에 적재되어 실행되는 프로그램
-  
-  
-    운영체제로부터 자원을 할당받아 수행되는 작업의 단위
-  
-  
-    Code, Data, Heap, Stack 메모리 공간을 독립적으로 갖는다.
-  
-
-
-
-
-Thread
-
-
-
-  
-    프로세스의 자원을 사용하는 실행 흐름의 단위
-  
-  
-    프로세스의 Code, Data, Heap 영역을 공유한다.
-  
-  
-    각 스레드마다 Stack 영역만 독립적으로 갖는다.
-  
-  
-    컨텍스트 스위칭이 발생할 때 Stack 정보를 비롯해 간단한 정보만 저장하기 때문에, 프로세스의 컨텍스트 스위칭보다 빠르다.
-  
-  
-    C#에는 Thread 클래스가 있다.
-  
-  
-    기본적으로 Foregroun...
     </summary>
   
 

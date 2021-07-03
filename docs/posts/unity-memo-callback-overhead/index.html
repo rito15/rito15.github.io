@@ -813,12 +813,17 @@
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
         
         
         
         <li><a href="/posts/unity-game-view-auto-updater/">Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
         
@@ -829,11 +834,6 @@
         
         
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
       
 
       </ul>
@@ -2296,6 +2296,8 @@
     
     
     
+    
+      
     
   
     
@@ -5351,6 +5353,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6914,7 +6942,7 @@ Note
       
       
       <div class="card">
-        <a href="/posts/unity-how-to-paint-texture/">
+        <a href="/posts/unity-memo-post-processing/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6931,13 +6959,13 @@ Note
   
 
   
-    Jun 19
+    Mar 16
   
 
-  <i class="unloaded">2021-06-19T17:17:00+09:00</i>
+  <i class="unloaded">2021-03-16T17:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>런타임에 큰 성능 저하 없이 텍스쳐에 그림 그리기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>포스트 프로세싱 적용하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6946,24 +6974,24 @@ Note
 
 
 
-                텍스쳐의 특정 픽셀 색상 변경하기
-
-
-텍스쳐의 특정 픽셀 색상을 변경하는건 매우 간단하다.
+                1. Built-in Pipeline
 
 
 
-[1] 텍스쳐의 Read/Write Enabled를 체크한다.
-
-[2] 대상 마테리얼에서 텍스쳐를 가져온다.
-
-[3] SetPixel() 메소드로 원하는 픽셀의 색상을 변경한다.
-
-[4] Apply() 메소드로 적용한다.
-
+  
+    Package Manager - [Post Processing] 설치
+  
+  
+    레이어 - [Post Processing] 추가
+  
 
 
-하지만 메모리에 적재된 텍스쳐...
+
+
+  메인 카메라
+    
+      컴포넌트 추가 : Post-process Layer
+      Volume blending - Layer : [P...
               </p>
             </div>
           </div>
@@ -8525,6 +8553,8 @@ Note
     
     
     
+    
+      
     
   
     

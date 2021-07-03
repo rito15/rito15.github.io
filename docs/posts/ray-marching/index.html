@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="레이 마칭(Ray Marching)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"레이 마칭이란?","datePublished":"2021-01-19T23:15:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/ray-marching/"},"url":"https://rito15.github.io/posts/ray-marching/","author":{"@type":"Person","name":"Rito15"},"headline":"레이 마칭(Ray Marching)","dateModified":"2021-03-24T23:55:16+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"레이 마칭이란?","datePublished":"2021-01-19T23:15:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/ray-marching/"},"url":"https://rito15.github.io/posts/ray-marching/","author":{"@type":"Person","name":"Rito15"},"headline":"레이 마칭(Ray Marching)","dateModified":"2021-07-02T18:00:27+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Mar 24, 2021, 11:55 PM +0900"
+    title="Fri, Jul  2, 2021,  6:00 PM +0900"
   >
 
   
   
 
   
-    Mar 24
+    Jul  2
   
 
-  <i class="unloaded">2021-03-24T23:55:16+09:00</i>
+  <i class="unloaded">2021-07-02T18:00:27+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2745 words">15 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3980 words">22 min</span>
 
 
           <!-- page views -->
@@ -862,6 +862,7 @@ Source Code
 250
 251
 252
+253
 </pre></td><td class="rouge-code"><pre><span class="cp">#define MAX_STEPS 100
 #define MAX_DIST  100.0
 #define SURF_DIST 0.01
@@ -922,7 +923,7 @@ Source Code
 <span class="kt">float</span> <span class="nf">SD</span><span class="p">(</span><span class="kt">vec3</span> <span class="n">p</span><span class="p">,</span> <span class="n">Box</span> <span class="n">o</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="kt">vec3</span> <span class="n">q</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">o</span><span class="p">.</span><span class="n">pos</span><span class="p">)</span> <span class="o">-</span> <span class="n">o</span><span class="p">.</span><span class="n">size</span><span class="p">;</span>
-  	<span class="k">return</span> <span class="n">length</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="n">min</span><span class="p">(</span> <span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="p">),</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">length</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="n">min</span><span class="p">(</span> <span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="p">),</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kt">float</span> <span class="nf">SD</span><span class="p">(</span><span class="kt">vec3</span> <span class="n">p</span><span class="p">,</span> <span class="n">BoundingBox</span> <span class="n">o</span><span class="p">)</span>
 <span class="p">{</span>
@@ -930,20 +931,20 @@ Source Code
     <span class="kt">float</span> <span class="n">e</span> <span class="o">=</span> <span class="n">o</span><span class="p">.</span><span class="n">e</span><span class="p">;</span>
     
     <span class="n">p</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">o</span><span class="p">.</span><span class="n">pos</span> <span class="p">)</span><span class="o">-</span><span class="n">b</span><span class="p">;</span>
-  	<span class="kt">vec3</span> <span class="n">q</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="n">e</span><span class="p">)</span><span class="o">-</span><span class="n">e</span><span class="p">;</span>
+    <span class="kt">vec3</span> <span class="n">q</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="n">e</span><span class="p">)</span><span class="o">-</span><span class="n">e</span><span class="p">;</span>
     
-  	<span class="k">return</span> <span class="n">min</span><span class="p">(</span><span class="n">min</span><span class="p">(</span>
-      <span class="n">length</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="kt">vec3</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="n">min</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">)),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span>
-      <span class="n">length</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="kt">vec3</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="n">min</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">max</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">)),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">)),</span>
-      <span class="n">length</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="kt">vec3</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">p</span><span class="p">.</span><span class="n">z</span><span class="p">),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="n">min</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">p</span><span class="p">.</span><span class="n">z</span><span class="p">)),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">min</span><span class="p">(</span><span class="n">min</span><span class="p">(</span>
+    <span class="n">length</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="kt">vec3</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="n">min</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">)),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">length</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="kt">vec3</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="n">min</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">max</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">)),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">)),</span>
+    <span class="n">length</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="kt">vec3</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">p</span><span class="p">.</span><span class="n">z</span><span class="p">),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="n">min</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">p</span><span class="p">.</span><span class="n">z</span><span class="p">)),</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
 <span class="p">}</span>
 <span class="kt">float</span> <span class="nf">SD</span><span class="p">(</span><span class="kt">vec3</span> <span class="n">p</span><span class="p">,</span> <span class="n">Torus</span> <span class="n">o</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">o</span><span class="p">.</span><span class="n">pos</span><span class="p">;</span>
     <span class="kt">vec2</span> <span class="n">r</span> <span class="o">=</span> <span class="n">o</span><span class="p">.</span><span class="n">radius</span><span class="p">;</span>
-    
+        
     <span class="kt">vec2</span> <span class="n">q</span> <span class="o">=</span> <span class="kt">vec2</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">xz</span><span class="p">)</span><span class="o">-</span><span class="n">r</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
-  	<span class="k">return</span> <span class="n">length</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">-</span><span class="n">r</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">length</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">-</span><span class="n">r</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="cm">/**************************************************************************************************
@@ -1022,7 +1023,8 @@ Source Code
     <span class="kt">vec3</span> <span class="n">n</span> <span class="o">=</span> <span class="n">d</span> <span class="o">-</span> <span class="kt">vec3</span><span class="p">(</span>
         <span class="n">GetDist</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">e</span><span class="p">.</span><span class="n">xyy</span><span class="p">),</span>
         <span class="n">GetDist</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">e</span><span class="p">.</span><span class="n">yxy</span><span class="p">),</span>
-        <span class="n">GetDist</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">e</span><span class="p">.</span><span class="n">yyx</span><span class="p">));</span>
+        <span class="n">GetDist</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">e</span><span class="p">.</span><span class="n">yyx</span><span class="p">)</span>
+    <span class="p">);</span>
     
     <span class="k">return</span> <span class="n">normalize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1062,7 +1064,7 @@ Source Code
 <span class="kt">void</span> <span class="nf">mainImage</span><span class="p">(</span> <span class="k">out</span> <span class="kt">vec4</span> <span class="n">fragColor</span><span class="p">,</span> <span class="k">in</span> <span class="kt">vec2</span> <span class="n">fragCoord</span> <span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// UV ================================================================================================</span>
-    <span class="kt">vec2</span> <span class="n">uv</span> <span class="o">=</span> <span class="n">fragCoord</span><span class="o">/</span><span class="n">iResolution</span><span class="p">.</span><span class="n">xy</span><span class="p">;</span>				
+    <span class="kt">vec2</span> <span class="n">uv</span> <span class="o">=</span> <span class="n">fragCoord</span><span class="o">/</span><span class="n">iResolution</span><span class="p">.</span><span class="n">xy</span><span class="p">;</span>                
            <span class="n">uv</span> <span class="o">=</span> <span class="p">(</span><span class="n">uv</span> <span class="o">-</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="kt">vec2</span><span class="p">(</span><span class="n">iResolution</span><span class="p">.</span><span class="n">x</span><span class="o">/</span><span class="n">iResolution</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span> <span class="c1">// Square Area  -1.0 ~ 1.0</span>
     
     <span class="kt">float</span> <span class="n">zoom</span> <span class="o">=</span> <span class="mi">1</span><span class="p">.</span><span class="mi">3</span><span class="p">;</span>
@@ -1123,11 +1125,650 @@ Source Code
 <h1 id="유니티-엔진에서의-간단한-구현-예시">유니티 엔진에서의 간단한 구현 예시</h1>
 <hr />
 
-<ul>
-  <li><a href="https://github.com/SebLague/Ray-Marching">https://github.com/SebLague/Ray-Marching</a> 활용</li>
-</ul>
+<p>[1] <a href="https://github.com/SebLague/Ray-Marching">https://github.com/SebLague/Ray-Marching</a> 활용</p>
 
 <center><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/105003713-5f831900-5a76-11eb-8090-bd2e8d6f9b87.png" width="500" /></center>
+
+<p><br /></p>
+
+<p>[2] 하나의 쉐이더 내에서 구현</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/124320293-8feae980-dbb6-11eb-85ca-f861415b9785.gif" alt="2021_0703_Unity_Raymarching" /></p>
+
+<details>
+  <summary> 
+Raymarching.shader
+</summary>
+
+  <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+</pre></td><td class="rouge-code"><pre><span class="c1">// https://www.youtube.com/watch?v=S8AWd66hoCo</span>
+
+<span class="n">Shader</span> <span class="s">"Rito/RayMarching"</span>
+<span class="p">{</span>
+    <span class="n">Properties</span>
+    <span class="p">{</span>
+        <span class="p">[</span><span class="n">HideInInspector</span><span class="p">]</span> <span class="n">_MainTex</span> <span class="p">(</span><span class="s">"Texture"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"white"</span> <span class="p">{}</span>
+    <span class="p">}</span>
+    <span class="n">SubShader</span>
+    <span class="p">{</span>
+        <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span><span class="o">=</span><span class="s">"Opaque"</span> <span class="p">}</span>
+        <span class="n">LOD</span> <span class="mi">100</span>
+
+        <span class="n">Pass</span>
+        <span class="p">{</span>
+            <span class="n">CGPROGRAM</span>
+            <span class="cp">#pragma vertex vert
+</span>            <span class="cp">#pragma fragment frag
+</span>
+            <span class="cp">#include "UnityCG.cginc"
+</span>
+            <span class="cp">#define MAX_STEPS 100
+</span>            <span class="cp">#define MAX_DIST  100
+</span>            <span class="cp">#define SURF_DIST 0.001
+</span>
+            <span class="k">struct</span> <span class="n">appdata</span>
+            <span class="p">{</span>
+                <span class="kt">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="nb">POSITION</span><span class="p">;</span>
+                <span class="kt">float2</span> <span class="n">uv</span> <span class="o">:</span> <span class="nb">TEXCOORD0</span><span class="p">;</span>
+            <span class="p">};</span>
+
+            <span class="k">struct</span> <span class="n">v2f</span>
+            <span class="p">{</span>
+                <span class="kt">float2</span> <span class="n">uv</span> <span class="o">:</span> <span class="nb">TEXCOORD0</span><span class="p">;</span>
+                <span class="kt">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="nb">SV_POSITION</span><span class="p">;</span>
+                <span class="kt">float3</span> <span class="n">ro</span> <span class="o">:</span> <span class="nb">TEXCOORD1</span><span class="p">;</span>
+                <span class="kt">float3</span> <span class="n">hitPos</span> <span class="o">:</span> <span class="nb">TEXCOORD2</span><span class="p">;</span>
+            <span class="p">};</span>
+
+            <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
+            <span class="kt">float4</span> <span class="n">_MainTex_ST</span><span class="p">;</span>
+
+            <span class="n">v2f</span> <span class="n">vert</span> <span class="p">(</span><span class="n">appdata</span> <span class="n">v</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">v2f</span> <span class="n">o</span><span class="p">;</span>
+                <span class="n">o</span><span class="p">.</span><span class="n">vertex</span> <span class="o">=</span> <span class="n">UnityObjectToClipPos</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">vertex</span><span class="p">);</span>
+                <span class="n">o</span><span class="p">.</span><span class="n">uv</span> <span class="o">=</span> <span class="n">TRANSFORM_TEX</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">uv</span><span class="p">,</span> <span class="n">_MainTex</span><span class="p">);</span>
+
+                <span class="n">o</span><span class="p">.</span><span class="n">ro</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">unity_WorldToObject</span><span class="p">,</span> <span class="kt">float4</span><span class="p">(</span><span class="n">_WorldSpaceCameraPos</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+                <span class="n">o</span><span class="p">.</span><span class="n">hitPos</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">vertex</span><span class="p">;</span>
+
+                <span class="k">return</span> <span class="n">o</span><span class="p">;</span>
+            <span class="p">}</span>
+            
+            <span class="cm">/*****************************************************************
+                                             Functions
+            ******************************************************************/</span>
+            <span class="c1">// 트랜스폼의 회전 행렬 추출</span>
+            <span class="kt">float4x4</span> <span class="n">GetModelRotationMatrix</span><span class="p">()</span>
+            <span class="p">{</span>
+                <span class="kt">float4x4</span> <span class="n">rotationMatrix</span><span class="p">;</span>
+
+                <span class="kt">vector</span> <span class="n">sx</span> <span class="o">=</span> <span class="kt">vector</span><span class="p">(</span><span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m00</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m10</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m20</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="kt">vector</span> <span class="n">sy</span> <span class="o">=</span> <span class="kt">vector</span><span class="p">(</span><span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m01</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m11</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m21</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="kt">vector</span> <span class="n">sz</span> <span class="o">=</span> <span class="kt">vector</span><span class="p">(</span><span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m02</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m12</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m22</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+                <span class="n">float</span> <span class="n">scaleX</span> <span class="o">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">sx</span><span class="p">);</span>
+                <span class="n">float</span> <span class="n">scaleY</span> <span class="o">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">sy</span><span class="p">);</span>
+                <span class="n">float</span> <span class="n">scaleZ</span> <span class="o">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span>
+
+                <span class="n">rotationMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kt">float4</span><span class="p">(</span><span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m00</span> <span class="o">/</span> <span class="n">scaleX</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m01</span> <span class="o">/</span> <span class="n">scaleY</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m02</span> <span class="o">/</span> <span class="n">scaleZ</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="n">rotationMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kt">float4</span><span class="p">(</span><span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m10</span> <span class="o">/</span> <span class="n">scaleX</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m11</span> <span class="o">/</span> <span class="n">scaleY</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m12</span> <span class="o">/</span> <span class="n">scaleZ</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="n">rotationMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="kt">float4</span><span class="p">(</span><span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m20</span> <span class="o">/</span> <span class="n">scaleX</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m21</span> <span class="o">/</span> <span class="n">scaleY</span><span class="p">,</span> <span class="n">unity_ObjectToWorld</span><span class="p">.</span><span class="n">_m22</span> <span class="o">/</span> <span class="n">scaleZ</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="n">rotationMatrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="kt">float4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+                <span class="k">return</span> <span class="n">rotationMatrix</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 위치 벡터 회전</span>
+            <span class="kt">float3</span> <span class="n">RotatePosObjectToWorld</span><span class="p">(</span><span class="kt">float4x4</span> <span class="n">rotationMatrix</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">pos</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="nb">mul</span><span class="p">(</span><span class="n">rotationMatrix</span><span class="p">,</span> <span class="n">pos</span><span class="p">).</span><span class="n">xyz</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="kt">float3</span> <span class="n">RotatePosWorldToObject</span><span class="p">(</span><span class="kt">float4x4</span> <span class="n">rotationMatrix</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">pos</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="nb">mul</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">rotationMatrix</span><span class="p">).</span><span class="n">xyz</span><span class="p">;</span>
+            <span class="p">}</span>
+            
+            <span class="c1">// 방향 벡터 회전</span>
+            <span class="kt">float3</span> <span class="n">RotateDirObjectToWorld</span><span class="p">(</span><span class="kt">float4x4</span> <span class="n">rotationMatrix</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">dir</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="nb">mul</span><span class="p">((</span><span class="kt">float3x3</span><span class="p">)</span><span class="n">rotationMatrix</span><span class="p">,</span> <span class="n">dir</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="kt">float3</span> <span class="n">RotateDirWorldToObject</span><span class="p">(</span><span class="kt">float4x4</span> <span class="n">rotationMatrix</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">dir</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="nb">mul</span><span class="p">(</span><span class="n">dir</span><span class="p">,</span> <span class="p">(</span><span class="kt">float3x3</span><span class="p">)</span><span class="n">rotationMatrix</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="cm">/*****************************************************************
+                                  Signed Distance Functions
+            ******************************************************************/</span>
+            <span class="n">float</span> <span class="n">SdSphere</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">pos</span><span class="p">,</span> <span class="n">float</span> <span class="n">radius</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="nb">length</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">pos</span><span class="p">)</span> <span class="o">-</span> <span class="n">radius</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="n">float</span> <span class="n">SdSphere2</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">pos</span><span class="p">,</span> <span class="n">float</span> <span class="n">radius</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">scale</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">p</span> <span class="o">-=</span> <span class="n">pos</span><span class="p">;</span>
+                <span class="n">p</span> <span class="o">/=</span> <span class="n">scale</span><span class="p">;</span>
+                <span class="n">p</span> <span class="o">+=</span> <span class="n">pos</span><span class="p">;</span>
+
+                <span class="k">return</span> <span class="nb">length</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">pos</span><span class="p">)</span> <span class="o">-</span> <span class="n">radius</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="n">float</span> <span class="n">SdTorus</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">pos</span><span class="p">,</span> <span class="n">float</span> <span class="n">radius</span><span class="p">,</span> <span class="n">float</span> <span class="n">width</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">pos</span><span class="p">;</span>
+                <span class="n">float</span> <span class="n">r</span> <span class="o">=</span> <span class="n">radius</span><span class="p">;</span>
+                <span class="n">float</span> <span class="n">w</span> <span class="o">=</span> <span class="n">width</span><span class="p">;</span>
+                <span class="kt">float2</span> <span class="n">q</span> <span class="o">=</span> <span class="kt">float2</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">xz</span><span class="p">)</span> <span class="o">-</span> <span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nb">length</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">-</span> <span class="n">w</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="n">float</span> <span class="n">SdBox</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">pos</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">size</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">float3</span> <span class="n">q</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">pos</span><span class="p">)</span> <span class="o">-</span> <span class="n">size</span><span class="p">;</span>
+                <span class="k">return</span> <span class="nb">length</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="nb">min</span><span class="p">(</span> <span class="nb">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">q</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="p">),</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+            <span class="p">}</span>
+            
+            <span class="cm">/*****************************************************************
+                                        Operator Functions
+            ******************************************************************/</span>
+            <span class="kt">float2x2</span> <span class="n">GetRotationMatrix2x2</span><span class="p">(</span><span class="n">float</span> <span class="n">degree</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">float</span> <span class="n">radian</span> <span class="o">=</span> <span class="nb">radians</span><span class="p">(</span><span class="n">degree</span><span class="p">);</span>
+                <span class="n">float</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">radian</span><span class="p">);</span>
+                <span class="n">float</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">cos</span><span class="p">(</span><span class="n">radian</span><span class="p">);</span>
+
+                <span class="k">return</span> <span class="kt">float2x2</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="kt">float3</span> <span class="n">RotateX</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">pos</span><span class="p">,</span> <span class="n">float</span> <span class="n">degree</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">p</span> <span class="o">-=</span> <span class="n">pos</span><span class="p">;</span>
+                <span class="n">p</span><span class="p">.</span><span class="n">yz</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">GetRotationMatrix2x2</span><span class="p">(</span><span class="n">degree</span><span class="p">),</span> <span class="n">p</span><span class="p">.</span><span class="n">yz</span><span class="p">);</span>
+                <span class="n">p</span> <span class="o">+=</span> <span class="n">pos</span><span class="p">;</span>
+
+                <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="kt">float3</span> <span class="n">RotateY</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">pos</span><span class="p">,</span> <span class="n">float</span> <span class="n">degree</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">p</span> <span class="o">-=</span> <span class="n">pos</span><span class="p">;</span>
+                <span class="n">p</span><span class="p">.</span><span class="n">xz</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">GetRotationMatrix2x2</span><span class="p">(</span><span class="n">degree</span><span class="p">),</span> <span class="n">p</span><span class="p">.</span><span class="n">xz</span><span class="p">);</span>
+                <span class="n">p</span> <span class="o">+=</span> <span class="n">pos</span><span class="p">;</span>
+
+                <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="kt">float3</span> <span class="n">RotateZ</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">pos</span><span class="p">,</span> <span class="n">float</span> <span class="n">degree</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">p</span> <span class="o">-=</span> <span class="n">pos</span><span class="p">;</span>
+                <span class="n">p</span><span class="p">.</span><span class="n">xy</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">GetRotationMatrix2x2</span><span class="p">(</span><span class="n">degree</span><span class="p">),</span> <span class="n">p</span><span class="p">.</span><span class="n">xy</span><span class="p">);</span>
+                <span class="n">p</span> <span class="o">+=</span> <span class="n">pos</span><span class="p">;</span>
+
+                <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="kt">float3</span> <span class="n">Scale</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">pos</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">scale</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">p</span> <span class="o">-=</span> <span class="n">pos</span><span class="p">;</span>
+                <span class="n">p</span> <span class="o">/=</span> <span class="n">scale</span><span class="p">;</span>
+                <span class="n">p</span> <span class="o">+=</span> <span class="n">pos</span><span class="p">;</span>
+                <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Polynomial smooth min (k = 0.1);</span>
+            <span class="n">float</span> <span class="n">smin</span><span class="p">(</span><span class="n">float</span> <span class="n">a</span><span class="p">,</span> <span class="n">float</span> <span class="n">b</span><span class="p">,</span> <span class="n">float</span> <span class="n">k</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">float</span> <span class="n">h</span> <span class="o">=</span> <span class="nb">saturate</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">k</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nb">lerp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="n">h</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="n">float</span> <span class="n">smin</span><span class="p">(</span><span class="n">float</span> <span class="n">a</span><span class="p">,</span> <span class="n">float</span> <span class="n">b</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="n">smin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">2</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="kt">float3</span> <span class="n">Displacement</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">,</span> <span class="n">float</span> <span class="n">dist</span><span class="p">,</span> <span class="n">float</span> <span class="n">intensity</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">float3</span> <span class="n">disp</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">dist</span><span class="p">)</span> <span class="o">*</span> <span class="n">intensity</span><span class="p">;</span>
+                <span class="k">return</span> <span class="n">p</span> <span class="o">+</span> <span class="n">disp</span><span class="p">;</span>
+            <span class="p">}</span>
+            
+            <span class="cm">/*****************************************************************
+                                   Ray Marching Functions
+            ******************************************************************/</span>
+            <span class="c1">// Sphere + Torus + Sphere*8</span>
+            <span class="n">float</span> <span class="n">SunShape</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">float</span> <span class="n">t</span> <span class="o">=</span> <span class="n">_Time</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+                <span class="kt">float3</span> <span class="n">centerPos</span> <span class="o">=</span> <span class="kt">float3</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+
+                <span class="n">float</span> <span class="n">torus</span> <span class="o">=</span> <span class="n">SdTorus</span><span class="p">(</span><span class="n">RotateX</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">centerPos</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span> <span class="n">centerPos</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">);</span>
+                <span class="n">float</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">SdSphere</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">centerPos</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">3</span> <span class="o">+</span> <span class="nb">sin</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="mi">3</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">);</span>
+
+                <span class="n">float</span> <span class="n">d</span> <span class="o">=</span> <span class="n">smin</span><span class="p">(</span><span class="n">torus</span><span class="p">,</span> <span class="n">s1</span><span class="p">);</span>
+                
+                <span class="kt">float3</span> <span class="n">s2_pos</span> <span class="o">=</span> <span class="n">centerPos</span><span class="p">;</span> <span class="n">s2_pos</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">9</span><span class="p">;</span>
+
+                <span class="k">for</span><span class="p">(</span><span class="n">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="kt">float3</span> <span class="n">s2_p</span> <span class="o">=</span> <span class="n">RotateZ</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">centerPos</span><span class="p">,</span> <span class="mi">45</span><span class="p">.</span><span class="mi">0</span> <span class="o">*</span> <span class="p">(</span><span class="n">float</span><span class="p">)</span><span class="n">i</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">50</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+                    <span class="n">float</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">SdSphere2</span><span class="p">(</span><span class="n">s2_p</span><span class="p">,</span> <span class="n">s2_pos</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">,</span> <span class="kt">float3</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
+
+                    <span class="n">d</span> <span class="o">=</span> <span class="n">smin</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Final SD Functions</span>
+            <span class="n">float</span> <span class="n">GetDist</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">float</span> <span class="n">t</span> <span class="o">=</span> <span class="n">_Time</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+                <span class="n">float</span> <span class="n">d</span> <span class="o">=</span> <span class="n">SunShape</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+                
+                <span class="kt">float3</span> <span class="n">pos2</span> <span class="o">=</span> <span class="kt">float3</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+                <span class="n">float</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">7</span> <span class="o">+</span> <span class="nb">sin</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">;</span>
+
+                <span class="kt">float3</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+                <span class="n">p2</span> <span class="o">=</span> <span class="n">RotateX</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="n">pos2</span><span class="p">,</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">60</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+                <span class="n">p2</span> <span class="o">=</span> <span class="n">RotateZ</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="n">pos2</span><span class="p">,</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">90</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+
+                <span class="n">float</span> <span class="n">box</span> <span class="o">=</span> <span class="n">SdBox</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="n">pos2</span><span class="p">,</span> <span class="n">scale</span><span class="p">);</span>
+                <span class="n">float</span> <span class="n">sp</span> <span class="o">=</span> <span class="n">SdSphere</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">pos2</span><span class="p">,</span> <span class="n">scale</span> <span class="o">*</span> <span class="mi">1</span><span class="p">.</span><span class="mi">3</span><span class="p">);</span>
+
+                <span class="n">float</span> <span class="n">d2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="o">-</span><span class="n">sp</span><span class="p">);</span>
+
+                <span class="n">d</span> <span class="o">=</span> <span class="n">smin</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">);</span>
+
+                <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="kt">float3</span> <span class="n">GetNormal</span><span class="p">(</span><span class="kt">float3</span> <span class="n">p</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">float2</span> <span class="n">e</span> <span class="o">=</span> <span class="kt">float2</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mo">01</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="kt">float3</span> <span class="n">n</span> <span class="o">=</span> <span class="n">GetDist</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">-</span> <span class="kt">float3</span><span class="p">(</span>
+                    <span class="n">GetDist</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">e</span><span class="p">.</span><span class="n">xyy</span><span class="p">),</span>
+                    <span class="n">GetDist</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">e</span><span class="p">.</span><span class="n">yxy</span><span class="p">),</span>
+                    <span class="n">GetDist</span><span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">e</span><span class="p">.</span><span class="n">yyx</span><span class="p">)</span>
+                <span class="p">);</span>
+                <span class="k">return</span> <span class="nb">normalize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="n">float</span> <span class="n">GetLight</span><span class="p">(</span><span class="kt">float3</span> <span class="n">N</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">L</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="nb">saturate</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">L</span><span class="p">));</span>
+            <span class="p">}</span>
+
+            <span class="n">float</span> <span class="n">Raymarch</span><span class="p">(</span><span class="kt">float3</span> <span class="n">ro</span><span class="p">,</span> <span class="kt">float3</span> <span class="n">rd</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">float</span> <span class="n">dO</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 누적 전진 거리</span>
+                <span class="n">float</span> <span class="n">dS</span><span class="p">;</span>     <span class="c1">// 이번 스텝에서 전진할 거리</span>
+
+                <span class="k">for</span><span class="p">(</span><span class="n">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAX_STEPS</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="kt">float3</span> <span class="n">p</span> <span class="o">=</span> <span class="n">ro</span> <span class="o">+</span> <span class="n">dO</span> <span class="o">*</span> <span class="n">rd</span><span class="p">;</span>
+                    <span class="n">dS</span> <span class="o">=</span> <span class="n">GetDist</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+                    <span class="n">dO</span> <span class="o">+=</span> <span class="n">dS</span><span class="p">;</span>
+
+                    <span class="k">if</span><span class="p">(</span><span class="n">dS</span> <span class="o">&lt;</span> <span class="n">SURF_DIST</span> <span class="o">||</span> <span class="n">dO</span> <span class="o">&gt;</span> <span class="n">MAX_DIST</span><span class="p">)</span>
+                        <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">return</span> <span class="n">dO</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="cm">/*****************************************************************
+                                       Fragment Function
+            ******************************************************************/</span>
+            <span class="n">fixed4</span> <span class="n">frag</span> <span class="p">(</span><span class="n">v2f</span> <span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">SV_Target</span>
+            <span class="p">{</span>
+                <span class="kt">float4x4</span> <span class="n">rotMatrix</span> <span class="o">=</span> <span class="n">GetModelRotationMatrix</span><span class="p">();</span>
+
+                <span class="c1">// Object Light Direction</span>
+                <span class="kt">float3</span> <span class="n">L</span> <span class="o">=</span> <span class="nb">normalize</span><span class="p">(</span><span class="n">_WorldSpaceLightPos0</span><span class="p">.</span><span class="n">xyz</span><span class="p">);</span>
+                <span class="n">L</span> <span class="o">=</span> <span class="n">RotateDirWorldToObject</span><span class="p">(</span><span class="n">rotMatrix</span><span class="p">,</span> <span class="n">L</span><span class="p">);</span>
+
+                <span class="kt">float2</span> <span class="n">uv</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="n">uv</span> <span class="o">-</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">;</span>
+                <span class="kt">float3</span> <span class="n">ro</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="n">ro</span><span class="p">;</span>
+                <span class="kt">float3</span> <span class="n">rd</span> <span class="o">=</span> <span class="nb">normalize</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">hitPos</span> <span class="o">-</span> <span class="n">ro</span><span class="p">);</span>
+
+                <span class="n">float</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Raymarch</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span> <span class="n">rd</span><span class="p">);</span>
+                <span class="n">fixed4</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="n">col</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+                <span class="k">if</span><span class="p">(</span><span class="n">d</span> <span class="o">&lt;</span> <span class="n">MAX_DIST</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="kt">float3</span> <span class="n">p</span> <span class="o">=</span> <span class="n">ro</span> <span class="o">+</span> <span class="n">rd</span> <span class="o">*</span> <span class="n">d</span><span class="p">;</span>
+                    <span class="kt">float3</span> <span class="n">N</span> <span class="o">=</span> <span class="n">GetNormal</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+                    <span class="n">col</span><span class="p">.</span><span class="n">rgb</span> <span class="o">=</span> <span class="n">GetLight</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">L</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                    <span class="k">discard</span><span class="p">;</span>
+
+                <span class="k">return</span> <span class="n">col</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">ENDCG</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
@@ -1180,6 +1821,7 @@ Source Code
 <hr />
 <ul>
   <li><a href="http://jamie-wong.com/2016/07/15/ray-marching-signed-distance-functions">http://jamie-wong.com/2016/07/15/ray-marching-signed-distance-functions</a></li>
+  <li><a href="https://www.iquilezles.org/www/index.htm">https://www.iquilezles.org/www/index.htm</a></li>
   <li><a href="https://github.com/SebLague/Ray-Marching">https://github.com/SebLague/Ray-Marching</a></li>
   <li><a href="https://www.youtube.com/watch?v=Cp5WWtMoeKg">Youtube: Sebastian Lague</a></li>
   <li><a href="https://www.youtube.com/playlist?list=PLGmrMu-IwbgtMxMiV3x4IrHPlPmg7FD-P">Youtube: The Art of Code</a></li>
@@ -1317,12 +1959,17 @@ Source Code
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
         
         
         
         <li><a href="/posts/unity-game-view-auto-updater/">Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
         
@@ -1333,11 +1980,6 @@ Source Code
         
         
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
       
 
       </ul>
@@ -2800,6 +3442,8 @@ Source Code
     
     
     
+    
+      
     
   
     
@@ -7103,6 +7747,32 @@ Source Code
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9053,6 +9723,8 @@ Rx란?
     
     
     
+    
+      
     
   
     

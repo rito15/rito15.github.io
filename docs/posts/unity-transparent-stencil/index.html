@@ -2790,12 +2790,17 @@ Silhouette.shader
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
         
         
         
         <li><a href="/posts/unity-game-view-auto-updater/">Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
         
@@ -2806,11 +2811,6 @@ Silhouette.shader
         
         
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
       
 
       </ul>
@@ -4273,6 +4273,8 @@ Silhouette.shader
     
     
     
+    
+      
     
   
     
@@ -8199,6 +8201,32 @@ Silhouette.shader
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8802,7 +8830,7 @@ Silhouette.shader
   <i class="unloaded">2021-02-06T01:25:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 모음 [예정]</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 & 함수 모음</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8811,27 +8839,19 @@ Silhouette.shader
 
 
 
-                Render Depth
+                Functions
 
 
-
-  단순히 뎁스만 색상으로 보여주는 쉐이더
-
-
-
+트랜스폼에서 회전 행렬만 추출하기
 
 
   
-    Shader "Render Depth"
+    // 트랜스폼의 회전 행렬 추출
+float4x4 GetModelRotationMatrix()
 {
-    Properties
-    {
-        _Multiplier("Multiplier", Float) = 50
-    }
+    float4x4 rotationMatrix;
 
-    SubShader
-    {
-        Tags { "RenderType"...
+    vector sx = vector(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10...
               </p>
             </div>
           </div>
@@ -8984,7 +9004,7 @@ Silhouette.shader
 <div class="post-navigation d-flex justify-content-between">
   
   <a href="/posts/unity-shader-compilation/" class="btn btn-outline-primary">
-    <p>유니티 쉐이더 모음 [예정]</p>
+    <p>유니티 쉐이더 & 함수 모음</p>
   </a>
   
 
@@ -10522,6 +10542,8 @@ Silhouette.shader
     
     
     
+    
+      
     
   
     

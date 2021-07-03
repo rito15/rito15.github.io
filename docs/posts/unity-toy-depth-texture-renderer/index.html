@@ -905,12 +905,17 @@ DepthRenderer.cs
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
         
         
         
         <li><a href="/posts/unity-game-view-auto-updater/">Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
         
@@ -921,11 +926,6 @@ DepthRenderer.cs
         
         
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
       
 
       </ul>
@@ -2388,6 +2388,8 @@ DepthRenderer.cs
     
     
     
+    
+      
     
   
     
@@ -5607,6 +5609,32 @@ DepthRenderer.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7013,7 +7041,7 @@ How To Use
       
       
       <div class="card">
-        <a href="/posts/unity-texture-painter/">
+        <a href="/posts/unity-toy-weighted-random-picker/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7030,13 +7058,13 @@ How To Use
   
 
   
-    Jun 19
+    Mar  9
   
 
-  <i class="unloaded">2021-06-19T04:32:00+09:00</i>
+  <i class="unloaded">2021-03-09T03:22:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Texture Painter(텍스쳐에 그림 그리기)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Weighted Random Picker (가중치 랜덤 뽑기)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7045,28 +7073,20 @@ How To Use
 
 
 
-                Summary
-
-
-  실시간으로 마우스 클릭, 드래그를 통해 게임 오브젝트의 텍스쳐에 그림 그리기
-
-
-
-
-How To Use
-
-
-그림 그려질 대상 게임오브젝트
+                Note
 
 
   
-    알맞은 콜라이더를 넣는다.
+    게임에서 각각 n% 확률로 존재하는 요소들의 뽑기를 수행할 때, 단순히 Random.Range()를 통해서는 계산할 수 없다.
   
   
-    Rito/PaintTexture 쉐이더로 생성한 마테리얼을 적용한다.
+    이 때, ‘가중치 랜덤 뽑기’를 이용한다.
   
   
-    TexturePaintTarget 컴포넌트를 ...
+    제네릭을 활용하여, 아이템들과 가중치의 목록을 넣으면 간단히 뽑기를 수행할 수 있도록 작성하였다.
+  
+  
+    아이템...
               </p>
             </div>
           </div>
@@ -8628,6 +8648,8 @@ How To Use
     
     
     
+    
+      
     
   
     

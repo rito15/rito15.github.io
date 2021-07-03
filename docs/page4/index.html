@@ -367,6 +367,181 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-gui-style/">GUI 스타일 지정하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        인라인 방식으로 스타일 설정하기
+
+
+
+  GUI.___ 프로퍼티 값들을 수정하고 돌려놓기
+
+
+
+  
+    // OnInspectorGUI
+
+var oldBgColor = GUI.backgroundColor;
+GUI.backgroundColor = Color.red;
+
+// &lt;- Draw GUIs
+
+GUI.backgroundColor = oldB...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, May 18, 2021,  2:02 AM +0900"
+  >
+
+  
+  
+
+  
+    May 18
+  
+
+  <i class="unloaded">2021-05-18T02:02:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="373 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-put-component-on-top/">컴포넌트를 인스펙터 최상단에 올리기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+
+  
+    /// &lt;summary&gt; 컴포넌트를 최상단에 올리기 &lt;/summary&gt;
+[System.Diagnostics.Conditional("UNITY_EDITOR")]
+private static void PutComponentOnTop(Component component)
+{
+    for (int i = 0; ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, May 17, 2021,  9:12 PM +0900"
+  >
+
+  
+  
+
+  
+    May 17
+  
+
+  <i class="unloaded">2021-05-17T21:12:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="41 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-obj-exporter/">Obj Exporter(메시를 OBJ 파일로 저장하기)</a>
     </h1>
 
@@ -1166,196 +1341,6 @@ unsafe
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-winform-prevent-duplication/">윈폼 중복 실행 방지</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Memo
-
-
-
-  Program.cs에서 Main() 메소드 지우고 아래 내용 복붙하기
-
-
-
-  
-    /// &lt;summary&gt;
-/// 해당 응용 프로그램의 주 진입점입니다.
-/// &lt;/summary&gt;
-[STAThread]
-static void Main()
-{
-    if (!IsDuplicated())
-        RunAp...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, May  6, 2021,  2:02 AM +0900"
-  >
-
-  
-  
-
-  
-    May  6
-  
-
-  <i class="unloaded">2021-05-06T02:02:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="275 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-winform-notifyicon/">Notify Icon 사용하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Memo
-
-
-1. 도구
-
-  NotifyIcon 추가
-  ContextMenuStrip 추가
-
-
-
-
-2. 속성
-
-  Form - Icon에 .ico 아이콘 파일 등록
-  NotifyIcon - Icon에 아이콘 등록(안하면 컨텍스트 안생김)
-  NotifyIcon - ContextMenuStrip 연결
-
-
-
-
-3. 필드, 메소드 추가
-
-
-  
-    ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, May  6, 2021,  2:02 AM +0900"
-  >
-
-  
-  
-
-  
-    May  6
-  
-
-  <i class="unloaded">2021-05-06T02:02:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="429 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1680,9 +1665,24 @@ static void Main()
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page19/">19</a>
+        <a class="page-link btn-box-shadow" href="/page20/">20</a>
       </li>
     
 
@@ -1741,12 +1741,17 @@ static void Main()
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
         
         
         
         <li><a href="/posts/unity-game-view-auto-updater/">Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
         
@@ -1757,11 +1762,6 @@ static void Main()
         
         
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
       
 
       </ul>
@@ -3224,6 +3224,8 @@ static void Main()
     
     
     
+    
+      
     
   
     
@@ -6738,6 +6740,8 @@ static void Main()
     
     
     
+    
+      
     
   
     

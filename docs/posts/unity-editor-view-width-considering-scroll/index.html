@@ -675,12 +675,17 @@
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
         
         
         
         <li><a href="/posts/unity-game-view-auto-updater/">Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
         
@@ -691,11 +696,6 @@
         
         
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
       
 
       </ul>
@@ -2158,6 +2158,8 @@
     
     
     
+    
+      
     
   
     
@@ -4189,6 +4191,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -6790,7 +6818,7 @@ this.Repaint();
       
       
       <div class="card">
-        <a href="/posts/unity-editor-dialog/">
+        <a href="/posts/unity-clear-console-through-script/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6807,13 +6835,13 @@ this.Repaint();
   
 
   
-    Feb  9
+    Jun 14
   
 
-  <i class="unloaded">2021-02-09T13:50:00+09:00</i>
+  <i class="unloaded">2021-06-14T02:22:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 다이얼로그 창 띄우기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>스크립트로 콘솔 내용 지우기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6822,14 +6850,23 @@ this.Repaint();
 
 
 
-                
-  
-    bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
-bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
-
-  
-
-
+                1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+private static MethodInfo clearMethodInfo;
+private static void ClearLog()
+{
+    if (clearMethodInfo == null)
+    {
+        var assembly = Assembly.GetAssembly(typeof(UnityEd...
               </p>
             </div>
           </div>
@@ -8391,6 +8428,8 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
     
     
     
+    
+      
     
   
     

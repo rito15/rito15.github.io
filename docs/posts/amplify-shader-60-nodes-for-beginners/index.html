@@ -2535,12 +2535,17 @@
         
         
         
-        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
         
         
         
         <li><a href="/posts/unity-game-view-auto-updater/">Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-transparent-stencil/">유니티 반투명, 스텐실 개념 익히기</a></li>
       
         
         
@@ -2551,11 +2556,6 @@
         
         
         <li><a href="/posts/unity-memo-useful-links/">유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-init-jekyll-blog/">Jekyll 블로그 만들기 간단 메모</a></li>
       
 
       </ul>
@@ -4018,6 +4018,8 @@
     
     
     
+    
+      
     
   
     
@@ -6054,6 +6056,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8601,7 +8629,7 @@ World Positio...
       
       
       <div class="card">
-        <a href="/posts/unity-shader-property-attributes/">
+        <a href="/posts/unity-amplify-magical-orb/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8618,13 +8646,13 @@ World Positio...
   
 
   
-    Mar  4
+    Jul  3
   
 
-  <i class="unloaded">2021-03-04T21:58:00+09:00</i>
+  <i class="unloaded">2021-07-03T17:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 프로퍼티 애트리뷰트 모음</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(Amplify) Magical Orb Shader</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8633,45 +8661,55 @@ World Positio...
 
 
 
-                Space
-
-
-
-  
-    [Space(10)]
-
-  
-
-
-
-  단순 공백을 크기로 지정한다.
+                Preview
 
 
 
 
-Header
 
 
-
-  
-    [Header(Header Text)]
-
-  
-
-
-
-  헤더 문자열을 지정한다.
-  큰따옴표로 묶지 않아야 한다.
+Properties
 
 
 
 
-Toggle
+
+
+Settings
+
+
+General
+
+  Light Model - Unlit
+
+
+Blend Mode
+
+  Transparent
 
 
 
-  
-    [Toggle] _MyToggle ("My Toggle", Floa...
+
+Nodes
+
+
+
+
+
+
+Download
+
+
+
+  2021_0703_Magical Orb.zip
+
+
+
+
+References
+
+
+  https://www.youtube.c...
               </p>
             </div>
           </div>
@@ -8681,7 +8719,7 @@ Toggle
       
       
       <div class="card">
-        <a href="/posts/unity-shader-script-particle/">
+        <a href="/posts/unity-amplify-2-color-dissolve/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8698,13 +8736,13 @@ Toggle
   
 
   
-    Mar 15
+    Jul  3
   
 
-  <i class="unloaded">2021-03-15T16:00:00+09:00</i>
+  <i class="unloaded">2021-07-03T18:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Particle Shader</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(Amplify) Directional 2 Color Dissolve Shader</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8717,20 +8755,30 @@ Toggle
 
 
 
-  블렌딩 옵션 선택 가능한 파티클 쉐이더(기본 : Additive)
-
-
-Source Code
-
-
-
   
-    Shader "Custom/Particle"
-{
-    Properties
-    {
-        _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
-        _Intensity(...
+    디졸브 방향을 직접 지정할 수 있는 디졸브 쉐이더
+  
+  
+    디졸브 효과 색상 2가지를 지정할 수 있다.
+  
+  
+    포스트 프로세싱 Bloom 효과가 반드시 필요하다.
+    
+      Preview 설정 : Intensity 3, Threshold 0.9
+    
+  
+
+
+
+
+Preview
+
+
+
+
+
+
+...
               </p>
             </div>
           </div>
@@ -10292,6 +10340,8 @@ Source Code
     
     
     
+    
+      
     
   
     
