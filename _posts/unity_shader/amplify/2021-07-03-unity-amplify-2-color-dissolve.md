@@ -68,7 +68,7 @@ mermaid: true
 
 <br>
 
-![image](https://user-images.githubusercontent.com/42164422/124364171-a78ba600-dc7a-11eb-9862-c4ddf1977bd0.png)
+![image](https://user-images.githubusercontent.com/42164422/124364399-42d14b00-dc7c-11eb-9ddd-860aa898b1f1.png)
 
 첫 번째 버튼은 빠르게 값을 계산하지만 정확도가 낮고,
 
@@ -79,7 +79,7 @@ mermaid: true
 # Download
 ---
 
-- [2021_0703_Directional 2 Color Dissolve.zip](https://github.com/rito15/Images/files/6758892/2021_0703_Directional.2.Color.Dissolve.zip)
+- [2021_0703_Directional 2 Color Dissolve.zip](https://github.com/rito15/Images/files/6758915/2021_0703_Directional.2.Color.Dissolve.zip)
 
 <br>
 
