@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-04T21:59:30+09:00</updated>
+  <updated>2021-07-05T03:49:29+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,94 @@
 
   
   <entry>
+    <title>(Amplify) Shield Shader</title>
+    <link href="https://rito15.github.io/posts/unity-amplify-shield-shader/" rel="alternate" type="text/html" title="(Amplify) Shield Shader" />
+    <published>2021-07-05T03:33:00+09:00</published>
+  
+    <updated>2021-07-05T03:33:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-amplify-shield-shader/</id>
+    <content src="https://rito15.github.io/posts/unity-amplify-shield-shader/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Amplify Shader" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  Sphere 메시에 사용하는 쉴드 쉐이더
+
+
+
+
+Preview
+
+
+
+
+
+
+Properties
+
+
+
+
+
+
+Settings
+
+
+Blend Mode
+
+  Transparent
+
+
+
+
+Nodes
+
+
+
+
+
+
+Download
+
+
+
+  2021_0704_Shield.zip
+
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>(Amplify) World Position Offset(Black Hole) Shaders</title>
     <link href="https://rito15.github.io/posts/unity-amplify-world-position-offset-shaders/" rel="alternate" type="text/html" title="(Amplify) World Position Offset(Black Hole) Shaders" />
     <published>2021-07-04T17:00:00+09:00</published>
   
-    <updated>2021-07-04T17:00:00+09:00</updated>
+    <updated>2021-07-04T22:00:26+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-amplify-world-position-offset-shaders/</id>
     <content src="https://rito15.github.io/posts/unity-amplify-world-position-offset-shaders/" />
@@ -344,66 +427,6 @@ How To Use
 
 
 Preview...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>게임 뷰를 강제로 업데이트하기</title>
-    <link href="https://rito15.github.io/posts/unity-update-game-view/" rel="alternate" type="text/html" title="게임 뷰를 강제로 업데이트하기" />
-    <published>2021-06-30T21:00:00+09:00</published>
-  
-    <updated>2021-06-30T21:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-update-game-view/</id>
-    <content src="https://rito15.github.io/posts/unity-update-game-view/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-  
-    플레이 모드에 진입하지 않고 게임 뷰에서 쉐이더 애니메이션을 확인하고 싶을 때 사용한다.
-  
-  
-    아무 게임오브젝트나 붙잡고 Dirty로 만들어주면 게임 뷰가 업데이트 된다.
-  
-
-
-EditorUtility.SetDirty(GameObject.FindObjectOfType&amp;lt;Transform&amp;gt;());
-
-
-
-
-
-  다음과 같은 Repaint 메소드들은 통하지 않는다.
-
-
-EditorWindow focused = EditorWindow.focusedWindow;
-focused.Repaint();
-UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
-SceneView.RepaintAll();
-if (GUI.c...
     </summary>
   
 
