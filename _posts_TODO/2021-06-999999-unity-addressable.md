@@ -15,7 +15,7 @@ T O D O
 
 0. 유튜브 다 보기
 
-- https://www.youtube.com/watch?v=Z9LrkQUDzJw   22:30
+- https://www.youtube.com/watch?v=Z9LrkQUDzJw - 애셋이 번들번들
 - https://www.youtube.com/watch?v=yoBzTpJYN44
 - https://www.youtube.com/watch?v=EP3pvPAcHSo
 

@@ -15,7 +15,7 @@ mermaid: true
 
 <br>
 
-# 01
+# 1. Simple Move
 ---
 
 - 현재 좌표로부터 타겟 위치까지 `T(0 ~ 1)` 값에 따라 선형 보간하여 단순 이동
@@ -26,7 +26,7 @@ mermaid: true
 
 <br>
 
-# 02
+# 2. Procedural Move
 ---
 
 - 현재 좌표로부터 타겟 위치까지 `T(0 ~ 1)` 값에 따라 선형 보간하여 빨려 들어가는 효과
@@ -39,7 +39,7 @@ mermaid: true
 
 <br>
 
-# 03
+# 3. Dramatic Move
 ---
 
 - 현재 좌표로부터 타겟 위치까지 `T(0 ~ 1)` 값에 따라 선형 보간하여 빨려 들어가는 효과
@@ -54,7 +54,7 @@ mermaid: true
 
 <br>
 
-# 04
+# 4. Range
 ---
 
 - `T(0 ~ 1)` 값 대신, 효과가 미칠 범위 값(`Range`)을 기준값으로 사용한다.
@@ -100,10 +100,25 @@ mermaid: true
 
 <br>
 
+# 5. Twirl
+---
+
+- `Vertex -> Target` 방향 벡터와 `Object View Dir` 벡터를 외적하여 진행 방향에 수직인 벡터를 계산한다.
+
+- `Target Position`과 위의 벡터를 서로 더한 위치를 계산한다.
+
+- 현재 정점 위치로부터 위에서 얻은 위치 벡터를 `Lerp`를 통해 보간하여 중간 위치를 얻고, 그 결과를 다시 `Target Position`과 보간하여, 결과적으로 진행방향이 둥글게 왜곡된다.
+
+![2021_0704_WPO_05](https://user-images.githubusercontent.com/42164422/124385422-7e1d5980-dd10-11eb-860c-8c8a38a73cb5.gif)
+
+![ScreenshotASE](https://user-images.githubusercontent.com/42164422/124385330-00f1e480-dd10-11eb-9391-1dd26b1755b2.png)
+
+<br>
+
 # Download
 ---
 
-- [2021_0704_World Position Offsets.zip](https://github.com/rito15/Images/files/6759634/2021_0704_World.Position.Offsets.zip)
+- [2021_0704_World Position Offsets.zip](https://github.com/rito15/Images/files/6759885/2021_0704_World.Position.Offsets.zip)
 
 
 

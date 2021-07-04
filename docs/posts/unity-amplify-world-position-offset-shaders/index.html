@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="441 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="571 words">3 min</span>
 
 
           <!-- page views -->
@@ -446,7 +446,7 @@
 
 <p><br /></p>
 
-<h1 id="01">01</h1>
+<h1 id="1-simple-move">1. Simple Move</h1>
 <hr />
 
 <ul>
@@ -459,7 +459,7 @@
 
 <p><br /></p>
 
-<h1 id="02">02</h1>
+<h1 id="2-procedural-move">2. Procedural Move</h1>
 <hr />
 
 <ul>
@@ -477,7 +477,7 @@
 
 <p><br /></p>
 
-<h1 id="03">03</h1>
+<h1 id="3-dramatic-move">3. Dramatic Move</h1>
 <hr />
 
 <ul>
@@ -498,7 +498,7 @@
 
 <p><br /></p>
 
-<h1 id="04">04</h1>
+<h1 id="4-range">4. Range</h1>
 <hr />
 
 <ul>
@@ -554,11 +554,32 @@
 
 <p><br /></p>
 
+<h1 id="5-twirl">5. Twirl</h1>
+<hr />
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Vertex -&gt; Target</code> 방향 벡터와 <code class="language-plaintext highlighter-rouge">Object View Dir</code> 벡터를 외적하여 진행 방향에 수직인 벡터를 계산한다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Target Position</code>과 위의 벡터를 서로 더한 위치를 계산한다.</p>
+  </li>
+  <li>
+    <p>현재 정점 위치로부터 위에서 얻은 위치 벡터를 <code class="language-plaintext highlighter-rouge">Lerp</code>를 통해 보간하여 중간 위치를 얻고, 그 결과를 다시 <code class="language-plaintext highlighter-rouge">Target Position</code>과 보간하여, 결과적으로 진행방향이 둥글게 왜곡된다.</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/124385422-7e1d5980-dd10-11eb-860c-8c8a38a73cb5.gif" alt="2021_0704_WPO_05" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/124385330-00f1e480-dd10-11eb-9391-1dd26b1755b2.png" alt="ScreenshotASE" /></p>
+
+<p><br /></p>
+
 <h1 id="download">Download</h1>
 <hr />
 
 <ul>
-  <li><a href="https://github.com/rito15/Images/files/6759634/2021_0704_World.Position.Offsets.zip">2021_0704_World Position Offsets.zip</a></li>
+  <li><a href="https://github.com/rito15/Images/files/6759885/2021_0704_World.Position.Offsets.zip">2021_0704_World Position Offsets.zip</a></li>
 </ul>
 
 
