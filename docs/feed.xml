@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-04T04:00:55+09:00</updated>
+  <updated>2021-07-04T18:07:27+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,98 @@
 
   
   <entry>
+    <title>(Amplify) World Position Offset(Black Hole) Shaders</title>
+    <link href="https://rito15.github.io/posts/unity-amplify-world-position-offset-shaders/" rel="alternate" type="text/html" title="(Amplify) World Position Offset(Black Hole) Shaders" />
+    <published>2021-07-04T17:00:00+09:00</published>
+  
+    <updated>2021-07-04T17:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-amplify-world-position-offset-shaders/</id>
+    <content src="https://rito15.github.io/posts/unity-amplify-world-position-offset-shaders/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Amplify Shader" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  특정 월드 좌표로 빨려 들어가는 효과
+
+
+
+
+01
+
+
+
+  현재 좌표로부터 타겟 위치까지 T(0 ~ 1) 값에 따라 선형 보간하여 단순 이동
+
+
+
+
+
+
+
+
+02
+
+
+
+  
+    현재 좌표로부터 타겟 위치까지 T(0 ~ 1) 값에 따라 선형 보간하여 빨려 들어가는 효과
+  
+  
+    (버텍스 -&amp;gt; 타겟 위치) 방향 벡터와 노멀 벡터의 내적 결과값을 마스크로 사용한다.
+  
+
+
+
+
+
+
+
+
+03
+
+
+
+  
+    현재 좌표로부터 타겟 위치까지 T(0 ~ 1) 값에 따라 선형 보간하여 빨려 들어가는 효과
+  
+  
+    (버텍스 -&amp;gt; 타겟 위치) 방향 벡터와 노멀 벡터의 내적 결과값을 마스크로 사용한다.
+  
+  
+    Lerp에 들어갈 0 ~ 1 범위 값을 Step...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>(Amplify) Directional 2 Color Dissolve Shader</title>
     <link href="https://rito15.github.io/posts/unity-amplify-2-color-dissolve/" rel="alternate" type="text/html" title="(Amplify) Directional 2 Color Dissolve Shader" />
     <published>2021-07-03T18:00:00+09:00</published>
   
-    <updated>2021-07-03T18:00:00+09:00</updated>
+    <updated>2021-07-04T04:04:46+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-amplify-2-color-dissolve/</id>
     <content src="https://rito15.github.io/posts/unity-amplify-2-color-dissolve/" />
@@ -320,68 +407,6 @@ focused.Repaint();
 UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
 SceneView.RepaintAll();
 if (GUI.c...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Main Thread Dispatcher</title>
-    <link href="https://rito15.github.io/posts/unity-main-thread-dispatcher/" rel="alternate" type="text/html" title="Main Thread Dispatcher" />
-    <published>2021-06-30T04:04:00+09:00</published>
-  
-    <updated>2021-06-30T04:04:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-main-thread-dispatcher/</id>
-    <content src="https://rito15.github.io/posts/unity-main-thread-dispatcher/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Toys" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-  
-    워커 스레드에서 유니티 메인 스레드에 작업을 위임할 수 있게 하는 싱글톤 클래스
-  
-  
-    https://github.com/PimDeWitte/UnityMainThreadDispatcher의 코드를 조금 더 사용하기 편리하게 살짝 수정
-  
-
-
-Usage Example
-
-
-private MainThreadDispatcher mtd;
-
-private void Start()
-{
-    mtd = MainThreadDispatcher.Instance;
-    Task.Run(() =&amp;gt; TestBody());
-}
-
-private async void TestBody()
-{
-    int res1 = -1, res2 = -1;
-
-    await Task.Delay(5...
     </summary>
   
 
