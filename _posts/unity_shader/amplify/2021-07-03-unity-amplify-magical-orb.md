@@ -49,7 +49,7 @@ mermaid: true
 # Download
 ---
 
-- [2021_0703_Magical Orb.zip](https://github.com/rito15/Images/files/6758891/2021_0703_Magical.Orb.zip)
+- [2021_0703_Magical Orb.zip](https://github.com/rito15/Images/files/6762956/2021_0703_Magical.Orb.zip)
 
 <br>
 
