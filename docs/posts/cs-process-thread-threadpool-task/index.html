@@ -4409,6 +4409,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6822,7 +6848,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-toy-mouse-chaser/">
+        <a href="/posts/cs-task/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6839,13 +6865,13 @@
   
 
   
-    Mar  2
+    Jul  6
   
 
-  <i class="unloaded">2021-03-02T03:14:00+09:00</i>
+  <i class="unloaded">2021-07-06T03:33:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Mouse Chaser (마우스 커서 추적 컴포넌트)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Task</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6854,25 +6880,22 @@
 
 
 
-                Note
-
-
-
-  게임오브젝트가 마우스 커서를 따라오게 하는 스크립트
-
-
-How To Use
+                Task
 
 
 
   
-    마우스 커서를 따라오게 할 게임오브젝트에 컴포넌트로 넣는다.
+    Task는 ThreadPool을 기반으로 작성된 라이브러리이다.
   
   
-    Distance From Camera를 통해 카메라로부터의 거리를 지정할 수 있다.
+    내부적으로 ThreadPool의 스레드 개수를 차지하며, ThreadPool의 스레드 개수 제한에 영향을 받는다.
   
   
-    Chasing Speed를 통해 마우스를 따라올 속도를 지정할...
+    가벼운 비동기 작업에 특화되어 있다.
+  
+  
+    Thread.Abort()처럼 간단히 종료할 수 없다.
+...
               </p>
             </div>
           </div>
@@ -6882,7 +6905,7 @@ How To Use
       
       
       <div class="card">
-        <a href="/posts/unity-toy-projectile-shooter/">
+        <a href="/posts/cs-async-task/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6899,13 +6922,13 @@ How To Use
   
 
   
-    Mar  2
+    Jul  6
   
 
-  <i class="unloaded">2021-03-02T03:28:00+09:00</i>
+  <i class="unloaded">2021-07-06T03:34:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Projectile Shooter (투사체 발사 컴포넌트)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# async Task</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6914,29 +6937,25 @@ How To Use
 
 
 
-                Note
+                비동기 작업 : async-await
 
 
 
   
-    마우스 클릭 시 등록된 게임오브젝트를 생성하여, 지정된 방향으로 발사하는 스크립트
+    Task를 Thread처럼 사용하는 대신, 비동기 작업을 위해 사용할 수 있다.
   
   
-    생성된 게임오브젝트는 카메라의 시선에 수직인 평면 방향으로 이동하며, 수명이 다하면 제거된다.
-  
-  
-    오브젝트 풀링이 적용된다.
+    async, await 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.
   
 
 
 
 
-How To Use
-
+특징
 
 
   
-    빈 게임오브젝트를 생성하고, Part...
+    메소드 내부에서 await로 대기하려면, 해당 메소...
               </p>
             </div>
           </div>

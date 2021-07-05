@@ -5226,6 +5226,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6794,70 +6820,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-depth-sorting-layer-sorting-group/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jun 25
-  
-
-  <i class="unloaded">2021-06-25T20:40:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Camera Depth, Sorting Layer, Sorting Group</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Camera Depth(Z)
-
-
-
-  
-    카메라로부터의 거리
-  
-  
-    가까울수록 먼저 보인다.
-  
-
-
-
-
-Sorting Layer vs. Camera Depth
-
-
-
-  
-    Sorting Layer가 Camera Depth보다 우선적으로 깊이를 결정한다.
-  
-  
-    Sorting Layer 설정이 같은 경우, Camera ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-memo-color-debug-log/">
           <div class="card-body">
             <!--
@@ -6967,6 +6929,61 @@ Debug.Log("&lt;color=white&gt;Whit...
 따라서 해상도를 기반으로 하는 드래그 등의 기능을 구현할 때
 
 마우스 변위를 해상도 값으로 가져오고, 이를 RectTransform에 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-put-component-on-top/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    May 17
+  
+
+  <i class="unloaded">2021-05-17T21:12:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>컴포넌트를 인스펙터 최상단에 올리기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+1
+2
+3
+4
+5
+6
+/// &lt;summary&gt; 컴포넌트를 최상단에 올리기 &lt;/summary&gt;
+[System.Diagnostics.Conditional("UNITY_EDITOR")]
+private static void PutComponentOnTop(Component component)
+{
+    for (int i =...
               </p>
             </div>
           </div>

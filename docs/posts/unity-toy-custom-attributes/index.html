@@ -6892,6 +6892,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7118,7 +7144,7 @@ public class CustomAttribute : System.Attribute
       
       
       <div class="card">
-        <a href="/posts/unity-toy-mouse-chaser/">
+        <a href="/posts/unity-toy-depth-texture-renderer/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7135,13 +7161,13 @@ public class CustomAttribute : System.Attribute
   
 
   
-    Mar  2
+    Mar  3
   
 
-  <i class="unloaded">2021-03-02T03:14:00+09:00</i>
+  <i class="unloaded">2021-03-03T19:08:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Mouse Chaser (마우스 커서 추적 컴포넌트)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Depth Texture Renderer (Z-Buffer 렌더러)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7153,20 +7179,26 @@ public class CustomAttribute : System.Attribute
                 Note
 
 
-  게임오브젝트가 마우스 커서를 따라오게 하는 스크립트
-
-
-How To Use
-
 
   
-    마우스 커서를 따라오게 할 게임오브젝트에 컴포넌트로 넣는다.
+    현재 메인 카메라의 뎁스 텍스쳐를 화면에 렌더링한다.
   
   
-    Distance From Camera를 통해 카메라로부터의 거리를 지정할 수 있다.
+    각 쉐이더의 ZWrite 여부에 관계 없이 모두 렌더링하는 단점이 있다.
   
   
-    Chasing Speed를 통해 마우스를 따라올 속도를 지정할 수...
+    렌더 큐 값이 2500(Skybox) 이하인 오브젝트들만 인식한다.
+  
+
+
+
+
+How to Use
+
+
+
+  
+    DepthRenderer.cs 스크립트를 메인...
               </p>
             </div>
           </div>
@@ -7176,7 +7208,7 @@ How To Use
       
       
       <div class="card">
-        <a href="/posts/unity-toy-projectile-shooter/">
+        <a href="/posts/unity-toy-weighted-random-picker/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7193,13 +7225,13 @@ How To Use
   
 
   
-    Mar  2
+    Mar  9
   
 
-  <i class="unloaded">2021-03-02T03:28:00+09:00</i>
+  <i class="unloaded">2021-03-09T03:22:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Projectile Shooter (투사체 발사 컴포넌트)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Weighted Random Picker (가중치 랜덤 뽑기)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7212,23 +7244,16 @@ How To Use
 
 
   
-    마우스 클릭 시 등록된 게임오브젝트를 생성하여, 지정된 방향으로 발사하는 스크립트
+    게임에서 각각 n% 확률로 존재하는 요소들의 뽑기를 수행할 때, 단순히 Random.Range()를 통해서는 계산할 수 없다.
   
   
-    생성된 게임오브젝트는 카메라의 시선에 수직인 평면 방향으로 이동하며, 수명이 다하면 제거된다.
+    이 때, ‘가중치 랜덤 뽑기’를 이용한다.
   
   
-    오브젝트 풀링이 적용된다.
+    제네릭을 활용하여, 아이템들과 가중치의 목록을 넣으면 간단히 뽑기를 수행할 수 있도록 작성하였다.
   
-
-
-
-
-How To Use
-
-
   
-    빈 게임오브젝트를 생성하고, Partic...
+    아이템...
               </p>
             </div>
           </div>

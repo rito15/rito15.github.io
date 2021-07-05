@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-05T17:52:26+09:00</updated>
+  <updated>2021-07-06T03:50:27+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,143 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# async Task</title>
+    <link href="https://rito15.github.io/posts/cs-async-task/" rel="alternate" type="text/html" title="C# async Task" />
+    <published>2021-07-06T03:34:00+09:00</published>
+  
+    <updated>2021-07-06T03:34:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-async-task/</id>
+    <content src="https://rito15.github.io/posts/cs-async-task/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Threading" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      비동기 작업 : async-await
+
+
+
+  
+    Task를 Thread처럼 사용하는 대신, 비동기 작업을 위해 사용할 수 있다.
+  
+  
+    async, await 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.
+  
+
+
+
+
+특징
+
+
+  
+    메소드 내부에서 await로 대기하려면, 해당 메소드의 리턴 타입 앞에 async 키워드를 작성한다.
+  
+  
+    await Task.Delay(n)와 같이 await를 이용한 대기는 해당 스레드를 블록시키지 않는다.
+  
+  
+    비동기 작업을 기다리고, 끝날 경우 값을 리턴받을 수 있다.
+  
+  
+    async-await로 실행 시킨 작업 역시 ThreadPool에 의해 관리된다.
+  
+...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>C# Task</title>
+    <link href="https://rito15.github.io/posts/cs-task/" rel="alternate" type="text/html" title="C# Task" />
+    <published>2021-07-06T03:33:00+09:00</published>
+  
+    <updated>2021-07-06T03:33:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-task/</id>
+    <content src="https://rito15.github.io/posts/cs-task/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Threading" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Task
+
+
+
+  
+    Task는 ThreadPool을 기반으로 작성된 라이브러리이다.
+  
+  
+    내부적으로 ThreadPool의 스레드 개수를 차지하며, ThreadPool의 스레드 개수 제한에 영향을 받는다.
+  
+  
+    가벼운 비동기 작업에 특화되어 있다.
+  
+  
+    Thread.Abort()처럼 간단히 종료할 수 없다.
+  
+  
+    작업이 완료된 Task 객체는 다시 수행될 수 없다.
+  
+
+
+
+
+1. 생성, 실행, 대기
+
+
+[1] 개별 객체 정의
+
+
+  
+    스레드 바디로 사용될 메소드를 미리 정의한다.
+  
+  
+    정의한 메소드 또는 람다식을 이용해 Task 객체를 만들고, 시작시킨다.
+  
+  
+    이렇게 시작되는 Task는 새로운 스레드에서 실행된...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -274,165 +411,6 @@ Note
 메시 정보 또는 디졸브 방향이 다르면 이 값들은 모두 달라질 수 있다.
 
 이를 직접 계산하려면 굉장히 번거로우므...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Amplify) Magical Orb Shader</title>
-    <link href="https://rito15.github.io/posts/unity-amplify-magical-orb/" rel="alternate" type="text/html" title="(Amplify) Magical Orb Shader" />
-    <published>2021-07-03T17:00:00+09:00</published>
-  
-    <updated>2021-07-05T17:42:15+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-amplify-magical-orb/</id>
-    <content src="https://rito15.github.io/posts/unity-amplify-magical-orb/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Amplify Shader" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Preview
-
-
-
-
-
-
-Properties
-
-
-
-
-
-
-Settings
-
-
-General
-
-  Light Model - Unlit
-
-
-Blend Mode
-
-  Transparent
-
-
-
-
-Nodes
-
-
-
-
-
-
-+ 추가 : Twirl, Normal From Height가 없는 구버전 노드
-
-
-
-
-
-Download
-
-
-
-  2021_0703_Magical Orb.zip
-
-
-
-
-References
-
-
-  https://www.youtube.com/watch?v=DpXPhGeCqus
-
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)</title>
-    <link href="https://rito15.github.io/posts/unity-game-view-auto-updater/" rel="alternate" type="text/html" title="Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)" />
-    <published>2021-06-30T22:00:00+09:00</published>
-  
-    <updated>2021-07-02T17:52:44+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-game-view-auto-updater/</id>
-    <content src="https://rito15.github.io/posts/unity-game-view-auto-updater/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Utilities" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-플레이 모드에 진입하지 않으면 게임 뷰는 GUI에 변화가 있을 때만 갱신됩니다.
-
-따라서 쉐이더를 통해 각종 애니메이션이나 효과를 만들고 마테리얼을 통해 적용해도
-
-에디터 모드에서는 이를 정상적으로 확인할 수 없습니다.
-
-이 애셋은 에디터 모드에서도 마테리얼 효과를 정상적으로 확인할 수 있게 합니다.
-
-
-
-How To Use
-
-
-  
-    첨부된 Game-View-Auto-Updater.unitypackage 파일을 다운받습니다.
-  
-  
-    유니티 프로젝트가 켜진 상태로 해당 파일을 실행하여 프로젝트 내에 임포트합니다.
-  
-  
-    에디터 상단의 플레이 버튼 좌측에 위치한 Auto Update Game View 버튼을 활성화/비활성화합니다.
-  
-
-
-
-
-
-
-Preview...
     </summary>
   
 

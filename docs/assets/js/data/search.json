@@ -1,6 +1,36 @@
 [
   
   {
+    "title": "C# async Task",
+    "url": "/posts/cs-async-task/",
+    "categories": "C#, C# Threading",
+    "tags": "csharp, thread",
+    "date": "2021-07-06 03:34:00 +0900",
+    
+
+
+
+
+
+    "snippet": "비동기 작업 : async-await      Task를 Thread처럼 사용하는 대신, 비동기 작업을 위해 사용할 수 있다.        async, await 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.  특징      메소드 내부에서 await로 대기하려면, 해당 메소드의 리턴 타입 앞에 async 키워드를 작성한다.        await Task.Delay(n)와 같이 await를 이용한 대기는 해당 스레드를 블록시키지 않는다.        비동기 작업을 기다리고, 끝날 ..."
+  },
+  
+  {
+    "title": "C# Task",
+    "url": "/posts/cs-task/",
+    "categories": "C#, C# Threading",
+    "tags": "csharp, thread",
+    "date": "2021-07-06 03:33:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Task      Task는 ThreadPool을 기반으로 작성된 라이브러리이다.        내부적으로 ThreadPool의 스레드 개수를 차지하며, ThreadPool의 스레드 개수 제한에 영향을 받는다.        가벼운 비동기 작업에 특화되어 있다.        Thread.Abort()처럼 간단히 종료할 수 없다.        작업이 완료된 Task 객체는 다시 수행될 수 없다.  1. 생성, 실행, 대기[1] 개별 객체 정의      스레드 바디로 사용될 메소드를 미리 정의한다.        정의한 메소드 또는 람..."
+  },
+  
+  {
     "title": "(Amplify) Shield Shader",
     "url": "/posts/unity-amplify-shield-shader/",
     "categories": "Unity Shader, Amplify Shader",
