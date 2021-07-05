@@ -138,6 +138,20 @@ A : Amplitude
 
 <br>
 
+## Contact Point
+
+![2021_0705_ContactPoint](https://user-images.githubusercontent.com/42164422/124423754-c84e1b80-dda0-11eb-9fba-d38ddb500bf7.gif)
+
+- 다른 불투명 물체와 접촉한 지점을 강조하여 표현한다.
+
+- 대표적으로 쉴드 이펙트, 물 쉐이더 등에 사용된다.
+
+- `Screen Position` 노드의 `Type`은 `Screen`으로 지정해야 한다.
+
+- 반드시 `Blend Mode`를 `Transparent`로 설정해야 한다.
+
+<br>
+
 # 3. Lighting
 ---
 
