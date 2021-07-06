@@ -45,9 +45,35 @@
 # 의도적인 컨텍스트 스위칭
 ---
 
-현재 동작 중인 스레드에서 CPU 자원을 포기하고 컨텍스트 스위칭을 발생시켜
+여기서 의도적인 컨텍스트 스위칭을 발생시키는 상황이란,
 
-다른 스레드에 CPU 자원을 양보하는 것이 가능하다.
+CPU 자원 한계 초과로 스레드가 동작하는 상황을 가정하는 것이다.
+
+만약 CPU 자원 한계 이하로 스레드가 동작하고 있을 경우,
+
+애초에 컨텍스트 스위칭이 발생하지도 않으며
+
+굳이 의도적으로 현재 동작 중인 스레드에게 CPU 자원을 포기시킬 필요가 없다.
+
+<br>
+
+그러니까 목적은 **'CPU 자원이 필요한데 얻지 못하는 스레드가 발생하는 상황을 방지하는 것'**이다.
+
+이를테면 대표적으로 스핀 락이 발생하는 경우를 생각해볼 수 있다.
+
+스핀 락은 스레드가 락을 얻기 위해 CPU 자원을 가진 채로 무한히 대기하는데,
+
+만약 CPU 자원이 활성 스레드 개수보다 적은 상황이라면
+
+CPU 자원이 필요한 스레드가 스핀 락을 대기하는 스레드 때문에
+
+자원을 얻지 못하고 기다리게 될 수 있는 것이다.
+
+<br>
+
+따라서 이런 경우에 현재 동작 중인 스레드에서 CPU 자원을 포기하고
+
+컨텍스트 스위칭을 발생시켜 다른 스레드에 CPU 자원을 양보하는 것이 가능하다.
 
 그리고 여기에는 세 가지 방법이 있다.
 
@@ -78,31 +104,41 @@ Thread.Sleep(0);
 ## **[3] Yield**
 
 ```cs
-Thread.Yield;
+Thread.Yield();
 ```
 
 - 우선순위에 관계 없이 CPU 점유를 양보하며 컨텍스트 스위칭이 항상 발생한다.
 
 <br>
 
-# 응용 : 스핀락 보완하기
+# 응용 : 락, 스핀락 보완하기
 ---
 
-스핀락(Spin Lock)의 문제점은 바쁜 대기(Busy Waiting) 사용하기 때문에
+고전적인 락 기법(C#의 Monitor, lock)의 문제점은
+
+락을 획득하지 못하는 즉시 CPU 점유를 포기하고 컨텍스트 스위칭이 발생하여
+
+컨텍스트 스위칭에 의한 오버헤드가 발생한다는 것이다.
+
+<br>
+
+그리고 스핀락(Spin Lock)의 문제점은 바쁜 대기(Busy Waiting)로 인해
 
 락을 획득하지 못해 대기하는 상황에서 CPU 자원을 계속 점유한다는 것이다.
 
 따라서 대기가 길어질수록 성능 저하가 커지게 된다.
 
-의도적인 컨텍스트 스위칭을 이용하면 고전적인 락 기법(대기할 경우 CPU 점유 포기)과
+<br>
 
-스핀 락을 혼용하는 형태로 서로의 단점을 보완할 수 있다.
+의도적인 컨텍스트 스위칭을 이용하면 두 가지 방법을
+
+혼용하는 형태로 서로의 단점을 보완할 수 있다.
 
 물론 C#의 `SpinLock` 클래스에는 이미 구현되어 있다. (`.TryEnter()`)
 
 <br>
 
-## **[1] 스핀락 구현
+## **[1] 기본적인 스핀락 구현**
 
 ```cs
 class CustomSpinLock
@@ -143,7 +179,7 @@ class CustomSpinLock
 
 <br>
 
-## **[2] 타임아웃 기능 추가**
+## **[2] 연속 시도 횟수 제한**
 
 ```cs
 class CustomSpinLock
@@ -153,24 +189,27 @@ class CustomSpinLock
 
     private volatile int _locked = UNLOCKED;
 
-    public void Enter(int timeout)
+    public void Enter(int maxTryCount = 5000)
     {
         // 대기
         while (true)
         {
-            // _locked의 값이 UNLOCKED(0)였으면 LOCKED(1)로 변경한다.
-            // 변경되기 전의 값은 original로 가져온다.
-            int original = Interlocked.CompareExchange(ref _locked, LOCKED, UNLOCKED);
+            // 일정 횟수 동안 연속적으로 락 획득을 시도한다.
+            for (int i = 0; i < maxTryCount; i++)
+            {
+                // _locked의 값이 UNLOCKED(0)였으면 LOCKED(1)로 변경한다.
+                // 변경되기 전의 값은 original로 가져온다.
+                int original = Interlocked.CompareExchange(ref _locked, LOCKED, UNLOCKED);
 
-            // 만약 변경되기 전의 값이 UNLOCKED였으면
-            // 락이 풀려 있는 상태라는 의미이므로,
-            // 대기를 종료하고 진입한다.
-            if (original == UNLOCKED)
-                break;
+                // 만약 변경되기 전의 값이 UNLOCKED였으면
+                // 락이 풀려 있는 상태라는 의미이므로,
+                // 대기를 종료하고 진입한다.
+                if (original == UNLOCKED)
+                    return;
+            }
 
-            // 락을 획득하지 못한 경우, CPU 자원을 지정된 시간동안 양보한다.
-            else
-                Thread.Sleep(timeout); // 단위 : ms
+            // maxTryCount번의 시도 동안 락을 획득하지 못한 경우, CPU 자원을 양보한다.
+            Thread.Yield();
         }
     }
 
@@ -182,15 +221,71 @@ class CustomSpinLock
 }
 ```
 
-위와 같이 `Enter()` 메소드 내에서 락을 획득 하지 못한 경우의 분기를 추가하여
+위와 같이 `Enter()` 메소드 내에서 일정 횟수 동안에는 연속으로 락 획득 시도를 하며
 
-락을 획득하지 못하면 의도적으로 컨텍스트 스위칭을 발생시키고
+CPU 자원을 계속 점유하고, 컨텍스트 스위칭이 발생하지 않는다.
 
-지정된 시간동안 `Thread.Sleep()`을 통해 CPU 자원을 양보하도록 할 수 있다.
+그리고 지정한 횟수를 넘어가면 `Thread.Yield()`를 호출하여
+
+다른 스레드에 CPU 점유를 양보하는 방식으로 구현한다.
 
 <br>
 
-이 방법을 통해,
+## **[3] 타임아웃(연속 시도 시간 제한)**
+
+```cs
+class CustomSpinLock2
+{
+    private const int UNLOCKED = 0;
+    private const int LOCKED = 1;
+
+    private volatile int _locked = UNLOCKED;
+
+    public void Enter(int timeoutMS = 1000) // 시간 단위 : ms
+    {
+        // 대기
+        while (true)
+        {
+            DateTime begin = DateTime.Now;
+            double elapsed = 0;
+
+            // 일정 시간 동안 연속적으로 락 획득을 시도한다.
+            while (elapsed < timeoutMS)
+            {
+                // 연속 경과 시간을 기록한다.
+                elapsed = DateTime.Now.Subtract(begin).TotalMilliseconds;
+
+                // _locked의 값이 UNLOCKED(0)였으면 LOCKED(1)로 변경한다.
+                // 변경되기 전의 값은 original로 가져온다.
+                int original = Interlocked.CompareExchange(ref _locked, LOCKED, UNLOCKED);
+
+                // 만약 변경되기 전의 값이 UNLOCKED였으면
+                // 락이 풀려 있는 상태라는 의미이므로,
+                // 대기를 종료하고 진입한다.
+                if (original == UNLOCKED)
+                    return;
+            }
+
+            // timeoutMS 시간 동안 락을 획득하지 못한 경우, CPU 자원을 양보한다.
+            Thread.Yield();
+        }
+    }
+
+    public void Exit()
+    {
+        // 락을 해제한다.
+        _locked = UNLOCKED;
+    }
+}
+```
+
+연속 시도 횟수를 기록하는 **[2]**와는 달리, 연속 시도 경과 시간을 기록하고
+
+지정한 한계 시간을 지난 경우 다시 경과 시간을 초기화하며 `Thread.Yield()`를 호출한다.
+
+<br>
+
+위와 같은 방법들을 통해,
 
 고전적인 락처럼 대기하는 동안 무조건 컨텍스트 스위칭이 발생하거나
 

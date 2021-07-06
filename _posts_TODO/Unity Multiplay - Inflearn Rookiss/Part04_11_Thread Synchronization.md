@@ -49,7 +49,8 @@
 
 ## 3. 통보(Event)
 
-- 크리티컬 섹션에 진입하기 위해 대기하지 않고, 진입 가능한 타이밍을 커널로부터 통보받는다.
+- 크리티컬 섹션에 진입 가능한 타이밍을 커널로부터 통보받는다.
+- ManualResetEvent, AutoResetEvent
 
 <br>
 
@@ -91,63 +92,77 @@
 # 락 구현 방법 총정리
 ---
 
-## **1. Interlocked**
+## **[1] Interlocked**
  - 특정 변수에 대해 동기화 및 연산을 수행한다.
+
  - `Interlocked.Increment(ref number)`와 같은 메소드를 사용한다.
 
 <br>
 
-## **2. Monitor**
+## **[2] Monitor**
  - 크리티컬 섹션을 만들고(진입하고), 해제한다.
+
  - `object` 타입 매개체가 필요하다.
+
  - `Monitor.Enter(obj)` ~ `Monitor.Exit(obj)`
+
  - 크리티컬 섹션 내부에서 예외가 발생했을 경우를 위한 `try-finally` 처리가 필요하다.
 
 <br>
 
-## **3. lock 구문**
+## **[3] lock 구문**
  - 내부적으로 Monitor 객체를 이용해 크리티컬 섹션을 만든다.
+
  - `lock(obj) { ~ }`
 
 <br>
 
-## **4. SpinLock**
+## **[4] SpinLock**
  - 직접 구현하거나 SpinLock 클래스를 사용한다.
+
  - 락 진입/해제의 간격이 짧고 빈번한 경우에 사용한다.
+
  - `try-finally` 처리가 필요하다.
 
 <br>
 
-## **5. AutoResetEvent**
- - 크리티컬 섹션에 진입하려는 스레드끼리 락을 공유하는 lock 방식처럼 사용할 수 있고,
- - 해당 락에 관련 없는 다른 스레드가 락의 설정/해제를 관리할 수도 있다.
+## **[5] ReaderWriterLock**
+ - 직접 구현하거나, `ReaderWriterLock` 클래스를 사용한다.
+
+ - 최신 버전인 `ReaderWriterLockSlim` 클래스를 사용한다.
+
+ - 읽기 스레드와 쓰기 스레드가 애초에 구분되는 경우에 사용한다.
+
+ - 자주 읽고, 가끔 쓰는 경우에 사용하면 좋다.
+
+ - `try-finally` 처리가 필요하다.
+
+<br>
+
+## **[6] ManualResetEvent, AutoResetEvent**
+ - 크리티컬 섹션에 진입하려는 스레드끼리 락을 공유하는 lock 방식처럼 사용할 수 있고,<br>
+   해당 락에 관련 없는 다른 스레드가 락의 설정/해제를 관리할 수도 있다.
+
  - `.WaitOne()`을 통해 진입할 경우 `.Reset()`이 내부적으로 자동 호출된다는 특징이 있다.
 
- - `are = new AutoResetEvent(true)` : 객체를 진입 가능 상태로 생성
- - `are.WaitOne()` : 진입 가능해질 때까지 대기한다.
- - `are.Set()` : 진입 가능하도록 설정한다.
- - `are.Reset()` : 진입 불가능하도록 설정한다.
+ - 다수의 스레드의 임계 영역 진입 관리를 해야 할 때 사용한다.
+
+ - 커널 영역 동기화이므로 성능을 고려해야 한다.
 
 <br>
 
-## **6. ReaderWriterLock**
- - 직접 구현하거나, `ReaderWriterLock` 클래스를 사용한다.
- - 최신 버전인 `ReaderWriterLockSlim` 클래스를 사용한다.
- - 읽기 스레드와 쓰기 스레드가 애초에 구분되는 경우에 사용한다.
- - 자주 읽고, 가끔 쓰는 경우에 사용하면 좋다.
- - `try-finally` 처리가 필요하다.
-
-<br>
-
-## **7. Mutex**
+## **[7] Mutex**
  - 커널 영역에서의 동기화를 수행하므로 비교적 느리다.
+
  - 프로세스 간의 데이터 동기화가 필요한 경우 사용한다.
 
 <br>
 
-## **8. Semaphore**
+## **[8] Semaphore**
  - 커널 영역에서의 동기화를 수행하므로 비교적 느리다.
+
  - 프로세스 간의 데이터 동기화가 필요한 경우 사용한다.
+
  - 다수의 프로세스 또는 스레드가 동시에 크리티컬 섹션에 진입하도록 할 수 있다.
 
 <br>
@@ -160,7 +175,7 @@
 
 <br>
 
-## **1. lock 구문**
+## **[1] lock 구문**
 
 - 락을 걸고 짧지 않은 동작들을 수행하는 경우에 사용한다.
 
@@ -180,7 +195,7 @@ private void ThreadBodyMethod()
 
 <br>
 
-## **2. SpinLock 클래스**
+## **[2] SpinLock 클래스**
 
 - 락을 빈번하게 걸고 짧은 동작들을 수행하는 경우에 사용한다.
 
@@ -212,7 +227,7 @@ private void ThreadBodyMethod()
 
 <br>
 
-## **3. ReaderWriterLockSlim 클래스**
+## **[3] ReaderWriterLockSlim 클래스**
 
 - 자주 읽어들이지만 쓰기 수행이 적은 경우에 사용한다.
 
