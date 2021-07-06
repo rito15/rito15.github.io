@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 쉐이더 프로퍼티 애트리뷰트 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 쉐이더 프로퍼티 애트리뷰트 모음","description":"Space","dateModified":"2021-03-04T21:58:00+09:00","datePublished":"2021-03-04T21:58:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-property-attributes/"},"url":"https://rito15.github.io/posts/unity-shader-property-attributes/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Space","datePublished":"2021-03-04T21:58:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-property-attributes/"},"url":"https://rito15.github.io/posts/unity-shader-property-attributes/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 쉐이더 프로퍼티 애트리뷰트 모음","dateModified":"2021-03-04T21:58:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -498,7 +498,7 @@
 4
 5
 6
-</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">Enum</span><span class="p">(</span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Rendering</span><span class="p">.</span><span class="n">CullMode</span><span class="p">)]</span> 	<span class="n">_CullMode</span><span class="p">(</span><span class="s">"Cull Mode"</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">Enum</span><span class="p">(</span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Rendering</span><span class="p">.</span><span class="n">CullMode</span><span class="p">)]</span>     <span class="n">_CullMode</span><span class="p">(</span><span class="s">"Cull Mode"</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="p">[</span><span class="n">Enum</span><span class="p">(</span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Rendering</span><span class="p">.</span><span class="n">CompareFunction</span><span class="p">)]</span> <span class="n">_ZTest</span><span class="p">(</span><span class="s">"Z Test"</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="p">[</span><span class="n">Enum</span><span class="p">(</span><span class="n">Off</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">On</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="n">_ZWrite</span><span class="p">(</span><span class="s">"ZWrite"</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span>
 
@@ -791,12 +791,12 @@ Source Code
         <span class="p">[</span><span class="n">Header</span><span class="p">(</span><span class="n">___________________________________________________________</span><span class="p">)]</span>
         <span class="p">[</span><span class="n">Header</span><span class="p">(</span><span class="n">Enums</span><span class="p">)]</span>
 
-        <span class="p">[</span><span class="n">Enum</span><span class="p">(</span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Rendering</span><span class="p">.</span><span class="n">CullMode</span><span class="p">)]</span> 	<span class="n">_CullMode</span><span class="p">(</span><span class="s">"Cull Mode"</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="p">[</span><span class="n">Enum</span><span class="p">(</span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Rendering</span><span class="p">.</span><span class="n">CullMode</span><span class="p">)]</span> <span class="n">_CullMode</span><span class="p">(</span><span class="s">"Cull Mode"</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span>
         <span class="p">[</span><span class="n">Enum</span><span class="p">(</span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Rendering</span><span class="p">.</span><span class="n">CompareFunction</span><span class="p">)]</span> <span class="n">_ZTest</span><span class="p">(</span><span class="s">"Z Test"</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="p">[</span><span class="n">Enum</span><span class="p">(</span><span class="n">Off</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">On</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="n">_ZWrite</span><span class="p">(</span><span class="s">"ZWrite"</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span>
 
         <span class="p">[</span><span class="n">Enum</span><span class="p">(</span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Rendering</span><span class="p">.</span><span class="n">BlendMode</span><span class="p">)]</span> <span class="n">_SrcFactor</span><span class="p">(</span><span class="s">"Src Factor"</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5</span>
-		<span class="p">[</span><span class="n">Enum</span><span class="p">(</span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Rendering</span><span class="p">.</span><span class="n">BlendMode</span><span class="p">)]</span> <span class="n">_DstFactor</span><span class="p">(</span><span class="s">"Dst Factor"</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="p">[</span><span class="n">Enum</span><span class="p">(</span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Rendering</span><span class="p">.</span><span class="n">BlendMode</span><span class="p">)]</span> <span class="n">_DstFactor</span><span class="p">(</span><span class="s">"Dst Factor"</span><span class="p">,</span> <span class="n">Float</span><span class="p">)</span> <span class="o">=</span> <span class="mi">10</span>
 
         <span class="p">[</span><span class="n">Space</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
         <span class="p">[</span><span class="n">Header</span><span class="p">(</span><span class="n">___________________________________________________________</span><span class="p">)]</span>
@@ -810,9 +810,9 @@ Source Code
         <span class="n">Tags</span> <span class="p">{</span> <span class="s">"RenderType"</span><span class="o">=</span><span class="s">"Transparent"</span> <span class="s">"Queue"</span><span class="o">=</span><span class="s">"Transparent"</span><span class="p">}</span>
 
         <span class="n">Cull</span>   <span class="p">[</span><span class="n">_CullMode</span><span class="p">]</span>
-		<span class="n">ZTest</span>  <span class="p">[</span><span class="n">_ZTest</span><span class="p">]</span>
-		<span class="n">ZWrite</span> <span class="p">[</span><span class="n">_ZWrite</span><span class="p">]</span>
-		<span class="n">Blend</span>  <span class="p">[</span><span class="n">_SrcFactor</span><span class="p">]</span> <span class="p">[</span><span class="n">_DstFactor</span><span class="p">]</span>
+        <span class="n">ZTest</span>  <span class="p">[</span><span class="n">_ZTest</span><span class="p">]</span>
+        <span class="n">ZWrite</span> <span class="p">[</span><span class="n">_ZWrite</span><span class="p">]</span>
+        <span class="n">Blend</span>  <span class="p">[</span><span class="n">_SrcFactor</span><span class="p">]</span> <span class="p">[</span><span class="n">_DstFactor</span><span class="p">]</span>
 
         <span class="n">CGPROGRAM</span>
 
@@ -1010,6 +1010,11 @@ Source Code
         
         
         
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-amplify-magical-orb/">(Amplify) Magical Orb Shader</a></li>
       
         
@@ -1026,11 +1031,6 @@ Source Code
         
         
         <li><a href="/posts/unity-amplify-2-color-dissolve/">(Amplify) Directional 2 Color Dissolve Shader</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
 
       </ul>
@@ -4342,106 +4342,6 @@ Source Code
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -4482,7 +4382,7 @@ Source Code
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
-        <a class="post-tag" href="/tags/urp/">urp</a>
+        <a class="post-tag" href="/tags/shorts/">shorts</a>
       
 
       </div>
@@ -4529,6 +4429,19 @@ Source Code
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -10635,106 +10548,6 @@ Surface Shader 기본 구성
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -10770,7 +10583,7 @@ Surface Shader 기본 구성
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
         
-        <a class="post-tag" href="/tags/urp/">urp</a>
+        <a class="post-tag" href="/tags/shorts/">shorts</a>
       
 
     </div>

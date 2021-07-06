@@ -72,7 +72,7 @@ mermaid: true
 ---
 
 ```hlsl
-[Enum(UnityEngine.Rendering.CullMode)] 	_CullMode("Cull Mode", Float) = 2
+[Enum(UnityEngine.Rendering.CullMode)]     _CullMode("Cull Mode", Float) = 2
 [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("Z Test", Float) = 0
 [Enum(Off, 0, On, 1)] _ZWrite("ZWrite", Float) = 1
 
@@ -215,12 +215,12 @@ Shader "Custom/ShaderOptionsExample"
         [Header(___________________________________________________________)]
         [Header(Enums)]
 
-        [Enum(UnityEngine.Rendering.CullMode)] 	_CullMode("Cull Mode", Float) = 2
+        [Enum(UnityEngine.Rendering.CullMode)] _CullMode("Cull Mode", Float) = 2
         [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("Z Test", Float) = 0
         [Enum(Off, 0, On, 1)] _ZWrite("ZWrite", Float) = 1
 
         [Enum(UnityEngine.Rendering.BlendMode)] _SrcFactor("Src Factor", Float) = 5
-		[Enum(UnityEngine.Rendering.BlendMode)] _DstFactor("Dst Factor", Float) = 10
+        [Enum(UnityEngine.Rendering.BlendMode)] _DstFactor("Dst Factor", Float) = 10
 
         [Space(5)]
         [Header(___________________________________________________________)]
@@ -234,9 +234,9 @@ Shader "Custom/ShaderOptionsExample"
         Tags { "RenderType"="Transparent" "Queue"="Transparent"}
 
         Cull   [_CullMode]
-		ZTest  [_ZTest]
-		ZWrite [_ZWrite]
-		Blend  [_SrcFactor] [_DstFactor]
+        ZTest  [_ZTest]
+        ZWrite [_ZWrite]
+        Blend  [_SrcFactor] [_DstFactor]
 
         CGPROGRAM
 
