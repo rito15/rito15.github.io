@@ -4,7 +4,7 @@
 
 <br>
 
-# Context Switching 개념
+# 컨텍스트 스위칭(Context Switching) 개념
 ---
 
 현재 실행 되는 스레드가 있다면, 그 스레드는 CPU의 자원을 할당받아 동작하는 것이다.
@@ -15,7 +15,7 @@
 
 그런데 CPU 코어가 4개라고 해도 실제로 5개 이상의 스레드가 동시에 동작할 수 있다.
 
-그 이유는 시분할(Time Slicing)에 의한 컨텍스트 스위칭 때문이다.
+그 이유는 컨텍스트 스위칭과 시분할(Time Slicing) 기법 때문이다.
 
 <br>
 
@@ -39,6 +39,18 @@
 
 이것을 컨텍스트 스위칭이라고 한다.
 
+<br>
+
+조금 더 구체적으로 알아보자면,
+
+스케줄러에 의해 각 스레드는 큐로 관리되며
+
+큐의 맨 앞에 왔을 때 시간 할당량(Time Slice)을 할당받는다.
+
+그리고 그 시간이 모두 지나면 컨텍스트 스위칭이 발생하면서
+
+CPU 점유를 포기하고 큐의 맨 뒤로 이동하게 되는 것이다.
+
 
 <br>
 
@@ -47,11 +59,11 @@
 
 여기서 의도적인 컨텍스트 스위칭을 발생시키는 상황이란,
 
-CPU 자원 한계 초과로 스레드가 동작하는 상황을 가정하는 것이다.
+CPU 자원 한계를 넘어서 스레드가 동작하는 상황을 가정하는 것이다.
 
 만약 CPU 자원 한계 이하로 스레드가 동작하고 있을 경우,
 
-애초에 컨텍스트 스위칭이 발생하지도 않으며
+애초에 자연스럽게 컨텍스트 스위칭이 발생하지도 않으며
 
 굳이 의도적으로 현재 동작 중인 스레드에게 CPU 자원을 포기시킬 필요가 없다.
 
@@ -97,7 +109,7 @@ Thread.Sleep(0);
 
 - 자신보다 우선순위가 높은 스레드가 있을 경우, CPU 점유를 양보하며 컨텍스트 스위칭이 발생한다.
 
-- 자신보다 우선순위가 높은 스레드가 없을 경우, 아무런 동작을 수행하지 않는다.
+- 자신보다 우선순위가 높은 스레드가 없을 경우, CPU 점유를 양보하지는 않지만 컨텍스트 스위칭은 발생한다.
 
 <br>
 
@@ -108,6 +120,64 @@ Thread.Yield();
 ```
 
 - 우선순위에 관계 없이 CPU 점유를 양보하며 컨텍스트 스위칭이 항상 발생한다.
+
+<br>
+
+## **Note**
+
+현재 스레드 개수가 CPU 자원의 수 이하라고 해도
+
+위의 메소드들을 실행하면 즉시 타임 슬라이스를 포기하면서 컨텍스트 스위칭이 발생하고,
+
+그에 따른 오버헤드가 발생한다.
+
+
+<br>
+
+# Test Code
+---
+
+- CPU 자원 한계를 넘었을 때의 스레드 동작과, 의도적인 컨텍스트 스위칭에 의한 오버헤드를 확인할 수 있는 예제 코드
+
+```cs
+class ContextSwitchingTest
+{
+    private const long Cycle = 1000000; // 콘솔에 출력할 주기
+    private const int  ThreadCount = 3; // 동작할 스레드 개수
+
+    private static void ThreadBody()
+    {
+        long i = 0;
+        while (true)
+        {
+            i++;
+
+            if(i % Cycle == 0)
+                Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
+
+            //Thread.Yield();
+            //Thread.Sleep(0);
+            //Thread.Sleep(1);
+        }
+    }
+
+    public static void Run()
+    {
+        Thread[] trs = new Thread[ThreadCount];
+        for (int i = 0; i < trs.Length; i++)
+        {
+            trs[i] = new Thread(ThreadBody);
+            trs[i].IsBackground = true;
+            trs[i].Start();
+        }
+
+        for (int i = 0; i < trs.Length; i++)
+        {
+            trs[i].Join();
+        }
+    }
+}
+```
 
 <br>
 
@@ -298,3 +368,5 @@ class CustomSpinLock2
 # References
 ---
 - <https://jungwoong.tistory.com/40>
+- <https://m.blog.naver.com/rhkdals1206/221575121342>
+- <https://pasudo123.tistory.com/13>
