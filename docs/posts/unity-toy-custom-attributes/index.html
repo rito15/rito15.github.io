@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Custom Attributes (커스텀 애트리뷰트 모음)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목차 1. MemoBox 2. BoxHeader 3. MethodButton 4. AutoInject 5. Required 6. LayerDropdown, TagDropdown 7. Readonly 8. ProgressBar 9. Label 10. SpaceTop 11. SpaceBottom","datePublished":"2021-01-17T22:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-custom-attributes/"},"url":"https://rito15.github.io/posts/unity-toy-custom-attributes/","author":{"@type":"Person","name":"Rito15"},"headline":"Custom Attributes (커스텀 애트리뷰트 모음)","dateModified":"2021-01-17T22:18:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Custom Attributes (커스텀 애트리뷰트 모음)","description":"목차 1. MemoBox 2. BoxHeader 3. MethodButton 4. AutoInject 5. Required 6. LayerDropdown, TagDropdown 7. Readonly 8. ProgressBar 9. Label 10. SpaceTop 11. SpaceBottom","dateModified":"2021-01-17T22:18:00+09:00","datePublished":"2021-01-17T22:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-toy-custom-attributes/"},"url":"https://rito15.github.io/posts/unity-toy-custom-attributes/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1020,6 +1020,11 @@
         
         
         
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-shader-property-attributes/">유니티 쉐이더 프로퍼티 애트리뷰트 모음</a></li>
       
         
@@ -1031,11 +1036,6 @@
         
         
         <li><a href="/posts/unity-amplify-magical-orb/">(Amplify) Magical Orb Shader</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
         
@@ -6831,6 +6831,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7121,7 +7134,7 @@ How to Use
       
       
       <div class="card">
-        <a href="/posts/unity-main-thread-dispatcher/">
+        <a href="/posts/unity-toy-weighted-random-picker/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7138,13 +7151,13 @@ How to Use
   
 
   
-    Jun 30
+    Mar  9
   
 
-  <i class="unloaded">2021-06-30T04:04:00+09:00</i>
+  <i class="unloaded">2021-03-09T03:22:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Main Thread Dispatcher</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Weighted Random Picker (가중치 랜덤 뽑기)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7153,31 +7166,20 @@ How to Use
 
 
 
-                Summary
+                Note
 
 
   
-    워커 스레드에서 유니티 메인 스레드에 작업을 위임할 수 있게 하는 싱글톤 클래스
+    게임에서 각각 n% 확률로 존재하는 요소들의 뽑기를 수행할 때, 단순히 Random.Range()를 통해서는 계산할 수 없다.
   
   
-    https://github.com/PimDeWitte/UnityMainThreadDispatcher의 코드를 조금 더 사용하기 편리하게 살짝 수정
+    이 때, ‘가중치 랜덤 뽑기’를 이용한다.
   
-
-
-Usage Example
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-1...
+  
+    제네릭을 활용하여, 아이템들과 가중치의 목록을 넣으면 간단히 뽑기를 수행할 수 있도록 작성하였다.
+  
+  
+    아이템...
               </p>
             </div>
           </div>

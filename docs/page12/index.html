@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page12/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page12/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,101 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/memo-cs-enum/">Enum 관련 메모</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        enum의 모든 요소를 배열로 가져오기
+
+
+  
+    enum MyEnum { A, B }
+
+Array allValues = Enum.GetValues(typeof(MyEnum));
+
+  
+
+
+
+
+enum의 마지막 요소 가져오기
+
+
+  
+    // System.Linq;
+
+MyEnum last = 
+    Enum.GetValues(typeof(E...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Feb 28, 2021,  4:00 AM +0900"
+  >
+
+  
+  
+
+  
+    Feb 28
+  
+
+  <i class="unloaded">2021-02-28T04:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="48 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1227,96 +1322,6 @@ Twinkles
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-scriptable-object/">Scriptable Object(스크립터블 오브젝트)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        형태
-
-
-
-  
-    [CreateAssetMenu(fileName = "TestSO", menuName = "ScriptableObjects/Test", order = 1)]
-public class TestScriptableObject : ScriptableObject
-{
-    public int value = 0;
-}
-
-  
-
-
-
-  상단의 메...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sat, Feb 20, 2021,  2:02 AM +0900"
-  >
-
-  
-  
-
-  
-    Feb 20
-  
-
-  <i class="unloaded">2021-02-20T02:02:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="253 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1717,6 +1722,11 @@ public class TestScriptableObject : ScriptableObject
         
         
         
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-shader-property-attributes/">유니티 쉐이더 프로퍼티 애트리뷰트 모음</a></li>
       
         
@@ -1728,11 +1738,6 @@ public class TestScriptableObject : ScriptableObject
         
         
         <li><a href="/posts/unity-amplify-magical-orb/">(Amplify) Magical Orb Shader</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
         

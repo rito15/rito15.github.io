@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-07T14:28:43+09:00</updated>
+  <updated>2021-07-07T22:45:19+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,75 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# Parallel</title>
+    <link href="https://rito15.github.io/posts/cs-parallel/" rel="alternate" type="text/html" title="C# Parallel" />
+    <published>2021-07-07T19:07:00+09:00</published>
+  
+    <updated>2021-07-07T19:07:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-parallel/</id>
+    <content src="https://rito15.github.io/posts/cs-parallel/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Threading" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Parallel 클래스
+
+
+
+  
+    반복적인 병렬 처리를 손쉽게 작성할 수 있는 API를 제공한다.
+  
+  
+    ThreadPool 기반으로 작성되어, ThreadPool의 현재 스레드 개수를 차지하며 최소/최대 스레드 개수에 영향을 받는다.
+  
+  
+    ThreadPool의 스레드 뿐만 아니라 호출 스레드도 병렬 처리에 포함된다.
+  
+  
+    동기적으로 수행된다. (호출 스레드가 병렬 처리의 종료를 자동적으로 대기한다.)
+  
+
+
+
+
+Parallel.For()
+
+
+
+  for문의 형태와 유사하게 병렬처리를 수행할 수 있다.
+
+
+
+
+[1] 기초
+
+Parallel.For(0, 100, i =&amp;gt;
+{
+    Console.WriteLine($"[{i}] {Thread.Current...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -297,90 +366,6 @@ Download
 
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Amplify) World Position Offset(Black Hole) Shaders</title>
-    <link href="https://rito15.github.io/posts/unity-amplify-world-position-offset-shaders/" rel="alternate" type="text/html" title="(Amplify) World Position Offset(Black Hole) Shaders" />
-    <published>2021-07-04T17:00:00+09:00</published>
-  
-    <updated>2021-07-04T22:00:26+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-amplify-world-position-offset-shaders/</id>
-    <content src="https://rito15.github.io/posts/unity-amplify-world-position-offset-shaders/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Amplify Shader" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-
-  특정 월드 좌표로 빨려 들어가는 효과
-
-
-
-
-1. Simple Move
-
-
-
-  현재 좌표로부터 타겟 위치까지 T(0 ~ 1) 값에 따라 선형 보간하여 단순 이동
-
-
-
-
-
-
-
-
-2. Procedural Move
-
-
-
-  
-    현재 좌표로부터 타겟 위치까지 T(0 ~ 1) 값에 따라 선형 보간하여 빨려 들어가는 효과
-  
-  
-    (버텍스 -&amp;gt; 타겟 위치) 방향 벡터와 노멀 벡터의 내적 결과값을 마스크로 사용한다.
-  
-
-
-
-
-
-
-
-
-3. Dramatic Move
-
-
-
-  
-    현재 좌표로부터 타겟 위치까지 T(0 ~ 1) 값에 따라 선형 보간하여 빨려 들어가는 효과
-  
-  
-    (버텍스 -&amp;gt; 타겟 위치) 방향 벡터와 노멀 벡터의 내적 결과값을 마스크로 ...
     </summary>
   
 

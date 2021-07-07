@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Summary 모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서 모델의 회전과 위치를 리셋하여 기본값으로 지정합니다. 모델의 정점 위치를 모두 계산하여, 피벗이 모델의 중심 하단으로 오도록 설정합니다.","datePublished":"2021-03-05T22:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-model-pivot-resetter/"},"url":"https://rito15.github.io/posts/unity-model-pivot-resetter/","author":{"@type":"Person","name":"Rito15"},"headline":"Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)","dateModified":"2021-06-01T19:43:04+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)","description":"Summary 모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서 모델의 회전과 위치를 리셋하여 기본값으로 지정합니다. 모델의 정점 위치를 모두 계산하여, 피벗이 모델의 중심 하단으로 오도록 설정합니다.","dateModified":"2021-06-01T19:43:04+09:00","datePublished":"2021-03-05T22:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-model-pivot-resetter/"},"url":"https://rito15.github.io/posts/unity-model-pivot-resetter/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -720,6 +720,11 @@
         
         
         
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-shader-property-attributes/">유니티 쉐이더 프로퍼티 애트리뷰트 모음</a></li>
       
         
@@ -731,11 +736,6 @@
         
         
         <li><a href="/posts/unity-amplify-magical-orb/">(Amplify) Magical Orb Shader</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
         
@@ -5379,6 +5379,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6824,7 +6837,7 @@ Preview
       
       
       <div class="card">
-        <a href="/posts/unity-play-mode-saver/">
+        <a href="/posts/unity-game-view-auto-updater/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6841,13 +6854,13 @@ Preview
   
 
   
-    Mar 13
+    Jun 30
   
 
-  <i class="unloaded">2021-03-13T17:20:00+09:00</i>
+  <i class="unloaded">2021-06-30T22:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Play Mode Saver (플레이 모드가 끝나도 변경사항 유지)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6859,16 +6872,20 @@ Preview
                 Summary
 
 
-  
-    등록한 컴포넌트들의 플레이 모드 내 변경사항을 플레이 모드가 종료되어도 유지시킵니다.
-  
-  
-    변경사항을 적용할 대상들은 Play Mode Saver 컴포넌트 내의 목록으로 관리됩니다.
-  
-  
-    유니티 에디터 내에서만 동작하며, 빌드 시 Play Mode Saver 컴포넌트는 자동으로 제거됩니다.
-  
-...
+플레이 모드에 진입하지 않으면 게임 뷰는 GUI에 변화가 있을 때만 갱신됩니다.
+
+따라서 쉐이더를 통해 각종 애니메이션이나 효과를 만들고 마테리얼을 통해 적용해도
+
+에디터 모드에서는 이를 정상적으로 확인할 수 없습니다.
+
+이 애셋은 에디터 모드에서도 마테리얼 효과를 정상적으로 확인할 수 있게 합니다.
+
+
+
+How To Use
+
+
+  ...
               </p>
             </div>
           </div>
