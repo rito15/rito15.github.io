@@ -37,11 +37,19 @@ A : Amplitude
 
 ![image](https://user-images.githubusercontent.com/42164422/123471653-150f5500-d631-11eb-98f6-b6480c3d65d2.gif)
 
+![image](https://user-images.githubusercontent.com/42164422/124704646-6112a180-df2f-11eb-900c-4b0ec3db65af.png)
+
+- 두 가지 방식 모두 동일한 결과를 내므로, 상황에 따라 선택하여 사용하면 된다.
+
 <br>
 
 ## World Position Offset (Keep Scale)
 
 ![image](https://user-images.githubusercontent.com/42164422/123471661-16408200-d631-11eb-9092-fb65e96208d9.gif)
+
+![image](https://user-images.githubusercontent.com/42164422/124704685-6cfe6380-df2f-11eb-8c77-a8e28db7b39b.png)
+
+- 두 가지 방식 모두 동일한 결과를 내므로, 상황에 따라 선택하여 사용하면 된다.
 
 <br>
 
