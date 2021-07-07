@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 하이라키 우클릭 메뉴 아이템" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 하이라키 우클릭 메뉴 아이템","description":"우클릭 MenuItem 메소드 중복 호출 방지하기","dateModified":"2021-03-12T22:50:00+09:00","datePublished":"2021-03-12T22:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-menu-item-hierarchy/"},"url":"https://rito15.github.io/posts/unity-editor-menu-item-hierarchy/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"우클릭 MenuItem 메소드 중복 호출 방지하기","datePublished":"2021-03-12T22:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-menu-item-hierarchy/"},"url":"https://rito15.github.io/posts/unity-editor-menu-item-hierarchy/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 하이라키 우클릭 메뉴 아이템","dateModified":"2021-03-12T22:50:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -3530,6 +3530,61 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3958,18 +4013,6 @@
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -4018,10 +4061,10 @@
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/thread/">thread</a>
       
         
-        <a class="post-tag" href="/tags/shorts/">shorts</a>
+        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
 
       </div>
@@ -4063,6 +4106,110 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -6637,74 +6784,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-custom-editor-window/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar  8
-  
-
-  <i class="unloaded">2021-03-08T00:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Editor Window(커스텀 에디터 윈도우)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-
-  에디터 윈도우를 직접 만들어 사용할 수 있다.
-
-
-Preview
-
-
-
-
-
-
-Source Code Example
-
-
-
-  
-    #if UNITY_EDITOR
-
-using UnityEngine;
-using UnityEditor;
-
-public class ExampleWindow : EditorWindow
-{
-    private bo...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-init-events/">
           <div class="card-body">
             <!--
@@ -6818,6 +6897,64 @@ namespace Rito
 {
     [InitializeOnLoad]
     public class P...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-define-symbol/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 12
+  
+
+  <i class="unloaded">2021-03-12T18:28:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Scripting Define Symbol 스크립트로 제어하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Scripting Define Symbol?
+
+
+
+
+
+  
+    스크립트에서 #define으로 정의하듯, 프로젝트 전체에서 정의하여 사용할 수 있는 심볼
+  
+  
+    Project Settings - Player - Other Settings - Scripting Define Symbols
+  
+  
+    빌드 타겟마다 달라진다.
+  
+  
+...
               </p>
             </div>
           </div>
@@ -9767,6 +9904,61 @@ namespace Rito
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -10195,18 +10387,6 @@ namespace Rito
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -10250,10 +10430,10 @@ namespace Rito
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/thread/">thread</a>
       
         
-        <a class="post-tag" href="/tags/shorts/">shorts</a>
+        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
 
     </div>

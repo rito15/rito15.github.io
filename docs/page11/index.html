@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page11/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page11/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -367,6 +367,768 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-scene-auto-saver/">Scene Auto Saver (현재 씬 자동 저장)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Summary
+
+
+
+  
+    일정 시간 주기로 현재 활성화된 씬을 자동 저장합니다.
+  
+  
+    씬이 저장되지 않은 상태일 때만 타이머가 동작합니다.
+  
+
+
+How To Use
+
+
+
+  스크립트 2개를 모두 다운로드 받아 유니티 프로젝트에 넣습니다.
+  
+    [Window] - [Rito] - [Scene Auto Saver]를 통해 윈...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Mar  8, 2021,  2:22 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar  8
+  
+
+  <i class="unloaded">2021-03-08T02:22:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="215 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-editor-custom-editor-window/">Custom Editor Window(커스텀 에디터 윈도우)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+
+  에디터 윈도우를 직접 만들어 사용할 수 있다.
+
+
+Preview
+
+
+
+
+
+
+Source Code Example
+
+
+
+  
+    #if UNITY_EDITOR
+
+using UnityEngine;
+using UnityEditor;
+
+public class ExampleWindow : EditorWindow
+{
+    private bo...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Mar  8, 2021, 12:00 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar  8
+  
+
+  <i class="unloaded">2021-03-08T00:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="247 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-memo-bool-as-a-button/">bool 타입 필드를 인스펙터에서 버튼처럼 사용하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        인스펙터의 버튼
+
+
+컴포넌트의 인스펙터에서 버튼을 사용하고 싶을 때가 있다.
+
+예를 들면 플레이 모드로 진입하지 않고 에디터 모드에서 메소드를 바로 호출 하고 싶을 때.
+
+그리고 실제로 커스텀 에디터를 이용해 버튼을 만들 수도 있다.
+
+
+
+하지만 잠깐 테스트용으로 쓰려는데 스크립트 하나 더 만들고, 커스텀 에디터 선언하고, …
+
+심지어 에디터 GUI좀...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Mar  7, 2021,  1:33 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar  7
+  
+
+  <i class="unloaded">2021-03-07T01:33:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="485 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-study-unirx/">UniRx (Reactive Extensions for Unity)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        개요
+
+
+Rx란?
+
+
+  Reactive Extensions
+  절차적 프로그래밍에서 다루기 쉽지 않은 비동기 프로그래밍을 손쉽게 다루기 위한 패러다임
+  .NET에도 다양한 언어로 구현되어 있다.
+  비동기 데이터 스트림을 중심으로 동작한다.
+  스트림 내의 데이터에 변화가 발생했을 때 반응형으로 기능이 동작하는 방식을 사용한다.
+  시간을 상당히 ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Mar  6, 2021,  8:14 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar  6
+  
+
+  <i class="unloaded">2021-03-06T20:14:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6766 words">37 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-model-pivot-resetter/">Model Pivot Resetter (모델 임포트 시 피벗 자동 초기화)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Summary
+
+
+
+  모델링 파일을 유니티로 가져올 때 동작하는 애셋포스트프로세서
+  모델의 회전과 위치를 리셋하여 기본값으로 지정합니다.
+  모델의 정점 위치를 모두 계산하여, 피벗이 모델의 중심 하단으로 오도록 설정합니다.
+
+
+
+
+How To Use
+
+
+
+  
+    스크립트를 유니티 프로젝트 내에 넣습니다.
+  
+  
+    [Window] -...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Mar  5, 2021, 10:22 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar  5
+  
+
+  <i class="unloaded">2021-03-05T22:22:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="348 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 간편히 방지하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        2021. 06. 17.
+
+  무한루프를 보다 간편히 방지할 수 있도록 코드 개선
+
+
+
+
+Note
+
+
+
+  
+    유니티 엔진에서 무한 루프가 발생하면 에디터가 그대로 멈추어, 강제 종료해야 하는 경험을 겪은 적이 간혹 있을 것이다.
+  
+  
+    따라서 혹시나 무한 루프가 될 가능성이 있는 코드를 인지했다면 간단한 체크 로직을 넣어주는 것이 좋...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Mar  5, 2021,  4:00 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar  5
+  
+
+  <i class="unloaded">2021-03-05T04:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="764 words">4 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-shader-property-attributes/">유니티 쉐이더 프로퍼티 애트리뷰트 모음</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Space
+
+
+
+  
+    [Space(10)]
+
+  
+
+
+
+  단순 공백을 크기로 지정한다.
+
+
+
+
+Header
+
+
+
+  
+    [Header(Header Text)]
+
+  
+
+
+
+  헤더 문자열을 지정한다.
+  큰따옴표로 묶지 않아야 한다.
+
+
+
+
+Toggle
+
+
+
+  
+    [Toggle] _MyToggle ("My Toggle", Floa...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Mar  4, 2021,  9:58 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar  4
+  
+
+  <i class="unloaded">2021-03-04T21:58:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="935 words">5 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-toy-depth-texture-renderer/">Depth Texture Renderer (Z-Buffer 렌더러)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+
+  
+    현재 메인 카메라의 뎁스 텍스쳐를 화면에 렌더링한다.
+  
+  
+    각 쉐이더의 ZWrite 여부에 관계 없이 모두 렌더링하는 단점이 있다.
+  
+  
+    렌더 큐 값이 2500(Skybox) 이하인 오브젝트들만 인식한다.
+  
+
+
+
+
+How to Use
+
+
+
+  
+    DepthRenderer.cs 스크립트를 메인...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Mar  3, 2021,  7:08 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar  3
+  
+
+  <i class="unloaded">2021-03-03T19:08:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="543 words">3 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-particle-system-example-06-blue-portal/">파티클 시스템 예제 - 06 - Blue Portal [TODO]</a>
     </h1>
 
@@ -536,847 +1298,6 @@ Preview
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2868 words">15 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-toy-projectile-shooter/">Projectile Shooter (투사체 발사 컴포넌트)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  
-    마우스 클릭 시 등록된 게임오브젝트를 생성하여, 지정된 방향으로 발사하는 스크립트
-  
-  
-    생성된 게임오브젝트는 카메라의 시선에 수직인 평면 방향으로 이동하며, 수명이 다하면 제거된다.
-  
-  
-    오브젝트 풀링이 적용된다.
-  
-
-
-
-
-How To Use
-
-
-
-  
-    빈 게임오브젝트를 생성하고, Part...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Mar  2, 2021,  3:28 AM +0900"
-  >
-
-  
-  
-
-  
-    Mar  2
-  
-
-  <i class="unloaded">2021-03-02T03:28:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="802 words">4 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-toy-mouse-chaser/">Mouse Chaser (마우스 커서 추적 컴포넌트)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  게임오브젝트가 마우스 커서를 따라오게 하는 스크립트
-
-
-How To Use
-
-
-
-  
-    마우스 커서를 따라오게 할 게임오브젝트에 컴포넌트로 넣는다.
-  
-  
-    Distance From Camera를 통해 카메라로부터의 거리를 지정할 수 있다.
-  
-  
-    Chasing Speed를 통해 마우스를 따라올 속도를 지정할...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Mar  2, 2021,  3:14 AM +0900"
-  >
-
-  
-  
-
-  
-    Mar  2
-  
-
-  <i class="unloaded">2021-03-02T03:14:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="263 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-particle-system-example-04-fireball/">파티클 시스템 예제 - 04 - Fire Ball</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목차
-
-
-
-  목표
-  준비물
-  1. 파티클 시스템 제작
-  2. 서브 이미터 설정
-  3. Projectile Shooter 적용
-  4. 결과
-
-
-
-
-Preview
-
-
-
-
-
-
-
-
-목표
-
-
-
-  
-    Sub Emitters(서브 이미터) 모듈 이해하기
-  
-  
-    파이어볼 이펙트 만들기
-  
-
-
-
-
-준비물
-
-
-
-  글로우 모양의 동그란 텍...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Mar  2, 2021,  3:03 AM +0900"
-  >
-
-  
-  
-
-  
-    Mar  2
-  
-
-  <i class="unloaded">2021-03-02T03:03:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1606 words">8 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-particle-system-example-03-firefly/">파티클 시스템 예제 - 03 - Firefly</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Preview
-
-
-
-
-
-
-목표
-
-
-
-  
-    Light 모듈, Collision 모듈 간단히 사용해보고 이해하기
-  
-  
-    반딧불이 이펙트 만들기
-  
-
-
-
-
-Firefly Effect
-
-
-마테리얼 준비
-
-
-  
-    Addtive
-  
-  
-    작은 Glow 모양의 텍스쳐
-  
-
-
-
-
-
-
-씬 준비
-
-
-  새로운 씬 생성 (Projec...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Mar  1, 2021, 10:57 PM +0900"
-  >
-
-  
-  
-
-  
-    Mar  1
-  
-
-  <i class="unloaded">2021-03-01T22:57:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="660 words">3 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-particle-system-example-02-mouse-chaser/">파티클 시스템 예제 - 02 - Mouse Chaser</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목차
-
-
-
-  목표
-  준비물
-  1. 기본 준비
-  2. Heart
-  3. Twinkle
-
-
-
-
-Preview
-
-
-기본
-
-
-
-Heart
-
-
-
-Twinkle
-
-
-
-
-
-목표
-
-
-
-  실시간으로 마우스를 따라다니는 예쁜 이펙트 만들기
-
-
-
-
-준비물
-
-
-
-  
-    원하는 모양의 파티클 텍스쳐 (예제에서는 Heart, Twinkle), Additive ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Mar  1, 2021,  9:07 PM +0900"
-  >
-
-  
-  
-
-  
-    Mar  1
-  
-
-  <i class="unloaded">2021-03-01T21:07:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="664 words">3 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-opt-occlusion-culling/">오클루전 컬링</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        프러스텀 컬링 (Frustum Culling)
-
-
-
-  
-    카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것
-  
-  
-    따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.
-  
-
-
-
-
-
-
-그냥 이렇게 두어도
-
-
-
-실제로 이렇게 컬링된다.
-
-
-
-GIF
-
-
-
-
-
-오클루전 컬링 (Occlusion C...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Mar  1, 2021,  1:40 AM +0900"
-  >
-
-  
-  
-
-  
-    Mar  1
-  
-
-  <i class="unloaded">2021-03-01T01:40:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="452 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-memo-gameobject-over-ui/">UI 위에 게임오브젝트 띄우기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Preview
-
-
-
-
-
-  Green : Default
-  Red : Over UI
-
-
-
-
-1. Built-in Render Pipeline
-
-
-
-  
-    .
-  
-
-  [1] 레이어 준비
-  
-    [Over UI] 레이어를 만든다.
-  
-
-  
-
-  [2] Over UI 카메라 준비
-  
-    
-      카메라를 하나 더 만들고, Audi...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Feb 28, 2021, 10:30 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 28
-  
-
-  <i class="unloaded">2021-02-28T22:30:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="459 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-toy-free-look-camera/">Free Look Camera (자유 시점 카메라)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  자유롭게 회전, 이동이 가능한 자유 시점 카메라
-
-
-How To Use
-
-
-
-  카메라가 존재하는 게임오브젝트에 FreeLookCamera 컴포넌트를 추가한다.
-  게임 시작 후, Left Alt 키를 눌러 커서가 사라지도록 한다.
-  WASD 키로 카메라를 움직이며, 마우스 이동을 통해 카메라를 회전시킬 수 있다.
-  QE 키로 카...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Feb 28, 2021,  5:45 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 28
-  
-
-  <i class="unloaded">2021-02-28T17:45:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="856 words">4 min</span>
 
 
         <!-- page views -->
@@ -1730,9 +1651,24 @@ How To Use
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page20/">20</a>
+        <a class="page-link btn-box-shadow" href="/page21/">21</a>
       </li>
     
 
@@ -4672,6 +4608,61 @@ How To Use
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -5100,18 +5091,6 @@ How To Use
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -5160,10 +5139,10 @@ How To Use
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/thread/">thread</a>
       
         
-        <a class="post-tag" href="/tags/shorts/">shorts</a>
+        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
 
       </div>
@@ -8086,6 +8065,61 @@ How To Use
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -8514,18 +8548,6 @@ How To Use
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -8569,10 +8591,10 @@ How To Use
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/thread/">thread</a>
       
         
-        <a class="post-tag" href="/tags/shorts/">shorts</a>
+        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
 
     </div>

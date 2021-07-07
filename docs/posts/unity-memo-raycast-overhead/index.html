@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="레이캐스트 성능 테스트" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"레이캐스트 성능 테스트","description":"조건 고정 레이캐스트 시작점 레이캐스트 방향 반복 횟수 : 10만 회","dateModified":"2021-05-04T03:31:47+09:00","datePublished":"2021-02-19T16:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-raycast-overhead/"},"url":"https://rito15.github.io/posts/unity-memo-raycast-overhead/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"조건 고정 레이캐스트 시작점 레이캐스트 방향 반복 횟수 : 10만 회","datePublished":"2021-02-19T16:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-raycast-overhead/"},"url":"https://rito15.github.io/posts/unity-memo-raycast-overhead/","author":{"@type":"Person","name":"Rito15"},"headline":"레이캐스트 성능 테스트","dateModified":"2021-05-04T03:31:47+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -3563,6 +3563,61 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3991,18 +4046,6 @@
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -4051,10 +4094,10 @@
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/thread/">thread</a>
       
         
-        <a class="post-tag" href="/tags/shorts/">shorts</a>
+        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
 
       </div>
@@ -4101,6 +4144,110 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -6798,7 +6945,7 @@ GIF
       
       
       <div class="card">
-        <a href="/posts/unity-memo-prevent-infinite-loop/">
+        <a href="/posts/unity-memo-callback-overhead/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6815,13 +6962,13 @@ GIF
   
 
   
-    Mar  5
+    Mar 11
   
 
-  <i class="unloaded">2021-03-05T04:00:00+09:00</i>
+  <i class="unloaded">2021-03-11T18:11:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>무한 루프를 간편히 방지하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6830,21 +6977,26 @@ GIF
 
 
 
-                2021. 06. 17.
-
-  무한루프를 보다 간편히 방지할 수 있도록 코드 개선
+                테스트 대상
 
 
+[1] 문장(계산식)
 
-
-Note
-
-
-  
-    유니티 엔진에서 무한 루프가 발생하면 에디터가 그대로 멈추어, 강제 종료해야 하는 경험을 겪은 적이 간혹 있을 것이다.
-  
-  
-    따라서 혹시나 무한 루프가 될 가능성이 있는 코드를 인지했다면 간단한 체크 로직을 넣어주는 것이 좋다...
+1
+2
+3
+4
+5
+6
+7
+8
+9
+private static void TestInline()
+{
+    for (int i = 0; i &lt; count; i++)
+    {
+        _ = Math.Round(2.3f) * Math.Sin(2.5f);
+        _ = Math.Floor(4.4f) *...
               </p>
             </div>
           </div>
@@ -9804,6 +9956,61 @@ Note
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -10232,18 +10439,6 @@ Note
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -10287,10 +10482,10 @@ Note
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/thread/">thread</a>
       
         
-        <a class="post-tag" href="/tags/shorts/">shorts</a>
+        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
       
 
     </div>

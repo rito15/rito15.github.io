@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-07T22:45:19+09:00</updated>
+  <updated>2021-07-08T02:53:54+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,14 +20,14 @@
 
   
   <entry>
-    <title>C# Parallel</title>
-    <link href="https://rito15.github.io/posts/cs-parallel/" rel="alternate" type="text/html" title="C# Parallel" />
-    <published>2021-07-07T19:07:00+09:00</published>
+    <title>C# TLS(Thread Local Storage)</title>
+    <link href="https://rito15.github.io/posts/08-cs-thread-local-storage/" rel="alternate" type="text/html" title="C# TLS(Thread Local Storage)" />
+    <published>2021-07-08T01:08:00+09:00</published>
   
-    <updated>2021-07-07T19:07:00+09:00</updated>
+    <updated>2021-07-08T01:08:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/cs-parallel/</id>
-    <content src="https://rito15.github.io/posts/cs-parallel/" />
+    <id>https://rito15.github.io/posts/08-cs-thread-local-storage/</id>
+    <content src="https://rito15.github.io/posts/08-cs-thread-local-storage/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -48,104 +48,43 @@
 
 
 
-      Parallel 클래스
-
-
-
-  
-    반복적인 병렬 처리를 손쉽게 작성할 수 있는 API를 제공한다.
-  
-  
-    ThreadPool 기반으로 작성되어, ThreadPool의 현재 스레드 개수를 차지하며 최소/최대 스레드 개수에 영향을 받는다.
-  
-  
-    ThreadPool의 스레드 뿐만 아니라 호출 스레드도 병렬 처리에 포함된다.
-  
-  
-    동기적으로 수행된다. (호출 스레드가 병렬 처리의 종료를 자동적으로 대기한다.)
-  
-
-
-
-
-Parallel.For()
-
-
-
-  for문의 형태와 유사하게 병렬처리를 수행할 수 있다.
-
-
-
-
-[1] 기초
-
-Parallel.For(0, 100, i =&amp;gt;
-{
-    Console.WriteLine($"[{i}] {Thread.Current...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>비동기 씬 로드</title>
-    <link href="https://rito15.github.io/posts/unity-load-scene-async/" rel="alternate" type="text/html" title="비동기 씬 로드" />
-    <published>2021-07-06T16:32:00+09:00</published>
-  
-    <updated>2021-07-06T16:32:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-load-scene-async/</id>
-    <content src="https://rito15.github.io/posts/unity-load-scene-async/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo - Shorts" />
-    
-  
-
-  
-    <summary>
       
 
+메모리 구조
 
 
 
 
-      GIF
+
+
+TLS(Thread Local Storage)
+
+
+Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공유한다.
+
+그리고 Stack 영역의 지역 변수(또는 멤버 변수)는 해당 블록 내에서만 사용된다.
+
+따라서 기본적으로 각각의 스레드마다 고유하게 갖는 메모리 영역은 없다.
+
+이를 만들어 줄 수 있는 것이 바로 TLS이다.
 
 
 
+TLS는 각각의 스레드마다 자기만의 변수를 저장할 수 있게 해준다.
 
-Source Code
+따라서 이를 활용하여, 공유 변수로 인해 빈번한 스레드 동기화가 일어날 수 있는 경우
+
+임시로 TLS에 저장하고 나중에 공유 변수에 동기화하는 방식으로
+
+스레드 동기화에 의한 성능 저하를 줄여줄 수 있다.
 
 
 
-   
-Source Code
+ThreadLocal&amp;lt;T&amp;gt;
 
 
-  using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-// 날짜 : 2021-07-06 PM 3:02:23
-// 작성자 : Rito
-
-/// &amp;lt;summary&amp;gt; 
-/// 비동기 씬 로드
-/// &amp;lt;/summary&amp;gt;
-public class AsyncSceneLoader : MonoBehaviour
-{
-    /**************************************************...
+  C#의 Thr...
     </summary>
   
 
@@ -153,14 +92,14 @@ public class AsyncSceneLoader : MonoBehaviour
 
   
   <entry>
-    <title>C# async Task</title>
-    <link href="https://rito15.github.io/posts/cs-async-task/" rel="alternate" type="text/html" title="C# async Task" />
-    <published>2021-07-06T03:34:00+09:00</published>
+    <title>C# Thread Synchronization and Locks</title>
+    <link href="https://rito15.github.io/posts/07-cs-thread-synchronization/" rel="alternate" type="text/html" title="C# Thread Synchronization and Locks" />
+    <published>2021-07-08T01:07:00+09:00</published>
   
-    <updated>2021-07-06T03:34:00+09:00</updated>
+    <updated>2021-07-08T01:07:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/cs-async-task/</id>
-    <content src="https://rito15.github.io/posts/cs-async-task/" />
+    <id>https://rito15.github.io/posts/07-cs-thread-synchronization/</id>
+    <content src="https://rito15.github.io/posts/07-cs-thread-synchronization/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -181,35 +120,42 @@ public class AsyncSceneLoader : MonoBehaviour
 
 
 
-      비동기 작업 : async-await
+      동기화 영역에 따른 구분
 
 
-
-  
-    Task를 Thread처럼 사용하는 대신, 비동기 작업을 위해 사용할 수 있다.
-  
-  
-    async, await 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.
-  
-
-
-
-
-특징
+1. 유저 모드 동기화
 
 
   
-    메소드 내부에서 await로 대기하려면, 해당 메소드의 리턴 타입 앞에 async 키워드를 작성한다.
+    유저 객체(커널에서 제공하지 않는 객체)를 사용한다.
   
   
-    await Task.Delay(n)와 같이 await를 이용한 대기는 해당 스레드를 블록시키지 않는다.
+    대표적으로 크리티컬 섹션(Critical Section), 인터락(Interlocked)이 있다.
   
   
-    비동기 작업을 기다리고, 끝날 경우 값을 리턴받을 수 있다.
+    커널 모드 동기화보다 빠르다.
   
   
-    async-await로 실행 시킨 작업 역시 ThreadPool에 의해 관리된다.
+    동일 프로세스 내에서만 동기화 가능하다.
   
+
+
+
+
+2. 커널 모드 동기화
+
+
+  
+    커널 객체를 사용한다.
+  
+  
+    대표적으로 뮤텍스(Mutex), 세마포어(Semaphore), 이벤트(Event)가 있다.
+  
+  
+    다른 프로세스에 존재하는 스레드 간 동기화가 가능하다.
+  
+  
+    유저 모드에서 커널 모드로 변경해야 하므로, 유저 모드 동기화에 비해 성능 소모가 크다.
 ...
     </summary>
   
@@ -218,14 +164,14 @@ public class AsyncSceneLoader : MonoBehaviour
 
   
   <entry>
-    <title>C# Task</title>
-    <link href="https://rito15.github.io/posts/cs-task/" rel="alternate" type="text/html" title="C# Task" />
-    <published>2021-07-06T03:33:00+09:00</published>
+    <title>C# ReaderWriterLock</title>
+    <link href="https://rito15.github.io/posts/06-cs-reader-writer-lock/" rel="alternate" type="text/html" title="C# ReaderWriterLock" />
+    <published>2021-07-08T01:06:00+09:00</published>
   
-    <updated>2021-07-06T03:33:00+09:00</updated>
+    <updated>2021-07-08T01:06:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/cs-task/</id>
-    <content src="https://rito15.github.io/posts/cs-task/" />
+    <id>https://rito15.github.io/posts/06-cs-reader-writer-lock/</id>
+    <content src="https://rito15.github.io/posts/06-cs-reader-writer-lock/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -246,43 +192,32 @@ public class AsyncSceneLoader : MonoBehaviour
 
 
 
-      Task
+      Reader Writer Lock
+
+
+스레드 간에 공유되는 데이터가 있을 때,
+
+항상 모든 스레드가 그 데이터를 읽고 쓰는 것은 아니다.
+
+어떤 스레드는 해당 데이터를 읽기만 하고,
+
+어떤 스레드는 해당 데이터를 쓰기만 하는 구조로 이루어져 있을 수 있다.
+
+그리고 소수의 쓰기 스레드가 상대적으로 적은 횟수로 쓰기를 수행하고,
+
+다수의 읽기 스레드가 상대적으로 빈번하게 읽기를 수행하는 경우가 많다.
 
 
 
-  
-    Task는 ThreadPool을 기반으로 작성된 라이브러리이다.
-  
-  
-    내부적으로 ThreadPool의 스레드 개수를 차지하며, ThreadPool의 스레드 개수 제한에 영향을 받는다.
-  
-  
-    가벼운 비동기 작업에 특화되어 있다.
-  
-  
-    Thread.Abort()처럼 간단히 종료할 수 없다.
-  
-  
-    작업이 완료된 Task 객체는 다시 수행될 수 없다.
-  
+이런 경우에도 일반적인 락을 구현하여 읽기/쓰기를 수행하는 동안에 항상 락을 설정하고 해제한다면
+
+데이터를 단순히 읽기만 하여 값이 변경되지 않는 상황에도 불필요하게 임계 영역을 만들게 되므로
+
+성능상 굉장히 손해라고 할 수 있다.
 
 
 
-
-1. 생성, 실행, 대기
-
-
-[1] 개별 객체 정의
-
-
-  
-    스레드 바디로 사용될 메소드를 미리 정의한다.
-  
-  
-    정의한 메소드 또는 람다식을 이용해 Task 객체를 만들고, 시작시킨다.
-  
-  
-    이렇게 시작되는 Task는 새로운 스레드에서 실행된...
+ReaderWriterLock은 데이터에 쓰기 위해 접근할 때는 ...
     </summary>
   
 
@@ -290,23 +225,23 @@ public class AsyncSceneLoader : MonoBehaviour
 
   
   <entry>
-    <title>(Amplify) Shield Shader</title>
-    <link href="https://rito15.github.io/posts/unity-amplify-shield-shader/" rel="alternate" type="text/html" title="(Amplify) Shield Shader" />
-    <published>2021-07-05T03:33:00+09:00</published>
+    <title>C# AutoResetEvent</title>
+    <link href="https://rito15.github.io/posts/05-cs-auto-reset-event/" rel="alternate" type="text/html" title="C# AutoResetEvent" />
+    <published>2021-07-08T01:05:00+09:00</published>
   
-    <updated>2021-07-05T03:33:00+09:00</updated>
+    <updated>2021-07-08T01:05:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-amplify-shield-shader/</id>
-    <content src="https://rito15.github.io/posts/unity-amplify-shield-shader/" />
+    <id>https://rito15.github.io/posts/05-cs-auto-reset-event/</id>
+    <content src="https://rito15.github.io/posts/05-cs-auto-reset-event/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Unity Shader" />
+    <category term="C#" />
     
-    <category term="Amplify Shader" />
+    <category term="C# Threading" />
     
   
 
@@ -318,54 +253,104 @@ public class AsyncSceneLoader : MonoBehaviour
 
 
 
-      Summary
+      이벤트(Event) 동기화 기법
+
+
+기존의 락과는 조금 다르게,
+
+락을 얻고자 하는 각각의 스레드만 직접 락을 설정하고 해제할 수 있는 것이 아니라
+
+제 3자도 락을 설정/해제할 수 있는 방식이다.
+
+여기서 제 3자는 커널을 의미하며
+
+커널 영역으로 요청을 보내기 때문에 다른 방식보다 성능 소모가 좀더 크다.
+
+그리고 기존의 락 방식과 동일하게 사용될 수도 있다.
 
 
 
-  Sphere 메시에 사용하는 쉴드 쉐이더
+ManualResetEvent
 
 
 
-
-Preview
-
-
-
-
-
-
-Properties
-
-
-
-
-
-
-Settings
-
-
-Blend Mode
-
-  Transparent
+  C#에서 이벤트 동기화가 구현된 형태.
 
 
 
 
-Nodes
+객체 생성
+
+ManualResetEvent mre = new ManualResetEvent(true);
+
+
+
+  생성자에는 bool 타입 값으로 초기 상태를 지정할 수 있다.
+  true는 락에 진입할 수 있다는 것을 의미한다.
+
+
+
+
+진입 시도
+
+mr...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>C# Context Switching, Sleep, Yield</title>
+    <link href="https://rito15.github.io/posts/04-cs-context-switching/" rel="alternate" type="text/html" title="C# Context Switching, Sleep, Yield" />
+    <published>2021-07-08T01:04:00+09:00</published>
+  
+    <updated>2021-07-08T01:04:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/04-cs-context-switching/</id>
+    <content src="https://rito15.github.io/posts/04-cs-context-switching/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Threading" />
+    
+  
+
+  
+    <summary>
+      
 
 
 
 
 
-
-Download
-
+      컨텍스트 스위칭(Context Switching)
 
 
-  2021_0704_Shield.zip
+현재 실행 되는 스레드가 있다면, 그 스레드는 CPU의 자원을 할당받아 동작하는 것이다.
+
+동시에 실행될 수 있는 스레드의 개수는 사실 CPU 코어의 개수 이하인데,
+
+예를 들어 CPU 코어가 4개라면 동시에 4개까지의 스레만 자원을 할당받아 동작할 수 있는 것이다.
+
+그런데 CPU 코어가 4개라고 해도 실제로 5개 이상의 스레드가 동시에 동작할 수 있다.
+
+그 이유는 컨텍스트 스위칭과 시분할(Time Slicing) 기법 때문이다.
 
 
 
+운영체제 내부에는 스레드 스케줄러라는 것이 존재하며,
+
+현재 실행 중인 스레드들에 각각 CPU 자원을 할당하고 수거하는 작업을 수행한다.
+
+코어가 감당할 수 있는 개수를 초과하여 스레드가 동작할 경우
+
+스케줄러에 ...
     </summary>
   
 
