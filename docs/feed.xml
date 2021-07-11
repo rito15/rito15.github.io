@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-08T02:53:54+09:00</updated>
+  <updated>2021-07-11T21:49:18+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,97 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>파티클 시스템 예제 - 12 - Sword Aura</title>
+    <link href="https://rito15.github.io/posts/unity-particle-system-example-12-sword-aura/" rel="alternate" type="text/html" title="파티클 시스템 예제 - 12 - Sword Aura" />
+    <published>2021-07-11T14:55:00+09:00</published>
+  
+    <updated>2021-07-11T14:55:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-particle-system-example-12-sword-aura/</id>
+    <content src="https://rito15.github.io/posts/unity-particle-system-example-12-sword-aura/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Particle System" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목차
+
+
+
+  목표
+  준비물
+  1. 작업 환경 구성
+  2. 하이라키 구성
+  3. Aura 이펙트
+  4. Smoke 이펙트
+  5. Spark 이펙트
+  6. Glow 이펙트
+
+
+
+
+Preview
+
+
+
+
+
+
+
+
+
+
+목표
+
+
+
+  검 모델링에 부착하여 사용할 수 있는, 타오르는 듯한 이펙트 만들기
+
+
+
+
+준비물
+
+
+검 모델링
+
+  https://assetstore.unity.com/packages/3d/props/weapons/free-low-poly-swords-189978
+
+
+Additive 마테리얼들과 텍스쳐
+
+  SwordAura, SwordSmoke, PointGlow
+  SwordAura_Resources.zip
+
+
+
+
+1. 작업 환경 구성
+
+
+이펙트를 제작하기 위해 게임 뷰에는 스카이...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -294,63 +385,6 @@ ManualResetEvent mre = new ManualResetEvent(true);
 진입 시도
 
 mr...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# Context Switching, Sleep, Yield</title>
-    <link href="https://rito15.github.io/posts/04-cs-context-switching/" rel="alternate" type="text/html" title="C# Context Switching, Sleep, Yield" />
-    <published>2021-07-08T01:04:00+09:00</published>
-  
-    <updated>2021-07-08T01:04:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/04-cs-context-switching/</id>
-    <content src="https://rito15.github.io/posts/04-cs-context-switching/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Threading" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      컨텍스트 스위칭(Context Switching)
-
-
-현재 실행 되는 스레드가 있다면, 그 스레드는 CPU의 자원을 할당받아 동작하는 것이다.
-
-동시에 실행될 수 있는 스레드의 개수는 사실 CPU 코어의 개수 이하인데,
-
-예를 들어 CPU 코어가 4개라면 동시에 4개까지의 스레만 자원을 할당받아 동작할 수 있는 것이다.
-
-그런데 CPU 코어가 4개라고 해도 실제로 5개 이상의 스레드가 동시에 동작할 수 있다.
-
-그 이유는 컨텍스트 스위칭과 시분할(Time Slicing) 기법 때문이다.
-
-
-
-운영체제 내부에는 스레드 스케줄러라는 것이 존재하며,
-
-현재 실행 중인 스레드들에 각각 CPU 자원을 할당하고 수거하는 작업을 수행한다.
-
-코어가 감당할 수 있는 개수를 초과하여 스레드가 동작할 경우
-
-스케줄러에 ...
     </summary>
   
 
