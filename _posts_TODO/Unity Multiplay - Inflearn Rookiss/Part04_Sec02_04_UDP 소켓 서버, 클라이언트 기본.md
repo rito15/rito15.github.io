@@ -6,101 +6,97 @@ TITLE : TCP 소켓 서버, 클라이언트 기본
 
 <br>
 
-# 소켓 정의
+# UDP 소켓 통신의 특징
 ---
 
-## **프로토콜**
-- 데이터 전송을 위한 규약이며, 대표적으로 TCP와 UDP가 있다.
-
-## **IP**
-- 컴퓨터에 부여된 논리적 식별 주소
-
-## **Port**
-- 네트워크 상에서 통신하기 위해 호스트 내부적으로 프로세스가 할당받는 고유 번호
-- 같은 컴퓨터 내에서 프로세스를 식별하기 위한 번호
+- 서버와 클라이언트 간의 1:1 연결이 생성되지 않는다.
+- 리스너 소켓이 필요하지 않다.
+- `Listen()`, `Connect()` 과정이 없다.
+- 소켓의 `.ReceiveFrom()`, `.SendTo()` 메소드를 통해 엔드포인트와 데이터를 주고 받는다.
 
 <br>
 
 # 소켓 통신 과정
 ---
 
-## 서버
- - Listener 소켓 객체 생성
- - Bind(서버 주소와 포트를 소켓에 연동)
- - Listen(클라이언트 대기열 생성)
- - Accept(클라이언트 연결 수용)
- - Send, Receive(데이터 송수신)
+## **서버**
+ - 서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
+ - 서버 소켓 객체 생성
+ - Bind(서버 엔드포인트 정보를 서버 소켓에 연동)
+ - 클라이언트에 대응할 리모트 엔드포인트 생성
+ - Send `=>` 리모트 엔드포인트
+ - Receive `<=` 리모트 엔드포인트
  - Close
 
-## 클라이언트
- - 소켓 객체 생성
- - Connect(서버 주소와 포트를 통해 연결)
- - Send, Receive
+## **클라이언트**
+ - 서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
+ - 클라이언트 소켓 객체 생성
+ - 리모트 엔드포인트 생성
+ - Send `=>` 서버 엔드포인트
+ - Receive `<=` 리모트 엔드포인트
  - Close
 
 <br>
 
-# 서버 소켓 기본(블로킹 방식)
+# 서버 소켓 기본
 ---
 
-## **[1] 소켓 정보 정의**
+## **[1] 서버 데이터 정의**
 
 ```cs
-// 로컬 호스트의 이름을 통해 IP Host Entry 정보를 가져온다.
-string host = Dns.GetHostName();
-IPHostEntry ipHost = Dns.GetHostEntry(host);
-
-// 호스트가 보유한 IP 주소 중 첫 번째를 가져온다.
+// 서버 IP 주소 정의
+IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName()); // 로컬 호스트
 IPAddress ipAddr = ipHost.AddressList[0];
-const int PortNumber = 7777;
 
-// IP 주소와 포트 번호를 통해 IP 연결 말단 객체를 생성한다.
-IPEndPoint endPoint = new IPEndPoint(ipAddr, PortNumber);
+// 서버 엔드 포인트 생성
+IPEndPoint ep = new IPEndPoint(ipAddr, 1234);
 ```
 
-## **[2] 리스너 소켓**
+## **[2] 서버 소켓 생성**
 
 ```cs
-// TCP 리스너 소켓을 생성한다.
-Socket listenSocket = new Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+// 서버 소켓 생성
+Socket serverSocket = new Socket(ep.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+            
+// 서버 소켓에 엔드 포인트 바인딩
+serverSocket.Bind(ep);
+```
 
-// Bind : 서버 주소와 포트 정보를 소켓에 연동한다.
-listenSocket.Bind(endPoint);
+## **[3] 리모트 엔드 포인트 생성**
 
-// Listen : 클라이언트 대기열을 정의한다.
-// backlog(int) : 최대 클라이언트 동시 대기 허용 수
-listenSocket.Listen(10);
+```cs
+// 주소와 포트는 상관 없고, AddressFamily만 소켓과 맞추면 됨
+// 어차피 Receive로부터 초기화됨
+EndPoint remoteEP = new IPEndPoint(IPAddress.IPv6Any, 0000);
 ```
 
 <br>
 
-## **[3] 연결 및 데이터 송수신**
+## **[4] 데이터 송수신**
 
 ```cs
+// Send    => Remote End Point
+// Receive <= Remote End Point
+
+int index = 0;
 while (true)
 {
-    Console.WriteLine("Listening..");
+    // Receive
+    byte[] recvBuffer = new byte[1024];
+    int recvLen = serverSocket.ReceiveFrom(recvBuffer, ref remoteEP);
+    string recvString = Encoding.UTF8.GetString(recvBuffer, 0, recvLen);
 
-    // 클라이언트 소켓의 연결을 수용한다.
-    // 블로킹 방식
-    Socket clientSocket = listenSocket.Accept();
+    Console.WriteLine($"Received From Client [{remoteEP}] : {recvString}");
 
-    // 클라이언트로부터 데이터를 수신한다.
-    byte[] receiveBuffer = new byte[1024];
-    int receivedLen = clientSocket.Receive(receiveBuffer);
-    string receivedString = Encoding.UTF8.GetString(receiveBuffer, 0, receivedLen);
+    // Send
+    string replyToClient = $"Server Replied - {index++}";
+    serverSocket.SendTo(Encoding.UTF8.GetBytes(replyToClient), remoteEP);
 
-    Console.WriteLine($"From Client : {receivedString}");
-
-    // 클라이언트에 데이터를 전송한다.
-    string stringToSend = "Hi Hi Client !";
-    byte[] sendBuffer = Encoding.UTF8.GetBytes(stringToSend);
-    clientSocket.Send(sendBuffer);
-
-    // 연결을 종료한다.
-    clientSocket.Shutdown(SocketShutdown.Both);
-    clientSocket.Close();
+    Console.WriteLine($"Send Data : {replyToClient}\n");
 }
+
+serverSocket.Close();
+Console.WriteLine("Server Stopped");
 ```
 
 
@@ -109,47 +105,58 @@ while (true)
 # 클라이언트 소켓 기본
 ---
 
-## **[1] 소켓 생성**
+## **[1] 연결할 서버 데이터 정의**
 
 ```cs
-// 연결할 대상 서버의 정보를 정의한다.
-string host = Dns.GetHostName();
-IPHostEntry ipHost = Dns.GetHostEntry(host);
+// 서버 IP 주소 정의
+IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName()); // 로컬 호스트
 IPAddress ipAddr = ipHost.AddressList[0];
-const int PortNumber = 7777;
 
-// IP 주소와 포트 번호를 통해 IP 연결 말단 객체를 생성한다.
-IPEndPoint serverEndPoint = new IPEndPoint(ipAddr, PortNumber);
-
-// TCP 소켓을 생성한다.
-Socket socket = new Socket(serverEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+// 서버 엔드 포인트 생성
+IPEndPoint ep = new IPEndPoint(ipAddr, 1234);
 ```
 
-<br>
+## **[2] 클라이언트 소켓 생성**
 
-## **[2] 연결 및 데이터 송수신**
+```cs
+// 클라이언트 소켓 생성
+Socket clientSocket = new Socket(serverEP.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+```
+
+## **[3] 리모트 엔드 포인트 생성**
+
+```cs
+// 주소와 포트는 상관 없고, AddressFamily만 소켓과 맞추면 됨
+// 어차피 Receive로부터 초기화됨
+EndPoint remoteEP = new IPEndPoint(IPAddress.IPv6Any, 0000);
+```
+
+## **[4] 데이터 송수신**
 
 ```
-// 서버에 연결한다.
-socket.Connect(serverEndPoint);
+// Send    => Server End Point
+// Receive <= Remote End Point
 
-Console.WriteLine($"Connected To {socket.RemoteEndPoint.ToString()}");
+while (true)
+{
+    Console.Write("Send To Server : ");
+    string consoleInputString = Console.ReadLine();
+    if (consoleInputString == "exit")
+        break;
 
-// 서버에 데이터를 전송한다.
-string stringToSend = "Hello Server";
-byte[] sendBuffer = Encoding.UTF8.GetBytes(stringToSend);
-socket.Send(sendBuffer);
+    // Send
+    byte[] sendBuffer = Encoding.UTF8.GetBytes(consoleInputString);
+    clientSocket.SendTo(sendBuffer, sendBuffer.Length, SocketFlags.None, serverEP);
 
-// 서버로부터 데이터를 수신한다.
-byte[] receiveBuffer = new byte[1024];
-int receivedLen = socket.Receive(receiveBuffer);
-string receivedString = Encoding.UTF8.GetString(receiveBuffer, 0, receivedLen);
+    // Receive
+    byte[] recvBuffer = new byte[1024];
+    int recvLen = clientSocket.ReceiveFrom(recvBuffer, ref remoteEP);
+    string recvString = Encoding.UTF8.GetString(recvBuffer, 0, recvLen);
+    Console.WriteLine($"Received From Server [{remoteEP}] : {recvString}\n");
+}
 
-Console.WriteLine($"From Server : {receivedString}");
-
-// 연결을 종료한다.
-socket.Shutdown(SocketShutdown.Both);
-socket.Close();
+clientSocket.Close();
+Console.WriteLine("Client Stopped");
 ```
 
 <br>
@@ -159,7 +166,7 @@ socket.Close();
 
 <details>
 <summary markdown="span"> 
-Server.cs
+UdpServerBasic.cs
 </summary>
 
 ```cs
@@ -173,62 +180,57 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 
-class Server
+class UdpServerBasic
 {
-    static void Main(string[] args)
+    public static void Run()
     {
-        // 로컬 호스트의 이름을 통해 IP Host Entry 정보를 가져온다.
-        string host = Dns.GetHostName();
-        IPHostEntry ipHost = Dns.GetHostEntry(host);
+        Console.WriteLine("UDP SERVER RUNNING..");
 
-        // 호스트가 보유한 IP 주소 중 첫 번째를 가져온다.
+        // ============== [1] 내(서버) 데이터 정의 ========================
+
+        // 서버 IP 주소 정의
+        IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName()); // 로컬 호스트
         IPAddress ipAddr = ipHost.AddressList[0];
-        const int PortNumber = 7777;
 
-        // IP 주소와 포트 번호를 통해 IP 연결 말단 객체를 생성한다.
-        IPEndPoint endPoint = new IPEndPoint(ipAddr, PortNumber);
+        // 서버 엔드 포인트 생성
+        IPEndPoint ep = new IPEndPoint(ipAddr, 1234);
 
-        // TCP 리스너 소켓을 생성한다.
-        Socket listenSocket = new Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+        // 서버 소켓 생성
+        Socket serverSocket = new Socket(ep.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+            
+        // 서버 소켓에 엔드 포인트 바인딩
+        serverSocket.Bind(ep);
 
-        try
+        // ============== [2] 리모트 엔드 포인트 정의 =====================
+
+        // 주소와 포트는 상관 없고, AddressFamily만 소켓과 맞추면 됨
+        // 어차피 Receive로부터 초기화됨
+        EndPoint remoteEP = new IPEndPoint(IPAddress.IPv6Any, 0000);
+
+        // ============== [3] 통 신 =======================================
+
+        // Send    => Remote End Point
+        // Receive <= Remote End Point
+
+        int index = 0;
+        while (true)
         {
-            // Bind : 서버 주소와 포트 정보를 소켓에 연동한다.
-            listenSocket.Bind(endPoint);
+            // Receive
+            byte[] recvBuffer = new byte[1024];
+            int recvLen = serverSocket.ReceiveFrom(recvBuffer, ref remoteEP);
+            string recvString = Encoding.UTF8.GetString(recvBuffer, 0, recvLen);
 
-            // Listen : 클라이언트 대기열을 정의한다.
-            // backlog(int) : 최대 클라이언트 동시 대기 허용 수
-            listenSocket.Listen(10);
+            Console.WriteLine($"Received From Client [{remoteEP}] : {recvString}");
 
-            while (true)
-            {
-                Console.WriteLine("Listening..");
+            // Send
+            string replyToClient = $"Server Replied - {index++}";
+            serverSocket.SendTo(Encoding.UTF8.GetBytes(replyToClient), remoteEP);
 
-                // 클라이언트 소켓 수용
-                // 블로킹 방식
-                Socket clientSocket = listenSocket.Accept();
-
-                // 클라이언트로부터 데이터 수신
-                byte[] receiveBuffer = new byte[1024];
-                int receivedBytes = clientSocket.Receive(receiveBuffer);
-                string receivedString = Encoding.UTF8.GetString(receiveBuffer, 0, receivedBytes);
-
-                Console.WriteLine($"From Client : {receivedString}");
-
-                // 클라이언트에 데이터 전송
-                string stringToSend = "Hi Hi Client !";
-                byte[] sendBuffer = Encoding.UTF8.GetBytes(stringToSend);
-                clientSocket.Send(sendBuffer);
-
-                // 연결 종료
-                clientSocket.Shutdown(SocketShutdown.Both);
-                clientSocket.Close();
-            }
+            Console.WriteLine($"Send Data : {replyToClient}\n");
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
+
+        serverSocket.Close();
+        Console.WriteLine("Server Stopped");
     }
 }
 ```
@@ -237,7 +239,7 @@ class Server
 
 <details>
 <summary markdown="span"> 
-Client.cs
+UdpClientBasic.cs
 </summary>
 
 ```cs
@@ -250,48 +252,55 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 
-class Client
+class UdpClientBasic
 {
-    static void Main(string[] args)
+    public static void Run()
     {
-        // 연결할 대상 서버의 정보를 정의한다.
-        string host = Dns.GetHostName();
-        IPHostEntry ipHost = Dns.GetHostEntry(host);
+        Console.WriteLine("UDP Client Running....\n");
+
+        // ============== [1] 연결할 서버 데이터 정의 =================
+
+        // 서버 IP 주소 정의
+        IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName()); // 로컬 호스트
         IPAddress ipAddr = ipHost.AddressList[0];
-        const int PortNumber = 7777;
 
-        // IP 주소와 포트 번호를 통해 IP 연결 말단 객체를 생성한다.
-        IPEndPoint serverEndPoint = new IPEndPoint(ipAddr, PortNumber);
+        // 서버 엔드 포인트 생성
+        IPEndPoint serverEP = new IPEndPoint(ipAddr, 1234);
 
-        // TCP 소켓을 생성한다.
-        Socket socket = new Socket(serverEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+        // ============== [2] 클라이언트 데이터 정의 =================
 
-        try
+        // 클라이언트 소켓 생성
+        Socket clientSocket = new Socket(serverEP.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+
+        // 주소와 포트는 상관 없고, AddressFamily만 소켓과 맞추면 됨
+        // 어차피 Receive로부터 초기화됨
+        EndPoint remoteEP = new IPEndPoint(IPAddress.IPv6Any, 0000);
+
+        // ============== [3] 통 신 =======================================
+
+        // Send    => Server End Point
+        // Receive <= Remote End Point
+
+        while (true)
         {
-            // 서버에 연결한다.
-            socket.Connect(serverEndPoint);
-            Console.WriteLine($"Connected To {socket.RemoteEndPoint.ToString()}");
+            Console.Write("Send To Server : ");
+            string consoleInputString = Console.ReadLine();
+            if (consoleInputString == "exit")
+                break;
 
-            // 서버에 데이터를 전송한다.
-            string stringToSend = "Hello Server";
-            byte[] sendBuffer = Encoding.UTF8.GetBytes(stringToSend);
-            socket.Send(sendBuffer);
+            // Send
+            byte[] sendBuffer = Encoding.UTF8.GetBytes(consoleInputString);
+            clientSocket.SendTo(sendBuffer, sendBuffer.Length, SocketFlags.None, serverEP);
 
-            // 서버로부터 데이터를 수신한다.
-            byte[] receiveBuffer = new byte[1024];
-            int receivedLen = socket.Receive(receiveBuffer);
-            string receivedString = Encoding.UTF8.GetString(receiveBuffer, 0, receivedLen);
-
-            Console.WriteLine($"From Server : {receivedString}");
-
-            // 연결을 종료한다.
-            socket.Shutdown(SocketShutdown.Both);
-            socket.Close();
+            // Receive
+            byte[] recvBuffer = new byte[1024];
+            int recvLen = clientSocket.ReceiveFrom(recvBuffer, ref remoteEP);
+            string recvString = Encoding.UTF8.GetString(recvBuffer, 0, recvLen);
+            Console.WriteLine($"Received From Server [{remoteEP}] : {recvString}\n");
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
+
+        clientSocket.Close();
+        Console.WriteLine("Client Stopped");
     }
 }
 ```
@@ -303,7 +312,9 @@ class Client
 
 # References
 ---
-- <https://www.inflearn.com/course/유니티-mmorpg-개발-part4>
+- <https://jinjae.tistory.com/50>
+- <https://jcoder1.tistory.com/293>
+- <https://it-jerryfamily.tistory.com/entry/Program-CUDP-통신-기본Socket-콘솔-버전>
 
 
 

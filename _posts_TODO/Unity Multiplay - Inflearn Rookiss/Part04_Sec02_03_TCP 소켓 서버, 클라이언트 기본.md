@@ -24,17 +24,19 @@ TITLE : TCP 소켓 서버, 클라이언트 기본
 # 소켓 통신 과정
 ---
 
-## 서버
+## **서버**
+ - 서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
  - Listener 소켓 객체 생성
- - Bind(서버 주소와 포트를 소켓에 연동)
+ - Bind(서버 엔드포인트 정보를 Listener 소켓에 연동)
  - Listen(클라이언트 대기열 생성)
  - Accept(클라이언트 연결 수용)
  - Send, Receive(데이터 송수신)
  - Close
 
-## 클라이언트
- - 소켓 객체 생성
- - Connect(서버 주소와 포트를 통해 연결)
+## **클라이언트**
+ - 서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
+ - 클라이언트 소켓 객체 생성
+ - Connect(클라이언트 소켓을 서버 엔드포인트에 연결)
  - Send, Receive
  - Close
 
@@ -134,7 +136,7 @@ Socket socket = new Socket(serverEndPoint.AddressFamily, SocketType.Stream, Prot
 
 ## **[2] 연결 및 데이터 송수신**
 
-```
+```cs
 // 서버에 연결한다.
 socket.Connect(serverEndPoint);
 
@@ -166,7 +168,7 @@ socket.Close();
 
 <details>
 <summary markdown="span"> 
-Server.cs
+TcpServerBasic.cs
 </summary>
 
 ```cs
@@ -180,9 +182,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 
-class Server
+class TcpServerBasic
 {
-    static void Main(string[] args)
+    public static void Run()
     {
         // 로컬 호스트의 이름을 통해 IP Host Entry 정보를 가져온다.
         string host = Dns.GetHostName();
@@ -248,7 +250,7 @@ class Server
 
 <details>
 <summary markdown="span"> 
-Client.cs
+TcpClientBasic.cs
 </summary>
 
 ```cs
@@ -261,9 +263,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 
-class Client
+class TcpClientBasic
 {
-    static void Main(string[] args)
+    public static void Run()
     {
         // 연결할 대상 서버의 정보를 정의한다.
         string host = Dns.GetHostName();
