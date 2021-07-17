@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-11T21:49:18+09:00</updated>
+  <updated>2021-07-17T20:07:47+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,82 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Animator Event Controller(애니메이터 이벤트 관리 컴포넌트)</title>
+    <link href="https://rito15.github.io/posts/unity-animator-event-controller/" rel="alternate" type="text/html" title="Animator Event Controller(애니메이터 이벤트 관리 컴포넌트)" />
+    <published>2021-07-17T15:15:00+09:00</published>
+  
+    <updated>2021-07-17T15:15:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-animator-event-controller/</id>
+    <content src="https://rito15.github.io/posts/unity-animator-event-controller/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Utilities" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+  
+    애니메이터에서 재생하는 각 애니메이션 클립에 대한 이벤트를 생성, 관리하는 컴포넌트
+  
+  
+    등록한 프리팹을 애니메이션의 특정 프레임에 복제하여 생성하는 이벤트를 만들 수 있습니다.
+  
+  
+    플레이모드의 변경 사항은 플레이모드가 종료되어도 유지됩니다.
+  
+  
+    테스트 버전 : 2018.3.14f1, 2019.4.9f1, 2020.3.14f1
+  
+
+
+
+
+Preview
+
+
+
+
+
+
+
+
+
+
+0. Download &amp;amp; Import
+
+
+  
+    Animator Event Controller.unitypackage
+  
+  
+    첨부 파일을 다운로드하고, 유니티 프로젝트가 켜져 있는 상태에서 실행합니다.
+  
+  
+    임포트 창이 나타나면 ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -309,82 +385,6 @@ ThreadLocal&amp;lt;T&amp;gt;
 
 
 ReaderWriterLock은 데이터에 쓰기 위해 접근할 때는 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# AutoResetEvent</title>
-    <link href="https://rito15.github.io/posts/05-cs-auto-reset-event/" rel="alternate" type="text/html" title="C# AutoResetEvent" />
-    <published>2021-07-08T01:05:00+09:00</published>
-  
-    <updated>2021-07-08T01:05:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/05-cs-auto-reset-event/</id>
-    <content src="https://rito15.github.io/posts/05-cs-auto-reset-event/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Threading" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      이벤트(Event) 동기화 기법
-
-
-기존의 락과는 조금 다르게,
-
-락을 얻고자 하는 각각의 스레드만 직접 락을 설정하고 해제할 수 있는 것이 아니라
-
-제 3자도 락을 설정/해제할 수 있는 방식이다.
-
-여기서 제 3자는 커널을 의미하며
-
-커널 영역으로 요청을 보내기 때문에 다른 방식보다 성능 소모가 좀더 크다.
-
-그리고 기존의 락 방식과 동일하게 사용될 수도 있다.
-
-
-
-ManualResetEvent
-
-
-
-  C#에서 이벤트 동기화가 구현된 형태.
-
-
-
-
-객체 생성
-
-ManualResetEvent mre = new ManualResetEvent(true);
-
-
-
-  생성자에는 bool 타입 값으로 초기 상태를 지정할 수 있다.
-  true는 락에 진입할 수 있다는 것을 의미한다.
-
-
-
-
-진입 시도
-
-mr...
     </summary>
   
 

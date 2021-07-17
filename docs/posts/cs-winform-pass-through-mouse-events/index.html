@@ -2246,11 +2246,10 @@ Form1.cs
     
     
     
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -2397,9 +2396,12 @@ Form1.cs
     
     
       
-        
-        
-
+    
+  
+    
+    
+    
+    
   
     
     
@@ -4178,10 +4180,10 @@ Form1.cs
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/opengl/">opengl</a>
+        <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/editor/">editor</a>
+        <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
         <a class="post-tag" href="/tags/particle/">particle</a>
@@ -4235,6 +4237,19 @@ Form1.cs
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7050,7 +7065,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/memo-cs-regex/">
+        <a href="/posts/memo-cs-get-path/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7067,13 +7082,13 @@ static void Main()
   
 
   
-    Mar  8
+    Mar 12
   
 
-  <i class="unloaded">2021-03-08T17:42:00+09:00</i>
+  <i class="unloaded">2021-03-12T18:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Regex (정규표현식)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7082,27 +7097,17 @@ static void Main()
 
 
 
-                Memo
-
-
-Using
+                스크립트 경로
 
 
   
-    using System.Text.RegularExpressions;
+    public static void GetScriptPath([System.Runtime.CompilerServices.CallerFilePath] string filePath = "")
+{
+    // 1. Script(.cs) Path
+    _ = filePath;
 
-  
-
-
-
-
-정확한 단어 찾기
-
-
-  
-    string input = "AA,AAA,AAAA";
-string pattern = @"\bAA\b"; // 단어 경계를 \b로 구분
-string result = Regex.Match(input, ...
+    // 2. Folder Path
+    st...
               </p>
             </div>
           </div>
@@ -8651,11 +8656,10 @@ string result = Regex.Match(input, ...
     
     
     
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -8802,9 +8806,12 @@ string result = Regex.Match(input, ...
     
     
       
-        
-        
-
+    
+  
+    
+    
+    
+    
   
     
     
@@ -10578,10 +10585,10 @@ string result = Regex.Match(input, ...
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/opengl/">opengl</a>
+        <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/editor/">editor</a>
+        <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
         <a class="post-tag" href="/tags/particle/">particle</a>
