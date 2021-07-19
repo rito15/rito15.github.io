@@ -1,7 +1,7 @@
 ---
 title: Hash Table(해시 테이블)
 author: Rito15
-date: 2021-07-19 14:14:00 +09:00
+date: 2021-07-20 14:14:00 +09:00
 categories: [Algorithm, Data Structure]
 tags: [algorithm, data structure, csharp]
 math: true
@@ -58,24 +58,27 @@ mermaid: true
 
 ## **[2] Hash Table**
 
-- `Key`-`Value` 쌍을 사용한다.
+- `KeyValue Pair`를 저장한다.
 
 - `Key`는 데이터의 탐색에 이용되고, 실제로 참조되는 데이터는 `Value`이다.
 
-- 데이터를 빠르게 참조하기 위해 사용된다.
+- 데이터를 빠르게 저장, 제거, 참조하기 위해 사용된다.
 
 <br>
 
 
 
-# 인덱스 충돌 처리
+# 인덱스 충돌 처리에 따른 구현 방식
 ---
 
-- 서로 다른 `Key`에 대한 `Hash Function`의 결과로 동일한 `Index`가 발생하는 경우, 이를 처리하는 것이 중요하다.
+- 서로 다른 `Key`에 대한 `Hash Function`의 결과로 동일한 `Index`가 발생하는 것을 인덱스 충돌이라고 한다.
+
+- 인덱스 충돌을 처리하는 방법에 따라 구현 방식을 분류할 수 있다.
 
 <br>
 
-## **[1] Open Addressing**
+
+## **[1] Open Addressing 방식**
 - 비어 있는 공간의 `Index`를 찾을 때까지 특정한 연산을 통해 `Index`를 새로 계산한다.
 
 ### **[1-1] Linear Probing**
@@ -90,10 +93,13 @@ mermaid: true
 
 <br>
 
-## [2] Separate Chaining 방식
-- Linked List를 이용하여, 해당 Key 뒤에 주렁주렁 매달아 놓는다.
 
-- 배열의 크기를 확장하지 않고, 데이터를 계속해서 넣을 수 있다.(장점은 아님)
+## **[2] Separate Chaining 방식**
+- `Pair`를 **Linked Node** 형태로 구현한다.
+
+- 인덱스 충돌이 발생할 경우, 해당 인덱스의 맨 마지막 노드로 연결한다.
+
+- 배열의 크기를 확장하지 않아도 데이터를 계속해서 넣을 수 있다.
 
 <br>
 
@@ -108,6 +114,7 @@ mermaid: true
 
 <br>
 
+
 ## **[1] 제네릭 타입**
 
 가능한 모든 타입에 대응하기 위해, `Key`와 `Value`를 제네릭 타입으로 사용한다.
@@ -119,6 +126,7 @@ class HashTable<TKey, TValue> { }
 ```
 
 <br>
+
 
 ## **[2] Pair 구조체 정의**
 
@@ -143,6 +151,7 @@ struct Pair
 
 <br>
 
+
 ## **[3] 필드 정의**
 
 우선, 내부 데이터들을 배열 형태로 저장할 `Bucket`이 필요하다.
@@ -151,13 +160,13 @@ struct Pair
 
 그리고 `Bucket`의 크기를 캐싱해두는 것이 좋으므로,
 
-정수 타입의 `capacity` 필드를 만들어 여기에 저장한다.
+정수 타입의 `Capacity` 필드를 만들어 여기에 저장한다.
 
 <br>
 
 그 다음은 실제로 저장되는 데이터의 개수인데,
 
-간단히 정수 타입의 `count` 필드에 저장하면 된다.
+간단히 정수 타입의 `Count` 필드에 저장하면 된다.
 
 <br>
 
@@ -171,9 +180,9 @@ struct Pair
 
 <br>
 
-따라서 정수 타입의 `dummyCount` 필드를 만들어 더미의 개수를 저장하고,
+따라서 정수 타입의 `DummyCount` 필드를 만들어 더미의 개수를 저장하고,
 
-`count`와 `dummyCount`를 합산하여 이를 기반으로 `Bucket`의 확장 여부를 판단하면 된다.
+`Count`와 `DummyCount`를 합산하여 이를 기반으로 `Bucket`의 확장 여부를 판단하면 된다.
 
 <br>
 
@@ -189,57 +198,201 @@ private int _dummyCount;
 
 <br>
 
-## **[4] 해시 함수**
+
+## **[4] GetHashIndex() : 해시 계산 메소드**
 
 `C#`에는 `Object.GetHashCode()`라는 메소드가 있다.
 
 이를 통해 간편히 해시 값을 얻을 수 있으며,
 
-여기에 추가적으로 간단한 연산을 더해 해시 함수를 완성한다.
+여기에 추가적으로 간단한 연산을 더해 해시 메소드를 완성한다.
+
+그리고 결과적으로 `Bucket` 내의 인덱스를 얻어야 하므로,
+
+`Capacity` 값으로 나머지 연산을 해준다.
 
 ```cs
-private const int HashSeed = 
+private const int HashSeed = 4327;
+
+private int GetHashIndex(TKey key)
+{
+    int index = ((key.GetHashCode() + HashSeed) * HashSeed) % _capacity;
+
+    // 음수 대처
+    if (index < 0)
+        index += _capacity;
+
+    return index;
+}
 ```
 
 <br>
 
-## **[wewew] 탐색**
 
-`Key`를 이용해 `Bucket`의 `Index`를 탐색한다.
+## **[5] GetNextIndex() : 인덱스 충돌 처리 메소드**
 
+`Open Addressing` 방식에서는 인덱스 충돌이 발생할 경우
 
+정해진 수식을 통해 다음 인덱스를 얻어와야 한다.
 
-<br>
+```cs
+private int GetNextIndex(int index)
+{
+    int nextIndex = (index + 1) % _capacity;
+    return nextIndex;
+}
+```
 
-## **[wewew] 인덱스 충돌 시 다음 인덱스 탐색**
-
-
-## **[wewewe] **
-
-- Probing으로 만드는 경우에, 1..2..3 이렇게 Probing으로 연결되었는데 도중에 2가 사라져버리면 3을 탐색할 때 2에서 빈공간을 탐색하게 되므로 3이 없다고 판단할 수 있다.
-
-- 따라서 이처럼 2를 제거해도 2가 사라진 자리에 더미 노드를 넣어서 탐색이 이어질 수 있게 해야 한다.
-
-- 그런데 더미 노드가 쌓이면 손해이므로, 언젠가 더미 노드를 싹 지우고 해시를 싹 리빌딩하는 과정이 필요하다.
-
-- 해시 리빌딩을 위해서는 KeyValuePair 들을 따로 모아 저장해놓아야 할듯
+일단 단순히 인덱스에 1을 더하기만 해주는 방식을 사용한다.
 
 <br>
 
 
+## **[6] Search() : 탐색 메소드**
 
-# 확장과 재구성
+탐색 메소드의 입력은 `Key`이며,
+
+출력은
+
+1. 탐색 성공 여부(`true`/`false`)
+2. 탐색을 종료한 위치의 `Index`
+3. 탐색 성공 시 얻어낸 `Value`
+
+이렇게 3가지이다.
+
+<br>
+
+우선 해시 함수를 통해 `Key`로부터 임의의 `Index`를 계산한다.
+
+그리고 반복문 내부로 진입하여 다음을 반복한다.
+
+1. `Bucket`의 해당 `Index` 위치가 비어있는 경우, 곧바로 종료하며 (`false`, `Index`, `default`)를 리턴한다.
+
+2. 더미 또는 다른 `Key`를 발견한 경우, `GetNextIndex(Index)`를 통해 다음 인덱스로 넘어간다.
+
+3. 동일한 `Key`를 발견한 경우, 곧바로 종료하며 (`true`, `Index`, `Value`)를 리턴한다.
+
+여기서 주의할 점은 더미인데도 키값이 동일한 경우가 있을 수 있다는 것이다.
+
+따라서 **2**는 반드시 **3**보다 먼저 검사해야 한다.
+
+<br>
+
+
+## **[7] Expand() : Bucket 확장 메소드**
+
+`Bucket` 내에 저장된 데이터가 많아질수록
+
+해시를 통해 얻은 인덱스의 적중률이 점차 떨어지게 된다.
+
+따라서 이는 성능 저하로 이어질 수 있으며,
+
+적절한 타이밍에 `Bucket`을 확장해주어야 한다.
+
+그리고 해시 메소드는 `Capacity`에 의존하기 때문에,
+
+기존에 저장했던 데이터들에 대해 각각 다시 해시 계산을 하여
+
+새롭게 저장해주어야 한다.
+
+<br>
+
+확장을 너무 가끔씩 해주면 해시 적중률이 떨어져 평소의 성능이 저하되고,
+
+확장이 너무 잦으면 불필요한 성능과 메모리 낭비가 생길 수 있으므로
+
+적절히 판단하여 확장해주어야 한다.
+
+<br>
+
+
+## **[8] Add() : 데이터 추가 메소드**
+
+매개변수로는 `Key`, `Value`를 받아 새로운 `Pair`를 만들고,
+
+이를 `Bucket` 내에 저장하는 메소드.
+
+우선적으로 `Bucket`의 확장이 필요한 경우 확장한다.
+
+그리고 `Search()` 메소드를 통해 동일한 `Key`의 존재 여부를 검사하고
+
+저장할 `Index`를 가져온다.
+
+<br>
+
+동일한 `Key`가 존재하지 않는 경우 해당 `Index` 위치에 저장하고
+
+`Count`를 하나 증가시켜준다.
+
+동일한 `Key`가 이미 증가하는 경우 아무 것도 하지 않거나
+
+해당 위치의 `Value`를 바꿔준다.
+
+그리고 데이터 추가 성공 여부를 `bool` 타입으로 리턴해줄 수 있다.
+
+<br>
+
+
+## **[9] Remove() : 데이터 제거 메소드**
+
+매개변수로는 `Key`를 받아온다.
+
+`Search()` 메소드를 통해 해당 `Key`가 존재하는지 여부를 검사하고
+
+해당 위치의 `Index`를 가져온다.
+
+<br>
+
+`Key`가 존재할 경우 해당 위치에 `Dummy`를 덮어씌우고
+
+`Count`를 하나 증가, `DummyCount`를 하나 증가시켜준다.
+
+동일 `Key` 존재하지 않으면 아무 것도 하지 않는다.
+
+그리고 제거 성공 여부를 `bool` 타입으로 리턴해줄 수 있다.
+
+
+<br>
+
+# Separate Chaining 방식으로 구현하기
 ---
 
-- Chaining이든, Probing이든 데이터가 쌓일수록 언젠가는 배열을 확장해줘야 탐색 비용을 줄일 수 있다.
+## **Open Addressing 방식과의 차이점**
 
-- 배열을 확장하면 모든 데이터를 다시 Hash Function에 넣고 해시를 재계산해줘야 한다.
+- `Pair`는 앞뒤 연결이 존재하는 `Node` 형태로 구현해야 한다.
 
-- 배열의 확장이 너무 잦거나 규모가 크면 확장으로 인한 성능 소모가 크고, 확장을 너무 안하면 참조의 성능 소모가 커지기 때문에 적절한 타협이 필요하다.
+- `Dummy`가 존재하지 않는다.
+
+- 인덱스 충돌로 인한 다음 인덱스 계산이 필요하지 않다.
+
+
+
+
+
+
+
+
+Open Addressing 작성 안한 것처럼, 동일한 순서로 [1] ~ [9] 새롭게 설명 작성
+
+
+
+
+
+
+
 
 <br>
 
+# Source Code
+---
 
+1. Open Addressing
+
+
+2. Separate Chaining
+
+
+<br>
 
 # References
 ---
