@@ -1,5 +1,5 @@
 ---
-title: Enum 관련 메모
+title: C# Enum 관련 메모
 author: Rito15
 date: 2021-02-28 04:00:00 +09:00
 categories: [C#, C# Memo]

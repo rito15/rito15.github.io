@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-18T02:35:38+09:00</updated>
+  <updated>2021-07-19T21:48:13+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,71 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# 구조체가 IEquatable&amp;lt;T&amp;gt;를 상속해야 하는 이유</title>
+    <link href="https://rito15.github.io/posts/cs-why-should-inherit-iequatable/" rel="alternate" type="text/html" title="C# 구조체가 IEquatable&amp;lt;T&amp;gt;를 상속해야 하는 이유" />
+    <published>2021-07-19T20:00:00+09:00</published>
+  
+    <updated>2021-07-19T20:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-why-should-inherit-iequatable/</id>
+    <content src="https://rito15.github.io/posts/cs-why-should-inherit-iequatable/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      System.Object.Equals(object)
+
+
+C#의 모든 타입의 최상위 클래스인 Object에는 .Equals(object) 메소드가 존재한다.
+
+그리고 이를 통해 다른 값과의 동일 비교를 수행할 수 있다.
+
+
+
+구조체나 클래스를 직접 정의하고, 해당 객체로 .Equals(object)를 호출하면
+
+object.Equals(object)가 호출된다.
+
+우선, 이것이 핵심이다.
+
+
+
+박싱
+
+int a = 1;
+object oa = a;
+
+
+Value Type을 object 타입으로 캐스팅하면 박싱이 일어난다.
+
+IL_0001:  ldc.i4.1
+IL_0002:  stloc.0
+IL_0003:  ldloc.0
+IL_0004:  box        [mscorlib]System.Int32
+IL_0...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -332,67 +397,6 @@ ThreadLocal&amp;lt;T&amp;gt;
   
     유저 모드에서 커널 모드로 변경해야 하므로, 유저 모드 동기화에 비해 성능 소모가 크다.
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# ReaderWriterLock</title>
-    <link href="https://rito15.github.io/posts/06-cs-reader-writer-lock/" rel="alternate" type="text/html" title="C# ReaderWriterLock" />
-    <published>2021-07-08T01:06:00+09:00</published>
-  
-    <updated>2021-07-08T01:06:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/06-cs-reader-writer-lock/</id>
-    <content src="https://rito15.github.io/posts/06-cs-reader-writer-lock/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Threading" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Reader Writer Lock
-
-
-스레드 간에 공유되는 데이터가 있을 때,
-
-항상 모든 스레드가 그 데이터를 읽고 쓰는 것은 아니다.
-
-어떤 스레드는 해당 데이터를 읽기만 하고,
-
-어떤 스레드는 해당 데이터를 쓰기만 하는 구조로 이루어져 있을 수 있다.
-
-그리고 소수의 쓰기 스레드가 상대적으로 적은 횟수로 쓰기를 수행하고,
-
-다수의 읽기 스레드가 상대적으로 빈번하게 읽기를 수행하는 경우가 많다.
-
-
-
-이런 경우에도 일반적인 락을 구현하여 읽기/쓰기를 수행하는 동안에 항상 락을 설정하고 해제한다면
-
-데이터를 단순히 읽기만 하여 값이 변경되지 않는 상황에도 불필요하게 임계 영역을 만들게 되므로
-
-성능상 굉장히 손해라고 할 수 있다.
-
-
-
-ReaderWriterLock은 데이터에 쓰기 위해 접근할 때는 ...
     </summary>
   
 

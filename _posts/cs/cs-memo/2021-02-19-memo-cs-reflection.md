@@ -1,5 +1,5 @@
 ---
-title: Reflection(리플렉션)
+title: C# Reflection(리플렉션)
 author: Rito15
 date: 2021-02-19 03:50:00 +09:00
 categories: [C#, C# Memo]

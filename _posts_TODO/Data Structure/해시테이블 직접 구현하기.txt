@@ -1,41 +1,68 @@
-
-
-
-# 해시테이블 구현 원리
+---
+title: Hash Table(해시 테이블)
+author: Rito15
+date: 2021-07-19 14:14:00 +09:00
+categories: [Algorithm, Data Structure]
+tags: [algorithm, data structure, csharp]
+math: true
+mermaid: true
 ---
 
-- Key를 주면 Hash Function에 집어넣어서 Index를 만든다. (배열 크기로 나머지 연산)
 
-- 그 Index로 배열(버킷, Bucket)을 참조한다.
+# 특징
+---
 
-- 배열의 해당 위치에 Value를 저장한다.
+- 데이터의 삽입, 제거, 탐색이 모두 `O(1)`로 매우 빠르다.
 
-- 탐색할 때도 같은 방식을 이용한다.
+- 내부적으로 정렬되지는 않는다.
 
-- 일단 중요한건 Hash Function의 성능(일단 `object.GetHashCode()` 사용?)
+- 저장할 데이터의 수보다 더 많은 공간이 필요하다.
 
 <br>
 
 
 
-# 토막 상식 - 해시를 이용한 자료구조들
+# 구현 원리
 ---
 
-## [1] Set(HashSet)
+- `Key`를 `Hash Function`에 집어넣은 뒤, 배열 크기로 나머지 연산하여 배열의 `Index`를 계산한다.
 
-- 저장할 Data를 Hash Function에 집어넣는다.
+- 계산된 `Index`로 `Bucket`(배열)을 참조한다.
 
-- 얻은 Index 위치의 배열 공간에 Data를 그대로 저장한다.
+- `Bucket`의 해당 위치에 `KeyValue Pair`를 저장한다.
 
-- Data의 중복을 허용하지 않는다. (중복을 허용하고 개수를 카운팅할 수도 있을듯)
+- 제거, 탐색할 때도 같은 방식을 이용하여 `Bucket`내의 위치를 찾는다.
 
-- Data의 존재 유무, 중복 확인을 목적으로 사용한다.
+- 해시 충돌로 인해 서로 다른 `Key`에 대해 동일 `Index`가 발생할 수 있으므로, 이를 확인하기 위해 `Bucket` 내에 `Value`만 저장하면 안되고, `Key`와 `Value`를 하나로 묶어 저장해야 한다.
 
 <br>
 
-## [2] Hash Table
 
-- O(1)로 데이터를 참조하기 위해 사용된다.
+
+# 참고 - 해시를 이용한 자료구조들
+---
+
+## **[1] Set(Hash Set)**
+
+- `Key`만 사용한다.
+
+- 저장할 `Key`를 `Hash Function`에 집어넣어 `Index`를 계산한다.
+
+- 얻은 `Index` 위치의 배열 공간에 `Key`를 그대로 저장한다.
+
+- 데이터의 중복을 허용하지 않는다. (중복을 허용하고 개수를 카운팅할 수도 있을듯)
+
+- 데이터의 존재 유무, 중복 확인을 목적으로 사용한다.
+
+<br>
+
+## **[2] Hash Table**
+
+- `Key`-`Value` 쌍을 사용한다.
+
+- `Key`는 데이터의 탐색에 이용되고, 실제로 참조되는 데이터는 `Value`이다.
+
+- 데이터를 빠르게 참조하기 위해 사용된다.
 
 <br>
 
@@ -44,36 +71,150 @@
 # 인덱스 충돌 처리
 ---
 
-- Hash Function의 결과로 중복 Index가 발생하는 경우, 이를 처리하는 것이 중요하다.
+- 서로 다른 `Key`에 대한 `Hash Function`의 결과로 동일한 `Index`가 발생하는 경우, 이를 처리하는 것이 중요하다.
 
 <br>
 
-## [1] Separate Chaining 방식
+## **[1] Open Addressing**
+- 비어 있는 공간의 `Index`를 찾을 때까지 특정한 연산을 통해 `Index`를 새로 계산한다.
+
+### **[1-1] Linear Probing**
+- 현재 배열의 인덱스로부터 고정된 크기만큼 이동하며 차례대로 비어있는 공간을 찾아, 그 곳에 데이터를 저장한다.
+
+### **[1-2] Quadratic Probing**
+- Linear Probing과 유사하지만, 인덱스를 이동할 때 처음에는 2^0, 다음에는 2^1, 2^2, ...씩 이동하며 빈 공간을 찾는다.
+
+### **[1-3] Double Hashing Probing**
+- 해시된 값을 다시 Hash Function에 집어넣어서 또 계산하여 새로운 인덱스를 계산한다.
+- Hash Function의 성능에 크게 좌우되며, 보통은 다른 Probing 방식에 비해 성능 소모가 크다.
+
+<br>
+
+## [2] Separate Chaining 방식
 - Linked List를 이용하여, 해당 Key 뒤에 주렁주렁 매달아 놓는다.
 
 - 배열의 크기를 확장하지 않고, 데이터를 계속해서 넣을 수 있다.(장점은 아님)
 
 <br>
 
-## [2] Open Addressing
-- 추가적인 메모리를 사용하는 Chaining 방식과 달리, 현재 남아 있는 배열 공간을 활용한다.
 
-### [2-1] Linear Probing
-- 현재 배열의 인덱스로부터 고정된 크기만큼 이동하며 차례대로 비어있는 공간을 찾아, 그 곳에 데이터를 저장한다.
 
-### [2-2] Quadratic Probing
-- Linear Probing과 유사하지만, 인덱스를 이동할 때 처음에는 2^0, 다음에는 2^1, 2^2, ...씩 이동하며 빈 공간을 찾는다.
+# Open Addressing 방식으로 구현하기
+---
 
-### [2-3] Double Hashing Probing
-- 해시된 값을 다시 Hash Function에 집어넣어서 또 계산하여 새로운 인덱스를 계산한다.
-- Hash Function의 성능에 크게 좌우되며, 보통은 다른 Probing 방식에 비해 성능 소모가 크다.
+## **구현 언어**
+
+- `C#`
 
 <br>
 
+## **[1] 제네릭 타입**
+
+가능한 모든 타입에 대응하기 위해, `Key`와 `Value`를 제네릭 타입으로 사용한다.
+
+따라서 클래스를 다음과 같이 정의한다.
+
+```cs
+class HashTable<TKey, TValue> { }
+```
+
+<br>
+
+## **[2] Pair 구조체 정의**
+
+`Key`와 `Value`를 하나의 컨테이너로 담아 정의해야 한다.
+
+클래스로 작성할 수도 있지만, GC를 피하기 위해 구조체로 작성한다.
+
+```cs
+struct Pair
+{
+    public TKey key;
+    public TValue value;
+    public bool isDummy;
+}
+```
+
+**Open Addressing** 방식에서는 더미 데이터가 필요하다.
+
+타입이 정해져 있으면 절대로 사용되지 않을 값들을 사용해 더미를 정의할 수 있지만,
+
+제네릭이라 불가능하므로 더미 여부를 나타낼 수 있는 `isDummy` 필드를 사용한다.
+
+<br>
+
+## **[3] 필드 정의**
+
+우선, 내부 데이터들을 배열 형태로 저장할 `Bucket`이 필요하다.
+
+따라서 `Bucket`의 타입은 `Pair[]`이 된다.
+
+그리고 `Bucket`의 크기를 캐싱해두는 것이 좋으므로,
+
+정수 타입의 `capacity` 필드를 만들어 여기에 저장한다.
+
+<br>
+
+그 다음은 실제로 저장되는 데이터의 개수인데,
+
+간단히 정수 타입의 `count` 필드에 저장하면 된다.
+
+<br>
+
+여기서 추가적으로 생각해봐야 할 것은 더미의 현재 개수이다.
+
+더미의 개수를 세지 않고 실제 데이터 개수만 센다면
+
+데이터 삭제로 인해 더미가 계속 쌓여서
+
+데이터를 넣지 못하는 경우가 생길 수 있다.
+
+<br>
+
+따라서 정수 타입의 `dummyCount` 필드를 만들어 더미의 개수를 저장하고,
+
+`count`와 `dummyCount`를 합산하여 이를 기반으로 `Bucket`의 확장 여부를 판단하면 된다.
+
+<br>
+
+- 정리
+
+```cs
+private Pair[] _bucket;
+
+private int _capacity;
+private int _count;
+private int _dummyCount;
+```
+
+<br>
+
+## **[4] 해시 함수**
+
+`C#`에는 `Object.GetHashCode()`라는 메소드가 있다.
+
+이를 통해 간편히 해시 값을 얻을 수 있으며,
+
+여기에 추가적으로 간단한 연산을 더해 해시 함수를 완성한다.
+
+```cs
+private const int HashSeed = 
+```
+
+<br>
+
+## **[wewew] 탐색**
+
+`Key`를 이용해 `Bucket`의 `Index`를 탐색한다.
 
 
-# 삭제 처리
----
+
+<br>
+
+## **[wewew] 인덱스 충돌 시 다음 인덱스 탐색**
+
+
+## **[wewewe] **
 
 - Probing으로 만드는 경우에, 1..2..3 이렇게 Probing으로 연결되었는데 도중에 2가 사라져버리면 3을 탐색할 때 2에서 빈공간을 탐색하게 되므로 3이 없다고 판단할 수 있다.
 

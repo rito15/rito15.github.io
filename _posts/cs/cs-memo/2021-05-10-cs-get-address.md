@@ -1,5 +1,5 @@
 ---
-title: unsafe와 fixed 구문을 통해 주솟값 확인하기
+title: C# unsafe와 fixed 구문을 통해 주솟값 확인하기
 author: Rito15
 date: 2021-05-10 14:14:00 +09:00
 categories: [C#, C# Memo]

@@ -1,5 +1,5 @@
 ---
-title: Regex (정규표현식)
+title: C# Regex (정규표현식)
 author: Rito15
 date: 2021-03-08 17:42:00 +09:00
 categories: [C#, C# Memo]

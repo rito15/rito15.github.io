@@ -1,0 +1,465 @@
+
+#if DEBUG
+#define DEBUG_ON
+#endif
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+// 인덱스 충돌 시 링크를 이어나가는 Separate Chaining 방식
+class HashTable_02<TKey, TValue>
+{
+    /***********************************************************************
+    *                               Class Definition
+    ***********************************************************************/
+    #region .
+    private class KeyValueNode
+    {
+        public TKey key;
+        public TValue value;
+
+        public KeyValueNode prev;
+        public KeyValueNode next;
+
+        // 가장 앞에서부터 몇 번째 노드인지
+        public int depth;
+
+        public bool IsHead => prev == null;
+        public bool IsTail => next == null;
+        public bool HasPrev => prev != null;
+        public bool HasNext => next != null;
+
+        public KeyValueNode(TKey key, TValue value)
+        {
+            this.key = key;
+            this.value = value;
+            this.prev = null;
+            this.next = null;
+
+            this.depth = 1;
+        }
+
+        /// <summary> next에 새로운 노드 연결 </summary>
+        public void Connect(KeyValueNode nextNode)
+        {
+            this.next = nextNode;
+            nextNode.prev = this;
+
+            nextNode.depth = this.depth + 1;
+        }
+
+        /// <summary> 가장 마지막 노드 참조 </summary>
+        public KeyValueNode FindTail()
+        {
+            KeyValueNode current = this;
+            while (current.next != null)
+            {
+                current = current.next;
+            }
+            return current;
+        }
+
+        /// <summary> 노드를 꼬리까지 순회하며 키가 일치하는 노드 찾아 리턴하기 </summary>
+        public KeyValueNode FindMatch(TKey key)
+        {
+            KeyValueNode current = this;
+            while (current != null)
+            {
+                // 키가 일치하는 노드 찾은 경우 리턴
+                if (key.Equals(current.key))
+                    return current;
+
+                current = current.next;
+            }
+
+            return null;
+        }
+
+        /// <summary> 가장 마지막 노드에 붙이기 </summary>
+        public void ConnectToTail(KeyValueNode newNode)
+        {
+            FindTail().Connect(newNode);
+        }
+
+        /// <summary> 노드 제거하고 앞뒤를 서로 이어주기 </summary>
+        public void Remove()
+        {
+            if (prev != null)
+            {
+                prev.next = this.next == null ? null : this.next;
+                prev = null;
+            }
+            if (next != null)
+            {
+                next.prev = this.prev == null ? null : this.prev;
+                next = null;
+            }
+        }
+
+        /// <summary> 모든 연결 끊기 </summary>
+        public void RemoveConnections()
+        {
+            prev = null;
+            next = null;
+        }
+
+        public override string ToString()
+        {
+            return $"({key}, {value} /{depth})";
+        }
+    }
+    #endregion
+    /***********************************************************************
+    *                               Fields
+    ***********************************************************************/
+    #region .
+    private KeyValueNode[] _bucket;
+    private int _count;
+    private int _capacity;
+
+    private const int MinCapacity = 4;
+    private const int HashSeed = 4129; // 임의의 해시 시드 값
+
+    #endregion
+    /***********************************************************************
+    *                               Constructors, Indexer
+    ***********************************************************************/
+    #region .
+    public HashTable_02(int capacity)
+    {
+        if (capacity < MinCapacity) capacity = MinCapacity;
+        this._capacity = capacity;
+        _count = 0;
+
+        _bucket = new KeyValueNode[capacity];
+    }
+    public HashTable_02() : this(MinCapacity) { }
+
+    public TValue this[TKey key]
+    {
+        get
+        {
+            bool found = Search(key, out _, out KeyValueNode target);
+            if (found)
+            {
+#if DEBUG_ON
+                Console.WriteLine($"Indexer - Get : {target}\n");
+#endif
+                return target.value;
+            }
+            else
+            {
+#if DEBUG_ON
+                Console.WriteLine($"Indexer - Get Failed : {key}\n");
+                return default;
+#else
+                throw new KeyNotFoundException($"지정한 키가 존재하지 않습니다 : {key}");
+#endif
+            }
+        }
+        set
+        {
+#if DEBUG_ON
+            Console.WriteLine($"Indexer - Set");
+#endif
+            Add(key, value);
+        }
+    }
+
+    #endregion
+    /***********************************************************************
+    *                               Private Methods - Options
+    ***********************************************************************/
+    #region .
+    /// <summary> Key로부터 인덱스 구하기 </summary>
+    private int GetHashIndex(TKey key)
+    {
+        int index = ((key.GetHashCode() + HashSeed) * HashSeed) % _capacity;
+
+        // 음수 대처
+        if (index < 0)
+            index += _capacity;
+#if DEBUG_ON
+        Console.WriteLine($"Hash Call - Key : {key}, Index : {index}");
+#endif
+
+        return index;
+    }
+
+    /// <summary> 확장이 필요한지 여부 </summary>
+    private bool IsExpansionRequired()
+    {
+        // 현재 노드 개수가 전체 배열 크기의 절반 이상인 경우 확장
+        return _count >= _capacity / 2;
+    }
+
+    /// <summary> 버킷 확장하기 </summary>
+    private void ExpandBucket()
+    {
+#if DEBUG_ON
+        Console.WriteLine("\n===================================================");
+        Console.WriteLine($"★ Expand Bucket : {_capacity} -> {_capacity * 2}");
+        Console.WriteLine("===================================================");
+#endif
+        ExpandInternal(_capacity * 2);
+    }
+
+    #endregion
+    /***********************************************************************
+    *                               Private Methods
+    ***********************************************************************/
+    #region .
+
+    /// <summary> 
+    /// 해당 Key를 갖고 있는 노드 찾기
+    /// <para/> - 성공 여부 리턴
+    /// <para/> - targetOrTail : 매치 성공 시 해당 노드로 초기화
+    /// <para/> - targetOrTail : 매치 실패 시 해당 인덱스의 꼬리로 초기화
+    /// </summary>
+    private bool Search(TKey key, out int index, out KeyValueNode targetOrTail)
+    {
+        index = GetHashIndex(key);
+
+        // 1. 해당 인덱스가 빈 공간인 경우
+        if (_bucket[index] == null)
+        {
+            targetOrTail = null;
+            return false;
+        }
+        else
+        {
+            KeyValueNode current = _bucket[index].FindMatch(key);
+
+            // 2. 매치되는 녀석을 찾음 -> targetOrTail = Target
+            if (current != null)
+            {
+                targetOrTail = current;
+                return true;
+            }
+            // 3. 매치되는 녀석이 없음 -> targetOrTail = Tail
+            else
+            {
+                targetOrTail = _bucket[index].FindTail();
+                return false;
+            }
+        }
+    }
+
+    /// <summary> 지정된 크기로 버킷 확장하기 </summary>
+    private void ExpandInternal(int newCapacity)
+    {
+        if (newCapacity <= _capacity)
+            throw new ArgumentException("ExpandBucket(int) : Capacity는 기존보다 크게 지정해야 합니다.");
+
+        this._capacity = newCapacity;
+        this._count = 0;
+
+        KeyValueNode[] oldBucket = this._bucket;
+        this._bucket = new KeyValueNode[newCapacity];
+
+        // 새로운 버킷에 노드들 이전시키기
+        for (int i = 0; i < oldBucket.Length; i++)
+        {
+            if (oldBucket[i] != null)
+            {
+                KeyValueNode cur = oldBucket[i];
+                while (cur != null)
+                {
+                    InsertNode(new KeyValueNode(cur.key, cur.value));
+                    cur = cur.next;
+                }
+            }
+        }
+    }
+
+    /// <summary> 버킷에 새로운 노드 추가하기 </summary>
+    private void InsertNode(KeyValueNode node)
+    {
+        bool found = Search(node.key, out int index, out KeyValueNode targetOrTail);
+
+        // 키가 일치하는 대상이 없는 경우
+        if (!found)
+        {
+            // 1. 빈 공간 찾은 경우 : 바로 추가
+            if (targetOrTail == null)
+            {
+                _bucket[index] = node;
+            }
+
+            // 2. 인덱스에 이미 손님이 있음 : 꼬리에 추가
+            else
+            {
+                targetOrTail.Connect(node);
+            }
+
+            // 개수 하나 증가
+            _count++;
+
+#if DEBUG_ON
+            Console.WriteLine($"Add : {node}");
+            Console.WriteLine($"Count : {_count}\n");
+#endif
+        }
+        // 3. 이미 해당 키가 존재하는 경우 : 값 교체
+        else
+        {
+#if DEBUG_ON
+            Console.WriteLine($"Exchange(Add) : ({node.key}, {targetOrTail.value} -> {node.value})");
+            Console.WriteLine($"Count : {_count}\n");
+#endif
+            targetOrTail.value = node.value;
+        }
+    }
+
+    #endregion
+    /***********************************************************************
+    *                               Public Methods
+    ***********************************************************************/
+    #region .
+    /// <summary> 해당 키를 포함하고 있는지 여부 검사 </summary>
+    public bool ContainsKey(TKey key)
+    {
+        return Search(key, out _, out _);
+    }
+
+    /// <summary> 
+    /// 새로운 key-value 추가
+    /// <para/> 이미 키가 존재할 경우, value를 새로운 값으로 초기화
+    /// <para/> 확장이 필요한 경우를 검사하여 자동 확장
+    /// </summary>
+    public void Add(TKey key, TValue value)
+    {
+        if (IsExpansionRequired())
+            ExpandBucket();
+
+        InsertNode(new KeyValueNode(key, value));
+    }
+
+    /// <summary> 
+    /// 대상 key가 존재할 경우, 찾아서 key-value 제거
+    /// <para/> 제거 성공 여부 리턴
+    /// </summary>
+    public bool Remove(TKey key)
+    {
+        bool found = Search(key, out int index, out KeyValueNode target);
+        if (found)
+        {
+            // 찾은 노드가 Head 노드일 경우
+            if (target.IsHead)
+            {
+                // Next가 존재하면 Next를 당겨오기
+                if (target.HasNext)
+                {
+                    _bucket[index] = target.next;
+                }
+                // Next가 존재하지 않으면 해당 인덱스에 null로 초기화
+                else
+                {
+                    _bucket[index] = null;
+                }
+            }
+
+            target.Remove();
+            _count--;
+#if DEBUG_ON
+            Console.WriteLine($"Remove : {target}");
+            Console.WriteLine($"Count : {_count}\n");
+#endif
+            return true;
+        }
+        else
+        {
+#if DEBUG_ON
+            Console.WriteLine($"Remove Failed - Key : {key}");
+            Console.WriteLine($"Count : {_count}\n");
+#endif
+            return false;
+        }
+    }
+
+    /// <summary> 버킷 전체 출력 </summary>
+    [System.Diagnostics.Conditional("DEBUG_ON")]
+    public void PrintAll(bool showNull = false)
+    {
+        Console.WriteLine("===================== Bucket =====================");
+        Console.WriteLine($"== Count : {_count}, Capacity : {_capacity}");
+        Console.WriteLine("==================================================");
+        for (int i = 0; i < _capacity; i++)
+        {
+            if (_bucket[i] == null)
+            {
+                if(showNull)
+                    Console.WriteLine($"[{i}] NULL\n");
+            }
+            else
+            {
+                KeyValueNode cur = _bucket[i];
+                Console.WriteLine($"[{i}] {cur}");
+                cur = cur.next;
+
+                while (cur != null)
+                {
+                    Console.Write("└");
+                    for (int d = 1; d < cur.depth; d++)
+                        Console.Write("─");
+
+                    Console.WriteLine($"  {cur}");
+                    cur = cur.next;
+                }
+                Console.WriteLine();
+            }
+        }
+        Console.WriteLine("==================================================\n");
+    }
+
+    #endregion
+    /***********************************************************************
+    *                               Test
+    ***********************************************************************/
+    #region .
+
+    public static void Run()
+    {
+        HashTable_02<int, double> table = new HashTable_02<int, double>();
+
+        for (int i = 0; i < 10; i++)
+        {
+            table.Add(i, i * 10);
+        }
+        table.PrintAll();
+
+        for (int i = 5; i < 20; i++)
+        {
+            table[i] = i * 100;
+        }
+        table.PrintAll();
+
+        for (int i = 15; i < 25; i++)
+        {
+            table.Remove(i);
+        }
+        table.PrintAll();
+
+        for (int i = -10; i < 10; i++)
+        {
+            table.Remove(i);
+            table.Remove(i);
+        }
+        table.PrintAll();
+
+        for (int i = 10; i < 20; i++)
+        {
+            Console.WriteLine($"ContainsKey [{i}] : {table.ContainsKey(i)}\n");
+        }
+
+        for (int i = 10; i < 20; i++)
+        {
+            Console.WriteLine($"{table[i]}");
+        }
+    }
+
+    #endregion
+}

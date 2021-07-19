@@ -1,0 +1,530 @@
+
+#if DEBUG
+#define DEBUG_ON
+#endif
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+// 인덱스 충돌 시 다음으로 건너가는 Open Addressing 방식
+class HashTable_01<TKey, TValue>
+{
+    /***********************************************************************
+    *                               Class Definition
+    ***********************************************************************/
+    #region .
+    private readonly struct Pair
+    {
+        public readonly TKey key;
+        public readonly TValue value;
+        public readonly bool isDummy;
+
+        public static readonly Pair Dummy = new Pair(true);
+        public static readonly Pair Default = new Pair(false);
+
+        public Pair(TKey key, TValue value)
+        {
+            this.key = key;
+            this.value = value;
+            this.isDummy = false;
+        }
+
+        private Pair(bool isDummy)
+        {
+            this.key = default;
+            this.value = default;
+            this.isDummy = isDummy;
+        }
+
+        public bool IsNull()
+        {
+            return this == Default;
+        }
+
+        public bool IsNullOrDummy()
+        {
+            return this == Default || this == Dummy;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Pair))
+                return false;
+
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public static bool operator ==(Pair a, Pair b)
+        {
+            return a.Equals(b);
+        }
+        public static bool operator !=(Pair a, Pair b)
+        {
+            return !a.Equals(b);
+        }
+
+        public override string ToString()
+        {
+            return $"({key}, {value})";
+        }
+    }
+
+    #endregion
+    /***********************************************************************
+    *                               Fields, Properties
+    ***********************************************************************/
+    #region .
+    private Pair[] _bucket;
+
+    private int _capacity;
+    private int _count;
+    private int _dummyCount;
+
+    /// <summary> 해시 결과에 곱해줄 임의 값 </summary>
+    private const int HashSeed = 64281;
+
+    public int Count => _count;
+
+    #endregion
+    /***********************************************************************
+    *                               Constructor, Indexer
+    ***********************************************************************/
+    #region .
+    public HashTable_01(int capacity)
+    {
+        if (capacity < 4)
+            capacity = 4;
+
+        this._capacity = capacity;
+        _count = 0;
+        _dummyCount = 0;
+
+        _bucket = new Pair[capacity];
+        FillBucketDefault(_bucket);
+    }
+    public HashTable_01() : this(4) { }
+
+    // Indexer
+    public TValue this[TKey key]
+    {
+        get
+        {
+            bool found = Search(key, out _, out TValue value);
+
+            if (found) return value;
+#if DEBUG_ON
+            Console.WriteLine($"지정한 키가 존재하지 않습니다 : {key}");
+            return default;
+#else
+            else throw new KeyNotFoundException($"지정한 키가 존재하지 않습니다 : {key}");
+#endif
+        }
+        set
+        {
+#if DEBUG_ON
+            bool found = Search(key, out int index, out TValue oldValue);
+#else
+            bool found = FindValue(key, out int index, out _);
+#endif
+
+            // 기존에 동일 키가 존재한 경우, 존재하지 않은 경우 모두 친절하게 값 넣어주기
+            _bucket[index] = new Pair(key, value);
+#if DEBUG_ON
+            if (found)
+            {
+                Console.WriteLine($"Set into [{index}] - Key : ({key}), Value Changed : ({oldValue} -> {value})");
+            }
+            else
+            {
+                Console.WriteLine($"Set into [{index}] - New Pair : ({key}, {value})");
+            }
+            Console.WriteLine($"Current Count : {_count}\n");
+#endif
+        }
+    }
+    #endregion
+    /***********************************************************************
+    *                               Private Methods - Options
+    ***********************************************************************/
+    #region .
+
+    /// <summary>
+    /// 키값으로부터 해시 값 계산하기
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns>해시로부터 계산된 인덱스</returns>
+    private int GetHashIndex(TKey key)
+    {
+        int hash = ((key.GetHashCode() + HashSeed) * HashSeed) % _capacity;
+
+        // 음수일 경우 양수로
+        if (hash < 0) hash += _capacity;
+
+        return hash;
+    }
+
+    /// <summary> 인덱스 중복이 발생할 경우 다음 인덱스 계산 </summary>
+    private int GetNextIndex(int index)
+    {
+        int nextIndex = (index + 1) % _capacity;
+        return nextIndex;
+    }
+
+    /// <summary> 확장을 해야 하는지 여부 결정 </summary>
+    private bool IsExpansionRequired()
+    {
+        // 저장된 개수가 배열 크기의 절반 이상인 경우 확장
+        if (_dummyCount + _count >= _capacity / 2)
+            return true;
+
+        return false;
+    }
+
+    /// <summary> Bucket 확장하기 </summary>
+    private void ExpandBucket()
+    {
+        ExpandInternal(this._capacity * 2);
+    }
+
+    #endregion
+    /***********************************************************************
+    *                               Private Methods
+    ***********************************************************************/
+    #region .
+
+    private void FillBucketDefault(Pair[] bucket)
+    {
+        for (int i = 0; i < bucket.Length; i++)
+            bucket[i] = Pair.Default;
+    }
+
+    /// <summary>
+    /// 키를 이용해 페어 참조하기<para/>
+    /// 키가 이미 존재하는 경우, 해당 인덱스 리턴<para/>
+    /// 키가 존재하지 않았던 경우, 새롭게 찾은 빈 인덱스 리턴
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="index"></param>
+    /// <param name="value"></param>
+    /// <returns>
+    /// 값을 찾는 데 성공한 경우 <see langword="true"/>,<para/>
+    /// 실패한 경우 <see langword="false"/> 리턴
+    /// </returns>
+    private bool Search(TKey key, out int index, out TValue value)
+    {
+        index = GetHashIndex(key);
+#if DEBUG_ON
+        Console.WriteLine($"Search - Key : {key}, Hash Index : {index}");
+
+        int loopCount = 0;
+#endif
+        while (true)
+        {
+#if DEBUG_ON
+            if (++loopCount > _capacity * 10)
+                throw new Exception($"Infinite Loop {loopCount}");
+
+            if(loopCount > 1)
+                Console.WriteLine($"Search Next Index : {index}");
+#endif
+            // 1. 해당 키로 저장된 데이터가 없는 경우
+            if (_bucket[index].IsNull())
+            {
+                value = default;
+                return false;
+            }
+
+            // 2. 온기가 남아있는 더미인 경우 : 다음 인덱스로 넘어가기
+            else if (_bucket[index].isDummy)
+            {
+                // Do Nothing
+            }
+
+            // 3. 탐색 성공 : 키가 일치하는 경우
+            else if (key.Equals(_bucket[index].key))
+            {
+                value = _bucket[index].value;
+                return true;
+            }
+            // 4. 해당 인덱스에 다른 키가 존재하는 경우
+            // 다음 인덱스로 넘어가기
+
+            // Next Index
+            index = GetNextIndex(index);
+        }
+    }
+
+    /// <summary>
+    /// key를 이용하여 bucket 내의 다음 빈공간 인덱스 구하기
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns>이미 키가 존재할 경우, -1 리턴</returns>
+    private int FindEmptyBucketSpace(TKey key)
+    {
+        if (Search(key, out int index, out _))
+        {
+            return -1;
+        }
+
+        return index;
+    }
+
+    /// <summary> 내부 배열들을 새로운 크기로 확장하기 </summary>
+    private void ExpandInternal(int nextCapacity)
+    {
+        if (this._capacity >= nextCapacity)
+#if DEBUG_ON
+            throw new ArgumentException($"{nameof(nextCapacity)}는 {nameof(_capacity)}보다 커야 합니다.");
+#else
+            return;
+#endif
+
+#if DEBUG_ON
+        Console.WriteLine($"Bucket 확장 : {_capacity} -> {nextCapacity}");
+#endif
+        Pair[] prevBucket = _bucket;
+        _bucket = new Pair[nextCapacity];
+        FillBucketDefault(_bucket);
+
+        // 해시 재계산
+        _capacity = nextCapacity; // 해시 계산이 capacity 영향을 받으므로, capacity 우선 확장
+        ReconstructBucket(prevBucket);
+    }
+
+    /// <summary>
+    /// 해시 계산해서 bucket에 알맞은 인덱스 찾아 value 저장하기
+    /// </summary>
+    /// <param name="pair"></param>
+    /// <returns>
+    /// 저장에 성공 시 <see langword="true"/>,<para/>
+    /// 이미 해당 key가 존재할 경우  <see langword="false"/>
+    /// </returns>
+    private bool SavePair(in Pair pair)
+    {
+        if (_count >= _capacity)
+            return false;
+
+        int index = FindEmptyBucketSpace(pair.key);
+        if (index == -1)
+            return false;
+
+        _bucket[index] = pair;
+
+#if DEBUG_ON
+        if (index != -1)
+        {
+            Console.WriteLine($"Pair Saved in [{index}] : {pair}\n");
+        }
+        else
+        {
+            Console.WriteLine($"Save Failed : {pair}\n");
+        }
+#endif
+
+        return true;
+    }
+
+    /// <summary> 내부 해시 전부 재계산해서 bucket 배열 재구축하기 </summary>
+    private void ReconstructBucket(Pair[] sourceBucket)
+    {
+        for (int i = 0; i < sourceBucket.Length; i++)
+        {
+            if (sourceBucket[i].IsNullOrDummy()) continue;
+
+            SavePair(sourceBucket[i]);
+        }
+
+        // 더미는 모두 제거됨
+        _dummyCount = 0;
+    }
+
+    #endregion
+    /***********************************************************************
+    *                               Public Methods
+    ***********************************************************************/
+    #region .
+    /// <summary>
+    /// 새로운 key-value 쌍 추가하기
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    /// <returns>
+    /// 값을 추가하는데 성공한 경우 <see langword="true"/><para/>
+    /// 이미 동일 키가 존재하는 경우 <see langword="false"/>
+    /// </returns>
+    public bool Add(TKey key, TValue value)
+    {
+        // 1. 확장을 해야 하는 경우, 확장
+        if (IsExpansionRequired())
+            ExpandBucket();
+
+        // 2. Bucket의 적절한 위치 찾아 저장
+        bool suceeded = SavePair(new Pair(key, value));
+
+        // 3. 개수 증가
+        if (suceeded) _count++;
+
+#if DEBUG_ON
+        if (suceeded)
+        {
+            Console.WriteLine($"Add Suceeded : ({key}, {value})");
+        }
+        else
+        {
+            Console.WriteLine($"Add Failed : ({key}, {value})");
+        }
+        Console.WriteLine($"Current Count : {_count}\n");
+#endif
+
+        return suceeded;
+    }
+
+    /// <summary>
+    /// 기존에 존재하는 key-value 쌍 제거하기
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns>
+    /// 값을 제거하는데 성공한 경우 <see langword="true"/><para/>
+    /// 해당 키가 존재하지 않는 경우 <see langword="false"/>
+    /// </returns>
+    public bool Remove(TKey key)
+    {
+        bool found = Search(key, out int index,
+#if DEBUG_ON
+            out TValue value
+#else
+            out _
+#endif
+        );
+
+        if (found)
+        {
+            // 1. 대상 값을 찾으면 해당 공간에 더미 넣어주기
+            _bucket[index] = Pair.Dummy;
+
+            // 2. 개수 감소
+            _count--;
+        }
+
+#if DEBUG_ON
+        if (found)
+        {
+            Console.WriteLine($"Remove Completed From [{index}] : ({key}, {value})");
+        }
+        else
+        {
+            Console.WriteLine($"Remove Failed - Key : {key}");
+        }
+        Console.WriteLine($"Current Count : {_count}\n");
+#endif
+
+        return found;
+    }
+
+    /// <summary>
+    /// 해당 키가 존재하는지 검사하기
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns>
+    /// 키가 존재하는 경우 <see langword="true"/><para/>
+    /// 키가 존재하지 않는 경우 <see langword="false"/>
+    /// </returns>
+    public bool ContainsKey(TKey key)
+    {
+        bool found = Search(key, out _, out _);
+        return found;
+    }
+
+    /// <summary>
+    /// 해당 값이 존재하는지 검사하기
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns>
+    /// 값이 존재하는 경우 <see langword="true"/><para/>
+    /// 값이 존재하지 않는 경우 <see langword="false"/>
+    /// </returns>
+    public bool ContainsValue(TValue value)
+    {
+        Pair foundPair = Array.Find(_bucket, pair =>
+        {
+            return !pair.IsNullOrDummy() && pair.value.Equals(value);
+        });
+        return foundPair != default;
+    }
+
+    /// <summary> 버킷 전체 출력 </summary>
+    [System.Diagnostics.Conditional("DEBUG_ON")]
+    public void PrintAll(bool showNull = false, bool showDummy = false)
+    {
+        Console.WriteLine("===================== Bucket =====================");
+        Console.WriteLine($"== Count : {_count}, Capacity : {_capacity}");
+        Console.WriteLine("==================================================");
+        for (int i = 0; i < _capacity; i++)
+        {
+            string str;
+            if (_bucket[i] == default)
+            {
+                if (!showNull) continue;
+                str = "Null";
+            }
+            else if (_bucket[i] == Pair.Dummy)
+            {
+                if (!showDummy) continue;
+                str = "Dummy";
+            }
+            else
+                str = _bucket[i].ToString();
+
+            Console.WriteLine($"[{i}] {str}");
+        }
+        Console.WriteLine("==================================================\n");
+    }
+    #endregion
+
+    public static void Run()
+    {
+        HashTable_01<int, string> table = new HashTable_01<int, string>();
+
+        for (int i = 0; i < table._bucket.Length; i++)
+        {
+            table._bucket[i] = default;
+            Console.WriteLine(table._bucket[i].value);
+        }
+
+        for (int i = -10; i <= 10; i++)
+        {
+            table.Add(i, $"{i}_{i}");
+        }
+
+        for (int i = -10; i <= 10; i++)
+        {
+            Console.WriteLine(table[i]);
+        }
+
+        table.PrintAll();
+
+        for (int i = 0; i <= 10; i++)
+        {
+            table.Remove(i);
+            table.Remove(i);
+        }
+
+        Console.WriteLine(table[0]);
+        Console.WriteLine(table[1]);
+
+        for (int i = -10; i < -5; i++)
+        {
+            table[i] = $"{i}냥";
+        }
+
+        table.PrintAll();
+    }
+}

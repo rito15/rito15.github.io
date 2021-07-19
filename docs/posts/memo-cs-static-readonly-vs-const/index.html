@@ -612,6 +612,11 @@
         
         
         
+        <li><a href="/posts/unity-amplify-2-color-dissolve/">(Amplify) Directional 2 Color Dissolve Shader</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-animator-event-controller/">Animator Event Controller(애니메이터 이벤트 관리 컴포넌트)</a></li>
       
         
@@ -628,11 +633,6 @@
         
         
         <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-magical-orb/">(Amplify) Magical Orb Shader</a></li>
       
 
       </ul>
@@ -4980,6 +4980,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6782,62 +6795,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-toy-weighted-random-picker/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar  9
-  
-
-  <i class="unloaded">2021-03-09T03:22:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Weighted Random Picker (가중치 랜덤 뽑기)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-
-  
-    게임에서 각각 n% 확률로 존재하는 요소들의 뽑기를 수행할 때, 단순히 Random.Range()를 통해서는 계산할 수 없다.
-  
-  
-    이 때, ‘가중치 랜덤 뽑기’를 이용한다.
-  
-  
-    제네릭을 활용하여, 아이템들과 가중치의 목록을 넣으면 간단히 뽑기를 수행할 수 있도록 작성하였다.
-  
-  
-    아이...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-transform-custom-editor/">
           <div class="card-body">
             <!--
@@ -6951,6 +6908,60 @@ namespace Rito
 {
     [InitializeOnLoad]
     public class P...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-memo-callback-overhead/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 11
+  
+
+  <i class="unloaded">2021-03-11T18:11:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                테스트 대상
+
+
+[1] 문장(계산식)
+
+
+  
+    private static void TestInline()
+{
+    for (int i = 0; i &lt; count; i++)
+    {
+        _ = Math.Round(2.3f) * Math.Sin(2.5f);
+        _ = Math.Floor(4.4f) * Math.Log1...
               </p>
             </div>
           </div>

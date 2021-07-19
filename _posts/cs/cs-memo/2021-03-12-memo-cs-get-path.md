@@ -1,5 +1,5 @@
 ---
-title: 스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조
+title: C# 스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조
 author: Rito15
 date: 2021-03-12 18:10:00 +09:00
 categories: [C#, C# Memo]

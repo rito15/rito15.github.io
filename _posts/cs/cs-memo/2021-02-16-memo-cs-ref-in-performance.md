@@ -1,5 +1,5 @@
 ---
-title: 매개변수 한정자 ref, in의 성능
+title: C# 매개변수 한정자 ref, in의 성능
 author: Rito15
 date: 2021-02-16 23:20:00 +09:00
 categories: [C#, C# Memo]

@@ -788,6 +788,11 @@
         
         
         
+        <li><a href="/posts/unity-amplify-2-color-dissolve/">(Amplify) Directional 2 Color Dissolve Shader</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-animator-event-controller/">Animator Event Controller(애니메이터 이벤트 관리 컴포넌트)</a></li>
       
         
@@ -804,11 +809,6 @@
         
         
         <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-magical-orb/">(Amplify) Magical Orb Shader</a></li>
       
 
       </ul>
@@ -4285,6 +4285,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6958,60 +6971,6 @@
       
       
       <div class="card">
-        <a href="/posts/01-cs-interlocked/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:01:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Interlocked</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Race Condition
-
-
-
-  
-    class Program
-{
-    private const int Count = 500000;
-    private static int number = 0;
-
-    private static void ThreadBody1()
-    {
-        for (int i = 0; i &lt; Count; ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/02-cs-monitor-and-lock/">
           <div class="card-body">
             <!--
@@ -7112,6 +7071,57 @@ Monitor 클래스
 다시 말해, 크리티컬 섹션에 진입하려고 대기하는 스레드는 CPU 점유를 포기하게 된다.
 
 그리고 CPU 자원이 현재 활성화된 다른 스레드에게 넘어가게 되는데, 이 때 컨텍스트 스위칭이 발생하며 그에 따른 오버헤드 또한 발생...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/04-cs-context-switching/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul  8
+  
+
+  <i class="unloaded">2021-07-08T01:04:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Context Switching, Sleep, Yield</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                컨텍스트 스위칭(Context Switching)
+
+
+현재 실행 되는 스레드가 있다면, 그 스레드는 CPU의 자원을 할당받아 동작하는 것이다.
+
+동시에 실행될 수 있는 스레드의 개수는 사실 CPU 코어의 개수 이하인데,
+
+예를 들어 CPU 코어가 4개라면 동시에 4개까지의 스레만 자원을 할당받아 동작할 수 있는 것이다.
+
+그런데 CPU 코어가 4개라고...
               </p>
             </div>
           </div>
