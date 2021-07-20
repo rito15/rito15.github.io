@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-19T21:48:13+09:00</updated>
+  <updated>2021-07-20T18:49:57+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,79 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Hash Table(해시 테이블)</title>
+    <link href="https://rito15.github.io/posts/hash-table/" rel="alternate" type="text/html" title="Hash Table(해시 테이블)" />
+    <published>2021-07-20T17:14:00+09:00</published>
+  
+    <updated>2021-07-20T17:14:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/hash-table/</id>
+    <content src="https://rito15.github.io/posts/hash-table/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Algorithm" />
+    
+    <category term="Data Structure" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      특징
+
+
+
+  
+    데이터의 삽입, 제거, 탐색이 모두 O(1)로 매우 빠르다.
+  
+  
+    내부적으로 정렬되지는 않는다.
+  
+  
+    저장할 데이터의 수보다 더 많은 공간이 필요하다.
+  
+
+
+
+
+구현 원리
+
+
+
+  
+    Key와 Value를 함께 저장하는 Pair 타입(클래스 또는 구조체)을 준비한다.
+  
+  
+    Pair[] 타입의 Bucket을 생성한다.
+  
+  
+    Key의 값을 해시 함수에 넣어서 배열의 Index를 계산한다.
+  
+  
+    Bucket의 Index 위치에 Pair를 삽입, 삭제, 탐색한다.
+  
+  
+    Key에 대한 해시 계산으로 인덱스를 얻을 수 있기 때문에 데이터 삽입, 삭제, 탐색의 시간복잡도는 모두 O(1)이 된다.
+  
+  
+ ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -325,78 +398,6 @@ ThreadLocal&amp;lt;T&amp;gt;
 
 
   C#의 Thr...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# Thread Synchronization and Locks</title>
-    <link href="https://rito15.github.io/posts/07-cs-thread-synchronization/" rel="alternate" type="text/html" title="C# Thread Synchronization and Locks" />
-    <published>2021-07-08T01:07:00+09:00</published>
-  
-    <updated>2021-07-08T01:07:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/07-cs-thread-synchronization/</id>
-    <content src="https://rito15.github.io/posts/07-cs-thread-synchronization/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Threading" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      동기화 영역에 따른 구분
-
-
-1. 유저 모드 동기화
-
-
-  
-    유저 객체(커널에서 제공하지 않는 객체)를 사용한다.
-  
-  
-    대표적으로 크리티컬 섹션(Critical Section), 인터락(Interlocked)이 있다.
-  
-  
-    커널 모드 동기화보다 빠르다.
-  
-  
-    동일 프로세스 내에서만 동기화 가능하다.
-  
-
-
-
-
-2. 커널 모드 동기화
-
-
-  
-    커널 객체를 사용한다.
-  
-  
-    대표적으로 뮤텍스(Mutex), 세마포어(Semaphore), 이벤트(Event)가 있다.
-  
-  
-    다른 프로세스에 존재하는 스레드 간 동기화가 가능하다.
-  
-  
-    유저 모드에서 커널 모드로 변경해야 하므로, 유저 모드 동기화에 비해 성능 소모가 크다.
-...
     </summary>
   
 
