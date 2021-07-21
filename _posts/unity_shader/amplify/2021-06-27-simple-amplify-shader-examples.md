@@ -12,13 +12,13 @@ mermaid: true
 # 1. Vertex
 ---
 
-## Scale Up and Down
+## **Scale Up and Down**
 
 ![image](https://user-images.githubusercontent.com/42164422/123306240-00ad5880-d55c-11eb-847a-feeba45ffa89.gif)
 
 <br>
 
-## Heartbeat
+## **Heartbeat**
 
 ![2021_0627_Heartbeat](https://user-images.githubusercontent.com/42164422/123522819-e8c00b00-d6fa-11eb-8c09-c5bf9880efee.gif)
 
@@ -33,7 +33,7 @@ A : Amplitude
 
 <br>
 
-## World Position Offset
+## **World Position Offset**
 
 ![image](https://user-images.githubusercontent.com/42164422/123471653-150f5500-d631-11eb-98f6-b6480c3d65d2.gif)
 
@@ -43,7 +43,7 @@ A : Amplitude
 
 <br>
 
-## World Position Offset (Keep Scale)
+## **World Position Offset (Keep Scale)**
 
 ![image](https://user-images.githubusercontent.com/42164422/123471661-16408200-d631-11eb-9092-fb65e96208d9.gif)
 
@@ -53,7 +53,7 @@ A : Amplitude
 
 <br>
 
-## Vertex Displacement
+## **Vertex Displacement**
 
 ![image](https://user-images.githubusercontent.com/42164422/123921004-864c6080-d9c1-11eb-97b0-4b08b1ac58c7.png)
 
@@ -66,7 +66,7 @@ A : Amplitude
 # 2. Color
 ---
 
-## UV Mask
+## **UV Mask**
 
 ![image](https://user-images.githubusercontent.com/42164422/123144900-2cb2d600-d497-11eb-9b17-cfa9f1a730fc.gif)
 
@@ -74,7 +74,7 @@ A : Amplitude
 
 <br>
 
-## Smooth UV Mask
+## **Smooth UV Mask**
 
 ![2021_0627_UV_Mask_Smooth](https://user-images.githubusercontent.com/42164422/123523596-8b7a8880-d6ff-11eb-887b-1f57f2fe7463.gif)
 
@@ -82,7 +82,7 @@ A : Amplitude
 
 <br>
 
-## UV Circle
+## **UV Circle**
 
 ![image](https://user-images.githubusercontent.com/42164422/123522921-89aec600-d6fb-11eb-9eb9-b69ed62ac485.png)
 
@@ -94,25 +94,25 @@ A : Amplitude
 
 <br>
 
-## UV Mask Dissolve
+## **UV Mask Dissolve**
 
 ![2021_0627_UV_Mask_Dissolve](https://user-images.githubusercontent.com/42164422/123523888-ced5f680-d701-11eb-9c29-648de55c8476.gif)
 
 <br>
 
-## Noise Dissolve
+## **Noise Dissolve**
 
 ![image](https://user-images.githubusercontent.com/42164422/123069599-e2f1cd80-d44d-11eb-950e-2088585127ae.gif)
 
 <br>
 
-## Checkerboard
+## **Checkerboard**
 
 ![2021_0626_CheckerBoard](https://user-images.githubusercontent.com/42164422/123473821-0fffd500-d634-11eb-988c-3ed1c20f4130.gif)
 
 <br>
 
-## Distortion
+## **Distortion**
 
 ![image](https://user-images.githubusercontent.com/42164422/123935349-1a70f480-d9cf-11eb-8e17-026c610e2009.png)
 
@@ -124,7 +124,7 @@ A : Amplitude
 
 <br>
 
-## World Position-Based Color Variation
+## **World Position-Based Color Variation**
 
 ![image](https://user-images.githubusercontent.com/42164422/123928240-b1867e00-d9c8-11eb-8c35-fff6ee009084.png)
 
@@ -136,7 +136,7 @@ A : Amplitude
 
 <br>
 
-## World Position-Based Color Variation (From-To)
+## **World Position-Based Color Variation (From-To)**
 
 ![image](https://user-images.githubusercontent.com/42164422/123930182-75541d00-d9ca-11eb-9610-8830222c9000.png)
 
@@ -146,7 +146,7 @@ A : Amplitude
 
 <br>
 
-## Contact Point
+## **Contact Point**
 
 ![2021_0705_ContactPoint](https://user-images.githubusercontent.com/42164422/124423754-c84e1b80-dda0-11eb-9fba-d38ddb500bf7.gif)
 
@@ -160,10 +160,48 @@ A : Amplitude
 
 <br>
 
+## **Texture Sheet Animation**
+
+- 예제 텍스쳐 :
+
+![TextureSheet_Debug_3x2](https://user-images.githubusercontent.com/42164422/126528144-0b6fcfcb-5394-443d-8b8f-4575140cb9b2.png)
+
+<br>
+
+### **[1] 좌측 하단부터 시작**
+
+![2021_0722_TextureSheetAnimation1](https://user-images.githubusercontent.com/42164422/126528271-e978a29b-cc87-43e7-899e-f3621c8d2553.gif)
+
+![2021_0722_TextureSheetAnimation2](https://user-images.githubusercontent.com/42164422/126528281-6d2a7f6b-a6a9-4b41-a2d5-b8106f5f79f7.gif)
+
+- 좌측 하단 영역을 `(0, 0)`, 우측 상단 영역을 `(2, 1)` 좌표로 하여 인덱스의 진행에 따라 `(0, 0)`, `(1, 0)`, `(2, 0)`, `(0, 1)`, `(1, 1)`, `(2, 1)` 순서대로 재생한다.
+
+- 첫 번째 사진처럼 인덱스를 직접 지정해줄 수도 있고, 두 번째 사진처럼 시간의 흐름에 따라 자동 재생되게 해줄 수도 있다.
+
+<br>
+
+### **[2] 좌측 상단부터 시작**
+
+![2021_0722_TextureSheetAnimation_LT_1](https://user-images.githubusercontent.com/42164422/126530606-e7153b8b-b620-4903-a49b-c8583e7f22dd.gif)
+
+![2021_0722_TextureSheetAnimation_LT_2](https://user-images.githubusercontent.com/42164422/126530610-f83d849e-c429-4531-b20b-5e56f354a87a.gif)
+
+- 파티클 시스템의 `Texture Sheet Animation`과 같은 방식
+
+- 텍스쳐 시트 형태로 만들어지는 파티클 텍스쳐의 경우 이와 같이 좌상단부터 우하단 방향으로 재생된다.
+
+<br>
+
+- 그런데 `Amplify`, `Shadergraph`에 모두 간편하게 하나의 노드로 이미 구현되어 있으므로, 추가적인 응용이 필요한 것이 아니라면 `Flipbook` 노드를 사용하면 된다.
+
+![2021_0722_TextureSheetAnimation_Flipbook](https://user-images.githubusercontent.com/42164422/126530621-a328afee-26b6-4a76-97a8-1ba12d61e081.gif)
+
+<br>
+
 # 3. Lighting
 ---
 
-## Lambert
+## **Lambert**
 
 ![image](https://user-images.githubusercontent.com/42164422/123553686-b32d2780-d7b7-11eb-883f-97094b9fc710.png)
 
@@ -173,15 +211,15 @@ A : Amplitude
 
 <!--
 
-## Half Lambert
+## **Half Lambert**
 
-## Blinn-Phong Specular
+## **Blinn-Phong Specular**
 
 <br>
 
 -->
 
-## Diffuse Warping
+## **Diffuse Warping**
 
 ![image](https://user-images.githubusercontent.com/42164422/123554382-a78f3000-d7ba-11eb-8fd4-feb09a3fb9d3.png)
 
@@ -209,7 +247,7 @@ A : Amplitude
 
 <!--
 
-## Toon(Cel) Shading
+## **Toon(Cel) Shading**
 
 <details>
 <summary markdown="span"> 
