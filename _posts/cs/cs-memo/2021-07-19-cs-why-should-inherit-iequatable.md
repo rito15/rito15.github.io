@@ -190,6 +190,13 @@ public static void StructTest2()
 
 박싱 문제에 대해서는 다를 것이 없다.
 
+<br>
+
+그리고 `if (obj is Struct2 other)` 부분을 거치면서
+
+`obj`의 타입이 `Struct2`가 아닌 경우에도
+
+항상 언박싱이 발생한다는 문제점도 있다.
 
 <br>
 
@@ -277,13 +284,10 @@ private struct MyStruct : IEquatable<MyStruct>
 
     public override bool Equals(object obj)
     {
-        if (obj is MyStruct other)
-        {
-            // 동일 타입에 대해 IEquatable<T>.Equals(T) 호출
-            return this.Equals(other);
-        }
-        else
+        if (!(obj is MyStruct))
             return false;
+        else
+            return Equals((MyStruct)obj);
     }
 
     public static bool operator ==(MyStruct a, MyStruct b)
@@ -297,6 +301,329 @@ private struct MyStruct : IEquatable<MyStruct>
 }
 ```
 
+<br>
+
+
+## 참고 1 : IEquatable&lt;T&gt;.Equals(T)는 어디서 호출될까?
+---
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
+
+제네릭 컨테이너에서 요소 비교를 수행할 때
+
+`IEquatable<T>.Equals(T)`를 이용한다는 것을 확인했다.
+
+`List<T>`를 예시로, 실제로 어떻게 호출되는지 확인해본다.
+
+```cs
+[__DynamicallyInvokable]
+public bool Contains(T item)
+{
+    if (item == null)
+    {
+        for (int i = 0; i < _size; i++)
+        {
+            if (_items[i] == null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    EqualityComparer<T> @default = EqualityComparer<T>.Default;
+    for (int j = 0; j < _size; j++)
+    {
+        if (@default.Equals(_items[j], item))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+```
+
+위의 소스코드는 `List<T>.Contains(T)`를 디컴파일한 코드이다.
+
+`EqualityComparer<T> @default`를 받아와서
+
+`@default.Equals()`를 호출하는 것을 알 수 있다.
+
+<br>
+
+그래서 `EqualityComparer<T>`를 디컴파일 해보면
+
+```cs
+[Serializable]
+[TypeDependency("System.Collections.Generic.ObjectEqualityComparer`1")]
+[__DynamicallyInvokable]
+public abstract class EqualityComparer<T> : IEqualityComparer, IEqualityComparer<T>
+{
+    private static readonly EqualityComparer<T> defaultComparer = CreateComparer();
+
+        // ...
+}
+```
+
+이런 코드를 확인할 수 있다.
+
+<br>
+
+여기에 다시 `CreateComparer()` 메소드를 열어보면
+
+```cs
+[SecuritySafeCritical]
+private static EqualityComparer<T> CreateComparer()
+{
+    RuntimeType runtimeType = (RuntimeType)typeof(T);
+
+    //if (runtimeType == typeof(byte)) { ... }
+
+    if (typeof(IEquatable<T>).IsAssignableFrom(runtimeType))
+    {
+        return (EqualityComparer<T>)RuntimeTypeHandle.CreateInstanceForAnotherGenericParameter((RuntimeType)typeof(GenericEqualityComparer<int>), runtimeType);
+    }
+
+    if (runtimeType.IsGenericType && runtimeType.GetGenericTypeDefinition() == typeof(Nullable<>))
+    {
+        RuntimeType runtimeType2 = (RuntimeType)runtimeType.GetGenericArguments()[0];
+        if (typeof(IEquatable<>).MakeGenericType(runtimeType2).IsAssignableFrom(runtimeType2))
+        {
+            return (EqualityComparer<T>)RuntimeTypeHandle.CreateInstanceForAnotherGenericParameter((RuntimeType)typeof(NullableEqualityComparer<int>), runtimeType2);
+        }
+    }
+
+    //if (runtimeType.IsEnum) { ... }
+
+    return new ObjectEqualityComparer<T>();
+}
+```
+
+이런 코드를 확인할 수 있다.
+
+여기서 중요한 부분은
+
+`typeof(IEquatable<T>).IsAssignableFrom(runtimeType)`,
+
+`GenericEqualityComparer<T>` 이다.
+
+
+<br>
+
+`IsAssignableFrom()` 메소드를 한 번 열어보면
+
+```cs
+[__DynamicallyInvokable]
+public virtual bool IsAssignableFrom(Type c)
+{
+    if (c == null)
+    {
+        return false;
+    }
+    if (this == c)
+    {
+        return true;
+    }
+    RuntimeType runtimeType = UnderlyingSystemType as RuntimeType;
+    if (runtimeType != null)
+    {
+        return runtimeType.IsAssignableFrom(c);
+    }
+    if (c.IsSubclassOf(this))
+    {
+        return true;
+    }
+    if (IsInterface)
+    {
+        return c.ImplementInterface(this);
+    }
+    if (IsGenericParameter)
+    {
+        Type[] genericParameterConstraints = GetGenericParameterConstraints();
+        for (int i = 0; i < genericParameterConstraints.Length; i++)
+        {
+            if (!genericParameterConstraints[i].IsAssignableFrom(c))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+}
+```
+
+이런 코드를 확인할 수 있으며
+
+`T` 타입이 인자 `c` 타입을 상속하는지 여부를 확인하는 메소드라는 것을 알 수 있다.
+
+<br>
+
+그리고 `GenericEqualityComparer<T>` 클래스를 열어보면
+
+드디어
+
+```cs
+[Serializable]
+internal class GenericEqualityComparer<T> : EqualityComparer<T> where T : IEquatable<T>
+{
+    public override bool Equals(T x, T y)
+    {
+        if (x != null)
+        {
+            if (y != null)
+            {
+                return x.Equals(y);
+            }
+            return false;
+        }
+        if (y != null)
+        {
+            return false;
+        }
+        return true;
+    }
+}
+```
+
+이런 코드를 확인할 수 있다.
+
+실제로 `IEquatable<T>.Equals(T)`를 호출하는 부분인 것이다.
+
+
+<br>
+
+## **정리**
+
+소스 코드에서, `T` 타입에 대해
+
+`EqualityComparer<T>.Default` 프로퍼티 호출하는 부분이 있다면
+
+정적 생성자 호출 타이밍에
+
+`EqualityComparer<T>.CreateComparer()` 메소드를 호출하여
+
+`EqualityComparer<T>.defaultComparer` 정적 필드에
+
+정해진 `T` 타입에 대한 `EqualityComparer<T>` 객체를 생성하여 할당한다.
+
+<br>
+
+여기서 만약 `T` 타입이 `IEquatable<T>`를 상속받는 타입이라면
+
+`IEquatable<T>.Equals(T)`를 호출하는 객체를,
+
+그렇지 않다면
+
+`object.Equals(object)`를 호출하는 객체를 생성해준다.
+
+</details>
+
+<br>
+
+
+## 참고 2 : 제네릭 타입에서 IEquatable&lt;T&gt;.Equals(T) 호출하기
+---
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
+
+클래스 또는 구조체의 필드를 제네릭 타입으로 선언할 경우,
+
+```cs
+struct MyStruct<T> : IEquatable<MyStruct<T>>
+{
+    public T field;
+
+    public bool Equals(MyStruct<T> other)
+    {
+        return this.field.Equals(other.field);
+    }
+}
+```
+
+위와 같은 방식으로 `Equals<T>` 메소드 내부를 작성하게 되면
+
+`this.field.Equals(other.field)` 메소드는 실제로
+
+`object.Equals(object)`를 호출하게 되므로
+
+`IEquatable<T>`를 상속받는 의미가 없어진다.
+
+심지어 `this.field`가 **Nuallable** 타입이고 `null` 값을 갖는 경우,
+
+`NullReferenceException`이 발생하게 된다.
+
+<br>
+
+
+그렇다면
+
+```cs
+public bool Equals(MyStruct<T> other)
+{
+    if (field is IEquatable<T> eField)
+    {
+        return eField.Equals(other.field);
+    }
+    else
+    {
+        return this.field.Equals(other.field);
+    }
+}
+```
+
+이런 식으로 구현하면 되지 않을까 싶지만,
+
+`T` 타입의 `field`가 `IEquatable<T>` 타입으로 변환되는 과정에서
+
+박싱이 발생하므로 말짱 꽝이다.
+
+<br>
+
+따라서 `IEquatable<T>.Equals(T)`를 제대로 사용하기 위해서는
+
+[참고 1](#참고-1--iequatabletequalst는-어디서-호출될까)로부터 알아낸 `IEquatable<T>.Equals(T)`의 호출 방식을 이용해야 한다.
+
+<br>
+
+방법은 간단하다.
+
+해당 구조체 또는 클래스 내부에서
+
+```cs
+private static EqualityComparer<T> comparer = EqualityComparer<T>.Default;
+```
+
+이렇게 `T` 타입에 대한 `EqualityComparer<T>.Default` 객체를 가져오고,
+
+이를 이용해 비교하면 된다.
+
+<br>
+
+
+정리하면 다음과 같다.
+
+```cs
+struct MyStruct<T> : IEquatable<MyStruct<T>>
+{
+    public T field;
+
+    private static EqualityComparer<T> comparer = EqualityComparer<T>.Default;
+
+    public bool Equals(MyStruct<T> other)
+    {
+        return comparer.Equals(this.field, other.field);
+    }
+}
+```
+
+
+</details>
 
 <br>
 

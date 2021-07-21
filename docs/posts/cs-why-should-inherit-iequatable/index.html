@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1457 words">8 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2637 words">14 min</span>
 
 
           <!-- page views -->
@@ -687,6 +687,14 @@ IL_0035:  pop
 
 <p><br /></p>
 
+<p>그리고 <code class="language-plaintext highlighter-rouge">if (obj is Struct2 other)</code> 부분을 거치면서</p>
+
+<p><code class="language-plaintext highlighter-rouge">obj</code>의 타입이 <code class="language-plaintext highlighter-rouge">Struct2</code>가 아닌 경우에도</p>
+
+<p>항상 언박싱이 발생한다는 문제점도 있다.</p>
+
+<p><br /></p>
+
 <h2 id="3-iequatabletequalst-메소드를-구현하는-경우"><strong>[3] IEquatable&lt;T&gt;.Equals(T) 메소드를 구현하는 경우</strong></h2>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -803,9 +811,6 @@ IL_0035:  pop
 27
 28
 29
-30
-31
-32
 </pre></td><td class="rouge-code"><pre><span class="cm">/* Best Case */</span>
 
 <span class="k">private</span> <span class="k">struct</span> <span class="nc">MyStruct</span> <span class="p">:</span> <span class="n">IEquatable</span><span class="p">&lt;</span><span class="n">MyStruct</span><span class="p">&gt;</span>
@@ -820,13 +825,10 @@ IL_0035:  pop
 
     <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">Equals</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">obj</span> <span class="k">is</span> <span class="n">MyStruct</span> <span class="n">other</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="c1">// 동일 타입에 대해 IEquatable&lt;T&gt;.Equals(T) 호출</span>
-            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">other</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">else</span>
+        <span class="k">if</span> <span class="p">(!(</span><span class="n">obj</span> <span class="k">is</span> <span class="n">MyStruct</span><span class="p">))</span>
             <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="nf">Equals</span><span class="p">((</span><span class="n">MyStruct</span><span class="p">)</span><span class="n">obj</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="k">public</span> <span class="k">static</span> <span class="kt">bool</span> <span class="k">operator</span> <span class="p">==(</span><span class="n">MyStruct</span> <span class="n">a</span><span class="p">,</span> <span class="n">MyStruct</span> <span class="n">b</span><span class="p">)</span>
@@ -839,6 +841,462 @@ IL_0035:  pop
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="참고-1--iequatabletequalst는-어디서-호출될까">참고 1 : IEquatable&lt;T&gt;.Equals(T)는 어디서 호출될까?</h2>
+<hr />
+
+<details>
+  <summary> 
+.
+</summary>
+
+  <p>제네릭 컨테이너에서 요소 비교를 수행할 때</p>
+
+  <p><code class="language-plaintext highlighter-rouge">IEquatable&lt;T&gt;.Equals(T)</code>를 이용한다는 것을 확인했다.</p>
+
+  <p><code class="language-plaintext highlighter-rouge">List&lt;T&gt;</code>를 예시로, 실제로 어떻게 호출되는지 확인해본다.</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">__DynamicallyInvokable</span><span class="p">]</span>
+<span class="k">public</span> <span class="kt">bool</span> <span class="nf">Contains</span><span class="p">(</span><span class="n">T</span> <span class="n">item</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">item</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">_size</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">_items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">@default</span> <span class="p">=</span> <span class="n">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">Default</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="p">&lt;</span> <span class="n">_size</span><span class="p">;</span> <span class="n">j</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">@default</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">_items</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">item</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p>위의 소스코드는 <code class="language-plaintext highlighter-rouge">List&lt;T&gt;.Contains(T)</code>를 디컴파일한 코드이다.</p>
+
+  <p><code class="language-plaintext highlighter-rouge">EqualityComparer&lt;T&gt; @default</code>를 받아와서</p>
+
+  <p><code class="language-plaintext highlighter-rouge">@default.Equals()</code>를 호출하는 것을 알 수 있다.</p>
+
+  <p><br /></p>
+
+  <p>그래서 <code class="language-plaintext highlighter-rouge">EqualityComparer&lt;T&gt;</code>를 디컴파일 해보면</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+<span class="p">[</span><span class="nf">TypeDependency</span><span class="p">(</span><span class="s">"System.Collections.Generic.ObjectEqualityComparer`1"</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">__DynamicallyInvokable</span><span class="p">]</span>
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">IEqualityComparer</span><span class="p">,</span> <span class="n">IEqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">defaultComparer</span> <span class="p">=</span> <span class="nf">CreateComparer</span><span class="p">();</span>
+
+        <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p>이런 코드를 확인할 수 있다.</p>
+
+  <p><br /></p>
+
+  <p>여기에 다시 <code class="language-plaintext highlighter-rouge">CreateComparer()</code> 메소드를 열어보면</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">SecuritySafeCritical</span><span class="p">]</span>
+<span class="k">private</span> <span class="k">static</span> <span class="n">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="nf">CreateComparer</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">RuntimeType</span> <span class="n">runtimeType</span> <span class="p">=</span> <span class="p">(</span><span class="n">RuntimeType</span><span class="p">)</span><span class="k">typeof</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+
+    <span class="c1">//if (runtimeType == typeof(byte)) { ... }</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IEquatable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;).</span><span class="nf">IsAssignableFrom</span><span class="p">(</span><span class="n">runtimeType</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;)</span><span class="n">RuntimeTypeHandle</span><span class="p">.</span><span class="nf">CreateInstanceForAnotherGenericParameter</span><span class="p">((</span><span class="n">RuntimeType</span><span class="p">)</span><span class="k">typeof</span><span class="p">(</span><span class="n">GenericEqualityComparer</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;),</span> <span class="n">runtimeType</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">runtimeType</span><span class="p">.</span><span class="n">IsGenericType</span> <span class="p">&amp;&amp;</span> <span class="n">runtimeType</span><span class="p">.</span><span class="nf">GetGenericTypeDefinition</span><span class="p">()</span> <span class="p">==</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Nullable</span><span class="p">&lt;&gt;))</span>
+    <span class="p">{</span>
+        <span class="n">RuntimeType</span> <span class="n">runtimeType2</span> <span class="p">=</span> <span class="p">(</span><span class="n">RuntimeType</span><span class="p">)</span><span class="n">runtimeType</span><span class="p">.</span><span class="nf">GetGenericArguments</span><span class="p">()[</span><span class="m">0</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">IEquatable</span><span class="p">&lt;&gt;).</span><span class="nf">MakeGenericType</span><span class="p">(</span><span class="n">runtimeType2</span><span class="p">).</span><span class="nf">IsAssignableFrom</span><span class="p">(</span><span class="n">runtimeType2</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;)</span><span class="n">RuntimeTypeHandle</span><span class="p">.</span><span class="nf">CreateInstanceForAnotherGenericParameter</span><span class="p">((</span><span class="n">RuntimeType</span><span class="p">)</span><span class="k">typeof</span><span class="p">(</span><span class="n">NullableEqualityComparer</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;),</span> <span class="n">runtimeType2</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">//if (runtimeType.IsEnum) { ... }</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="n">ObjectEqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p>이런 코드를 확인할 수 있다.</p>
+
+  <p>여기서 중요한 부분은</p>
+
+  <p><code class="language-plaintext highlighter-rouge">typeof(IEquatable&lt;T&gt;).IsAssignableFrom(runtimeType)</code>,</p>
+
+  <p><code class="language-plaintext highlighter-rouge">GenericEqualityComparer&lt;T&gt;</code> 이다.</p>
+
+  <p><br /></p>
+
+  <p><code class="language-plaintext highlighter-rouge">IsAssignableFrom()</code> 메소드를 한 번 열어보면</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">__DynamicallyInvokable</span><span class="p">]</span>
+<span class="k">public</span> <span class="k">virtual</span> <span class="kt">bool</span> <span class="nf">IsAssignableFrom</span><span class="p">(</span><span class="n">Type</span> <span class="n">c</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span> <span class="p">==</span> <span class="n">c</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">RuntimeType</span> <span class="n">runtimeType</span> <span class="p">=</span> <span class="n">UnderlyingSystemType</span> <span class="k">as</span> <span class="n">RuntimeType</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">runtimeType</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">runtimeType</span><span class="p">.</span><span class="nf">IsAssignableFrom</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="nf">IsSubclassOf</span><span class="p">(</span><span class="k">this</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">IsInterface</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">c</span><span class="p">.</span><span class="nf">ImplementInterface</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">IsGenericParameter</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Type</span><span class="p">[]</span> <span class="n">genericParameterConstraints</span> <span class="p">=</span> <span class="nf">GetGenericParameterConstraints</span><span class="p">();</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">genericParameterConstraints</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="n">genericParameterConstraints</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">IsAssignableFrom</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p>이런 코드를 확인할 수 있으며</p>
+
+  <p><code class="language-plaintext highlighter-rouge">T</code> 타입이 인자 <code class="language-plaintext highlighter-rouge">c</code> 타입을 상속하는지 여부를 확인하는 메소드라는 것을 알 수 있다.</p>
+
+  <p><br /></p>
+
+  <p>그리고 <code class="language-plaintext highlighter-rouge">GenericEqualityComparer&lt;T&gt;</code> 클래스를 열어보면</p>
+
+  <p>드디어</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">Serializable</span><span class="p">]</span>
+<span class="k">internal</span> <span class="k">class</span> <span class="nc">GenericEqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">IEquatable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">Equals</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="n">y</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p>이런 코드를 확인할 수 있다.</p>
+
+  <p>실제로 <code class="language-plaintext highlighter-rouge">IEquatable&lt;T&gt;.Equals(T)</code>를 호출하는 부분인 것이다.</p>
+
+  <p><br /></p>
+
+  <h2 id="section"><strong>정리</strong></h2>
+
+  <p>소스 코드에서, <code class="language-plaintext highlighter-rouge">T</code> 타입에 대해</p>
+
+  <p><code class="language-plaintext highlighter-rouge">EqualityComparer&lt;T&gt;.Default</code> 프로퍼티 호출하는 부분이 있다면</p>
+
+  <p>정적 생성자 호출 타이밍에</p>
+
+  <p><code class="language-plaintext highlighter-rouge">EqualityComparer&lt;T&gt;.CreateComparer()</code> 메소드를 호출하여</p>
+
+  <p><code class="language-plaintext highlighter-rouge">EqualityComparer&lt;T&gt;.defaultComparer</code> 정적 필드에</p>
+
+  <p>정해진 <code class="language-plaintext highlighter-rouge">T</code> 타입에 대한 <code class="language-plaintext highlighter-rouge">EqualityComparer&lt;T&gt;</code> 객체를 생성하여 할당한다.</p>
+
+  <p><br /></p>
+
+  <p>여기서 만약 <code class="language-plaintext highlighter-rouge">T</code> 타입이 <code class="language-plaintext highlighter-rouge">IEquatable&lt;T&gt;</code>를 상속받는 타입이라면</p>
+
+  <p><code class="language-plaintext highlighter-rouge">IEquatable&lt;T&gt;.Equals(T)</code>를 호출하는 객체를,</p>
+
+  <p>그렇지 않다면</p>
+
+  <p><code class="language-plaintext highlighter-rouge">object.Equals(object)</code>를 호출하는 객체를 생성해준다.</p>
+
+</details>
+
+<p><br /></p>
+
+<h2 id="참고-2--제네릭-타입에서-iequatabletequalst-호출하기">참고 2 : 제네릭 타입에서 IEquatable&lt;T&gt;.Equals(T) 호출하기</h2>
+<hr />
+
+<details>
+  <summary> 
+.
+</summary>
+
+  <p>클래스 또는 구조체의 필드를 제네릭 타입으로 선언할 경우,</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">MyStruct</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">IEquatable</span><span class="p">&lt;</span><span class="n">MyStruct</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">T</span> <span class="n">field</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="kt">bool</span> <span class="nf">Equals</span><span class="p">(</span><span class="n">MyStruct</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">field</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">field</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p>위와 같은 방식으로 <code class="language-plaintext highlighter-rouge">Equals&lt;T&gt;</code> 메소드 내부를 작성하게 되면</p>
+
+  <p><code class="language-plaintext highlighter-rouge">this.field.Equals(other.field)</code> 메소드는 실제로</p>
+
+  <p><code class="language-plaintext highlighter-rouge">object.Equals(object)</code>를 호출하게 되므로</p>
+
+  <p><code class="language-plaintext highlighter-rouge">IEquatable&lt;T&gt;</code>를 상속받는 의미가 없어진다.</p>
+
+  <p>심지어 <code class="language-plaintext highlighter-rouge">this.field</code>가 <strong>Nuallable</strong> 타입이고 <code class="language-plaintext highlighter-rouge">null</code> 값을 갖는 경우,</p>
+
+  <p><code class="language-plaintext highlighter-rouge">NullReferenceException</code>이 발생하게 된다.</p>
+
+  <p><br /></p>
+
+  <p>그렇다면</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="kt">bool</span> <span class="nf">Equals</span><span class="p">(</span><span class="n">MyStruct</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">other</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">field</span> <span class="k">is</span> <span class="n">IEquatable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">eField</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">eField</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">field</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">field</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">field</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p>이런 식으로 구현하면 되지 않을까 싶지만,</p>
+
+  <p><code class="language-plaintext highlighter-rouge">T</code> 타입의 <code class="language-plaintext highlighter-rouge">field</code>가 <code class="language-plaintext highlighter-rouge">IEquatable&lt;T&gt;</code> 타입으로 변환되는 과정에서</p>
+
+  <p>박싱이 발생하므로 말짱 꽝이다.</p>
+
+  <p><br /></p>
+
+  <p>따라서 <code class="language-plaintext highlighter-rouge">IEquatable&lt;T&gt;.Equals(T)</code>를 제대로 사용하기 위해서는</p>
+
+  <p><a href="#참고-1--iequatabletequalst는-어디서-호출될까">참고 1</a>로부터 알아낸 <code class="language-plaintext highlighter-rouge">IEquatable&lt;T&gt;.Equals(T)</code>의 호출 방식을 이용해야 한다.</p>
+
+  <p><br /></p>
+
+  <p>방법은 간단하다.</p>
+
+  <p>해당 구조체 또는 클래스 내부에서</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">static</span> <span class="n">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">comparer</span> <span class="p">=</span> <span class="n">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">Default</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p>이렇게 <code class="language-plaintext highlighter-rouge">T</code> 타입에 대한 <code class="language-plaintext highlighter-rouge">EqualityComparer&lt;T&gt;.Default</code> 객체를 가져오고,</p>
+
+  <p>이를 이용해 비교하면 된다.</p>
+
+  <p><br /></p>
+
+  <p>정리하면 다음과 같다.</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">MyStruct</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">IEquatable</span><span class="p">&lt;</span><span class="n">MyStruct</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">T</span> <span class="n">field</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="k">static</span> <span class="n">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">comparer</span> <span class="p">=</span> <span class="n">EqualityComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">Default</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="kt">bool</span> <span class="nf">Equals</span><span class="p">(</span><span class="n">MyStruct</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">comparer</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">field</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">field</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
