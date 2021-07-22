@@ -164,31 +164,37 @@ A : Amplitude
 
 - 예제 텍스쳐 :
 
-![TextureSheet_Debug_3x2](https://user-images.githubusercontent.com/42164422/126528144-0b6fcfcb-5394-443d-8b8f-4575140cb9b2.png)
+![TextureSheet_Debug_4x3](https://user-images.githubusercontent.com/42164422/126682133-a5d6ed34-9e5b-4cfc-90dd-a524fdc459be.png)
 
 <br>
 
 ### **[1] 좌측 하단부터 시작**
 
-![2021_0722_TextureSheetAnimation1](https://user-images.githubusercontent.com/42164422/126528271-e978a29b-cc87-43e7-899e-f3621c8d2553.gif)
+![2021_0723_TextureSheet_01](https://user-images.githubusercontent.com/42164422/126683103-6c37c209-874b-409a-ace1-8a938eaff8f4.gif)
 
-![2021_0722_TextureSheetAnimation2](https://user-images.githubusercontent.com/42164422/126528281-6d2a7f6b-a6a9-4b41-a2d5-b8106f5f79f7.gif)
+![2021_0723_TextureSheet_02](https://user-images.githubusercontent.com/42164422/126683106-ad6a15e7-45dd-4d1c-9bdf-3a0763b67394.gif)
 
-- 좌측 하단 영역을 `(0, 0)`, 우측 상단 영역을 `(2, 1)` 좌표로 하여 인덱스의 진행에 따라 `(0, 0)`, `(1, 0)`, `(2, 0)`, `(0, 1)`, `(1, 1)`, `(2, 1)` 순서대로 재생한다.
+- 좌측 하단 텍스쳐 영역을 `(0, 0)`, 우측 상단 영역을 `(3, 2)` 좌표로 가정한다.
 
-- 첫 번째 사진처럼 인덱스를 직접 지정해줄 수도 있고, 두 번째 사진처럼 시간의 흐름에 따라 자동 재생되게 해줄 수도 있다.
+- 인덱스의 진행에 따라 `(0, 0)`, `(1, 0)`, `(2, 0)`, `(3, 0)`, `(0, 1)`, `(1, 1)`, ... , `(3, 2)` 순서대로 해당되는 텍스쳐 영역을 보여준다.
+
+- 첫 번째 사진처럼 인덱스를 직접 지정해줄 수도 있고, 두 번째 사진처럼 시간의 흐름에 따라 자동 재생되도록 해줄 수도 있다.
 
 <br>
 
 ### **[2] 좌측 상단부터 시작**
 
-![2021_0722_TextureSheetAnimation_LT_1](https://user-images.githubusercontent.com/42164422/126530606-e7153b8b-b620-4903-a49b-c8583e7f22dd.gif)
+![2021_0723_TextureSheet_03](https://user-images.githubusercontent.com/42164422/126684561-be4c5b79-2110-4ab0-8ac1-0f7de23208ec.gif)
 
-![2021_0722_TextureSheetAnimation_LT_2](https://user-images.githubusercontent.com/42164422/126530610-f83d849e-c429-4531-b20b-5e56f354a87a.gif)
+![2021_0723_TextureSheet_04](https://user-images.githubusercontent.com/42164422/126684564-b6f168a4-1829-4e23-be5a-89ae8157e861.gif)
+
+- 인덱스의 진행에 따라 좌상단부터 우하단 방향으로 이어진다.
 
 - 파티클 시스템의 `Texture Sheet Animation`과 같은 방식
 
 - 텍스쳐 시트 형태로 만들어지는 파티클 텍스쳐의 경우 이와 같이 좌상단부터 우하단 방향으로 재생된다.
+
+- 예제 텍스쳐의 경우, 인덱스의 진행에 따라 `8` -> `9` -> `10` -> `11` -> `4` -> `5` -> `6` -> `7` -> `0` -> `1` -> `2` -> `3` 순서대로 이어진다.
 
 <br>
 

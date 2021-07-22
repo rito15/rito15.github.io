@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="간단한 앰플리파이 쉐이더 예제 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"1. Vertex","datePublished":"2021-06-27T04:24:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/simple-amplify-shader-examples/"},"url":"https://rito15.github.io/posts/simple-amplify-shader-examples/","author":{"@type":"Person","name":"Rito15"},"headline":"간단한 앰플리파이 쉐이더 예제 모음","dateModified":"2021-07-07T14:45:02+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"1. Vertex","datePublished":"2021-06-27T04:24:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/simple-amplify-shader-examples/"},"url":"https://rito15.github.io/posts/simple-amplify-shader-examples/","author":{"@type":"Person","name":"Rito15"},"headline":"간단한 앰플리파이 쉐이더 예제 모음","dateModified":"2021-07-22T02:26:31+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Jul  7, 2021,  2:45 PM +0900"
+    title="Thu, Jul 22, 2021,  2:26 AM +0900"
   >
 
   
   
 
   
-    Jul  7
+    Jul 22
   
 
-  <i class="unloaded">2021-07-07T14:45:02+09:00</i>
+  <i class="unloaded">2021-07-22T02:26:31+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="780 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="877 words">4 min</span>
 
 
           <!-- page views -->
@@ -657,22 +657,25 @@ A : Amplitude
   <li>예제 텍스쳐 :</li>
 </ul>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/126528144-0b6fcfcb-5394-443d-8b8f-4575140cb9b2.png" alt="TextureSheet_Debug_3x2" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/126682133-a5d6ed34-9e5b-4cfc-90dd-a524fdc459be.png" alt="TextureSheet_Debug_4x3" /></p>
 
 <p><br /></p>
 
 <h3 id="1-좌측-하단부터-시작"><strong>[1] 좌측 하단부터 시작</strong></h3>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/126528271-e978a29b-cc87-43e7-899e-f3621c8d2553.gif" alt="2021_0722_TextureSheetAnimation1" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/126683103-6c37c209-874b-409a-ace1-8a938eaff8f4.gif" alt="2021_0723_TextureSheet_01" /></p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/126528281-6d2a7f6b-a6a9-4b41-a2d5-b8106f5f79f7.gif" alt="2021_0722_TextureSheetAnimation2" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/126683106-ad6a15e7-45dd-4d1c-9bdf-3a0763b67394.gif" alt="2021_0723_TextureSheet_02" /></p>
 
 <ul>
   <li>
-    <p>좌측 하단 영역을 <code class="language-plaintext highlighter-rouge">(0, 0)</code>, 우측 상단 영역을 <code class="language-plaintext highlighter-rouge">(2, 1)</code> 좌표로 하여 인덱스의 진행에 따라 <code class="language-plaintext highlighter-rouge">(0, 0)</code>, <code class="language-plaintext highlighter-rouge">(1, 0)</code>, <code class="language-plaintext highlighter-rouge">(2, 0)</code>, <code class="language-plaintext highlighter-rouge">(0, 1)</code>, <code class="language-plaintext highlighter-rouge">(1, 1)</code>, <code class="language-plaintext highlighter-rouge">(2, 1)</code> 순서대로 재생한다.</p>
+    <p>좌측 하단 텍스쳐 영역을 <code class="language-plaintext highlighter-rouge">(0, 0)</code>, 우측 상단 영역을 <code class="language-plaintext highlighter-rouge">(3, 2)</code> 좌표로 가정한다.</p>
   </li>
   <li>
-    <p>첫 번째 사진처럼 인덱스를 직접 지정해줄 수도 있고, 두 번째 사진처럼 시간의 흐름에 따라 자동 재생되게 해줄 수도 있다.</p>
+    <p>인덱스의 진행에 따라 <code class="language-plaintext highlighter-rouge">(0, 0)</code>, <code class="language-plaintext highlighter-rouge">(1, 0)</code>, <code class="language-plaintext highlighter-rouge">(2, 0)</code>, <code class="language-plaintext highlighter-rouge">(3, 0)</code>, <code class="language-plaintext highlighter-rouge">(0, 1)</code>, <code class="language-plaintext highlighter-rouge">(1, 1)</code>, … , <code class="language-plaintext highlighter-rouge">(3, 2)</code> 순서대로 해당되는 텍스쳐 영역을 보여준다.</p>
+  </li>
+  <li>
+    <p>첫 번째 사진처럼 인덱스를 직접 지정해줄 수도 있고, 두 번째 사진처럼 시간의 흐름에 따라 자동 재생되도록 해줄 수도 있다.</p>
   </li>
 </ul>
 
@@ -680,16 +683,22 @@ A : Amplitude
 
 <h3 id="2-좌측-상단부터-시작"><strong>[2] 좌측 상단부터 시작</strong></h3>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/126530606-e7153b8b-b620-4903-a49b-c8583e7f22dd.gif" alt="2021_0722_TextureSheetAnimation_LT_1" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/126684561-be4c5b79-2110-4ab0-8ac1-0f7de23208ec.gif" alt="2021_0723_TextureSheet_03" /></p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/126530610-f83d849e-c429-4531-b20b-5e56f354a87a.gif" alt="2021_0722_TextureSheetAnimation_LT_2" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/126684564-b6f168a4-1829-4e23-be5a-89ae8157e861.gif" alt="2021_0723_TextureSheet_04" /></p>
 
 <ul>
+  <li>
+    <p>인덱스의 진행에 따라 좌상단부터 우하단 방향으로 이어진다.</p>
+  </li>
   <li>
     <p>파티클 시스템의 <code class="language-plaintext highlighter-rouge">Texture Sheet Animation</code>과 같은 방식</p>
   </li>
   <li>
     <p>텍스쳐 시트 형태로 만들어지는 파티클 텍스쳐의 경우 이와 같이 좌상단부터 우하단 방향으로 재생된다.</p>
+  </li>
+  <li>
+    <p>예제 텍스쳐의 경우, 인덱스의 진행에 따라 <code class="language-plaintext highlighter-rouge">8</code> -&gt; <code class="language-plaintext highlighter-rouge">9</code> -&gt; <code class="language-plaintext highlighter-rouge">10</code> -&gt; <code class="language-plaintext highlighter-rouge">11</code> -&gt; <code class="language-plaintext highlighter-rouge">4</code> -&gt; <code class="language-plaintext highlighter-rouge">5</code> -&gt; <code class="language-plaintext highlighter-rouge">6</code> -&gt; <code class="language-plaintext highlighter-rouge">7</code> -&gt; <code class="language-plaintext highlighter-rouge">0</code> -&gt; <code class="language-plaintext highlighter-rouge">1</code> -&gt; <code class="language-plaintext highlighter-rouge">2</code> -&gt; <code class="language-plaintext highlighter-rouge">3</code> 순서대로 이어진다.</p>
   </li>
 </ul>
 
@@ -917,6 +926,11 @@ https://www.youtube.com/watch?v=MawzivWLCoo
         
         
         
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-why-should-inherit-iequatable/">C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유</a></li>
       
         
@@ -933,11 +947,6 @@ https://www.youtube.com/watch?v=MawzivWLCoo
         
         
         <li><a href="/posts/memo-cs-prime-number/">C# Prime Number(소수)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-string-format/">C# 스트링 포맷 정리</a></li>
       
 
       </ul>
