@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-23T02:43:54+09:00</updated>
+  <updated>2021-07-23T21:52:32+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,100 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(Amplify) Sea Urchin Shader</title>
+    <link href="https://rito15.github.io/posts/unity-amplify-sea-urchin/" rel="alternate" type="text/html" title="(Amplify) Sea Urchin Shader" />
+    <published>2021-07-23T15:15:00+09:00</published>
+  
+    <updated>2021-07-23T15:15:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-amplify-sea-urchin/</id>
+    <content src="https://rito15.github.io/posts/unity-amplify-sea-urchin/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Amplify Shader" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  가시 삐쭉삐쭉한 성게 쉐이더
+
+
+
+
+1. 기본
+
+
+Preview
+
+
+
+
+
+
+
+Properties
+
+
+
+
+  
+    
+      프로퍼티
+      설명
+    
+  
+  
+    
+      Edge length
+      테셀레이션 간격(작을수록 촘촘해진다)
+    
+    
+      Tiling
+      가시 개수 비율
+    
+    
+      Sharpness
+      가시의 뾰족한 정도
+    
+    
+      Height
+      가시의 길이
+    
+    
+      Body Color
+      구체 색상
+    
+    
+      Thron
+      가시 색상
+    
+    
+      Color Mix Threshold
+      두 색상의...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -326,78 +420,6 @@ Additive 마테리얼들과 텍스쳐
 
 
 이펙트를 제작하기 위해 게임 뷰에는 스카이...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# TLS(Thread Local Storage)</title>
-    <link href="https://rito15.github.io/posts/08-cs-thread-local-storage/" rel="alternate" type="text/html" title="C# TLS(Thread Local Storage)" />
-    <published>2021-07-08T01:08:00+09:00</published>
-  
-    <updated>2021-07-08T01:08:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/08-cs-thread-local-storage/</id>
-    <content src="https://rito15.github.io/posts/08-cs-thread-local-storage/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Threading" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-
-메모리 구조
-
-
-
-
-
-
-TLS(Thread Local Storage)
-
-
-Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공유한다.
-
-그리고 Stack 영역의 지역 변수(또는 멤버 변수)는 해당 블록 내에서만 사용된다.
-
-따라서 기본적으로 각각의 스레드마다 고유하게 갖는 메모리 영역은 없다.
-
-이를 만들어 줄 수 있는 것이 바로 TLS이다.
-
-
-
-TLS는 각각의 스레드마다 자기만의 변수를 저장할 수 있게 해준다.
-
-따라서 이를 활용하여, 공유 변수로 인해 빈번한 스레드 동기화가 일어날 수 있는 경우
-
-임시로 TLS에 저장하고 나중에 공유 변수에 동기화하는 방식으로
-
-스레드 동기화에 의한 성능 저하를 줄여줄 수 있다.
-
-
-
-ThreadLocal&amp;lt;T&amp;gt;
-
-
-
-  C#의 Thr...
     </summary>
   
 

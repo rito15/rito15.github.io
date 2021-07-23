@@ -4624,6 +4624,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6894,61 +6907,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-playmode-state-change/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar 11
-  
-
-  <i class="unloaded">2021-03-11T03:33:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>플레이모드 상태 변경에 따른 동작 구현하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                
-  
-    #if UNITY_EDITOR
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-
-namespace Rito
-{
-    [InitializeOnLoad]
-    public class P...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-define-symbol/">
           <div class="card-body">
             <!--
@@ -7053,6 +7011,64 @@ private static void MenuItem1()
 }
 
 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-menu-item-hierarchy/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 12
+  
+
+  <i class="unloaded">2021-03-12T22:50:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 하이라키 우클릭 메뉴 아이템</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                우클릭 MenuItem 메소드 중복 호출 방지하기
+
+
+
+  
+    게임오브젝트를 다중 선택하고 우클릭 메뉴를 통해 실행했을 때 생기는 중복 호출 버그 방지
+  
+  
+    다이얼로그를 띄우면 방지 안되니 주의
+  
+
+
+
+  
+    private static string _prevMethodCallInfo = "";
+
+/// &lt;summary&...
               </p>
             </div>
           </div>
