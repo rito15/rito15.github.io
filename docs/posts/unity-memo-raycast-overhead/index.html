@@ -5953,6 +5953,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7059,7 +7072,7 @@ GIF
       
       
       <div class="card">
-        <a href="/posts/unity-memo-callback-overhead/">
+        <a href="/posts/unity-memo-post-processing/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7076,13 +7089,13 @@ GIF
   
 
   
-    Mar 11
+    Mar 16
   
 
-  <i class="unloaded">2021-03-11T18:11:00+09:00</i>
+  <i class="unloaded">2021-03-16T17:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>포스트 프로세싱 적용하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7091,26 +7104,24 @@ GIF
 
 
 
-                테스트 대상
+                1. Built-in Pipeline
 
 
-[1] 문장(계산식)
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-private static void TestInline()
-{
-    for (int i = 0; i &lt; count; i++)
-    {
-        _ = Math.Round(2.3f) * Math.Sin(2.5f);
-        _ = Math.Floor(4.4f) *...
+  
+    Package Manager - [Post Processing] 설치
+  
+  
+    레이어 - [Post Processing] 추가
+  
+
+
+
+
+  메인 카메라
+    
+      컴포넌트 추가 : Post-process Layer
+      Volume blending - Layer : [P...
               </p>
             </div>
           </div>

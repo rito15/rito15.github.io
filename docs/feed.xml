@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-23T21:52:32+09:00</updated>
+  <updated>2021-07-24T18:27:20+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,97 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(Amplify) Tree Growth Shader</title>
+    <link href="https://rito15.github.io/posts/unity-amplify-tree-growth/" rel="alternate" type="text/html" title="(Amplify) Tree Growth Shader" />
+    <published>2021-07-24T17:21:00+09:00</published>
+  
+    <updated>2021-07-24T17:21:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-amplify-tree-growth/</id>
+    <content src="https://rito15.github.io/posts/unity-amplify-tree-growth/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Amplify Shader" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  나무가 성장하는 효과 표현하기
+
+
+
+
+Preview
+
+
+
+
+
+
+1. Tree - Body
+
+
+프로퍼티 목록
+
+
+
+
+
+쉐이더 에디터 설정
+
+
+
+
+  
+    우측 상단을 클릭하여 Blend Mode를 Masked로 변경한다.
+  
+  
+    Mask Clip Value 값을 쉐이더 에디터에서 직접 설정해도 되지만
+마테리얼에서 프로퍼티를 통해 조정하려면 우측의 점을 누르고 드롭다운에서 프로퍼티를 선택한다.
+  
+
+
+
+
+쉐이더 노드
+
+
+
+
+
+설명
+
+식물 성장을 표현하기 위해 사용되는 메시는 특별한 조건이 필요하다.
+
+식물이 아래에서 위로 성장하는 것을 표현하기 위해
+
+메시의 UV.Y 값은 가장 하단 정점에서 0을 갖고
+
++Y축 방향으로 상단에 위치한 정점일수록 점점 커지는 형태를 가...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -329,97 +420,6 @@ Preview
 
   
     Animator Event Controller.unitypa...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>파티클 시스템 예제 - 12 - Sword Aura</title>
-    <link href="https://rito15.github.io/posts/unity-particle-system-example-12-sword-aura/" rel="alternate" type="text/html" title="파티클 시스템 예제 - 12 - Sword Aura" />
-    <published>2021-07-11T14:55:00+09:00</published>
-  
-    <updated>2021-07-11T14:55:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-particle-system-example-12-sword-aura/</id>
-    <content src="https://rito15.github.io/posts/unity-particle-system-example-12-sword-aura/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Particle System" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목차
-
-
-
-  목표
-  준비물
-  1. 작업 환경 구성
-  2. 하이라키 구성
-  3. Aura 이펙트
-  4. Smoke 이펙트
-  5. Spark 이펙트
-  6. Glow 이펙트
-
-
-
-
-Preview
-
-
-
-
-
-
-
-
-
-
-목표
-
-
-
-  검 모델링에 부착하여 사용할 수 있는, 타오르는 듯한 이펙트 만들기
-
-
-
-
-준비물
-
-
-검 모델링
-
-  https://assetstore.unity.com/packages/3d/props/weapons/free-low-poly-swords-189978
-
-
-Additive 마테리얼들과 텍스쳐
-
-  SwordAura, SwordSmoke, PointGlow
-  SwordAura_Resources.zip
-
-
-
-
-1. 작업 환경 구성
-
-
-이펙트를 제작하기 위해 게임 뷰에는 스카이...
     </summary>
   
 
