@@ -35,6 +35,8 @@ public class Session
 # Receive 기능 작성
 ---
 
+## **비동기 Receive 작성하기**
+
 ```cs
 public void Start()
 {
@@ -96,7 +98,9 @@ private void OnReceiveCompleted(object sender, SocketAsyncEventArgs args)
 
 <br>
 
-그리고 서버 클래스의 `OnAcceptHandler()` 메소드를
+## **기존 서버 코드 변경**
+
+서버 클래스의 `OnAcceptHandler()` 메소드를
 
 ```cs
 private void OnAcceptHandler(Socket clientSocket)
@@ -153,16 +157,154 @@ private void OnAcceptHandler(Socket clientSocket)
 
 <br>
 
+## **멀티스레드 고려하기**
+
+비동기를 이용해 구현하게 되면 기능 수행 및 완료 처리가
+
+모두 다른 스레드에서 동작하게 된다.
+
+따라서 `OnReceiveCompleted()` 메소드에서 공유 변수에 접근할 때는
+
+반드시 락을 통한 메모리 동기화가 필수적이다.
+
+<br>
+
+## **Disconnect() 메소드 작성**
+
+세션의 연결을 끊고 종료하는 `Disconnect()` 메소드를 다음과 같이 작성할 수 있다.
+
+```cs
+public void Disconnect()
+{
+    _socket.Shutdown(SocketShutdown.Both);
+    _socket.Close();
+}
+```
+
+하지만 여기서 두 가지를 고려할 필요가 있다.
+
+1. `Disconnect()`를 여러 번 호출하는 경우
+2. 서로 다른 스레드에서 함께 호출하는 경우
+
+이를 고려하여 다음과 같이 변경해준다.
+
+```cs
+private const int TRUE = 1;
+private const int FALSE = 0;
+
+private int _isDisconnected = FALSE;
+
+public void Disconnect()
+{
+    // 이미 연결이 끊긴 경우 확인
+    if (Interlocked.Exchange(ref _isDisconnected, TRUE) == TRUE)
+        return;
+
+    _socket.Shutdown(SocketShutdown.Both);
+    _socket.Close();
+
+    Console.WriteLine("Session Disconnected.\n");
+}
+```
+
+<br>
+
+그리고 `OnReceiveCompleted()` 메소드의 `if-else` 구문 중 `else`를 다음과 같이 작성해준다.
+
+```cs
+private void OnReceiveCompleted(object sender, SocketAsyncEventArgs args)
+{
+    int byteTransferred = args.BytesTransferred;
+
+    if (byteTransferred > 0 && args.SocketError == SocketError.Success)
+    {
+        try
+        {
+            string recvData = Encoding.UTF8.GetString(args.Buffer, args.Offset, byteTransferred);
+            Console.WriteLine($"[From Client] {recvData}");
+
+            // Receive 재시작
+            BeginReceive(args);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"{nameof(OnReceiveCompleted)}() Error : {e}");
+        }
+    }
+    else
+    {
+        Disconnect(); // 소켓 에러 발생 시 세션 종료
+    }
+}
+```
+
+<br>
+
 
 # Send 기능 작성
 ---
 
+## **비동기 Send 작성하기**
+
+`Receive`와 유사한 형태로 작성한다.
+
+하지만 `Send`는 자동으로 시작되는 것이 아니라
+
+사용자가 원하는 타이밍마다 호출되는 것임을 유의한다.
+
+```cs
+public void Send(byte[] sendBuffer)
+{
+    SocketAsyncEventArgs sendArgs = new SocketAsyncEventArgs();
+    sendArgs.Completed += OnSendCompleted;
+    sendArgs.SetBuffer(sendBuffer, 0, sendBuffer.Length);
+}
+
+private void BeginSend(SocketAsyncEventArgs args)
+{
+    bool pending = _socket.SendAsync(args);
+    if (pending == false)
+    {
+        // 즉시 수행되는 경우
+        OnSendCompleted(null, args);
+    }
+}
+
+private void OnSendCompleted(object sender, SocketAsyncEventArgs args)
+{
+    int byteTransferred = args.BytesTransferred;
+
+    if (byteTransferred > 0 && args.SocketError == SocketError.Success)
+    {
+        try
+        {
+            string sentData = Encoding.UTF8.GetString(args.Buffer, args.Offset, byteTransferred);
+            Console.WriteLine($"[To Client] {sentData}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"{nameof(OnSendCompleted)}() Error : {e}");
+        }
+    }
+    else
+    {
+        Disconnect(); // 소켓 에러 발생 시 세션 종료
+    }
+}
+```
+
+하지만 여기서 문제점이 하나 있다.
+
+`Send()` 메소드가 호출될 때마다
+
+`SocketAsyncEventArgs` 객체가 항상 새롭게 생성된다는 점이다.
 
 
 
 
 
 
+<br>
 
 # References
 ---
