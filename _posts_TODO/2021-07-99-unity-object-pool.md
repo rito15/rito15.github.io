@@ -1,7 +1,7 @@
 ---
 title: 유니티 오브젝트 풀(Object Pool) 구현하기
 author: Rito15
-date: 2021-07-25 00:55:00 +09:00
+date: 2021-07-000000000000000000000000000000000 00:55:00 +09:00 변경!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 categories: [Unity, Unity Study]
 tags: [unity, csharp]
 math: true
@@ -66,16 +66,16 @@ CPU 성능 소모를 줄이고 메모리 사용량을 더 늘리는 기법이라
 # 메소드 구성
 ---
 
+## **Register(string key, GameObject go)**
+- `key`에 게임오브젝트를 등록한다.
+
+
 ## **Spawn(string key)**
 - `key`에 해당하는 게임오브젝트를 풀에서 꺼내며 활성화한다.
 - 풀에 여유가 없을 경우, 새로 생성한다.
 
 ## **Despawn(GameObject go)**
 - ===> 복제된 게임오브젝트에서 KEY를 어떻게 효율적으로 참조할 것인지????
-
-## **Register(string key, GameObject go)**
-- `key`에 게임오브젝트를 등록한다.
-- 
 
 <br>
 
