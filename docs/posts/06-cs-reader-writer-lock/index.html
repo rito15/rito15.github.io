@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# ReaderWriterLock" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Reader Writer Lock","datePublished":"2021-07-08T01:06:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/06-cs-reader-writer-lock/"},"url":"https://rito15.github.io/posts/06-cs-reader-writer-lock/","author":{"@type":"Person","name":"Rito15"},"headline":"C# ReaderWriterLock","dateModified":"2021-07-08T01:06:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C# ReaderWriterLock","description":"Reader Writer Lock","dateModified":"2021-07-08T01:06:00+09:00","datePublished":"2021-07-08T01:06:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/06-cs-reader-writer-lock/"},"url":"https://rito15.github.io/posts/06-cs-reader-writer-lock/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1800,6 +1800,11 @@ READ : 5, Thread ID : 5
         
         
         
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
@@ -1816,11 +1821,6 @@ READ : 5, Thread ID : 5
         
         
         <li><a href="/posts/memo-cs-delegate-has-method/">C# 델리게이트가 특정 메소드를 갖고 있는지 확인하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-prime-number/">C# Prime Number(소수)</a></li>
       
 
       </ul>
@@ -5420,6 +5420,19 @@ READ : 5, Thread ID : 5
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8067,61 +8080,6 @@ READ : 5, Thread ID : 5
       
       
       <div class="card">
-        <a href="/posts/05-cs-auto-reset-event/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:05:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# AutoResetEvent</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                이벤트(Event) 동기화 기법
-
-
-기존의 락과는 조금 다르게,
-
-락을 얻고자 하는 각각의 스레드만 직접 락을 설정하고 해제할 수 있는 것이 아니라
-
-제 3자도 락을 설정/해제할 수 있는 방식이다.
-
-여기서 제 3자는 커널을 의미하며
-
-커널 영역으로 요청을 보내기 때문에 다른 방식보다 성능 소모가 좀더 크다.
-
-그리고 기존의 락 방식과 동일하게 사용될...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/07-cs-thread-synchronization/">
           <div class="card-body">
             <!--
@@ -8234,6 +8192,73 @@ Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공�
 따라서 기본적으로 각각의 스레드마다 고유하게 갖는 메모리 영역은 없다.
 
 이를 만들어 줄 수 있는 것이 바로 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-process-thread-threadpool-task/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jun 25
+  
+
+  <i class="unloaded">2021-06-25T21:21:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Process, Thread, ThreadPool, Task 개념 간단 정리</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Process
+
+
+
+  
+    메모리에 적재되어 실행되는 프로그램
+  
+  
+    운영체제로부터 자원을 할당받아 수행되는 작업의 단위
+  
+  
+    Code, Data, Heap, Stack 메모리 공간을 독립적으로 갖는다.
+  
+
+
+
+
+Thread
+
+
+
+  
+    프로세스의 자원을 사용하는 실행 흐름의 단위
+  
+  
+    프로세스의 Co...
               </p>
             </div>
           </div>

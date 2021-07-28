@@ -51,31 +51,107 @@ CPU 성능 소모를 줄이고 메모리 사용량을 더 늘리는 기법이라
 <br>
 
 
-# 필드 구성
+
+
+
+
+
+IDEA
+
+[1]
+- 오브젝트 풀링의 대상이 될 프리팹을 미리 싹다 ObjectPoolManager 인스펙터에 담아놓고, string 타입으로 ID도 정해놓고, 이 ID를 기억해놨다가 다른 스크립트에서 사용하기??
+- Despawn시 ID 참조 => ID를 게임오브젝트 이름으로 설정하면 해결
+
+[2]
+- 아래 작성하는 것처럼 PoolObject 컴포넌트 클래스를 따로 만들어서 사용하기?
+- 컴포넌트를 하나 더 써야한다는 단점
+- 숫자 ID를 쓰면 사용할때 불편
+- 그러면 string 타입 ID를 쓰면 되나?
+
+- 차라리 프로젝트 내에서 PoolObjectIDCache 같은걸로 미리 정하면 되나?
+- 근데 이럴거면 정말로 차라리 [1]처럼 인스펙터에서 할당해놓고 쓰는게 낫지 않나..
+
+
+- 아무래도 풀링할 대상들은 모두 정확히 알고 관리할 수 있는 만큼,
+  [1]처럼 인스펙터에서 미리 풀링 대상 오브젝트 쫘악 만들어놓고
+  ID도 string으로 지정해서 편리하게 쓰는게 나을듯
+
+- 컴포넌트를 하나 더 쓰는것도 굉장히 불편
+
+- [1]쪽으로 마음이 기운 상태
+
+- 관리하게 편하게 커스텀 인스펙터로 이쁘게 꾸며주면 좋을듯
+- 풀링 대상들은 클래스로 묶어서 `{ ID:string, Prefab:프리팹, MaxCount:int } 정도로 만들고
+
+
+
+
+
+
+
+# PoolObject 클래스
 ---
 
-## **Dictionary<string, GameObject> sampleDict**
+## **역할**
+
+- 오브젝트 풀링의 대상이 될 각각의 게임오브젝트에 컴포넌트로 사용된다.
+
+- 각각의 풀로 구분될 ID를 부여받고, 저장한다.<br>
+  (동일 ID는 하나의 풀 내에서 함께 관리된다.)
+
+- 게임오브젝트 생성, 파괴, 활성화, 비활성화 등의 API를 구현하여 제공한다.
+
+<br>
+
+## **[1] 필드**
+
+### **static ushort nextUniqueID**
+- `CreateUniqueID()` 호출 시 제공할 다음 ID 값
+
+### **ushort id**
+- 오브젝트가 갖는 고유 ID 값
+
+<br>
+
+## **[2] 메소드**
+
+### **static ushort CreateUniqueID()**
+- 새로운 고유 ID를 생성하여 리턴한다.
+
+
+
+
+<br>
+
+# ObjectPoolManager 클래스
+---
+
+## **[1] 필드**
+
+### **Dictionary<ushort, PoolObject> sampleDict**
 - 
 
-## **Dictionary<string, Stack<GameObject>> poolDict**
+### **Dictionary<string, Stack<PoolObject>> poolDict**
 - 
 
 
 <br>
 
-# 메소드 구성
----
+## **[2] 메소드**
 
-## **Register(string key, GameObject go)**
-- `key`에 게임오브젝트를 등록한다.
+### **ushort Register(GameObject go)**
+- 게임오브젝트를 복제하여 새롭게 풀에 등록하고 ID를 리턴한다.
 
+### **void Prepare(ushort id, int count)**
+- 해당 `id`의 오브젝트를 `count` 개수만큼 미리 생성하여 스택에 담아놓는다.
 
-## **Spawn(string key)**
-- `key`에 해당하는 게임오브젝트를 풀에서 꺼내며 활성화한다.
+### **Spawn(ushort id)**
+- `id`에 해당하는 게임오브젝트를 풀에서 꺼내며 활성화한다.
 - 풀에 여유가 없을 경우, 새로 생성한다.
 
-## **Despawn(GameObject go)**
-- ===> 복제된 게임오브젝트에서 KEY를 어떻게 효율적으로 참조할 것인지????
+### **Despawn(PoolObject obj)**
+- 대상 오브젝트를 비활성화하여 풀에 넣는다.
+- `PoolObject`가 기억하는 자신의 ID에 해당되는 풀에 알아서 들어간다.
 
 <br>
 

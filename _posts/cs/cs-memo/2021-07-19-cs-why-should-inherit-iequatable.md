@@ -1,6 +1,6 @@
 ---
 title: C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유
-author: Rito15ㅔ
+author: Rito15
 date: 2021-07-19 20:00:00 +09:00
 categories: [C#, C# Memo]
 tags: [csharp]

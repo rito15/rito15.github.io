@@ -16,8 +16,8 @@ TITLE :
 public class Session
 {
     private Socket _socket;
-
-    public Session(Socket socket)
+    
+    public void Init(Socket socket)
     {
         _socket = socket;
     }
@@ -38,8 +38,10 @@ public class Session
 ## **비동기 Receive 작성하기**
 
 ```cs
-public void Start()
+public void Init(Socket socket)
 {
+    _socket = socket;
+    
     // Receive
     SocketAsyncEventArgs recvArgs = new SocketAsyncEventArgs();
     recvArgs.Completed += OnReceiveCompleted;
@@ -139,7 +141,7 @@ private void OnAcceptHandler(Socket clientSocket)
         Console.WriteLine($"\nClient Accepted : {clientSocket.RemoteEndPoint}");
 
         Session session = new Session(clientSocket);
-        session.Start();
+        session.Init();
 
         /* Send */
 
@@ -192,12 +194,12 @@ public void Disconnect()
 private const int TRUE = 1;
 private const int FALSE = 0;
 
-private int _isDisconnected = FALSE;
+private int _isConnected = TRUE;
 
 public void Disconnect()
 {
     // 이미 연결이 끊긴 경우 확인
-    if (Interlocked.Exchange(ref _isDisconnected, TRUE) == TRUE)
+    if (Interlocked.Exchange(ref _isConnected, FALSE) == FALSE)
         return;
 
     _socket.Shutdown(SocketShutdown.Both);
@@ -308,7 +310,7 @@ private void OnSendCompleted(object sender, SocketAsyncEventArgs args)
 ```cs
 private SocketAsyncEventArgs _sendArgs = new SocketAsyncEventArgs();
 
-public void Start()
+public void Init()
 {
     // Receive
     SocketAsyncEventArgs recvArgs = new SocketAsyncEventArgs();
@@ -448,8 +450,8 @@ private void OnSendCompleted(object sender, SocketAsyncEventArgs args)
 # 코드 정리
 ---
 
-- 필드를 초기화하는 부분은 생성자와 `Start()` 메소드 내부로 적절히 배분하여 옮긴다.
-- `Start()` 내부의 `recvArgs` 객체는 `Session` 클래스 내에서 계속 재사용되므로, 필드로 옮긴다.
+- 필드를 초기화하는 부분은 생성자와 `Init()` 메소드 내부로 적절히 배분하여 옮긴다.
+- `Init()` 내부의 `recvArgs` 객체는 `Session` 클래스 내에서 계속 재사용되므로, 필드로 옮긴다.
 - 디버그 전용 코드를 추가한다.
 
 ```cs
@@ -471,7 +473,7 @@ namespace ServerCore
         private const int FALSE = 0;
 
         private Socket _socket;
-        private int _isDisconnected;
+        private int _isConnected;
 
         // Sending Fields
         private SocketAsyncEventArgs _sendArgs;
@@ -482,48 +484,25 @@ namespace ServerCore
         // Receiving Fields
         private SocketAsyncEventArgs _recvArgs;
 
-        public Session(Socket socket)
+        public Session()
         {
-            _socket = socket;
-            _isDisconnected = FALSE;
+            _isConnected = FALSE;
 
             _sendLock = new object();
             _isWaitingForSend = false;
             _sendQueue = new Queue<byte[]>(16);
         }
-
-        /***********************************************************************
-        *                               DEBUG
-        ***********************************************************************/
-        #region .
-#if DEBUG
-        private bool _debug_isStarted = false;
-#endif
-
-        [System.Diagnostics.Conditional("DEBUG")]
-        private void Debug_SetStarted()
-        {
-#if DEBUG
-            _debug_isStarted = true;
-#endif
-        }
-
-        [System.Diagnostics.Conditional("DEBUG")]
-        private void Debug_CheckAlreadyStarted()
-        {
-#if DEBUG
-            if (!_debug_isStarted)
-                throw new Exception("[DEBUG] Start()가 아직 호출되지 않았습니다.");
-#endif
-        }
-        #endregion
+        
         /***********************************************************************
         *                               Public Methods
         ***********************************************************************/
         #region .
 
-        public void Start()
+        public void Init(Socket socket)
         {
+            _socket = socket;
+            _isConnected = TRUE;
+            
             // Receive
             _recvArgs = new SocketAsyncEventArgs();
             _recvArgs.Completed += OnReceiveCompleted;
@@ -534,15 +513,13 @@ namespace ServerCore
             // Send
             _sendArgs = new SocketAsyncEventArgs();
             _sendArgs.Completed += OnSendCompleted;
-
-            Debug_SetStarted();
         }
 
         /// <summary> 클라이언트 소켓과의 연결 종료하기 </summary>
         public void Disconnect()
         {
             // 이미 연결이 끊긴 경우 확인
-            if (Interlocked.Exchange(ref _isDisconnected, TRUE) == TRUE)
+            if (Interlocked.Exchange(ref _isConnected, FALSE) == FALSE)
                 return;
 
             _socket.Shutdown(SocketShutdown.Both);
@@ -561,8 +538,6 @@ namespace ServerCore
         /// <summary> 연결된 클라이언트 소켓에 데이터 전송하기 </summary>
         public void Send(byte[] sendBuffer)
         {
-            Debug_CheckAlreadyStarted();
-
             lock (_sendLock)
             {
                 _sendQueue.Enqueue(sendBuffer);
@@ -732,8 +707,6 @@ public Session(Socket socket)
 
 public void Send(byte[] sendBuffer)
 {
-    Debug_CheckAlreadyStarted();
-
     lock (_sendLock)
     {
         _sendQueue.Enqueue(sendBuffer);
@@ -821,7 +794,215 @@ private void OnSendCompleted(object sender, SocketAsyncEventArgs args)
 <br>
 
 
-TODO : 이벤트 콜백 방식 구현
+# 이벤트 핸들러 추가하기
+---
+
+`Session` 내 각각의 기능 수행에 성공했을 때의 동작을 동적으로 추가할 수 있도록
+
+각각의 이벤트 핸들러를 작성한다.
+
+<br>
+
+`void OnConnected(EndPoint endPoint)`
+- 연결에 성공했을 때 수행될 동작을 등록한다.
+
+`void OnDisconnected(EndPoint endPoint)`
+- 연결을 해제했을 때 수행될 동작을 등록한다.
+
+`void OnReceived(ArraySegment<byte> buffer)`
+- 패킷을 성공적으로 전달받았을 때 수행할 동작을 등록한다.
+
+`void OnSent(int numOfBytes)`
+- 패킷을 성공적으로 전송했을 때 수행할 동작을 등록한다.
+
+<br>
+
+`Session` 클래스를 추상 클래스로 변경하고,
+
+위의 이벤트 핸들러들도 추상 메소드로 추가한다.
+
+```cs
+protected abstract void OnConnected(EndPoint endPoint);
+protected abstract void OnDisconnected(EndPoint endPoint);
+protected abstract void OnReceived(ArraySegment<byte> buffer);
+protected abstract void OnSent(int numOfBytes);
+```
+
+<br>
+
+이제 `Session` 클래스의 각 메소드 내의 적절한 위치에서 위의 이벤트 핸들러를 호출해준다.
+
+```cs
+public void Init(Socket socket)
+{
+    _socket = socket;
+    _isConnected = TRUE;
+
+    OnConnected(socket.RemoteEndPoint); // 추가(Init 마지막줄)
+}
+
+public void Disconnect()
+{
+    if (Interlocked.Exchange(ref _isConnected, FALSE) == FALSE)
+        return;
+
+    OnDisconnected(_socket.RemoteEndPoint); // 추가
+
+    _socket.Shutdown(SocketShutdown.Both);
+    _socket.Close();
+}
+
+private void OnSendCompleted(object sender, SocketAsyncEventArgs args)
+{
+    lock (_sendLock)
+    {
+        int byteTransferred = args.BytesTransferred;
+
+        if (byteTransferred > 0 && args.SocketError == SocketError.Success)
+        {
+            try
+            {
+                OnSent(byteTransferred); // 추가
+                
+                // ...
+            }
+        }
+    }
+}
+
+private void OnReceiveCompleted(object sender, SocketAsyncEventArgs args)
+{
+    int byteTransferred = args.BytesTransferred;
+
+    if (byteTransferred > 0 && args.SocketError == SocketError.Success)
+    {
+        try
+        {
+            // 추가
+            OnReceived(new ArraySegment<byte>(args.Buffer, args.Offset, args.BytesTransferred));
+            
+            // ...
+        }
+    }
+}
+```
+
+<br>
+
+## **Listener 클래스 수정**
+
+`Action<Socket> onAcceptHandler`를 필드에 선언하고,
+
+`Init()` 메소드의 매개변수로 받던 부분을
+
+`Session` 객체를 받도록 수정한다.
+
+```cs
+public class Listener
+{
+    private Socket _listenSocket;
+    private Session _session; // 변경
+
+    public void Init(IPEndPoint endPoint, Session session) // 변경
+    {
+        // ...
+        
+        _session = session; // 추가
+        
+        // ...
+        
+    }
+
+    // BeginAccept Method ...
+
+    private void OnAcceptCompleted(object sender, SocketAsyncEventArgs args)
+    {
+        // Accept 성공
+        if (args.SocketError == SocketError.Success)
+        {
+            _session.Init(args.AcceptSocket); // 변경
+        }
+        // 에러 발생
+        else
+        {
+            Console.WriteLine(args.SocketError.ToString());
+        }
+
+        // 처리를 모두 끝낸 후 다시 Accept 시작
+        BeginAccept(args);
+    }
+}
+```
+
+<br>
+
+## **TCP Server 수정**
+
+우선 서버에서 사용하기 위한 새로운 세션 클래스를 작성한다.
+
+```cs
+class GameSession : Session
+{
+    protected override void OnConnected(EndPoint endPoint)
+    {
+        Console.WriteLine($"Session Connected : {endPoint}\n");
+    }
+
+    protected override void OnDisconnected(EndPoint endPoint)
+    {
+        Console.WriteLine($"Session Disconnected : {endPoint}\n");
+    }
+
+    protected override void OnReceived(ArraySegment<byte> buffer)
+    {
+        string recvData = Encoding.UTF8.GetString(buffer.Array, buffer.Offset, buffer.Count);
+        Console.WriteLine($"[From Client] {recvData}");
+    }
+
+    protected override void OnSent(int numOfBytes)
+    {
+        Console.WriteLine($"[To Client] Transferred Bytes : {numOfBytes}");
+    }
+}
+```
+
+<br>
+
+그리고 **TCP 서버** 코드도 다음과 같이 변경한다.
+
+```cs
+class TcpServerAsync
+{
+    private Listener _listener;
+
+    public void Run()
+    {
+        // 서버 측의 IP 정보를 정의한다.
+        string host = Dns.GetHostName();
+        IPInformation serverInfo = new IPInformation(host, 7777);
+
+        // TCP 리스너 소켓을 생성한다.
+        _listener = new Listener();
+
+        // 리스너 소켓 동작 - Bind(), Listen()
+        _listener.Init(serverInfo.EndPoint, new GameSession()); // 변경
+
+        Console.WriteLine("Listening..");
+
+        while (true)
+        {
+            // Wait
+        }
+    }
+}
+```
+
+`OnAcceptHandler()` 메소드를 완전히 제거했고,
+
+연결, 종료, 송신, 수신 완료 처리는 이제 모두
+
+`GameSession` 클래스처럼 세션을 상속받는 클래스에서 작성하면 된다.
+
 
 
 <br>
