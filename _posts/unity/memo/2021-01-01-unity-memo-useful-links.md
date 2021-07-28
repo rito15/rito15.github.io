@@ -1,5 +1,5 @@
 ---
-title: 유용한 정보, 링크 모음
+title: 유니티 유용한 정보, 링크 모음
 author: Rito15
 date: 2021-01-01 01:01:01 +09:00
 categories: [Unity, Unity Memo]

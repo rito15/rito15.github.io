@@ -81,10 +81,21 @@ IDEA
 - [1]쪽으로 마음이 기운 상태
 
 - 관리하게 편하게 커스텀 인스펙터로 이쁘게 꾸며주면 좋을듯
-- 풀링 대상들은 클래스로 묶어서 `{ ID:string, Prefab:프리팹, MaxCount:int } 정도로 만들고
+- 풀링 대상들은 클래스로 묶어서 `class PoolObjectData{ ID:string, Prefab:프리팹, MaxCount:int } 정도로 만들고
 
 
+★ GameObject.name은 호출 한 번 당 하나씩 알뜰하게 가비지를 생성
 
+★ ID는 string으로 하되, 게임오브젝트 이름이 아니라 PoolObject 컴포넌트의 변수로 사용
+
+★ class PoolSO : ScriptableObject
+{
+    public string id;
+    public GameObject prefab;
+    public int maxCount;
+}
+
+★ Manager의 인스펙터에는 PoolSO 리스트 관리
 
 
 
