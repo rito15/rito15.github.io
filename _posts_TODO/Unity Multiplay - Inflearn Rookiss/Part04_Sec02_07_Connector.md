@@ -6,6 +6,15 @@ TITLE : Connector, ClientSession, 비동기 TCP 클라이언트
 
 <br>
 
+# 간단 정리
+---
+
+## `Connector` 클래스의 역할
+- 클라이언트에서 서버로 새로운 연결 생성
+- 연결 하나 당 세션도 하나 생성
+
+<br>
+
 
 # Connector 클래스
 ---
