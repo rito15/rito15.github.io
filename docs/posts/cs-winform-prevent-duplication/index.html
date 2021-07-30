@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="윈폼 중복 실행 방지" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Memo","datePublished":"2021-05-06T02:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-prevent-duplication/"},"url":"https://rito15.github.io/posts/cs-winform-prevent-duplication/","author":{"@type":"Person","name":"Rito15"},"headline":"윈폼 중복 실행 방지","dateModified":"2021-05-06T02:02:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"윈폼 중복 실행 방지","description":"Memo","dateModified":"2021-05-06T02:02:00+09:00","datePublished":"2021-05-06T02:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-prevent-duplication/"},"url":"https://rito15.github.io/posts/cs-winform-prevent-duplication/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -4961,6 +4961,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7090,7 +7116,7 @@ public b...
       
       
       <div class="card">
-        <a href="/posts/memo-cs-get-path/">
+        <a href="/posts/memo-cs-delegate-has-method/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7110,10 +7136,10 @@ public b...
     Mar 12
   
 
-  <i class="unloaded">2021-03-12T18:10:00+09:00</i>
+  <i class="unloaded">2021-03-12T21:52:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 델리게이트가 특정 메소드를 갖고 있는지 확인하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7122,17 +7148,13 @@ public b...
 
 
 
-                스크립트 경로
-
-
+                
   
-    public static void GetScriptPath([System.Runtime.CompilerServices.CallerFilePath] string filePath = "")
-{
-    // 1. Script(.cs) Path
-    _ = filePath;
+    //using System;
+//using System.Linq;
 
-    // 2. Folder Path
-    st...
+/// &lt;summary&gt; 델리게이트가 메소드를 갖고 있는지 검사 &lt;/summary&gt;
+private static bool CheckDelegateHasMethod&lt;DType&gt;(DType @delegate, DType method) where...
               </p>
             </div>
           </div>

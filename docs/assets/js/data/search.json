@@ -1,6 +1,36 @@
 [
   
   {
+    "title": "C#에서 union 구현하기",
+    "url": "/posts/cs-union-in-csharp/",
+    "categories": "C#, C# Grammar",
+    "tags": "csharp",
+    "date": "2021-07-30 18:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "C언어의 unionunion MyUnion{    int intValue;     // 4바이트    short shortValue; // 2바이트}  위처럼 C언어에는 서로 다른 타입의 변수가 동일 메모리를 사용하도록 하는 union(공용체)이 존재한다.C#에서의 union  C#에는 union 키워드가 존재하지 않지만, 편법을 통해 union 기능을 구현할 수 있다.[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Ex..."
+  },
+  
+  {
+    "title": "클래스 타입 객체가 null인지 검사하는 4가지 방법",
+    "url": "/posts/cs-null-check/",
+    "categories": "C#, C# Grammar",
+    "tags": "csharp",
+    "date": "2021-07-30 17:30:00 +0900",
+    
+
+
+
+
+
+    "snippet": "4가지 방법[1]instance == null;// 1-1. == 연산자를 오버로딩 하지 않은 경우ldloc.0ldnullceq// 1-2. == 연산자를 오버로딩한 경우ldnullcall        bool ClassName::op_Equality(class ClassName, class ClassName)[2]instance.Equals(null);ldnullcallvirt   instance bool [mscorlib]System.Object::Equals(object)[3]ReferenceEquals(instance,..."
+  },
+  
+  {
     "title": "Infinite Horizontal Scroll (무한 횡스크롤) UI",
     "url": "/posts/unity-infinite-horizontal-scroll-ui/",
     "categories": "Unity, Unity Toys",

@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-30T02:02:02+09:00</updated>
+  <updated>2021-07-30T18:18:18+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,150 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C#에서 union 구현하기</title>
+    <link href="https://rito15.github.io/posts/cs-union-in-csharp/" rel="alternate" type="text/html" title="C#에서 union 구현하기" />
+    <published>2021-07-30T18:00:00+09:00</published>
+  
+    <updated>2021-07-30T18:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-union-in-csharp/</id>
+    <content src="https://rito15.github.io/posts/cs-union-in-csharp/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Grammar" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      C언어의 union
+
+
+union MyUnion
+{
+    int intValue;     // 4바이트
+    short shortValue; // 2바이트
+}
+
+
+
+  위처럼 C언어에는 서로 다른 타입의 변수가 동일 메모리를 사용하도록 하는 union(공용체)이 존재한다.
+
+
+
+
+C#에서의 union
+
+
+
+  C#에는 union 키워드가 존재하지 않지만, 편법을 통해 union 기능을 구현할 수 있다.
+
+
+[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Explicit)]
+class UnionExample
+{
+    [System.Runtime.InteropServices.FieldOffset...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>클래스 타입 객체가 null인지 검사하는 4가지 방법</title>
+    <link href="https://rito15.github.io/posts/cs-null-check/" rel="alternate" type="text/html" title="클래스 타입 객체가 null인지 검사하는 4가지 방법" />
+    <published>2021-07-30T17:30:00+09:00</published>
+  
+    <updated>2021-07-30T17:30:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-null-check/</id>
+    <content src="https://rito15.github.io/posts/cs-null-check/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Grammar" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      4가지 방법
+
+
+[1]
+
+instance == null;
+
+
+// 1-1. == 연산자를 오버로딩 하지 않은 경우
+ldloc.0
+ldnull
+ceq
+
+// 1-2. == 연산자를 오버로딩한 경우
+ldnull
+call        bool ClassName::op_Equality(class ClassName, class ClassName)
+
+
+
+
+[2]
+
+instance.Equals(null);
+
+
+ldnull
+callvirt   instance bool [mscorlib]System.Object::Equals(object)
+
+
+
+
+[3]
+
+ReferenceEquals(instance, null);
+
+
+ldloc.0
+ldnull
+ceq
+
+
+
+
+[4]
+
+// C# 7.0부터 사용 가능
+instance is...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -286,144 +430,6 @@ Properties
     
       Color Mix Threshold
       두 색상의...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Hash Table(해시 테이블)</title>
-    <link href="https://rito15.github.io/posts/hash-table/" rel="alternate" type="text/html" title="Hash Table(해시 테이블)" />
-    <published>2021-07-20T17:14:00+09:00</published>
-  
-    <updated>2021-07-20T17:14:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/hash-table/</id>
-    <content src="https://rito15.github.io/posts/hash-table/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Algorithm" />
-    
-    <category term="Data Structure" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      특징
-
-
-
-  
-    데이터의 삽입, 제거, 탐색이 모두 O(1)로 매우 빠르다.
-  
-  
-    내부적으로 정렬되지는 않는다.
-  
-  
-    저장할 데이터의 수보다 더 많은 공간이 필요하다.
-  
-
-
-
-
-구현 원리
-
-
-
-  
-    Key와 Value를 함께 저장하는 Pair 타입(클래스 또는 구조체)을 준비한다.
-  
-  
-    Pair[] 타입의 Bucket을 생성한다.
-  
-  
-    Key의 값을 해시 함수에 넣어서 배열의 Index를 계산한다.
-  
-  
-    Bucket의 Index 위치에 Pair를 삽입, 삭제, 탐색한다.
-  
-  
-    Key에 대한 해시 계산으로 인덱스를 얻을 수 있기 때문에 데이터 삽입, 삭제, 탐색의 시간복잡도는 모두 O(1)이 된다.
-  
-  
- ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# 구조체가 IEquatable&amp;lt;T&amp;gt;를 상속해야 하는 이유</title>
-    <link href="https://rito15.github.io/posts/cs-why-should-inherit-iequatable/" rel="alternate" type="text/html" title="C# 구조체가 IEquatable&amp;lt;T&amp;gt;를 상속해야 하는 이유" />
-    <published>2021-07-19T20:00:00+09:00</published>
-  
-    <updated>2021-07-28T20:40:31+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-why-should-inherit-iequatable/</id>
-    <content src="https://rito15.github.io/posts/cs-why-should-inherit-iequatable/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      System.Object.Equals(object)
-
-
-C#의 모든 타입의 최상위 클래스인 Object에는 .Equals(object) 메소드가 존재한다.
-
-그리고 이를 통해 다른 값과의 동일 비교를 수행할 수 있다.
-
-
-
-구조체나 클래스를 직접 정의하고, 해당 객체로 .Equals(object)를 호출하면
-
-object.Equals(object)가 호출된다.
-
-우선, 이것이 핵심이다.
-
-
-
-박싱
-
-int a = 1;
-object oa = a;
-
-
-Value Type을 object 타입으로 캐스팅하면 박싱이 일어난다.
-
-IL_0001:  ldc.i4.1
-IL_0002:  stloc.0
-IL_0003:  ldloc.0
-IL_0004:  box        [mscorlib]System.Int32
-IL_0...
     </summary>
   
 

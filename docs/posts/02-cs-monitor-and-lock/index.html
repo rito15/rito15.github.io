@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# Monitor, lock" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Critical Section(임계 영역)","datePublished":"2021-07-08T01:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/02-cs-monitor-and-lock/"},"url":"https://rito15.github.io/posts/02-cs-monitor-and-lock/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Monitor, lock","dateModified":"2021-07-08T01:02:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C# Monitor, lock","description":"Critical Section(임계 영역)","dateModified":"2021-07-08T01:02:00+09:00","datePublished":"2021-07-08T01:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/02-cs-monitor-and-lock/"},"url":"https://rito15.github.io/posts/02-cs-monitor-and-lock/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -4743,6 +4743,32 @@ Source Code
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7351,122 +7377,6 @@ Source Code
       
       
       <div class="card">
-        <a href="/posts/06-cs-reader-writer-lock/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:06:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# ReaderWriterLock</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Reader Writer Lock
-
-
-스레드 간에 공유되는 데이터가 있을 때,
-
-항상 모든 스레드가 그 데이터를 읽고 쓰는 것은 아니다.
-
-어떤 스레드는 해당 데이터를 읽기만 하고,
-
-어떤 스레드는 해당 데이터를 쓰기만 하는 구조로 이루어져 있을 수 있다.
-
-그리고 소수의 쓰기 스레드가 상대적으로 적은 횟수로 쓰기를 수행하고,
-
-다수의 읽기 스레드가 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/07-cs-thread-synchronization/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:07:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Thread Synchronization and Locks</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                동기화 영역에 따른 구분
-
-
-1. 유저 모드 동기화
-
-
-  
-    유저 객체(커널에서 제공하지 않는 객체)를 사용한다.
-  
-  
-    대표적으로 크리티컬 섹션(Critical Section), 인터락(Interlocked)이 있다.
-  
-  
-    커널 모드 동기화보다 빠르다.
-  
-  
-    동일 프로세스 내에서만 동기화 가능하다.
-  
-
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/08-cs-thread-local-storage/">
           <div class="card-body">
             <!--
@@ -7518,6 +7428,130 @@ Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공�
 따라서 기본적으로 각각의 스레드마다 고유하게 갖는 메모리 영역은 없다.
 
 이를 만들어 줄 수 있는 것이 바로 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-process-thread-threadpool-task/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jun 25
+  
+
+  <i class="unloaded">2021-06-25T21:21:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Process, Thread, ThreadPool, Task 개념 간단 정리</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Process
+
+
+
+  
+    메모리에 적재되어 실행되는 프로그램
+  
+  
+    운영체제로부터 자원을 할당받아 수행되는 작업의 단위
+  
+  
+    Code, Data, Heap, Stack 메모리 공간을 독립적으로 갖는다.
+  
+
+
+
+
+Thread
+
+
+
+  
+    프로세스의 자원을 사용하는 실행 흐름의 단위
+  
+  
+    프로세스의 Co...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-task/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul  6
+  
+
+  <i class="unloaded">2021-07-06T03:33:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Task</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Task
+
+
+
+  
+    Task는 ThreadPool을 기반으로 작성된 라이브러리이다.
+  
+  
+    내부적으로 ThreadPool의 스레드 개수를 차지하며, ThreadPool의 스레드 개수 제한에 영향을 받는다.
+  
+  
+    가벼운 비동기 작업에 특화되어 있다.
+  
+  
+    Thread.Abort()처럼 간단히 종료할 수 없다.
+...
               </p>
             </div>
           </div>

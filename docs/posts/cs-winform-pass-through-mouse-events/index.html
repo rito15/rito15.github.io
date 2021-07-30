@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표","datePublished":"2021-05-09T01:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/"},"url":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/","author":{"@type":"Person","name":"Rito15"},"headline":"마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기","dateModified":"2021-05-09T01:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기","description":"목표","dateModified":"2021-05-09T01:30:00+09:00","datePublished":"2021-05-09T01:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/"},"url":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -5067,6 +5067,32 @@ Form1.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7188,7 +7214,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/memo-cs-get-path/">
+        <a href="/posts/memo-cs-delegate-has-method/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7208,10 +7234,10 @@ static void Main()
     Mar 12
   
 
-  <i class="unloaded">2021-03-12T18:10:00+09:00</i>
+  <i class="unloaded">2021-03-12T21:52:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 델리게이트가 특정 메소드를 갖고 있는지 확인하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7220,17 +7246,13 @@ static void Main()
 
 
 
-                스크립트 경로
-
-
+                
   
-    public static void GetScriptPath([System.Runtime.CompilerServices.CallerFilePath] string filePath = "")
-{
-    // 1. Script(.cs) Path
-    _ = filePath;
+    //using System;
+//using System.Linq;
 
-    // 2. Folder Path
-    st...
+/// &lt;summary&gt; 델리게이트가 메소드를 갖고 있는지 검사 &lt;/summary&gt;
+private static bool CheckDelegateHasMethod&lt;DType&gt;(DType @delegate, DType method) where...
               </p>
             </div>
           </div>

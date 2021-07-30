@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Static Readonly vs. Const" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"공통점 런타임에 값을 변경할 수 없다.","datePublished":"2021-03-30T00:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-static-readonly-vs-const/"},"url":"https://rito15.github.io/posts/memo-cs-static-readonly-vs-const/","author":{"@type":"Person","name":"Rito15"},"headline":"Static Readonly vs. Const","dateModified":"2021-03-30T00:50:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Static Readonly vs. Const","description":"공통점 런타임에 값을 변경할 수 없다.","dateModified":"2021-03-30T00:50:00+09:00","datePublished":"2021-03-30T00:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-static-readonly-vs-const/"},"url":"https://rito15.github.io/posts/memo-cs-static-readonly-vs-const/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -5090,6 +5090,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -6905,7 +6931,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-define-symbol/">
+        <a href="/posts/cs-null-check/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -6922,13 +6948,13 @@
   
 
   
-    Mar 12
+    Jul 30
   
 
-  <i class="unloaded">2021-03-12T18:28:00+09:00</i>
+  <i class="unloaded">2021-07-30T17:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Scripting Define Symbol 스크립트로 제어하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>클래스 타입 객체가 null인지 검사하는 4가지 방법</h3>
             <div class="text-muted small">
               <p>
                 
@@ -6937,23 +6963,98 @@
 
 
 
-                Scripting Define Symbol?
+                4가지 방법
+
+
+[1]
+
+1
+instance == null;
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+// 1-1. == 연산자를 오버로딩 하지 않은 경우
+ldloc.0
+ldnull
+ceq
+
+// 1-2. == 연산자를 오버로딩한 경우
+ldnull
+call        bool ClassName::op_Equality(class ClassName, class ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-union-in-csharp/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul 30
+  
+
+  <i class="unloaded">2021-07-30T18:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C#에서 union 구현하기</h3>
+            <div class="text-muted small">
+              <p>
+                
 
 
 
 
 
-  
-    스크립트에서 #define으로 정의하듯, 프로젝트 전체에서 정의하여 사용할 수 있는 심볼
-  
-  
-    Project Settings - Player - Other Settings - Scripting Define Symbols
-  
-  
-    빌드 타겟마다 달라진다.
-  
-  
-...
+                C언어의 union
+
+
+1
+2
+3
+4
+5
+union MyUnion
+{
+    int intValue;     // 4바이트
+    short shortValue; // 2바이트
+}
+
+
+
+  위처럼 C언어에는 서로 다른 타입의 변수가 동일 메모리를 사용하도록 하는 union(공용체)이 존재한다.
+
+
+
+
+C#에서의 union
+
+
+
+  C#에는 union ...
               </p>
             </div>
           </div>
@@ -7009,64 +7110,6 @@ private static void MenuItem1()
 }
 
 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-editor-menu-item-hierarchy/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar 12
-  
-
-  <i class="unloaded">2021-03-12T22:50:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 하이라키 우클릭 메뉴 아이템</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                우클릭 MenuItem 메소드 중복 호출 방지하기
-
-
-
-  
-    게임오브젝트를 다중 선택하고 우클릭 메뉴를 통해 실행했을 때 생기는 중복 호출 버그 방지
-  
-  
-    다이얼로그를 띄우면 방지 안되니 주의
-  
-
-
-
-  
-    private static string _prevMethodCallInfo = "";
-
-/// &lt;summary&...
               </p>
             </div>
           </div>

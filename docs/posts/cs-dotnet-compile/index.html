@@ -37,7 +37,7 @@
 <meta property="twitter:title" content=".NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":".NET 환경의 컴파일 과정","datePublished":"2021-06-06T04:43:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-dotnet-compile/"},"url":"https://rito15.github.io/posts/cs-dotnet-compile/","author":{"@type":"Person","name":"Rito15"},"headline":".NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT","dateModified":"2021-06-07T23:22:17+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":".NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT","description":".NET 환경의 컴파일 과정","dateModified":"2021-06-07T23:22:17+09:00","datePublished":"2021-06-06T04:43:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-dotnet-compile/"},"url":"https://rito15.github.io/posts/cs-dotnet-compile/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -5021,6 +5021,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7239,58 +7265,6 @@
       
       
       <div class="card">
-        <a href="/posts/memo-cs-get-path/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar 12
-  
-
-  <i class="unloaded">2021-03-12T18:10:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                스크립트 경로
-
-
-  
-    public static void GetScriptPath([System.Runtime.CompilerServices.CallerFilePath] string filePath = "")
-{
-    // 1. Script(.cs) Path
-    _ = filePath;
-
-    // 2. Folder Path
-    st...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/memo-cs-delegate-has-method/">
           <div class="card-body">
             <!--
@@ -7385,6 +7359,92 @@ public static bool IsPrime(int value)
 
     // 짝수일 경우 2만 소수
     if (isEve...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-string-format/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    May  9
+  
+
+  <i class="unloaded">2021-05-09T21:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 스트링 포맷 정리</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                NOTE
+
+
+
+  , : 스트링의 범위(공간) 설정
+  : : 출력 포맷 설정
+
+
+
+
+좌우 정렬
+
+
+
+  
+    $"{value, 10}"
+
+  
+
+
+
+  10칸 범위 내에서 우측 정렬
+
+
+
+
+
+  
+    $"{value, -10}"
+
+  
+
+
+
+  10칸 범위 내에서 좌측 정렬
+
+
+
+
+숫자 왼쪽에 공백 삽입하기
+
+
+
+  
+    $"{value ...
               </p>
             </div>
           </div>
