@@ -1,4 +1,4 @@
-TITLE : OSI 7 Layer, TCP/IP 4 Layer
+TITLE : TCP/IP 4 Layer
 
 # 강좌
 ---
