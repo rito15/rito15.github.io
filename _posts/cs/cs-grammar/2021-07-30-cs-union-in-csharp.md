@@ -54,6 +54,10 @@ class UnionExample
 # 참고 : 객체의 크기 참조
 ---
 
+- `StructLayout` 애트리뷰트로 `LayoutKind`를 `Explicit` 또는 `Sequential`로 지정한 경우에만 `Marshal`을 이용해 크기를 참조할 수 있다.
+
+- 필드에 스트링, 배열, 컬렉션 등의 객체가 존재하는 경우에는 불가능하다.
+
 ```cs
 UnionExample a = new UnionExample();
 
