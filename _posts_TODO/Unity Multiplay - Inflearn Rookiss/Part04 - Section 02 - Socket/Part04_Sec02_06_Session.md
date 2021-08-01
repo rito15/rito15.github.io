@@ -922,19 +922,27 @@ private void OnReceiveCompleted(object sender, SocketAsyncEventArgs args)
 
 `Init()` 메소드의 매개변수로 받던 부분을
 
-`Session` 객체를 받도록 수정한다.
+`Func<Session>`을 받도록 수정한다.
+
+`Session`을 직접 받지 않고 `Func<Session>`을 받는 이유는,
+
+새로운 연결이 생성될 때마다 그 연결에 해당하는 `Session` 객체를 새롭게 생성해야 하기 때문이다.
+
+이미 만들어진 `Session` 객체를 받아서 필드에 저장할 경우
+
+새로운 연결이 생성될 때 동일 `Session` 객체가 재사용되는 치명적인 문제가 발생한다.
 
 ```cs
 public class Listener
 {
     private Socket _listenSocket;
-    private Session _session; // 변경
+    private Func<Session> _sessionFactory; // 변경
 
-    public void Init(IPEndPoint endPoint, Session session) // 변경
+    public void Init(IPEndPoint endPoint, Func<Session> sessionFactory) // 변경
     {
         // ...
         
-        _session = session; // 추가
+        _sessionFactory = sessionFactory;_session = session; // 추가
         
         // ...
         
@@ -947,7 +955,8 @@ public class Listener
         // Accept 성공
         if (args.SocketError == SocketError.Success)
         {
-            _session.Init(args.AcceptSocket); // 변경
+            Session session = _sessionFactory?.Invoke(); // 변경
+            session.Init(args.AcceptSocket);             // 변경
         }
         // 에러 발생
         else

@@ -1,4 +1,4 @@
-TITLE : 
+TITLE : Receive Buffer
 
 # 강좌
 ---

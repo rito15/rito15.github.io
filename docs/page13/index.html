@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page13/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page13/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,588 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-memo-prevent-infinite-loop/">무한 루프를 간편히 방지하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        2021. 06. 17.
+
+  무한루프를 보다 간편히 방지할 수 있도록 코드 개선
+
+
+
+
+Note
+
+
+
+  
+    유니티 엔진에서 무한 루프가 발생하면 에디터가 그대로 멈추어, 강제 종료해야 하는 경험을 겪은 적이 간혹 있을 것이다.
+  
+  
+    따라서 혹시나 무한 루프가 될 가능성이 있는 코드를 인지했다면 간단한 체크 로직을 넣어주는 것이 좋...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Mar  5, 2021,  4:00 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar  5
+  
+
+  <i class="unloaded">2021-03-05T04:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="764 words">4 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-shader-property-attributes/">유니티 쉐이더 프로퍼티 애트리뷰트 모음</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Space
+
+
+
+  
+    [Space(10)]
+
+  
+
+
+
+  단순 공백을 크기로 지정한다.
+
+
+
+
+Header
+
+
+
+  
+    [Header(Header Text)]
+
+  
+
+
+
+  헤더 문자열을 지정한다.
+  큰따옴표로 묶지 않아야 한다.
+
+
+
+
+Toggle
+
+
+
+  
+    [Toggle] _MyToggle ("My Toggle", Floa...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Mar  4, 2021,  9:58 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar  4
+  
+
+  <i class="unloaded">2021-03-04T21:58:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="935 words">5 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-toy-depth-texture-renderer/">Depth Texture Renderer (Z-Buffer 렌더러)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+
+  
+    현재 메인 카메라의 뎁스 텍스쳐를 화면에 렌더링한다.
+  
+  
+    각 쉐이더의 ZWrite 여부에 관계 없이 모두 렌더링하는 단점이 있다.
+  
+  
+    렌더 큐 값이 2500(Skybox) 이하인 오브젝트들만 인식한다.
+  
+
+
+
+
+How to Use
+
+
+
+  
+    DepthRenderer.cs 스크립트를 메인...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Mar  3, 2021,  7:08 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar  3
+  
+
+  <i class="unloaded">2021-03-03T19:08:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="543 words">3 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-particle-system-example-06-blue-portal/">파티클 시스템 예제 - 06 - Blue Portal [TODO]</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Preview
+
+
+
+
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Mar  3, 2021,  3:34 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar  3
+  
+
+  <i class="unloaded">2021-03-03T03:34:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-particle-system-example-05-dr-strange-portal/">파티클 시스템 예제 - 05 - Dr. Strange Portal</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목차
+
+
+
+  목표
+  준비물
+  1. 계층형 파티클 시스템
+  2. Portal 이펙트 만들기
+  3. Spiral A 이펙트 만들기
+  4. Spiral B 이펙트 만들기
+  5. Burst 이펙트 만들기
+  6. 완성
+
+
+
+
+Preview
+
+
+
+
+
+
+목표
+
+
+
+  
+    계층형 파티클 시스템 만들기
+  
+  
+    닥터 스트레인지 포탈 이펙트...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Mar  3, 2021,  3:33 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar  3
+  
+
+  <i class="unloaded">2021-03-03T03:33:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2868 words">15 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-toy-projectile-shooter/">Projectile Shooter (투사체 발사 컴포넌트)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+
+  
+    마우스 클릭 시 등록된 게임오브젝트를 생성하여, 지정된 방향으로 발사하는 스크립트
+  
+  
+    생성된 게임오브젝트는 카메라의 시선에 수직인 평면 방향으로 이동하며, 수명이 다하면 제거된다.
+  
+  
+    오브젝트 풀링이 적용된다.
+  
+
+
+
+
+How To Use
+
+
+
+  
+    빈 게임오브젝트를 생성하고, Part...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, Mar  2, 2021,  3:28 AM +0900"
+  >
+
+  
+  
+
+  
+    Mar  2
+  
+
+  <i class="unloaded">2021-03-02T03:28:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="802 words">4 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -810,596 +1392,6 @@ Twinkle
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-opt-occlusion-culling/">오클루전 컬링</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        프러스텀 컬링 (Frustum Culling)
-
-
-
-  
-    카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것
-  
-  
-    따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.
-  
-
-
-
-
-
-
-그냥 이렇게 두어도
-
-
-
-실제로 이렇게 컬링된다.
-
-
-
-GIF
-
-
-
-
-
-오클루전 컬링 (Occlusion C...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Mar  1, 2021,  1:40 AM +0900"
-  >
-
-  
-  
-
-  
-    Mar  1
-  
-
-  <i class="unloaded">2021-03-01T01:40:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="452 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-memo-gameobject-over-ui/">UI 위에 게임오브젝트 띄우기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Preview
-
-
-
-
-
-  Green : Default
-  Red : Over UI
-
-
-
-
-1. Built-in Render Pipeline
-
-
-
-  
-    .
-  
-
-  [1] 레이어 준비
-  
-    [Over UI] 레이어를 만든다.
-  
-
-  
-
-  [2] Over UI 카메라 준비
-  
-    
-      카메라를 하나 더 만들고, Audi...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Feb 28, 2021, 10:30 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 28
-  
-
-  <i class="unloaded">2021-02-28T22:30:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="459 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-toy-free-look-camera/">Free Look Camera (자유 시점 카메라)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  자유롭게 회전, 이동이 가능한 자유 시점 카메라
-
-
-How To Use
-
-
-
-  카메라가 존재하는 게임오브젝트에 FreeLookCamera 컴포넌트를 추가한다.
-  게임 시작 후, Left Alt 키를 눌러 커서가 사라지도록 한다.
-  WASD 키로 카메라를 움직이며, 마우스 이동을 통해 카메라를 회전시킬 수 있다.
-  QE 키로 카...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Feb 28, 2021,  5:45 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 28
-  
-
-  <i class="unloaded">2021-02-28T17:45:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="856 words">4 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/memo-cs-enum/">C# Enum 관련 메모</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        enum의 모든 요소를 배열로 가져오기
-
-
-  
-    enum MyEnum { A, B }
-
-Array allValues = Enum.GetValues(typeof(MyEnum));
-
-  
-
-
-
-
-enum의 마지막 요소 가져오기
-
-
-  
-    // System.Linq;
-
-MyEnum last = 
-    Enum.GetValues(typeof(E...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Feb 28, 2021,  4:00 AM +0900"
-  >
-
-  
-  
-
-  
-    Feb 28
-  
-
-  <i class="unloaded">2021-02-28T04:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="48 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-undo/">Undo</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  
-    필드의 값 변경, 리스트나 딕셔너리의 구성요소 변경 : RecordeObject(컴포넌트, "")
-  
-  
-    커스텀 에디터에서 대상의 필드를 Undo에 등록하려면, 반드시 해당 필드가 직렬화되어야 한다.
-  
-
-
-
-
-Memo
-
-
-1. 다른 동작에 Undo 등록
-
-
-  
-    // 이름 변경, 기타 등등 수행하기 직전...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Feb 28, 2021,  1:52 AM +0900"
-  >
-
-  
-  
-
-  
-    Feb 28
-  
-
-  <i class="unloaded">2021-02-28T01:52:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="249 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-physics-based-movement/">물리 기반 캐릭터 이동 구현하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목차
-
-
-
-  1. 서론
-  2. 이동 스크립트 분리
-  3. 요구사항 정리
-  4. 필드, 프로퍼티 정의
-  5. 상태 검사 구현
-  6. 중력 적용
-  7. 이동 구현
-  8. 물리 상호작용
-  9. 구현 결과
-  10. 소스 코드
-
-
-
-
-서론
-
-
-유니티에서 캐릭터 이동을 구현하기 위한 방법들은 다양하다.
-
-
-  Transform
-  Rigidbo...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Feb 25, 2021,  4:11 AM +0900"
-  >
-
-  
-  
-
-  
-    Feb 25
-  
-
-  <i class="unloaded">2021-02-25T04:11:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="7326 words">40 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1769,9 +1761,24 @@ Memo
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page22/">22</a>
+        <a class="page-link btn-box-shadow" href="/page23/">23</a>
       </li>
     
 
@@ -1830,12 +1837,12 @@ Memo
         
         
         
-        <li><a href="/posts/unity-memo-useful-links/">유니티 유용한 정보, 링크 모음</a></li>
+        <li><a href="/posts/cs-union-in-csharp/">C#에서 union 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/cs-why-should-inherit-iequatable/">C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유</a></li>
+        <li><a href="/posts/unity-memo-useful-links/">유니티 유용한 정보, 링크 모음</a></li>
       
         
         
@@ -1845,12 +1852,12 @@ Memo
         
         
         
-        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
+        <li><a href="/posts/cs-why-should-inherit-iequatable/">C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유</a></li>
       
         
         
         
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
 
       </ul>
@@ -3950,6 +3957,181 @@ Memo
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -4275,43 +4457,6 @@ Memo
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
         
         
 
@@ -4635,145 +4780,7 @@ Memo
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
+      
     
   
     
@@ -5285,13 +5292,13 @@ Memo
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
+        <a class="post-tag" href="/tags/thread/">thread</a>
+      
+        
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
         <a class="post-tag" href="/tags/plugin/">plugin</a>
-      
-        
-        <a class="post-tag" href="/tags/thread/">thread</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
@@ -7456,6 +7463,181 @@ Memo
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -7781,43 +7963,6 @@ Memo
     
     
       
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
         
         
 
@@ -8141,145 +8286,7 @@ Memo
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
+      
     
   
     
@@ -8786,13 +8793,13 @@ Memo
         <a class="post-tag" href="/tags/opengl/">opengl</a>
       
         
+        <a class="post-tag" href="/tags/thread/">thread</a>
+      
+        
         <a class="post-tag" href="/tags/particle/">particle</a>
       
         
         <a class="post-tag" href="/tags/plugin/">plugin</a>
-      
-        
-        <a class="post-tag" href="/tags/thread/">thread</a>
       
         
         <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>

@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-07-30T18:18:18+09:00</updated>
+  <updated>2021-08-02T02:58:40+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,14 +20,14 @@
 
   
   <entry>
-    <title>C#에서 union 구현하기</title>
-    <link href="https://rito15.github.io/posts/cs-union-in-csharp/" rel="alternate" type="text/html" title="C#에서 union 구현하기" />
-    <published>2021-07-30T18:00:00+09:00</published>
+    <title>TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</title>
+    <link href="https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/" rel="alternate" type="text/html" title="TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기" />
+    <published>2021-08-02T00:06:00+09:00</published>
   
-    <updated>2021-07-30T18:00:00+09:00</updated>
+    <updated>2021-08-02T00:06:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/cs-union-in-csharp/</id>
-    <content src="https://rito15.github.io/posts/cs-union-in-csharp/" />
+    <id>https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/</id>
+    <content src="https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -36,7 +36,7 @@
     
     <category term="C#" />
     
-    <category term="C# Grammar" />
+    <category term="C# Socket" />
     
   
 
@@ -48,33 +48,36 @@
 
 
 
-      C언어의 union
-
-
-union MyUnion
-{
-    int intValue;     // 4바이트
-    short shortValue; // 2바이트
-}
-
-
-
-  위처럼 C언어에는 서로 다른 타입의 변수가 동일 메모리를 사용하도록 하는 union(공용체)이 존재한다.
+      
+  이전 포스팅으로부터 내용이 이어집니다.
 
 
 
 
-C#에서의 union
+ReceiveBuffer, SendBuffer
 
 
 
-  C#에는 union 키워드가 존재하지 않지만, 편법을 통해 union 기능을 구현할 수 있다.
+  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.
 
 
-[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Explicit)]
-class UnionExample
-{
-    [System.Runtime.InteropServices.FieldOffset...
+
+
+ReceiveBuffer 클래스
+
+
+
+  
+    각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.
+  
+  
+    TCP 소켓 통신을 통해 수신한 패킷이 완전하지 않을 경우를 대비해 사용된다.
+  
+  
+    패킷을 수신하자마자 이를 완전히 처리하는 것이 아니라, ReceiveBuffer에 차례로 저장한다.
+  
+  
+    ReceiveBuffer 앞부분부터 패킷의 헤더를 확인하여, 지정된 길이만큼 패킷이 완전히 도착한 것이 확인된 경우에만 ...
     </summary>
   
 
@@ -82,14 +85,14 @@ class UnionExample
 
   
   <entry>
-    <title>클래스 타입 객체가 null인지 검사하는 4가지 방법</title>
-    <link href="https://rito15.github.io/posts/cs-null-check/" rel="alternate" type="text/html" title="클래스 타입 객체가 null인지 검사하는 4가지 방법" />
-    <published>2021-07-30T17:30:00+09:00</published>
+    <title>TCP 비동기 소켓 서버, 클라이언트 기본</title>
+    <link href="https://rito15.github.io/posts/05-cs-tcp-async-socket-basic.md/" rel="alternate" type="text/html" title="TCP 비동기 소켓 서버, 클라이언트 기본" />
+    <published>2021-08-02T00:05:00+09:00</published>
   
-    <updated>2021-07-30T17:30:00+09:00</updated>
+    <updated>2021-08-02T00:05:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/cs-null-check/</id>
-    <content src="https://rito15.github.io/posts/cs-null-check/" />
+    <id>https://rito15.github.io/posts/05-cs-tcp-async-socket-basic.md/</id>
+    <content src="https://rito15.github.io/posts/05-cs-tcp-async-socket-basic.md/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -98,7 +101,7 @@ class UnionExample
     
     <category term="C#" />
     
-    <category term="C# Grammar" />
+    <category term="C# Socket" />
     
   
 
@@ -110,53 +113,23 @@ class UnionExample
 
 
 
-      4가지 방법
+      비동기 소켓 통신 방식
 
 
-[1]
-
-instance == null;
+Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존재한다.
 
 
-// 1-1. == 연산자를 오버로딩 하지 않은 경우
-ldloc.0
-ldnull
-ceq
-
-// 1-2. == 연산자를 오버로딩한 경우
-ldnull
-call        bool ClassName::op_Equality(class ClassName, class ClassName)
-
-
+  AcceptAsync(SocketAsyncEventArgs)
+  ConnectAsync(SocketAsyncEventArgs)
+  DisconnectAsync(SocketAsyncEventArgs)
+  ConnectAsync(SocketAsyncEventArgs)
+  ReceiveAsync(SocketAsyncEventArgs)
+  ReceiveFromAsync(SocketAsyncEventArgs)
+  SendAsync(SocketAsyncEventArgs)
+  SendToAsync(SocketAsyncEventArgs)
 
 
-[2]
-
-instance.Equals(null);
-
-
-ldnull
-callvirt   instance bool [mscorlib]System.Object::Equals(object)
-
-
-
-
-[3]
-
-ReferenceEquals(instance, null);
-
-
-ldloc.0
-ldnull
-ceq
-
-
-
-
-[4]
-
-// C# 7.0부터 사용 가능
-instance is...
+이런 비동기 메소드들은 모두 내부적으로 워커 스레드에서 동작한다...
     </summary>
   
 
@@ -164,23 +137,23 @@ instance is...
 
   
   <entry>
-    <title>Infinite Horizontal Scroll (무한 횡스크롤) UI</title>
-    <link href="https://rito15.github.io/posts/unity-infinite-horizontal-scroll-ui/" rel="alternate" type="text/html" title="Infinite Horizontal Scroll (무한 횡스크롤) UI" />
-    <published>2021-07-28T19:50:00+09:00</published>
+    <title>UDP 소켓 서버, 클라이언트 기본</title>
+    <link href="https://rito15.github.io/posts/04-cs-udp-socket-server-client-basic.md/" rel="alternate" type="text/html" title="UDP 소켓 서버, 클라이언트 기본" />
+    <published>2021-08-02T00:04:00+09:00</published>
   
-    <updated>2021-07-28T19:50:00+09:00</updated>
+    <updated>2021-08-02T00:04:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-infinite-horizontal-scroll-ui/</id>
-    <content src="https://rito15.github.io/posts/unity-infinite-horizontal-scroll-ui/" />
+    <id>https://rito15.github.io/posts/04-cs-udp-socket-server-client-basic.md/</id>
+    <content src="https://rito15.github.io/posts/04-cs-udp-socket-server-client-basic.md/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Unity" />
+    <category term="C#" />
     
-    <category term="Unity Toys" />
+    <category term="C# Socket" />
     
   
 
@@ -192,59 +165,37 @@ instance is...
 
 
 
-      Summary
-
-
-  자식 UI들을 좌우로 무한히 스크롤시키는 컴포넌트
+      UDP 소켓 통신의 특징
 
 
 
-
-Preview
-
-
+  서버와 클라이언트 간의 1:1 연결이 생성되지 않는다.
+  리스너 소켓이 필요하지 않다.
+  Listen(), Connect() 과정이 없다.
+  소켓의 .ReceiveFrom(), .SendTo() 메소드를 통해 엔드포인트와 데이터를 주고 받는다.
 
 
 
 
+소켓 통신 과정
 
 
-How To Use
+서버
+
+  서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
+  서버 소켓 객체 생성
+  Bind(서버 엔드포인트 정보를 서버 소켓에 연동)
+  클라이언트에 대응할 리모트 엔드포인트 생성
+  Send =&amp;gt; 리모트 엔드포인트
+  Receive &amp;lt;= 리모트 엔드포인트
+  Close
 
 
-  
-    횡스크롤 시킬 UI들을 하나의 부모 오브젝트에 묶는다.
-  
-  
-    해당 부모 오브젝트에 InfiniteHorizontalScroll 컴포넌트를 추가한다.
-  
-  
-    게임 시작 후 좌우 화살표 키를 누르면 각 방향으로 스크롤이 진행된다.
-  
+클라이언트
 
-
-
-
-Properties
-
-Center UI Size (Vector2)
-
-  중앙에 위치한 UI의 크기
-
-
-Edge UI Size (Vector2)
-
-  좌우 끝에 위치한 UI의 크기
-
-
-Space Width (float)
-
-  각 UI 사이의 간격
-
-
-Transition TIme (float)
-
-  스크롤 ...
+  서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
+  클라이언트 소켓 객체 생성
+  리...
     </summary>
   
 
@@ -252,23 +203,23 @@ Transition TIme (float)
 
   
   <entry>
-    <title>(Amplify) Tree Growth Shader</title>
-    <link href="https://rito15.github.io/posts/unity-amplify-tree-growth/" rel="alternate" type="text/html" title="(Amplify) Tree Growth Shader" />
-    <published>2021-07-24T17:21:00+09:00</published>
+    <title>TCP 소켓 서버, 클라이언트 기본</title>
+    <link href="https://rito15.github.io/posts/03-cs-tcp-socket-server-client-basic.md/" rel="alternate" type="text/html" title="TCP 소켓 서버, 클라이언트 기본" />
+    <published>2021-08-02T00:03:00+09:00</published>
   
-    <updated>2021-07-24T17:21:00+09:00</updated>
+    <updated>2021-08-02T00:03:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-amplify-tree-growth/</id>
-    <content src="https://rito15.github.io/posts/unity-amplify-tree-growth/" />
+    <id>https://rito15.github.io/posts/03-cs-tcp-socket-server-client-basic.md/</id>
+    <content src="https://rito15.github.io/posts/03-cs-tcp-socket-server-client-basic.md/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Unity Shader" />
+    <category term="C#" />
     
-    <category term="Amplify Shader" />
+    <category term="C# Socket" />
     
   
 
@@ -280,62 +231,45 @@ Transition TIme (float)
 
 
 
-      Summary
+      소켓 정의
 
 
+프로토콜
 
-  나무가 성장하는 효과 표현하기
-
-
-
-
-Preview
+  데이터 전송을 위한 규약이며, 대표적으로 TCP와 UDP가 있다.
 
 
+IP
+
+  컴퓨터에 부여된 논리적 식별 주소
 
 
+Port
 
-
-1. Tree - Body
-
-
-프로퍼티 목록
-
+  네트워크 상에서 통신하기 위해 호스트 내부적으로 프로세스가 할당받는 고유 번호
+  같은 컴퓨터 내에서 프로세스를 식별하기 위한 번호
 
 
 
 
-쉐이더 에디터 설정
+소켓 통신 과정
 
 
+서버
+
+  서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
+  Listener 소켓 객체 생성
+  Bind(서버 엔드포인트 정보를 Listener 소켓에 연동)
+  Listen(클라이언트 대기열 생성)
+  Accept(클라이언트 연결 수용)
+  Send, Receive(데이터 송수신)
+  Close
 
 
-  
-    우측 상단을 클릭하여 Blend Mode를 Masked로 변경한다.
-  
-  
-    Mask Clip Value 값을 쉐이더 에디터에서 직접 설정해도 되지만
-마테리얼에서 프로퍼티를 통해 조정하려면 우측의 점을 누르고 드롭다운에서 프로퍼티를 선택한다.
-  
+클라이언트
 
-
-
-
-쉐이더 노드
-
-
-
-
-
-설명
-
-식물 성장을 표현하기 위해 사용되는 메시는 특별한 조건이 필요하다.
-
-식물이 아래에서 위로 성장하는 것을 표현하기 위해
-
-메시의 UV.Y 값은 가장 하단 정점에서 0을 갖고
-
-+Y축 방향으로 상단에 위치한 정점일수록 점점 커지는 형태를 가...
+  서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
+  클라이언트 ...
     </summary>
   
 
@@ -343,23 +277,23 @@ Preview
 
   
   <entry>
-    <title>(Amplify) Sea Urchin Shader</title>
-    <link href="https://rito15.github.io/posts/unity-amplify-sea-urchin/" rel="alternate" type="text/html" title="(Amplify) Sea Urchin Shader" />
-    <published>2021-07-23T15:15:00+09:00</published>
+    <title>TCP, UDP 프로토콜</title>
+    <link href="https://rito15.github.io/posts/02-cs-tcp-udp-protocols.md/" rel="alternate" type="text/html" title="TCP, UDP 프로토콜" />
+    <published>2021-08-02T00:02:00+09:00</published>
   
-    <updated>2021-07-23T15:15:00+09:00</updated>
+    <updated>2021-08-02T00:02:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-amplify-sea-urchin/</id>
-    <content src="https://rito15.github.io/posts/unity-amplify-sea-urchin/" />
+    <id>https://rito15.github.io/posts/02-cs-tcp-udp-protocols.md/</id>
+    <content src="https://rito15.github.io/posts/02-cs-tcp-udp-protocols.md/" />
     <author>
       <name>Rito15</name>
     </author>
 
   
     
-    <category term="Unity Shader" />
+    <category term="C#" />
     
-    <category term="Amplify Shader" />
+    <category term="C# Socket" />
     
   
 
@@ -371,65 +305,39 @@ Preview
 
 
 
-      Summary
-
-
-
-  가시 삐쭉삐쭉한 성게 쉐이더
-
-
-
-
-1. 기본
-
-
-Preview
-
-
-
-
-
-
-
-Properties
-
+      TCP, UDP 프로토콜
 
 
 
   
-    
-      프로퍼티
-      설명
-    
+    OSI 7 Layer 중 4번째, TCP/IP 4 Layer 중 3번째인 Transport 계층의 통신을 위한 프로토콜
   
   
-    
-      Edge length
-      테셀레이션 간격(작을수록 촘촘해진다)
-    
-    
-      Tiling
-      가시 개수 비율
-    
-    
-      Sharpness
-      가시의 뾰족한 정도
-    
-    
-      Height
-      가시의 길이
-    
-    
-      Body Color
-      구체 색상
-    
-    
-      Thron
-      가시 색상
-    
-    
-      Color Mix Threshold
-      두 색상의...
+    IP 주소와 포트 번호를 통해 대상을 식별한다.
+  
+
+
+
+
+TCP(Transmission Control Protocol)
+
+
+개념
+
+  데이터를 메시지 형태로 전송하기 위해 IP와 함께 사용하는 프로토콜
+  일반적으로 TCP와 IP를 함께 사용한다.
+  IP가 데이터의 전송을 처리한다면, TCP는 패킷의 추적과 관리를 담당한다.
+
+
+
+
+특징
+
+  연결형 서비스로 가상 회선 방식을 제공한다.
+  높은 신뢰성을 보장한다.
+  전송 순서가 보장된다.
+  데이터가 손실될 경우, 재전송을 요청한다.
+  UDP에 비해서는 속도가 느리...
     </summary>
   
 

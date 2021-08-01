@@ -33,7 +33,7 @@ TITLE : Connector, ClientSession, 비동기 TCP 클라이언트
 
 그리고 `Listener`와 마찬가지로 연결이 성사되면 생성할 `Session`이 필요한데,
 
-하나의 `Connector` 객체로 서로 다른 여러가지 연결을 생성할 수 있기 때문에
+하나의 `Connector` 객체로 서로 다른 여러 개의 연결을 생성할 수 있기 때문에
 
 `Session` 객체를 필드로 사용하면 `Session`이 공유되므로 안된다.
 

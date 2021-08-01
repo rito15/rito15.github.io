@@ -1,6 +1,96 @@
 [
   
   {
+    "title": "TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기",
+    "url": "/posts/06-cs-tcp-async-socket-with-packet.md/",
+    "categories": "C#, C# Socket",
+    "tags": "csharp, thread",
+    "date": "2021-08-02 00:06:00 +0900",
+    
+
+
+
+
+
+    "snippet": "  이전 포스팅으로부터 내용이 이어집니다.ReceiveBuffer, SendBuffer  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.ReceiveBuffer 클래스      각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.        TCP 소켓 통신을 통해 수신한 패킷이 완전하지 않을 경우를 대비해 사용된다.        패킷을 수신하자마자 이를 완전히 처리하는 것이 아니라, ReceiveBuffer에 차례로 저장한다.    ..."
+  },
+  
+  {
+    "title": "TCP 비동기 소켓 서버, 클라이언트 기본",
+    "url": "/posts/05-cs-tcp-async-socket-basic.md/",
+    "categories": "C#, C# Socket",
+    "tags": "csharp, thread",
+    "date": "2021-08-02 00:05:00 +0900",
+    
+
+
+
+
+
+    "snippet": "비동기 소켓 통신 방식Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존재한다.  AcceptAsync(SocketAsyncEventArgs)  ConnectAsync(SocketAsyncEventArgs)  DisconnectAsync(SocketAsyncEventArgs)  ConnectAsync(SocketAsyncEventArgs)  ReceiveAsync(SocketAsyncEventArgs)  ReceiveFromAsync(SocketAsyncEventArgs)  SendAsync(SocketA..."
+  },
+  
+  {
+    "title": "UDP 소켓 서버, 클라이언트 기본",
+    "url": "/posts/04-cs-udp-socket-server-client-basic.md/",
+    "categories": "C#, C# Socket",
+    "tags": "csharp, thread",
+    "date": "2021-08-02 00:04:00 +0900",
+    
+
+
+
+
+
+    "snippet": "UDP 소켓 통신의 특징  서버와 클라이언트 간의 1:1 연결이 생성되지 않는다.  리스너 소켓이 필요하지 않다.  Listen(), Connect() 과정이 없다.  소켓의 .ReceiveFrom(), .SendTo() 메소드를 통해 엔드포인트와 데이터를 주고 받는다.소켓 통신 과정서버  서버 IP 주소, 포트를 통해 서버 엔드포인트 생성  서버 소켓 객체 생성  Bind(서버 엔드포인트 정보를 서버 소켓에 연동)  클라이언트에 대응할 리모트 엔드포인트 생성  Send =&amp;gt; 리모트 엔드포인트  Receive &a..."
+  },
+  
+  {
+    "title": "TCP 소켓 서버, 클라이언트 기본",
+    "url": "/posts/03-cs-tcp-socket-server-client-basic.md/",
+    "categories": "C#, C# Socket",
+    "tags": "csharp, thread",
+    "date": "2021-08-02 00:03:00 +0900",
+    
+
+
+
+
+
+    "snippet": "소켓 정의프로토콜  데이터 전송을 위한 규약이며, 대표적으로 TCP와 UDP가 있다.IP  컴퓨터에 부여된 논리적 식별 주소Port  네트워크 상에서 통신하기 위해 호스트 내부적으로 프로세스가 할당받는 고유 번호  같은 컴퓨터 내에서 프로세스를 식별하기 위한 번호소켓 통신 과정서버  서버 IP 주소, 포트를 통해 서버 엔드포인트 생성  Listener 소켓 객체 생성  Bind(서버 엔드포인트 정보를 Listener 소켓에 연동)  Listen(클라이언트 대기열 생성)  Accept(클라이언트 연결 수용)  Send, Rece..."
+  },
+  
+  {
+    "title": "TCP, UDP 프로토콜",
+    "url": "/posts/02-cs-tcp-udp-protocols.md/",
+    "categories": "C#, C# Socket",
+    "tags": "csharp, thread",
+    "date": "2021-08-02 00:02:00 +0900",
+    
+
+
+
+
+
+    "snippet": "TCP, UDP 프로토콜      OSI 7 Layer 중 4번째, TCP/IP 4 Layer 중 3번째인 Transport 계층의 통신을 위한 프로토콜        IP 주소와 포트 번호를 통해 대상을 식별한다.  TCP(Transmission Control Protocol)개념  데이터를 메시지 형태로 전송하기 위해 IP와 함께 사용하는 프로토콜  일반적으로 TCP와 IP를 함께 사용한다.  IP가 데이터의 전송을 처리한다면, TCP는 패킷의 추적과 관리를 담당한다.특징  연결형 서비스로 가상 회선 방식을 제공한다.  높은..."
+  },
+  
+  {
+    "title": "TCP/IP 4 계층",
+    "url": "/posts/01-cs-tcp-ip-4-layer/",
+    "categories": "C#, C# Socket",
+    "tags": "csharp, thread",
+    "date": "2021-08-02 00:01:00 +0900",
+    
+
+
+
+
+
+    "snippet": "NoteOSI 7 Layer[7] Application[6] Presentation[5] Session[4] Transport[3] Network[2] Data Link[1] PhysicalTCP/IP 4 Layer[4] Application  OSI 7 Layer의 Application(7), Presentation(6), Session(5) 계층에 해당한다.  사용자에게 응용 프로그램의 서비스를 위한 표준 인터페이스를 제공한다.      인터넷 브라우저, 텔넷, 네트워크 서비스 등이 이 계층에 속한다.    데이터 단위 :..."
+  },
+  
+  {
     "title": "C#에서 union 구현하기",
     "url": "/posts/cs-union-in-csharp/",
     "categories": "C#, C# Grammar",
