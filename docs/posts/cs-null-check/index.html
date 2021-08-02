@@ -4250,6 +4250,19 @@ ceq
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7174,7 +7187,7 @@ C#에서의 union
       
       
       <div class="card">
-        <a href="/posts/unity-shader-script-particle/">
+        <a href="/posts/unity-shader-script-transparent-2pass/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7194,10 +7207,10 @@ C#에서의 union
     Mar 15
   
 
-  <i class="unloaded">2021-03-15T16:00:00+09:00</i>
+  <i class="unloaded">2021-03-15T17:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Particle Shader</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>2-Pass Transparent Shader</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7210,7 +7223,7 @@ C#에서의 union
 
 
 
-  블렌딩 옵션 선택 가능한 파티클 쉐이더(기본 : Additive)
+  2패스로 작성하여 내부가 드러나는 알파 소팅 문제가 발생하지 않는 쉐이더
 
 
 Source Code
@@ -7218,12 +7231,12 @@ Source Code
 
 
   
-    Shader "Custom/Particle"
+    Shader "Custom/Transparent2Pass"
 {
     Properties
     {
-        _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
-        _Intensity(...
+        _MainTex("Albedo (RGB)", 2D) = "white" {}
+        _Alph...
               </p>
             </div>
           </div>

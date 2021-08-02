@@ -26,8 +26,8 @@
 <meta property="og:title" content="TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="이전 포스팅으로부터 내용이 이어집니다." />
-<meta property="og:description" content="이전 포스팅으로부터 내용이 이어집니다." />
+<meta name="description" content="이전 포스팅에서 이어집니다." />
+<meta property="og:description" content="이전 포스팅에서 이어집니다." />
 <link rel="canonical" href="https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/" />
 <meta property="og:url" content="https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"이전 포스팅으로부터 내용이 이어집니다.","datePublished":"2021-08-02T00:06:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/"},"url":"https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/","author":{"@type":"Person","name":"Rito15"},"headline":"TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기","dateModified":"2021-08-02T00:06:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"이전 포스팅에서 이어집니다.","datePublished":"2021-08-02T00:06:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/"},"url":"https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/","author":{"@type":"Person","name":"Rito15"},"headline":"TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기","dateModified":"2021-08-02T00:06:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3920 words">21 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3917 words">21 min</span>
 
 
           <!-- page views -->
@@ -424,7 +424,7 @@
         
 
         <ul>
-  <li>이전 포스팅으로부터 내용이 이어집니다.</li>
+  <li><a href="../05-cs-tcp-async-socket-basic.md/">이전 포스팅</a>에서 이어집니다.</li>
 </ul>
 
 <p><br /></p>
@@ -1552,7 +1552,14 @@ Session.cs
   </li>
 </ul>
 
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<p><br /></p>
+
+<details>
+  <summary> 
+Packet.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -1562,7 +1569,9 @@ Session.cs
     <span class="k">public</span> <span class="kt">ushort</span> <span class="n">size</span><span class="p">;</span>
     <span class="k">public</span> <span class="kt">ushort</span> <span class="n">id</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
@@ -1578,7 +1587,14 @@ Session.cs
   </li>
 </ul>
 
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<p><br /></p>
+
+<details>
+  <summary> 
+PacketSession.cs
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -1662,7 +1678,9 @@ Session.cs
     <span class="c1">/// &lt;summary&gt; 완전한 하나의 패킷 처리 &lt;/summary&gt;</span>
     <span class="k">protected</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">OnReceivePacket</span><span class="p">(</span><span class="n">ByteSegment</span> <span class="n">buffer</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <p><br /></p>
 
@@ -5320,6 +5338,19 @@ Session.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8422,9 +8453,9 @@ Port
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/cs-tcp-async-socket-chatting/" class="btn btn-outline-primary">
+    <p>TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</p>
+  </a>
   
 
 </div>

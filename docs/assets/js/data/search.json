@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기",
+    "url": "/posts/cs-tcp-async-socket-chatting/",
+    "categories": "C#, C# Socket",
+    "tags": "csharp, thread",
+    "date": "2021-08-03 03:33:00 +0900",
+    
+
+
+
+
+
+    "snippet": "  이전 포스팅에서 이어집니다.1. 채팅을 위한 패킷 설계[1] ChattingCommand 열거형  전달하는 패킷의 명령어를 미리 열거형으로 정의한다.  명령어의 종류는 크게 공통, 클라이언트의 요청, 서버의 통지 3가지로 나뉜다.   ChattingCommand.cs  /// &amp;lt;summary&amp;gt; 채팅 명령어 &amp;lt;/summary&amp;gt;public enum ChattingCommand{    /* [1] 공통 */    /// &amp;lt;summary&amp;gt; 일반 채팅 &am..."
+  },
+  
+  {
     "title": "TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기",
     "url": "/posts/06-cs-tcp-async-socket-with-packet.md/",
     "categories": "C#, C# Socket",
@@ -12,7 +27,7 @@
 
 
 
-    "snippet": "  이전 포스팅으로부터 내용이 이어집니다.ReceiveBuffer, SendBuffer  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.ReceiveBuffer 클래스      각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.        TCP 소켓 통신을 통해 수신한 패킷이 완전하지 않을 경우를 대비해 사용된다.        패킷을 수신하자마자 이를 완전히 처리하는 것이 아니라, ReceiveBuffer에 차례로 저장한다.    ..."
+    "snippet": "  이전 포스팅에서 이어집니다.ReceiveBuffer, SendBuffer  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.ReceiveBuffer 클래스      각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.        TCP 소켓 통신을 통해 수신한 패킷이 완전하지 않을 경우를 대비해 사용된다.        패킷을 수신하자마자 이를 완전히 처리하는 것이 아니라, ReceiveBuffer에 차례로 저장한다.        Re..."
   },
   
   {
@@ -1707,7 +1722,7 @@
 
 
 
-    "snippet": "MemoUsingusing System.Text.RegularExpressions;정확한 단어 찾기string input = &quot;AA,AAA,AAAA&quot;;string pattern = @&quot;\\bAA\\b&quot;; // 단어 경계를 \\b로 구분string result = Regex.Match(input, pattern).Value;스트링의 오른쪽에서부터 탐색Regex.Match(string, pattern, RegexOptions.RightToLeft)찾은 문자열 주변을 변경 (그룹 사용)string st..."
+    "snippet": "MemoUsingusing System.Text.RegularExpressions;특수문자      ^, \\A : 문자열의 시작        $, \\z : 문자열의 끝        \\d : 10진수 숫자        \\D : 숫자가 아닌 문자        \\b : 단어 경계        \\B : 단어가 아닌 경계        \\s : 공백 문자        \\S : 공백이 아닌 문자        \\w : 단어 문자 ([a-zA-Z_0-9]와 동일할 수 있음)        \\W : 단어가 아닌 문자  기호      [] : 단어..."
   },
   
   {

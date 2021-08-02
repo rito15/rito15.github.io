@@ -8,7 +8,7 @@ math: true
 mermaid: true
 ---
 
-* 이전 포스팅으로부터 내용이 이어집니다.
+* [이전 포스팅](../05-cs-tcp-async-socket-basic.md/)에서 이어집니다.
 
 <br>
 
@@ -620,6 +620,13 @@ public abstract class Session
 
 - 다양한 종류의 패킷을 만들더라도, 이 클래스를 상속하여 공통 부분은 유지한 채로 구현한다.
 
+<br>
+
+<details>
+<summary markdown="span"> 
+Packet.cs
+</summary>
+
 ```cs
 public class Packet
 {
@@ -627,6 +634,8 @@ public class Packet
     public ushort id;
 }
 ```
+
+</details>
 
 <br>
 
@@ -638,6 +647,12 @@ public class Packet
 
 - 전달받은 내용을 `OnReceived()` 메소드에서 확인하여, 완전한 패킷을 조립할 수 있는 경우에만 `OnReceivePacket()` 메소드로 넘겨 처리한다.
 
+<br>
+
+<details>
+<summary markdown="span"> 
+PacketSession.cs
+</summary>
 
 ```cs
 using System;
@@ -683,6 +698,8 @@ public abstract class PacketSession : Session
     protected abstract void OnReceivePacket(ByteSegment buffer);
 }
 ```
+
+</details>
 
 <br>
 

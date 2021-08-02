@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="547 words">3 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="857 words">4 min</span>
 
 
           <!-- page views -->
@@ -463,7 +463,66 @@
 
 <p><br /></p>
 
-<h2 id="정확한-단어-찾기">정확한 단어 찾기</h2>
+<h2 id="특수문자"><strong>특수문자</strong></h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">^</code>, <code class="language-plaintext highlighter-rouge">\A</code> : 문자열의 시작</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">$</code>, <code class="language-plaintext highlighter-rouge">\z</code> : 문자열의 끝</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">\d</code> : 10진수 숫자</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">\D</code> : 숫자가 아닌 문자</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">\b</code> : 단어 경계</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">\B</code> : 단어가 아닌 경계</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">\s</code> : 공백 문자</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">\S</code> : 공백이 아닌 문자</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">\w</code> : 단어 문자 (<code class="language-plaintext highlighter-rouge">[a-zA-Z_0-9]</code>와 동일할 수 있음)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">\W</code> : 단어가 아닌 문자</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="기호"><strong>기호</strong></h2>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">[]</code> : 단어 범위, 종류 등 지정</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">()</code> : 그룹 지정</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">*</code> : 앞에 지정한 문자가 연속 0개 이상 일치</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">+</code> : 앞에 지정한 문자가 연속 1개 이상 일치</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">{1, 3}</code> : 괄호 앞에 지정한 문자가 연속 1개 이상, 3개 이하 일치</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="정확한-단어-찾기"><strong>정확한 단어 찾기</strong></h2>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -475,7 +534,7 @@
 
 <p><br /></p>
 
-<h2 id="스트링의-오른쪽에서부터-탐색">스트링의 오른쪽에서부터 탐색</h2>
+<h2 id="스트링의-오른쪽에서부터-탐색"><strong>스트링의 오른쪽에서부터 탐색</strong></h2>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre><span class="n">Regex</span><span class="p">.</span><span class="nf">Match</span><span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">RegexOptions</span><span class="p">.</span><span class="n">RightToLeft</span><span class="p">)</span>
@@ -483,7 +542,43 @@
 
 <p><br /></p>
 
-<h2 id="찾은-문자열-주변을-변경-그룹-사용">찾은 문자열 주변을 변경 (그룹 사용)</h2>
+<h2 id="그룹에-해당하는-문자열들-확인하기"><strong>그룹에 해당하는 문자열들 확인하기</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="c1">// "/abc def123" 꼴의 패턴 확인</span>
+<span class="c1">// 그룹 개수 : 2 -&gt; "abc", "def123"</span>
+<span class="n">Regex</span> <span class="n">regex</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Regex</span><span class="p">(</span><span class="s">@"\/([a-zA-Z]+)\s([a-zA-Z0-9]+)"</span><span class="p">);</span>
+
+<span class="c1">// 그룹 확인</span>
+<span class="n">GroupCollection</span> <span class="n">groups</span> <span class="p">=</span> <span class="n">regex</span><span class="p">.</span><span class="nf">Match</span><span class="p">(</span><span class="s">"/command content123"</span><span class="p">).</span><span class="n">Groups</span><span class="p">;</span>
+
+<span class="c1">// 그룹 개수 확인</span>
+<span class="c1">// 일치하는 패턴이 아예 없는 경우, 개수는 1 (0번 인덱스만 존재)</span>
+<span class="kt">int</span> <span class="n">groupCount</span> <span class="p">=</span> <span class="n">groups</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
+
+<span class="c1">// 결과</span>
+<span class="c1">// groups[0] =&gt; "/command content123"  // 0번 인덱스에는 전체 문자열이 담긴다.</span>
+<span class="c1">// groups[1] =&gt; "command"</span>
+<span class="c1">// groups[2] =&gt; "content123"</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="찾은-문자열-주변을-변경-그룹-사용"><strong>찾은 문자열 주변을 변경 (그룹 사용)</strong></h2>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -519,7 +614,7 @@
 
 <p><br /></p>
 
-<h2 id="찾은-문자열만-변경-다중-그룹-사용">찾은 문자열만 변경 (다중 그룹 사용)</h2>
+<h2 id="찾은-문자열만-변경-다중-그룹-사용"><strong>찾은 문자열만 변경 (다중 그룹 사용)</strong></h2>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -560,7 +655,7 @@
 
 <p><br /></p>
 
-<h2 id="찾은-문자열들-중-지정한-개수만-변경하기">찾은 문자열들 중 지정한 개수만 변경하기</h2>
+<h2 id="찾은-문자열들-중-지정한-개수만-변경하기"><strong>찾은 문자열들 중 지정한 개수만 변경하기</strong></h2>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -4248,6 +4343,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
