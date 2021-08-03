@@ -220,7 +220,7 @@ namespace Rito
 
 <details>
 <summary markdown="span"> 
-.
+[1] 완성형
 </summary>
 
 ```cs
@@ -318,7 +318,7 @@ namespace Rito
         /***********************************************************************
         *                               Private
         ***********************************************************************/
-        private void CheckOrCreateSingletonInstance()
+        private void CheckSingleton()
         {
             // 싱글톤 인스턴스가 미리 존재하지 않았을 경우, 본인으로 초기화
             if (_instance == null)
@@ -352,7 +352,7 @@ namespace Rito
 
         private void Awake()
         {
-            CheckOrCreateSingletonInstance();
+            CheckSingleton();
         }
     }
 }
@@ -360,5 +360,94 @@ namespace Rito
 
 </details>
 
+<br>
 
+<details>
+<summary markdown="span"> 
+[2] 조각
+</summary>
 
+```cs
+/***********************************************************************
+*                               Singleton
+***********************************************************************/
+#region .
+/// <summary> 싱글톤 인스턴스 Getter </summary>
+public static SINGLETON_EXAMPLE I
+{
+    get
+    {
+        if (_instance == null)
+        {
+            _instance = FindObjectOfType<SINGLETON_EXAMPLE>();
+            if (_instance == null) _instance = ContainerObject.GetComponent<SINGLETON_EXAMPLE>();
+        }
+        return _instance;
+    }
+}
+
+/// <summary> 싱글톤 인스턴스 Getter </summary>
+public static SINGLETON_EXAMPLE Instance => I;
+private static SINGLETON_EXAMPLE _instance;
+
+/// <summary> 싱글톤 게임오브젝트의 참조 </summary>
+private static GameObject ContainerObject
+{
+    get
+    {
+        if (_containerObject == null)
+        {
+            _containerObject = new GameObject($"[Singleton] {nameof(SINGLETON_EXAMPLE)}");
+            if (_instance == null) _instance = ContainerObject.AddComponent<SINGLETON_EXAMPLE>();
+        }
+
+        return _containerObject;
+    }
+}
+private static GameObject _containerObject;
+
+// Awake()에서 호출
+private void CheckSingleton()
+{
+    // 싱글톤 인스턴스가 미리 존재하지 않았을 경우, 본인으로 초기화
+    if (_instance == null)
+    {
+#if DEBUG_ON
+        Debug.Log($"싱글톤 생성 : {nameof(SINGLETON_EXAMPLE)}, 게임 오브젝트 : {name}");
+#endif
+
+        _instance = this;
+        _containerObject = gameObject;
+    }
+
+    // 싱글톤 인스턴스가 존재하는데, 본인이 아닐 경우, 스스로(컴포넌트)를 파괴
+    if (_instance != null && _instance != this)
+    {
+#if DEBUG_ON
+        Debug.Log($"이미 {nameof(SINGLETON_EXAMPLE)} 싱글톤이 존재하므로 오브젝트를 파괴합니다.");
+#endif
+
+        var components = gameObject.GetComponents<Component>();
+        if (components.Length <= 2) Destroy(gameObject);
+        else Destroy(this);
+    }
+#if DONT_DESTROY_ON_LOAD
+    if (_instance == this)
+    {
+        transform.SetParent(null);
+        DontDestroyOnLoad(this);
+#if DEBUG_ON
+        Debug.Log($"Don't Destroy on Load : {nameof(SINGLETON_EXAMPLE)}");
+#endif
+    }
+#endif
+}
+#endregion
+
+private void Awake()
+{
+    CheckSingleton();
+}
+```
+
+</details>
