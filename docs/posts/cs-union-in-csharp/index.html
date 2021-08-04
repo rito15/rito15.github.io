@@ -673,12 +673,17 @@
         
         
         
-        <li><a href="/posts/memo-cs-regex/">C# Regex (정규표현식)</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
         
         
         <li><a href="/posts/06-cs-tcp-async-socket-with-packet.md/">TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-cs-regex/">C# Regex (정규표현식)</a></li>
       
         
         
@@ -689,11 +694,6 @@
         
         
         <li><a href="/posts/unity-memo-useful-links/">유니티 유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
       
 
       </ul>
@@ -4097,6 +4097,16 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -4137,7 +4147,7 @@
         <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/shorts/">shorts</a>
       
 
       </div>
@@ -4179,6 +4189,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7078,6 +7101,69 @@
       
       
       <div class="card">
+        <a href="/posts/cs-null-check/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul 30
+  
+
+  <i class="unloaded">2021-07-30T17:30:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>클래스 타입 객체가 null인지 검사하는 4가지 방법</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                4가지 방법
+
+
+[1]
+
+
+  
+    instance == null;
+
+  
+
+
+
+  
+    // 1-1. == 연산자를 오버로딩 하지 않은 경우
+ldloc.0
+ldnull
+ceq
+
+// 1-2. == 연산자를 오버로딩한 경우
+ldnull
+call        bool ClassName::op_Equality(class ClassName, clas...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/memo-cs-static-readonly-vs-const/">
           <div class="card-body">
             <!--
@@ -7145,70 +7231,7 @@ Static Readonly
       
       
       <div class="card">
-        <a href="/posts/cs-null-check/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul 30
-  
-
-  <i class="unloaded">2021-07-30T17:30:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>클래스 타입 객체가 null인지 검사하는 4가지 방법</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                4가지 방법
-
-
-[1]
-
-
-  
-    instance == null;
-
-  
-
-
-
-  
-    // 1-1. == 연산자를 오버로딩 하지 않은 경우
-ldloc.0
-ldnull
-ceq
-
-// 1-2. == 연산자를 오버로딩한 경우
-ldnull
-call        bool ClassName::op_Equality(class ClassName, clas...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-shader-script-transparent-2pass/">
+        <a href="/posts/unity-shader-script-transparent-custom/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7231,7 +7254,7 @@ call        bool ClassName::op_Equality(class ClassName, clas...
   <i class="unloaded">2021-03-15T17:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>2-Pass Transparent Shader</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Customizable Transparent Shader</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7244,7 +7267,7 @@ call        bool ClassName::op_Equality(class ClassName, clas...
 
 
 
-  2패스로 작성하여 내부가 드러나는 알파 소팅 문제가 발생하지 않는 쉐이더
+  알파 블렌딩, ZTest 등의 옵션을 마테리얼에서 설정할 수 있는 반투명 쉐이더
 
 
 Source Code
@@ -7252,12 +7275,12 @@ Source Code
 
 
   
-    Shader "Custom/Transparent2Pass"
+    Shader "Custom/CustomizableTransparent"
 {
     Properties
     {
-        _MainTex("Albedo (RGB)", 2D) = "white" {}
-        _Alph...
+        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+ ...
               </p>
             </div>
           </div>
@@ -10750,6 +10773,16 @@ Source Code
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -10785,7 +10818,7 @@ Source Code
         <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/shorts/">shorts</a>
       
 
     </div>

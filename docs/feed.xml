@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-03T22:55:01+09:00</updated>
+  <updated>2021-08-05T02:29:39+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,67 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Unity Async Web Request</title>
+    <link href="https://rito15.github.io/posts/unity-web-request/" rel="alternate" type="text/html" title="Unity Async Web Request" />
+    <published>2021-08-04T15:45:00+09:00</published>
+  
+    <updated>2021-08-04T15:45:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-web-request/</id>
+    <content src="https://rito15.github.io/posts/unity-web-request/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo - Shorts" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+
+  
+    UnityWebRequest는 AsyncOperation 클래스를 상속받는다.
+  
+  
+    그러니까 코루틴에서 yield return으로 기다릴 수 있다.
+  
+  
+    웹페이지를 받아올 경우, 페이지 소스의 &amp;lt;head&amp;gt; 부분에서 인코딩을 꼭 확인해야 한다.
+  
+
+
+
+
+Source Code
+
+
+// using UnityEngine.Networking;
+
+IEnumerator WebReqRoutine()
+{
+    UnityWebRequest www = UnityWebRequest.Get("https://rito15.github.io/posts/unity-memo-compilation/");
+    yield return www.SendWebRequest(...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -263,80 +324,6 @@ Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존�
   서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
   클라이언트 소켓 객체 생성
   리...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>TCP 소켓 서버, 클라이언트 기본</title>
-    <link href="https://rito15.github.io/posts/03-cs-tcp-socket-server-client-basic.md/" rel="alternate" type="text/html" title="TCP 소켓 서버, 클라이언트 기본" />
-    <published>2021-08-02T00:03:00+09:00</published>
-  
-    <updated>2021-08-02T00:03:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/03-cs-tcp-socket-server-client-basic.md/</id>
-    <content src="https://rito15.github.io/posts/03-cs-tcp-socket-server-client-basic.md/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Socket" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      소켓 정의
-
-
-프로토콜
-
-  데이터 전송을 위한 규약이며, 대표적으로 TCP와 UDP가 있다.
-
-
-IP
-
-  컴퓨터에 부여된 논리적 식별 주소
-
-
-Port
-
-  네트워크 상에서 통신하기 위해 호스트 내부적으로 프로세스가 할당받는 고유 번호
-  같은 컴퓨터 내에서 프로세스를 식별하기 위한 번호
-
-
-
-
-소켓 통신 과정
-
-
-서버
-
-  서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
-  Listener 소켓 객체 생성
-  Bind(서버 엔드포인트 정보를 Listener 소켓에 연동)
-  Listen(클라이언트 대기열 생성)
-  Accept(클라이언트 연결 수용)
-  Send, Receive(데이터 송수신)
-  Close
-
-
-클라이언트
-
-  서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
-  클라이언트 ...
     </summary>
   
 

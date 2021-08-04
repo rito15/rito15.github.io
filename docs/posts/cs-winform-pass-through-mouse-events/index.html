@@ -776,12 +776,17 @@ Form1.cs
         
         
         
-        <li><a href="/posts/memo-cs-regex/">C# Regex (정규표현식)</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
         
         
         <li><a href="/posts/06-cs-tcp-async-socket-with-packet.md/">TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-cs-regex/">C# Regex (정규표현식)</a></li>
       
         
         
@@ -792,11 +797,6 @@ Form1.cs
         
         
         <li><a href="/posts/unity-memo-useful-links/">유니티 유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
       
 
       </ul>
@@ -4200,6 +4200,16 @@ Form1.cs
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -4240,7 +4250,7 @@ Form1.cs
         <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/shorts/">shorts</a>
       
 
       </div>
@@ -4282,6 +4292,19 @@ Form1.cs
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7305,7 +7328,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/memo-cs-prime-number/">
+        <a href="/posts/cs-null-check/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7322,13 +7345,13 @@ static void Main()
   
 
   
-    Mar 26
+    Jul 30
   
 
-  <i class="unloaded">2021-03-26T18:12:00+09:00</i>
+  <i class="unloaded">2021-07-30T17:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Prime Number(소수)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>클래스 타입 객체가 null인지 검사하는 4가지 방법</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7337,20 +7360,31 @@ static void Main()
 
 
 
-                Memo
+                4가지 방법
 
 
-1. 소수인지 확인하기
+[1]
+
+1
+instance == null;
 
 
-  
-    /// &lt;summary&gt; 지정한 수가 소수인지 확인 &lt;/summary&gt;
-public static bool IsPrime(int value)
-{
-    bool isEvenNumber = (value % 2) == 0;
+1
+2
+3
+4
+5
+6
+7
+8
+// 1-1. == 연산자를 오버로딩 하지 않은 경우
+ldloc.0
+ldnull
+ceq
 
-    // 짝수일 경우 2만 소수
-    if (isEve...
+// 1-2. == 연산자를 오버로딩한 경우
+ldnull
+call        bool ClassName::op_Equality(class ClassName, class ...
               </p>
             </div>
           </div>
@@ -10853,6 +10887,16 @@ public static bool IsPrime(int value)
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -10888,7 +10932,7 @@ public static bool IsPrime(int value)
         <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/shorts/">shorts</a>
       
 
     </div>

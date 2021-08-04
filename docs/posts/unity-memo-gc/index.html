@@ -28,8 +28,8 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="String" />
 <meta property="og:description" content="String" />
-<link rel="canonical" href="https://rito15.github.io/posts/unity-memo-compilation/" />
-<meta property="og:url" content="https://rito15.github.io/posts/unity-memo-compilation/" />
+<link rel="canonical" href="https://rito15.github.io/posts/unity-memo-gc/" />
+<meta property="og:url" content="https://rito15.github.io/posts/unity-memo-gc/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-01-01T01:01:02+09:00" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 GC 관련 메모, 팁 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"String","datePublished":"2021-01-01T01:01:02+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-compilation/"},"url":"https://rito15.github.io/posts/unity-memo-compilation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 GC 관련 메모, 팁 모음","dateModified":"2021-01-01T01:01:02+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"String","datePublished":"2021-01-01T01:01:02+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-gc/"},"url":"https://rito15.github.io/posts/unity-memo-gc/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 GC 관련 메모, 팁 모음","dateModified":"2021-01-01T01:01:02+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="268 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="333 words">1 min</span>
 
 
           <!-- page views -->
@@ -413,7 +413,7 @@
 
           <!-- HITS -->
           &nbsp;
-          <a href="https://hits.seeyoufarm.com"><img min-width="94" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://rito15.github.io/posts/unity-memo-compilation/%2F&count_bg=%23AC58FA&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false"/></a> 
+          <a href="https://hits.seeyoufarm.com"><img min-width="94" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://rito15.github.io/posts/unity-memo-gc/%2F&count_bg=%23AC58FA&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false"/></a> 
 
         </div>
 
@@ -462,6 +462,23 @@
   </li>
   <li>
     <p>제네릭 컬렉션은 크기가 <code class="language-plaintext highlighter-rouge">4</code>부터 두배씩 증가할 때마다 내부의 기존 배열을 제거하고 새로운 배열을 할당하므로, 객체 생성 시 생성자의 매개변수로 <code class="language-plaintext highlighter-rouge">capacity</code>를 미리 지정해주는 것이 좋다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="delegates">Delegates</h1>
+<hr />
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Action</code>, <code class="language-plaintext highlighter-rouge">Action&lt;T&gt;</code>, <code class="language-plaintext highlighter-rouge">Func&lt;T&gt;</code> 등의 델리게이트 타입 변수들은 힙에 할당된다.</p>
+  </li>
+  <li>
+    <p>따라서 가비지를 생성한다.</p>
+  </li>
+  <li>
+    <p>매개변수를 통한 전달 시 클래스 타입과 마찬가지로 참조를 전달한다.</p>
   </li>
 </ul>
 
@@ -522,19 +539,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=유니티 GC 관련 메모, 팁 모음 - Rito15&url=https://rito15.github.io/posts/unity-memo-compilation/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=유니티 GC 관련 메모, 팁 모음 - Rito15&url=https://rito15.github.io/posts/unity-memo-gc/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=유니티 GC 관련 메모, 팁 모음 - Rito15&u=https://rito15.github.io/posts/unity-memo-compilation/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=유니티 GC 관련 메모, 팁 모음 - Rito15&u=https://rito15.github.io/posts/unity-memo-gc/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=유니티 GC 관련 메모, 팁 모음 - Rito15&url=https://rito15.github.io/posts/unity-memo-compilation/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=유니티 GC 관련 메모, 팁 모음 - Rito15&url=https://rito15.github.io/posts/unity-memo-gc/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -597,12 +614,17 @@
         
         
         
-        <li><a href="/posts/memo-cs-regex/">C# Regex (정규표현식)</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
         
         
         <li><a href="/posts/06-cs-tcp-async-socket-with-packet.md/">TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-cs-regex/">C# Regex (정규표현식)</a></li>
       
         
         
@@ -613,11 +635,6 @@
         
         
         <li><a href="/posts/unity-memo-useful-links/">유니티 유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
       
 
       </ul>
@@ -4021,6 +4038,16 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -4061,7 +4088,7 @@
         <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/shorts/">shorts</a>
       
 
       </div>
@@ -4103,6 +4130,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -10712,6 +10752,16 @@ Icon.cs
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -10747,7 +10797,7 @@ Icon.cs
         <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
-        <a class="post-tag" href="/tags/shadergraph/">shadergraph</a>
+        <a class="post-tag" href="/tags/shorts/">shorts</a>
       
 
     </div>
