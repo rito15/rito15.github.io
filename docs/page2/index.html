@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page2/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page2/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,102 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-null-check/">클래스 타입 객체가 null인지 검사하는 4가지 방법</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        4가지 방법
+
+
+[1]
+
+
+  
+    instance == null;
+
+  
+
+
+
+  
+    // 1-1. == 연산자를 오버로딩 하지 않은 경우
+ldloc.0
+ldnull
+ceq
+
+// 1-2. == 연산자를 오버로딩한 경우
+ldnull
+call        bool ClassName::op_Equality(class ClassName, clas...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Jul 30, 2021,  5:30 PM +0900"
+  >
+
+  
+  
+
+  
+    Jul 30
+  
+
+  <i class="unloaded">2021-07-30T17:30:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="237 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1256,94 +1352,6 @@ Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공�
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1689 words">9 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/06-cs-reader-writer-lock/">C# ReaderWriterLock</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Reader Writer Lock
-
-
-스레드 간에 공유되는 데이터가 있을 때,
-
-항상 모든 스레드가 그 데이터를 읽고 쓰는 것은 아니다.
-
-어떤 스레드는 해당 데이터를 읽기만 하고,
-
-어떤 스레드는 해당 데이터를 쓰기만 하는 구조로 이루어져 있을 수 있다.
-
-그리고 소수의 쓰기 스레드가 상대적으로 적은 횟수로 쓰기를 수행하고,
-
-다수의 읽기 스레드가 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Jul  8, 2021,  1:06 AM +0900"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:06:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4261 words">23 min</span>
 
 
         <!-- page views -->

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표","datePublished":"2021-05-09T01:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/"},"url":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/","author":{"@type":"Person","name":"Rito15"},"headline":"마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기","dateModified":"2021-05-09T01:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기","description":"목표","dateModified":"2021-05-09T01:30:00+09:00","datePublished":"2021-05-09T01:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/"},"url":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -5207,6 +5207,19 @@ Form1.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7328,7 +7341,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/cs-null-check/">
+        <a href="/posts/cs-union-in-csharp/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7348,10 +7361,10 @@ static void Main()
     Jul 30
   
 
-  <i class="unloaded">2021-07-30T17:30:00+09:00</i>
+  <i class="unloaded">2021-07-30T18:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>클래스 타입 객체가 null인지 검사하는 4가지 방법</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C#에서 union 구현하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7360,13 +7373,7 @@ static void Main()
 
 
 
-                4가지 방법
-
-
-[1]
-
-1
-instance == null;
+                C언어의 union
 
 
 1
@@ -7374,17 +7381,24 @@ instance == null;
 3
 4
 5
-6
-7
-8
-// 1-1. == 연산자를 오버로딩 하지 않은 경우
-ldloc.0
-ldnull
-ceq
+union MyUnion
+{
+    int intValue;     // 4바이트
+    short shortValue; // 2바이트
+}
 
-// 1-2. == 연산자를 오버로딩한 경우
-ldnull
-call        bool ClassName::op_Equality(class ClassName, class ...
+
+
+  위처럼 C언어에는 서로 다른 타입의 변수가 동일 메모리를 사용하도록 하는 union(공용체)이 존재한다.
+
+
+
+
+C#에서의 union
+
+
+
+  C#에는 union ...
               </p>
             </div>
           </div>

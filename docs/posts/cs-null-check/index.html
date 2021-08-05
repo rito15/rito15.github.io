@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="클래스 타입 객체가 null인지 검사하는 4가지 방법" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"4가지 방법","datePublished":"2021-07-30T17:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-null-check/"},"url":"https://rito15.github.io/posts/cs-null-check/","author":{"@type":"Person","name":"Rito15"},"headline":"클래스 타입 객체가 null인지 검사하는 4가지 방법","dateModified":"2021-07-30T17:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"클래스 타입 객체가 null인지 검사하는 4가지 방법","description":"4가지 방법","dateModified":"2021-07-30T17:30:00+09:00","datePublished":"2021-07-30T17:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-null-check/"},"url":"https://rito15.github.io/posts/cs-null-check/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -4286,6 +4286,19 @@ ceq
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7076,73 +7089,6 @@ ceq
       
       
       <div class="card">
-        <a href="/posts/memo-cs-static-readonly-vs-const/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Mar 30
-  
-
-  <i class="unloaded">2021-03-30T00:50:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Static Readonly vs. Const</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                공통점
-
-
-
-  런타임에 값을 변경할 수 없다.
-
-
-
-
-차이점
-
-
-Static Readonly
-
-
-  
-    필드 선언문 또는 정적 생성자에서만 값을 초기화할 수 있다.
-  
-  
-    값을 초기화하지 않으면 해당 타입의 기본값으로 초기화된다.
-  
-  
-    런타임 초기에 값이 고정된다.
-  
-  
-    값이 정해지면 변하지 않지만, 결국 변...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-union-in-csharp/">
           <div class="card-body">
             <!--
@@ -7210,7 +7156,74 @@ C#에서의 union
       
       
       <div class="card">
-        <a href="/posts/unity-shader-script-transparent-custom/">
+        <a href="/posts/memo-cs-static-readonly-vs-const/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 30
+  
+
+  <i class="unloaded">2021-03-30T00:50:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Static Readonly vs. Const</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                공통점
+
+
+
+  런타임에 값을 변경할 수 없다.
+
+
+
+
+차이점
+
+
+Static Readonly
+
+
+  
+    필드 선언문 또는 정적 생성자에서만 값을 초기화할 수 있다.
+  
+  
+    값을 초기화하지 않으면 해당 타입의 기본값으로 초기화된다.
+  
+  
+    런타임 초기에 값이 고정된다.
+  
+  
+    값이 정해지면 변하지 않지만, 결국 변...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-shader-script-stencil-mask/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7230,10 +7243,10 @@ C#에서의 union
     Mar 15
   
 
-  <i class="unloaded">2021-03-15T17:00:00+09:00</i>
+  <i class="unloaded">2021-03-15T17:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Customizable Transparent Shader</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Stencil Mask Shader</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7246,7 +7259,13 @@ C#에서의 union
 
 
 
-  알파 블렌딩, ZTest 등의 옵션을 마테리얼에서 설정할 수 있는 반투명 쉐이더
+  스텐실 마스크 &amp; 마스크로 가려야 드러나는 타겟 쉐이더
+  Ref 1번 사용
+
+
+Preview
+
+
 
 
 Source Code
@@ -7254,12 +7273,16 @@ Source Code
 
 
   
-    Shader "Custom/CustomizableTransparent"
+    StencilTarget01.shader
+  
+
+  
+    
+      Shader "Custom/StencilTarget01"
 {
     Properties
     {
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
- ...
+     ...
               </p>
             </div>
           </div>

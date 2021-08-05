@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Static Readonly vs. Const" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"공통점 런타임에 값을 변경할 수 없다.","datePublished":"2021-03-30T00:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-static-readonly-vs-const/"},"url":"https://rito15.github.io/posts/memo-cs-static-readonly-vs-const/","author":{"@type":"Person","name":"Rito15"},"headline":"Static Readonly vs. Const","dateModified":"2021-03-30T00:50:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Static Readonly vs. Const","description":"공통점 런타임에 값을 변경할 수 없다.","dateModified":"2021-03-30T00:50:00+09:00","datePublished":"2021-03-30T00:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-static-readonly-vs-const/"},"url":"https://rito15.github.io/posts/memo-cs-static-readonly-vs-const/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -5230,6 +5230,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7045,72 +7058,6 @@
       
       
       <div class="card">
-        <a href="/posts/cs-null-check/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul 30
-  
-
-  <i class="unloaded">2021-07-30T17:30:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>클래스 타입 객체가 null인지 검사하는 4가지 방법</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                4가지 방법
-
-
-[1]
-
-1
-instance == null;
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-// 1-1. == 연산자를 오버로딩 하지 않은 경우
-ldloc.0
-ldnull
-ceq
-
-// 1-2. == 연산자를 오버로딩한 경우
-ldnull
-call        bool ClassName::op_Equality(class ClassName, class ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-union-in-csharp/">
           <div class="card-body">
             <!--
@@ -7178,7 +7125,73 @@ C#에서의 union
       
       
       <div class="card">
-        <a href="/posts/unity-shader-script-transparent-custom/">
+        <a href="/posts/cs-null-check/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul 30
+  
+
+  <i class="unloaded">2021-07-30T17:30:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>클래스 타입 객체가 null인지 검사하는 4가지 방법</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                4가지 방법
+
+
+[1]
+
+1
+instance == null;
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+// 1-1. == 연산자를 오버로딩 하지 않은 경우
+ldloc.0
+ldnull
+ceq
+
+// 1-2. == 연산자를 오버로딩한 경우
+ldnull
+call        bool ClassName::op_Equality(class ClassName, class ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-shader-script-stencil-mask/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7198,10 +7211,10 @@ C#에서의 union
     Mar 15
   
 
-  <i class="unloaded">2021-03-15T17:00:00+09:00</i>
+  <i class="unloaded">2021-03-15T17:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Customizable Transparent Shader</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Stencil Mask Shader</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7214,7 +7227,13 @@ C#에서의 union
 
 
 
-  알파 블렌딩, ZTest 등의 옵션을 마테리얼에서 설정할 수 있는 반투명 쉐이더
+  스텐실 마스크 &amp; 마스크로 가려야 드러나는 타겟 쉐이더
+  Ref 1번 사용
+
+
+Preview
+
+
 
 
 Source Code
@@ -7222,12 +7241,16 @@ Source Code
 
 
   
-    Shader "Custom/CustomizableTransparent"
+    StencilTarget01.shader
+  
+
+  
+    
+      Shader "Custom/StencilTarget01"
 {
     Properties
     {
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
- ...
+     ...
               </p>
             </div>
           </div>

@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-05T02:29:39+09:00</updated>
+  <updated>2021-08-06T02:25:21+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,73 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 오브젝트 풀링(Object Pooling)</title>
+    <link href="https://rito15.github.io/posts/unity-object-pooling/" rel="alternate" type="text/html" title="유니티 오브젝트 풀링(Object Pooling)" />
+    <published>2021-08-06T01:22:00+09:00</published>
+  
+    <updated>2021-08-06T01:22:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-object-pooling/</id>
+    <content src="https://rito15.github.io/posts/unity-object-pooling/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. 목표
+
+
+  
+    오브젝트 풀링 기법 이해하기
+  
+  
+    Key 기반 다중 풀링 기법 이해하기
+  
+  
+    오브젝트 풀 매니저 싱글톤 클래스 구현하기
+  
+
+
+
+
+2. 개념
+
+
+게임오브젝트를 생성, 파괴하는 것은 순간적으로 큰 성능 소모 및 프레임 저하를 발생시킬 수 있다.
+
+따라서 생성, 파괴 대신 활성화, 비활성화 방식을 사용하면 순간적인 프레임 저하를 방지할 수 있다.
+
+이를 오브젝트 풀링 기법이라고 하며, 동일한 여러 개의 오브젝트를 하나의 풀(예 : 리스트, 스택, 큐)에  미리 담아 관리한다.
+
+파괴 대신 비활성화하여 풀에 저장하고, 생성 대신 풀에서 꺼내어 활성화하는 방식을 사용한다.
+
+
+
+풀 내의 오브젝트는 파괴되지 않고 메모리에 계속 남아있기 때문에,
+
+CPU 성능...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -258,72 +325,6 @@ Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존�
 
 
 이런 비동기 메소드들은 모두 내부적으로 워커 스레드에서 동작한다...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>UDP 소켓 서버, 클라이언트 기본</title>
-    <link href="https://rito15.github.io/posts/04-cs-udp-socket-server-client-basic.md/" rel="alternate" type="text/html" title="UDP 소켓 서버, 클라이언트 기본" />
-    <published>2021-08-02T00:04:00+09:00</published>
-  
-    <updated>2021-08-02T00:04:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/04-cs-udp-socket-server-client-basic.md/</id>
-    <content src="https://rito15.github.io/posts/04-cs-udp-socket-server-client-basic.md/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Socket" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      UDP 소켓 통신의 특징
-
-
-
-  서버와 클라이언트 간의 1:1 연결이 생성되지 않는다.
-  리스너 소켓이 필요하지 않다.
-  Listen(), Connect() 과정이 없다.
-  소켓의 .ReceiveFrom(), .SendTo() 메소드를 통해 엔드포인트와 데이터를 주고 받는다.
-
-
-
-
-소켓 통신 과정
-
-
-서버
-
-  서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
-  서버 소켓 객체 생성
-  Bind(서버 엔드포인트 정보를 서버 소켓에 연동)
-  클라이언트에 대응할 리모트 엔드포인트 생성
-  Send =&amp;gt; 리모트 엔드포인트
-  Receive &amp;lt;= 리모트 엔드포인트
-  Close
-
-
-클라이언트
-
-  서버 IP 주소, 포트를 통해 서버 엔드포인트 생성
-  클라이언트 소켓 객체 생성
-  리...
     </summary>
   
 
