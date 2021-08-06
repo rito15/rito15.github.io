@@ -100,10 +100,11 @@ private void OnFunctionCompleted(object sender, SocketAsyncEventArgs args)
 <br>
 
 ### **Session**
-- 소켓을 통한 비동기 송신, 수신 기능을 제공한다.
+- 소켓 연결 시 생성되어, 비동기 송수신 기능을 담당한다.
 
 - 내부에 소켓 객체를 보유한다.
 - 이 클래스를 상속하고 이벤트 핸들러를 구현하여 소켓 통신의 모든 동작을 작성한다.
+- 서버 측에는 클라이언트의 세션이, 클라이언트 측에는 서버의 세션이 생성되는 개념이다.
 
 <br>
 
@@ -121,7 +122,8 @@ private void OnFunctionCompleted(object sender, SocketAsyncEventArgs args)
 
 <br>
 
-### **ServerSession**
+### **ClientSession**
+- 클라이언트와의 연결 성공 시 서버 측에 생성되는 객체
 - `Session` 클래스를 상속받는다.
 - 연결 성공, 연결 종료, 패킷 송신, 패킷 수신 시 동작을 구현한다.
 
@@ -146,7 +148,8 @@ private void OnFunctionCompleted(object sender, SocketAsyncEventArgs args)
 
 <br>
 
-### **ClientSession**
+### **ServerSession**
+- 서버와의 연결 성공 시 클라이언트 측에 생성되는 객체
 - `Session` 클래스를 상속받는다.
 - 연결 성공, 연결 종료, 패킷 송신, 패킷 수신 시 동작을 구현한다.
 
@@ -484,7 +487,7 @@ public class Listener
 
 <details>
 <summary markdown="span"> 
-ServerSession.cs
+ClientSession.cs
 </summary>
 
 ```cs
@@ -497,7 +500,7 @@ using System.Threading;
 
 using ByteSegment = System.ArraySegment<byte>;
 
-class ServerSession : Session
+class ClientSession : Session
 {
     protected override void OnConnected(EndPoint endPoint)
     {
@@ -553,7 +556,7 @@ class ServerProgram
         IPInformation ipInfo = new IPInformation(Dns.GetHostName(), 12345);
         Listener listener = new Listener();
 
-        listener.Init(ipInfo.EndPoint, () => new ServerSession());
+        listener.Init(ipInfo.EndPoint, () => new ClientSession());
 
         while (true) ;
     }
@@ -633,7 +636,7 @@ public class Connector
 
 <details>
 <summary markdown="span"> 
-ClientSession.cs
+ServerSession.cs
 </summary>
 
 ```cs
@@ -646,7 +649,7 @@ using System.Threading;
 
 using ByteSegment = System.ArraySegment<byte>;
 
-class ClientSession : Session
+class ServerSession : Session
 {
     private void Body()
     {
@@ -711,7 +714,7 @@ class ClientProgram
         IPInformation ipInfo = new IPInformation(Dns.GetHostName(), 12345);
         Connector connector = new Connector();
 
-        connector.Connect(ipInfo.EndPoint, () => new ClientSession());
+        connector.Connect(ipInfo.EndPoint, () => new ServerSession());
 
         while (true) ;
     }

@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2709 words">15 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2794 words">15 min</span>
 
 
           <!-- page views -->
@@ -567,10 +567,11 @@
 <h3 id="session"><strong>Session</strong></h3>
 <ul>
   <li>
-    <p>소켓을 통한 비동기 송신, 수신 기능을 제공한다.</p>
+    <p>소켓 연결 시 생성되어, 비동기 송수신 기능을 담당한다.</p>
   </li>
   <li>내부에 소켓 객체를 보유한다.</li>
   <li>이 클래스를 상속하고 이벤트 핸들러를 구현하여 소켓 통신의 모든 동작을 작성한다.</li>
+  <li>서버 측에는 클라이언트의 세션이, 클라이언트 측에는 서버의 세션이 생성되는 개념이다.</li>
 </ul>
 
 <p><br /></p>
@@ -591,8 +592,9 @@
 
 <p><br /></p>
 
-<h3 id="serversession"><strong>ServerSession</strong></h3>
+<h3 id="clientsession"><strong>ClientSession</strong></h3>
 <ul>
+  <li>클라이언트와의 연결 성공 시 서버 측에 생성되는 객체</li>
   <li><code class="language-plaintext highlighter-rouge">Session</code> 클래스를 상속받는다.</li>
   <li>연결 성공, 연결 종료, 패킷 송신, 패킷 수신 시 동작을 구현한다.</li>
 </ul>
@@ -622,8 +624,9 @@
 
 <p><br /></p>
 
-<h3 id="clientsession"><strong>ClientSession</strong></h3>
+<h3 id="serversession"><strong>ServerSession</strong></h3>
 <ul>
+  <li>서버와의 연결 성공 시 클라이언트 측에 생성되는 객체</li>
   <li><code class="language-plaintext highlighter-rouge">Session</code> 클래스를 상속받는다.</li>
   <li>연결 성공, 연결 종료, 패킷 송신, 패킷 수신 시 동작을 구현한다.</li>
 </ul>
@@ -1237,7 +1240,7 @@ Listener.cs
 
 <details>
   <summary> 
-ServerSession.cs
+ClientSession.cs
 </summary>
 
   <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -1286,7 +1289,7 @@ ServerSession.cs
 
 <span class="k">using</span> <span class="nn">ByteSegment</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">ArraySegment</span><span class="p">&lt;</span><span class="kt">byte</span><span class="p">&gt;;</span>
 
-<span class="k">class</span> <span class="nc">ServerSession</span> <span class="p">:</span> <span class="n">Session</span>
+<span class="k">class</span> <span class="nc">ClientSession</span> <span class="p">:</span> <span class="n">Session</span>
 <span class="p">{</span>
     <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnConnected</span><span class="p">(</span><span class="n">EndPoint</span> <span class="n">endPoint</span><span class="p">)</span>
     <span class="p">{</span>
@@ -1362,7 +1365,7 @@ ServerProgram.cs
         <span class="n">IPInformation</span> <span class="n">ipInfo</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">IPInformation</span><span class="p">(</span><span class="n">Dns</span><span class="p">.</span><span class="nf">GetHostName</span><span class="p">(),</span> <span class="m">12345</span><span class="p">);</span>
         <span class="n">Listener</span> <span class="n">listener</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Listener</span><span class="p">();</span>
 
-        <span class="n">listener</span><span class="p">.</span><span class="nf">Init</span><span class="p">(</span><span class="n">ipInfo</span><span class="p">.</span><span class="n">EndPoint</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">ServerSession</span><span class="p">());</span>
+        <span class="n">listener</span><span class="p">.</span><span class="nf">Init</span><span class="p">(</span><span class="n">ipInfo</span><span class="p">.</span><span class="n">EndPoint</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">ClientSession</span><span class="p">());</span>
 
         <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="p">;</span>
     <span class="p">}</span>
@@ -1490,7 +1493,7 @@ Connector.cs
 
 <details>
   <summary> 
-ClientSession.cs
+ServerSession.cs
 </summary>
 
   <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -1548,7 +1551,7 @@ ClientSession.cs
 
 <span class="k">using</span> <span class="nn">ByteSegment</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">ArraySegment</span><span class="p">&lt;</span><span class="kt">byte</span><span class="p">&gt;;</span>
 
-<span class="k">class</span> <span class="nc">ClientSession</span> <span class="p">:</span> <span class="n">Session</span>
+<span class="k">class</span> <span class="nc">ServerSession</span> <span class="p">:</span> <span class="n">Session</span>
 <span class="p">{</span>
     <span class="k">private</span> <span class="k">void</span> <span class="nf">Body</span><span class="p">()</span>
     <span class="p">{</span>
@@ -1633,7 +1636,7 @@ ClientProgram.cs
         <span class="n">IPInformation</span> <span class="n">ipInfo</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">IPInformation</span><span class="p">(</span><span class="n">Dns</span><span class="p">.</span><span class="nf">GetHostName</span><span class="p">(),</span> <span class="m">12345</span><span class="p">);</span>
         <span class="n">Connector</span> <span class="n">connector</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Connector</span><span class="p">();</span>
 
-        <span class="n">connector</span><span class="p">.</span><span class="nf">Connect</span><span class="p">(</span><span class="n">ipInfo</span><span class="p">.</span><span class="n">EndPoint</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">ClientSession</span><span class="p">());</span>
+        <span class="n">connector</span><span class="p">.</span><span class="nf">Connect</span><span class="p">(</span><span class="n">ipInfo</span><span class="p">.</span><span class="n">EndPoint</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">ServerSession</span><span class="p">());</span>
 
         <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="p">;</span>
     <span class="p">}</span>
@@ -1782,6 +1785,11 @@ ClientProgram.cs
         
         
         
+        <li><a href="/posts/unity-object-pooling/">유니티 오브젝트 풀링(Object Pooling)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
@@ -1798,11 +1806,6 @@ ClientProgram.cs
         
         
         <li><a href="/posts/cs-union-in-csharp/">C#에서 union 구현하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 유용한 정보, 링크 모음</a></li>
       
 
       </ul>

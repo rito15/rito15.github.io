@@ -231,7 +231,7 @@ class ChattingManager
     private static readonly ChattingManager _instance = new ChattingManager();
     private ChattingManager() { } // 생성자 봉인
 
-    public HashSet<ChattingServerSession> ClientSessionList { get; } = new HashSet<ChattingServerSession>(4);
+    public HashSet<ChattingClientSession> ClientSessionList { get; } = new HashSet<ChattingClientSession>(4);
     private readonly object _lock = new object();
 
     /***********************************************************************
@@ -239,7 +239,7 @@ class ChattingManager
     ***********************************************************************/
     #region .
     /// <summary> 클라이언트로부터 전달받은 패킷 데이터 처리 </summary>
-    public void HandleDataFromClient(ChattingServerSession clientSession, in ChattingPacketData data)
+    public void HandleDataFromClient(ChattingClientSession clientSession, in ChattingPacketData data)
     {
         switch (data.command)
         {
@@ -272,7 +272,7 @@ class ChattingManager
     ***********************************************************************/
     #region .
     /// <summary> 새로운 클라이언트를 목록에 추가 </summary>
-    private void AddClient(ChattingServerSession clientSession, string name)
+    private void AddClient(ChattingClientSession clientSession, string name)
     {
         bool addSucceeded;
 
@@ -294,7 +294,7 @@ class ChattingManager
     }
 
     /// <summary> 목록에서 클라이언트 제거 </summary>
-    public void RemoveClient(ChattingServerSession clientSession)
+    public void RemoveClient(ChattingClientSession clientSession)
     {
         // 1. 목록에서 제거
         lock (_lock)
@@ -315,7 +315,7 @@ class ChattingManager
     }
 
     /// <summary> 지정한 클라이언트의 이름 변경 </summary>
-    private void RenameClient(ChattingServerSession clientSession, string newName)
+    private void RenameClient(ChattingClientSession clientSession, string newName)
     {
         // 1. "기존이름|새로운이름" 꼴로 내용 구성
         string renameContent = $"{clientSession.ClientName}|{newName}";
@@ -329,7 +329,7 @@ class ChattingManager
     }
 
     /// <summary> 해당 클라이언트를 제외한 모두에게 채팅 메시지 전달 </summary>
-    private void RelayChattingMessage(ChattingServerSession clientSession, string message)
+    private void RelayChattingMessage(ChattingClientSession clientSession, string message)
     {
         if (ClientSessionList.Count > 1)
         {
@@ -382,9 +382,9 @@ class ChattingManager
 
 
 
-## **[2] ChattingServerSession 클래스**
+## **[2] ChattingClientSession 클래스**
 
-- 클라이언트 연결 시 서버 측에 생성되는 세션
+- 클라이언트 연결 시 서버 측에 생성되는 클라이언트의 세션
 - 연결된 클라이언트의 이름을 저장한다.
 - 클라이언트로부터 패킷을 수신할 경우 패킷을 분리하여 `ChattingManager` 싱글톤에 넘겨 처리한다.
 
@@ -392,7 +392,7 @@ class ChattingManager
 
 <details>
 <summary markdown="span"> 
-ChattingServerSession.cs
+ChattingClientSession.cs
 </summary>
 
 ```cs
@@ -401,7 +401,7 @@ using System.Net;
 
 using ByteSegment = System.ArraySegment<byte>;
 
-class ChattingServerSession : Session
+class ChattingClientSession : Session
 {
     private ChattingManager _chatManager;
     public string ClientName { get; set; }
@@ -464,7 +464,7 @@ class ServerProgram
         IPInformation ipInfo = new IPInformation(Dns.GetHostName(), 12345);
         Listener listener = new Listener();
 
-        listener.Init(ipInfo.EndPoint, () => new ChattingServerSession());
+        listener.Init(ipInfo.EndPoint, () => new ChattingClientSession());
 
         while (true);
     }
@@ -524,7 +524,7 @@ class ChattingClient
 {
     public string Name { get; set; }
 
-    private ChattingClientSession _session;
+    private ChattingServerSession _session;
     private bool _isRunning;
 
     /// <summary> "잘못된 명령어를 입력하셨습니다." </summary>
@@ -535,7 +535,7 @@ class ChattingClient
     ***********************************************************************/
     #region .
     /// <summary> 채팅 클라이언트 동작 시작 </summary>
-    public void Run(ChattingClientSession session)
+    public void Run(ChattingServerSession session)
     {
         _session = session;
         _isRunning = true;
@@ -700,9 +700,9 @@ class ChattingClient
 
 
 
-## **[2] ChattingClientSession 클래스**
+## **[2] ChattingServerSession 클래스**
 
-- 서버와 연결 시 클라이언트 측에 생성되는 세션
+- 서버와 연결 시 클라이언트 측에 생성되는 서버의 세션
 - 서버와 연결 성공 시 `ChattingClient` 객체를 생성하여 실행시킨다.
 - 서버로부터 패킷을 수신할 경우 패킷을 분리하여 `ChattingClient` 객체에 넘겨 처리한다.
 
@@ -710,7 +710,7 @@ class ChattingClient
 
 <details>
 <summary markdown="span"> 
-ChattingClientSession.cs
+ChattingServerSession.cs
 </summary>
 
 ```cs
@@ -719,7 +719,7 @@ using System.Net;
 
 using ByteSegment = System.ArraySegment<byte>;
 
-class ChattingClientSession : Session
+class ChattingServerSession : Session
 {
     private ChattingClient _chatClient;
 
@@ -784,7 +784,7 @@ class ClientProgram
         IPInformation ipInfo = new IPInformation(Dns.GetHostName(), 12345);
         Connector connector = new Connector();
 
-        connector.Connect(ipInfo.EndPoint, () => new ChattingClientSession());
+        connector.Connect(ipInfo.EndPoint, () => new ChattingServerSession());
 
         while (true);
     }

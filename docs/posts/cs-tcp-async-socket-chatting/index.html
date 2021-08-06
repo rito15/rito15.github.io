@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3811 words">21 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3820 words">21 min</span>
 
 
           <!-- page views -->
@@ -917,7 +917,7 @@ ChattingManager.cs
     <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">ChattingManager</span> <span class="n">_instance</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ChattingManager</span><span class="p">();</span>
     <span class="k">private</span> <span class="nf">ChattingManager</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span> <span class="c1">// 생성자 봉인</span>
 
-    <span class="k">public</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="n">ChattingServerSession</span><span class="p">&gt;</span> <span class="n">ClientSessionList</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="n">ChattingServerSession</span><span class="p">&gt;(</span><span class="m">4</span><span class="p">);</span>
+    <span class="k">public</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="n">ChattingClientSession</span><span class="p">&gt;</span> <span class="n">ClientSessionList</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="n">ChattingClientSession</span><span class="p">&gt;(</span><span class="m">4</span><span class="p">);</span>
     <span class="k">private</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n">_lock</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
 
     <span class="cm">/***********************************************************************
@@ -925,7 +925,7 @@ ChattingManager.cs
     ***********************************************************************/</span>
     <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
     <span class="c1">/// &lt;summary&gt; 클라이언트로부터 전달받은 패킷 데이터 처리 &lt;/summary&gt;</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">HandleDataFromClient</span><span class="p">(</span><span class="n">ChattingServerSession</span> <span class="n">clientSession</span><span class="p">,</span> <span class="k">in</span> <span class="n">ChattingPacketData</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">HandleDataFromClient</span><span class="p">(</span><span class="n">ChattingClientSession</span> <span class="n">clientSession</span><span class="p">,</span> <span class="k">in</span> <span class="n">ChattingPacketData</span> <span class="n">data</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">switch</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">command</span><span class="p">)</span>
         <span class="p">{</span>
@@ -958,7 +958,7 @@ ChattingManager.cs
     ***********************************************************************/</span>
     <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
     <span class="c1">/// &lt;summary&gt; 새로운 클라이언트를 목록에 추가 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">AddClient</span><span class="p">(</span><span class="n">ChattingServerSession</span> <span class="n">clientSession</span><span class="p">,</span> <span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">AddClient</span><span class="p">(</span><span class="n">ChattingClientSession</span> <span class="n">clientSession</span><span class="p">,</span> <span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="kt">bool</span> <span class="n">addSucceeded</span><span class="p">;</span>
 
@@ -980,7 +980,7 @@ ChattingManager.cs
     <span class="p">}</span>
 
     <span class="c1">/// &lt;summary&gt; 목록에서 클라이언트 제거 &lt;/summary&gt;</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">RemoveClient</span><span class="p">(</span><span class="n">ChattingServerSession</span> <span class="n">clientSession</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">RemoveClient</span><span class="p">(</span><span class="n">ChattingClientSession</span> <span class="n">clientSession</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// 1. 목록에서 제거</span>
         <span class="k">lock</span> <span class="p">(</span><span class="n">_lock</span><span class="p">)</span>
@@ -1001,7 +1001,7 @@ ChattingManager.cs
     <span class="p">}</span>
 
     <span class="c1">/// &lt;summary&gt; 지정한 클라이언트의 이름 변경 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">RenameClient</span><span class="p">(</span><span class="n">ChattingServerSession</span> <span class="n">clientSession</span><span class="p">,</span> <span class="kt">string</span> <span class="n">newName</span><span class="p">)</span>
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">RenameClient</span><span class="p">(</span><span class="n">ChattingClientSession</span> <span class="n">clientSession</span><span class="p">,</span> <span class="kt">string</span> <span class="n">newName</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// 1. "기존이름|새로운이름" 꼴로 내용 구성</span>
         <span class="kt">string</span> <span class="n">renameContent</span> <span class="p">=</span> <span class="s">$"</span><span class="p">{</span><span class="n">clientSession</span><span class="p">.</span><span class="n">ClientName</span><span class="p">}</span><span class="s">|</span><span class="p">{</span><span class="n">newName</span><span class="p">}</span><span class="s">"</span><span class="p">;</span>
@@ -1015,7 +1015,7 @@ ChattingManager.cs
     <span class="p">}</span>
 
     <span class="c1">/// &lt;summary&gt; 해당 클라이언트를 제외한 모두에게 채팅 메시지 전달 &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">RelayChattingMessage</span><span class="p">(</span><span class="n">ChattingServerSession</span> <span class="n">clientSession</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">)</span>
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">RelayChattingMessage</span><span class="p">(</span><span class="n">ChattingClientSession</span> <span class="n">clientSession</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">ClientSessionList</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="m">1</span><span class="p">)</span>
         <span class="p">{</span>
@@ -1066,10 +1066,10 @@ ChattingManager.cs
 
 <p><br /></p>
 
-<h2 id="2-chattingserversession-클래스"><strong>[2] ChattingServerSession 클래스</strong></h2>
+<h2 id="2-chattingclientsession-클래스"><strong>[2] ChattingClientSession 클래스</strong></h2>
 
 <ul>
-  <li>클라이언트 연결 시 서버 측에 생성되는 세션</li>
+  <li>클라이언트 연결 시 서버 측에 생성되는 클라이언트의 세션</li>
   <li>연결된 클라이언트의 이름을 저장한다.</li>
   <li>클라이언트로부터 패킷을 수신할 경우 패킷을 분리하여 <code class="language-plaintext highlighter-rouge">ChattingManager</code> 싱글톤에 넘겨 처리한다.</li>
 </ul>
@@ -1078,7 +1078,7 @@ ChattingManager.cs
 
 <details>
   <summary> 
-ChattingServerSession.cs
+ChattingClientSession.cs
 </summary>
 
   <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -1128,7 +1128,7 @@ ChattingServerSession.cs
 
 <span class="k">using</span> <span class="nn">ByteSegment</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">ArraySegment</span><span class="p">&lt;</span><span class="kt">byte</span><span class="p">&gt;;</span>
 
-<span class="k">class</span> <span class="nc">ChattingServerSession</span> <span class="p">:</span> <span class="n">Session</span>
+<span class="k">class</span> <span class="nc">ChattingClientSession</span> <span class="p">:</span> <span class="n">Session</span>
 <span class="p">{</span>
     <span class="k">private</span> <span class="n">ChattingManager</span> <span class="n">_chatManager</span><span class="p">;</span>
     <span class="k">public</span> <span class="kt">string</span> <span class="n">ClientName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
@@ -1207,7 +1207,7 @@ Source Code
         <span class="n">IPInformation</span> <span class="n">ipInfo</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">IPInformation</span><span class="p">(</span><span class="n">Dns</span><span class="p">.</span><span class="nf">GetHostName</span><span class="p">(),</span> <span class="m">12345</span><span class="p">);</span>
         <span class="n">Listener</span> <span class="n">listener</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Listener</span><span class="p">();</span>
 
-        <span class="n">listener</span><span class="p">.</span><span class="nf">Init</span><span class="p">(</span><span class="n">ipInfo</span><span class="p">.</span><span class="n">EndPoint</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">ChattingServerSession</span><span class="p">());</span>
+        <span class="n">listener</span><span class="p">.</span><span class="nf">Init</span><span class="p">(</span><span class="n">ipInfo</span><span class="p">.</span><span class="n">EndPoint</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">ChattingClientSession</span><span class="p">());</span>
 
         <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">);</span>
     <span class="p">}</span>
@@ -1447,7 +1447,7 @@ ChattingClient.cs
 <span class="p">{</span>
     <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
-    <span class="k">private</span> <span class="n">ChattingClientSession</span> <span class="n">_session</span><span class="p">;</span>
+    <span class="k">private</span> <span class="n">ChattingServerSession</span> <span class="n">_session</span><span class="p">;</span>
     <span class="k">private</span> <span class="kt">bool</span> <span class="n">_isRunning</span><span class="p">;</span>
 
     <span class="c1">/// &lt;summary&gt; "잘못된 명령어를 입력하셨습니다." &lt;/summary&gt;</span>
@@ -1458,7 +1458,7 @@ ChattingClient.cs
     ***********************************************************************/</span>
     <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
     <span class="c1">/// &lt;summary&gt; 채팅 클라이언트 동작 시작 &lt;/summary&gt;</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Run</span><span class="p">(</span><span class="n">ChattingClientSession</span> <span class="n">session</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Run</span><span class="p">(</span><span class="n">ChattingServerSession</span> <span class="n">session</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">_session</span> <span class="p">=</span> <span class="n">session</span><span class="p">;</span>
         <span class="n">_isRunning</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
@@ -1621,10 +1621,10 @@ ChattingClient.cs
 
 <p><br /></p>
 
-<h2 id="2-chattingclientsession-클래스"><strong>[2] ChattingClientSession 클래스</strong></h2>
+<h2 id="2-chattingserversession-클래스"><strong>[2] ChattingServerSession 클래스</strong></h2>
 
 <ul>
-  <li>서버와 연결 시 클라이언트 측에 생성되는 세션</li>
+  <li>서버와 연결 시 클라이언트 측에 생성되는 서버의 세션</li>
   <li>서버와 연결 성공 시 <code class="language-plaintext highlighter-rouge">ChattingClient</code> 객체를 생성하여 실행시킨다.</li>
   <li>서버로부터 패킷을 수신할 경우 패킷을 분리하여 <code class="language-plaintext highlighter-rouge">ChattingClient</code> 객체에 넘겨 처리한다.</li>
 </ul>
@@ -1633,7 +1633,7 @@ ChattingClient.cs
 
 <details>
   <summary> 
-ChattingClientSession.cs
+ChattingServerSession.cs
 </summary>
 
   <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -1684,7 +1684,7 @@ ChattingClientSession.cs
 
 <span class="k">using</span> <span class="nn">ByteSegment</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">ArraySegment</span><span class="p">&lt;</span><span class="kt">byte</span><span class="p">&gt;;</span>
 
-<span class="k">class</span> <span class="nc">ChattingClientSession</span> <span class="p">:</span> <span class="n">Session</span>
+<span class="k">class</span> <span class="nc">ChattingServerSession</span> <span class="p">:</span> <span class="n">Session</span>
 <span class="p">{</span>
     <span class="k">private</span> <span class="n">ChattingClient</span> <span class="n">_chatClient</span><span class="p">;</span>
 
@@ -1764,7 +1764,7 @@ Source Code
         <span class="n">IPInformation</span> <span class="n">ipInfo</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">IPInformation</span><span class="p">(</span><span class="n">Dns</span><span class="p">.</span><span class="nf">GetHostName</span><span class="p">(),</span> <span class="m">12345</span><span class="p">);</span>
         <span class="n">Connector</span> <span class="n">connector</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Connector</span><span class="p">();</span>
 
-        <span class="n">connector</span><span class="p">.</span><span class="nf">Connect</span><span class="p">(</span><span class="n">ipInfo</span><span class="p">.</span><span class="n">EndPoint</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">ChattingClientSession</span><span class="p">());</span>
+        <span class="n">connector</span><span class="p">.</span><span class="nf">Connect</span><span class="p">(</span><span class="n">ipInfo</span><span class="p">.</span><span class="n">EndPoint</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">ChattingServerSession</span><span class="p">());</span>
 
         <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">);</span>
     <span class="p">}</span>
@@ -2038,6 +2038,11 @@ Utility.cs
         
         
         
+        <li><a href="/posts/unity-object-pooling/">유니티 오브젝트 풀링(Object Pooling)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
@@ -2054,11 +2059,6 @@ Utility.cs
         
         
         <li><a href="/posts/cs-union-in-csharp/">C#에서 union 구현하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 유용한 정보, 링크 모음</a></li>
       
 
       </ul>
