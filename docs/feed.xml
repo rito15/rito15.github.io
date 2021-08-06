@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-06T18:05:43+09:00</updated>
+  <updated>2021-08-07T01:19:23+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,64 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Screen Drag Selection(화면에 마우스 드래그 영역 표시하기)</title>
+    <link href="https://rito15.github.io/posts/unity-screen-drag-selection/" rel="alternate" type="text/html" title="Screen Drag Selection(화면에 마우스 드래그 영역 표시하기)" />
+    <published>2021-08-07T01:11:00+09:00</published>
+  
+    <updated>2021-08-07T01:11:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-screen-drag-selection/</id>
+    <content src="https://rito15.github.io/posts/unity-screen-drag-selection/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Toys" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Preview
+
+
+
+
+Source Code
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+// 날짜 : 2021-08-07 AM 1:12:20
+// 작성자 : Rito
+
+/// &amp;lt;summary&amp;gt; 화면에 마우스 드래그로 사각형 선택 영역 표시하기 &amp;lt;/summary&amp;gt;
+public class ScreenDragSelection : MonoBehaviour
+{
+    private Vector2 mPosCur;
+    private Vector2 mPosBegin;
+    private Vector2 mPosMin;
+    private Vector2 mPosMax...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -221,7 +279,7 @@ IEnumerator WebReqRoutine()
     <link href="https://rito15.github.io/posts/cs-tcp-async-socket-chatting/" rel="alternate" type="text/html" title="TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기" />
     <published>2021-08-03T03:33:00+09:00</published>
   
-    <updated>2021-08-03T03:33:00+09:00</updated>
+    <updated>2021-08-06T18:31:06+09:00</updated>
   
     <id>https://rito15.github.io/posts/cs-tcp-async-socket-chatting/</id>
     <content src="https://rito15.github.io/posts/cs-tcp-async-socket-chatting/" />
@@ -277,71 +335,6 @@ public enum ChattingCommand
 
     /* [2] 클라이언트 -&amp;gt; 서버 */
     /// &amp;lt;summary&amp;gt; 닉네임 변경 요청 &amp;lt;/summ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</title>
-    <link href="https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/" rel="alternate" type="text/html" title="TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기" />
-    <published>2021-08-02T00:06:00+09:00</published>
-  
-    <updated>2021-08-03T03:50:36+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/</id>
-    <content src="https://rito15.github.io/posts/06-cs-tcp-async-socket-with-packet.md/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Socket" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-  이전 포스팅에서 이어집니다.
-
-
-
-
-ReceiveBuffer, SendBuffer
-
-
-
-  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.
-
-
-
-
-ReceiveBuffer 클래스
-
-
-
-  
-    각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.
-  
-  
-    TCP 소켓 통신을 통해 수신한 패킷이 완전하지 않을 경우를 대비해 사용된다.
-  
-  
-    패킷을 수신하자마자 이를 완전히 처리하는 것이 아니라, ReceiveBuffer에 차례로 저장한다.
-  
-  
-    ReceiveBuffer 앞부분부터 패킷의 헤더를 확인하여, 지정된 길이만큼 패킷이 완전히 도착한 것이 확인된 경우에만 해당 패킷을...
     </summary>
   
 

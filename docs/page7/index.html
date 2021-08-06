@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page7/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page7/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,103 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-material-property-block/">Material Property Block을 통해 프로퍼티 값 변경하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        드로우 콜과 배칭의 개념
+
+
+Draw Call
+
+  
+    CPU가 GPU에게 오브젝트를 그리라고 요청하는 것
+  
+  
+    주요 CPU 병목 요소 중 하나
+  
+
+
+SetPass Call
+
+  
+    쉐이더 렌더링 패스 수
+  
+  
+    쉐이더 요소(예 : 프로퍼티)변경 시 SetPass Call 증가
+  
+  
+    간단히, 쉐이더와 ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, May 22, 2021,  6:00 PM +0900"
+  >
+
+  
+  
+
+  
+    May 22
+  
+
+  <i class="unloaded">2021-05-22T18:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1334 words">7 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1262,92 +1359,6 @@ Options
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-calculate-ui-pixel-size/">UI(RectTransform)의 스크린 픽셀 크기 계산하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-모든 UGUI 요소는 RectTransform을 통해 크기를 결정한다.
-
-그리고 RectTransform.rect로 크기를 참조할 수 있다.
-
-그런데 이 크기는 해상도가 변해도 항상 같은 값을 반환한다.
-
-따라서 해상도를 기반으로 하는 드래그 등의 기능을 구현할 때
-
-마우스 변위를 해상도 값으로 가져오고, 이를 RectTransform에 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, May 10, 2021,  6:00 PM +0900"
-  >
-
-  
-  
-
-  
-    May 10
-  
-
-  <i class="unloaded">2021-05-10T18:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="400 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1793,6 +1804,16 @@ Options
         
         
         
+        <li><a href="/posts/05-cs-tcp-async-socket-basic.md/">TCP 비동기 소켓 서버, 클라이언트 기본</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/cs-tcp-async-socket-chatting/">TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-object-pooling/">유니티 오브젝트 풀링(Object Pooling)</a></li>
       
         
@@ -1804,16 +1825,6 @@ Options
         
         
         <li><a href="/posts/06-cs-tcp-async-socket-with-packet.md/">TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-regex/">C# Regex (정규표현식)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-union-in-csharp/">C#에서 union 구현하기</a></li>
       
 
       </ul>
@@ -4442,6 +4453,41 @@ Options
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -4735,43 +4781,6 @@ Options
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -5301,10 +5310,10 @@ Options
         <a class="post-tag" href="/tags/thread/">thread</a>
       
         
-        <a class="post-tag" href="/tags/particle/">particle</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
         
         <a class="post-tag" href="/tags/shorts/">shorts</a>
@@ -7998,6 +8007,41 @@ Options
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -8291,43 +8335,6 @@ Options
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -8852,10 +8859,10 @@ Options
         <a class="post-tag" href="/tags/thread/">thread</a>
       
         
-        <a class="post-tag" href="/tags/particle/">particle</a>
+        <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
         
         <a class="post-tag" href="/tags/shorts/">shorts</a>
