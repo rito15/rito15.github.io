@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-06T02:25:21+09:00</updated>
+  <updated>2021-08-06T17:09:58+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,75 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# 구조체 프로퍼티, 구조체 인덱서</title>
+    <link href="https://rito15.github.io/posts/cs-struct-property-indexer/" rel="alternate" type="text/html" title="C# 구조체 프로퍼티, 구조체 인덱서" />
+    <published>2021-08-06T15:00:00+09:00</published>
+  
+    <updated>2021-08-06T15:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-struct-property-indexer/</id>
+    <content src="https://rito15.github.io/posts/cs-struct-property-indexer/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Grammar" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      구조체의 특징
+
+
+  초기화(할당), 리턴 등의 동작을 통해 값을 전달할 경우, 구조체가 통째로 복제된다.
+
+
+struct MyStruct
+{
+    public float value;
+}
+
+class MainClass
+{
+    private MyStruct ms;
+
+    private MyStruct GetStruct()
+    {
+        return ms; // 복제하여 리턴
+    }
+
+    public void Main()
+    {
+        MyStruct ms1 = ms;          // 복제하여 초기화
+        MyStruct ms2 = GetStruct(); // 복제하여 반환된 값 초기화
+    }
+}
+
+
+
+
+프로퍼티의 특징
+
+
+private float _v...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -58,7 +127,7 @@
     Key 기반 다중 풀링 기법 이해하기
   
   
-    오브젝트 풀 매니저 싱글톤 클래스 구현하기
+    오브젝트 풀 매니저 클래스 구현하기
   
 
 
@@ -79,7 +148,7 @@
 
 풀 내의 오브젝트는 파괴되지 않고 메모리에 계속 남아있기 때문에,
 
-CPU 성능...
+CPU 성능 소모를...
     </summary>
   
 
@@ -273,58 +342,6 @@ ReceiveBuffer 클래스
   
   
     ReceiveBuffer 앞부분부터 패킷의 헤더를 확인하여, 지정된 길이만큼 패킷이 완전히 도착한 것이 확인된 경우에만 해당 패킷을...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>TCP 비동기 소켓 서버, 클라이언트 기본</title>
-    <link href="https://rito15.github.io/posts/05-cs-tcp-async-socket-basic.md/" rel="alternate" type="text/html" title="TCP 비동기 소켓 서버, 클라이언트 기본" />
-    <published>2021-08-02T00:05:00+09:00</published>
-  
-    <updated>2021-08-02T00:05:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/05-cs-tcp-async-socket-basic.md/</id>
-    <content src="https://rito15.github.io/posts/05-cs-tcp-async-socket-basic.md/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Socket" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      비동기 소켓 통신 방식
-
-
-Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존재한다.
-
-
-  AcceptAsync(SocketAsyncEventArgs)
-  ConnectAsync(SocketAsyncEventArgs)
-  DisconnectAsync(SocketAsyncEventArgs)
-  ConnectAsync(SocketAsyncEventArgs)
-  ReceiveAsync(SocketAsyncEventArgs)
-  ReceiveFromAsync(SocketAsyncEventArgs)
-  SendAsync(SocketAsyncEventArgs)
-  SendToAsync(SocketAsyncEventArgs)
-
-
-이런 비동기 메소드들은 모두 내부적으로 워커 스레드에서 동작한다...
     </summary>
   
 
