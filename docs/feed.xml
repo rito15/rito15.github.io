@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-07T01:19:23+09:00</updated>
+  <updated>2021-08-08T03:14:47+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,147 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# 패킷을 byte[]로 직렬화하는 다양한 방법</title>
+    <link href="https://rito15.github.io/posts/cs-serializations-to-byte-array/" rel="alternate" type="text/html" title="C# 패킷을 byte[]로 직렬화하는 다양한 방법" />
+    <published>2021-08-08T02:34:00+09:00</published>
+  
+    <updated>2021-08-08T02:34:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-serializations-to-byte-array/</id>
+    <content src="https://rito15.github.io/posts/cs-serializations-to-byte-array/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+
+  
+    비교적 단순한 형태의 패킷들을 정의한다.
+  
+  
+    패킷을 다양한 방법으로 직렬화하여 byte[] 타입 버퍼에 순서대로 넣으며, 성능을 검사한다.
+  
+  
+    직렬화된 결과의 크기는 패킷 내 모든 필드의 크기의 합이어야 한다.
+  
+  
+    문자열 패킷은 어차피 공통적으로 인코딩을 거쳐야 하므로, 제외한다.
+  
+  
+    BenchmarkDotNet를 통해 벤치마크를 진행한다.
+  
+
+
+
+
+패킷 정의
+
+
+
+   
+Source Code
+
+
+  public class Packet
+{
+    public ushort size;
+    public ushort id;
+
+    public Packet(ushort id)
+    {
+        this.id = ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>C# Benchmark DotNet</title>
+    <link href="https://rito15.github.io/posts/cs-benchmark-dotnet/" rel="alternate" type="text/html" title="C# Benchmark DotNet" />
+    <published>2021-08-07T16:16:00+09:00</published>
+  
+    <updated>2021-08-07T16:16:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-benchmark-dotnet/</id>
+    <content src="https://rito15.github.io/posts/cs-benchmark-dotnet/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      설치
+
+
+
+  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치
+
+
+
+
+사용법
+
+
+[1] 테스트 대상 클래스
+
+네임스페이스
+
+using BenchmarkDotNet;
+using BenchmarkDotNet.Attributes;
+
+
+
+
+클래스 애트리뷰트
+
+
+  [SimpleJob()]
+    
+      https://benchmarkdotnet.org/articles/guides/choosing-run-strategy.html
+      실행 옵션을 간단히 지정할 수 있다.
+      launchCount : 벤치마크 전체 반복 횟수(기본값 : 1)
+      warmupCount : 실제 벤치마크 수행 전, 가상 벤치마크 횟수(기본값 : 10~15 내외)
+ ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -207,134 +348,6 @@ private float _v...
 풀 내의 오브젝트는 파괴되지 않고 메모리에 계속 남아있기 때문에,
 
 CPU 성능 소모를...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Unity Async Web Request</title>
-    <link href="https://rito15.github.io/posts/unity-web-request/" rel="alternate" type="text/html" title="Unity Async Web Request" />
-    <published>2021-08-04T15:45:00+09:00</published>
-  
-    <updated>2021-08-04T15:45:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-web-request/</id>
-    <content src="https://rito15.github.io/posts/unity-web-request/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo - Shorts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-
-  
-    UnityWebRequest는 AsyncOperation 클래스를 상속받는다.
-  
-  
-    그러니까 코루틴에서 yield return으로 기다릴 수 있다.
-  
-  
-    웹페이지를 받아올 경우, 페이지 소스의 &amp;lt;head&amp;gt; 부분에서 인코딩을 꼭 확인해야 한다.
-  
-
-
-
-
-Source Code
-
-
-// using UnityEngine.Networking;
-
-IEnumerator WebReqRoutine()
-{
-    UnityWebRequest www = UnityWebRequest.Get("https://rito15.github.io/posts/unity-memo-compilation/");
-    yield return www.SendWebRequest(...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</title>
-    <link href="https://rito15.github.io/posts/cs-tcp-async-socket-chatting/" rel="alternate" type="text/html" title="TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기" />
-    <published>2021-08-03T03:33:00+09:00</published>
-  
-    <updated>2021-08-06T18:31:06+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-tcp-async-socket-chatting/</id>
-    <content src="https://rito15.github.io/posts/cs-tcp-async-socket-chatting/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Socket" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      
-  이전 포스팅에서 이어집니다.
-
-
-
-
-1. 채팅을 위한 패킷 설계
-
-
-[1] ChattingCommand 열거형
-
-
-  전달하는 패킷의 명령어를 미리 열거형으로 정의한다.
-  명령어의 종류는 크게 공통, 클라이언트의 요청, 서버의 통지 3가지로 나뉜다.
-
-
-
-
-
-   
-ChattingCommand.cs
-
-
-  /// &amp;lt;summary&amp;gt; 채팅 명령어 &amp;lt;/summary&amp;gt;
-public enum ChattingCommand
-{
-    /* [1] 공통 */
-    /// &amp;lt;summary&amp;gt; 일반 채팅 &amp;lt;/summary&amp;gt;
-    Chat,
-
-    /* [2] 클라이언트 -&amp;gt; 서버 */
-    /// &amp;lt;summary&amp;gt; 닉네임 변경 요청 &amp;lt;/summ...
     </summary>
   
 

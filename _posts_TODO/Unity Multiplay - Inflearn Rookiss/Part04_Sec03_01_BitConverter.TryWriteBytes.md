@@ -100,11 +100,6 @@ public void Write(ushort data)
 // SendBuffer Class
 
 // ★Little Endian
-private static readonly ushort[] UshortMasks =
-{
-    0x00FF,
-    0xFF00
-};
 private static readonly int[] UshortMaskOffsets =
 {
     0, 8
@@ -117,7 +112,7 @@ public void Write(ushort data)
 
     for (int i = 0; i < len; i++)
     {
-        _buffer[_writePos + i] = (byte)((UshortMasks[i] & data) >> UshortMaskOffsets[i]);
+        _buffer[_writePos + i] = (byte)(data >> UshortMaskOffsets[i]);
     }
     _writePos += len;
 }
@@ -126,7 +121,7 @@ public void Write(ushort data)
 - `ushort`는 `2바이트`이므로 `1바이트`씩 자리를 나누어 마스크 연산을 통해 두 개의 `byte` 값으로 분할한다.
 - 분할한 값들을 배열에 차곡차곡 넣어준다.
 
-- 시스템에 따라, `Big Endian`과 `Little Endian`인지 확인하여 `Mask`, `MaskOffset` 배열의 내용 순서를 결정해야 한다.
+- 시스템에 따라, `Big Endian`과 `Little Endian`인지 확인하여 `MaskOffset` 배열의 내용 순서를 결정해야 한다.
 - 엔디언은 `BitConverter.IsLittleEndian`으로 확인할 수 있다.
 
 <br>

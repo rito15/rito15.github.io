@@ -1,5 +1,5 @@
 ---
-title: C# unsafe와 fixed 구문을 통해 주솟값 확인하기
+title: C# unsafe와 fixed 구문
 author: Rito15
 date: 2021-05-10 14:14:00 +09:00
 categories: [C#, C# Memo]
@@ -21,7 +21,7 @@ mermaid: true
 
 # unsafe
 ---
-- `unsafe` 컨텍스트 내에서는 **""확인할 수 없는 안전하지 않은 코드""**를 작성할 수 있다.
+- `unsafe` 컨텍스트 내에서는 **'확인할 수 없는 안전하지 않은 코드'**를 작성할 수 있다.
 
 - 안전하지 않은 코드란, 위험한 것이 아니라 CLR에서 안전을 확인할 수 없다는 것을 의미한다.
 
