@@ -51,7 +51,7 @@ public void Write(byte[] data)
 
 - `BitConverter.GetBytes()` 대신 `BitConverter.TryWriteBytes()`를 사용하여, 배열을 생성하지 않고 목표 배열의 특정 인덱스부터 직접 값을 넣어줄 수 있다.
 
-- 하지만 `.NET Framework 4.x`에서는 사용할 수 없고, `.NET Core`에서 사용 가능하다.
+- 하지만 `.NET Framework 4.x`에서는 사용할 수 없고, `.NET Core 2.1` 이상 또는 `.NET 5.0` 이상에서 사용 가능하다.
 
 ```cs
 // SendBuffer Class

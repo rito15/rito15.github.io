@@ -2,7 +2,7 @@
 title: C# unsafe와 fixed 구문
 author: Rito15
 date: 2021-05-10 14:14:00 +09:00
-categories: [C#, C# Memo]
+categories: [C#, C# Grammar]
 tags: [csharp]
 math: true
 mermaid: true

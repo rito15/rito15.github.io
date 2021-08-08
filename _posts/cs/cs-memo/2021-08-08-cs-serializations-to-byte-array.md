@@ -217,6 +217,9 @@ private void Serialize_BitCalculation(byte[] buffer, int offset, ushort data)
 ```
 
 - 정수 타입의 값에 대해서만 가능하다.
+- 리틀 엔디안을 기준으로 작성하였다.
+- 빅 엔디안 시스템의 경우, `UshortOffsetLookup` 배열의 요소를 반대로 `8, 0`으로 넣어야 한다.
+- 엔디언은 `BitConverter.IsLittleEndian`으로 확인할 수 있다.
 
 <br>
 
