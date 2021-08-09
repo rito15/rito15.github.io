@@ -19,7 +19,7 @@ mermaid: true
 
 - 문자열 패킷은 어차피 공통적으로 인코딩을 거쳐야 하므로, 제외한다.
 
-- `BenchmarkDotNet`를 통해 벤치마크를 진행한다.
+- `BenchmarkDotNet`을 통해 벤치마크를 진행한다.
 
 <br>
 
@@ -107,7 +107,17 @@ TransformPacket trPacket  = new TransformPacket(3456)
 # 직렬화 방법들
 ---
 
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
 ## **[0] BinaryFormatter.Serialize()**
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
 
 ```cs
 BinaryFormatter bf = new BinaryFormatter(); // Field
@@ -127,9 +137,16 @@ using (MemoryStream ms = new MemoryStream(1024))
 
 - 따라서 **테스트에 사용하지 않는다.**
 
+</details>
+
 <br>
 
 ## **[1] BitConverter.GetBytes()**
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
 
 ```cs
 private void Serialize_GetBytes(byte[] buffer, int offset, ushort data)
@@ -143,9 +160,16 @@ private void Serialize_GetBytes(byte[] buffer, int offset, ushort data)
 - 각각의 필드를 `byte[]`로 변환하여 순서대로 버퍼에 담는다.
 - 필드마다 `byte[]`를 생성하므로, 항상 `GC`를 호출한다는 단점이 있다.
 
+</details>
+
 <br>
 
 ## **[2] BitConverter.TryWriteBytes()**
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
 
 ```cs
 private void Serialize_TryWriteBytes(byte[] buffer, int offset, ushort data)
@@ -157,9 +181,16 @@ private void Serialize_TryWriteBytes(byte[] buffer, int offset, ushort data)
 - `.NET 5.0` 또는 `.NET Core 2.1` 이상에서 사용할 수 있다.
 - 배열을 따로 생성하지 않고, 직렬화된 결과를 대상 `byte[]` 배열의 특정 위치에 바로 복사한다.
 
+</details>
+
 <br>
 
 ## **[3] Span, MemoryMarshal**
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
 
 ```cs
 private void Serialize_Span(byte[] buffer, int offset, ushort data)
@@ -180,9 +211,16 @@ private void Serialize_Span(byte[] buffer, int offset, ushort data)
 - `.NET 5.0` 또는 `.NET Core 2.1` 이상에서 사용할 수 있다.
 - 힙 할당 없이 스택 할당으로 배열을 생성하고, 목표 `byte[]` 배열의 특정 위치에 바로 복사한다.
 
+</details>
+
 <br>
 
 ## **[4] Unsafe 포인터 캐스팅**
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
 
 ```cs
 private void Serialize_Unsafe(byte[] buffer, int offset, ushort data)
@@ -200,9 +238,16 @@ private void Serialize_Unsafe(byte[] buffer, int offset, ushort data)
 - 컴파일 옵션으로 `/unsafe`를 허용해야 한다.
 - 포인터를 통해 메모리에 직접 접근하여 값을 변경한다.
 
+</details>
+
 <br>
 
 ## **[5] Bit 연산을 통한 분리**
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
 
 ```cs
 private static readonly int[] UshortOffsetLookup = { 0, 8 };
@@ -221,9 +266,16 @@ private void Serialize_BitCalculation(byte[] buffer, int offset, ushort data)
 - 빅 엔디안 시스템의 경우, `UshortOffsetLookup` 배열의 요소를 반대로 `8, 0`으로 넣어야 한다.
 - 엔디언은 `BitConverter.IsLittleEndian`으로 확인할 수 있다.
 
+</details>
+
 <br>
 
 ## **[6] 구조체를 union처럼 사용하기**
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
 
 ```cs
 [StructLayout(LayoutKind.Explicit)]
@@ -267,14 +319,24 @@ private void Serialize_UnionStruct(byte[] buffer, int offset, ushort data)
 - 동일한 메모리 주소를 서로 다른 필드가 공유하도록 한다.
 - 2바이트 크기에 `ushort` 타입으로 값을 넣은 뒤, 1바이트씩 `byte` 타입으로 값을 읽어들인다.
 
+</details>
+
+</details>
+
 <br>
 
 # 직렬화를 위한 API 작성
 ---
 
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
 - 위의 6가지 방법을 편리하게 사용할 수 있도록 메소드로 작성한다.
 - `ushort`, `int`, `float` 타입에 대해 오버로딩한다.
 
+<br>
 
 <details>
 <summary markdown="span"> 
@@ -511,8 +573,17 @@ private void Serialize_UnionStruct(byte[] buffer, int offset, float data)
 
 </details>
 
+</details>
+
+<br>
+
 # 벤치마크 공통 조건
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
 
 ```
 BenchmarkDotNet=v0.13.0, OS=Windows 10.0.18362.720 (1903/May2019Update/19H1)
@@ -526,10 +597,17 @@ Launch Count : 5
 Warmup Count : 3
 ```
 
+</details>
+
 <br>
 
 # 벤치마크 1
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
 
 - `ushort` 필드 2개를 직렬화한다.
 
@@ -588,15 +666,23 @@ public void UnionStruct_1()
 
 </details>
 
+<br>
+
 ## **결과**
 
 ![image](https://user-images.githubusercontent.com/42164422/128601792-9a871b99-93f5-4b99-8d9f-f90cfdfb3a0e.png)
 
+</details>
 
 <br>
 
 # 벤치마크 2
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
 
 - `ushort` 필드 2개와 `int` 필드 3개를 직렬화한다.
 
@@ -685,14 +771,23 @@ public void UnionStruct_2()
 
 </details>
 
+<br>
+
 ## **결과**
 
 ![image](https://user-images.githubusercontent.com/42164422/128601790-d5ff439a-c990-41c0-ab56-b48323836ab4.png)
+
+</details>
 
 <br>
 
 # 벤치마크 3
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
 
 - `ushort` 필드 2개와 `float` 필드 9개를 직렬화한다.
 - bit 연산 방식은 `float`에 적용할 수 없으므로 제외한다.
@@ -802,9 +897,13 @@ public void UnionStruct_3()
 
 </details>
 
+<br>
+
 ## **결과**
 
 ![image](https://user-images.githubusercontent.com/42164422/128602631-f4e37e8d-454a-4f70-b7ca-f249976050f7.png)
+
+</details>
 
 <br>
 
@@ -812,7 +911,12 @@ public void UnionStruct_3()
 # 결론
 ---
 
-## 성능 순서
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+## **성능 순서**
 
 1. `unsafe`를 통한 메모리 직접 접근, `BitConverter.TryWriteBytes()`
   - 데이터가 적을 때는 확실히 `unsafe`가 빠르지만, 많아질수록 격차가 줄어든다.
@@ -827,6 +931,7 @@ public void UnionStruct_3()
 4. `BitConverter.GetBytes()`
   - 압도적으로 느리다.
 
+</details>
 
 <br>
 

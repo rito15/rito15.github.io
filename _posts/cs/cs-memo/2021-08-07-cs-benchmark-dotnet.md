@@ -21,17 +21,34 @@ mermaid: true
 
 ## **[1] 테스트 대상 클래스**
 
-### **네임스페이스**
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+### **[1-1] 네임스페이스**
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
 
 ```cs
 using BenchmarkDotNet;
 using BenchmarkDotNet.Attributes;
 ```
 
+</details>
+
 <br>
 
 
-### **클래스 애트리뷰트**
+### **[1-2] 클래스 애트리뷰트**
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
 
 - `[SimpleJob()]`
   - <https://benchmarkdotnet.org/articles/guides/choosing-run-strategy.html>
@@ -53,10 +70,18 @@ public class MyBenchmark
     //...
 }
 ```
+
+</details>
+
 <br>
 
 
-### **필드, 프로퍼티 애트리뷰트**
+### **[1-3] 필드, 프로퍼티 애트리뷰트**
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
 
 - `[Params()]`
   - <https://benchmarkdotnet.org/articles/features/parameterization.html>
@@ -71,10 +96,17 @@ public int a;
 public int B { get; set;}
 ```
 
+</details>
+
 <br>
 
 
-### **메소드 애트리뷰트**
+### **[1-4] 메소드 애트리뷰트**
+
+<details>
+<summary markdown="span"> 
+.
+</summary>
 
 - `[Benchmark]`
   - <https://benchmarkdotnet.org/articles/features/baselines.html>
@@ -124,7 +156,7 @@ public int AddTest(int a, int b) => (a + b);
 - `[ArgumentSource(nameof(...))]`
   - <https://benchmarkdotnet.org/articles/features/parameterization.html#sample-introargumentssource>
   - `IEnumerable<object>`를 리턴하는 메소드를 통해 인자 목록을 작성할 수 있다.
-  
+
 ```cs
 // 1. 매개변수 1개인 경우
 
@@ -158,16 +190,16 @@ public IEnumerable<object[]> Numbers()
 - <https://benchmarkdotnet.org/articles/features/setup-and-cleanup.html>
 
 - `[GlobalSetup]`
-  - 벤치마크가 시작하기 전에 최초로 한 번 실행된다.
+  - 각 `Launch` 시작 전에 한 번씩 실행된다.
 
 - `[GlobalCleanup]`
-  - 벤치마크가 모두 종료되고 실행된다.
+  - 각 `Launch` 종료 후에 한 번씩 실행된다.
 
 - `[IterationSetup]`
-  - 각각의 벤치마크가 수행되기 전에 한 번씩 실행된다.
+  - 각 `Benchmark` 시작 전에 한 번씩 실행된다.
 
 - `[IterationCleanup]`
-  - 각각의 벤치마크가 수행된 후 한 번씩 실행된다.
+  - 각 `Benchmark` 종료 후에 한 번씩 실행된다.
 
 ```cs
 public class IntroSetupCleanupIteration
@@ -197,14 +229,23 @@ public class IntroSetupCleanupIteration
 }
 ```
 
+</details>
+
+</details>
+
 <br>
 
 
 ## **[2] 테스트 대상 메소드**
 
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
 - 테스트 메소드는 public이어야 한다.
 
-- 테스트 메소드는 동적이어야 한다.
+- 테스트 메소드는 동적(Non-static)이어야 한다.
 
 - 테스트 메소드에 매개변수가 존재하는 경우, 반드시 `[Arguments()]` 애트리뷰트를 추가하고 매개변수 개수에 맞춰 인자를 넣어줘야 한다.
 
@@ -227,14 +268,21 @@ public void TestMethod2(int a, float b)
 }
 ```
 
+</details>
+
 <br>
 
 ## **[3] 메인 메소드**
 
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
 ### **네임스페이스**
 
 ```cs
-using BenchmarkDotNet;
+using BenchmarkDotNet.Running;
 ```
 
 ## **소스코드**
@@ -246,6 +294,8 @@ static void Main()
 }
 ```
 
+</details>
+
 <br>
 
 
@@ -253,10 +303,16 @@ static void Main()
 # 주의사항
 ---
 
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
 - `Debug`가 아닌 `Release` 모드에서 진행해야 한다.
 
 - 테스트 대상 클래스도 `public`이어야 한다.
 
+</details>
 
 <br>
 
@@ -265,6 +321,11 @@ static void Main()
 ---
 
 ## **[1] 테스트 코드**
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
 
 ```cs
 using System;
@@ -308,9 +369,16 @@ public class ByteSerializationBenchmark
 }
 ```
 
+</details>
+
 <br>
 
 ## **[2] 메인 메소드**
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
 
 ```cs
 using System;
@@ -324,6 +392,8 @@ class CoreMainClass
     }
 }
 ```
+
+</details>
 
 <br>
 

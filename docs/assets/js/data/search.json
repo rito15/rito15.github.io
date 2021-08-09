@@ -1,6 +1,66 @@
 [
   
   {
+    "title": "C# If vs. try-catch 성능",
+    "url": "/posts/cs-if-vs-try-performance/",
+    "categories": "C#, C# Memo",
+    "tags": "csharp",
+    "date": "2021-08-09 14:41:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Note개발을 하다보면 고민되는 경우가 많다.예외 조건을 처리할 때 if로 예외를 회피할지, try-catch로 처리할지,실제 성능은 어떻게 될지도 궁금한 부분이다.try-catch는 예외가 발생하지 않으면 성능 소모가 없다고도 하고,성능 소모가 있지만 O(1)이라고도 하고,찾아보면 다양한 주장들을 확인해볼 수 있다.대신 공통적인 사실은try-catch를 통해 예외를 핸들링하게 되면무조건 if보다 성능 소모가 크다는 점이다.try-catch는 예외 발생 지점의 스택을 거슬러 올라가서모두 추적하고 기록하게 되는데,이 과정에서 성..."
+  },
+  
+  {
+    "title": "C# ArraySegment&amp;lt;T&amp;gt;, Span&amp;lt;T&amp;gt;, Memory&amp;lt;T&amp;gt;",
+    "url": "/posts/cs-arraysegment-span-memory/",
+    "categories": "C#, C# Memo",
+    "tags": "csharp, array",
+    "date": "2021-08-08 20:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Array  https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/arrays/single-dimensional-arrays  https://docs.microsoft.com/ko-kr/dotnet/api/system.array?view=net-5.0특징  고정된 크기의 일차원 배열을 만든다.  배열은 관리되는 힙 메모리에 저장된다.ArraySegment&amp;lt;T&amp;gt;   …  참고       .          https://docs.microso..."
+  },
+  
+  {
+    "title": "C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기",
+    "url": "/posts/cs-utf8-string-to-byte-array/",
+    "categories": "C#, C# Memo",
+    "tags": "csharp, file, io",
+    "date": "2021-08-08 19:31:00 +0900",
+    
+
+
+
+
+
+    "snippet": "1. 힙 할당 있는 방식string str = &quot;가나다 ABC 123&quot;;byte[] byteStr = Encoding.UTF8.GetBytes(str);2. 힙 할당 없는 방식  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기버퍼를 이용한 직렬화 예시using System;using System.Text;class UTF8StringBuffer{    private byte[] buffer = new byte[1024 * 100];    private int readPos ..."
+  },
+  
+  {
+    "title": "C# 간단한 힙 메모리 디버거 (콘솔)",
+    "url": "/posts/cs-heap-memory-debugger/",
+    "categories": "C#, C# Memo",
+    "tags": "csharp, file, io",
+    "date": "2021-08-08 12:12:00 +0900",
+    
+
+
+
+
+
+    "snippet": "기능  원하는 지점의 힙 메모리 크기 기록  기록된 두 지점의 힙 메모리 크기 차이 출력주의사항  Print() 이후에는 Record()하지 않아야 한다.          Future Works : Print() 내에서 스트링을 스택에 할당하여 해결      사용 예시HeapDebugger.Record(0);int[] array = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };HeapDebugger.Record(1);new string(&quot;ABCDE&quot;);HeapDebugger.Record(2);H..."
+  },
+  
+  {
     "title": "C# 패킷을 byte[]로 직렬화하는 다양한 방법",
     "url": "/posts/cs-serializations-to-byte-array/",
     "categories": "C#, C# Memo",
@@ -12,7 +72,7 @@
 
 
 
-    "snippet": "Note      비교적 단순한 형태의 패킷들을 정의한다.        패킷을 다양한 방법으로 직렬화하여 byte[] 타입 버퍼에 순서대로 넣으며, 성능을 검사한다.        직렬화된 결과의 크기는 패킷 내 모든 필드의 크기의 합이어야 한다.        문자열 패킷은 어차피 공통적으로 인코딩을 거쳐야 하므로, 제외한다.        BenchmarkDotNet를 통해 벤치마크를 진행한다.  패킷 정의   Source Code  public class Packet{    public ushort size;    public..."
+    "snippet": "Note      비교적 단순한 형태의 패킷들을 정의한다.        패킷을 다양한 방법으로 직렬화하여 byte[] 타입 버퍼에 순서대로 넣으며, 성능을 검사한다.        직렬화된 결과의 크기는 패킷 내 모든 필드의 크기의 합이어야 한다.        문자열 패킷은 어차피 공통적으로 인코딩을 거쳐야 하므로, 제외한다.        BenchmarkDotNet을 통해 벤치마크를 진행한다.  패킷 정의   Source Code  public class Packet{    public ushort size;    public..."
   },
   
   {
@@ -27,7 +87,7 @@
 
 
 
-    "snippet": "설치  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치사용법[1] 테스트 대상 클래스네임스페이스using BenchmarkDotNet;using BenchmarkDotNet.Attributes;클래스 애트리뷰트  [SimpleJob()]          https://benchmarkdotnet.org/articles/guides/choosing-run-strategy.html      실행 옵션을 간단히 지정할 수 있다.      launchCount : 벤치마크 전체 반복 횟수(..."
+    "snippet": "설치  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치사용법[1] 테스트 대상 클래스   …  [1-1] 네임스페이스       .    using BenchmarkDotNet;using BenchmarkDotNet.Attributes;          [1-2] 클래스 애트리뷰트       .          [SimpleJob()]                  https://benchmarkdotnet.org/articles/guides/choosing-run-strategy...."
   },
   
   {
@@ -1098,7 +1158,7 @@
   {
     "title": "C# unsafe와 fixed 구문",
     "url": "/posts/cs-unsafe-and-fixed/",
-    "categories": "C#, C# Memo",
+    "categories": "C#, C# Grammar",
     "tags": "csharp",
     "date": "2021-05-10 14:14:00 +0900",
     

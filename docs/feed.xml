@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-08T03:14:47+09:00</updated>
+  <updated>2021-08-10T01:04:29+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,293 @@
 
   
   <entry>
+    <title>C# If vs. try-catch 성능</title>
+    <link href="https://rito15.github.io/posts/cs-if-vs-try-performance/" rel="alternate" type="text/html" title="C# If vs. try-catch 성능" />
+    <published>2021-08-09T14:41:00+09:00</published>
+  
+    <updated>2021-08-09T14:41:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-if-vs-try-performance/</id>
+    <content src="https://rito15.github.io/posts/cs-if-vs-try-performance/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+개발을 하다보면 고민되는 경우가 많다.
+
+예외 조건을 처리할 때 if로 예외를 회피할지, try-catch로 처리할지,
+
+실제 성능은 어떻게 될지도 궁금한 부분이다.
+
+
+
+try-catch는 예외가 발생하지 않으면 성능 소모가 없다고도 하고,
+
+성능 소모가 있지만 O(1)이라고도 하고,
+
+찾아보면 다양한 주장들을 확인해볼 수 있다.
+
+
+
+대신 공통적인 사실은
+
+try-catch를 통해 예외를 핸들링하게 되면
+
+무조건 if보다 성능 소모가 크다는 점이다.
+
+try-catch는 예외 발생 지점의 스택을 거슬러 올라가서
+
+모두 추적하고 기록하게 되는데,
+
+이 과정에서 성능 소모가 크게 발생한다는 것이다.
+
+
+
+이제 몇가지 테스트 케이스를 통해서 성능을 테스트하고,
+
+if와 try-catch 선택...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>C# ArraySegment&amp;lt;T&amp;gt;, Span&amp;lt;T&amp;gt;, Memory&amp;lt;T&amp;gt;</title>
+    <link href="https://rito15.github.io/posts/cs-arraysegment-span-memory/" rel="alternate" type="text/html" title="C# ArraySegment&amp;lt;T&amp;gt;, Span&amp;lt;T&amp;gt;, Memory&amp;lt;T&amp;gt;" />
+    <published>2021-08-08T20:00:00+09:00</published>
+  
+    <updated>2021-08-08T20:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-arraysegment-span-memory/</id>
+    <content src="https://rito15.github.io/posts/cs-arraysegment-span-memory/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Array
+
+
+
+  https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/arrays/single-dimensional-arrays
+  https://docs.microsoft.com/ko-kr/dotnet/api/system.array?view=net-5.0
+
+
+
+
+특징
+
+  고정된 크기의 일차원 배열을 만든다.
+  배열은 관리되는 힙 메모리에 저장된다.
+
+
+
+
+ArraySegment&amp;lt;T&amp;gt;
+
+
+
+   
+…
+
+
+  참고
+
+  
+     
+.
+
+
+    
+      https://docs.microsoft.com/ko-kr/dotnet/api/system.arraysegment-1?view=net-5.0
+      https://j...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</title>
+    <link href="https://rito15.github.io/posts/cs-utf8-string-to-byte-array/" rel="alternate" type="text/html" title="C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기" />
+    <published>2021-08-08T19:31:00+09:00</published>
+  
+    <updated>2021-08-08T19:31:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-utf8-string-to-byte-array/</id>
+    <content src="https://rito15.github.io/posts/cs-utf8-string-to-byte-array/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. 힙 할당 있는 방식
+
+
+string str = "가나다 ABC 123";
+
+byte[] byteStr = Encoding.UTF8.GetBytes(str);
+
+
+
+
+2. 힙 할당 없는 방식
+
+
+
+  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
+
+
+
+
+버퍼를 이용한 직렬화 예시
+
+using System;
+using System.Text;
+
+class UTF8StringBuffer
+{
+    private byte[] buffer = new byte[1024 * 100];
+    private int readPos = 0;
+    private int writePos = 0;
+
+    private void WriteCompleted(int pos) =&amp;gt; ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>C# 간단한 힙 메모리 디버거 (콘솔)</title>
+    <link href="https://rito15.github.io/posts/cs-heap-memory-debugger/" rel="alternate" type="text/html" title="C# 간단한 힙 메모리 디버거 (콘솔)" />
+    <published>2021-08-08T12:12:00+09:00</published>
+  
+    <updated>2021-08-08T12:12:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-heap-memory-debugger/</id>
+    <content src="https://rito15.github.io/posts/cs-heap-memory-debugger/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      기능
+
+
+
+  원하는 지점의 힙 메모리 크기 기록
+  기록된 두 지점의 힙 메모리 크기 차이 출력
+
+
+
+
+주의사항
+
+
+
+  Print() 이후에는 Record()하지 않아야 한다.
+    
+      Future Works : Print() 내에서 스트링을 스택에 할당하여 해결
+    
+  
+
+
+
+
+사용 예시
+
+
+HeapDebugger.Record(0);
+
+int[] array = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+HeapDebugger.Record(1);
+
+new string("ABCDE");
+
+HeapDebugger.Record(2);
+
+HeapDebugger.PrintDiff(0, 1); // 128
+HeapDebugger.PrintDiff(1, 2); // 32
+He...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>C# 패킷을 byte[]로 직렬화하는 다양한 방법</title>
     <link href="https://rito15.github.io/posts/cs-serializations-to-byte-array/" rel="alternate" type="text/html" title="C# 패킷을 byte[]로 직렬화하는 다양한 방법" />
     <published>2021-08-08T02:34:00+09:00</published>
   
-    <updated>2021-08-08T02:34:00+09:00</updated>
+    <updated>2021-08-09T03:03:52+09:00</updated>
   
     <id>https://rito15.github.io/posts/cs-serializations-to-byte-array/</id>
     <content src="https://rito15.github.io/posts/cs-serializations-to-byte-array/" />
@@ -65,7 +347,7 @@
     문자열 패킷은 어차피 공통적으로 인코딩을 거쳐야 하므로, 제외한다.
   
   
-    BenchmarkDotNet를 통해 벤치마크를 진행한다.
+    BenchmarkDotNet을 통해 벤치마크를 진행한다.
   
 
 
@@ -87,267 +369,6 @@ Source Code
     public Packet(ushort id)
     {
         this.id = ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# Benchmark DotNet</title>
-    <link href="https://rito15.github.io/posts/cs-benchmark-dotnet/" rel="alternate" type="text/html" title="C# Benchmark DotNet" />
-    <published>2021-08-07T16:16:00+09:00</published>
-  
-    <updated>2021-08-07T16:16:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-benchmark-dotnet/</id>
-    <content src="https://rito15.github.io/posts/cs-benchmark-dotnet/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      설치
-
-
-
-  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치
-
-
-
-
-사용법
-
-
-[1] 테스트 대상 클래스
-
-네임스페이스
-
-using BenchmarkDotNet;
-using BenchmarkDotNet.Attributes;
-
-
-
-
-클래스 애트리뷰트
-
-
-  [SimpleJob()]
-    
-      https://benchmarkdotnet.org/articles/guides/choosing-run-strategy.html
-      실행 옵션을 간단히 지정할 수 있다.
-      launchCount : 벤치마크 전체 반복 횟수(기본값 : 1)
-      warmupCount : 실제 벤치마크 수행 전, 가상 벤치마크 횟수(기본값 : 10~15 내외)
- ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Screen Drag Selection(화면에 마우스 드래그 영역 표시하기)</title>
-    <link href="https://rito15.github.io/posts/unity-screen-drag-selection/" rel="alternate" type="text/html" title="Screen Drag Selection(화면에 마우스 드래그 영역 표시하기)" />
-    <published>2021-08-07T01:11:00+09:00</published>
-  
-    <updated>2021-08-07T01:11:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-screen-drag-selection/</id>
-    <content src="https://rito15.github.io/posts/unity-screen-drag-selection/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Toys" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Preview
-
-
-
-
-Source Code
-
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-
-// 날짜 : 2021-08-07 AM 1:12:20
-// 작성자 : Rito
-
-/// &amp;lt;summary&amp;gt; 화면에 마우스 드래그로 사각형 선택 영역 표시하기 &amp;lt;/summary&amp;gt;
-public class ScreenDragSelection : MonoBehaviour
-{
-    private Vector2 mPosCur;
-    private Vector2 mPosBegin;
-    private Vector2 mPosMin;
-    private Vector2 mPosMax...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# 구조체 프로퍼티, 구조체 인덱서</title>
-    <link href="https://rito15.github.io/posts/cs-struct-property-indexer/" rel="alternate" type="text/html" title="C# 구조체 프로퍼티, 구조체 인덱서" />
-    <published>2021-08-06T15:00:00+09:00</published>
-  
-    <updated>2021-08-06T15:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-struct-property-indexer/</id>
-    <content src="https://rito15.github.io/posts/cs-struct-property-indexer/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Grammar" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      구조체의 특징
-
-
-  초기화(할당), 리턴 등의 동작을 통해 값을 전달할 경우, 구조체가 통째로 복제된다.
-
-
-struct MyStruct
-{
-    public float value;
-}
-
-class MainClass
-{
-    private MyStruct ms;
-
-    private MyStruct GetStruct()
-    {
-        return ms; // 복제하여 리턴
-    }
-
-    public void Main()
-    {
-        MyStruct ms1 = ms;          // 복제하여 초기화
-        MyStruct ms2 = GetStruct(); // 복제하여 반환된 값 초기화
-    }
-}
-
-
-
-
-프로퍼티의 특징
-
-
-private float _v...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 오브젝트 풀링(Object Pooling)</title>
-    <link href="https://rito15.github.io/posts/unity-object-pooling/" rel="alternate" type="text/html" title="유니티 오브젝트 풀링(Object Pooling)" />
-    <published>2021-08-06T01:22:00+09:00</published>
-  
-    <updated>2021-08-06T17:13:49+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-object-pooling/</id>
-    <content src="https://rito15.github.io/posts/unity-object-pooling/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      1. 목표
-
-
-  
-    오브젝트 풀링 기법 이해하기
-  
-  
-    Key 기반 다중 풀링 기법 이해하기
-  
-  
-    오브젝트 풀 매니저 클래스 구현하기
-  
-
-
-
-
-2. 개념
-
-
-게임오브젝트를 생성, 파괴하는 것은 순간적으로 큰 성능 소모 및 프레임 저하를 발생시킬 수 있다.
-
-따라서 생성, 파괴 대신 활성화, 비활성화 방식을 사용하면 순간적인 프레임 저하를 방지할 수 있다.
-
-이를 오브젝트 풀링 기법이라고 하며, 동일한 여러 개의 오브젝트를 하나의 풀(예 : 리스트, 스택, 큐)에  미리 담아 관리한다.
-
-파괴 대신 비활성화하여 풀에 저장하고, 생성 대신 풀에서 꺼내어 활성화하는 방식을 사용한다.
-
-
-
-풀 내의 오브젝트는 파괴되지 않고 메모리에 계속 남아있기 때문에,
-
-CPU 성능 소모를...
     </summary>
   
 
