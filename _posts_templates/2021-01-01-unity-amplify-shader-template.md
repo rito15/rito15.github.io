@@ -15,26 +15,29 @@ mermaid: true
 
 <br>
 
+
+
 # Preview
 ---
 
 
+
 <br>
+
+
 
 # Properties
 ---
 
-마테리얼 프로퍼티 목록 스샷 넣어주기
+                             마테리얼 프로퍼티 목록 스샷 넣어주기
 
 <br>
 
+
+
 # Settings
 ---
-
-
-쉐이더 에디터 내 옵션 설정들
-
-
+                             쉐이더 에디터 내 옵션 설정들
 ## General
  - 
 
@@ -43,13 +46,16 @@ mermaid: true
 
 <br>
 
+
+
 # Nodes
 ---
 
-노드 스샷
-
+                             노드 스샷
 
 <br>
+
+
 
 # Download
 ---
@@ -57,6 +63,8 @@ mermaid: true
 - 
 
 <br>
+
+
 
 # References
 ---

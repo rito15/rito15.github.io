@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-10T01:04:29+09:00</updated>
+  <updated>2021-08-10T20:22:13+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,100 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(Amplify) Shockwave Shader</title>
+    <link href="https://rito15.github.io/posts/unity-amplify-shockwave-shader/" rel="alternate" type="text/html" title="(Amplify) Shockwave Shader" />
+    <published>2021-08-10T20:10:00+09:00</published>
+  
+    <updated>2021-08-10T20:10:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-amplify-shockwave-shader/</id>
+    <content src="https://rito15.github.io/posts/unity-amplify-shockwave-shader/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Amplify Shader" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  Quad 기반 Shockwave 쉐이더
+
+
+
+
+Preview
+
+
+
+
+
+
+
+
+Properties
+
+
+
+
+Progress 값이 증가함에 따라 Shockwave가 퍼져나간다.
+
+(범위 : 0 ~ 1)
+
+
+
+Settings
+
+
+General
+
+  Light Model : Unlit
+
+
+Blend Mode
+
+  Transparent
+
+
+
+
+Nodes
+
+
+
+
+
+
+Download
+
+
+
+  2021_0810_Shockwave.zip
+
+
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -95,7 +189,7 @@ if와 try-catch 선택...
     <link href="https://rito15.github.io/posts/cs-arraysegment-span-memory/" rel="alternate" type="text/html" title="C# ArraySegment&amp;lt;T&amp;gt;, Span&amp;lt;T&amp;gt;, Memory&amp;lt;T&amp;gt;" />
     <published>2021-08-08T20:00:00+09:00</published>
   
-    <updated>2021-08-08T20:00:00+09:00</updated>
+    <updated>2021-08-10T01:07:40+09:00</updated>
   
     <id>https://rito15.github.io/posts/cs-arraysegment-span-memory/</id>
     <content src="https://rito15.github.io/posts/cs-arraysegment-span-memory/" />
@@ -295,80 +389,6 @@ HeapDebugger.Record(2);
 HeapDebugger.PrintDiff(0, 1); // 128
 HeapDebugger.PrintDiff(1, 2); // 32
 He...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# 패킷을 byte[]로 직렬화하는 다양한 방법</title>
-    <link href="https://rito15.github.io/posts/cs-serializations-to-byte-array/" rel="alternate" type="text/html" title="C# 패킷을 byte[]로 직렬화하는 다양한 방법" />
-    <published>2021-08-08T02:34:00+09:00</published>
-  
-    <updated>2021-08-09T03:03:52+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-serializations-to-byte-array/</id>
-    <content src="https://rito15.github.io/posts/cs-serializations-to-byte-array/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-
-  
-    비교적 단순한 형태의 패킷들을 정의한다.
-  
-  
-    패킷을 다양한 방법으로 직렬화하여 byte[] 타입 버퍼에 순서대로 넣으며, 성능을 검사한다.
-  
-  
-    직렬화된 결과의 크기는 패킷 내 모든 필드의 크기의 합이어야 한다.
-  
-  
-    문자열 패킷은 어차피 공통적으로 인코딩을 거쳐야 하므로, 제외한다.
-  
-  
-    BenchmarkDotNet을 통해 벤치마크를 진행한다.
-  
-
-
-
-
-패킷 정의
-
-
-
-   
-Source Code
-
-
-  public class Packet
-{
-    public ushort size;
-    public ushort id;
-
-    public Packet(ushort id)
-    {
-        this.id = ...
     </summary>
   
 

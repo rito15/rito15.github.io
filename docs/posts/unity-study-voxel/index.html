@@ -3637,7 +3637,7 @@ private bool IsSolid(in Vector3 pos)
         
         
         
-        <li><a href="/posts/cs-unsafe-and-fixed/">C# unsafe와 fixed 구문</a></li>
+        <li><a href="/posts/cs-benchmark-dotnet/">C# Benchmark DotNet</a></li>
       
         
         
@@ -3647,17 +3647,17 @@ private bool IsSolid(in Vector3 pos)
         
         
         
+        <li><a href="/posts/cs-arraysegment-span-memory/">C# ArraySegment&lt;T&gt;, Span&lt;T&gt;, Memory&lt;T&gt;</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/cs-unsafe-and-fixed/">C# unsafe와 fixed 구문</a></li>
+      
+        
+        
+        
         <li><a href="/posts/05-cs-tcp-async-socket-basic.md/">TCP 비동기 소켓 서버, 클라이언트 기본</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-tcp-async-socket-chatting/">TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-object-pooling/">유니티 오브젝트 풀링(Object Pooling)</a></li>
       
 
       </ul>
@@ -4802,6 +4802,8 @@ private bool IsSolid(in Vector3 pos)
     
     
     
+    
+      
     
   
     
@@ -8543,6 +8545,19 @@ private bool IsSolid(in Vector3 pos)
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -10400,6 +10415,69 @@ private bool IsSolid(in Vector3 pos)
       
       
       <div class="card">
+        <a href="/posts/unity-object-pooling/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug  6
+  
+
+  <i class="unloaded">2021-08-06T01:22:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 오브젝트 풀링(Object Pooling)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1. 목표
+
+
+  
+    오브젝트 풀링 기법 이해하기
+  
+  
+    Key 기반 다중 풀링 기법 이해하기
+  
+  
+    오브젝트 풀 매니저 클래스 구현하기
+  
+
+
+
+
+2. 개념
+
+
+게임오브젝트를 생성, 파괴하는 것은 순간적으로 큰 성능 소모 및 프레임 저하를 발생시킬 수 있다.
+
+따라서 생성, 파괴 대신 활성화, 비활성화 방식을 사용하면 순...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-study-rpg-inventory/">
           <div class="card-body">
             <!--
@@ -10463,82 +10541,6 @@ private bool IsSolid(in Vector3 pos)
 
 
 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-study-radial-menu/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Apr 26
-  
-
-  <i class="unloaded">2021-04-26T18:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Radial Menu 만들기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                목표
-
-
-  극좌표계를 이용하여 원형 분포 형태의 메뉴 UI 만들기
-
-
-
-
-Preview
-
-
-
-
-
-
-직교 좌표계
-
-
-
-  Cartesian Coordinate System
-
-
-유니티2D에서 사용하는 좌표계는 x, y 축으로 이루어진 직교 좌표계이다.
-
-데카르트 좌표계라고도 하며, x, y 값을 통해 좌표를 표현한다.
-
-
-
-
-
-극좌표계
-
-
-
-  Pola...
               </p>
             </div>
           </div>
@@ -11782,6 +11784,8 @@ Preview
     
     
     
+    
+      
     
   
     

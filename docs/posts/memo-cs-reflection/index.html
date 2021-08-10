@@ -823,7 +823,7 @@
         
         
         
-        <li><a href="/posts/cs-unsafe-and-fixed/">C# unsafe와 fixed 구문</a></li>
+        <li><a href="/posts/cs-benchmark-dotnet/">C# Benchmark DotNet</a></li>
       
         
         
@@ -833,17 +833,17 @@
         
         
         
+        <li><a href="/posts/cs-arraysegment-span-memory/">C# ArraySegment&lt;T&gt;, Span&lt;T&gt;, Memory&lt;T&gt;</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/cs-unsafe-and-fixed/">C# unsafe와 fixed 구문</a></li>
+      
+        
+        
+        
         <li><a href="/posts/05-cs-tcp-async-socket-basic.md/">TCP 비동기 소켓 서버, 클라이언트 기본</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-tcp-async-socket-chatting/">TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-object-pooling/">유니티 오브젝트 풀링(Object Pooling)</a></li>
       
 
       </ul>
@@ -1988,6 +1988,8 @@
     
     
     
+    
+      
     
   
     
@@ -6561,6 +6563,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7687,7 +7702,7 @@ $"{value :   0}"
       
       
       <div class="card">
-        <a href="/posts/cs-memo-show-cil/">
+        <a href="/posts/cs-benchmark-dotnet/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7704,13 +7719,13 @@ $"{value :   0}"
   
 
   
-    Jun 15
+    Aug  7
   
 
-  <i class="unloaded">2021-06-15T20:00:00+09:00</i>
+  <i class="unloaded">2021-08-07T16:16:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>CIL 코드 뜯어보기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Benchmark DotNet</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7719,26 +7734,39 @@ $"{value :   0}"
 
 
 
-                1. 소스코드 컴파일
-
-
-  컴파일을 완료하고 .exe 또는 .dll 파일을 생성한다.
+                설치
 
 
 
-
-2. 디스어셈블러 실행
-
-
-1
-C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
+  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치
 
 
-이런 경로로 들어가서
 
-ildasm.exe 파일을 찾아 실행한다.
 
-경로는 버전마다 조금씩 차...
+사용법
+
+
+[1] 테스트 대상 클래스
+
+
+   
+…
+
+
+  [1-1] 네임스페이스
+
+  
+     
+.
+
+
+    1
+2
+using BenchmarkDotNet;
+using BenchmarkDotNet.Attributes;
+    
+
+  ...
               </p>
             </div>
           </div>
@@ -8972,6 +9000,8 @@ ildasm.exe 파일을 찾아 실행한다.
     
     
     
+    
+      
     
   
     
