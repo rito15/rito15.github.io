@@ -5652,6 +5652,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7791,7 +7804,7 @@ using BenchmarkDotNet.Attributes;
       
       
       <div class="card">
-        <a href="/posts/cs-memo-show-cil/">
+        <a href="/posts/cs-serializations-to-byte-array/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7808,13 +7821,13 @@ using BenchmarkDotNet.Attributes;
   
 
   
-    Jun 15
+    Aug  8
   
 
-  <i class="unloaded">2021-06-15T20:00:00+09:00</i>
+  <i class="unloaded">2021-08-08T02:34:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>CIL 코드 뜯어보기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 패킷을 byte[]로 직렬화하는 다양한 방법</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7823,26 +7836,22 @@ using BenchmarkDotNet.Attributes;
 
 
 
-                1. 소스코드 컴파일
-
-
-  컴파일을 완료하고 .exe 또는 .dll 파일을 생성한다.
+                Note
 
 
 
-
-2. 디스어셈블러 실행
-
-
-1
-C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
-
-
-이런 경로로 들어가서
-
-ildasm.exe 파일을 찾아 실행한다.
-
-경로는 버전마다 조금씩 차...
+  
+    비교적 단순한 형태의 패킷들을 정의한다.
+  
+  
+    패킷을 다양한 방법으로 직렬화하여 byte[] 타입 버퍼에 순서대로 넣으며, 성능을 검사한다.
+  
+  
+    직렬화된 결과의 크기는 패킷 내 모든 필드의 크기의 합이어야 한다.
+  
+  
+    문자열 패킷은 어차피 공통적으로 인코딩을 거쳐야 하므로, 제외한다.
+...
               </p>
             </div>
           </div>

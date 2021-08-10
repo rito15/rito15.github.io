@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-10T20:22:13+09:00</updated>
+  <updated>2021-08-11T00:16:22+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,108 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Snow Pile &amp;amp; Clear (Plane에 눈 쌓기, 지우기)</title>
+    <link href="https://rito15.github.io/posts/unity-snow-pile-and-clear/" rel="alternate" type="text/html" title="Snow Pile &amp;amp; Clear (Plane에 눈 쌓기, 지우기)" />
+    <published>2021-08-10T23:23:00+09:00</published>
+  
+    <updated>2021-08-10T23:23:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-snow-pile-and-clear/</id>
+    <content src="https://rito15.github.io/posts/unity-snow-pile-and-clear/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Toys" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+  
+    파티클이 닿는 지점에 눈 쌓기
+  
+  
+    쌓인 눈 지우기
+  
+
+
+
+
+Preview
+
+
+[1] 쌓기
+
+
+
+
+
+
+[2] 지우기
+
+
+
+
+
+
+Details
+
+
+[1] Ground 쉐이더
+
+
+  
+    메인 텍스쳐의 색상을 그대로 최종 색상으로 출력한다.
+  
+  
+    메인 텍스쳐의 rgb 값 중 하나를 Height Map으로 사용하여, 버텍스 Y 위치값에 더해준다.
+  
+  
+    마테리얼을 생성하여 Plane에 적용한다.
+  
+
+
+
+
+[2] 렌더 텍스쳐
+
+
+  
+    게임 시작 시 렌더 텍스쳐를 하나 생성한다.
+  
+  
+    Ground 마테리얼의 메인 텍스쳐에 렌더 텍스쳐를 넣어준다.
+  
+
+
+
+
+[3] 브러시 텍스쳐
+
+
+  
+    마치 Default ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -315,80 +417,6 @@ class UTF8StringBuffer
     private int writePos = 0;
 
     private void WriteCompleted(int pos) =&amp;gt; ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# 간단한 힙 메모리 디버거 (콘솔)</title>
-    <link href="https://rito15.github.io/posts/cs-heap-memory-debugger/" rel="alternate" type="text/html" title="C# 간단한 힙 메모리 디버거 (콘솔)" />
-    <published>2021-08-08T12:12:00+09:00</published>
-  
-    <updated>2021-08-08T12:12:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-heap-memory-debugger/</id>
-    <content src="https://rito15.github.io/posts/cs-heap-memory-debugger/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      기능
-
-
-
-  원하는 지점의 힙 메모리 크기 기록
-  기록된 두 지점의 힙 메모리 크기 차이 출력
-
-
-
-
-주의사항
-
-
-
-  Print() 이후에는 Record()하지 않아야 한다.
-    
-      Future Works : Print() 내에서 스트링을 스택에 할당하여 해결
-    
-  
-
-
-
-
-사용 예시
-
-
-HeapDebugger.Record(0);
-
-int[] array = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
-HeapDebugger.Record(1);
-
-new string("ABCDE");
-
-HeapDebugger.Record(2);
-
-HeapDebugger.PrintDiff(0, 1); // 128
-HeapDebugger.PrintDiff(1, 2); // 32
-He...
     </summary>
   
 
