@@ -2,7 +2,7 @@
 title: C# If vs. try-catch 성능
 author: Rito15
 date: 2021-08-09 14:41:00 +09:00
-categories: [C#, C# Memo]
+categories: [C#, C# Study]
 tags: [csharp]
 math: true
 mermaid: true

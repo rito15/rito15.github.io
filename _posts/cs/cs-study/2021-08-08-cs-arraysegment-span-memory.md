@@ -2,7 +2,7 @@
 title: C# ArraySegment&lt;T&gt;, Span&lt;T&gt;, Memory&lt;T&gt;
 author: Rito15
 date: 2021-08-08 20:00:00 +09:00
-categories: [C#, C# Memo]
+categories: [C#, C# Study]
 tags: [csharp, array]
 math: true
 mermaid: true

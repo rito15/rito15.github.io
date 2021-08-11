@@ -37,7 +37,7 @@
 <meta property="twitter:title" content=".NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":".NET 환경의 컴파일 과정","datePublished":"2021-06-06T04:43:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-dotnet-compile/"},"url":"https://rito15.github.io/posts/cs-dotnet-compile/","author":{"@type":"Person","name":"Rito15"},"headline":".NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT","dateModified":"2021-06-07T23:22:17+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":".NET 환경의 컴파일 과정","datePublished":"2021-06-06T04:43:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-dotnet-compile/"},"url":"https://rito15.github.io/posts/cs-dotnet-compile/","author":{"@type":"Person","name":"Rito15"},"headline":".NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT","dateModified":"2021-06-06T04:43:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -406,35 +406,6 @@
 
         <div>
           <!-- lastmod -->
-          
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Jun  7, 2021, 11:22 PM +0900"
-  >
-
-  
-  
-
-  
-    Jun  7
-  
-
-  <i class="unloaded">2021-06-07T23:22:17+09:00</i>
-
-</span>
-          </span>
           
 
           <!-- read time -->
@@ -817,7 +788,7 @@
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
             <a href='/categories/c/'>C#</a>,
-            <a href='/categories/c-memo/'>C# Memo</a>
+            <a href='/categories/c-study/'>C# Study</a>
         </div>
         
 
@@ -951,22 +922,22 @@
         
         
         
-        <li><a href="/posts/cs-serializations-to-byte-array/">C# 패킷을 byte[]로 직렬화하는 다양한 방법</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-arraysegment-span-memory/">C# ArraySegment&lt;T&gt;, Span&lt;T&gt;, Memory&lt;T&gt;</a></li>
-      
-        
-        
-        
         <li><a href="/posts/cs-unsafe-and-fixed/">C# unsafe와 fixed 구문</a></li>
       
         
         
         
         <li><a href="/posts/05-cs-tcp-async-socket-basic.md/">TCP 비동기 소켓 서버, 클라이언트 기본</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/cs-tcp-async-socket-chatting/">TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-object-pooling/">유니티 오브젝트 풀링(Object Pooling)</a></li>
       
 
       </ul>
@@ -5464,6 +5435,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7682,7 +7666,7 @@
       
       
       <div class="card">
-        <a href="/posts/memo-cs-prime-number/">
+        <a href="/posts/cs-serializations-to-byte-array/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7699,13 +7683,13 @@
   
 
   
-    Mar 26
+    Aug  8
   
 
-  <i class="unloaded">2021-03-26T18:12:00+09:00</i>
+  <i class="unloaded">2021-08-08T02:34:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Prime Number(소수)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 패킷을 byte[]로 직렬화하는 다양한 방법</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7714,20 +7698,22 @@
 
 
 
-                Memo
+                Note
 
-
-1. 소수인지 확인하기
 
 
   
-    /// &lt;summary&gt; 지정한 수가 소수인지 확인 &lt;/summary&gt;
-public static bool IsPrime(int value)
-{
-    bool isEvenNumber = (value % 2) == 0;
-
-    // 짝수일 경우 2만 소수
-    if (isEve...
+    비교적 단순한 형태의 패킷들을 정의한다.
+  
+  
+    패킷을 다양한 방법으로 직렬화하여 byte[] 타입 버퍼에 순서대로 넣으며, 성능을 검사한다.
+  
+  
+    직렬화된 결과의 크기는 패킷 내 모든 필드의 크기의 합이어야 한다.
+  
+  
+    문자열 패킷은 어차피 공통적으로 인코딩을 거쳐야 하므로, 제외한다.
+...
               </p>
             </div>
           </div>
@@ -7737,7 +7723,7 @@ public static bool IsPrime(int value)
       
       
       <div class="card">
-        <a href="/posts/cs-string-format/">
+        <a href="/posts/cs-arraysegment-span-memory/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7754,13 +7740,13 @@ public static bool IsPrime(int value)
   
 
   
-    May  9
+    Aug  8
   
 
-  <i class="unloaded">2021-05-09T21:00:00+09:00</i>
+  <i class="unloaded">2021-08-08T20:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 스트링 포맷 정리</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# ArraySegment&lt;T&gt;, Span&lt;T&gt;, Memory&lt;T&gt;</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7769,51 +7755,19 @@ public static bool IsPrime(int value)
 
 
 
-                NOTE
+                Array
 
 
 
-  , : 스트링의 범위(공간) 설정
-  : : 출력 포맷 설정
-
-
-
-
-좌우 정렬
-
-
-
-  
-    $"{value, 10}"
-
-  
-
-
-
-  10칸 범위 내에서 우측 정렬
+  https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/arrays/single-dimensional-arrays
+  https://docs.microsoft.com/ko-kr/dotnet/api/system.array?view=net-5.0
 
 
 
 
+특징
 
-  
-    $"{value, -10}"
-
-  
-
-
-
-  10칸 범위 내에서 좌측 정렬
-
-
-
-
-숫자 왼쪽에 공백 삽입하기
-
-
-
-  
-    $"{value ...
+  고정된 크기...
               </p>
             </div>
           </div>
@@ -7823,7 +7777,7 @@ public static bool IsPrime(int value)
       
       
       <div class="card">
-        <a href="/posts/cs-benchmark-dotnet/">
+        <a href="/posts/cs-if-vs-try-performance/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7840,13 +7794,13 @@ public static bool IsPrime(int value)
   
 
   
-    Aug  7
+    Aug  9
   
 
-  <i class="unloaded">2021-08-07T16:16:00+09:00</i>
+  <i class="unloaded">2021-08-09T14:41:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Benchmark DotNet</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# If vs. try-catch 성능</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7855,39 +7809,26 @@ public static bool IsPrime(int value)
 
 
 
-                설치
+                Note
+
+
+개발을 하다보면 고민되는 경우가 많다.
+
+예외 조건을 처리할 때 if로 예외를 회피할지, try-catch로 처리할지,
+
+실제 성능은 어떻게 될지도 궁금한 부분이다.
 
 
 
-  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치
+try-catch는 예외가 발생하지 않으면 성능 소모가 없다고도 하고,
+
+성능 소모가 있지만 O(1)이라고도 하고,
+
+찾아보면 다양한 주장들을 확인해볼 수 있다.
 
 
 
-
-사용법
-
-
-[1] 테스트 대상 클래스
-
-
-   
-…
-
-
-  [1-1] 네임스페이스
-
-  
-     
-.
-
-
-    1
-2
-using BenchmarkDotNet;
-using BenchmarkDotNet.Attributes;
-    
-
-  ...
+...
               </p>
             </div>
           </div>

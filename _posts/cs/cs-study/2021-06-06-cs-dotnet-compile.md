@@ -2,7 +2,7 @@
 title:  .NET 환경의 컴파일 과정 - CLR, CIL, JIT, AOT
 author: Rito15
 date: 2021-06-06 04:43:00 +09:00
-categories: [C#, C# Memo]
+categories: [C#, C# Study]
 tags: [dotnet, clr, cil, jit, aot]
 math: true
 mermaid: true

@@ -2,7 +2,7 @@
 title: C# 패킷을 byte[]로 직렬화하는 다양한 방법
 author: Rito15
 date: 2021-08-08 02:34:00 +09:00
-categories: [C#, C# Memo]
+categories: [C#, C# Study]
 tags: [csharp, benchmark, serialization]
 math: true
 mermaid: true

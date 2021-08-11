@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-11T00:16:22+09:00</updated>
+  <updated>2021-08-11T18:32:02+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,79 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# String, StringBuilder, ZString</title>
+    <link href="https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/" rel="alternate" type="text/html" title="C# String, StringBuilder, ZString" />
+    <published>2021-08-11T17:17:00+09:00</published>
+  
+    <updated>2021-08-11T17:17:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/</id>
+    <content src="https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      String 포맷팅의 문제점
+
+
+$"IntValue : {123}, BoolValue : {true}";
+
+
+또는
+
+string.Format("IntValue {0}, BoolValue : {1}", 123, true);
+
+
+이런 방식의 스트링 포맷팅을 쓰는 경우가 정말 많다.
+
+
+
+정말 편리하긴 하지만,
+
+StringBuilder와 비교하면 성능도 좋지 않고
+
+심지어 가비지도 더 많이 발생시킨다.
+
+그렇다고 StringBuilder를 쓰려니 가독성이 좋지 않고 불편하다는 단점이 있다.
+
+
+
+ZString
+
+
+
+  https://github.com/Cysharp/ZString
+
+
+
+
+ZString.Format("IntValue {0}, BoolValue : {1}", 123, true);
+
+
+strin...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -232,7 +305,7 @@ Download
     
     <category term="C#" />
     
-    <category term="C# Memo" />
+    <category term="C# Study" />
     
   
 
@@ -291,7 +364,7 @@ if와 try-catch 선택...
     <link href="https://rito15.github.io/posts/cs-arraysegment-span-memory/" rel="alternate" type="text/html" title="C# ArraySegment&amp;lt;T&amp;gt;, Span&amp;lt;T&amp;gt;, Memory&amp;lt;T&amp;gt;" />
     <published>2021-08-08T20:00:00+09:00</published>
   
-    <updated>2021-08-10T01:07:40+09:00</updated>
+    <updated>2021-08-08T20:00:00+09:00</updated>
   
     <id>https://rito15.github.io/posts/cs-arraysegment-span-memory/</id>
     <content src="https://rito15.github.io/posts/cs-arraysegment-span-memory/" />
@@ -303,7 +376,7 @@ if와 try-catch 선택...
     
     <category term="C#" />
     
-    <category term="C# Memo" />
+    <category term="C# Study" />
     
   
 
@@ -351,72 +424,6 @@ ArraySegment&amp;lt;T&amp;gt;
     
       https://docs.microsoft.com/ko-kr/dotnet/api/system.arraysegment-1?view=net-5.0
       https://j...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</title>
-    <link href="https://rito15.github.io/posts/cs-utf8-string-to-byte-array/" rel="alternate" type="text/html" title="C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기" />
-    <published>2021-08-08T19:31:00+09:00</published>
-  
-    <updated>2021-08-08T19:31:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-utf8-string-to-byte-array/</id>
-    <content src="https://rito15.github.io/posts/cs-utf8-string-to-byte-array/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      1. 힙 할당 있는 방식
-
-
-string str = "가나다 ABC 123";
-
-byte[] byteStr = Encoding.UTF8.GetBytes(str);
-
-
-
-
-2. 힙 할당 없는 방식
-
-
-
-  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
-
-
-
-
-버퍼를 이용한 직렬화 예시
-
-using System;
-using System.Text;
-
-class UTF8StringBuffer
-{
-    private byte[] buffer = new byte[1024 * 100];
-    private int readPos = 0;
-    private int writePos = 0;
-
-    private void WriteCompleted(int pos) =&amp;gt; ...
     </summary>
   
 
