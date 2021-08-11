@@ -128,6 +128,128 @@ public void Write(ushort data)
 
 
 
+# ByteSerializer 클래스 작성
+---
+
+- 대상 `byte[]`의 특정 위치에 원하는 타입으로 데이터를 작성하는 정적 래퍼 클래스를 따로 작성한다.
+
+- `Unmanaged Type` -> `byte[]` 직렬화를 모두 담당하도록 하여, `Send Buffer`로부터 직렬화 기능을 분리하는 역할을 한다.
+
+```cs
+    public static class ByteSerializer
+    {
+        public static void WriteShort(byte[] array, int offset, short data)
+        {
+            const int Len = sizeof(short);
+            BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
+        }
+        public static void WriteUshort(byte[] array, int offset, ushort data)
+        {
+            const int Len = sizeof(ushort);
+            BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
+        }
+        public static void WriteInt(byte[] array, int offset, int data)
+        {
+            const int Len = sizeof(int);
+            BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
+        }
+        public static void WriteUint(byte[] array, int offset, uint data)
+        {
+            const int Len = sizeof(uint);
+            BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
+        }
+        public static void WriteFloat(byte[] array, int offset, float data)
+        {
+            const int Len = sizeof(float);
+            BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
+        }
+
+        /// <summary> byte 배열에 스트링을 UTF8로 작성하고, 길이 리턴 </summary>
+        public static int WriteUTF8String(byte[] array, int offset, string data)
+        {
+            int len = data.Length * 4;
+            return Encoding.UTF8.GetBytes(data.AsSpan(), array.AsSpan(offset, len));
+        }
+    }
+```
+
+<br>
+
+
+
+# SendBuffer 클래스 보강
+---
+
+- 위의 API를 이용하여 `SendBuffer` 클래스에 새로운 메소드들을 작성한다.
+
+```cs
+public class SendBuffer
+{
+    public void Write(ushort data)
+    {
+        const int len = sizeof(ushort);
+        CheckWriteError(len);
+
+        ByteSerializer.WriteUshort(_buffer, _writePos, data);
+        _writePos += len;
+    }
+
+    public void Write(int data)
+    {
+        const int len = sizeof(int);
+        CheckWriteError(len);
+
+        ByteSerializer.WriteInt(_buffer, _writePos, data);
+        _writePos += len;
+    }
+
+    public void Write(float data)
+    {
+        const int len = sizeof(float);
+        CheckWriteError(len);
+
+        ByteSerializer.WriteFloat(_buffer, _writePos, data);
+        _writePos += len;
+    }
+    
+    public static class Factory
+    {
+        /// <summary> 버퍼 생성 여부, 여유 공간 검사 </summary>
+        private static void CheckBuffer(int dataLength)
+        {
+            // 초기 접근 시 버퍼 새로 생성
+            if (CurrentBuffer.Value == null)
+                CurrentBuffer.Value = new SendBuffer(ChunkSize);
+
+            // 여유 공간이 없는 경우 앞으로 당기기
+            else if (CurrentBuffer.Value.CheckWritableSize(dataLength) == false)
+                CurrentBuffer.Value.Refresh();
+        }
+
+        public static void Write(ushort data)
+        {
+            CheckBuffer(sizeof(ushort));
+            CurrentBuffer.Value.Write(data);
+        }
+
+        public static void Write(int data)
+        {
+            CheckBuffer(sizeof(int));
+            CurrentBuffer.Value.Write(data);
+        }
+
+        public static void Write(float data)
+        {
+            CheckBuffer(sizeof(float));
+            CurrentBuffer.Value.Write(data);
+        }
+    }
+}
+```
+
+
+<br>
+
 # References
 ---
 - <https://www.inflearn.com/course/유니티-mmorpg-개발-part4>

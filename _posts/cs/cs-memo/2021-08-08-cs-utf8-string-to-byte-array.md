@@ -74,7 +74,8 @@ class UTF8StringBuffer
     public void WriteString(string str)
     {
         // 하나의 문자는 최대 4바이트 크기를 가질 수 있으므로, 넉넉히 준비
-        // Encoding.UTF8.GetByteCount()를 안하는 이유 : 이것도 성능 소모하므로
+        // Encoding.UTF8.GetByteCount()를 안하는 이유
+        // - GetBytes()를 호출하는 것의 50% ~ 80% 정도의 성능을 추가적으로 소모하기 때문
         int enoughLen = str.Length * 4;
         int len;
         try
