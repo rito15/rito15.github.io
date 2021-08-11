@@ -135,42 +135,125 @@ public void Write(ushort data)
 
 - `Unmanaged Type` -> `byte[]` 직렬화를 모두 담당하도록 하여, `Send Buffer`로부터 직렬화 기능을 분리하는 역할을 한다.
 
-```cs
-    public static class ByteSerializer
-    {
-        public static void WriteShort(byte[] array, int offset, short data)
-        {
-            const int Len = sizeof(short);
-            BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
-        }
-        public static void WriteUshort(byte[] array, int offset, ushort data)
-        {
-            const int Len = sizeof(ushort);
-            BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
-        }
-        public static void WriteInt(byte[] array, int offset, int data)
-        {
-            const int Len = sizeof(int);
-            BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
-        }
-        public static void WriteUint(byte[] array, int offset, uint data)
-        {
-            const int Len = sizeof(uint);
-            BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
-        }
-        public static void WriteFloat(byte[] array, int offset, float data)
-        {
-            const int Len = sizeof(float);
-            BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
-        }
+- 역직렬화 기능도 작성한다.
 
-        /// <summary> byte 배열에 스트링을 UTF8로 작성하고, 길이 리턴 </summary>
-        public static int WriteUTF8String(byte[] array, int offset, string data)
-        {
-            int len = data.Length * 4;
-            return Encoding.UTF8.GetBytes(data.AsSpan(), array.AsSpan(offset, len));
-        }
+```cs
+/// <summary> value &lt;-&gt; byte[] </summary>
+public static class ByteSerializer
+{
+    /***********************************************************************
+    *                               Write to byte[]
+    ***********************************************************************/
+    #region .
+    public static void WriteShort(byte[] array, int offset, short data)
+    {
+        const int Len = sizeof(short);
+        BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
     }
+    public static void WriteUshort(byte[] array, int offset, ushort data)
+    {
+        const int Len = sizeof(ushort);
+        BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
+    }
+    public static void WriteInt(byte[] array, int offset, int data)
+    {
+        const int Len = sizeof(int);
+        BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
+    }
+    public static void WriteUint(byte[] array, int offset, uint data)
+    {
+        const int Len = sizeof(uint);
+        BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
+    }
+    public static void WriteFloat(byte[] array, int offset, float data)
+    {
+        const int Len = sizeof(float);
+        BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
+    }
+    public static void WriteLong(byte[] array, int offset, long data)
+    {
+        const int Len = sizeof(long);
+        BitConverter.TryWriteBytes(array.AsSpan(offset, Len), data);
+    }
+
+    /// <summary> byte 배열에 스트링을 UTF8로 작성하고, 길이 리턴 </summary>
+    public static int WriteUTF8String(byte[] array, int offset, string data)
+    {
+        int len = data.Length * 4;
+        return Encoding.UTF8.GetBytes(data.AsSpan(), array.AsSpan(offset, len));
+    }
+    #endregion
+    /***********************************************************************
+    *                           Read from byte[]
+    ***********************************************************************/
+    #region .
+    public static short ReadShort(byte[] array, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(array, offset, sizeof(short));
+        return MemoryMarshal.Read<short>(span);
+    }
+    public static ushort ReadUshort(byte[] array, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(array, offset, sizeof(ushort));
+        return MemoryMarshal.Read<ushort>(span);
+    }
+    public static int ReadInt(byte[] array, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(array, offset, sizeof(int));
+        return MemoryMarshal.Read<int>(span);
+    }
+    public static uint ReadUint(byte[] array, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(array, offset, sizeof(uint));
+        return MemoryMarshal.Read<uint>(span);
+    }
+    public static float ReadFloat(byte[] array, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(array, offset, sizeof(float));
+        return MemoryMarshal.Read<float>(span);
+    }
+    public static float ReadLong(byte[] array, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(array, offset, sizeof(long));
+        return MemoryMarshal.Read<long>(span);
+    }
+    #endregion
+    /***********************************************************************
+    *                       Read from ArraySegment<byte>
+    ***********************************************************************/
+    #region .
+    public static short ReadShort(ArraySegment<byte> segment, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(segment.Array, segment.Offset + offset, sizeof(short));
+        return MemoryMarshal.Read<short>(span);
+    }
+    public static ushort ReadUshort(ArraySegment<byte> segment, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(segment.Array, segment.Offset + offset, sizeof(ushort));
+        return MemoryMarshal.Read<ushort>(span);
+    }
+    public static int ReadInt(ArraySegment<byte> segment, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(segment.Array, segment.Offset + offset, sizeof(int));
+        return MemoryMarshal.Read<int>(span);
+    }
+    public static uint ReadUint(ArraySegment<byte> segment, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(segment.Array, segment.Offset + offset, sizeof(uint));
+        return MemoryMarshal.Read<uint>(span);
+    }
+    public static float ReadFloat(ArraySegment<byte> segment, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(segment.Array, segment.Offset + offset, sizeof(float));
+        return MemoryMarshal.Read<float>(span);
+    }
+    public static float ReadLong(ArraySegment<byte> segment, int offset)
+    {
+        var span = new ReadOnlySpan<byte>(segment.Array, segment.Offset + offset, sizeof(long));
+        return MemoryMarshal.Read<long>(span);
+    }
+    #endregion
+}
 ```
 
 <br>
