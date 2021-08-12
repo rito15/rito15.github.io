@@ -76,9 +76,25 @@ A : Amplitude
 
 ## **Smooth UV Mask**
 
+![2021_0813_UV_SmoothMask](https://user-images.githubusercontent.com/42164422/129232319-beec9c51-e420-416f-a5bb-d80e0131ef87.gif)
+
 ![2021_0627_UV_Mask_Smooth](https://user-images.githubusercontent.com/42164422/123523596-8b7a8880-d6ff-11eb-887b-1f57f2fe7463.gif)
 
 - `Smoothstep`의 `Min`, `Max` 입력을 서로 바꿀 경우, 마스크 색상 반전
+
+<br>
+
+## **UV Mask Dissolve**
+
+![2021_0813_UV_NoiseMask](https://user-images.githubusercontent.com/42164422/129232329-6f362082-cc47-47c5-ade2-def581b4a935.gif)
+
+![2021_0627_UV_Mask_Dissolve](https://user-images.githubusercontent.com/42164422/123523888-ced5f680-d701-11eb-9c29-648de55c8476.gif)
+
+<br>
+
+## **Noise Dissolve**
+
+![image](https://user-images.githubusercontent.com/42164422/123069599-e2f1cd80-d44d-11eb-950e-2088585127ae.gif)
 
 <br>
 
@@ -94,15 +110,15 @@ A : Amplitude
 
 <br>
 
-## **UV Mask Dissolve**
+## **Clock Mask**
 
-![2021_0627_UV_Mask_Dissolve](https://user-images.githubusercontent.com/42164422/123523888-ced5f680-d701-11eb-9c29-648de55c8476.gif)
+![2021_0813_UV_ClockMask](https://user-images.githubusercontent.com/42164422/129238475-58d210c2-debb-44a0-9c03-bf6475ee23cd.gif)
 
 <br>
 
-## **Noise Dissolve**
+## **Radar**
 
-![image](https://user-images.githubusercontent.com/42164422/123069599-e2f1cd80-d44d-11eb-950e-2088585127ae.gif)
+![2021_0813_UV_Radar](https://user-images.githubusercontent.com/42164422/129238486-6b25a0db-8d99-4e3c-bbca-a3c77f6acfdf.gif)
 
 <br>
 
@@ -269,5 +285,35 @@ https://www.youtube.com/watch?v=MawzivWLCoo
 <br>
 
 -->
+
+
+
+# 4. Graph
+---
+
+## **Basic Particle(Additive) Shader**
+
+![image](https://user-images.githubusercontent.com/42164422/129243903-442563a9-2ee5-44ff-aa42-e4e23b0669e7.png)
+
+### **General**
+  - Light Model : `Unlit`
+  - Cull Mode : `Off`
+  - Cast Shadows : `Off`
+  - Receive Shadows : `Off`
+
+### **Blend Mode**
+  - 우측 상단 : `Custom`
+  - Render Type : `Transparent`
+  - Render Queue : `Transparent`
+  - Blend RGB : `Particle Additive`
+
+### **Depth**
+  - ZWrite Mode : `Off`
+
+### **Rendering Options**
+  - 모두 체크 해제
+
+
+
 
 

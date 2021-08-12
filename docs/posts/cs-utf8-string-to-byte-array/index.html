@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"1. 힙 할당 있는 방식","datePublished":"2021-08-08T19:31:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-utf8-string-to-byte-array/"},"url":"https://rito15.github.io/posts/cs-utf8-string-to-byte-array/","author":{"@type":"Person","name":"Rito15"},"headline":"C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기","dateModified":"2021-08-08T19:31:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"1. 힙 할당 있는 방식","datePublished":"2021-08-08T19:31:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-utf8-string-to-byte-array/"},"url":"https://rito15.github.io/posts/cs-utf8-string-to-byte-array/","author":{"@type":"Person","name":"Rito15"},"headline":"C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기","dateModified":"2021-08-11T21:48:22+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -393,6 +393,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Aug 11, 2021,  9:48 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 11
+  
+
+  <i class="unloaded">2021-08-11T21:48:22+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -405,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="526 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="546 words">3 min</span>
 
 
           <!-- page views -->
@@ -536,6 +565,7 @@
 87
 88
 89
+90
 </pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
 
@@ -581,7 +611,8 @@
     <span class="k">public</span> <span class="k">void</span> <span class="nf">WriteString</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// 하나의 문자는 최대 4바이트 크기를 가질 수 있으므로, 넉넉히 준비</span>
-        <span class="c1">// Encoding.UTF8.GetByteCount()를 안하는 이유 : 이것도 성능 소모하므로</span>
+        <span class="c1">// Encoding.UTF8.GetByteCount()를 안하는 이유</span>
+        <span class="c1">// - GetBytes()를 호출하는 것의 50% ~ 80% 정도의 성능을 추가적으로 소모하기 때문</span>
         <span class="kt">int</span> <span class="n">enoughLen</span> <span class="p">=</span> <span class="n">str</span><span class="p">.</span><span class="n">Length</span> <span class="p">*</span> <span class="m">4</span><span class="p">;</span>
         <span class="kt">int</span> <span class="n">len</span><span class="p">;</span>
         <span class="k">try</span>
@@ -761,6 +792,11 @@
         
         
         
+        <li><a href="/posts/cs-utf8-string-to-byte-array/">C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-benchmark-dotnet/">C# Benchmark DotNet</a></li>
       
         
@@ -777,11 +813,6 @@
         
         
         <li><a href="/posts/cs-tcp-async-socket-chatting/">TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-object-pooling/">유니티 오브젝트 풀링(Object Pooling)</a></li>
       
 
       </ul>

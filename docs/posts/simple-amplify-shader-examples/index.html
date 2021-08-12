@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="877 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="936 words">5 min</span>
 
 
           <!-- page views -->
@@ -546,11 +546,27 @@ A : Amplitude
 
 <h2 id="smooth-uv-mask"><strong>Smooth UV Mask</strong></h2>
 
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/129232319-beec9c51-e420-416f-a5bb-d80e0131ef87.gif" alt="2021_0813_UV_SmoothMask" /></p>
+
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123523596-8b7a8880-d6ff-11eb-887b-1f57f2fe7463.gif" alt="2021_0627_UV_Mask_Smooth" /></p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">Smoothstep</code>의 <code class="language-plaintext highlighter-rouge">Min</code>, <code class="language-plaintext highlighter-rouge">Max</code> 입력을 서로 바꿀 경우, 마스크 색상 반전</li>
 </ul>
+
+<p><br /></p>
+
+<h2 id="uv-mask-dissolve"><strong>UV Mask Dissolve</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/129232329-6f362082-cc47-47c5-ade2-def581b4a935.gif" alt="2021_0813_UV_NoiseMask" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123523888-ced5f680-d701-11eb-9c29-648de55c8476.gif" alt="2021_0627_UV_Mask_Dissolve" /></p>
+
+<p><br /></p>
+
+<h2 id="noise-dissolve"><strong>Noise Dissolve</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123069599-e2f1cd80-d44d-11eb-950e-2088585127ae.gif" alt="image" /></p>
 
 <p><br /></p>
 
@@ -566,15 +582,15 @@ A : Amplitude
 
 <p><br /></p>
 
-<h2 id="uv-mask-dissolve"><strong>UV Mask Dissolve</strong></h2>
+<h2 id="clock-mask"><strong>Clock Mask</strong></h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123523888-ced5f680-d701-11eb-9c29-648de55c8476.gif" alt="2021_0627_UV_Mask_Dissolve" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/129238475-58d210c2-debb-44a0-9c03-bf6475ee23cd.gif" alt="2021_0813_UV_ClockMask" /></p>
 
 <p><br /></p>
 
-<h2 id="noise-dissolve"><strong>Noise Dissolve</strong></h2>
+<h2 id="radar"><strong>Radar</strong></h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123069599-e2f1cd80-d44d-11eb-950e-2088585127ae.gif" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/129238486-6b25a0db-8d99-4e3c-bbca-a3c77f6acfdf.gif" alt="2021_0813_UV_Radar" /></p>
 
 <p><br /></p>
 
@@ -788,6 +804,39 @@ https://www.youtube.com/watch?v=MawzivWLCoo
 
 -->
 
+<h1 id="4-graph">4. Graph</h1>
+<hr />
+
+<h2 id="basic-particleadditive-shader"><strong>Basic Particle(Additive) Shader</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/129243903-442563a9-2ee5-44ff-aa42-e4e23b0669e7.png" alt="image" /></p>
+
+<h3 id="general"><strong>General</strong></h3>
+<ul>
+  <li>Light Model : <code class="language-plaintext highlighter-rouge">Unlit</code></li>
+  <li>Cull Mode : <code class="language-plaintext highlighter-rouge">Off</code></li>
+  <li>Cast Shadows : <code class="language-plaintext highlighter-rouge">Off</code></li>
+  <li>Receive Shadows : <code class="language-plaintext highlighter-rouge">Off</code></li>
+</ul>
+
+<h3 id="blend-mode"><strong>Blend Mode</strong></h3>
+<ul>
+  <li>우측 상단 : <code class="language-plaintext highlighter-rouge">Custom</code></li>
+  <li>Render Type : <code class="language-plaintext highlighter-rouge">Transparent</code></li>
+  <li>Render Queue : <code class="language-plaintext highlighter-rouge">Transparent</code></li>
+  <li>Blend RGB : <code class="language-plaintext highlighter-rouge">Particle Additive</code></li>
+</ul>
+
+<h3 id="depth"><strong>Depth</strong></h3>
+<ul>
+  <li>ZWrite Mode : <code class="language-plaintext highlighter-rouge">Off</code></li>
+</ul>
+
+<h3 id="rendering-options"><strong>Rendering Options</strong></h3>
+<ul>
+  <li>모두 체크 해제</li>
+</ul>
+
 
 
       </div>
@@ -926,6 +975,11 @@ https://www.youtube.com/watch?v=MawzivWLCoo
         
         
         
+        <li><a href="/posts/cs-utf8-string-to-byte-array/">C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-benchmark-dotnet/">C# Benchmark DotNet</a></li>
       
         
@@ -942,11 +996,6 @@ https://www.youtube.com/watch?v=MawzivWLCoo
         
         
         <li><a href="/posts/cs-tcp-async-socket-chatting/">TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-object-pooling/">유니티 오브젝트 풀링(Object Pooling)</a></li>
       
 
       </ul>
