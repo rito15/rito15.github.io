@@ -31,9 +31,9 @@ mermaid: true
 # Preview
 ---
 
-![2021_0814_Electricity1](https://user-images.githubusercontent.com/42164422/129428376-3d389bc2-f5ae-4719-9ac0-e7348e1cafcf.gif)
+![2021_0814_Electricity3](https://user-images.githubusercontent.com/42164422/129456094-ae6ae78d-9c6d-479d-9ea4-56cdf5359767.gif)
 
-![2021_0814_Electricity2](https://user-images.githubusercontent.com/42164422/129428379-070a82f1-41bb-43c4-adea-e6f379b92e62.gif)
+![2021_0814_Electricity4](https://user-images.githubusercontent.com/42164422/129456096-2042eb4e-2756-4b39-9fe7-3c0cb1697467.gif)
 
 <br>
 
