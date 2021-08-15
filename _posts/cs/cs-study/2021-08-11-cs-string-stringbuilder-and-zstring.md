@@ -225,7 +225,42 @@ public string StringBuilderWrapper()
 
 - `string.Format()`은 안쓰면 된다.
 
+<br>
 
+
+
+
+## **추가 벤치마크 : `StringBuilder.AppendFormat()`**
+
+<details>
+<summary markdown="span"> 
+..
+</summary>
+
+`StringBuilder` 클래스에는 `string.Format()`처럼 스트링을 포맷팅하여 추가하는 `.AppendFormat()` 메소드가 있다.
+
+사용법은 `string.Format()`과 동일하며,
+
+가비지도 `string.Format()`과 동일하게 생성한다.
+
+위와 동일한 조건으로 벤치마크를 진행해보았다.
+
+
+![image](https://user-images.githubusercontent.com/42164422/129475835-49dcbebe-9647-4d5d-ac12-4ed4aed44124.png)
+
+![image](https://user-images.githubusercontent.com/42164422/129475875-6771cce8-9975-421b-9b28-cee083ae87d3.png)
+
+벤치마크 루프 횟수를 다르게 지정하여 각각 수행했지만,
+
+`string.Format()`과 거의 비슷한 성능이 나오는 것을 확인할 수 있었다.
+
+<br>
+
+- 결론
+  - `StringBuilder`는 `.Append()`가 최고다.
+  - `StringBuilder.AppendFormat()`은 딱히 쓸 이유가 없다.
+
+</details>
 
 
 
