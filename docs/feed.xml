@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-15T19:52:15+09:00</updated>
+  <updated>2021-08-15T21:53:27+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,84 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>문자 인코딩 방식들 간단 메모</title>
+    <link href="https://rito15.github.io/posts/cs-character-encodings/" rel="alternate" type="text/html" title="문자 인코딩 방식들 간단 메모" />
+    <published>2021-08-15T21:42:00+09:00</published>
+  
+    <updated>2021-08-15T21:42:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-character-encodings/</id>
+    <content src="https://rito15.github.io/posts/cs-character-encodings/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Encoding
+
+
+
+  
+    문자(char)를 코드(byte[])로 표현하는 것
+  
+  
+    반의어 : Decoding
+  
+
+
+
+
+ASCII
+
+
+
+  
+    American Standard Code for Information Interchange, 미국 정보 교환 표준 부호
+  
+  
+    영미 문화권의 기본적인 문자들을 코드값에 대응시키기 위해 고안되었다.
+  
+  
+    영어, 숫자, 일반적인 특수 문자들을 0 ~ 127 값으로 표현한다.
+  
+
+
+
+
+Unicode
+
+
+
+  
+    전 세계의 문자를 코드값으로 표현할 수 있도록 고안된 산업 표준
+  
+  
+    최대 21비트에 전 세계의 문자를 표현한다.
+  
+  
+    대부분의 언어들은 2바이트 이내에 표현된다.(영어, 숫...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -129,7 +207,7 @@ Download
     <link href="https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/" rel="alternate" type="text/html" title="C# String, StringBuilder, ZString" />
     <published>2021-08-11T17:17:00+09:00</published>
   
-    <updated>2021-08-11T17:17:00+09:00</updated>
+    <updated>2021-08-15T20:54:32+09:00</updated>
   
     <id>https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/</id>
     <content src="https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/" />
@@ -387,77 +465,6 @@ Download
 
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# If vs. try-catch 성능</title>
-    <link href="https://rito15.github.io/posts/cs-if-vs-try-performance/" rel="alternate" type="text/html" title="C# If vs. try-catch 성능" />
-    <published>2021-08-09T14:41:00+09:00</published>
-  
-    <updated>2021-08-09T14:41:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-if-vs-try-performance/</id>
-    <content src="https://rito15.github.io/posts/cs-if-vs-try-performance/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-개발을 하다보면 고민되는 경우가 많다.
-
-예외 조건을 처리할 때 if로 예외를 회피할지, try-catch로 처리할지,
-
-실제 성능은 어떻게 될지도 궁금한 부분이다.
-
-
-
-try-catch는 예외가 발생하지 않으면 성능 소모가 없다고도 하고,
-
-성능 소모가 있지만 O(1)이라고도 하고,
-
-찾아보면 다양한 주장들을 확인해볼 수 있다.
-
-
-
-대신 공통적인 사실은
-
-try-catch를 통해 예외를 핸들링하게 되면
-
-무조건 if보다 성능 소모가 크다는 점이다.
-
-try-catch는 예외 발생 지점의 스택을 거슬러 올라가서
-
-모두 추적하고 기록하게 되는데,
-
-이 과정에서 성능 소모가 크게 발생한다는 것이다.
-
-
-
-이제 몇가지 테스트 케이스를 통해서 성능을 테스트하고,
-
-if와 try-catch 선택...
     </summary>
   
 
