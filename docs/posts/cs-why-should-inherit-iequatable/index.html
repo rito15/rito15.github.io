@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"System.Object.Equals(object)","datePublished":"2021-07-19T20:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-why-should-inherit-iequatable/"},"url":"https://rito15.github.io/posts/cs-why-should-inherit-iequatable/","author":{"@type":"Person","name":"Rito15"},"headline":"C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유","dateModified":"2021-07-19T20:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유","description":"System.Object.Equals(object)","dateModified":"2021-07-19T20:00:00+09:00","datePublished":"2021-07-19T20:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-why-should-inherit-iequatable/"},"url":"https://rito15.github.io/posts/cs-why-should-inherit-iequatable/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -5072,6 +5072,19 @@ IL_0035:  pop
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7797,63 +7810,6 @@ IL_0035:  pop
       
       
       <div class="card">
-        <a href="/posts/cs-serializations-to-byte-array/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  8
-  
-
-  <i class="unloaded">2021-08-08T02:34:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 패킷을 byte[]로 직렬화하는 다양한 방법</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-
-  
-    비교적 단순한 형태의 패킷들을 정의한다.
-  
-  
-    패킷을 다양한 방법으로 직렬화하여 byte[] 타입 버퍼에 순서대로 넣으며, 성능을 검사한다.
-  
-  
-    직렬화된 결과의 크기는 패킷 내 모든 필드의 크기의 합이어야 한다.
-  
-  
-    문자열 패킷은 어차피 공통적으로 인코딩을 거쳐야 하므로, 제외한다.
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-arraysegment-span-memory/">
           <div class="card-body">
             <!--
@@ -7960,6 +7916,67 @@ try-catch는 예외가 발생하지 않으면 성능 소모가 없다고도 하�
 
 
 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-string-stringbuilder-and-zstring/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 11
+  
+
+  <i class="unloaded">2021-08-11T17:17:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# String, StringBuilder, ZString</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                String 포맷팅의 문제점
+
+
+1
+$"IntValue : {123}, BoolValue : {true}";
+
+
+또는
+
+1
+string.Format("IntValue {0}, BoolValue : {1}", 123, true);
+
+
+이런 방식의 스트링 포맷팅을 쓰는 경우가 정말 많다.
+
+
+
+정말 편리하긴 하지만,
+
+StringBuilder와 비교하면 ...
               </p>
             </div>
           </div>
