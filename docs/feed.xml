@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-17T02:47:15+09:00</updated>
+  <updated>2021-08-17T04:46:47+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,58 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Unity Play Mode Save - Sample</title>
+    <link href="https://rito15.github.io/posts/unity-play-mode-save-sample/" rel="alternate" type="text/html" title="Unity Play Mode Save - Sample" />
+    <published>2021-08-17T04:32:00+09:00</published>
+  
+    <updated>2021-08-17T04:32:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-play-mode-save-sample/</id>
+    <content src="https://rito15.github.io/posts/unity-play-mode-save-sample/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+
+  플레이모드 -&amp;gt; 에디터모드 진입 시 플레이모드의 변경사항 유지
+
+
+public class Sample_PlayModeSave : MonoBehaviour
+{
+    /***********************************************************************
+    *                           Save Play Mode Changes
+    ***********************************************************************/
+    #region .
+#if UNITY_EDITOR
+    private class Inner_PlayModeSave
+    {
+        priva...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -352,108 +404,6 @@ ZString.Format("IntValue {0}, BoolValue : {1}", 123, true);
 
 
 strin...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Snow Pile &amp;amp; Clear (Plane에 눈 쌓기, 지우기)</title>
-    <link href="https://rito15.github.io/posts/unity-snow-pile-and-clear/" rel="alternate" type="text/html" title="Snow Pile &amp;amp; Clear (Plane에 눈 쌓기, 지우기)" />
-    <published>2021-08-10T23:23:00+09:00</published>
-  
-    <updated>2021-08-10T23:23:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-snow-pile-and-clear/</id>
-    <content src="https://rito15.github.io/posts/unity-snow-pile-and-clear/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Toys" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-  
-    파티클이 닿는 지점에 눈 쌓기
-  
-  
-    쌓인 눈 지우기
-  
-
-
-
-
-Preview
-
-
-[1] 쌓기
-
-
-
-
-
-
-[2] 지우기
-
-
-
-
-
-
-Details
-
-
-[1] Ground 쉐이더
-
-
-  
-    메인 텍스쳐의 색상을 그대로 최종 색상으로 출력한다.
-  
-  
-    메인 텍스쳐의 rgb 값 중 하나를 Height Map으로 사용하여, 버텍스 Y 위치값에 더해준다.
-  
-  
-    마테리얼을 생성하여 Plane에 적용한다.
-  
-
-
-
-
-[2] 렌더 텍스쳐
-
-
-  
-    게임 시작 시 렌더 텍스쳐를 하나 생성한다.
-  
-  
-    Ground 마테리얼의 메인 텍스쳐에 렌더 텍스쳐를 넣어준다.
-  
-
-
-
-
-[3] 브러시 텍스쳐
-
-
-  
-    마치 Default ...
     </summary>
   
 

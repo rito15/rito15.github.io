@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기","description":"목표","dateModified":"2021-05-09T01:30:00+09:00","datePublished":"2021-05-09T01:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/"},"url":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표","datePublished":"2021-05-09T01:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/"},"url":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/","author":{"@type":"Person","name":"Rito15"},"headline":"마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기","dateModified":"2021-05-09T01:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -2520,8 +2520,6 @@ Form1.cs
     
     
     
-      
-    
   
     
     
@@ -4035,6 +4033,19 @@ Form1.cs
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7266,7 +7277,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/memo-cs-static-readonly-vs-const/">
+        <a href="/posts/cs-utf8-string-to-byte-array/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7283,13 +7294,13 @@ static void Main()
   
 
   
-    Mar 30
+    Aug  8
   
 
-  <i class="unloaded">2021-03-30T00:50:00+09:00</i>
+  <i class="unloaded">2021-08-08T19:31:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Static Readonly vs. Const</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7298,32 +7309,36 @@ static void Main()
 
 
 
-                공통점
+                1. 힙 할당 있는 방식
+
+
+1
+2
+3
+string str = "가나다 ABC 123";
+
+byte[] byteStr = Encoding.UTF8.GetBytes(str);
 
 
 
-  런타임에 값을 변경할 수 없다.
+
+2. 힙 할당 없는 방식
+
+
+
+  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
 
 
 
 
-차이점
+버퍼를 이용한 직렬화 예시
 
-
-Static Readonly
-
-
-  
-    필드 선언문 또는 정적 생성자에서만 값을 초기화할 수 있다.
-  
-  
-    값을 초기화하지 않으면 해당 타입의 기본값으로 초기화된다.
-  
-  
-    런타임 초기에 값이 고정된다.
-  
-  
-    값이 정해지면 변하지 않지만, 결국 변...
+1
+2
+3
+4
+5
+...
               </p>
             </div>
           </div>
@@ -9145,8 +9160,6 @@ Static Readonly
     
     
     
-    
-      
     
   
     

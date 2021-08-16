@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# Regex (정규표현식)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"C# Regex (정규표현식)","description":"Memo","dateModified":"2021-08-03T03:50:36+09:00","datePublished":"2021-03-08T17:42:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-regex/"},"url":"https://rito15.github.io/posts/memo-cs-regex/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Memo","datePublished":"2021-03-08T17:42:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-regex/"},"url":"https://rito15.github.io/posts/memo-cs-regex/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Regex (정규표현식)","dateModified":"2021-08-03T03:50:36+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -2575,8 +2575,6 @@
     
     
     
-    
-      
     
   
     
@@ -5791,6 +5789,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7203,7 +7214,7 @@
       
       
       <div class="card">
-        <a href="/posts/cs-heap-memory-debugger/">
+        <a href="/posts/cs-utf8-string-to-byte-array/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7223,10 +7234,10 @@
     Aug  8
   
 
-  <i class="unloaded">2021-08-08T12:12:00+09:00</i>
+  <i class="unloaded">2021-08-08T19:31:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 간단한 힙 메모리 디버거 (콘솔)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7235,42 +7246,35 @@
 
 
 
-                기능
+                1. 힙 할당 있는 방식
 
 
+1
+2
+3
+string str = "가나다 ABC 123";
 
-  원하는 지점의 힙 메모리 크기 기록
-  기록된 두 지점의 힙 메모리 크기 차이 출력
-
-
-
-
-주의사항
-
-
-
-  Print() 이후에는 Record()하지 않아야 한다.
-    
-      Future Works : Print() 내에서 스트링을 스택에 할당하여 해결
-    
-  
+byte[] byteStr = Encoding.UTF8.GetBytes(str);
 
 
 
 
-사용 예시
+2. 힙 할당 없는 방식
 
+
+
+  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
+
+
+
+
+버퍼를 이용한 직렬화 예시
 
 1
 2
 3
 4
 5
-6
-7
-8
-9
-10
 ...
               </p>
             </div>
@@ -7364,7 +7368,7 @@ $"{value :   0}"
       
       
       <div class="card">
-        <a href="/posts/cs-utf8-string-to-byte-array/">
+        <a href="/posts/cs-memo-show-cil/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7381,13 +7385,13 @@ $"{value :   0}"
   
 
   
-    Aug  8
+    Jun 15
   
 
-  <i class="unloaded">2021-08-08T19:31:00+09:00</i>
+  <i class="unloaded">2021-06-15T20:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>CIL 코드 뜯어보기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7396,36 +7400,26 @@ $"{value :   0}"
 
 
 
-                1. 힙 할당 있는 방식
+                1. 소스코드 컴파일
+
+
+  컴파일을 완료하고 .exe 또는 .dll 파일을 생성한다.
+
+
+
+
+2. 디스어셈블러 실행
 
 
 1
-2
-3
-string str = "가나다 ABC 123";
-
-byte[] byteStr = Encoding.UTF8.GetBytes(str);
+C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
 
 
+이런 경로로 들어가서
 
+ildasm.exe 파일을 찾아 실행한다.
 
-2. 힙 할당 없는 방식
-
-
-
-  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
-
-
-
-
-버퍼를 이용한 직렬화 예시
-
-1
-2
-3
-4
-5
-...
+경로는 버전마다 조금씩 차...
               </p>
             </div>
           </div>
@@ -9237,8 +9231,6 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
     
     
     
-    
-      
     
   
     
