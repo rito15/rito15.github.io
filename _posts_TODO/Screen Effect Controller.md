@@ -1,9 +1,11 @@
 
 # 만들 스크린 이펙트
 - Damage (구현은 완료, 정리 필요)
+- Blooded
 - Shake
 - Freezing
 - Hexagonal Tiles
+https://www.youtube.com/watch?v=iYw6qU2Ep98
 
 
 
@@ -19,6 +21,7 @@ SubShader
     - Offset 체크 해제
 
 텍스쳐 프로퍼티 이름은 MainTex
+ - Attribute : Hide In Inspector
 
 
 
