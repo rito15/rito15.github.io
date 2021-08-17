@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-17T16:43:30+09:00</updated>
+  <updated>2021-08-17T20:49:09+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,64 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>초보자를 위한 쉐이더 개념 간단 요약</title>
+    <link href="https://rito15.github.io/posts/unity-shader-concept/" rel="alternate" type="text/html" title="초보자를 위한 쉐이더 개념 간단 요약" />
+    <published>2021-08-17T20:40:00+09:00</published>
+  
+    <updated>2021-08-17T20:40:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-shader-concept/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-concept/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      선요약
+
+
+  쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수
+  정점 쉐이더 : 모델링의 3D 정점 위치를 2D 화면 위치로 변환하는 함수
+  픽셀 쉐이더 : 화면에 출력될 픽셀의 최종 색상을 계산하는 함수
+
+
+
+출처 : https://kblog.popekim.com/2011/11/01-part-1.html
+
+
+
+쉐이더(Shader)
+
+
+  함수의 일종
+  함수 = (입력 -&amp;gt; 처리 -&amp;gt; 출력)
+  
+    쉐이더의 주요 구성으로는 정점 쉐이더와 픽셀 쉐이더가 있다(더 많은 것이 있지만 생략).
+  
+  입력 : 3D 모델링(.obj, .fbx)의 메시(Mesh) 데이터
+  처리 : 3D 공간의 모델링을 2D 스크린 픽셀로 변환하여 화면에 출력한...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -331,79 +389,6 @@ Download
 
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# String, StringBuilder, ZString</title>
-    <link href="https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/" rel="alternate" type="text/html" title="C# String, StringBuilder, ZString" />
-    <published>2021-08-11T17:17:00+09:00</published>
-  
-    <updated>2021-08-15T20:54:32+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/</id>
-    <content src="https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      String 포맷팅의 문제점
-
-
-$"IntValue : {123}, BoolValue : {true}";
-
-
-또는
-
-string.Format("IntValue {0}, BoolValue : {1}", 123, true);
-
-
-이런 방식의 스트링 포맷팅을 쓰는 경우가 정말 많다.
-
-
-
-정말 편리하긴 하지만,
-
-StringBuilder와 비교하면 성능도 좋지 않고
-
-심지어 가비지도 더 많이 발생시킨다.
-
-그렇다고 StringBuilder를 쓰려니 가독성이 좋지 않고 불편하다는 단점이 있다.
-
-
-
-ZString
-
-
-
-  https://github.com/Cysharp/ZString
-
-
-
-
-ZString.Format("IntValue {0}, BoolValue : {1}", 123, true);
-
-
-strin...
     </summary>
   
 

@@ -5837,6 +5837,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7066,77 +7079,6 @@ Toggle
       
       
       <div class="card">
-        <a href="/posts/cs-utf8-string-to-byte-array/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  8
-  
-
-  <i class="unloaded">2021-08-08T19:31:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                1. 힙 할당 있는 방식
-
-
-1
-2
-3
-string str = "가나다 ABC 123";
-
-byte[] byteStr = Encoding.UTF8.GetBytes(str);
-
-
-
-
-2. 힙 할당 없는 방식
-
-
-
-  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
-
-
-
-
-버퍼를 이용한 직렬화 예시
-
-1
-2
-3
-4
-5
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-string-format/">
           <div class="card-body">
             <!--
@@ -7211,6 +7153,67 @@ $"{value :   0}"
 
 
   :, 0 사이의 공백 크...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-memo-show-cil/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jun 15
+  
+
+  <i class="unloaded">2021-06-15T20:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>CIL 코드 뜯어보기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1. 소스코드 컴파일
+
+
+  컴파일을 완료하고 .exe 또는 .dll 파일을 생성한다.
+
+
+
+
+2. 디스어셈블러 실행
+
+
+1
+C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
+
+
+이런 경로로 들어가서
+
+ildasm.exe 파일을 찾아 실행한다.
+
+경로는 버전마다 조금씩 차...
               </p>
             </div>
           </div>

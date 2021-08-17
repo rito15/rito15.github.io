@@ -3957,6 +3957,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7046,75 +7059,6 @@
       
       
       <div class="card">
-        <a href="/posts/cs-utf8-string-to-byte-array/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  8
-  
-
-  <i class="unloaded">2021-08-08T19:31:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                1. 힙 할당 있는 방식
-
-
-
-  
-    string str = "가나다 ABC 123";
-
-byte[] byteStr = Encoding.UTF8.GetBytes(str);
-
-  
-
-
-
-
-2. 힙 할당 없는 방식
-
-
-
-  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
-
-
-
-
-버퍼를 이용한 직렬화 예시
-
-
-  
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-string-format/">
           <div class="card-body">
             <!--
@@ -7257,6 +7201,60 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
 ildasm.exe 파일을 찾아 실행한다.
 
 경로는...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/memo-cs-fileio/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jan 28
+  
+
+  <i class="unloaded">2021-01-28T21:10:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 파일 입출력</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                간단 정리
+
+
+파일에 쓰려면
+
+  대상이 string, string[], byte[] 타입 중 하나여야 한다.
+  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
+
+
+한 파일에 대한 연속 입출력 횟수에 따라
+
+  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
+  여러 번에 걸쳐 읽거나 쓰려면 스트림 ...
               </p>
             </div>
           </div>

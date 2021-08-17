@@ -5156,6 +5156,19 @@ Form1.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7277,7 +7290,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/cs-utf8-string-to-byte-array/">
+        <a href="/posts/cs-arraysegment-span-memory/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7297,10 +7310,10 @@ static void Main()
     Aug  8
   
 
-  <i class="unloaded">2021-08-08T19:31:00+09:00</i>
+  <i class="unloaded">2021-08-08T20:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# ArraySegment&lt;T&gt;, Span&lt;T&gt;, Memory&lt;T&gt;</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7309,36 +7322,19 @@ static void Main()
 
 
 
-                1. 힙 할당 있는 방식
+                Array
 
 
-1
-2
-3
-string str = "가나다 ABC 123";
 
-byte[] byteStr = Encoding.UTF8.GetBytes(str);
+  https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/arrays/single-dimensional-arrays
+  https://docs.microsoft.com/ko-kr/dotnet/api/system.array?view=net-5.0
 
 
 
 
-2. 힙 할당 없는 방식
+특징
 
-
-
-  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
-
-
-
-
-버퍼를 이용한 직렬화 예시
-
-1
-2
-3
-4
-5
-...
+  고정된 크기...
               </p>
             </div>
           </div>
