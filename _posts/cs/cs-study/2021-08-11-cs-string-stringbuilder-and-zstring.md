@@ -256,9 +256,64 @@ public string StringBuilderWrapper()
 
 <br>
 
-- 결론
-  - `StringBuilder`는 `.Append()`가 최고다.
-  - `StringBuilder.AppendFormat()`은 딱히 쓸 이유가 없다.
+너무나 동일하기에 `StringBuilder.AppendFormat()`과 `string.Format()`의 내부 구현을 확인해보니,
+
+```cs
+/* String.Format() */
+
+// System.String
+/// <summary>문자열에 있는 서식 지정 항목을 지정된 세 개체의 문자열 표현으로 바꿉니다.</summary>
+[__DynamicallyInvokable]
+public static string Format(string format, object arg0, object arg1, object arg2)
+{
+    return FormatHelper(null, format, new ParamsArray(arg0, arg1, arg2));
+}
+
+// System.String
+using System.Text;
+
+private static string FormatHelper(IFormatProvider provider, string format, ParamsArray args)
+{
+    if (format == null)
+    {
+        throw new ArgumentNullException("format");
+    }
+    return StringBuilderCache.GetStringAndRelease(StringBuilderCache.Acquire(format.Length + args.Length * 8).AppendFormatHelper(provider, format, args));
+}
+
+// System.Text.StringBuilder
+internal StringBuilder AppendFormatHelper(IFormatProvider provider, string format, ParamsArray args)
+{
+    // ...
+}
+```
+
+```cs
+/* StringBuilder.AppendFormat() */
+
+// System.Text.StringBuilder
+/// <summary>서식 항목이 0개 이상 포함된 복합 서식 문자열을 처리하여 반환된 문자열을 이 인스턴스에 추가합니다. 각 서식 항목이 세 인수 중 하나의 문자열 표현으로 바뀝니다.</summary>
+[__DynamicallyInvokable]
+public StringBuilder AppendFormat(string format, object arg0, object arg1, object arg2)
+{
+    return AppendFormatHelper(null, format, new ParamsArray(arg0, arg1, arg2));
+}
+
+// System.Text.StringBuilder
+internal StringBuilder AppendFormatHelper(IFormatProvider provider, string format, ParamsArray args)
+{
+    // ...
+}
+```
+
+<br>
+
+애초에 내부적으로 `StringBuilder.AppendFormatHelper()` 메소드를 동일하게 호출하고 있음을 알 수 있었다.
+
+<br>
+
+## **결론**
+- `string.Format()`, `StrinbBuilder.AppendFormat()` 메소드의 내부 구현은 같다.
 
 </details>
 

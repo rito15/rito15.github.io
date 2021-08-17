@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# String, StringBuilder, ZString" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"String 포맷팅의 문제점","datePublished":"2021-08-11T17:17:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/"},"url":"https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/","author":{"@type":"Person","name":"Rito15"},"headline":"C# String, StringBuilder, ZString","dateModified":"2021-08-15T20:54:32+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C# String, StringBuilder, ZString","description":"String 포맷팅의 문제점","dateModified":"2021-08-15T20:54:32+09:00","datePublished":"2021-08-11T17:17:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/"},"url":"https://rito15.github.io/posts/cs-string-stringbuilder-and-zstring/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="952 words">5 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1257 words">6 min</span>
 
 
           <!-- page views -->
@@ -791,13 +791,105 @@ Source Code
 
   <p><br /></p>
 
+  <p>너무나 동일하기에 <code class="language-plaintext highlighter-rouge">StringBuilder.AppendFormat()</code>과 <code class="language-plaintext highlighter-rouge">string.Format()</code>의 내부 구현을 확인해보니,</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td class="rouge-code"><pre><span class="cm">/* String.Format() */</span>
+
+<span class="c1">// System.String</span>
+<span class="c1">/// &lt;summary&gt;문자열에 있는 서식 지정 항목을 지정된 세 개체의 문자열 표현으로 바꿉니다.&lt;/summary&gt;</span>
+<span class="p">[</span><span class="n">__DynamicallyInvokable</span><span class="p">]</span>
+<span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">Format</span><span class="p">(</span><span class="kt">string</span> <span class="n">format</span><span class="p">,</span> <span class="kt">object</span> <span class="n">arg0</span><span class="p">,</span> <span class="kt">object</span> <span class="n">arg1</span><span class="p">,</span> <span class="kt">object</span> <span class="n">arg2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nf">FormatHelper</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="n">format</span><span class="p">,</span> <span class="k">new</span> <span class="nf">ParamsArray</span><span class="p">(</span><span class="n">arg0</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// System.String</span>
+<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">FormatHelper</span><span class="p">(</span><span class="n">IFormatProvider</span> <span class="n">provider</span><span class="p">,</span> <span class="kt">string</span> <span class="n">format</span><span class="p">,</span> <span class="n">ParamsArray</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">format</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentNullException</span><span class="p">(</span><span class="s">"format"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">StringBuilderCache</span><span class="p">.</span><span class="nf">GetStringAndRelease</span><span class="p">(</span><span class="n">StringBuilderCache</span><span class="p">.</span><span class="nf">Acquire</span><span class="p">(</span><span class="n">format</span><span class="p">.</span><span class="n">Length</span> <span class="p">+</span> <span class="n">args</span><span class="p">.</span><span class="n">Length</span> <span class="p">*</span> <span class="m">8</span><span class="p">).</span><span class="nf">AppendFormatHelper</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="n">format</span><span class="p">,</span> <span class="n">args</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// System.Text.StringBuilder</span>
+<span class="k">internal</span> <span class="n">StringBuilder</span> <span class="nf">AppendFormatHelper</span><span class="p">(</span><span class="n">IFormatProvider</span> <span class="n">provider</span><span class="p">,</span> <span class="kt">string</span> <span class="n">format</span><span class="p">,</span> <span class="n">ParamsArray</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="cm">/* StringBuilder.AppendFormat() */</span>
+
+<span class="c1">// System.Text.StringBuilder</span>
+<span class="c1">/// &lt;summary&gt;서식 항목이 0개 이상 포함된 복합 서식 문자열을 처리하여 반환된 문자열을 이 인스턴스에 추가합니다. 각 서식 항목이 세 인수 중 하나의 문자열 표현으로 바뀝니다.&lt;/summary&gt;</span>
+<span class="p">[</span><span class="n">__DynamicallyInvokable</span><span class="p">]</span>
+<span class="k">public</span> <span class="n">StringBuilder</span> <span class="nf">AppendFormat</span><span class="p">(</span><span class="kt">string</span> <span class="n">format</span><span class="p">,</span> <span class="kt">object</span> <span class="n">arg0</span><span class="p">,</span> <span class="kt">object</span> <span class="n">arg1</span><span class="p">,</span> <span class="kt">object</span> <span class="n">arg2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nf">AppendFormatHelper</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="n">format</span><span class="p">,</span> <span class="k">new</span> <span class="nf">ParamsArray</span><span class="p">(</span><span class="n">arg0</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// System.Text.StringBuilder</span>
+<span class="k">internal</span> <span class="n">StringBuilder</span> <span class="nf">AppendFormatHelper</span><span class="p">(</span><span class="n">IFormatProvider</span> <span class="n">provider</span><span class="p">,</span> <span class="kt">string</span> <span class="n">format</span><span class="p">,</span> <span class="n">ParamsArray</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p><br /></p>
+
+  <p>애초에 내부적으로 <code class="language-plaintext highlighter-rouge">StringBuilder.AppendFormatHelper()</code> 메소드를 동일하게 호출하고 있음을 알 수 있었다.</p>
+
+  <p><br /></p>
+
+  <h2 id="section"><strong>결론</strong></h2>
   <ul>
-    <li>결론
-      <ul>
-        <li><code class="language-plaintext highlighter-rouge">StringBuilder</code>는 <code class="language-plaintext highlighter-rouge">.Append()</code>가 최고다.</li>
-        <li><code class="language-plaintext highlighter-rouge">StringBuilder.AppendFormat()</code>은 딱히 쓸 이유가 없다.</li>
-      </ul>
-    </li>
+    <li><code class="language-plaintext highlighter-rouge">string.Format()</code>, <code class="language-plaintext highlighter-rouge">StrinbBuilder.AppendFormat()</code> 메소드의 내부 구현은 같다.</li>
   </ul>
 
 </details>
