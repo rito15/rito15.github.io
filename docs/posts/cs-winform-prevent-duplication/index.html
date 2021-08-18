@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="윈폼 중복 실행 방지" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"윈폼 중복 실행 방지","description":"Memo","dateModified":"2021-05-06T02:02:00+09:00","datePublished":"2021-05-06T02:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-prevent-duplication/"},"url":"https://rito15.github.io/posts/cs-winform-prevent-duplication/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Memo","datePublished":"2021-05-06T02:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-prevent-duplication/"},"url":"https://rito15.github.io/posts/cs-winform-prevent-duplication/","author":{"@type":"Person","name":"Rito15"},"headline":"윈폼 중복 실행 방지","dateModified":"2021-05-06T02:02:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -5063,6 +5063,84 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7192,7 +7270,7 @@ public b...
       
       
       <div class="card">
-        <a href="/posts/cs-arraysegment-span-memory/">
+        <a href="/posts/cs-string-format/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7209,13 +7287,13 @@ public b...
   
 
   
-    Aug  8
+    May  9
   
 
-  <i class="unloaded">2021-08-08T20:00:00+09:00</i>
+  <i class="unloaded">2021-05-09T21:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# ArraySegment&lt;T&gt;, Span&lt;T&gt;, Memory&lt;T&gt;</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 스트링 포맷 정리</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7224,19 +7302,48 @@ public b...
 
 
 
-                Array
+                NOTE
 
 
 
-  https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/arrays/single-dimensional-arrays
-  https://docs.microsoft.com/ko-kr/dotnet/api/system.array?view=net-5.0
+  , : 스트링의 범위(공간) 설정
+  : : 출력 포맷 설정
 
 
 
 
-특징
+좌우 정렬
 
-  고정된 크기...
+
+1
+$"{value, 10}"
+
+
+
+  10칸 범위 내에서 우측 정렬
+
+
+
+
+1
+$"{value, -10}"
+
+
+
+  10칸 범위 내에서 좌측 정렬
+
+
+
+
+숫자 왼쪽에 공백 삽입하기
+
+
+1
+$"{value :   0}"
+
+
+
+  :, 0 사이의 공백 크...
               </p>
             </div>
           </div>

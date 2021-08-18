@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Notify Icon 사용하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Notify Icon 사용하기","description":"Memo","dateModified":"2021-05-06T02:02:00+09:00","datePublished":"2021-05-06T02:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-notifyicon/"},"url":"https://rito15.github.io/posts/cs-winform-notifyicon/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Memo","datePublished":"2021-05-06T02:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-notifyicon/"},"url":"https://rito15.github.io/posts/cs-winform-notifyicon/","author":{"@type":"Person","name":"Rito15"},"headline":"Notify Icon 사용하기","dateModified":"2021-05-06T02:02:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -5159,6 +5159,84 @@ private void Form1_Shown(object sender, EventArgs e)
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7130,7 +7208,7 @@ private void Form1_Shown(object sender, EventArgs e)
       
       
       <div class="card">
-        <a href="/posts/unity-study-multithread-job/">
+        <a href="/posts/bresenham-algorithm/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7147,69 +7225,13 @@ private void Form1_Shown(object sender, EventArgs e)
   
 
   
-    Apr  4
+    Apr 25
   
 
-  <i class="unloaded">2021-04-04T22:00:00+09:00</i>
+  <i class="unloaded">2021-04-25T17:32:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티의 멀티스레딩과 Job의 활용</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                유니티에서의 멀티스레딩
-
-
-유니티엔진에서는 기본적으로 모든 CPU 연산이 메인 스레드에서 이루어진다.
-
-그렇다고 다중 스레드를 사용할 수 없다는 것은 아니지만
-
-메인 스레드가 아닌 다른 스레드에서 유니티의 메인 로직에 접근할 수 없도록 막혀있다.
-
-다시 말해, 다른 스레드에서는 게임오브젝트, 컴포넌트 등에 접근하면 에러가 발생한다.
-
-예를 들어
-
-
- ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/algorithm-pow/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Apr  6
-  
-
-  <i class="unloaded">2021-04-06T18:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>O(logn) 거듭제곱 알고리즘</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>브레즌햄(픽셀에 직선 그리기) 알고리즘</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7221,23 +7243,25 @@ private void Form1_Shown(object sender, EventArgs e)
                 Summary
 
 
+직선을 그릴 때 직선 위의 점들은 실수 값을 가질 수밖에 없다.
 
-  
-    일반적으로 \(O(n)\) 시간복잡도로 수행하는 거듭제곱 계산을 \(O(log_{2}n)\) 의 시간복잡도로 수행할 수 있는 알고리즘
-  
-  
-    2진수 연산을 이용한다.
-  
+그래서 불연속 정수 값만을 갖는 픽셀에 직선을 그릴 때는
 
+실수 값의 소수점을 버리거나 반올림하여 정수로 변환해야 하는데,
+
+브레즌햄 알고리즘은 실수 연산 없이 정수 연산만으로 직선을 그릴 수 있게 해준다.
 
 
 
 Details
 
 
-(a^n)을 계산하는 가장 쉬운 방법은 (a)를 (n) 번 곱하는 것이다.
+2가지 경우로 나눈다.
 
-예를 들어 (4^9)을 구하려면 (4...
+
+
+
+  기울...
               </p>
             </div>
           </div>
@@ -7247,7 +7271,7 @@ Details
       
       
       <div class="card">
-        <a href="/posts/algorithm-quick-sort/">
+        <a href="/posts/unity-study-radial-menu/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7264,13 +7288,13 @@ Details
   
 
   
-    Apr  7
+    Apr 26
   
 
-  <i class="unloaded">2021-04-07T22:00:00+09:00</i>
+  <i class="unloaded">2021-04-26T18:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Quick Sort(빠른 정렬)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Radial Menu 만들기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7279,40 +7303,98 @@ Details
 
 
 
-                Summary
+                목표
 
+
+
+  극좌표계를 이용하여 원형 분포 형태의 메뉴 UI 만들기
+
+
+
+
+Preview
+
+
+
+
+
+
+직교 좌표계
+
+
+
+  Cartesian Coordinate System
+
+
+유니티2D에서 사용하는 좌표계는 x, y 축으로 이루어진 직교 좌표계이다.
+
+데카르트 좌표계라고도 하며, x, y 값을 통해 좌표를 표현한다.
+
+
+
+
+
+극좌표계
+
+
+
+  Pol...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-show-private-fields/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Apr 29
+  
+
+  <i class="unloaded">2021-04-29T20:30:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>커스텀 에디터로 인스펙터에 Private 필드 나타내기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+커스텀 에디터를 통해서 private 필드를 인스펙터에 표시하려면 일단 두 가지 방법이 있다.
+
+
+
+1. 내부 클래스로 작성
+
+커스텀 에디터 클래스를 대상 모노비헤이비어 클래스의 내부에 작성하면 private 필드에도 접근할 수 있다.
 
 
   
-    
-      시간복잡도
-      평균 \(O(n log n)\), 최악 \(O(n^2)\)
-    
-    
-      공간복잡도
-      \(O(n)\)
-    
-    
-      정렬 특징
-      불안정 정렬
-    
-  
-
-
-특징
-
-  분할 정복
-  재귀
-
-
-
-
-Details
-
-
-메소드 구성
-
-QuickS...
+    public partial class RadialMenu : MonoBehaviour
+{...
               </p>
             </div>
           </div>

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Method Chaining &amp; Generic(메소드 체인 패턴)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Method Chaining &amp; Generic(메소드 체인 패턴)","description":"메소드 체이닝 패턴","dateModified":"2021-06-12T04:10:31+09:00","datePublished":"2021-05-28T22:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/method-chaning-pattern/"},"url":"https://rito15.github.io/posts/method-chaning-pattern/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"메소드 체이닝 패턴","datePublished":"2021-05-28T22:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/method-chaning-pattern/"},"url":"https://rito15.github.io/posts/method-chaning-pattern/","author":{"@type":"Person","name":"Rito15"},"headline":"Method Chaining &amp; Generic(메소드 체인 패턴)","dateModified":"2021-06-12T04:10:31+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -5423,6 +5423,84 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7742,7 +7820,7 @@
       
       
       <div class="card">
-        <a href="/posts/algorithm-pow/">
+        <a href="/posts/bresenham-algorithm/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7759,13 +7837,13 @@
   
 
   
-    Apr  6
+    Apr 25
   
 
-  <i class="unloaded">2021-04-06T18:00:00+09:00</i>
+  <i class="unloaded">2021-04-25T17:32:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>O(logn) 거듭제곱 알고리즘</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>브레즌햄(픽셀에 직선 그리기) 알고리즘</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7777,23 +7855,25 @@
                 Summary
 
 
+직선을 그릴 때 직선 위의 점들은 실수 값을 가질 수밖에 없다.
 
-  
-    일반적으로 \(O(n)\) 시간복잡도로 수행하는 거듭제곱 계산을 \(O(log_{2}n)\) 의 시간복잡도로 수행할 수 있는 알고리즘
-  
-  
-    2진수 연산을 이용한다.
-  
+그래서 불연속 정수 값만을 갖는 픽셀에 직선을 그릴 때는
 
+실수 값의 소수점을 버리거나 반올림하여 정수로 변환해야 하는데,
+
+브레즌햄 알고리즘은 실수 연산 없이 정수 연산만으로 직선을 그릴 수 있게 해준다.
 
 
 
 Details
 
 
-(a^n)을 계산하는 가장 쉬운 방법은 (a)를 (n) 번 곱하는 것이다.
+2가지 경우로 나눈다.
 
-예를 들어 (4^9)을 구하려면 (4...
+
+
+
+  기울...
               </p>
             </div>
           </div>

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="입력 바인딩 시스템 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"입력 바인딩 시스템 만들기","description":"목표 에디터 및 인게임에서 언제든 기능에 연결된 사용자 마우스, 키보드 바인딩을 변경할 수 있는 기능 구현 전체 입력 바인딩을 직렬화하여 저장하고 불러올 수 있는 기능 구현","dateModified":"2021-03-28T21:29:24+09:00","datePublished":"2021-01-30T16:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/input-binding-system/"},"url":"https://rito15.github.io/posts/input-binding-system/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 에디터 및 인게임에서 언제든 기능에 연결된 사용자 마우스, 키보드 바인딩을 변경할 수 있는 기능 구현 전체 입력 바인딩을 직렬화하여 저장하고 불러올 수 있는 기능 구현","datePublished":"2021-01-30T16:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/input-binding-system/"},"url":"https://rito15.github.io/posts/input-binding-system/","author":{"@type":"Person","name":"Rito15"},"headline":"입력 바인딩 시스템 만들기","dateModified":"2021-03-28T21:29:24+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -7182,6 +7182,84 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7633,7 +7711,7 @@ Source Code
       
       
       <div class="card">
-        <a href="/posts/unity-study-multithread-job/">
+        <a href="/posts/unity-study-radial-menu/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7650,13 +7728,13 @@ Source Code
   
 
   
-    Apr  4
+    Apr 26
   
 
-  <i class="unloaded">2021-04-04T22:00:00+09:00</i>
+  <i class="unloaded">2021-04-26T18:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티의 멀티스레딩과 Job의 활용</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Radial Menu 만들기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7665,20 +7743,41 @@ Source Code
 
 
 
-                유니티에서의 멀티스레딩
+                목표
 
-유니티엔진에서는 기본적으로 모든 CPU 연산이 메인 스레드에서 이루어진다.
 
-그렇다고 다중 스레드를 사용할 수 없다는 것은 아니지만
+  극좌표계를 이용하여 원형 분포 형태의 메뉴 UI 만들기
 
-메인 스레드가 아닌 다른 스레드에서 유니티의 메인 로직에 접근할 수 없도록 막혀있다.
 
-다시 말해, 다른 스레드에서는 게임오브젝트, 컴포넌트 등에 접근하면 에러가 발생한다.
 
-예를 들어
 
-1
-2...
+Preview
+
+
+
+
+
+
+직교 좌표계
+
+
+
+  Cartesian Coordinate System
+
+
+유니티2D에서 사용하는 좌표계는 x, y 축으로 이루어진 직교 좌표계이다.
+
+데카르트 좌표계라고도 하며, x, y 값을 통해 좌표를 표현한다.
+
+
+
+
+
+극좌표계
+
+
+
+  Pola...
               </p>
             </div>
           </div>
@@ -7688,7 +7787,7 @@ Source Code
       
       
       <div class="card">
-        <a href="/posts/unity-study-rpg-inventory/">
+        <a href="/posts/behavior-tree/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7705,13 +7804,13 @@ Source Code
   
 
   
-    Apr 15
+    Jan  5
   
 
-  <i class="unloaded">2021-04-15T22:00:00+09:00</i>
+  <i class="unloaded">2021-01-05T00:26:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>RPG Inventory System(RPG 게임 인벤토리 만들기)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>비헤이비어 트리(Behavior Tree)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7720,37 +7819,13 @@ Source Code
 
 
 
-                개요
+                개념
 
 
 
-  RPG 게임에서 사용할 수 있는 기본적인 인벤토리를 구현한다.
-
-
-
-
-구현할 기능
-
-  아이템 추가(습득)
-  아이템 제거(버리기)
-  아이템 사용
-  아이템 이동
-  슬롯 하이라이트
-  아이템 툴팁
-  아이템 버리기 팝업
-  아이템 개수 나누기 팝업
-  인벤토리 빈칸 채우기
-  인벤토리 정렬
-  아이템 필터링
-
-
-
-
-클래스 구성
-
-
-
-...
+  FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
+  FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
+  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
               </p>
             </div>
           </div>

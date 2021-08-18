@@ -1,11 +1,10 @@
 
-# 만들 스크린 이펙트
-- Damage (구현은 완료, 정리 필요)
-- Blooded
-- Shake
-- Freezing
-- Hexagonal Tiles
-https://www.youtube.com/watch?v=iYw6qU2Ep98
+
+TODO
+
+Hex 쉐이더
+- 육각형 Vector2타입 크기 프로퍼티로 변경 가능하게 변경
+
 
 
 

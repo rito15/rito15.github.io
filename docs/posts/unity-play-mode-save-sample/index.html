@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Unity Play Mode Save - Sample" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Unity Play Mode Save - Sample","description":"Memo","dateModified":"2021-08-17T04:32:00+09:00","datePublished":"2021-08-17T04:32:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-play-mode-save-sample/"},"url":"https://rito15.github.io/posts/unity-play-mode-save-sample/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Memo","datePublished":"2021-08-17T04:32:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-play-mode-save-sample/"},"url":"https://rito15.github.io/posts/unity-play-mode-save-sample/","author":{"@type":"Person","name":"Rito15"},"headline":"Unity Play Mode Save - Sample","dateModified":"2021-08-17T04:32:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -3927,6 +3927,84 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7098,7 +7176,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-refresh-windows/">
+        <a href="/posts/unity-path-memo/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7115,13 +7193,13 @@
   
 
   
-    May 19
+    Aug 18
   
 
-  <i class="unloaded">2021-05-19T01:00:00+09:00</i>
+  <i class="unloaded">2021-08-18T20:40:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>각종 윈도우 새로고침하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity - Path</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7130,43 +7208,45 @@
 
 
 
-                커스텀 에디터 - 인스펙터뷰
+                Memo
 
 
-
-  Editor.Repaint()
-
-
-
-  
-    // 해당 CustomEditor 내에서 호출
-this.Repaint();
-
-  
-
-
-
-
-커스텀 에디터 윈도우
-
-
-
-  EditorWindow.Repaint()
-
-
-
-  
-    this.Repaint();
-
-  
-
-
-
-
-씬뷰
-
-
-인스펙터의 변경사항이 씬뷰에 곧바로 ...
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+public static string ScriptFolderFullPath { get; private set; }      // "......\이 스크립트가 위치한 폴더...
               </p>
             </div>
           </div>
@@ -7176,7 +7256,7 @@ this.Repaint();
       
       
       <div class="card">
-        <a href="/posts/unity-editor-view-width-considering-scroll/">
+        <a href="/posts/unity-hierarchy-icon/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7193,13 +7273,13 @@ this.Repaint();
   
 
   
-    Jun 13
+    Aug 18
   
 
-  <i class="unloaded">2021-06-13T23:33:00+09:00</i>
+  <i class="unloaded">2021-08-18T21:20:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity - 하이라키 아이콘 적용 예제</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7208,18 +7288,67 @@ this.Repaint();
 
 
 
-                Note
-
-
-커스텀 에디터에서 EditorGUIUtility.currentViewWidth를 통해 현재 에디터의 너비를 구할 수 있지만,
+                Memo
 
 
 
-위처럼 컴포넌트 창이 상하로 길어져 우측에 스크롤바가 생기는 경우
+  NOTE : 아이콘 뿐만 아니라 가능한 GUI를 모두 그릴 수 있다.
 
-스크롤바가 컨트롤들을 가림에도 불구하고, currentViewWidth는 스크롤바를 포함한 너비를 알려주며
 
-스크롤바를 제외한 너비를 구하는 ...
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+...
               </p>
             </div>
           </div>

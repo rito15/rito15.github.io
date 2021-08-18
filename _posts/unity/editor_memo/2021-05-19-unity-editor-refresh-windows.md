@@ -58,6 +58,24 @@ this.Repaint();
 
 이럴 때는 `AssetDatabase.Refresh()`를 호출하면 된다.
 
+<br>
+
++
+
+```cs
+EditorApplication.RepaintProjectWindow();
+```
+
+<br>
+
+# 하이라키
+---
+
+```cs
+EditorApplication.RepaintHierarchyWindow();
+```
+
+
 
 
 
