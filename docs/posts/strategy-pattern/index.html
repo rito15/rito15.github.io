@@ -1094,6 +1094,11 @@ Source Code
         
         
         
+        <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
       
         
@@ -1110,11 +1115,6 @@ Source Code
         
         
         <li><a href="/posts/cs-utf8-string-to-byte-array/">C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-benchmark-dotnet/">C# Benchmark DotNet</a></li>
       
 
       </ul>
@@ -5219,6 +5219,19 @@ Source Code
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7683,7 +7696,7 @@ Source Code
       
       
       <div class="card">
-        <a href="/posts/bresenham-algorithm/">
+        <a href="/posts/hash-table/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7700,13 +7713,13 @@ Source Code
   
 
   
-    Apr 25
+    Jul 20
   
 
-  <i class="unloaded">2021-04-25T17:32:00+09:00</i>
+  <i class="unloaded">2021-07-20T17:14:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>브레즌햄(픽셀에 직선 그리기) 알고리즘</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hash Table(해시 테이블)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7715,28 +7728,32 @@ Source Code
 
 
 
-                Summary
-
-
-직선을 그릴 때 직선 위의 점들은 실수 값을 가질 수밖에 없다.
-
-그래서 불연속 정수 값만을 갖는 픽셀에 직선을 그릴 때는
-
-실수 값의 소수점을 버리거나 반올림하여 정수로 변환해야 하는데,
-
-브레즌햄 알고리즘은 실수 연산 없이 정수 연산만으로 직선을 그릴 수 있게 해준다.
+                특징
 
 
 
-Details
-
-
-2가지 경우로 나눈다.
+  
+    데이터의 삽입, 제거, 탐색이 모두 O(1)로 매우 빠르다.
+  
+  
+    내부적으로 정렬되지는 않는다.
+  
+  
+    저장할 데이터의 수보다 더 많은 공간이 필요하다.
+  
 
 
 
 
-  기울...
+구현 원리
+
+
+
+  
+    Key와 Value를 함께 저장하는 Pair 타입(클래스 또는 구조체)을 준비한다.
+  
+  
+    Pair[...
               </p>
             </div>
           </div>

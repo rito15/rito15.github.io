@@ -767,6 +767,11 @@
         
         
         
+        <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
       
         
@@ -783,11 +788,6 @@
         
         
         <li><a href="/posts/cs-utf8-string-to-byte-array/">C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-benchmark-dotnet/">C# Benchmark DotNet</a></li>
       
 
       </ul>
@@ -4931,6 +4931,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7332,62 +7345,6 @@ public class Sample_PlayMod...
       
       
       <div class="card">
-        <a href="/posts/unity-update-game-view/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jun 30
-  
-
-  <i class="unloaded">2021-06-30T21:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>게임 뷰를 강제로 업데이트하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Memo
-
-
-  
-    플레이 모드에 진입하지 않고 게임 뷰에서 쉐이더 애니메이션을 확인하고 싶을 때 사용한다.
-  
-  
-    아무 게임오브젝트나 붙잡고 Dirty로 만들어주면 게임 뷰가 업데이트 된다.
-  
-
-
-1
-EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
-
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-path-memo/">
           <div class="card-body">
             <!--
@@ -7459,6 +7416,62 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
 34
 35
 public static string ScriptFolderFullPath { get; private set; }      // "......\이 스크립트가 위치한 폴더...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-update-game-view/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jun 30
+  
+
+  <i class="unloaded">2021-06-30T21:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>게임 뷰를 강제로 업데이트하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+  
+    플레이 모드에 진입하지 않고 게임 뷰에서 쉐이더 애니메이션을 확인하고 싶을 때 사용한다.
+  
+  
+    아무 게임오브젝트나 붙잡고 Dirty로 만들어주면 게임 뷰가 업데이트 된다.
+  
+
+
+1
+EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
+
+...
               </p>
             </div>
           </div>

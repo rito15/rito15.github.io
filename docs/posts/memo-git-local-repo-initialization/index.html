@@ -722,6 +722,11 @@ git push -u origin main
         
         
         
+        <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
       
         
@@ -738,11 +743,6 @@ git push -u origin main
         
         
         <li><a href="/posts/cs-utf8-string-to-byte-array/">C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-benchmark-dotnet/">C# Benchmark DotNet</a></li>
       
 
       </ul>
@@ -6160,6 +6160,19 @@ git push -u origin main
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7346,7 +7359,7 @@ public class Sample_PlayMod...
       
       
       <div class="card">
-        <a href="/posts/unity-update-game-view/">
+        <a href="/posts/unity-path-memo/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7363,13 +7376,13 @@ public class Sample_PlayMod...
   
 
   
-    Jun 30
+    Aug 18
   
 
-  <i class="unloaded">2021-06-30T21:00:00+09:00</i>
+  <i class="unloaded">2021-08-18T20:40:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>게임 뷰를 강제로 업데이트하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity - Path</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7381,18 +7394,42 @@ public class Sample_PlayMod...
                 Memo
 
 
-  
-    플레이 모드에 진입하지 않고 게임 뷰에서 쉐이더 애니메이션을 확인하고 싶을 때 사용한다.
-  
-  
-    아무 게임오브젝트나 붙잡고 Dirty로 만들어주면 게임 뷰가 업데이트 된다.
-  
-
-
 1
-EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
-
-...
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+public static string ScriptFolderFullPath { get; private set; }      // "......\이 스크립트가 위치한 폴더...
               </p>
             </div>
           </div>

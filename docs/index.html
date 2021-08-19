@@ -366,6 +366,101 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/cs-enum-index-array-vs-dict/">Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        요약
+
+
+
+  array[(int)enumValue], dict[enumValue]의 참조 성능을 비교한다.
+
+
+
+
+테스트 코드
+
+
+
+  
+    public enum MyEnum
+{
+    Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine
+}
+
+public float[] targetArray;
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Aug 19, 2021, 11:11 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 19
+  
+
+  <i class="unloaded">2021-08-19T23:11:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="427 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-amplify-screen-shake/">(Amplify) Screen Effect - Shake [TODO]</a>
     </h1>
 
@@ -1239,103 +1334,6 @@ Referen...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-character-encodings/">문자 인코딩 방식들 간단 메모</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Encoding
-
-
-
-  
-    문자(char)를 코드(byte[])로 표현하는 것
-  
-  
-    반의어 : Decoding
-  
-
-
-
-
-ASCII
-
-
-
-  
-    American Standard Code for Information Interchange, 미국 정보 교환 표준 부호
-  
-  
-    영미 문화권의 기본적인 문자들을 코드값에 대...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Aug 15, 2021,  9:42 PM +0900"
-  >
-
-  
-  
-
-  
-    Aug 15
-  
-
-  <i class="unloaded">2021-08-15T21:42:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="466 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1804,6 +1802,11 @@ ASCII
         
         
         
+        <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
       
         
@@ -1820,11 +1823,6 @@ ASCII
         
         
         <li><a href="/posts/cs-utf8-string-to-byte-array/">C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-benchmark-dotnet/">C# Benchmark DotNet</a></li>
       
 
       </ul>
