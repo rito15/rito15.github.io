@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-20T02:46:24+09:00</updated>
+  <updated>2021-08-20T20:37:50+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,176 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# Switch-Case의 특징</title>
+    <link href="https://rito15.github.io/posts/cs-switch-case/" rel="alternate" type="text/html" title="C# Switch-Case의 특징" />
+    <published>2021-08-20T16:49:00+09:00</published>
+  
+    <updated>2021-08-20T16:49:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-switch-case/</id>
+    <content src="https://rito15.github.io/posts/cs-switch-case/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Grammar" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Switch-Case 문
+
+
+
+  
+    대상 변수에 대해, 고정된 값들을 case에 지정하여 동등 비교를 수행할 수 있다.
+  
+  
+    case가 일정 개수 미만일 경우, if-else와 동일한 방식으로 각 case를 순차적으로 확인하며 분기한다고 한다.
+  
+  
+    case가 일정 개수 이상일 경우, 메모리에 Jump Table을 생성하여 해당 case로 직접 건너뛴다고 한다.
+  
+
+
+
+
+생성되는 CIL 코드 확인하기
+
+
+[1] 소스 코드
+
+
+   
+.
+
+
+  private void IfElse()
+{
+    int value = 2;
+
+    if (value == 0) result = 0;
+    else if (value == 1) result = 10;
+    else if (...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>VS2019 파일 템플릿 만들기</title>
+    <link href="https://rito15.github.io/posts/cs-vs-2019-item-template/" rel="alternate" type="text/html" title="VS2019 파일 템플릿 만들기" />
+    <published>2021-08-20T16:16:00+09:00</published>
+  
+    <updated>2021-08-20T16:16:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-vs-2019-item-template/</id>
+    <content src="https://rito15.github.io/posts/cs-vs-2019-item-template/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+[1] 템플릿으로 사용할 파일 만들기
+
+
+
+
+
+[2] 템플릿 내보내기
+
+
+  [프로젝트] - [템플릿 내보내기]
+
+
+
+
+
+  [항목 템플릿] 선택 - [다음]
+
+
+
+
+
+  내보낼 파일에 체크
+
+
+
+
+
+  참조가 필요한 경우 선택 - [다음]
+
+
+
+
+
+  템플릿 이름과 설명 작성 후 - [마침]
+
+
+
+
+[2] 생성된 파일 확인
+
+
+
+
+
+[3] 템플릿 확인
+
+
+  비주얼 스튜디오를 닫고, 다시 시작한다.
+
+
+
+
+
+  새 항목 추가 창에서 새로운 템플릿이 생성된 것을 확인할 수 있다.
+
+
+
+
+References
+
+
+  https://docs.microsoft.com/ko-kr/visualstudio/ide/how-to-create-item-templates?view=vs-2019
+  https:...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -200,143 +370,6 @@ Download
 
 
   2021_0817_Screen Effect_Hexagons.zip
-
-
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Amplify) Screen Effect - Damage [TODO]</title>
-    <link href="https://rito15.github.io/posts/unity-amplify-screen-damage/" rel="alternate" type="text/html" title="(Amplify) Screen Effect - Damage [TODO]" />
-    <published>2021-08-19T02:55:00+09:00</published>
-  
-    <updated>2021-08-19T02:55:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-amplify-screen-damage/</id>
-    <content src="https://rito15.github.io/posts/unity-amplify-screen-damage/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Amplify Shader" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-  피격 이펙트
-
-
-
-
-Preview
-
-
-
-
-
-
-Nodes
-
-
-
-
-
-
-Download
-
-
-  2021_0817_Screen Effect_Damage.zip
-
-
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Screen Effect Controller [TODO]</title>
-    <link href="https://rito15.github.io/posts/unity-screen-effect-controller/" rel="alternate" type="text/html" title="Screen Effect Controller [TODO]" />
-    <published>2021-08-19T02:53:00+09:00</published>
-  
-    <updated>2021-08-19T02:53:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-screen-effect-controller/</id>
-    <content src="https://rito15.github.io/posts/unity-screen-effect-controller/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Utilities" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-  간편하게 사용 가능한 스크린 이펙트(포스트 프로세싱) 컨트롤러
-
-
-
-
-Preview
-
-
-
-
-0. Download &amp;amp; Import
-
-
-  
-    Screen Effect Controller.unitypackage
-  
-  
-    첨부 파일을 다운로드하고, 유니티 프로젝트가 켜져 있는 상태에서 실행합니다.
-  
-  
-    임포트 창이 나타나면 Import 버튼을 클릭하여 프로젝트에 임포트합니다.
-  
-
-
-
-
-How To Use
-
-
-  
-
-
 
 
 

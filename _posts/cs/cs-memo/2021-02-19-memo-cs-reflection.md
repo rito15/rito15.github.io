@@ -160,6 +160,33 @@ FieldInfo fi2 = t.GetField("staticValue", bf2);
 float value2 = (float)fi2.GetValue(null);
 ```
 
+<br>
+
+
+# 인터페이스 타입으로 구현 타입들 가져오기
+---
+
+```cs
+interface IPoo { }
+class Some1 : IPoo { }
+class Some2 : IPoo { }
+```
+
+이런 인터페이스 구현 관계가 있을 경우,
+
+`IPoo`의 타입을 통해 `Some1`, `Some2`를 찾을 수 있다.
+
+<br>
+
+```cs
+Type targetType = typeof(IPoo);
+
+var types =
+    Assembly.GetAssembly(targetType).GetTypes()
+        .Where(t => !(t.GetInterface(targetType.Name) is null))
+        .ToArray();
+```
+
 
 <br>
 

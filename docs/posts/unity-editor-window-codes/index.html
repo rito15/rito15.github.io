@@ -4856,6 +4856,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7139,62 +7165,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-show-private-fields/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Apr 29
-  
-
-  <i class="unloaded">2021-04-29T20:30:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>커스텀 에디터로 인스펙터에 Private 필드 나타내기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Memo
-
-
-커스텀 에디터를 통해서 private 필드를 인스펙터에 표시하려면 일단 두 가지 방법이 있다.
-
-
-
-1. 내부 클래스로 작성
-
-커스텀 에디터 클래스를 대상 모노비헤이비어 클래스의 내부에 작성하면 private 필드에도 접근할 수 있다.
-
-
-  
-    public partial class RadialMenu : MonoBehaviour
-{...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-gui-style/">
           <div class="card-body">
             <!--
@@ -7301,6 +7271,69 @@ GUI.backgroundColor = oldB...
 EditorGUI.LabelField(rect, "Label"); // Draw Field Control
 
 bool mouseOver = rect.Contai...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-undo/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 28
+  
+
+  <i class="unloaded">2021-02-28T01:52:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Undo</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+
+  
+    필드의 값 변경, 리스트나 딕셔너리의 구성요소 변경 : RecordeObject(컴포넌트, "")
+  
+  
+    커스텀 에디터에서 대상의 필드를 Undo에 등록하려면, 반드시 해당 필드가 직렬화되어야 한다.
+  
+
+
+
+
+Memo
+
+
+1. 다른 동작에 Undo 등록
+
+
+  
+    // 이름 변경, 기타 등등 수행하기 직전...
               </p>
             </div>
           </div>

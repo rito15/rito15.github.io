@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="812 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="902 words">5 min</span>
 
 
           <!-- page views -->
@@ -681,6 +681,39 @@
 <span class="n">FieldInfo</span> <span class="n">fi2</span> <span class="p">=</span> <span class="n">t</span><span class="p">.</span><span class="nf">GetField</span><span class="p">(</span><span class="s">"staticValue"</span><span class="p">,</span> <span class="n">bf2</span><span class="p">);</span>
 
 <span class="kt">float</span> <span class="n">value2</span> <span class="p">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">fi2</span><span class="p">.</span><span class="nf">GetValue</span><span class="p">(</span><span class="k">null</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h1 id="인터페이스-타입으로-구현-타입들-가져오기">인터페이스 타입으로 구현 타입들 가져오기</h1>
+<hr />
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">interface</span> <span class="nc">IPoo</span> <span class="p">{</span> <span class="p">}</span>
+<span class="k">class</span> <span class="nc">Some1</span> <span class="p">:</span> <span class="n">IPoo</span> <span class="p">{</span> <span class="p">}</span>
+<span class="k">class</span> <span class="nc">Some2</span> <span class="p">:</span> <span class="n">IPoo</span> <span class="p">{</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이런 인터페이스 구현 관계가 있을 경우,</p>
+
+<p><code class="language-plaintext highlighter-rouge">IPoo</code>의 타입을 통해 <code class="language-plaintext highlighter-rouge">Some1</code>, <code class="language-plaintext highlighter-rouge">Some2</code>를 찾을 수 있다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="n">Type</span> <span class="n">targetType</span> <span class="p">=</span> <span class="k">typeof</span><span class="p">(</span><span class="n">IPoo</span><span class="p">);</span>
+
+<span class="kt">var</span> <span class="n">types</span> <span class="p">=</span>
+    <span class="n">Assembly</span><span class="p">.</span><span class="nf">GetAssembly</span><span class="p">(</span><span class="n">targetType</span><span class="p">).</span><span class="nf">GetTypes</span><span class="p">()</span>
+        <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="p">!(</span><span class="n">t</span><span class="p">.</span><span class="nf">GetInterface</span><span class="p">(</span><span class="n">targetType</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span> <span class="k">is</span> <span class="k">null</span><span class="p">))</span>
+        <span class="p">.</span><span class="nf">ToArray</span><span class="p">();</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
@@ -4085,6 +4118,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
