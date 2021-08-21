@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="269 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="543 words">3 min</span>
 
 
           <!-- page views -->
@@ -510,6 +510,8 @@
 62
 63
 64
+65
+66
 </pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">DisallowMultipleComponent</span><span class="p">]</span>
 <span class="k">public</span> <span class="k">class</span> <span class="nc">Test_HierarchyIcon</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
 <span class="p">{</span>
@@ -531,7 +533,7 @@
             <span class="n">iconTexture</span> <span class="p">=</span> <span class="n">UnityEditor</span><span class="p">.</span><span class="n">AssetDatabase</span><span class="p">.</span><span class="nf">LoadAssetAtPath</span><span class="p">(</span><span class="n">texturePath</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Texture2D</span><span class="p">))</span> <span class="k">as</span> <span class="n">Texture2D</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="n">UnityEditor</span><span class="p">.</span><span class="n">EditorApplication</span><span class="p">.</span><span class="n">hierarchyWindowItemOnGUI</span> <span class="p">+=</span> <span class="n">HierarchyIconHandler</span><span class="p">;</span>
+        <span class="n">UnityEditor</span><span class="p">.</span><span class="n">EditorApplication</span><span class="p">.</span><span class="n">hierarchyWindowItemOnGUI</span> <span class="p">+=</span> <span class="n">DrawHierarchyIcon</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">InitFolderPath</span><span class="p">([</span><span class="n">System</span><span class="p">.</span><span class="n">Runtime</span><span class="p">.</span><span class="n">CompilerServices</span><span class="p">.</span><span class="n">CallerFilePath</span><span class="p">]</span> <span class="kt">string</span> <span class="n">sourceFilePath</span> <span class="p">=</span> <span class="s">""</span><span class="p">)</span>
@@ -544,7 +546,9 @@
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="k">static</span> <span class="k">void</span> <span class="nf">HierarchyIconHandler</span><span class="p">(</span><span class="kt">int</span> <span class="n">instanceID</span><span class="p">,</span> <span class="n">Rect</span> <span class="n">selectionRect</span><span class="p">)</span>
+    <span class="c1">// 구버전에서는 GUI.color를 통한 색상 지정이 안되므로, 범용성을 위해 style을 사용한다.</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="n">GUIStyle</span> <span class="n">labelStyle</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">DrawHierarchyIcon</span><span class="p">(</span><span class="kt">int</span> <span class="n">instanceID</span><span class="p">,</span> <span class="n">Rect</span> <span class="n">selectionRect</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">const</span> <span class="kt">float</span> <span class="n">Pos</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
 
@@ -555,21 +559,150 @@
 
         <span class="c1">// 2. Label Rect</span>
         <span class="n">Rect</span> <span class="n">labelRect</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">iconRect</span><span class="p">);</span>
-        <span class="n">labelRect</span><span class="p">.</span><span class="n">x</span> <span class="p">+=</span> <span class="m">20f</span><span class="p">;</span>
-        <span class="n">labelRect</span><span class="p">.</span><span class="n">width</span> <span class="p">=</span> <span class="m">80f</span><span class="p">;</span>
+        <span class="n">labelRect</span><span class="p">.</span><span class="n">x</span> <span class="p">+=</span> <span class="m">20f</span><span class="p">;</span> 
+        <span class="n">labelRect</span><span class="p">.</span><span class="n">width</span> <span class="p">=</span> <span class="m">60f</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">labelStyle</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">labelStyle</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">GUIStyle</span><span class="p">(</span><span class="n">UnityEditor</span><span class="p">.</span><span class="n">EditorStyles</span><span class="p">.</span><span class="n">label</span><span class="p">);</span>
+            <span class="n">labelStyle</span><span class="p">.</span><span class="n">normal</span><span class="p">.</span><span class="n">textColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">yellow</span><span class="p">;</span>
+        <span class="p">}</span>
 
         <span class="n">GameObject</span> <span class="n">go</span> <span class="p">=</span> <span class="n">UnityEditor</span><span class="p">.</span><span class="n">EditorUtility</span><span class="p">.</span><span class="nf">InstanceIDToObject</span><span class="p">(</span><span class="n">instanceID</span><span class="p">)</span> <span class="k">as</span> <span class="n">GameObject</span><span class="p">;</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">go</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">go</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Test_HierarchyIcon</span><span class="p">&gt;()</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">go</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">go</span><span class="p">.</span><span class="n">activeSelf</span> <span class="p">&amp;&amp;</span> <span class="n">go</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Test_HierarchyIcon</span><span class="p">&gt;()</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="n">GUI</span><span class="p">.</span><span class="nf">DrawTexture</span><span class="p">(</span><span class="n">iconRect</span><span class="p">,</span> <span class="n">iconTexture</span><span class="p">);</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="n">labelRect</span><span class="p">,</span> <span class="s">"Nyang"</span><span class="p">,</span> <span class="n">labelStyle</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="cp">#endif
+</span><span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
 
-            <span class="n">Color</span> <span class="n">c</span> <span class="p">=</span> <span class="n">GUI</span><span class="p">.</span><span class="n">color</span><span class="p">;</span>
-            <span class="n">GUI</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">yellow</span><span class="p">;</span>
-            <span class="p">{</span>
-                <span class="n">GUI</span><span class="p">.</span><span class="nf">Label</span><span class="p">(</span><span class="n">labelRect</span><span class="p">,</span> <span class="s">"Nyang"</span><span class="p">);</span>
-            <span class="p">}</span>
-            <span class="n">GUI</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">c</span><span class="p">;</span>
+<p><br /></p>
+
+<h1 id="좌측-끝에-아이콘-하나-띄우기">좌측 끝에 아이콘 하나 띄우기</h1>
+<hr />
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/130314363-bfcc95fc-46ed-4ba0-b3f5-535cc1ff841b.png" alt="image" /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+</pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">DisallowMultipleComponent</span><span class="p">]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Test_HierarchyLeftIcon</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+<span class="cp">#if UNITY_EDITOR
+</span>    <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">CurrentFolderPath</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// "Assets\......\이 스크립트가 있는 폴더 경로"</span>
+
+    <span class="k">private</span> <span class="k">static</span> <span class="n">Texture2D</span> <span class="n">iconTexture</span><span class="p">;</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">iconTextureFileName</span> <span class="p">=</span> <span class="s">"Icon.png"</span><span class="p">;</span>
+
+    <span class="p">[</span><span class="n">UnityEditor</span><span class="p">.</span><span class="n">InitializeOnLoadMethod</span><span class="p">]</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">ApplyHierarchyIcon</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nf">InitFolderPath</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">iconTexture</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">string</span> <span class="n">texturePath</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="nf">Combine</span><span class="p">(</span><span class="n">CurrentFolderPath</span><span class="p">,</span> <span class="n">iconTextureFileName</span><span class="p">);</span>
+            <span class="n">iconTexture</span> <span class="p">=</span> <span class="n">UnityEditor</span><span class="p">.</span><span class="n">AssetDatabase</span><span class="p">.</span><span class="nf">LoadAssetAtPath</span><span class="p">(</span><span class="n">texturePath</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Texture2D</span><span class="p">))</span> <span class="k">as</span> <span class="n">Texture2D</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">iconTexture</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">UnityEditor</span><span class="p">.</span><span class="n">EditorApplication</span><span class="p">.</span><span class="n">hierarchyWindowItemOnGUI</span> <span class="p">+=</span> <span class="n">DrawHierarchyIcon</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">InitFolderPath</span><span class="p">([</span><span class="n">System</span><span class="p">.</span><span class="n">Runtime</span><span class="p">.</span><span class="n">CompilerServices</span><span class="p">.</span><span class="n">CallerFilePath</span><span class="p">]</span> <span class="kt">string</span> <span class="n">sourceFilePath</span> <span class="p">=</span> <span class="s">""</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">CurrentFolderPath</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="nf">GetDirectoryName</span><span class="p">(</span><span class="n">sourceFilePath</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">rootIndex</span> <span class="p">=</span> <span class="n">CurrentFolderPath</span><span class="p">.</span><span class="nf">IndexOf</span><span class="p">(</span><span class="s">@"Assets\"</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rootIndex</span> <span class="p">&gt;</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">CurrentFolderPath</span> <span class="p">=</span> <span class="n">CurrentFolderPath</span><span class="p">.</span><span class="nf">Substring</span><span class="p">(</span><span class="n">rootIndex</span><span class="p">,</span> <span class="n">CurrentFolderPath</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="n">rootIndex</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">DrawHierarchyIcon</span><span class="p">(</span><span class="kt">int</span> <span class="n">instanceID</span><span class="p">,</span> <span class="n">Rect</span> <span class="n">selectionRect</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">const</span> <span class="kt">float</span> <span class="n">Pos</span> <span class="p">=</span>
+<span class="cp">#if UNITY_2019_3_OR_NEWER      
+</span>            <span class="m">32f</span><span class="p">;</span>
+<span class="cp">#else
+</span>            <span class="m">0f</span>
+<span class="cp">#endif
+</span>
+        <span class="n">Rect</span> <span class="n">iconRect</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Rect</span><span class="p">(</span><span class="n">selectionRect</span><span class="p">);</span>
+        <span class="n">iconRect</span><span class="p">.</span><span class="n">x</span> <span class="p">=</span> <span class="n">Pos</span><span class="p">;</span>
+        <span class="n">iconRect</span><span class="p">.</span><span class="n">width</span> <span class="p">=</span> <span class="m">16f</span><span class="p">;</span>
+
+        <span class="n">GameObject</span> <span class="n">go</span> <span class="p">=</span> <span class="n">UnityEditor</span><span class="p">.</span><span class="n">EditorUtility</span><span class="p">.</span><span class="nf">InstanceIDToObject</span><span class="p">(</span><span class="n">instanceID</span><span class="p">)</span> <span class="k">as</span> <span class="n">GameObject</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">go</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">go</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Test_HierarchyLeftIcon</span><span class="p">&gt;()</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">GUI</span><span class="p">.</span><span class="nf">DrawTexture</span><span class="p">(</span><span class="n">iconRect</span><span class="p">,</span> <span class="n">iconTexture</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="cp">#endif
@@ -710,6 +843,11 @@
         
         
         
+        <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
       
         
@@ -726,11 +864,6 @@
         
         
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-utf8-string-to-byte-array/">C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</a></li>
       
 
       </ul>

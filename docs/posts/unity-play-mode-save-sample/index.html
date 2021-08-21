@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="168 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="193 words">1 min</span>
 
 
           <!-- page views -->
@@ -473,6 +473,7 @@
 41
 42
 43
+44
 </pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Sample_PlayModeSave</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
 <span class="p">{</span>
     <span class="cm">/***********************************************************************
@@ -492,7 +493,8 @@
                 <span class="k">switch</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span>
                 <span class="p">{</span>
                     <span class="k">case</span> <span class="n">UnityEditor</span><span class="p">.</span><span class="n">PlayModeStateChange</span><span class="p">.</span><span class="n">ExitingPlayMode</span><span class="p">:</span>
-                        <span class="kt">var</span> <span class="n">targets</span> <span class="p">=</span> <span class="nf">FindObjectsOfType</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">Inner_PlayModeSave</span><span class="p">).</span><span class="n">DeclaringType</span><span class="p">);</span>
+                    <span class="c1">//var targets = FindObjectsOfType(typeof(Inner_PlayModeSave).DeclaringType); // 비활성 오브젝트 제외</span>
+                    <span class="kt">var</span> <span class="n">targets</span> <span class="p">=</span> <span class="n">Resources</span><span class="p">.</span><span class="nf">FindObjectsOfTypeAll</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">Inner_PlayModeSave</span><span class="p">).</span><span class="n">DeclaringType</span><span class="p">);</span> <span class="c1">// 비활성 오브젝트 포함</span>
                         <span class="n">targetSoArr</span> <span class="p">=</span> <span class="k">new</span> <span class="n">UnityEditor</span><span class="p">.</span><span class="n">SerializedObject</span><span class="p">[</span><span class="n">targets</span><span class="p">.</span><span class="n">Length</span><span class="p">];</span>
                         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">targets</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
                             <span class="n">targetSoArr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">UnityEditor</span><span class="p">.</span><span class="nf">SerializedObject</span><span class="p">(</span><span class="n">targets</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
@@ -652,6 +654,11 @@
         
         
         
+        <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
       
         
@@ -668,11 +675,6 @@
         
         
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-utf8-string-to-byte-array/">C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</a></li>
       
 
       </ul>
