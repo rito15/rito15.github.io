@@ -627,6 +627,16 @@
         
         
         
+        <li><a href="/posts/unity-hierarchy-icon/">Unity - 하이라키 아이콘 적용 예제</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-play-mode-save-sample/">Unity Play Mode Save - Sample</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
       
         
@@ -638,16 +648,6 @@
         
         
         <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-electricity-shader/">(Amplify) Electricity Shader</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
 
       </ul>
@@ -5605,6 +5605,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7278,7 +7291,7 @@ ildasm.exe 파일을 찾아 실행한다.
       
       
       <div class="card">
-        <a href="/posts/memo-cs-fileio/">
+        <a href="/posts/cs-enum-index-array-vs-dict/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7295,13 +7308,13 @@ ildasm.exe 파일을 찾아 실행한다.
   
 
   
-    Jan 28
+    Aug 19
   
 
-  <i class="unloaded">2021-01-28T21:10:00+09:00</i>
+  <i class="unloaded">2021-08-19T23:11:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 파일 입출력</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7310,19 +7323,63 @@ ildasm.exe 파일을 찾아 실행한다.
 
 
 
-                간단 정리
+                요약
 
 
-파일에 쓰려면
 
-  대상이 string, string[], byte[] 타입 중 하나여야 한다.
-  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
+  array[(int)enumValue], dict[enumValue]의 참조 성능을 비교한다.
 
 
-한 파일에 대한 연속 입출력 횟수에 따라
 
-  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
-  여러 번에 걸쳐 읽거나 쓰려면 스트림 ...
+
+테스트 코드
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+...
               </p>
             </div>
           </div>
