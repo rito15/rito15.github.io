@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="193 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="222 words">1 min</span>
 
 
           <!-- page views -->
@@ -503,6 +503,8 @@
 42
 43
 44
+45
+46
 </pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Sample_PlayModeSave</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
 <span class="p">{</span>
     <span class="cm">/***********************************************************************
@@ -530,6 +532,8 @@
                         <span class="k">break</span><span class="p">;</span>
 
                     <span class="k">case</span> <span class="n">UnityEditor</span><span class="p">.</span><span class="n">PlayModeStateChange</span><span class="p">.</span><span class="n">EnteredEditMode</span><span class="p">:</span>
+                        <span class="c1">// NOTE : 플레이 도중/직후 컴파일 시 targetSoArr은 null로 초기화</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">targetSoArr</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
                         <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">oldSO</span> <span class="k">in</span> <span class="n">targetSoArr</span><span class="p">)</span>
                         <span class="p">{</span>
                             <span class="k">if</span> <span class="p">(</span><span class="n">oldSO</span><span class="p">.</span><span class="n">targetObject</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
@@ -2034,71 +2038,6 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -2197,6 +2136,73 @@
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -3880,10 +3886,10 @@
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
+        <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/editor/">editor</a>
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>
@@ -3940,6 +3946,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7203,86 +7222,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-path-memo/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 18
-  
-
-  <i class="unloaded">2021-08-18T20:40:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity - Path</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Memo
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-public static string ScriptFolderFullPath { get; private set; }      // "......\이 스크립트가 위치한 폴더...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-hierarchy-icon/">
           <div class="card-body">
             <!--
@@ -7432,6 +7371,86 @@ public static string ScriptFolderFullPath { get; private set; }      // "......\
 
   
     EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-path-memo/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 18
+  
+
+  <i class="unloaded">2021-08-18T20:40:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity - Path</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+public static string ScriptFolderFullPath { get; private set; }      // "......\이 스크립트가 위치한 폴더...
               </p>
             </div>
           </div>
@@ -8851,71 +8870,6 @@ public static string ScriptFolderFullPath { get; private set; }      // "......\
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -9014,6 +8968,73 @@ public static string ScriptFolderFullPath { get; private set; }      // "......\
     
     
     
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -10692,10 +10713,10 @@ public static string ScriptFolderFullPath { get; private set; }      // "......\
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
+        <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/editor/">editor</a>
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>

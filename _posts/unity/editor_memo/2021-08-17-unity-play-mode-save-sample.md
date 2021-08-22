@@ -41,6 +41,8 @@ public class Sample_PlayModeSave : MonoBehaviour
                         break;
 
                     case UnityEditor.PlayModeStateChange.EnteredEditMode:
+                        // NOTE : 플레이 도중/직후 컴파일 시 targetSoArr은 null로 초기화
+                        if (targetSoArr == null) break;
                         foreach (var oldSO in targetSoArr)
                         {
                             if (oldSO.targetObject == null) continue;
