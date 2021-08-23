@@ -367,6 +367,98 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-how-to-paint-texture/">런타임에 큰 성능 저하 없이 텍스쳐에 그림 그리기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        텍스쳐의 특정 픽셀 색상 변경하기
+
+
+텍스쳐의 특정 픽셀 색상을 변경하는건 매우 간단하다.
+
+
+
+[1] 텍스쳐의 Read/Write Enabled를 체크한다.
+
+[2] 대상 마테리얼에서 텍스쳐를 가져온다.
+
+[3] SetPixel() 메소드로 원하는 픽셀의 색상을 변경한다.
+
+[4] Apply() 메소드로 적용한다.
+
+
+
+하지만 메모리에 적재된 텍스쳐...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Jun 19, 2021,  5:17 PM +0900"
+  >
+
+  
+  
+
+  
+    Jun 19
+  
+
+  <i class="unloaded">2021-06-19T17:17:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1082 words">6 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-texture-painter/">Texture Painter(텍스쳐에 그림 그리기)</a>
     </h1>
 
@@ -1194,88 +1286,6 @@ private enum EditorWindowType
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-check-cursor-over-ui/">마우스 커서가 UI 위에 있는지 검사하는 간단한 코드</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        
-  
-    private static bool IsPointerOverUI()
-    =&gt; UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
-
-  
-
-
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Jun 10, 2021,  2:22 AM +0900"
-  >
-
-  
-  
-
-  
-    Jun 10
-  
-
-  <i class="unloaded">2021-06-10T02:22:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1766,12 +1776,12 @@ private enum EditorWindowType
         
         
         
-        <li><a href="/posts/unity-hierarchy-icon/">Unity - 하이라키 아이콘 적용 예제</a></li>
+        <li><a href="/posts/unity-play-mode-save-sample/">Unity Play Mode Save - Sample</a></li>
       
         
         
         
-        <li><a href="/posts/unity-play-mode-save-sample/">Unity Play Mode Save - Sample</a></li>
+        <li><a href="/posts/unity-hierarchy-icon/">Unity - 하이라키 아이콘 적용 예제</a></li>
       
         
         
@@ -3280,8 +3290,6 @@ private enum EditorWindowType
     
     
     
-    
-      
     
   
     
@@ -6539,8 +6547,6 @@ private enum EditorWindowType
     
     
     
-    
-      
     
   
     

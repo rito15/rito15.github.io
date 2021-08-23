@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "유니티 에디터 스크립팅 - 버전 호환 시 고려사항들",
+    "url": "/posts/unity-editor-scripting-version-compatability/",
+    "categories": "Unity, Unity Editor",
+    "tags": "unity, editor, memo",
+    "date": "2021-08-23 20:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "EditorGUILayout.Space(float)   .            2019.3 미만의 버전에서는 .Space()만 존재하고 .Space(float)가 존재하지 않는다.              따라서 .Space()를 통해서는 높이 8의 고정된 여백만 넣을 수 있다.              이에 대응하기 위해서는 다음과 같이 사용하면 된다.        private static void Space(float height){#if UNITY_2019_3_OR_NEWER    EditorGUILayout.Space(h..."
+  },
+  
+  {
     "title": "유니티 에디터 다크모드 여부 스크립트로 확인하기",
     "url": "/posts/unity-dark-mode-in-script/",
     "categories": "Unity, Unity Editor Memo",

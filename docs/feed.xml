@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-22T23:51:03+09:00</updated>
+  <updated>2021-08-23T22:26:05+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,73 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</title>
+    <link href="https://rito15.github.io/posts/unity-editor-scripting-version-compatability/" rel="alternate" type="text/html" title="유니티 에디터 스크립팅 - 버전 호환 시 고려사항들" />
+    <published>2021-08-23T20:00:00+09:00</published>
+  
+    <updated>2021-08-23T20:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-scripting-version-compatability/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-scripting-version-compatability/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      EditorGUILayout.Space(float)
+
+
+
+   
+.
+
+
+  
+    
+      2019.3 미만의 버전에서는 .Space()만 존재하고 .Space(float)가 존재하지 않는다.
+    
+    
+      따라서 .Space()를 통해서는 높이 8의 고정된 여백만 넣을 수 있다.
+    
+    
+      이에 대응하기 위해서는 다음과 같이 사용하면 된다.
+    
+  
+
+  private static void Space(float height)
+{
+#if UNITY_2019_3_OR_NEWER
+    EditorGUILayout.Space(height);
+#else
+    GUILayoutUtility.GetRect(1f, height);
+#endif
+}
+  
+
+  
+    G...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -313,68 +380,6 @@ References
 
   https://docs.microsoft.com/ko-kr/visualstudio/ide/how-to-create-item-templates?view=vs-2019
   https:...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교</title>
-    <link href="https://rito15.github.io/posts/cs-enum-index-array-vs-dict/" rel="alternate" type="text/html" title="Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교" />
-    <published>2021-08-19T23:11:00+09:00</published>
-  
-    <updated>2021-08-19T23:11:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-enum-index-array-vs-dict/</id>
-    <content src="https://rito15.github.io/posts/cs-enum-index-array-vs-dict/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      요약
-
-
-
-  array[(int)enumValue], dict[enumValue]의 참조 성능을 비교한다.
-
-
-
-
-테스트 코드
-
-
-public enum MyEnum
-{
-    Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine
-}
-
-public float[] targetArray;
-public Dictionary&amp;lt;MyEnum, float&amp;gt; targetDict;
-
-[GlobalSetup]
-public void GlobalSetup()
-{
-    targetArray = new float[10];
-    targetDict = new Dictionary&amp;lt;MyEnum, float&amp;gt;(10);
-
-    for (int i = 0; i ...
     </summary>
   
 
