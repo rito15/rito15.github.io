@@ -90,6 +90,27 @@ public enum ShaderPropertyType
 }
 ```
 
+<br>
+
+## + 런타임에 접근해야 하는 경우
+
+```cs
+#if UNITY_2019_3_OR_NEWER
+using ShaderPropertyType = UnityEngine.Rendering.ShaderPropertyType;
+#else
+public enum ShaderPropertyType
+{
+    Color = 0,
+    Vector = 1,
+    Float = 2,
+    Range = 3,
+    Texture = 4
+}
+#endif
+```
+
+- 이렇게 대응하고, `UnityEditor.ShaderUtil.ShaderPropertyType` 타입으로 결과를 받는 부분들은 `(ShaderPropertyType)`으로 명시적 캐스팅을 해주면 된다.
+
 </details>
 
 <br>
