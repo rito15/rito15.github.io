@@ -1,6 +1,36 @@
 [
   
   {
+    "title": "유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기",
+    "url": "/posts/unity-editor-draw-multiple-curves/",
+    "categories": "Unity, Unity Editor Memo",
+    "tags": "unity, editor, memo",
+    "date": "2021-08-25 03:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "NoteEditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있다.그런데 일반적인 방법으로는 하나의 커브 필드에 하나의 커브만 그려진다.커브 필드에는 불투명한 배경 색상이 존재하기 때문이다.  (0.337f, 0.337f, 0.337f, 1f)따라서 이를 해결하기 위해서는, 리플렉션을 이용한 편법을 사용해야 한다.private static FieldInfo fiCurveBGColor;private static Color defaultCurveBGColor;private void Draw..."
+  },
+  
+  {
+    "title": "유니티 에디터의 특정 영역 마우스 클릭 방지하기",
+    "url": "/posts/unity-editor-block-mouse-click/",
+    "categories": "Unity, Unity Editor Memo",
+    "tags": "unity, editor, memo",
+    "date": "2021-08-25 02:59:00 +0900",
+    
+
+
+
+
+
+    "snippet": "MemoRect rect = ....; // 마우스 클릭 방지할 영역if (rect.Contains(Event.current.mousePosition)){    if(Event.current.type == EventType.MouseDown)        Event.current.Use();}// 이후 해당 영역에서의 모든 마우스 클릭은 무시(Button, Value Fields, ...)  위의 방식을 이용해서, 컨트롤의 색상을 변경시키지 않는 DisabledGroup을 구현할 수 있다."
+  },
+  
+  {
     "title": "유니티 에디터 스크립팅 - 버전 호환 시 고려사항들",
     "url": "/posts/unity-editor-scripting-version-compatability/",
     "categories": "Unity, Unity Editor",

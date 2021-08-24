@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 에디터 스크립팅 - 버전 호환 시 고려사항들" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"EditorGUILayout.Space(float)","datePublished":"2021-08-23T20:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-scripting-version-compatability/"},"url":"https://rito15.github.io/posts/unity-editor-scripting-version-compatability/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 에디터 스크립팅 - 버전 호환 시 고려사항들","dateModified":"2021-08-23T20:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"EditorGUILayout.Space(float)","datePublished":"2021-08-23T20:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-scripting-version-compatability/"},"url":"https://rito15.github.io/posts/unity-editor-scripting-version-compatability/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 에디터 스크립팅 - 버전 호환 시 고려사항들","dateModified":"2021-08-24T23:48:29+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -393,6 +393,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, Aug 24, 2021, 11:48 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 24
+  
+
+  <i class="unloaded">2021-08-24T23:48:29+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -405,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="810 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="901 words">5 min</span>
 
 
           <!-- page views -->
@@ -548,6 +577,40 @@
     <span class="n">Texture</span> <span class="p">=</span> <span class="m">4</span>  <span class="c1">// TexEnv -&gt; Texture</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
+
+  <p><br /></p>
+
+  <h2 id="section">+ 런타임에 접근해야 하는 경우</h2>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="cp">#if UNITY_2019_3_OR_NEWER
+</span><span class="k">using</span> <span class="nn">ShaderPropertyType</span> <span class="p">=</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Rendering</span><span class="p">.</span><span class="n">ShaderPropertyType</span><span class="p">;</span>
+<span class="cp">#else
+</span><span class="k">public</span> <span class="k">enum</span> <span class="n">ShaderPropertyType</span>
+<span class="p">{</span>
+    <span class="n">Color</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
+    <span class="n">Vector</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+    <span class="n">Float</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span>
+    <span class="n">Range</span> <span class="p">=</span> <span class="m">3</span><span class="p">,</span>
+    <span class="n">Texture</span> <span class="p">=</span> <span class="m">4</span>
+<span class="p">}</span>
+<span class="cp">#endif
+</span></pre></td></tr></tbody></table></code></div>  </div>
+
+  <ul>
+    <li>이렇게 대응하고, <code class="language-plaintext highlighter-rouge">UnityEditor.ShaderUtil.ShaderPropertyType</code> 타입으로 결과를 받는 부분들은 <code class="language-plaintext highlighter-rouge">(ShaderPropertyType)</code>으로 명시적 캐스팅을 해주면 된다.</li>
+  </ul>
 
 </details>
 
@@ -847,6 +910,11 @@
         
         
         
+        <li><a href="/posts/unity-editor-scripting-version-compatability/">유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-play-mode-save-sample/">Unity Play Mode Save - Sample</a></li>
       
         
@@ -863,11 +931,6 @@
         
         
         <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
       
 
       </ul>
@@ -4109,6 +4172,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7454,6 +7543,77 @@
       
       
       <div class="card">
+        <a href="/posts/unity-dark-mode-in-script/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 22
+  
+
+  <i class="unloaded">2021-08-22T22:48:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 다크모드 여부 스크립트로 확인하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+확인된 버전
+
+
+  2019.4.9f1
+
+
+
+
+[1] 다크모드 여부 확인
+
+
+  
+    EditorGUIUtility.isProSkin;
+
+// true : 다크모드
+// false : 일반모드(Light)
+
+  
+
+
+
+
+[2] 모드 변경하기
+
+
+  
+    UnityEditorInternal.InternalEditorUtility.Sw...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-play-mode-save-sample/">
           <div class="card-body">
             <!--
@@ -7505,54 +7665,6 @@
         </a>
       </div>
     
-      
-      
-      <div class="card">
-        <a href="/posts/unity-path-memo/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 18
-  
-
-  <i class="unloaded">2021-08-18T20:40:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity - Path</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Memo
-
-
-
-  
-    public static string ScriptFolderFullPath { get; private set; }      // "......\이 스크립트가 위치한 폴더 경로"
-public static string ScriptFolderInProjectPath { get; private set; } // "Assets\......
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -7575,9 +7687,9 @@ public static string ScriptFolderInProjectPath { get; private set; } // "Assets\
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/unity-editor-block-mouse-click/" class="btn btn-outline-primary">
+    <p>유니티 에디터의 특정 영역 마우스 클릭 방지하기</p>
+  </a>
   
 
 </div>

@@ -792,6 +792,11 @@
         
         
         
+        <li><a href="/posts/unity-editor-scripting-version-compatability/">유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-play-mode-save-sample/">Unity Play Mode Save - Sample</a></li>
       
         
@@ -808,11 +813,6 @@
         
         
         <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
       
 
       </ul>
@@ -4345,6 +4345,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7343,60 +7369,6 @@
       
       
       <div class="card">
-        <a href="/posts/memo-cs-fileio/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jan 28
-  
-
-  <i class="unloaded">2021-01-28T21:10:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 파일 입출력</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                간단 정리
-
-
-파일에 쓰려면
-
-  대상이 string, string[], byte[] 타입 중 하나여야 한다.
-  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
-
-
-한 파일에 대한 연속 입출력 횟수에 따라
-
-  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
-  여러 번에 걸쳐 읽거나 쓰려면 스트림 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-heap-memory-debugger/">
           <div class="card-body">
             <!--
@@ -7467,7 +7439,7 @@
       
       
       <div class="card">
-        <a href="/posts/cs-string-format/">
+        <a href="/posts/memo-cs-fileio/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7484,13 +7456,13 @@
   
 
   
-    May  9
+    Jan 28
   
 
-  <i class="unloaded">2021-05-09T21:00:00+09:00</i>
+  <i class="unloaded">2021-01-28T21:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 스트링 포맷 정리</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 파일 입출력</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7499,51 +7471,84 @@
 
 
 
-                NOTE
+                간단 정리
+
+
+파일에 쓰려면
+
+  대상이 string, string[], byte[] 타입 중 하나여야 한다.
+  파일의 전체 경로("폴더경로\파일명.확장자")가 필요하다.
+
+
+한 파일에 대한 연속 입출력 횟수에 따라
+
+  한번에 읽거나 쓰려면 File.Read(), File.Write() 메소드를 사용한다.
+  여러 번에 걸쳐 읽거나 쓰려면 스트림 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-memo-show-cil/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jun 15
+  
+
+  <i class="unloaded">2021-06-15T20:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>CIL 코드 뜯어보기</h3>
+            <div class="text-muted small">
+              <p>
+                
 
 
 
-  , : 스트링의 범위(공간) 설정
-  : : 출력 포맷 설정
+
+
+                1. 소스코드 컴파일
+
+
+
+  컴파일을 완료하고 .exe 또는 .dll 파일을 생성한다.
 
 
 
 
-좌우 정렬
+2. 디스어셈블러 실행
 
 
 
   
-    $"{value, 10}"
+    C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
 
   
 
 
+이런 경로로 들어가서
 
-  10칸 범위 내에서 우측 정렬
+ildasm.exe 파일을 찾아 실행한다.
 
-
-
-
-
-  
-    $"{value, -10}"
-
-  
-
-
-
-  10칸 범위 내에서 좌측 정렬
-
-
-
-
-숫자 왼쪽에 공백 삽입하기
-
-
-
-  
-    $"{value ...
+경로는...
               </p>
             </div>
           </div>

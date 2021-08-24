@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-23T22:26:05+09:00</updated>
+  <updated>2021-08-25T05:02:26+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,125 @@
 
   
   <entry>
+    <title>유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-draw-multiple-curves/" rel="alternate" type="text/html" title="유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기" />
+    <published>2021-08-25T03:00:00+09:00</published>
+  
+    <updated>2021-08-25T03:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-draw-multiple-curves/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-draw-multiple-curves/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있다.
+
+그런데 일반적인 방법으로는 하나의 커브 필드에 하나의 커브만 그려진다.
+
+커브 필드에는 불투명한 배경 색상이 존재하기 때문이다.
+
+
+  (0.337f, 0.337f, 0.337f, 1f)
+
+
+
+
+
+
+따라서 이를 해결하기 위해서는, 리플렉션을 이용한 편법을 사용해야 한다.
+
+private static FieldInfo fiCurveBGColor;
+private static Color defaultCurveBGColor;
+
+private void DrawSomeCurveField()
+{
+    // 리플렉션을 통해 배경 색상 필드 정보 참조
+    if (fiCurveBGColor == nu...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>유니티 에디터의 특정 영역 마우스 클릭 방지하기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-block-mouse-click/" rel="alternate" type="text/html" title="유니티 에디터의 특정 영역 마우스 클릭 방지하기" />
+    <published>2021-08-25T02:59:00+09:00</published>
+  
+    <updated>2021-08-25T02:59:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-block-mouse-click/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-block-mouse-click/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+Rect rect = ....; // 마우스 클릭 방지할 영역
+
+if (rect.Contains(Event.current.mousePosition))
+{
+    if(Event.current.type == EventType.MouseDown)
+        Event.current.Use();
+}
+
+// 이후 해당 영역에서의 모든 마우스 클릭은 무시(Button, Value Fields, ...)
+
+
+
+  위의 방식을 이용해서, 컨트롤의 색상을 변경시키지 않는 DisabledGroup을 구현할 수 있다.
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</title>
     <link href="https://rito15.github.io/posts/unity-editor-scripting-version-compatability/" rel="alternate" type="text/html" title="유니티 에디터 스크립팅 - 버전 호환 시 고려사항들" />
     <published>2021-08-23T20:00:00+09:00</published>
   
-    <updated>2021-08-23T20:00:00+09:00</updated>
+    <updated>2021-08-24T23:48:29+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-editor-scripting-version-compatability/</id>
     <content src="https://rito15.github.io/posts/unity-editor-scripting-version-compatability/" />
@@ -210,176 +324,6 @@ while (enumerator.MoveNext())
 
 
   .GetEnumera...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# Switch-Case의 특징</title>
-    <link href="https://rito15.github.io/posts/cs-switch-case/" rel="alternate" type="text/html" title="C# Switch-Case의 특징" />
-    <published>2021-08-20T16:49:00+09:00</published>
-  
-    <updated>2021-08-20T16:49:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-switch-case/</id>
-    <content src="https://rito15.github.io/posts/cs-switch-case/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Grammar" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Switch-Case 문
-
-
-
-  
-    대상 변수에 대해, 고정된 값들을 case에 지정하여 동등 비교를 수행할 수 있다.
-  
-  
-    case가 일정 개수 미만일 경우, if-else와 동일한 방식으로 각 case를 순차적으로 확인하며 분기한다고 한다.
-  
-  
-    case가 일정 개수 이상일 경우, 메모리에 Jump Table을 생성하여 해당 case로 직접 건너뛴다고 한다.
-  
-
-
-
-
-생성되는 CIL 코드 확인하기
-
-
-[1] 소스 코드
-
-
-   
-.
-
-
-  private void IfElse()
-{
-    int value = 2;
-
-    if (value == 0) result = 0;
-    else if (value == 1) result = 10;
-    else if (...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>VS2019 파일 템플릿 만들기</title>
-    <link href="https://rito15.github.io/posts/cs-vs-2019-item-template/" rel="alternate" type="text/html" title="VS2019 파일 템플릿 만들기" />
-    <published>2021-08-20T16:16:00+09:00</published>
-  
-    <updated>2021-08-20T16:16:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-vs-2019-item-template/</id>
-    <content src="https://rito15.github.io/posts/cs-vs-2019-item-template/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-[1] 템플릿으로 사용할 파일 만들기
-
-
-
-
-
-[2] 템플릿 내보내기
-
-
-  [프로젝트] - [템플릿 내보내기]
-
-
-
-
-
-  [항목 템플릿] 선택 - [다음]
-
-
-
-
-
-  내보낼 파일에 체크
-
-
-
-
-
-  참조가 필요한 경우 선택 - [다음]
-
-
-
-
-
-  템플릿 이름과 설명 작성 후 - [마침]
-
-
-
-
-[2] 생성된 파일 확인
-
-
-
-
-
-[3] 템플릿 확인
-
-
-  비주얼 스튜디오를 닫고, 다시 시작한다.
-
-
-
-
-
-  새 항목 추가 창에서 새로운 템플릿이 생성된 것을 확인할 수 있다.
-
-
-
-
-References
-
-
-  https://docs.microsoft.com/ko-kr/visualstudio/ide/how-to-create-item-templates?view=vs-2019
-  https:...
     </summary>
   
 

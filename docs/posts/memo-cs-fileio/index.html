@@ -939,6 +939,11 @@
         
         
         
+        <li><a href="/posts/unity-editor-scripting-version-compatability/">유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-play-mode-save-sample/">Unity Play Mode Save - Sample</a></li>
       
         
@@ -955,11 +960,6 @@
         
         
         <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
       
 
       </ul>
@@ -7196,6 +7196,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7639,7 +7665,7 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
       
       
       <div class="card">
-        <a href="/posts/cs-string-format/">
+        <a href="/posts/cs-memo-show-cil/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7656,13 +7682,13 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
   
 
   
-    May  9
+    Jun 15
   
 
-  <i class="unloaded">2021-05-09T21:00:00+09:00</i>
+  <i class="unloaded">2021-06-15T20:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 스트링 포맷 정리</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>CIL 코드 뜯어보기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7671,48 +7697,26 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
 
 
 
-                NOTE
+                1. 소스코드 컴파일
 
 
-
-  , : 스트링의 범위(공간) 설정
-  : : 출력 포맷 설정
+  컴파일을 완료하고 .exe 또는 .dll 파일을 생성한다.
 
 
 
 
-좌우 정렬
-
-
-1
-$"{value, 10}"
-
-
-
-  10칸 범위 내에서 우측 정렬
-
-
+2. 디스어셈블러 실행
 
 
 1
-$"{value, -10}"
+C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools
 
 
+이런 경로로 들어가서
 
-  10칸 범위 내에서 좌측 정렬
+ildasm.exe 파일을 찾아 실행한다.
 
-
-
-
-숫자 왼쪽에 공백 삽입하기
-
-
-1
-$"{value :   0}"
-
-
-
-  :, 0 사이의 공백 크...
+경로는 버전마다 조금씩 차...
               </p>
             </div>
           </div>

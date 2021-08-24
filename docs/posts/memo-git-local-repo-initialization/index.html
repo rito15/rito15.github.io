@@ -722,6 +722,11 @@ git push -u origin main
         
         
         
+        <li><a href="/posts/unity-editor-scripting-version-compatability/">유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-play-mode-save-sample/">Unity Play Mode Save - Sample</a></li>
       
         
@@ -738,11 +743,6 @@ git push -u origin main
         
         
         <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
       
 
       </ul>
@@ -6238,6 +6238,32 @@ git push -u origin main
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7388,7 +7414,7 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
       
       
       <div class="card">
-        <a href="/posts/unity-memo-ui-drag-and-drop/">
+        <a href="/posts/unity-dark-mode-in-script/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7405,13 +7431,13 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
   
 
   
-    Feb  1
+    Aug 22
   
 
-  <i class="unloaded">2021-02-01T03:00:00+09:00</i>
+  <i class="unloaded">2021-08-22T22:48:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UI 헤더 드래그 앤 드롭으로 옮기기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 다크모드 여부 스크립트로 확인하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7420,21 +7446,35 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
 
 
 
-                기능
-
-  UI의 헤더(윗부분)를 따로 구성했을 때, 헤더를 드래그 했을 때만 옮기기
+                Memo
 
 
-사용법
+확인된 버전
 
-  헤더 UI는 UI의 자식으로 구성한다.
-  PopupUIHeader 스크립트를 헤더 UI의 컴포넌트로 넣어준다.
-  이동 대상 UI를 인스펙터에서 Target UI에 넣는다. (지정하지 않는 경우, 부모로 자동 초기화)
+
+  2019.4.9f1
 
 
 
-  
-    using U...
+
+[1] 다크모드 여부 확인
+
+1
+2
+3
+4
+EditorGUIUtility.isProSkin;
+
+// true : 다크모드
+// false : 일반모드(Light)
+
+
+
+
+[2] 모드 변경하기
+
+1
+UnityEditorInternal.InternalEditorUtility.SwitchSkinAn...
               </p>
             </div>
           </div>
