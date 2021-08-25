@@ -86,4 +86,18 @@ private void DrawSomeCurveField()
 - 여러 개의 커브를 겹쳐 그릴 경우, 그래프의 일부가 가려져 안보일 수 있다.<br>
   이럴 때는 상하 또는 좌우로 `1px`씩 위치를 엇갈리게 그려주면 된다.
 
+<br>
+
+- 커브를 위의 그림과 같이 직선으로 구성하려면 다음과 같이 설정해주면 된다.
+
+```cs
+// AnimationUtility -> UnityEditor.AnimationUtility
+// curve -> AnimationCurve 타입 변수
+
+for (int i = 0; i < graph.length; i++)
+{
+    AnimationUtility.SetKeyLeftTangentMode( curve, i, AnimationUtility.TangentMode.Linear);
+    AnimationUtility.SetKeyRightTangentMode(curve, i, AnimationUtility.TangentMode.Linear);
+}
+```
 

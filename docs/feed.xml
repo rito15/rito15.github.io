@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-25T05:02:26+09:00</updated>
+  <updated>2021-08-26T04:48:35+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,195 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 에디터 GUI - 미끄러지는 On-Off 버튼</title>
+    <link href="https://rito15.github.io/posts/unity-editor-sliding-onoff-button/" rel="alternate" type="text/html" title="유니티 에디터 GUI - 미끄러지는 On-Off 버튼" />
+    <published>2021-08-26T03:45:00+09:00</published>
+  
+    <updated>2021-08-26T03:45:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-sliding-onoff-button/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-sliding-onoff-button/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+
+
+bool onOff = true;
+bool onOffMoving = false;
+float onOffPos = 0f;
+string onOffStr = "On";
+
+private void DrawMovingOnOffButton()
+{
+    const float LEFT = 15f;
+    const float RIGHT = 52f;
+    const float WIDTH = 40f;
+    const float HEIGHT = 20f;
+    const float MOVE_SPEED = 1f;
+
+    Rect rect = GUILayoutUtility.GetRect(1f, HEIGHT);
+
+    Rect bgRect = new Rect(rect);
+    bgRect.x = LEFT...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>유니티 에디터 GUI의 특정 컨트롤 포커스 여부 확인하기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-check-focused/" rel="alternate" type="text/html" title="유니티 에디터 GUI의 특정 컨트롤 포커스 여부 확인하기" />
+    <published>2021-08-26T03:45:00+09:00</published>
+  
+    <updated>2021-08-26T03:45:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-check-focused/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-check-focused/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+// 다음에 나올 GUI 컨트롤에 이름 부여
+GUI.SetNextControlName("Foooooooocus");
+
+// GUI 그리기
+EditorGUI.TextArea(rect, value, inputStyle);
+
+// 포커스 여부 확인
+if(GUI.GetNameOfFocusedControl() == "Foooooooocus")
+{
+    // Do Something..
+}
+
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</title>
+    <link href="https://rito15.github.io/posts/unity-screen-effect-controller/" rel="alternate" type="text/html" title="Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)" />
+    <published>2021-08-25T21:00:00+09:00</published>
+  
+    <updated>2021-08-25T21:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-screen-effect-controller/</id>
+    <content src="https://rito15.github.io/posts/unity-screen-effect-controller/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Utilities" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+  유니티 기본 렌더 파이프라인(Built-in Render Pipeline)에서 사용할 수 있습니다.
+    
+      SRP, URP, HDRP에서는 사용할 수 없습니다.
+    
+  
+  
+    스크린 이펙트(포스트 프로세싱 이펙트)를 간단히 적용할 수 있습니다.
+  
+  
+    게임 오브젝트의 단순 활성화/비활성화 방식으로 스크린 이펙트 적용/해제가 가능합니다.
+  
+  유니티 타임라인을 통해 편리하게 사용할 수 있습니다.
+
+
+
+
+테스트 완료 에디터 버전
+
+
+  2018.3.14f1
+  2019.4.9f1
+  2020.3.14f1
+  2021.1.16f1
+
+
+
+
+Preview
+
+
+
+
+  
+
+
+
+   
+.
+
+
+  2021_0825_Screen_Effect_Demo.zip
+
+...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -127,203 +316,6 @@ if (rect.Contains(Event.current.mousePosition))
   위의 방식을 이용해서, 컨트롤의 색상을 변경시키지 않는 DisabledGroup을 구현할 수 있다.
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</title>
-    <link href="https://rito15.github.io/posts/unity-editor-scripting-version-compatability/" rel="alternate" type="text/html" title="유니티 에디터 스크립팅 - 버전 호환 시 고려사항들" />
-    <published>2021-08-23T20:00:00+09:00</published>
-  
-    <updated>2021-08-24T23:48:29+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-scripting-version-compatability/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-scripting-version-compatability/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      EditorGUILayout.Space(float)
-
-
-
-   
-.
-
-
-  
-    
-      2019.3 미만의 버전에서는 .Space()만 존재하고 .Space(float)가 존재하지 않는다.
-    
-    
-      따라서 .Space()를 통해서는 높이 8의 고정된 여백만 넣을 수 있다.
-    
-    
-      이에 대응하기 위해서는 다음과 같이 사용하면 된다.
-    
-  
-
-  private static void Space(float height)
-{
-#if UNITY_2019_3_OR_NEWER
-    EditorGUILayout.Space(height);
-#else
-    GUILayoutUtility.GetRect(1f, height);
-#endif
-}
-  
-
-  
-    G...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 에디터 다크모드 여부 스크립트로 확인하기</title>
-    <link href="https://rito15.github.io/posts/unity-dark-mode-in-script/" rel="alternate" type="text/html" title="유니티 에디터 다크모드 여부 스크립트로 확인하기" />
-    <published>2021-08-22T22:48:00+09:00</published>
-  
-    <updated>2021-08-22T22:48:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-dark-mode-in-script/</id>
-    <content src="https://rito15.github.io/posts/unity-dark-mode-in-script/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-확인된 버전
-
-
-  2019.4.9f1
-
-
-
-
-[1] 다크모드 여부 확인
-
-EditorGUIUtility.isProSkin;
-
-// true : 다크모드
-// false : 일반모드(Light)
-
-
-
-
-[2] 모드 변경하기
-
-UnityEditorInternal.InternalEditorUtility.SwitchSkinAndRepaintAllViews();
-
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Shorts) C# Foreach가 실제로 생성하는 소스코드</title>
-    <link href="https://rito15.github.io/posts/cs-list-foreach-code/" rel="alternate" type="text/html" title="(Shorts) C# Foreach가 실제로 생성하는 소스코드" />
-    <published>2021-08-21T17:22:00+09:00</published>
-  
-    <updated>2021-08-21T17:22:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-list-foreach-code/</id>
-    <content src="https://rito15.github.io/posts/cs-list-foreach-code/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-Source Code
-
-private List&amp;lt;int&amp;gt; list = new List&amp;lt;int&amp;gt;(10);
-
-foreach (var item in list)
-{
-    Console.WriteLine(item);
-}
-
-
-
-
-Generated Code
-
-private List&amp;lt;int&amp;gt; list = new List&amp;lt;int&amp;gt;(10);
-
-List&amp;lt;int&amp;gt;.Enumerator enumerator = list.GetEnumerator();
-
-while (enumerator.MoveNext())
-{
-    int item = enumerator.Current;
-    Console.WriteLine(item);
-}
-
-
-
-
-정리
-
-
-  .GetEnumera...
     </summary>
   
 
