@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Summary 유니티 기본 렌더 파이프라인(Built-in Render Pipeline)에서 사용할 수 있습니다. SRP, URP, HDRP에서는 사용할 수 없습니다.","datePublished":"2021-08-25T21:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-screen-effect-controller/"},"url":"https://rito15.github.io/posts/unity-screen-effect-controller/","author":{"@type":"Person","name":"Rito15"},"headline":"Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)","dateModified":"2021-08-25T21:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Summary 유니티 기본 렌더 파이프라인(Built-in Render Pipeline)에서 사용할 수 있습니다. SRP, URP, HDRP에서는 사용할 수 없습니다.","datePublished":"2021-08-25T21:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-screen-effect-controller/"},"url":"https://rito15.github.io/posts/unity-screen-effect-controller/","author":{"@type":"Person","name":"Rito15"},"headline":"Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)","dateModified":"2021-08-27T18:45:40+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,6 +407,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Aug 27, 2021,  6:45 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 27
+  
+
+  <i class="unloaded">2021-08-27T18:45:40+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -419,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="826 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3126 words">17 min</span>
 
 
           <!-- page views -->
@@ -456,6 +485,8 @@
 
 <p><br /></p>
 
+<!-- -------------------------------------------------------------------- -->
+
 <h2 id="테스트-완료-에디터-버전"><strong>테스트 완료 에디터 버전</strong></h2>
 
 <ul>
@@ -466,6 +497,9 @@
 </ul>
 
 <p><br /></p>
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
 
 <h1 id="preview">Preview</h1>
 <hr />
@@ -486,11 +520,14 @@
 
 <p><br /></p>
 
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
 <h1 id="download--import">Download &amp; Import</h1>
 <hr />
 <ul>
   <li>
-    <p><a href="https://github.com/rito15/Images/releases/download/0.3/Screen-Effect-Controller.unitypackage">Screen Effect Controller.unitypackage</a></p>
+    <p><a href="https://github.com/rito15/Unity-Useful-Editor-Assets/releases/download/1.02/Screen-Effect-Controller.unitypackage">Screen Effect Controller.unitypackage</a></p>
   </li>
   <li>
     <p>첨부 파일을 다운로드하고, 유니티 프로젝트가 켜져 있는 상태에서 실행합니다.</p>
@@ -502,7 +539,10 @@
 
 <p><br /></p>
 
-<h1 id="how-to-create-screen-effect-shader">How to Create Screen Effect Shader</h1>
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<h1 id="스크린-이펙트-쉐이더-작성-방법">스크린 이펙트 쉐이더 작성 방법</h1>
 <hr />
 
 <ul>
@@ -530,6 +570,8 @@
 </ul>
 
 <p><br /></p>
+
+<!-- -------------------------------------------------------------------- -->
 
 <h2 id="1-image-effect-shaderscript"><strong>[1] Image Effect Shader(Script)</strong></h2>
 
@@ -565,6 +607,8 @@
 </ul>
 
 <p><br /></p>
+
+<!-- -------------------------------------------------------------------- -->
 
 <h2 id="2-amplify-shader"><strong>[2] Amplify Shader</strong></h2>
 
@@ -607,19 +651,336 @@
 
 <p><br /></p>
 
-<h1 id="how-to-use">How To Use</h1>
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<h1 id="사용-방법">사용 방법</h1>
 <hr />
+
+<h2 id="1-스크린-이펙트-추가-적용하기"><strong>[1] 스크린 이펙트 추가, 적용하기</strong></h2>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/130844769-793fc3da-c313-4185-adad-2bf5c6937c2f.png" alt="image" /></p>
 
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131091349-f30ff002-17c4-469e-b099-049f20f95ee8.png" alt="image" /></p>
+
 <ul>
-  <li>하이라키 창에서 우클릭 - <code class="language-plaintext highlighter-rouge">Effects</code> - <code class="language-plaintext highlighter-rouge">Add Screen Effect</code>를 클릭합니다.</li>
+  <li>
+    <p>하이라키 창에서 우클릭 - <code class="language-plaintext highlighter-rouge">Effects</code> - <code class="language-plaintext highlighter-rouge">Screen Effect</code>를 클릭합니다.</p>
+  </li>
+  <li>
+    <p>새로운 게임오브젝트가 생성되며, <code class="language-plaintext highlighter-rouge">ScreenEffect</code> 컴포넌트가 추가됩니다.</p>
+  </li>
+  <li>
+    <p>씬에 존재하는 카메라에 <code class="language-plaintext highlighter-rouge">ScreenEffectController</code> 컴포넌트가 자동으로 추가됩니다.</p>
+  </li>
+  <li>
+    <p>생성된 <code class="language-plaintext highlighter-rouge">ScreenEffect</code> 컴포넌트의 <strong>Effect Material</strong>에 스크린 이펙트로 적용할 마테리얼을 넣어줍니다.</p>
+  </li>
+  <li>
+    <p>해당 게임오브젝트를 활성화/비활성화 하거나 On/Off 버튼을 클릭함으로써 해당 스크린 이펙트를 적용/해제 할 수 있습니다.</p>
+  </li>
 </ul>
 
 <p><br /></p>
 
-<p>작 성 중….</p>
+<!-- -------------------------------------------------------------------- -->
 
+<h2 id="2-하이라키-표시"><strong>[2] 하이라키 표시</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131141491-68d2a88d-8cf0-4e87-9dc3-3f9c353da4de.png" alt="image" /></p>
+
+<ul>
+  <li>현재 활성화된 스크린 이펙트는 하이라키 좌측에 하늘색 아이콘이 표시됩니다.</li>
+  <li>게임 오브젝트 이름 우측에는 해당 이펙트 마테리얼 이름, 우선순위가 표시됩니다.</li>
+  <li>가장 우측에는 활성화/비활성화 버튼이 표시되며, 이를 클릭하여 간단히 활성화/비활성화할 수있습니다.</li>
+</ul>
+
+<p><br /></p>
+
+<!-- -------------------------------------------------------------------- -->
+
+<h2 id="3-옵션-설정"><strong>[3] 옵션 설정</strong></h2>
+
+<ul>
+  <li>마테리얼이 등록되지 않은 경우</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131123037-271a6b90-1eca-4c24-ae9b-9ef3f66a2314.png" alt="image" /></p>
+
+<ul>
+  <li>마테리얼이 등록된 경우</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131123300-263ec1fa-b5f5-4333-a40c-f795e99dd88e.png" alt="image" /></p>
+
+<ul>
+  <li>지속 시간을 설정한 경우</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131123381-5621883d-b0ea-49a7-9c40-c33039fd7e80.png" alt="image" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li><strong>On/Off 스위치</strong>
+    <ul>
+      <li>게임 오브젝트를 활성화/비활성화 합니다.</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong>영어/한글 버튼</strong>
+    <ul>
+      <li>표시할 언어를 영어 또는 한글로 변경합니다.</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong>이펙트 마테리얼</strong>
+    <ul>
+      <li>스크린 이펙트로 적용할 마테리얼을 등록합니다.</li>
+      <li>에러가 발생하거나 쉐이더에 변경사항이 생겼을 때 <code class="language-plaintext highlighter-rouge">Reload</code> 버튼을 클릭하면 데이터가 다시 로드됩니다.</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong>마테리얼 이름 표시</strong>
+    <ul>
+      <li>체크할 경우, 하이라키의 해당 이펙트 게임오브젝트 이름 우측에 마테리얼의 이름이 표시됩니다.</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong>우선순위</strong>
+    <ul>
+      <li>여러 개의 스크린 이펙트가 적용될 때, 이펙트가 적용될 순서를 결정합니다.</li>
+      <li>우선순위 값이 작을수록 화면에 먼저 적용됩니다.</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong>시간 계산 방식</strong>
+    <ul>
+      <li>적용될 시간 계산 방식을 프레임/시간(초) 중에 결정합니다.</li>
+      <li>프레임을 선택한 경우, 기기의 성능에 따라 다른 결과를 나타낼 수 있습니다.</li>
+      <li>시간(초)을 선택한 경우, 기기의 성능에 관계 없이 실제 시간을 기준으로 시간이 계산됩니다.</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong>지속 시간</strong>
+    <ul>
+      <li>스크린 이펙트가 활성화된 이후 유지될 시간을 설정합니다.</li>
+      <li>0을 입력할 경우, 항상 지속되지만 시간별 이벤트를 사용할 수 없습니다.</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong>종료 동작</strong>
+    <ul>
+      <li>지속 시간이 모두 진행되고 수행될 동작을 선택합니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">파괴</code>를 선택할 경우, 설정된 시간까지 진행되면 게임오브젝트가 파괴됩니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">비활성화</code>를 선택할 경우, 설정된 시간까지 진행되면 게임오브젝트가 비활성화됩니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">반복</code>을 선택할 경우, 설정된 시간까지 진행되면 처음부터 다시 진행되며, 계속 반복합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<!-- -------------------------------------------------------------------- -->
+
+<h2 id="4-마테리얼-프로퍼티-목록"><strong>[4] 마테리얼 프로퍼티 목록</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131123532-d4cdfb6c-1164-49e7-a222-a63a4c763ea5.png" alt="image" /></p>
+
+<ul>
+  <li>해당 마테리얼이 갖고 있는 프로퍼티의 목록을 표시합니다.</li>
+  <li>
+    <p>해당 이펙트 마테리얼의 프로퍼티 값을 언제든 수정할 수 있습니다.</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">[R]</code> 버튼을 클릭할 경우 해당 프로퍼티의 값을 초기값으로 설정합니다.</li>
+  <li>
+    <p>각 프로퍼티마다 우측의 <code class="language-plaintext highlighter-rouge">[+]</code> 버튼을 클릭하여 프로퍼티 이벤트를 생성할 수 있습니다.</p>
+  </li>
+  <li>이벤트가 생성된 프로퍼티의 <code class="language-plaintext highlighter-rouge">[E]</code> 버튼을 클릭할 경우, 이벤트가 동작하지 않도록 비활성화합니다.</li>
+  <li>이벤트가 비활성화된 프로퍼티의 <code class="language-plaintext highlighter-rouge">[D]</code> 버튼을 클릭할 경우, 이벤트가 동작하도록 활성화합니다.</li>
+  <li>
+    <p>이벤트가 등록된 프로퍼티의 <code class="language-plaintext highlighter-rouge">[-]</code> 버튼을 클릭할 경우, 해당 프로퍼티의 모든 이벤트가 제거됩니다.</p>
+  </li>
+  <li>이벤트가 존재하지 않는 프로퍼티는 하얀색으로 표시됩니다.</li>
+  <li>이벤트가 존재하며, 활성화된 프로퍼티는 청록색으로 표시됩니다.</li>
+  <li>이벤트가 존재하지만 비활성화된 프로퍼티는 회색으로 표시됩니다.</li>
+</ul>
+
+<p><br /></p>
+
+<!-- -------------------------------------------------------------------- -->
+
+<h2 id="5-프로퍼티-이벤트"><strong>[5] 프로퍼티 이벤트</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131125053-355a29c8-a1cd-4fb9-b3dd-7cca60f0ef6a.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>타이틀 바의 좌측에는 프로퍼티의 이름과 타입이 표시됩니다.</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Enabled</code>/<code class="language-plaintext highlighter-rouge">Disabled</code> 버튼을 클릭하여 이벤트를 활성화/비활성화 할 수 있습니다.</li>
+  <li>활성화된 이벤트는 타이틀 바가 하늘색으로 표시됩니다.</li>
+  <li>
+    <p>비활성화된 이벤트는 타이틀 바가 검은색으로 표시됩니다.</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">[-]</code> 버튼을 클릭하여 해당 프로퍼티 이벤트를 제거할 수 있습니다.</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="5-1-이벤트-목록"><strong>[5-1] 이벤트 목록</strong></h3>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131131273-66a6fede-49be-4e7b-80ca-cf86f8d2a920.png" alt="image" /></p>
+
+<ul>
+  <li>시간 진행에 따른 프로퍼티 값의 변화를 이벤트를 통해 정의할 수 있습니다.</li>
+  <li>쉐이더에서 직접 정의하기 힘든, 시간에 따른 값의 변화를 이 이벤트를 통해 손쉽게 정의할 수 있습니다.</li>
+</ul>
+
+<p><br /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">이벤트 표시</code>/<code class="language-plaintext highlighter-rouge">이벤트 숨기기</code> 버튼을 클릭하여 이벤트 목록을 표시하거나 숨길 수 있습니다.</li>
+  <li>각 이벤트 키 사이사이의 <code class="language-plaintext highlighter-rouge">[+]</code> 버튼을 클릭하여, 해당 위치에 새로운 이벤트 키를 추가할 수 있습니다.</li>
+  <li>각 이벤트 키 우측의 <code class="language-plaintext highlighter-rouge">[-]</code> 버튼을 클릭하여, 해당 키를 제거할 수 있습니다.</li>
+  <li>각 이벤트 키 우측의 <code class="language-plaintext highlighter-rouge">Set</code> 버튼을 클릭할 경우, 해당 키의 프로퍼티 값을 현재 마테리얼이 갖고 있는 값으로 변경합니다.</li>
+</ul>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <p>이벤트 키의 사이에서, 해당 프로퍼티의 값은 선형 보간되어 적용됩니다.</p>
+  </li>
+  <li>
+    <p>예를 들어 위의 이벤트의 경우, <code class="language-plaintext highlighter-rouge">Range</code> 프로퍼티의 값이 시간에 따라 다음과 같이 변화합니다.</p>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">0초</code> ~ <code class="language-plaintext highlighter-rouge">1초</code> : 값이 <code class="language-plaintext highlighter-rouge">0.0</code>에서부터 <code class="language-plaintext highlighter-rouge">0.5</code>까지 순차적으로 증가합니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">1초</code> ~ <code class="language-plaintext highlighter-rouge">2초</code> : 값이 <code class="language-plaintext highlighter-rouge">0,5</code>에서부터 <code class="language-plaintext highlighter-rouge">0.0</code>까지 순차적으로 감소합니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">2초</code> ~ <code class="language-plaintext highlighter-rouge">3초</code> : 값이 <code class="language-plaintext highlighter-rouge">0.0</code>에서부터 <code class="language-plaintext highlighter-rouge">1.0</code>까지 순차적으로 증가합니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">3초</code> ~ <code class="language-plaintext highlighter-rouge">4초</code> : 값이 <code class="language-plaintext highlighter-rouge">1.0</code>에서부터 <code class="language-plaintext highlighter-rouge">0.0</code>까지 순차적으로 감소합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="5-2-이벤트-그래프"><strong>[5-2] 이벤트 그래프</strong></h3>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131182088-bb164819-5965-45d6-a6f5-bba86ea84613.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>현재 등록된 이벤트 정보에 따라, 해당 프로퍼티 값의 변화를 그래프를 통해 시각적으로 확인할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>그래프 내에 반투명한 실선을 통해 이벤트 키가 표시됩니다.</p>
+  </li>
+  <li>
+    <p>그래프 하단에 각 키의 <code class="language-plaintext highlighter-rouge">인덱스</code> 또는 <code class="language-plaintext highlighter-rouge">시간</code>/<code class="language-plaintext highlighter-rouge">프레임</code>이 표시됩니다.</p>
+  </li>
+  <li>
+    <p>그래프 좌측 상단의 버튼을 클릭하여 <code class="language-plaintext highlighter-rouge">인덱스</code>를 표시할지, <code class="language-plaintext highlighter-rouge">시간</code>/<code class="language-plaintext highlighter-rouge">프레임</code>을 표시할지 결정할 수 있습니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131184118-30fa1f3f-4a43-49f4-8ea6-ed9a28bbf755.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Vector</code>, <code class="language-plaintext highlighter-rouge">Color</code> 타입의 경우, <code class="language-plaintext highlighter-rouge">X</code>, <code class="language-plaintext highlighter-rouge">Y</code>, <code class="language-plaintext highlighter-rouge">Z</code>, <code class="language-plaintext highlighter-rouge">W</code> 값의 변화를 각각의 그래프로 확인할 수 있습니다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">X</code>, <code class="language-plaintext highlighter-rouge">Y</code>, <code class="language-plaintext highlighter-rouge">Z</code>, <code class="language-plaintext highlighter-rouge">W</code> 또는 <code class="language-plaintext highlighter-rouge">R</code>, <code class="language-plaintext highlighter-rouge">G</code>, <code class="language-plaintext highlighter-rouge">B</code>, <code class="language-plaintext highlighter-rouge">A</code> 토글 버튼을 클릭하여, 원하는 요소의 그래프만 필터링하여 표시할 수 있습니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="5-3-이벤트-그라디언트"><strong>[5-3] 이벤트 그라디언트</strong></h3>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131184230-c93c2711-cdfd-4e3a-b54d-efa3b4a9795c.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Color</code> 타입의 경우, 우측 상단의 <code class="language-plaintext highlighter-rouge">그라디언트</code>/<code class="language-plaintext highlighter-rouge">그래프</code> 버튼을 클릭하여 색상 표시 방법을 변경할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>이벤트 키의 개수가 8개를 초과하는 경우, <code class="language-plaintext highlighter-rouge">그라디언트</code>로 표시할 수 없습니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<!-- -------------------------------------------------------------------- -->
+
+<h2 id="6-플레이모드-기능"><strong>[6] 플레이모드 기능</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131140754-5ab2e195-3bfe-4d17-b637-21e3cc043b07.gif" alt="2021_0827_ScreenEffect_EditorOptions" /></p>
+
+<ul>
+  <li>유니티 에디터가 플레이모드에 진입한 경우, <code class="language-plaintext highlighter-rouge">에디터 기능</code> 탭에서 현재 이벤트 경과 시간을 실시간으로 확인할 수 있습니다.</li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131140912-3c27f154-8932-4cd2-a72e-0269b323bf7c.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">편집 모드</code>에 체크한 경우 이벤트 진행이 일시 정지되며, 슬라이더를 조작하여 원하는 시간으로 이동할 수 있습니다.</li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131184561-b0ccfa2d-f435-4ceb-9fe4-e01dd1c45ffd.gif" alt="2021_0827_ScreenEffect_EditorOptions_MoveKey" /></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">편집 모드</code>에 체크된 상태에서 각 이벤트 그래프를 클릭하여 원하는 시간으로 이동할 수 있습니다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">편집 모드</code>가 아닌 상태에서 각 이벤트 그래프를 클릭한 경우, <code class="language-plaintext highlighter-rouge">편집 모드</code>로 진입하며 이벤트 진행이 정지됩니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<h1 id="타임라인과-연동하기예시">타임라인과 연동하기(예시)</h1>
+<hr />
+
+<p><br /></p>
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<h1 id="animator-event-controller와-연동하기예시">Animator Event Controller와 연동하기(예시)</h1>
+<hr />
+
+<h2 id="animator-event-controller"><strong>Animator Event Controller</strong></h2>
+<ul>
+  <li><a href="https://rito15.github.io/posts/unity-animator-event-controller/">https://rito15.github.io/posts/unity-animator-event-controller/</a></li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="future-works">Future Works</h1>
+<hr />
+
+<ul>
+  <li>이벤트 그라디언트 뷰 : 키 개수가 8개를 초과하는 경우에도 표시할 수 있는 커스텀 그라디언트 필드 구현</li>
+</ul>
 
 
       </div>
@@ -758,27 +1119,27 @@
         
         
         
+        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-amplify-shockwave-shader/">(Amplify) Shockwave Shader</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-scripting-version-compatability/">유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</a></li>
       
         
         
         
         <li><a href="/posts/unity-play-mode-save-sample/">Unity Play Mode Save - Sample</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-hierarchy-icon/">Unity - 하이라키 아이콘 적용 예제</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a></li>
       
 
       </ul>
@@ -1809,8 +2170,6 @@
     
     
     
-      
-    
   
     
     
@@ -3467,106 +3826,6 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -3846,6 +4105,43 @@
     
     
     
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -3915,6 +4211,71 @@
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -4224,13 +4585,13 @@
         <a class="post-tag" href="/tags/thread/">thread</a>
       
         
+        <a class="post-tag" href="/tags/memo/">memo</a>
+      
+        
         <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/particle/">particle</a>
-      
-        
-        <a class="post-tag" href="/tags/memo/">memo</a>
       
 
       </div>
@@ -4277,6 +4638,45 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8933,8 +9333,6 @@ How To Use
     
     
     
-      
-    
   
     
     
@@ -10591,106 +10989,6 @@ How To Use
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -10970,6 +11268,43 @@ How To Use
     
     
     
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -11039,6 +11374,71 @@ How To Use
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -11343,13 +11743,13 @@ How To Use
         <a class="post-tag" href="/tags/thread/">thread</a>
       
         
+        <a class="post-tag" href="/tags/memo/">memo</a>
+      
+        
         <a class="post-tag" href="/tags/plugin/">plugin</a>
       
         
         <a class="post-tag" href="/tags/particle/">particle</a>
-      
-        
-        <a class="post-tag" href="/tags/memo/">memo</a>
       
 
     </div>

@@ -59,7 +59,7 @@ mermaid: true
 
 # Download & Import
 ---
-- [Screen Effect Controller.unitypackage](https://github.com/rito15/Images/releases/download/0.3/Screen-Effect-Controller.unitypackage)
+- [Screen Effect Controller.unitypackage](https://github.com/rito15/Unity-Useful-Editor-Assets/releases/download/1.02/Screen-Effect-Controller.unitypackage)
 
 - 첨부 파일을 다운로드하고, 유니티 프로젝트가 켜져 있는 상태에서 실행합니다.
 
@@ -149,12 +149,14 @@ fixed4 frag (v2f i) : SV_Target
 <!-- -------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------- -->
 
-# How To Use
+# 사용 방법
 ---
 
 ## **[1] 스크린 이펙트 추가, 적용하기**
 
 ![image](https://user-images.githubusercontent.com/42164422/130844769-793fc3da-c313-4185-adad-2bf5c6937c2f.png)
+
+![image](https://user-images.githubusercontent.com/42164422/131091349-f30ff002-17c4-469e-b099-049f20f95ee8.png)
 
 - 하이라키 창에서 우클릭 - `Effects` - `Screen Effect`를 클릭합니다.
 
@@ -173,9 +175,7 @@ fixed4 frag (v2f i) : SV_Target
 
 ## **[2] 하이라키 표시**
 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
+![image](https://user-images.githubusercontent.com/42164422/131141491-68d2a88d-8cf0-4e87-9dc3-3f9c353da4de.png)
 
 - 현재 활성화된 스크린 이펙트는 하이라키 좌측에 하늘색 아이콘이 표시됩니다.
 - 게임 오브젝트 이름 우측에는 해당 이펙트 마테리얼 이름, 우선순위가 표시됩니다.
@@ -187,35 +187,59 @@ IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE
 
 ## **[3] 옵션 설정**
 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
+- 마테리얼이 등록되지 않은 경우
+
+![image](https://user-images.githubusercontent.com/42164422/131123037-271a6b90-1eca-4c24-ae9b-9ef3f66a2314.png)
+
+- 마테리얼이 등록된 경우
+
+![image](https://user-images.githubusercontent.com/42164422/131123300-263ec1fa-b5f5-4333-a40c-f795e99dd88e.png)
+
+- 지속 시간을 설정한 경우
+
+![image](https://user-images.githubusercontent.com/42164422/131123381-5621883d-b0ea-49a7-9c40-c33039fd7e80.png)
+
+<br>
 
 - **On/Off 스위치**
   - 게임 오브젝트를 활성화/비활성화 합니다.
   
+  <br>
+  
 - **영어/한글 버튼**
   -  표시할 언어를 영어 또는 한글로 변경합니다.
+  
+  <br>
   
 - **이펙트 마테리얼**
   - 스크린 이펙트로 적용할 마테리얼을 등록합니다.
   - 에러가 발생하거나 쉐이더에 변경사항이 생겼을 때 `Reload` 버튼을 클릭하면 데이터가 다시 로드됩니다.
+  
+  <br>
 
 - **마테리얼 이름 표시**
   - 체크할 경우, 하이라키의 해당 이펙트 게임오브젝트 이름 우측에 마테리얼의 이름이 표시됩니다.
+  
+  <br>
 
 - **우선순위**
   - 여러 개의 스크린 이펙트가 적용될 때, 이펙트가 적용될 순서를 결정합니다.
   - 우선순위 값이 작을수록 화면에 먼저 적용됩니다.
+  
+  <br>
 
 - **시간 계산 방식**
   - 적용될 시간 계산 방식을 프레임/시간(초) 중에 결정합니다. 
   - 프레임을 선택한 경우, 기기의 성능에 따라 다른 결과를 나타낼 수 있습니다. 
   - 시간(초)을 선택한 경우, 기기의 성능에 관계 없이 실제 시간을 기준으로 시간이 계산됩니다.
   
+  <br>
+  
 - **지속 시간**
   - 스크린 이펙트가 활성화된 이후 유지될 시간을 설정합니다.
   - 0을 입력할 경우, 항상 지속되지만 시간별 이벤트를 사용할 수 없습니다.
+  
+  <br>
 
 - **종료 동작**
   - 지속 시간이 모두 진행되고 수행될 동작을 선택합니다.
@@ -229,10 +253,7 @@ IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE
 
 ## **[4] 마테리얼 프로퍼티 목록**
 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
--NOTE- 회색 흰색 시안 등등 각종 경우를 한 스샷에 다 보여주기
+![image](https://user-images.githubusercontent.com/42164422/131123532-d4cdfb6c-1164-49e7-a222-a63a4c763ea5.png)
 
 - 해당 마테리얼이 갖고 있는 프로퍼티의 목록을 표시합니다.
 - 해당 이펙트 마테리얼의 프로퍼티 값을 언제든 수정할 수 있습니다.
@@ -248,16 +269,103 @@ IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE
 - 이벤트가 존재하며, 활성화된 프로퍼티는 청록색으로 표시됩니다.
 - 이벤트가 존재하지만 비활성화된 프로퍼티는 회색으로 표시됩니다.
 
-
 <br>
 
 <!-- -------------------------------------------------------------------- -->
 
 ## **[5] 프로퍼티 이벤트**
 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
-IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE 
+![image](https://user-images.githubusercontent.com/42164422/131125053-355a29c8-a1cd-4fb9-b3dd-7cca60f0ef6a.png)
+
+- 타이틀 바의 좌측에는 프로퍼티의 이름과 타입이 표시됩니다.
+
+- `Enabled`/`Disabled` 버튼을 클릭하여 이벤트를 활성화/비활성화 할 수 있습니다.
+- 활성화된 이벤트는 타이틀 바가 하늘색으로 표시됩니다.
+- 비활성화된 이벤트는 타이틀 바가 검은색으로 표시됩니다.
+
+- `[-]` 버튼을 클릭하여 해당 프로퍼티 이벤트를 제거할 수 있습니다.
+
+<br>
+
+### **[5-1] 이벤트 목록**
+
+![image](https://user-images.githubusercontent.com/42164422/131131273-66a6fede-49be-4e7b-80ca-cf86f8d2a920.png)
+
+- 시간 진행에 따른 프로퍼티 값의 변화를 이벤트를 통해 정의할 수 있습니다.
+- 쉐이더에서 직접 정의하기 힘든, 시간에 따른 값의 변화를 이 이벤트를 통해 손쉽게 정의할 수 있습니다.
+
+<br>
+
+- `이벤트 표시`/`이벤트 숨기기` 버튼을 클릭하여 이벤트 목록을 표시하거나 숨길 수 있습니다.
+- 각 이벤트 키 사이사이의 `[+]` 버튼을 클릭하여, 해당 위치에 새로운 이벤트 키를 추가할 수 있습니다.
+- 각 이벤트 키 우측의 `[-]` 버튼을 클릭하여, 해당 키를 제거할 수 있습니다.
+- 각 이벤트 키 우측의 `Set` 버튼을 클릭할 경우, 해당 키의 프로퍼티 값을 현재 마테리얼이 갖고 있는 값으로 변경합니다.
+
+<br>
+
+- 이벤트 키의 사이에서, 해당 프로퍼티의 값은 선형 보간되어 적용됩니다.
+
+- 예를 들어 위의 이벤트의 경우, `Range` 프로퍼티의 값이 시간에 따라 다음과 같이 변화합니다.
+  - `0초` ~ `1초` : 값이 `0.0`에서부터 `0.5`까지 순차적으로 증가합니다.
+  - `1초` ~ `2초` : 값이 `0,5`에서부터 `0.0`까지 순차적으로 감소합니다.
+  - `2초` ~ `3초` : 값이 `0.0`에서부터 `1.0`까지 순차적으로 증가합니다.
+  - `3초` ~ `4초` : 값이 `1.0`에서부터 `0.0`까지 순차적으로 감소합니다.
+
+<br>
+
+### **[5-2] 이벤트 그래프**
+
+![image](https://user-images.githubusercontent.com/42164422/131182088-bb164819-5965-45d6-a6f5-bba86ea84613.png)
+
+- 현재 등록된 이벤트 정보에 따라, 해당 프로퍼티 값의 변화를 그래프를 통해 시각적으로 확인할 수 있습니다.
+
+- 그래프 내에 반투명한 실선을 통해 이벤트 키가 표시됩니다.
+
+- 그래프 하단에 각 키의 `인덱스` 또는 `시간`/`프레임`이 표시됩니다.
+
+- 그래프 좌측 상단의 버튼을 클릭하여 `인덱스`를 표시할지, `시간`/`프레임`을 표시할지 결정할 수 있습니다.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/131184118-30fa1f3f-4a43-49f4-8ea6-ed9a28bbf755.png)
+
+- `Vector`, `Color` 타입의 경우, `X`, `Y`, `Z`, `W` 값의 변화를 각각의 그래프로 확인할 수 있습니다.
+
+- `X`, `Y`, `Z`, `W` 또는 `R`, `G`, `B`, `A` 토글 버튼을 클릭하여, 원하는 요소의 그래프만 필터링하여 표시할 수 있습니다.
+
+<br>
+
+### **[5-3] 이벤트 그라디언트**
+
+![image](https://user-images.githubusercontent.com/42164422/131184230-c93c2711-cdfd-4e3a-b54d-efa3b4a9795c.png)
+
+- `Color` 타입의 경우, 우측 상단의 `그라디언트`/`그래프` 버튼을 클릭하여 색상 표시 방법을 변경할 수 있습니다.
+
+- 이벤트 키의 개수가 8개를 초과하는 경우, `그라디언트`로 표시할 수 없습니다.
+
+<br>
+
+<!-- -------------------------------------------------------------------- -->
+
+## **[6] 플레이모드 기능**
+
+![2021_0827_ScreenEffect_EditorOptions](https://user-images.githubusercontent.com/42164422/131140754-5ab2e195-3bfe-4d17-b637-21e3cc043b07.gif)
+
+- 유니티 에디터가 플레이모드에 진입한 경우, `에디터 기능` 탭에서 현재 이벤트 경과 시간을 실시간으로 확인할 수 있습니다.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/131140912-3c27f154-8932-4cd2-a72e-0269b323bf7c.png)
+
+- `편집 모드`에 체크한 경우 이벤트 진행이 일시 정지되며, 슬라이더를 조작하여 원하는 시간으로 이동할 수 있습니다.
+
+<br>
+
+![2021_0827_ScreenEffect_EditorOptions_MoveKey](https://user-images.githubusercontent.com/42164422/131184561-b0ccfa2d-f435-4ceb-9fe4-e01dd1c45ffd.gif)
+
+- `편집 모드`에 체크된 상태에서 각 이벤트 그래프를 클릭하여 원하는 시간으로 이동할 수 있습니다.
+
+- `편집 모드`가 아닌 상태에서 각 이벤트 그래프를 클릭한 경우, `편집 모드`로 진입하며 이벤트 진행이 정지됩니다.
 
 <br>
 
@@ -277,3 +385,15 @@ IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE IMAGE
 # Animator Event Controller와 연동하기(예시)
 ---
 
+## **Animator Event Controller**
+ - <https://rito15.github.io/posts/unity-animator-event-controller/>
+ 
+
+
+
+<br>
+
+# Future Works
+---
+
+- 이벤트 그라디언트 뷰 : 키 개수가 8개를 초과하는 경우에도 표시할 수 있는 커스텀 그라디언트 필드 구현

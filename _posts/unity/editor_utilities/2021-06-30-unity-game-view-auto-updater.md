@@ -42,7 +42,7 @@ mermaid: true
 
 # Download
 ---
-- [Game-View-Auto-Updater.unitypackage](https://github.com/rito15/Images/releases/download/0.1/Game-View-Auto-Updater.unitypackage)
+- [Game-View-Auto-Updater.unitypackage](https://github.com/rito15/Unity-Useful-Editor-Assets/releases/download/1.0/Game-View-Auto-Updater.unitypackage)
 
 
 <br>

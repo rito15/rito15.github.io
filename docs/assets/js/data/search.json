@@ -1,6 +1,51 @@
 [
   
   {
+    "title": "유니티 에디터 - 벡터 필드의 X,Y,Z,W 레이블 변경하기",
+    "url": "/posts/unity-editor-change-vector-field-labels/",
+    "categories": "Unity, Unity Editor Memo",
+    "tags": "unity, editor, memo",
+    "date": "2021-08-27 22:33:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Note      Vector2, Vector3, Vector4 필드에는 X, Y, Z, W 레이블이 표시되며, 일반적인 방법으로는 변경할 수 없다.        리플렉션을 이용하면 이를 변경할 수 있다.  // using System.Reflection;// 커스텀 에디터 클래스 내에서 작성private Vector2 vec2;private Vector3 vec3;private Vector4 vec4;private static FieldInfo  fiVector4FieldLables;private static GUIConte..."
+  },
+  
+  {
+    "title": "유니티 에디터 - 미리 정의된 GUIStyle 목록",
+    "url": "/posts/unity-editor-predefined-gui-styles/",
+    "categories": "Unity, Unity Editor Memo",
+    "tags": "unity, editor, memo",
+    "date": "2021-08-27 21:59:00 +0900",
+    
+
+
+
+
+
+    "snippet": "목록&quot;box&quot;&quot;button&quot;&quot;toggle&quot;&quot;label&quot;&quot;window&quot;&quot;textfield&quot;&quot;textarea&quot;&quot;horizontalslider&quot;&quot;horizontalsliderthumb&quot;&quot;verticalslider&quot;&quot;verticalsliderthumb&quot;&quot;horizontalscrollbar&quot;&quot;horizontalscr..."
+  },
+  
+  {
+    "title": "유니티 에디터 하이라키 윈도우 관련 코드 모음",
+    "url": "/posts/unity-editor-hierarchy-window/",
+    "categories": "Unity, Unity Editor Memo",
+    "tags": "unity, editor, memo",
+    "date": "2021-08-27 18:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Memo// 1. 하이라키 윈도우 타입public static Type HierarchyWindowType{    get    {        if (_hierarchyWindowType == null)            _hierarchyWindowType =                 typeof(EditorWindow).Assembly.GetTypes()                .Where(t =&amp;gt; t.Name == &quot;SceneHierarchyWindow&quot;)               ..."
+  },
+  
+  {
     "title": "유니티 에디터 GUI - 미끄러지는 On-Off 버튼",
     "url": "/posts/unity-editor-sliding-onoff-button/",
     "categories": "Unity, Unity Editor Memo",

@@ -48,7 +48,7 @@ mermaid: true
 
 # 0. Download & Import
 ---
-- [Animator Event Controller.unitypackage](https://github.com/rito15/Unity-Useful-Editor-Assets/releases/download/1.01/Animator.Event.Controller.unitypackage)
+- [Animator Event Controller.unitypackage](https://github.com/rito15/Unity-Useful-Editor-Assets/releases/download/1.01/Animator-Event-Controller.unitypackage)
 
 - 첨부 파일을 다운로드하고, 유니티 프로젝트가 켜져 있는 상태에서 실행합니다.
 
