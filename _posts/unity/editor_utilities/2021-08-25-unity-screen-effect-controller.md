@@ -628,4 +628,5 @@ fixed4 frag (v2f i) : SV_Target
 # Future Works
 ---
 
+- SRP 지원
 - 이벤트 그라디언트 뷰 : 키 개수가 8개를 초과하는 경우에도 표시할 수 있는 커스텀 그라디언트 필드 구현

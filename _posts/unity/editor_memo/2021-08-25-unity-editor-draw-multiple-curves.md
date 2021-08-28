@@ -96,8 +96,11 @@ private void DrawSomeCurveField()
 
 for (int i = 0; i < graph.length; i++)
 {
-    AnimationUtility.SetKeyLeftTangentMode( curve, i, AnimationUtility.TangentMode.Linear);
-    AnimationUtility.SetKeyRightTangentMode(curve, i, AnimationUtility.TangentMode.Linear);
+    if(i > 0) // 가장 좌측의 키는 더 좌측이 없으므로 예외 발생할 수도 있음
+        AnimationUtility.SetKeyLeftTangentMode( curve, i, AnimationUtility.TangentMode.Linear);
+
+    if(i < graph.length - 1) // 우측도 마찬가지
+        AnimationUtility.SetKeyRightTangentMode(curve, i, AnimationUtility.TangentMode.Linear);
 }
 ```
 
