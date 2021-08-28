@@ -1,5 +1,5 @@
 ---
-title: (Amplify) Screen Effect - Damage [TODO]
+title: (Amplify) Screen Effect - Damage
 author: Rito15
 date: 2021-08-19 02:55:00 +09:00
 categories: [Unity Shader, Amplify Shader]

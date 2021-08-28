@@ -1,5 +1,5 @@
 ---
-title: (Amplify) Screen Effect - Hexagons [TODO]
+title: (Amplify) Screen Effect - Hexagonal Pattern
 author: Rito15
 date: 2021-08-19 02:55:00 +09:00
 categories: [Unity Shader, Amplify Shader]

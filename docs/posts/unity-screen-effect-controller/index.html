@@ -26,8 +26,8 @@
 <meta property="og:title" content="Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Summary 유니티 기본 렌더 파이프라인(Built-in Render Pipeline)에서 사용할 수 있습니다. SRP, URP, HDRP에서는 사용할 수 없습니다." />
-<meta property="og:description" content="Summary 유니티 기본 렌더 파이프라인(Built-in Render Pipeline)에서 사용할 수 있습니다. SRP, URP, HDRP에서는 사용할 수 없습니다." />
+<meta name="description" content="Summary" />
+<meta property="og:description" content="Summary" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-screen-effect-controller/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-screen-effect-controller/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Summary 유니티 기본 렌더 파이프라인(Built-in Render Pipeline)에서 사용할 수 있습니다. SRP, URP, HDRP에서는 사용할 수 없습니다.","datePublished":"2021-08-25T21:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-screen-effect-controller/"},"url":"https://rito15.github.io/posts/unity-screen-effect-controller/","author":{"@type":"Person","name":"Rito15"},"headline":"Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)","dateModified":"2021-08-27T18:45:40+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Summary","datePublished":"2021-08-25T21:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-screen-effect-controller/"},"url":"https://rito15.github.io/posts/unity-screen-effect-controller/","author":{"@type":"Person","name":"Rito15"},"headline":"Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)","dateModified":"2021-08-28T05:41:36+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Aug 27, 2021,  6:45 PM +0900"
+    title="Sat, Aug 28, 2021,  5:41 AM +0900"
   >
 
   
   
 
   
-    Aug 27
+    Aug 28
   
 
-  <i class="unloaded">2021-08-27T18:45:40+09:00</i>
+  <i class="unloaded">2021-08-28T05:41:36+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3126 words">17 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5186 words">28 min</span>
 
 
           <!-- page views -->
@@ -468,19 +468,23 @@
 
         <h1 id="summary">Summary</h1>
 <hr />
+
 <ul>
-  <li>유니티 기본 렌더 파이프라인(Built-in Render Pipeline)에서 사용할 수 있습니다.
+  <li>
+    <p>스크린 이펙트(포스트 프로세싱 이펙트)를 간단히 적용할 수 있게 해주는 도구입니다.</p>
+  </li>
+  <li>
+    <p>게임 오브젝트의 단순 활성화/비활성화 방식으로 스크린 이펙트를 적용/해제합니다.</p>
+  </li>
+  <li>
+    <p>유니티 타임라인에도 손쉽게 연동할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>유니티 기본 렌더 파이프라인(Built-in Render Pipeline)에서 사용할 수 있습니다.</p>
     <ul>
       <li>SRP, URP, HDRP에서는 사용할 수 없습니다.</li>
     </ul>
   </li>
-  <li>
-    <p>스크린 이펙트(포스트 프로세싱 이펙트)를 간단히 적용할 수 있습니다.</p>
-  </li>
-  <li>
-    <p>게임 오브젝트의 단순 활성화/비활성화 방식으로 스크린 이펙트 적용/해제가 가능합니다.</p>
-  </li>
-  <li>유니티 타임라인을 통해 편리하게 사용할 수 있습니다.</li>
 </ul>
 
 <p><br /></p>
@@ -504,19 +508,31 @@
 <h1 id="preview">Preview</h1>
 <hr />
 
+<h2 id="1-demo-scene-preview"><strong>[1] Demo Scene Preview</strong></h2>
+
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
 <div class="embed-container">
   <iframe src="https://www.youtube.com/embed/wwrVsWvl5LA" frameborder="0" allowfullscreen=""></iframe>
 </div>
 
+<p><br /></p>
+
 <details>
   <summary> 
-.
+예제 다운로드
 </summary>
 
-  <p><a href="https://github.com/rito15/Images/files/7048827/2021_0825_Screen_Effect_Demo.zip">2021_0825_Screen_Effect_Demo.zip</a></p>
+  <ul>
+    <li><a href="https://github.com/rito15/Images/files/7070833/Screen-Effect-Controller-Demo.zip">Screen-Effect-Controller-Demo.zip</a></li>
+  </ul>
 
 </details>
+
+<p><br /></p>
+
+<h2 id="2-component-preview"><strong>[2] Component Preview</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131219376-ac281112-2629-4635-87c4-6398c0896971.png" alt="image" /></p>
 
 <p><br /></p>
 
@@ -536,6 +552,8 @@
     <p>임포트 창이 나타나면 <code class="language-plaintext highlighter-rouge">Import</code> 버튼을 클릭하여 프로젝트에 임포트합니다.</p>
   </li>
 </ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131219650-3a6e5e1d-b808-4bc7-9a75-f301806f1d0a.png" alt="image" /></p>
 
 <p><br /></p>
 
@@ -659,7 +677,7 @@
 
 <h2 id="1-스크린-이펙트-추가-적용하기"><strong>[1] 스크린 이펙트 추가, 적용하기</strong></h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/130844769-793fc3da-c313-4185-adad-2bf5c6937c2f.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131219054-6ee1a5a4-bad9-4301-a948-bd9e2ee64cf7.png" alt="image" /></p>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131091349-f30ff002-17c4-469e-b099-049f20f95ee8.png" alt="image" /></p>
 
@@ -687,12 +705,13 @@
 
 <h2 id="2-하이라키-표시"><strong>[2] 하이라키 표시</strong></h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131141491-68d2a88d-8cf0-4e87-9dc3-3f9c353da4de.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131214096-614619f7-7f53-4013-8d1c-95ad47291e41.png" alt="image" /></p>
 
 <ul>
   <li>현재 활성화된 스크린 이펙트는 하이라키 좌측에 하늘색 아이콘이 표시됩니다.</li>
-  <li>게임 오브젝트 이름 우측에는 해당 이펙트 마테리얼 이름, 우선순위가 표시됩니다.</li>
-  <li>가장 우측에는 활성화/비활성화 버튼이 표시되며, 이를 클릭하여 간단히 활성화/비활성화할 수있습니다.</li>
+  <li>마테리얼 등록 시 쉐이더 이름이 게임오브젝트 이름에 함께 표시됩니다. (<code class="language-plaintext highlighter-rouge">Screen Effect [ShaderName]</code>)</li>
+  <li>게임오브젝트 이름 우측에는 이펙트 적용 우선순위가 표시됩니다.</li>
+  <li>가장 우측에는 ON/OFF 버튼이 표시되며, 이를 클릭하여 간단히 활성화/비활성화할 수있습니다.</li>
 </ul>
 
 <p><br /></p>
@@ -711,13 +730,19 @@
   <li>마테리얼이 등록된 경우</li>
 </ul>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131123300-263ec1fa-b5f5-4333-a40c-f795e99dd88e.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131214167-1b77a106-bd74-44a7-8c0b-982ccf234969.png" alt="image" /></p>
 
 <ul>
   <li>지속 시간을 설정한 경우</li>
 </ul>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131123381-5621883d-b0ea-49a7-9c40-c33039fd7e80.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131214177-a12d5e01-0532-495c-a70a-59fa04f8ca70.png" alt="image" /></p>
+
+<ul>
+  <li>시간 계산 방식을 <code class="language-plaintext highlighter-rouge">프레임</code>으로 설정하고, <code class="language-plaintext highlighter-rouge">기준 FPS 사용</code>에 체크한 경우</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131214187-40684d0b-9de1-4430-8880-71107d9c82c1.png" alt="image" /></p>
 
 <p><br /></p>
 
@@ -744,26 +769,20 @@
 
     <p><br /></p>
   </li>
-  <li><strong>마테리얼 이름 표시</strong>
-    <ul>
-      <li>체크할 경우, 하이라키의 해당 이펙트 게임오브젝트 이름 우측에 마테리얼의 이름이 표시됩니다.</li>
-    </ul>
-
-    <p><br /></p>
-  </li>
   <li><strong>우선순위</strong>
     <ul>
       <li>여러 개의 스크린 이펙트가 적용될 때, 이펙트가 적용될 순서를 결정합니다.</li>
       <li>우선순위 값이 작을수록 화면에 먼저 적용됩니다.</li>
+      <li>우선순위 값은 하이라키의 ON/OFF 버튼 왼쪽에 표시됩니다.</li>
     </ul>
 
     <p><br /></p>
   </li>
   <li><strong>시간 계산 방식</strong>
     <ul>
-      <li>적용될 시간 계산 방식을 프레임/시간(초) 중에 결정합니다.</li>
-      <li>프레임을 선택한 경우, 기기의 성능에 따라 다른 결과를 나타낼 수 있습니다.</li>
-      <li>시간(초)을 선택한 경우, 기기의 성능에 관계 없이 실제 시간을 기준으로 시간이 계산됩니다.</li>
+      <li>적용될 시간 계산 방식을 <code class="language-plaintext highlighter-rouge">프레임</code>/<code class="language-plaintext highlighter-rouge">시간(초)</code> 중에 결정합니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">프레임</code>을 선택한 경우, 매 프레임마다 이벤트가 갱신됩니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">시간(초)</code>을 선택한 경우, 기기의 성능에 관계 없이 실제 시간을 기준으로 시간이 계산됩니다.</li>
     </ul>
 
     <p><br /></p>
@@ -771,7 +790,26 @@
   <li><strong>지속 시간</strong>
     <ul>
       <li>스크린 이펙트가 활성화된 이후 유지될 시간을 설정합니다.</li>
-      <li>0을 입력할 경우, 항상 지속되지만 시간별 이벤트를 사용할 수 없습니다.</li>
+      <li>0을 입력할 경우, 항상 지속되지만 프로퍼티 이벤트를 사용할 수 없습니다.</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong>기준 FPS 사용</strong>
+    <ul>
+      <li>시간 계산 방식을 <code class="language-plaintext highlighter-rouge">프레임</code>으로 설정한 경우 사용할 수 있습니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">기준 FPS 사용</code>에 체크 해제한 경우, 기기의 성능에 따라 다른 결과를 나타낼 수 있습니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">기준 FPS 사용</code>에 체크한 경우, 기기의 성능에 관계 없이 일정한 시간 동안 지속됩니다.</li>
+    </ul>
+
+    <p><br /></p>
+  </li>
+  <li><strong>기준 FPS</strong>
+    <ul>
+      <li>시간 계산 방식을 <code class="language-plaintext highlighter-rouge">프레임</code>으로 설정하고 <code class="language-plaintext highlighter-rouge">기준 FPS 사용</code>에 체크한 경우 설정할 수 있습니다.</li>
+      <li>프레임 계산을 실제 시간에 동기화하기 위한 <code class="language-plaintext highlighter-rouge">기준 FPS</code> 값을 설정합니다.</li>
+      <li>예를 들어 지속 프레임이 <code class="language-plaintext highlighter-rouge">120프레임</code>, 기준 FPS가 <code class="language-plaintext highlighter-rouge">60</code>인 경우 기기의 성능에 관계 없이 항상 <code class="language-plaintext highlighter-rouge">2초</code> 동안 지속됩니다.</li>
+      <li>타임라인을 사용할 때, 타임라인의 <code class="language-plaintext highlighter-rouge">Frame Rate</code>와 동일하게 설정하면 됩니다.</li>
     </ul>
 
     <p><br /></p>
@@ -799,7 +837,7 @@
   <li>
     <p>해당 이펙트 마테리얼의 프로퍼티 값을 언제든 수정할 수 있습니다.</p>
   </li>
-  <li><code class="language-plaintext highlighter-rouge">[R]</code> 버튼을 클릭할 경우 해당 프로퍼티의 값을 초기값으로 설정합니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">[R]</code> 버튼을 클릭할 경우 해당 프로퍼티의 값을 초기값으로 변경합니다.</li>
   <li>
     <p>각 프로퍼티마다 우측의 <code class="language-plaintext highlighter-rouge">[+]</code> 버튼을 클릭하여 프로퍼티 이벤트를 생성할 수 있습니다.</p>
   </li>
@@ -809,7 +847,7 @@
     <p>이벤트가 등록된 프로퍼티의 <code class="language-plaintext highlighter-rouge">[-]</code> 버튼을 클릭할 경우, 해당 프로퍼티의 모든 이벤트가 제거됩니다.</p>
   </li>
   <li>이벤트가 존재하지 않는 프로퍼티는 하얀색으로 표시됩니다.</li>
-  <li>이벤트가 존재하며, 활성화된 프로퍼티는 청록색으로 표시됩니다.</li>
+  <li>이벤트가 존재하며, 활성화된 프로퍼티는 하늘색으로 표시됩니다.</li>
   <li>이벤트가 존재하지만 비활성화된 프로퍼티는 회색으로 표시됩니다.</li>
 </ul>
 
@@ -837,7 +875,7 @@
 
 <h3 id="5-1-이벤트-목록"><strong>[5-1] 이벤트 목록</strong></h3>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131131273-66a6fede-49be-4e7b-80ca-cf86f8d2a920.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131207808-7a90c842-75c4-49b3-af16-b54925e780f6.png" alt="image" /></p>
 
 <ul>
   <li>시간 진행에 따른 프로퍼티 값의 변화를 이벤트를 통해 정의할 수 있습니다.</li>
@@ -862,10 +900,10 @@
   <li>
     <p>예를 들어 위의 이벤트의 경우, <code class="language-plaintext highlighter-rouge">Range</code> 프로퍼티의 값이 시간에 따라 다음과 같이 변화합니다.</p>
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">0초</code> ~ <code class="language-plaintext highlighter-rouge">1초</code> : 값이 <code class="language-plaintext highlighter-rouge">0.0</code>에서부터 <code class="language-plaintext highlighter-rouge">0.5</code>까지 순차적으로 증가합니다.</li>
-      <li><code class="language-plaintext highlighter-rouge">1초</code> ~ <code class="language-plaintext highlighter-rouge">2초</code> : 값이 <code class="language-plaintext highlighter-rouge">0,5</code>에서부터 <code class="language-plaintext highlighter-rouge">0.0</code>까지 순차적으로 감소합니다.</li>
-      <li><code class="language-plaintext highlighter-rouge">2초</code> ~ <code class="language-plaintext highlighter-rouge">3초</code> : 값이 <code class="language-plaintext highlighter-rouge">0.0</code>에서부터 <code class="language-plaintext highlighter-rouge">1.0</code>까지 순차적으로 증가합니다.</li>
-      <li><code class="language-plaintext highlighter-rouge">3초</code> ~ <code class="language-plaintext highlighter-rouge">4초</code> : 값이 <code class="language-plaintext highlighter-rouge">1.0</code>에서부터 <code class="language-plaintext highlighter-rouge">0.0</code>까지 순차적으로 감소합니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">0.0초</code> ~ <code class="language-plaintext highlighter-rouge">1.0초</code> : 값이 <code class="language-plaintext highlighter-rouge">0.0</code>에서부터 <code class="language-plaintext highlighter-rouge">0.5</code>까지 순차적으로 증가합니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">1.0초</code> ~ <code class="language-plaintext highlighter-rouge">2.0초</code> : 값이 <code class="language-plaintext highlighter-rouge">0.5</code>에서부터 <code class="language-plaintext highlighter-rouge">0.0</code>까지 순차적으로 감소합니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">2.0초</code> ~ <code class="language-plaintext highlighter-rouge">2.5초</code> : 값이 <code class="language-plaintext highlighter-rouge">0.0</code>에서부터 <code class="language-plaintext highlighter-rouge">1.0</code>까지 순차적으로 증가합니다.</li>
+      <li><code class="language-plaintext highlighter-rouge">2.5초</code> ~ <code class="language-plaintext highlighter-rouge">4.0초</code> : 값이 <code class="language-plaintext highlighter-rouge">1.0</code>에서부터 <code class="language-plaintext highlighter-rouge">0.0</code>까지 순차적으로 감소합니다.</li>
     </ul>
   </li>
 </ul>
@@ -928,7 +966,12 @@
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131140754-5ab2e195-3bfe-4d17-b637-21e3cc043b07.gif" alt="2021_0827_ScreenEffect_EditorOptions" /></p>
 
 <ul>
-  <li>유니티 에디터가 플레이모드에 진입한 경우, <code class="language-plaintext highlighter-rouge">에디터 기능</code> 탭에서 현재 이벤트 경과 시간을 실시간으로 확인할 수 있습니다.</li>
+  <li>
+    <p>지속 시간이 0보다 큰 경우에만 표시됩니다.</p>
+  </li>
+  <li>
+    <p>유니티 에디터가 플레이모드에 진입한 경우, <code class="language-plaintext highlighter-rouge">에디터 기능</code> 탭에서 현재 경과 시간을 실시간으로 확인할 수 있습니다.</p>
+  </li>
 </ul>
 
 <p><br /></p>
@@ -936,7 +979,7 @@
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131140912-3c27f154-8932-4cd2-a72e-0269b323bf7c.png" alt="image" /></p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">편집 모드</code>에 체크한 경우 이벤트 진행이 일시 정지되며, 슬라이더를 조작하여 원하는 시간으로 이동할 수 있습니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">편집 모드</code>에 체크한 경우 시간 진행이 일시 정지되며, 슬라이더를 조작하여 원하는 시간으로 이동할 수 있습니다.</li>
 </ul>
 
 <p><br /></p>
@@ -948,7 +991,126 @@
     <p><code class="language-plaintext highlighter-rouge">편집 모드</code>에 체크된 상태에서 각 이벤트 그래프를 클릭하여 원하는 시간으로 이동할 수 있습니다.</p>
   </li>
   <li>
-    <p><code class="language-plaintext highlighter-rouge">편집 모드</code>가 아닌 상태에서 각 이벤트 그래프를 클릭한 경우, <code class="language-plaintext highlighter-rouge">편집 모드</code>로 진입하며 이벤트 진행이 정지됩니다.</p>
+    <p><code class="language-plaintext highlighter-rouge">편집 모드</code>가 아닌 상태에서 각 이벤트 그래프를 클릭한 경우, <code class="language-plaintext highlighter-rouge">편집 모드</code>로 진입하며 시간 진행이 정지됩니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+<h1 id="animator-event-controller와-연동하기예시">Animator Event Controller와 연동하기(예시)</h1>
+<hr />
+
+<ul>
+  <li><strong>Animator Event Controller</strong>
+    <ul>
+      <li><a href="https://rito15.github.io/posts/unity-animator-event-controller/">https://rito15.github.io/posts/unity-animator-event-controller/</a></li>
+      <li>애니메이터의 애니메이션 클립마다 원하는 프레임에 이펙트를 생성할 수 있는 툴입니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="1-스크린-이펙트-준비"><strong>[1] 스크린 이펙트 준비</strong></h2>
+
+<ul>
+  <li><a href="https://rito15.github.io/posts/unity-amplify-screen-shake/">https://rito15.github.io/posts/unity-amplify-screen-shake/</a></li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131215160-5b6e6db0-01b6-4863-bed8-945791a09551.png" alt="image" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131214510-5d1b10f4-fc5a-4035-b4c1-0c31e84eff39.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>하이라키 우클릭 - <code class="language-plaintext highlighter-rouge">Effects</code> - <code class="language-plaintext highlighter-rouge">Screen Effect</code>를 통해 새로운 스크린 이펙트를 생성합니다.</p>
+  </li>
+  <li>
+    <p>화면을 흔드는 효과가 구현된 <strong>Screen Shake</strong> 마테리얼을 <code class="language-plaintext highlighter-rouge">이펙트 마테리얼</code>에 넣어줍니다.</p>
+  </li>
+  <li>
+    <p>지속 시간을 <code class="language-plaintext highlighter-rouge">0.3초</code>로 지정하고, 종료 동작을 <code class="language-plaintext highlighter-rouge">파괴</code>로 설정합니다.</p>
+  </li>
+  <li>
+    <p>마테리얼 프로퍼티 목록에서 각 프로퍼티들을 원하는 값으로 설정합니다.</p>
+  </li>
+  <li>
+    <p>종료 동작이 <code class="language-plaintext highlighter-rouge">파괴</code>이므로 게임 시작 후 <code class="language-plaintext highlighter-rouge">0.3초</code>가 지나면 게임오브젝트가 파괴됩니다. 따라서 파괴되지 않도록 <code class="language-plaintext highlighter-rouge">Off</code>를 클릭하여 게임오브젝트를 비활성화 상태로 만들어줍니다.</p>
+  </li>
+  <li>
+    <p>비활성화 상태로 씬에 그대로 두어도 되고, 따로 프리팹으로 추출해도 됩니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="2-애니메이션-제작"><strong>[2] 애니메이션 제작</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131207929-544b4505-5ad2-4c6a-9f79-34f8ac48c61e.gif" alt="2021_0827_ScreenEffect_Example_Anim" /></p>
+
+<ul>
+  <li>
+    <p>Sphere가 공중으로 뛰어올랐다가 바닥으로 착지하기를 반복하는 간단한 애니메이션을 제작합니다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Animator Controller</code>를 생성하여 제작한 애니메이션 클립을 추가하고 시작 애니메이션으로 설정합니다.</p>
+  </li>
+  <li>
+    <p>게임오브젝트에 <code class="language-plaintext highlighter-rouge">Animator</code> 컴포넌트를 추가하고, <code class="language-plaintext highlighter-rouge">Controller</code>를 등록해줍니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="3-애니메이터-이벤트-생성"><strong>[3] 애니메이터 이벤트 생성</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131208243-41ec765a-5c22-4273-94d3-31bcb36a923e.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Animator</code> 컴포넌트에 우클릭하여 <code class="language-plaintext highlighter-rouge">Add Animator Event Controller</code>를 클릭하면 <code class="language-plaintext highlighter-rouge">Animator Event Controller</code> 컴포넌트가 추가됩니다.</li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131208269-317df8e1-4220-4fa3-b8f3-a0fdba676d31.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">[+]</code> 버튼을 클릭하여 새로운 이벤트를 추가합니다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">프리팹 오브젝트</code>에 위에서 생성한 <code class="language-plaintext highlighter-rouge">Screen Shake</code> 게임오브젝트를 드래그하여 넣어줍니다.</p>
+  </li>
+  <li>
+    <p>생성 프레임을 알맞게 설정합니다. (땅에 찍는 순간인 <code class="language-plaintext highlighter-rouge">79</code> 프레임으로 설정하였습니다.)</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="4-결과-확인"><strong>[4] 결과 확인</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131208342-e8d635dc-8b0a-4d73-980b-8d42048032d4.gif" alt="2021_0827_ScreenEffect_Example_Anim2" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131208366-47c1ac80-1bf6-464e-ac0c-bbb4b49e4c13.gif" alt="2021_0827_ScreenEffect_Example_Anim3" /></p>
+
+<ul>
+  <li><strong>Sphere</strong>가 땅에 찍을 때마다 <code class="language-plaintext highlighter-rouge">Screen Shake</code> 이펙트 게임오브젝트가 생성되고, <code class="language-plaintext highlighter-rouge">0.3초</code> 후에 파괴되며 그동안 스크린 이펙트가 적용되는 것을 확인할 수 있습니다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="데모-씬-다운로드"><strong>데모 씬 다운로드</strong></h2>
+
+<ul>
+  <li>
+    <p>반드시 <a href="https://github.com/rito15/Unity-Useful-Editor-Assets/releases/download/1.01/Animator-Event-Controller.unitypackage">Animator-Event-Controller</a> 를 프로젝트에 임포트 완료한 상태에서 아래의 데모 씬을 임포트 해야 합니다.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/rito15/Images/files/7070845/Screen-Effect-Controller-Demo2.zip">Screen-Effect-Controller-Demo2.zip</a></p>
   </li>
 </ul>
 
@@ -960,17 +1122,207 @@
 <h1 id="타임라인과-연동하기예시">타임라인과 연동하기(예시)</h1>
 <hr />
 
+<ul>
+  <li>
+    <p>이 애셋은 게임오브젝트 활성화/비활성화 동작에 따라 스크린 이펙트가 적용/해제됩니다.</p>
+  </li>
+  <li>
+    <p>따라서 타임라인의 <code class="language-plaintext highlighter-rouge">Activation Track</code>을 통해 편리하게 사용할 수 있습니다.</p>
+  </li>
+</ul>
+
 <p><br /></p>
 
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
+<h2 id="1-meteor-이펙트"><strong>[1] Meteor 이펙트</strong></h2>
 
-<h1 id="animator-event-controller와-연동하기예시">Animator Event Controller와 연동하기(예시)</h1>
-<hr />
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131216116-a42c000d-9e12-444d-a1d6-20965caac62c.gif" alt="2021_0827_SE_TimelineDemo_01" /></p>
 
-<h2 id="animator-event-controller"><strong>Animator Event Controller</strong></h2>
 <ul>
-  <li><a href="https://rito15.github.io/posts/unity-animator-event-controller/">https://rito15.github.io/posts/unity-animator-event-controller/</a></li>
+  <li>
+    <p>파티클 시스템을 통해, 운석들이 낙하하는 이펙트를 제작합니다.</p>
+  </li>
+  <li>
+    <p>대략 2~3초간 지속됩니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="2-스크린-이펙트--shake"><strong>[2] 스크린 이펙트 : Shake</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131216692-8f6fcffe-1a88-4e9e-b97d-22ce1ee5605b.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p><a href="https://rito15.github.io/posts/unity-amplify-screen-shake/">https://rito15.github.io/posts/unity-amplify-screen-shake/</a></p>
+  </li>
+  <li>
+    <p>화면이 흔들리는 단순한 이펙트입니다.</p>
+  </li>
+  <li>
+    <p>타임라인과 연동할 예정이므로, 시간 계산 방식을 <code class="language-plaintext highlighter-rouge">프레임</code>으로 설정하고 <code class="language-plaintext highlighter-rouge">기준 FPS</code>를 <code class="language-plaintext highlighter-rouge">60</code>으로 지정합니다.</p>
+  </li>
+  <li>
+    <p>타임라인에 의해 활성화/비활성화가 제어되므로 종료 동작 무엇이든 상관 없지만, 일단 <code class="language-plaintext highlighter-rouge">비활성화</code>로 설정합니다.</p>
+  </li>
+  <li>
+    <p>0프레임부터 180프레임까지 <code class="language-plaintext highlighter-rouge">Shake Intensity</code> 값이 <code class="language-plaintext highlighter-rouge">0</code>부터 <code class="language-plaintext highlighter-rouge">0.2</code>까지 증가하도록 이벤트를 설정합니다.</p>
+  </li>
+  <li>
+    <p>시간 흐름에 따라 흔들리는 강도가 점차 강해집니다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Meteor</code> 이펙트의 첫 운석이 땅에 처음 부딪히는 순간부터 마지막 운석이 부딪히는 순간까지 <code class="language-plaintext highlighter-rouge">Shake</code> 이펙트가 동작하도록 할 예정이며, 구체적인 시간 조정은 타임라인 구성과 함께 할 것이므로, 일단 지속 시간을 <code class="language-plaintext highlighter-rouge">180</code> 프레임으로 설정합니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="3-스크린-이펙트--hexagonal-pattern"><strong>[3] 스크린 이펙트 : Hexagonal Pattern</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131216887-0abf6e8c-1274-4f03-b0f9-658cdce69295.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p><a href="https://rito15.github.io/posts/unity-amplify-screen-hexagons/">https://rito15.github.io/posts/unity-amplify-screen-hexagons/</a></p>
+  </li>
+  <li>
+    <p>마찬가지로 지속 시간은 <code class="language-plaintext highlighter-rouge">180</code> 프레임으로 대강 설정합니다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Hexagon</code> 이펙트가 <code class="language-plaintext highlighter-rouge">Shake</code> 이펙트로 인해 흔들리지 않도록, 우선순위를 <code class="language-plaintext highlighter-rouge">1</code>로 설정합니다.</p>
+  </li>
+  <li>
+    <p>운석이 떨어지기 전에 이 스크린 이펙트가 화면 가장자리에서부터 화면을 뒤덮고,<br />
+운석이 모두 떨어지고 나서 화면에서 부드럽게 사라지도록 이벤트를 제작할 것입니다.</p>
+  </li>
+  <li>
+    <p>이펙트의 영역 크기에 영향을 주는 프로퍼티는 <code class="language-plaintext highlighter-rouge">Area Range</code>, <code class="language-plaintext highlighter-rouge">Area Power</code> 입니다.</p>
+  </li>
+  <li>
+    <p>두 프로퍼티에 대해 이벤트를 제작합니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131216918-9afa688f-4aab-4c69-8dc9-c6aa48e54d4a.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>우선, <code class="language-plaintext highlighter-rouge">마테리얼 프로퍼티 목록</code>에서 두 프로퍼티의 우측 <code class="language-plaintext highlighter-rouge">[+]</code> 버튼을 각각 클릭하여 이벤트를 추가합니다.</p>
+  </li>
+  <li>
+    <p>이벤트 확인 및 수정은 플레이모드에 진입 후, <code class="language-plaintext highlighter-rouge">에디터 기능</code> - <code class="language-plaintext highlighter-rouge">편집 모드</code>를 설정하여 진행하는 것이 좋습니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131217077-effef320-ff18-48c8-9575-931be1d2f1c0.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Area Range</code> 프로퍼티에 대한 이벤트를 위와 같이 제작합니다.</li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131217317-ccb3bcb8-b220-41b0-8670-6d2279b4cb45.png" alt="image" /></p>
+
+<ul>
+  <li>마찬가지로 <code class="language-plaintext highlighter-rouge">Area Power</code> 프로퍼티 이벤트를 위와 같이 제작합니다.</li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131217342-7319d116-d007-4ccc-bc8b-964020b9b9da.gif" alt="2021_0827_SE_TimelineDemo_02" /></p>
+
+<ul>
+  <li>위와 같은 결과를 확인할 수 있습니다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="4-타임라인-제작"><strong>[4] 타임라인 제작</strong></h2>
+
+<ul>
+  <li>
+    <p>빈 게임 오브젝트를 만들고, 이름을 <code class="language-plaintext highlighter-rouge">Timeline</code>으로 변경합니다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Window</code> - <code class="language-plaintext highlighter-rouge">Sequencing</code> - <code class="language-plaintext highlighter-rouge">Timeline</code>을 통해 타임라인 윈도우를 엽니다.</p>
+  </li>
+  <li>
+    <p>생성한 빈 게임오브젝트를 클릭한 상태로 타임라인 윈도우에서</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131217410-8729b3c3-c2a1-4115-812c-aa1bdb6c7ac4.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Create</code> 버튼을 클릭하여 새로운 타임라인 애셋을 생성합니다.</li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131217440-34ed4d24-1aaf-4b0b-b48b-698b223459c2.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">[+]</code> 버튼을 클릭하여 <code class="language-plaintext highlighter-rouge">Activation Track</code> 세 개를 생성합니다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131217494-daab9794-4db9-4a74-a6c0-e73683f979be.png" alt="image" /></p>
+
+<ul>
+  <li>각각 씬에 있는 <code class="language-plaintext highlighter-rouge">Meteor</code>, <code class="language-plaintext highlighter-rouge">Shake</code>, <code class="language-plaintext highlighter-rouge">Hexagon</code> 이펙트 게임오브젝트들을 넣어줍니다.</li>
+</ul>
+
+<p><br /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131218454-c0c9cf73-023e-4ae2-9594-0c8b6df3600b.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>각 트랙을 선택하여, 시작 프레임은 <code class="language-plaintext highlighter-rouge">60</code>, 지속 프레임은 <code class="language-plaintext highlighter-rouge">180</code>으로 설정합니다.</p>
+  </li>
+  <li>
+    <p>이 상태를 기점으로, 원하는 결과를 얻을 때까지 <code class="language-plaintext highlighter-rouge">Shake</code>, <code class="language-plaintext highlighter-rouge">Hexagon</code> 이펙트의 시작 프레임과 지속 프레임을 변경하며 테스트합니다.</p>
+  </li>
+  <li>
+    <p>트랙의 지속 프레임을 수정할 때마다, 해당 <code class="language-plaintext highlighter-rouge">Screen Effect</code>의 지속 프레임도 함께 변경해주어야 합니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Screen Effect</code>의 <code class="language-plaintext highlighter-rouge">Activation Track</code> 종료 부분이 타임라인의 마지막 시점과 일치하는 경우, 타임라인 종료와 동시에 다시 활성화되는 경우가 있습니다.</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131218685-eb3ea663-bb19-419c-9ef5-484089279e1c.png" alt="image" /></p>
+
+<ul>
+  <li>이럴 때는 위와 같이 타임라인의 눈금자 부분을 우클릭하여 <code class="language-plaintext highlighter-rouge">Duration Mode</code> - <code class="language-plaintext highlighter-rouge">Fixed Length</code>로 설정하고,</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131218702-ed1dac8c-abc5-4047-91bd-07a66c152471.png" alt="image" /></p>
+
+<ul>
+  <li>파란 선을 드래그하여 여유 있게 약간 우측으로 이동시켜주면 됩니다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="5-최종-결과"><strong>[5] 최종 결과</strong></h2>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131218844-a6e5bdc2-78a3-4da2-9efb-d5670ebbc5db.gif" alt="2021_0827_SE_TimelineDemo_03" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131218774-0b22bde4-6450-46db-a156-428efd17254a.png" alt="image" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Meteor</code> - 시작 : <code class="language-plaintext highlighter-rouge">60</code>, 지속 : <code class="language-plaintext highlighter-rouge">180</code> (60 ~ 240)</li>
+  <li><code class="language-plaintext highlighter-rouge">Shake</code> - 시작 : <code class="language-plaintext highlighter-rouge">100</code>, 지속 : <code class="language-plaintext highlighter-rouge">120</code> (100 ~ 220)</li>
+  <li><code class="language-plaintext highlighter-rouge">Hexagon</code> - 시작 : <code class="language-plaintext highlighter-rouge">40</code>, 지속 : <code class="language-plaintext highlighter-rouge">220</code> (40 ~ 260)</li>
 </ul>
 
 <p><br /></p>
@@ -1119,6 +1471,16 @@
         
         
         
+        <li><a href="/posts/unity-game-view-auto-updater/">Game View Auto Updater(에디터 모드에서 게임 뷰 자동으로 갱신)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-animator-event-controller/">Animator Event Controller(애니메이터 이벤트 관리 컴포넌트)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
       
         
@@ -1130,16 +1492,6 @@
         
         
         <li><a href="/posts/unity-amplify-shockwave-shader/">(Amplify) Shockwave Shader</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-scripting-version-compatability/">유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-play-mode-save-sample/">Unity Play Mode Save - Sample</a></li>
       
 
       </ul>

@@ -10,14 +10,15 @@ mermaid: true
 
 # Summary
 ---
+
+- 스크린 이펙트(포스트 프로세싱 이펙트)를 간단히 적용할 수 있게 해주는 도구입니다.
+
+- 게임 오브젝트의 단순 활성화/비활성화 방식으로 스크린 이펙트를 적용/해제합니다.
+
+- 유니티 타임라인에도 손쉽게 연동할 수 있습니다.
+
 - 유니티 기본 렌더 파이프라인(Built-in Render Pipeline)에서 사용할 수 있습니다.
   - SRP, URP, HDRP에서는 사용할 수 없습니다.
-
-- 스크린 이펙트(포스트 프로세싱 이펙트)를 간단히 적용할 수 있습니다.
-
-- 게임 오브젝트의 단순 활성화/비활성화 방식으로 스크린 이펙트 적용/해제가 가능합니다.
-
-- 유니티 타임라인을 통해 편리하게 사용할 수 있습니다.
 
 <br>
 
@@ -38,18 +39,26 @@ mermaid: true
 # Preview
 ---
 
+## **[1] Demo Scene Preview**
+
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/wwrVsWvl5LA' frameborder='0' allowfullscreen></iframe></div>
 
+<br>
 
 <details>
 <summary markdown="span"> 
-.
+예제 다운로드
 </summary>
 
-[2021_0825_Screen_Effect_Demo.zip](https://github.com/rito15/Images/files/7048827/2021_0825_Screen_Effect_Demo.zip)
+- [Screen-Effect-Controller-Demo.zip](https://github.com/rito15/Images/files/7070833/Screen-Effect-Controller-Demo.zip)
 
 </details>
 
+<br>
+
+## **[2] Component Preview**
+
+![image](https://user-images.githubusercontent.com/42164422/131219376-ac281112-2629-4635-87c4-6398c0896971.png)
 
 
 <br>
@@ -64,6 +73,8 @@ mermaid: true
 - 첨부 파일을 다운로드하고, 유니티 프로젝트가 켜져 있는 상태에서 실행합니다.
 
 - 임포트 창이 나타나면 `Import` 버튼을 클릭하여 프로젝트에 임포트합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/131219650-3a6e5e1d-b808-4bc7-9a75-f301806f1d0a.png)
 
 <br>
 
@@ -154,7 +165,7 @@ fixed4 frag (v2f i) : SV_Target
 
 ## **[1] 스크린 이펙트 추가, 적용하기**
 
-![image](https://user-images.githubusercontent.com/42164422/130844769-793fc3da-c313-4185-adad-2bf5c6937c2f.png)
+![image](https://user-images.githubusercontent.com/42164422/131219054-6ee1a5a4-bad9-4301-a948-bd9e2ee64cf7.png)
 
 ![image](https://user-images.githubusercontent.com/42164422/131091349-f30ff002-17c4-469e-b099-049f20f95ee8.png)
 
@@ -175,11 +186,12 @@ fixed4 frag (v2f i) : SV_Target
 
 ## **[2] 하이라키 표시**
 
-![image](https://user-images.githubusercontent.com/42164422/131141491-68d2a88d-8cf0-4e87-9dc3-3f9c353da4de.png)
+![image](https://user-images.githubusercontent.com/42164422/131214096-614619f7-7f53-4013-8d1c-95ad47291e41.png)
 
 - 현재 활성화된 스크린 이펙트는 하이라키 좌측에 하늘색 아이콘이 표시됩니다.
-- 게임 오브젝트 이름 우측에는 해당 이펙트 마테리얼 이름, 우선순위가 표시됩니다.
-- 가장 우측에는 활성화/비활성화 버튼이 표시되며, 이를 클릭하여 간단히 활성화/비활성화할 수있습니다.
+- 마테리얼 등록 시 쉐이더 이름이 게임오브젝트 이름에 함께 표시됩니다. (`Screen Effect [ShaderName]`)
+- 게임오브젝트 이름 우측에는 이펙트 적용 우선순위가 표시됩니다.
+- 가장 우측에는 ON/OFF 버튼이 표시되며, 이를 클릭하여 간단히 활성화/비활성화할 수있습니다.
 
 <br>
 
@@ -193,11 +205,15 @@ fixed4 frag (v2f i) : SV_Target
 
 - 마테리얼이 등록된 경우
 
-![image](https://user-images.githubusercontent.com/42164422/131123300-263ec1fa-b5f5-4333-a40c-f795e99dd88e.png)
+![image](https://user-images.githubusercontent.com/42164422/131214167-1b77a106-bd74-44a7-8c0b-982ccf234969.png)
 
 - 지속 시간을 설정한 경우
 
-![image](https://user-images.githubusercontent.com/42164422/131123381-5621883d-b0ea-49a7-9c40-c33039fd7e80.png)
+![image](https://user-images.githubusercontent.com/42164422/131214177-a12d5e01-0532-495c-a70a-59fa04f8ca70.png)
+
+- 시간 계산 방식을 `프레임`으로 설정하고, `기준 FPS 사용`에 체크한 경우
+
+![image](https://user-images.githubusercontent.com/42164422/131214187-40684d0b-9de1-4430-8880-71107d9c82c1.png)
 
 <br>
 
@@ -217,27 +233,38 @@ fixed4 frag (v2f i) : SV_Target
   
   <br>
 
-- **마테리얼 이름 표시**
-  - 체크할 경우, 하이라키의 해당 이펙트 게임오브젝트 이름 우측에 마테리얼의 이름이 표시됩니다.
-  
-  <br>
-
 - **우선순위**
   - 여러 개의 스크린 이펙트가 적용될 때, 이펙트가 적용될 순서를 결정합니다.
   - 우선순위 값이 작을수록 화면에 먼저 적용됩니다.
+  - 우선순위 값은 하이라키의 ON/OFF 버튼 왼쪽에 표시됩니다.
   
   <br>
 
 - **시간 계산 방식**
-  - 적용될 시간 계산 방식을 프레임/시간(초) 중에 결정합니다. 
-  - 프레임을 선택한 경우, 기기의 성능에 따라 다른 결과를 나타낼 수 있습니다. 
-  - 시간(초)을 선택한 경우, 기기의 성능에 관계 없이 실제 시간을 기준으로 시간이 계산됩니다.
+  - 적용될 시간 계산 방식을 `프레임`/`시간(초)` 중에 결정합니다. 
+  - `프레임`을 선택한 경우, 매 프레임마다 이벤트가 갱신됩니다.
+  - `시간(초)`을 선택한 경우, 기기의 성능에 관계 없이 실제 시간을 기준으로 시간이 계산됩니다.
   
   <br>
   
 - **지속 시간**
   - 스크린 이펙트가 활성화된 이후 유지될 시간을 설정합니다.
-  - 0을 입력할 경우, 항상 지속되지만 시간별 이벤트를 사용할 수 없습니다.
+  - 0을 입력할 경우, 항상 지속되지만 프로퍼티 이벤트를 사용할 수 없습니다.
+  
+  <br>
+  
+- **기준 FPS 사용**
+  - 시간 계산 방식을 `프레임`으로 설정한 경우 사용할 수 있습니다.
+  - `기준 FPS 사용`에 체크 해제한 경우, 기기의 성능에 따라 다른 결과를 나타낼 수 있습니다.
+  - `기준 FPS 사용`에 체크한 경우, 기기의 성능에 관계 없이 일정한 시간 동안 지속됩니다.
+  
+  <br>
+  
+- **기준 FPS**
+  - 시간 계산 방식을 `프레임`으로 설정하고 `기준 FPS 사용`에 체크한 경우 설정할 수 있습니다.
+  - 프레임 계산을 실제 시간에 동기화하기 위한 `기준 FPS` 값을 설정합니다.
+  - 예를 들어 지속 프레임이 `120프레임`, 기준 FPS가 `60`인 경우 기기의 성능에 관계 없이 항상 `2초` 동안 지속됩니다.
+  - 타임라인을 사용할 때, 타임라인의 `Frame Rate`와 동일하게 설정하면 됩니다.
   
   <br>
 
@@ -258,7 +285,7 @@ fixed4 frag (v2f i) : SV_Target
 - 해당 마테리얼이 갖고 있는 프로퍼티의 목록을 표시합니다.
 - 해당 이펙트 마테리얼의 프로퍼티 값을 언제든 수정할 수 있습니다.
 
-- `[R]` 버튼을 클릭할 경우 해당 프로퍼티의 값을 초기값으로 설정합니다.
+- `[R]` 버튼을 클릭할 경우 해당 프로퍼티의 값을 초기값으로 변경합니다.
 - 각 프로퍼티마다 우측의 `[+]` 버튼을 클릭하여 프로퍼티 이벤트를 생성할 수 있습니다.
 
 - 이벤트가 생성된 프로퍼티의 `[E]` 버튼을 클릭할 경우, 이벤트가 동작하지 않도록 비활성화합니다.
@@ -266,7 +293,7 @@ fixed4 frag (v2f i) : SV_Target
 - 이벤트가 등록된 프로퍼티의 `[-]` 버튼을 클릭할 경우, 해당 프로퍼티의 모든 이벤트가 제거됩니다.
 
 - 이벤트가 존재하지 않는 프로퍼티는 하얀색으로 표시됩니다.
-- 이벤트가 존재하며, 활성화된 프로퍼티는 청록색으로 표시됩니다.
+- 이벤트가 존재하며, 활성화된 프로퍼티는 하늘색으로 표시됩니다.
 - 이벤트가 존재하지만 비활성화된 프로퍼티는 회색으로 표시됩니다.
 
 <br>
@@ -289,7 +316,7 @@ fixed4 frag (v2f i) : SV_Target
 
 ### **[5-1] 이벤트 목록**
 
-![image](https://user-images.githubusercontent.com/42164422/131131273-66a6fede-49be-4e7b-80ca-cf86f8d2a920.png)
+![image](https://user-images.githubusercontent.com/42164422/131207808-7a90c842-75c4-49b3-af16-b54925e780f6.png)
 
 - 시간 진행에 따른 프로퍼티 값의 변화를 이벤트를 통해 정의할 수 있습니다.
 - 쉐이더에서 직접 정의하기 힘든, 시간에 따른 값의 변화를 이 이벤트를 통해 손쉽게 정의할 수 있습니다.
@@ -306,10 +333,10 @@ fixed4 frag (v2f i) : SV_Target
 - 이벤트 키의 사이에서, 해당 프로퍼티의 값은 선형 보간되어 적용됩니다.
 
 - 예를 들어 위의 이벤트의 경우, `Range` 프로퍼티의 값이 시간에 따라 다음과 같이 변화합니다.
-  - `0초` ~ `1초` : 값이 `0.0`에서부터 `0.5`까지 순차적으로 증가합니다.
-  - `1초` ~ `2초` : 값이 `0,5`에서부터 `0.0`까지 순차적으로 감소합니다.
-  - `2초` ~ `3초` : 값이 `0.0`에서부터 `1.0`까지 순차적으로 증가합니다.
-  - `3초` ~ `4초` : 값이 `1.0`에서부터 `0.0`까지 순차적으로 감소합니다.
+  - `0.0초` ~ `1.0초` : 값이 `0.0`에서부터 `0.5`까지 순차적으로 증가합니다.
+  - `1.0초` ~ `2.0초` : 값이 `0.5`에서부터 `0.0`까지 순차적으로 감소합니다.
+  - `2.0초` ~ `2.5초` : 값이 `0.0`에서부터 `1.0`까지 순차적으로 증가합니다.
+  - `2.5초` ~ `4.0초` : 값이 `1.0`에서부터 `0.0`까지 순차적으로 감소합니다.
 
 <br>
 
@@ -351,13 +378,15 @@ fixed4 frag (v2f i) : SV_Target
 
 ![2021_0827_ScreenEffect_EditorOptions](https://user-images.githubusercontent.com/42164422/131140754-5ab2e195-3bfe-4d17-b637-21e3cc043b07.gif)
 
-- 유니티 에디터가 플레이모드에 진입한 경우, `에디터 기능` 탭에서 현재 이벤트 경과 시간을 실시간으로 확인할 수 있습니다.
+- 지속 시간이 0보다 큰 경우에만 표시됩니다.
+
+- 유니티 에디터가 플레이모드에 진입한 경우, `에디터 기능` 탭에서 현재 경과 시간을 실시간으로 확인할 수 있습니다.
 
 <br>
 
 ![image](https://user-images.githubusercontent.com/42164422/131140912-3c27f154-8932-4cd2-a72e-0269b323bf7c.png)
 
-- `편집 모드`에 체크한 경우 이벤트 진행이 일시 정지되며, 슬라이더를 조작하여 원하는 시간으로 이동할 수 있습니다.
+- `편집 모드`에 체크한 경우 시간 진행이 일시 정지되며, 슬라이더를 조작하여 원하는 시간으로 이동할 수 있습니다.
 
 <br>
 
@@ -365,17 +394,7 @@ fixed4 frag (v2f i) : SV_Target
 
 - `편집 모드`에 체크된 상태에서 각 이벤트 그래프를 클릭하여 원하는 시간으로 이동할 수 있습니다.
 
-- `편집 모드`가 아닌 상태에서 각 이벤트 그래프를 클릭한 경우, `편집 모드`로 진입하며 이벤트 진행이 정지됩니다.
-
-<br>
-
-<!-- -------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------- -->
-
-# 타임라인과 연동하기(예시)
----
-
-
+- `편집 모드`가 아닌 상태에서 각 이벤트 그래프를 클릭한 경우, `편집 모드`로 진입하며 시간 진행이 정지됩니다.
 
 <br>
 
@@ -385,11 +404,224 @@ fixed4 frag (v2f i) : SV_Target
 # Animator Event Controller와 연동하기(예시)
 ---
 
-## **Animator Event Controller**
- - <https://rito15.github.io/posts/unity-animator-event-controller/>
- 
+- **Animator Event Controller**
+  - <https://rito15.github.io/posts/unity-animator-event-controller/>
+  - 애니메이터의 애니메이션 클립마다 원하는 프레임에 이펙트를 생성할 수 있는 툴입니다.
 
+<br>
 
+## **[1] 스크린 이펙트 준비**
+
+- <https://rito15.github.io/posts/unity-amplify-screen-shake/>
+
+![image](https://user-images.githubusercontent.com/42164422/131215160-5b6e6db0-01b6-4863-bed8-945791a09551.png)
+
+![image](https://user-images.githubusercontent.com/42164422/131214510-5d1b10f4-fc5a-4035-b4c1-0c31e84eff39.png)
+
+- 하이라키 우클릭 - `Effects` - `Screen Effect`를 통해 새로운 스크린 이펙트를 생성합니다.
+
+- 화면을 흔드는 효과가 구현된 **Screen Shake** 마테리얼을 `이펙트 마테리얼`에 넣어줍니다.
+
+- 지속 시간을 `0.3초`로 지정하고, 종료 동작을 `파괴`로 설정합니다.
+
+- 마테리얼 프로퍼티 목록에서 각 프로퍼티들을 원하는 값으로 설정합니다.
+
+- 종료 동작이 `파괴`이므로 게임 시작 후 `0.3초`가 지나면 게임오브젝트가 파괴됩니다. 따라서 파괴되지 않도록 `Off`를 클릭하여 게임오브젝트를 비활성화 상태로 만들어줍니다.
+
+- 비활성화 상태로 씬에 그대로 두어도 되고, 따로 프리팹으로 추출해도 됩니다.
+
+<br>
+
+## **[2] 애니메이션 제작**
+
+![2021_0827_ScreenEffect_Example_Anim](https://user-images.githubusercontent.com/42164422/131207929-544b4505-5ad2-4c6a-9f79-34f8ac48c61e.gif)
+
+- Sphere가 공중으로 뛰어올랐다가 바닥으로 착지하기를 반복하는 간단한 애니메이션을 제작합니다.
+
+- `Animator Controller`를 생성하여 제작한 애니메이션 클립을 추가하고 시작 애니메이션으로 설정합니다.
+
+- 게임오브젝트에 `Animator` 컴포넌트를 추가하고, `Controller`를 등록해줍니다.
+
+<br>
+
+## **[3] 애니메이터 이벤트 생성**
+
+![image](https://user-images.githubusercontent.com/42164422/131208243-41ec765a-5c22-4273-94d3-31bcb36a923e.png)
+
+- `Animator` 컴포넌트에 우클릭하여 `Add Animator Event Controller`를 클릭하면 `Animator Event Controller` 컴포넌트가 추가됩니다.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/131208269-317df8e1-4220-4fa3-b8f3-a0fdba676d31.png)
+
+- `[+]` 버튼을 클릭하여 새로운 이벤트를 추가합니다.
+
+- `프리팹 오브젝트`에 위에서 생성한 `Screen Shake` 게임오브젝트를 드래그하여 넣어줍니다.
+
+- 생성 프레임을 알맞게 설정합니다. (땅에 찍는 순간인 `79` 프레임으로 설정하였습니다.)
+
+<br>
+
+## **[4] 결과 확인**
+
+![2021_0827_ScreenEffect_Example_Anim2](https://user-images.githubusercontent.com/42164422/131208342-e8d635dc-8b0a-4d73-980b-8d42048032d4.gif)
+
+![2021_0827_ScreenEffect_Example_Anim3](https://user-images.githubusercontent.com/42164422/131208366-47c1ac80-1bf6-464e-ac0c-bbb4b49e4c13.gif)
+
+- **Sphere**가 땅에 찍을 때마다 `Screen Shake` 이펙트 게임오브젝트가 생성되고, `0.3초` 후에 파괴되며 그동안 스크린 이펙트가 적용되는 것을 확인할 수 있습니다.
+
+<br>
+
+## **데모 씬 다운로드**
+
+- 반드시 [Animator-Event-Controller](https://github.com/rito15/Unity-Useful-Editor-Assets/releases/download/1.01/Animator-Event-Controller.unitypackage) 를 프로젝트에 임포트 완료한 상태에서 아래의 데모 씬을 임포트 해야 합니다.
+
+- [Screen-Effect-Controller-Demo2.zip](https://github.com/rito15/Images/files/7070845/Screen-Effect-Controller-Demo2.zip)
+
+<br>
+
+<!-- -------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------- -->
+
+# 타임라인과 연동하기(예시)
+---
+
+- 이 애셋은 게임오브젝트 활성화/비활성화 동작에 따라 스크린 이펙트가 적용/해제됩니다.
+
+- 따라서 타임라인의 `Activation Track`을 통해 편리하게 사용할 수 있습니다.
+
+<br>
+
+## **[1] Meteor 이펙트**
+
+![2021_0827_SE_TimelineDemo_01](https://user-images.githubusercontent.com/42164422/131216116-a42c000d-9e12-444d-a1d6-20965caac62c.gif)
+
+- 파티클 시스템을 통해, 운석들이 낙하하는 이펙트를 제작합니다.
+
+- 대략 2~3초간 지속됩니다.
+
+<br>
+
+## **[2] 스크린 이펙트 : Shake**
+
+![image](https://user-images.githubusercontent.com/42164422/131216692-8f6fcffe-1a88-4e9e-b97d-22ce1ee5605b.png)
+
+- <https://rito15.github.io/posts/unity-amplify-screen-shake/>
+
+- 화면이 흔들리는 단순한 이펙트입니다.
+
+- 타임라인과 연동할 예정이므로, 시간 계산 방식을 `프레임`으로 설정하고 `기준 FPS`를 `60`으로 지정합니다.
+
+- 타임라인에 의해 활성화/비활성화가 제어되므로 종료 동작 무엇이든 상관 없지만, 일단 `비활성화`로 설정합니다.
+
+- 0프레임부터 180프레임까지 `Shake Intensity` 값이 `0`부터 `0.2`까지 증가하도록 이벤트를 설정합니다.
+
+- 시간 흐름에 따라 흔들리는 강도가 점차 강해집니다.
+
+- `Meteor` 이펙트의 첫 운석이 땅에 처음 부딪히는 순간부터 마지막 운석이 부딪히는 순간까지 `Shake` 이펙트가 동작하도록 할 예정이며, 구체적인 시간 조정은 타임라인 구성과 함께 할 것이므로, 일단 지속 시간을 `180` 프레임으로 설정합니다.
+
+<br>
+
+## **[3] 스크린 이펙트 : Hexagonal Pattern**
+
+![image](https://user-images.githubusercontent.com/42164422/131216887-0abf6e8c-1274-4f03-b0f9-658cdce69295.png)
+
+- <https://rito15.github.io/posts/unity-amplify-screen-hexagons/>
+
+- 마찬가지로 지속 시간은 `180` 프레임으로 대강 설정합니다.
+
+- `Hexagon` 이펙트가 `Shake` 이펙트로 인해 흔들리지 않도록, 우선순위를 `1`로 설정합니다.
+
+- 운석이 떨어지기 전에 이 스크린 이펙트가 화면 가장자리에서부터 화면을 뒤덮고,<br>
+  운석이 모두 떨어지고 나서 화면에서 부드럽게 사라지도록 이벤트를 제작할 것입니다.
+  
+- 이펙트의 영역 크기에 영향을 주는 프로퍼티는 `Area Range`, `Area Power` 입니다.
+
+- 두 프로퍼티에 대해 이벤트를 제작합니다.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/131216918-9afa688f-4aab-4c69-8dc9-c6aa48e54d4a.png)
+
+- 우선, `마테리얼 프로퍼티 목록`에서 두 프로퍼티의 우측 `[+]` 버튼을 각각 클릭하여 이벤트를 추가합니다.
+
+- 이벤트 확인 및 수정은 플레이모드에 진입 후, `에디터 기능` - `편집 모드`를 설정하여 진행하는 것이 좋습니다.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/131217077-effef320-ff18-48c8-9575-931be1d2f1c0.png)
+
+- `Area Range` 프로퍼티에 대한 이벤트를 위와 같이 제작합니다.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/131217317-ccb3bcb8-b220-41b0-8670-6d2279b4cb45.png)
+
+- 마찬가지로 `Area Power` 프로퍼티 이벤트를 위와 같이 제작합니다.
+
+<br>
+
+![2021_0827_SE_TimelineDemo_02](https://user-images.githubusercontent.com/42164422/131217342-7319d116-d007-4ccc-bc8b-964020b9b9da.gif)
+
+- 위와 같은 결과를 확인할 수 있습니다.
+
+<br>
+
+## **[4] 타임라인 제작**
+
+- 빈 게임 오브젝트를 만들고, 이름을 `Timeline`으로 변경합니다.
+
+- `Window` - `Sequencing` - `Timeline`을 통해 타임라인 윈도우를 엽니다.
+
+- 생성한 빈 게임오브젝트를 클릭한 상태로 타임라인 윈도우에서
+
+![image](https://user-images.githubusercontent.com/42164422/131217410-8729b3c3-c2a1-4115-812c-aa1bdb6c7ac4.png)
+
+- `Create` 버튼을 클릭하여 새로운 타임라인 애셋을 생성합니다.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/131217440-34ed4d24-1aaf-4b0b-b48b-698b223459c2.png)
+
+- `[+]` 버튼을 클릭하여 `Activation Track` 세 개를 생성합니다.
+
+![image](https://user-images.githubusercontent.com/42164422/131217494-daab9794-4db9-4a74-a6c0-e73683f979be.png)
+
+- 각각 씬에 있는 `Meteor`, `Shake`, `Hexagon` 이펙트 게임오브젝트들을 넣어줍니다.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/131218454-c0c9cf73-023e-4ae2-9594-0c8b6df3600b.png)
+
+- 각 트랙을 선택하여, 시작 프레임은 `60`, 지속 프레임은 `180`으로 설정합니다.
+
+- 이 상태를 기점으로, 원하는 결과를 얻을 때까지 `Shake`, `Hexagon` 이펙트의 시작 프레임과 지속 프레임을 변경하며 테스트합니다.
+
+- 트랙의 지속 프레임을 수정할 때마다, 해당 `Screen Effect`의 지속 프레임도 함께 변경해주어야 합니다.
+
+<br>
+
+- `Screen Effect`의 `Activation Track` 종료 부분이 타임라인의 마지막 시점과 일치하는 경우, 타임라인 종료와 동시에 다시 활성화되는 경우가 있습니다.
+
+![image](https://user-images.githubusercontent.com/42164422/131218685-eb3ea663-bb19-419c-9ef5-484089279e1c.png)
+
+- 이럴 때는 위와 같이 타임라인의 눈금자 부분을 우클릭하여 `Duration Mode` - `Fixed Length`로 설정하고,
+
+![image](https://user-images.githubusercontent.com/42164422/131218702-ed1dac8c-abc5-4047-91bd-07a66c152471.png)
+
+- 파란 선을 드래그하여 여유 있게 약간 우측으로 이동시켜주면 됩니다.
+
+<br>
+
+## **[5] 최종 결과**
+
+![2021_0827_SE_TimelineDemo_03](https://user-images.githubusercontent.com/42164422/131218844-a6e5bdc2-78a3-4da2-9efb-d5670ebbc5db.gif)
+
+![image](https://user-images.githubusercontent.com/42164422/131218774-0b22bde4-6450-46db-a156-428efd17254a.png)
+
+- `Meteor` - 시작 : `60`, 지속 : `180` (60 ~ 240)
+- `Shake` - 시작 : `100`, 지속 : `120` (100 ~ 220)
+- `Hexagon` - 시작 : `40`, 지속 : `220` (40 ~ 260)
 
 <br>
 
