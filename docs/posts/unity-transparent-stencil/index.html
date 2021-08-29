@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 반투명, 스텐실 개념 익히기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 반투명, 스텐실 개념 익히기","description":"목차","dateModified":"2021-07-02T17:52:44+09:00","datePublished":"2021-02-06T01:29:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-transparent-stencil/"},"url":"https://rito15.github.io/posts/unity-transparent-stencil/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차","datePublished":"2021-02-06T01:29:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-transparent-stencil/"},"url":"https://rito15.github.io/posts/unity-transparent-stencil/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 반투명, 스텐실 개념 익히기","dateModified":"2021-07-02T17:52:44+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -2790,17 +2790,17 @@ Silhouette.shader
         
         
         
+        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
       
         
         
         
         <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
       
         
         
@@ -9831,7 +9831,7 @@ float4x4 GetModelRotationMatrix()
   <i class="unloaded">2021-08-17T20:40:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>초보자를 위한 쉐이더 개념 간단 요약</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>쉐이더의 개념과 렌더링 파이프라인</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9840,16 +9840,13 @@ float4x4 GetModelRotationMatrix()
 
 
 
-                선요약
+                초보자를 위한 간단 요약
 
 
   쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수
-  정점 쉐이더 : 모델링의 3D 정점 위치를 2D 화면 위치로 변환하는 함수
-  픽셀 쉐이더 : 화면에 출력될 픽셀의 최종 색상을 계산하는 함수
-
-
-
-출처 : https://kblog.popekim.com/2011/11/01-part-1.htm...
+  정점 쉐이더 : 모델링의 3D 정점 위치를 원근감이 적용된 카메라 기준 위치로 변환하는 함수
+  래스터라이저 : 3D 공간의 위치로부터 2D 픽셀 위치들을 찾아주는 장치
+  픽셀 쉐이더 : 화면에 출력될 픽셀의 색상을 계산하...
               </p>
             </div>
           </div>
