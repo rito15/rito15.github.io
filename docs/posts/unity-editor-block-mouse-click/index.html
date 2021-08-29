@@ -667,12 +667,12 @@
         
         
         
-        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
+        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
+        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
       
         
         
@@ -3119,8 +3119,6 @@
     
     
     
-      
-    
   
     
     
@@ -4171,6 +4169,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7692,7 +7703,7 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
       
       
       <div class="card">
-        <a href="/posts/unity-editor-check-focused/">
+        <a href="/posts/unity-editor-focus/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7715,7 +7726,7 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
   <i class="unloaded">2021-08-26T03:45:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI의 특정 컨트롤 포커스 여부 확인하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 포커스 확인, 처리</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7724,7 +7735,7 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
 
 
 
-                Memo
+                1. 컨트롤 포커스 여부 확인
 
 
 1
@@ -7745,7 +7756,7 @@ GUI.SetNextControlName("Foooooooocus");
 EditorGUI.TextArea(rect, value, inputStyle);
 
 // 포커스 여부 확인
-if(GUI.GetNameOfFocusedControl...
+if(GUI.GetNameOfFo...
               </p>
             </div>
           </div>
@@ -10275,8 +10286,6 @@ if(GUI.GetNameOfFocusedControl...
     
     
     
-    
-      
     
   
     

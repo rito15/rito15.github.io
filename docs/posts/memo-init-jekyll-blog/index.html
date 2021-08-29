@@ -810,12 +810,12 @@ git push
         
         
         
-        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
+        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
+        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
       
         
         
@@ -3262,8 +3262,6 @@ git push
     
     
     
-      
-    
   
     
     
@@ -4319,6 +4317,19 @@ git push
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7725,68 +7736,6 @@ git push
       
       
       <div class="card">
-        <a href="/posts/unity-editor-block-mouse-click/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 25
-  
-
-  <i class="unloaded">2021-08-25T02:59:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터의 특정 영역 마우스 클릭 방지하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Memo
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-Rect rect = ....; // 마우스 클릭 방지할 영역
-
-if (rect.Contains(Event.current.mousePosition))
-{
-    if(Event.current.type == EventType.MouseDown)
-        Event.current.Use();
-}
-
-// 이...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-draw-multiple-curves/">
           <div class="card-body">
             <!--
@@ -7893,6 +7842,69 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
 EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
 
 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-focus/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 26
+  
+
+  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 포커스 확인, 처리</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1. 컨트롤 포커스 여부 확인
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+// 다음에 나올 GUI 컨트롤에 이름 부여
+GUI.SetNextControlName("Foooooooocus");
+
+// GUI 그리기
+EditorGUI.TextArea(rect, value, inputStyle);
+
+// 포커스 여부 확인
+if(GUI.GetNameOfFo...
               </p>
             </div>
           </div>
@@ -10422,8 +10434,6 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
     
     
     
-    
-      
     
   
     

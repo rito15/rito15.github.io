@@ -759,12 +759,12 @@
         
         
         
-        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
+        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
+        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
       
         
         
@@ -3211,8 +3211,6 @@
     
     
     
-      
-    
   
     
     
@@ -4268,6 +4266,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7674,61 +7685,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-block-mouse-click/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 25
-  
-
-  <i class="unloaded">2021-08-25T02:59:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터의 특정 영역 마우스 클릭 방지하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Memo
-
-
-
-  
-    Rect rect = ....; // 마우스 클릭 방지할 영역
-
-if (rect.Contains(Event.current.mousePosition))
-{
-    if(Event.current.type == EventType.MouseDown)
-        Event.current.Use();
-}
-
-// 이후 해당 영역에서의...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-update-game-view/">
           <div class="card-body">
             <!--
@@ -7785,7 +7741,7 @@ if (rect.Contains(Event.current.mousePosition))
       
       
       <div class="card">
-        <a href="/posts/unity-editor-check-focused/">
+        <a href="/posts/unity-editor-focus/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7808,7 +7764,7 @@ if (rect.Contains(Event.current.mousePosition))
   <i class="unloaded">2021-08-26T03:45:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI의 특정 컨트롤 포커스 여부 확인하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 포커스 확인, 처리</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7817,7 +7773,7 @@ if (rect.Contains(Event.current.mousePosition))
 
 
 
-                Memo
+                1. 컨트롤 포커스 여부 확인
 
 
 1
@@ -7838,7 +7794,119 @@ GUI.SetNextControlName("Foooooooocus");
 EditorGUI.TextArea(rect, value, inputStyle);
 
 // 포커스 여부 확인
-if(GUI.GetNameOfFocusedControl...
+if(GUI.GetNameOfFo...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-sliding-onoff-button/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 26
+  
+
+  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 미끄러지는 On-Off 버튼</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66...
               </p>
             </div>
           </div>
@@ -10378,8 +10446,6 @@ if(GUI.GetNameOfFocusedControl...
     
     
     
-    
-      
     
   
     

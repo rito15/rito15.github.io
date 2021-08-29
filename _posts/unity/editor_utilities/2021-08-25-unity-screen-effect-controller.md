@@ -378,6 +378,18 @@ fixed4 frag (v2f i) : SV_Target
 
 <br>
 
+### **추가 기능 : 키 이동 및 삭제**
+
+![2021_0830_ScreenEffect_MoveKey](https://user-images.githubusercontent.com/42164422/131262483-69013877-dd99-43f0-872a-23236d7daf4b.gif)
+
+- 그래프 하단의 키 부분을 마우스 좌클릭 및 드래그하여 좌우로 이동할 수 있습니다.
+
+![2021_0830_ScreenEffect_RemoveKey](https://user-images.githubusercontent.com/42164422/131262484-409f0c2a-df31-43af-bfa4-1ed265cf1d32.gif)
+
+- 그래프 하단의 키 부분을 마우스 우클릭하여 해당 키를 제거할 수 있습니다.
+
+<br>
+
 ### **[5-3] 애니메이션 그라디언트**
 
 ![image](https://user-images.githubusercontent.com/42164422/131184230-c93c2711-cdfd-4e3a-b54d-efa3b4a9795c.png)

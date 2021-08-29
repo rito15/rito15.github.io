@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "유니티 에디터 - 마우스 이벤트 메모",
+    "url": "/posts/unity-editor-mouse-events/",
+    "categories": "Unity, Unity Editor Memo",
+    "tags": "unity, editor, memo",
+    "date": "2021-08-30 03:03:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Note  OnInspectorGUI() 내에서 호출private static bool IsLeftMouseDown =&amp;gt;     Event.current.type == EventType.MouseDown &amp;amp;&amp;amp; Event.current.button == 0;private static bool IsLeftMouseDrag =&amp;gt;     Event.current.type == EventType.MouseDrag &amp;amp;&amp;amp; Event.current.button..."
+  },
+  
+  {
     "title": "렌더링 파이프라인 간단 정리",
     "url": "/posts/rendering-pipeline/",
     "categories": "Unity Shader, Shader Study",
@@ -91,8 +106,8 @@
   },
   
   {
-    "title": "유니티 에디터 GUI의 특정 컨트롤 포커스 여부 확인하기",
-    "url": "/posts/unity-editor-check-focused/",
+    "title": "유니티 에디터 GUI - 포커스 확인, 처리",
+    "url": "/posts/unity-editor-focus/",
     "categories": "Unity, Unity Editor Memo",
     "tags": "unity, editor, memo",
     "date": "2021-08-26 03:45:00 +0900",
@@ -102,7 +117,7 @@
 
 
 
-    "snippet": "Memo// 다음에 나올 GUI 컨트롤에 이름 부여GUI.SetNextControlName(&quot;Foooooooocus&quot;);// GUI 그리기EditorGUI.TextArea(rect, value, inputStyle);// 포커스 여부 확인if(GUI.GetNameOfFocusedControl() == &quot;Foooooooocus&quot;){    // Do Something..}"
+    "snippet": "1. 컨트롤 포커스 여부 확인// 다음에 나올 GUI 컨트롤에 이름 부여GUI.SetNextControlName(&quot;Foooooooocus&quot;);// GUI 그리기EditorGUI.TextArea(rect, value, inputStyle);// 포커스 여부 확인if(GUI.GetNameOfFocusedControl() == &quot;Foooooooocus&quot;){    // Do Something..}2. 특정 컨트롤에 포커스// 다음에 나올 GUI 컨트롤에 이름 부여GUI.SetNextControlNa..."
   },
   
   {

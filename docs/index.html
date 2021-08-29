@@ -366,6 +366,93 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-mouse-events/">유니티 에디터 - 마우스 이벤트 메모</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+
+  OnInspectorGUI() 내에서 호출
+
+
+
+  
+    private static bool IsLeftMouseDown =&gt; 
+    Event.current.type == EventType.MouseDown &amp;&amp; Event.current.button == 0;
+
+private static bool IsLef...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Aug 30, 2021,  3:03 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug 30
+  
+
+  <i class="unloaded">2021-08-30T03:03:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="142 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a>
     </h1>
 
@@ -918,7 +1005,7 @@ private void DrawMovingOnOffButton()
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-editor-check-focused/">유니티 에디터 GUI의 특정 컨트롤 포커스 여부 확인하기</a>
+      <a href="/posts/unity-editor-focus/">유니티 에디터 GUI - 포커스 확인, 처리</a>
     </h1>
 
     <div class="post-content">
@@ -929,7 +1016,7 @@ private void DrawMovingOnOffButton()
 
 
 
-        Memo
+        1. 컨트롤 포커스 여부 확인
 
 
 
@@ -941,7 +1028,7 @@ GUI.SetNextControlName("Foooooooocus");
 EditorGUI.TextArea(rect, value, inputStyle);
 
 // 포커스 여부 확인
-if(GUI.GetNameOfFocusedControl() == "Foooooooo...
+if(GUI.GetNameOfFocusedControl() =...
       </p>
     </div>
 
@@ -988,7 +1075,7 @@ if(GUI.GetNameOfFocusedControl() == "Foooooooo...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="52 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="159 words">1 min</span>
 
 
         <!-- page views -->
@@ -1077,7 +1164,7 @@ if(GUI.GetNameOfFocusedControl() == "Foooooooo...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5637 words">31 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5713 words">31 min</span>
 
 
         <!-- page views -->
@@ -1170,94 +1257,6 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="677 words">3 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Memo
-
-
-
-  
-    Rect rect = ....; // 마우스 클릭 방지할 영역
-
-if (rect.Contains(Event.current.mousePosition))
-{
-    if(Event.current.type == EventType.MouseDown)
-        Event.current.Use();
-}
-
-// 이후 해당 영역에서의...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Aug 25, 2021,  2:59 AM +0900"
-  >
-
-  
-  
-
-  
-    Aug 25
-  
-
-  <i class="unloaded">2021-08-25T02:59:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="218 words">1 min</span>
 
 
         <!-- page views -->
@@ -1780,12 +1779,12 @@ if (rect.Contains(Event.current.mousePosition))
         
         
         
-        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
+        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
+        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
       
         
         
@@ -4231,8 +4230,6 @@ if (rect.Contains(Event.current.mousePosition))
     
     
     
-    
-      
     
   
     
@@ -7745,8 +7742,6 @@ if (rect.Contains(Event.current.mousePosition))
     
     
     
-    
-      
     
   
     

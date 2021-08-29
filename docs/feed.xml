@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-30T02:38:56+09:00</updated>
+  <updated>2021-08-30T04:14:36+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,56 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 에디터 - 마우스 이벤트 메모</title>
+    <link href="https://rito15.github.io/posts/unity-editor-mouse-events/" rel="alternate" type="text/html" title="유니티 에디터 - 마우스 이벤트 메모" />
+    <published>2021-08-30T03:03:00+09:00</published>
+  
+    <updated>2021-08-30T03:03:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-mouse-events/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-mouse-events/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+
+  OnInspectorGUI() 내에서 호출
+
+
+private static bool IsLeftMouseDown =&amp;gt; 
+    Event.current.type == EventType.MouseDown &amp;amp;&amp;amp; Event.current.button == 0;
+
+private static bool IsLeftMouseDrag =&amp;gt; 
+    Event.current.type == EventType.MouseDrag &amp;amp;&amp;amp; Event.current.button == 0;
+
+private static bool IsLeftMouseUp =&amp;gt; 
+    Event.current.type == EventType.MouseUp &amp;amp;&amp;amp; Event.cur...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -284,61 +334,6 @@ public override void OnInspectorGUI()
 
 
   NOTE : Edit...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 에디터 하이라키 윈도우 관련 코드 모음</title>
-    <link href="https://rito15.github.io/posts/unity-editor-hierarchy-window/" rel="alternate" type="text/html" title="유니티 에디터 하이라키 윈도우 관련 코드 모음" />
-    <published>2021-08-27T18:00:00+09:00</published>
-  
-    <updated>2021-08-27T18:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-hierarchy-window/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-hierarchy-window/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-// 1. 하이라키 윈도우 타입
-public static Type HierarchyWindowType
-{
-    get
-    {
-        if (_hierarchyWindowType == null)
-            _hierarchyWindowType = 
-                typeof(EditorWindow).Assembly.GetTypes()
-                .Where(t =&amp;gt; t.Name == "SceneHierarchyWindow")
-                .First();
-
-        return _hierarchyWindowType;
-    }
-}
-private static Type _hierarchyWindowType;
-
-
-//...
     </summary>
   
 
