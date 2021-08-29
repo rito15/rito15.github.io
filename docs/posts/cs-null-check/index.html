@@ -643,6 +643,11 @@ ceq
         
         
         
+        <li><a href="/posts/unity-shader-concept/">초보자를 위한 쉐이더 개념 간단 정리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
       
         
@@ -659,11 +664,6 @@ ceq
         
         
         <li><a href="/posts/unity-amplify-screen-damage/">(Amplify) Screen Effect - Damage</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-screen-hexagons/">(Amplify) Screen Effect - Hexagonal Pattern</a></li>
       
 
       </ul>
@@ -4765,6 +4765,19 @@ ceq
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7697,7 +7710,7 @@ class MainClass
       
       
       <div class="card">
-        <a href="/posts/memo-cs-static-readonly-vs-const/">
+        <a href="/posts/cs-switch-case/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7714,13 +7727,13 @@ class MainClass
   
 
   
-    Mar 30
+    Aug 20
   
 
-  <i class="unloaded">2021-03-30T00:50:00+09:00</i>
+  <i class="unloaded">2021-08-20T16:49:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Static Readonly vs. Const</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Switch-Case의 특징</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7729,32 +7742,18 @@ class MainClass
 
 
 
-                공통점
+                Switch-Case 문
 
-
-
-  런타임에 값을 변경할 수 없다.
-
-
-
-
-차이점
-
-
-Static Readonly
 
 
   
-    필드 선언문 또는 정적 생성자에서만 값을 초기화할 수 있다.
+    대상 변수에 대해, 고정된 값들을 case에 지정하여 동등 비교를 수행할 수 있다.
   
   
-    값을 초기화하지 않으면 해당 타입의 기본값으로 초기화된다.
+    case가 일정 개수 미만일 경우, if-else와 동일한 방식으로 각 case를 순차적으로 확인하며 분기한다고 한다.
   
   
-    런타임 초기에 값이 고정된다.
-  
-  
-    값이 정해지면 변하지 않지만, 결국 변...
+    case가 일정 개수 이상일 경우, 메모리에 Jump Table을 생성...
               </p>
             </div>
           </div>

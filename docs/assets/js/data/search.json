@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "렌더링 파이프라인 간단 정리",
+    "url": "/posts/rendering-pipeline/",
+    "categories": "Unity Shader, Shader Study",
+    "tags": "unity, csharp, shader, graphics",
+    "date": "2021-08-30 01:50:00 +0900",
+    
+
+
+
+
+
+    "snippet": "렌더링 파이프라인 구조 요약  입력 조립  정점 쉐이더  래스터라이저  픽셀(프래그먼트) 쉐이더  출력 병합1. 입력 조립(Input Assembly)      렌더링 파이프라인의 첫 단계        정점 데이터를 CPU에서 GPU로 운반하기 위한 자료 구조를 정점 버퍼라고 한다.        정점 버퍼는 위치, 노말, 색상, UV를 담고 있는데, 구조체로 이쁘게 담고 있는게 아니고 직렬화된 형태로 담고 있다.        그리고 GPU에서는 이렇게 전달 받은 정점 버퍼를, 미리 전달 받은 렌더 상태의 버텍스 명세를 통해 정..."
+  },
+  
+  {
     "title": "유니티 에디터 - Built-in Icons",
     "url": "/posts/unity-editor-built-in-icons/",
     "categories": "Unity, Unity Editor Memo",
@@ -301,7 +316,7 @@
   },
   
   {
-    "title": "쉐이더의 개념과 렌더링 파이프라인",
+    "title": "초보자를 위한 쉐이더 개념 간단 정리",
     "url": "/posts/unity-shader-concept/",
     "categories": "Unity Shader, Shader Study",
     "tags": "unity, csharp, shader, graphics",
@@ -312,7 +327,7 @@
 
 
 
-    "snippet": "초보자를 위한 간단 요약  쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수  정점 쉐이더 : 모델링의 3D 정점 위치를 원근감이 적용된 카메라 기준 위치로 변환하는 함수  래스터라이저 : 3D 공간의 위치로부터 2D 픽셀 위치들을 찾아주는 장치  픽셀 쉐이더 : 화면에 출력될 픽셀의 색상을 계산하는 함수출처 : https://kblog.popekim.com/2011/11/01-part-1.html쉐이더(Shader)  함수의 일종  함수 = (입력 -&amp;gt; 처리 -&amp;..."
+    "snippet": "요약      쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수        정점 쉐이더 : 모델링의 3D 정점 위치를 카메라가 바라보는 위치로 변환하는 함수        래스터라이저 : 3D 공간의 위치로부터 2D 픽셀 위치들을 찾아주는 장치        픽셀 쉐이더 : 화면에 출력될 픽셀의 색상을 계산하는 함수  출처 : https://kblog.popekim.com/2011/11/01-part-1.html쉐이더(Shader)  함수의 일종  함수 = (입력 -&amp;gt; 처리..."
   },
   
   {

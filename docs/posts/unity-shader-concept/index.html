@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="쉐이더의 개념과 렌더링 파이프라인" />
+<meta property="og:title" content="초보자를 위한 쉐이더 개념 간단 정리" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="초보자를 위한 간단 요약 쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수 정점 쉐이더 : 모델링의 3D 정점 위치를 원근감이 적용된 카메라 기준 위치로 변환하는 함수 래스터라이저 : 3D 공간의 위치로부터 2D 픽셀 위치들을 찾아주는 장치 픽셀 쉐이더 : 화면에 출력될 픽셀의 색상을 계산하는 함수" />
-<meta property="og:description" content="초보자를 위한 간단 요약 쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수 정점 쉐이더 : 모델링의 3D 정점 위치를 원근감이 적용된 카메라 기준 위치로 변환하는 함수 래스터라이저 : 3D 공간의 위치로부터 2D 픽셀 위치들을 찾아주는 장치 픽셀 쉐이더 : 화면에 출력될 픽셀의 색상을 계산하는 함수" />
+<meta name="description" content="요약 쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수" />
+<meta property="og:description" content="요약 쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-shader-concept/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-shader-concept/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-08-17T20:40:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="쉐이더의 개념과 렌더링 파이프라인" />
+<meta property="twitter:title" content="초보자를 위한 쉐이더 개념 간단 정리" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"초보자를 위한 간단 요약 쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수 정점 쉐이더 : 모델링의 3D 정점 위치를 원근감이 적용된 카메라 기준 위치로 변환하는 함수 래스터라이저 : 3D 공간의 위치로부터 2D 픽셀 위치들을 찾아주는 장치 픽셀 쉐이더 : 화면에 출력될 픽셀의 색상을 계산하는 함수","datePublished":"2021-08-17T20:40:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-concept/"},"url":"https://rito15.github.io/posts/unity-shader-concept/","author":{"@type":"Person","name":"Rito15"},"headline":"쉐이더의 개념과 렌더링 파이프라인","dateModified":"2021-08-17T20:40:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"요약 쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수","datePublished":"2021-08-17T20:40:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-concept/"},"url":"https://rito15.github.io/posts/unity-shader-concept/","author":{"@type":"Person","name":"Rito15"},"headline":"초보자를 위한 쉐이더 개념 간단 정리","dateModified":"2021-08-30T00:15:54+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>쉐이더의 개념과 렌더링 파이프라인 | Rito15
+  <title>초보자를 위한 쉐이더 개념 간단 정리 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>쉐이더의 개념과 렌더링 파이프라인</span>
+        <span>초보자를 위한 쉐이더 개념 간단 정리</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>쉐이더의 개념과 렌더링 파이프라인</h1>
+      <h1 data-toc-skip>초보자를 위한 쉐이더 개념 간단 정리</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -407,6 +407,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Aug 30, 2021, 12:15 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug 30
+  
+
+  <i class="unloaded">2021-08-30T00:15:54+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -419,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3071 words">17 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="898 words">4 min</span>
 
 
           <!-- page views -->
@@ -437,13 +466,21 @@
 
         
 
-        <h1 id="초보자를-위한-간단-요약">초보자를 위한 간단 요약</h1>
+        <h1 id="요약">요약</h1>
 <hr />
 <ul>
-  <li>쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수</li>
-  <li>정점 쉐이더 : 모델링의 3D 정점 위치를 원근감이 적용된 카메라 기준 위치로 변환하는 함수</li>
-  <li>래스터라이저 : 3D 공간의 위치로부터 2D 픽셀 위치들을 찾아주는 장치</li>
-  <li>픽셀 쉐이더 : 화면에 출력될 픽셀의 색상을 계산하는 함수</li>
+  <li>
+    <p>쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수</p>
+  </li>
+  <li>
+    <p>정점 쉐이더 : 모델링의 3D 정점 위치를 카메라가 바라보는 위치로 변환하는 함수</p>
+  </li>
+  <li>
+    <p>래스터라이저 : 3D 공간의 위치로부터 2D 픽셀 위치들을 찾아주는 장치</p>
+  </li>
+  <li>
+    <p>픽셀 쉐이더 : 화면에 출력될 픽셀의 색상을 계산하는 함수</p>
+  </li>
 </ul>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://4.bp.blogspot.com/-0d2jWe8pwrA/TsW0zTGAlsI/AAAAAAAAApc/3nF0xO1c0q4/s1600/fig_01_01.jpg" alt="" /></p>
@@ -466,114 +503,6 @@
 
 <p><br /></p>
 
-<details>
-  <summary> 
-(참고 : 입력 조립)
-</summary>
-
-  <h1 id="input-assembly">입력 조립(Input Assembly)</h1>
-  <hr />
-
-  <ul>
-    <li>렌더링 파이프라인의 첫 단계</li>
-  </ul>
-
-  <p><br /></p>
-
-  <h2 id="section"><strong>커맨드 큐</strong></h2>
-  <ul>
-    <li>
-      <p><strong>Command Queue</strong></p>
-    </li>
-    <li>GPU는 CPU보다 훨씬 빠르다.</li>
-    <li>
-      <p>그래서 CPU가 GPU에 처리를 요청할 때, 동기적으로 요청하면 반드시 병목이 발생할 수밖에 없다.</p>
-    </li>
-    <li>따라서 CPU는 요청들을 <strong>커맨드 버퍼(Command Buffer)</strong>에 담아서 커맨드 큐에 넣어두고 <br />
-GPU는 큐에서 버퍼들을 꺼내어 처리해주는 방식으로 병목을 해결한다.</li>
-  </ul>
-
-  <p><br /></p>
-
-  <h2 id="section-1"><strong>드로우 콜</strong></h2>
-  <ul>
-    <li>
-      <p><strong>Draw Call</strong></p>
-    </li>
-    <li>CPU에서 GPU에 전달할 명령을 <strong>커맨드 버퍼</strong>에 담아 <strong>커맨드 큐</strong>에 넣는 과정</li>
-    <li>
-      <p>쉽게 말해, CPU가 GPU에게 메시 좀 그려 달라고 요청하는 것이다.</p>
-    </li>
-    <li>종류 예시
-      <ul>
-        <li><strong>Set Pass Call</strong> : 렌더 상태 변경 요청(메시를 그리기 위한 환경 설정)</li>
-        <li><strong>DP Call</strong>(Draw Primitive Call) : 메시 그리기 요청</li>
-      </ul>
-    </li>
-    <li>일반적으로 Set Pass Call 이후 DP Call로 이어진다.</li>
-  </ul>
-
-  <p><br /></p>
-
-  <ul>
-    <li>참고 : <strong>배치(Batch)</strong>
-      <ul>
-        <li>Set Pass Call과 DP Call을 합쳐서 지칭하는 드로우 콜</li>
-        <li>흔히 말하는 드로우 콜이 바로 배치를 의미한다.</li>
-      </ul>
-    </li>
-    <li>참고2 : <strong>배칭(Batching)</strong>
-      <ul>
-        <li>여러 번 나누어 발생할 드로우 콜을 하나로 통합하는 것</li>
-        <li>같은 마테리얼을 사용하는 경우 등등</li>
-      </ul>
-    </li>
-  </ul>
-
-  <p><br /></p>
-
-  <h2 id="section-2"><strong>렌더 상태</strong></h2>
-  <ul>
-    <li><strong>Render States</strong></li>
-    <li>
-      <p>메시를 그리기 위해 필요한 데이터들</p>
-    </li>
-    <li>정점 데이터(위치, 노말, 색상, UV)</li>
-    <li>쉐이더</li>
-    <li>알파 블렌딩 연산, Z-Test 여부 등</li>
-  </ul>
-
-  <p><br /></p>
-
-  <h2 id="section-3"><strong>입력 조립</strong></h2>
-
-  <ul>
-    <li>
-      <p>정점 데이터를 CPU에서 GPU로 운반하기 위한 자료 구조를 정점 버퍼라고 한다.</p>
-    </li>
-    <li>
-      <p>정점 버퍼는 위치, 노말, 색상, UV를 담고 있는데, <br />
-구조체로 이쁘게 담고 있는게 아니고 직렬화된 형태로 담고 있다.</p>
-    </li>
-    <li>
-      <p>그리고 GPU에서는 이렇게 전달받은 정점 버퍼를, <br />
-미리 전달 받은 렌더 상태의 버텍스 명세를 통해 정점 데이터로 조립한다.</p>
-    </li>
-    <li>
-      <p>그런데 이렇게 정점 버퍼를 정점 데이터로 조립한다고 입력 조립이 아니고</p>
-    </li>
-    <li>
-      <p>정점들을 모아서 삼각형과 같은 <strong>기본 도형(프리미티브, Primitive)</strong>으로 조립해주기 때문에 입력 조립 단계라고 한다.</p>
-    </li>
-    <li>
-      <p>이렇게 조립된 프리미티브가 정점 쉐이더의 입력이 된다.</p>
-    </li>
-  </ul>
-
-  <p>(- NOTE : 프래그먼트가 아니고 프리미티브. 처음에 헷갈려서 메모.)</p>
-
-</details>
-
 <h1 id="정점-쉐이더vertex-shader">정점 쉐이더(Vertex Shader)</h1>
 <hr />
 <ul>
@@ -583,7 +512,9 @@ GPU는 큐에서 버퍼들을 꺼내어 처리해주는 방식으로 병목을 �
     <p>출력 : 카메라에서 바라보는 공간(클립 공간)의 정점 데이터</p>
   </li>
   <li>정점 쉐이더는 메시 내의 정점 개수만큼 실행된다.</li>
-  <li>정점 쉐이더의 주요 역할은 공간 변환이다.</li>
+  <li>
+    <p>정점 쉐이더의 주요 역할은 공간 변환이다.</p>
+  </li>
   <li>
     <p>메시의 기준 공간은 메시마다 고정되어 있는데
 같은 모델링이라도 게임 내에서 서로 다른 위치, 회전, 크기를 가질 수 있는 이유는
@@ -595,187 +526,22 @@ GPU는 큐에서 버퍼들을 꺼내어 처리해주는 방식으로 병목을 �
 
 <p><br /></p>
 
-<details>
-  <summary> 
-(정점 쉐이더 - 추가)
-</summary>
-
-  <h2 id="section-4"><strong>공간 변환 과정</strong></h2>
-  <ul>
-    <li>공간 변환은 각각의 행렬 연산을 통해 이루어진다.</li>
-    <li>변환 행렬은 총 3가지로, 각각 <code class="language-plaintext highlighter-rouge">Model</code>, <code class="language-plaintext highlighter-rouge">View</code>, <code class="language-plaintext highlighter-rouge">Projection</code>이다.</li>
-    <li><strong>M, V, P</strong>는 각각 변환 행렬 이름이기도 하고, 변환 자체를 가리키기도 한다.</li>
-  </ul>
-
-  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/131255338-489592de-9f80-4cc7-b69c-e20e871b58aa.png" alt="image" /></p>
-
-  <p><br /></p>
-
-  <h3 id="m-model"><strong>M (Model)</strong></h3>
-  <ul>
-    <li>
-      <p><strong>오브젝트 공간(Model Space, Object Space)</strong> -&gt; <strong>월드 공간(World Space)</strong></p>
-    </li>
-    <li>각 오브젝트마다 자신의 피벗 위치를 원점(0, 0, 0)으로 하는 좌표 공간을 갖고 있다.</li>
-    <li>게임 내의 월드는 단 하나의 위치를 원점으로 하는 좌표 공간을 갖고 있다.</li>
-    <li>모델 변환은 각 오브젝트의 좌표 공간을 변환하여 하나의 월드 공간에 통합하는 과정이다.</li>
-  </ul>
-
-  <p><br /></p>
-
-  <h3 id="v-view"><strong>V (View)</strong></h3>
-  <ul>
-    <li>
-      <p><strong>월드 공간(World Space)</strong> -&gt; <strong>카메라 공간(View Space)</strong></p>
-    </li>
-    <li>카메라 공간은 카메라의 위치가 원점(0, 0, 0)이고, 카메라의 방향이 <code class="language-plaintext highlighter-rouge">+Z</code>축인 공간을 의미한다.</li>
-    <li>뷰 변환은 모든 오브젝트를 화면에 그려내기 쉽도록 카메라 기준으로 공간을 변환하는 과정이다.</li>
-  </ul>
-
-  <p><br /></p>
-
-  <h3 id="p-projection"><strong>P (Projection)</strong></h3>
-  <ul>
-    <li>
-      <p><strong>카메라 공간(View Space)</strong> -&gt; <strong>클립 공간(Clip Space)</strong></p>
-    </li>
-    <li>
-      <p>카메라 기준의 정점 위치를 화면에 보이기 위한 정점 위치로 변환한다.</p>
-    </li>
-    <li>화면에 렌더링될 수 있는 영역을 나타내는 절두체(Frustum)가 정의된다.</li>
-    <li>
-      <p>절두체를 완전히 벗어나는 폴리곤들은 모두 버려지고 <br />
-절두체에 걸쳐 있는 폴리곤들은 일단 유지한다.</p>
-    </li>
-    <li>
-      <p>원근감이 없는 <strong>직교 투영(Orthographic Projection)</strong> 또는 <br />
-원근감이 있는 <strong>원근 투영(Perspective Projection)</strong>이 행해진다.</p>
-    </li>
-    <li>클립 공간의 좌표계는 사실 3D가 아닌 4D이다.</li>
-    <li>클립 공간의 모든 X, Y 좌표는 -1 ~ 1 범위에 존재하며, <br />
-Z 좌표는 0 ~ 1 범위에 존재한다.</li>
-    <li>
-      <p>W 값은 카메라에서 멀수록 커지며, 추후 NDC로의 변환에 사용된다.</p>
-    </li>
-    <li>
-      <p>클립 스페이스의 4D 좌표계를 <strong>동차 좌표계(Homogeneous Coordinates)</strong>라고 한다.</p>
-    </li>
-    <li>보통 클립 공간과 NDC를 혼용하는 경우가 많은데, <br />
-엄밀히 말하자면 버텍스 쉐이더의 최종 출력은 클립 공간의 정점 데이터이다. <br /></li>
-  </ul>
-
-  <p><br /></p>
-
-</details>
-
 <h1 id="래스터라이저rasterizer">래스터라이저(Rasterizer)</h1>
 <hr />
 <ul>
-  <li>입력 : 클립 공간(카메라가 바라보는 공간)의 3D 정점 데이터</li>
-  <li>처리 : 정점 쉐이더가 출력한 3D 정점 데이터들을 2D 스크린 공간으로 변환하고, <br />
-화면에 출력할 픽셀들을 모두 찾아 픽셀 쉐이더에 전달한다.</li>
-  <li>출력 : 화면에 출력할 픽셀 위치</li>
+  <li>
+    <p>입력 : 클립 공간(카메라가 바라보는 공간)의 3D 정점 데이터</p>
+  </li>
+  <li>
+    <p>처리 : 정점 쉐이더가 출력한 3D 정점 데이터들을 2D 스크린 공간으로 변환하고, <br />
+화면에 출력할 픽셀들을 모두 찾아 픽셀 쉐이더에 전달한다.</p>
+  </li>
+  <li>
+    <p>출력 : 화면에 출력할 픽셀 위치</p>
+  </li>
 </ul>
 
 <p><br /></p>
-
-<details>
-  <summary> 
-(래스터라이저 - 추가)
-</summary>
-
-  <h2 id="section-5"><strong>래스터라이저?</strong></h2>
-
-  <ul>
-    <li>
-      <p>하드웨어 자체 알고리즘을 통해 동작한다.</p>
-    </li>
-    <li>
-      <p>프로그래밍이 불가능한, 고정 파이프라인 단계</p>
-    </li>
-  </ul>
-
-  <p><br /></p>
-
-  <h2 id="section-6"><strong>래스터라이저의 역할</strong></h2>
-
-  <ul>
-    <li><strong>[1] 클리핑(Clipping)</strong>
-      <ul>
-        <li>
-          <p>버텍스 쉐이더의 마지막 단계에서, 절두체를 완전히 벗어나는 폴리곤은 버려졌지만 <br />
-절두체 경계에 걸쳐 있는 폴리곤들은 아직 버려지지 않았다.</p>
-        </li>
-        <li>
-          <p>래스터라이저에서 이렇게 걸쳐 있는 폴리곤들을 잘라내어, <br />
-절두체 내부와 외부 영역을 분리하여 절두체 외부 영역은 버린다.</p>
-        </li>
-      </ul>
-    </li>
-  </ul>
-
-  <p><br /></p>
-
-  <ul>
-    <li><strong>[2] 원근 분할(Perspective Division)</strong>
-      <ul>
-        <li>
-          <p>클립 스페이스(동차 좌표계, 4D) 좌표의 모든 요소를 <code class="language-plaintext highlighter-rouge">w</code> 값으로 나누게 되는데, <br />
-이를 통해 모든 원근법 구현이 완료되며 이를 원근 분할이라고 한다.</p>
-        </li>
-        <li>
-          <p>원근 분할을 마친 좌표계를 NDC 좌표계라고 한다.</p>
-        </li>
-        <li>
-          <p><strong>NDC(Normalized Device Coordinates)</strong></p>
-          <ul>
-            <li><strong>X, Y</strong> 좌표는 모두 -1 ~ 1, <strong>Z</strong> 좌표는 0 ~ 1에 위치하는 좌표계</li>
-            <li>스크린 좌표로 손쉽게 변환할 수 있도록 하기 위한 3D 공간 변환 상의 마지막 좌표계</li>
-            <li>클립 스페이스의 (x, y, z)를 w로 나눈 결과이다.</li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-
-  <p><br /></p>
-
-  <ul>
-    <li><strong>[3] 후면 컬링(Back-face Culling)</strong>
-      <ul>
-        <li>View 벡터와 Normal 벡터의 관계를 통해 후면을 찾아내어 <br />
-렌더링되지 않도록 면을 제거한다.</li>
-      </ul>
-    </li>
-  </ul>
-
-  <p><br /></p>
-
-  <ul>
-    <li><strong>[4] 뷰포트 변환(Viewport Transformation)</strong>
-      <ul>
-        <li>3D NDC 공간 상의 좌표를 2D 스크린 좌표로 변환한다.</li>
-        <li>-1 ~ 1 범위였던 (X, Y) 좌표를 화면 해상도 범위로 변환한다.</li>
-        <li>2D 공간으로 변환한다고 하지만, 실제로는 Z값을 깊이 값으로 사용하기 위해 그대로 유지한다.</li>
-      </ul>
-    </li>
-  </ul>
-
-  <p><br /></p>
-
-  <ul>
-    <li><strong>[5] 스캔 변환(Scan Transformation)</strong>
-      <ul>
-        <li>프리미티브(기본 도형, 삼각형 등)를 통해 프래그먼트를 생성한다.</li>
-        <li>프래그먼트를 채우는 픽셀들을 찾아낸다.</li>
-        <li>각 픽셀마다 정점 데이터(위치, 색상, 노멀, UV)들을 보간하여 할당한다.</li>
-      </ul>
-    </li>
-  </ul>
-
-  <p><br /></p>
-
-</details>
 
 <h1 id="픽셀-쉐이더pixel-shader">픽셀 쉐이더(Pixel Shader)</h1>
 <hr />
@@ -803,92 +569,11 @@ OpenGL과 유니티 엔진에서는 프래그먼트 쉐이더(Fragment Shader)�
 
 <p><br /></p>
 
-<details>
-  <summary> 
-(픽셀 쉐이더 - 추가)
-</summary>
-
-  <ul>
-    <li>
-      <p>픽셀 쉐이더의 출력은 픽셀 색상만 있는 것이 아니다.</p>
-    </li>
-    <li>
-      <p>각 픽셀에 대한 깊이 값도 출력으로 전달하고, <strong>Z-Buffer</strong>에 저장된다.</p>
-    </li>
-    <li>
-      <p>각 픽셀에 대한 색상 값의 데이터는 <strong>Color Buffer</strong>에 저장된다.</p>
-    </li>
-    <li>
-      <p>이 때 버퍼는 텍스쳐라고 생각하면 된다.</p>
-    </li>
-    <li>
-      <p>그리고 이런 버퍼들을 통칭하여 스크린 버퍼(Screen Buffer)라고 한다.</p>
-    </li>
-  </ul>
-
-</details>
-
-<p><br /></p>
-
-<details>
-  <summary> 
-(참고 : 출력 병합)
-</summary>
-
-  <h1 id="output-merge">출력 병합(Output Merge)</h1>
-  <hr />
-
-  <ul>
-    <li>
-      <p>렌더링 파이프라인의 마지막 단계</p>
-    </li>
-    <li>픽셀들을 화면에 출력하기 위한 마지막 연산들을 수행한다.
-      <ul>
-        <li>Z-Test</li>
-        <li>Stencil Test</li>
-        <li>Alpha Blending</li>
-      </ul>
-    </li>
-    <li>
-      <p>각각의 픽셀 위치마다 여러 오브젝트의 픽셀이 겹쳐 있을 수 있다. <br /></p>
-    </li>
-    <li>출력 병합 단계에서는 이렇게 겹치는 픽셀들을 연산 및 판단하여 <br />
-픽셀의 최종적인 색상을 결정한다.</li>
-  </ul>
-
-  <p><br /></p>
-
-  <h2 id="frame-buffer"><strong>프레임 버퍼(Frame Buffer)</strong></h2>
-
-  <ul>
-    <li>
-      <p>한 프레임의 스크린 버퍼들</p>
-    </li>
-    <li>
-      <p>구조</p>
-      <ul>
-        <li><strong>Color Buffer</strong> : 색상 값 텍스쳐</li>
-        <li><strong>Z-Buffer</strong> : 깊이 값 텍스쳐</li>
-        <li><strong>Stencil Buffer</strong> : 픽셀을 렌더링 또는 폐기하기 위한 마스크 텍스쳐</li>
-      </ul>
-    </li>
-  </ul>
-
-  <p><br /></p>
-
-</details>
-
 <h1 id="references">References</h1>
 <hr />
 <ul>
   <li><a href="https://kblog.popekim.com/2011/11/01-part-1.html">https://kblog.popekim.com/2011/11/01-part-1.html</a></li>
   <li><a href="https://mingyu0403.tistory.com/110">https://mingyu0403.tistory.com/110</a></li>
-  <li><a href="https://dlgnlfus.tistory.com/135">https://dlgnlfus.tistory.com/135</a></li>
-  <li><a href="https://heinleinsgame.tistory.com/11">https://heinleinsgame.tistory.com/11</a></li>
-  <li><a href="https://jidon333.github.io/blog/Rendering-pipeline">https://jidon333.github.io/blog/Rendering-pipeline</a></li>
-  <li><a href="https://m.blog.naver.com/opse89/221816708567">https://m.blog.naver.com/opse89/221816708567</a></li>
-  <li><a href="https://www.youtube.com/playlist?list=PLctzObGsrjfyWa2CaxGtxsLD-W5zYC2JJ">https://www.youtube.com/playlist?list=PLctzObGsrjfyWa2CaxGtxsLD-W5zYC2JJ</a></li>
-  <li><a href="https://mentum.tistory.com/505">https://mentum.tistory.com/505</a></li>
 </ul>
 
 
@@ -954,19 +639,19 @@ OpenGL과 유니티 엔진에서는 프래그먼트 쉐이더(Fragment Shader)�
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=쉐이더의 개념과 렌더링 파이프라인 - Rito15&url=https://rito15.github.io/posts/unity-shader-concept/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=초보자를 위한 쉐이더 개념 간단 정리 - Rito15&url=https://rito15.github.io/posts/unity-shader-concept/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=쉐이더의 개념과 렌더링 파이프라인 - Rito15&u=https://rito15.github.io/posts/unity-shader-concept/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=초보자를 위한 쉐이더 개념 간단 정리 - Rito15&u=https://rito15.github.io/posts/unity-shader-concept/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=쉐이더의 개념과 렌더링 파이프라인 - Rito15&url=https://rito15.github.io/posts/unity-shader-concept/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=초보자를 위한 쉐이더 개념 간단 정리 - Rito15&url=https://rito15.github.io/posts/unity-shader-concept/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -1029,6 +714,11 @@ OpenGL과 유니티 엔진에서는 프래그먼트 쉐이더(Fragment Shader)�
         
         
         
+        <li><a href="/posts/unity-shader-concept/">초보자를 위한 쉐이더 개념 간단 정리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
       
         
@@ -1045,11 +735,6 @@ OpenGL과 유니티 엔진에서는 프래그먼트 쉐이더(Fragment Shader)�
         
         
         <li><a href="/posts/unity-amplify-screen-damage/">(Amplify) Screen Effect - Damage</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-screen-hexagons/">(Amplify) Screen Effect - Hexagonal Pattern</a></li>
       
 
       </ul>
@@ -4510,11 +4195,6 @@ OpenGL과 유니티 엔진에서는 프래그먼트 쉐이더(Fragment Shader)�
   </div> <!-- .access -->
 
   
-    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
-      <span class="pl-3 pt-2 mb-2">Contents</span>
-      <nav id="toc" data-toggle="toc"></nav>
-    </div>
-  
 
 </div> <!-- #panel-wrapper -->
 
@@ -4548,6 +4228,19 @@ OpenGL과 유니티 엔진에서는 프래그먼트 쉐이더(Fragment Shader)�
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   

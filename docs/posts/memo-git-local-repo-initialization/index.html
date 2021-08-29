@@ -722,6 +722,11 @@ git push -u origin main
         
         
         
+        <li><a href="/posts/unity-shader-concept/">초보자를 위한 쉐이더 개념 간단 정리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
       
         
@@ -738,11 +743,6 @@ git push -u origin main
         
         
         <li><a href="/posts/unity-amplify-screen-damage/">(Amplify) Screen Effect - Damage</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-screen-hexagons/">(Amplify) Screen Effect - Hexagonal Pattern</a></li>
       
 
       </ul>
@@ -6599,6 +6599,19 @@ git push -u origin main
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7693,64 +7706,6 @@ Git 구성
       
       
       <div class="card">
-        <a href="/posts/unity-editor-scripting-version-compatability/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 23
-  
-
-  <i class="unloaded">2021-08-23T20:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                EditorGUILayout.Space(float)
-
-
-
-   
-.
-
-
-  
-    
-      2019.3 미만의 버전에서는 .Space()만 존재하고 .Space(float)가 존재하지 않는다.
-    
-    
-      따라서 .Space()를 통해서는 높이 8의 고정된 여백만 넣을 수 있다.
-    
-    
-      이에 대응하기 위해서는...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-block-mouse-click/">
           <div class="card-body">
             <!--
@@ -7804,6 +7759,65 @@ if (rect.Contains(Event.current.mousePosition))
 }
 
 // 이...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-draw-multiple-curves/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 25
+  
+
+  <i class="unloaded">2021-08-25T03:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있다.
+
+그런데 일반적인 방법으로는 하나의 커브 필드에 하나의 커브만 그려진다.
+
+커브 필드에는 불투명한 배경 색상이 존재하기 때문이다.
+
+
+  (0.337f, 0.337f, 0.337f, 1f)
+
+
+
+
+
+
+따라서 이를 해결하기 위해서는, 리플렉...
               </p>
             </div>
           </div>

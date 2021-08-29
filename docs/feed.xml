@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-30T00:14:06+09:00</updated>
+  <updated>2021-08-30T02:38:56+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,75 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>렌더링 파이프라인 간단 정리</title>
+    <link href="https://rito15.github.io/posts/rendering-pipeline/" rel="alternate" type="text/html" title="렌더링 파이프라인 간단 정리" />
+    <published>2021-08-30T01:50:00+09:00</published>
+  
+    <updated>2021-08-30T01:50:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/rendering-pipeline/</id>
+    <content src="https://rito15.github.io/posts/rendering-pipeline/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      렌더링 파이프라인 구조 요약
+
+
+
+  입력 조립
+  정점 쉐이더
+  래스터라이저
+  픽셀(프래그먼트) 쉐이더
+  출력 병합
+
+
+
+
+1. 입력 조립(Input Assembly)
+
+
+
+  
+    렌더링 파이프라인의 첫 단계
+  
+  
+    정점 데이터를 CPU에서 GPU로 운반하기 위한 자료 구조를 정점 버퍼라고 한다.
+  
+  
+    정점 버퍼는 위치, 노말, 색상, UV를 담고 있는데, 
+구조체로 이쁘게 담고 있는게 아니고 직렬화된 형태로 담고 있다.
+  
+  
+    그리고 GPU에서는 이렇게 전달 받은 정점 버퍼를, 
+미리 전달 받은 렌더 상태의 버텍스 명세를 통해 정점 데이터(구조체)로 조립한다.
+  
+  그런데 이렇게 정점 버퍼를 정점 데이터로 조립한다고 입력 조립이 아니고, 
+  
+   ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -270,63 +339,6 @@ private static Type _hierarchyWindowType;
 
 
 //...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 에디터 GUI - 미끄러지는 On-Off 버튼</title>
-    <link href="https://rito15.github.io/posts/unity-editor-sliding-onoff-button/" rel="alternate" type="text/html" title="유니티 에디터 GUI - 미끄러지는 On-Off 버튼" />
-    <published>2021-08-26T03:45:00+09:00</published>
-  
-    <updated>2021-08-26T03:45:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-sliding-onoff-button/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-sliding-onoff-button/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-
-
-bool onOff = true;
-bool onOffMoving = false;
-float onOffPos = 0f;
-string onOffStr = "On";
-
-private void DrawMovingOnOffButton()
-{
-    const float LEFT = 15f;
-    const float RIGHT = 52f;
-    const float WIDTH = 40f;
-    const float HEIGHT = 20f;
-    const float MOVE_SPEED = 1f;
-
-    Rect rect = GUILayoutUtility.GetRect(1f, HEIGHT);
-
-    Rect bgRect = new Rect(rect);
-    bgRect.x = LEFT...
     </summary>
   
 

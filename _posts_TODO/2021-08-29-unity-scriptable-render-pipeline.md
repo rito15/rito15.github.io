@@ -52,4 +52,9 @@ mermaid: true
 # References
 ---
 - <https://leehs27.github.io/programming/2021-06-11-Interview-Renderpipeline/>
+- <https://cyangamedev.wordpress.com/2020/06/22/urp-post-processing/>
+- <https://github.com/Cyanilux/URP_BlitRenderFeature/blob/master/Blit.cs>
+- <https://gamedevbill.com/full-screen-shaders-in-unity/>
 
+- <https://www.youtube.com/watch?v=QRlz4-pAtpY>
+- <https://www.youtube.com/watch?v=MuzLdCXoJ9I>
