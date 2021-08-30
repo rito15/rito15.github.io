@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 쉐이더 &amp; 함수 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Functions","datePublished":"2021-02-06T01:25:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-compilation/"},"url":"https://rito15.github.io/posts/unity-shader-compilation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 쉐이더 &amp; 함수 모음","dateModified":"2021-07-04T03:51:54+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 쉐이더 &amp; 함수 모음","description":"Functions","dateModified":"2021-07-04T03:51:54+09:00","datePublished":"2021-02-06T01:25:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-compilation/"},"url":"https://rito15.github.io/posts/unity-shader-compilation/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -836,12 +836,12 @@
         
         
         
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
+        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
+        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
         
@@ -7182,6 +7182,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7824,6 +7850,72 @@
       
       
       <div class="card">
+        <a href="/posts/rendering-pipeline/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 30
+  
+
+  <i class="unloaded">2021-08-30T01:50:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>렌더링 파이프라인 간단 정리</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                렌더링 파이프라인 구조 요약
+
+
+
+  입력 조립
+  정점 쉐이더
+  래스터라이저
+  픽셀(프래그먼트) 쉐이더
+  출력 병합
+
+
+
+
+1. 입력 조립(Input Assembly)
+
+
+
+  
+    렌더링 파이프라인의 첫 단계
+  
+  
+    정점 데이터를 CPU에서 GPU로 운반하기 위한 자료 구조를 정점 버퍼라고 한다.
+  
+  
+    정점 버퍼는 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/lighting-models/">
           <div class="card-body">
             <!--
@@ -7867,61 +7959,6 @@
   R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
   
     H (Half) : 블린퐁에서 사용, L와 V의 중...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-shader-concept/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 17
-  
-
-  <i class="unloaded">2021-08-17T20:40:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>초보자를 위한 쉐이더 개념 간단 정리</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                요약
-
-
-  
-    쉐이더 : 3D 모델링 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수
-  
-  
-    정점 쉐이더 : 모델링의 3D 정점 위치를 카메라가 바라보는 위치로 변환하는 함수
-  
-  
-    래스터라이저 : 3D 공간의 위치로부터 2D 픽셀 위치들을 찾아주는 장치
-  
-  
-    픽셀 쉐이더 : 화면에 출력될...
               </p>
             </div>
           </div>

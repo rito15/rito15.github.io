@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page10/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page10/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,184 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-editor-view-width-considering-scroll/">커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+커스텀 에디터에서 EditorGUIUtility.currentViewWidth를 통해 현재 에디터의 너비를 구할 수 있지만,
+
+
+
+위처럼 컴포넌트 창이 상하로 길어져 우측에 스크롤바가 생기는 경우
+
+스크롤바가 컨트롤들을 가림에도 불구하고, currentViewWidth는 스크롤바를 포함한 너비를 알려주며
+
+스크롤바를 제외한 너비를 구하는 ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Jun 13, 2021, 11:33 PM +0900"
+  >
+
+  
+  
+
+  
+    Jun 13
+  
+
+  <i class="unloaded">2021-06-13T23:33:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="524 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/singleton-pattern/">Singleton Pattern(싱글톤 패턴)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Singleton Pattern
+
+
+특징
+
+  정적 참조로부터 인스턴스 참조를 가져올 수 있다.
+  특정 클래스에 단 한 개의 객체만 존재하도록 보장할 수 있다.
+
+
+사용처
+
+  프로그램 내에 반드시 하나만 존재해야 하는 클래스
+
+
+고려사항
+
+  싱글톤 객체 생성 타이밍을 고려해야 한다. (정적 or 동적)
+  기본적으로 스레드 안전하지 않으므로, 추...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Jun 11, 2021,  5:17 PM +0900"
+  >
+
+  
+  
+
+  
+    Jun 11
+  
+
+  <i class="unloaded">2021-06-11T17:17:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1851 words">10 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1109,214 +1287,6 @@ Pivot Editor 컴포넌트 추가
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-position-fixer/">Position Fixer</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  부모 게임오브젝트의 이동에 영향받지 않고 트랜스폼 위치를 고정시키는 컴포넌트
-
-
-How To Use
-
-
-
-  위치를 고정/해제할 게임오브젝트에 컴포넌트로 넣는다.
-  인스펙터에서 Activated를 체크하거나 스페이스바를 눌러 기능을 활성화한다.
-
-
-Download
-
-
-
-  PositionFixer.zip
-
-
-Source Cod...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, May 19, 2021,  8:00 PM +0900"
-  >
-
-  
-  
-
-  
-    May 19
-  
-
-  <i class="unloaded">2021-05-19T20:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="258 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-refresh-windows/">각종 윈도우 새로고침하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        커스텀 에디터 - 인스펙터뷰
-
-
-
-  Editor.Repaint()
-
-
-
-  
-    // 해당 CustomEditor 내에서 호출
-this.Repaint();
-
-  
-
-
-
-
-커스텀 에디터 윈도우
-
-
-
-  EditorWindow.Repaint()
-
-
-
-  
-    this.Repaint();
-
-  
-
-
-
-
-씬뷰
-
-
-인스펙터의 변경사항이 씬뷰에 곧바로 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, May 19, 2021,  1:00 AM +0900"
-  >
-
-  
-  
-
-  
-    May 19
-  
-
-  <i class="unloaded">2021-05-19T01:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="194 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1832,12 +1802,12 @@ this.Repaint();
         
         
         
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
+        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
+        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
         

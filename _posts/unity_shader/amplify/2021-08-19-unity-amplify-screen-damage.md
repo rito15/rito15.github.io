@@ -10,7 +10,9 @@ mermaid: true
 
 # Summary
 ---
-- 피격 이펙트
+- 피격 시 화면 가장자리 붉어지는 이펙트
+
+- 스크린 이펙트 적용 애셋 : [Link](https://rito15.github.io/posts/unity-screen-effect-controller/)
 
 <br>
 

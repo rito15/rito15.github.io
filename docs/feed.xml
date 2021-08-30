@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-30T16:50:33+09:00</updated>
+  <updated>2021-08-30T22:28:56+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,182 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Screen Effect - Blur</title>
+    <link href="https://rito15.github.io/posts/unity-shader-screen-blur/" rel="alternate" type="text/html" title="Screen Effect - Blur" />
+    <published>2021-08-30T22:11:00+09:00</published>
+  
+    <updated>2021-08-30T22:11:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-shader-screen-blur/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-screen-blur/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Scripts" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  
+    블러 이펙트
+  
+  
+    스크린 이펙트 적용 애셋 : Link
+  
+
+
+
+
+Properties
+
+
+
+  
+    Resolution : 블러 적용 해상도(기본 0.5)
+  
+  
+    Intensity : 블러 적용 강도
+  
+  
+    Blur Area Mask : 블러 적용 영역을 제한할 수 있는 마스크
+  
+
+
+
+
+Preview
+
+
+[1] 블러 미적용
+
+
+
+
+
+[2] 블러 적용
+
+
+  Resolution : 0.5
+  Intensity : 0.4
+
+
+
+
+
+
+[3] 마스크 사용
+
+
+  사용된 마스크
+
+
+
+
+
+  결과
+
+
+
+
+
+
+Download
+
+
+
+  2021_0830_Screen Effect_Blur.zip
+
+
+
+
+Source Code
+
+
+
+   
+…
+
+
+...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>유니티 쉐이더 - 상수, 상수 배열 선언하기</title>
+    <link href="https://rito15.github.io/posts/unity-shader-const-variables/" rel="alternate" type="text/html" title="유니티 쉐이더 - 상수, 상수 배열 선언하기" />
+    <published>2021-08-30T21:00:00+09:00</published>
+  
+    <updated>2021-08-30T21:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-shader-const-variables/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-const-variables/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+
+  Pass 내부에 작성
+
+
+// 매크로 상수
+#define RANDOM_SEED 426.791
+
+// 그냥 상수
+static const float RandomSeed = 5417.24;
+
+// 상수 배열
+static const float2 dir[8] = 
+{
+    float2(1, 0), float2(0, 1),   float2(-1, 0), float2(0, -1),
+    float2(1, 1), float2(-1, -1), float2(-1, 1), float2(1, -1)
+};
+
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -206,134 +382,6 @@ private static bool IsLeftMouseUp =&amp;gt;
 
 
 [CustomEdito...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 에디터 - 벡터 필드의 X,Y,Z,W 레이블 변경하기</title>
-    <link href="https://rito15.github.io/posts/unity-editor-change-vector-field-labels/" rel="alternate" type="text/html" title="유니티 에디터 - 벡터 필드의 X,Y,Z,W 레이블 변경하기" />
-    <published>2021-08-27T22:33:00+09:00</published>
-  
-    <updated>2021-08-27T22:33:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-change-vector-field-labels/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-change-vector-field-labels/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-
-
-
-  
-    Vector2, Vector3, Vector4 필드에는 X, Y, Z, W 레이블이 표시되며, 일반적인 방법으로는 변경할 수 없다.
-  
-  
-    리플렉션을 이용하면 이를 변경할 수 있다.
-  
-
-
-
-
-
-
-// using System.Reflection;
-// 커스텀 에디터 클래스 내에서 작성
-
-private Vector2 vec2;
-private Vector3 vec3;
-private Vector4 vec4;
-
-private static FieldInfo  fiVector4FieldLables;
-private static GUIContent[] vector4FieldLables;
-
-public override void OnInspectorGUI()
-{
-    Bind...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 에디터 - 미리 정의된 GUIStyle 목록</title>
-    <link href="https://rito15.github.io/posts/unity-editor-predefined-gui-styles/" rel="alternate" type="text/html" title="유니티 에디터 - 미리 정의된 GUIStyle 목록" />
-    <published>2021-08-27T21:59:00+09:00</published>
-  
-    <updated>2021-08-27T21:59:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-predefined-gui-styles/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-predefined-gui-styles/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목록
-
-
-"box"
-"button"
-"toggle"
-"label"
-"window"
-"textfield"
-"textarea"
-"horizontalslider"
-"horizontalsliderthumb"
-"verticalslider"
-"verticalsliderthumb"
-"horizontalscrollbar"
-"horizontalscrollbarthumb"
-"horizontalscrollbarleftbutton"
-"horizontalscrollbarrightbutton"
-"verticalscrollbar"
-"verticalscrollbarthumb"
-"verticalscrollbarupbutton"
-"verticalscrollbardownbutton"
-"scrollview"
-
-
-
-  NOTE : Edit...
     </summary>
   
 

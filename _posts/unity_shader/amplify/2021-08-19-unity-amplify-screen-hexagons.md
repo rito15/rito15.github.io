@@ -12,6 +12,8 @@ mermaid: true
 ---
 - 육각형 패턴 이펙트
 
+- 스크린 이펙트 적용 애셋 : [Link](https://rito15.github.io/posts/unity-screen-effect-controller/)
+
 <br>
 
 

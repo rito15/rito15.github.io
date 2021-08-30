@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 에디터 GUI - 미끄러지는 On-Off 버튼" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Memo","datePublished":"2021-08-26T03:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-sliding-onoff-button/"},"url":"https://rito15.github.io/posts/unity-editor-sliding-onoff-button/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 에디터 GUI - 미끄러지는 On-Off 버튼","dateModified":"2021-08-26T03:45:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 에디터 GUI - 미끄러지는 On-Off 버튼","description":"Memo","dateModified":"2021-08-26T03:45:00+09:00","datePublished":"2021-08-26T03:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-sliding-onoff-button/"},"url":"https://rito15.github.io/posts/unity-editor-sliding-onoff-button/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -744,12 +744,12 @@
         
         
         
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
+        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
+        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
         
@@ -4329,6 +4329,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7665,7 +7691,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-draw-multiple-curves/">
+        <a href="/posts/unity-editor-focus/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7682,13 +7708,13 @@
   
 
   
-    Aug 25
+    Aug 26
   
 
-  <i class="unloaded">2021-08-25T03:00:00+09:00</i>
+  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 포커스 확인, 처리</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7697,24 +7723,19 @@
 
 
 
-                Note
-
-
-EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있다.
-
-그런데 일반적인 방법으로는 하나의 커브 필드에 하나의 커브만 그려진다.
-
-커브 필드에는 불투명한 배경 색상이 존재하기 때문이다.
-
-
-  (0.337f, 0.337f, 0.337f, 1f)
+                1. 컨트롤 포커스 여부 확인
 
 
 
+  
+    // 다음에 나올 GUI 컨트롤에 이름 부여
+GUI.SetNextControlName("Foooooooocus");
 
+// GUI 그리기
+EditorGUI.TextArea(rect, value, inputStyle);
 
-
-따라서 이를 해결하기 위해서는, 리플렉...
+// 포커스 여부 확인
+if(GUI.GetNameOfFocusedControl() =...
               </p>
             </div>
           </div>
@@ -7780,7 +7801,7 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
       
       
       <div class="card">
-        <a href="/posts/unity-editor-focus/">
+        <a href="/posts/unity-editor-hierarchy-window/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7797,13 +7818,13 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
   
 
   
-    Aug 26
+    Aug 27
   
 
-  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
+  <i class="unloaded">2021-08-27T18:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 포커스 확인, 처리</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 하이라키 윈도우 관련 코드 모음</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7812,19 +7833,75 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
 
 
 
-                1. 컨트롤 포커스 여부 확인
+                Memo
 
-
-
-  
-    // 다음에 나올 GUI 컨트롤에 이름 부여
-GUI.SetNextControlName("Foooooooocus");
-
-// GUI 그리기
-EditorGUI.TextArea(rect, value, inputStyle);
-
-// 포커스 여부 확인
-if(GUI.GetNameOfFocusedControl() =...
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67...
               </p>
             </div>
           </div>

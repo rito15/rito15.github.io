@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 에디터 - Built-in Icons" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note","datePublished":"2021-08-29T05:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-built-in-icons/"},"url":"https://rito15.github.io/posts/unity-editor-built-in-icons/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 에디터 - Built-in Icons","dateModified":"2021-08-29T05:02:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 에디터 - Built-in Icons","description":"Note","dateModified":"2021-08-29T05:02:00+09:00","datePublished":"2021-08-29T05:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-built-in-icons/"},"url":"https://rito15.github.io/posts/unity-editor-built-in-icons/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -726,12 +726,12 @@
         
         
         
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
+        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
+        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
         
@@ -4264,6 +4264,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7652,7 +7678,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-draw-multiple-curves/">
+        <a href="/posts/unity-editor-focus/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7669,13 +7695,13 @@
   
 
   
-    Aug 25
+    Aug 26
   
 
-  <i class="unloaded">2021-08-25T03:00:00+09:00</i>
+  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 포커스 확인, 처리</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7684,24 +7710,76 @@
 
 
 
-                Note
-
-
-EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있다.
-
-그런데 일반적인 방법으로는 하나의 커브 필드에 하나의 커브만 그려진다.
-
-커브 필드에는 불투명한 배경 색상이 존재하기 때문이다.
-
-
-  (0.337f, 0.337f, 0.337f, 1f)
+                1. 컨트롤 포커스 여부 확인
 
 
 
+  
+    // 다음에 나올 GUI 컨트롤에 이름 부여
+GUI.SetNextControlName("Foooooooocus");
+
+// GUI 그리기
+EditorGUI.TextArea(rect, value, inputStyle);
+
+// 포커스 여부 확인
+if(GUI.GetNameOfFocusedControl() =...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-sliding-onoff-button/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 26
+  
+
+  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 미끄러지는 On-Off 버튼</h3>
+            <div class="text-muted small">
+              <p>
+                
 
 
 
-따라서 이를 해결하기 위해서는, 리플렉...
+
+
+                Memo
+
+
+
+
+
+  
+    bool onOff = true;
+bool onOffMoving = false;
+float onOffPos = 0f;
+string onOffStr = "On";
+
+private void DrawMovingOnOffButton()
+{
+    const float LEFT = 15f;
+    const float RIGHT ...
               </p>
             </div>
           </div>
@@ -7758,60 +7836,6 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
 
   
     EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-editor-focus/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 26
-  
-
-  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 포커스 확인, 처리</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                1. 컨트롤 포커스 여부 확인
-
-
-
-  
-    // 다음에 나올 GUI 컨트롤에 이름 부여
-GUI.SetNextControlName("Foooooooocus");
-
-// GUI 그리기
-EditorGUI.TextArea(rect, value, inputStyle);
-
-// 포커스 여부 확인
-if(GUI.GetNameOfFocusedControl() =...
               </p>
             </div>
           </div>

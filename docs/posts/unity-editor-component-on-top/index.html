@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="컴포넌트의 인스펙터 내 순서를 맨 위로 올리기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"1 2 3 4 5 6 bool flag = true; while (flag) { flag = UnityEditorInternal.ComponentUtility.MoveComponentUp(this); // 맨 위로 올라갔을 경우 false 리턴 }","datePublished":"2021-03-12T04:04:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-component-on-top/"},"url":"https://rito15.github.io/posts/unity-editor-component-on-top/","author":{"@type":"Person","name":"Rito15"},"headline":"컴포넌트의 인스펙터 내 순서를 맨 위로 올리기","dateModified":"2021-03-12T04:04:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"컴포넌트의 인스펙터 내 순서를 맨 위로 올리기","description":"1 2 3 4 5 6 bool flag = true; while (flag) { flag = UnityEditorInternal.ComponentUtility.MoveComponentUp(this); // 맨 위로 올라갔을 경우 false 리턴 }","dateModified":"2021-03-12T04:04:00+09:00","datePublished":"2021-03-12T04:04:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-component-on-top/"},"url":"https://rito15.github.io/posts/unity-editor-component-on-top/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -581,12 +581,12 @@
         
         
         
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
+        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a></li>
+        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
         
@@ -6025,6 +6025,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7502,81 +7528,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-refresh-windows/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    May 19
-  
-
-  <i class="unloaded">2021-05-19T01:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>각종 윈도우 새로고침하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                커스텀 에디터 - 인스펙터뷰
-
-
-
-  Editor.Repaint()
-
-
-1
-2
-// 해당 CustomEditor 내에서 호출
-this.Repaint();
-
-
-
-
-커스텀 에디터 윈도우
-
-
-
-  EditorWindow.Repaint()
-
-
-1
-this.Repaint();
-
-
-
-
-씬뷰
-
-
-인스펙터의 변경사항이 씬뷰에 곧바로 적용되지 않고
-
-씬뷰에 마우스를 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-view-width-considering-scroll/">
           <div class="card-body">
             <!--
@@ -7679,6 +7630,55 @@ private static void ClearLog()
     if (clearMethodInfo == null)
     {
         var assembly = Assembly.GetAssembly(typeof(UnityEd...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-dialog/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb  9
+  
+
+  <i class="unloaded">2021-02-09T13:50:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 다이얼로그 창 띄우기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+  
+    bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
+bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
+
+  
+
+
               </p>
             </div>
           </div>
