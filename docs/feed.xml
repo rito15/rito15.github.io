@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-08-31T18:42:13+09:00</updated>
+  <updated>2021-08-31T23:15:26+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,146 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Screen Effect - Zoom Blur</title>
+    <link href="https://rito15.github.io/posts/unity-shader-screen-zoom-blur/" rel="alternate" type="text/html" title="Screen Effect - Zoom Blur" />
+    <published>2021-08-31T21:33:00+09:00</published>
+  
+    <updated>2021-08-31T21:33:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-shader-screen-zoom-blur/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-screen-zoom-blur/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Scripts" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  
+    화면 중심에서부터 바깥 방향으로 번져나가는 블러 이펙트
+  
+  
+    스크린 이펙트 적용 애셋 : Link
+  
+
+
+
+
+Properties
+
+
+
+  Center Pos
+    
+      블러 중심 위치(벡터2)
+      기본값 : (0.5, 0.5)
+    
+  
+  Sample Count
+    
+      블러 계산(샘플링) 횟수
+      값이 커질수록 성능 저하
+    
+  
+  Blur Size
+    
+      블러 강도
+      범위 : 0 ~ 100
+    
+  
+  Area Range
+    
+      블러가 적용될 범위 크기
+      바깥에서부터 화면 중심부로 범위가 증가한다.
+      범위 : 0 ~ 1
+    
+  
+  Area Sm...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Unity Shaderlab Properties</title>
+    <link href="https://rito15.github.io/posts/unity-shader-properties/" rel="alternate" type="text/html" title="Unity Shaderlab Properties" />
+    <published>2021-08-31T19:54:00+09:00</published>
+  
+    <updated>2021-08-31T19:54:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-shader-properties/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-properties/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+  자꾸만 까먹어서 메모
+
+
+Properties
+{
+    _MyColor("MyColor", Color) = (1,1,1,1)
+
+    _MyVector("My Vector", Vector) = (0,0,0,0)
+
+    _MyRange("My Range", Range(0, 1)) = 1
+
+    _MyFloat("My float", Float) = 0.5
+
+    _MyInt("My Int", Int) = 1
+
+    _MyTexture2D("Texture2D", 2D) = "white" {}
+
+    _MyTexture3D("Texture3D", 3D) = "white" {}
+
+    _MyCubemap("Cubemap", CUBE) = "" {}
+}
+
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -65,6 +205,8 @@
 
 
 Preview
+
+
 
 
 
@@ -286,178 +428,6 @@ Download
 
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 에디터 - 키보드 이벤트 메모</title>
-    <link href="https://rito15.github.io/posts/unity-editor-key-events/" rel="alternate" type="text/html" title="유니티 에디터 - 키보드 이벤트 메모" />
-    <published>2021-08-31T15:33:00+09:00</published>
-  
-    <updated>2021-08-31T15:33:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-key-events/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-key-events/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-// 현재 누른 키 확인
-bool spacePressed = Event.current.keyCode == KeyCode.Space;
-
-// 다른 이벤트(마우스 이벤트 등)와 동시에 입력한 보조 키 확인
-bool controlPressed = Event.current.modifiers == EventModifiers.Control;
-
-// LCtrl + 마우스 좌클릭
-bool ctrlAndLeftClick = 
-    Event.current.modifiers == EventModifiers.Control &amp;amp;&amp;amp;
-    Event.current.type == EventType.MouseDown &amp;amp;&amp;amp; 
-    Event.current.button == 0;
-
-
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Screen Effect - Blur</title>
-    <link href="https://rito15.github.io/posts/unity-shader-screen-blur/" rel="alternate" type="text/html" title="Screen Effect - Blur" />
-    <published>2021-08-30T22:11:00+09:00</published>
-  
-    <updated>2021-08-30T22:11:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-shader-screen-blur/</id>
-    <content src="https://rito15.github.io/posts/unity-shader-screen-blur/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Scripts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-
-  
-    블러 이펙트
-  
-  
-    스크린 이펙트 적용 애셋 : Link
-  
-
-
-
-
-Properties
-
-
-
-  
-    Resolution : 블러 적용 해상도(기본 0.5)
-  
-  
-    Intensity : 블러 적용 강도
-  
-  
-    Blur Area Mask : 블러 적용 영역을 제한할 수 있는 마스크
-  
-
-
-
-
-Preview
-
-
-[1] 블러 미적용
-
-
-
-
-
-[2] 블러 적용
-
-
-  Resolution : 0.5
-  Intensity : 0.4
-
-
-
-
-
-
-[3] 마스크 사용
-
-
-  사용된 마스크
-
-
-
-
-
-  결과
-
-
-
-
-
-
-Download
-
-
-
-  2021_0830_Screen Effect_Blur.zip
-
-
-
-
-Source Code
-
-
-
-   
-…
-
-
-...
     </summary>
   
 
