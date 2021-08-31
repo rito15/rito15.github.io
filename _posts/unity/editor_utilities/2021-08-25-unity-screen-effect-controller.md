@@ -70,6 +70,9 @@ mermaid: true
 
 # Download & Import
 ---
+
+## **Screen Effect Controller**
+
 - [Screen Effect Controller.unitypackage](https://github.com/rito15/Unity-Useful-Editor-Assets/releases/download/1.02/Screen-Effect-Controller.unitypackage)
 
 - 첨부 파일을 다운로드하고, 유니티 프로젝트가 켜져 있는 상태에서 실행합니다.
@@ -77,6 +80,16 @@ mermaid: true
 - 임포트 창이 나타나면 `Import` 버튼을 클릭하여 프로젝트에 임포트합니다.
 
 ![image](https://user-images.githubusercontent.com/42164422/131219650-3a6e5e1d-b808-4bc7-9a75-f301806f1d0a.png)
+
+<br>
+
+## **추가 : 스크린 이펙트 쉐이더 모음집**
+
+- [Screen Effect Shaders.unitypackage](https://github.com/rito15/Unity-Useful-Editor-Assets/releases/download/1.03/Screen-Effect-Shaders.unitypackage)
+
+- 지금까지 직접 만든 스크린 이펙트 쉐이더들을 모아 놓았습니다.
+
+- 추후 조금씩 업데이트할 예정입니다.
 
 <br>
 
@@ -284,10 +297,10 @@ fixed4 frag (v2f i) : SV_Target
 
 - **종료 동작**
   - 지속 시간이 모두 진행되고 수행될 동작을 선택합니다.
-  - `파괴`를 선택할 경우, 설정된 시간까지 진행되면 게임오브젝트가 파괴됩니다.
+  - `마지막 상태 유지`를 선택할 경우, 설정된 시간까지 진행되면 그 상태를 계속 유지합니다.
   - `비활성화`를 선택할 경우, 설정된 시간까지 진행되면 게임오브젝트가 비활성화됩니다.
+  - `파괴`를 선택할 경우, 설정된 시간까지 진행되면 게임오브젝트가 파괴됩니다.
   - `반복`을 선택할 경우, 설정된 시간까지 진행되면 처음부터 다시 진행되며, 계속 반복합니다.
-  - `현재 상태 유지`를 선택할 경우, 설정된 시간까지 진행되면 그 상태를 계속 유지합니다.
 
 <br>
 
@@ -333,7 +346,7 @@ fixed4 frag (v2f i) : SV_Target
 
 ### **[5-1] 애니메이션 키 목록**
 
-![image](https://user-images.githubusercontent.com/42164422/131207808-7a90c842-75c4-49b3-af16-b54925e780f6.png)
+![image](https://user-images.githubusercontent.com/42164422/131462679-a04bcede-29d0-48c9-bece-5a0598895f06.png)
 
 - 애니메이션을 이루는 애니메이션 키 목록을 표시합니다.
 - 쉐이더에서 직접 정의하기 힘든, 시간에 따른 값의 변화를 애니메이션을 통해 손쉽게 정의할 수 있습니다.
@@ -343,7 +356,9 @@ fixed4 frag (v2f i) : SV_Target
 - `애니메이션 표시`/`애니메이션 숨기기` 버튼을 클릭하여 애니메이션 키 목록을 표시하거나 숨길 수 있습니다.
 - 각 애니메이션 키 사이사이의 `[+]` 버튼을 클릭하여, 해당 위치에 새로운 애니메이션 키를 추가할 수 있습니다.
 - 각 애니메이션 키 우측의 `[-]` 버튼을 클릭하여, 해당 키를 제거할 수 있습니다.
-- 각 애니메이션 키 우측의 `Set` 버튼을 클릭할 경우, 해당 키의 프로퍼티 값을 현재 마테리얼이 갖고 있는 값으로 변경합니다.
+
+- 각 애니메이션 키 우측의 `[C]` 버튼을 클릭할 경우, 해당 키의 프로퍼티 값을 복사합니다.
+- 이후 `[P]` 버튼을 누를 경우, 복사된 값을 해당 키에 붙여넣습니다. (타입이 일치해야 합니다.)
 
 <br>
 
@@ -371,7 +386,7 @@ fixed4 frag (v2f i) : SV_Target
 
 <br>
 
-![image](https://user-images.githubusercontent.com/42164422/131184118-30fa1f3f-4a43-49f4-8ea6-ed9a28bbf755.png)
+![image](https://user-images.githubusercontent.com/42164422/131463600-be454021-79d5-443f-881c-0da31aa86e5e.png)
 
 - `Vector`, `Color` 타입의 경우, `X`, `Y`, `Z`, `W` 값의 변화를 각각의 그래프로 확인할 수 있습니다.
 
@@ -384,6 +399,8 @@ fixed4 frag (v2f i) : SV_Target
 ![2021_0830_ScreenEffect_MoveKey](https://user-images.githubusercontent.com/42164422/131262483-69013877-dd99-43f0-872a-23236d7daf4b.gif)
 
 - 그래프 하단의 키 부분을 마우스 좌클릭 및 드래그하여 좌우로 이동할 수 있습니다.
+- `Control` 키를 누른 채로 드래그할 경우, 시간은 `0.1`초, 프레임은 `10` 단위로 이동합니다.
+- `Shift` 키를 누른 채로 드래그할 경우, 시간은 `0.05`초, 프레임은 `5` 단위로 이동합니다.
 
 ![2021_0830_ScreenEffect_RemoveKey](https://user-images.githubusercontent.com/42164422/131262484-409f0c2a-df31-43af-bfa4-1ed265cf1d32.gif)
 
@@ -397,7 +414,7 @@ fixed4 frag (v2f i) : SV_Target
 
 ### **[5-3] 애니메이션 그라디언트**
 
-![image](https://user-images.githubusercontent.com/42164422/131184230-c93c2711-cdfd-4e3a-b54d-efa3b4a9795c.png)
+![image](https://user-images.githubusercontent.com/42164422/131463898-44345965-0634-4156-bc2d-f956d3d8224f.png)
 
 - `Color` 타입의 경우, 우측 상단의 `그라디언트`/`그래프` 버튼을 클릭하여 색상 표시 방법을 변경할 수 있습니다.
 
