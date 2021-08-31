@@ -41,15 +41,19 @@ mermaid: true
 # Preview
 ---
 
-## **[1] Demo Scene Preview**
+## **[1] Demo 1 - 운석 낙하**
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/wwrVsWvl5LA' frameborder='0' allowfullscreen></iframe></div>
+
+- 사용된 스크린 이펙트
+  - [Shake](https://rito15.github.io/posts/unity-amplify-screen-shake/)
+  - [Hexagonal Pattern](https://rito15.github.io/posts/unity-amplify-screen-hexagons/)
 
 <br>
 
 <details>
 <summary markdown="span"> 
-예제 다운로드
+Demo 1 다운로드
 </summary>
 
 - [Screen-Effect-Controller-Demo.zip](https://github.com/rito15/Images/files/7072067/Screen-Effect-Controller-Demo.zip)
@@ -58,10 +62,21 @@ mermaid: true
 
 <br>
 
-## **[2] Component Preview**
+
+## **[2] Demo 2 - 눈 깜빡깜빡**
+
+![2021_0831_ScreenEffect_Vignette_Anim](https://user-images.githubusercontent.com/42164422/131479781-6e10d099-3edc-4884-8598-3fd4287576e6.gif)
+
+- 사용된 스크린 이펙트
+  - [Blur](https://rito15.github.io/posts/unity-shader-screen-blur/)
+  - [Vignette and Blink](https://rito15.github.io/posts/unity-amplify-screen-vignette-and-blink/)
+
+<br>
+
+
+## **[3] Component Preview**
 
 ![image](https://user-images.githubusercontent.com/42164422/131242291-405c51ac-50f5-4b42-aa79-79d44231e259.png)
-
 
 <br>
 
