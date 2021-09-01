@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-01T04:11:47+09:00</updated>
+  <updated>2021-09-01T17:52:45+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,156 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 에디터 - 빌드 직전에 동작하는 기능 작성하기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-process-before-build/" rel="alternate" type="text/html" title="유니티 에디터 - 빌드 직전에 동작하는 기능 작성하기" />
+    <published>2021-09-01T17:51:00+09:00</published>
+  
+    <updated>2021-09-01T17:51:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-process-before-build/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-process-before-build/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+
+  아래의 형태로 스크립트를 작성해놓으면 빌드 직전에 동작한다.
+
+
+#if UNITY_EDITOR
+
+class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
+{
+    public int callbackOrder =&amp;gt; 0;
+
+    public void OnPreprocessBuild(UnityEditor.Build.Reporting.BuildReport report)
+    {
+        // Do Something Here
+    }
+}
+
+#endif
+
+
+
+
+References
+
+
+  https://docs.unity3d.com/ScriptReference/Build.IPreprocessBuildWithRe...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Timescale Slider(게임 진행 속도 조절 슬라이더)</title>
+    <link href="https://rito15.github.io/posts/unity-editor-timescale-slider/" rel="alternate" type="text/html" title="Timescale Slider(게임 진행 속도 조절 슬라이더)" />
+    <published>2021-09-01T16:00:00+09:00</published>
+  
+    <updated>2021-09-01T16:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-timescale-slider/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-timescale-slider/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Utilities" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+  
+    게임 진행 속도를 0% ~ 100% 사이에서 조절할 수 있는 슬라이더를 유니티 에디터 상단 재생 버튼 우측에 생성합니다.
+  
+  
+    유니티 에디터 내에서만 동작하고, 빌드 이후에는 아무런 영향을 미치지 않습니다.
+  
+
+
+
+
+테스트 완료 에디터 버전
+
+
+  2018.3.14f1
+  2019.4.9f1
+  2020.3.14f1
+
+
+
+
+Note
+
+
+  2021.1.2 버전까지만 정상 작동합니다.
+
+
+
+
+Preview
+
+
+
+
+
+
+Download
+
+
+  Timescale Slider.unitypackage
+
+
+
+
+References
+
+
+  https://github.com/marijnz/unity-toolbar-extender
+
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -241,198 +391,6 @@ Properties
       비네트 효과 영역의 너비
       기본 값 : 1
   ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Amplify) Screen Effect - Vignette and Blink</title>
-    <link href="https://rito15.github.io/posts/unity-amplify-screen-vignette-and-blink/" rel="alternate" type="text/html" title="(Amplify) Screen Effect - Vignette and Blink" />
-    <published>2021-08-31T18:03:00+09:00</published>
-  
-    <updated>2021-09-01T02:32:34+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-amplify-screen-vignette-and-blink/</id>
-    <content src="https://rito15.github.io/posts/unity-amplify-screen-vignette-and-blink/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Amplify Shader" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-  
-    화면 전체에 비네트 효과
-  
-  
-    1인칭으로 눈을 깜빡거리는 효과
-  
-  
-    스크린 이펙트 적용 애셋 : Link
-  
-
-
-
-
-Preview
-
-
-
-
-
-
-
-
-
-
-Properties
-
-
-
-  Blink
-    
-      눈 감은 정도
-      범위 : 0 ~ 1
-    
-  
-  Brightness
-    
-      화면 전체 밝기
-    
-  
-  Sight Range
-    
-      시야 범위, 비네트 효과 적용 범위
-      범위 : 0 ~ 2
-    
-  
-
-
-
-
-Nodes
-
-
-
-
-
-
-Download
-
-
-  2021_0831_Screen Effect_Vignette and Blink.zip
-
-
-
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Amplify) Screen Effect - Posterize(Toon)</title>
-    <link href="https://rito15.github.io/posts/unity-amplify-screen-posterize/" rel="alternate" type="text/html" title="(Amplify) Screen Effect - Posterize(Toon)" />
-    <published>2021-08-31T18:02:00+09:00</published>
-  
-    <updated>2021-08-31T18:02:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-amplify-screen-posterize/</id>
-    <content src="https://rito15.github.io/posts/unity-amplify-screen-posterize/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Amplify Shader" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-  
-    카툰풍의 느낌을 적용하는 쉐이더
-  
-  
-    스크린 이펙트 적용 애셋 : Link
-  
-
-
-
-
-Preview
-
-
-
-
-
-
-
-
-Properties
-
-
-
-  Posterize Count
-    
-      색상을 구분하는 층의 개수 지정
-      범위 : 1 ~ 10
-    
-  
-  Intensity
-    
-      효과 적용 강도 지정
-      범위 : 0 ~ 1
-    
-  
-
-
-
-
-Nodes
-
-
-
-
-
-
-Download
-
-
-  2021_0830_Screen Effect_Posterize.zip
-
-
-
     </summary>
   
 

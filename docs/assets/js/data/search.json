@@ -1,6 +1,36 @@
 [
   
   {
+    "title": "유니티 에디터 - 빌드 직전에 동작하는 기능 작성하기",
+    "url": "/posts/unity-editor-process-before-build/",
+    "categories": "Unity, Unity Editor Memo",
+    "tags": "unity, editor, memo",
+    "date": "2021-09-01 17:51:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Memo  아래의 형태로 스크립트를 작성해놓으면 빌드 직전에 동작한다.#if UNITY_EDITORclass BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport{    public int callbackOrder =&amp;gt; 0;    public void OnPreprocessBuild(UnityEditor.Build.Reporting.BuildReport report)    {        // Do Something Here    }}#endifRefe..."
+  },
+  
+  {
+    "title": "Timescale Slider(게임 진행 속도 조절 슬라이더)",
+    "url": "/posts/unity-editor-timescale-slider/",
+    "categories": "Unity, Unity Editor Utilities",
+    "tags": "unity, editor, csharp, utility",
+    "date": "2021-09-01 16:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Summary      게임 진행 속도를 0% ~ 100% 사이에서 조절할 수 있는 슬라이더를 유니티 에디터 상단 재생 버튼 우측에 생성합니다.        유니티 에디터 내에서만 동작하고, 빌드 이후에는 아무런 영향을 미치지 않습니다.  테스트 완료 에디터 버전  2018.3.14f1  2019.4.9f1  2020.3.14f1Note  2021.1.2 버전까지만 정상 작동합니다.PreviewDownload  Timescale Slider.unitypackageReferences  https://github.com/marij..."
+  },
+  
+  {
     "title": "Screen Effect - Zoom Blur",
     "url": "/posts/unity-shader-screen-zoom-blur/",
     "categories": "Unity Shader, Shader Scripts",
