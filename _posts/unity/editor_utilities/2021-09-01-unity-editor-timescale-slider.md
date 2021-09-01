@@ -36,6 +36,8 @@ mermaid: true
 
 ![image](https://user-images.githubusercontent.com/42164422/131628607-d68fcb8b-05d8-4718-a4a6-01b1f6d63b48.png)
 
+![2021_0901_Timescale_Slider](https://user-images.githubusercontent.com/42164422/131711463-0c2f03a3-e044-42ed-ab7d-f54c38ebf500.gif)
+
 <br>
 
 # Download
