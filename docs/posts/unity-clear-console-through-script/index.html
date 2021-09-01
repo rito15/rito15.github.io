@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="스크립트로 콘솔 내용 지우기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"1 2 3 4 5 6 7 8 9 10 11 private static MethodInfo clearMethodInfo; private static void ClearLog() { if (clearMethodInfo == null) { var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor)); var type = assembly.GetType(&quot;UnityEditor.LogEntries&quot;); clearMethodInfo = type.GetMethod(&quot;Clear&quot;); } clearMethodInfo.Invoke(new object(), null); }","datePublished":"2021-06-14T02:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-clear-console-through-script/"},"url":"https://rito15.github.io/posts/unity-clear-console-through-script/","author":{"@type":"Person","name":"Rito15"},"headline":"스크립트로 콘솔 내용 지우기","dateModified":"2021-06-14T02:22:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"스크립트로 콘솔 내용 지우기","description":"1 2 3 4 5 6 7 8 9 10 11 private static MethodInfo clearMethodInfo; private static void ClearLog() { if (clearMethodInfo == null) { var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor)); var type = assembly.GetType(&quot;UnityEditor.LogEntries&quot;); clearMethodInfo = type.GetMethod(&quot;Clear&quot;); } clearMethodInfo.Invoke(new object(), null); }","dateModified":"2021-06-14T02:22:00+09:00","datePublished":"2021-06-14T02:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-clear-console-through-script/"},"url":"https://rito15.github.io/posts/unity-clear-console-through-script/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -589,12 +589,17 @@
         
         
         
-        <li><a href="/posts/unity-amplify-screen-vignette-and-blink/">(Amplify) Screen Effect - Vignette and Blink</a></li>
+        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
+        <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-amplify-screen-vignette-and-blink/">(Amplify) Screen Effect - Vignette and Blink</a></li>
       
         
         
@@ -605,11 +610,6 @@
         
         
         <li><a href="/posts/unity-amplify-screen-hexagons/">(Amplify) Screen Effect - Hexagonal Pattern</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-screen-shake/">(Amplify) Screen Effect - Shake</a></li>
       
 
       </ul>
@@ -5049,6 +5049,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7345,59 +7358,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-view-width-considering-scroll/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jun 13
-  
-
-  <i class="unloaded">2021-06-13T23:33:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-커스텀 에디터에서 EditorGUIUtility.currentViewWidth를 통해 현재 에디터의 너비를 구할 수 있지만,
-
-
-
-위처럼 컴포넌트 창이 상하로 길어져 우측에 스크롤바가 생기는 경우
-
-스크롤바가 컨트롤들을 가림에도 불구하고, currentViewWidth는 스크롤바를 포함한 너비를 알려주며
-
-스크롤바를 제외한 너비를 구하는 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-dialog/">
           <div class="card-body">
             <!--
@@ -7495,6 +7455,59 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
 
   
    ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-component-on-top/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 12
+  
+
+  <i class="unloaded">2021-03-12T04:04:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+  
+    bool flag = true;
+while (flag)
+{
+    flag = UnityEditorInternal.ComponentUtility.MoveComponentUp(this);
+    // 맨 위로 올라갔을 경우 false 리턴
+}
+
+  
+
+
               </p>
             </div>
           </div>

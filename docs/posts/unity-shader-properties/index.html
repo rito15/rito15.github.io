@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Unity Shaderlab Properties" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Memo 자꾸만 까먹어서 메모","datePublished":"2021-08-31T19:54:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-properties/"},"url":"https://rito15.github.io/posts/unity-shader-properties/","author":{"@type":"Person","name":"Rito15"},"headline":"Unity Shaderlab Properties","dateModified":"2021-08-31T19:54:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Unity Shaderlab Properties","description":"Memo 자꾸만 까먹어서 메모","dateModified":"2021-08-31T19:54:00+09:00","datePublished":"2021-08-31T19:54:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-properties/"},"url":"https://rito15.github.io/posts/unity-shader-properties/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -601,12 +601,17 @@
         
         
         
-        <li><a href="/posts/unity-amplify-screen-vignette-and-blink/">(Amplify) Screen Effect - Vignette and Blink</a></li>
+        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
+        <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-amplify-screen-vignette-and-blink/">(Amplify) Screen Effect - Vignette and Blink</a></li>
       
         
         
@@ -617,11 +622,6 @@
         
         
         <li><a href="/posts/unity-amplify-screen-hexagons/">(Amplify) Screen Effect - Hexagonal Pattern</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-screen-shake/">(Amplify) Screen Effect - Shake</a></li>
       
 
       </ul>
@@ -3795,6 +3795,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7417,6 +7430,57 @@ static const float2 dir[8] =
       
       
       <div class="card">
+        <a href="/posts/unity-editor-key-events/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 31
+  
+
+  <i class="unloaded">2021-08-31T15:33:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 키보드 이벤트 메모</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+
+  
+    // 현재 누른 키 확인
+bool spacePressed = Event.current.keyCode == KeyCode.Space;
+
+// 다른 이벤트(마우스 이벤트 등)와 동시에 입력한 보조 키 확인
+bool controlPressed = Event.current.modifiers == EventModifiers.Contr...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-update-game-view/">
           <div class="card-body">
             <!--
@@ -7464,57 +7528,6 @@ static const float2 dir[8] =
 
   
     EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-editor-key-events/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 31
-  
-
-  <i class="unloaded">2021-08-31T15:33:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 키보드 이벤트 메모</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-
-  
-    // 현재 누른 키 확인
-bool spacePressed = Event.current.keyCode == KeyCode.Space;
-
-// 다른 이벤트(마우스 이벤트 등)와 동시에 입력한 보조 키 확인
-bool controlPressed = Event.current.modifiers == EventModifiers.Contr...
               </p>
             </div>
           </div>

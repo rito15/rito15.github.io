@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rainy Window Shader" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Summary","datePublished":"2020-12-01T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-script-rainy-window/"},"url":"https://rito15.github.io/posts/unity-shader-script-rainy-window/","author":{"@type":"Person","name":"Rito15"},"headline":"Rainy Window Shader","dateModified":"2020-12-01T22:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Rainy Window Shader","description":"Summary","dateModified":"2020-12-01T22:00:00+09:00","datePublished":"2020-12-01T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-script-rainy-window/"},"url":"https://rito15.github.io/posts/unity-shader-script-rainy-window/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1048,12 +1048,17 @@ Source Code
         
         
         
-        <li><a href="/posts/unity-amplify-screen-vignette-and-blink/">(Amplify) Screen Effect - Vignette and Blink</a></li>
+        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
+        <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-amplify-screen-vignette-and-blink/">(Amplify) Screen Effect - Vignette and Blink</a></li>
       
         
         
@@ -1064,11 +1069,6 @@ Source Code
         
         
         <li><a href="/posts/unity-amplify-screen-hexagons/">(Amplify) Screen Effect - Hexagonal Pattern</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-screen-shake/">(Amplify) Screen Effect - Shake</a></li>
       
 
       </ul>
@@ -7692,6 +7692,19 @@ Source Code
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7800,74 +7813,6 @@ Source Code
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
     <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-shader-screen-blur/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 30
-  
-
-  <i class="unloaded">2021-08-30T22:11:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Screen Effect - Blur</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Summary
-
-
-
-  
-    블러 이펙트
-  
-  
-    스크린 이펙트 적용 애셋 : Link
-  
-
-
-
-
-Properties
-
-
-
-  
-    Resolution : 블러 적용 해상도(기본 0.5)
-  
-  
-    Intensity : 블러 적용 강도
-  
-  
-    Blur Area Mask : 블러 적용 영역을 제한할 수 있는 마스크
- ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
     
       
       
@@ -8028,6 +7973,103 @@ Source Code
 44
 45
 Shade...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-shader-script-transparent-2pass/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 15
+  
+
+  <i class="unloaded">2021-03-15T17:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>2-Pass Transparent Shader</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Summary
+
+
+
+  2패스로 작성하여 내부가 드러나는 알파 소팅 문제가 발생하지 않는 쉐이더
+
+
+Source Code
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+4...
               </p>
             </div>
           </div>

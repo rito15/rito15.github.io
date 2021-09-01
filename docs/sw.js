@@ -1,6 +1,6 @@
 self.importScripts('/assets/js/data/cache-list.js');
 
-var cacheName = 'chirpy-20210901.2045';
+var cacheName = 'chirpy-20210901.2348';
 
 
 function isExcluded(url) {
