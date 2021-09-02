@@ -8,26 +8,60 @@ math: true
 mermaid: true
 ---
 
+# Reflection
+---
+
 ## 필요 네임스페이스
+
 ```cs
 using System;
 using System.Reflection;
 ```
 
 <br>
+
 ## 특정 클래스 타입 가져오기
+
 ```cs
 Type targetType = Type.GetType("클래스명");
 ```
 
 <br>
-## 네임스페이스 내에 있는 클래스 타입 가져오기
+
+## 특정 네임스페이스 내에 있는 클래스 타입 가져오기
+
 ```cs
 Type targetType = Type.GetType("네임스페이스명.클래스명");
 ```
 
 <br>
+
+## 특정 네임스페이스의 모든 클래스 타입 가져오기(모든 어셈블리 확인)
+
+```cs
+string asmName = "UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null";
+string nsName = "UnityEngine";
+
+var classTypes =
+    AppDomain.CurrentDomain.GetAssemblies()    // 모든 어셈블리 대상
+        .Where(asm => asm.FullName == asmName) // 특정 어셈블리(exe, dll)로 필터링
+        .SelectMany(asm => asm.GetTypes())     // 모든 타입들 가져오기
+        .Where(t => t.IsClass && t.Namespace == nsName); // 클래스타입 && 특정 네임스페이스로 필터링
+```
+
+<br>
+
+## 현재 어셈블리의 모든 클래스 타입 가져오기
+```cs
+var classTypes = 
+    Assembly.GetExecutingAssembly().GetTypes()
+        .Where(t => t.IsClass /*&& t.Namespace == nsName*/);
+```
+
+<br>
+
 ## 다른 어셈블리(예: DLL) 내에 있는 클래스 타입 가져오기
+
 ```cs
 Type targetType = Type.GetType("네임스페이스명.클래스명, 어셈블리명");
 
@@ -43,13 +77,29 @@ Type.GetType("UnityEngine.Rigidbody, UnityEngine, Version=0.0.0.0, Culture=neutr
 ```
 
 <br>
+
+## 알고 있는 타입의 동일 어셈블리 내의 특정 클래스 가져오기
+
+- 아주 유용함
+
+```cs
+Type knownType = ...; // 알고 있는 타입
+
+Type goal = knownType.Assembly.GetType("네임스페이스명.클래스명");
+```
+
+<br>
+
 ## 타입으로 객체 생성하기
+
 ```cs
 object instance = Activator.CreateInstance(targetType);
 ```
 
 <br>
+
 ## 특정 클래스의 메소드 가져오기
+
 ```cs
 MethodInfo targetMethod = targetType.GetMethod (
     "메소드명",
@@ -68,7 +118,9 @@ targetType.GetMethod
 ```
 
 <br>
+
 ## 가져온 메소드 호출하기
+
 ```cs
 // 1. 정적 메소드가 아니고, 매개변수가 존재하는 경우
 targetMethod.Invoke(instance, new object[]{ 파라미터1, 파라미터2 });
@@ -78,27 +130,6 @@ targetMethod.Invoke(instance, null);
 
 // 3. 정적 메소드이고, 매개변수가 0개인 경우
 targetMethod.Invoke(null, null);
-```
-
-<br>
-## 특정 네임스페이스의 모든 클래스 타입 가져오기(모든 어셈블리 확인)
-```cs
-string asmName = "UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null";
-string nsName = "UnityEngine";
-
-var classTypes =
-    AppDomain.CurrentDomain.GetAssemblies()    // 모든 어셈블리 대상
-        .Where(asm => asm.FullName == asmName) // 특정 어셈블리(exe, dll)로 필터링
-        .SelectMany(asm => asm.GetTypes())     // 모든 타입들 가져오기
-        .Where(t => t.IsClass && t.Namespace == nsName); // 클래스타입 && 특정 네임스페이스로 필터링
-```
-
-<br>
-## 현재 어셈블리의 모든 클래스 타입 가져오기
-```cs
-var classTypes = 
-    Assembly.GetExecutingAssembly().GetTypes()
-        .Where(t => t.IsClass /*&& t.Namespace == nsName*/);
 ```
 
 <br>

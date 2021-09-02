@@ -26,8 +26,8 @@
 <meta property="og:title" content="C# Reflection(리플렉션)" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="필요 네임스페이스 1 2 using System; using System.Reflection;" />
-<meta property="og:description" content="필요 네임스페이스 1 2 using System; using System.Reflection;" />
+<meta name="description" content="Reflection" />
+<meta property="og:description" content="Reflection" />
 <link rel="canonical" href="https://rito15.github.io/posts/memo-cs-reflection/" />
 <meta property="og:url" content="https://rito15.github.io/posts/memo-cs-reflection/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# Reflection(리플렉션)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"필요 네임스페이스 1 2 using System; using System.Reflection;","datePublished":"2021-02-19T03:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-reflection/"},"url":"https://rito15.github.io/posts/memo-cs-reflection/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Reflection(리플렉션)","dateModified":"2021-08-20T20:39:55+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Reflection","datePublished":"2021-02-19T03:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-reflection/"},"url":"https://rito15.github.io/posts/memo-cs-reflection/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Reflection(리플렉션)","dateModified":"2021-08-20T20:39:55+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="902 words">5 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="965 words">5 min</span>
 
 
           <!-- page views -->
@@ -452,7 +452,11 @@
 
         
 
-        <h2 id="필요-네임스페이스">필요 네임스페이스</h2>
+        <h1 id="reflection">Reflection</h1>
+<hr />
+
+<h2 id="필요-네임스페이스">필요 네임스페이스</h2>
+
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
@@ -460,19 +464,58 @@
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
+
 <h2 id="특정-클래스-타입-가져오기">특정 클래스 타입 가져오기</h2>
+
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre><span class="n">Type</span> <span class="n">targetType</span> <span class="p">=</span> <span class="n">Type</span><span class="p">.</span><span class="nf">GetType</span><span class="p">(</span><span class="s">"클래스명"</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
-<h2 id="네임스페이스-내에-있는-클래스-타입-가져오기">네임스페이스 내에 있는 클래스 타입 가져오기</h2>
+
+<h2 id="특정-네임스페이스-내에-있는-클래스-타입-가져오기">특정 네임스페이스 내에 있는 클래스 타입 가져오기</h2>
+
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre><span class="n">Type</span> <span class="n">targetType</span> <span class="p">=</span> <span class="n">Type</span><span class="p">.</span><span class="nf">GetType</span><span class="p">(</span><span class="s">"네임스페이스명.클래스명"</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
+
+<h2 id="특정-네임스페이스의-모든-클래스-타입-가져오기모든-어셈블리-확인">특정 네임스페이스의 모든 클래스 타입 가져오기(모든 어셈블리 확인)</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="kt">string</span> <span class="n">asmName</span> <span class="p">=</span> <span class="s">"UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"</span><span class="p">;</span>
+<span class="kt">string</span> <span class="n">nsName</span> <span class="p">=</span> <span class="s">"UnityEngine"</span><span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">classTypes</span> <span class="p">=</span>
+    <span class="n">AppDomain</span><span class="p">.</span><span class="n">CurrentDomain</span><span class="p">.</span><span class="nf">GetAssemblies</span><span class="p">()</span>    <span class="c1">// 모든 어셈블리 대상</span>
+        <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">asm</span> <span class="p">=&gt;</span> <span class="n">asm</span><span class="p">.</span><span class="n">FullName</span> <span class="p">==</span> <span class="n">asmName</span><span class="p">)</span> <span class="c1">// 특정 어셈블리(exe, dll)로 필터링</span>
+        <span class="p">.</span><span class="nf">SelectMany</span><span class="p">(</span><span class="n">asm</span> <span class="p">=&gt;</span> <span class="n">asm</span><span class="p">.</span><span class="nf">GetTypes</span><span class="p">())</span>     <span class="c1">// 모든 타입들 가져오기</span>
+        <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">.</span><span class="n">IsClass</span> <span class="p">&amp;&amp;</span> <span class="n">t</span><span class="p">.</span><span class="n">Namespace</span> <span class="p">==</span> <span class="n">nsName</span><span class="p">);</span> <span class="c1">// 클래스타입 &amp;&amp; 특정 네임스페이스로 필터링</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="현재-어셈블리의-모든-클래스-타입-가져오기">현재 어셈블리의 모든 클래스 타입 가져오기</h2>
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="n">classTypes</span> <span class="p">=</span> 
+    <span class="n">Assembly</span><span class="p">.</span><span class="nf">GetExecutingAssembly</span><span class="p">().</span><span class="nf">GetTypes</span><span class="p">()</span>
+        <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">.</span><span class="n">IsClass</span> <span class="cm">/*&amp;&amp; t.Namespace == nsName*/</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
 <h2 id="다른-어셈블리예-dll-내에-있는-클래스-타입-가져오기">다른 어셈블리(예: DLL) 내에 있는 클래스 타입 가져오기</h2>
+
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -498,13 +541,33 @@
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
+
+<h2 id="알고-있는-타입의-동일-어셈블리-내의-특정-클래스-가져오기">알고 있는 타입의 동일 어셈블리 내의 특정 클래스 가져오기</h2>
+
+<ul>
+  <li>아주 유용함</li>
+</ul>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="n">Type</span> <span class="n">knownType</span> <span class="p">=</span> <span class="p">...;</span> <span class="c1">// 알고 있는 타입</span>
+
+<span class="n">Type</span> <span class="n">goal</span> <span class="p">=</span> <span class="n">knownType</span><span class="p">.</span><span class="n">Assembly</span><span class="p">.</span><span class="nf">GetType</span><span class="p">(</span><span class="s">"네임스페이스명.클래스명"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
 <h2 id="타입으로-객체-생성하기">타입으로 객체 생성하기</h2>
+
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre><span class="kt">object</span> <span class="n">instance</span> <span class="p">=</span> <span class="n">Activator</span><span class="p">.</span><span class="nf">CreateInstance</span><span class="p">(</span><span class="n">targetType</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
+
 <h2 id="특정-클래스의-메소드-가져오기">특정 클래스의 메소드 가져오기</h2>
+
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -536,7 +599,9 @@
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
+
 <h2 id="가져온-메소드-호출하기">가져온 메소드 호출하기</h2>
+
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -553,36 +618,6 @@
 
 <span class="c1">// 3. 정적 메소드이고, 매개변수가 0개인 경우</span>
 <span class="n">targetMethod</span><span class="p">.</span><span class="nf">Invoke</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p><br /></p>
-<h2 id="특정-네임스페이스의-모든-클래스-타입-가져오기모든-어셈블리-확인">특정 네임스페이스의 모든 클래스 타입 가져오기(모든 어셈블리 확인)</h2>
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="rouge-code"><pre><span class="kt">string</span> <span class="n">asmName</span> <span class="p">=</span> <span class="s">"UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"</span><span class="p">;</span>
-<span class="kt">string</span> <span class="n">nsName</span> <span class="p">=</span> <span class="s">"UnityEngine"</span><span class="p">;</span>
-
-<span class="kt">var</span> <span class="n">classTypes</span> <span class="p">=</span>
-    <span class="n">AppDomain</span><span class="p">.</span><span class="n">CurrentDomain</span><span class="p">.</span><span class="nf">GetAssemblies</span><span class="p">()</span>    <span class="c1">// 모든 어셈블리 대상</span>
-        <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">asm</span> <span class="p">=&gt;</span> <span class="n">asm</span><span class="p">.</span><span class="n">FullName</span> <span class="p">==</span> <span class="n">asmName</span><span class="p">)</span> <span class="c1">// 특정 어셈블리(exe, dll)로 필터링</span>
-        <span class="p">.</span><span class="nf">SelectMany</span><span class="p">(</span><span class="n">asm</span> <span class="p">=&gt;</span> <span class="n">asm</span><span class="p">.</span><span class="nf">GetTypes</span><span class="p">())</span>     <span class="c1">// 모든 타입들 가져오기</span>
-        <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">.</span><span class="n">IsClass</span> <span class="p">&amp;&amp;</span> <span class="n">t</span><span class="p">.</span><span class="n">Namespace</span> <span class="p">==</span> <span class="n">nsName</span><span class="p">);</span> <span class="c1">// 클래스타입 &amp;&amp; 특정 네임스페이스로 필터링</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p><br /></p>
-<h2 id="현재-어셈블리의-모든-클래스-타입-가져오기">현재 어셈블리의 모든 클래스 타입 가져오기</h2>
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="n">classTypes</span> <span class="p">=</span> 
-    <span class="n">Assembly</span><span class="p">.</span><span class="nf">GetExecutingAssembly</span><span class="p">().</span><span class="nf">GetTypes</span><span class="p">()</span>
-        <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">.</span><span class="n">IsClass</span> <span class="cm">/*&amp;&amp; t.Namespace == nsName*/</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
@@ -856,12 +891,17 @@
         
         
         
-        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
+        <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
       
         
         
         
-        <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
+        <li><a href="/posts/unity-particle-system-example-08-meteor-swarm/">파티클 시스템 예제 - 08 - Meteor Swarm [TODO]</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
       
         
         
@@ -872,11 +912,6 @@
         
         
         <li><a href="/posts/unity-amplify-screen-damage/">(Amplify) Screen Effect - Damage</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-screen-hexagons/">(Amplify) Screen Effect - Hexagonal Pattern</a></li>
       
 
       </ul>
