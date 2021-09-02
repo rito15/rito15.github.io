@@ -700,13 +700,51 @@ class IntRange : IEnumerable
 
 이렇게 작성하면 `foreach` 구문에 곧바로 사용할 수 있다.
 
-하지만 `Current`를 `int` 타입이 아닌 `object` 타입으로 받게 되므로,
+제네릭이 아닌 `IEnumerator` 타입의 리턴은 `object?` 타입이므로
 
-`int`로 캐스팅하여 사용하면 박싱이 발생한다.
+```cs
+IntRange range = new IntRange();
+
+foreach(object? item in range)
+{
+    // ...
+}
+```
+
+기본적으로 위와 같이 사용된다.
 
 <br>
 
-그래서 `IEnumerable<int>`를 상속 받게되면,
+하지만 실제로 참조를 원하는 타입은 `object?`가 아닌 `int` 타입이다.
+
+따라서
+
+```cs
+foreach(object? item in range)
+{
+    int desired = (int)item;
+    // ...
+}
+```
+
+이런 경우를 생각할 수 있지만,
+
+친절하게도
+
+```cs
+foreach(int item in range)
+{
+    // ...
+}
+```
+
+이렇게 `foreach()` 내에 타입을 명시하면 해당 타입으로 명시적 캐스팅을 해준다.
+
+그래도 결국 `object?` 타입이 `int` 타입으로 캐스팅 되었으므로 언박싱이 발생한다.
+
+<br>
+
+그래서 언박싱을 피하기 위해 `IEnumerable<int>`를 상속 받으면
 
 ```cs
 class IntRange : IEnumerable<int>
@@ -729,7 +767,7 @@ class IntRange : IEnumerable<int>
 
 이렇게 구현하면 되고,
 
-`foreach`로부터 참조되는 `Current`는 `int` 타입을 갖게 된다.
+`foreach`로부터 참조되는 `Current`는 캐스팅 없이 `int` 타입을 갖게 된다.
 
 </details>
 

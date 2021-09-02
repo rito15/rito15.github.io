@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# Foreach 구문 심층 파헤치기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Foreach 구문","datePublished":"2021-09-02T16:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-grammar-foreach/"},"url":"https://rito15.github.io/posts/cs-grammar-foreach/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Foreach 구문 심층 파헤치기","dateModified":"2021-09-02T16:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Foreach 구문","datePublished":"2021-09-02T16:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-grammar-foreach/"},"url":"https://rito15.github.io/posts/cs-grammar-foreach/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Foreach 구문 심층 파헤치기","dateModified":"2021-09-03T04:38:40+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -393,6 +393,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Sep  3, 2021,  4:38 AM +0900"
+  >
+
+  
+  
+
+  
+    Sep  3
+  
+
+  <i class="unloaded">2021-09-03T04:38:40+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -405,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4384 words">24 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4543 words">25 min</span>
 
 
           <!-- page views -->
@@ -1431,13 +1460,63 @@
 
   <p>이렇게 작성하면 <code class="language-plaintext highlighter-rouge">foreach</code> 구문에 곧바로 사용할 수 있다.</p>
 
-  <p>하지만 <code class="language-plaintext highlighter-rouge">Current</code>를 <code class="language-plaintext highlighter-rouge">int</code> 타입이 아닌 <code class="language-plaintext highlighter-rouge">object</code> 타입으로 받게 되므로,</p>
+  <p>제네릭이 아닌 <code class="language-plaintext highlighter-rouge">IEnumerator</code> 타입의 리턴은 <code class="language-plaintext highlighter-rouge">object?</code> 타입이므로</p>
 
-  <p><code class="language-plaintext highlighter-rouge">int</code>로 캐스팅하여 사용하면 박싱이 발생한다.</p>
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="n">IntRange</span> <span class="n">range</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">IntRange</span><span class="p">();</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="kt">object</span><span class="p">?</span> <span class="n">item</span> <span class="k">in</span> <span class="n">range</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p>기본적으로 위와 같이 사용된다.</p>
 
   <p><br /></p>
 
-  <p>그래서 <code class="language-plaintext highlighter-rouge">IEnumerable&lt;int&gt;</code>를 상속 받게되면,</p>
+  <p>하지만 실제로 참조를 원하는 타입은 <code class="language-plaintext highlighter-rouge">object?</code>가 아닌 <code class="language-plaintext highlighter-rouge">int</code> 타입이다.</p>
+
+  <p>따라서</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">foreach</span><span class="p">(</span><span class="kt">object</span><span class="p">?</span> <span class="n">item</span> <span class="k">in</span> <span class="n">range</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">desired</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">item</span><span class="p">;</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p>이런 경우를 생각할 수 있지만,</p>
+
+  <p>친절하게도</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">foreach</span><span class="p">(</span><span class="kt">int</span> <span class="n">item</span> <span class="k">in</span> <span class="n">range</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p>이렇게 <code class="language-plaintext highlighter-rouge">foreach()</code> 내에 타입을 명시하면 해당 타입으로 명시적 캐스팅을 해준다.</p>
+
+  <p>그래도 결국 <code class="language-plaintext highlighter-rouge">object?</code> 타입이 <code class="language-plaintext highlighter-rouge">int</code> 타입으로 캐스팅 되었으므로 언박싱이 발생한다.</p>
+
+  <p><br /></p>
+
+  <p>그래서 언박싱을 피하기 위해 <code class="language-plaintext highlighter-rouge">IEnumerable&lt;int&gt;</code>를 상속 받으면</p>
 
   <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -1475,7 +1554,7 @@
 
   <p>이렇게 구현하면 되고,</p>
 
-  <p><code class="language-plaintext highlighter-rouge">foreach</code>로부터 참조되는 <code class="language-plaintext highlighter-rouge">Current</code>는 <code class="language-plaintext highlighter-rouge">int</code> 타입을 갖게 된다.</p>
+  <p><code class="language-plaintext highlighter-rouge">foreach</code>로부터 참조되는 <code class="language-plaintext highlighter-rouge">Current</code>는 캐스팅 없이 <code class="language-plaintext highlighter-rouge">int</code> 타입을 갖게 된다.</p>
 
 </details>
 
@@ -2484,6 +2563,11 @@
         
         
         
+        <li><a href="/posts/cs-grammar-foreach/">C# Foreach 구문 심층 파헤치기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-update-game-view/">게임 뷰를 강제로 업데이트하기</a></li>
       
         
@@ -2500,11 +2584,6 @@
         
         
         <li><a href="/posts/unity-particle-system-example-08-meteor-swarm/">파티클 시스템 예제 - 08 - Meteor Swarm [TODO]</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
       
 
       </ul>

@@ -485,7 +485,7 @@ public static bool HasFlag2<T>(this T self, T flag) where T : Enum
 ## **참고 : 해결된 박싱 이슈**
 
 1. foreach 루프 박싱 이슈
-  - foreach를 사용할 경우 매번 24kB의 추가적인 가비지가 발생한다는 이슈
+  - foreach를 사용할 경우 매번 24byte의 추가적인 가비지가 발생한다는 이슈
   - 현재 버전에서는 해결되었다고 한다.
 
 2. Dictionary의 키로 Enum을 사용할 경우 박싱 이슈
