@@ -716,6 +716,16 @@
         
         
         
+        <li><a href="/posts/unity-update-game-view/">게임 뷰를 강제로 업데이트하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
       
         
@@ -727,16 +737,6 @@
         
         
         <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-screen-vignette-and-blink/">(Amplify) Screen Effect - Vignette and Blink</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-screen-damage/">(Amplify) Screen Effect - Damage</a></li>
       
 
       </ul>
@@ -3915,6 +3915,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7490,66 +7516,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-key-events/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 31
-  
-
-  <i class="unloaded">2021-08-31T15:33:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 키보드 이벤트 메모</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-// 현재 누른 키 확인
-bool spacePressed = Event.current.keyCode == KeyCode.Space;
-
-// 다른 이벤트(마우스 이벤트 등)와 동시에 입력한 보조 키 확인
-bool controlPressed = Event.current.modifiers == Even...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-update-game-view/">
           <div class="card-body">
             <!--
@@ -7651,6 +7617,54 @@ bool controlPressed = Event.current.modifiers == Even...
 {
     /***********************************************************************
     *      ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-path-memo/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 18
+  
+
+  <i class="unloaded">2021-08-18T20:40:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity - Path</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+
+  
+    public static string ScriptFolderFullPath { get; private set; }      // "......\이 스크립트가 위치한 폴더 경로"
+public static string ScriptFolderInProjectPath { get; private set; } // "Assets\......
               </p>
             </div>
           </div>

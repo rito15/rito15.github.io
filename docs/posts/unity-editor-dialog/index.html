@@ -566,6 +566,16 @@
         
         
         
+        <li><a href="/posts/unity-update-game-view/">게임 뷰를 강제로 업데이트하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
       
         
@@ -577,16 +587,6 @@
         
         
         <li><a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-screen-vignette-and-blink/">(Amplify) Screen Effect - Vignette and Blink</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-screen-damage/">(Amplify) Screen Effect - Damage</a></li>
       
 
       </ul>
@@ -6677,6 +6677,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7393,64 +7419,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-clear-console-through-script/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jun 14
-  
-
-  <i class="unloaded">2021-06-14T02:22:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>스크립트로 콘솔 내용 지우기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-private static MethodInfo clearMethodInfo;
-private static void ClearLog()
-{
-    if (clearMethodInfo == null)
-    {
-        var assembly = Assembly.GetAssembly(typeof(UnityEd...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-component-on-top/">
           <div class="card-body">
             <!--
@@ -7497,6 +7465,81 @@ while (flag)
 }
 
 
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-refresh-windows/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    May 19
+  
+
+  <i class="unloaded">2021-05-19T01:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>각종 윈도우 새로고침하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                커스텀 에디터 - 인스펙터뷰
+
+
+
+  Editor.Repaint()
+
+
+1
+2
+// 해당 CustomEditor 내에서 호출
+this.Repaint();
+
+
+
+
+커스텀 에디터 윈도우
+
+
+
+  EditorWindow.Repaint()
+
+
+1
+this.Repaint();
+
+
+
+
+씬뷰
+
+
+인스펙터의 변경사항이 씬뷰에 곧바로 적용되지 않고
+
+씬뷰에 마우스를 ...
               </p>
             </div>
           </div>
