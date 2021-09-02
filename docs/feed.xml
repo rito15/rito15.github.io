@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-02T18:43:39+09:00</updated>
+  <updated>2021-09-03T04:36:53+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -94,8 +94,8 @@ Fi...
 
   
   <entry>
-    <title>C# Foreach</title>
-    <link href="https://rito15.github.io/posts/cs-grammar-foreach/" rel="alternate" type="text/html" title="C# Foreach" />
+    <title>C# Foreach 구문 심층 파헤치기</title>
+    <link href="https://rito15.github.io/posts/cs-grammar-foreach/" rel="alternate" type="text/html" title="C# Foreach 구문 심층 파헤치기" />
     <published>2021-09-02T16:00:00+09:00</published>
   
     <updated>2021-09-02T16:00:00+09:00</updated>
@@ -129,39 +129,30 @@ Fi...
   컬렉션의 요소를 간편히 순차 탐색할 수 있는 구문
 
 
-int[] arr = { 0, 1, 2, 3, 4 };
+List&amp;lt;int&amp;gt; list = new List&amp;lt;int&amp;gt;();
 
-foreach (int i in arr)
+foreach (var item in list)
 {
-    Console.WriteLine(i);
+    Console.WriteLine(item);
 }
 
 
 
 
-Foreach 구문이 실제로 생성하는 코드
+Foreach 구문이 실제로 생성하는 코드?
 
 
 
-  위의 소스 코드는 실제로 다음과 같은 코드를 생성한다.
+  위의 소스 코드는 실제로 다음과 같은 코드를 생성한다고 한다.
 
 
-int[] arr = { 0, 1, 2, 3, 4 };
+List&amp;lt;int&amp;gt; list = new List&amp;lt;int&amp;gt;();
 
-var enumerator = arr.GetEnumerator();
+List&amp;lt;int&amp;gt;.Enumerator enumerator = list.GetEnumerator();
 
 while (enumerator.MoveNext())
 {
-    Console.WriteLine(enumerator.Current);
-}
-
-
-
-
-Foreach 구문을 사용하기 위한 조건
-
-
-GetEnumerator(), MoveNe...
+    Console.WriteLine(enumerato...
     </summary>
   
 
