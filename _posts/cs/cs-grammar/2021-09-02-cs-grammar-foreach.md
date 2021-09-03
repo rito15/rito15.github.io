@@ -16,7 +16,7 @@ mermaid: true
 ```cs
 List<int> list = new List<int>();
 
-foreach (var item in list)
+foreach (int item in list)
 {
     Console.WriteLine(item);
 }
@@ -33,10 +33,10 @@ foreach (var item in list)
 List<int> list = new List<int>();
 
 List<int>.Enumerator enumerator = list.GetEnumerator();
-
 while (enumerator.MoveNext())
 {
-    Console.WriteLine(enumerator.Current);
+    int item = enumerator.Current;
+    Console.WriteLine(item);
 }
 ```
 
@@ -57,7 +57,7 @@ while (enumerator.MoveNext())
 </summary>
 
 ```cs
-foreach (var item in list)
+foreach (int item in list)
 {
     Console.WriteLine(item);
 }
@@ -108,7 +108,8 @@ List<int>.Enumerator enumerator = list.GetEnumerator();
 
 while (enumerator.MoveNext())
 {
-    Console.WriteLine(enumerator.Current);
+    int item = enumerator.Current;
+    Console.WriteLine(item);
 }
 ```
 
@@ -155,7 +156,8 @@ try
 {
     while (enumerator.MoveNext())
     {
-        Console.WriteLine(enumerator.Current);
+        int item = enumerator.Current;
+        Console.WriteLine(item);
     }
 }
 finally
@@ -211,7 +213,7 @@ finally
 `List<int>` 타입의 컬렉션에 대해,
 
 ```cs
-foreach (var item in list)
+foreach (int item in list)
 {
     Console.WriteLine(item);
 }
@@ -226,7 +228,8 @@ try
 {
     while (enumerator.MoveNext())
     {
-        Console.WriteLine(enumerator.Current);
+        int item = enumerator.Current;
+        Console.WriteLine(item);
     }
 }
 finally
@@ -263,7 +266,7 @@ int[] arr = { 1, 2, 3};
 </summary>
 
 ```cs
-foreach (var item in arr)
+foreach (int item in arr)
 {
     Console.WriteLine(item);
 }
@@ -316,7 +319,8 @@ try
 {
     while (enumerator.MoveNext())
     {
-        Console.WriteLine(enumerator.Current);
+        int item = enumerator.Current;
+        Console.WriteLine(item);
     }
 }
 finally
@@ -356,7 +360,7 @@ finally
 
 `List<int>`와 같은 방식으로 작성하면 위와 같은 코드를 얻게 된다.
 
-그리고 참고로, 이 방식에서 `foreach` 블록 내에서 `item`을 `int` 타입으로 캐스팅하여 사용하려고 하면 `object`를 `int`로 캐스팅하기 때문에 박싱이 발생한다.
+그리고 참고로, 이 방식에서 `foreach` 블록 내에서 `item`을 `int` 타입으로 캐스팅하여 사용하려고 하면 `object`를 `int`로 캐스팅하기 때문에 언박싱이 발생한다.
 
 그러니 굉장히 손해를 보는 코드인데다가, 실제 `foreach` 구문의 **CIL** 코드와도 전혀 다르다.
 
@@ -577,7 +581,7 @@ class IntRange
 
 <br>
 
-### **[3] Foreach 구문**
+### **[3] Foreach 구문 사용**
 
 <details>
 <summary markdown="span"> 
@@ -587,9 +591,9 @@ class IntRange
 ```cs
 IntRange range = new IntRange(2, 8);
 
-foreach (var i in range)
+foreach (int item in range)
 {
-    Console.WriteLine(i); // 2 ~ 8까지 한 줄씩 출력
+    Console.WriteLine(item); // 2 ~ 8까지 한 줄씩 출력
 }
 ```
 
@@ -835,9 +839,9 @@ class IntRange : IEnumerable<int>
 ```cs
 IntRange range = IntRange(1, 5);
 
-foreach (var i in new range)
+foreach (int item in range)
 {
-    Console.WriteLine(i);
+    Console.WriteLine(item);
 }
 ```
 
@@ -858,7 +862,8 @@ IntRange.IntRangeEnumerator enumerator = range.GetEnumerator();
 
 while (enumerator.MoveNext())
 {
-    Console.WriteLine(enumerator.Current);
+    int item = enumerator.Current;
+    Console.WriteLine(item);
 }
 ```
 
@@ -902,7 +907,8 @@ try
 {
     while (enumerator.MoveNext())
     {
-        Console.WriteLine(enumerator.Current);
+        int item = enumerator.Current;
+        Console.WriteLine(item);
     }
 }
 finally
@@ -979,14 +985,15 @@ try
 {
     while (enumerator.MoveNext())
     {
-        Console.WriteLine(enumerator.Current);
+        int item = enumerator.Current;
+        Console.WriteLine(item);
     }
 }
 finally
 {
-    if (enumerator is IDisposable disposible)
+    if (enumerator is IDisposable disposable)
     {
-        disposible.Dispose();
+        disposable.Dispose();
     }
 }
 ```
@@ -1213,7 +1220,8 @@ StructTypeEnumerator enumerator = foo.GetEnumerator();
 
 while (enumerator.MoveNext())
 {
-    DoSomething(enumerator.Current);
+    var item = enumerator.Current;
+    DoSomething(item);
 }
 ```
 
@@ -1246,14 +1254,15 @@ try
 {
     while (enumerator.MoveNext())
     {
-        DoSomething(enumerator.Current);
+        var item = enumerator.Current;
+        DoSomething(item);
     }
 }
 finally
 {
-    if (enumerator is IDisposable disposible)
+    if (enumerator is IDisposable disposable)
     {
-        disposible.Dispose();
+        disposable.Dispose();
     }
 }
 ```
@@ -1287,14 +1296,15 @@ try
 {
     while (enumerator.MoveNext())
     {
-        DoSomething(enumerator.Current);
+        var item = enumerator.Current;
+        DoSomething(item);
     }
 }
 finally
 {
-    if (enumerator is IDisposable disposible)
+    if (enumerator is IDisposable disposable)
     {
-        disposible.Dispose();
+        disposable.Dispose();
     }
 }
 ```

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# Foreach 구문 심층 파헤치기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Foreach 구문","datePublished":"2021-09-02T16:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-grammar-foreach/"},"url":"https://rito15.github.io/posts/cs-grammar-foreach/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Foreach 구문 심층 파헤치기","dateModified":"2021-09-03T04:38:40+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Foreach 구문","datePublished":"2021-09-02T16:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-grammar-foreach/"},"url":"https://rito15.github.io/posts/cs-grammar-foreach/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Foreach 구문 심층 파헤치기","dateModified":"2021-09-03T05:26:23+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,7 +407,7 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Sep  3, 2021,  4:38 AM +0900"
+    title="Fri, Sep  3, 2021,  5:26 AM +0900"
   >
 
   
@@ -417,7 +417,7 @@
     Sep  3
   
 
-  <i class="unloaded">2021-09-03T04:38:40+09:00</i>
+  <i class="unloaded">2021-09-03T05:26:23+09:00</i>
 
 </span>
           </span>
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4543 words">25 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4599 words">25 min</span>
 
 
           <!-- page views -->
@@ -467,7 +467,7 @@
 6
 </pre></td><td class="rouge-code"><pre><span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">list</span><span class="p">)</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">item</span> <span class="k">in</span> <span class="n">list</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
 <span class="p">}</span>
@@ -493,10 +493,10 @@
 </pre></td><td class="rouge-code"><pre><span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
 
 <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;.</span><span class="n">Enumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">();</span>
-
 <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="nf">MoveNext</span><span class="p">())</span>
 <span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">item</span> <span class="p">=</span> <span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -522,7 +522,7 @@
 2
 3
 4
-</pre></td><td class="rouge-code"><pre><span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">list</span><span class="p">)</span>
+</pre></td><td class="rouge-code"><pre><span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">item</span> <span class="k">in</span> <span class="n">list</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
 <span class="p">}</span>
@@ -599,11 +599,13 @@
 4
 5
 6
+7
 </pre></td><td class="rouge-code"><pre><span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;.</span><span class="n">Enumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">();</span>
 
 <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="nf">MoveNext</span><span class="p">())</span>
 <span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">item</span> <span class="p">=</span> <span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
@@ -670,13 +672,15 @@
 12
 13
 14
+15
 </pre></td><td class="rouge-code"><pre><span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;.</span><span class="n">Enumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">();</span>
 
 <span class="k">try</span>
 <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="nf">MoveNext</span><span class="p">())</span>
     <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">item</span> <span class="p">=</span> <span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">finally</span>
@@ -759,7 +763,7 @@
 2
 3
 4
-</pre></td><td class="rouge-code"><pre><span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">list</span><span class="p">)</span>
+</pre></td><td class="rouge-code"><pre><span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">item</span> <span class="k">in</span> <span class="n">list</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
 <span class="p">}</span>
@@ -781,13 +785,15 @@
 12
 13
 14
+15
 </pre></td><td class="rouge-code"><pre><span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;.</span><span class="n">Enumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">();</span>
 
 <span class="k">try</span>
 <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="nf">MoveNext</span><span class="p">())</span>
     <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">item</span> <span class="p">=</span> <span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">finally</span>
@@ -827,7 +833,7 @@
 2
 3
 4
-</pre></td><td class="rouge-code"><pre><span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">arr</span><span class="p">)</span>
+</pre></td><td class="rouge-code"><pre><span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">item</span> <span class="k">in</span> <span class="n">arr</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
 <span class="p">}</span>
@@ -910,13 +916,15 @@
 12
 13
 14
+15
 </pre></td><td class="rouge-code"><pre><span class="n">IEnumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">arr</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">();</span>
 
 <span class="k">try</span>
 <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="nf">MoveNext</span><span class="p">())</span>
     <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">item</span> <span class="p">=</span> <span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">finally</span>
@@ -980,7 +988,7 @@
 
   <p><code class="language-plaintext highlighter-rouge">List&lt;int&gt;</code>와 같은 방식으로 작성하면 위와 같은 코드를 얻게 된다.</p>
 
-  <p>그리고 참고로, 이 방식에서 <code class="language-plaintext highlighter-rouge">foreach</code> 블록 내에서 <code class="language-plaintext highlighter-rouge">item</code>을 <code class="language-plaintext highlighter-rouge">int</code> 타입으로 캐스팅하여 사용하려고 하면 <code class="language-plaintext highlighter-rouge">object</code>를 <code class="language-plaintext highlighter-rouge">int</code>로 캐스팅하기 때문에 박싱이 발생한다.</p>
+  <p>그리고 참고로, 이 방식에서 <code class="language-plaintext highlighter-rouge">foreach</code> 블록 내에서 <code class="language-plaintext highlighter-rouge">item</code>을 <code class="language-plaintext highlighter-rouge">int</code> 타입으로 캐스팅하여 사용하려고 하면 <code class="language-plaintext highlighter-rouge">object</code>를 <code class="language-plaintext highlighter-rouge">int</code>로 캐스팅하기 때문에 언박싱이 발생한다.</p>
 
   <p>그러니 굉장히 손해를 보는 코드인데다가, 실제 <code class="language-plaintext highlighter-rouge">foreach</code> 구문의 <strong>CIL</strong> 코드와도 전혀 다르다.</p>
 
@@ -1308,7 +1316,7 @@
 
 <p><br /></p>
 
-<h3 id="3-foreach-구문"><strong>[3] Foreach 구문</strong></h3>
+<h3 id="3-foreach-구문-사용"><strong>[3] Foreach 구문 사용</strong></h3>
 
 <details>
   <summary> 
@@ -1323,9 +1331,9 @@
 6
 </pre></td><td class="rouge-code"><pre><span class="n">IntRange</span> <span class="n">range</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">IntRange</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">8</span><span class="p">);</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">)</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">item</span> <span class="k">in</span> <span class="n">range</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="c1">// 2 ~ 8까지 한 줄씩 출력</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span> <span class="c1">// 2 ~ 8까지 한 줄씩 출력</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
@@ -1640,9 +1648,9 @@
 6
 </pre></td><td class="rouge-code"><pre><span class="n">IntRange</span> <span class="n">range</span> <span class="p">=</span> <span class="nf">IntRange</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">5</span><span class="p">);</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">i</span> <span class="k">in</span> <span class="k">new</span> <span class="n">range</span><span class="p">)</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">item</span> <span class="k">in</span> <span class="n">range</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -1666,12 +1674,14 @@
 5
 6
 7
+8
 </pre></td><td class="rouge-code"><pre><span class="n">IntRange</span> <span class="n">range</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">IntRange</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">5</span><span class="p">);</span>
 <span class="n">IntRange</span><span class="p">.</span><span class="n">IntRangeEnumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">range</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">();</span>
 
 <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="nf">MoveNext</span><span class="p">())</span>
 <span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">item</span> <span class="p">=</span> <span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
@@ -1742,6 +1752,7 @@
 16
 17
 18
+19
 </pre></td><td class="rouge-code"><pre><span class="n">IntRange</span> <span class="n">range</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">IntRange</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">5</span><span class="p">);</span>
 <span class="n">IntRange</span><span class="p">.</span><span class="n">IntRangeEnumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">range</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">();</span>
 
@@ -1749,7 +1760,8 @@
 <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="nf">MoveNext</span><span class="p">())</span>
     <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">item</span> <span class="p">=</span> <span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">finally</span>
@@ -1868,6 +1880,7 @@
 15
 16
 17
+18
 </pre></td><td class="rouge-code"><pre><span class="n">IntRange</span> <span class="n">range</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">IntRange</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">5</span><span class="p">);</span>
 <span class="n">IEnumerator</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">range</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">();</span>
 
@@ -1875,14 +1888,15 @@
 <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="nf">MoveNext</span><span class="p">())</span>
     <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">item</span> <span class="p">=</span> <span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">finally</span>
 <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">enumerator</span> <span class="k">is</span> <span class="n">IDisposable</span> <span class="n">disposible</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">enumerator</span> <span class="k">is</span> <span class="n">IDisposable</span> <span class="n">disposable</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">disposible</span><span class="p">.</span><span class="nf">Dispose</span><span class="p">();</span>
+        <span class="n">disposable</span><span class="p">.</span><span class="nf">Dispose</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
@@ -2248,11 +2262,13 @@
 4
 5
 6
+7
 </pre></td><td class="rouge-code"><pre><span class="n">StructTypeEnumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">foo</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">();</span>
 
 <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="nf">MoveNext</span><span class="p">())</span>
 <span class="p">{</span>
-    <span class="nf">DoSomething</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+    <span class="nf">DoSomething</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
@@ -2301,20 +2317,22 @@
 14
 15
 16
+17
 </pre></td><td class="rouge-code"><pre><span class="n">ClassTypeEnumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">foo</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">();</span>
 
 <span class="k">try</span>
 <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="nf">MoveNext</span><span class="p">())</span>
     <span class="p">{</span>
-        <span class="nf">DoSomething</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+        <span class="nf">DoSomething</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">finally</span>
 <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">enumerator</span> <span class="k">is</span> <span class="n">IDisposable</span> <span class="n">disposible</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">enumerator</span> <span class="k">is</span> <span class="n">IDisposable</span> <span class="n">disposable</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">disposible</span><span class="p">.</span><span class="nf">Dispose</span><span class="p">();</span>
+        <span class="n">disposable</span><span class="p">.</span><span class="nf">Dispose</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
@@ -2364,20 +2382,22 @@
 14
 15
 16
+17
 </pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">foo</span><span class="p">.</span><span class="nf">GetEnumerator</span><span class="p">();</span>
 
 <span class="k">try</span>
 <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="nf">MoveNext</span><span class="p">())</span>
     <span class="p">{</span>
-        <span class="nf">DoSomething</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+        <span class="nf">DoSomething</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">finally</span>
 <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">enumerator</span> <span class="k">is</span> <span class="n">IDisposable</span> <span class="n">disposible</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">enumerator</span> <span class="k">is</span> <span class="n">IDisposable</span> <span class="n">disposable</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">disposible</span><span class="p">.</span><span class="nf">Dispose</span><span class="p">();</span>
+        <span class="n">disposable</span><span class="p">.</span><span class="nf">Dispose</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
@@ -2563,6 +2583,11 @@
         
         
         
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-grammar-foreach/">C# Foreach 구문 심층 파헤치기</a></li>
       
         
@@ -2579,11 +2604,6 @@
         
         
         <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-particle-system-example-08-meteor-swarm/">파티클 시스템 예제 - 08 - Meteor Swarm [TODO]</a></li>
       
 
       </ul>
