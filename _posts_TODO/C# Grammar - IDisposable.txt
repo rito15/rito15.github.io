@@ -1,0 +1,21 @@
+TITLE : C# IDisposable
+
+
+## 사용되는 경우 크게 두가지
+ - 객체의 소멸이 성능에 크게 영향을 주기 때문에 소멸 타이밍을 직접 관리해야 하는 경우(이미지 등)
+ - 객체의 소멸 타이밍을 예측할 수 없는 경우(스트림 등)
+
+- unsafe 코드를 사용하는 경우 주로 사용된다.
+
+- IDisposable.Dispose()를 호출하면 소멸자가 호출된다.
+
+- IDisposable을 상속 받는다고 GC가 자동으로 수거를 안하는 것은 아니다.
+
+- IDisposable을 상속 받는다고 Unmanaged Heap에 할당되는 것은 아니다.
+
+
+# References
+---
+- <https://docs.microsoft.com/ko-kr/dotnet/standard/garbage-collection/implementing-dispose>
+- <https://docs.microsoft.com/ko-kr/dotnet/standard/garbage-collection/unmanaged>
+- <https://stackoverflow.com/questions/45036/will-the-garbage-collector-call-idisposable-dispose-for-me>

@@ -66,7 +66,7 @@ public static class HeapDebugger
 
         try
         {
-            records[index] = GC.GetTotalAllocatedBytes(true);
+            records[index] = GC.GetTotalMemory(true); // .GetTotalAllocatedBytes() 에서 변경 : 실시간 확인 위해
         }
         catch (IndexOutOfRangeException)
         {
