@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "C# 비동기 Task를 사용하면서 흔히 발생하는 실수",
+    "url": "/posts/cs-async-task-mistakes/",
+    "categories": "C#, C# Threading",
+    "tags": "csharp, thread",
+    "date": "2021-09-04 04:09:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Mistakeprivate static void Main(){    Task t = Task.Run(() =&amp;gt; TaskBody(3));    t.Wait(); // TaskBody(3)의 종료를 대기하려고 시도    Console.WriteLine(&quot;End&quot;);}static async void TaskBody(int count){    for (int i = 0; i &amp;lt; count; i++)    {        await Task.Delay(500);        Console.Wr..."
+  },
+  
+  {
     "title": "동적 계획법(Dynamic Programming, DP)",
     "url": "/posts/dynamic-programming/",
     "categories": "Algorithm, Algorithms",
@@ -1212,7 +1227,7 @@
 
 
 
-    "snippet": "비동기 작업 : async-await      Task를 Thread처럼 사용하는 대신, 비동기 작업을 위해 사용할 수 있다.        async, await 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.  특징      메소드 내부에서 await로 대기하려면, 해당 메소드의 리턴 타입 앞에 async 키워드를 작성한다.        await Task.Delay(n)와 같이 await를 이용한 대기는 해당 스레드를 블록시키지 않는다.        비동기 작업을 기다리고, 끝날 ..."
+    "snippet": "비동기 작업 : async-await      Task를 Thread처럼 사용하는 대신, 비동기 작업을 위해 사용할 수 있다.        async, await 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.        async-await 작업은 Parallel이 아닌, Concurrent하게 이루어진다. (중요)        동일 스레드에서 여러 개의 작업을 동시 처리할 수 있다. (Concurrent 하므로)        실행되는 스레드가 Sleep()하고 있다면 그 동안은 ..."
   },
   
   {

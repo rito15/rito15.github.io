@@ -15,6 +15,12 @@ mermaid: true
 
 - `async`, `await` 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.
 
+- `async-await` 작업은 **Parallel**이 아닌, **Concurrent**하게 이루어진다. (중요)
+
+- 동일 스레드에서 여러 개의 작업을 동시 처리할 수 있다. (**Concurrent** 하므로)
+
+- 실행되는 스레드가 `Sleep()`하고 있다면 그 동안은 실행을 중단하고 대기한다.
+
 <br>
 
 ## **특징**
@@ -31,9 +37,17 @@ mermaid: true
 
 ## **작업이 실행되는 스레드 환경**
 
-**WinForm**, **WPF**, **Unity Engine**과 같이 메인 스레드에서 UI 작업이 이루어지는 프로그램은 await가 실행되기 전에 당시 실행되고 있는 스레드를 캡쳐하여 `SynchronizationContext.Current`에 저장한다.
+**WinForm**, **WPF**, **Unity Engine**과 같이
+
+메인 스레드에서 UI 작업이 이루어지는 프로그램은
+
+await가 실행되기 전에 당시 실행되고 있는 스레드를 캡쳐하여
+
+`SynchronizationContext.Current`에 저장한다.
 
 그리고 `await` 이후의 문장들을 캡쳐된 스레드에서 실행시킨다.
+
+<br>
 
 그런데 콘솔, 윈도우 서비스 프로그램 같은 경우에는 `SynchronizationContext.Current`를 `null`로 둔다.
 

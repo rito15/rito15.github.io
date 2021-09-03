@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# async Task" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"비동기 작업 : async-await","datePublished":"2021-07-06T03:34:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-async-task/"},"url":"https://rito15.github.io/posts/cs-async-task/","author":{"@type":"Person","name":"Rito15"},"headline":"C# async Task","dateModified":"2021-07-06T03:34:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C# async Task","description":"비동기 작업 : async-await","dateModified":"2021-07-06T03:34:00+09:00","datePublished":"2021-07-06T03:34:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-async-task/"},"url":"https://rito15.github.io/posts/cs-async-task/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2806 words">15 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2886 words">16 min</span>
 
 
           <!-- page views -->
@@ -433,6 +433,15 @@
   <li>
     <p><code class="language-plaintext highlighter-rouge">async</code>, <code class="language-plaintext highlighter-rouge">await</code> 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.</p>
   </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">async-await</code> 작업은 <strong>Parallel</strong>이 아닌, <strong>Concurrent</strong>하게 이루어진다. (중요)</p>
+  </li>
+  <li>
+    <p>동일 스레드에서 여러 개의 작업을 동시 처리할 수 있다. (<strong>Concurrent</strong> 하므로)</p>
+  </li>
+  <li>
+    <p>실행되는 스레드가 <code class="language-plaintext highlighter-rouge">Sleep()</code>하고 있다면 그 동안은 실행을 중단하고 대기한다.</p>
+  </li>
 </ul>
 
 <p><br /></p>
@@ -458,9 +467,17 @@
 
 <h2 id="작업이-실행되는-스레드-환경"><strong>작업이 실행되는 스레드 환경</strong></h2>
 
-<p><strong>WinForm</strong>, <strong>WPF</strong>, <strong>Unity Engine</strong>과 같이 메인 스레드에서 UI 작업이 이루어지는 프로그램은 await가 실행되기 전에 당시 실행되고 있는 스레드를 캡쳐하여 <code class="language-plaintext highlighter-rouge">SynchronizationContext.Current</code>에 저장한다.</p>
+<p><strong>WinForm</strong>, <strong>WPF</strong>, <strong>Unity Engine</strong>과 같이</p>
+
+<p>메인 스레드에서 UI 작업이 이루어지는 프로그램은</p>
+
+<p>await가 실행되기 전에 당시 실행되고 있는 스레드를 캡쳐하여</p>
+
+<p><code class="language-plaintext highlighter-rouge">SynchronizationContext.Current</code>에 저장한다.</p>
 
 <p>그리고 <code class="language-plaintext highlighter-rouge">await</code> 이후의 문장들을 캡쳐된 스레드에서 실행시킨다.</p>
+
+<p><br /></p>
 
 <p>그런데 콘솔, 윈도우 서비스 프로그램 같은 경우에는 <code class="language-plaintext highlighter-rouge">SynchronizationContext.Current</code>를 <code class="language-plaintext highlighter-rouge">null</code>로 둔다.</p>
 
@@ -1523,12 +1540,17 @@
         
         
         
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+        <li><a href="/posts/cs-heap-memory-debugger/">C# 간단한 힙 메모리 디버거 (콘솔)</a></li>
       
         
         
         
         <li><a href="/posts/cs-grammar-foreach/">C# Foreach 구문 심층 파헤치기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
         
         
@@ -1539,11 +1561,6 @@
         
         
         <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
       
 
       </ul>
@@ -4722,6 +4739,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   

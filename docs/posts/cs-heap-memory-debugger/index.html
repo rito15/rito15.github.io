@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# 간단한 힙 메모리 디버거 (콘솔)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"기능","datePublished":"2021-08-08T12:12:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-heap-memory-debugger/"},"url":"https://rito15.github.io/posts/cs-heap-memory-debugger/","author":{"@type":"Person","name":"Rito15"},"headline":"C# 간단한 힙 메모리 디버거 (콘솔)","dateModified":"2021-08-08T12:12:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C# 간단한 힙 메모리 디버거 (콘솔)","description":"기능","dateModified":"2021-09-04T01:29:20+09:00","datePublished":"2021-08-08T12:12:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-heap-memory-debugger/"},"url":"https://rito15.github.io/posts/cs-heap-memory-debugger/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -393,6 +393,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Sep  4, 2021,  1:29 AM +0900"
+  >
+
+  
+  
+
+  
+    Sep  4
+  
+
+  <i class="unloaded">2021-09-04T01:29:20+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -405,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="444 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="458 words">2 min</span>
 
 
           <!-- page views -->
@@ -560,7 +589,7 @@
 
         <span class="k">try</span>
         <span class="p">{</span>
-            <span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">GC</span><span class="p">.</span><span class="nf">GetTotalAllocatedBytes</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+            <span class="n">records</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">GC</span><span class="p">.</span><span class="nf">GetTotalMemory</span><span class="p">(</span><span class="k">true</span><span class="p">);</span> <span class="c1">// .GetTotalAllocatedBytes() 에서 변경 : 실시간 확인 위해</span>
         <span class="p">}</span>
         <span class="k">catch</span> <span class="p">(</span><span class="n">IndexOutOfRangeException</span><span class="p">)</span>
         <span class="p">{</span>
@@ -740,12 +769,17 @@
         
         
         
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+        <li><a href="/posts/cs-heap-memory-debugger/">C# 간단한 힙 메모리 디버거 (콘솔)</a></li>
       
         
         
         
         <li><a href="/posts/cs-grammar-foreach/">C# Foreach 구문 심층 파헤치기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
         
         
@@ -756,11 +790,6 @@
         
         
         <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
       
 
       </ul>
@@ -3934,6 +3963,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   

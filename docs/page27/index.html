@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page27/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page27/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,101 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/fog-of-war/">전장의 안개(Fog of War)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목차
+
+
+
+  1. 개념
+  2. 구현 방법
+  3. 타일맵을 이용한 구현
+  4. 구현 결과
+  5. 프로파일링, 최적화
+  6. Reference
+
+
+
+
+개념
+
+
+
+  맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다.
+  지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0,
+  지정한...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Jan 20, 2021,  9:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Jan 20
+  
+
+  <i class="unloaded">2021-01-20T21:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3032 words">16 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1200,91 +1295,6 @@ Source Code
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/lighting-models/">Lighting Models</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Vectors
-
-
-
-
-  L (Light) : 정점에서 광원을 향하는 방향의 벡터
-  N (Normal) : 정점의 노멀 벡터
-  V (View) : 정점에서 카메라를 향하는 방향의 벡터
-  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
-  
-    H (Half) : 블린퐁에서 사용, L와 V의 중...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Nov 16, 2020,  5:14 PM +0900"
-  >
-
-  
-  
-
-  
-    Nov 16, 2020
-  
-
-  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="456 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1798,12 +1808,17 @@ Source Code
         
         
         
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+        <li><a href="/posts/cs-heap-memory-debugger/">C# 간단한 힙 메모리 디버거 (콘솔)</a></li>
       
         
         
         
         <li><a href="/posts/cs-grammar-foreach/">C# Foreach 구문 심층 파헤치기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
         
         
@@ -1814,11 +1829,6 @@ Source Code
         
         
         <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
       
 
       </ul>

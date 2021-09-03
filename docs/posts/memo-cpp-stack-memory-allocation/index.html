@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C++ 스택 메모리 동적 할당" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Memo _alloca 스택에 메모리를 동적으로 할당해준다. 함수의 리턴으로 전달하면 안된다. 블록이 종료되면 자동으로 할당 해제된다. 공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의 예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 함","datePublished":"2021-02-01T18:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cpp-stack-memory-allocation/"},"url":"https://rito15.github.io/posts/memo-cpp-stack-memory-allocation/","author":{"@type":"Person","name":"Rito15"},"headline":"C++ 스택 메모리 동적 할당","dateModified":"2021-05-10T03:44:51+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C++ 스택 메모리 동적 할당","description":"Memo _alloca 스택에 메모리를 동적으로 할당해준다. 함수의 리턴으로 전달하면 안된다. 블록이 종료되면 자동으로 할당 해제된다. 공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의 예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 함","dateModified":"2021-05-10T03:44:51+09:00","datePublished":"2021-02-01T18:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cpp-stack-memory-allocation/"},"url":"https://rito15.github.io/posts/memo-cpp-stack-memory-allocation/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -667,12 +667,17 @@
         
         
         
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+        <li><a href="/posts/cs-heap-memory-debugger/">C# 간단한 힙 메모리 디버거 (콘솔)</a></li>
       
         
         
         
         <li><a href="/posts/cs-grammar-foreach/">C# Foreach 구문 심층 파헤치기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
         
         
@@ -683,11 +688,6 @@
         
         
         <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
       
 
       </ul>
@@ -7056,6 +7056,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7596,7 +7609,7 @@ Cout Format
       
       
       <div class="card">
-        <a href="/posts/memo-linux-cli/">
+        <a href="/posts/memo-init-jekyll-blog/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7616,10 +7629,10 @@ Cout Format
     Jun 15
   
 
-  <i class="unloaded">2021-06-15T02:34:00+09:00</i>
+  <i class="unloaded">2021-06-15T14:55:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>LINUX CLI</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Jekyll 블로그 만들기 간단 메모</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7628,19 +7641,34 @@ Cout Format
 
 
 
-                리눅스 설치
+                Start Jekyll Blog
 
 
-1. Virtual Box + Ubuntu Server(CLI)
-
-  CLI : Command Line Interface
-  https://www.virtualbox.org/wiki/Downloads
-  https://ubuntu.com/download/server - Option 2
+1. Ruby 설치
 
 
-2. 구름 IDE (10GB 무료)
+  https://rubyinstaller.org/downloads/
+  2.7.3
 
-  htt...
+
+
+
+2. Jekyll Bundler 설치
+
+
+  cmd 켰을 때 나오는 사용자 기본 경로에 설치
+
+
+1
+gem install jekyll bundler
+
+
+
+
+3. 블로그용 깃헙 원격 리포 준비
+
+
+  리포...
               </p>
             </div>
           </div>

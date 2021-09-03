@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page9/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page9/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -367,6 +367,101 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-load-scene-async/">비동기 씬 로드</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        GIF
+
+
+
+
+Source Code
+
+
+
+  
+    Source Code
+  
+
+  
+    
+      using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Scen...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, Jul  6, 2021,  4:32 PM +0900"
+  >
+
+  
+  
+
+  
+    Jul  6
+  
+
+  <i class="unloaded">2021-07-06T16:32:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="529 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/cs-async-task/">C# async Task</a>
     </h1>
 
@@ -388,15 +483,8 @@
   
     async, await 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.
   
-
-
-
-
-특징
-
-
   
-    메소드 내부에서 await로 대기하려면, 해당 메소...
+    async-await 작업은 Parallel이 아닌, Concurr...
       </p>
     </div>
 
@@ -443,7 +531,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2806 words">15 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2886 words">16 min</span>
 
 
         <!-- page views -->
@@ -1270,115 +1358,6 @@ Usage Example
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        1. Vertex
-
-
-Scale Up and Down
-
-
-
-
-
-Heartbeat
-
-
-
-
-  
-    ( max( sin(T * F), 1-S ) - (1-S) ) * A
-
-T : Time
-F : Frequency
-S : Sensitivity
-A : Amplitude
-
-  
-
-
-
-
-World Position Offset
-
-
-
-
-
-
-  두 가지 방식 모두...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Jun 27, 2021,  4:24 AM +0900"
-  >
-
-  
-  
-
-  
-    Jun 27
-  
-
-  <i class="unloaded">2021-06-27T04:24:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="936 words">5 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1899,12 +1878,17 @@ World Position Offset
         
         
         
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+        <li><a href="/posts/cs-heap-memory-debugger/">C# 간단한 힙 메모리 디버거 (콘솔)</a></li>
       
         
         
         
         <li><a href="/posts/cs-grammar-foreach/">C# Foreach 구문 심층 파헤치기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
         
         
@@ -1915,11 +1899,6 @@ World Position Offset
         
         
         <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
       
 
       </ul>

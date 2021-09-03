@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 에디터 GUI - 포커스 확인, 처리" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"1. 컨트롤 포커스 여부 확인","datePublished":"2021-08-26T03:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-focus/"},"url":"https://rito15.github.io/posts/unity-editor-focus/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 에디터 GUI - 포커스 확인, 처리","dateModified":"2021-08-26T03:45:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 에디터 GUI - 포커스 확인, 처리","description":"1. 컨트롤 포커스 여부 확인","dateModified":"2021-08-26T03:45:00+09:00","datePublished":"2021-08-26T03:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-editor-focus/"},"url":"https://rito15.github.io/posts/unity-editor-focus/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -623,12 +623,17 @@
         
         
         
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+        <li><a href="/posts/cs-heap-memory-debugger/">C# 간단한 힙 메모리 디버거 (콘솔)</a></li>
       
         
         
         
         <li><a href="/posts/cs-grammar-foreach/">C# Foreach 구문 심층 파헤치기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
         
         
@@ -639,11 +644,6 @@
         
         
         <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a></li>
       
 
       </ul>
@@ -3817,6 +3817,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7474,6 +7487,72 @@
       
       
       <div class="card">
+        <a href="/posts/unity-editor-process-before-build/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep  1
+  
+
+  <i class="unloaded">2021-09-01T17:51:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 빌드 직전에 동작하는 기능 작성하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+
+  아래의 형태로 스크립트를 작성해놓으면 빌드 직전에 동작한다.
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+#if UNITY_EDITOR
+
+class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
+{
+    public int callbackOrder =...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-play-mode-save-sample/">
           <div class="card-body">
             <!--
@@ -7519,54 +7598,6 @@
 {
     /***********************************************************************
     *      ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-path-memo/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 18
-  
-
-  <i class="unloaded">2021-08-18T20:40:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity - Path</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Memo
-
-
-
-  
-    public static string ScriptFolderFullPath { get; private set; }      // "......\이 스크립트가 위치한 폴더 경로"
-public static string ScriptFolderInProjectPath { get; private set; } // "Assets\......
               </p>
             </div>
           </div>
