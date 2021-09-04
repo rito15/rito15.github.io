@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="O(logn) 거듭제곱 알고리즘" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"O(logn) 거듭제곱 알고리즘","description":"Summary","dateModified":"2021-04-06T18:00:00+09:00","datePublished":"2021-04-06T18:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/algorithm-pow/"},"url":"https://rito15.github.io/posts/algorithm-pow/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Summary","datePublished":"2021-04-06T18:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/algorithm-pow/"},"url":"https://rito15.github.io/posts/algorithm-pow/","author":{"@type":"Person","name":"Rito15"},"headline":"O(logn) 거듭제곱 알고리즘","dateModified":"2021-04-06T18:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1863,8 +1863,6 @@ return res
     
     
     
-    
-      
     
   
     
@@ -5800,6 +5798,32 @@ return res
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7778,7 +7802,7 @@ Details
       
       
       <div class="card">
-        <a href="/posts/strategy-pattern/">
+        <a href="/posts/hash-table/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7795,13 +7819,13 @@ Details
   
 
   
-    Jun 17
+    Jul 20
   
 
-  <i class="unloaded">2021-06-17T21:12:00+09:00</i>
+  <i class="unloaded">2021-07-20T17:14:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Strategy Pattern(전략 패턴)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hash Table(해시 테이블)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7810,20 +7834,32 @@ Details
 
 
 
-                Strategy Pattern(전략 패턴)
+                특징
 
-
-설명
 
 
   
-    행동 패턴(Behaviour Pattern)의 일종
+    데이터의 삽입, 제거, 탐색이 모두 O(1)로 매우 빠르다.
   
   
-    알고리즘을 클래스화하여, 실행 중에 알고리즘(전략)을 통째로 교체하며 사용한다. (핵심)
+    내부적으로 정렬되지는 않는다.
   
   
-    if-else 또는 switch-case 구문을 통해 어떤 기준에 따라 분기로 작성하던 기능을 각각 클래스화...
+    저장할 데이터의 수보다 더 많은 공간이 필요하다.
+  
+
+
+
+
+구현 원리
+
+
+
+  
+    Key와 Value를 함께 저장하는 Pair 타입(클래스 또는 구조체)을 준비한다.
+  
+  
+    Pair[...
               </p>
             </div>
           </div>
@@ -8952,8 +8988,6 @@ Details
     
     
     
-    
-      
     
   
     

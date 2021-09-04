@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# unsafe와 fixed 구문" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"C# unsafe와 fixed 구문","description":"safe(안전한 코드)","dateModified":"2021-08-09T03:03:52+09:00","datePublished":"2021-05-10T14:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-unsafe-and-fixed/"},"url":"https://rito15.github.io/posts/cs-unsafe-and-fixed/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"safe(안전한 코드)","datePublished":"2021-05-10T14:14:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-unsafe-and-fixed/"},"url":"https://rito15.github.io/posts/cs-unsafe-and-fixed/","author":{"@type":"Person","name":"Rito15"},"headline":"C# unsafe와 fixed 구문","dateModified":"2021-08-09T03:03:52+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1832,8 +1832,6 @@
     
     
     
-    
-      
     
   
     
@@ -3983,6 +3981,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7756,7 +7780,7 @@ C#에서의 union
       
       
       <div class="card">
-        <a href="/posts/cs-struct-property-indexer/">
+        <a href="/posts/cs-grammar-foreach/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7773,13 +7797,13 @@ C#에서의 union
   
 
   
-    Aug  6
+    Sep  2
   
 
-  <i class="unloaded">2021-08-06T15:00:00+09:00</i>
+  <i class="unloaded">2021-09-02T16:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 구조체 프로퍼티, 구조체 인덱서</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Foreach 구문 심층 파헤치기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7788,10 +7812,11 @@ C#에서의 union
 
 
 
-                구조체의 특징
+                Foreach 구문
 
 
-  초기화(할당), 리턴 등의 동작을 통해 값을 전달할 경우, 구조체가 통째로 복제된다.
+
+  컬렉션의 요소를 간편히 순차 탐색할 수 있는 구문
 
 
 1
@@ -7800,28 +7825,21 @@ C#에서의 union
 4
 5
 6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-struct MyStruct
+List&lt;int&gt; list = new List&lt;int&gt;();
+
+foreach (int item in list)
 {
-    public float value;
+    Console.WriteLine(item);
 }
 
-class MainClass
-{
-    private MyStruct ...
+
+
+
+Foreach 구문이 실제로 생성하는 코드?
+
+
+
+...
               </p>
             </div>
           </div>
@@ -8950,8 +8968,6 @@ class MainClass
     
     
     
-    
-      
     
   
     

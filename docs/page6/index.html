@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page6/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page6/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,195 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-arraysegment-span-memory/">C# ArraySegment&lt;T&gt;, Span&lt;T&gt;, Memory&lt;T&gt;</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Array
+
+
+
+  https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/arrays/single-dimensional-arrays
+  https://docs.microsoft.com/ko-kr/dotnet/api/system.array?view=net-5.0
+
+
+
+
+특징
+
+  고정된 크기...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Aug  8, 2021,  8:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug  8
+  
+
+  <i class="unloaded">2021-08-08T20:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3509 words">19 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-utf8-string-to-byte-array/">C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        1. 힙 할당 있는 방식
+
+
+
+  
+    string str = "가나다 ABC 123";
+
+byte[] byteStr = Encoding.UTF8.GetBytes(str);
+
+  
+
+
+
+
+2. 힙 할당 없는 방식
+
+
+
+  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
+
+
+
+
+버퍼를 이용한 직렬화 예시
+
+
+  
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Aug  8, 2021,  7:31 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug  8
+  
+
+  <i class="unloaded">2021-08-08T19:31:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="546 words">3 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1142,187 +1331,6 @@ Source Code
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/06-cs-tcp-async-socket-with-packet.md/">TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        
-  이전 포스팅에서 이어집니다.
-
-
-
-
-ReceiveBuffer, SendBuffer
-
-
-
-  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.
-
-
-
-
-ReceiveBuffer 클래스
-
-
-
-  
-    각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.
-  
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Aug  2, 2021, 12:06 AM +0900"
-  >
-
-  
-  
-
-  
-    Aug  2
-  
-
-  <i class="unloaded">2021-08-02T00:06:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3917 words">21 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/05-cs-tcp-async-socket-basic.md/">TCP 비동기 소켓 서버, 클라이언트 기본</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        비동기 소켓 통신 방식
-
-
-Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존재한다.
-
-
-  AcceptAsync(SocketAsyncEventArgs)
-  ConnectAsync(SocketAsyncEventArgs)
-  DisconnectAsync(SocketAsyncEventArgs)
-  ConnectAsync(SocketA...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Aug  2, 2021, 12:05 AM +0900"
-  >
-
-  
-  
-
-  
-    Aug  2
-  
-
-  <i class="unloaded">2021-08-02T00:05:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2794 words">15 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1782,9 +1790,24 @@ Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존�
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page28/">28</a>
+        <a class="page-link btn-box-shadow" href="/page29/">29</a>
       </li>
     
 
@@ -2893,8 +2916,6 @@ Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존�
     
     
     
-    
-      
     
   
     
@@ -6089,8 +6110,6 @@ Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존�
     
     
     
-    
-      
     
   
     

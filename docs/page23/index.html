@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page23/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page23/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,217 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/water-shader/">물 쉐이더 만들기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  서피스 쉐이더로 물 쉐이더 만들기
+
+
+
+
+목차
+
+
+
+  1. 물 쉐이더 기초
+  2. 프레넬 공식 적용
+  3. 물 흐르게 하기
+  4. 스페큘러 적용
+  5. 파도 만들기
+  6. 투과율 제어하기
+  7. 최종 결과
+
+
+
+
+준비물
+
+
+
+  큐브맵 텍스쳐 기반 스카이박스
+  물 노멀맵 텍스쳐
+  물에 빠질 로봇
+
+
+
+
+물 쉐이더 기초
+
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Feb 13, 2021,  7:24 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 13
+  
+
+  <i class="unloaded">2021-02-13T19:24:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2216 words">12 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/opengl-study-17/">OpenGL 공부 - 17 - Ambient, Diffuse Lighting</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  Ambient, Diffuse 라이팅 구현
+
+
+
+
+공부 내용
+
+
+버텍스에 노멀 정보 추가
+
+
+  
+    struct Vertex
+{
+    glm::vec3 position;
+    glm::vec3 color;
+    glm::vec2 texcoord;
+    glm::vec3 normal;
+};
+
+Vertex vertices[] =...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Feb 13, 2021,  3:32 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 13
+  
+
+  <i class="unloaded">2021-02-13T15:32:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3938 words">21 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1123,193 +1334,6 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-13/">OpenGL 공부 - 13 - Texture</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  폴리곤에 텍스쳐 씌워보기(1장, 여러 장)
-
-
-
-
-1. 텍스쳐 한 장 사용
-
-
-이미지 준비
-
-  프로젝트 디렉토리 내에 Images 폴더를 만들고 PNG 이미지 파일을 준비한다.
-
-
-
-
-소스코드 작성
-
-
-  위치 : VertexAttribPointer ~ Main Loop 사이
-
-
-
-[1] 이미지 로드
-
-
-  
-    int imageW...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Feb 10, 2021,  1:30 AM +0900"
-  >
-
-  
-  
-
-  
-    Feb 10
-  
-
-  <i class="unloaded">2021-02-10T01:30:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2630 words">14 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-dialog/">유니티 에디터 다이얼로그 창 띄우기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        
-  
-    bool res1 = EditorUtility.DisplayDialog("Title", "Message", "OK");
-bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
-
-  
-
-
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Feb  9, 2021,  1:50 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb  9
-  
-
-  <i class="unloaded">2021-02-09T13:50:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="15 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1769,9 +1793,24 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page28/">28</a>
+        <a class="page-link btn-box-shadow" href="/page29/">29</a>
       </li>
     
 
@@ -2880,8 +2919,6 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
     
     
     
-    
-      
     
   
     
@@ -6076,8 +6113,6 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
     
     
     
-    
-      
     
   
     

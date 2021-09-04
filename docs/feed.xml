@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-04T20:47:04+09:00</updated>
+  <updated>2021-09-04T23:37:14+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,146 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Script Line Counter(유니티 C# 스크립트 개수, 전체 라인 수 계산기)</title>
+    <link href="https://rito15.github.io/posts/unity-cs-script-line-counter/" rel="alternate" type="text/html" title="Script Line Counter(유니티 C# 스크립트 개수, 전체 라인 수 계산기)" />
+    <published>2021-09-04T23:23:00+09:00</published>
+  
+    <updated>2021-09-04T23:23:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-cs-script-line-counter/</id>
+    <content src="https://rito15.github.io/posts/unity-cs-script-line-counter/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Utilities" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  지정한 폴더의 모든 하위 경로에서 C# 스크립트의 개수와 라인 수를 계산하여 보여줍니다.
+
+
+
+
+Preview
+
+
+
+
+
+
+How To Use
+
+
+
+  
+    [Window] - [Rito] - [C# Script Line Counter]를 클릭합니다.
+  
+  
+    열린 창에서 Folder 부분에 Project 윈도우의 폴더 애셋을 드래그 앤 드롭합니다.
+  
+  
+    Folder에 아무 폴더도 지정하지 않을 경우, Assets 폴더 전체를 대상으로 합니다.
+  
+  
+    Calculate 버튼을 클릭합니다.
+  
+
+
+
+
+Download
+
+
+
+  Script Line Counter.unitypackage
+
+
+
+
+Github
+
+
+  https://github.com/r...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>유니티 에디터 윈도우 - 스크롤 바 생성하기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-window-scrollbar/" rel="alternate" type="text/html" title="유니티 에디터 윈도우 - 스크롤 바 생성하기" />
+    <published>2021-09-04T23:11:00+09:00</published>
+  
+    <updated>2021-09-04T23:11:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-window-scrollbar/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-window-scrollbar/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+
+  에디터 윈도우 내의 내용들이 세로 범위를 넘어설 경우, 윈도우 우측에 스크롤 바를 생성한다.
+
+
+[SerializeField]
+private Vector2 scrollPos = Vector2.zero;
+
+private void OnGUI()
+{
+    scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+
+    // Codes....
+
+    EditorGUILayout.EndScrollView();
+}
+
+
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -187,145 +327,6 @@ static async void TaskBody(int count)
 
 
 위의 소스 코드는 얼핏 보면 문제가 없어 보...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>동적 계획법(Dynamic Programming, DP)</title>
-    <link href="https://rito15.github.io/posts/dynamic-programming/" rel="alternate" type="text/html" title="동적 계획법(Dynamic Programming, DP)" />
-    <published>2021-09-02T16:40:00+09:00</published>
-  
-    <updated>2021-09-02T16:40:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/dynamic-programming/</id>
-    <content src="https://rito15.github.io/posts/dynamic-programming/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Algorithm" />
-    
-    <category term="Algorithms" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      개념
-
-
-동적 계획법
-
-문제를 여러 개의 하위 문제들로 나누어 해결 및 기록한 뒤
-
-이를 이용해 최종적인 문제를 해결해나가는 방법.
-
-
-
-다시 말해,
-
-문제 해결 과정을 메모리에 기록하고 이를 바탕으로 이후의 문제를 해결해나가는 방법이다.
-
-한 번 기록한 적이 있다면 다시 계산할 필요 없이 곧바로 답을 도출해낼 수 있다.
-
-
-
-메모이제이션(Memoization)
-
-동적 계획법의 핵심 개념.
-
-하위 문제의 답을 구한 뒤 메모리에 저장하는 것을 의미한다.
-
-이렇게 저장된 값은 동일한 하위 문제의 결과값이 필요할 때 재계산 없이 곧바로 사용될 수 있다.
-
-
-
-예제 - 피보나치
-
-
-
-  동적 계획법의 기초 예제로 많이 볼 수 있는 피보나치.
-
-
-Fibonacci(0) = 0
-Fibonacci(1) = 1
-Fi...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# Foreach 구문 심층 파헤치기</title>
-    <link href="https://rito15.github.io/posts/cs-grammar-foreach/" rel="alternate" type="text/html" title="C# Foreach 구문 심층 파헤치기" />
-    <published>2021-09-02T16:00:00+09:00</published>
-  
-    <updated>2021-09-03T14:25:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-grammar-foreach/</id>
-    <content src="https://rito15.github.io/posts/cs-grammar-foreach/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Grammar" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Foreach 구문
-
-
-
-  컬렉션의 요소를 간편히 순차 탐색할 수 있는 구문
-
-
-List&amp;lt;int&amp;gt; list = new List&amp;lt;int&amp;gt;();
-
-foreach (int item in list)
-{
-    Console.WriteLine(item);
-}
-
-
-
-
-Foreach 구문이 실제로 생성하는 코드?
-
-
-
-  위의 소스 코드는 실제로 다음과 같은 코드를 생성한다고 한다.
-
-
-List&amp;lt;int&amp;gt; list = new List&amp;lt;int&amp;gt;();
-
-List&amp;lt;int&amp;gt;.Enumerator enumerator = list.GetEnumerator();
-while (enumerator.MoveNext())
-{
-    int item = enumerator.Curren...
     </summary>
   
 

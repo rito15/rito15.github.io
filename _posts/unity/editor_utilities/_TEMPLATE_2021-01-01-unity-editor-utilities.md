@@ -10,6 +10,7 @@ mermaid: true
 
 # Summary
 ---
+
 - 
 
 <br>
@@ -22,16 +23,15 @@ mermaid: true
 
 # How To Use
 ---
+
 - 
 
 <br>
 
-# Download(UPM)
+# Download
 ---
-- .git
 
-## UPM을 통한 임포트 방법
- - `[Window]` - `[Package Manager]` - 좌측 상단 `[+]` - `[Add package from git URL]`
+- 
 
 <br>
 

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="깃 관련 메모 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"깃 관련 메모 모음","description":"Unity Csharp Developer","dateModified":"2021-05-03T17:00:00+09:00","datePublished":"2021-05-03T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git/"},"url":"https://rito15.github.io/posts/memo-git/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Unity Csharp Developer","datePublished":"2021-05-03T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git/"},"url":"https://rito15.github.io/posts/memo-git/","author":{"@type":"Person","name":"Rito15"},"headline":"깃 관련 메모 모음","dateModified":"2021-05-03T17:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1892,8 +1892,6 @@ git branch
     
     
     
-    
-      
     
   
     
@@ -5725,6 +5723,32 @@ git branch
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7803,7 +7827,7 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
       
       
       <div class="card">
-        <a href="/posts/unity-shader-properties/">
+        <a href="/posts/unity-editor-process-before-build/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7820,13 +7844,13 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
   
 
   
-    Aug 31
+    Sep  1
   
 
-  <i class="unloaded">2021-08-31T19:54:00+09:00</i>
+  <i class="unloaded">2021-09-01T17:51:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Shaderlab Properties</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 빌드 직전에 동작하는 기능 작성하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7838,7 +7862,8 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
                 Memo
 
 
-  자꾸만 까먹어서 메모
+
+  아래의 형태로 스크립트를 작성해놓으면 빌드 직전에 동작한다.
 
 
 1
@@ -7854,18 +7879,11 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
 11
 12
 13
-14
-15
-16
-17
-18
-Properties
+#if UNITY_EDITOR
+
+class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
 {
-    _MyColor("MyColor", Color) = (1,1,1,1)
-
-    _MyVector("My Vector", Vector) = (0,0,0,0)
-
-    _MyRange("My Range",...
+    public int callbackOrder =...
               </p>
             </div>
           </div>
@@ -8994,8 +9012,6 @@ Properties
     
     
     
-    
-      
     
   
     
