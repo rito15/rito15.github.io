@@ -367,6 +367,181 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/cs-why-should-inherit-iequatable/">C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        System.Object.Equals(object)
+
+
+C#의 모든 타입의 최상위 클래스인 Object에는 .Equals(object) 메소드가 존재한다.
+
+그리고 이를 통해 다른 값과의 동일 비교를 수행할 수 있다.
+
+
+
+구조체나 클래스를 직접 정의하고, 해당 객체로 .Equals(object)를 호출하면
+
+object.Equals(object)가 ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Jul 19, 2021,  8:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Jul 19
+  
+
+  <i class="unloaded">2021-07-19T20:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2637 words">14 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-animator-event-controller/">Animator Event Controller(애니메이터 이벤트 관리 컴포넌트)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Summary
+
+
+
+  
+    애니메이터 내의 각 애니메이션에 대한 이벤트를 생성, 관리할 수 있는 컴포넌트
+  
+  
+    애니메이션의 프레임마다 이벤트를 추가할 수 있습니다.
+  
+  
+    플레이모드의 변경 사항은 플레이모드가 종료되어도 유지됩니다.
+  
+  
+    테스트 버전 : 2018.3.14f1, 2019.4.9f1, 2020.3....
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Jul 17, 2021,  3:15 PM +0900"
+  >
+
+  
+  
+
+  
+    Jul 17
+  
+
+  <i class="unloaded">2021-07-17T15:15:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2611 words">14 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-particle-system-example-12-sword-aura/">파티클 시스템 예제 - 12 - Sword Aura</a>
     </h1>
 
@@ -1103,180 +1278,6 @@ Monitor 클래스
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/01-cs-interlocked/">C# Interlocked</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Race Condition
-
-
-
-  
-    class Program
-{
-    private const int Count = 500000;
-    private static int number = 0;
-
-    private static void ThreadBody1()
-    {
-        for (int i = 0; i &lt; Count; ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Jul  8, 2021,  1:01 AM +0900"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:01:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1087 words">6 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-parallel/">C# Parallel</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Parallel 클래스
-
-
-
-  
-    반복적인 병렬 처리를 손쉽게 작성할 수 있는 API를 제공한다.
-  
-  
-    ThreadPool 기반으로 작성되어, ThreadPool의 현재 스레드 개수를 차지하며 최소/최대 스레드 개수에 영향을 받는다.
-  
-  
-    ThreadPool의 스레드 뿐만 아니라 호출 스레드도 병렬 처리에 포함된다.
- ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Jul  7, 2021,  7:07 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul  7
-  
-
-  <i class="unloaded">2021-07-07T19:07:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1188 words">6 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1797,6 +1798,11 @@ Monitor 클래스
         
         
         
+        <li><a href="/posts/cs-async-task/">C# async Task</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-heap-memory-debugger/">C# 간단한 힙 메모리 디버거 (콘솔)</a></li>
       
         
@@ -1813,11 +1819,6 @@ Monitor 클래스
         
         
         <li><a href="/posts/unity-update-game-view/">게임 뷰를 강제로 업데이트하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -2684,146 +2685,10 @@ Monitor 클래스
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -2985,9 +2850,147 @@ Monitor 클래스
     
     
       
-        
-        
-
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -4928,10 +4931,10 @@ Monitor 클래스
         <a class="post-tag" href="/tags/unity/">unity</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/editor/">editor</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
         <a class="post-tag" href="/tags/graphics/">graphics</a>
@@ -5878,146 +5881,10 @@ Monitor 클래스
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -6179,9 +6046,147 @@ Monitor 클래스
     
     
       
-        
-        
-
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -8117,10 +8122,10 @@ Monitor 클래스
         <a class="post-tag" href="/tags/unity/">unity</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/editor/">editor</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
         <a class="post-tag" href="/tags/graphics/">graphics</a>

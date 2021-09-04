@@ -949,6 +949,11 @@
         
         
         
+        <li><a href="/posts/cs-async-task/">C# async Task</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-heap-memory-debugger/">C# 간단한 힙 메모리 디버거 (콘솔)</a></li>
       
         
@@ -965,11 +970,6 @@
         
         
         <li><a href="/posts/unity-update-game-view/">게임 뷰를 강제로 업데이트하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
       
 
       </ul>
@@ -1836,146 +1836,10 @@
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -2137,9 +2001,147 @@
     
     
       
-        
-        
-
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -4080,10 +4082,10 @@
         <a class="post-tag" href="/tags/unity/">unity</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/editor/">editor</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
         <a class="post-tag" href="/tags/graphics/">graphics</a>
@@ -4143,6 +4145,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7886,7 +7914,7 @@ C#에서의 union
       
       
       <div class="card">
-        <a href="/posts/cs-switch-case/">
+        <a href="/posts/cs-grammar-foreach/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7903,13 +7931,13 @@ C#에서의 union
   
 
   
-    Aug 20
+    Sep  2
   
 
-  <i class="unloaded">2021-08-20T16:49:00+09:00</i>
+  <i class="unloaded">2021-09-02T16:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Switch-Case의 특징</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Foreach 구문 심층 파헤치기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7918,18 +7946,34 @@ C#에서의 union
 
 
 
-                Switch-Case 문
+                Foreach 구문
 
 
 
-  
-    대상 변수에 대해, 고정된 값들을 case에 지정하여 동등 비교를 수행할 수 있다.
-  
-  
-    case가 일정 개수 미만일 경우, if-else와 동일한 방식으로 각 case를 순차적으로 확인하며 분기한다고 한다.
-  
-  
-    case가 일정 개수 이상일 경우, 메모리에 Jump Table을 생성...
+  컬렉션의 요소를 간편히 순차 탐색할 수 있는 구문
+
+
+1
+2
+3
+4
+5
+6
+List&lt;int&gt; list = new List&lt;int&gt;();
+
+foreach (int item in list)
+{
+    Console.WriteLine(item);
+}
+
+
+
+
+Foreach 구문이 실제로 생성하는 코드?
+
+
+
+...
               </p>
             </div>
           </div>
@@ -8885,146 +8929,10 @@ C#에서의 union
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
+      
+        
+        
+
   
     
     
@@ -9186,9 +9094,147 @@ C#에서의 union
     
     
       
-        
-        
-
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
   
     
     
@@ -11124,10 +11170,10 @@ C#에서의 union
         <a class="post-tag" href="/tags/unity/">unity</a>
       
         
-        <a class="post-tag" href="/tags/shader/">shader</a>
+        <a class="post-tag" href="/tags/editor/">editor</a>
       
         
-        <a class="post-tag" href="/tags/editor/">editor</a>
+        <a class="post-tag" href="/tags/shader/">shader</a>
       
         
         <a class="post-tag" href="/tags/graphics/">graphics</a>
