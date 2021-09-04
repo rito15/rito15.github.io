@@ -52,10 +52,26 @@ var classTypes =
 <br>
 
 ## 현재 어셈블리의 모든 클래스 타입 가져오기
+
 ```cs
 var classTypes = 
     Assembly.GetExecutingAssembly().GetTypes()
         .Where(t => t.IsClass /*&& t.Namespace == nsName*/);
+```
+
+<br>
+
+## 프로그램 내 모든 어셈블리에서 특정 타입 가져오기
+
+```cs
+Type type =
+    AppDomain.CurrentDomain.GetAssemblies()
+    .SelectMany(ass => ass.GetTypes())
+    .Where(t => t.Name == "TargetType")
+    .FirstOrDefault();
+
+// 해당 타입이 아예 없는데 .First()를 호출하면 예외가 발생하므로,
+// FirstOrDefault()를 호출하는 것이 안전하다.
 ```
 
 <br>
