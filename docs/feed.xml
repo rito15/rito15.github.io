@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-05T15:48:33+09:00</updated>
+  <updated>2021-09-05T19:27:19+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,65 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</title>
+    <link href="https://rito15.github.io/posts/unity-imgui-event-and-handle-exception/" rel="alternate" type="text/html" title="유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리" />
+    <published>2021-09-05T18:00:00+09:00</published>
+  
+    <updated>2021-09-05T18:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-imgui-event-and-handle-exception/</id>
+    <content src="https://rito15.github.io/posts/unity-imgui-event-and-handle-exception/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      IMGUI 이벤트
+
+
+유니티 IMGUI에서 OnGUI() 메소드가 호출되는 이벤트 타이밍은
+
+기본적으로 Layout과 Repaint가 있다.
+
+Layout은 GUI 레이아웃 컨트롤을 생성하는 단계이고,
+
+Repaint은 GUI 컨트롤들을 화면에 그려내는 단계이다.
+
+별도의 상호작용이나 간섭이 없다면 Layout과 Repaint가 반복된다.
+
+Event.current를 통해 현재 IMGUI 환경에서의 이벤트 객체를 참조할 수 있고,
+
+Event.current.type을 통해 현재 처리되는 이벤트의 종류를 알 수 있다.
+
+
+
+사용자 상호작용이 발생할 경우, 사용자 상호작용에 따라
+
+마우스를 눌렀으면 Layout - MouseDown 순서로 이벤트가 발생하여
+
+MouseDown 이벤트에서 사용자의 마우스 입...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -290,66 +349,6 @@ private string FindFolderAssetFullPath(DefaultAsset folderAsset)
     string found = null;
 
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# 하위 폴더, 파일의 전체 경로 찾기</title>
-    <link href="https://rito15.github.io/posts/cs-memo-find-internal-path/" rel="alternate" type="text/html" title="C# 하위 폴더, 파일의 전체 경로 찾기" />
-    <published>2021-09-04T19:45:00+09:00</published>
-  
-    <updated>2021-09-04T19:45:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-memo-find-internal-path/</id>
-    <content src="https://rito15.github.io/posts/cs-memo-find-internal-path/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-  재귀를 이용하여 특정 폴더 하위 경로에 있는 파일, 폴더 전체 경로 찾기
-
-
-
-
-Source Code
-
-
-Usage
-
-string folder = FindFolderFullPath(@"c:\MyFolder", "FolderName");
-string file = FindFileFullPath(@"c:\MyFolder", "FileName.txt");
-
-
-
-
-Code
-
-/// &amp;lt;summary&amp;gt; 특정 폴더의 모든 하위 경로에서 이름이 일치하는 폴더 경로 찾기 &amp;lt;/summary&amp;gt;
-private string FindFolderFullPath(string rootFolderPath, string folderName)
-{
-    DirectoryInfo rootDirect...
     </summary>
   
 
