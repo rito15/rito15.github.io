@@ -132,25 +132,25 @@ int result = Interlocked.Increment(ref number);
 # API
 ---
 
-### **Interlocked.Increment(ref T location)**
+### **Increment(ref T location)**
   - 가능한 `T` 타입 : int, long
   - 대상 변수의 값을 1 증가시킨다.
   - 증가된 결과를 리턴한다.
 
 
-### **Interlocked.Decrement(ref T location)**
+### **Decrement(ref T location)**
   - 가능한 `T` 타입 : int, long
   - 대상 변수의 값을 1 감소시킨다.
   - 감소된 결과를 리턴한다.
 
 
-### **Interlocked.Add(ref T location, T value)**
+### **Add(ref T location, T value)**
   - 가능한 `T` 타입 : int, long
   - `location` 변수에 `value` 값을 더한다.
   - 더해진 결과를 리턴한다.
 
 
-### **Interlocked.Exchange(ref T location, T value)**
+### **Exchange(ref T location, T value)**
   - `location` 변수에 `value` 값을 초기화한다.
   - 초기화 이전의 `location` 값을 리턴한다.
 

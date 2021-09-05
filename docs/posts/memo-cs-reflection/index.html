@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# Reflection(리플렉션)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Reflection","datePublished":"2021-02-19T03:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-reflection/"},"url":"https://rito15.github.io/posts/memo-cs-reflection/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Reflection(리플렉션)","dateModified":"2021-09-02T16:04:56+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Reflection","datePublished":"2021-02-19T03:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-reflection/"},"url":"https://rito15.github.io/posts/memo-cs-reflection/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Reflection(리플렉션)","dateModified":"2021-09-05T05:50:57+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,17 +407,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Thu, Sep  2, 2021,  4:04 PM +0900"
+    title="Sun, Sep  5, 2021,  5:50 AM +0900"
   >
 
   
   
 
   
-    Sep  2
+    Sep  5
   
 
-  <i class="unloaded">2021-09-02T16:04:56+09:00</i>
+  <i class="unloaded">2021-09-05T05:50:57+09:00</i>
 
 </span>
           </span>
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="965 words">5 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1047 words">5 min</span>
 
 
           <!-- page views -->
@@ -504,12 +504,35 @@
 <p><br /></p>
 
 <h2 id="현재-어셈블리의-모든-클래스-타입-가져오기">현재 어셈블리의 모든 클래스 타입 가져오기</h2>
+
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 </pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="n">classTypes</span> <span class="p">=</span> 
     <span class="n">Assembly</span><span class="p">.</span><span class="nf">GetExecutingAssembly</span><span class="p">().</span><span class="nf">GetTypes</span><span class="p">()</span>
         <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">.</span><span class="n">IsClass</span> <span class="cm">/*&amp;&amp; t.Namespace == nsName*/</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<h2 id="프로그램-내-모든-어셈블리에서-특정-타입-가져오기">프로그램 내 모든 어셈블리에서 특정 타입 가져오기</h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="n">Type</span> <span class="n">type</span> <span class="p">=</span>
+    <span class="n">AppDomain</span><span class="p">.</span><span class="n">CurrentDomain</span><span class="p">.</span><span class="nf">GetAssemblies</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">SelectMany</span><span class="p">(</span><span class="n">ass</span> <span class="p">=&gt;</span> <span class="n">ass</span><span class="p">.</span><span class="nf">GetTypes</span><span class="p">())</span>
+    <span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">t</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">"TargetType"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">FirstOrDefault</span><span class="p">();</span>
+
+<span class="c1">// 해당 타입이 아예 없는데 .First()를 호출하면 예외가 발생하므로,</span>
+<span class="c1">// FirstOrDefault()를 호출하는 것이 안전하다.</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
@@ -891,6 +914,16 @@
         
         
         
+        <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-editor-window-scrollbar/">유니티 에디터 윈도우 - 스크롤 바 생성하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-async-task/">C# async Task</a></li>
       
         
@@ -902,16 +935,6 @@
         
         
         <li><a href="/posts/cs-grammar-foreach/">C# Foreach 구문 심층 파헤치기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-update-game-view/">게임 뷰를 강제로 업데이트하기</a></li>
       
 
       </ul>
@@ -4090,6 +4113,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   

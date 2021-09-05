@@ -366,6 +366,101 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/cs-memory-synchronization-memo/">C# 메모리 동기화가 필요한 경우, 아닌 경우 간단 정리</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        전혀 필요하지 않은 경우
+
+
+
+  
+    싱글 스레드 환경인 경우
+  
+  
+    단일 공유 변수에 대해 하나의 스레드만 쓰기를 수행하는 경우
+  
+  
+    하나의 스레드가 공유 변수를 읽는 동안 다른 스레드가 변경할 염려가 없는 경우
+  
+  
+    어떤 작업을 동시에 하나의 스레드만 해야 할 필요가 없는 경우
+  
+
+
+
+
+원자성(Atomi...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Sep  5, 2021,  2:54 PM +0900"
+  >
+
+  
+  
+
+  
+    Sep  5
+  
+
+  <i class="unloaded">2021-09-05T14:54:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="620 words">3 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-cs-script-line-counter/">Script Line Counter(유니티 C# 스크립트 개수, 전체 라인 수 계산기)</a>
     </h1>
 
@@ -1195,100 +1290,6 @@ class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-timescale-slider/">Timescale Slider(게임 진행 속도 조절 슬라이더)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  
-    게임 진행 속도를 0% ~ 100% 사이에서 조절할 수 있는 슬라이더를 유니티 에디터 상단 재생 버튼 우측에 생성합니다.
-  
-  
-    유니티 에디터 내에서만 동작하고, 빌드 이후에는 아무런 영향을 미치지 않습니다.
-  
-
-
-
-
-테스트 완료 에디터 버전
-
-
-  2018.3.14f1
-  2019.4.9f1
-  2020...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Sep  1, 2021,  4:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Sep  1
-  
-
-  <i class="unloaded">2021-09-01T16:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="117 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1817,6 +1818,16 @@ class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
         
         
         
+        <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-editor-window-scrollbar/">유니티 에디터 윈도우 - 스크롤 바 생성하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-async-task/">C# async Task</a></li>
       
         
@@ -1828,16 +1839,6 @@ class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
         
         
         <li><a href="/posts/cs-grammar-foreach/">C# Foreach 구문 심층 파헤치기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-update-game-view/">게임 뷰를 강제로 업데이트하기</a></li>
       
 
       </ul>
