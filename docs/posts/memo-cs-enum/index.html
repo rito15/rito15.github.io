@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# Enum 관련 메모" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"C# Enum 관련 메모","description":"enum의 모든 요소를 배열로 가져오기","dateModified":"2021-07-19T23:12:34+09:00","datePublished":"2021-02-28T04:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-enum/"},"url":"https://rito15.github.io/posts/memo-cs-enum/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"enum의 모든 요소를 배열로 가져오기","datePublished":"2021-02-28T04:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-enum/"},"url":"https://rito15.github.io/posts/memo-cs-enum/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Enum 관련 메모","dateModified":"2021-07-19T23:12:34+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -6376,6 +6376,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7605,6 +7618,64 @@ Toggle
       
       
       <div class="card">
+        <a href="/posts/cs-memo-find-internal-path/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep  4
+  
+
+  <i class="unloaded">2021-09-04T19:45:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 하위 폴더, 파일의 전체 경로 찾기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Summary
+
+
+  재귀를 이용하여 특정 폴더 하위 경로에 있는 파일, 폴더 전체 경로 찾기
+
+
+
+
+Source Code
+
+
+Usage
+
+1
+2
+string folder = FindFolderFullPath(@"c:\MyFolder", "FolderName");
+string file = FindFileFullPath(@"c:\MyFolder", "F...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/cs-benchmark-dotnet/">
           <div class="card-body">
             <!--
@@ -7670,84 +7741,6 @@ using BenchmarkDotNet.Attributes;
     
 
   ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/cs-heap-memory-debugger/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  8
-  
-
-  <i class="unloaded">2021-08-08T12:12:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 간단한 힙 메모리 디버거 (콘솔)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                기능
-
-
-
-  원하는 지점의 힙 메모리 크기 기록
-  기록된 두 지점의 힙 메모리 크기 차이 출력
-
-
-
-
-주의사항
-
-
-
-  Print() 이후에는 Record()하지 않아야 한다.
-    
-      Future Works : Print() 내에서 스트링을 스택에 할당하여 해결
-    
-  
-
-
-
-
-사용 예시
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-...
               </p>
             </div>
           </div>

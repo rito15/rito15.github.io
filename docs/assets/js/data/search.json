@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "C# 간단한 트릭 - 널 체크",
+    "url": "/posts/cs-null-check-trick/",
+    "categories": "C#, C# Memo",
+    "tags": "csharp",
+    "date": "2021-09-06 04:40:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Notepublic class MyClass{    public int[] dataArray;    public bool IsEmpty()    {        return dataArray == null || dataArray.Length == 0;    }}위와 같이 내부에 간단한 배열을 담고 있는 클래스가 있다.MyClass m = null;Console.WriteLine(m.IsEmpty());그리고 위와 같이 객체가 null인 상태에서 인스턴스 메소드를 호출하면당연히 NullReferenceException이 발생한다..."
+  },
+  
+  {
     "title": "유니티 IMGUI 이벤트, 그리고 Getting control n&#39;s position... 예외 처리",
     "url": "/posts/unity-imgui-event-and-handle-exception/",
     "categories": "Unity, Unity Editor",

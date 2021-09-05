@@ -303,6 +303,11 @@ private void DoWorkerThreadJob()
 # 부록 : 커서와 엔트리 개수 확인하기
 ---
 
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
 ```cs
 // OnGUI() 내에서 호출
 private static void CheckCursorAndLayoutEntry(int index)
@@ -337,6 +342,17 @@ private static void CheckCursorAndLayoutEntry(int index)
     Debug.Log($"[{index}][{Event.current.type}] m_Cursor : {m_Cursor}, entries.Count : {entriesCount}");
 }
 ```
+
+</details>
+
+<br>
+
+# Future Works
+---
+
+- 본문의 해결책과는 반대로, 변경 사항이 `Layout` 이벤트 타이밍에 적용되어야만 예외가 해결되는 상황을 발견하여, 추후 정확히 원인을 파악하면 내용 추가 또는 수정
+
+<br>
 
 # References
 ---

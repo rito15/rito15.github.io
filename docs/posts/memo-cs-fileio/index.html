@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# 파일 입출력" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"C# 파일 입출력","description":"간단 정리 파일에 쓰려면 대상이 string, string[], byte[] 타입 중 하나여야 한다. 파일의 전체 경로(&quot;폴더경로\\파일명.확장자&quot;)가 필요하다.","dateModified":"2021-01-28T21:10:00+09:00","datePublished":"2021-01-28T21:10:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-fileio/"},"url":"https://rito15.github.io/posts/memo-cs-fileio/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"간단 정리 파일에 쓰려면 대상이 string, string[], byte[] 타입 중 하나여야 한다. 파일의 전체 경로(&quot;폴더경로\\파일명.확장자&quot;)가 필요하다.","datePublished":"2021-01-28T21:10:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-fileio/"},"url":"https://rito15.github.io/posts/memo-cs-fileio/","author":{"@type":"Person","name":"Rito15"},"headline":"C# 파일 입출력","dateModified":"2021-01-28T21:10:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -7566,6 +7566,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8009,7 +8022,7 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
       
       
       <div class="card">
-        <a href="/posts/cs-benchmark-dotnet/">
+        <a href="/posts/cs-memo-find-internal-path/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8026,13 +8039,13 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
   
 
   
-    Aug  7
+    Sep  4
   
 
-  <i class="unloaded">2021-08-07T16:16:00+09:00</i>
+  <i class="unloaded">2021-09-04T19:45:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Benchmark DotNet</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 하위 폴더, 파일의 전체 경로 찾기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8041,39 +8054,23 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
 
 
 
-                설치
+                Summary
+
+
+  재귀를 이용하여 특정 폴더 하위 경로에 있는 파일, 폴더 전체 경로 찾기
 
 
 
-  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치
+
+Source Code
 
 
+Usage
 
-
-사용법
-
-
-[1] 테스트 대상 클래스
-
-
-   
-…
-
-
-  [1-1] 네임스페이스
-
-  
-     
-.
-
-
-    1
+1
 2
-using BenchmarkDotNet;
-using BenchmarkDotNet.Attributes;
-    
-
-  ...
+string folder = FindFolderFullPath(@"c:\MyFolder", "FolderName");
+string file = FindFileFullPath(@"c:\MyFolder", "F...
               </p>
             </div>
           </div>

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 IMGUI 이벤트, 그리고 Getting control n’s position… 예외 처리" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 IMGUI 이벤트, 그리고 Getting control n’s position… 예외 처리","description":"IMGUI 이벤트","dateModified":"2021-09-05T18:00:00+09:00","datePublished":"2021-09-05T18:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-imgui-event-and-handle-exception/"},"url":"https://rito15.github.io/posts/unity-imgui-event-and-handle-exception/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"IMGUI 이벤트","datePublished":"2021-09-05T18:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-imgui-event-and-handle-exception/"},"url":"https://rito15.github.io/posts/unity-imgui-event-and-handle-exception/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 IMGUI 이벤트, 그리고 Getting control n’s position… 예외 처리","dateModified":"2021-09-05T18:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2184 words">12 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2253 words">12 min</span>
 
 
           <!-- page views -->
@@ -800,7 +800,12 @@ with only 0 controls when doing repaint Aborting
 <h1 id="부록--커서와-엔트리-개수-확인하기">부록 : 커서와 엔트리 개수 확인하기</h1>
 <hr />
 
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<details>
+  <summary> 
+…
+</summary>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -864,7 +869,20 @@ with only 0 controls when doing repaint Aborting
 
     <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">$"[</span><span class="p">{</span><span class="n">index</span><span class="p">}</span><span class="s">][</span><span class="p">{</span><span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">type</span><span class="p">}</span><span class="s">] m_Cursor : </span><span class="p">{</span><span class="n">m_Cursor</span><span class="p">}</span><span class="s">, entries.Count : </span><span class="p">{</span><span class="n">entriesCount</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<h1 id="future-works">Future Works</h1>
+<hr />
+
+<ul>
+  <li>본문의 해결책과는 반대로, 변경 사항이 <code class="language-plaintext highlighter-rouge">Layout</code> 이벤트 타이밍에 적용되어야만 예외가 해결되는 상황을 발견하여, 추후 정확히 원인을 파악하면 내용 추가 또는 수정</li>
+</ul>
+
+<p><br /></p>
 
 <h1 id="references">References</h1>
 <hr />
@@ -4236,6 +4254,19 @@ with only 0 controls when doing repaint Aborting
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8136,9 +8167,9 @@ public class ExampleWindow : EditorWindow
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/cs-null-check-trick/" class="btn btn-outline-primary">
+    <p>C# 간단한 트릭 - 널 체크</p>
+  </a>
   
 
 </div>

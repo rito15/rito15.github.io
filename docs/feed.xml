@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-05T19:27:19+09:00</updated>
+  <updated>2021-09-06T05:07:30+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,71 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# 간단한 트릭 - 널 체크</title>
+    <link href="https://rito15.github.io/posts/cs-null-check-trick/" rel="alternate" type="text/html" title="C# 간단한 트릭 - 널 체크" />
+    <published>2021-09-06T04:40:00+09:00</published>
+  
+    <updated>2021-09-06T04:40:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-null-check-trick/</id>
+    <content src="https://rito15.github.io/posts/cs-null-check-trick/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+public class MyClass
+{
+    public int[] dataArray;
+
+    public bool IsEmpty()
+    {
+        return dataArray == null || dataArray.Length == 0;
+    }
+}
+
+
+위와 같이 내부에 간단한 배열을 담고 있는 클래스가 있다.
+
+MyClass m = null;
+
+Console.WriteLine(m.IsEmpty());
+
+
+그리고 위와 같이 객체가 null인 상태에서 인스턴스 메소드를 호출하면
+
+당연히 NullReferenceException이 발생한다.
+
+
+
+그런데 데이터의 유효성 검사만 확인하면 되고, 이 검사가 매우 빈번한 경우에
+
+매번 m != null &amp;amp;&amp;amp; !m.I...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -293,62 +358,6 @@ private void OnGUI()
 
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 폴더 애셋으로부터 폴더 전체 경로 구하기</title>
-    <link href="https://rito15.github.io/posts/unity-find-folder-path-from-folder-asset/" rel="alternate" type="text/html" title="유니티 - 폴더 애셋으로부터 폴더 전체 경로 구하기" />
-    <published>2021-09-04T19:59:00+09:00</published>
-  
-    <updated>2021-09-04T19:59:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-find-folder-path-from-folder-asset/</id>
-    <content src="https://rito15.github.io/posts/unity-find-folder-path-from-folder-asset/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      1. 삽질
-
-
-
-   
-…
-
-
-  아무 생각 없이 재귀로 폴더도 찾고, 메타 파일도 찾고, Regex로 guid도 찾고…
-
-  정신 차려보니 아래와 같은 소스 코드를 짜고 있었다.
-
-  /// &amp;lt;summary&amp;gt; 지정한 폴더 애셋의 전체 경로 찾기 &amp;lt;/summary&amp;gt;
-private string FindFolderAssetFullPath(DefaultAsset folderAsset)
-{
-    // Note: Assets 디렉토리로부터 하위 폴더 전부 순회하며 폴더 이름 일치하는 경로 탐색
-
-    DirectoryInfo rootDirectory = Directory.CreateDirectory(Application.dataPath);
-    string found = null;
-
-...
     </summary>
   
 

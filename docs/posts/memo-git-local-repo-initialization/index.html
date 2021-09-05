@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="깃 로컬 리포지토리 초기 세팅하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"깃 로컬 리포지토리 초기 세팅하기","description":"조건","dateModified":"2021-02-21T00:00:00+09:00","datePublished":"2021-02-21T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git-local-repo-initialization/"},"url":"https://rito15.github.io/posts/memo-git-local-repo-initialization/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"조건","datePublished":"2021-02-21T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git-local-repo-initialization/"},"url":"https://rito15.github.io/posts/memo-git-local-repo-initialization/","author":{"@type":"Person","name":"Rito15"},"headline":"깃 로컬 리포지토리 초기 세팅하기","dateModified":"2021-02-21T00:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -6608,6 +6608,19 @@ git push -u origin main
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7759,7 +7772,7 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
       
       
       <div class="card">
-        <a href="/posts/unity-play-mode-save-sample/">
+        <a href="/posts/unity-find-folder-path-from-folder-asset/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7776,13 +7789,13 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
   
 
   
-    Aug 17
+    Sep  4
   
 
-  <i class="unloaded">2021-08-17T04:32:00+09:00</i>
+  <i class="unloaded">2021-09-04T19:59:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Play Mode Save - Sample</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 폴더 애셋으로부터 폴더 전체 경로 구하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7791,14 +7804,19 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
 
 
 
-                Memo
+                1. 삽질
 
 
 
-  플레이모드 -&gt; 에디터모드 진입 시 플레이모드의 변경사항 유지
+   
+…
 
 
-1
+  아무 생각 없이 재귀로 폴더도 찾고, 메타 파일도 찾고, Regex로 guid도 찾고…
+
+  정신 차려보니 아래와 같은 소스 코드를 짜고 있었다.
+
+  1
 2
 3
 4
@@ -7832,19 +7850,7 @@ EditorUtility.SetDirty(GameObject.FindObjectOfType&lt;Transform&gt;());
 32
 33
 34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-public class Sampl...
+...
               </p>
             </div>
           </div>

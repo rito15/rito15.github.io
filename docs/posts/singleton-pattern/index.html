@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Singleton Pattern(싱글톤 패턴)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Singleton Pattern(싱글톤 패턴)","description":"Singleton Pattern","dateModified":"2021-06-11T17:17:00+09:00","datePublished":"2021-06-11T17:17:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/singleton-pattern/"},"url":"https://rito15.github.io/posts/singleton-pattern/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Singleton Pattern","datePublished":"2021-06-11T17:17:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/singleton-pattern/"},"url":"https://rito15.github.io/posts/singleton-pattern/","author":{"@type":"Person","name":"Rito15"},"headline":"Singleton Pattern(싱글톤 패턴)","dateModified":"2021-06-11T17:17:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -5760,6 +5760,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8129,7 +8142,7 @@
       
       
       <div class="card">
-        <a href="/posts/hash-table/">
+        <a href="/posts/dynamic-programming/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8146,13 +8159,13 @@
   
 
   
-    Jul 20
+    Sep  2
   
 
-  <i class="unloaded">2021-07-20T17:14:00+09:00</i>
+  <i class="unloaded">2021-09-02T16:40:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hash Table(해시 테이블)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>동적 계획법(Dynamic Programming, DP)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8161,32 +8174,26 @@
 
 
 
-                특징
+                개념
+
+
+동적 계획법
+
+문제를 여러 개의 하위 문제들로 나누어 해결 및 기록한 뒤
+
+이를 이용해 최종적인 문제를 해결해나가는 방법.
 
 
 
-  
-    데이터의 삽입, 제거, 탐색이 모두 O(1)로 매우 빠르다.
-  
-  
-    내부적으로 정렬되지는 않는다.
-  
-  
-    저장할 데이터의 수보다 더 많은 공간이 필요하다.
-  
+다시 말해,
+
+문제 해결 과정을 메모리에 기록하고 이를 바탕으로 이후의 문제를 해결해나가는 방법이다.
+
+한 번 기록한 적이 있다면 다시 계산할 필요 없이 곧바로 답을 도출해낼 수 있다.
 
 
 
-
-구현 원리
-
-
-
-  
-    Key와 Value를 함께 저장하는 Pair 타입(클래스 또는 구조체)을 준비한다.
-  
-  
-    Pair[...
+메모이제이션(Memoiz...
               </p>
             </div>
           </div>
