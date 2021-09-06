@@ -687,7 +687,7 @@ private class CE : UnityEditor.Editor
           foldout: 0
         childCount: 0
 
-...
+      ...
 ```
 
 이렇게 정상적으로 저장되는 것을 확인할 수 있다.

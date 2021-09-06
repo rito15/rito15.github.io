@@ -367,6 +367,100 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/07-cs-thread-synchronization/">C# Thread Synchronization and Locks</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        동기화 영역에 따른 구분
+
+
+1. 유저 모드 동기화
+
+
+  
+    유저 객체(커널에서 제공하지 않는 객체)를 사용한다.
+  
+  
+    대표적으로 크리티컬 섹션(Critical Section), 인터락(Interlocked)이 있다.
+  
+  
+    커널 모드 동기화보다 빠르다.
+  
+  
+    동일 프로세스 내에서만 동기화 가능하다.
+  
+
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Jul  8, 2021,  1:07 AM +0900"
+  >
+
+  
+  
+
+  
+    Jul  8
+  
+
+  <i class="unloaded">2021-07-08T01:07:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1689 words">9 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/06-cs-reader-writer-lock/">C# ReaderWriterLock</a>
     </h1>
 
@@ -1155,96 +1249,6 @@ using UnityEngine.Scen...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-task/">C# Task</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Task
-
-
-
-  
-    Task는 ThreadPool을 기반으로 작성된 라이브러리이다.
-  
-  
-    내부적으로 ThreadPool의 스레드 개수를 차지하며, ThreadPool의 스레드 개수 제한에 영향을 받는다.
-  
-  
-    가벼운 비동기 작업에 특화되어 있다.
-  
-  
-    Thread.Abort()처럼 간단히 종료할 수 없다.
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Jul  6, 2021,  3:33 AM +0900"
-  >
-
-  
-  
-
-  
-    Jul  6
-  
-
-  <i class="unloaded">2021-07-06T03:33:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1661 words">9 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1780,6 +1784,11 @@ using UnityEngine.Scen...
         
         
         
+        <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/01-cs-interlocked/">C# Interlocked</a></li>
       
         
@@ -1796,11 +1805,6 @@ using UnityEngine.Scen...
         
         
         <li><a href="/posts/cs-async-task/">C# async Task</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-heap-memory-debugger/">C# 간단한 힙 메모리 디버거 (콘솔)</a></li>
       
 
       </ul>
