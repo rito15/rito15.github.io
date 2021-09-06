@@ -36,7 +36,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"sameAs":["https://github.com/rito15"],"description":"Unity Csharp Developer","name":"Rito15","url":"https://rito15.github.io/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebSite","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","sameAs":["https://github.com/rito15"],"url":"https://rito15.github.io/","author":{"@type":"Person","name":"Rito15"},"name":"Rito15","@type":"WebSite","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -660,15 +660,19 @@ Event...
         전혀 필요하지 않은 경우
 
 
+[1] 싱글 스레드 환경
+
+
+  전부
+
+
+
+
+[2] 멀티 스레드 환경
+
 
   
-    싱글 스레드 환경인 경우
-  
-  
-    단일 공유 변수에 대해 하나의 스레드만 쓰기를 수행하는 경우
-  
-  
-    하나의 스레드가 공유 변수를 읽는 동안 다른 스레드가 변경할 염려가 없는 경우
+    하나의 스레드가 공유 데이터를 읽는 동안 다른 스레드가 변경할 염려가 없는 경우
   
   
     어떤 작업을 동시에 하나의 스레드만 해야 할 필요가 없는 경우
@@ -677,7 +681,12 @@ Event...
 
 
 
-원자성(Atomi...
+원자성(Atomic) 보장이 필요한 경우
+
+
+
+  
+    여러 ...
       </p>
     </div>
 
@@ -724,7 +733,7 @@ Event...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="620 words">3 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="625 words">3 min</span>
 
 
         <!-- page views -->
@@ -1822,6 +1831,16 @@ static async void TaskBody(...
         
         
         
+        <li><a href="/posts/cs-memo-find-internal-path/">C# 하위 폴더, 파일들의 절대 경로 찾기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-find-folder-path-from-folder-asset/">유니티 - 폴더 애셋으로부터 폴더 절대 경로 구하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-serialize-tree-object/">Unity - 트리 구조 데이터 직렬화하기</a></li>
       
         
@@ -1833,16 +1852,6 @@ static async void TaskBody(...
         
         
         <li><a href="/posts/01-cs-interlocked/">C# Interlocked</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-reflection/">C# Reflection(리플렉션)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-window-scrollbar/">유니티 에디터 윈도우 - 스크롤 바 생성하기</a></li>
       
 
       </ul>
