@@ -91,7 +91,7 @@
   },
   
   {
-    "title": "유니티 - 폴더 애셋으로부터 폴더 전체 경로 구하기",
+    "title": "유니티 - 폴더 애셋으로부터 폴더 절대 경로 구하기",
     "url": "/posts/unity-find-folder-path-from-folder-asset/",
     "categories": "Unity, Unity Editor Memo",
     "tags": "unity, editor, memo",
@@ -102,11 +102,11 @@
 
 
 
-    "snippet": "1. 삽질   …  아무 생각 없이 재귀로 폴더도 찾고, 메타 파일도 찾고, Regex로 guid도 찾고…  정신 차려보니 아래와 같은 소스 코드를 짜고 있었다.  /// &amp;lt;summary&amp;gt; 지정한 폴더 애셋의 전체 경로 찾기 &amp;lt;/summary&amp;gt;private string FindFolderAssetFullPath(DefaultAsset folderAsset){    // Note: Assets 디렉토리로부터 하위 폴더 전부 순회하며 폴더 이름 일치하는 경로 탐색    Direct..."
+    "snippet": "1. 삽질   …  아무 생각 없이 재귀로 폴더도 찾고, 메타 파일도 찾고, Regex로 guid도 찾고…  정신 차려보니 아래와 같은 소스 코드를 짜고 있었다.  /// &amp;lt;summary&amp;gt; 지정한 폴더 애셋의 절대 경로 찾기 &amp;lt;/summary&amp;gt;private string FindFolderAssetAbsPath(DefaultAsset folderAsset){    // Note: Assets 디렉토리로부터 하위 폴더 전부 순회하며 폴더 이름 일치하는 경로 탐색    Directo..."
   },
   
   {
-    "title": "C# 하위 폴더, 파일의 전체 경로 찾기",
+    "title": "C# 하위 폴더, 파일들의 절대 경로 찾기",
     "url": "/posts/cs-memo-find-internal-path/",
     "categories": "C#, C# Memo",
     "tags": "csharp",
@@ -117,7 +117,7 @@
 
 
 
-    "snippet": "Summary  재귀를 이용하여 특정 폴더 하위 경로에 있는 파일, 폴더 전체 경로 찾기Source CodeUsagestring folder = FindFolderFullPath(@&quot;c:\\MyFolder&quot;, &quot;FolderName&quot;);string file = FindFileFullPath(@&quot;c:\\MyFolder&quot;, &quot;FileName.txt&quot;);Code/// &amp;lt;summary&amp;gt; 특정 폴더의 모든 하위 경로에서 이름이 일치하는 폴더 경로..."
+    "snippet": "Summary  재귀를 이용하여 특정 폴더 하위 경로에 있는 파일, 폴더 전체 경로 찾기Source CodeUsagestring folder = FindFolderAbsPath(@&quot;c:\\MyFolder&quot;, &quot;FolderName&quot;);string file = FindFileAbsPath(@&quot;c:\\MyFolder&quot;, &quot;FileName.txt&quot;);Code/// &amp;lt;summary&amp;gt; 특정 폴더의 모든 하위 경로에서 이름이 일치하는 폴더의 절대 ..."
   },
   
   {

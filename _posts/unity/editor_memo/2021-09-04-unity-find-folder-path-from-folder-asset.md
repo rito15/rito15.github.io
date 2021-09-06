@@ -1,5 +1,5 @@
 ---
-title: 유니티 - 폴더 애셋으로부터 폴더 전체 경로 구하기
+title: 유니티 - 폴더 애셋으로부터 폴더 절대 경로 구하기
 author: Rito15
 date: 2021-09-04 19:59:00 +09:00
 categories: [Unity, Unity Editor Memo]
@@ -21,8 +21,8 @@ mermaid: true
 정신 차려보니 아래와 같은 소스 코드를 짜고 있었다.
 
 ```cs
-/// <summary> 지정한 폴더 애셋의 전체 경로 찾기 </summary>
-private string FindFolderAssetFullPath(DefaultAsset folderAsset)
+/// <summary> 지정한 폴더 애셋의 절대 경로 찾기 </summary>
+private string FindFolderAssetAbsPath(DefaultAsset folderAsset)
 {
     // Note: Assets 디렉토리로부터 하위 폴더 전부 순회하며 폴더 이름 일치하는 경로 탐색
 
@@ -32,11 +32,11 @@ private string FindFolderAssetFullPath(DefaultAsset folderAsset)
     bool guidFound = AssetDatabase.TryGetGUIDAndLocalFileIdentifier(folderAsset, out string guid, out long _);
     if (guidFound == false) return null;
 
-    Local_FindDirectoryFullPath(rootDirectory, folderAsset.name, guid);
+    Local_FindDirectoryAbsPath(rootDirectory, folderAsset.name, guid);
     return found;
 
     // 내부 재귀 메소드
-    void Local_FindDirectoryFullPath(DirectoryInfo currentDirectory, string folderName, string folderGuid)
+    void Local_FindDirectoryAbsPath(DirectoryInfo currentDirectory, string folderName, string folderGuid)
     {
         if (found != null) return;
 
@@ -58,7 +58,7 @@ private string FindFolderAssetFullPath(DefaultAsset folderAsset)
         DirectoryInfo[] subFolders = currentDirectory.GetDirectories();
         foreach (var folder in subFolders)
         {
-            Local_FindDirectoryFullPath(folder, folderName, folderGuid);
+            Local_FindDirectoryAbsPath(folder, folderName, folderGuid);
         }
     }
 }
@@ -102,7 +102,7 @@ private void OnGUI()
     {
         if (folderAsset != null)
         {
-            string path = FindFolderAssetFullPath(folderAsset);
+            string path = FindFolderAssetAbsPath(folderAsset);
             Debug.Log(path);
         }
     }

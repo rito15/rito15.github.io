@@ -23,7 +23,7 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="C# 하위 폴더, 파일의 전체 경로 찾기" />
+<meta property="og:title" content="C# 하위 폴더, 파일들의 절대 경로 찾기" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Summary 재귀를 이용하여 특정 폴더 하위 경로에 있는 파일, 폴더 전체 경로 찾기" />
@@ -34,14 +34,14 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-09-04T19:45:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="C# 하위 폴더, 파일의 전체 경로 찾기" />
+<meta property="twitter:title" content="C# 하위 폴더, 파일들의 절대 경로 찾기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Summary 재귀를 이용하여 특정 폴더 하위 경로에 있는 파일, 폴더 전체 경로 찾기","datePublished":"2021-09-04T19:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-memo-find-internal-path/"},"url":"https://rito15.github.io/posts/cs-memo-find-internal-path/","author":{"@type":"Person","name":"Rito15"},"headline":"C# 하위 폴더, 파일의 전체 경로 찾기","dateModified":"2021-09-04T19:45:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Summary 재귀를 이용하여 특정 폴더 하위 경로에 있는 파일, 폴더 전체 경로 찾기","datePublished":"2021-09-04T19:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-memo-find-internal-path/"},"url":"https://rito15.github.io/posts/cs-memo-find-internal-path/","author":{"@type":"Person","name":"Rito15"},"headline":"C# 하위 폴더, 파일들의 절대 경로 찾기","dateModified":"2021-09-04T19:45:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>C# 하위 폴더, 파일의 전체 경로 찾기 | Rito15
+  <title>C# 하위 폴더, 파일들의 절대 경로 찾기 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>C# 하위 폴더, 파일의 전체 경로 찾기</span>
+        <span>C# 하위 폴더, 파일들의 절대 경로 찾기</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -354,7 +354,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>C# 하위 폴더, 파일의 전체 경로 찾기</h1>
+      <h1 data-toc-skip>C# 하위 폴더, 파일들의 절대 경로 찾기</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="341 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="347 words">1 min</span>
 
 
           <!-- page views -->
@@ -438,8 +438,8 @@
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td><td class="rouge-code"><pre><span class="kt">string</span> <span class="n">folder</span> <span class="p">=</span> <span class="nf">FindFolderFullPath</span><span class="p">(</span><span class="s">@"c:\MyFolder"</span><span class="p">,</span> <span class="s">"FolderName"</span><span class="p">);</span>
-<span class="kt">string</span> <span class="n">file</span> <span class="p">=</span> <span class="nf">FindFileFullPath</span><span class="p">(</span><span class="s">@"c:\MyFolder"</span><span class="p">,</span> <span class="s">"FileName.txt"</span><span class="p">);</span>
+</pre></td><td class="rouge-code"><pre><span class="kt">string</span> <span class="n">folder</span> <span class="p">=</span> <span class="nf">FindFolderAbsPath</span><span class="p">(</span><span class="s">@"c:\MyFolder"</span><span class="p">,</span> <span class="s">"FolderName"</span><span class="p">);</span>
+<span class="kt">string</span> <span class="n">file</span> <span class="p">=</span> <span class="nf">FindFileAbsPath</span><span class="p">(</span><span class="s">@"c:\MyFolder"</span><span class="p">,</span> <span class="s">"FileName.txt"</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
@@ -475,17 +475,17 @@
 27
 28
 29
-</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 특정 폴더의 모든 하위 경로에서 이름이 일치하는 폴더 경로 찾기 &lt;/summary&gt;</span>
-<span class="k">private</span> <span class="kt">string</span> <span class="nf">FindFolderFullPath</span><span class="p">(</span><span class="kt">string</span> <span class="n">rootFolderPath</span><span class="p">,</span> <span class="kt">string</span> <span class="n">folderName</span><span class="p">)</span>
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 특정 폴더의 모든 하위 경로에서 이름이 일치하는 폴더의 절대 경로 찾기 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="kt">string</span> <span class="nf">FindFolderAbsPath</span><span class="p">(</span><span class="kt">string</span> <span class="n">rootFolderPath</span><span class="p">,</span> <span class="kt">string</span> <span class="n">folderName</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">DirectoryInfo</span> <span class="n">rootDirectory</span> <span class="p">=</span> <span class="n">Directory</span><span class="p">.</span><span class="nf">CreateDirectory</span><span class="p">(</span><span class="n">rootFolderPath</span><span class="p">);</span>
     <span class="kt">string</span> <span class="n">found</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
 
-    <span class="nf">Local_FindDirectoryFullPath</span><span class="p">(</span><span class="n">rootDirectory</span><span class="p">);</span>
+    <span class="nf">Local_FindDirectoryAbsPath</span><span class="p">(</span><span class="n">rootDirectory</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">found</span><span class="p">;</span>
 
     <span class="c1">// 내부 재귀 메소드</span>
-    <span class="k">void</span> <span class="nf">Local_FindDirectoryFullPath</span><span class="p">(</span><span class="n">DirectoryInfo</span> <span class="n">currentDirectory</span><span class="p">)</span>
+    <span class="k">void</span> <span class="nf">Local_FindDirectoryAbsPath</span><span class="p">(</span><span class="n">DirectoryInfo</span> <span class="n">currentDirectory</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">found</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -500,7 +500,7 @@
         <span class="n">DirectoryInfo</span><span class="p">[]</span> <span class="n">subFolders</span> <span class="p">=</span> <span class="n">currentDirectory</span><span class="p">.</span><span class="nf">GetDirectories</span><span class="p">();</span>
         <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">folder</span> <span class="k">in</span> <span class="n">subFolders</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="nf">Local_FindDirectoryFullPath</span><span class="p">(</span><span class="n">folder</span><span class="p">);</span>
+            <span class="nf">Local_FindDirectoryAbsPath</span><span class="p">(</span><span class="n">folder</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -539,17 +539,17 @@
 31
 32
 33
-</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 특정 폴더의 모든 하위 경로에서 이름이 일치하는 파일 경로 찾기 &lt;/summary&gt;</span>
-<span class="k">private</span> <span class="kt">string</span> <span class="nf">FindFileFullPath</span><span class="p">(</span><span class="kt">string</span> <span class="n">rootFolderPath</span><span class="p">,</span> <span class="kt">string</span> <span class="n">fileName</span><span class="p">)</span>
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 특정 폴더의 모든 하위 경로에서 이름이 일치하는 파일의 절대 경로 찾기 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="kt">string</span> <span class="nf">FindFileAbsPath</span><span class="p">(</span><span class="kt">string</span> <span class="n">rootFolderPath</span><span class="p">,</span> <span class="kt">string</span> <span class="n">fileName</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">DirectoryInfo</span> <span class="n">rootDirectory</span> <span class="p">=</span> <span class="n">Directory</span><span class="p">.</span><span class="nf">CreateDirectory</span><span class="p">(</span><span class="n">rootFolderPath</span><span class="p">);</span>
     <span class="kt">string</span> <span class="n">found</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
 
-    <span class="nf">Local_FindDirectoryFullPath</span><span class="p">(</span><span class="n">rootDirectory</span><span class="p">);</span>
+    <span class="nf">Local_FindDirectoryAbsPath</span><span class="p">(</span><span class="n">rootDirectory</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">found</span><span class="p">;</span>
 
     <span class="c1">// 내부 재귀 메소드</span>
-    <span class="k">void</span> <span class="nf">Local_FindDirectoryFullPath</span><span class="p">(</span><span class="n">DirectoryInfo</span> <span class="n">currentDirectory</span><span class="p">)</span>
+    <span class="k">void</span> <span class="nf">Local_FindDirectoryAbsPath</span><span class="p">(</span><span class="n">DirectoryInfo</span> <span class="n">currentDirectory</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">found</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -568,7 +568,7 @@
         <span class="n">DirectoryInfo</span><span class="p">[]</span> <span class="n">subFolders</span> <span class="p">=</span> <span class="n">currentDirectory</span><span class="p">.</span><span class="nf">GetDirectories</span><span class="p">();</span>
         <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">folder</span> <span class="k">in</span> <span class="n">subFolders</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="nf">Local_FindDirectoryFullPath</span><span class="p">(</span><span class="n">folder</span><span class="p">);</span>
+            <span class="nf">Local_FindDirectoryAbsPath</span><span class="p">(</span><span class="n">folder</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -627,19 +627,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=C# 하위 폴더, 파일의 전체 경로 찾기 - Rito15&url=https://rito15.github.io/posts/cs-memo-find-internal-path/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=C# 하위 폴더, 파일들의 절대 경로 찾기 - Rito15&url=https://rito15.github.io/posts/cs-memo-find-internal-path/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=C# 하위 폴더, 파일의 전체 경로 찾기 - Rito15&u=https://rito15.github.io/posts/cs-memo-find-internal-path/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=C# 하위 폴더, 파일들의 절대 경로 찾기 - Rito15&u=https://rito15.github.io/posts/cs-memo-find-internal-path/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=C# 하위 폴더, 파일의 전체 경로 찾기 - Rito15&url=https://rito15.github.io/posts/cs-memo-find-internal-path/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=C# 하위 폴더, 파일들의 절대 경로 찾기 - Rito15&url=https://rito15.github.io/posts/cs-memo-find-internal-path/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -702,6 +702,11 @@
         
         
         
+        <li><a href="/posts/unity-serialize-tree-object/">Unity - 트리 구조 데이터 직렬화하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
       
         
@@ -718,11 +723,6 @@
         
         
         <li><a href="/posts/unity-editor-window-scrollbar/">유니티 에디터 윈도우 - 스크롤 바 생성하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-async-task/">C# async Task</a></li>
       
 
       </ul>
@@ -7878,7 +7878,7 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
 
   
   <a href="/posts/unity-find-folder-path-from-folder-asset/" class="btn btn-outline-primary">
-    <p>유니티 - 폴더 애셋으로부터 폴더 전체 경로 구하기</p>
+    <p>유니티 - 폴더 애셋으로부터 폴더 절대 경로 구하기</p>
   </a>
   
 

@@ -1,5 +1,5 @@
 ---
-title: C# 하위 폴더, 파일의 전체 경로 찾기
+title: C# 하위 폴더, 파일들의 절대 경로 찾기
 author: Rito15
 date: 2021-09-04 19:45:00 +09:00
 categories: [C#, C# Memo]
@@ -20,8 +20,8 @@ mermaid: true
 ## **Usage**
 
 ```cs
-string folder = FindFolderFullPath(@"c:\MyFolder", "FolderName");
-string file = FindFileFullPath(@"c:\MyFolder", "FileName.txt");
+string folder = FindFolderAbsPath(@"c:\MyFolder", "FolderName");
+string file = FindFileAbsPath(@"c:\MyFolder", "FileName.txt");
 ```
 
 <br>
@@ -29,17 +29,17 @@ string file = FindFileFullPath(@"c:\MyFolder", "FileName.txt");
 ## **Code**
 
 ```cs
-/// <summary> 특정 폴더의 모든 하위 경로에서 이름이 일치하는 폴더 경로 찾기 </summary>
-private string FindFolderFullPath(string rootFolderPath, string folderName)
+/// <summary> 특정 폴더의 모든 하위 경로에서 이름이 일치하는 폴더의 절대 경로 찾기 </summary>
+private string FindFolderAbsPath(string rootFolderPath, string folderName)
 {
     DirectoryInfo rootDirectory = Directory.CreateDirectory(rootFolderPath);
     string found = null;
 
-    Local_FindDirectoryFullPath(rootDirectory);
+    Local_FindDirectoryAbsPath(rootDirectory);
     return found;
 
     // 내부 재귀 메소드
-    void Local_FindDirectoryFullPath(DirectoryInfo currentDirectory)
+    void Local_FindDirectoryAbsPath(DirectoryInfo currentDirectory)
     {
         if (found != null) return;
 
@@ -54,24 +54,24 @@ private string FindFolderFullPath(string rootFolderPath, string folderName)
         DirectoryInfo[] subFolders = currentDirectory.GetDirectories();
         foreach (var folder in subFolders)
         {
-            Local_FindDirectoryFullPath(folder);
+            Local_FindDirectoryAbsPath(folder);
         }
     }
 }
 ```
 
 ```cs
-/// <summary> 특정 폴더의 모든 하위 경로에서 이름이 일치하는 파일 경로 찾기 </summary>
-private string FindFileFullPath(string rootFolderPath, string fileName)
+/// <summary> 특정 폴더의 모든 하위 경로에서 이름이 일치하는 파일의 절대 경로 찾기 </summary>
+private string FindFileAbsPath(string rootFolderPath, string fileName)
 {
     DirectoryInfo rootDirectory = Directory.CreateDirectory(rootFolderPath);
     string found = null;
 
-    Local_FindDirectoryFullPath(rootDirectory);
+    Local_FindDirectoryAbsPath(rootDirectory);
     return found;
 
     // 내부 재귀 메소드
-    void Local_FindDirectoryFullPath(DirectoryInfo currentDirectory)
+    void Local_FindDirectoryAbsPath(DirectoryInfo currentDirectory)
     {
         if (found != null) return;
 
@@ -90,7 +90,7 @@ private string FindFileFullPath(string rootFolderPath, string fileName)
         DirectoryInfo[] subFolders = currentDirectory.GetDirectories();
         foreach (var folder in subFolders)
         {
-            Local_FindDirectoryFullPath(folder);
+            Local_FindDirectoryAbsPath(folder);
         }
     }
 }

@@ -724,6 +724,11 @@
         
         
         
+        <li><a href="/posts/unity-serialize-tree-object/">Unity - 트리 구조 데이터 직렬화하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
       
         
@@ -740,11 +745,6 @@
         
         
         <li><a href="/posts/unity-editor-window-scrollbar/">유니티 에디터 윈도우 - 스크롤 바 생성하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-async-task/">C# async Task</a></li>
       
 
       </ul>
@@ -7694,7 +7694,7 @@
   <i class="unloaded">2021-09-04T19:45:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 하위 폴더, 파일의 전체 경로 찾기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 하위 폴더, 파일들의 절대 경로 찾기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7718,8 +7718,8 @@ Usage
 
 1
 2
-string folder = FindFolderFullPath(@"c:\MyFolder", "FolderName");
-string file = FindFileFullPath(@"c:\MyFolder", "F...
+string folder = FindFolderAbsPath(@"c:\MyFolder", "FolderName");
+string file = FindFileAbsPath(@"c:\MyFolder", "Fil...
               </p>
             </div>
           </div>
