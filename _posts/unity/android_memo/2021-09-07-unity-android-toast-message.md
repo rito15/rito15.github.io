@@ -17,10 +17,14 @@ mermaid: true
 AndroidToast.I.ShowToastMessage(string message, ToastLength length);
 ```
 
+<br>
+
 ## **Option**
 
 - `ToastLength.Short` : 약 2.5초 동안 메시지 표시
 - `ToastLength.Long` : 약 4초 동안 메시지 표시
+
+<br>
 
 ## **Source Code**
 
@@ -37,14 +41,6 @@ using UnityEngine;
 /// <summary> 안드로이드 토스트 메시지 표시 싱글톤 </summary>
 public class AndroidToast : MonoBehaviour
 {
-    public enum ToastLength 
-    {
-        /// <summary> 약 2.5초 </summary>
-        Short,
-        /// <summary> 약 4초 </summary>
-        Long 
-    };
-
     #region Singleton
 
     /// <summary> 싱글톤 인스턴스 Getter </summary>
@@ -99,39 +95,48 @@ public class AndroidToast : MonoBehaviour
         }
     }
 
-    #endregion // ==================================================================
-
-    private AndroidJavaClass _unityPlayer;
-    private AndroidJavaObject _unityActivity;
-    private AndroidJavaClass _toastClass;
-
-#if UNITY_EDITOR
-    private float __editorGuiTime = 0f;
-    private string __editorGuiMessage;
-#endif
-
     private void Awake()
     {
         CheckInstance();
     }
 
-    [System.Diagnostics.Conditional("UNITY_ANDROID")]
+    #endregion // ==================================================================
+
+    public enum ToastLength
+    {
+        /// <summary> 약 2.5초 </summary>
+        Short,
+        /// <summary> 약 4초 </summary>
+        Long
+    };
+
+#if UNITY_EDITOR
+    private float __editorGuiTime = 0f;
+    private string __editorGuiMessage;
+
+#elif UNITY_ANDROID
+
+    private AndroidJavaClass _unityPlayer;
+    private AndroidJavaObject _unityActivity;
+    private AndroidJavaClass _toastClass;
+
     private void Start()
     {
-#if !UNITY_EDITOR
         _unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         _unityActivity = _unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
         _toastClass = new AndroidJavaClass("android.widget.Toast");
-#endif
     }
+#endif
 
+    /// <summary> 안드로이드 토스트 메시지 표시하기 </summary>
     [System.Diagnostics.Conditional("UNITY_ANDROID")]
     public void ShowToastMessage(string message, ToastLength length = ToastLength.Short)
     {
 #if UNITY_EDITOR
         __editorGuiTime = length == ToastLength.Short ? 2.5f : 4f;
         __editorGuiMessage = message;
-#else
+
+#elif UNITY_ANDROID
         if (_unityActivity != null)
         {
             _unityActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
@@ -168,7 +173,7 @@ public class AndroidToast : MonoBehaviour
     }
     private void Update()
     {
-        if(__editorGuiTime > 0f)
+        if (__editorGuiTime > 0f)
             __editorGuiTime -= Time.unscaledDeltaTime;
     }
 #endif

@@ -70,7 +70,13 @@ Application.persistentDataPath
 "/storage/emulated/0/Android/data/<packagename>/files"
 
 /* 내부 저장소 */
-"/data/data/<packagename>/files/"
+"/data/data/<packagename>/files"
+```
+
+```cs
+$"/storage/emulated/0/DCIM/{Application.productName}"
+// => 스크린샷을 저장할 때 사용되는 경로
+// => 읽기/쓰기는 가능하나, 이미 존재하는 파일에 덮어쓰기는 안된다.
 ```
 
 <br>

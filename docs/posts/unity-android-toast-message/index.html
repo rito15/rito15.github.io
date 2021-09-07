@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="928 words">5 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="947 words">5 min</span>
 
 
           <!-- page views -->
@@ -446,12 +446,16 @@
 </pre></td><td class="rouge-code"><pre><span class="n">AndroidToast</span><span class="p">.</span><span class="n">I</span><span class="p">.</span><span class="nf">ShowToastMessage</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">,</span> <span class="n">ToastLength</span> <span class="n">length</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
+<p><br /></p>
+
 <h2 id="option"><strong>Option</strong></h2>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">ToastLength.Short</code> : 약 2.5초 동안 메시지 표시</li>
   <li><code class="language-plaintext highlighter-rouge">ToastLength.Long</code> : 약 4초 동안 메시지 표시</li>
 </ul>
+
+<p><br /></p>
 
 <h2 id="source-code"><strong>Source Code</strong></h2>
 
@@ -603,6 +607,7 @@ AndroidToast.cs
 141
 142
 143
+144
 </pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
@@ -610,14 +615,6 @@ AndroidToast.cs
 <span class="c1">/// &lt;summary&gt; 안드로이드 토스트 메시지 표시 싱글톤 &lt;/summary&gt;</span>
 <span class="k">public</span> <span class="k">class</span> <span class="nc">AndroidToast</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">enum</span> <span class="n">ToastLength</span> 
-    <span class="p">{</span>
-        <span class="c1">/// &lt;summary&gt; 약 2.5초 &lt;/summary&gt;</span>
-        <span class="n">Short</span><span class="p">,</span>
-        <span class="c1">/// &lt;summary&gt; 약 4초 &lt;/summary&gt;</span>
-        <span class="n">Long</span> 
-    <span class="p">};</span>
-
     <span class="err">#</span><span class="n">region</span> <span class="n">Singleton</span>
 
     <span class="c1">/// &lt;summary&gt; 싱글톤 인스턴스 Getter &lt;/summary&gt;</span>
@@ -672,39 +669,48 @@ AndroidToast.cs
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="err">#</span><span class="n">endregion</span> <span class="c1">// ==================================================================</span>
-
-    <span class="k">private</span> <span class="n">AndroidJavaClass</span> <span class="n">_unityPlayer</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">AndroidJavaObject</span> <span class="n">_unityActivity</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">AndroidJavaClass</span> <span class="n">_toastClass</span><span class="p">;</span>
-
-<span class="cp">#if UNITY_EDITOR
-</span>    <span class="k">private</span> <span class="kt">float</span> <span class="n">__editorGuiTime</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
-    <span class="k">private</span> <span class="kt">string</span> <span class="n">__editorGuiMessage</span><span class="p">;</span>
-<span class="cp">#endif
-</span>
     <span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="nf">CheckInstance</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="nf">Conditional</span><span class="p">(</span><span class="s">"UNITY_ANDROID"</span><span class="p">)]</span>
+    <span class="err">#</span><span class="n">endregion</span> <span class="c1">// ==================================================================</span>
+
+    <span class="k">public</span> <span class="k">enum</span> <span class="n">ToastLength</span>
+    <span class="p">{</span>
+        <span class="c1">/// &lt;summary&gt; 약 2.5초 &lt;/summary&gt;</span>
+        <span class="n">Short</span><span class="p">,</span>
+        <span class="c1">/// &lt;summary&gt; 약 4초 &lt;/summary&gt;</span>
+        <span class="n">Long</span>
+    <span class="p">};</span>
+
+<span class="cp">#if UNITY_EDITOR
+</span>    <span class="k">private</span> <span class="kt">float</span> <span class="n">__editorGuiTime</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+    <span class="k">private</span> <span class="kt">string</span> <span class="n">__editorGuiMessage</span><span class="p">;</span>
+
+<span class="cp">#elif UNITY_ANDROID
+</span>
+    <span class="k">private</span> <span class="n">AndroidJavaClass</span> <span class="n">_unityPlayer</span><span class="p">;</span>
+    <span class="k">private</span> <span class="n">AndroidJavaObject</span> <span class="n">_unityActivity</span><span class="p">;</span>
+    <span class="k">private</span> <span class="n">AndroidJavaClass</span> <span class="n">_toastClass</span><span class="p">;</span>
+
     <span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
     <span class="p">{</span>
-<span class="cp">#if !UNITY_EDITOR
-</span>        <span class="n">_unityPlayer</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">AndroidJavaClass</span><span class="p">(</span><span class="s">"com.unity3d.player.UnityPlayer"</span><span class="p">);</span>
+        <span class="n">_unityPlayer</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">AndroidJavaClass</span><span class="p">(</span><span class="s">"com.unity3d.player.UnityPlayer"</span><span class="p">);</span>
         <span class="n">_unityActivity</span> <span class="p">=</span> <span class="n">_unityPlayer</span><span class="p">.</span><span class="n">GetStatic</span><span class="p">&lt;</span><span class="n">AndroidJavaObject</span><span class="p">&gt;(</span><span class="s">"currentActivity"</span><span class="p">);</span>
         <span class="n">_toastClass</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">AndroidJavaClass</span><span class="p">(</span><span class="s">"android.widget.Toast"</span><span class="p">);</span>
+    <span class="p">}</span>
 <span class="cp">#endif
-</span>    <span class="p">}</span>
-
+</span>
+    <span class="c1">/// &lt;summary&gt; 안드로이드 토스트 메시지 표시하기 &lt;/summary&gt;</span>
     <span class="p">[</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="nf">Conditional</span><span class="p">(</span><span class="s">"UNITY_ANDROID"</span><span class="p">)]</span>
     <span class="k">public</span> <span class="k">void</span> <span class="nf">ShowToastMessage</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">,</span> <span class="n">ToastLength</span> <span class="n">length</span> <span class="p">=</span> <span class="n">ToastLength</span><span class="p">.</span><span class="n">Short</span><span class="p">)</span>
     <span class="p">{</span>
 <span class="cp">#if UNITY_EDITOR
 </span>        <span class="n">__editorGuiTime</span> <span class="p">=</span> <span class="n">length</span> <span class="p">==</span> <span class="n">ToastLength</span><span class="p">.</span><span class="n">Short</span> <span class="p">?</span> <span class="m">2.5f</span> <span class="p">:</span> <span class="m">4f</span><span class="p">;</span>
         <span class="n">__editorGuiMessage</span> <span class="p">=</span> <span class="n">message</span><span class="p">;</span>
-<span class="cp">#else
+
+<span class="cp">#elif UNITY_ANDROID
 </span>        <span class="k">if</span> <span class="p">(</span><span class="n">_unityActivity</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="n">_unityActivity</span><span class="p">.</span><span class="nf">Call</span><span class="p">(</span><span class="s">"runOnUiThread"</span><span class="p">,</span> <span class="k">new</span> <span class="nf">AndroidJavaRunnable</span><span class="p">(()</span> <span class="p">=&gt;</span>
@@ -741,7 +747,7 @@ AndroidToast.cs
     <span class="p">}</span>
     <span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
     <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">__editorGuiTime</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">__editorGuiTime</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">)</span>
             <span class="n">__editorGuiTime</span> <span class="p">-=</span> <span class="n">Time</span><span class="p">.</span><span class="n">unscaledDeltaTime</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="cp">#endif
@@ -1001,6 +1007,11 @@ AndroidInputManager.cs
         
         
         
+        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-memory-synchronization-memo/">C# 메모리 동기화가 필요한 경우, 아닌 경우 간단 정리</a></li>
       
         
@@ -1017,11 +1028,6 @@ AndroidInputManager.cs
         
         
         <li><a href="/posts/unity-serialize-tree-object/">Unity - 트리 구조 데이터 직렬화하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
       
 
       </ul>
@@ -4282,20 +4288,20 @@ AndroidInputManager.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
   
 
   
@@ -8255,15 +8261,15 @@ static const float2 dir[8] =
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/unity-save-screen-shot/" class="btn btn-outline-primary">
-    <p>유니티 스크린샷 찍고 저장하기</p>
+  <a href="/posts/unity-path-by-platform/" class="btn btn-outline-primary">
+    <p>유니티 - 플랫폼별 경로들</p>
   </a>
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/unity-save-screen-shot/" class="btn btn-outline-primary">
+    <p>유니티 스크린샷 찍고 저장하기(Windows, Android)</p>
+  </a>
   
 
 </div>

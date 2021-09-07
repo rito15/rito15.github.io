@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 안드로이드 권한 요청하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 안드로이드 권한 요청하기","description":"Memo 안드로이드의 카메라, 로컬 스토리지 등의 기능을 사용하려면 권한을 반드시 요청해야 한다. Android 6(API Lv.23) 이상에서는 Android.Permission API를 통해 런타임에 권한을 요청할 수 있다.","dateModified":"2021-09-07T16:50:00+09:00","datePublished":"2021-09-07T16:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-android-authority/"},"url":"https://rito15.github.io/posts/unity-android-authority/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 안드로이드 권한 요청하기","description":"Memo 안드로이드의 카메라, 로컬 스토리지 등의 기능을 사용하려면 권한을 반드시 요청해야 한다. Android 6(API Lv.23) 이상에서는 Android.Permission API를 통해 런타임에 권한을 요청할 수 있다.","dateModified":"2021-09-08T00:43:00+09:00","datePublished":"2021-09-07T16:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-android-authority/"},"url":"https://rito15.github.io/posts/unity-android-authority/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -393,6 +393,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Sep  8, 2021, 12:43 AM +0900"
+  >
+
+  
+  
+
+  
+    Sep  8
+  
+
+  <i class="unloaded">2021-09-08T00:43:00+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -405,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1245 words">6 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1276 words">7 min</span>
 
 
           <!-- page views -->
@@ -658,11 +687,29 @@
 26
 27
 28
-</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 안드로이드 - 권한 확인하고, 승인시 동작 수행하기 &lt;/summary&gt;</span>
-<span class="k">private</span> <span class="k">void</span> <span class="nf">CheckAndroidPermissionAndDo</span><span class="p">(</span><span class="kt">string</span> <span class="n">permission</span><span class="p">,</span> <span class="n">Action</span> <span class="n">actionIfPermissionGranted</span><span class="p">)</span>
+29
+30
+31
+32
+33
+34
+35
+36
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 스크린샷 찍기 예제 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">TakeScreenShot</span><span class="p">()</span>
 <span class="p">{</span>
 <span class="cp">#if UNITY_ANDROID
-</span>    <span class="c1">// 권한 승인이 안된 상태</span>
+</span>    <span class="nf">CheckAndroidPermissionAndDo</span><span class="p">(</span><span class="n">Permission</span><span class="p">.</span><span class="n">ExternalStorageWrite</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nf">StartCoroutine</span><span class="p">(</span><span class="nf">TakeScreenShotRoutine</span><span class="p">()));</span>
+<span class="cp">#else
+</span>    <span class="nf">StartCoroutine</span><span class="p">(</span><span class="nf">TakeScreenShotRoutine</span><span class="p">());</span>
+<span class="cp">#endif
+</span><span class="p">}</span>
+
+<span class="cp">#if UNITY_ANDROID
+</span><span class="c1">/// &lt;summary&gt; 안드로이드 - 권한 확인하고, 승인시 동작 수행하기 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">CheckAndroidPermissionAndDo</span><span class="p">(</span><span class="kt">string</span> <span class="n">permission</span><span class="p">,</span> <span class="n">Action</span> <span class="n">actionIfPermissionGranted</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// 권한 승인이 안된 상태</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">Permission</span><span class="p">.</span><span class="nf">HasUserAuthorizedPermission</span><span class="p">(</span><span class="n">permission</span><span class="p">)</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// 권한 요청 응답에 따른 동작 콜백</span>
@@ -680,13 +727,11 @@
     <span class="c1">// 권한이 승인 되어 있는 경우</span>
     <span class="k">else</span>
     <span class="p">{</span>
+        <span class="nf">actionIfPermissionGranted</span><span class="p">();</span> <span class="c1">// 바로 기능 실행</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 <span class="cp">#endif
-</span>        <span class="nf">actionIfPermissionGranted</span><span class="p">();</span> <span class="c1">// 바로 기능 실행</span>
-<span class="cp">#if UNITY_ANDROID
-</span>    <span class="p">}</span>
-<span class="cp">#endif
-</span><span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
+</span></pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
 
@@ -740,6 +785,7 @@
   <li><a href="https://docs.unity3d.com/kr/2020.3/Manual/android-manifest.html">https://docs.unity3d.com/kr/2020.3/Manual/android-manifest.html</a></li>
   <li><a href="https://docs.unity3d.com/kr/2020.3/Manual/android-RequestingPermissions.html">https://docs.unity3d.com/kr/2020.3/Manual/android-RequestingPermissions.html</a></li>
   <li><a href="https://docs.unity3d.com/ScriptReference/Android.Permission.RequestUserPermission.html">https://docs.unity3d.com/ScriptReference/Android.Permission.RequestUserPermission.html</a></li>
+  <li><a href="https://developer.android.com/reference/android/Manifest.permission">https://developer.android.com/reference/android/Manifest.permission</a></li>
 </ul>
 
 
@@ -876,6 +922,11 @@
         
         
         
+        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-memory-synchronization-memo/">C# 메모리 동기화가 필요한 경우, 아닌 경우 간단 정리</a></li>
       
         
@@ -892,11 +943,6 @@
         
         
         <li><a href="/posts/unity-serialize-tree-object/">Unity - 트리 구조 데이터 직렬화하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
       
 
       </ul>
@@ -8039,6 +8085,8 @@ Usage
 AndroidToast.I.ShowToastMessage(string message, ToastLength length);
 
 
+
+
 Option
 
 
@@ -8046,7 +8094,9 @@ Option
   ToastLength.Long : 약 4초 동안 메시지 표시
 
 
-Source...
+
+
+So...
               </p>
             </div>
           </div>

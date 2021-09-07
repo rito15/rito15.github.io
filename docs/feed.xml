@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-08T00:37:32+09:00</updated>
+  <updated>2021-09-08T05:31:56+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,92 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 스크린샷 찍고 저장하기(Windows, Android)</title>
+    <link href="https://rito15.github.io/posts/unity-save-screen-shot/" rel="alternate" type="text/html" title="유니티 스크린샷 찍고 저장하기(Windows, Android)" />
+    <published>2021-09-08T05:10:00+09:00</published>
+  
+    <updated>2021-09-08T05:10:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-save-screen-shot/</id>
+    <content src="https://rito15.github.io/posts/unity-save-screen-shot/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. Unity Editor
+
+
+저장할 경로
+
+  $"{Application.dataPath}/ScreenShots/"
+
+
+실제 경로
+
+  "[프로젝트 디렉토리]/Assets/ScreenShots/"
+
+
+
+
+
+2. Standalone App
+
+
+저장할 경로
+
+  $"{Application.dataPath}/ScreenShots/"
+
+
+실제 경로
+
+  "[실행파일명]/[실행파일명_Data]/ScreenShots/"
+
+
+
+
+
+3. Android
+
+
+저장할 경로
+
+  $"{Application.persistentDataPath}/ScreenShots/"
+
+
+실제 경로
+
+  "/storage/emulated/0/Android/data/[패키지명]/files/ScreenShots/"
+
+
+
+
+권한 요청하기
+
+
+ ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -56,11 +142,15 @@ Usage
 AndroidToast.I.ShowToastMessage(string message, ToastLength length);
 
 
+
+
 Option
 
 
   ToastLength.Short : 약 2.5초 동안 메시지 표시
   ToastLength.Long : 약 4초 동안 메시지 표시
+
+
 
 
 Source Code
@@ -75,98 +165,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// &amp;lt;summary&amp;gt; 안드로이드 토스트 메시지 표시 싱글톤 &amp;lt;/summary&amp;gt;
-public class AndroidToast : Mono...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 스크린샷 찍고 저장하기</title>
-    <link href="https://rito15.github.io/posts/unity-save-screen-shot/" rel="alternate" type="text/html" title="유니티 스크린샷 찍고 저장하기" />
-    <published>2021-09-07T20:20:00+09:00</published>
-  
-    <updated>2021-09-07T20:20:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-save-screen-shot/</id>
-    <content src="https://rito15.github.io/posts/unity-save-screen-shot/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      1. Unity Editor
-
-
-저장할 경로
-
-  $”{Application.dataPath}/ScreenShots/”
-
-
-실제 경로
-
-  “[프로젝트 디렉토리]/Assets/ScreenShots/”
-
-
-
-
-
-2. Standalone App
-
-
-저장할 경로
-
-  $”{Application.dataPath}/ScreenShots/”
-
-
-실제 경로
-
-  “[실행파일명]/[실행파일명_Data]/ScreenShots/”
-
-
-
-
-
-3. Android
-
-
-저장할 경로
-
-  $”{Application.persistentDataPath}/ScreenShots/”
-
-
-실제 경로
-
-  “/mnt/sdcard/Android/data/[패키지명]/files/ScreenShots/”
-
-
-
-
-권한 요청하기
-
-
-  링크
-
-
-
-
-...
+public class AndroidToast : ...
     </summary>
   
 
@@ -233,7 +232,7 @@ Application.dataPath
     <link href="https://rito15.github.io/posts/unity-android-authority/" rel="alternate" type="text/html" title="유니티 안드로이드 권한 요청하기" />
     <published>2021-09-07T16:50:00+09:00</published>
   
-    <updated>2021-09-07T16:50:00+09:00</updated>
+    <updated>2021-09-08T00:43:00+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-android-authority/</id>
     <content src="https://rito15.github.io/posts/unity-android-authority/" />

@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="202 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="254 words">1 min</span>
 
 
           <!-- page views -->
@@ -498,7 +498,15 @@
 <span class="s">"/storage/emulated/0/Android/data/&lt;packagename&gt;/files"</span>
 
 <span class="cm">/* 내부 저장소 */</span>
-<span class="s">"/data/data/&lt;packagename&gt;/files/"</span>
+<span class="s">"/data/data/&lt;packagename&gt;/files"</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="s">$"/storage/emulated/0/DCIM/</span><span class="p">{</span><span class="n">Application</span><span class="p">.</span><span class="n">productName</span><span class="p">}</span><span class="s">"</span>
+<span class="c1">// =&gt; 스크린샷을 저장할 때 사용되는 경로</span>
+<span class="c1">// =&gt; 읽기/쓰기는 가능하나, 이미 존재하는 파일에 덮어쓰기는 안된다.</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
@@ -699,6 +707,11 @@
         
         
         
+        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-memory-synchronization-memo/">C# 메모리 동기화가 필요한 경우, 아닌 경우 간단 정리</a></li>
       
         
@@ -715,11 +728,6 @@
         
         
         <li><a href="/posts/unity-serialize-tree-object/">Unity - 트리 구조 데이터 직렬화하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
       
 
       </ul>
@@ -7956,8 +7964,8 @@ Component
   
 
   
-  <a href="/posts/unity-save-screen-shot/" class="btn btn-outline-primary">
-    <p>유니티 스크린샷 찍고 저장하기</p>
+  <a href="/posts/unity-android-toast-message/" class="btn btn-outline-primary">
+    <p>유니티 안드로이드 토스트 메시지 표시하기</p>
   </a>
   
 

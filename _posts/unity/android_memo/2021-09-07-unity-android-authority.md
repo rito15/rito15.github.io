@@ -143,10 +143,20 @@ if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
 - `RequestUserPermission()` 메소드는 비동기로 동작하므로, 다음과 같이 처리해야 한다.
 
 ```cs
+/// <summary> 스크린샷 찍기 예제 </summary>
+private void TakeScreenShot()
+{
+#if UNITY_ANDROID
+    CheckAndroidPermissionAndDo(Permission.ExternalStorageWrite, () => StartCoroutine(TakeScreenShotRoutine()));
+#else
+    StartCoroutine(TakeScreenShotRoutine());
+#endif
+}
+
+#if UNITY_ANDROID
 /// <summary> 안드로이드 - 권한 확인하고, 승인시 동작 수행하기 </summary>
 private void CheckAndroidPermissionAndDo(string permission, Action actionIfPermissionGranted)
 {
-#if UNITY_ANDROID
     // 권한 승인이 안된 상태
     if (Permission.HasUserAuthorizedPermission(permission) == false)
     {
@@ -165,12 +175,10 @@ private void CheckAndroidPermissionAndDo(string permission, Action actionIfPermi
     // 권한이 승인 되어 있는 경우
     else
     {
-#endif
         actionIfPermissionGranted(); // 바로 기능 실행
-#if UNITY_ANDROID
     }
-#endif
 }
+#endif
 ```
 
 <br>
@@ -210,3 +218,4 @@ ExternalStorageWrite = "android.permission.WRITE_EXTERNAL_STORAGE";
 - <https://docs.unity3d.com/kr/2020.3/Manual/android-manifest.html>
 - <https://docs.unity3d.com/kr/2020.3/Manual/android-RequestingPermissions.html>
 - <https://docs.unity3d.com/ScriptReference/Android.Permission.RequestUserPermission.html>
+- <https://developer.android.com/reference/android/Manifest.permission>
