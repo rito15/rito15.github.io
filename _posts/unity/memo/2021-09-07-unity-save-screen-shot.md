@@ -39,20 +39,27 @@ mermaid: true
  - $"{Application.persistentDataPath}/ScreenShots/"
 
 ## 실제 경로
- - "/mnt/sdcard/Android/data/번들이름/files/ScreenShots/"
+ - "/mnt/sdcard/Android/data/[패키지명]/files/ScreenShots/"
  
 <br>
 
 ## 권한 요청하기
 
-
+- 링크
 
 <br>
 <!-- ========================================================== -->
 
-# 4. 스크린샷 찍는 소스코드
+# 4. 스크린샷 찍기
 ---
 
+## **[1] UI 포함하여 화면 전체 캡쳐**
+
+
+
+<br>
+
+## **[2] UI 미포함, 카메라가 렌더링하는 부분만 캡쳐**
 
 
 

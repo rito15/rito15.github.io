@@ -15,7 +15,7 @@ mermaid: true
 
 <br>
 
-# 공통(권한 
+# 공통
 ---
 
 ## **안드로이드 매니페스트 파일 경로**
@@ -55,7 +55,7 @@ mermaid: true
 
 - 위의 `[HERE]` 부분에 다음과 같이 한 줄씩 작성하여 권한을 추가할 수 있다.
 
-```
+```xml
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 ```
@@ -72,19 +72,134 @@ mermaid: true
 
 |권한|설명|
 |---|---|
-|WRITE_EXTERNAL_STORAGE|외부 저장소에 파일 쓰기|
-|READ_EXTERNAL_STORAGE|외부 저장소에서 파일 읽어오기|
 |CAMERA|카메라|
 |RECORD_AUDIO|마이크, 녹음|
-|ACCESS_NETWORK_STATE|네트워크 연결 상태 확인|
+|WRITE_EXTERNAL_STORAGE|외부 저장소에 파일 쓰기|
+|READ_EXTERNAL_STORAGE|외부 저장소에서 파일 읽어오기|
+|ACCESS_FINE_LOCATION|위치 정보(정확)|
+|ACCESS_COARSE_LOCATION|위치 정보(덜 정확)|
+|ACCESS_MOCK_LOCATION|위치 정보(디버깅용 가상 위치)|
 |INTERNET|인터넷 사용|
-|ACCESS_FINE_LOCATION|위치 정보(GPS)|
-|ACCESS_MOCK_LOCATION|위치 정보(테스트용)|
+|ACCESS_NETWORK_STATE|네트워크 연결 상태 확인|
 
 <br>
 
 # 런타임 권한 요청(Android 6 이상)
 ---
+
+`Android 6` 버전 이전에는 `AndroidManifest.xml`에 위와 같이 권한을 작성해 놓으면 앱 실행 시 자동으로 물어보지만,
+
+`Android 6` 버전부터는 위와 같이 적어 놓아도 앱 실행 시 물어보지 않고 일단 거부 상태로 유지된다.
+
+대신, 권한이 필요한 해당 기능들을 실행할 때마다 권한이 부여되어 있는지 확인하고 
+
+권한이 부여되어 있지 않으면(거부 상태) 요청하는 방식을 사용해야 한다.
+
+어쨌든 신버전에서도 필요한 권한들은 위와 같이 일단 `AndroidManifest.xml`에 모두 작성 해놓아야 한다.
+
+<br>
+
+## **런타임 권한 요청 코드**
+
+```cs
+//using UnityEngine.Android;
+
+if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
+{
+    Permission.RequestUserPermission(Permission.Camera);
+}
+```
+
+권한 요청 방법은 아주 간단하다.
+
+위와 같이 `Permission.HasUserAuthorizedPermission()` 메소드를 통해 권한 보유 여부를 확인하고,
+
+권한을 갖고 있지 않으면 `Permission.RequestUserPermission()` 메소드를 통해 권한을 요청하면 된다.
+
+<br>
+
+## **권한의 승인과 거절**
+
+권한을 승인한 상태에서 `RequestUserPermission()` 메소드를 호출하면 아무런 동작을 수행하지 않는다. 
+
+동일 권한을 한 번 거절하면 다음에 한 번 더 해당 권한 승인 요청을 확인하고,
+
+두 번 거절하면 `거절 및 다시 표시하지 않음` 상태가 되어 다음부터 `RequestUserPermission()` 요청을 무시한다.
+
+권한 거절 횟수 정보는 앱 재설치 시 초기화된다.
+
+<br>
+
+`RequestUserPermission(string permission, PermissionCallbacks callbacks)` 메소드를 통해
+
+권한 승인, 권한 거절, 권한 거절 및 다시 표시하지 않음에 해당하는 응답마다 동작할 콜백 메소드를 등록할 수 있다.
+
+예제 : <https://docs.unity3d.com/ScriptReference/Android.Permission.RequestUserPermission.html>
+
+<br>
+
+## **권한 요청 콜백 예제**
+
+- `RequestUserPermission()` 메소드는 비동기로 동작하므로, 다음과 같이 처리해야 한다.
+
+```cs
+/// <summary> 안드로이드 - 권한 확인하고, 승인시 동작 수행하기 </summary>
+private void CheckAndroidPermissionAndDo(string permission, Action actionIfPermissionGranted)
+{
+#if UNITY_ANDROID
+    // 권한 승인이 안된 상태
+    if (Permission.HasUserAuthorizedPermission(permission) == false)
+    {
+        // 권한 요청 응답에 따른 동작 콜백
+        PermissionCallbacks pCallbacks = new PermissionCallbacks();
+        pCallbacks.PermissionGranted += str => Debug.Log($"{str} 승인");
+        pCallbacks.PermissionGranted += _ => actionIfPermissionGranted(); // 승인 시 기능 실행
+
+        pCallbacks.PermissionDenied += str => Debug.Log($"{str} 거절");
+        
+        pCallbacks.PermissionDeniedAndDontAskAgain += str => Debug.Log($"{str} 격하게 거절(다시 보기 싫음)");
+
+        // 권한 요청
+        Permission.RequestUserPermission(permission, pCallbacks);
+    }
+    // 권한이 승인 되어 있는 경우
+    else
+    {
+#endif
+        actionIfPermissionGranted(); // 바로 기능 실행
+#if UNITY_ANDROID
+    }
+#endif
+}
+```
+
+<br>
+
+## **권한 종류**
+
+`Permission` 구조체 내에 권한 종류가 스트링 상수로 저장되어 있으며, 종류는 다음과 같다.
+
+```cs
+// 카메라
+Camera = "android.permission.CAMERA";
+
+// 마이크
+Microphone = "android.permission.RECORD_AUDIO";
+
+// 정확한 위치(GPS, 네트워크 모두 사용)
+FineLocation = "android.permission.ACCESS_FINE_LOCATION";
+
+// 부정확한 위치(네트워크만 사용)
+CoarseLocation = "android.permission.ACCESS_COARSE_LOCATION";
+
+// 외부 저장소에서 읽기
+ExternalStorageRead = "android.permission.READ_EXTERNAL_STORAGE";
+
+// 외부 저장소에 쓰기
+ExternalStorageWrite = "android.permission.WRITE_EXTERNAL_STORAGE";
+```
+
+여기에 적혀 있지 않은 다른 권한 요청이 필요한 경우, 스트링으로 직접 넣어주면 된다.
 
 
 
@@ -94,3 +209,4 @@ mermaid: true
 ---
 - <https://docs.unity3d.com/kr/2020.3/Manual/android-manifest.html>
 - <https://docs.unity3d.com/kr/2020.3/Manual/android-RequestingPermissions.html>
+- <https://docs.unity3d.com/ScriptReference/Android.Permission.RequestUserPermission.html>

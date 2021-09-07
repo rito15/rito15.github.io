@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-07T05:39:09+09:00</updated>
+  <updated>2021-09-08T00:37:32+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,14 +20,14 @@
 
   
   <entry>
-    <title>Unity - 트리 구조 데이터 직렬화하기</title>
-    <link href="https://rito15.github.io/posts/unity-serialize-tree-object/" rel="alternate" type="text/html" title="Unity - 트리 구조 데이터 직렬화하기" />
-    <published>2021-09-06T23:23:00+09:00</published>
+    <title>유니티 안드로이드 토스트 메시지 표시하기</title>
+    <link href="https://rito15.github.io/posts/unity-android-toast-message/" rel="alternate" type="text/html" title="유니티 안드로이드 토스트 메시지 표시하기" />
+    <published>2021-09-07T21:42:00+09:00</published>
   
-    <updated>2021-09-07T00:32:10+09:00</updated>
+    <updated>2021-09-07T21:42:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-serialize-tree-object/</id>
-    <content src="https://rito15.github.io/posts/unity-serialize-tree-object/" />
+    <id>https://rito15.github.io/posts/unity-android-toast-message/</id>
+    <content src="https://rito15.github.io/posts/unity-android-toast-message/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -36,7 +36,7 @@
     
     <category term="Unity" />
     
-    <category term="Unity Study" />
+    <category term="Unity Android Memo" />
     
   
 
@@ -48,39 +48,34 @@
 
 
 
-      트리(Tree) 자료구조
+      AndroidToast Singleton
 
 
-class TreeNode
-{
-    public TreeNode[] children;
-}
+Usage
+
+AndroidToast.I.ShowToastMessage(string message, ToastLength length);
 
 
-위와 같이 자기 타입의 배열 또는 컬렉션을 필드로 갖는 구조를 트리 자료구조라고 한다.
-
-자식 및 하위 노드들을 순회하기 위해 재귀적 호출을 많이 사용한다.
+Option
 
 
+  ToastLength.Short : 약 2.5초 동안 메시지 표시
+  ToastLength.Long : 약 4초 동안 메시지 표시
 
 
-
-직렬화(Serialization)
-
-
-데이터를 저장 또는 통신하기 위한 목적으로 변형하는 것을 의미한다.
-
-직렬화 결과의 형태로는 대표적으로 JSON, XML, byte[], string 등이 있다.
-
-그리고 유니티 엔진에서는 SerializedObject가 있다.
-
-단어 의미 그대로 직렬화된 오브젝트라는 뜻이다.
+Source Code
 
 
+   
+AndroidToast.cs
 
-MonoBahaviour 내의 public, 혹은 직렬화 가능한 필드는
 
-인스펙트에 그냥 그대로 보...
+  using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// &amp;lt;summary&amp;gt; 안드로이드 토스트 메시지 표시 싱글톤 &amp;lt;/summary&amp;gt;
+public class AndroidToast : Mono...
     </summary>
   
 
@@ -88,79 +83,14 @@ MonoBahaviour 내의 public, 혹은 직렬화 가능한 필드는
 
   
   <entry>
-    <title>C# 간단한 트릭 - 널 체크</title>
-    <link href="https://rito15.github.io/posts/cs-null-check-trick/" rel="alternate" type="text/html" title="C# 간단한 트릭 - 널 체크" />
-    <published>2021-09-06T04:40:00+09:00</published>
+    <title>유니티 스크린샷 찍고 저장하기</title>
+    <link href="https://rito15.github.io/posts/unity-save-screen-shot/" rel="alternate" type="text/html" title="유니티 스크린샷 찍고 저장하기" />
+    <published>2021-09-07T20:20:00+09:00</published>
   
-    <updated>2021-09-06T04:40:00+09:00</updated>
+    <updated>2021-09-07T20:20:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/cs-null-check-trick/</id>
-    <content src="https://rito15.github.io/posts/cs-null-check-trick/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-public class MyClass
-{
-    public int[] dataArray;
-
-    public bool IsEmpty()
-    {
-        return dataArray == null || dataArray.Length == 0;
-    }
-}
-
-
-위와 같이 내부에 간단한 배열을 담고 있는 클래스가 있다.
-
-MyClass m = null;
-
-Console.WriteLine(m.IsEmpty());
-
-
-그리고 위와 같이 객체가 null인 상태에서 인스턴스 메소드를 호출하면
-
-당연히 NullReferenceException이 발생한다.
-
-
-
-그런데 데이터의 유효성 검사만 확인하면 되고, 이 검사가 매우 빈번한 경우에
-
-매번 m != null &amp;amp;&amp;amp; !m.I...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</title>
-    <link href="https://rito15.github.io/posts/unity-imgui-event-and-handle-exception/" rel="alternate" type="text/html" title="유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리" />
-    <published>2021-09-05T18:00:00+09:00</published>
-  
-    <updated>2021-09-06T05:13:06+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-imgui-event-and-handle-exception/</id>
-    <content src="https://rito15.github.io/posts/unity-imgui-event-and-handle-exception/" />
+    <id>https://rito15.github.io/posts/unity-save-screen-shot/</id>
+    <content src="https://rito15.github.io/posts/unity-save-screen-shot/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -169,7 +99,7 @@ Console.WriteLine(m.IsEmpty());
     
     <category term="Unity" />
     
-    <category term="Unity Editor" />
+    <category term="Unity Memo" />
     
   
 
@@ -181,30 +111,62 @@ Console.WriteLine(m.IsEmpty());
 
 
 
-      IMGUI 이벤트
+      1. Unity Editor
 
 
-유니티 IMGUI에서 OnGUI() 메소드가 호출되는 이벤트 타이밍은
+저장할 경로
 
-기본적으로 Layout과 Repaint가 있다.
+  $”{Application.dataPath}/ScreenShots/”
 
-Layout은 GUI 레이아웃 컨트롤을 생성하는 단계이고,
 
-Repaint은 GUI 컨트롤들을 화면에 그려내는 단계이다.
+실제 경로
 
-별도의 상호작용이나 간섭이 없다면 Layout과 Repaint가 반복된다.
-
-Event.current를 통해 현재 IMGUI 환경에서의 이벤트 객체를 참조할 수 있고,
-
-Event.current.type을 통해 현재 처리되는 이벤트의 종류를 알 수 있다.
+  “[프로젝트 디렉토리]/Assets/ScreenShots/”
 
 
 
-사용자 상호작용이 발생할 경우, 사용자 상호작용에 따라
 
-마우스를 눌렀으면 Layout - MouseDown 순서로 이벤트가 발생하여
 
-MouseDown 이벤트에서 사용자의 마우스 입...
+2. Standalone App
+
+
+저장할 경로
+
+  $”{Application.dataPath}/ScreenShots/”
+
+
+실제 경로
+
+  “[실행파일명]/[실행파일명_Data]/ScreenShots/”
+
+
+
+
+
+3. Android
+
+
+저장할 경로
+
+  $”{Application.persistentDataPath}/ScreenShots/”
+
+
+실제 경로
+
+  “/mnt/sdcard/Android/data/[패키지명]/files/ScreenShots/”
+
+
+
+
+권한 요청하기
+
+
+  링크
+
+
+
+
+...
     </summary>
   
 
@@ -212,93 +174,14 @@ MouseDown 이벤트에서 사용자의 마우스 입...
 
   
   <entry>
-    <title>C# 메모리 동기화가 필요한 경우, 아닌 경우 간단 정리</title>
-    <link href="https://rito15.github.io/posts/cs-memory-synchronization-memo/" rel="alternate" type="text/html" title="C# 메모리 동기화가 필요한 경우, 아닌 경우 간단 정리" />
-    <published>2021-09-05T14:54:00+09:00</published>
+    <title>유니티 - 플랫폼별 경로들</title>
+    <link href="https://rito15.github.io/posts/unity-path-by-platform/" rel="alternate" type="text/html" title="유니티 - 플랫폼별 경로들" />
+    <published>2021-09-07T19:39:00+09:00</published>
   
-    <updated>2021-09-05T14:54:00+09:00</updated>
+    <updated>2021-09-07T19:39:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/cs-memory-synchronization-memo/</id>
-    <content src="https://rito15.github.io/posts/cs-memory-synchronization-memo/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Threading" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      전혀 필요하지 않은 경우
-
-
-[1] 싱글 스레드 환경
-
-
-  전부
-
-
-
-
-[2] 멀티 스레드 환경
-
-
-  
-    하나의 스레드가 공유 데이터를 읽는 동안 다른 스레드가 변경할 염려가 없는 경우
-  
-  
-    어떤 작업을 동시에 하나의 스레드만 해야 할 필요가 없는 경우
-  
-
-
-
-
-원자성(Atomic) 보장이 필요한 경우
-
-
-
-  
-    여러 스레드가 공유 데이터에 쓰기를 수행하는 경우
-  
-  
-    완전히 동일한 순간에 두 개 이상의 스레드가 함께 접근하는 경우를 방지한다.
-  
-  
-    Interlocked를 많이 사용한다.
-  
-
-
-static int sharedValue = 0;
-
-static void TaskBody1()
-{
-    Interlocked.Increment(ref ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Script Line Counter(유니티 C# 스크립트 개수, 전체 라인 수 계산기)</title>
-    <link href="https://rito15.github.io/posts/unity-cs-script-line-counter/" rel="alternate" type="text/html" title="Script Line Counter(유니티 C# 스크립트 개수, 전체 라인 수 계산기)" />
-    <published>2021-09-04T23:23:00+09:00</published>
-  
-    <updated>2021-09-04T23:23:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-cs-script-line-counter/</id>
-    <content src="https://rito15.github.io/posts/unity-cs-script-line-counter/" />
+    <id>https://rito15.github.io/posts/unity-path-by-platform/</id>
+    <content src="https://rito15.github.io/posts/unity-path-by-platform/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -307,7 +190,7 @@ static void TaskBody1()
     
     <category term="Unity" />
     
-    <category term="Unity Editor Utilities" />
+    <category term="Unity Memo" />
     
   
 
@@ -319,55 +202,166 @@ static void TaskBody1()
 
 
 
-      Summary
+      경로 파라미터
 
 
 
-  지정한 폴더의 모든 하위 경로에서 C# 스크립트의 개수와 라인 수를 계산하여 보여줍니다.
-
-
-
-
-Preview
-
+  &amp;lt;projectroot&amp;gt; : 유니티 에디터 프로젝트 폴더 루트 경로
+  &amp;lt;executablefolder&amp;gt; : 빌드된 실행 파일의 폴더 경로
+  &amp;lt;companyname&amp;gt; : Project Settings - Player에서 지정한 Company Name
+  &amp;lt;productname&amp;gt; : Project Settings - Player에서 지정한 Product Name
+  &amp;lt;packagename&amp;gt; : com.&amp;lt;companyname&amp;gt;.&amp;lt;productname&amp;gt;
 
 
 
 
+읽기, 쓰기 모두 가능한 경로
 
-How To Use
+
+Windows Editor
+
+Application.dataPath
+"&amp;lt;projectroot&amp;gt;/Assets"...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>유니티 안드로이드 권한 요청하기</title>
+    <link href="https://rito15.github.io/posts/unity-android-authority/" rel="alternate" type="text/html" title="유니티 안드로이드 권한 요청하기" />
+    <published>2021-09-07T16:50:00+09:00</published>
+  
+    <updated>2021-09-07T16:50:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-android-authority/</id>
+    <content src="https://rito15.github.io/posts/unity-android-authority/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Android Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+  안드로이드의 카메라, 로컬 스토리지 등의 기능을 사용하려면 권한을 반드시 요청해야 한다.
+  Android 6(API Lv.23) 이상에서는 Android.Permission API를 통해 런타임에 권한을 요청할 수 있다.
+
+
+
+
+공통
+
+
+안드로이드 매니페스트 파일 경로
+
+
+  
+    구글링하면 대부분 나오는 Root/Temp/StagingArea/AndroidManifest.xml 경로는 2019.3 미만 버전이다.
+  
+  
+    2019.3 이상부터는 Root/Temp/gradleOut/unityLibrary/src/main/AndroidManifest.xml 이다.
+  
+
+
+
+
+안드로이드 매니페스트 오버라이드하기
+
+
+  위에서 찾은 파일을 Assets/Plugins/Andro...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>유니티 안드로이드 USB 디버깅하기</title>
+    <link href="https://rito15.github.io/posts/unity-android-usb-debugging/" rel="alternate" type="text/html" title="유니티 안드로이드 USB 디버깅하기" />
+    <published>2021-09-07T16:49:00+09:00</published>
+  
+    <updated>2021-09-07T16:49:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-android-usb-debugging/</id>
+    <content src="https://rito15.github.io/posts/unity-android-usb-debugging/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Android Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      LogCat 패키지 설치
+
+
+
+
+
+
+USB 디버깅 허용
+
+
+
+  기기마다 방법이 다를 수 있다.
+  
+    https://support-mirroring.mobizen.com/hc/ko/articles/216761537-USB-디버깅-모드-설정방법-안내
+  
+  설정
+  휴대폰 정보
+  소프트웨어 정보
+  
+    빌드 번호 연속 7번 터치
+  
+  설정
+  개발자 옵션
+  USB 디버깅 체크
+
+
+
+
+USB 연결 및 앱 실행
 
 
 
   
-    [Window] - [Rito] - [C# Script Line Counter]를 클릭합니다.
+    USB를 안드로이드 기기에 연결한다.
   
   
-    열린 창에서 Folder 부분에 Project 윈도우의 폴더 애셋을 드래그 앤 드롭합니다.
+    빌드된 앱을 기기에서 실행한다.
   
   
-    Folder에 아무 폴더도 지정하지 않을 경우, Assets 폴더 전체를 대상으로 합니다.
-  
-  
-    Calculate 버튼을 클릭합니다.
-  
-
-
-
-
-Download
-
-
-
-  Script Line Counter.unitypackage
-
-
-
-
-Github
-
-
-  https://github.com/r...
+    Build And Run을 통해 빌드하자마자 기기에서 실행할 수도 있으며,
+이를 이용하면 변경사항이 생겼을 때 apk 파일을 직접 교체하지 않고 변경사항을 ...
     </summary>
   
 
