@@ -94,7 +94,7 @@ private void DrawSomeCurveField()
 // AnimationUtility -> UnityEditor.AnimationUtility
 // curve -> AnimationCurve 타입 변수
 
-for (int i = 0; i < graph.length; i++)
+for (int i = 0; i < curve.length; i++)
 {
     if(i > 0) // 가장 좌측의 키는 더 좌측이 없으므로 예외 발생할 수도 있음
         AnimationUtility.SetKeyLeftTangentMode( curve, i, AnimationUtility.TangentMode.Linear);

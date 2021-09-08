@@ -26,8 +26,8 @@
 <meta property="og:title" content="유니티 스크립트 최적화" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. 비어있는 유니티 이벤트 메소드 방치하지 않기 4. StartCoroutine() 자주 호출하지 않기 5. 코루틴의 yield 캐싱하기 6. 참조 캐싱하기 7. 빌드 이후 Debug.Log() 사용하지 않기 8. Transform 변경은 한번에 9. 불필요하게 부모 자식 구조 늘리지 않기 10. ScriptableObject 활용하기 11. 오브젝트 풀링 사용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. 필요하지 않은 경우, new로 생성하지 않기 14. 구조체 사용하기 15. 컬렉션 재사용하기 16. List 사용할 때 주의할 점 17. StringBuilder 사용하기 18. LINQ 사용하지 않기 19. Enum HasFlag() 박싱 이슈 20. 메소드 호출 줄이기 21. 박싱, 언박싱 피하기 22. 비싼 수학 계산 피하기" />
-<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. 비어있는 유니티 이벤트 메소드 방치하지 않기 4. StartCoroutine() 자주 호출하지 않기 5. 코루틴의 yield 캐싱하기 6. 참조 캐싱하기 7. 빌드 이후 Debug.Log() 사용하지 않기 8. Transform 변경은 한번에 9. 불필요하게 부모 자식 구조 늘리지 않기 10. ScriptableObject 활용하기 11. 오브젝트 풀링 사용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. 필요하지 않은 경우, new로 생성하지 않기 14. 구조체 사용하기 15. 컬렉션 재사용하기 16. List 사용할 때 주의할 점 17. StringBuilder 사용하기 18. LINQ 사용하지 않기 19. Enum HasFlag() 박싱 이슈 20. 메소드 호출 줄이기 21. 박싱, 언박싱 피하기 22. 비싼 수학 계산 피하기" />
+<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 오브젝트 풀링 사용하기 13. 필요하지 않은 경우, 리턴하지 않기 14. 필요하지 않은 경우, new로 생성하지 않기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용하지 않기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기" />
+<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 오브젝트 풀링 사용하기 13. 필요하지 않은 경우, 리턴하지 않기 14. 필요하지 않은 경우, new로 생성하지 않기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용하지 않기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-opt-script-optimization/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-opt-script-optimization/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 스크립트 최적화" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 스크립트 최적화","description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. 비어있는 유니티 이벤트 메소드 방치하지 않기 4. StartCoroutine() 자주 호출하지 않기 5. 코루틴의 yield 캐싱하기 6. 참조 캐싱하기 7. 빌드 이후 Debug.Log() 사용하지 않기 8. Transform 변경은 한번에 9. 불필요하게 부모 자식 구조 늘리지 않기 10. ScriptableObject 활용하기 11. 오브젝트 풀링 사용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. 필요하지 않은 경우, new로 생성하지 않기 14. 구조체 사용하기 15. 컬렉션 재사용하기 16. List 사용할 때 주의할 점 17. StringBuilder 사용하기 18. LINQ 사용하지 않기 19. Enum HasFlag() 박싱 이슈 20. 메소드 호출 줄이기 21. 박싱, 언박싱 피하기 22. 비싼 수학 계산 피하기","dateModified":"2021-09-03T05:26:23+09:00","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 오브젝트 풀링 사용하기 13. 필요하지 않은 경우, 리턴하지 않기 14. 필요하지 않은 경우, new로 생성하지 않기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용하지 않기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 스크립트 최적화","dateModified":"2021-09-03T05:26:23+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5224 words">29 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6036 words">33 min</span>
 
 
           <!-- page views -->
@@ -469,28 +469,29 @@
         <h1 id="목차">목차</h1>
 <hr />
 <ul>
-  <li><a href="#getcomponent-find-메소드-사용-줄이기">1. GetComponent(), Find() 메소드 사용 줄이기</a></li>
-  <li><a href="#getcomponent-대신-trygetcomponent-사용하기">2. GetComponent() 대신 TryGetComponent() 사용하기</a></li>
-  <li><a href="#비어있는-유니티-이벤트-메소드-방치하지-않기">3. 비어있는 유니티 이벤트 메소드 방치하지 않기</a></li>
-  <li><a href="#startcoroutine-자주-호출하지-않기">4. StartCoroutine() 자주 호출하지 않기</a></li>
-  <li><a href="#코루틴의-yield-캐싱하기">5. 코루틴의 yield 캐싱하기</a></li>
-  <li><a href="#참조-캐싱하기">6. 참조 캐싱하기</a></li>
-  <li><a href="#빌드-이후-debuglog-사용하지-않기">7. 빌드 이후 Debug.Log() 사용하지 않기</a></li>
-  <li><a href="#transform-변경은-한번에">8. Transform 변경은 한번에</a></li>
-  <li><a href="#불필요하게-부모-자식-구조-늘리지-않기">9. 불필요하게 부모 자식 구조 늘리지 않기</a></li>
-  <li><a href="#scriptableobject-활용하기">10. ScriptableObject 활용하기</a></li>
-  <li><a href="#오브젝트-풀링-사용하기">11. 오브젝트 풀링 사용하기</a></li>
-  <li><a href="#필요하지-않은-경우-리턴하지-않기">12. 필요하지 않은 경우, 리턴하지 않기</a></li>
-  <li><a href="#필요하지-않은-경우-new로-생성하지-않기">13. 필요하지 않은 경우, new로 생성하지 않기</a></li>
-  <li><a href="#구조체-사용하기">14. 구조체 사용하기</a></li>
-  <li><a href="#컬렉션-재사용하기">15. 컬렉션 재사용하기</a></li>
-  <li><a href="#list-사용할-때-주의할-점">16. List 사용할 때 주의할 점</a></li>
-  <li><a href="#stringbuilder-사용하기">17. StringBuilder 사용하기</a></li>
-  <li><a href="#linq-사용하지-않기">18. LINQ 사용하지 않기</a></li>
-  <li><a href="#enum-hasflag-박싱-이슈">19. Enum HasFlag() 박싱 이슈</a></li>
-  <li><a href="#메소드-호출-줄이기">20. 메소드 호출 줄이기</a></li>
-  <li><a href="#박싱-언박싱-피하기">21. 박싱, 언박싱 피하기</a></li>
-  <li><a href="#비싼-수학-계산-피하기">22. 비싼 수학 계산 피하기</a></li>
+  <li><a href="#getcomponent-find-메소드-사용-줄이기">1.  GetComponent(), Find() 메소드 사용 줄이기</a></li>
+  <li><a href="#getcomponent-대신-trygetcomponent-사용하기">2.  GetComponent() 대신 TryGetComponent() 사용하기</a></li>
+  <li><a href="#objectname-gameobjecttag-사용하지-않기">3.  Object.name, GameObject.tag 사용하지 않기</a></li>
+  <li><a href="#비어있는-유니티-이벤트-메소드-방치하지-않기">4.  비어있는 유니티 이벤트 메소드 방치하지 않기</a></li>
+  <li><a href="#startcoroutine-자주-호출하지-않기">5.  StartCoroutine() 자주 호출하지 않기</a></li>
+  <li><a href="#코루틴의-yield-캐싱하기">6.  코루틴의 yield 캐싱하기</a></li>
+  <li><a href="#참조-캐싱하기">7.  참조 캐싱하기</a></li>
+  <li><a href="#빌드-이후-debuglog-사용하지-않기">8.  빌드 이후 Debug.Log() 사용하지 않기</a></li>
+  <li><a href="#transform-변경은-한번에">9.  Transform 변경은 한번에</a></li>
+  <li><a href="#불필요하게-부모-자식-구조-늘리지-않기">10. 불필요하게 부모 자식 구조 늘리지 않기</a></li>
+  <li><a href="#scriptableobject-활용하기">11. ScriptableObject 활용하기</a></li>
+  <li><a href="#오브젝트-풀링-사용하기">12. 오브젝트 풀링 사용하기</a></li>
+  <li><a href="#필요하지-않은-경우-리턴하지-않기">13. 필요하지 않은 경우, 리턴하지 않기</a></li>
+  <li><a href="#필요하지-않은-경우-new로-생성하지-않기">14. 필요하지 않은 경우, new로 생성하지 않기</a></li>
+  <li><a href="#구조체-사용하기">15. 구조체 사용하기</a></li>
+  <li><a href="#컬렉션-재사용하기">16. 컬렉션 재사용하기</a></li>
+  <li><a href="#list-사용할-때-주의할-점">17. List 사용할 때 주의할 점</a></li>
+  <li><a href="#stringbuilder-사용하기">18. StringBuilder 사용하기</a></li>
+  <li><a href="#linq-사용하지-않기">19. LINQ 사용하지 않기</a></li>
+  <li><a href="#박싱-언박싱-피하기">20. 박싱, 언박싱 피하기</a></li>
+  <li><a href="#enum-hasflag-박싱-이슈">21. Enum HasFlag() 박싱 이슈</a></li>
+  <li><a href="#메소드-호출-줄이기">22. 메소드 호출 줄이기</a></li>
+  <li><a href="#비싼-수학-계산-피하기">23. 비싼 수학 계산 피하기</a></li>
 </ul>
 
 <p><br /></p>
@@ -556,23 +557,100 @@
 
 <p><br /></p>
 
-<p><code class="language-plaintext highlighter-rouge">GetComponent()</code> 메소드는 할당에 실패하면</p>
+<p><code class="language-plaintext highlighter-rouge">GetComponent()</code> 메소드는 할당에 성공하거나 실패해도 언제나 <strong>GC Allocation</strong>이 발생한다.</p>
 
-<p><code class="language-plaintext highlighter-rouge">GetComponentNullErrorWrapper</code>라는 객체를 통해 GC Allocation이 발생한다.</p>
+<p>하지만 <code class="language-plaintext highlighter-rouge">TryGetComponent()</code>를 이용하면 GC 걱정 없이 깔끔하게 사용할 수 있으며,</p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/122180393-5a11e980-cec3-11eb-9b3a-8c471da252f4.png" alt="image" /></p>
+<p>할당 성공 여부를 <code class="language-plaintext highlighter-rouge">bool</code> 타입으로 리턴받을 수 있다.</p>
 
 <p><br /></p>
 
-<p>하지만 <code class="language-plaintext highlighter-rouge">TryGetComponent()</code>를 이용하면 GC 걱정 없이 깔끔하게 사용할 수 있다.</p>
+<h1 id="objectname-gameobjecttag-사용하지-않기">Object.name, GameObject.tag 사용하지 않기</h1>
+<hr />
+
+<p>게임 오브젝트의 이름을 참조해야 할 때, <code class="language-plaintext highlighter-rouge">.name</code> 프로퍼티를 호출한다.</p>
+
+<p>그리고 태그 비교를 해야 할 때, <code class="language-plaintext highlighter-rouge">.tag</code> 프로퍼티를 호출해서 <code class="language-plaintext highlighter-rouge">==</code>, <code class="language-plaintext highlighter-rouge">.Equals()</code> 등으로 비교한다.</p>
+
+<p>그런데 이런 호출 하나 하나가 전부 가비지를 한 개씩 생성한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">.name</code>으로 프로퍼티 Getter를 호출할 때마다 가비지 한 개,</p>
+
+<p><code class="language-plaintext highlighter-rouge">.tag</code>로 프로퍼티 Getter를 호출할 때마다 가비지 한 개.</p>
+
+<p>예전부터 있었던 문제이고, <code class="language-plaintext highlighter-rouge">2021.1.16f1</code> 버전에서도 직접 테스트해본 결과 동일했다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">UnityEngine.Object.name</code> 프로퍼티를 살펴보면</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="kt">string</span> <span class="n">name</span>
+<span class="p">{</span>
+    <span class="k">get</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">GetName</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">set</span>
+    <span class="p">{</span>
+        <span class="nf">SetName</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">value</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">[</span><span class="nf">MethodImpl</span><span class="p">(</span><span class="n">MethodImplOptions</span><span class="p">.</span><span class="n">InternalCall</span><span class="p">)]</span>
+<span class="p">[</span><span class="nf">FreeFunction</span><span class="p">(</span><span class="s">"UnityEngineObjectBindings::GetName"</span><span class="p">)]</span>
+<span class="k">private</span> <span class="k">static</span> <span class="k">extern</span> <span class="kt">string</span> <span class="nf">GetName</span><span class="p">(</span><span class="n">Object</span> <span class="n">obj</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이런 식으로 구현되어 있다.</p>
+
+<p>결국 오브젝트의 이름을 갖고 있는건 유니티 네이티브 영역이고,</p>
+
+<p>이를 참조하려고 할 때마다 문자열을 새롭게 힙에 할당해 오기 때문에 가비지가 발생하는 것이다.</p>
+
+<p><br /></p>
+
+<p>태그도 비슷한 방식으로 되어 있지만, 그래도 해결 방법이 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">gameObject.tag == "Player"</code> 대신에</p>
+
+<p><code class="language-plaintext highlighter-rouge">gameObject.CompareTag("Player")</code>처럼</p>
+
+<p><code class="language-plaintext highlighter-rouge">GameObject.CompareTag(string)</code>, <code class="language-plaintext highlighter-rouge">Component.CompareTag(string)</code> 메소드를 사용하면 가비지 생성을 방지할 수 있다.</p>
+
+<p><br /></p>
+
+<p>결국 <code class="language-plaintext highlighter-rouge">name</code> 프로퍼티만 주의해서 사용하면 된다.</p>
+
+<p>“절대로 쓰면 안된다”, 이런 것이 아니라</p>
+
+<p>성능에 별 영향이 없는 것 같거나 다른 방안이 없으면 그냥 사용하고,</p>
+
+<p>성능에 민감하면 다른 방법을 찾으면 된다.</p>
 
 <p><br /></p>
 
 <h1 id="비어있는-유니티-이벤트-메소드-방치하지-않기">비어있는 유니티 이벤트 메소드 방치하지 않기</h1>
 <hr />
-<p><code class="language-plaintext highlighter-rouge">Awake()</code>, <code class="language-plaintext highlighter-rouge">Update()</code> 등의 유니티 기본 이벤트 메소드는 스크립트 내에 작성되어 있는 것만으로도 호출되어 성능을 소모한다.</p>
+<p><code class="language-plaintext highlighter-rouge">Awake()</code>, <code class="language-plaintext highlighter-rouge">Update()</code> 등의 유니티 기본 이벤트 메소드는 매직 메소드라고도 불리며,</p>
 
-<p>따라서 내용이 비어있는 유니티 기본 콜백 메소드는 아예 지워야 한다.</p>
+<p>스크립트 내에 작성되어 있는 것만으로도 호출되어 성능을 소모한다.</p>
+
+<p>따라서 내용이 비어있는 유니티 기본 이벤트 메소드는 아예 지워야 한다.</p>
 
 <p><code class="language-plaintext highlighter-rouge">protected virtual</code> 등으로 지정하는 경우에도 혹시나 비워놓을 가능성이 있다면 지양하는 것이 좋다.</p>
 
@@ -824,6 +902,10 @@
 
 <p>활성화/비활성화하는 방식을 사용하는 것이 좋다.</p>
 
+<ul>
+  <li><a href="https://rito15.github.io/posts/unity-object-pooling/">https://rito15.github.io/posts/unity-object-pooling/</a></li>
+</ul>
+
 <p><br /></p>
 
 <h1 id="필요하지-않은-경우-리턴하지-않기">필요하지 않은 경우, 리턴하지 않기</h1>
@@ -852,7 +934,9 @@
 
 <p>메소드를 호출하고 그 리턴값을 항상 사용하지는 않는 경우, 리턴값이 void인 메소드를 작성하는 것이 좋다.</p>
 
-<p>리턴하는 것만으로 항상 메모리 소비가 발생하며, 심지어 참조형인 경우 GC의 먹이가 된다.</p>
+<p>리턴하는 것만으로 항상 성능 소모가 발생하며, 심지어 참조형인 경우 GC의 먹이가 된다.</p>
+
+<p>(대표적으로 <code class="language-plaintext highlighter-rouge">StartCoroutine()</code>)</p>
 
 <p><br /></p>
 
@@ -956,17 +1040,21 @@
 
 <p>그리고 <code class="language-plaintext highlighter-rouge">.Add()</code>를 통해 요소를 하나씩 추가할 때마다 처음에는 크기가 4인 배열을 생성하고</p>
 
-<p>배열이 가득찰 때마다 현재 배열 크기의 두 배 크기의 새로운 배열을 생성하며,</p>
+<p>배열이 가득찰 때마다 현재 배열의 두 배 크기의 새로운 배열을 생성하며,</p>
 
 <p>기존의 배열을 그대로 복제해온 뒤 마지막 위치에 새로운 요소를 집어넣는 방식이다.</p>
 
 <p><br /></p>
 
-<p>그래서 리스트를 생성할 때, 사용될 영역의 크기를 미리 알고 있다면 <code class="language-plaintext highlighter-rouge">new List&lt;T&gt;(100)</code> 처럼 개수를 미리 지정하면</p>
+<p>그래서 리스트를 생성할 때, 사용될 영역의 크기를 미리 알고 있다면</p>
 
-<p>내부적으로 그만큼의 크기를 갖는 배열을 미리 할당하여, <code class="language-plaintext highlighter-rouge">.Add()</code>를 하더라도 기존의 배열 전체를 통째로 복제하는 것을 방지할 수 있다.</p>
+<p><code class="language-plaintext highlighter-rouge">new List&lt;T&gt;(100)</code> 처럼 개수를 미리 지정하는 것이 좋다.</p>
 
-<p>이미 생성된 리스트라면 <code class="language-plaintext highlighter-rouge">.Capacity</code>에 크기 값을 초기화하면 된다.</p>
+<p>그러면 내부적으로 그만큼의 크기를 갖는 배열을 미리 할당하여,</p>
+
+<p><code class="language-plaintext highlighter-rouge">.Add()</code>를 하더라도 기존의 배열 전체를 통째로 복제하는 것을 방지할 수 있다.</p>
+
+<p>이미 생성된 리스트라면 <code class="language-plaintext highlighter-rouge">.Capacity</code> 프로퍼티에 크기 값을 넣어주면 된다.</p>
 
 <p><br /></p>
 
@@ -980,7 +1068,7 @@
 <span class="n">a</span> <span class="p">=</span> <span class="s">"a2"</span><span class="p">;</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>스트링에 새로운 값을 초기화 하는 것은 GC를 호출하지 않지만,</p>
+<p>스트링에 상수 문자열을 초기화 하는 것은 GC를 호출하지 않지만,</p>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -996,7 +1084,7 @@
 <span class="n">strA</span> <span class="p">=</span> <span class="s">$"</span><span class="p">{</span><span class="n">strB</span><span class="p">}</span><span class="s">c"</span><span class="p">;</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>스트링끼리 연결하는 경우에는 하나의 연결마다 하나의 가비지를 생성한다.</p>
+<p>스트링끼리 연결하는 경우에는 가비지를 생성한다.</p>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -1010,18 +1098,62 @@
 
 <p><br /></p>
 
-<h1 id="linq-사용하지-않기">LINQ 사용하지 않기</h1>
+<h1 id="linq-사용-시-주의하기">LINQ 사용 시 주의하기</h1>
 <hr />
 
 <ul>
   <li><a href="https://medium.com/swlh/is-using-linq-in-c-bad-for-performance-318a1e71a732">https://medium.com/swlh/is-using-linq-in-c-bad-for-performance-318a1e71a732</a></li>
+  <li><a href="https://www.jacksondunstan.com/articles/4840">https://www.jacksondunstan.com/articles/4840</a></li>
 </ul>
 
 <p>LINQ는 개발자에게 굉장한 편의성을 제공해주며, 대개 성능이 크게 나쁘지는 않다.</p>
 
-<p>하지만 정확히 이해하고 사용하지 않는다면 추가적인 성능 및 메모리 소모가 발생할 수 있으므로,</p>
+<p>하지만 정확히 이해하고 사용하지 않는다면 불필요한 성능 및 메모리 소모가 발생할 수 있으므로,</p>
 
-<p><strong>성능에 민감하거나 자주 호출되는 코드</strong>에는 사용하지 않는 것이 좋다.</p>
+<p>잘 판단해서 사용해야 한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">LINQ</code>의 대부분의 연산자는 중간 버퍼(일종의 배열)를 생성하고, 이는 모조리 가비지가 된다.</p>
+
+<p>그러니까 <code class="language-plaintext highlighter-rouge">LINQ</code> 연산자 한두개쯤 사용해서 가능한 것을</p>
+
+<p>가독성이나 모종의 이유로 여러 번 나누어 처리하게 되면 모두 불필요한 성능 저하의 원인이 된다.</p>
+
+<p>성능에 민감하거나 매프레임 호출되는 부분에서 <code class="language-plaintext highlighter-rouge">LINQ</code>를 사용하고 있었다면,</p>
+
+<p>더 나은 방안은 없을지 다시 한 번 생각해보는 것이 좋다.</p>
+
+<p><br /></p>
+
+<h1 id="박싱-언박싱-피하기">박싱, 언박싱 피하기</h1>
+<hr />
+
+<p><strong>박싱(Boxing)</strong>은 값 타입이 참조 타입으로 암시적, 또는 명시적으로 캐스팅되는 것을 의미한다.</p>
+
+<p><strong>언박싱(Unboxing)</strong>은 참조 타입이 값 타입으로 명시적으로 캐스팅되는 것을 의미한다.</p>
+
+<p>이 때 중요한 것은, 박싱과 언박싱이 단순 할당보다 성능이 매우 나쁘다는 것과 참조 타입은 힙에 할당되어 GC의 먹이가 될 수 있다는 점이다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Debug</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Log</span><span class="p">(</span><span class="kt">object</span> <span class="n">msg</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>유니티 엔진을 사용하면서 가장 친숙한 메소드인 Debug.Log()이다.</p>
+
+<p>그리고 항상 박싱이 발생하는 대표적인 예시라고 할 수 있다.</p>
+
+<p>파라미터의 타입이 object이기 때문에, 어떤 값 타입을 넣어도 참조타입인 object 타입으로 박싱된다.</p>
+
+<p>이렇게 메소드 매개변수로 object 타입을 사용하거나 박싱을 유도하는 방식은 최대한 지양해야 한다.</p>
+
+<p>따라서 이를 피할 수 있는 대표적인 방법으로, 제네릭이 있다.</p>
+
+<p>제네릭은 객체 생성 또는 메소드 호출 시 제네릭 타입이 하나의 타입으로 고정되기 때문에, 박싱과 언박싱을 피할 수 있다.</p>
 
 <p><br /></p>
 
@@ -1031,8 +1163,9 @@
   <li><a href="https://medium.com/@arphox/the-boxing-overhead-of-the-enum-hasflag-method-c62a0841c25a">https://medium.com/@arphox/the-boxing-overhead-of-the-enum-hasflag-method-c62a0841c25a</a></li>
 </ul>
 
-<p><code class="language-plaintext highlighter-rouge">[Flags]</code>를 사용하는 enum의 경우, HasFlag()를 자주 사용하게 된다.
-하지만 이 때 박싱이 발생한다.</p>
+<p><code class="language-plaintext highlighter-rouge">[Flags]</code>를 사용하는 enum의 경우, <code class="language-plaintext highlighter-rouge">HasFlag()</code>를 사용하면 간편히 포함관계를 파악할 수 있다.</p>
+
+<p>하지만 이 때 어떤 <code class="language-plaintext highlighter-rouge">enum</code> 타입이 <code class="language-plaintext highlighter-rouge">System.Enum</code>으로 변환되면서 박싱이 발생한다.</p>
 
 <p>따라서 이를 피하기 위해서는 다음과 같은 확장 메소드를 만들어 사용하는 것이 좋다.</p>
 
@@ -1200,47 +1333,12 @@
 
 <p><br /></p>
 
-<h1 id="박싱-언박싱-피하기">박싱, 언박싱 피하기</h1>
-<hr />
-
-<p>박싱(Boxing)은 값 타입이 참조 타입으로 암시적, 또는 명시적으로 캐스팅되는 것을 의미한다.</p>
-
-<p>언박싱(Unboxing)은 참조 타입이 값 타입으로 명시적으로 캐스팅되는 것을 의미한다.</p>
-
-<p>이 때 중요한 것은, 박싱과 언박싱이 단순 할당보다 성능이 매우 나쁘다는 것과 참조 타입은 힙에 할당되어 GC의 먹이가 될 수 있다는 점이다.</p>
-
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Debug</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Log</span><span class="p">(</span><span class="kt">object</span> <span class="n">msg</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p>유니티 엔진을 사용하면서 가장 친숙한 메소드인 Debug.Log()이다.</p>
-
-<p>그리고 항상 박싱과 언박싱이 발생하는 대표적인 예시라고 할 수 있다.</p>
-
-<p>파라미터의 타입이 object이기 때문에, 어떤 값 타입을 넣어도 참조타입인 object 타입으로 박싱된다.</p>
-
-<p>그리고 로그를 문자열로 출력해야 하므로 string으로 언박싱된다.</p>
-
-<p>이렇게 메소드 매개변수로 object 타입을 사용하거나 박싱을 유도하는 방식은 최대한 지양해야 한다.</p>
-
-<p>따라서 이를 피할 수 있는 대표적인 방법으로, 제네릭이 있다.</p>
-
-<p>제네릭은 객체 생성 또는 메소드 호출 시 제네릭 타입이 하나의 타입으로 고정되기 때문에, 박싱과 언박싱을 피할 수 있다.</p>
-
-<p><br /></p>
-
 <h1 id="비싼-수학-계산-피하기">비싼 수학 계산 피하기</h1>
 <hr />
 
 <ul>
   <li>
-    <h2 id="나눗셈-대신-곱셈">나눗셈 대신 곱셈</h2>
+    <h2 id="나눗셈-대신-곱셈"><strong>나눗셈 대신 곱셈</strong></h2>
   </li>
 </ul>
 
@@ -1250,11 +1348,37 @@
 
 <p><code class="language-plaintext highlighter-rouge">1.0f / 2.0f</code> 보다 <code class="language-plaintext highlighter-rouge">1.0f * 0.5f</code>가 빠르다. 꼭 기억하자.</p>
 
+<p>나눗셈을 어떻게 곱셈으로 대체할지 고민이 될 수도 있는데,</p>
+
+<p>간단한 규칙을 정하면 편하다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">result</span> <span class="p">=</span> <span class="n">a</span> <span class="p">/</span> <span class="n">b</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위와 같이 사용하는 식이 있을때, 다음과 같이 규칙을 정한다.</p>
+
+<ul>
+  <li>
+    <p>만약 <code class="language-plaintext highlighter-rouge">b</code> 값이 자주 변한다면 나눗셈을 그대로 사용한다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">b</code> 값이 상수이면 <code class="language-plaintext highlighter-rouge">c = 1 / b</code> 상수 또는 변수를 선언하고, <br />
+<code class="language-plaintext highlighter-rouge">a / b</code> 대신 <code class="language-plaintext highlighter-rouge">a * c</code>를 항상 사용한다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">b</code> 값이 일정한 주기로 바뀐다면, 바뀌는 순간마다 <code class="language-plaintext highlighter-rouge">c = 1 / b</code>로 담아놓고 <br />
+<code class="language-plaintext highlighter-rouge">a / b</code> 대신 <code class="language-plaintext highlighter-rouge">a * c</code>를 항상 사용한다.</p>
+  </li>
+</ul>
+
 <p><br /></p>
 
 <ul>
   <li>
-    <h2 id="if-else-vs-삼항-연산자">If-else vs 삼항 연산자</h2>
+    <h2 id="if-else-vs-삼항-연산자"><strong>If-else vs 삼항 연산자</strong></h2>
   </li>
 </ul>
 
@@ -1266,7 +1390,7 @@
 
 <ul>
   <li>
-    <h2 id="systemmathabs-vs-unityenginemathfabs-vs-삼항-연산자">System.Math.Abs vs UnityEngine.Mathf.Abs vs 삼항 연산자</h2>
+    <h2 id="systemmathabs-vs-unityenginemathfabs-vs-삼항-연산자"><strong>System.Math.Abs</strong> vs <strong>UnityEngine.Mathf.Abs</strong> vs <strong>삼항 연산자</strong></h2>
   </li>
 </ul>
 
@@ -1324,7 +1448,7 @@
 <span class="c1">/// &lt;param name="f"&gt;&lt;/param&gt;</span>
 <span class="k">public</span> <span class="k">static</span> <span class="kt">float</span> <span class="nf">Abs</span><span class="p">(</span><span class="kt">float</span> <span class="n">f</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="k">return</span> <span class="n">Math</span><span class="p">.</span><span class="nf">Abs</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">Math</span><span class="p">.</span><span class="nf">Abs</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -1364,14 +1488,14 @@
 
 <p><br /></p>
 
-<p>결론적으로</p>
+<p>결론적으로, 동일 연산에 대하여</p>
 
 <ol>
   <li>
     <p>직접 계산하는 것이 가장 빠르다.</p>
   </li>
   <li>
-    <p>System.Math는 UnityEngine.Mathf보다 빠르다.</p>
+    <p>System.Math는 웬만해서 UnityEngine.Mathf보다 빠르다.</p>
   </li>
 </ol>
 
@@ -1531,22 +1655,22 @@
         
         
         
+        <li><a href="/posts/unity-path-by-platform/">유니티 - 플랫폼별 경로들</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-android-toast-message/">유니티 안드로이드 토스트 메시지 표시하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-memory-synchronization-memo/">C# 메모리 동기화가 필요한 경우, 아닌 경우 간단 정리</a></li>
       
         
         
         
         <li><a href="/posts/cs-memo-find-internal-path/">C# 하위 폴더, 파일들의 절대 경로 찾기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-find-folder-path-from-folder-asset/">유니티 - 폴더 애셋으로부터 폴더 절대 경로 구하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-serialize-tree-object/">Unity - 트리 구조 데이터 직렬화하기</a></li>
       
 
       </ul>
