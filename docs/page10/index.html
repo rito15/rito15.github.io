@@ -367,6 +367,88 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/03-cs-spinlock/">C# Spin Lock</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        스핀 락(Spin Lock) 개념
+
+
+스레드 동기화를 위해 락을 걸고 크리티컬 섹션에 진입할 경우, 대기하는 스레드는 블록된다.
+
+다시 말해, 크리티컬 섹션에 진입하려고 대기하는 스레드는 CPU 점유를 포기하게 된다.
+
+그리고 CPU 자원이 현재 활성화된 다른 스레드에게 넘어가게 되는데, 이 때 컨텍스트 스위칭이 발생하며 그에 따른 오버헤드 또한 발생...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Jul  8, 2021,  1:03 AM +0900"
+  >
+
+  
+  
+
+  
+    Jul  8
+  
+
+  <i class="unloaded">2021-07-08T01:03:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1810 words">10 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/02-cs-monitor-and-lock/">C# Monitor, lock</a>
     </h1>
 
@@ -1231,127 +1313,6 @@ Preview
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-magical-orb/">(Amplify) Magical Orb Shader</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Preview
-
-
-
-
-
-
-Properties
-
-
-
-
-
-
-Settings
-
-
-General
-
-  Light Model - Unlit
-
-
-Blend Mode
-
-  Transparent
-
-
-
-
-Nodes
-
-
-
-
-
-
-+ 추가 : Twirl, Normal From Height가 없는 구버전 노드
-
-
-
-
-
-Download
-
-
-
-  2021_0703_Magical...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sat, Jul  3, 2021,  5:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul  3
-  
-
-  <i class="unloaded">2021-07-03T17:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="33 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1826,9 +1787,24 @@ Download
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page29/">29</a>
+        <a class="page-link btn-box-shadow" href="/page30/">30</a>
       </li>
     
 
@@ -1887,6 +1863,11 @@ Download
         
         
         
+        <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
@@ -1903,11 +1884,6 @@ Download
         
         
         <li><a href="/posts/unity-path-by-platform/">유니티 - 플랫폼별 경로들</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-android-toast-message/">유니티 안드로이드 토스트 메시지 표시하기</a></li>
       
 
       </ul>
@@ -3502,6 +3478,61 @@ Download
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3680,63 +3711,6 @@ Download
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -5101,10 +5075,10 @@ Download
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
+        <a class="post-tag" href="/tags/memo/">memo</a>
       
         
-        <a class="post-tag" href="/tags/memo/">memo</a>
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>
@@ -6773,6 +6747,61 @@ Download
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -6951,63 +6980,6 @@ Download
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -8367,10 +8339,10 @@ Download
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
+        <a class="post-tag" href="/tags/memo/">memo</a>
       
         
-        <a class="post-tag" href="/tags/memo/">memo</a>
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>

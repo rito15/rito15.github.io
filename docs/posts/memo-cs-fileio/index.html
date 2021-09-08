@@ -939,6 +939,11 @@
         
         
         
+        <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
@@ -955,11 +960,6 @@
         
         
         <li><a href="/posts/unity-path-by-platform/">유니티 - 플랫폼별 경로들</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-android-toast-message/">유니티 안드로이드 토스트 메시지 표시하기</a></li>
       
 
       </ul>
@@ -2554,6 +2554,61 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2732,63 +2787,6 @@
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -4153,10 +4151,10 @@
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
+        <a class="post-tag" href="/tags/memo/">memo</a>
       
         
-        <a class="post-tag" href="/tags/memo/">memo</a>
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>
@@ -4215,6 +4213,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8147,7 +8158,7 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
       
       
       <div class="card">
-        <a href="/posts/cs-benchmark-dotnet/">
+        <a href="/posts/cs-null-check-trick/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8164,13 +8175,13 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
   
 
   
-    Aug  7
+    Sep  6
   
 
-  <i class="unloaded">2021-08-07T16:16:00+09:00</i>
+  <i class="unloaded">2021-09-06T04:40:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Benchmark DotNet</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 간단한 트릭 - 널 체크</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8179,39 +8190,30 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
 
 
 
-                설치
+                Note
 
 
-
-  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치
-
-
-
-
-사용법
-
-
-[1] 테스트 대상 클래스
-
-
-   
-…
-
-
-  [1-1] 네임스페이스
-
-  
-     
-.
-
-
-    1
+1
 2
-using BenchmarkDotNet;
-using BenchmarkDotNet.Attributes;
-    
+3
+4
+5
+6
+7
+8
+9
+public class MyClass
+{
+    public int[] dataArray;
 
-  ...
+    public bool IsEmpty()
+    {
+        return dataArray == null || dataArray.Length == 0;
+    }
+}
+
+
+위와 같이 내부에 간단한 배열을 담...
               </p>
             </div>
           </div>
@@ -9895,6 +9897,61 @@ using BenchmarkDotNet.Attributes;
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -10073,63 +10130,6 @@ using BenchmarkDotNet.Attributes;
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -11489,10 +11489,10 @@ using BenchmarkDotNet.Attributes;
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
+        <a class="post-tag" href="/tags/memo/">memo</a>
       
         
-        <a class="post-tag" href="/tags/memo/">memo</a>
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>

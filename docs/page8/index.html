@@ -367,6 +367,103 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/06-cs-tcp-async-socket-with-packet.md/">TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+  이전 포스팅에서 이어집니다.
+
+
+
+
+ReceiveBuffer, SendBuffer
+
+
+
+  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.
+
+
+
+
+ReceiveBuffer 클래스
+
+
+
+  
+    각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.
+  
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Aug  2, 2021, 12:06 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug  2
+  
+
+  <i class="unloaded">2021-08-02T00:06:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3917 words">21 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/05-cs-tcp-async-socket-basic.md/">TCP 비동기 소켓 서버, 클라이언트 기본</a>
     </h1>
 
@@ -1251,119 +1348,6 @@ Preview
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-sea-urchin/">(Amplify) Sea Urchin Shader</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  가시 삐쭉삐쭉한 성게 쉐이더
-
-
-
-
-1. 기본
-
-
-Preview
-
-
-
-
-
-
-
-Properties
-
-
-
-
-  
-    
-      프로퍼티
-      설명
-    
-  
-  
-    
-      Edge length
-      테셀레이션 간격(작을수록 촘촘해진다)
-    
-    
-      Tiling
-      가시 개수 비율...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Jul 23, 2021,  3:15 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul 23
-  
-
-  <i class="unloaded">2021-07-23T15:15:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="150 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1838,9 +1822,24 @@ Properties
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page29/">29</a>
+        <a class="page-link btn-box-shadow" href="/page30/">30</a>
       </li>
     
 
@@ -1899,6 +1898,11 @@ Properties
         
         
         
+        <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
         
@@ -1915,11 +1919,6 @@ Properties
         
         
         <li><a href="/posts/unity-path-by-platform/">유니티 - 플랫폼별 경로들</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-android-toast-message/">유니티 안드로이드 토스트 메시지 표시하기</a></li>
       
 
       </ul>
@@ -3514,6 +3513,61 @@ Properties
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3692,63 +3746,6 @@ Properties
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -5113,10 +5110,10 @@ Properties
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
+        <a class="post-tag" href="/tags/memo/">memo</a>
       
         
-        <a class="post-tag" href="/tags/memo/">memo</a>
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>
@@ -6785,6 +6782,61 @@ Properties
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -6963,63 +7015,6 @@ Properties
     
     
     
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-      
     
   
     
@@ -8379,10 +8374,10 @@ Properties
         <a class="post-tag" href="/tags/shader/">shader</a>
       
         
-        <a class="post-tag" href="/tags/graphics/">graphics</a>
+        <a class="post-tag" href="/tags/memo/">memo</a>
       
         
-        <a class="post-tag" href="/tags/memo/">memo</a>
+        <a class="post-tag" href="/tags/graphics/">graphics</a>
       
         
         <a class="post-tag" href="/tags/opengl/">opengl</a>
