@@ -33,7 +33,9 @@ mermaid: true
 
 `MouseDown` 이벤트에서 사용자의 마우스 입력 이벤트를 처리한다.
 
-키보드를 눌렀으면 마찬가지로 `Layout` - `KeyDown` 순서로 이벤트가 발생한다.
+키보드를 눌렀으면 마찬가지로 `Layout` - `KeyDown`,
+
+버튼을 눌렀으면 `Layout` - `Used` 순서로 이벤트가 발생한다.
 
 다른 이벤트들도 모두 마찬가지다.
 
@@ -139,9 +141,9 @@ if(GUILayout.Button("Add New Element to List"))
 
 이렇게 버튼을 이용해 사용자 상호작용을 통해 레이아웃 엔트리를 변경하는 경우는 상관 없다.
 
-사용자 상호작용이 있는 경우, `Layout`이 아니라
+사용자 상호작용이 있는 경우, `Layout`이 아닌 다른 이벤트에 의해 처리되기 때문이다.
 
-`MouseDown`, `KeyDown` 같은 이벤트에 의해 처리되기 때문이다.
+버튼 클릭 이벤트는 `Used` 이벤트를 통해 처리된다.
 
 <br>
 
@@ -158,7 +160,7 @@ else
 
 <br>
 
-시간의 진행에 따라 레이아웃 엔트리가 변경되는 예시를 하나 살펴본다.
+시간의 진행에 따라 레이아웃 엔트리가 변경되는 예시를 하나 살펴보자.
 
 ```cs
 private int progress = 0;
@@ -223,22 +225,37 @@ private void OnGUI()
 
 이런 경우에도 `Layout` 이벤트를 피해서 결과를 적용시켜야 하는데,
 
-메인 스레드 디스패처 같이 동기화 큐를 이용하면 편리하다.
+메인 스레드 디스패처 같은 방식으로 동기화 큐를 이용하면 좋다.
 
 ```cs
+private bool isProcessingJob;
+
 private void OnGUI()
 {
     if(GUILayout.Button("Do"))
         Task.Run(() => DoWorkerThreadJob());
-        
-    /*
-        자동 레이아웃 요소 그리기
-    */
+    
+    if(isProcessingJob)
+    {
+        /*
+            자동 레이아웃 컨트롤 : 처리 중 GUI
+        */
+    }
+    else
+    {
+        /*
+            자동 레이아웃 컨트롤 : 처리 결과 GUI
+        */
+    }
 }
 
 private void DoWorkerThreadJob()
 {
-    // 작업 및 변경사항 적용
+    isProcessingJob = true;
+    
+    /* 작업 처리 */
+    
+    isProcessingJob = false;
 }
 ```
 
@@ -253,32 +270,54 @@ private void DoWorkerThreadJob()
 <br>
 
 ```cs
-private readonly ConcurrentQueue<Action> onGuiChangedQueue
+private bool isProcessingJob;
+private readonly ConcurrentQueue<Action> guiSyncQueue
     = new ConcurrentQueue<Action>();
 
 private void OnGUI()
 {
     if(GUILayout.Button("Do"))
+    {
+        isProcessingJob = true; // Used 이벤트에서 변경 발생
         Task.Run(() => DoWorkerThreadJob());
-        
-    /*
-        자동 레이아웃 요소 그리기
-    */
+    }
+    
+    if(isProcessingJob)
+    {
+        /*
+            자동 레이아웃 컨트롤 : 처리 중 GUI
+        */
+    }
+    else
+    {
+        /*
+            자동 레이아웃 컨트롤 : 처리 결과 GUI
+        */
+    }
     
     // Layout 이벤트를 피해서, 위임 받은 변경사항 적용 처리
-    if (Event.current.type != EventType.Layout && !onGuiChangedQueue.IsEmpty)
+    if (Event.current.type != EventType.Layout/* && !guiSyncQueue.IsEmpty*/)
     {
-        bool deq = onGuiChangedQueue.TryDequeue(out Action action);
-        if (deq) action();
+        // Note : TryDequeue()는 내부적으로 IsEmpty를 먼저 참조한다.
+        // 그러니 IsEmpty 이후 TryDequeue() 검사를 하면 창조적으로 손해를 보는 셈이다.
+        
+        if(guiSyncQueue.TryDequeue(out Action action))
+        {
+            action();
+            Repaint();
+        }
     }
 }
 
 private void DoWorkerThreadJob()
 {
-    // 작업 처리
+    /* 작업 처리 */
     
     // 변경사항 적용 위임
-    onGuiChangedQueue.Enqueue(/* ... */);
+    guiSyncQueue.Enqueue(() => 
+    {
+        isProcessingJob = false;
+    );
 }
 ```
 
@@ -358,3 +397,4 @@ private static void CheckCursorAndLayoutEntry(int index)
 ---
 - <https://docs.unity3d.com/kr/current/Manual/gui-Basics.html>
 - <https://docs.unity3d.com/kr/current/Manual/gui-Layout.html>
+- <https://blog.unity.com/technology/going-deep-with-imgui-and-editor-customization>
