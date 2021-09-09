@@ -367,6 +367,94 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+
+  
+    Rect rect = ....; // 마우스 클릭 방지할 영역
+
+if (rect.Contains(Event.current.mousePosition))
+{
+    if(Event.current.type == EventType.MouseDown)
+        Event.current.Use();
+}
+
+// 이후 해당 영역에서의...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Aug 25, 2021,  2:59 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug 25
+  
+
+  <i class="unloaded">2021-08-25T02:59:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="218 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-editor-scripting-version-compatability/">유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</a>
     </h1>
 
@@ -1277,96 +1365,6 @@ Download
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="34 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-hierarchy-icon/">Unity - 하이라키 아이콘 적용 예제</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Memo
-
-
-
-  NOTE : 아이콘 뿐만 아니라 가능한 GUI를 모두 그릴 수 있다.
-
-
-
-
-
-  
-    [DisallowMultipleComponent]
-public class Test_HierarchyIcon : MonoBehaviour
-{
-#if UNITY_EDITOR
-    public static string CurrentFolderPat...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Aug 18, 2021,  9:20 PM +0900"
-  >
-
-  
-  
-
-  
-    Aug 18
-  
-
-  <i class="unloaded">2021-08-18T21:20:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="543 words">3 min</span>
 
 
         <!-- page views -->

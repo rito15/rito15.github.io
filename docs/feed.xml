@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-09T01:33:43+09:00</updated>
+  <updated>2021-09-10T03:27:33+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,57 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 - 컴퓨트 쉐이더(Compute Shader)</title>
+    <link href="https://rito15.github.io/posts/unity-compute-shader/" rel="alternate" type="text/html" title="유니티 - 컴퓨트 쉐이더(Compute Shader)" />
+    <published>2021-09-10T02:01:00+09:00</published>
+  
+    <updated>2021-09-10T02:01:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-compute-shader/</id>
+    <content src="https://rito15.github.io/posts/unity-compute-shader/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Compute Shader
+
+
+개념
+
+  GPU를 CPU의 영역인 응용 프로그램 계산에 사용하는 GPGPU(General-Purpose computing on GPU)와는 개념이 유사하지만 다르다.
+  GPGPU를 사용하는 CUDA, OpenCL은 독립 API이고 OpenGL의 Compute Shader, DirectX의 DirectCompute는 그래픽스API에 종속되어 동작한다.
+  동시에 수많은 대상(수십만, 수백만 단위 가능)에 대해 동일한 연산(함수)을 처리해야 할 때 사용한다.
+  VFX Graph도 컴퓨트 쉐이더를 연산에 사용한다고 한다.
+  확장자는 .compute이다.
+
+
+커널(Kernal)
+
+  GPU에서 동작하는 함수를 의미한다.
+  함수의 이름이 곧 커널의 이름이며, #pragma...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -308,70 +359,6 @@ Windows Editor
 
 Application.dataPath
 "&amp;lt;projectroot&amp;gt;/Assets"...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 안드로이드 권한 요청하기</title>
-    <link href="https://rito15.github.io/posts/unity-android-authority/" rel="alternate" type="text/html" title="유니티 안드로이드 권한 요청하기" />
-    <published>2021-09-07T16:50:00+09:00</published>
-  
-    <updated>2021-09-08T05:34:08+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-android-authority/</id>
-    <content src="https://rito15.github.io/posts/unity-android-authority/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Android Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-  안드로이드의 카메라, 로컬 스토리지 등의 기능을 사용하려면 권한을 반드시 요청해야 한다.
-  Android 6(API Lv.23) 이상에서는 Android.Permission API를 통해 런타임에 권한을 요청할 수 있다.
-
-
-
-
-공통
-
-
-안드로이드 매니페스트 파일 경로
-
-
-  
-    구글링하면 대부분 나오는 Root/Temp/StagingArea/AndroidManifest.xml 경로는 2019.3 미만 버전이다.
-  
-  
-    2019.3 이상부터는 Root/Temp/gradleOut/unityLibrary/src/main/AndroidManifest.xml 이다.
-  
-
-
-
-
-안드로이드 매니페스트 오버라이드하기
-
-
-  위에서 찾은 파일을 Assets/Plugins/Andro...
     </summary>
   
 
