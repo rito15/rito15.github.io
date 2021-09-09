@@ -293,7 +293,9 @@ https://www.youtube.com/watch?v=MawzivWLCoo
 
 ## **Basic Particle(Additive) Shader**
 
-![image](https://user-images.githubusercontent.com/42164422/129243903-442563a9-2ee5-44ff-aa42-e4e23b0669e7.png)
+- [Rito_BasicParticle.zip](https://github.com/rito15/Images/files/7139411/Rito_BasicParticle.zip)
+
+![image](https://user-images.githubusercontent.com/42164422/132753357-8e6285cb-5975-4646-9664-41b5be105fa8.png)
 
 ### **General**
   - Light Model : `Unlit`
@@ -302,10 +304,11 @@ https://www.youtube.com/watch?v=MawzivWLCoo
   - Receive Shadows : `Off`
 
 ### **Blend Mode**
-  - 우측 상단 : `Custom`
   - Render Type : `Transparent`
   - Render Queue : `Transparent`
-  - Blend RGB : `Particle Additive`
+  - 우측 상단 : `Custom`
+  - Blend RGB : `Particle Additive` <br>
+    (Advanced options are.. 경고 문구가 뜨면 우측 상단을 `Custom`으로 바꾸고 설정한다.)
 
 ### **Depth**
   - ZWrite Mode : `Off`
@@ -313,7 +316,42 @@ https://www.youtube.com/watch?v=MawzivWLCoo
 ### **Rendering Options**
   - 모두 체크 해제
 
+<br>
 
+## **Soft Particle(Additive) Shader**
 
+- [Rito_SoftParticle.zip](https://github.com/rito15/Images/files/7139412/Rito_SoftParticle.zip)
 
+- 불투명한 물체에 닿는 지점이 부드럽게 표현된다.
+
+- **Screen Position** 노드의 **Type**을 `Screen`으로 설정해야 한다.
+
+![image](https://user-images.githubusercontent.com/42164422/132753216-63f8274c-9197-4f98-be8d-609c2a67d2d6.png)
+
+<br>
+
+- **비교** - **상** : 기본 파티클 쉐이더 / **하** : Soft Particle 쉐이더
+
+![image](https://user-images.githubusercontent.com/42164422/132750023-0b231965-6aa4-4be6-ad6a-29295fce5daf.png)
+
+<br>
+
+<details>
+<summary markdown="span"> 
+추가 : Soft Particle이 씬 뷰에서 제대로 보이지 않는 경우 해결하기
+</summary>
+
+- [Rito_SoftParticle2.zip](https://github.com/rito15/Images/files/7139541/Rito_SoftParticle2.zip)
+
+게임 뷰에서는 제대로 보이지만, 씬 뷰에서는 다른 불투명 오브젝트에 무조건 가려지는 경우가 있다.
+
+그럴 때는 다음과 같이 `Static Switch` 노드를 추가하고,
+
+![image](https://user-images.githubusercontent.com/42164422/132756558-1ddaf5e1-6f79-4bda-bac1-dfe0826147c0.png)
+
+`Static Switch` 노드는 아래처럼 설정하면 된다.
+
+![image](https://user-images.githubusercontent.com/42164422/132756323-ae1667ce-3d56-4eec-91b7-7e035a59843a.png)
+
+</details>
 

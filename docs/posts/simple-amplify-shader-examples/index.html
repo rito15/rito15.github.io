@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="936 words">5 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1128 words">6 min</span>
 
 
           <!-- page views -->
@@ -809,7 +809,11 @@ https://www.youtube.com/watch?v=MawzivWLCoo
 
 <h2 id="basic-particleadditive-shader"><strong>Basic Particle(Additive) Shader</strong></h2>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/129243903-442563a9-2ee5-44ff-aa42-e4e23b0669e7.png" alt="image" /></p>
+<ul>
+  <li><a href="https://github.com/rito15/Images/files/7139411/Rito_BasicParticle.zip">Rito_BasicParticle.zip</a></li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/132753357-8e6285cb-5975-4646-9664-41b5be105fa8.png" alt="image" /></p>
 
 <h3 id="general"><strong>General</strong></h3>
 <ul>
@@ -821,10 +825,11 @@ https://www.youtube.com/watch?v=MawzivWLCoo
 
 <h3 id="blend-mode"><strong>Blend Mode</strong></h3>
 <ul>
-  <li>우측 상단 : <code class="language-plaintext highlighter-rouge">Custom</code></li>
   <li>Render Type : <code class="language-plaintext highlighter-rouge">Transparent</code></li>
   <li>Render Queue : <code class="language-plaintext highlighter-rouge">Transparent</code></li>
-  <li>Blend RGB : <code class="language-plaintext highlighter-rouge">Particle Additive</code></li>
+  <li>우측 상단 : <code class="language-plaintext highlighter-rouge">Custom</code></li>
+  <li>Blend RGB : <code class="language-plaintext highlighter-rouge">Particle Additive</code> <br />
+(Advanced options are.. 경고 문구가 뜨면 우측 상단을 <code class="language-plaintext highlighter-rouge">Custom</code>으로 바꾸고 설정한다.)</li>
 </ul>
 
 <h3 id="depth"><strong>Depth</strong></h3>
@@ -836,6 +841,55 @@ https://www.youtube.com/watch?v=MawzivWLCoo
 <ul>
   <li>모두 체크 해제</li>
 </ul>
+
+<p><br /></p>
+
+<h2 id="soft-particleadditive-shader"><strong>Soft Particle(Additive) Shader</strong></h2>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/rito15/Images/files/7139412/Rito_SoftParticle.zip">Rito_SoftParticle.zip</a></p>
+  </li>
+  <li>
+    <p>불투명한 물체에 닿는 지점이 부드럽게 표현된다.</p>
+  </li>
+  <li>
+    <p><strong>Screen Position</strong> 노드의 <strong>Type</strong>을 <code class="language-plaintext highlighter-rouge">Screen</code>으로 설정해야 한다.</p>
+  </li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/132753216-63f8274c-9197-4f98-be8d-609c2a67d2d6.png" alt="image" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li><strong>비교</strong> - <strong>상</strong> : 기본 파티클 쉐이더 / <strong>하</strong> : Soft Particle 쉐이더</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/132750023-0b231965-6aa4-4be6-ad6a-29295fce5daf.png" alt="image" /></p>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+추가 : Soft Particle이 씬 뷰에서 제대로 보이지 않는 경우 해결하기
+</summary>
+
+  <ul>
+    <li><a href="https://github.com/rito15/Images/files/7139541/Rito_SoftParticle2.zip">Rito_SoftParticle2.zip</a></li>
+  </ul>
+
+  <p>게임 뷰에서는 제대로 보이지만, 씬 뷰에서는 다른 불투명 오브젝트에 무조건 가려지는 경우가 있다.</p>
+
+  <p>그럴 때는 다음과 같이 <code class="language-plaintext highlighter-rouge">Static Switch</code> 노드를 추가하고,</p>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/132756558-1ddaf5e1-6f79-4bda-bac1-dfe0826147c0.png" alt="image" /></p>
+
+  <p><code class="language-plaintext highlighter-rouge">Static Switch</code> 노드는 아래처럼 설정하면 된다.</p>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/132756323-ae1667ce-3d56-4eec-91b7-7e035a59843a.png" alt="image" /></p>
+
+</details>
 
 
 
