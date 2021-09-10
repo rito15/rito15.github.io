@@ -367,6 +367,198 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-serialize-tree-object/">Unity - 트리 구조 데이터 직렬화하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        트리(Tree) 자료구조
+
+
+
+  
+    class TreeNode
+{
+    public TreeNode[] children;
+}
+
+  
+
+
+위와 같이 자기 타입의 배열 또는 컬렉션을 필드로 갖는 구조를 트리 자료구조라고 한다.
+
+자식 및 하위 노드들을 순회하기 위해 재귀적 호출을 많이 사용한다.
+
+
+
+
+
+직렬화(Serialization)
+
+
+데이...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Sep  6, 2021, 11:23 PM +0900"
+  >
+
+  
+  
+
+  
+    Sep  6
+  
+
+  <i class="unloaded">2021-09-06T23:23:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4469 words">24 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-null-check-trick/">C# 간단한 트릭 - 널 체크</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+
+  
+    public class MyClass
+{
+    public int[] dataArray;
+
+    public bool IsEmpty()
+    {
+        return dataArray == null || dataArray.Length == 0;
+    }
+}
+
+  
+
+
+위와 같이 내부에 간단한 배열을 담고 있는 클...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Sep  6, 2021,  4:40 AM +0900"
+  >
+
+  
+  
+
+  
+    Sep  6
+  
+
+  <i class="unloaded">2021-09-06T04:40:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="364 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a>
     </h1>
 
@@ -1098,192 +1290,6 @@ static async void TaskBody(...
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="731 words">4 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-grammar-foreach/">C# Foreach 구문 심층 파헤치기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Foreach 구문
-
-
-
-  컬렉션의 요소를 간편히 순차 탐색할 수 있는 구문
-
-
-
-  
-    List&lt;int&gt; list = new List&lt;int&gt;();
-
-foreach (int item in list)
-{
-    Console.WriteLine(item);
-}
-
-  
-
-
-
-
-Foreach 구문이 실제로 생성하는 코드?
-
-
-
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Sep  2, 2021,  4:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Sep  2
-  
-
-  <i class="unloaded">2021-09-02T16:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4599 words">25 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-fix-unitypackage-association/">유니티 .unitypackage 확장자 연결 끊어진 경우 해결하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-컴퓨터에 설치된 유니티 에디터 버전 중 하나를 지운 경우,
-
-.unitypackage 확장자의 연결이 끊어지는 경우가 종종 있다.
-
-확장자의 연결 프로그램이 단순한 응용 프로그램 실행이라면 상관 없지만,
-
-.unitypackage 확장자의 경우 그렇지 않기 때문에 연결프로그램 연결만으로는 해결할 수 없다.
-
-이를 비교적 간단히 해결하기 위...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Sep  1, 2021, 11:33 PM +0900"
-  >
-
-  
-  
-
-  
-    Sep  1
-  
-
-  <i class="unloaded">2021-09-01T23:33:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="762 words">4 min</span>
 
 
         <!-- page views -->

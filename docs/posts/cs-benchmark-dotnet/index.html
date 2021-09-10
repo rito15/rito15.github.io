@@ -5322,6 +5322,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8338,71 +8364,6 @@
       
       
       <div class="card">
-        <a href="/posts/cs-null-check-trick/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Sep  6
-  
-
-  <i class="unloaded">2021-09-06T04:40:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 간단한 트릭 - 널 체크</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-public class MyClass
-{
-    public int[] dataArray;
-
-    public bool IsEmpty()
-    {
-        return dataArray == null || dataArray.Length == 0;
-    }
-}
-
-
-위와 같이 내부에 간단한 배열을 담...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-heap-memory-debugger/">
           <div class="card-body">
             <!--
@@ -8471,6 +8432,77 @@ public class MyClass
 8
 9
 10
+...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-utf8-string-to-byte-array/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug  8
+  
+
+  <i class="unloaded">2021-08-08T19:31:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1. 힙 할당 있는 방식
+
+
+1
+2
+3
+string str = "가나다 ABC 123";
+
+byte[] byteStr = Encoding.UTF8.GetBytes(str);
+
+
+
+
+2. 힙 할당 없는 방식
+
+
+
+  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
+
+
+
+
+버퍼를 이용한 직렬화 예시
+
+1
+2
+3
+4
+5
 ...
               </p>
             </div>

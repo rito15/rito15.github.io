@@ -5870,6 +5870,32 @@ Form1.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7991,7 +8017,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/cs-task/">
+        <a href="/posts/cs-async-task/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8011,10 +8037,10 @@ static void Main()
     Jul  6
   
 
-  <i class="unloaded">2021-07-06T03:33:00+09:00</i>
+  <i class="unloaded">2021-07-06T03:34:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Task</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# async Task</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8023,22 +8049,18 @@ static void Main()
 
 
 
-                Task
+                비동기 작업 : async-await
 
 
 
   
-    Task는 ThreadPool을 기반으로 작성된 라이브러리이다.
+    Task를 Thread처럼 사용하는 대신, 비동기 작업을 위해 사용할 수 있다.
   
   
-    내부적으로 ThreadPool의 스레드 개수를 차지하며, ThreadPool의 스레드 개수 제한에 영향을 받는다.
+    async, await 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.
   
   
-    가벼운 비동기 작업에 특화되어 있다.
-  
-  
-    Thread.Abort()처럼 간단히 종료할 수 없다.
-...
+    async-await 작업은 Parallel이 아닌, Concurr...
               </p>
             </div>
           </div>

@@ -7741,6 +7741,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8184,7 +8210,7 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
       
       
       <div class="card">
-        <a href="/posts/cs-null-check-trick/">
+        <a href="/posts/cs-benchmark-dotnet/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8201,13 +8227,13 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
   
 
   
-    Sep  6
+    Aug  7
   
 
-  <i class="unloaded">2021-09-06T04:40:00+09:00</i>
+  <i class="unloaded">2021-08-07T16:16:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 간단한 트릭 - 널 체크</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Benchmark DotNet</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8216,30 +8242,39 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
 
 
 
-                Note
+                설치
 
 
-1
+
+  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치
+
+
+
+
+사용법
+
+
+[1] 테스트 대상 클래스
+
+
+   
+…
+
+
+  [1-1] 네임스페이스
+
+  
+     
+.
+
+
+    1
 2
-3
-4
-5
-6
-7
-8
-9
-public class MyClass
-{
-    public int[] dataArray;
+using BenchmarkDotNet;
+using BenchmarkDotNet.Attributes;
+    
 
-    public bool IsEmpty()
-    {
-        return dataArray == null || dataArray.Length == 0;
-    }
-}
-
-
-위와 같이 내부에 간단한 배열을 담...
+  ...
               </p>
             </div>
           </div>
