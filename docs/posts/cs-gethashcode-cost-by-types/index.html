@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="424 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1822 words">10 min</span>
 
 
           <!-- page views -->
@@ -534,7 +534,7 @@
     <p>정해진 크기의 객체에 대해, 저장된 값이 계산 비용에 영향을 주지는 않는다.</p>
   </li>
   <li>
-    <p>기본 타입이 아닌 구조체 타입은 기본 타입에 비해 계산 비용이 매우 크다.</p>
+    <p><code class="language-plaintext highlighter-rouge">GetHashCode()</code> 메소드를 오버라이드 하지 않은 구조체 타입은 계산 비용이 매우 크다.</p>
   </li>
   <li>
     <p>구조체 타입은 객체의 크기에 비례하여 비용이 증가한다.</p>
@@ -546,6 +546,389 @@
     <p><code class="language-plaintext highlighter-rouge">string</code> 타입은 문자열이 길어질수록 비용이 증가한다.</p>
   </li>
 </ul>
+
+<p><br /></p>
+
+<h1 id="추가">추가</h1>
+<hr />
+
+<h2 id="구조체-타입의-계산-비용이-큰-이유"><strong>구조체 타입의 계산 비용이 큰 이유?</strong></h2>
+
+<p>아무래도 박싱 때문이지 않을까 하고</p>
+
+<p>구조체의 <code class="language-plaintext highlighter-rouge">GetHashCode()</code>를 호출하는 부분의 <strong>CIL</strong>을 열어봤더니</p>
+
+<p><code class="language-plaintext highlighter-rouge">boxing</code>은 보이지 않고</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>IL_000b:  constrained. Struct1
+IL_0011:  callvirt   instance int32 [System.Runtime]System.Object::GetHashCode()
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 <code class="language-plaintext highlighter-rouge">callvirt</code>로 <code class="language-plaintext highlighter-rouge">GetHashCode()</code>를 호출하는 것만 확인할 수 있었다.</p>
+
+<p>그래서 어셈블리 코드를 열어보니</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>            int a = s1.GetHashCode();
+00007FFC23C50D36  lea         rdx,[rbp+40h]  
+00007FFC23C50D3A  mov         rcx,7FFC23D22678h  
+00007FFC23C50D44  call        CORINFO_HELP_BOX (07FFC83767880h)  
+00007FFC23C50D49  mov         qword ptr [rbp+28h],rax  
+00007FFC23C50D4D  mov         rcx,qword ptr [rbp+28h]  
+00007FFC23C50D51  mov         rax,qword ptr [rbp+28h]  
+00007FFC23C50D55  mov         rax,qword ptr [rax]  
+00007FFC23C50D58  mov         rax,qword ptr [rax+40h]  
+00007FFC23C50D5C  call        qword ptr [rax+18h]  
+00007FFC23C50D5F  mov         dword ptr [rbp+34h],eax  
+00007FFC23C50D62  mov         eax,dword ptr [rbp+34h]  
+00007FFC23C50D65  mov         dword ptr [rbp+3Ch],eax  
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이 중에서</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>call        CORINFO_HELP_BOX (07FFC84F07880h) 
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 의심 가는 부분을 찾을 수 있었고,</p>
+
+<p>결론적으로 성능 저하의 원인은 박싱이 맞았다.</p>
+
+<p><br /></p>
+
+<p>구조체에 <code class="language-plaintext highlighter-rouge">GetHashCode()</code>를 오버라이드하여 작성했을 때는 박싱이 발생하지 않는 것을 확인했다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>            int a = s1.GetHashCode();
+00007FFC23C60D33  lea         rcx,[rbp+30h]  
+00007FFC23C60D37  call        CLRStub[MethodDescPrestub]@7ffc23c60668 (07FFC23C60668h)  
+00007FFC23C60D3C  mov         dword ptr [rbp+24h],eax  
+00007FFC23C60D3F  mov         eax,dword ptr [rbp+24h]  
+00007FFC23C60D42  mov         dword ptr [rbp+2Ch],eax  
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
+<p>그래서, 동일한 필드를 가진 두 구조체에 대해</p>
+
+<p>한 구조체는 <code class="language-plaintext highlighter-rouge">GetHashCode()</code>를 오버라이드 하지 않고</p>
+
+<p>다른 구조체는 오버라이드하여 다시 벤치마크를 비교해보았다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">struct</span> <span class="nc">Struct1</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">struct</span> <span class="nc">Struct2</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">int</span> <span class="nf">GetHashCode</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="nf">GetHashCode</span><span class="p">()</span> <span class="p">+</span> <span class="n">b</span><span class="p">.</span><span class="nf">GetHashCode</span><span class="p">()</span> <span class="p">+</span> <span class="n">c</span><span class="p">.</span><span class="nf">GetHashCode</span><span class="p">()</span> <span class="p">+</span> <span class="n">d</span><span class="p">.</span><span class="nf">GetHashCode</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/132887586-f7e1bbf1-c73a-4d95-a86b-a98794342807.png" alt="image" /></p>
+
+<p>역시 박싱은 언제나 성능 저하의 원흉이다.</p>
+
+<p><br /></p>
+
+<h2 id="구조체와-클래스의-해시-계산-방식"><strong>구조체와 클래스의 해시 계산 방식</strong></h2>
+
+<p>클래스는 기본적으로 객체의 주소를 이용해 해시를 계산한다.</p>
+
+<p>따라서 <code class="language-plaintext highlighter-rouge">GetHashCode</code>를 따로 오버라이드 하지 않으면 내부 필드는 해시 계산에 관여하지 않는다.</p>
+
+<p>구조체는 <code class="language-plaintext highlighter-rouge">GetHashCode()</code>를 오버라이드 하지 않은 경우에도,</p>
+
+<p>내부의 필드들을 이용하여 해시를 계산한다.</p>
+
+<p>따라서, 변수가 달라도 구조체 필드의 값이 모두 같다면 같은 해시 코드를 출력한다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">class</span> <span class="nc">Data</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위와 같은 사용자 정의 타입에 대해,</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="n">Data</span> <span class="n">d1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Data</span><span class="p">();</span>
+<span class="n">Data</span> <span class="n">d2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Data</span><span class="p">();</span>
+
+<span class="n">d1</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="n">d2</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+<span class="n">d1</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="n">d2</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="m">2</span><span class="p">;</span>
+
+<span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">dict</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">Data</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;();</span>
+<span class="n">dict</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="m">100</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="n">foundValue</span> <span class="p">=</span> <span class="n">dict</span><span class="p">[</span><span class="n">d2</span><span class="p">];</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 두 객체를 만들고 필드 값을 서로 일치시킨다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Data</code>가 클래스이면 당연히 위 코드의 마지막 줄은 <code class="language-plaintext highlighter-rouge">KeyNotFoundException</code>이 발생한다.</p>
+
+<p>하지만 구조체는 <code class="language-plaintext highlighter-rouge">d1</code>을 키로 저장했던 값인 <code class="language-plaintext highlighter-rouge">100</code>을 참조하게 된다.</p>
+
+<p><br /></p>
+
+<p>그렇다면 클래스 타입에서 <code class="language-plaintext highlighter-rouge">GetHashCode()</code>를 오버라이드하여</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">class</span> <span class="nc">Data</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">int</span> <span class="nf">GetHashCode</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="nf">GetHashCode</span><span class="p">()</span> <span class="p">+</span> <span class="n">b</span><span class="p">.</span><span class="nf">GetHashCode</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>내부 필드들의 값이 모두 같을 때 같은 해시 코드를 출력하도록 한다면</p>
+
+<p>필드 값이 모두 같은, 다른 객체의 키에 대해 딕셔너리가 같은 값을 주지 않을까?</p>
+
+<p>안된다.</p>
+
+<p>클래스 타입은 <code class="language-plaintext highlighter-rouge">GetHashCode()</code>를 위와 같이 오버라이드 해도</p>
+
+<p>딕셔너리가 같은 해시 값의 서로 다른 객체에 대해 동일 값을 참조시켜 주지는 않는다.</p>
+
+<p><br /></p>
+
+<p>이유를 찾기 위해 디컴파일하여 <code class="language-plaintext highlighter-rouge">Dictionary&lt;TKey, TValue&gt;</code> 구현부를 확인하고,</p>
+
+<p>다음과 같은 코드를 찾을 수 있었다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre><span class="c1">// System.Collections.Generic.Dictionary&lt;TKey,TValue&gt;</span>
+
+<span class="k">private</span> <span class="kt">int</span> <span class="nf">FindEntry</span><span class="p">(</span><span class="n">TKey</span> <span class="n">key</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ThrowHelper</span><span class="p">.</span><span class="nf">ThrowArgumentNullException</span><span class="p">(</span><span class="n">ExceptionArgument</span><span class="p">.</span><span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">buckets</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">num</span> <span class="p">=</span> <span class="n">comparer</span><span class="p">.</span><span class="nf">GetHashCode</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="p">&amp;</span> <span class="m">0x7FFFFFFF</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">num2</span> <span class="p">=</span> <span class="n">buckets</span><span class="p">[</span><span class="n">num</span> <span class="p">%</span> <span class="n">buckets</span><span class="p">.</span><span class="n">Length</span><span class="p">];</span> <span class="n">num2</span> <span class="p">&gt;=</span> <span class="m">0</span><span class="p">;</span> <span class="n">num2</span> <span class="p">=</span> <span class="n">entries</span><span class="p">[</span><span class="n">num2</span><span class="p">].</span><span class="n">next</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">entries</span><span class="p">[</span><span class="n">num2</span><span class="p">].</span><span class="n">hashCode</span> <span class="p">==</span> <span class="n">num</span> <span class="p">&amp;&amp;</span> <span class="n">comparer</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">entries</span><span class="p">[</span><span class="n">num2</span><span class="p">].</span><span class="n">key</span><span class="p">,</span> <span class="n">key</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="n">num2</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>여기서 주목해야 할 부분은</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="k">if</span> <span class="p">(</span><span class="n">entries</span><span class="p">[</span><span class="n">num2</span><span class="p">].</span><span class="n">hashCode</span> <span class="p">==</span> <span class="n">num</span> <span class="p">&amp;&amp;</span> <span class="n">comparer</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">entries</span><span class="p">[</span><span class="n">num2</span><span class="p">].</span><span class="n">key</span><span class="p">,</span> <span class="n">key</span><span class="p">))</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이부분이다.</p>
+
+<p>키의 해시코드가 같다고 무조건 같은 값을 참조하는 것이 아니라,</p>
+
+<p><code class="language-plaintext highlighter-rouge">IEqualityComparer&lt;TKey&gt;</code> 타입의 <strong>Default Comparer</strong>를 통해</p>
+
+<p><code class="language-plaintext highlighter-rouge">.Equals()</code>를 검사한다는 것을 알 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="int-string-타입의-gethashcode-들여다보기"><strong>int, string 타입의 GetHashCode() 들여다보기</strong></h2>
+
+<p><code class="language-plaintext highlighter-rouge">int</code> 타입의 <code class="language-plaintext highlighter-rouge">GetHashCode()</code>는 왜 그렇게 빠르고,</p>
+
+<p><code class="language-plaintext highlighter-rouge">string</code> 타입의 <code class="language-plaintext highlighter-rouge">GetHashCode()</code>는 왜 문자열 길이에 따라 느려지는 걸까?</p>
+
+<p>구현을 확인해보면 빠르게 이해할 수 있다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1">// System.Int32</span>
+
+<span class="p">[</span><span class="n">__DynamicallyInvokable</span><span class="p">]</span>
+<span class="k">public</span> <span class="k">override</span> <span class="kt">int</span> <span class="nf">GetHashCode</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>우선, <code class="language-plaintext highlighter-rouge">int</code> 타입의 <code class="language-plaintext highlighter-rouge">GetHashCode()</code>이다.</p>
+
+<p>그냥 자신을 리턴한다.</p>
+
+<p>빠른 이유 바로 납득.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="rouge-code"><pre><span class="c1">// System.String</span>
+
+<span class="p">[</span><span class="n">SecuritySafeCritical</span><span class="p">]</span>
+<span class="p">[</span><span class="nf">ReliabilityContract</span><span class="p">(</span><span class="n">Consistency</span><span class="p">.</span><span class="n">WillNotCorruptState</span><span class="p">,</span> <span class="n">Cer</span><span class="p">.</span><span class="n">MayFail</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">__DynamicallyInvokable</span><span class="p">]</span>
+<span class="k">public</span> <span class="k">unsafe</span> <span class="k">override</span> <span class="kt">int</span> <span class="nf">GetHashCode</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">HashHelpers</span><span class="p">.</span><span class="n">s_UseRandomizedStringHashing</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">InternalMarvin32HashString</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">Length</span><span class="p">,</span> <span class="m">0L</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">fixed</span> <span class="p">(</span><span class="kt">char</span><span class="p">*</span> <span class="n">ptr</span> <span class="p">=</span> <span class="k">this</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">num</span> <span class="p">=</span> <span class="m">5381</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">num2</span> <span class="p">=</span> <span class="n">num</span><span class="p">;</span>
+        <span class="kt">char</span><span class="p">*</span> <span class="n">ptr2</span> <span class="p">=</span> <span class="n">ptr</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">num3</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">((</span><span class="n">num3</span> <span class="p">=</span> <span class="p">*</span><span class="n">ptr2</span><span class="p">)</span> <span class="p">!=</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">num</span> <span class="p">=</span> <span class="p">((</span><span class="n">num</span> <span class="p">&lt;&lt;</span> <span class="m">5</span><span class="p">)</span> <span class="p">+</span> <span class="n">num</span><span class="p">)</span> <span class="p">^</span> <span class="n">num3</span><span class="p">;</span>
+            <span class="n">num3</span> <span class="p">=</span> <span class="n">ptr2</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">num3</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">num2</span> <span class="p">=</span> <span class="p">((</span><span class="n">num2</span> <span class="p">&lt;&lt;</span> <span class="m">5</span><span class="p">)</span> <span class="p">+</span> <span class="n">num2</span><span class="p">)</span> <span class="p">^</span> <span class="n">num3</span><span class="p">;</span>
+            <span class="n">ptr2</span> <span class="p">+=</span> <span class="m">2</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">num</span> <span class="p">+</span> <span class="n">num2</span> <span class="p">*</span> <span class="m">1566083941</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">string</code> 타입의 <code class="language-plaintext highlighter-rouge">GetHashCode()</code> 구현부이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">int</code>에 비하면 아주 휘황찬란하게 구현되어 있는 모습이 보인다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">char*</code>포인터를 이동하여 문자열 내부를 순회하며 해시 코드를 계산한다.</p>
+
+<p>따라서 문자열 길이가 길어질수록 계산 비용은 증가한다는 것을 확인할 수 있다.</p>
 
 
 
@@ -3950,6 +4333,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8026,9 +8422,9 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/cs-value-tuple-and-tuple/" class="btn btn-outline-primary">
+    <p>C# ValueTuple, Tuple</p>
+  </a>
   
 
 </div>

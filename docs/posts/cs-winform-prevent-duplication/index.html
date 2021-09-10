@@ -5790,6 +5790,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7919,7 +7932,7 @@ public b...
       
       
       <div class="card">
-        <a href="/posts/cs-async-task/">
+        <a href="/posts/cs-parallel/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7936,13 +7949,13 @@ public b...
   
 
   
-    Jul  6
+    Jul  7
   
 
-  <i class="unloaded">2021-07-06T03:34:00+09:00</i>
+  <i class="unloaded">2021-07-07T19:07:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# async Task</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Parallel</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7951,18 +7964,19 @@ public b...
 
 
 
-                비동기 작업 : async-await
+                Parallel 클래스
 
 
 
   
-    Task를 Thread처럼 사용하는 대신, 비동기 작업을 위해 사용할 수 있다.
+    반복적인 병렬 처리를 손쉽게 작성할 수 있는 API를 제공한다.
   
   
-    async, await 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.
+    ThreadPool 기반으로 작성되어, ThreadPool의 현재 스레드 개수를 차지하며 최소/최대 스레드 개수에 영향을 받는다.
   
   
-    async-await 작업은 Parallel이 아닌, Concurr...
+    ThreadPool의 스레드 뿐만 아니라 호출 스레드도 병렬 처리에 포함된다.
+ ...
               </p>
             </div>
           </div>

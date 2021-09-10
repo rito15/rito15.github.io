@@ -5533,6 +5533,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8115,59 +8128,6 @@
       
       
       <div class="card">
-        <a href="/posts/cs-async-task/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  6
-  
-
-  <i class="unloaded">2021-07-06T03:34:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# async Task</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                비동기 작업 : async-await
-
-
-
-  
-    Task를 Thread처럼 사용하는 대신, 비동기 작업을 위해 사용할 수 있다.
-  
-  
-    async, await 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.
-  
-  
-    async-await 작업은 Parallel이 아닌, Concurr...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/01-cs-interlocked/">
           <div class="card-body">
             <!--
@@ -8299,6 +8259,55 @@ Monitor 클래스
   
   
     ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/03-cs-spinlock/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul  8
+  
+
+  <i class="unloaded">2021-07-08T01:03:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Spin Lock</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                스핀 락(Spin Lock) 개념
+
+
+스레드 동기화를 위해 락을 걸고 크리티컬 섹션에 진입할 경우, 대기하는 스레드는 블록된다.
+
+다시 말해, 크리티컬 섹션에 진입하려고 대기하는 스레드는 CPU 점유를 포기하게 된다.
+
+그리고 CPU 자원이 현재 활성화된 다른 스레드에게 넘어가게 되는데, 이 때 컨텍스트 스위칭이 발생하며 그에 따른 오버헤드 또한 발생...
               </p>
             </div>
           </div>

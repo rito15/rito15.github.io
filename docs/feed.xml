@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-11T00:42:21+09:00</updated>
+  <updated>2021-09-11T03:02:12+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,81 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# ValueTuple, Tuple</title>
+    <link href="https://rito15.github.io/posts/cs-value-tuple-and-tuple/" rel="alternate" type="text/html" title="C# ValueTuple, Tuple" />
+    <published>2021-09-11T00:45:00+09:00</published>
+  
+    <updated>2021-09-11T00:45:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-value-tuple-and-tuple/</id>
+    <content src="https://rito15.github.io/posts/cs-value-tuple-and-tuple/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Grammar" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+Tuple, ValueTuple은 C# 7.0에 처음 도입되었다.
+
+두 개 이상의 타입을 함께 묶어 사용할 때,
+
+클래스나 구조체를 따로 정의하지 않고 곧바로 사용할 수 있게 해준다.
+
+
+
+ValueTuple
+
+
+구조체 튜플 타입.
+
+구조체 타입이므로 전달할 때마다 복사가 발생한다.
+
+ValueTuple 이라는 타입명을 명시적으로 작성하지 않아도
+
+(T1, T2)와 같은 문법으로 간편하게 사용할 수 있다.
+
+내부 타입의 값은 필드 형태로 저장된다.
+
+
+
+Tuple
+
+
+클래스 튜플 타입.
+
+클래스 타입이므로 전달할 때 복사가 발생하지 않고, 참조를 전달한다.
+
+Tuple&amp;lt;T1, T2&amp;gt; 같이 명시적으로 타입명을 작성해야 한다.
+
+내부 타입의 값은 프로퍼티 형태로 저장된다.
+
+
+
+Re...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -251,93 +326,6 @@ Span이 ...
 
   GPU에서 동작하는 함수를 의미한다.
   함수의 이름이 곧 커널의 이름이며, #pragma...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 에디터 - 버전별 자동 레이아웃 컨트롤 기본 높이</title>
-    <link href="https://rito15.github.io/posts/unity-editor-layout-control-heights/" rel="alternate" type="text/html" title="유니티 에디터 - 버전별 자동 레이아웃 컨트롤 기본 높이" />
-    <published>2021-09-08T23:00:00+09:00</published>
-  
-    <updated>2021-09-08T23:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-layout-control-heights/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-layout-control-heights/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-
-  버전별로 대응할 때 편하도록 메모
-
-
-
-
-GUILayout.Button()
-
-
-  
-    
-      버전
-      Rect 높이
-      하단 여백 포함 높이
-    
-  
-  
-    
-      2018.3.14f1
-      18
-      21
-    
-    
-      2019.2.21f1
-      18
-      21
-    
-    
-      2019.3.0f6 *
-      19
-      21
-    
-    
-      2019.4.9f1
-      19
-      21
-    
-    
-      2019.4.17f1
-      19
-      21
-    
-    
-      2020.1.0f1
-      19
-      21
-    
-    
-   ...
     </summary>
   
 
