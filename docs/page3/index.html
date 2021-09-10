@@ -367,6 +367,95 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/cs-async-task-mistakes/">C# 비동기 Task를 사용하면서 흔히 발생하는 실수</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Mistake
+
+
+
+  
+    private static void Main()
+{
+    Task t = Task.Run(() =&gt; TaskBody(3));
+
+    t.Wait(); // TaskBody(3)의 종료를 대기하려고 시도
+
+    Console.WriteLine("End");
+}
+
+static async void TaskBody(...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Sep  4, 2021,  4:09 AM +0900"
+  >
+
+  
+  
+
+  
+    Sep  4
+  
+
+  <i class="unloaded">2021-09-04T04:09:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="869 words">4 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/dynamic-programming/">동적 계획법(Dynamic Programming, DP)</a>
     </h1>
 
@@ -1245,116 +1334,6 @@ Properties
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-screen-posterize/">(Amplify) Screen Effect - Posterize(Toon)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  
-    카툰풍의 느낌을 적용하는 쉐이더
-  
-  
-    스크린 이펙트 적용 애셋 : Link
-  
-
-
-
-
-Preview
-
-
-
-
-
-
-
-
-Properties
-
-
-
-  Posterize Count
-    
-      색상을 구분하는 층의 개수 지정
-      범위 : 1 ~ 10
-    
-  
-  Intensity
-    
-   ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Aug 31, 2021,  6:02 PM +0900"
-  >
-
-  
-  
-
-  
-    Aug 31
-  
-
-  <i class="unloaded">2021-08-31T18:02:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="69 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1900,6 +1879,11 @@ Properties
         
         
         
+        <li><a href="/posts/cs-gethashcode-cost-by-types/">C# 타입별 GetHashCode() 성능</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
         
@@ -1916,11 +1900,6 @@ Properties
         
         
         <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
 
       </ul>

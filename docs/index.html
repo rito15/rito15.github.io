@@ -366,7 +366,109 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/cs-value-tuple-and-tuple/">C# ValueTuple, Tuple</a>
+      <a href="/posts/cs-Deconstructor/">C# Deconstructor</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Deconstructor
+
+
+
+  
+    class Student
+{
+    public int id;
+    public string name;
+}
+
+  
+
+
+클래스가 있다.
+
+
+  
+    Student student = new Student();
+
+  
+
+
+객체도 있다.
+
+
+  
+    (int id, string name) = student;...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Sep 11, 2021,  4:32 AM +0900"
+  >
+
+  
+  
+
+  
+    Sep 11
+  
+
+  <i class="unloaded">2021-09-11T04:32:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="343 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-tuple-and-value-tuple/">C# Tuple, ValueTuple</a>
     </h1>
 
     <div class="post-content">
@@ -388,14 +490,14 @@ Tuple, ValueTuple은 C# 7.0에 처음 도입되었다.
 
 
 
-ValueTuple
+Tuple
 
 
-구조체 튜플 타입.
+클래스 튜플 타입.
 
-구조체 타입이므로 전달할 때마다 복사가 발생한다.
+클래스 타입이므로 전달할 때 복사가 발생하지 않고, 참조를 전달한다.
 
-ValueTuple 이라는 타입명을 명시적으로 작성하지...
+Tuple&lt;T1, T2&gt; 같이 명...
       </p>
     </div>
 
@@ -416,7 +518,7 @@ ValueTuple 이라는 타입명을 명시적으로 작성하지...
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sat, Sep 11, 2021, 12:45 AM +0900"
+    title="Sat, Sep 11, 2021,  3:45 AM +0900"
   >
 
   
@@ -426,7 +528,7 @@ ValueTuple 이라는 타입명을 명시적으로 작성하지...
     Sep 11
   
 
-  <i class="unloaded">2021-09-11T00:45:00+09:00</i>
+  <i class="unloaded">2021-09-11T03:45:00+09:00</i>
 
 </span>
 
@@ -442,7 +544,7 @@ ValueTuple 이라는 타입명을 명시적으로 작성하지...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="230 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2355 words">13 min</span>
 
 
         <!-- page views -->
@@ -1183,98 +1285,6 @@ Option
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Memo
-
-
-
-  안드로이드의 카메라, 로컬 스토리지 등의 기능을 사용하려면 권한을 반드시 요청해야 한다.
-  Android 6(API Lv.23) 이상에서는 Android.Permission API를 통해 런타임에 권한을 요청할 수 있다.
-
-
-
-
-공통
-
-
-안드로이드 매니페스트 파일 경로
-
-
-  
-    구글링하면 대부분 나오는 Root/Temp/St...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Sep  7, 2021,  4:50 PM +0900"
-  >
-
-  
-  
-
-  
-    Sep  7
-  
-
-  <i class="unloaded">2021-09-07T16:50:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1276 words">7 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1818,6 +1828,11 @@ Option
         
         
         
+        <li><a href="/posts/cs-gethashcode-cost-by-types/">C# 타입별 GetHashCode() 성능</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
         
@@ -1834,11 +1849,6 @@ Option
         
         
         <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
 
       </ul>

@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-11T03:02:12+09:00</updated>
+  <updated>2021-09-11T05:55:17+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,14 +20,87 @@
 
   
   <entry>
-    <title>C# ValueTuple, Tuple</title>
-    <link href="https://rito15.github.io/posts/cs-value-tuple-and-tuple/" rel="alternate" type="text/html" title="C# ValueTuple, Tuple" />
-    <published>2021-09-11T00:45:00+09:00</published>
+    <title>C# Deconstructor</title>
+    <link href="https://rito15.github.io/posts/cs-Deconstructor/" rel="alternate" type="text/html" title="C# Deconstructor" />
+    <published>2021-09-11T04:32:00+09:00</published>
   
-    <updated>2021-09-11T00:45:00+09:00</updated>
+    <updated>2021-09-11T04:32:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/cs-value-tuple-and-tuple/</id>
-    <content src="https://rito15.github.io/posts/cs-value-tuple-and-tuple/" />
+    <id>https://rito15.github.io/posts/cs-Deconstructor/</id>
+    <content src="https://rito15.github.io/posts/cs-Deconstructor/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Grammar" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Deconstructor
+
+
+class Student
+{
+    public int id;
+    public string name;
+}
+
+
+클래스가 있다.
+
+Student student = new Student();
+
+
+객체도 있다.
+
+(int id, string name) = student;
+
+
+위와 같이 한다고 해서 객체의 필드들이 각각의 변수에 할당되지는 않는다.
+
+
+
+class Student
+{
+    public int id;
+    public string name;
+
+    public void Deconstruct(out int id, out string name)
+    {
+        id = this.id;
+        name = this.name;
+    }
+}
+
+
+그런데 ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>C# Tuple, ValueTuple</title>
+    <link href="https://rito15.github.io/posts/cs-tuple-and-value-tuple/" rel="alternate" type="text/html" title="C# Tuple, ValueTuple" />
+    <published>2021-09-11T03:45:00+09:00</published>
+  
+    <updated>2021-09-11T03:45:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-tuple-and-value-tuple/</id>
+    <content src="https://rito15.github.io/posts/cs-tuple-and-value-tuple/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -59,21 +132,6 @@ Tuple, ValueTuple은 C# 7.0에 처음 도입되었다.
 
 
 
-ValueTuple
-
-
-구조체 튜플 타입.
-
-구조체 타입이므로 전달할 때마다 복사가 발생한다.
-
-ValueTuple 이라는 타입명을 명시적으로 작성하지 않아도
-
-(T1, T2)와 같은 문법으로 간편하게 사용할 수 있다.
-
-내부 타입의 값은 필드 형태로 저장된다.
-
-
-
 Tuple
 
 
@@ -83,11 +141,18 @@ Tuple
 
 Tuple&amp;lt;T1, T2&amp;gt; 같이 명시적으로 타입명을 작성해야 한다.
 
-내부 타입의 값은 프로퍼티 형태로 저장된다.
 
 
+Tuple&amp;lt;int, float&amp;gt; tuple = (10, 20f); // 불가능
 
-Re...
+
+아쉽게도 위와 같은 편리한 생성은 안되고,
+
+Tuple&amp;lt;int, float&amp;gt; tuple = new Tuple&amp;lt;int, float&amp;gt;(10, 20f);
+
+
+이렇게 명시적으로 생성자를 호출하여 생성해야 한다.
+...
     </summary>
   
 
@@ -99,7 +164,7 @@ Re...
     <link href="https://rito15.github.io/posts/cs-gethashcode-cost-by-types/" rel="alternate" type="text/html" title="C# 타입별 GetHashCode() 성능" />
     <published>2021-09-11T00:30:00+09:00</published>
   
-    <updated>2021-09-11T00:30:00+09:00</updated>
+    <updated>2021-09-11T03:05:19+09:00</updated>
   
     <id>https://rito15.github.io/posts/cs-gethashcode-cost-by-types/</id>
     <content src="https://rito15.github.io/posts/cs-gethashcode-cost-by-types/" />
@@ -275,57 +340,6 @@ _ + _에서 한 번.
 힙 할당을 최소화하려면 역시 Span, ReadOnlySpan을 사용해야 한다.
 
 Span이 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 컴퓨트 쉐이더(Compute Shader)</title>
-    <link href="https://rito15.github.io/posts/unity-compute-shader/" rel="alternate" type="text/html" title="유니티 - 컴퓨트 쉐이더(Compute Shader)" />
-    <published>2021-09-10T02:01:00+09:00</published>
-  
-    <updated>2021-09-10T15:39:28+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-compute-shader/</id>
-    <content src="https://rito15.github.io/posts/unity-compute-shader/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Compute Shader
-
-
-개념
-
-  GPU를 CPU의 영역인 응용 프로그램 계산에 사용하는 GPGPU(General-Purpose computing on GPU)와는 개념이 유사하지만 다르다.
-  GPGPU를 사용하는 CUDA, OpenCL은 독립 API이고 OpenGL의 Compute Shader, DirectX의 DirectCompute는 그래픽스API에 종속되어 동작한다.
-  동시에 수많은 대상(수십만, 수백만 단위 가능)에 대해 동일한 연산(함수)을 처리해야 할 때 사용한다.
-  VFX Graph도 컴퓨트 쉐이더를 연산에 사용한다고 한다.
-  확장자는 .compute이다.
-
-
-커널(Kernal)
-
-  GPU에서 동작하는 함수를 의미한다.
-  함수의 이름이 곧 커널의 이름이며, #pragma...
     </summary>
   
 

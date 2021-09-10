@@ -23,25 +23,25 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="C# ValueTuple, Tuple" />
+<meta property="og:title" content="C# Tuple, ValueTuple" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Note" />
 <meta property="og:description" content="Note" />
-<link rel="canonical" href="https://rito15.github.io/posts/cs-value-tuple-and-tuple/" />
-<meta property="og:url" content="https://rito15.github.io/posts/cs-value-tuple-and-tuple/" />
+<link rel="canonical" href="https://rito15.github.io/posts/cs-tuple-and-value-tuple/" />
+<meta property="og:url" content="https://rito15.github.io/posts/cs-tuple-and-value-tuple/" />
 <meta property="og:site_name" content="Rito15" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-09-11T00:45:00+09:00" />
+<meta property="article:published_time" content="2021-09-11T03:45:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="C# ValueTuple, Tuple" />
+<meta property="twitter:title" content="C# Tuple, ValueTuple" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note","datePublished":"2021-09-11T00:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-value-tuple-and-tuple/"},"url":"https://rito15.github.io/posts/cs-value-tuple-and-tuple/","author":{"@type":"Person","name":"Rito15"},"headline":"C# ValueTuple, Tuple","dateModified":"2021-09-11T00:45:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note","datePublished":"2021-09-11T03:45:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-tuple-and-value-tuple/"},"url":"https://rito15.github.io/posts/cs-tuple-and-value-tuple/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Tuple, ValueTuple","dateModified":"2021-09-11T03:45:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>C# ValueTuple, Tuple | Rito15
+  <title>C# Tuple, ValueTuple | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>C# ValueTuple, Tuple</span>
+        <span>C# Tuple, ValueTuple</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -347,6 +347,20 @@
 
 
 
+  
+
+  
+
+  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
+  
+  
+
+  
+
+  
+
+
+
 <!-- return -->
 <div class="row">
 
@@ -354,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>C# ValueTuple, Tuple</h1>
+      <h1 data-toc-skip>C# Tuple, ValueTuple</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -371,7 +385,7 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sat, Sep 11, 2021, 12:45 AM +0900"
+    title="Sat, Sep 11, 2021,  3:45 AM +0900"
   >
 
   
@@ -381,7 +395,7 @@
     Sep 11
   
 
-  <i class="unloaded">2021-09-11T00:45:00+09:00</i>
+  <i class="unloaded">2021-09-11T03:45:00+09:00</i>
 
 </span>
           by
@@ -405,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="230 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2355 words">13 min</span>
 
 
           <!-- page views -->
@@ -413,7 +427,7 @@
 
           <!-- HITS -->
           &nbsp;
-          <a href="https://hits.seeyoufarm.com"><img min-width="94" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://rito15.github.io/posts/cs-value-tuple-and-tuple/%2F&count_bg=%23AC58FA&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false"/></a> 
+          <a href="https://hits.seeyoufarm.com"><img min-width="94" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://rito15.github.io/posts/cs-tuple-and-value-tuple/%2F&count_bg=%23AC58FA&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false"/></a> 
 
         </div>
 
@@ -434,21 +448,6 @@
 
 <p><br /></p>
 
-<h1 id="valuetuple">ValueTuple</h1>
-<hr />
-
-<p>구조체 튜플 타입.</p>
-
-<p>구조체 타입이므로 전달할 때마다 복사가 발생한다.</p>
-
-<p><code class="language-plaintext highlighter-rouge">ValueTuple</code> 이라는 타입명을 명시적으로 작성하지 않아도</p>
-
-<p><code class="language-plaintext highlighter-rouge">(T1, T2)</code>와 같은 문법으로 간편하게 사용할 수 있다.</p>
-
-<p>내부 타입의 값은 필드 형태로 저장된다.</p>
-
-<p><br /></p>
-
 <h1 id="tuple">Tuple</h1>
 <hr />
 
@@ -458,7 +457,506 @@
 
 <p><code class="language-plaintext highlighter-rouge">Tuple&lt;T1, T2&gt;</code> 같이 명시적으로 타입명을 작성해야 한다.</p>
 
-<p>내부 타입의 값은 프로퍼티 형태로 저장된다.</p>
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="n">tuple</span> <span class="p">=</span> <span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">20f</span><span class="p">);</span> <span class="c1">// 불가능</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>아쉽게도 위와 같은 편리한 생성은 안되고,</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="n">tuple</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">float</span><span class="p">&gt;(</span><span class="m">10</span><span class="p">,</span> <span class="m">20f</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 명시적으로 생성자를 호출하여 생성해야 한다.</p>
+
+<p><br /></p>
+
+<p>제네릭 인자는 <code class="language-plaintext highlighter-rouge">Tuple&lt;T&gt;</code>, <code class="language-plaintext highlighter-rouge">Tuple&lt;T1, T2&gt;</code>, … , <code class="language-plaintext highlighter-rouge">Tuple&lt;T1, ... , T8&gt;</code></p>
+
+<p>이렇게 1개부터 8개까지 지정하여 사용할 수 있다.</p>
+
+<p>내부 값들은 필드가 아니라 프로퍼티로 존재한다.</p>
+
+<p><br /></p>
+
+<h1 id="valuetuple">ValueTuple</h1>
+<hr />
+
+<p>구조체 튜플 타입.</p>
+
+<p>구조체 타입이므로 전달할 때마다 복사가 발생한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ValueTuple&lt;T1, T2&gt;</code> 같이 타입명을 명시적으로 작성하지 않아도</p>
+
+<p><code class="language-plaintext highlighter-rouge">(T1, T2)</code>와 같은 문법으로 간편하게 사용할 수 있다.</p>
+
+<p><br /></p>
+
+<p>이 때 적용되는 타입은 <code class="language-plaintext highlighter-rouge">ValueTuple</code> 타입 자체가 아니고</p>
+
+<p><code class="language-plaintext highlighter-rouge">ValueTuple&lt;T&gt;</code>, <code class="language-plaintext highlighter-rouge">ValueTuple&lt;T1, T2&gt;</code>과 같은 제네릭 타입이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Tuple&lt;&gt;</code>처럼 제네릭 인자는 1개부터 8개까지 사용할 수 있다.</p>
+
+<p>그리고 내부 값들은 필드 형태로 저장된다.</p>
+
+<p><br /></p>
+
+<p>제네릭 인자가 없는 <code class="language-plaintext highlighter-rouge">ValueTuple</code> 구조체 타입은 실제 사용을 위한 타입이 아니며,</p>
+
+<p>대신 <code class="language-plaintext highlighter-rouge">Create&lt;T1&gt;(T1 item1)</code>, <code class="language-plaintext highlighter-rouge">Create&lt;T1, T2&gt;(T1 item1, T2 item2)</code>와 같은 정적 메소드를 제공한다.</p>
+
+<p><br /></p>
+
+<h1 id="타입-추론">타입 추론</h1>
+<hr />
+
+<p><code class="language-plaintext highlighter-rouge">&lt;int, float, string&gt;</code> 타입의 <code class="language-plaintext highlighter-rouge">ValueTuple</code>을 사용하려면</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">ValueTuple</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">tuple</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>혹은</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="n">tuple</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>처럼 작성하면 된다.</p>
+
+<p>하지만 타입 부분이 너무 길게 늘어진다는 단점이 있다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="n">tuple</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/132912445-18b4b356-5121-45e4-972f-4a8ad606bfcc.png" alt="image" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">var</code> 키워드는 타입을 명시적으로 작성하지 않고,</p>
+
+<p>초기화되는 값의 타입에 따라 추론하여 컴파일 타임에 변수의 타입을 지정해준다.</p>
+
+<p>이를 이용하면 특히 튜플 타입의 변수에 대해</p>
+
+<p>일일이 필드의 타입을 명시하지 않고 편리하게 선언할 수 있다.</p>
+
+<p><br /></p>
+
+<h1 id="튜플을-지역변수로-분해하기">튜플을 지역변수로 분해하기</h1>
+<hr />
+
+<h2 id="선언과-동시에-초기화하기"><strong>선언과 동시에 초기화하기</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="n">tuple</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이런 튜플이 있을 때,</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">float</span> <span class="n">f</span><span class="p">,</span> <span class="kt">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">=</span> <span class="n">tuple</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 각각의 지역 변수 선언과 동시에</p>
+
+<p>튜플을 분해하여 값을 초기화할 수 있다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="p">=</span> <span class="n">tuple</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">var</code>를 통한 타입 추론을 활용하여</p>
+
+<p>위와 같이 선언과 동시에 초기화할 수도 있다.</p>
+
+<p><br /></p>
+
+<h2 id="무시-항목-사용하기"><strong>무시 항목 사용하기</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="kt">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">=</span> <span class="n">tuple</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 무시 항목(<code class="language-plaintext highlighter-rouge">_</code>)을 사용하여, 튜플의 일부 필드를 무시하고</p>
+
+<p>원하는 필드들만 지역변수로 선언과 동시에 초기화할 수 있다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="p">=</span> <span class="n">tuple</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이런 방식도 가능하다.</p>
+
+<p><br /></p>
+
+<h2 id="유사한-문법"><strong>유사한 문법</strong></h2>
+
+<p>튜플을 사용하지는 않지만 위와 유사한 문법이 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">float</span> <span class="n">f</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="m">123</span><span class="p">,</span> <span class="m">45f</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="m">123</span><span class="p">,</span> <span class="m">45f</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 서로 다른 타입의 지역 변수들에 대해,</p>
+
+<p>한 줄로 묶어서 선언과 동시에 초기화할 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="이미-선언된-변수들에-튜플-분해하여-전달하기"><strong>이미 선언된 변수들에 튜플 분해하여 전달하기</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1">// 튜플</span>
+<span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="n">tuple</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">);</span>
+
+<span class="c1">// 지역 변수들</span>
+<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">f</span><span class="p">;</span>
+<span class="kt">string</span> <span class="n">s</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위와 같이 튜플과 지역변수들이 선언되어 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="p">=</span> <span class="n">tuple</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>튜플의 값을 이렇게 필드 순서대로 지역 변수들에 전달할 수 있으며,</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="p">=</span> <span class="n">tuple</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>전달을 원치 않는 부분은 무시 항목(<code class="language-plaintext highlighter-rouge">_</code>)을 사용하여 건너뛰고,</p>
+
+<p>다른 필드들만 전달할 수도 있다.</p>
+
+<p><br /></p>
+
+<h2 id="불가능한-문법-형태"><strong>불가능한 문법 형태</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="kt">string</span> <span class="n">s</span><span class="p">;</span> <span class="c1">// 미리 선언된 지역 변수</span>
+
+<span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">float</span> <span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="p">=</span> <span class="n">tuple</span><span class="p">;</span> <span class="c1">// 튜플의 분해와 동시에 선언 및 초기화</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>분해와 동시에 선언 및 초기화, 그리고 미리 선언된 지역 변수에 대한 초기화는</p>
+
+<p>‘분해의 혼합 선언 및 식’이라고 하며, 동시에 이루어질 수 없다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">tuple</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">);</span> <span class="c1">// 불가능</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>튜플의 필드를 동시에 초기화할 때 위와 같이 일부만 초기화하는 것은 안된다.</p>
+
+<p><br /></p>
+
+<h1 id="필드-이름-직접-지정하기">필드 이름 직접 지정하기</h1>
+<hr />
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="n">tuple</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위에서 작성한 변수 <code class="language-plaintext highlighter-rouge">tuple</code>에 대한 각각의 필드는</p>
+
+<p><code class="language-plaintext highlighter-rouge">.item1</code>, <code class="language-plaintext highlighter-rouge">.item2</code>, <code class="language-plaintext highlighter-rouge">.item3</code>을 통해 참조할 수 있다.</p>
+
+<p>그런데 필드 이름들이 아무런 의미를 담고 있지 않는, 그저 <strong>item</strong>일 뿐이니</p>
+
+<p>이대로 반복적으로 사용하면 가독성이 영 좋지 않을 것 같다.</p>
+
+<p>따라서 이 필드들에 직접 이름을 지정해줄 수 있다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="kt">float</span> <span class="n">ratio</span><span class="p">,</span> <span class="kt">string</span> <span class="n">name</span><span class="p">)</span> <span class="n">tuple</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>각 필드에 순서대로 <code class="language-plaintext highlighter-rouge">index</code>, <code class="language-plaintext highlighter-rouge">ratio</code>, <code class="language-plaintext highlighter-rouge">name</code>이라는 이름을 붙여주었다.</p>
+
+<p>이제 <code class="language-plaintext highlighter-rouge">item~</code> 대신, 지정된 이름을 통해 참조할 수 있다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">float</span> <span class="n">ratio</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="n">tuple</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0.5f</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 원하는 필드에만 명시적으로 이름을 붙여줄 수 있다.</p>
+
+<p>이름이 지정되지 않은 필드들은 순서대로 <code class="language-plaintext highlighter-rouge">item~</code> 이름을 갖는다.</p>
+
+<p><br /></p>
+
+<h1 id="튜플-타입-매개변수">튜플 타입 매개변수</h1>
+<hr />
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">void</span> <span class="nf">Method</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Do Something</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이 메소드는 <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">string</code> 타입 매개변수를 각각 전달 받는다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">void</span> <span class="nf">Method</span><span class="p">((</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">string</span> <span class="n">name</span><span class="p">)</span> <span class="n">tuple</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Do Something</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이 메소드는 <code class="language-plaintext highlighter-rouge">(int, string)</code> 타입의 튜플 매개변수 하나를 전달 받는다.</p>
+
+<p>물론 이런 방식이 필요하다면 사용해야 하겠지만</p>
+
+<p>튜플 타입의 매개변수는 가독성이 썩 좋지 않고 혼동을 유발할 수 있으므로,</p>
+
+<p>굳이 필요하지 않다면 사용하지 않는 것이 좋을 것 같다.</p>
+
+<p><br /></p>
+
+<h1 id="튜플을-반환하는-메소드">튜플을 반환하는 메소드</h1>
+<hr />
+
+<p>튜플의 진정한 편의성은 <strong>메소드 반환 타입</strong>으로서의 사용에 있다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="kt">float</span><span class="p">[]</span> <span class="nf">GetData</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">float</span><span class="p">[]</span> <span class="n">retArr</span> <span class="p">=</span> <span class="p">{</span> <span class="m">1f</span><span class="p">,</span> <span class="m">2f</span><span class="p">,</span> <span class="m">3f</span><span class="p">,</span> <span class="m">4f</span> <span class="p">};</span> <span class="c1">// 임의의 반환 데이터</span>
+
+    <span class="k">return</span> <span class="n">retArr</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위와 같이 <code class="language-plaintext highlighter-rouge">float[]</code> 타입을 리턴하는 메소드가 있다.</p>
+
+<p>만약 이 배열 데이터의 유효성을 검증하고 사용하려면</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="kt">float</span><span class="p">[]</span> <span class="n">arr</span> <span class="p">=</span> <span class="nf">GetData</span><span class="p">();</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">arr</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">arr</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Do Something</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 일단 메소드를 통해 데이터를 전달 받은 다음,</p>
+
+<p>데이터를 사용하는 부분에서 검증해야 한다.</p>
+
+<p><br /></p>
+
+<p>그런데 튜플을 활용하면 이런 검사를 미리 완료하여 전달할 수 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 완성된 배열 데이터, 데이터 유효성을 함께 리턴 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="p">(</span><span class="kt">bool</span><span class="p">,</span> <span class="kt">float</span><span class="p">[])</span> <span class="nf">GetData</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">float</span><span class="p">[]</span> <span class="n">retArr</span> <span class="p">=</span> <span class="p">{</span> <span class="m">1f</span><span class="p">,</span> <span class="m">2f</span><span class="p">,</span> <span class="m">3f</span><span class="p">,</span> <span class="m">4f</span> <span class="p">};</span> <span class="c1">// 임의의 반환 데이터</span>
+
+    <span class="c1">// 미리 유효성 검증 완료하여 반환</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">retArr</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">retArr</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="n">retArr</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>데이터를 받아 사용하는 부분에서는</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="kt">bool</span> <span class="n">isValid</span><span class="p">,</span> <span class="kt">float</span><span class="p">[]</span> <span class="n">arr</span><span class="p">)</span> <span class="n">data</span> <span class="p">=</span> <span class="nf">GetData</span><span class="p">();</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">isValid</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Do Something</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 완성된 데이터들을 전달받아 곧바로 사용할 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="반환되는-튜플의-필드-이름-지정하기"><strong>반환되는 튜플의 필드 이름 지정하기</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="p">(</span><span class="kt">bool</span> <span class="n">isValid</span><span class="p">,</span> <span class="kt">float</span><span class="p">[]</span> <span class="n">arr</span><span class="p">)</span> <span class="nf">GetData</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">...;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 메소드의 반환부에 각 튜플 필드의 이름을 명시적으로 지정하고,</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="kt">var</span> <span class="n">data</span> <span class="p">=</span> <span class="nf">GetData</span><span class="p">();</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">isValid</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Do Something</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">var</code>로 타입 추론을 하면 그 이름 그대로 사용하도록 할 수도 있다.</p>
+
+<p><br /></p>
+
+<h2 id="필요하지-않은-반환-값-무시하기"><strong>필요하지 않은 반환 값 무시하기</strong></h2>
+
+<p>위의 경우를 예시로,</p>
+
+<p>데이터의 유효성만 필요하거나 혹은 데이터 자체만 필요한 경우</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="kt">bool</span> <span class="n">isValid</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="p">=</span> <span class="nf">GetData</span><span class="p">();</span>
+<span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="kt">var</span> <span class="n">arrData</span><span class="p">)</span> <span class="p">=</span> <span class="nf">GetData</span><span class="p">();</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이런 식으로 무시 항목을 사용하여 필터링할 수 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="p">=</span> <span class="nf">GetData</span><span class="p">();</span>
+<span class="n">_</span> <span class="p">=</span> <span class="nf">GetData</span><span class="p">();</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>심지어 위와 같은 방식도 가능한데,</p>
+
+<p>이렇게 한다고 해서 반환 값의 메모리 할당을 방지하여 최적화를 한다거나 그렇지는 않다.</p>
+
+<p><br /></p>
+
+<h1 id="튜플-형변환-연산자">튜플 형변환 연산자</h1>
+<hr />
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Student</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>클래스가 있다.</p>
+
+<p>이 클래스 타입의 객체가 <code class="language-plaintext highlighter-rouge">(int, string)</code> 타입의 튜플로 형변환 되도록 하려면</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Student</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">implicit</span> <span class="k">operator</span> <span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">string</span> <span class="n">name</span><span class="p">)(</span><span class="n">Student</span> <span class="n">student</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">student</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 작성하면 되고,</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="n">Student</span> <span class="n">student</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Student</span><span class="p">();</span>
+<span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="n">tuple</span> <span class="p">=</span> <span class="n">student</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위와 같이 사용할 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="참고"><strong>참고</strong></h2>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="n">Student</span> <span class="n">student</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Student</span><span class="p">();</span>
+<span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="p">=</span> <span class="n">student</span><span class="p">;</span> <span class="c1">// Deconstruct() 호출</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이런 형태는 튜플 형변환이 아니라 <code class="language-plaintext highlighter-rouge">Deconstruct()</code> 메소드 호출이며,</p>
+
+<p>전혀 다른 문법이다.</p>
 
 <p><br /></p>
 
@@ -522,19 +1020,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=C# ValueTuple, Tuple - Rito15&url=https://rito15.github.io/posts/cs-value-tuple-and-tuple/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=C# Tuple, ValueTuple - Rito15&url=https://rito15.github.io/posts/cs-tuple-and-value-tuple/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=C# ValueTuple, Tuple - Rito15&u=https://rito15.github.io/posts/cs-value-tuple-and-tuple/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=C# Tuple, ValueTuple - Rito15&u=https://rito15.github.io/posts/cs-tuple-and-value-tuple/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=C# ValueTuple, Tuple - Rito15&url=https://rito15.github.io/posts/cs-value-tuple-and-tuple/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=C# Tuple, ValueTuple - Rito15&url=https://rito15.github.io/posts/cs-tuple-and-value-tuple/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>
@@ -597,6 +1095,11 @@
         
         
         
+        <li><a href="/posts/cs-gethashcode-cost-by-types/">C# 타입별 GetHashCode() 성능</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
         
@@ -613,11 +1116,6 @@
         
         
         <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
       
 
       </ul>
@@ -3833,6 +4331,11 @@
   </div> <!-- .access -->
 
   
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
 
 </div> <!-- #panel-wrapper -->
 
@@ -3866,6 +4369,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7936,9 +8452,9 @@ class MainClass
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/cs-Deconstructor/" class="btn btn-outline-primary">
+    <p>C# Deconstructor</p>
+  </a>
   
 
 </div>
@@ -7951,6 +8467,16 @@ class MainClass
 
 </div> <!-- .row -->
 
+
+
+  <!-- image lazy load: https://github.com/ApoorvSaxena/lozad.js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+
+<script type="text/javascript">
+  const imgs = document.querySelectorAll('.post-content img');
+  const observer = lozad(imgs);
+  observer.observe();
+</script>
 
 
 
