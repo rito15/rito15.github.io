@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-10T15:33:24+09:00</updated>
+  <updated>2021-09-10T18:32:13+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,77 @@
 
   
   <entry>
+    <title>C# Span 사용하여 문자열의 첫 문자만 대소문자 변경하기</title>
+    <link href="https://rito15.github.io/posts/cs-string-first-char-to-lower-or-upper/" rel="alternate" type="text/html" title="C# Span 사용하여 문자열의 첫 문자만 대소문자 변경하기" />
+    <published>2021-09-10T17:51:00+09:00</published>
+  
+    <updated>2021-09-10T17:51:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-string-first-char-to-lower-or-upper/</id>
+    <content src="https://rito15.github.io/posts/cs-string-first-char-to-lower-or-upper/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      첫 문자만 간단히 대소문자 변경하기
+
+
+string의 API만 사용하면 아주 간단히 첫 문자만 대소문자를 변경할 수 있다.
+
+private static string FirstCharToLower(string str)
+{
+    return str[0].ToString().ToLower() + str.Substring(1);
+}
+
+
+하지만 이렇게 되면 여기서 힙 할당이 너무 많이 발생한다.
+
+str[0].ToString()에서 한 번,
+
+.ToLower()에서 한 번,
+
+str.Substring(1)에서 한 번,
+
+_ + _에서 한 번.
+
+총 네 번의 힙 할당이 이루어진다.
+
+
+
+힙 할당 최소화하여 변환하기
+
+
+힙 할당을 최소화하려면 역시 Span, ReadOnlySpan을 사용해야 한다.
+
+Span이 ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>유니티 - 컴퓨트 쉐이더(Compute Shader)</title>
     <link href="https://rito15.github.io/posts/unity-compute-shader/" rel="alternate" type="text/html" title="유니티 - 컴퓨트 쉐이더(Compute Shader)" />
     <published>2021-09-10T02:01:00+09:00</published>
   
-    <updated>2021-09-10T02:01:00+09:00</updated>
+    <updated>2021-09-10T15:39:28+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-compute-shader/</id>
     <content src="https://rito15.github.io/posts/unity-compute-shader/" />
@@ -304,61 +370,6 @@ using UnityEngine;
 
 /// &amp;lt;summary&amp;gt; 안드로이드 토스트 메시지 표시 싱글톤 &amp;lt;/summary&amp;gt;
 public class AndroidToast : ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 플랫폼별 경로들</title>
-    <link href="https://rito15.github.io/posts/unity-path-by-platform/" rel="alternate" type="text/html" title="유니티 - 플랫폼별 경로들" />
-    <published>2021-09-07T19:39:00+09:00</published>
-  
-    <updated>2021-09-08T05:34:08+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-path-by-platform/</id>
-    <content src="https://rito15.github.io/posts/unity-path-by-platform/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      경로 파라미터
-
-
-
-  &amp;lt;projectroot&amp;gt; : 유니티 에디터 프로젝트 폴더 루트 경로
-  &amp;lt;executablefolder&amp;gt; : 빌드된 실행 파일의 폴더 경로
-  &amp;lt;companyname&amp;gt; : Project Settings - Player에서 지정한 Company Name
-  &amp;lt;productname&amp;gt; : Project Settings - Player에서 지정한 Product Name
-  &amp;lt;packagename&amp;gt; : com.&amp;lt;companyname&amp;gt;.&amp;lt;productname&amp;gt;
-
-
-
-
-읽기, 쓰기 모두 가능한 경로
-
-
-Windows Editor
-
-Application.dataPath
-"&amp;lt;projectroot&amp;gt;/Assets"...
     </summary>
   
 

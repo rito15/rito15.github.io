@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "C# Span 사용하여 문자열의 첫 문자만 대소문자 변경하기",
+    "url": "/posts/cs-string-first-char-to-lower-or-upper/",
+    "categories": "C#, C# Memo",
+    "tags": "csharp",
+    "date": "2021-09-10 17:51:00 +0900",
+    
+
+
+
+
+
+    "snippet": "첫 문자만 간단히 대소문자 변경하기string의 API만 사용하면 아주 간단히 첫 문자만 대소문자를 변경할 수 있다.private static string FirstCharToLower(string str){    return str[0].ToString().ToLower() + str.Substring(1);}하지만 이렇게 되면 여기서 힙 할당이 너무 많이 발생한다.str[0].ToString()에서 한 번,.ToLower()에서 한 번,str.Substring(1)에서 한 번,_ + _에서 한 번.총 네 번의 힙 할당이 이..."
+  },
+  
+  {
     "title": "유니티 - 컴퓨트 쉐이더(Compute Shader)",
     "url": "/posts/unity-compute-shader/",
     "categories": "Unity, Unity Memo",

@@ -601,6 +601,11 @@
         
         
         
+        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
@@ -617,11 +622,6 @@
         
         
         <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
       
 
       </ul>
@@ -3870,6 +3870,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7802,7 +7815,7 @@ USB 디버깅 허용
       
       
       <div class="card">
-        <a href="/posts/unity-play-mode-save-sample/">
+        <a href="/posts/unity-android-authority/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7819,13 +7832,13 @@ USB 디버깅 허용
   
 
   
-    Aug 17
+    Sep  7
   
 
-  <i class="unloaded">2021-08-17T04:32:00+09:00</i>
+  <i class="unloaded">2021-09-07T16:50:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Unity Play Mode Save - Sample</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 안드로이드 권한 요청하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7837,16 +7850,20 @@ USB 디버깅 허용
                 Memo
 
 
+  안드로이드의 카메라, 로컬 스토리지 등의 기능을 사용하려면 권한을 반드시 요청해야 한다.
+  Android 6(API Lv.23) 이상에서는 Android.Permission API를 통해 런타임에 권한을 요청할 수 있다.
 
-  플레이모드 -&gt; 에디터모드 진입 시 플레이모드의 변경사항 유지
 
+
+
+공통
+
+
+안드로이드 매니페스트 파일 경로
 
 
   
-    public class Sample_PlayModeSave : MonoBehaviour
-{
-    /***********************************************************************
-    *      ...
+    구글링하면 대부분 나오는 Root/Temp/Sta...
               </p>
             </div>
           </div>
