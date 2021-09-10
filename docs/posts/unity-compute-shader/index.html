@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2558 words">14 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2777 words">15 min</span>
 
 
           <!-- page views -->
@@ -457,9 +457,9 @@
 
 <h2 id="스레드-그룹thread-group"><strong>스레드 그룹(Thread Group)</strong></h2>
 <ul>
-  <li>하나의 스레드 그룹이 <code class="language-plaintext highlighter-rouge">numthread(x, y, z)</code>로 지정된 개수만큼의 스레드를 실행한다.</li>
-  <li>스레드 그룹의 개수는 컴퓨트 쉐이더 객체를 <code class="language-plaintext highlighter-rouge">.Dispatch(kernalIndex, x, y, z)</code>로 실행할 때 지정한다.</li>
-  <li>개수는 3차원(<code class="language-plaintext highlighter-rouge">x, y, z</code>)으로 구성된다.</li>
+  <li>하나의 스레드 그룹 당 <code class="language-plaintext highlighter-rouge">[numthread(x, y, z)]</code>로 지정된 개수만큼의 스레드를 실행한다.</li>
+  <li>스레드 그룹의 개수는 컴퓨트 쉐이더 객체를 <code class="language-plaintext highlighter-rouge">.Dispatch(kernalIndex, X, Y, Z)</code>로 실행할 때 지정한다.</li>
+  <li>개수는 3차원(<code class="language-plaintext highlighter-rouge">X, Y, Z</code>)으로 구성된다.</li>
 </ul>
 
 <h2 id="스레드thread"><strong>스레드(Thread)</strong></h2>
@@ -482,18 +482,26 @@
 
 <h2 id="스레드-개수-한계"><strong>스레드 개수 한계</strong></h2>
 <ul>
-  <li>스레드 그룹 수의 한계는 <code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">y</code>, <code class="language-plaintext highlighter-rouge">z</code> 각 차원마다 각각 <strong>65535</strong>( \({2}^{16} - 1\) )이다.</li>
-  <li>하나의 스레드 그룹이 가질 수 있는 스레드 개수에도 제한이 있다.</li>
-  <li>ShaderModel cs_4_x에서는 <code class="language-plaintext highlighter-rouge">x * y * z</code>의 최댓값이 <strong>768</strong>로 제한되며, 이 중 <code class="language-plaintext highlighter-rouge">z</code>는 1이어야 한다.</li>
-  <li>ShaderModel cs_5_0에서 <code class="language-plaintext highlighter-rouge">x * y * z</code>의 최댓값은 <strong>1024</strong>, <code class="language-plaintext highlighter-rouge">z</code>의 최댓값은 64이다.</li>
+  <li>스레드 그룹 수의 한계는 <code class="language-plaintext highlighter-rouge">X</code>, <code class="language-plaintext highlighter-rouge">Y</code>, <code class="language-plaintext highlighter-rouge">Z</code> 각 차원마다 각각 <strong>65535</strong>( \({2}^{16} - 1\) )이다.</li>
+  <li>하나의 스레드 그룹이 가질 수 있는 스레드 개수에도 제한이 있다.
+    <ul>
+      <li>ShaderModel cs_4_x에서 <code class="language-plaintext highlighter-rouge">x * y * z</code>의 최댓값은 <strong>768</strong>로 제한되며, 이 중 <code class="language-plaintext highlighter-rouge">z</code>는 1이어야 한다.</li>
+      <li>ShaderModel cs_5_0에서 <code class="language-plaintext highlighter-rouge">x * y * z</code>의 최댓값은 <strong>1024</strong>, <code class="language-plaintext highlighter-rouge">z</code>의 최댓값은 64이다.</li>
+    </ul>
+  </li>
 </ul>
 
-<h2 id="스레드-개수-설정"><strong>스레드 개수 설정</strong></h2>
+<h2 id="스레드-개수-계산-예시"><strong>스레드 개수 계산 예시</strong></h2>
 <ul>
   <li>먼저, 필요한 전체 스레드 개수를 계산한다.</li>
   <li>예를 들어 <code class="language-plaintext highlighter-rouge">1024 * 768</code> 크기의 렌더 텍스쳐를 2차원으로 병렬 연산한다고 가정하자.</li>
-  <li>하나의 스레드 그룹이 가질 스레드의 개수를 <code class="language-plaintext highlighter-rouge">8 * 8 * 1</code>로 둔다. (더 크게 할 수도 있지만, 8의 배수 크기의 픽셀에 대응하도록 이렇게 설정한다.)</li>
-  <li>스레드 그룹의 개수는 <code class="language-plaintext highlighter-rouge">(1024 / 8) * (768 / 8) * (1 / 1)</code> = <code class="language-plaintext highlighter-rouge">128 * 96 * 1</code>이 된다.</li>
+  <li>하나의 스레드 그룹이 가질 스레드의 개수를 <code class="language-plaintext highlighter-rouge">8 * 8 * 1</code>로 둔다. <br />
+(더 크게 할 수도 있지만, 너무 크게 했다가 낭비되는 스레드가 생길 수 있으므로 적절히 설정한다.)</li>
+  <li>
+    <p>스레드 그룹의 개수는 <code class="language-plaintext highlighter-rouge">(1024 / 8) * (768 / 8) * (1 / 1)</code> = <code class="language-plaintext highlighter-rouge">128 * 96 * 1</code>이 된다.</p>
+  </li>
+  <li>따라서 커널 상단에 <code class="language-plaintext highlighter-rouge">[numthread(8, 8, 1)]</code>로 지정하고,</li>
+  <li>컴퓨트 쉐이더를 실행할 때 <code class="language-plaintext highlighter-rouge">Dispatch(index, 128, 96, 1)</code> 이렇게 호출한다.</li>
 </ul>
 
 <h2 id="참고사항"><strong>참고사항</strong></h2>
@@ -501,7 +509,7 @@
   <li>컴퓨트 쉐이더의 연산 결과를 렌더 텍스쳐에 받아 오려면 렌더 텍스쳐의 랜덤 액세스 기능을 활성화해야 한다.</li>
   <li><code class="language-plaintext highlighter-rouge">RenderTexture.enableRandomWrite = true</code>로 설정하면 된다.</li>
   <li>또한 렌더 텍스쳐의 생성자에 <code class="language-plaintext highlighter-rouge">RenderTextureReadWrite.Linear</code> 옵션을 5번째 매개변수로 전달해야 한다.</li>
-  <li>필요한 연산 개수보다 더 많은 스레드를 생성하면 불필요한 성능 낭비가 생기므로, 딱 맞춰 설정하는 것이 좋다.</li>
+  <li>필요한 연산 수보다 더 많은 스레드를 생성하면 불필요한 성능 낭비가 생기므로, 스레드 개수는 연산에 필요한 만큼 딱 맞춰 설정하는 것이 좋다.</li>
 </ul>
 
 <p><br /></p>
@@ -518,7 +526,7 @@
   <li><strong>매개변수</strong>
     <ul>
       <li><code class="language-plaintext highlighter-rouge">kernalIndex</code> : 실행할 커널 함수의 인덱스(기본 0)</li>
-      <li><code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">y</code>, <code class="language-plaintext highlighter-rouge">z</code> : 실행할 스레드 그룹의 각 차원 별 개수</li>
+      <li><code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">y</code>, <code class="language-plaintext highlighter-rouge">z</code> : 각 차원마다 스레드 그룹 개수 지정</li>
     </ul>
   </li>
 </ul>
@@ -545,10 +553,14 @@
   <li>
     <p><code class="language-plaintext highlighter-rouge">[numthreads(x, y, z)]</code>에 입력한 값들을 받아오는 것이다.</p>
   </li>
+  <li>
+    <p>컴퓨트 쉐이더를 실행하기 전에 이 메소드를 이용해 스레드 개수를 알아내고 <br />
+<code class="language-plaintext highlighter-rouge">Dispatch(index, X / x, Y / y, Z / z)</code> 처럼 사용할 수 있다.</p>
+  </li>
   <li><strong>매개변수</strong>
     <ul>
       <li><code class="language-plaintext highlighter-rouge">kernalIndex</code> : 실행할 커널 함수의 인덱스(기본 0)</li>
-      <li><code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">y</code>, <code class="language-plaintext highlighter-rouge">z</code> : 스레드 그룹마다 각각의 차원 별 스레드 개수</li>
+      <li><code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">y</code>, <code class="language-plaintext highlighter-rouge">z</code> : 각각의 차원마다, 스레드 그룹 하나 당 실행할 스레드 개수</li>
     </ul>
   </li>
 </ul>
@@ -661,27 +673,33 @@
 20
 21
 22
+23
+24
+25
 </pre></td><td class="rouge-code"><pre><span class="c1">// 커널 함수의 이름을 명시한다.</span>
 <span class="cp">#pragma kernel CSMain
 </span>
 <span class="c1">// 커널 계산을 마치고 결과를 출력할 입출력 텍스쳐</span>
-<span class="c1">// 렌더 텍스쳐 포맷과 채널을 일치시킨다.</span>
-<span class="kt">RWTexture2D</span><span class="o">&lt;</span><span class="kt">float4</span><span class="o">&gt;</span> <span class="n">result</span><span class="p">;</span>
+<span class="c1">// 렌더 텍스쳐 포맷과 채널을 일치시킨다. (RGBA 4채널 =&gt; float4)</span>
+<span class="kt">RWTexture2D</span><span class="o">&lt;</span><span class="kt">float4</span><span class="o">&gt;</span> <span class="n">Result</span><span class="p">;</span>
 
 <span class="c1">// 스레드 그룹 당 쉐이더 개수 = 8 * 8 * 1 = 64</span>
 <span class="c1">// 2D 텍스쳐에 대한 연산이므로 2차원으로 스레드 할당</span>
 <span class="p">[</span><span class="nb">numthreads</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
 <span class="kt">void</span> <span class="nf">CSMain</span> <span class="p">(</span><span class="n">uint3</span> <span class="n">id</span> <span class="o">:</span> <span class="n">SV_DispatchThreadID</span><span class="p">)</span>
 <span class="p">{</span>
+    <span class="c1">// Note : 각 차원마다 총 스레드 개수(그룹 * 그룹당 스레드 수)가 (x, y, z)일 때,</span>
+    <span class="c1">//        매개변수 id의 값은 (0, 0, 0) ~ (x - 1, y - 1, z - 1)까지 차례로 할당된다.</span>
+
     <span class="c1">// 텍스쳐 변수(렌더 텍스쳐)의 X, Y 성분의 길이, 즉 너비와 높이를 찾아온다.</span>
     <span class="n">uint</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span>
-    <span class="n">result</span><span class="p">.</span><span class="n">GetDimensions</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+    <span class="n">Result</span><span class="p">.</span><span class="n">GetDimensions</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
 
     <span class="c1">// 스크린 픽셀 좌표를 [0, 1] 범위로 변환한다.</span>
     <span class="kt">float2</span> <span class="n">uv</span> <span class="o">=</span> <span class="n">id</span><span class="p">.</span><span class="n">xy</span> <span class="o">/</span> <span class="kt">float2</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
 
     <span class="c1">// 텍스쳐에 색상을 넣는다.</span>
-    <span class="n">result</span><span class="p">[</span><span class="n">id</span><span class="p">.</span><span class="n">xy</span><span class="p">]</span> <span class="o">=</span> <span class="kt">float4</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">Result</span><span class="p">[</span><span class="n">id</span><span class="p">.</span><span class="n">xy</span><span class="p">]</span> <span class="o">=</span> <span class="kt">float4</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
@@ -750,6 +768,7 @@
 59
 60
 61
+62
 </pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">ScreenUVRenderer</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
@@ -769,8 +788,8 @@
         <span class="c1">// 렌더 텍스쳐의 초기화를 확인한다.</span>
         <span class="nf">InitRenderTexture</span><span class="p">();</span>
 
-        <span class="c1">// 렌더 텍스쳐를 컴퓨트 쉐이더의 result 변수에 입출력 텍스쳐로 할당한다.</span>
-        <span class="n">computeShader</span><span class="p">.</span><span class="nf">SetTexture</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="s">"result"</span><span class="p">,</span> <span class="n">_renderTarget</span><span class="p">);</span>
+        <span class="c1">// 렌더 텍스쳐를 컴퓨트 쉐이더의 Result 변수에 입출력 텍스쳐로 할당한다.</span>
+        <span class="n">computeShader</span><span class="p">.</span><span class="nf">SetTexture</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="s">"Result"</span><span class="p">,</span> <span class="n">_renderTarget</span><span class="p">);</span>
         
         <span class="c1">// 2차원 X, Y 스레드 그룹의 개수를 계산한다.</span>
         <span class="c1">// 각 차원마다 실행되는 스레드 수는 해당 차원의 스크린 픽셀 개수(너비, 높이)이며,</span>
@@ -788,6 +807,7 @@
 
     <span class="k">private</span> <span class="k">void</span> <span class="nf">InitRenderTexture</span><span class="p">()</span>
     <span class="p">{</span>
+        <span class="c1">// 렌더 텍스쳐가 제거되거나, 크기에 변경이 생기면 재할당한다.</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">_renderTarget</span> <span class="p">==</span> <span class="k">null</span> <span class="p">||</span> <span class="n">_renderTarget</span><span class="p">.</span><span class="n">width</span> <span class="p">!=</span> <span class="n">Screen</span><span class="p">.</span><span class="n">width</span> <span class="p">||</span> <span class="n">_renderTarget</span><span class="p">.</span><span class="n">height</span> <span class="p">!=</span> <span class="n">Screen</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="c1">// 크기가 다른 렌더 텍스쳐가 이미 존재하고 있었다면 메모리에서 해제한다.</span>
@@ -969,6 +989,11 @@
         
         
         
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
       
         
@@ -985,11 +1010,6 @@
         
         
         <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-path-by-platform/">유니티 - 플랫폼별 경로들</a></li>
       
 
       </ul>

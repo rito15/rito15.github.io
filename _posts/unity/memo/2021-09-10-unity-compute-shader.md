@@ -23,9 +23,9 @@ mermaid: true
  - 함수의 이름이 곧 커널의 이름이며, `#pragma kernel`에도 명시해 주어야 한다.
 
 ## **스레드 그룹(Thread Group)**
- - 하나의 스레드 그룹이 `numthread(x, y, z)`로 지정된 개수만큼의 스레드를 실행한다.
- - 스레드 그룹의 개수는 컴퓨트 쉐이더 객체를 `.Dispatch(kernalIndex, x, y, z)`로 실행할 때 지정한다.
- - 개수는 3차원(`x, y, z`)으로 구성된다.
+ - 하나의 스레드 그룹 당 `[numthread(x, y, z)]`로 지정된 개수만큼의 스레드를 실행한다.
+ - 스레드 그룹의 개수는 컴퓨트 쉐이더 객체를 `.Dispatch(kernalIndex, X, Y, Z)`로 실행할 때 지정한다.
+ - 개수는 3차원(`X, Y, Z`)으로 구성된다.
 
 ## **스레드(Thread)**
  - 커널(함수)을 실행하는 단위.
@@ -42,22 +42,26 @@ mermaid: true
  - 공간과 같이 3차원 계산이 필요하면 3차원으로 설정한다.
 
 ## **스레드 개수 한계**
- - 스레드 그룹 수의 한계는 `x`, `y`, `z` 각 차원마다 각각 **65535**( $${2}^{16} - 1$$ )이다.
+ - 스레드 그룹 수의 한계는 `X`, `Y`, `Z` 각 차원마다 각각 **65535**( $${2}^{16} - 1$$ )이다.
  - 하나의 스레드 그룹이 가질 수 있는 스레드 개수에도 제한이 있다.
- - ShaderModel cs_4_x에서는 `x * y * z`의 최댓값이 **768**로 제한되며, 이 중 `z`는 1이어야 한다.
- - ShaderModel cs_5_0에서 `x * y * z`의 최댓값은 **1024**, `z`의 최댓값은 64이다.
+   - ShaderModel cs_4_x에서 `x * y * z`의 최댓값은 **768**로 제한되며, 이 중 `z`는 1이어야 한다.
+   - ShaderModel cs_5_0에서 `x * y * z`의 최댓값은 **1024**, `z`의 최댓값은 64이다.
 
-## **스레드 개수 설정**
+## **스레드 개수 계산 예시**
  - 먼저, 필요한 전체 스레드 개수를 계산한다.
  - 예를 들어 `1024 * 768` 크기의 렌더 텍스쳐를 2차원으로 병렬 연산한다고 가정하자.
- - 하나의 스레드 그룹이 가질 스레드의 개수를 `8 * 8 * 1`로 둔다. (더 크게 할 수도 있지만, 8의 배수 크기의 픽셀에 대응하도록 이렇게 설정한다.)
+ - 하나의 스레드 그룹이 가질 스레드의 개수를 `8 * 8 * 1`로 둔다. <br>
+   (더 크게 할 수도 있지만, 너무 크게 했다가 낭비되는 스레드가 생길 수 있으므로 적절히 설정한다.)
  - 스레드 그룹의 개수는 `(1024 / 8) * (768 / 8) * (1 / 1)` = `128 * 96 * 1`이 된다.
+ 
+ - 따라서 커널 상단에 `[numthread(8, 8, 1)]`로 지정하고,
+ - 컴퓨트 쉐이더를 실행할 때 `Dispatch(index, 128, 96, 1)` 이렇게 호출한다.
 
 ## **참고사항**
  - 컴퓨트 쉐이더의 연산 결과를 렌더 텍스쳐에 받아 오려면 렌더 텍스쳐의 랜덤 액세스 기능을 활성화해야 한다.
  - `RenderTexture.enableRandomWrite = true`로 설정하면 된다.
  - 또한 렌더 텍스쳐의 생성자에 `RenderTextureReadWrite.Linear` 옵션을 5번째 매개변수로 전달해야 한다.
- - 필요한 연산 개수보다 더 많은 스레드를 생성하면 불필요한 성능 낭비가 생기므로, 딱 맞춰 설정하는 것이 좋다.
+ - 필요한 연산 수보다 더 많은 스레드를 생성하면 불필요한 성능 낭비가 생기므로, 스레드 개수는 연산에 필요한 만큼 딱 맞춰 설정하는 것이 좋다.
 
 <br>
 
@@ -70,7 +74,7 @@ mermaid: true
 
  - **매개변수**
    - `kernalIndex` : 실행할 커널 함수의 인덱스(기본 0)
-   - `x`, `y`, `z` : 실행할 스레드 그룹의 각 차원 별 개수
+   - `x`, `y`, `z` : 각 차원마다 스레드 그룹 개수 지정
 
 
 ## **FindKernal(string name) : int**
@@ -87,9 +91,12 @@ mermaid: true
  - 스레드 그룹의 각 차원이 갖고 있는 크기(스레드 개수)를 받아온다.
  - `[numthreads(x, y, z)]`에 입력한 값들을 받아오는 것이다.
  
+ - 컴퓨트 쉐이더를 실행하기 전에 이 메소드를 이용해 스레드 개수를 알아내고 <br>
+   `Dispatch(index, X / x, Y / y, Z / z)` 처럼 사용할 수 있다.
+ 
  - **매개변수**
    - `kernalIndex` : 실행할 커널 함수의 인덱스(기본 0)
-   - `x`, `y`, `z` : 스레드 그룹마다 각각의 차원 별 스레드 개수
+   - `x`, `y`, `z` : 각각의 차원마다, 스레드 그룹 하나 당 실행할 스레드 개수
 
 
 ## **SetFloat(...) : void**
@@ -161,23 +168,26 @@ mermaid: true
 #pragma kernel CSMain
 
 // 커널 계산을 마치고 결과를 출력할 입출력 텍스쳐
-// 렌더 텍스쳐 포맷과 채널을 일치시킨다.
-RWTexture2D<float4> result;
+// 렌더 텍스쳐 포맷과 채널을 일치시킨다. (RGBA 4채널 => float4)
+RWTexture2D<float4> Result;
 
 // 스레드 그룹 당 쉐이더 개수 = 8 * 8 * 1 = 64
 // 2D 텍스쳐에 대한 연산이므로 2차원으로 스레드 할당
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
+    // Note : 각 차원마다 총 스레드 개수(그룹 * 그룹당 스레드 수)가 (x, y, z)일 때,
+    //        매개변수 id의 값은 (0, 0, 0) ~ (x - 1, y - 1, z - 1)까지 차례로 할당된다.
+
     // 텍스쳐 변수(렌더 텍스쳐)의 X, Y 성분의 길이, 즉 너비와 높이를 찾아온다.
     uint width, height;
-    result.GetDimensions(width, height);
+    Result.GetDimensions(width, height);
 
     // 스크린 픽셀 좌표를 [0, 1] 범위로 변환한다.
     float2 uv = id.xy / float2(width, height);
 
     // 텍스쳐에 색상을 넣는다.
-    result[id.xy] = float4(uv, 0, 1);
+    Result[id.xy] = float4(uv, 0, 1);
 }
 ```
 
@@ -205,8 +215,8 @@ public class ScreenUVRenderer : MonoBehaviour
         // 렌더 텍스쳐의 초기화를 확인한다.
         InitRenderTexture();
 
-        // 렌더 텍스쳐를 컴퓨트 쉐이더의 result 변수에 입출력 텍스쳐로 할당한다.
-        computeShader.SetTexture(0, "result", _renderTarget);
+        // 렌더 텍스쳐를 컴퓨트 쉐이더의 Result 변수에 입출력 텍스쳐로 할당한다.
+        computeShader.SetTexture(0, "Result", _renderTarget);
         
         // 2차원 X, Y 스레드 그룹의 개수를 계산한다.
         // 각 차원마다 실행되는 스레드 수는 해당 차원의 스크린 픽셀 개수(너비, 높이)이며,
@@ -224,6 +234,7 @@ public class ScreenUVRenderer : MonoBehaviour
 
     private void InitRenderTexture()
     {
+        // 렌더 텍스쳐가 제거되거나, 크기에 변경이 생기면 재할당한다.
         if (_renderTarget == null || _renderTarget.width != Screen.width || _renderTarget.height != Screen.height)
         {
             // 크기가 다른 렌더 텍스쳐가 이미 존재하고 있었다면 메모리에서 해제한다.
