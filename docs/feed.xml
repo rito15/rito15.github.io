@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-11T16:28:22+09:00</updated>
+  <updated>2021-09-11T16:33:39+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,79 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# Deconstructor</title>
+    <link href="https://rito15.github.io/posts/cs-deconstructor/" rel="alternate" type="text/html" title="C# Deconstructor" />
+    <published>2021-09-11T04:32:00+09:00</published>
+  
+    <updated>2021-09-11T04:32:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-deconstructor/</id>
+    <content src="https://rito15.github.io/posts/cs-deconstructor/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Grammar" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Deconstructor
+
+
+class Student
+{
+    public int id;
+    public string name;
+}
+
+
+클래스가 있다.
+
+Student student = new Student();
+
+
+객체도 있다.
+
+(int id, string name) = student;
+
+
+위와 같이 한다고 해서 객체의 필드들이 각각의 변수에 할당되지는 않는다.
+
+
+
+class Student
+{
+    public int id;
+    public string name;
+
+    public void Deconstruct(out int id, out string name)
+    {
+        id = this.id;
+        name = this.name;
+    }
+}
+
+
+그런데 ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -267,57 +340,6 @@ _ + _에서 한 번.
 힙 할당을 최소화하려면 역시 Span, ReadOnlySpan을 사용해야 한다.
 
 Span이 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 컴퓨트 쉐이더(Compute Shader)</title>
-    <link href="https://rito15.github.io/posts/unity-compute-shader/" rel="alternate" type="text/html" title="유니티 - 컴퓨트 쉐이더(Compute Shader)" />
-    <published>2021-09-10T02:01:00+09:00</published>
-  
-    <updated>2021-09-10T15:39:28+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-compute-shader/</id>
-    <content src="https://rito15.github.io/posts/unity-compute-shader/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Compute Shader
-
-
-개념
-
-  GPU를 CPU의 영역인 응용 프로그램 계산에 사용하는 GPGPU(General-Purpose computing on GPU)와는 개념이 유사하지만 다르다.
-  GPGPU를 사용하는 CUDA, OpenCL은 독립 API이고 OpenGL의 Compute Shader, DirectX의 DirectCompute는 그래픽스API에 종속되어 동작한다.
-  동시에 수많은 대상(수십만, 수백만 단위 가능)에 대해 동일한 연산(함수)을 처리해야 할 때 사용한다.
-  VFX Graph도 컴퓨트 쉐이더를 연산에 사용한다고 한다.
-  확장자는 .compute이다.
-
-
-커널(Kernal)
-
-  GPU에서 동작하는 함수를 의미한다.
-  함수의 이름이 곧 커널의 이름이며, #pragma...
     </summary>
   
 
