@@ -76,13 +76,13 @@ class Student
 (int id, string name) = student;
 ```
 
-이건 `Deconstruct()` 호출이고,
+이것이 `Deconstruct()` 호출이고,
 
 ```cs
 (int id, string name) tuple = student;
 ```
 
-이것이 튜플로의 형변환이다.
+이건 튜플로의 형변환이다.
 
 <br>
 
