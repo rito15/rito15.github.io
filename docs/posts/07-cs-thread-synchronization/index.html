@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# Thread Synchronization and Locks" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"C# Thread Synchronization and Locks","description":"동기화 영역에 따른 구분","dateModified":"2021-07-08T01:07:00+09:00","datePublished":"2021-07-08T01:07:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/07-cs-thread-synchronization/"},"url":"https://rito15.github.io/posts/07-cs-thread-synchronization/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"동기화 영역에 따른 구분","datePublished":"2021-07-08T01:07:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/07-cs-thread-synchronization/"},"url":"https://rito15.github.io/posts/07-cs-thread-synchronization/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Thread Synchronization and Locks","dateModified":"2021-07-08T01:07:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -3863,8 +3863,6 @@
     
     
     
-      
-    
   
     
     
@@ -4317,6 +4315,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8191,60 +8202,6 @@
       
       
       <div class="card">
-        <a href="/posts/cs-parallel/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  7
-  
-
-  <i class="unloaded">2021-07-07T19:07:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Parallel</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Parallel 클래스
-
-
-
-  
-    반복적인 병렬 처리를 손쉽게 작성할 수 있는 API를 제공한다.
-  
-  
-    ThreadPool 기반으로 작성되어, ThreadPool의 현재 스레드 개수를 차지하며 최소/최대 스레드 개수에 영향을 받는다.
-  
-  
-    ThreadPool의 스레드 뿐만 아니라 호출 스레드도 병렬 처리에 포함된다.
- ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/01-cs-interlocked/">
           <div class="card-body">
             <!--
@@ -8350,6 +8307,55 @@ Monitor 클래스
   
   
     ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/03-cs-spinlock/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul  8
+  
+
+  <i class="unloaded">2021-07-08T01:03:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Spin Lock</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                스핀 락(Spin Lock) 개념
+
+
+스레드 동기화를 위해 락을 걸고 크리티컬 섹션에 진입할 경우, 대기하는 스레드는 블록된다.
+
+다시 말해, 크리티컬 섹션에 진입하려고 대기하는 스레드는 CPU 점유를 포기하게 된다.
+
+그리고 CPU 자원이 현재 활성화된 다른 스레드에게 넘어가게 되는데, 이 때 컨텍스트 스위칭이 발생하며 그에 따른 오버헤드 또한 발생...
               </p>
             </div>
           </div>
@@ -11237,8 +11243,6 @@ Monitor 클래스
     
     
     
-    
-      
     
   
     

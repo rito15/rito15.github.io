@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-11T16:33:39+09:00</updated>
+  <updated>2021-09-12T01:11:10+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,95 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(Amplify) Screen Effect - Ice (Frozen)</title>
+    <link href="https://rito15.github.io/posts/unity-amplify-screen-ice/" rel="alternate" type="text/html" title="(Amplify) Screen Effect - Ice (Frozen)" />
+    <published>2021-09-12T01:01:00+09:00</published>
+  
+    <updated>2021-09-12T01:01:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-amplify-screen-ice/</id>
+    <content src="https://rito15.github.io/posts/unity-amplify-screen-ice/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Amplify Shader" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+  
+    화면이 가장자리부터 얼어붙는 효과
+  
+  
+    스크린 이펙트 적용 애셋 : Link
+  
+
+
+
+
+Preview
+
+
+
+
+
+
+
+
+Properties
+
+
+
+  Ice Texture
+    
+      얼음 효과로 사용할 텍스쳐
+      원하는 텍스쳐를 사용하면 된다.
+    
+  
+  Range
+    
+      효과 적용 범위 (0 ~ 1)
+    
+  
+  Noise Scale
+    
+      기본 값 : 4
+      노이즈 적용 스케일
+    
+  
+  Power A
+    
+      기본 값 : 3
+      영역의 모양
+      작을수록 원형, 클수록 사각형에 가까워진다.
+    
+  
+  Power B
+    
+      기본 값 : 2
+      ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -274,72 +363,6 @@ public class Data { } // 임의의 클래스 타입
 public class Pair
 {
     public Dat...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# Span 사용하여 문자열의 첫 문자만 대소문자 변경하기</title>
-    <link href="https://rito15.github.io/posts/cs-string-first-char-to-lower-or-upper/" rel="alternate" type="text/html" title="C# Span 사용하여 문자열의 첫 문자만 대소문자 변경하기" />
-    <published>2021-09-10T17:51:00+09:00</published>
-  
-    <updated>2021-09-10T17:51:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-string-first-char-to-lower-or-upper/</id>
-    <content src="https://rito15.github.io/posts/cs-string-first-char-to-lower-or-upper/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      첫 문자만 간단히 대소문자 변경하기
-
-
-string의 API만 사용하면 아주 간단히 첫 문자만 대소문자를 변경할 수 있다.
-
-private static string FirstCharToLower(string str)
-{
-    return str[0].ToString().ToLower() + str.Substring(1);
-}
-
-
-하지만 이렇게 되면 여기서 힙 할당이 너무 많이 발생한다.
-
-str[0].ToString()에서 한 번,
-
-.ToLower()에서 한 번,
-
-str.Substring(1)에서 한 번,
-
-_ + _에서 한 번.
-
-총 네 번의 힙 할당이 이루어진다.
-
-
-
-힙 할당 최소화하여 변환하기
-
-
-힙 할당을 최소화하려면 역시 Span, ReadOnlySpan을 사용해야 한다.
-
-Span이 ...
     </summary>
   
 
