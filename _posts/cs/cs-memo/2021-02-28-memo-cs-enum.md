@@ -13,7 +13,14 @@ mermaid: true
 ```cs
 enum MyEnum { A, B }
 
+// Array에 담기
 Array allValues = Enum.GetValues(typeof(MyEnum));
+
+// MyEnum[]으로 담기
+MyEnum[] allEnumValues = 
+    Enum.GetValues(typeof(MyEnum))
+    .Cast<MyEnum>()
+    .ToArray();
 ```
 
 <br>
