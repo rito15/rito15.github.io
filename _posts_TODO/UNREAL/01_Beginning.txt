@@ -4,9 +4,122 @@
 - 입력
 - 이동, 점프
 
+- Unity to Unreal 페이지의 연결 링크들 모두 숙지
+  - <https://docs.unrealengine.com/4.27/ko/Basics/UnrealEngineForUnityDevs/>
+  - <https://docs.unrealengine.com/4.27/ko/Basics/Actors/>
+  - <https://docs.unrealengine.com/4.27/ko/InteractiveExperiences/Framework/Pawn/>
 
 
 <br>
+
+# Unity to Unreal
+---
+
+| Unity                | Unreal          |
+|---                   |---              |
+|Scene View & Game View|ViewPort         |
+|Hierarchy             |World Outliner   |
+|Inspector             |Details          |
+|Project View          |Content Browser  |
+|Shader                |Material         |
+|Material              |Material Instance|
+
+<br>
+
+
+
+
+# Memo
+---
+
+<br>
+
+
+# 프로젝트 디렉토리 구조
+---
+
+Root
+  ㄴ프로젝트명.sln : 언리얼 C++ 솔루션 파일
+  ㄴ프로젝트명.uproject : 언리얼 프로젝트 파일
+  ㄴ.vs
+  ㄴContent : 유니티의 Assets와 동일
+
+<br>
+
+# Viewport Window
+---
+
+## 플레이 모드
+  - ESC를 누르면 플레이 모드에서 빠져나온다.
+  - Shift + F1을 누르면 마우스 커서가 표시된다.
+
+## Lighting needs to be rebuilt
+ - 씬에 존재하는 액터에 변경사항이 생겨서 라이트맵을 다시 구워야 할 때 표시된다.
+ - Build - Lighting Quality를 Preview로 설정하고
+ - Build - Build Lighting Only를 클릭하면 된다.
+ - 라이트맵이 구워지는 동안 플레이할 수 없다.
+ - 다 구워지면 에디터 우측 하단에 메시지가 뜨는데, Apply를 클릭하면 적용된다.
+
+<br>
+
+
+
+# World Outliner Window
+---
+
+
+
+<br>
+
+# Material Window (ShaderGraph)
+---
+
+## 설명
+  - 마테리얼 편집은 모두 별도의 창에서 노드그래프로 이루어진다.
+  - 단축키는 앰플리파이와 유사하다.
+
+## 노드 기능
+  - 노드를 우클릭하고 Convert to Parameter 옵션을 통해 파라미터(프로퍼티)로 변경할 수 있다.
+  - 파라미터인 노드를 우클릭하고 Convert to Constant 옵션을 통해 상수로 변경할 수 있다.
+
+## 마테리얼 편집기 내 윈도우
+  - Details : 현재 선택된 노드의 정보를 편집할 수 있다.
+  - Parameter Defaults : 현재 마테리얼에 존재하는 파라미터를 편집할 수 있다.
+  - Palette : 노드의 목록. 검색도 가능. Parameter를 검색하면 파라미터인 노드들이 나온다.
+  
+## 버튼들
+  - Save : 변경사항을 저장한다.
+  - Apply : 현재 해당 마테리얼이 적용된 오브젝트에 변경사항을 적용한다. 플레이모드일 때도 적용된다.
+
+## Preview ViewPort
+  - 현재 마테리얼이 입혀진 모습을 미리 볼 수 있다.
+  - 좌클릭 드래그로 카메라를 회전할 수 있다.
+  - 휠클릭 드래그로 카메라를 스크린에 평행하게 이동할 수 있다.
+  - 우클릭 드래그로 카메라를 확대/축소할 수 있다.
+  - L + 좌클릭 드래그로 라이트 방향을 변경할 수 있다.
+  
+  - 우하단 5개의 아이콘으로 각각 프리뷰 메시를 변경할 수 있다.
+  - 5번째 아이콘은 현재 Content Browser에서 선택된 메시로 변경한다.
+
+## 마테리얼과 마테리얼 인스턴스
+  - 언리얼의 마테리얼 : 유니티의 쉐이더
+  - 언리얼의 마테리얼 인스턴스 : 유니티의 마테리얼
+
+<br>
+
+
+
+# Static Mesh
+---
+
+
+- <https://docs.unrealengine.com/4.27/ko/WorkingWithContent/Types/StaticMeshes/>
+- <https://docs.unrealengine.com/4.27/ko/Basics/Actors/StaticMeshActor/>
+
+<br>
+
+
+
 
 # References
 ---
