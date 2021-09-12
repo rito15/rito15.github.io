@@ -1,5 +1,5 @@
 ---
-title: (Amplify) Screen Effect - Ice (Frozen)
+title: (Amplify) Screen Effect - Ice (Freezing)
 author: Rito15
 date: 2021-09-12 01:01:00 +09:00
 categories: [Unity Shader, Amplify Shader]
