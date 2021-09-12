@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-12T16:36:12+09:00</updated>
+  <updated>2021-09-13T04:59:24+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,141 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>.NET CIL OP Code Instruction 모음</title>
+    <link href="https://rito15.github.io/posts/dotnet-cil-opcodes/" rel="alternate" type="text/html" title=".NET CIL OP Code Instruction 모음" />
+    <published>2021-09-13T03:55:00+09:00</published>
+  
+    <updated>2021-09-13T03:55:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/dotnet-cil-opcodes/</id>
+    <content src="https://rito15.github.io/posts/dotnet-cil-opcodes/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Grammar" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Instructions
+
+
+Note
+
+
+  스택 : 계산 스택(Evaluation Stack)
+
+
+
+
+Instruction Table
+
+
+  
+    
+      Instruction
+      Operand
+      설명
+    
+  
+  
+    
+      add
+       
+      스택에서 두 개의 값을 꺼내어(pop) 더하고 결과를 스택에 넣는다(push).
+    
+    
+      and
+       
+      스택에서 두 개의 값을 꺼내어(pop) Bitwise AND 연산하고 결과를 스택에 넣는다(push).
+    
+    
+      beq
+      목표 주소
+      스택의 두 값이 같으면 목표 주소로 이동한다.
+    
+    
+      bge
+      목표 주...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>C# if-else if vs switch-case vs Dictionary</title>
+    <link href="https://rito15.github.io/posts/cs-switch-case-vs-dictionary/" rel="alternate" type="text/html" title="C# if-else if vs switch-case vs Dictionary" />
+    <published>2021-09-13T00:01:00+09:00</published>
+  
+    <updated>2021-09-13T00:01:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-switch-case-vs-dictionary/</id>
+    <content src="https://rito15.github.io/posts/cs-switch-case-vs-dictionary/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      분기 처리
+
+
+특정 변수의 값에 따라 분기를 나누어 처리해야 하는 경우,
+
+일반적으로 if-else if 또는 switch-case문을 사용할 수 있다.
+
+int value = someValue;
+
+if(value == 0) DoSomething0();
+else if(value == 1) DoSomething1();
+else if(value == 2) DoSomething2();
+
+
+int value = someValue;
+
+switch(value)
+{
+    case 0 : DoSomething0() break;
+    case 1 : DoSomething1() break;
+    case 2 : DoSomething2() break;
+}
+
+
+그리고 이를 Dictionary를 통해 처리할 수도 있다....
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -242,127 +377,6 @@ Tuple&amp;lt;int, float&amp;gt; tuple = new Tuple&amp;lt;int, float&amp;gt;(10, 
 
 이렇게 명시적으로 생성자를 호출하여 생성해야 한다.
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# 타입별 GetHashCode() 성능</title>
-    <link href="https://rito15.github.io/posts/cs-gethashcode-cost-by-types/" rel="alternate" type="text/html" title="C# 타입별 GetHashCode() 성능" />
-    <published>2021-09-11T00:30:00+09:00</published>
-  
-    <updated>2021-09-11T03:05:19+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-gethashcode-cost-by-types/</id>
-    <content src="https://rito15.github.io/posts/cs-gethashcode-cost-by-types/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Curiosity
-
-
-타입별로 GetHashCode()의 성능 비용이 얼마나 달라지는지 간단히 확인해본다.
-
-사용자 정의 타입은 GetHashCode() 메소드를 임의로 오버라이드 하지 않고 확인한다.
-
-
-
-사용자 정의 타입
-
-public struct Struct1 { }
-public struct Struct2
-{
-    public int a, b, c, d, e, f, g;
-    public long A, B, C, D, E, F, G, H;
-}
-public struct Struct3
-{
-    public int i1, i2, i3, i4, i5, i6, i7, i8;
-    public long l1, l2, l3, l4, l5, l6, l7, l8;
-    public double d1, d...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# Dictionary 탐색 성능 - 선형 탐색과 비교</title>
-    <link href="https://rito15.github.io/posts/cs-dictionary-search-cost/" rel="alternate" type="text/html" title="C# Dictionary 탐색 성능 - 선형 탐색과 비교" />
-    <published>2021-09-11T00:01:00+09:00</published>
-  
-    <updated>2021-09-11T00:01:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-dictionary-search-cost/</id>
-    <content src="https://rito15.github.io/posts/cs-dictionary-search-cost/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Curiosity
-
-
-Dictionary&amp;lt;TKey, TValue&amp;gt;는 해시 테이블 자료구조의 제네릭 구현 클래스로서,
-
-Key-Value 꼴로 데이터를 저장하고
-
-Key에 대한 해시 계산을 통해 Value를 탐색할 수 있다.
-
-그렇다면 Key-Value를 저장하는 배열의 선형 탐색과 비교했을 때,
-
-Dictionary의 탐색 성능은 어느 정도일까?
-
-
-
-Benchmark
-
-
-Benchmark DotNet을 이용하여
-
-&amp;lt;TKey, TValue&amp;gt; 꼴의 딕셔너리, 이를 페어로 저장하는 배열을 비교한다.
-
-TKey와 TValue는 임의의 클래스 타입을 사용한다.
-
-public class Data { } // 임의의 클래스 타입
-
-public class Pair
-{
-    public Dat...
     </summary>
   
 

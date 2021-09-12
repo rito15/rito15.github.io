@@ -420,7 +420,7 @@ public void Switch_Case()
 
 
 
-# 최종결론
+# 최종 결론
 ---
 
 - 컴파일 타임에 상수로 분기를 나누어 처리한다면 `switch-case`의 성능이 가장 좋다.

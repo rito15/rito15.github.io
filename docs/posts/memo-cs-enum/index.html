@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# Enum 관련 메모" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"enum의 모든 요소를 배열로 가져오기","datePublished":"2021-02-28T04:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-enum/"},"url":"https://rito15.github.io/posts/memo-cs-enum/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Enum 관련 메모","dateModified":"2021-07-19T23:12:34+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"enum의 모든 요소를 배열로 가져오기","datePublished":"2021-02-28T04:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cs-enum/"},"url":"https://rito15.github.io/posts/memo-cs-enum/","author":{"@type":"Person","name":"Rito15"},"headline":"C# Enum 관련 메모","dateModified":"2021-09-13T04:20:27+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,17 +407,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Mon, Jul 19, 2021, 11:12 PM +0900"
+    title="Mon, Sep 13, 2021,  4:20 AM +0900"
   >
 
   
   
 
   
-    Jul 19
+    Sep 13
   
 
-  <i class="unloaded">2021-07-19T23:12:34+09:00</i>
+  <i class="unloaded">2021-09-13T04:20:27+09:00</i>
 
 </span>
           </span>
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="48 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="72 words">1 min</span>
 
 
           <!-- page views -->
@@ -457,9 +457,23 @@
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
+4
+5
+6
+7
+8
+9
+10
 </pre></td><td class="rouge-code"><pre><span class="k">enum</span> <span class="n">MyEnum</span> <span class="p">{</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="p">}</span>
 
+<span class="c1">// Array에 담기</span>
 <span class="n">Array</span> <span class="n">allValues</span> <span class="p">=</span> <span class="n">Enum</span><span class="p">.</span><span class="nf">GetValues</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">MyEnum</span><span class="p">));</span>
+
+<span class="c1">// MyEnum[]으로 담기</span>
+<span class="n">MyEnum</span><span class="p">[]</span> <span class="n">allEnumValues</span> <span class="p">=</span> 
+    <span class="n">Enum</span><span class="p">.</span><span class="nf">GetValues</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">MyEnum</span><span class="p">))</span>
+    <span class="p">.</span><span class="n">Cast</span><span class="p">&lt;</span><span class="n">MyEnum</span><span class="p">&gt;()</span>
+    <span class="p">.</span><span class="nf">ToArray</span><span class="p">();</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
@@ -607,6 +621,16 @@
         
         
         
+        <li><a href="/posts/memo-cs-enum/">C# Enum 관련 메모</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-gethashcode-cost-by-types/">C# 타입별 GetHashCode() 성능</a></li>
       
         
@@ -618,16 +642,6 @@
         
         
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
 
       </ul>
@@ -3879,6 +3893,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   

@@ -1,6 +1,36 @@
 [
   
   {
+    "title": ".NET CIL OP Code Instruction 모음",
+    "url": "/posts/dotnet-cil-opcodes/",
+    "categories": "C#, C# Grammar",
+    "tags": "csharp",
+    "date": "2021-09-13 03:55:00 +0900",
+    
+
+
+
+
+
+    "snippet": "InstructionsNote  스택 : 계산 스택(Evaluation Stack)Instruction Table            Instruction      Operand      설명                  add             스택에서 두 개의 값을 꺼내어(pop) 더하고 결과를 스택에 넣는다(push).              and             스택에서 두 개의 값을 꺼내어(pop) Bitwise AND 연산하고 결과를 스택에 넣는다(push).              beq      목표..."
+  },
+  
+  {
+    "title": "C# if-else if vs switch-case vs Dictionary",
+    "url": "/posts/cs-switch-case-vs-dictionary/",
+    "categories": "C#, C# Memo",
+    "tags": "csharp",
+    "date": "2021-09-13 00:01:00 +0900",
+    
+
+
+
+
+
+    "snippet": "분기 처리특정 변수의 값에 따라 분기를 나누어 처리해야 하는 경우,일반적으로 if-else if 또는 switch-case문을 사용할 수 있다.int value = someValue;if(value == 0) DoSomething0();else if(value == 1) DoSomething1();else if(value == 2) DoSomething2();int value = someValue;switch(value){    case 0 : DoSomething0() break;    case 1 : DoSomething1..."
+  },
+  
+  {
     "title": "(Amplify) Screen Effect - Ice (Frozen)",
     "url": "/posts/unity-amplify-screen-ice/",
     "categories": "Unity Shader, Amplify Shader",
@@ -3162,7 +3192,7 @@
 
 
 
-    "snippet": "enum의 모든 요소를 배열로 가져오기enum MyEnum { A, B }Array allValues = Enum.GetValues(typeof(MyEnum));enum의 마지막 요소 가져오기// System.Linq;MyEnum last =     Enum.GetValues(typeof(EditorWindowType)).Cast&amp;lt;MyEnum&amp;gt;().Last();"
+    "snippet": "enum의 모든 요소를 배열로 가져오기enum MyEnum { A, B }// Array에 담기Array allValues = Enum.GetValues(typeof(MyEnum));// MyEnum[]으로 담기MyEnum[] allEnumValues =     Enum.GetValues(typeof(MyEnum))    .Cast&amp;lt;MyEnum&amp;gt;()    .ToArray();enum의 마지막 요소 가져오기// System.Linq;MyEnum last =     Enum.GetValues(typeof(..."
   },
   
   {

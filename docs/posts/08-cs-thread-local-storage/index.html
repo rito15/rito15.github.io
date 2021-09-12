@@ -788,6 +788,16 @@
         
         
         
+        <li><a href="/posts/memo-cs-enum/">C# Enum 관련 메모</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-gethashcode-cost-by-types/">C# 타입별 GetHashCode() 성능</a></li>
       
         
@@ -799,16 +809,6 @@
         
         
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
 
       </ul>
@@ -5261,6 +5261,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7947,120 +7973,6 @@
       
       
       <div class="card">
-        <a href="/posts/01-cs-interlocked/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:01:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Interlocked</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Race Condition
-
-
-
-  
-    class Program
-{
-    private const int Count = 500000;
-    private static int number = 0;
-
-    private static void ThreadBody1()
-    {
-        for (int i = 0; i &lt; Count; ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/02-cs-monitor-and-lock/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:02:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Monitor, lock</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Critical Section(임계 영역)
-
-
-
-  여러 프로세스 또는 여러 스레드가 공유 자원에 접근할 때 한 번에 하나만 접근할 수 있도록 보장해주는 영역
-  C#에서는 대표적으로 Monitor 클래스 또는 lock() 구문을 통해 만들 수 있다.
-
-
-
-
-Monitor 클래스
-
-
-
-  
-    크리티컬 섹션을 만들어줄 수 있다.
-  
-  
-    ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/03-cs-spinlock/">
           <div class="card-body">
             <!--
@@ -8101,6 +8013,112 @@ Monitor 클래스
 다시 말해, 크리티컬 섹션에 진입하려고 대기하는 스레드는 CPU 점유를 포기하게 된다.
 
 그리고 CPU 자원이 현재 활성화된 다른 스레드에게 넘어가게 되는데, 이 때 컨텍스트 스위칭이 발생하며 그에 따른 오버헤드 또한 발생...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/04-cs-context-switching/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul  8
+  
+
+  <i class="unloaded">2021-07-08T01:04:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Context Switching, Sleep, Yield</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                컨텍스트 스위칭(Context Switching)
+
+
+현재 실행 되는 스레드가 있다면, 그 스레드는 CPU의 자원을 할당받아 동작하는 것이다.
+
+동시에 실행될 수 있는 스레드의 개수는 사실 CPU 코어의 개수 이하인데,
+
+예를 들어 CPU 코어가 4개라면 동시에 4개까지의 스레만 자원을 할당받아 동작할 수 있는 것이다.
+
+그런데 CPU 코어가 4개라고...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/05-cs-auto-reset-event/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul  8
+  
+
+  <i class="unloaded">2021-07-08T01:05:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# AutoResetEvent</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                이벤트(Event) 동기화 기법
+
+
+기존의 락과는 조금 다르게,
+
+락을 얻고자 하는 각각의 스레드만 직접 락을 설정하고 해제할 수 있는 것이 아니라
+
+제 3자도 락을 설정/해제할 수 있는 방식이다.
+
+여기서 제 3자는 커널을 의미하며
+
+커널 영역으로 요청을 보내기 때문에 다른 방식보다 성능 소모가 좀더 크다.
+
+그리고 기존의 락 방식과 동일하게 사용될...
               </p>
             </div>
           </div>

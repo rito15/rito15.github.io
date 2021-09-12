@@ -682,6 +682,16 @@
         
         
         
+        <li><a href="/posts/memo-cs-enum/">C# Enum 관련 메모</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-gethashcode-cost-by-types/">C# 타입별 GetHashCode() 성능</a></li>
       
         
@@ -693,16 +703,6 @@
         
         
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-imgui-event-and-handle-exception/">유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a></li>
       
 
       </ul>
@@ -6845,6 +6845,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -7962,7 +7988,7 @@ GIF
       
       
       <div class="card">
-        <a href="/posts/unity-save-screen-shot/">
+        <a href="/posts/unity-compute-shader/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -7979,13 +8005,13 @@ GIF
   
 
   
-    Sep  8
+    Sep 10
   
 
-  <i class="unloaded">2021-09-08T05:10:00+09:00</i>
+  <i class="unloaded">2021-09-10T02:01:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 스크린샷 찍고 저장하기(Windows, Android)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 컴퓨트 쉐이더(Compute Shader)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -7994,33 +8020,13 @@ GIF
 
 
 
-                1. Unity Editor
+                Compute Shader
 
 
-저장할 경로
+개념
 
-  $"{Application.dataPath}/ScreenShots/"
-
-
-실제 경로
-
-  "[프로젝트 디렉토리]/Assets/ScreenShots/"
-
-
-
-
-
-2. Standalone App
-
-
-저장할 경로
-
-  $"{Application.dataPath}/ScreenShots/"
-
-
-실제 경로
-
-  ...
+  GPU를 CPU의 영역인 응용 프로그램 계산에 사용하는 GPGPU(General-Purpose computing on GPU)와는 개념이 유사하지만 다르다.
+  GPGPU를 사용하는 CUDA, OpenCL은 독립 API이고 OpenGL의 Compute Shader, DirectX의 DirectCompute는 그...
               </p>
             </div>
           </div>
