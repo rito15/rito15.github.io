@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="문자 인코딩 방식들 간단 메모" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Encoding","datePublished":"2021-08-15T21:42:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-character-encodings/"},"url":"https://rito15.github.io/posts/cs-character-encodings/","author":{"@type":"Person","name":"Rito15"},"headline":"문자 인코딩 방식들 간단 메모","dateModified":"2021-08-15T21:42:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"문자 인코딩 방식들 간단 메모","description":"Encoding","dateModified":"2021-08-15T21:42:00+09:00","datePublished":"2021-08-15T21:42:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-character-encodings/"},"url":"https://rito15.github.io/posts/cs-character-encodings/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="466 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="473 words">2 min</span>
 
 
           <!-- page views -->
@@ -470,6 +470,9 @@
   <li>
     <p><code class="language-plaintext highlighter-rouge">UCS-2</code>, <code class="language-plaintext highlighter-rouge">UCS-4</code>, <code class="language-plaintext highlighter-rouge">UTF-8</code>, <code class="language-plaintext highlighter-rouge">UTF-16</code>, <code class="language-plaintext highlighter-rouge">UTF-32</code> 등 다양한 인코딩 방식이 존재한다.</p>
   </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">UTF</code> : <strong>U</strong>nicode <strong>T</strong>ransformation <strong>F</strong>ormat</p>
+  </li>
 </ul>
 
 <p><br /></p>
@@ -479,7 +482,7 @@
 
 <ul>
   <li>
-    <p>유니코드에 존재하는 모든 문자를 각각 4바이트의 고정 길이로 인코딩한다.</p>
+    <p>유니코드에 존재하는 모든 문자를 각각 <strong>4바이트의 고정 길이</strong>로 인코딩한다.</p>
   </li>
   <li>
     <p>용량이 너무 커서 대부분 사용하지 않는다.</p>
@@ -493,13 +496,13 @@
 
 <ul>
   <li>
-    <p>너무 많은 용량을 필요로 하는 <code class="language-plaintext highlighter-rouge">UTF-32</code>의 문제를 해결하기 위해 고안된 가변 길이 인코딩</p>
+    <p>너무 많은 용량을 필요로 하는 <code class="language-plaintext highlighter-rouge">UTF-32</code>의 문제를 해결하기 위해 고안된 <strong>가변 길이</strong> 인코딩</p>
   </li>
   <li>
-    <p>2바이트 이내에서 표현할 수 있는 문자는 2바이트로 표현된다.</p>
+    <p>2바이트 이내에서 표현할 수 있는 문자는 <strong>2바이트</strong>로 표현된다.</p>
   </li>
   <li>
-    <p>2바이트 범위 밖의 문자는 4바이트로 표현된다.</p>
+    <p>2바이트 범위 밖의 문자는 <strong>4바이트</strong>로 표현된다.</p>
   </li>
   <li>
     <p><code class="language-plaintext highlighter-rouge">C#</code>의 기본 인코딩 방식. <code class="language-plaintext highlighter-rouge">Encoding.Unicode</code>는 <code class="language-plaintext highlighter-rouge">UTF-16</code>을 의미한다.</p>
@@ -513,13 +516,13 @@
 
 <ul>
   <li>
-    <p>가장 많이 사용되는 가변 길이 인코딩</p>
+    <p>가장 많이 사용되는 <strong>가변 길이</strong> 인코딩</p>
   </li>
   <li>
     <p>0 ~ 127은 아스키 코드에 호환된다.</p>
   </li>
   <li>
-    <p>문자의 종류에 따라서 1 ~ 4바이트까지 다르게 인코딩된다.</p>
+    <p>문자의 종류에 따라서 <strong>1 ~ 4바이트</strong>까지 다르게 인코딩된다.</p>
   </li>
   <li>
     <p>영문, 숫자는 1바이트, 한글은 3바이트로 인코딩된다.</p>
@@ -535,6 +538,8 @@
 <hr />
 <ul>
   <li><a href="https://dingue.tistory.com/16">https://dingue.tistory.com/16</a></li>
+  <li><a href="https://ko.wikipedia.org/wiki/UTF-8">https://ko.wikipedia.org/wiki/UTF-8</a></li>
+  <li><a href="https://namu.wiki/w/UTF-8">https://namu.wiki/w/UTF-8</a></li>
 </ul>
 
 
@@ -563,6 +568,12 @@
           
           <a href="/tags/encoding/"
             class="post-tag no-text-decoration" >encoding</a>
+          
+          <a href="/tags/unicode/"
+            class="post-tag no-text-decoration" >unicode</a>
+          
+          <a href="/tags/utf/"
+            class="post-tag no-text-decoration" >utf</a>
           
           </div>
         
@@ -669,6 +680,11 @@
         
         
         
+        <li><a href="/posts/unity-amplify-screen-ice/">(Amplify) Screen Effect - Ice (Freezing)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
       
         
@@ -685,11 +701,6 @@
         
         
         <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-gethashcode-cost-by-types/">C# 타입별 GetHashCode() 성능</a></li>
       
 
       </ul>
@@ -827,6 +838,11 @@
         
         
 
+  
+    
+    
+    
+    
   
     
     
@@ -8275,6 +8291,11 @@ byte[] byteStr = Encoding.UTF8.GetBytes(str);
         
         
 
+  
+    
+    
+    
+    
   
     
     

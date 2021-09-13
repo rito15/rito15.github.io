@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-13T05:18:05+09:00</updated>
+  <updated>2021-09-13T17:15:21+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -51,43 +51,20 @@
       Instructions
 
 
-Note
-
+Stack
 
   스택 : 계산 스택(Evaluation Stack)
-
-
-
-
-Instruction Table
-
-
+  “스택의 값”을 언급하는 경우는 스택의 값을 꺼내어(Pop) 사용한다는 의미이다.
+  “스택의 두 값”을 언급하는 경우는 스택에서 두 값을 꺼내어 사용한다는 의미이다.
   
-    
-      Instruction
-      Operand
-      설명
-    
+    “스택의 두 값 A B”를 언급하는 경우, A는 스택에 먼저 넣었던 값이고 B는 그 다음에 넣은 값(Top)이다.
   
+  ld로 시작하는 명령어는 Load를 의미하며, 대상의 값을 스택에 넣는다.
   
-    
-      add
-       
-      스택에서 두 개의 값을 꺼내어(pop) 더하고 결과를 스택에 넣는다(push).
-    
-    
-      and
-       
-      스택에서 두 개의 값을 꺼내어(pop) Bitwise AND 연산하고 결과를 스택에 넣는다(push).
-    
-    
-      beq
-      목표 주소
-      스택의 두 값이 같으면 목표 주소로 이동한다.
-    
-    
-      bge
-      목표 주...
+    ldFOO.0 명령어는 FOO 목록의 0번 인덱스에 있는 값을 스택에 넣는다.
+  
+  st로 시작하는 명령어는 Store를 의미하며, 스택의 값을 꺼내 다른 곳에 저장한다.
+  stFOO.0 명령어는 스택에서 값을 꺼내...
     </summary>
   
 
@@ -159,7 +136,7 @@ switch(value)
     <link href="https://rito15.github.io/posts/unity-amplify-screen-ice/" rel="alternate" type="text/html" title="(Amplify) Screen Effect - Ice (Freezing)" />
     <published>2021-09-12T01:01:00+09:00</published>
   
-    <updated>2021-09-12T01:01:00+09:00</updated>
+    <updated>2021-09-13T05:19:26+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-amplify-screen-ice/</id>
     <content src="https://rito15.github.io/posts/unity-amplify-screen-ice/" />

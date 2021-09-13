@@ -11,9 +11,30 @@ mermaid: true
 # Instructions
 ---
 
-## **Note**
-
+## **Stack**
 - 스택 : 계산 스택(Evaluation Stack)
+- "스택의 값"을 언급하는 경우는 스택의 값을 꺼내어(Pop) 사용한다는 의미이다.
+- "스택의 두 값"을 언급하는 경우는 스택에서 두 값을 꺼내어 사용한다는 의미이다.
+- "스택의 두 값 A B"를 언급하는 경우, A는 스택에 먼저 넣었던 값이고 B는 그 다음에 넣은 값(Top)이다.
+
+- `ld`로 시작하는 명령어는 **Load**를 의미하며, 대상의 값을 스택에 넣는다.
+- `ldFOO.0` 명령어는 `FOO` 목록의 `0`번 인덱스에 있는 값을 스택에 넣는다.
+
+- `st`로 시작하는 명령어는 **Store**를 의미하며, 스택의 값을 꺼내 다른 곳에 저장한다.
+- `stFOO.0` 명령어는 스택에서 값을 꺼내 `FOO` 목록의 `0`번 인덱스에 저장한다.
+
+<br>
+
+## **Lists**
+- 지역변수(Local Variable)들은 하나의 목록 내에 저장된다.
+- `~loc`은 지역변수 목록을 의미하며, 각각의 지역변수들은 인덱스와 값을 갖는다.
+- `~loc.0`은 지역변수 목록 0번 인덱스 위치를 의미한다.
+
+- 매개변수(Argument)들은 하나의 목록 내에 저장된다.
+- `~arg`는 매개변수 목록을 의미하며, 각각의 매개변수들은 인덱스와 값을 갖는다.
+
+- 필드(Field)는 각각 이름으로 참조된다.
+- `~fld`는 필드를 의미하며, Operand로 필드 이름이 등장한다.
 
 <br>
 
@@ -21,15 +42,15 @@ mermaid: true
 
 |**Instruction** |**Operand**|**설명**|
 |---|---|---|
-|add       |        |스택에서 두 개의 값을 꺼내어(pop) 더하고 결과를 스택에 넣는다(push).|
-|and       |        |스택에서 두 개의 값을 꺼내어(pop) Bitwise AND 연산하고 결과를 스택에 넣는다(push).|
+|add       |        |스택의 두 값을 더하고 결과를 스택에 넣는다(push).|
+|and       |        |스택의 두 값을 Bitwise AND 연산하고 결과를 스택에 넣는다.|
 |beq       |목표 주소  |스택의 두 값이 같으면 목표 주소로 이동한다.|
-|bge       |목표 주소  |스택의 두 값이 같으면 목표 주소로 이동한다.|
-|bgt       |        ||
-|ble       |        ||
-|blt       |        ||
-|bne       |        ||
-|box       |        ||
+|bge       |목표 주소  |스택의 두 값을 꺼내고, A >= B 이면 목표 주소로 이동한다.|
+|bgt       |목표 주소  |스택의 두 값을 꺼내고, A >  B 이면 목표 주소로 이동한다.|
+|ble       |목표 주소  |스택의 두 값을 꺼내고, A <= B 이면 목표 주소로 이동한다.|
+|blt       |목표 주소  |스택의 두 값을 꺼내고, A <  B 이면 목표 주소로 이동한다.|
+|bne       |목표 주소  |스택의 두 값을 꺼내고, A != B 이면 목표 주소로 이동한다.|
+|box       |타입 이름  |스택의 값을 꺼내어 object 타입으로 박싱한 뒤 다시 스택에 넣는다.|
 |br        |        ||
 |brtrue    |        ||
 |brfalse   |        ||
@@ -53,7 +74,7 @@ mermaid: true
 |ldc.i4.m1 |        |정수 -1을 스택에 넣는다.|
 |ldelem    |        ||
 |ldelem.i  |        ||
-|ldloc     |        ||
+|ldloc.0   |        |Load Local Variable : 인덱스 0에 있는 지역 변수를 스택에 넣는다. |
 |ldfld     |필드 이름  |Load Field : 스택에 해당 필드의 값을 넣는다.|
 |ldflda    |필드 이름  |Load Field Address : 스택에 해당 필드의 주솟값을 넣는다.|
 |ldloc.0   |        ||
@@ -138,3 +159,4 @@ mermaid: true
 ---
 - <https://docs.microsoft.com/ko-kr/dotnet/api/system.reflection.emit.opcodes.add?view=net-5.0>
 - <https://en.wikipedia.org/wiki/List_of_CIL_instructions>
+- <https://www.codeproject.com/Articles/362076/Understanding-Common-Intermediate-Language-CIL>
