@@ -162,17 +162,62 @@ A : Amplitude
 
 <br>
 
-## **Contact Point**
+## **Depth Intersection**
 
-![2021_0705_ContactPoint](https://user-images.githubusercontent.com/42164422/124423754-c84e1b80-dda0-11eb-9fba-d38ddb500bf7.gif)
+![2021_0914_Depth Inter](https://user-images.githubusercontent.com/42164422/133133316-39f93228-9c47-4637-bccb-c0da755609f1.gif)
 
-- 다른 불투명 물체와 접촉한 지점을 강조하여 표현한다.
+- 반투명 물체가 다른 불투명 물체와 접촉한 지점을 강조하여 표현한다.
 
 - 대표적으로 쉴드 이펙트, 물 쉐이더 등에 사용된다.
 
 - `Screen Position` 노드의 `Type`은 `Screen`으로 지정해야 한다.
 
 - 반드시 `Blend Mode`를 `Transparent`로 설정해야 한다.
+
+<details>
+<summary markdown="span"> 
+원리?
+</summary>
+
+![image](https://user-images.githubusercontent.com/42164422/133135813-8a4fbe0f-7943-4146-9c99-56bd24ae6edd.png)
+
+`ScreenPosition.w`는 카메라로부터 해당 메시 표면까지의 거리를 나타낸다.
+
+`ScreenDepth`는 카메라로부터 가장 가까운 '불투명' 물체 표면까지의 거리를 나타낸다.
+
+따라서 같은 픽셀에서 반투명(Transparent), 불투명(Opaque) 물체가 겹쳐 있고,
+
+반투명 물체의 표면이 카메라에 더 가까이 있는 경우
+
+`ScreenDepth - ScreenPosition.w`의 값은 0보다 커진다.
+
+<br>
+
+이를 반대로 뒤집으면 `ScreenPosition.w - ScreenDepth`의 값은 0보다 작아지는데,
+
+여기에 작은 양수 값 `T`(0 ~ 1 정도)를 더하면
+
+`ScreenPosition.w - ScreenDepth`의 값이 얼마 차이 안나는 지점(-1 ~ 0 정도)에서만
+
+`ScreenPosition.w - ScreenDepth + T`의 값이 0보다 커지게 된다.
+
+`ScreenPosition.w - ScreenDepth`의 값이 얼마 차이 안나는 지점이라는 것은
+
+접촉면에 가까운 지점을 의미한다. (0 : 완전히 맞닿는 지점)
+
+<br>
+
+예를 들어 `T`가 1일 때, 반투명과 불투명 물체가 완전히 맞닿는 부분은
+
+`ScreenPosition.w - ScreenDepth + T` 값이 1이 되고,
+
+완전히 맞닿는 부분에서 멀어질수록 위의 값은 점점 작아진다.
+
+그리고 여기에 최종적으로 `Saturate`를 통해 음수를 0으로 바꿔버리면
+
+접촉면을 강조 표현하는 쉐이더가 완성된다.
+
+</details>
 
 <br>
 
