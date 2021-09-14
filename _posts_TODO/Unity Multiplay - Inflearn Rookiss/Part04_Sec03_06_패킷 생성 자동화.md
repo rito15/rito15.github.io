@@ -80,9 +80,276 @@ TITLE : 패킷 생성 자동화
 - `Packet` 클래스의 `CreateFromByteSegment()` 메소드 제거 및 각 패킷 클래스에 `Read()` 메소드 작성
 - 리스트 필드가 존재하는 경우, 내부 구조체 선언 및 재귀 구조로 변경
 
+<br>
 
+# 자동화를 위한 리팩토링
+---
 
+## **Packet 클래스**
 
+- `Size`, `DataSize` 프로퍼티 제거
+
+- `CreateFromByteSegment()` 메소드 제거
+
+- 하위 패킷들에서 사용할 `ValidateSegment(ArraySegment<byte>, out int)` 메소드 작성
+
+- `WriteToSendBuffer()`, `ReadFromSegment(ArraySegment<byte>)` 메소드 작성
+
+```cs
+public abstract class Packet
+{
+    public ushort ID { get; private set; }
+
+    /// <summary> 패킷 헤더(Size + ID)의 길이 </summary>
+    protected const ushort HeaderSize = sizeof(ushort) * 2;
+
+    // 생성자
+    public Packet(PacketType packetType)
+    {
+        this.ID = (ushort)packetType;
+    }
+
+    /// <summary> 세그먼트 유효성 검증 및 시작 오프셋 지정 </summary>
+    protected bool ValidateSegment(ArraySegment<byte> segment, out int offsetBegin)
+    {
+        offsetBegin = 0;
+
+        // 전달받은 패킷의 크기
+        int packetSize = segment.Count;
+
+        // 세그먼트의 크기가 패킷의 기본 크기보다 작은 경우
+        if (packetSize < HeaderSize)
+        {
+            Logger.Log($"Packet Segment Validation : 패킷의 크기가 너무 작습니다 ({packetSize})");
+            return false;
+        }
+
+        // Size, ID 부분을 건너뛰고 offset 시작
+        offsetBegin = sizeof(ushort) * 2;
+
+        // ID 불일치 확인 - ID를 확인한 상태에서 오기 때문에 검증 필요 X
+        //ushort id = ByteSerializer.Read_ushort(segment, ref offset);
+        //if (this.ID != id) return false;
+
+        return true;
+    }
+
+    /// <summary> 모두 직렬화하여 Send Buffer에 작성 </summary>
+    public abstract void WriteToSendBuffer();
+
+    /// <summary> 세그먼트로부터 역직렬화하여 필드 초기화 </summary>
+    public abstract bool ReadFromSegment(ArraySegment<byte> segment);
+}
+```
+
+<br>
+
+## **예시 : StringPacket**
+
+```cs
+public class StringPacket : Packet
+{
+    public string str;
+
+    public StringPacket() : base(PacketType.String) { }
+    public StringPacket(string str) : this()
+    {
+        this.str = str;
+    }
+
+    public override void WriteToSendBuffer()
+    {
+        // 패킷 전체 크기 계산
+        ushort size = HeaderSize; // Size + ID
+
+        ushort strLen = (ushort)ByteSerializer.DefaultStringEncoding.GetByteCount(this.str);
+        size += sizeof(ushort);   // strLen
+        size += strLen;           // this.str
+
+        // 버퍼에 차례대로 작성
+        SendBuffer.Factory.Write(size);
+        SendBuffer.Factory.Write(this.ID);
+
+        SendBuffer.Factory.Write(strLen);
+        SendBuffer.Factory.Write(this.str);
+    }
+
+    public override bool ReadFromSegment(ArraySegment<byte> segment)
+    {
+        if (!ValidateSegment(segment, out int offset)) return false;
+
+        ushort strLen = ByteSerializer.Read_ushort(segment, ref offset);
+        this.str = ByteSerializer.Read_string(segment, ref offset, strLen);
+
+        return true;
+    }
+
+    public override string ToString()
+    {
+        return $"[String Packet(ID : {ID})] String : {str}";
+    }
+}
+```
+
+<br>
+
+## **예시 : Vector3Packet**
+
+```cs
+public class Vector3Packet : Packet
+{
+    public float x;
+    public float y;
+    public float z;
+
+    public Vector3Packet() : base(PacketType.Vector3) { }
+    public Vector3Packet(float x, float y, float z) : this()
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public override void WriteToSendBuffer()
+    {
+        // 패킷 전체 크기 계산
+        ushort size = HeaderSize; // Size + ID
+
+        size += sizeof(float); // this.x
+        size += sizeof(float); // this.y
+        size += sizeof(float); // this.z
+
+        // 버퍼에 차례대로 작성
+        SendBuffer.Factory.Write(size);
+        SendBuffer.Factory.Write(this.ID);
+
+        SendBuffer.Factory.Write(this.x);
+        SendBuffer.Factory.Write(this.y);
+        SendBuffer.Factory.Write(this.z);
+    }
+
+    public override bool ReadFromSegment(ArraySegment<byte> segment)
+    {
+        if (!ValidateSegment(segment, out int offset)) return false;
+
+        this.x = ByteSerializer.Read_float(segment, ref offset);
+        this.y = ByteSerializer.Read_float(segment, ref offset);
+        this.z = ByteSerializer.Read_float(segment, ref offset);
+
+        return true;
+    }
+
+    public override string ToString()
+    {
+        return $"[Vector3 Packet(ID : {ID})] x : {x}, y : {y}, z : {z}";
+    }
+}
+```
+
+<br>
+
+## **예시 : Vector3ListPacket**
+
+```cs
+public class Vector3ListPacket : Packet
+{
+    public class Vector3
+    {
+        public float x;
+        public float y;
+        public float z;
+
+        public static ushort GetPacketSize()
+        {
+            ushort size = 0;
+            size += sizeof(float);
+            size += sizeof(float);
+            size += sizeof(float);
+            return size;
+        }
+
+        public void WriteToSendBuffer()
+        {
+            SendBuffer.Factory.Write(this.x);
+            SendBuffer.Factory.Write(this.y);
+            SendBuffer.Factory.Write(this.z);
+        }
+
+        public void ReadFromSegment(ArraySegment<byte> segment, ref int offset)
+        {
+            this.x = ByteSerializer.Read_float(segment, ref offset);
+            this.y = ByteSerializer.Read_float(segment, ref offset);
+            this.z = ByteSerializer.Read_float(segment, ref offset);
+        }
+    }
+
+    public List<Vector3> vector3List;
+
+    public Vector3ListPacket() : base(PacketType.Vector3List) { }
+    public Vector3ListPacket(IEnumerable<Vector3> dataSet) : this()
+    {
+        this.vector3List = new List<Vector3>(dataSet);
+    }
+
+    public override void WriteToSendBuffer()
+    {
+        // 패킷 전체 크기 계산
+        ushort size = HeaderSize; // Size + ID
+
+        ushort vector3ListCount = (ushort)this.vector3List.Count;
+        ushort vector3ListSize = (ushort)(Vector3.GetPacketSize() * vector3ListCount);
+        size += sizeof(ushort);   // vector3ListCount
+        size += vector3ListSize;  // this.vector3List
+
+        // 버퍼에 차례대로 작성
+        SendBuffer.Factory.Write(size);
+        SendBuffer.Factory.Write(this.ID);
+
+        SendBuffer.Factory.Write(vector3ListCount);
+        for (int i = 0; i < vector3ListCount; i++)
+        {
+            this.vector3List[i].WriteToSendBuffer();
+        }
+    }
+
+    public override bool ReadFromSegment(ArraySegment<byte> segment)
+    {
+        if (!ValidateSegment(segment, out int offset)) return false;
+
+        ushort vector3ListCount = ByteSerializer.Read_ushort(segment, ref offset);
+        this.vector3List = new List<Vector3>(vector3ListCount);
+
+        for (int i = 0; i < vector3ListCount; i++)
+        {
+            Vector3 vector3 = new Vector3();
+            vector3.ReadFromSegment(segment, ref offset);
+            this.vector3List.Add(vector3);
+        }
+
+        return true;
+    }
+
+    public override string ToString()
+    {
+        STR str = STR.Begin()
+            .Add("[Vector3List Packet(ID : ").Add(ID).Add(")]\n");
+
+        for (int i = 0; i < this.vector3List.Count; i++)
+        {
+            Vector3 vec = this.vector3List[i];
+            str.Add("[").Add(i).Add("]")
+                .Add(" x : ").Add(vec.x)
+                .Add(" y : ").Add(vec.y)
+                .Add(" z : ").Add(vec.z)
+                .Add("\n");
+        }
+
+        return str.End();
+    }
+}
+```
+
+<br>
 
 
 

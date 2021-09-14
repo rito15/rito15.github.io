@@ -35,6 +35,7 @@ mermaid: true
 
 - 필드(Field)는 각각 이름으로 참조된다.
 - `~fld`는 필드를 의미하며, Operand로 필드 이름이 등장한다.
+- `~sfld`는 정적 필드
 
 <br>
 
