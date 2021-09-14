@@ -78,7 +78,7 @@ dict[value].Invoke();
 
 만약, 런타임에 분기에 따른 처리를 추가/제거하려면 `Dictionary`를 써야만 한다.
 
-`switch-case`는 실제로 `if-else if`로 해석되어 처리된다고 알려져 있다.
+`switch-case`는 실제로 `if-else if`로 해석되어 처리된다고 한다.
 
 그리고 정수 또는 `enum` 타입의 경우, 각 `case`의 숫자가 일정 범위 내에서 연속되면
 
@@ -86,7 +86,7 @@ dict[value].Invoke();
 
 <br>
 
-## **[2] Dictionary**
+## **[3] Dictionary**
 
 컴파일 타임, 런타임에 분기를 추가하거나 제거할 수 있다.
 

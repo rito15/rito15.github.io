@@ -12,7 +12,7 @@ mermaid: true
 ---
 
 ## **개념**
- - GPU를 CPU의 영역인 응용 프로그램 계산에 사용하는 **GPGPU**(General-Purpose computing on GPU)와는 개념이 유사하지만 다르다.
+ - GPU를 CPU의 영역인 응용 프로그램 계산에 사용하는 **GPGPU**(General-Purpose computing on GPU)와는 개념이 유사하지만 다르다고 한다.
  - **GPGPU**를 사용하는 **CUDA**, **OpenCL**은 독립 API이고 **OpenGL**의 **Compute Shader**, **DirectX**의 **DirectCompute**는 그래픽스API에 종속되어 동작한다.
  - 동시에 수많은 대상(수십만, 수백만 단위 가능)에 대해 동일한 연산(함수)을 처리해야 할 때 사용한다.
  - **VFX Graph**도 컴퓨트 쉐이더를 연산에 사용한다고 한다.
@@ -270,13 +270,15 @@ public class ScreenUVRenderer : MonoBehaviour
 
 # References
 ---
- - <https://docs.unity3d.com/kr/current/Manual/class-ComputeShader.html>
- - <https://docs.unity3d.com/kr/current/ScriptReference/ComputeShader.html>
- - <https://docs.unity3d.com/kr/current/ScriptReference/ComputeBuffer.html>
- - <https://docs.unity3d.com/ScriptReference/RenderTexture.html>
+- <https://docs.unity3d.com/kr/current/Manual/class-ComputeShader.html>
+- <https://docs.unity3d.com/kr/current/ScriptReference/ComputeShader.html>
+- <https://docs.unity3d.com/kr/current/ScriptReference/ComputeBuffer.html>
+- <https://docs.unity3d.com/ScriptReference/RenderTexture.html>
  
  - <https://www.slideshare.net/QooJuice/compute-shader-206256248>
 
- - <https://blog.naver.com/PostView.naver?blogId=kimsung4752&logNo=221234371788>
- - <https://blog.naver.com/PostView.naver?blogId=kimsung4752&logNo=221292611668>
- - <https://blog.naver.com/PostView.naver?blogId=kimsung4752&logNo=221292620292>
+- <https://blog.naver.com/PostView.naver?blogId=kimsung4752&logNo=221234371788>
+- <https://blog.naver.com/PostView.naver?blogId=kimsung4752&logNo=221292611668>
+- <https://blog.naver.com/PostView.naver?blogId=kimsung4752&logNo=221292620292>
+
+- <https://catlikecoding.com/unity/tutorials/basics/compute-shaders/>
