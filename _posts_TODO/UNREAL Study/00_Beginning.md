@@ -23,6 +23,21 @@
 |Project View          |Content Browser  |
 |Shader                |Material         |
 |Material              |Material Instance|
+|Scene                 |Level/Map        |
+
+<br>
+
+## 기본 특징
+ - 유니티는 텅 빈 밑바닥부터 입맛에 맞게 쌓아올리는 방식
+ - 언리얼은 이미 타이트하게 기능들이 만들어져 있어서, 상대적으로 자유도가 떨어진다.
+ - 언리얼은 애초에 FPS 용도로 제작되었던 엔진이다.
+
+<br>
+
+## 카메라와 기본 조작
+ - 유니티는 씬에 직접 카메라를 배치하는데 반해, 언리얼은 그렇지 않다.
+ - 언리얼은 따로 설정하지 않으면 게임 시작 시 자동으로 Default Pawn, Camera Actor 같은 것들이 생성되며 기본적인 FPS 조작을 제공해준다.
+ - 툴바 - 세팅 - 월드 세팅 - 게임 모드 오버라이드를 통해 설정할 수 있다.
 
 <br>
 
@@ -49,9 +64,27 @@ Root
 # Viewport Window
 ---
 
+## Toolbar
+ - Settings
+   - World Settings : 해당 월드(맵, 씬)의 설정들
+   - Project Settings : 프로젝트 관련된 아주 많은 설정들
+   
+ - Play : 재생 모드 선택 가능
+   - Selected Viewport : 뷰포트에서 바로 시작(조작 위임)
+   - Simulate : 에디터 조작 유지한 채로 게임 시작(유니티와 비슷)
+   - `F8` 버튼으로 두 모드 중에 변경 가능
+   
+## World Settings
+  - Game Mode : 카메라, 사용자 컨트롤러 등의 기본 설정
+   
+## Project Settings
+
+  ### Project
+    - Maps `&` Modes : 에디터 시작 맵(씬)/게임 시작 맵 설정 가능
+
 ## 플레이 모드
-  - ESC를 누르면 플레이 모드에서 빠져나온다.
-  - Shift + F1을 누르면 마우스 커서가 표시된다.
+ - ESC를 누르면 플레이 모드에서 빠져나온다.
+ - Shift + F1을 누르면 마우스 커서가 표시된다.
 
 ## Lighting needs to be rebuilt
  - 씬에 존재하는 액터에 변경사항이 생겨서 라이트맵을 다시 구워야 할 때 표시된다.
