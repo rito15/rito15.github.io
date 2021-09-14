@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-14T04:28:00+09:00</updated>
+  <updated>2021-09-15T04:26:29+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,92 @@
 
   
   <entry>
+    <title>유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</title>
+    <link href="https://rito15.github.io/posts/unity-editorconfig-encoding/" rel="alternate" type="text/html" title="유니티 - 한글 주석 인코딩 깨지는 경우 해결하기" />
+    <published>2021-09-15T02:34:00+09:00</published>
+  
+    <updated>2021-09-15T02:34:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editorconfig-encoding/</id>
+    <content src="https://rito15.github.io/posts/unity-editorconfig-encoding/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+문제 확인
+
+
+
+비주얼 스튜디오에서는 위와 같이 잘 보이던 한글 주석이
+
+
+
+유니티 에디터에서 보면 이렇게 깨지는 경우가 있다.
+
+당장은 스크립팅에 문제가 없더라도,
+
+스크립트 파일을 전송하거나 협업을 하게 될 때 문제가 생길 수 있다.
+
+
+
+인코딩
+
+인코딩을 확인해보면
+
+
+
+EUC-KR의 확장인 코드 페이지 949(CP949)임을 알 수 있다.
+
+추후 문제가 발생하지 않도록 하려면 유니코드로 저장할 필요가 있다.
+
+
+
+EditorConfig 파일 생성
+
+
+
+비주얼 스튜디오의 솔루션 탐색기에서 솔루션을 우클릭한 뒤,
+
+추가 - 새 항목을 클릭한다.
+
+
+
+editorconfig 파일(기본값) 을 선택하고, 이름은 굳이 바꾸지 말고 추가 버튼을 클릭한다.
+
+
+
+EditorConfig 파일 편집...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>.NET CIL 명령어 모음</title>
     <link href="https://rito15.github.io/posts/dotnet-cil-instructions/" rel="alternate" type="text/html" title=".NET CIL 명령어 모음" />
     <published>2021-09-14T03:55:00+09:00</published>
   
-    <updated>2021-09-14T03:55:00+09:00</updated>
+    <updated>2021-09-14T18:48:26+09:00</updated>
   
     <id>https://rito15.github.io/posts/dotnet-cil-instructions/</id>
     <content src="https://rito15.github.io/posts/dotnet-cil-instructions/" />
@@ -287,73 +368,6 @@ class Student
 
 
 그런데 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# Tuple, ValueTuple</title>
-    <link href="https://rito15.github.io/posts/cs-tuple-and-value-tuple/" rel="alternate" type="text/html" title="C# Tuple, ValueTuple" />
-    <published>2021-09-11T03:45:00+09:00</published>
-  
-    <updated>2021-09-11T03:45:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-tuple-and-value-tuple/</id>
-    <content src="https://rito15.github.io/posts/cs-tuple-and-value-tuple/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Grammar" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-Tuple, ValueTuple은 C# 7.0에 처음 도입되었다.
-
-두 개 이상의 타입을 함께 묶어 사용할 때,
-
-클래스나 구조체를 따로 정의하지 않고 곧바로 사용할 수 있게 해준다.
-
-
-
-Tuple
-
-
-클래스 튜플 타입.
-
-클래스 타입이므로 전달할 때 복사가 발생하지 않고, 참조를 전달한다.
-
-Tuple&amp;lt;T1, T2&amp;gt; 같이 명시적으로 타입명을 작성해야 한다.
-
-
-
-Tuple&amp;lt;int, float&amp;gt; tuple = (10, 20f); // 불가능
-
-
-아쉽게도 위와 같은 편리한 생성은 안되고,
-
-Tuple&amp;lt;int, float&amp;gt; tuple = new Tuple&amp;lt;int, float&amp;gt;(10, 20f);
-
-
-이렇게 명시적으로 생성자를 호출하여 생성해야 한다.
-...
     </summary>
   
 

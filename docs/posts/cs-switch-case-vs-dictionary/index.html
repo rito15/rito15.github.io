@@ -1252,6 +1252,11 @@
         
         
         
+        <li><a href="/posts/dotnet-cil-instructions/">.NET CIL 명령어 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
@@ -1268,11 +1273,6 @@
         
         
         <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-enum/">C# Enum 관련 메모</a></li>
       
 
       </ul>
@@ -4584,6 +4584,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8497,6 +8510,62 @@
       
       
       <div class="card">
+        <a href="/posts/cs-string-first-char-to-lower-or-upper/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep 10
+  
+
+  <i class="unloaded">2021-09-10T17:51:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Span 사용하여 문자열의 첫 문자만 대소문자 변경하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                첫 문자만 간단히 대소문자 변경하기
+
+
+string의 API만 사용하면 아주 간단히 첫 문자만 대소문자를 변경할 수 있다.
+
+
+  
+    private static string FirstCharToLower(string str)
+{
+    return str[0].ToString().ToLower() + str.Substring(1);
+}
+
+  
+
+...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/cs-benchmark-dotnet/">
           <div class="card-body">
             <!--
@@ -8628,75 +8697,6 @@
 
   
     HeapDebugger....
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/cs-utf8-string-to-byte-array/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  8
-  
-
-  <i class="unloaded">2021-08-08T19:31:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                1. 힙 할당 있는 방식
-
-
-
-  
-    string str = "가나다 ABC 123";
-
-byte[] byteStr = Encoding.UTF8.GetBytes(str);
-
-  
-
-
-
-
-2. 힙 할당 없는 방식
-
-
-
-  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
-
-
-
-
-버퍼를 이용한 직렬화 예시
-
-
-  
-...
               </p>
             </div>
           </div>

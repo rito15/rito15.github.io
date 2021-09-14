@@ -367,6 +367,105 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/cs-winform-notifyicon/">Notify Icon 사용하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+1. 도구
+
+  NotifyIcon 추가
+  ContextMenuStrip 추가
+
+
+
+
+2. 속성
+
+  Form - Icon에 .ico 아이콘 파일 등록
+  NotifyIcon - Icon에 아이콘 등록(안하면 컨텍스트 안생김)
+  NotifyIcon - ContextMenuStrip 연결
+
+
+
+
+3. 필드, 메소드 추가
+
+
+  
+    ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, May  6, 2021,  2:02 AM +0900"
+  >
+
+  
+  
+
+  
+    May  6
+  
+
+  <i class="unloaded">2021-05-06T02:02:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="429 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/memo-git/">깃 관련 메모 모음</a>
     </h1>
 
@@ -1237,95 +1336,6 @@ Details
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-study-multithread-job/">유니티의 멀티스레딩과 Job의 활용</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        유니티에서의 멀티스레딩
-
-
-유니티엔진에서는 기본적으로 모든 CPU 연산이 메인 스레드에서 이루어진다.
-
-그렇다고 다중 스레드를 사용할 수 없다는 것은 아니지만
-
-메인 스레드가 아닌 다른 스레드에서 유니티의 메인 로직에 접근할 수 없도록 막혀있다.
-
-다시 말해, 다른 스레드에서는 게임오브젝트, 컴포넌트 등에 접근하면 에러가 발생한다.
-
-예를 들어
-
-
- ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Apr  4, 2021, 10:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Apr  4
-  
-
-  <i class="unloaded">2021-04-04T22:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2783 words">15 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1815,9 +1825,24 @@ Details
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page30/">30</a>
+        <a class="page-link btn-box-shadow" href="/page31/">31</a>
       </li>
     
 
@@ -1876,6 +1901,11 @@ Details
         
         
         
+        <li><a href="/posts/dotnet-cil-instructions/">.NET CIL 명령어 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
@@ -1892,11 +1922,6 @@ Details
         
         
         <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-enum/">C# Enum 관련 메모</a></li>
       
 
       </ul>

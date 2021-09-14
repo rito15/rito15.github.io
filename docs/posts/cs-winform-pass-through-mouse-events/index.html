@@ -776,6 +776,11 @@ Form1.cs
         
         
         
+        <li><a href="/posts/dotnet-cil-instructions/">.NET CIL 명령어 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
@@ -792,11 +797,6 @@ Form1.cs
         
         
         <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-enum/">C# Enum 관련 메모</a></li>
       
 
       </ul>
@@ -6019,6 +6019,19 @@ Form1.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8140,7 +8153,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/03-cs-spinlock/">
+        <a href="/posts/04-cs-context-switching/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8160,10 +8173,10 @@ static void Main()
     Jul  8
   
 
-  <i class="unloaded">2021-07-08T01:03:00+09:00</i>
+  <i class="unloaded">2021-07-08T01:04:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Spin Lock</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Context Switching, Sleep, Yield</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8172,14 +8185,16 @@ static void Main()
 
 
 
-                스핀 락(Spin Lock) 개념
+                컨텍스트 스위칭(Context Switching)
 
 
-스레드 동기화를 위해 락을 걸고 크리티컬 섹션에 진입할 경우, 대기하는 스레드는 블록된다.
+현재 실행 되는 스레드가 있다면, 그 스레드는 CPU의 자원을 할당받아 동작하는 것이다.
 
-다시 말해, 크리티컬 섹션에 진입하려고 대기하는 스레드는 CPU 점유를 포기하게 된다.
+동시에 실행될 수 있는 스레드의 개수는 사실 CPU 코어의 개수 이하인데,
 
-그리고 CPU 자원이 현재 활성화된 다른 스레드에게 넘어가게 되는데, 이 때 컨텍스트 스위칭이 발생하며 그에 따른 오버헤드 또한 발생...
+예를 들어 CPU 코어가 4개라면 동시에 4개까지의 스레만 자원을 할당받아 동작할 수 있는 것이다.
+
+그런데 CPU 코어가 4개라고...
               </p>
             </div>
           </div>

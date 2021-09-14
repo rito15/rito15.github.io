@@ -745,6 +745,11 @@
         
         
         
+        <li><a href="/posts/dotnet-cil-instructions/">.NET CIL 명령어 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
@@ -761,11 +766,6 @@
         
         
         <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-enum/">C# Enum 관련 메모</a></li>
       
 
       </ul>
@@ -4072,6 +4072,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -7985,55 +7998,6 @@
       
       
       <div class="card">
-        <a href="/posts/03-cs-spinlock/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:03:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Spin Lock</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                스핀 락(Spin Lock) 개념
-
-
-스레드 동기화를 위해 락을 걸고 크리티컬 섹션에 진입할 경우, 대기하는 스레드는 블록된다.
-
-다시 말해, 크리티컬 섹션에 진입하려고 대기하는 스레드는 CPU 점유를 포기하게 된다.
-
-그리고 CPU 자원이 현재 활성화된 다른 스레드에게 넘어가게 되는데, 이 때 컨텍스트 스위칭이 발생하며 그에 따른 오버헤드 또한 발생...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/04-cs-context-switching/">
           <div class="card-body">
             <!--
@@ -8131,6 +8095,61 @@
 커널 영역으로 요청을 보내기 때문에 다른 방식보다 성능 소모가 좀더 크다.
 
 그리고 기존의 락 방식과 동일하게 사용될...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/06-cs-reader-writer-lock/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul  8
+  
+
+  <i class="unloaded">2021-07-08T01:06:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# ReaderWriterLock</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Reader Writer Lock
+
+
+스레드 간에 공유되는 데이터가 있을 때,
+
+항상 모든 스레드가 그 데이터를 읽고 쓰는 것은 아니다.
+
+어떤 스레드는 해당 데이터를 읽기만 하고,
+
+어떤 스레드는 해당 데이터를 쓰기만 하는 구조로 이루어져 있을 수 있다.
+
+그리고 소수의 쓰기 스레드가 상대적으로 적은 횟수로 쓰기를 수행하고,
+
+다수의 읽기 스레드가 ...
               </p>
             </div>
           </div>

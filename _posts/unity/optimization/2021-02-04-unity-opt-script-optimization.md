@@ -33,6 +33,7 @@ mermaid: true
 - [21. Enum HasFlag() 박싱 이슈](#enum-hasflag-박싱-이슈)
 - [22. 메소드 호출 줄이기](#메소드-호출-줄이기)
 - [23. 비싼 수학 계산 피하기](#비싼-수학-계산-피하기)
+- [24. Camera.main](#cameramain)
 
 
 <br>
@@ -236,7 +237,9 @@ void Update()
 
 프로퍼티는 필드가 아니다. 필드처럼, 혹은 메소드처럼 사용할 수 있는 참조이다.
 
-그리고 메소드 호출만큼의 오버헤드가 발생한다.
+그리고 실제로 내부적으로는 Setter, Getter 메소드로 이루어져 있으며,
+
+당연히 메소드 호출만큼의 오버헤드가 발생한다.
 
 심지어 위처럼 대상.프로퍼티.프로퍼티.프로퍼티.값 이렇게 이어지는 경우에는
 
@@ -248,11 +251,12 @@ void Update()
 
 메인 카메라로 등록된 참조를 바로 가져오는 친절한 친구가 아니라,
 
-내부적으로 FindMainCamera() 메소드 호출을 통해 "MainCamera" 태그가 붙은 카메라들 중에 현재 렌더링을 담당하고 있는 카메라를 가져오는 프로퍼티다.
+내부적으로 `FindMainCamera` 메소드 호출을 통해 "MainCamera" 태그가 붙은 카메라들 중에 현재 렌더링을 담당하고 있는 카메라를 가져오는 프로퍼티다.
 
 그래서 이렇게,
 
 ```cs
+private Camera _mainCam;
 private GameObject _mainCamObject;
 private Transform  _mainCamTransform;
 private GameObject _targetParentObject;
@@ -260,6 +264,7 @@ private float      _deltaTime;
 
 void Start()
 {
+    _mainCam = Camera.main;
     _mainCamObject = Camera.main.gameObject;
     _mainCamTransform = Camera.main.transform;
     _targetParentObject = targetObject.transform.parent.gameObject;
@@ -924,6 +929,27 @@ UnityEngine.Mathf는 대부분 이렇게 구현되어 있기 때문에 비교적
 
 2. System.Math는 웬만해서 UnityEngine.Mathf보다 빠르다.
 
+
+<br>
+
+# Camera.main
+---
+
+- <https://www.youtube.com/watch?v=x1Hjt0D4fMs>
+
+위에서 잠깐 언급했지만, `Camera.main`을 매프레임 참조하는 것은 생각보다 성능이 좋지 않다.
+
+내부적으로 `FindMainCamera()` - `FindWithTag("MainCamera")` - ... 이렇게 호출이 이어지고,
+
+모든 오브젝트 목록을 찾고 거기서 다시 `MainCamera` 태그가 붙은 오브젝트의 목록을 찾아서
+
+그 중에서 메인 카메라를 찾는 방식이다.
+
+유니티 에디터 `2020.2` 버전부터는 개선되었다고 한다.
+
+그런데 아직도 `2019`, 심지어는 `2018`이나 그 이하 버전을 사용하는 경우도 굉장히 많으므로
+
+이런 이슈는 버전에 맞게 반드시 고려해야 한다.
 
 <br>
 

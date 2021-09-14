@@ -26,8 +26,8 @@
 <meta property="og:title" content="유니티 스크립트 최적화" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기" />
-<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기" />
+<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main" />
+<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-opt-script-optimization/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-opt-script-optimization/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 스크립트 최적화" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 스크립트 최적화","dateModified":"2021-09-12T16:40:28+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 스크립트 최적화","dateModified":"2021-09-12T16:40:28+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="7275 words">40 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="7494 words">41 min</span>
 
 
           <!-- page views -->
@@ -492,6 +492,7 @@
   <li><a href="#enum-hasflag-박싱-이슈">21. Enum HasFlag() 박싱 이슈</a></li>
   <li><a href="#메소드-호출-줄이기">22. 메소드 호출 줄이기</a></li>
   <li><a href="#비싼-수학-계산-피하기">23. 비싼 수학 계산 피하기</a></li>
+  <li><a href="#cameramain">24. Camera.main</a></li>
 </ul>
 
 <p><br /></p>
@@ -747,7 +748,9 @@
 
 <p>프로퍼티는 필드가 아니다. 필드처럼, 혹은 메소드처럼 사용할 수 있는 참조이다.</p>
 
-<p>그리고 메소드 호출만큼의 오버헤드가 발생한다.</p>
+<p>그리고 실제로 내부적으로는 Setter, Getter 메소드로 이루어져 있으며,</p>
+
+<p>당연히 메소드 호출만큼의 오버헤드가 발생한다.</p>
 
 <p>심지어 위처럼 대상.프로퍼티.프로퍼티.프로퍼티.값 이렇게 이어지는 경우에는</p>
 
@@ -759,7 +762,7 @@
 
 <p>메인 카메라로 등록된 참조를 바로 가져오는 친절한 친구가 아니라,</p>
 
-<p>내부적으로 FindMainCamera() 메소드 호출을 통해 “MainCamera” 태그가 붙은 카메라들 중에 현재 렌더링을 담당하고 있는 카메라를 가져오는 프로퍼티다.</p>
+<p>내부적으로 <code class="language-plaintext highlighter-rouge">FindMainCamera</code> 메소드 호출을 통해 “MainCamera” 태그가 붙은 카메라들 중에 현재 렌더링을 담당하고 있는 카메라를 가져오는 프로퍼티다.</p>
 
 <p>그래서 이렇게,</p>
 
@@ -786,13 +789,17 @@
 21
 22
 23
-</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">GameObject</span> <span class="n">_mainCamObject</span><span class="p">;</span>
+24
+25
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">Camera</span> <span class="n">_mainCam</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">GameObject</span> <span class="n">_mainCamObject</span><span class="p">;</span>
 <span class="k">private</span> <span class="n">Transform</span>  <span class="n">_mainCamTransform</span><span class="p">;</span>
 <span class="k">private</span> <span class="n">GameObject</span> <span class="n">_targetParentObject</span><span class="p">;</span>
 <span class="k">private</span> <span class="kt">float</span>      <span class="n">_deltaTime</span><span class="p">;</span>
 
 <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
 <span class="p">{</span>
+    <span class="n">_mainCam</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">;</span>
     <span class="n">_mainCamObject</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">gameObject</span><span class="p">;</span>
     <span class="n">_mainCamTransform</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">transform</span><span class="p">;</span>
     <span class="n">_targetParentObject</span> <span class="p">=</span> <span class="n">targetObject</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">.</span><span class="n">gameObject</span><span class="p">;</span>
@@ -1613,6 +1620,29 @@
 
 <p><br /></p>
 
+<h1 id="cameramain">Camera.main</h1>
+<hr />
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=x1Hjt0D4fMs">https://www.youtube.com/watch?v=x1Hjt0D4fMs</a></li>
+</ul>
+
+<p>위에서 잠깐 언급했지만, <code class="language-plaintext highlighter-rouge">Camera.main</code>을 매프레임 참조하는 것은 생각보다 성능이 좋지 않다.</p>
+
+<p>내부적으로 <code class="language-plaintext highlighter-rouge">FindMainCamera()</code> - <code class="language-plaintext highlighter-rouge">FindWithTag("MainCamera")</code> - … 이렇게 호출이 이어지고,</p>
+
+<p>모든 오브젝트 목록을 찾고 거기서 다시 <code class="language-plaintext highlighter-rouge">MainCamera</code> 태그가 붙은 오브젝트의 목록을 찾아서</p>
+
+<p>그 중에서 메인 카메라를 찾는 방식이다.</p>
+
+<p>유니티 에디터 <code class="language-plaintext highlighter-rouge">2020.2</code> 버전부터는 개선되었다고 한다.</p>
+
+<p>그런데 아직도 <code class="language-plaintext highlighter-rouge">2019</code>, 심지어는 <code class="language-plaintext highlighter-rouge">2018</code>이나 그 이하 버전을 사용하는 경우도 굉장히 많으므로</p>
+
+<p>이런 이슈는 버전에 맞게 반드시 고려해야 한다.</p>
+
+<p><br /></p>
+
 <h1 id="references">References</h1>
 <hr />
 <ul>
@@ -1762,6 +1792,11 @@
         
         
         
+        <li><a href="/posts/dotnet-cil-instructions/">.NET CIL 명령어 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
@@ -1778,11 +1813,6 @@
         
         
         <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/memo-cs-enum/">C# Enum 관련 메모</a></li>
       
 
       </ul>
@@ -5094,6 +5124,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
