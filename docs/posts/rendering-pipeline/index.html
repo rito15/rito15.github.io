@@ -26,8 +26,8 @@
 <meta property="og:title" content="렌더링 파이프라인 간단 정리" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="렌더링 파이프라인 구조 요약" />
-<meta property="og:description" content="렌더링 파이프라인 구조 요약" />
+<meta name="description" content="렌더링 파이프라인 구조 요약(DirectX 9 기준)" />
+<meta property="og:description" content="렌더링 파이프라인 구조 요약(DirectX 9 기준)" />
 <link rel="canonical" href="https://rito15.github.io/posts/rendering-pipeline/" />
 <meta property="og:url" content="https://rito15.github.io/posts/rendering-pipeline/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="렌더링 파이프라인 간단 정리" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"렌더링 파이프라인 구조 요약","datePublished":"2021-08-30T01:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/rendering-pipeline/"},"url":"https://rito15.github.io/posts/rendering-pipeline/","author":{"@type":"Person","name":"Rito15"},"headline":"렌더링 파이프라인 간단 정리","dateModified":"2021-08-30T01:50:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"렌더링 파이프라인 구조 요약(DirectX 9 기준)","datePublished":"2021-08-30T01:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/rendering-pipeline/"},"url":"https://rito15.github.io/posts/rendering-pipeline/","author":{"@type":"Person","name":"Rito15"},"headline":"렌더링 파이프라인 간단 정리","dateModified":"2021-08-30T01:50:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2508 words">13 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2911 words">16 min</span>
 
 
           <!-- page views -->
@@ -437,16 +437,61 @@
 
         
 
-        <h1 id="렌더링-파이프라인-구조-요약">렌더링 파이프라인 구조 요약</h1>
+        <h1 id="렌더링-파이프라인-구조-요약directx-9-기준">렌더링 파이프라인 구조 요약(DirectX 9 기준)</h1>
 <hr />
 
+<h2 id="입력-조립"><strong>입력 조립</strong></h2>
 <ul>
-  <li>입력 조립</li>
-  <li>정점 쉐이더</li>
-  <li>래스터라이저</li>
-  <li>픽셀(프래그먼트) 쉐이더</li>
-  <li>출력 병합</li>
+  <li>GPU가 CPU로부터 정점 데이터를 전달 받아서 프리미티브(삼각형)들을 만든다.</li>
 </ul>
+
+<h2 id="정점-쉐이더"><strong>정점 쉐이더</strong></h2>
+<ul>
+  <li>Object Space에서 Clip Space까지 정점들의 공간 변환을 수행한다.</li>
+</ul>
+
+<h2 id="래스터라이저"><strong>래스터라이저</strong></h2>
+<ul>
+  <li>Clip Space의 정점 데이터를 Viewport로 변환하고, <br />
+정점 데이터를 기반으로 보간된 프래그먼트(픽셀 데이터)를 생성한다.</li>
+</ul>
+
+<h2 id="픽셀프래그먼트-쉐이더"><strong>픽셀(프래그먼트) 쉐이더</strong></h2>
+<ul>
+  <li>프래그먼트를 입력 받아 화면에 그려질 모든 픽셀의 색상과 깊이 값을 출력한다.</li>
+</ul>
+
+<h2 id="출력-병합"><strong>출력 병합</strong></h2>
+<ul>
+  <li>Z-Test, Stencil Test, Alpha Blending 등을 통해 최종적으로 화면에 그려질 색상을 결정한다.</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="참고--directx-11-렌더링-파이프라인-구조">참고 : DirectX 11 렌더링 파이프라인 구조</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/133432245-c2001cb0-5a22-405d-9c4d-60ba5611eb1d.png" alt="image" /></p>
+
+  <h2 id="geometry-shader"><strong>지오메트리 쉐이더(Geometry Shader)</strong></h2>
+  <ul>
+    <li>DirectX10에서 새롭게 추가된 쉐이더</li>
+    <li>입력 받은 정점 데이터에서는 존재하지 않았던 새로운 점, 선, 면(삼각형) 등을 새롭게 생성하거나 기존의 정점을 제거할 수 있다.</li>
+    <li>기존의 프리미티브(삼각형)를 다른 모양으로 바꿀 수도 있다.</li>
+  </ul>
+
+  <h2 id="tessellation-shader"><strong>테셀레이션 쉐이더(Tessellation Shader)</strong></h2>
+  <ul>
+    <li>DirectX11에서 새롭게 추가된 쉐이더</li>
+    <li>프리미티브(삼각형)를 더 잘게 쪼개서 새로운 정점들을 생성한다.</li>
+  </ul>
+
+</details>
 
 <p><br /></p>
 
@@ -462,7 +507,7 @@
   </li>
   <li>
     <p>정점 버퍼는 <strong>위치, 노말, 색상, UV</strong>를 담고 있는데, <br />
-구조체로 이쁘게 담고 있는게 아니고 직렬화된 형태로 담고 있다.</p>
+구조체로 이쁘게 담고 있는게 아니고 직렬화된 형태(배열)로 담고 있다.</p>
   </li>
   <li>
     <p>그리고 GPU에서는 이렇게 전달 받은 정점 버퍼를, <br />
@@ -477,63 +522,70 @@
 
 <p><br /></p>
 
-<h2 id="커맨드-큐command-queue"><strong>커맨드 큐(Command Queue)</strong></h2>
-<ul>
-  <li>GPU는 CPU보다 훨씬 빠르다.</li>
-  <li>
-    <p>그래서 CPU가 GPU에 처리를 요청할 때, 동기적으로 요청하면 반드시 병목이 발생할 수밖에 없다.</p>
-  </li>
-  <li>따라서 CPU는 요청들을 <strong>커맨드 버퍼(Command Buffer)</strong>에 담아서 커맨드 큐에 넣어두고 <br />
+<details>
+  <summary> 
+…
+</summary>
+
+  <h2 id="command-queue"><strong>커맨드 큐(Command Queue)</strong></h2>
+  <ul>
+    <li>GPU는 CPU보다 훨씬 빠르다.</li>
+    <li>
+      <p>그래서 CPU가 GPU에 처리를 요청할 때, 동기적으로 요청하면 반드시 병목이 발생할 수밖에 없다.</p>
+    </li>
+    <li>따라서 CPU는 요청들을 <strong>커맨드 버퍼(Command Buffer)</strong>에 담아서 커맨드 큐에 넣어두고 <br />
 GPU는 큐에서 버퍼들을 꺼내어 처리해주는 방식으로 병목을 해결한다.</li>
-</ul>
+  </ul>
 
-<p><br /></p>
+  <p><br /></p>
 
-<h2 id="드로우-콜draw-call"><strong>드로우 콜(Draw Call)</strong></h2>
-<ul>
-  <li>CPU에서 GPU에 전달할 명령을 <strong>커맨드 버퍼</strong>에 담아 <strong>커맨드 큐</strong>에 넣는 과정</li>
-  <li>
-    <p>쉽게 말해, CPU가 GPU에게 메시 좀 그려 달라고 요청하는 것이다.</p>
-  </li>
-  <li>종류 예시
-    <ul>
-      <li><strong>Set Pass Call</strong> : 렌더 상태 변경 요청(메시를 그리기 위한 환경 설정)</li>
-      <li><strong>DP Call</strong>(Draw Primitive Call) : 메시 그리기 요청 <br /></li>
-    </ul>
-  </li>
-  <li>일반적으로 Set Pass Call 이후 DP Call로 이어진다.</li>
-</ul>
+  <h2 id="draw-call"><strong>드로우 콜(Draw Call)</strong></h2>
+  <ul>
+    <li>CPU에서 GPU에 전달할 명령을 <strong>커맨드 버퍼</strong>에 담아 <strong>커맨드 큐</strong>에 넣는 과정</li>
+    <li>
+      <p>쉽게 말해, CPU가 GPU에게 메시 좀 그려 달라고 요청하는 것이다.</p>
+    </li>
+    <li>종류 예시
+      <ul>
+        <li><strong>Set Pass Call</strong> : 렌더 상태 변경 요청(메시를 그리기 위한 환경 설정)</li>
+        <li><strong>DP Call</strong>(Draw Primitive Call) : 메시 그리기 요청 <br /></li>
+      </ul>
+    </li>
+    <li>일반적으로 Set Pass Call 이후 DP Call로 이어진다.</li>
+  </ul>
 
-<p><br /></p>
+  <p><br /></p>
 
-<ul>
-  <li>참고 : <strong>배치(Batch)</strong>
-    <ul>
-      <li>Set Pass Call과 DP Call을 합쳐서 지칭하는 드로우 콜</li>
-      <li>흔히 말하는 드로우 콜이 바로 배치를 의미한다.</li>
-    </ul>
-  </li>
-  <li>참고2 : <strong>배칭(Batching)</strong>
-    <ul>
-      <li>여러 번 나누어 발생할 드로우 콜을 하나로 통합하는 것</li>
-      <li>같은 마테리얼을 사용하는 경우 등등</li>
-    </ul>
-  </li>
-</ul>
+  <ul>
+    <li>참고 : <strong>배치(Batch)</strong>
+      <ul>
+        <li>Set Pass Call과 DP Call을 합쳐서 지칭하는 드로우 콜</li>
+        <li>흔히 말하는 드로우 콜이 바로 배치를 의미한다.</li>
+      </ul>
+    </li>
+    <li>참고2 : <strong>배칭(Batching)</strong>
+      <ul>
+        <li>여러 번 나누어 발생할 드로우 콜을 하나로 통합하는 것</li>
+        <li>같은 마테리얼을 사용하는 경우 등등</li>
+      </ul>
+    </li>
+  </ul>
 
-<p><br /></p>
+  <p><br /></p>
 
-<h2 id="렌더-상태render-states"><strong>렌더 상태(Render States)</strong></h2>
-<ul>
-  <li>
-    <p>메시를 그리기 위해 필요한 데이터들</p>
-  </li>
-  <li>정점 데이터(위치, 노말, 색상, UV)</li>
-  <li>쉐이더</li>
-  <li>알파 블렌딩 연산, Z-Test 여부 등</li>
-</ul>
+  <h2 id="render-states"><strong>렌더 상태(Render States)</strong></h2>
+  <ul>
+    <li>
+      <p>메시를 그리기 위해 필요한 데이터들</p>
+    </li>
+    <li>정점 데이터(위치, 노말, 색상, UV)</li>
+    <li>쉐이더</li>
+    <li>알파 블렌딩 연산, Z-Test 여부 등</li>
+  </ul>
 
-<p><br /></p>
+  <p><br /></p>
+
+</details>
 
 <h1 id="2-정점-쉐이더vertex-shader">2. 정점 쉐이더(Vertex Shader)</h1>
 <hr />
@@ -629,8 +681,18 @@ Z 좌표는 0 ~ 1 범위에 존재한다.</li>
   <li>
     <p>프로그래밍이 불가능한, 고정 파이프라인 단계</p>
   </li>
-  <li>클립 스페이스의 정점 데이터를 전달받아 프래그먼트를 구성하고, <br />
-화면에 출력할 픽셀들을 찾아낸다.</li>
+  <li>
+    <p>클립 스페이스의 정점 데이터를 전달받아 프래그먼트를 구성하고, <br />
+화면에 출력할 픽셀들을 찾아낸다.</p>
+  </li>
+  <li>
+    <p>픽셀 색상 등의 데이터는 정점의 데이터를 기준으로 보간된다.</p>
+  </li>
+  <li><strong>프래그먼트(Fragnemt)?</strong>
+    <ul>
+      <li>픽셀 하나의 색상을 화면에 그려내기 위한 정보를 담고 있는 데이터</li>
+    </ul>
+  </li>
 </ul>
 
 <p><br /></p>
