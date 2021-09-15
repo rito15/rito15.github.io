@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-15T05:31:05+09:00</updated>
+  <updated>2021-09-15T15:18:49+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,94 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 - UI 이미지에 구멍뚫기</title>
+    <link href="https://rito15.github.io/posts/unity-punch-ui-image/" rel="alternate" type="text/html" title="유니티 - UI 이미지에 구멍뚫기" />
+    <published>2021-09-15T15:00:00+09:00</published>
+  
+    <updated>2021-09-15T15:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-punch-ui-image/</id>
+    <content src="https://rito15.github.io/posts/unity-punch-ui-image/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo - Shorts" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Mask
+
+
+
+
+이런 이미지에
+
+
+
+이런 마스크를 씌우려면
+
+
+  Mask Image (Image, Mask 컴포넌트 존재)
+    
+      Image (Image 컴포넌트 존재)
+    
+  
+
+
+이렇게 마스크 이미지, 보여질 이미지를 부모-자식 관계로 구성하면 된다.
+
+
+
+그러면 이렇게 마스크 이미지와 겹치는 영역만 보인다.
+
+
+
+Punch
+
+
+반대로 마스크 이미지와 겹치는 영역만 안보이도록,
+
+마치 구멍이 뚫린 것 같이 표현하려면
+
+우선 마테리얼 하나를 만든다.
+
+
+
+그리고 프로퍼티 값들을 위와 같이 설정한다.
+
+
+
+
+
+마스크의 자식으로 있는 이미지의 Image 컴포넌트에서
+
+Material에 해당 마테리얼을 넣어주고, Maskable 옵션을 체크 해제한다.
+
+
+
+
+
+이제 위와 같이 마스크 모...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -157,7 +245,7 @@ Stack
     <link href="https://rito15.github.io/posts/cs-switch-case-vs-dictionary/" rel="alternate" type="text/html" title="C# if-else if vs switch-case vs Dictionary" />
     <published>2021-09-13T00:01:00+09:00</published>
   
-    <updated>2021-09-13T05:00:59+09:00</updated>
+    <updated>2021-09-15T05:33:14+09:00</updated>
   
     <id>https://rito15.github.io/posts/cs-switch-case-vs-dictionary/</id>
     <content src="https://rito15.github.io/posts/cs-switch-case-vs-dictionary/" />
@@ -295,79 +383,6 @@ Properties
     
       기본 값 : 2
       ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# Deconstructor</title>
-    <link href="https://rito15.github.io/posts/cs-deconstructor/" rel="alternate" type="text/html" title="C# Deconstructor" />
-    <published>2021-09-11T04:32:00+09:00</published>
-  
-    <updated>2021-09-11T04:32:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-deconstructor/</id>
-    <content src="https://rito15.github.io/posts/cs-deconstructor/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Grammar" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Deconstructor
-
-
-class Student
-{
-    public int id;
-    public string name;
-}
-
-
-클래스가 있다.
-
-Student student = new Student();
-
-
-객체도 있다.
-
-(int id, string name) = student;
-
-
-위와 같이 한다고 해서 객체의 필드들이 각각의 변수에 할당되지는 않는다.
-
-
-
-class Student
-{
-    public int id;
-    public string name;
-
-    public void Deconstruct(out int id, out string name)
-    {
-        id = this.id;
-        name = this.name;
-    }
-}
-
-
-그런데 ...
     </summary>
   
 
