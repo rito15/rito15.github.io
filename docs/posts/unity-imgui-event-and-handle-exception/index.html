@@ -1131,6 +1131,11 @@ with only 0 controls when doing repaint Aborting
         
         
         
+        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
       
         
@@ -1147,11 +1152,6 @@ with only 0 controls when doing repaint Aborting
         
         
         <li><a href="/posts/dotnet-cil-instructions/">.NET CIL 명령어 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
 
       </ul>
@@ -4493,6 +4493,19 @@ with only 0 controls when doing repaint Aborting
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8553,7 +8566,7 @@ Memo
       
       
       <div class="card">
-        <a href="/posts/unity-editor-custom-editor-window/">
+        <a href="/posts/unity-editorconfig-encoding/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8570,13 +8583,13 @@ Memo
   
 
   
-    Mar  8
+    Sep 15
   
 
-  <i class="unloaded">2021-03-08T00:00:00+09:00</i>
+  <i class="unloaded">2021-09-15T02:34:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Custom Editor Window(커스텀 에디터 윈도우)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8588,30 +8601,29 @@ Memo
                 Note
 
 
-
-  에디터 윈도우를 직접 만들어 사용할 수 있다.
-
-
-Preview
+문제 확인
 
 
 
+비주얼 스튜디오에서는 위와 같이 잘 보이던 한글 주석이
 
 
 
-Source Code Example
+유니티 에디터에서 보면 이렇게 깨지는 경우가 있다.
+
+당장은 스크립팅에 문제가 없더라도,
+
+스크립트 파일을 전송하거나 협업을 하게 될 때 문제가 생길 수 있다.
 
 
 
-  
-    #if UNITY_EDITOR
+인코딩
 
-using UnityEngine;
-using UnityEditor;
+인코딩을 확인해보면
 
-public class ExampleWindow : EditorWindow
-{
-    private bo...
+
+
+EUC-KR의 확장인 코드 페이지 949(CP949)임을 알 수...
               </p>
             </div>
           </div>

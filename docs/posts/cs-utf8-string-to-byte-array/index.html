@@ -792,6 +792,11 @@
         
         
         
+        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
       
         
@@ -808,11 +813,6 @@
         
         
         <li><a href="/posts/dotnet-cil-instructions/">.NET CIL 명령어 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
 
       </ul>
@@ -5095,6 +5095,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8217,7 +8230,7 @@
       
       
       <div class="card">
-        <a href="/posts/cs-string-first-char-to-lower-or-upper/">
+        <a href="/posts/cs-dictionary-search-cost/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8234,13 +8247,13 @@
   
 
   
-    Sep 10
+    Sep 11
   
 
-  <i class="unloaded">2021-09-10T17:51:00+09:00</i>
+  <i class="unloaded">2021-09-11T00:01:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Span 사용하여 문자열의 첫 문자만 대소문자 변경하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Dictionary 탐색 성능 - 선형 탐색과 비교</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8249,22 +8262,18 @@
 
 
 
-                첫 문자만 간단히 대소문자 변경하기
+                Curiosity
 
 
-string의 API만 사용하면 아주 간단히 첫 문자만 대소문자를 변경할 수 있다.
+Dictionary&lt;TKey, TValue&gt;는 해시 테이블 자료구조의 제네릭 구현 클래스로서,
 
-1
-2
-3
-4
-private static string FirstCharToLower(string str)
-{
-    return str[0].ToString().ToLower() + str.Substring(1);
-}
+Key-Value 꼴로 데이터를 저장하고
 
+Key에 대한 해시 계산을 통해 Value를 탐색할 수 있다.
 
-하지만...
+그렇다면 Key-Value를 저장하는 배열의 선형 탐색과 비교했을 때,
+
+Dictionary의 탐색 성능은 어느 정도...
               </p>
             </div>
           </div>

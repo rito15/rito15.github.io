@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-15T22:45:56+09:00</updated>
+  <updated>2021-09-16T00:09:28+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,75 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 모델 트랜스폼 구조 최적화하기</title>
+    <link href="https://rito15.github.io/posts/unity-optimize-model-transform/" rel="alternate" type="text/html" title="유니티 모델 트랜스폼 구조 최적화하기" />
+    <published>2021-09-16T00:02:00+09:00</published>
+  
+    <updated>2021-09-16T00:02:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-optimize-model-transform/</id>
+    <content src="https://rito15.github.io/posts/unity-optimize-model-transform/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Optimization" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+문제점
+
+Skinned Mesh가 적용되는 게임 오브젝트의 경우,
+
+하이라키에서 트랜스폼 구조를 확인해보면
+
+
+
+이렇게 Bone 별로 각각 존재하여, 굉장히 많은 게임오브젝트들로 이루어져 있다.
+
+그런데 유니티 엔진에서는 부모 게임 오브젝트의 트랜스폼에 변경사항이 생기면
+
+모든 자식 트랜스폼에 변경이 발생한다.
+
+한마디로, 위와 같이 무수히 많은 자식 오브젝트가 존재하면 성능에 좋지 않다는 의미이다.
+
+
+
+해결책
+
+Project 윈도우에서 해당 모델 파일을 선택한다.
+
+인스펙터 창에서 Rig 탭을 클릭한다.
+
+
+
+여기서 만약 Optimize Game Objects 옵션이 나타나지 않는다면
+
+Animation Type을 Generic 또는 Humanoid로 바꾸고,
+
+Avatar Defini...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -294,95 +363,6 @@ switch(value)
 
 
 그리고 이를 Dictionary를 통해 처리할 수도 있다....
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Amplify) Screen Effect - Ice (Freezing)</title>
-    <link href="https://rito15.github.io/posts/unity-amplify-screen-ice/" rel="alternate" type="text/html" title="(Amplify) Screen Effect - Ice (Freezing)" />
-    <published>2021-09-12T01:01:00+09:00</published>
-  
-    <updated>2021-09-13T05:19:26+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-amplify-screen-ice/</id>
-    <content src="https://rito15.github.io/posts/unity-amplify-screen-ice/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Amplify Shader" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-  
-    화면이 가장자리부터 얼어붙는 효과
-  
-  
-    스크린 이펙트 적용 애셋 : Link
-  
-
-
-
-
-Preview
-
-
-
-
-
-
-
-
-Properties
-
-
-
-  Ice Texture
-    
-      얼음 효과로 사용할 텍스쳐
-      원하는 텍스쳐를 사용하면 된다.
-    
-  
-  Range
-    
-      효과 적용 범위 (0 ~ 1)
-    
-  
-  Noise Scale
-    
-      기본 값 : 4
-      노이즈 적용 스케일
-    
-  
-  Power A
-    
-      기본 값 : 3
-      영역의 모양
-      작을수록 원형, 클수록 사각형에 가까워진다.
-    
-  
-  Power B
-    
-      기본 값 : 2
-      ...
     </summary>
   
 

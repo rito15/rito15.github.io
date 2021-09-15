@@ -1,7 +1,7 @@
 ---
 title: 유니티 모델 트랜스폼 구조 최적화하기
 author: Rito15
-date: 2021-09-15 04:00:00 +09:00
+date: 2021-09-16 00:02:00 +09:00
 categories: [Unity, Unity Optimization]
 tags: [unity, csharp, optimization, model]
 math: true

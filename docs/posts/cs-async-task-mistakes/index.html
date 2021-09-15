@@ -745,6 +745,11 @@
         
         
         
+        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
       
         
@@ -761,11 +766,6 @@
         
         
         <li><a href="/posts/dotnet-cil-instructions/">.NET CIL 명령어 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
 
       </ul>
@@ -4102,6 +4102,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8041,61 +8054,6 @@
       
       
       <div class="card">
-        <a href="/posts/05-cs-auto-reset-event/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:05:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# AutoResetEvent</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                이벤트(Event) 동기화 기법
-
-
-기존의 락과는 조금 다르게,
-
-락을 얻고자 하는 각각의 스레드만 직접 락을 설정하고 해제할 수 있는 것이 아니라
-
-제 3자도 락을 설정/해제할 수 있는 방식이다.
-
-여기서 제 3자는 커널을 의미하며
-
-커널 영역으로 요청을 보내기 때문에 다른 방식보다 성능 소모가 좀더 크다.
-
-그리고 기존의 락 방식과 동일하게 사용될...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/06-cs-reader-writer-lock/">
           <div class="card-body">
             <!--
@@ -8203,6 +8161,66 @@
   
 
 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/08-cs-thread-local-storage/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul  8
+  
+
+  <i class="unloaded">2021-07-08T01:08:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# TLS(Thread Local Storage)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+
+메모리 구조
+
+
+
+
+
+
+TLS(Thread Local Storage)
+
+
+Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공유한다.
+
+그리고 Stack 영역의 지역 변수(또는 멤버 변수)는 해당 블록 내에서만 사용된다.
+
+따라서 기본적으로 각각의 스레드마다 고유하게 갖는 메모리 영역은 없다.
+
+이를 만들어 줄 수 있는 것이 바로 ...
               </p>
             </div>
           </div>

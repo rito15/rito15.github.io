@@ -655,6 +655,11 @@
         
         
         
+        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
       
         
@@ -671,11 +676,6 @@
         
         
         <li><a href="/posts/dotnet-cil-instructions/">.NET CIL 명령어 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
 
       </ul>
@@ -4012,6 +4012,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8004,6 +8017,84 @@ Dictionary의 탐색 성능은 어느 정도...
       
       
       <div class="card">
+        <a href="/posts/cs-gethashcode-cost-by-types/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep 11
+  
+
+  <i class="unloaded">2021-09-11T00:30:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 타입별 GetHashCode() 성능</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Curiosity
+
+
+타입별로 GetHashCode()의 성능 비용이 얼마나 달라지는지 간단히 확인해본다.
+
+사용자 정의 타입은 GetHashCode() 메소드를 임의로 오버라이드 하지 않고 확인한다.
+
+
+
+사용자 정의 타입
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+publ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/cs-benchmark-dotnet/">
           <div class="card-body">
             <!--
@@ -8065,76 +8156,6 @@ Dictionary의 탐색 성능은 어느 정도...
 
     1
 &lt;div class="langu...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/cs-heap-memory-debugger/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  8
-  
-
-  <i class="unloaded">2021-08-08T12:12:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 간단한 힙 메모리 디버거 (콘솔)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                기능
-
-
-
-  원하는 지점의 힙 메모리 크기 기록
-  기록된 두 지점의 힙 메모리 크기 차이 출력
-
-
-
-
-주의사항
-
-
-
-  Print() 이후에는 Record()하지 않아야 한다.
-    
-      Future Works : Print() 내에서 스트링을 스택에 할당하여 해결
-    
-  
-
-
-
-
-사용 예시
-
-
-
-  
-    HeapDebugger....
               </p>
             </div>
           </div>

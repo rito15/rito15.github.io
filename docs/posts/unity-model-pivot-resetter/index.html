@@ -720,6 +720,11 @@
         
         
         
+        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
       
         
@@ -736,11 +741,6 @@
         
         
         <li><a href="/posts/dotnet-cil-instructions/">.NET CIL 명령어 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
 
       </ul>
@@ -6687,6 +6687,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8021,6 +8034,65 @@
       
       
       <div class="card">
+        <a href="/posts/unity-optimize-model-transform/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep 16
+  
+
+  <i class="unloaded">2021-09-16T00:02:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 모델 트랜스폼 구조 최적화하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+문제점
+
+Skinned Mesh가 적용되는 게임 오브젝트의 경우,
+
+하이라키에서 트랜스폼 구조를 확인해보면
+
+
+
+이렇게 Bone 별로 각각 존재하여, 굉장히 많은 게임오브젝트들로 이루어져 있다.
+
+그런데 유니티 엔진에서는 부모 게임 오브젝트의 트랜스폼에 변경사항이 생기면
+
+모든 자식 트랜스폼에 변경이 발생한다.
+
+한마디로, 위와 같이 무수...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-animator-event-controller/">
           <div class="card-body">
             <!--
@@ -8123,66 +8195,6 @@
   
   
     유니티 타임라인에도 손쉽게 연...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-editor-timescale-slider/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Sep  1
-  
-
-  <i class="unloaded">2021-09-01T16:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Timescale Slider(게임 진행 속도 조절 슬라이더)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Summary
-
-
-  
-    게임 진행 속도를 0% ~ 100% 사이에서 조절할 수 있는 슬라이더를 유니티 에디터 상단 재생 버튼 우측에 생성합니다.
-  
-  
-    유니티 에디터 내에서만 동작하고, 빌드 이후에는 아무런 영향을 미치지 않습니다.
-  
-
-
-
-
-테스트 완료 에디터 버전
-
-
-  2018.3.14f1
-  2019.4.9f1
-  2020....
               </p>
             </div>
           </div>
