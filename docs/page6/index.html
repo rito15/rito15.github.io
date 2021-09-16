@@ -367,6 +367,182 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-focus/">유니티 에디터 GUI - 포커스 확인, 처리</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        1. 컨트롤 포커스 여부 확인
+
+
+
+  
+    // 다음에 나올 GUI 컨트롤에 이름 부여
+GUI.SetNextControlName("Foooooooocus");
+
+// GUI 그리기
+EditorGUI.TextArea(rect, value, inputStyle);
+
+// 포커스 여부 확인
+if(GUI.GetNameOfFocusedControl() =...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Aug 26, 2021,  3:45 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug 26
+  
+
+  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="159 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Summary
+
+
+
+  
+    스크린 이펙트(포스트 프로세싱)를 간단히 적용할 수 있게 해주는 애셋입니다.
+  
+  
+    게임 오브젝트의 단순 활성화/비활성화 방식으로 스크린 이펙트를 적용/해제합니다.
+  
+  
+    시간에 따른 마테리얼 프로퍼티의 값 변화 애니메이션을 쉽게 제작할 수 있습니다.
+  
+  
+    유니티 타임라인에도 손쉽게 연...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Aug 25, 2021,  9:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 25
+  
+
+  <i class="unloaded">2021-08-25T21:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5985 words">33 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a>
     </h1>
 
@@ -459,7 +635,7 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-editor-block-mouse-click/">유니티 에디터의 특정 영역 마우스 클릭 방지하기</a>
+      <a href="/posts/unity-editor-block-mouse-click/">유니티 - 에디터의 특정 영역 마우스 클릭 방지하기</a>
     </h1>
 
     <div class="post-content">
@@ -638,7 +814,7 @@ if (rect.Contains(Event.current.mousePosition))
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-dark-mode-in-script/">유니티 에디터 다크모드 여부 스크립트로 확인하기</a>
+      <a href="/posts/unity-dark-mode-in-script/">유니티 - 에디터 다크모드 여부 스크립트로 확인하기</a>
     </h1>
 
     <div class="post-content">
@@ -1127,226 +1303,6 @@ public float[] targetArray;
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="427 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-screen-shake/">(Amplify) Screen Effect - Shake</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  
-    화면 흔들림 이펙트
-  
-  
-    스크린 이펙트 적용 애셋 : Link
-  
-
-
-
-
-Preview
-
-
-
-
-
-
-Nodes
-
-
-
-
-
-
-Download
-
-
-
-  2021_0817_Screen Effect_Shake.zip
-
-
-
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Aug 19, 2021,  2:55 AM +0900"
-  >
-
-  
-  
-
-  
-    Aug 19
-  
-
-  <i class="unloaded">2021-08-19T02:55:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="26 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-screen-hexagons/">(Amplify) Screen Effect - Hexagonal Pattern</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  
-    육각형 패턴 이펙트
-  
-  
-    스크린 이펙트 적용 애셋 : Link
-  
-
-
-
-
-Preview
-
-
-
-
-
-
-Nodes
-
-
-
-
-
-
-Download
-
-
-
-  2021_0817_Screen Effect_Hexagons.zip
-
-
-
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Aug 19, 2021,  2:55 AM +0900"
-  >
-
-  
-  
-
-  
-    Aug 19
-  
-
-  <i class="unloaded">2021-08-19T02:55:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="26 words">1 min</span>
 
 
         <!-- page views -->
@@ -1926,27 +1882,27 @@ Download
         
         
         
-        <li><a href="/posts/water-shader/">물 쉐이더 만들기</a></li>
+        <li><a href="/posts/unity-web-request/">유니티 - Async Web Request</a></li>
       
         
         
         
-        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
+        <li><a href="/posts/unity-object-pooling/">유니티 - 오브젝트 풀링(Object Pooling)</a></li>
       
         
         
         
-        <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
+        <li><a href="/posts/unity-play-mode-save-sample/">유니티 - Play Mode Save Sample</a></li>
       
         
         
         
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
+        <li><a href="/posts/unity-path-memo/">유니티 - 스크립트 파일 기준 경로</a></li>
       
         
         
         
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
       
 
       </ul>

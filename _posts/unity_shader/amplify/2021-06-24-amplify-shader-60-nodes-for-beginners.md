@@ -442,9 +442,9 @@ mermaid: true
  - `R`, `G`, `B`, `A` : 각 채널의 Float 타입 값
 
 ### **예시**
- - .
+ - 파티클 시스템의 색상은 `Vertex Color`를 통해 전달되므로, 파티클 시스템 쉐이더를 작성할 때 이용한다.
 
-
+![](https://user-images.githubusercontent.com/42164422/132753357-8e6285cb-5975-4646-9664-41b5be105fa8.png)
 
 
 
@@ -468,16 +468,17 @@ mermaid: true
 
 ### **설명**
  - 단축키 : 없음
- - 메시의 정점마다 갖고 있는 UV 좌표값
+ - 오브젝트가 픽셀마다 갖고 있는 UV 좌표값
+ - `U`, `V`는 각각 `X축`, `Y축` 성분이며, **0 ~ 1** 범위의 값을 가진다.
 
 ### **출력**
  - `UV` : Vector2 타입의 UV 값
  - `U`, `V` : 각각 **UV**의 X, Y 좌표값
 
 ### **예시**
- - .
+ - UV의 특정 `U` 값을 기준으로 흑백의 마스크를 생성한다.
 
-
+![](https://user-images.githubusercontent.com/42164422/123144900-2cb2d600-d497-11eb-9b17-cfa9f1a730fc.gif)
 
 
 
@@ -507,13 +508,7 @@ mermaid: true
  - `UV` : **Tiling**, **Offset**이 계산된, Vector2 타입의 UV 값
  - `U`, `V` : 각각 **UV**의 X, Y 좌표값
 
-### **예시**
- - .
-
-
-
-
-
+<!-- 예시 없음 -->
 
 ### **Wiki**
  - <https://wiki.amplify.pt/index.php?title=Unity_Products:Amplify_Shader_Editor/Texture_Coordinates>

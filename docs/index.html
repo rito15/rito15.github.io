@@ -366,7 +366,7 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-optimize-model-transform/">유니티 모델 트랜스폼 구조 최적화하기</a>
+      <a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a>
     </h1>
 
     <div class="post-content">
@@ -377,10 +377,217 @@
 
 
 
-        Note
+        1. Vertex
 
 
-문제점
+Scale Up and Down
+
+
+
+
+
+Heartbeat
+
+
+
+
+  
+    ( max( sin(T * F), 1-S ) - (1-S) ) * A
+
+T : Time
+F : Frequency
+S : Sensitivity
+A : Amplitude
+
+  
+
+
+
+
+World Position Offset
+
+
+
+
+
+
+  두 가지 방식 모두...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Jun 27, 2021,  4:24 AM +0900"
+  >
+
+  
+  
+
+  
+    Jun 27
+  
+
+  <i class="unloaded">2021-06-27T04:24:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1495 words">8 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+      <div class="pin">
+        <i class="fas fa-thumbtack fa-fw"></i>
+        <span>Pinned</span>
+      </div>
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        플러그인, 깃헙
+
+
+각종 링크 모음
+
+  https://github.com/michidk/Unity-Script-Collection
+
+
+Newton Json for Unity
+
+  https://github.com/jilleJr/Newtonsoft.Json-for-Unity
+
+
+Main Thread Dispatcher
+
+  https://github....
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Jan  1, 2021,  1:01 AM +0900"
+  >
+
+  
+  
+
+  
+    Jan  1
+  
+
+  <i class="unloaded">2021-01-01T01:01:01+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="295 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+      <div class="pin">
+        <i class="fas fa-thumbtack fa-fw"></i>
+        <span>Pinned</span>
+      </div>
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-optimize-model-transform/">유니티 - 모델 트랜스폼 구조 최적화하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        문제점
+
 
 Skinned Mesh가 적용되는 게임 오브젝트의 경우,
 
@@ -394,7 +601,7 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
 
 모든 자식 트랜스폼에 변경이 발생한다.
 
-한마디로, 위와 같이 무수...
+한마디로, 위와 같이 무수히 많은 자...
       </p>
     </div>
 
@@ -441,7 +648,7 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="479 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="513 words">2 min</span>
 
 
         <!-- page views -->
@@ -1137,183 +1344,6 @@ Tuple&lt;T1, T2&gt; 같이 명...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-gethashcode-cost-by-types/">C# 타입별 GetHashCode() 성능</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Curiosity
-
-
-타입별로 GetHashCode()의 성능 비용이 얼마나 달라지는지 간단히 확인해본다.
-
-사용자 정의 타입은 GetHashCode() 메소드를 임의로 오버라이드 하지 않고 확인한다.
-
-
-
-사용자 정의 타입
-
-
-  
-    public struct Struct1 { }
-public struct Struct2
-{
-    public i...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sat, Sep 11, 2021, 12:30 AM +0900"
-  >
-
-  
-  
-
-  
-    Sep 11
-  
-
-  <i class="unloaded">2021-09-11T00:30:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1822 words">10 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-dictionary-search-cost/">C# Dictionary 탐색 성능 - 선형 탐색과 비교</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Curiosity
-
-
-Dictionary&lt;TKey, TValue&gt;는 해시 테이블 자료구조의 제네릭 구현 클래스로서,
-
-Key-Value 꼴로 데이터를 저장하고
-
-Key에 대한 해시 계산을 통해 Value를 탐색할 수 있다.
-
-그렇다면 Key-Value를 저장하는 배열의 선형 탐색과 비교했을 때,
-
-Dictionary의 탐색 성능은 어느 정도...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sat, Sep 11, 2021, 12:01 AM +0900"
-  >
-
-  
-  
-
-  
-    Sep 11
-  
-
-  <i class="unloaded">2021-09-11T00:01:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="685 words">3 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1872,27 +1902,27 @@ Dictionary의 탐색 성능은 어느 정도...
         
         
         
-        <li><a href="/posts/water-shader/">물 쉐이더 만들기</a></li>
+        <li><a href="/posts/unity-web-request/">유니티 - Async Web Request</a></li>
       
         
         
         
-        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
+        <li><a href="/posts/unity-object-pooling/">유니티 - 오브젝트 풀링(Object Pooling)</a></li>
       
         
         
         
-        <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
+        <li><a href="/posts/unity-play-mode-save-sample/">유니티 - Play Mode Save Sample</a></li>
       
         
         
         
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
+        <li><a href="/posts/unity-path-memo/">유니티 - 스크립트 파일 기준 경로</a></li>
       
         
         
         
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
       
 
       </ul>

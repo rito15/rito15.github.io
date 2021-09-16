@@ -367,7 +367,92 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-editor-component-on-top/">컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</a>
+      <a href="/posts/memo-cs-get-path/">C# 스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        스크립트 경로
+
+
+  
+    public static void GetScriptPath([System.Runtime.CompilerServices.CallerFilePath] string filePath = "")
+{
+    // 1. Script(.cs) Path
+    _ = filePath;
+
+    // 2. Folder Path
+    st...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Mar 12, 2021,  6:10 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar 12
+  
+
+  <i class="unloaded">2021-03-12T18:10:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="93 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-editor-component-on-top/">유니티 - 컴포넌트의 인스펙터 내 순서를 맨 위로 올리기</a>
     </h1>
 
     <div class="post-content">
@@ -453,7 +538,7 @@ while (flag)
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-memo-callback-overhead/">메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드</a>
+      <a href="/posts/unity-memo-callback-overhead/">유니티 - 메소드 호출과 메소드, 람다식 콜백 호출의 오버헤드</a>
     </h1>
 
     <div class="post-content">
@@ -540,7 +625,7 @@ while (flag)
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-editor-playmode-state-change/">플레이모드 상태 변경에 따른 동작 구현하기</a>
+      <a href="/posts/unity-editor-playmode-state-change/">유니티 - 플레이모드 상태 변경에 따른 동작 구현하기</a>
     </h1>
 
     <div class="post-content">
@@ -924,7 +1009,7 @@ Using
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-editor-init-events/">컴파일, 게임 시작 시 실행되는 애트리뷰트 정리</a>
+      <a href="/posts/unity-editor-init-events/">유니티 - 컴파일, 게임 시작 시 실행되는 애트리뷰트 정리</a>
     </h1>
 
     <div class="post-content">
@@ -1117,7 +1202,7 @@ How To Use
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-editor-custom-editor-window/">Custom Editor Window(커스텀 에디터 윈도우)</a>
+      <a href="/posts/unity-editor-custom-editor-window/">유니티 - Custom Editor Window(커스텀 에디터 윈도우)</a>
     </h1>
 
     <div class="post-content">
@@ -1202,94 +1287,6 @@ public class ExampleWindow : EditorWindow
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="247 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-memo-bool-as-a-button/">bool 타입 필드를 인스펙터에서 버튼처럼 사용하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        인스펙터의 버튼
-
-
-컴포넌트의 인스펙터에서 버튼을 사용하고 싶을 때가 있다.
-
-예를 들면 플레이 모드로 진입하지 않고 에디터 모드에서 메소드를 바로 호출 하고 싶을 때.
-
-그리고 실제로 커스텀 에디터를 이용해 버튼을 만들 수도 있다.
-
-
-
-하지만 잠깐 테스트용으로 쓰려는데 스크립트 하나 더 만들고, 커스텀 에디터 선언하고, …
-
-심지어 에디터 GUI좀...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Mar  7, 2021,  1:33 AM +0900"
-  >
-
-  
-  
-
-  
-    Mar  7
-  
-
-  <i class="unloaded">2021-03-07T01:33:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="485 words">2 min</span>
 
 
         <!-- page views -->
@@ -1869,27 +1866,27 @@ public class ExampleWindow : EditorWindow
         
         
         
-        <li><a href="/posts/water-shader/">물 쉐이더 만들기</a></li>
+        <li><a href="/posts/unity-web-request/">유니티 - Async Web Request</a></li>
       
         
         
         
-        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
+        <li><a href="/posts/unity-object-pooling/">유니티 - 오브젝트 풀링(Object Pooling)</a></li>
       
         
         
         
-        <li><a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a></li>
+        <li><a href="/posts/unity-play-mode-save-sample/">유니티 - Play Mode Save Sample</a></li>
       
         
         
         
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
+        <li><a href="/posts/unity-path-memo/">유니티 - 스크립트 파일 기준 경로</a></li>
       
         
         
         
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 스크립트 최적화</a></li>
+        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
       
 
       </ul>
