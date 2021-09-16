@@ -1,5 +1,5 @@
 ---
-title: 게임 뷰를 강제로 업데이트하기
+title: 유니티 - 게임 뷰를 강제로 업데이트하기
 author: Rito15
 date: 2021-06-30 21:00:00 +09:00
 categories: [Unity, Unity Editor Memo]

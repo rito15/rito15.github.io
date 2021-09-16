@@ -1,5 +1,5 @@
 ---
-title: 플레이모드 상태 변경에 따른 동작 구현하기
+title: 유니티 - 플레이모드 상태 변경에 따른 동작 구현하기
 author: Rito15
 date: 2021-03-11 03:33:00 +09:00
 categories: [Unity, Unity Editor]

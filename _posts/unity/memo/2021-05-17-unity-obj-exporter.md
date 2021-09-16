@@ -1,5 +1,5 @@
 ---
-title: Obj Exporter(메시를 OBJ 파일로 저장하기)
+title: 유니티 - Obj Exporter(메시를 OBJ 파일로 저장하기)
 author: Rito15
 date: 2021-05-17 05:17:00 +09:00
 categories: [Unity, Unity Memo]

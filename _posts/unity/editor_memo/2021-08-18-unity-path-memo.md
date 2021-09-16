@@ -1,5 +1,5 @@
 ---
-title: Unity - Path
+title: 유니티 - 스크립트 파일 기준 경로
 author: Rito15
 date: 2021-08-18 20:40:00 +09:00
 categories: [Unity, Unity Editor Memo]

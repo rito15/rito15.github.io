@@ -1,5 +1,5 @@
 ---
-title: UI 헤더 드래그 앤 드롭으로 옮기기
+title: 유니티 - UI 헤더 드래그 앤 드롭으로 옮기기
 author: Rito15
 date: 2021-02-01 03:00:00 +09:00
 categories: [Unity, Unity Memo - Shorts]

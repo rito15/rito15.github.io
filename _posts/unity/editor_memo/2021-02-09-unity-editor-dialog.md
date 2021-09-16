@@ -1,5 +1,5 @@
 ---
-title: 유니티 에디터 다이얼로그 창 띄우기
+title: 유니티 - 에디터 다이얼로그 창 띄우기
 author: Rito15
 date: 2021-02-09 13:50:00 +09:00
 categories: [Unity, Unity Editor Memo]

@@ -1,5 +1,5 @@
 ---
-title: bool 타입 필드를 인스펙터에서 버튼처럼 사용하기
+title: 유니티 - bool 타입 필드를 인스펙터에서 버튼처럼 사용하기
 author: Rito15
 date: 2021-03-07 01:33:00 +09:00
 categories: [Unity, Unity Memo]

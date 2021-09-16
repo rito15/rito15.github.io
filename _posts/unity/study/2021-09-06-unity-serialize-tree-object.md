@@ -1,5 +1,5 @@
 ---
-title: Unity - 트리 구조 데이터 직렬화하기
+title: 유니티 - 트리 구조 데이터 직렬화하기
 author: Rito15
 date: 2021-09-06 23:23:00 +09:00
 categories: [Unity, Unity Study]

@@ -1,5 +1,5 @@
 ---
-title: 입력 바인딩 시스템 만들기
+title: 유니티 - 입력 바인딩 시스템 만들기
 author: Rito15
 date: 2021-01-30 16:18:00 +09:00
 categories: [Unity, Unity Study]

@@ -1,5 +1,5 @@
 ---
-title: 포스트 프로세싱 적용하기
+title: 유니티 - 포스트 프로세싱 적용하기
 author: Rito15
 date: 2021-03-16 17:00:00 +09:00
 categories: [Unity, Unity Memo]

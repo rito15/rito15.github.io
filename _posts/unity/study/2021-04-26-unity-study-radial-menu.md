@@ -1,5 +1,5 @@
 ---
-title: Radial Menu 만들기
+title: 유니티 - Radial Menu 만들기
 author: Rito15
 date: 2021-04-26 18:00:00 +09:00
 categories: [Unity, Unity Study]

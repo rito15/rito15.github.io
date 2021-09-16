@@ -1,5 +1,5 @@
 ---
-title: 1인칭, 3인칭 전환 가능한 캐릭터 제작하기
+title: 유니티 - 1인칭, 3인칭 전환 가능한 캐릭터 제작하기
 author: Rito15
 date: 2021-02-12 18:06:00 +09:00
 categories: [Unity, Unity Study]

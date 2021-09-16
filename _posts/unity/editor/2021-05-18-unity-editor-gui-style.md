@@ -1,5 +1,5 @@
 ---
-title: GUI 스타일 지정하기
+title: 유니티 - GUI 스타일 지정하기
 author: Rito15
 date: 2021-05-18 02:02:00 +09:00
 categories: [Unity, Unity Editor]

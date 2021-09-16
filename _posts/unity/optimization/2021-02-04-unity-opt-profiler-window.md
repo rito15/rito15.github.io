@@ -1,5 +1,5 @@
 ---
-title: 유니티 에디터 프로파일러
+title: 유니티 - 에디터 프로파일러
 author: Rito15
 date: 2021-02-04 17:50:00 +09:00
 categories: [Unity, Unity Optimization]

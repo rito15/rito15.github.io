@@ -1,5 +1,5 @@
 ---
-title: Unity - 하이라키 아이콘 적용 예제
+title: 유니티 - 하이라키 아이콘 적용 예제
 author: Rito15
 date: 2021-08-18 21:20:00 +09:00
 categories: [Unity, Unity Editor Memo]

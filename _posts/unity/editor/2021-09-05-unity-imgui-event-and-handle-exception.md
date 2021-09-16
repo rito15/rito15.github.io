@@ -1,5 +1,5 @@
 ---
-title: 유니티 IMGUI 이벤트, 그리고 Getting control n's position... 예외 처리
+title: 유니티 - IMGUI 이벤트, Getting control n's position... 예외 처리
 author: Rito15
 date: 2021-09-05 18:00:00 +09:00
 categories: [Unity, Unity Editor]

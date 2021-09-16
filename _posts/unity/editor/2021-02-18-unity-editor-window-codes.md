@@ -1,5 +1,5 @@
 ---
-title: 에디터 윈도우 관련 유용한 코드 모음
+title: 유니티 - 에디터 윈도우 관련 유용한 코드 모음
 author: Rito15
 date: 2021-06-14 01:50:00 +09:00
 categories: [Unity, Unity Editor]

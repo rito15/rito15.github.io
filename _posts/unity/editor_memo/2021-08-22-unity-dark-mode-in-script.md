@@ -1,5 +1,5 @@
 ---
-title: 유니티 에디터 다크모드 여부 스크립트로 확인하기
+title: 유니티 - 에디터 다크모드 여부 스크립트로 확인하기
 author: Rito15
 date: 2021-08-22 22:48:00 +09:00
 categories: [Unity, Unity Editor Memo]

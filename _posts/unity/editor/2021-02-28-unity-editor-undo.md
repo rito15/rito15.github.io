@@ -1,5 +1,5 @@
 ---
-title: Undo
+title: 유니티 - Undo
 author: Rito15
 date: 2021-02-28 01:52:00 +09:00
 categories: [Unity, Unity Editor]

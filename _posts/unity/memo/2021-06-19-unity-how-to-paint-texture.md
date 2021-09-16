@@ -1,5 +1,5 @@
 ---
-title: 런타임에 큰 성능 저하 없이 텍스쳐에 그림 그리기
+title: 유니티 - 큰 성능 저하 없이 텍스쳐에 그림 그리기
 author: Rito15
 date: 2021-06-19 17:17:00 +09:00
 categories: [Unity, Unity Memo]

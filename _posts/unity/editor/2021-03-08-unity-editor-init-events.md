@@ -1,5 +1,5 @@
 ---
-title: 컴파일, 게임 시작 시 실행되는 애트리뷰트 정리
+title: 유니티 - 컴파일, 게임 시작 시 실행되는 애트리뷰트 정리
 author: Rito15
 date: 2021-03-08 03:03:00 +09:00
 categories: [Unity, Unity Editor]

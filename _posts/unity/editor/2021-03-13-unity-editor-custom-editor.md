@@ -1,5 +1,5 @@
 ---
-title: Custom Editor (커스텀 에디터)
+title: 유니티 - Custom Editor (커스텀 에디터)
 author: Rito15
 date: 2021-03-13 17:40:00 +09:00
 categories: [Unity, Unity Editor]

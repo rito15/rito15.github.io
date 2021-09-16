@@ -1,5 +1,5 @@
 ---
-title: 유니티 스크린샷 찍고 저장하기(Windows, Android)
+title: 유니티 - 스크린샷 찍고 저장하기(Windows, Android)
 author: Rito15
 date: 2021-09-08 05:10:00 +09:00
 categories: [Unity, Unity Memo]

@@ -1,5 +1,5 @@
 ---
-title: UniRx (Reactive Extensions for Unity)
+title: 유니티 - UniRx (Reactive Extensions for Unity)
 author: Rito15
 date: 2021-03-06 20:14:00 +09:00
 categories: [Unity, Unity Study]

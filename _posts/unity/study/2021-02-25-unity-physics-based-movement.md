@@ -1,5 +1,5 @@
 ---
-title: 물리 기반 캐릭터 이동 구현하기
+title: 유니티 - 물리 기반 캐릭터 이동 구현하기
 author: Rito15
 date: 2021-02-25 04:11:00 +09:00
 categories: [Unity, Unity Study]

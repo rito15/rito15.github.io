@@ -1,5 +1,5 @@
 ---
-title: UI 위에 게임오브젝트 띄우기
+title: 유니티 - UI 위에 게임오브젝트 띄우기
 author: Rito15
 date: 2021-02-28 22:30:00 +09:00
 categories: [Unity, Unity Memo]

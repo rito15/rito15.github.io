@@ -1,11 +1,12 @@
 ---
-title: 유니티 유용한 정보, 링크 모음
+title: 유니티 - 유용한 정보, 링크 모음
 author: Rito15
 date: 2021-01-01 01:01:01 +09:00
 categories: [Unity, Unity Memo]
 tags: [unity, csharp]
 math: true
 mermaid: true
+pin: true
 ---
 
 # 플러그인, 깃헙
@@ -109,15 +110,15 @@ mermaid: true
 ## 유니티, 쉐이더 튜토리얼
 - <https://catlikecoding.com/unity/tutorials/>
 - <https://www.ronja-tutorials.com/>
-- <https://www.youtube.com/watch?v=mlNWoROvavY>
 
-## URP Shader Basic (Scripting)
+## URP 쉐이더 코딩 기초
 - <https://docs.google.com/document/d/1UX0319CXa29fCFAgg0qa5vnH-U6875jt0KLKUk5mke8/edit>
+- <https://www.youtube.com/watch?v=mlNWoROvavY>
 
 ## 레거시 파이프라인과 SRP
 - <https://drive.google.com/file/d/1eR39KY_n_wuWF5S_zClCECE3ynmSfs-h/view>
 
-## 유니티 C# 코드
+## 유니티 C# 소스코드
 - <https://github.com/Unity-Technologies/UnityCsReference>
 
 ## DOTS 샘플

@@ -1,5 +1,5 @@
 ---
-title: Unity Play Mode Save - Sample
+title: 유니티 - Play Mode Save Sample
 author: Rito15
 date: 2021-08-17 04:32:00 +09:00
 categories: [Unity, Unity Editor Memo]

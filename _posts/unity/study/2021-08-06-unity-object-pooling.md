@@ -1,5 +1,5 @@
 ---
-title: 유니티 오브젝트 풀링(Object Pooling)
+title: 유니티 - 오브젝트 풀링(Object Pooling)
 author: Rito15
 date: 2021-08-06 01:22:00 +09:00
 categories: [Unity, Unity Study]

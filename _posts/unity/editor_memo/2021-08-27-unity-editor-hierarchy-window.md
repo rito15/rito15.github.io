@@ -1,5 +1,5 @@
 ---
-title: 유니티 에디터 하이라키 윈도우 관련 코드 모음
+title: 유니티 에디터 - 하이라키 윈도우 관련 코드 모음
 author: Rito15
 date: 2021-08-27 18:00:00 +09:00
 categories: [Unity, Unity Editor Memo]

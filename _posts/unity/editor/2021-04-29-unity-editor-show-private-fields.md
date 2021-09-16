@@ -1,5 +1,5 @@
 ---
-title: 커스텀 에디터로 인스펙터에 Private 필드 나타내기
+title: 유니티 - 커스텀 에디터로 인스펙터에 Private 필드 나타내기
 author: Rito15
 date: 2021-04-29 20:30:00 +09:00
 categories: [Unity, Unity Editor]

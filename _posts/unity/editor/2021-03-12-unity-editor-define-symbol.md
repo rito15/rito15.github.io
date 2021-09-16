@@ -1,5 +1,5 @@
 ---
-title: Scripting Define Symbol 스크립트로 제어하기
+title: 유니티 - Scripting Define Symbol 스크립트로 제어하기
 author: Rito15
 date: 2021-03-12 18:28:00 +09:00
 categories: [Unity, Unity Editor]

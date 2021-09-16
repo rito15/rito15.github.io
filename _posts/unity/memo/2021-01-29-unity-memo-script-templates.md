@@ -1,5 +1,5 @@
 ---
-title: 스크립트 템플릿(Script Templates)
+title: 유니티 - 스크립트 템플릿(Script Templates)
 author: Rito15
 date: 2021-01-29 16:55:00 +09:00
 categories: [Unity, Unity Memo]

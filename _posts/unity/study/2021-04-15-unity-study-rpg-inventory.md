@@ -1,5 +1,5 @@
 ---
-title: RPG Inventory System(RPG 게임 인벤토리 만들기)
+title: 유니티 - RPG Inventory System(RPG 게임 인벤토리 만들기)
 author: Rito15
 date: 2021-04-15 22:00:00 +09:00
 categories: [Unity, Unity Study]

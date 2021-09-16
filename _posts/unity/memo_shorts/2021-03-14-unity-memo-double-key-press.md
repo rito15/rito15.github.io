@@ -1,5 +1,5 @@
 ---
-title: 키보드 연속 입력 유지 상태 감지하기
+title: 유니티 - 키보드 연속 입력 유지 상태 감지하기
 author: Rito15
 date: 2021-03-14 23:23:00 +09:00
 categories: [Unity, Unity Memo - Shorts]

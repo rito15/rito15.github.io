@@ -1,5 +1,5 @@
 ---
-title: 유니티의 멀티스레딩과 Job의 활용
+title: 유니티 - 멀티스레딩과 Job의 활용
 author: Rito15
 date: 2021-04-04 22:00:00 +09:00
 categories: [Unity, Unity Study]
@@ -84,7 +84,7 @@ private async void TaskTest()
 
 3. Job System
 
-이 중 Job System은 2018년에 정식으로 유니티엔진에 도입되었으며,
+이 중 Job System은 2018년에 정식으로 유니티 엔진에 도입되었으며,
 
 프로그래머가 안전한 멀티스레딩을 작성하기에 비교적 편리한 형태로 제공한다.
 

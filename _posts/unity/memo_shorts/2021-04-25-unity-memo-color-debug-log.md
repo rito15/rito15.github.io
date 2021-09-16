@@ -1,5 +1,5 @@
 ---
-title: Debug.Log에 색상 넣기
+title: 유니티 - Debug.Log()에 색상 넣기
 author: Rito15
 date: 2021-04-25 17:10:00 +09:00
 categories: [Unity, Unity Memo - Shorts]

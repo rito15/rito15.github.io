@@ -1,5 +1,5 @@
 ---
-title: 유니티 하이라키 우클릭 메뉴 아이템
+title: 유니티 - 하이라키 우클릭 메뉴 아이템
 author: Rito15
 date: 2021-03-12 22:50:00 +09:00
 categories: [Unity, Unity Editor]

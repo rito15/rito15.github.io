@@ -1,5 +1,5 @@
 ---
-title: 각종 윈도우 새로고침하기
+title: 유니티 - 각종 윈도우 새로고침하기
 author: Rito15
 date: 2021-05-19 01:00:00 +09:00
 categories: [Unity, Unity Editor Memo]

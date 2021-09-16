@@ -1,5 +1,5 @@
 ---
-title: Unity Async Web Request
+title: 유니티 - Async Web Request
 author: Rito15
 date: 2021-08-04 15:45:00 +09:00
 categories: [Unity, Unity Memo - Shorts]

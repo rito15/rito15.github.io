@@ -1,5 +1,5 @@
 ---
-title: 비헤이비어 트리(Behavior Tree)
+title: 유니티 - 비헤이비어 트리(Behavior Tree)
 author: Rito15
 date: 2021-01-05 00:26:00 +09:00
 categories: [Unity, Unity Study]
@@ -129,7 +129,7 @@ private void MakeBehaviorNodes()
 # Source Code
 ---
 
-- [https://github.com/rito15/UnityStudy2](https://github.com/rito15/UnityStudy2)
+- [Github Link](https://github.com/rito15/UnityStudy2/tree/master/Rito/2.%20Study/2021_0105_Behavior%20Tree/Scripts)
 
 <br>
 

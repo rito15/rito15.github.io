@@ -1,5 +1,5 @@
 ---
-title: 유니티 에디터의 특정 영역 마우스 클릭 방지하기
+title: 유니티 - 에디터의 특정 영역 마우스 클릭 방지하기
 author: Rito15
 date: 2021-08-25 02:59:00 +09:00
 categories: [Unity, Unity Editor Memo]

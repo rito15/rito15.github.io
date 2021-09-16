@@ -1,5 +1,5 @@
 ---
-title: 스크립트로 콘솔 내용 지우기
+title: 유니티 - 스크립트로 콘솔 내용 지우기
 author: Rito15
 date: 2021-06-14 02:22:00 +09:00
 categories: [Unity, Unity Editor Memo]

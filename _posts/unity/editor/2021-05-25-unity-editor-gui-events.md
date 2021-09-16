@@ -1,5 +1,5 @@
 ---
-title: 에디터 GUI 이벤트 모음
+title: 유니티 - 에디터 GUI 이벤트 모음
 author: Rito15
 date: 2021-05-25 02:22:00 +09:00
 categories: [Unity, Unity Editor]

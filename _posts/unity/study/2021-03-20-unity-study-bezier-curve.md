@@ -1,5 +1,5 @@
 ---
-title: 베지어 곡선(Bezier Curve)
+title: 유니티 - 베지어 곡선(Bezier Curve)
 author: Rito15
 date: 2021-03-20 19:19:00 +09:00
 categories: [Unity, Unity Study]

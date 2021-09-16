@@ -1,5 +1,5 @@
 ---
-title: Material Property Block을 통해 프로퍼티 값 변경하기
+title: 유니티 - Material Property Block을 통해 프로퍼티 값 변경하기
 author: Rito15
 date: 2021-05-22 18:00:00 +09:00
 categories: [Unity, Unity Optimization]

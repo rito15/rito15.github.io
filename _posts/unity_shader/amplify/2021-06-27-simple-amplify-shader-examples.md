@@ -6,6 +6,7 @@ categories: [Unity Shader, Amplify Shader]
 tags: [unity, csharp, shader, amplify]
 math: true
 mermaid: true
+pin: true
 ---
 
 

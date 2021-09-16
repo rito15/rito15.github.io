@@ -1,5 +1,5 @@
 ---
-title: 비동기 씬 로드
+title: 유니티 - 비동기 씬 로드
 author: Rito15
 date: 2021-07-06 16:32:00 +09:00
 categories: [Unity, Unity Memo - Shorts]

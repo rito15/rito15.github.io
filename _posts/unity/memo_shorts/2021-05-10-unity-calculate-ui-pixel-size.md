@@ -1,5 +1,5 @@
 ---
-title: UI(RectTransform)의 스크린 픽셀 크기 계산하기
+title: 유니티 - UI(RectTransform)의 스크린 픽셀 크기 계산하기
 author: Rito15
 date: 2021-05-10 18:00:00 +09:00
 categories: [Unity, Unity Memo - Shorts]

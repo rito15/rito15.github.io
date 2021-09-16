@@ -1,5 +1,5 @@
 ---
-title: 유니티 GC 관련 메모, 팁 모음
+title: 유니티 - GC 관련 메모, 팁 모음
 author: Rito15
 date: 2021-01-01 01:01:02 +09:00
 categories: [Unity, Unity Memo]

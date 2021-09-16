@@ -1,5 +1,5 @@
 ---
-title: Voxel System(유니티에서 마인크래프트 구현하기)
+title: 유니티 - Voxel System(마인크래프트 구현하기) [TODO]
 author: Rito15
 date: 2021-03-26 20:40:00 +09:00
 categories: [Unity, Unity Study]

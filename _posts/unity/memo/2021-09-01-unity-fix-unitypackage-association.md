@@ -1,5 +1,5 @@
 ---
-title: 유니티 .unitypackage 확장자 연결 끊어진 경우 해결하기
+title: 유니티 - .unitypackage 확장자 연결 끊어진 경우 해결하기
 author: Rito15
 date: 2021-09-01 23:33:00 +09:00
 categories: [Unity, Unity Memo]

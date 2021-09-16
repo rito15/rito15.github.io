@@ -1,5 +1,5 @@
 ---
-title: 쿨타임 아이콘 UI 만들기
+title: 유니티 - 쿨타임 아이콘 UI 만들기
 author: Rito15
 date: 2021-02-12 17:13:00 +09:00
 categories: [Unity, Unity Memo]

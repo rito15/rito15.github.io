@@ -1,5 +1,5 @@
 ---
-title: 팝업 UI 관리 시스템 구현하기
+title: 유니티 - 팝업 UI 관리 시스템 구현하기
 author: Rito15
 date: 2021-01-31 20:23:00 +09:00
 categories: [Unity, Unity Study]

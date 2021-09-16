@@ -1,5 +1,5 @@
 ---
-title: 유니티 스크립트 최적화
+title: 유니티 - 스크립트 최적화
 author: Rito15
 date: 2021-02-04 19:30:00 +09:00
 categories: [Unity, Unity Optimization]

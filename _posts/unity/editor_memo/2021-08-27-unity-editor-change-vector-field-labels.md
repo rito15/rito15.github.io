@@ -1,5 +1,5 @@
 ---
-title: 유니티 에디터 - 벡터 필드의 X,Y,Z,W 레이블 변경하기
+title: 유니티 에디터 GUI - 벡터 필드의 X,Y,Z,W 레이블 변경하기
 author: Rito15
 date: 2021-08-27 22:33:00 +09:00
 categories: [Unity, Unity Editor Memo]

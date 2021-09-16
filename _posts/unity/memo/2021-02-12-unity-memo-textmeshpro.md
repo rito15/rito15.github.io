@@ -1,5 +1,5 @@
 ---
-title: 텍스트 메쉬 프로(TMPro) 사용하기
+title: 유니티 - 텍스트 메쉬 프로(TMPro) 사용하기
 author: Rito15
 date: 2021-02-12 02:09:00 +09:00
 categories: [Unity, Unity Memo]
