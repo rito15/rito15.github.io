@@ -749,6 +749,16 @@
         
         
         
+        <li><a href="/posts/unity-editorconfig-encoding/">유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-web-request/">유니티 - Async Web Request</a></li>
       
         
@@ -760,16 +770,6 @@
         
         
         <li><a href="/posts/unity-play-mode-save-sample/">유니티 - Play Mode Save Sample</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-path-memo/">유니티 - 스크립트 파일 기준 경로</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
       
 
       </ul>
@@ -5546,6 +5546,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8338,6 +8351,27 @@ Blend Mode
 
 </div> <!-- .row -->
 
+
+
+<script>
+const codeBlocks = document.querySelectorAll('.code-button-header + .highlighter-rouge');
+const copyCodeButtons = document.querySelectorAll('.copy-code-button');
+
+copyCodeButtons.forEach((copyCodeButton, index) => {
+  const code = codeBlocks[index].innerText;
+  const codeBegin = code.indexOf('\t\n') + 2;
+  const validCode = code.slice(codeBegin);
+
+  copyCodeButton.addEventListener('click', () => {
+    window.navigator.clipboard.writeText(validCode);
+    copyCodeButton.classList.add('copied');
+
+    setTimeout(() => {
+      copyCodeButton.classList.remove('copied');
+    }, 2000);
+  });
+});
+</script>
 
 
   <!-- image lazy load: https://github.com/ApoorvSaxena/lozad.js -->

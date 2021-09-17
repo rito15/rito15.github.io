@@ -745,6 +745,16 @@
         
         
         
+        <li><a href="/posts/unity-editorconfig-encoding/">유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-web-request/">유니티 - Async Web Request</a></li>
       
         
@@ -756,16 +766,6 @@
         
         
         <li><a href="/posts/unity-play-mode-save-sample/">유니티 - Play Mode Save Sample</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-path-memo/">유니티 - 스크립트 파일 기준 경로</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
       
 
       </ul>
@@ -4102,6 +4102,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8054,61 +8067,6 @@
       
       
       <div class="card">
-        <a href="/posts/06-cs-reader-writer-lock/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:06:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# ReaderWriterLock</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Reader Writer Lock
-
-
-스레드 간에 공유되는 데이터가 있을 때,
-
-항상 모든 스레드가 그 데이터를 읽고 쓰는 것은 아니다.
-
-어떤 스레드는 해당 데이터를 읽기만 하고,
-
-어떤 스레드는 해당 데이터를 쓰기만 하는 구조로 이루어져 있을 수 있다.
-
-그리고 소수의 쓰기 스레드가 상대적으로 적은 횟수로 쓰기를 수행하고,
-
-다수의 읽기 스레드가 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/07-cs-thread-synchronization/">
           <div class="card-body">
             <!--
@@ -8227,6 +8185,77 @@ Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공�
         </a>
       </div>
     
+      
+      
+      <div class="card">
+        <a href="/posts/cs-memory-synchronization-memo/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep  5
+  
+
+  <i class="unloaded">2021-09-05T14:54:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 메모리 동기화가 필요한 경우, 아닌 경우 간단 정리</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                전혀 필요하지 않은 경우
+
+
+[1] 싱글 스레드 환경
+
+
+  전부
+
+
+
+
+[2] 멀티 스레드 환경
+
+
+  
+    하나의 스레드가 공유 데이터를 읽는 동안 다른 스레드가 변경할 염려가 없는 경우
+  
+  
+    어떤 작업을 동시에 하나의 스레드만 해야 할 필요가 없는 경우
+  
+
+
+
+
+원자성(Atomic) 보장이 필요한 경우
+
+
+
+  
+    여러 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -8264,6 +8293,27 @@ Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공�
 
 </div> <!-- .row -->
 
+
+
+<script>
+const codeBlocks = document.querySelectorAll('.code-button-header + .highlighter-rouge');
+const copyCodeButtons = document.querySelectorAll('.copy-code-button');
+
+copyCodeButtons.forEach((copyCodeButton, index) => {
+  const code = codeBlocks[index].innerText;
+  const codeBegin = code.indexOf('\t\n') + 2;
+  const validCode = code.slice(codeBegin);
+
+  copyCodeButton.addEventListener('click', () => {
+    window.navigator.clipboard.writeText(validCode);
+    copyCodeButton.classList.add('copied');
+
+    setTimeout(() => {
+      copyCodeButton.classList.remove('copied');
+    }, 2000);
+  });
+});
+</script>
 
 
 

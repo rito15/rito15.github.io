@@ -733,6 +733,16 @@
         
         
         
+        <li><a href="/posts/unity-editorconfig-encoding/">유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-web-request/">유니티 - Async Web Request</a></li>
       
         
@@ -744,16 +754,6 @@
         
         
         <li><a href="/posts/unity-play-mode-save-sample/">유니티 - Play Mode Save Sample</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-path-memo/">유니티 - 스크립트 파일 기준 경로</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
       
 
       </ul>
@@ -5868,6 +5868,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8047,6 +8060,73 @@
       
       
       <div class="card">
+        <a href="/posts/unity-editorconfig-encoding/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep 15
+  
+
+  <i class="unloaded">2021-09-15T02:34:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Problem
+
+
+문제 확인
+
+
+
+비주얼 스튜디오에서는 위와 같이 잘 보이던 한글 주석이
+
+
+
+유니티 에디터에서 보면 이렇게 깨지는 경우가 있다.
+
+당장은 스크립팅에 문제가 없더라도,
+
+스크립트 파일을 전송하거나 협업을 하게 될 때 문제가 생길 수 있다.
+
+
+
+인코딩
+
+인코딩을 확인해보면
+
+
+
+EUC-KR의 확장인 코드 페이지 949(CP949)임을 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-editor-undo/">
           <div class="card-body">
             <!--
@@ -8101,73 +8181,6 @@ Memo
 
   
     // 이름 변경, 기타 등등 수행하기 직전...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-editorconfig-encoding/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Sep 15
-  
-
-  <i class="unloaded">2021-09-15T02:34:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-문제 확인
-
-
-
-비주얼 스튜디오에서는 위와 같이 잘 보이던 한글 주석이
-
-
-
-유니티 에디터에서 보면 이렇게 깨지는 경우가 있다.
-
-당장은 스크립팅에 문제가 없더라도,
-
-스크립트 파일을 전송하거나 협업을 하게 될 때 문제가 생길 수 있다.
-
-
-
-인코딩
-
-인코딩을 확인해보면
-
-
-
-EUC-KR의 확장인 코드 페이지 949(CP949)임을 알 수...
               </p>
             </div>
           </div>
@@ -8279,6 +8292,27 @@ public class ExampleWindow : EditorWindow
 
 </div> <!-- .row -->
 
+
+
+<script>
+const codeBlocks = document.querySelectorAll('.code-button-header + .highlighter-rouge');
+const copyCodeButtons = document.querySelectorAll('.copy-code-button');
+
+copyCodeButtons.forEach((copyCodeButton, index) => {
+  const code = codeBlocks[index].innerText;
+  const codeBegin = code.indexOf('\t\n') + 2;
+  const validCode = code.slice(codeBegin);
+
+  copyCodeButton.addEventListener('click', () => {
+    window.navigator.clipboard.writeText(validCode);
+    copyCodeButton.classList.add('copied');
+
+    setTimeout(() => {
+      copyCodeButton.classList.remove('copied');
+    }, 2000);
+  });
+});
+</script>
 
 
 

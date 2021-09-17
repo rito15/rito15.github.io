@@ -673,6 +673,16 @@
         
         
         
+        <li><a href="/posts/unity-editorconfig-encoding/">유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-web-request/">유니티 - Async Web Request</a></li>
       
         
@@ -684,16 +694,6 @@
         
         
         <li><a href="/posts/unity-play-mode-save-sample/">유니티 - Play Mode Save Sample</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-path-memo/">유니티 - 스크립트 파일 기준 경로</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
       
 
       </ul>
@@ -5179,6 +5179,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8045,6 +8058,66 @@ call        bool ClassName::op_Equality(class ClassName, clas...
       
       
       <div class="card">
+        <a href="/posts/cs-tuple-and-value-tuple/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep 11
+  
+
+  <i class="unloaded">2021-09-11T03:45:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Tuple, ValueTuple</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+Tuple, ValueTuple은 C# 7.0에 처음 도입되었다.
+
+두 개 이상의 타입을 함께 묶어 사용할 때,
+
+클래스나 구조체를 따로 정의하지 않고 곧바로 사용할 수 있게 해준다.
+
+
+
+Tuple
+
+
+클래스 튜플 타입.
+
+클래스 타입이므로 전달할 때 복사가 발생하지 않고, 참조를 전달한다.
+
+Tuple&lt;T1, T2&gt; 같이 명...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/cs-struct-property-indexer/">
           <div class="card-body">
             <!--
@@ -8117,66 +8190,6 @@ class MainClass
         </a>
       </div>
     
-      
-      
-      <div class="card">
-        <a href="/posts/cs-tuple-and-value-tuple/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Sep 11
-  
-
-  <i class="unloaded">2021-09-11T03:45:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Tuple, ValueTuple</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-Tuple, ValueTuple은 C# 7.0에 처음 도입되었다.
-
-두 개 이상의 타입을 함께 묶어 사용할 때,
-
-클래스나 구조체를 따로 정의하지 않고 곧바로 사용할 수 있게 해준다.
-
-
-
-Tuple
-
-
-클래스 튜플 타입.
-
-클래스 타입이므로 전달할 때 복사가 발생하지 않고, 참조를 전달한다.
-
-Tuple&lt;T1, T2&gt; 같이 명...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -8214,6 +8227,27 @@ Tuple&lt;T1, T2&gt; 같이 명...
 
 </div> <!-- .row -->
 
+
+
+<script>
+const codeBlocks = document.querySelectorAll('.code-button-header + .highlighter-rouge');
+const copyCodeButtons = document.querySelectorAll('.copy-code-button');
+
+copyCodeButtons.forEach((copyCodeButton, index) => {
+  const code = codeBlocks[index].innerText;
+  const codeBegin = code.indexOf('\t\n') + 2;
+  const validCode = code.slice(codeBegin);
+
+  copyCodeButton.addEventListener('click', () => {
+    window.navigator.clipboard.writeText(validCode);
+    copyCodeButton.classList.add('copied');
+
+    setTimeout(() => {
+      copyCodeButton.classList.remove('copied');
+    }, 2000);
+  });
+});
+</script>
 
 
 

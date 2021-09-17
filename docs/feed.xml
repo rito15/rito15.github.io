@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-17T04:28:37+09:00</updated>
+  <updated>2021-09-18T03:31:21+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,99 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>(Amplify) Spawn Effect Shader</title>
+    <link href="https://rito15.github.io/posts/unity-amplify-spawn-effect-shader/" rel="alternate" type="text/html" title="(Amplify) Spawn Effect Shader" />
+    <published>2021-09-18T00:01:00+09:00</published>
+  
+    <updated>2021-09-18T00:01:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-amplify-spawn-effect-shader/</id>
+    <content src="https://rito15.github.io/posts/unity-amplify-spawn-effect-shader/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Amplify Shader" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Summary
+
+
+
+  
+    월드 좌표의 한 점에서부터 스폰되는 효과
+  
+  
+    월드 공간의 버텍스 이동, 그리드 패턴의 디졸브 효과로 이루어져 있다.
+  
+
+
+
+
+Preview
+
+
+
+
+
+
+
+
+Properties
+
+
+
+
+
+  
+    
+      프로퍼티명
+      설명
+      기본 값
+      범위
+    
+  
+  
+    
+      Main Texture
+       
+       
+       
+    
+    
+      Grid Color
+      그리드 패턴 색상(HDR)
+       
+       
+    
+    
+      Grid Tiling X
+      그리드 X축 타일링
+      48
+      2 ~ 48
+    
+    
+      Grid Tilin...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -180,7 +273,7 @@ Material에 해당 마테리얼을 넣어주고, Maskable 옵션을 체크 해�
     <link href="https://rito15.github.io/posts/unity-editorconfig-encoding/" rel="alternate" type="text/html" title="유니티 - 한글 주석 인코딩 깨지는 경우 해결하기" />
     <published>2021-09-15T02:34:00+09:00</published>
   
-    <updated>2021-09-15T02:34:00+09:00</updated>
+    <updated>2021-09-17T21:39:22+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-editorconfig-encoding/</id>
     <content src="https://rito15.github.io/posts/unity-editorconfig-encoding/" />
@@ -204,7 +297,7 @@ Material에 해당 마테리얼을 넣어주고, Maskable 옵션을 체크 해�
 
 
 
-      Note
+      Problem
 
 
 문제 확인
@@ -235,6 +328,9 @@ EUC-KR의 확장인 코드 페이지 949(CP949)임을 알 수 있다.
 
 
 
+Solution
+
+
 EditorConfig 파일 생성
 
 
@@ -249,7 +345,7 @@ editorconfig 파일(기본값) 을 선택하고, 이름은 굳이 바꾸지 말�
 
 
 
-EditorConfig 파일 편집...
+Edit...
     </summary>
   
 
@@ -302,66 +398,6 @@ Stack
   
   st로 시작하는 명령어는 Store를 의미하며, 스택의 값을 꺼내 다른 곳에 저장한다.
   stFOO.0 명령어는 스택에서 값을 꺼내...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# if-else if vs switch-case vs Dictionary</title>
-    <link href="https://rito15.github.io/posts/cs-switch-case-vs-dictionary/" rel="alternate" type="text/html" title="C# if-else if vs switch-case vs Dictionary" />
-    <published>2021-09-13T00:01:00+09:00</published>
-  
-    <updated>2021-09-15T05:33:14+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-switch-case-vs-dictionary/</id>
-    <content src="https://rito15.github.io/posts/cs-switch-case-vs-dictionary/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      분기 처리
-
-
-특정 변수의 값에 따라 분기를 나누어 처리해야 하는 경우,
-
-일반적으로 if-else if 또는 switch-case문을 사용할 수 있다.
-
-int value = someValue;
-
-if(value == 0) DoSomething0();
-else if(value == 1) DoSomething1();
-else if(value == 2) DoSomething2();
-
-
-int value = someValue;
-
-switch(value)
-{
-    case 0 : DoSomething0() break;
-    case 1 : DoSomething1() break;
-    case 2 : DoSomething2() break;
-}
-
-
-그리고 이를 Dictionary를 통해 처리할 수도 있다....
     </summary>
   
 

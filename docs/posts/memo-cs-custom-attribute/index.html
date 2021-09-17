@@ -679,6 +679,16 @@ using System.Linq;
         
         
         
+        <li><a href="/posts/unity-editorconfig-encoding/">유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-web-request/">유니티 - Async Web Request</a></li>
       
         
@@ -690,16 +700,6 @@ using System.Linq;
         
         
         <li><a href="/posts/unity-play-mode-save-sample/">유니티 - Play Mode Save Sample</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-path-memo/">유니티 - 스크립트 파일 기준 경로</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
       
 
       </ul>
@@ -7010,6 +7010,19 @@ using System.Linq;
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8052,59 +8065,6 @@ using System.Linq;
       
       
       <div class="card">
-        <a href="/posts/cs-dictionary-search-cost/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Sep 11
-  
-
-  <i class="unloaded">2021-09-11T00:01:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Dictionary 탐색 성능 - 선형 탐색과 비교</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Curiosity
-
-
-Dictionary&lt;TKey, TValue&gt;는 해시 테이블 자료구조의 제네릭 구현 클래스로서,
-
-Key-Value 꼴로 데이터를 저장하고
-
-Key에 대한 해시 계산을 통해 Value를 탐색할 수 있다.
-
-그렇다면 Key-Value를 저장하는 배열의 선형 탐색과 비교했을 때,
-
-Dictionary의 탐색 성능은 어느 정도...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-gethashcode-cost-by-types/">
           <div class="card-body">
             <!--
@@ -8180,6 +8140,80 @@ publ...
         </a>
       </div>
     
+      
+      
+      <div class="card">
+        <a href="/posts/cs-benchmark-dotnet/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug  7
+  
+
+  <i class="unloaded">2021-08-07T16:16:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Benchmark DotNet</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                설치
+
+
+
+  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치
+
+
+
+
+사용법
+
+
+[1] 테스트 대상 클래스
+
+
+   
+…
+
+
+  [1-1] 네임스페이스
+
+  
+     
+.
+
+
+    1
+2
+using BenchmarkDotNet;
+using BenchmarkDotNet.Attributes;
+    
+
+  ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -8217,6 +8251,27 @@ publ...
 
 </div> <!-- .row -->
 
+
+
+<script>
+const codeBlocks = document.querySelectorAll('.code-button-header + .highlighter-rouge');
+const copyCodeButtons = document.querySelectorAll('.copy-code-button');
+
+copyCodeButtons.forEach((copyCodeButton, index) => {
+  const code = codeBlocks[index].innerText;
+  const codeBegin = code.indexOf('\t\n') + 2;
+  const validCode = code.slice(codeBegin);
+
+  copyCodeButton.addEventListener('click', () => {
+    window.navigator.clipboard.writeText(validCode);
+    copyCodeButton.classList.add('copied');
+
+    setTimeout(() => {
+      copyCodeButton.classList.remove('copied');
+    }, 2000);
+  });
+});
+</script>
 
 
 

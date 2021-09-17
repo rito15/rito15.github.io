@@ -367,6 +367,96 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-sliding-onoff-button/">유니티 에디터 GUI - 미끄러지는 On-Off 버튼</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+
+
+
+  
+    bool onOff = true;
+bool onOffMoving = false;
+float onOffPos = 0f;
+string onOffStr = "On";
+
+private void DrawMovingOnOffButton()
+{
+    const float LEFT = 15f;
+    const float RIGHT ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Aug 26, 2021,  3:45 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug 26
+  
+
+  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="253 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-editor-focus/">유니티 에디터 GUI - 포커스 확인, 처리</a>
     </h1>
 
@@ -1222,101 +1312,6 @@ Generated Code
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-enum-index-array-vs-dict/">Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        요약
-
-
-
-  array[(int)enumValue], dict[enumValue]의 참조 성능을 비교한다.
-
-
-
-
-테스트 코드
-
-
-
-  
-    public enum MyEnum
-{
-    Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine
-}
-
-public float[] targetArray;
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Aug 19, 2021, 11:11 PM +0900"
-  >
-
-  
-  
-
-  
-    Aug 19
-  
-
-  <i class="unloaded">2021-08-19T23:11:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="427 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1882,6 +1877,16 @@ public float[] targetArray;
         
         
         
+        <li><a href="/posts/unity-editorconfig-encoding/">유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-web-request/">유니티 - Async Web Request</a></li>
       
         
@@ -1893,16 +1898,6 @@ public float[] targetArray;
         
         
         <li><a href="/posts/unity-play-mode-save-sample/">유니티 - Play Mode Save Sample</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-path-memo/">유니티 - 스크립트 파일 기준 경로</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
       
 
       </ul>
