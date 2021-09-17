@@ -9,17 +9,74 @@ mermaid: true
 pin: true
 ---
 
+# Note
+---
+
+- 각 예제마다 있는 `Copy & Paste` 부분의 코드를 복사하고, <br>
+  앰플리파이 쉐이더 에디터에 **Ctrl + V**로 붙여 넣어서 곧바로 해당 노드들을 생성할 수 있습니다.
+
+
+<br>
 
 # 1. Vertex
 ---
 
 ## **Scale Up and Down**
 
+<details>
+
+<summary markdown="span"> 
+Copy & Paste
+</summary>
+
+{% include codeHeader.html %}
+```
+http://paste.amplify.pt/view/raw/a358e6ec
+```
+
+<!--
+AMPLIFY_CLIPBOARD_ID;1016.475,568.8261,0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleTimeNode;100;925.7732,574.7208;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
+WireConnection;100;0;99;0#CLIP_ITEM#Node;AmplifyShaderEditor.SinOpNode;101;1082.773,573.7208;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;101;0;100;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;98;1057.206,499.0731;Inherit;False;Constant;_Amplitude;Amplitude;1;0;Create;True;0;0;0;False;0;False;0.1;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;99;800.5505,569.0001;Inherit;False;Constant;_Speed;Speed;1;0;Create;True;0;0;0;False;0;False;8;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.NormalVertexDataNode;102;1029.773,646.7208;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleMultiplyOpNode;103;1202.773,549.7208;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT3;0,0,0;False;1;FLOAT3;0
+WireConnection;103;0;98;0
+WireConnection;103;1;101;0
+WireConnection;103;2;102;0
+-->
+
+</details>
+
 ![image](https://user-images.githubusercontent.com/42164422/123306240-00ad5880-d55c-11eb-847a-feeba45ffa89.gif)
 
 <br>
 
 ## **Heartbeat**
+
+<details>
+
+<summary markdown="span"> 
+Copy & Paste
+</summary>
+
+{% include codeHeader.html %}
+```
+http://paste.amplify.pt/view/raw/e6f80d1c
+```
+
+<!--
+AMPLIFY_CLIPBOARD_ID;1267.711,953.8973,0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;104;837.3104,911.7973;Inherit;False;Constant;_Frequency;Frequency;1;0;Create;True;0;0;0;False;0;False;10;0;0;20;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;105;960.3106,993.7974;Inherit;False;Constant;_Sensitivity;Sensitivity;1;0;Create;True;0;0;0;False;0;False;0.2;0;0;1;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleTimeNode;108;1090.311,917.7973;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
+WireConnection;108;0;104;0#CLIP_ITEM#Node;AmplifyShaderEditor.SinOpNode;110;1243.311,918.7974;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;110;0;108;0#CLIP_ITEM#Node;AmplifyShaderEditor.OneMinusNode;107;1215.311,997.7974;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;107;0;105;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleMaxOpNode;111;1370.311,941.7973;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;111;0;110;0
+WireConnection;111;1;107;0#CLIP_ITEM#Node;AmplifyShaderEditor.NormalVertexDataNode;114;1460.811,1070.297;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleSubtractOpNode;112;1494.311,973.7974;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;112;0;111;0
+WireConnection;112;1;107;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;106;1358.311,863.7973;Inherit;False;Constant;_Amplitude;Amplitude;1;0;Create;True;0;0;0;False;0;False;0.5;0;0;2;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleMultiplyOpNode;113;1646.811,949.2974;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT3;0,0,0;False;1;FLOAT3;0
+WireConnection;113;0;106;0
+WireConnection;113;1;112;0
+WireConnection;113;2;114;0
+-->
+
+</details>
 
 ![2021_0627_Heartbeat](https://user-images.githubusercontent.com/42164422/123522819-e8c00b00-d6fa-11eb-8c09-c5bf9880efee.gif)
 

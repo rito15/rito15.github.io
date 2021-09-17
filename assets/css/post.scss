@@ -361,6 +361,8 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
 .code-button-header {
   display: flex;
   justify-content: flex-end;
+  height: 0;
+  position: relative;
 }
 
 .copy-code-button {
@@ -374,10 +376,11 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
   padding: 4px 8px;
   color: #FFFFFF;
   background-color: #333333;
+  opacity: 0.8;
+  position:absolute;
+  top: 2rem;
+  right: 1rem;
 
-  &::before {
-    content: "Copy";
-  }
 
   &::after {
     content: "📋";
@@ -386,10 +389,6 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
 
   // This class will be toggled via JavaScript
   &.copied {
-    &::before {
-      content: "Copied!";
-    }
-
     &::after {
       content: "✔️";
     }

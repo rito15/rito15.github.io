@@ -141,16 +141,13 @@ layout: default
 
 
 <script>
-const codeBlocks = document.querySelectorAll('.code-button-header + .highlighter-rouge');
+/* 코드 블록 우측 상단 Copy 버튼 */
+const codes = document.querySelectorAll('.code-button-header + .highlighter-rouge .rouge-code');
 const copyCodeButtons = document.querySelectorAll('.copy-code-button');
 
 copyCodeButtons.forEach((copyCodeButton, index) => {
-  const code = codeBlocks[index].innerText;
-  const codeBegin = code.indexOf('\t\n') + 2;
-  const validCode = code.slice(codeBegin);
-
   copyCodeButton.addEventListener('click', () => {
-    window.navigator.clipboard.writeText(validCode);
+    window.navigator.clipboard.writeText(codes[index].innerText.slice(0, -1));
     copyCodeButton.classList.add('copied');
 
     setTimeout(() => {

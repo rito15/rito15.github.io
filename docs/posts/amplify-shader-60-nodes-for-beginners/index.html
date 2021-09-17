@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표","datePublished":"2021-06-24T01:23:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/"},"url":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/","author":{"@type":"Person","name":"Rito15"},"headline":"앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음","dateModified":"2021-09-17T04:31:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표","datePublished":"2021-06-24T01:23:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/"},"url":"https://rito15.github.io/posts/amplify-shader-60-nodes-for-beginners/","author":{"@type":"Person","name":"Rito15"},"headline":"앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음","dateModified":"2021-09-18T03:38:51+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Sep 17, 2021,  4:31 AM +0900"
+    title="Sat, Sep 18, 2021,  3:38 AM +0900"
   >
 
   
   
 
   
-    Sep 17
+    Sep 18
   
 
-  <i class="unloaded">2021-09-17T04:31:00+09:00</i>
+  <i class="unloaded">2021-09-18T03:38:51+09:00</i>
 
 </span>
           </span>
@@ -2550,7 +2550,7 @@
         
         
         
-        <li><a href="/posts/unity-editorconfig-encoding/">유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</a></li>
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
         
         
@@ -2560,17 +2560,17 @@
         
         
         
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-editorconfig-encoding/">유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-web-request/">유니티 - Async Web Request</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-object-pooling/">유니티 - 오브젝트 풀링(Object Pooling)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-play-mode-save-sample/">유니티 - Play Mode Save Sample</a></li>
       
 
       </ul>
@@ -10155,16 +10155,13 @@ Blend Mode
 
 
 <script>
-const codeBlocks = document.querySelectorAll('.code-button-header + .highlighter-rouge');
+/* 코드 블록 우측 상단 Copy 버튼 */
+const codes = document.querySelectorAll('.code-button-header + .highlighter-rouge .rouge-code');
 const copyCodeButtons = document.querySelectorAll('.copy-code-button');
 
 copyCodeButtons.forEach((copyCodeButton, index) => {
-  const code = codeBlocks[index].innerText;
-  const codeBegin = code.indexOf('\t\n') + 2;
-  const validCode = code.slice(codeBegin);
-
   copyCodeButton.addEventListener('click', () => {
-    window.navigator.clipboard.writeText(validCode);
+    window.navigator.clipboard.writeText(codes[index].innerText.slice(0, -1));
     copyCodeButton.classList.add('copied');
 
     setTimeout(() => {

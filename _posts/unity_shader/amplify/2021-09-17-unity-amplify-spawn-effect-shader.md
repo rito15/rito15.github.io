@@ -37,7 +37,7 @@ mermaid: true
 
 |**프로퍼티명**|**설명**|**기본 값**|**범위**|
 |---|---|---|---|
-|`Main Texture`| | | |
+|`Main Texture`|메인 텍스쳐(Albedo)| | |
 |`Grid Color`|그리드 패턴 색상(HDR)| | |
 |`Grid Tiling X`|그리드 X축 타일링|48|2 ~ 48|
 |`Grid Tiling Y`|그리드 Y축 타일링|48|2 ~ 48|
