@@ -8,7 +8,7 @@ math: true
 mermaid: true
 ---
 
-# Note
+# Problem
 ---
 
 ## **문제 확인**
@@ -38,6 +38,9 @@ mermaid: true
 추후 문제가 발생하지 않도록 하려면 유니코드로 저장할 필요가 있다.
 
 <br>
+
+# Solution
+---
 
 ## **EditorConfig 파일 생성**
 
@@ -144,6 +147,15 @@ charset=utf-8
 <br>
 
 위와 같이 `.editorconfig` 파일을 만들어 놓으면 알아서 적용된다.
+
+<br>
+
+# Note
+---
+
+즉시 적용되는 게 아니고, 이후 저장되는 파일들에 적용되므로
+
+인코딩을 변경할 파일들마다 다시 저장을 해주어야 한다.
 
 <br>
 

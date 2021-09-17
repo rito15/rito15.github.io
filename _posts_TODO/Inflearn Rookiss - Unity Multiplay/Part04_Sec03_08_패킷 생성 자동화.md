@@ -625,7 +625,26 @@ static void Main(string[] args)
 
 <br>
 
+# 참고사항
+---
 
+`.NET Core` 환경에서 빌드한 결과는 `../bin/netcoreapp3.1/..` 경로에 저장된다.
+
+`netcoreapp3.1` 폴더 경로를 생략하려면
+
+프로젝트 파일(.csproj)을 편집기로 열고
+
+```xml
+<PropertyGroup>
+  ...
+  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  ...
+</PropertyGroup>
+```
+
+이렇게 한 줄을 추가하면 된다.
+
+<br>
 
 
 
