@@ -336,10 +336,17 @@ size += sizeof(ushort); // {1}ListCount
 size += {1}ListSize; // this.{1}List";
 
 
-        // Write() 메소드 내에서 Write 수행(개행으로 연결) - 기본 타입들, string 포함
+        // Write() 메소드 내에서 Write 수행(개행으로 연결) - 기본 타입들
         // 0 : 필드 이름
         public static readonly string WriteFormat_default =
 @"
+SendBuffer.Factory.Write(this.{0});";
+
+        // Write() 메소드 내에서 Write 수행(개행으로 연결) - string
+        // 0 : 필드 이름
+        public static readonly string WriteFormat_string =
+@"
+SendBuffer.Factory.Write({0}Len);
 SendBuffer.Factory.Write(this.{0});";
 
         // Write() 메소드 내에서 Write 수행(개행으로 연결) - list
@@ -389,28 +396,232 @@ for (int i = 0; i < {1}ListCount; i++)
 # 패킷 파싱 및 포맷 스트링 조립
 ---
 
+XML을 해석하며 포맷 스트링들을 Bottom-Up 방식으로 조립하고,
 
+특히 list 타입의 경우에는 재귀적으로 다시 필드를 해석하는 방식으로 구현한다.
+
+<details>
+<summary markdown="span"> 
+Source Code
+</summary>
+
+```cs
+private static readonly string[] NewLineTabs = new string[]
+{
+    "\r\n",
+    "\r\n    ",
+    "\r\n        ",
+    "\r\n            ",
+    "\r\n                ",
+    "\r\n                    ",
+};
+        
+private class PacketStringSet
+{
+    public string fieldList = "";
+    public string writeSizeList = "";
+    public string writeList = "";
+    public string readList = "";
+}
+
+// "packet" 태그 해석
+private static void ParsePacket(XmlReader xr, ref string fileString)
+{
+    string packetName = xr["name"];
+
+    // 필드 포맷팅 준비
+    PacketStringSet packetStringSet = new PacketStringSet();
+
+    while (xr.Read() && xr.Depth == 2)
+    {
+        ParseField(xr, xr.Depth, packetStringSet);
+    }
+
+    // 완성된 필드 데이터를 이용해서 패킷 스트링 포맷팅
+    string packetString = string.Format(PacketFormat.OnePacketFormat,
+        packetName,
+        packetStringSet.fieldList,
+        packetStringSet.writeSizeList,
+        packetStringSet.writeList,
+        packetStringSet.readList
+    );
+
+    fileString += packetString;
+}
+
+// packet 내의 필드 해석
+private static void ParseField(XmlReader xr, int depth, PacketStringSet packetStringSet)
+{
+    if (xr.Depth != depth) return;
+
+    string fieldType = xr.Name.ToLower();
+    string fieldName = xr["name"];
+
+    switch (fieldType)
+    {
+        default:
+            packetStringSet.fieldList += 
+                string.Format(PacketFormat.FieldFormat, fieldType, fieldName)
+                .Replace("\n", NewLineTabs[1]);
+
+            packetStringSet.writeSizeList +=
+                string.Format(PacketFormat.WriteSizeFormat_default, fieldType, fieldName)
+                .Replace("\n", NewLineTabs[2]);
+
+            packetStringSet.writeList +=
+                string.Format(PacketFormat.WriteFormat_default, fieldName)
+                .Replace("\n", NewLineTabs[2]);
+
+            packetStringSet.readList +=
+                string.Format(PacketFormat.ReadFormat_default, fieldType, fieldName)
+                .Replace("\n", NewLineTabs[2]);
+            break;
+
+        case "string":
+            packetStringSet.fieldList +=
+                string.Format(PacketFormat.FieldFormat, fieldType, fieldName)
+                .Replace("\n", NewLineTabs[1]);
+
+            packetStringSet.writeSizeList +=
+                string.Format(PacketFormat.WriteSizeFormat_string, fieldName)
+                .Replace("\n", NewLineTabs[2]);
+
+            packetStringSet.writeList +=
+                string.Format(PacketFormat.WriteFormat_string, fieldName)
+                .Replace("\n", NewLineTabs[2]);
+
+            packetStringSet.readList +=
+                string.Format(PacketFormat.ReadFormat_string, fieldName)
+                .Replace("\n", NewLineTabs[2]);
+            break;
+
+        case "list":
+            PacketStringSet listFieldSet = new PacketStringSet();
+            while (xr.Read() && xr.Depth == (depth + 1))
+            {
+                // 재귀적으로 수행
+                ParseField(xr, xr.Depth, listFieldSet);
+            }
+
+            string lowerFieldName = FirstCharToLower(fieldName);
+
+            packetStringSet.fieldList +=
+                string.Format(PacketFormat.ListFieldFormat,
+                    fieldName,
+                    lowerFieldName,
+                    listFieldSet.fieldList,
+                    listFieldSet.writeSizeList,
+                    listFieldSet.writeList,
+                    listFieldSet.readList
+                )
+                .Replace("\n", NewLineTabs[depth - 1]);
+
+            packetStringSet.writeSizeList +=
+                string.Format(PacketFormat.WriteSizeFormat_list, fieldName, lowerFieldName)
+                .Replace("\n", NewLineTabs[depth]);
+
+            packetStringSet.writeList +=
+                string.Format(PacketFormat.WriteFormat_list, lowerFieldName)
+                .Replace("\n", NewLineTabs[depth]);
+
+            packetStringSet.readList +=
+                string.Format(PacketFormat.ReadFormat_list, fieldName, lowerFieldName)
+                .Replace("\n", NewLineTabs[depth]);
+
+            break;
+    }
+}
+```
+
+</details>
 
 <br>
 
-# MEMO
+# 범용으로 사용할 수 있도록 구현
 ---
 
-- PacketFormat 클래스 정의
-  - 생성될 소스코드를 @"" 내에 문자열로 싹 넣어두기
-  - 문자열 내에 가변적으로 들어갈 부분은 "{0}" 꼴의 포맷 문자열 작성
-  - packetFormat : 전체 클래스 문자열
-  - memberFormat : @"public {0} {1};" 꼴
-  - .. 등등
+현재는 실행 파일의 경로를 기반으로 `PDL.xml`을 읽고 `GenPacket.cs`를 생성하도록 되어 있지만,
 
-- PacketGenerator.Program.cs 파일에서 XML 파싱
-  - System.Xml.XmlReader 클래스 사용
-  - .Read()로 XML을 순회
-  - 순회하면서 만난 값들을 활용해 PacketFormat의 각 필드의 포맷팅으로 문자열 생성
+실행 시 읽어낼 `PDL.xml`의 절대 경로를 입력받고, 이를 통해 클래스 파일을 생성하며
 
-  - 구조체 리스트를 사용하는 경우 패킷 클래스 내에서 중첩 정의로 구조체를 생성한다
+`PDL.xml`의 폴더 경로에 `GenPacket.cs`를 저장하도록 구현한다.
 
-- XML 데이터 이용해서 MaxSize 배열도 생성
+```cs
+/// <summary> 파일의 폴더 경로 또는 폴더의 상위 폴더 경로 구하기 </summary>
+private static string GetParentDirPath(string fileOrFolderPath)
+{
+    int index = fileOrFolderPath.LastIndexOf('\\');
+    if(index < 0) index = fileOrFolderPath.LastIndexOf('/');
+
+    return fileOrFolderPath.Substring(0, index);
+}
+
+static void Main(string[] args)
+{
+    string xmlFilePath = args[0]; // 프로그램 매개변수로 입력받은 XML 파일 경로
+    string xmlDirPath = GetParentDirPath(xmlFilePath); // 대상 폴더 경로
+    string outputCsPath = $"{xmlDirPath}\\{OutputCsFileName}"; // 출력 파일 경로
+
+    // 2. XML Reader 설정
+    XmlReaderSettings settings = new XmlReaderSettings()
+    {
+        IgnoreComments = true,
+        IgnoreWhitespace = true,
+    };
+
+    string fileString = PacketFormat.FileFormat;
+    string fileContentString = "";
+    string packetNameListString = "    Default,\r\n";
+
+    // 3. XML 해석
+    using (XmlReader xr = XmlReader.Create(xmlFilePath, settings))
+    {
+        xr.MoveToContent();
+
+        while (xr.Read())
+        {
+            if (xr.Depth == 1 && xr.IsStartElement())
+            {
+                packetNameListString += $"    {xr["name"]},\r\n";
+                ParsePacket(xr, ref fileContentString);
+            }
+        }
+    }
+
+    string packetTypeString = 
+        string.Format(PacketFormat.PacketTypeFormat, packetNameListString);
+
+    fileString += packetTypeString;
+    fileString += fileContentString;
+
+    // 파일로 결과 출력
+    File.WriteAllText(outputCsPath, fileString);
+}
+```
+
+<br>
+
+## **배치 파일 작성**
+
+`ServerCore` 프로젝트에 `Packets/Auto Generation` 폴더를 생성하고,
+
+해당 폴더 경로에 `PDL.xml`을 위치시킨다.
+
+그리고 `GeneratePacket.bat` 배치파일을 생성한다.
+
+```cmd
+@echo off
+
+"..\..\..\PacketGenerator\bin\Debug\PacketGenerator.exe" "%cd%\PDL.xml"
+```
+
+배치 파일의 내용을 위와 같이 작성하여 원클릭으로 동일 경로에 `GenPacket.cs`를 생성하도록 한다.
+
+<br>
+
+기존에 작성해두었던 모든 패킷 클래스를 제거한다.
+
+이제 패킷을 직접 작성하지 않고, `PDL.xml`을 통해 손쉽게 정의할 수 있게 되었다.
 
 <br>
 
