@@ -9,6 +9,33 @@ mermaid: true
 pin: true
 ---
 
+{% include codeHeader.html %}
+```cs
+Test
+TT
+
+public void Test(){}
+
+private float ff = 2f;
+```
+
+{% include codeHeader.html %}
+```js
+Test
+TT
+
+const myVal = 4;
+
+document.print(2);
+```
+
+```cpp
+public int a;
+private float bb;
+
+cout << 2 << endl;
+```
+
 # 플러그인, 깃헙
 ---
 

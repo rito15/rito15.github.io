@@ -571,10 +571,13 @@ mermaid: true
  - `Out` : Vector2 타입. 최종적으로 계산된 **UV**를 출력한다.
 
 ### **예시**
- - .
+ - UV 좌표 (0.5, 0.5)를 기준으로 360도 회전시키기
 
+![2021_0917_Rotator_Example](https://user-images.githubusercontent.com/42164422/133803886-42ee1753-248f-4408-8151-4c25e2fa4178.gif)
 
+### **Rotator 노드 내부 구조**
 
+![image](https://user-images.githubusercontent.com/42164422/133809084-290c14ef-1a5f-4312-aeea-fb99e2f65971.png)
 
 ### **Wiki**
  - <https://wiki.amplify.pt/index.php?title=Unity_Products:Amplify_Shader_Editor/Rotator>

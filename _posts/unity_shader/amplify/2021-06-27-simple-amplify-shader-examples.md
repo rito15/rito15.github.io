@@ -129,6 +129,12 @@ A : Amplitude
 
 <br>
 
+## **Grid**
+
+![image](https://user-images.githubusercontent.com/42164422/133794988-210be4f1-7757-4772-b372-5f9af969d4af.png)
+
+<br>
+
 ## **Distortion**
 
 ![image](https://user-images.githubusercontent.com/42164422/123935349-1a70f480-d9cf-11eb-8e17-026c610e2009.png)
