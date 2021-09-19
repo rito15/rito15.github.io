@@ -1,0 +1,79 @@
+## Reference
+ - https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button-to-your-jekyll-blog/
+
+
+## 코드 영역 우측 상단에 복사 버튼 추가하는 방법(Liquid)
+
+{% include codeHeader.html %}
+```cs
+
+```
+
+- 특징 : Liquid 구문은 HTML 주석 <!-- -->이 통하지 않음
+
+
+## _includes/codeHeader.html 파일 생성
+
+<div class="code-button-header">
+<button class="copy-code-button" aria-label="Copy code to clipboard"></button>
+</div>
+
+
+## _layouts/post.html 파일 내용 하단에 다음 내용 추가
+
+<script>
+/* 코드 블록 우측 상단 Copy 버튼 */
+const codes = document.querySelectorAll('.code-button-header + .highlighter-rouge .rouge-code');
+const copyCodeButtons = document.querySelectorAll('.copy-code-button');
+
+copyCodeButtons.forEach((copyCodeButton, index) => {
+  copyCodeButton.addEventListener('click', () => {
+    window.navigator.clipboard.writeText(codes[index].innerText.slice(0, -1));
+    copyCodeButton.classList.add('copied');
+
+    setTimeout(() => {
+      copyCodeButton.classList.remove('copied');
+    }, 2000);
+  });
+});
+</script>
+
+
+## assets/css/post.scss 파일 내용 하단에 다음 내용 추가
+
+.code-button-header {
+  display: flex;
+  justify-content: flex-end;
+  height: 0;
+  position: relative;
+}
+
+.copy-code-button {
+  display: flex;
+  grid-auto-flow: column;
+  align-items: center;
+  grid-column-gap: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px 8px;
+  color: #FFFFFF;
+  background-color: #333333;
+  opacity: 0.8;
+  position:absolute;
+  top: 2rem;
+  right: 1rem;
+
+
+  &::after {
+    content: "📋";
+    display: block;
+  }
+
+  // This class will be toggled via JavaScript
+  &.copied {
+    &::after {
+      content: "✔️";
+    }
+  }
+}
