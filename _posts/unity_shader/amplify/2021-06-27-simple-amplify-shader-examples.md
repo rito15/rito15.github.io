@@ -445,23 +445,143 @@ WireConnection;199;1;197;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;19
 
 ## **UV Circle**
 
-![image](https://user-images.githubusercontent.com/42164422/123522921-89aec600-d6fb-11eb-9eb9-b69ed62ac485.png)
+<details>
+
+<summary markdown="span"> 
+Copy & Paste
+</summary>
+
+{% include codeHeader.html %}
+```
+http://paste.amplify.pt/view/raw/4ff3eee1
+```
+
+<!--
+AMPLIFY_CLIPBOARD_ID;434.3605,550.6047,0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;243;259.9364,589.4088;Inherit;False;Constant;_1;-1;0;0;Create;True;0;0;0;False;0;False;-1;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;245;261.9364,519.4088;Inherit;False;Constant;_2;2;0;0;Create;True;0;0;0;False;0;False;2;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.TextureCoordinatesNode;244;394.9364,519.4088;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+WireConnection;244;0;245;0
+WireConnection;244;1;243;0#CLIP_ITEM#Node;AmplifyShaderEditor.LengthOpNode;246;589.9364,519.4088;Inherit;False;1;0;FLOAT2;0,0;False;1;FLOAT;0
+WireConnection;246;0;244;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;240;395.4812,635.5846;Inherit;False;Constant;_Radius;Radius;0;0;Create;True;0;0;0;False;0;False;1;0;0;1;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.StepOpNode;247;703.9364,520.4088;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;247;0;246;0
+WireConnection;247;1;240;0
+-->
+
+</details>
+
+![image](https://user-images.githubusercontent.com/42164422/133939994-2add4a1e-2ee5-4ecf-b42f-e5797a5057b0.png)
 
 <br>
 
 ## Smooth UV Circle
 
-![image](https://user-images.githubusercontent.com/42164422/123523071-620c2d80-d6fc-11eb-90ae-5eb2cf7b3f10.png)
+<details>
+
+<summary markdown="span"> 
+Copy & Paste
+</summary>
+
+{% include codeHeader.html %}
+```
+http://paste.amplify.pt/view/raw/2baa9e89
+```
+
+<!--
+AMPLIFY_CLIPBOARD_ID;486.1296,607.3057,0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;240;395.4812,635.5846;Inherit;False;Constant;_Radius;Radius;0;0;Create;True;0;0;0;False;0;False;1;0;0;1;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;249;394.9364,707.4088;Inherit;False;Constant;_Smoothness;Smoothness;0;0;Create;True;0;0;0;False;0;False;0.5;0;0.01;1;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleSubtractOpNode;250;677.9364,673.4088;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;250;0;240;0
+WireConnection;250;1;249;0#CLIP_ITEM#Node;AmplifyShaderEditor.LengthOpNode;246;686.9364,607.4088;Inherit;False;1;0;FLOAT2;0,0;False;1;FLOAT;0
+WireConnection;246;0;244;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;243;261.9364,585.4088;Inherit;False;Constant;_1;-1;0;0;Create;True;0;0;0;False;0;False;-1;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;245;263.9364,515.4088;Inherit;False;Constant;_2;2;0;0;Create;True;0;0;0;False;0;False;2;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.TextureCoordinatesNode;244;396.9364,515.4088;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+WireConnection;244;0;245;0
+WireConnection;244;1;243;0#CLIP_ITEM#Node;AmplifyShaderEditor.SmoothstepOpNode;248;810.9364,618.4088;Inherit;True;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
+WireConnection;248;0;246;0
+WireConnection;248;1;240;0
+WireConnection;248;2;250;0
+-->
+
+</details>
+
+![image](https://user-images.githubusercontent.com/42164422/133940106-f0da97ce-8223-4fd4-b425-46f7f2dd5f3d.png)
 
 <br>
 
 ## **Clock Mask**
+
+<details>
+
+<summary markdown="span"> 
+Copy & Paste
+</summary>
+
+{% include codeHeader.html %}
+```
+http://paste.amplify.pt/view/raw/e7eae5d7
+```
+
+<!--
+AMPLIFY_CLIPBOARD_ID;575.8041,591.0611,0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;243;261.9364,585.4088;Inherit;False;Constant;_1;-1;0;0;Create;True;0;0;0;False;0;False;-1;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;245;263.9364,515.4088;Inherit;False;Constant;_2;2;0;0;Create;True;0;0;0;False;0;False;2;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.TextureCoordinatesNode;244;396.9364,515.4088;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+WireConnection;244;0;245;0
+WireConnection;244;1;243;0#CLIP_ITEM#Node;AmplifyShaderEditor.BreakToComponentsNode;252;595.9364,515.4088;Inherit;False;FLOAT2;1;0;FLOAT2;0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
+WireConnection;252;0;244;0#CLIP_ITEM#Node;AmplifyShaderEditor.NegateNode;256;704.9364,568.4088;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;256;0;252;1#CLIP_ITEM#Node;AmplifyShaderEditor.ATan2OpNode;257;819.9364,516.4088;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;257;0;252;0
+WireConnection;257;1;256;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;240;503.4812,635.5846;Inherit;False;Constant;_T;T;0;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.TFHCRemapNode;254;762.9364,640.4088;Inherit;False;5;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;3;FLOAT;0;False;4;FLOAT;1;False;1;FLOAT;0
+WireConnection;254;0;240;0
+WireConnection;254;3;253;0
+WireConnection;254;4;255;0#CLIP_ITEM#Node;AmplifyShaderEditor.NegateNode;255;625.9364,736.4088;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;255;0;253;0#CLIP_ITEM#Node;AmplifyShaderEditor.PiNode;253;456.9364,711.4088;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.StepOpNode;258;940.9364,561.4088;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;258;0;257;0
+WireConnection;258;1;254;0
+-->
+
+</details>
 
 ![2021_0813_UV_ClockMask](https://user-images.githubusercontent.com/42164422/129238475-58d210c2-debb-44a0-9c03-bf6475ee23cd.gif)
 
 <br>
 
 ## **Radar**
+
+<details>
+
+<summary markdown="span"> 
+Copy & Paste
+</summary>
+
+{% include codeHeader.html %}
+```
+http://paste.amplify.pt/view/raw/ac8d6699
+```
+
+<!--
+AMPLIFY_CLIPBOARD_ID;216.2561,817.9921,0#CLIP_ITEM#Node;AmplifyShaderEditor.TFHCRemapNode;254;308.6665,932.6782;Inherit;False;5;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;3;FLOAT;0;False;4;FLOAT;1;False;1;FLOAT;0
+WireConnection;254;0;240;0
+WireConnection;254;3;253;0
+WireConnection;254;4;255;0#CLIP_ITEM#Node;AmplifyShaderEditor.PiNode;253;2.666149,1003.678;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;240;49.21101,927.854;Inherit;False;Constant;_Start;Start;0;0;Create;True;0;0;0;False;0;False;0.5;0;0;1;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.NegateNode;255;171.6664,1028.678;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;255;0;253;0#CLIP_ITEM#Node;AmplifyShaderEditor.BreakToComponentsNode;252;257.2921,699.3523;Inherit;False;FLOAT2;1;0;FLOAT2;0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
+WireConnection;252;0;264;0#CLIP_ITEM#Node;AmplifyShaderEditor.RotatorNode;264;87.42511,699.8796;Inherit;False;3;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;2;FLOAT;1;False;1;FLOAT2;0
+WireConnection;264;0;244;0
+WireConnection;264;2;263;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;243;-249.6083,770.6523;Inherit;False;Constant;_1;-1;0;0;Create;True;0;0;0;False;0;False;-1;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;245;-247.6083,700.6522;Inherit;False;Constant;_2;2;0;0;Create;True;0;0;0;False;0;False;2;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.TextureCoordinatesNode;244;-114.6078,700.6522;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+WireConnection;244;0;245;0
+WireConnection;244;1;243;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;260;-248.4081,847.1526;Inherit;False;Constant;_Rotation;Rotation;0;0;Create;True;0;0;0;False;0;False;0;0;0;360;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RadiansOpNode;262;7.655346,851.7438;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;262;0;260;0#CLIP_ITEM#Node;AmplifyShaderEditor.NegateNode;263;123.5919,851.1526;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;263;0;262;0#CLIP_ITEM#Node;AmplifyShaderEditor.ATan2OpNode;257;369.4925,699.0522;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;257;0;252;0
+WireConnection;257;1;252;1#CLIP_ITEM#Node;AmplifyShaderEditor.StepOpNode;266;635.2999,937.205;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;266;0;257;0
+WireConnection;266;1;267;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleSubtractOpNode;269;793.463,811.2222;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;269;0;266;0
+WireConnection;269;1;258;0#CLIP_ITEM#Node;AmplifyShaderEditor.StepOpNode;258;630.8924,699.8527;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;258;0;257;0
+WireConnection;258;1;254;0#CLIP_ITEM#Node;AmplifyShaderEditor.LengthOpNode;268;127.8436,558.686;Inherit;False;1;0;FLOAT2;0,0;False;1;FLOAT;0
+WireConnection;268;0;244;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;259;96.06866,1105.008;Inherit;False;Constant;_Angle;Angle;0;0;Create;True;0;0;0;False;0;False;45;0;0;360;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RadiansOpNode;261;355.069,1110.008;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;261;0;259;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleAddOpNode;267;498.7996,1028.068;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;267;0;254;0
+WireConnection;267;1;261;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;271;121.3141,627.5998;Inherit;False;Constant;_1_;1_;0;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.StepOpNode;270;245.6346,608.243;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;1;False;1;FLOAT;0
+WireConnection;270;0;268;0
+WireConnection;270;1;271;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleMultiplyOpNode;272;952.0715,614.7465;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;272;0;270;0
+WireConnection;272;1;269;0
+-->
+
+</details>
 
 ![2021_0813_UV_Radar](https://user-images.githubusercontent.com/42164422/129238486-6b25a0db-8d99-4e3c-bbca-a3c77f6acfdf.gif)
 
