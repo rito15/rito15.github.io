@@ -657,12 +657,12 @@
         
         
         
-        <li><a href="/posts/unity-amplify-2-color-dissolve/">(Amplify) Directional 2 Color Dissolve Shader</a></li>
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
         
         
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+        <li><a href="/posts/unity-amplify-2-color-dissolve/">(Amplify) Directional 2 Color Dissolve Shader</a></li>
       
         
         
@@ -5995,6 +5995,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8124,7 +8137,7 @@ public b...
       
       
       <div class="card">
-        <a href="/posts/07-cs-thread-synchronization/">
+        <a href="/posts/08-cs-thread-local-storage/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8144,10 +8157,10 @@ public b...
     Jul  8
   
 
-  <i class="unloaded">2021-07-08T01:07:00+09:00</i>
+  <i class="unloaded">2021-07-08T01:08:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Thread Synchronization and Locks</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# TLS(Thread Local Storage)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8156,26 +8169,25 @@ public b...
 
 
 
-                동기화 영역에 따른 구분
+                
+
+메모리 구조
 
 
-1. 유저 모드 동기화
 
 
-  
-    유저 객체(커널에서 제공하지 않는 객체)를 사용한다.
-  
-  
-    대표적으로 크리티컬 섹션(Critical Section), 인터락(Interlocked)이 있다.
-  
-  
-    커널 모드 동기화보다 빠르다.
-  
-  
-    동일 프로세스 내에서만 동기화 가능하다.
-  
 
-...
+
+TLS(Thread Local Storage)
+
+
+Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공유한다.
+
+그리고 Stack 영역의 지역 변수(또는 멤버 변수)는 해당 블록 내에서만 사용된다.
+
+따라서 기본적으로 각각의 스레드마다 고유하게 갖는 메모리 영역은 없다.
+
+이를 만들어 줄 수 있는 것이 바로 ...
               </p>
             </div>
           </div>

@@ -1792,12 +1792,12 @@
         
         
         
-        <li><a href="/posts/unity-amplify-2-color-dissolve/">(Amplify) Directional 2 Color Dissolve Shader</a></li>
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
         
         
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+        <li><a href="/posts/unity-amplify-2-color-dissolve/">(Amplify) Directional 2 Color Dissolve Shader</a></li>
       
         
         
@@ -8565,6 +8565,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9252,7 +9265,7 @@ No...
       
       
       <div class="card">
-        <a href="/posts/unity-material-property-block/">
+        <a href="/posts/unity-optimize-model-transform/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9269,13 +9282,13 @@ No...
   
 
   
-    May 22
+    Sep 16
   
 
-  <i class="unloaded">2021-05-22T18:00:00+09:00</i>
+  <i class="unloaded">2021-09-16T00:02:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Material Property Block을 통해 프로퍼티 값 변경하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 모델 트랜스폼 구조 최적화하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9284,29 +9297,22 @@ No...
 
 
 
-                드로우 콜과 배칭의 개념
+                문제점
 
 
-Draw Call
+Skinned Mesh가 적용되는 게임 오브젝트의 경우,
 
-  
-    CPU가 GPU에게 오브젝트를 그리라고 요청하는 것
-  
-  
-    주요 CPU 병목 요소 중 하나
-  
+하이라키에서 트랜스폼 구조를 확인해보면
 
 
-SetPass Call
 
-  
-    쉐이더 렌더링 패스 수
-  
-  
-    쉐이더 요소(예 : 프로퍼티)변경 시 SetPass Call 증가
-  
-  
-    간단히, 쉐이더와 ...
+이렇게 Bone 별로 각각 존재하여, 굉장히 많은 게임오브젝트들로 이루어져 있다.
+
+그런데 유니티 엔진에서는 부모 게임 오브젝트의 트랜스폼에 변경사항이 생기면
+
+모든 자식 트랜스폼에 변경이 발생한다.
+
+한마디로, 위와 같이 무수히 많은 자...
               </p>
             </div>
           </div>

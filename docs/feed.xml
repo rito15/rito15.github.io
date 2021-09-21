@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-21T02:30:29+09:00</updated>
+  <updated>2021-09-21T22:53:37+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,74 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# XmlReader</title>
+    <link href="https://rito15.github.io/posts/cs-xml-reader/" rel="alternate" type="text/html" title="C# XmlReader" />
+    <published>2021-09-21T21:52:00+09:00</published>
+  
+    <updated>2021-09-21T21:52:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-xml-reader/</id>
+    <content src="https://rito15.github.io/posts/cs-xml-reader/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      XML
+
+
+eXTensible Markup Language의 약자로, W3C에서 개발된 마크업 언어.
+
+XML의 대표적인 파생 언어로 HTML이 있다.
+
+기본적인 XML 파일의 확장자는 .xml이다.
+
+
+
+XML 문법
+
+
+
+   
+…
+
+
+  예시
+  
+    패킷 데이터 목록 정의
+  
+
+  &amp;lt;?xml version="1.0" encoding="utf-8" ?&amp;gt;
+
+&amp;lt;!-- Packet Data List --&amp;gt;
+&amp;lt;packets&amp;gt; &amp;lt;!-- 루트 태그 --&amp;gt;
+    &amp;lt;packet name="Echo"&amp;gt;
+    &amp;lt;/packet&amp;gt;
+    
+    &amp;lt;packet name="Number"&amp;gt;
+        &amp;lt;int name="number...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -346,58 +414,6 @@ editorconfig 파일(기본값) 을 선택하고, 이름은 굳이 바꾸지 말�
 
 
 Edit...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>.NET CIL 명령어 모음</title>
-    <link href="https://rito15.github.io/posts/dotnet-cil-instructions/" rel="alternate" type="text/html" title=".NET CIL 명령어 모음" />
-    <published>2021-09-14T03:55:00+09:00</published>
-  
-    <updated>2021-09-14T18:48:26+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/dotnet-cil-instructions/</id>
-    <content src="https://rito15.github.io/posts/dotnet-cil-instructions/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Grammar" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Instructions
-
-
-Stack
-
-  스택 : 계산 스택(Evaluation Stack)
-  “스택의 값”을 언급하는 경우는 스택의 값을 꺼내어(Pop) 사용한다는 의미이다.
-  “스택의 두 값”을 언급하는 경우는 스택에서 두 값을 꺼내어 사용한다는 의미이다.
-  
-    “스택의 두 값 A B”를 언급하는 경우, A는 스택에 먼저 넣었던 값이고 B는 그 다음에 넣은 값(Top)이다.
-  
-  ld로 시작하는 명령어는 Load를 의미하며, 대상의 값을 스택에 넣는다.
-  
-    ldFOO.0 명령어는 FOO 목록의 0번 인덱스에 있는 값을 스택에 넣는다.
-  
-  st로 시작하는 명령어는 Store를 의미하며, 스택의 값을 꺼내 다른 곳에 저장한다.
-  stFOO.0 명령어는 스택에서 값을 꺼내...
     </summary>
   
 
