@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1756 words">9 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1766 words">9 min</span>
 
 
           <!-- page views -->
@@ -1792,6 +1792,10 @@ https://www.youtube.com/watch?v=MawzivWLCoo
 
 <h2 id="basic-particleadditive-shader"><strong>Basic Particle(Additive) Shader</strong></h2>
 
+<ul>
+  <li><a href="https://github.com/rito15/Images/files/7139411/Rito_BasicParticle.zip">Rito_BasicParticle.zip</a></li>
+</ul>
+
 <details>
 
   <summary> 
@@ -1820,10 +1824,6 @@ WireConnection;236;1;234;4#CLIP_ITEM#Node;AmplifyShaderEditor.VertexColorNode;23
 -->
 
 </details>
-
-<ul>
-  <li><a href="https://github.com/rito15/Images/files/7139411/Rito_BasicParticle.zip">Rito_BasicParticle.zip</a></li>
-</ul>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/132753357-8e6285cb-5975-4646-9664-41b5be105fa8.png" alt="image" /></p>
 
@@ -1870,6 +1870,43 @@ WireConnection;236;1;234;4#CLIP_ITEM#Node;AmplifyShaderEditor.VertexColorNode;23
   </li>
 </ul>
 
+<details>
+
+  <summary> 
+Copy &amp; Paste
+</summary>
+
+  <!--
+https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button-to-your-jekyll-blog/
+-->
+
+  <div class="code-button-header">
+    <p><button class="copy-code-button" aria-label="Copy code to clipboard"></button></p>
+  </div>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>http://paste.amplify.pt/view/raw/b4bcf5ae
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <!--
+AMPLIFY_CLIPBOARD_ID;-898.9972,348.7546,0#CLIP_ITEM#Node;AmplifyShaderEditor.ScreenDepthNode;6;-1204.241,454.6046;Inherit;False;0;True;1;0;FLOAT4;0,0,0,0;False;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.ScreenPosInputsNode;7;-1195.239,526.7185;Float;False;1;False;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;9;-1287.459,382.4543;Inherit;False;Property;_SoftParticleFactor;Soft Particle Factor;3;0;Create;True;0;0;0;False;0;False;0.5;0;0;0.999;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.OneMinusNode;22;-1012.111,387.4188;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;22;0;9;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleSubtractOpNode;8;-1004.106,499.5293;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;8;0;6;0
+WireConnection;8;1;7;4#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;21;-1000.612,613.7467;Inherit;False;Constant;_3;3;4;0;Create;True;0;0;0;False;0;False;3;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleMultiplyOpNode;13;-840.7513,473.0992;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
+WireConnection;13;0;22;0
+WireConnection;13;1;8;0
+WireConnection;13;2;21;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;1;-840.0647,32.12172;Inherit;False;Property;_Intensity;Intensity;1;0;Create;True;0;0;0;False;0;False;1;0;0;5;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.SamplerNode;2;-858.8647,101.7217;Inherit;True;Property;_MainTex;MainTex;2;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;None#CLIP_ITEM#Node;AmplifyShaderEditor.VertexColorNode;3;-730.7647,284.4218;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4#CLIP_ITEM#Node;AmplifyShaderEditor.SaturateNode;11;-717.121,473.5297;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;11;0;13;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleMultiplyOpNode;4;-497.965,80.72173;Inherit;False;3;3;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
+WireConnection;4;0;1;0
+WireConnection;4;1;2;0
+WireConnection;4;2;3;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleMultiplyOpNode;5;-497.6649,223.7216;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
+WireConnection;5;0;2;4
+WireConnection;5;1;3;4
+WireConnection;5;2;11;0
+-->
+
+</details>
+
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/132753216-63f8274c-9197-4f98-be8d-609c2a67d2d6.png" alt="image" /></p>
 
 <p><br /></p>
@@ -1894,6 +1931,45 @@ WireConnection;236;1;234;4#CLIP_ITEM#Node;AmplifyShaderEditor.VertexColorNode;23
   <p>게임 뷰에서는 제대로 보이지만, 씬 뷰에서는 다른 불투명 오브젝트에 무조건 가려지는 경우가 있다.</p>
 
   <p>그럴 때는 다음과 같이 <code class="language-plaintext highlighter-rouge">Static Switch</code> 노드를 추가하고,</p>
+
+  <details>
+
+    <summary> 
+Copy &amp; Paste
+</summary>
+
+    <!--
+https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button-to-your-jekyll-blog/
+-->
+
+    <div class="code-button-header">
+      <p><button class="copy-code-button" aria-label="Copy code to clipboard"></button></p>
+    </div>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>http://paste.amplify.pt/view/raw/e28bff4b
+</pre></td></tr></tbody></table></code></div>    </div>
+
+    <!--
+AMPLIFY_CLIPBOARD_ID;-1023.924,386.8099,0#CLIP_ITEM#Node;AmplifyShaderEditor.ScreenDepthNode;6;-1442.741,501.0048;Inherit;False;0;True;1;0;FLOAT4;0,0,0,0;False;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.ScreenPosInputsNode;7;-1433.739,573.1187;Float;False;1;False;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;9;-1525.959,428.8545;Inherit;False;Property;_SoftParticleFactor;Soft Particle Factor;3;0;Create;True;0;0;0;False;0;False;0.5;0;0;0.999;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleSubtractOpNode;8;-1242.606,545.9294;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;8;0;6;0
+WireConnection;8;1;7;4#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;21;-1239.112,660.1469;Inherit;False;Constant;_3;3;4;0;Create;True;0;0;0;False;0;False;3;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.OneMinusNode;22;-1250.611,433.819;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;22;0;9;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleMultiplyOpNode;13;-1079.251,519.4994;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
+WireConnection;13;0;22;0
+WireConnection;13;1;8;0
+WireConnection;13;2;21;0#CLIP_ITEM#Node;AmplifyShaderEditor.SaturateNode;11;-955.6214,519.9298;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;11;0;13;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;24;-957.4444,443.5685;Inherit;False;Constant;_1;1;4;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;1;-840.0647,32.12172;Inherit;False;Property;_Intensity;Intensity;1;0;Create;True;0;0;0;False;0;False;1;0;0;5;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.SamplerNode;2;-858.8647,101.7217;Inherit;True;Property;_MainTex;MainTex;2;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;None#CLIP_ITEM#Node;AmplifyShaderEditor.VertexColorNode;3;-730.7647,284.4218;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4#CLIP_ITEM#Node;AmplifyShaderEditor.StaticSwitch;23;-806.4444,453.5685;Inherit;False;Property;SOFTPARTICLES_ON;SOFTPARTICLES_ON;4;0;Create;False;0;0;0;False;0;False;1;1;1;False;SOFTPARTICLES_ON;Toggle;2;Key0;Key1;Create;False;False;9;1;FLOAT;0;False;0;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT;0;False;7;FLOAT;0;False;8;FLOAT;0;False;1;FLOAT;0
+WireConnection;23;1;24;0
+WireConnection;23;0;11;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleMultiplyOpNode;4;-497.965,80.72173;Inherit;False;3;3;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
+WireConnection;4;0;1;0
+WireConnection;4;1;2;0
+WireConnection;4;2;3;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleMultiplyOpNode;5;-497.6649,223.7216;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
+WireConnection;5;0;2;4
+WireConnection;5;1;3;4
+WireConnection;5;2;23;0
+-->
+
+  </details>
 
   <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/132756558-1ddaf5e1-6f79-4bda-bac1-dfe0826147c0.png" alt="image" /></p>
 
