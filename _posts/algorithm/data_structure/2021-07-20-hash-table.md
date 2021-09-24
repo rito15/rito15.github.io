@@ -1,5 +1,5 @@
 ---
-title: Hash Table(해시 테이블)
+title: 자료구조 - 해시 테이블(Hash Table)
 author: Rito15
 date: 2021-07-20 17:14:00 +09:00
 categories: [Algorithm, Data Structure]
@@ -9,7 +9,7 @@ mermaid: true
 ---
 
 
-# 특징
+# 해시 테이블(Hash Table)
 ---
 
 - 데이터의 삽입, 제거, 탐색이 모두 `O(1)`로 매우 빠르다.
