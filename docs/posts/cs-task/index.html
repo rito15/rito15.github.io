@@ -1121,7 +1121,7 @@
         
         
         
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+        <li><a href="/posts/hash-table/">자료구조 - 해시 테이블(Hash Table)</a></li>
       
         
         
@@ -1131,17 +1131,17 @@
         
         
         
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
         
         
         
-        <li><a href="/posts/unity-amplify-spawn-effect-shader/">(Amplify) Spawn Effect Shader</a></li>
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
 
       </ul>
@@ -5918,6 +5918,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8461,66 +8474,6 @@
       
       
       <div class="card">
-        <a href="/posts/08-cs-thread-local-storage/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul  8
-  
-
-  <i class="unloaded">2021-07-08T01:08:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# TLS(Thread Local Storage)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                
-
-메모리 구조
-
-
-
-
-
-
-TLS(Thread Local Storage)
-
-
-Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공유한다.
-
-그리고 Stack 영역의 지역 변수(또는 멤버 변수)는 해당 블록 내에서만 사용된다.
-
-따라서 기본적으로 각각의 스레드마다 고유하게 갖는 메모리 영역은 없다.
-
-이를 만들어 줄 수 있는 것이 바로 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-async-task-mistakes/">
           <div class="card-body">
             <!--
@@ -8651,6 +8604,73 @@ private static void Main()
 
   
     여러 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-process-thread-threadpool-task/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jun 25
+  
+
+  <i class="unloaded">2021-06-25T21:21:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Process, Thread, ThreadPool, Task 개념 간단 정리</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Process
+
+
+
+  
+    메모리에 적재되어 실행되는 프로그램
+  
+  
+    운영체제로부터 자원을 할당받아 수행되는 작업의 단위
+  
+  
+    Code, Data, Heap, Stack 메모리 공간을 독립적으로 갖는다.
+  
+
+
+
+
+Thread
+
+
+
+  
+    프로세스의 자원을 사용하는 실행 흐름의 단위
+  
+  
+    프로세스의 Co...
               </p>
             </div>
           </div>

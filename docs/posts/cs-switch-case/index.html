@@ -1975,7 +1975,7 @@
         
         
         
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+        <li><a href="/posts/hash-table/">자료구조 - 해시 테이블(Hash Table)</a></li>
       
         
         
@@ -1985,17 +1985,17 @@
         
         
         
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
         
         
         
-        <li><a href="/posts/unity-amplify-spawn-effect-shader/">(Amplify) Spawn Effect Shader</a></li>
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
 
       </ul>
@@ -5337,6 +5337,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9444,7 +9457,7 @@ C#에서의 union
       
       
       <div class="card">
-        <a href="/posts/cs-tuple-and-value-tuple/">
+        <a href="/posts/cs-deconstructor/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9464,10 +9477,10 @@ C#에서의 union
     Sep 11
   
 
-  <i class="unloaded">2021-09-11T03:45:00+09:00</i>
+  <i class="unloaded">2021-09-11T04:32:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Tuple, ValueTuple</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Deconstructor</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9476,25 +9489,34 @@ C#에서의 union
 
 
 
-                Note
+                Deconstructor
 
 
-Tuple, ValueTuple은 C# 7.0에 처음 도입되었다.
+1
+2
+3
+4
+5
+class Student
+{
+    public int id;
+    public string name;
+}
 
-두 개 이상의 타입을 함께 묶어 사용할 때,
 
-클래스나 구조체를 따로 정의하지 않고 곧바로 사용할 수 있게 해준다.
+클래스가 있다.
 
-
-
-Tuple
+1
+Student student = new Student();
 
 
-클래스 튜플 타입.
+객체도 있다.
 
-클래스 타입이므로 전달할 때 복사가 발생하지 않고, 참조를 전달한다.
+1
+(int id, string name) = student;
 
-Tuple&lt;T1, T2&gt; 같이 명...
+
+위와 같이 한다고 해서 객체...
               </p>
             </div>
           </div>

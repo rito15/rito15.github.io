@@ -676,7 +676,7 @@
         
         
         
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+        <li><a href="/posts/hash-table/">자료구조 - 해시 테이블(Hash Table)</a></li>
       
         
         
@@ -686,17 +686,17 @@
         
         
         
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
         
         
         
-        <li><a href="/posts/unity-amplify-spawn-effect-shader/">(Amplify) Spawn Effect Shader</a></li>
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
 
       </ul>
@@ -4033,6 +4033,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8140,7 +8153,7 @@ C#에서의 union
       
       
       <div class="card">
-        <a href="/posts/cs-tuple-and-value-tuple/">
+        <a href="/posts/cs-struct-property-indexer/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8157,13 +8170,13 @@ C#에서의 union
   
 
   
-    Sep 11
+    Aug  6
   
 
-  <i class="unloaded">2021-09-11T03:45:00+09:00</i>
+  <i class="unloaded">2021-08-06T15:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Tuple, ValueTuple</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 구조체 프로퍼티, 구조체 인덱서</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8172,25 +8185,26 @@ C#에서의 union
 
 
 
-                Note
-
-
-Tuple, ValueTuple은 C# 7.0에 처음 도입되었다.
-
-두 개 이상의 타입을 함께 묶어 사용할 때,
-
-클래스나 구조체를 따로 정의하지 않고 곧바로 사용할 수 있게 해준다.
+                구조체의 특징
 
 
 
-Tuple
+  초기화(할당), 리턴 등의 동작을 통해 값을 전달할 경우, 구조체가 통째로 복제된다.
 
 
-클래스 튜플 타입.
 
-클래스 타입이므로 전달할 때 복사가 발생하지 않고, 참조를 전달한다.
+  
+    struct MyStruct
+{
+    public float value;
+}
 
-Tuple&lt;T1, T2&gt; 같이 명...
+class MainClass
+{
+    private MyStruct ms;
+
+    private MyStruct GetStruct()
+    ...
               </p>
             </div>
           </div>

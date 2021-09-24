@@ -1792,7 +1792,7 @@
         
         
         
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+        <li><a href="/posts/hash-table/">자료구조 - 해시 테이블(Hash Table)</a></li>
       
         
         
@@ -1802,17 +1802,17 @@
         
         
         
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
         
         
         
-        <li><a href="/posts/unity-amplify-spawn-effect-shader/">(Amplify) Spawn Effect Shader</a></li>
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
 
       </ul>
@@ -8578,6 +8578,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9203,6 +9216,63 @@ GIF
       
       
       <div class="card">
+        <a href="/posts/unity-optimize-model-transform/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep 16
+  
+
+  <i class="unloaded">2021-09-16T00:02:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 모델 트랜스폼 구조 최적화하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                문제점
+
+
+Skinned Mesh가 적용되는 게임 오브젝트의 경우,
+
+하이라키에서 트랜스폼 구조를 확인해보면
+
+
+
+이렇게 Bone 별로 각각 존재하여, 굉장히 많은 게임오브젝트들로 이루어져 있다.
+
+그런데 유니티 엔진에서는 부모 게임 오브젝트의 트랜스폼에 변경사항이 생기면
+
+모든 자식 트랜스폼에 변경이 발생한다.
+
+한마디로, 위와 같이 무수히 많은 자...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-opt-profiling/">
           <div class="card-body">
             <!--
@@ -9256,63 +9326,6 @@ GIF
 
 
 No...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-optimize-model-transform/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Sep 16
-  
-
-  <i class="unloaded">2021-09-16T00:02:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 모델 트랜스폼 구조 최적화하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                문제점
-
-
-Skinned Mesh가 적용되는 게임 오브젝트의 경우,
-
-하이라키에서 트랜스폼 구조를 확인해보면
-
-
-
-이렇게 Bone 별로 각각 존재하여, 굉장히 많은 게임오브젝트들로 이루어져 있다.
-
-그런데 유니티 엔진에서는 부모 게임 오브젝트의 트랜스폼에 변경사항이 생기면
-
-모든 자식 트랜스폼에 변경이 발생한다.
-
-한마디로, 위와 같이 무수히 많은 자...
               </p>
             </div>
           </div>

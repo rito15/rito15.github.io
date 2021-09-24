@@ -657,7 +657,7 @@
         
         
         
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+        <li><a href="/posts/hash-table/">자료구조 - 해시 테이블(Hash Table)</a></li>
       
         
         
@@ -667,17 +667,17 @@
         
         
         
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
         
         
         
-        <li><a href="/posts/unity-amplify-spawn-effect-shader/">(Amplify) Spawn Effect Shader</a></li>
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
 
       </ul>
@@ -6008,6 +6008,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8137,7 +8150,7 @@ public b...
       
       
       <div class="card">
-        <a href="/posts/08-cs-thread-local-storage/">
+        <a href="/posts/cs-why-should-inherit-iequatable/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8154,13 +8167,13 @@ public b...
   
 
   
-    Jul  8
+    Jul 19
   
 
-  <i class="unloaded">2021-07-08T01:08:00+09:00</i>
+  <i class="unloaded">2021-07-19T20:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# TLS(Thread Local Storage)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8169,25 +8182,18 @@ public b...
 
 
 
-                
-
-메모리 구조
+                System.Object.Equals(object)
 
 
+C#의 모든 타입의 최상위 클래스인 Object에는 .Equals(object) 메소드가 존재한다.
+
+그리고 이를 통해 다른 값과의 동일 비교를 수행할 수 있다.
 
 
 
+구조체나 클래스를 직접 정의하고, 해당 객체로 .Equals(object)를 호출하면
 
-TLS(Thread Local Storage)
-
-
-Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공유한다.
-
-그리고 Stack 영역의 지역 변수(또는 멤버 변수)는 해당 블록 내에서만 사용된다.
-
-따라서 기본적으로 각각의 스레드마다 고유하게 갖는 메모리 영역은 없다.
-
-이를 만들어 줄 수 있는 것이 바로 ...
+object.Equals(object)가 ...
               </p>
             </div>
           </div>
