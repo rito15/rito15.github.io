@@ -612,13 +612,9 @@ mermaid: true
  - **Vector2**와 **Vector3**를 서로 더할 경우, **X, Y**를 각각 더하고 **Vector3**의 **Z**는 그대로 유지한 채로 덧셈 결과를 **Vector3** 타입으로 출력한다.
 
 ### **예시**
- - .
+ - 색상은 더하면 밝아진다.
 
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/134781559-62cffcf8-a266-4d4f-873b-30337607331f.png)
 
 ### **Wiki**
  - <https://wiki.amplify.pt/index.php?title=Unity_Products:Amplify_Shader_Editor/Add>
@@ -639,13 +635,9 @@ mermaid: true
  - 두 노드의 차원이 다를 경우, 낮은 차원의 값을 높은 차원으로(예 : Float -> Vector2) 끌어올려 계산한다.
  
 ### **예시**
- - .
+ - `1 - float4(0, 1, 1, 0)`은 `float4(1, 1, 1, 1) - float4(0, 1, 1, 0)`으로 계산된다.
 
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/134781676-1351a601-8969-4147-ad73-5cfd557a2823.png)
 
 ### **Wiki**
  - <https://wiki.amplify.pt/index.php?title=Unity_Products:Amplify_Shader_Editor/Subtract>
@@ -675,12 +667,9 @@ mermaid: true
  - **Vector2**와 **Vector3**를 서로 곱할 경우, **X, Y**를 각각 곱하고 **Vector3**의 **Z**는 그대로 유지한 채로 곱셈 결과를 **Vector3** 타입으로 출력한다.
 
 ### **예시**
- - .
+ - `float4(1, 1, 1, 0) * float2(0, 1)`은 `float4(1, 1, 1, 0) * float4(0, 1, 0, 0)`으로 계산된다.
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/134781759-fb72b92b-4283-4b3f-8805-4aa11fe55bfc.png)
 
 
 ### **Wiki**
@@ -702,12 +691,9 @@ mermaid: true
  - 두 노드의 차원이 다를 경우, 낮은 차원의 값을 높은 차원으로(예 : Float -> Vector2) 끌어올려 계산한다.
  
 ### **예시**
- - .
+ - 색상을 1보다 큰 값으로 나누면 어두워지고, 1보다 큰 값으로 나누면 밝아진다.
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/134782577-3597e0d8-fcd4-47dc-8aa6-ee42a36a728c.png)
 
 
 ### **Wiki**
@@ -733,12 +719,8 @@ mermaid: true
  - 양수는 그대로 양수, 음수는 양수로 바꾸어 출력한다.
  
 ### **예시**
- - .
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/134782613-e5de2155-2179-4f57-b64e-85bfff69b7cd.png)
 
 
 ### **Wiki**
@@ -810,12 +792,8 @@ mermaid: true
  - 예를 들어 **1.5 ~ 2.4**는 `2`, **2.5 ~ 3.4**는 `3`이 된다.
  
 ### **예시**
- - .
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/134782889-47f5ce60-a67d-4b61-9db3-faf605acc5c1.png)
 
 
 ### **Wiki**
@@ -836,12 +814,9 @@ mermaid: true
  - 예를 들어 **1.23**은 `0.23`, **123**은 `0`, **-5.67**은 `-0.67`이 된다.
  
 ### **예시**
- - .
+ - 연속적으로 증가 또는 감소하는 값의 경우, 0 ~ 1 사이의 구간이 반복되게 할 수 있다.(타일링)
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/134783377-b7c7fea5-c506-4936-8da2-9ca32cddb954.png)
 
 
 ### **Wiki**
@@ -862,12 +837,8 @@ mermaid: true
  - 색상을 반전시킬 때 주로 사용된다.
  
 ### **예시**
- - .
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/134783493-c4f3bb2f-af71-4e4d-8374-223a5b40651a.png)
 
 
 ### **Wiki**
@@ -887,12 +858,8 @@ mermaid: true
  - 양수는 음수로, 음수는 양수로 부호를 반전시켜 출력한다.
  
 ### **예시**
- - .
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/134783838-22d272cc-9575-42c3-93c9-7f107241c41d.png)
 
 
 ### **Wiki**
@@ -912,11 +879,14 @@ mermaid: true
  - 입력값의 범위를 0과 1 사이로 제한한다.
  - 0보다 작은 값은 0으로, 1보다 큰 값은 1로 출력한다.
  - 0과 1 사이의 값은 그대로 출력한다.
+ - 라이트, 색상 연산 등에서 매우 자주 쓰인다.
+ - `Saturate`를 통해 0 ~ 1 범위 바깥의, 의도치 않은 값들을 제거할 수 있다.
  
 ### **예시**
- - .
+ - 가장 기본적인 라이팅(디퓨즈) 연산 `Dot(N, L)`의 결과는 `-1 ~ 1` 범위로 출력된다.
+ - 하지만 라이팅 결과 값이 음수가 나오면 이를 활용할 때 의도치 않은 결과가 발생할 수 있으므로, `Saturate`를 통해 범위를 `0 ~ 1` 사이로 제한 해주어야 한다.
 
-
+![image](https://user-images.githubusercontent.com/42164422/134783929-cfd43a62-a1a9-4c9f-94ac-b33cbfd3fde5.png)
 
 
 
