@@ -908,12 +908,8 @@ mermaid: true
  - 단축키 : 없음
  - 입력값(Input Port)과 노드 내에 입력한 값을 서로 곱하여 출력한다.
  
-### **예시**
- - .
 
-
-
-
+<!-- 이건 예시 안쓸 예정 -->
 
 
 
@@ -939,12 +935,10 @@ mermaid: true
  - `Base`에 `Exp` 제곱한 결과를 출력한다.
  
 ### **예시**
- - .
+ - `Fresnel`, `Specular`와 같이 `0 ~ 1` 사이의 값을 갖는 연속 범위 값은 `Power` 노드를 통해 범위를 좁힐 수 있다.
+ - 아래의 예시는 `Fresnel` 연산.
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/134821266-d2a6823b-db4f-4b87-aaa3-31a02cabd09b.png)
 
 
 ### **Wiki**

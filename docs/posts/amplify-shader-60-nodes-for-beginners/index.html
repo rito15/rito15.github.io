@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="7033 words">39 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="7075 words">39 min</span>
 
 
           <!-- page views -->
@@ -1562,10 +1562,7 @@
   <li>입력값(Input Port)과 노드 내에 입력한 값을 서로 곱하여 출력한다.</li>
 </ul>
 
-<h3 id="예시-21"><strong>예시</strong></h3>
-<ul>
-  <li>.</li>
-</ul>
+<!-- 이건 예시 안쓸 예정 -->
 
 <h3 id="wiki-30"><strong>Wiki</strong></h3>
 <ul>
@@ -1591,10 +1588,13 @@
   <li><code class="language-plaintext highlighter-rouge">Base</code>에 <code class="language-plaintext highlighter-rouge">Exp</code> 제곱한 결과를 출력한다.</li>
 </ul>
 
-<h3 id="예시-22"><strong>예시</strong></h3>
+<h3 id="예시-21"><strong>예시</strong></h3>
 <ul>
-  <li>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Fresnel</code>, <code class="language-plaintext highlighter-rouge">Specular</code>와 같이 <code class="language-plaintext highlighter-rouge">0 ~ 1</code> 사이의 값을 갖는 연속 범위 값은 <code class="language-plaintext highlighter-rouge">Power</code> 노드를 통해 범위를 좁힐 수 있다.</li>
+  <li>아래의 예시는 <code class="language-plaintext highlighter-rouge">Fresnel</code> 연산.</li>
 </ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/134821266-d2a6823b-db4f-4b87-aaa3-31a02cabd09b.png" alt="image" /></p>
 
 <h3 id="wiki-31"><strong>Wiki</strong></h3>
 <ul>
@@ -1616,7 +1616,7 @@
   <li>입력 값이 다중 채널일 경우(Vector2, Vector3, Vector4) 각 채널마다 따로 계산한다.</li>
 </ul>
 
-<h3 id="예시-23"><strong>예시</strong></h3>
+<h3 id="예시-22"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -1641,7 +1641,7 @@
   <li>입력 값이 다중 채널일 경우(Vector2, Vector3, Vector4) 각 채널마다 따로 계산한다.</li>
 </ul>
 
-<h3 id="예시-24"><strong>예시</strong></h3>
+<h3 id="예시-23"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -1668,7 +1668,7 @@
   <li>입력 값이 <code class="language-plaintext highlighter-rouge">Min</code>과 <code class="language-plaintext highlighter-rouge">Max</code> 사이라면 그대로 출력한다.</li>
 </ul>
 
-<h3 id="예시-25"><strong>예시</strong></h3>
+<h3 id="예시-24"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -1707,7 +1707,7 @@
   <li><code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">B</code>가 선형 보간된 결과값</li>
 </ul>
 
-<h3 id="예시-26"><strong>예시</strong></h3>
+<h3 id="예시-25"><strong>예시</strong></h3>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">UV</code>의 <code class="language-plaintext highlighter-rouge">U</code> 값을 기준으로 색상 혼합하기</li>
 </ul>
@@ -1736,7 +1736,7 @@
   <li>UV와 같이 연속된 값들을 불연속 영역으로 양분할 때 주로 사용한다.</li>
 </ul>
 
-<h3 id="예시-27"><strong>예시</strong></h3>
+<h3 id="예시-26"><strong>예시</strong></h3>
 <ul>
   <li>가장 흔한 예시 중 하나로, <code class="language-plaintext highlighter-rouge">B</code>에 <code class="language-plaintext highlighter-rouge">UV.x</code>나 <code class="language-plaintext highlighter-rouge">UV.y</code>를 넣고 <code class="language-plaintext highlighter-rouge">A</code>에 <code class="language-plaintext highlighter-rouge">0.0</code> ~ <code class="language-plaintext highlighter-rouge">1.0</code> 사이의 상수를 넣으면 해당 상수를 기준점으로 흑백 양분하는 UV 마스크가 만들어진다.</li>
 </ul>
@@ -1765,7 +1765,7 @@
   <li>입력 값이 <code class="language-plaintext highlighter-rouge">Min</code>, <code class="language-plaintext highlighter-rouge">Max</code> 사이일 경우 부드럽게 보간된 값을 출력한다.</li>
 </ul>
 
-<h3 id="예시-28"><strong>예시</strong></h3>
+<h3 id="예시-27"><strong>예시</strong></h3>
 <ul>
   <li>Dissolve 효과</li>
 </ul>
@@ -1794,7 +1794,7 @@
   <li><code class="language-plaintext highlighter-rouge">0.6</code> 값을 Old (0, 1)에서 New (8, 9)으로 <strong>Remap</strong>할 경우, <code class="language-plaintext highlighter-rouge">8.6</code>이 출력된다.</li>
 </ul>
 
-<h3 id="예시-29"><strong>예시</strong></h3>
+<h3 id="예시-28"><strong>예시</strong></h3>
 <ul>
   <li>Degree 프로퍼티를 0 ~ 360 사이로 입력하여, 0 ~ Tau(6.28) 범위로 <strong>Remap</strong> 시킨다.</li>
 </ul>
@@ -1827,7 +1827,7 @@
   <li>선택 가능한 출력 타입 : <strong>Vector2</strong>, <strong>Vector3</strong>, <strong>Vector4</strong>, <strong>Color</strong></li>
 </ul>
 
-<h3 id="예시-30"><strong>예시</strong></h3>
+<h3 id="예시-29"><strong>예시</strong></h3>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123089783-5d2c4d00-d462-11eb-9572-107863a5e51c.png" alt="image" /></p>
 
@@ -1852,7 +1852,7 @@
   <li>예를 들어 입력 타입이 <strong>Vector4</strong>이고 <strong>X</strong>, <strong>W</strong>에만 체크할 경우, 입력 벡터의 <strong>X</strong>, <strong>W</strong>를 새로운 <strong>Vector2</strong>의 <strong>X</strong>, <strong>Y</strong>에 각각 할당하여 출력한다.</li>
 </ul>
 
-<h3 id="예시-31"><strong>예시</strong></h3>
+<h3 id="예시-30"><strong>예시</strong></h3>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123089568-13436700-d462-11eb-9218-1be57e4a63ae.png" alt="image" /></p>
 
@@ -1876,7 +1876,7 @@
   <li>예를 들어 <strong>Vector3</strong> 값을 입력할 경우, <strong>X</strong>, <strong>Y</strong>, <strong>Z</strong> 값을 각각 나누어 사용할 수 있다.</li>
 </ul>
 
-<h3 id="예시-32"><strong>예시</strong></h3>
+<h3 id="예시-31"><strong>예시</strong></h3>
 <ul>
   <li><strong>Color</strong> 연산의 결과를 각각 <strong>R</strong>, <strong>G</strong>, <strong>B</strong>, <strong>A</strong> 채널로 나누어 사용한다.</li>
 </ul>
@@ -1903,7 +1903,7 @@
   <li>노드를 선택하고 에디터 좌측의 정보 탭에서 각 채널에 출력할 요소를 선택할 수 있다.</li>
 </ul>
 
-<h3 id="예시-33"><strong>예시</strong></h3>
+<h3 id="예시-32"><strong>예시</strong></h3>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123092087-12600480-d465-11eb-8f5a-4db78267de53.png" alt="image" /></p>
 
@@ -1927,7 +1927,7 @@
   <li>방향 벡터를 만들기 위해 주로 사용된다.</li>
 </ul>
 
-<h3 id="예시-34"><strong>예시</strong></h3>
+<h3 id="예시-33"><strong>예시</strong></h3>
 <ul>
   <li>버텍스의 월드 위치로부터 특정 월드 위치를 향하는 방향 벡터를 구하기 위해, 두 위치 벡터를 서로 뺀 뒤 <code class="language-plaintext highlighter-rouge">Normalize</code> 노드의 입력으로 넣어주었다.</li>
 </ul>
@@ -1953,7 +1953,7 @@
   <li>두 입력 벡터를 내적한 결과를 <strong>Float</strong>로 출력한다.</li>
 </ul>
 
-<h3 id="예시-35"><strong>예시</strong></h3>
+<h3 id="예시-34"><strong>예시</strong></h3>
 <ul>
   <li>흔히 사용되는 <code class="language-plaintext highlighter-rouge">Fresnel</code> 노드는 내부적으로 <code class="language-plaintext highlighter-rouge">World Normal</code>과 <code class="language-plaintext highlighter-rouge">View Dir</code>의 내적 연산을 이용한다.</li>
 </ul>
@@ -1979,7 +1979,7 @@
   <li>두 입력 벡터를 외적한 결과를 출력한다.</li>
 </ul>
 
-<h3 id="예시-36"><strong>예시</strong></h3>
+<h3 id="예시-35"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2003,7 +2003,7 @@
   <li>두 벡터 좌표 사이의 거리를 <strong>Float</strong>로 출력한다.</li>
 </ul>
 
-<h3 id="예시-37"><strong>예시</strong></h3>
+<h3 id="예시-36"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2027,7 +2027,7 @@
   <li>입력 벡터의 길이를 <strong>Float</strong>로 출력한다.</li>
 </ul>
 
-<h3 id="예시-38"><strong>예시</strong></h3>
+<h3 id="예시-37"><strong>예시</strong></h3>
 <ul>
   <li><strong>UV</strong>와 <strong>Length</strong>를 이용해 간단히 원 그리기</li>
 </ul>
@@ -2064,7 +2064,7 @@
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123308214-5d117780-d55e-11eb-8615-7de519dce748.png" alt="image" /></p>
 
-<h3 id="예시-39"><strong>예시</strong></h3>
+<h3 id="예시-38"><strong>예시</strong></h3>
 <ul>
   <li><strong>Time</strong> 노드의 출력을 <strong>Sin</strong> 노드의 입력으로 넣고 <code class="language-plaintext highlighter-rouge">0.1</code>을 곱하여 시간에 따라 <code class="language-plaintext highlighter-rouge">-0.1 ~ 0.1</code> 범위로 변하는 값을 만든다.</li>
   <li>이 값을 <strong>Vertex Normal</strong> 노드에 곱하여 시간에 따라 정점 노멀 방향과 역방향을 오가는 벡터를 생성하고, 마스터 노드의 <strong>Local Vertex Offset</strong> 입력으로 넣어 정점이 노멀 방향으로 박동하게 한다.</li>
@@ -2153,7 +2153,7 @@
   <li><code class="language-plaintext highlighter-rouge">Out</code> : <strong>Scale</strong>이 곱해진 결과값을 출력한다.</li>
 </ul>
 
-<h3 id="예시-40"><strong>예시</strong></h3>
+<h3 id="예시-39"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2185,7 +2185,7 @@
   <li><code class="language-plaintext highlighter-rouge">t/8</code> : <code class="language-plaintext highlighter-rouge">Sin(Time / 8)</code> 값을 출력한다.</li>
 </ul>
 
-<h3 id="예시-41"><strong>예시</strong></h3>
+<h3 id="예시-40"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2217,7 +2217,7 @@
   <li><code class="language-plaintext highlighter-rouge">t/8</code> : <code class="language-plaintext highlighter-rouge">Cos(Time / 8)</code> 값을 출력한다.</li>
 </ul>
 
-<h3 id="예시-42"><strong>예시</strong></h3>
+<h3 id="예시-41"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2249,7 +2249,7 @@
   <li><strong>Vector3</strong> 타입의 위치 벡터를 입력으로 넣을 때, 바로 넣지 말고 <code class="language-plaintext highlighter-rouge">Append</code> 노드를 통해 <code class="language-plaintext highlighter-rouge">W</code> 값을 1로 입력하여 <strong>Vector4</strong> 타입으로 전달해야 한다.</li>
 </ul>
 
-<h3 id="예시-43"><strong>예시</strong></h3>
+<h3 id="예시-42"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2276,7 +2276,7 @@
   <li><strong>Vector3</strong> 타입의 위치 벡터를 입력으로 넣을 때, 바로 넣지 말고 <code class="language-plaintext highlighter-rouge">Append</code> 노드를 통해 <code class="language-plaintext highlighter-rouge">W</code> 값을 1로 입력하여 <strong>Vector4</strong> 타입으로 전달해야 한다.</li>
 </ul>
 
-<h3 id="예시-44"><strong>예시</strong></h3>
+<h3 id="예시-43"><strong>예시</strong></h3>
 <ul>
   <li>.</li>
 </ul>
@@ -2318,7 +2318,7 @@
   <li><code class="language-plaintext highlighter-rouge">X</code>, <code class="language-plaintext highlighter-rouge">Y</code>, <code class="language-plaintext highlighter-rouge">Z</code>, <code class="language-plaintext highlighter-rouge">W</code> : 각 채널의 <strong>Float</strong> 값</li>
 </ul>
 
-<h3 id="예시-45"><strong>예시</strong></h3>
+<h3 id="예시-44"><strong>예시</strong></h3>
 <ul>
   <li>화면의 UV를 그대로 색상 값으로 출력하기</li>
 </ul>
@@ -2359,7 +2359,7 @@
   <li><code class="language-plaintext highlighter-rouge">R</code>, <code class="language-plaintext highlighter-rouge">G</code>, <code class="language-plaintext highlighter-rouge">B</code>, <code class="language-plaintext highlighter-rouge">A</code> : 출력 색상의 각 채널 <strong>Float</strong> 값</li>
 </ul>
 
-<h3 id="예시-46"><strong>예시</strong></h3>
+<h3 id="예시-45"><strong>예시</strong></h3>
 <ul>
   <li>뒤에 보이는 화면의 일렁임 효과</li>
 </ul>
@@ -2405,7 +2405,7 @@
   <li><code class="language-plaintext highlighter-rouge">Out</code> : Fresnel 계산 결과값</li>
 </ul>
 
-<h3 id="예시-47"><strong>예시</strong></h3>
+<h3 id="예시-46"><strong>예시</strong></h3>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123135507-d771c700-d48c-11eb-8b7e-aee274833e43.gif" alt="2021_0624_Fresnel_Example" /></p>
 
@@ -2561,6 +2561,16 @@
         
         
         
+        <li><a href="/posts/unity-shader-properties/">유니티 쉐이더 - 프로퍼티 메모</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
       
         
@@ -2571,17 +2581,7 @@
         
         
         
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
-      
-        
-        
-        
         <li><a href="/posts/hash-table/">자료구조 - 해시 테이블(Hash Table)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-amplify-2-color-dissolve/">(Amplify) Directional 2 Color Dissolve Shader</a></li>
       
 
       </ul>
