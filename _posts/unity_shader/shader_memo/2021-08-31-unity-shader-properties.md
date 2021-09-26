@@ -1,5 +1,5 @@
 ---
-title: Unity Shaderlab Properties
+title: 유니티 쉐이더 - 프로퍼티 메모
 author: Rito15
 date: 2021-08-31 19:54:00 +09:00
 categories: [Unity Shader, Shader Memo]

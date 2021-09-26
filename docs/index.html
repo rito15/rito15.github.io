@@ -566,6 +566,93 @@ Main Thread Dispatcher
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-shader-random-functions/">유니티 쉐이더 - 랜덤 함수들</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+
+  
+    float Random(float2 seed)
+{
+    return frac(sin(dot(seed, float2(73.867, 25.241))) * 39482.17593);
+}
+
+float RandomRange(float2 seed, float min, float max)
+{
+    float t = frac(sin(do...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Sep 26, 2021,  9:19 PM +0900"
+  >
+
+  
+  
+
+  
+    Sep 26
+  
+
+  <i class="unloaded">2021-09-26T21:19:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="85 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/heap-priority-queue/">자료구조 - 힙(Heap), 우선순위 큐(Priority Queue)</a>
     </h1>
 
@@ -1259,94 +1346,6 @@ Stack
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-switch-case-vs-dictionary/">C# if-else if vs switch-case vs Dictionary</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        분기 처리
-
-
-특정 변수의 값에 따라 분기를 나누어 처리해야 하는 경우,
-
-일반적으로 if-else if 또는 switch-case문을 사용할 수 있다.
-
-
-  
-    int value = someValue;
-
-if(value == 0) DoSomething0();
-else if(value == 1) DoSomething1();
-else if(val...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Sep 13, 2021, 12:01 AM +0900"
-  >
-
-  
-  
-
-  
-    Sep 13
-  
-
-  <i class="unloaded">2021-09-13T00:01:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2007 words">11 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1905,6 +1904,11 @@ else if(val...
         
         
         
+        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-shader-concept/">초보자를 위한 쉐이더 개념 간단 정리</a></li>
       
         
@@ -1921,11 +1925,6 @@ else if(val...
         
         
         <li><a href="/posts/unity-amplify-2-color-dissolve/">(Amplify) Directional 2 Color Dissolve Shader</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
 
       </ul>

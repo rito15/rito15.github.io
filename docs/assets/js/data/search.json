@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "유니티 쉐이더 - 랜덤 함수들",
+    "url": "/posts/unity-shader-random-functions/",
+    "categories": "Unity Shader, Shader Memo",
+    "tags": "unity, shader, memo",
+    "date": "2021-09-26 21:19:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Memofloat Random(float2 seed){    return frac(sin(dot(seed, float2(73.867, 25.241))) * 39482.17593);}float RandomRange(float2 seed, float min, float max){    float t = frac(sin(dot(seed, float2(73.867, 25.241))) * 39482.17593);    return lerp(min, max, t);}float3 RandomRGB(float2 seed){    float ..."
+  },
+  
+  {
     "title": "자료구조 - 힙(Heap), 우선순위 큐(Priority Queue)",
     "url": "/posts/heap-priority-queue/",
     "categories": "Algorithm, Data Structure",
@@ -541,7 +556,7 @@
   },
   
   {
-    "title": "Unity Shaderlab Properties",
+    "title": "유니티 쉐이더 - 프로퍼티 메모",
     "url": "/posts/unity-shader-properties/",
     "categories": "Unity Shader, Shader Memo",
     "tags": "unity, shader, memo",

@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-26T04:31:20+09:00</updated>
+  <updated>2021-09-26T21:36:44+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,59 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 쉐이더 - 랜덤 함수들</title>
+    <link href="https://rito15.github.io/posts/unity-shader-random-functions/" rel="alternate" type="text/html" title="유니티 쉐이더 - 랜덤 함수들" />
+    <published>2021-09-26T21:19:00+09:00</published>
+  
+    <updated>2021-09-26T21:19:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-shader-random-functions/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-random-functions/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Memo
+
+
+float Random(float2 seed)
+{
+    return frac(sin(dot(seed, float2(73.867, 25.241))) * 39482.17593);
+}
+
+float RandomRange(float2 seed, float min, float max)
+{
+    float t = frac(sin(dot(seed, float2(73.867, 25.241))) * 39482.17593);
+    return lerp(min, max, t);
+}
+
+float3 RandomRGB(float2 seed)
+{
+    float r = frac(sin(dot(seed, float2(12.586, 25.241))) * 39482.17593);
+    float g = frac(c...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -321,94 +374,6 @@ Project 윈도우에서 해당 모델 파일을 선택한다.
 Animation Type을 Generic 또는 Humanoid로 바꾸고,
 
 Avatar Definition을...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - UI 이미지에 구멍뚫기</title>
-    <link href="https://rito15.github.io/posts/unity-punch-ui-image/" rel="alternate" type="text/html" title="유니티 - UI 이미지에 구멍뚫기" />
-    <published>2021-09-15T15:00:00+09:00</published>
-  
-    <updated>2021-09-15T15:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-punch-ui-image/</id>
-    <content src="https://rito15.github.io/posts/unity-punch-ui-image/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo - Shorts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Mask
-
-
-
-
-이런 이미지에
-
-
-
-이런 마스크를 씌우려면
-
-
-  Mask Image (Image, Mask 컴포넌트 존재)
-    
-      Image (Image 컴포넌트 존재)
-    
-  
-
-
-이렇게 마스크 이미지, 보여질 이미지를 부모-자식 관계로 구성하면 된다.
-
-
-
-그러면 이렇게 마스크 이미지와 겹치는 영역만 보인다.
-
-
-
-Punch
-
-
-반대로 마스크 이미지와 겹치는 영역만 안보이도록,
-
-마치 구멍이 뚫린 것 같이 표현하려면
-
-우선 마테리얼 하나를 만든다.
-
-
-
-그리고 프로퍼티 값들을 위와 같이 설정한다.
-
-
-
-
-
-마스크의 자식으로 있는 이미지의 Image 컴포넌트에서
-
-Material에 해당 마테리얼을 넣어주고, Maskable 옵션을 체크 해제한다.
-
-
-
-
-
-이제 위와 같이 마스크 모...
     </summary>
   
 

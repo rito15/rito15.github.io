@@ -1975,6 +1975,11 @@
         
         
         
+        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-shader-concept/">초보자를 위한 쉐이더 개념 간단 정리</a></li>
       
         
@@ -1991,11 +1996,6 @@
         
         
         <li><a href="/posts/unity-amplify-2-color-dissolve/">(Amplify) Directional 2 Color Dissolve Shader</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
 
       </ul>
@@ -5337,6 +5337,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9457,7 +9470,7 @@ C#에서의 union
       
       
       <div class="card">
-        <a href="/posts/cs-deconstructor/">
+        <a href="/posts/cs-struct-property-indexer/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9474,13 +9487,13 @@ C#에서의 union
   
 
   
-    Sep 11
+    Aug  6
   
 
-  <i class="unloaded">2021-09-11T04:32:00+09:00</i>
+  <i class="unloaded">2021-08-06T15:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Deconstructor</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 구조체 프로퍼티, 구조체 인덱서</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9489,34 +9502,26 @@ C#에서의 union
 
 
 
-                Deconstructor
+                구조체의 특징
 
 
-1
-2
-3
-4
-5
-class Student
+
+  초기화(할당), 리턴 등의 동작을 통해 값을 전달할 경우, 구조체가 통째로 복제된다.
+
+
+
+  
+    struct MyStruct
 {
-    public int id;
-    public string name;
+    public float value;
 }
 
+class MainClass
+{
+    private MyStruct ms;
 
-클래스가 있다.
-
-1
-Student student = new Student();
-
-
-객체도 있다.
-
-1
-(int id, string name) = student;
-
-
-위와 같이 한다고 해서 객체...
+    private MyStruct GetStruct()
+    ...
               </p>
             </div>
           </div>

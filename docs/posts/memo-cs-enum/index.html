@@ -621,6 +621,11 @@
         
         
         
+        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-shader-concept/">초보자를 위한 쉐이더 개념 간단 정리</a></li>
       
         
@@ -637,11 +642,6 @@
         
         
         <li><a href="/posts/unity-amplify-2-color-dissolve/">(Amplify) Directional 2 Color Dissolve Shader</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
 
       </ul>
@@ -6822,6 +6822,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8125,7 +8138,7 @@ using BenchmarkDotNet.Attributes;
       
       
       <div class="card">
-        <a href="/posts/cs-heap-memory-debugger/">
+        <a href="/posts/cs-switch-case-vs-dictionary/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8142,13 +8155,13 @@ using BenchmarkDotNet.Attributes;
   
 
   
-    Aug  8
+    Sep 13
   
 
-  <i class="unloaded">2021-08-08T12:12:00+09:00</i>
+  <i class="unloaded">2021-09-13T00:01:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 간단한 힙 메모리 디버거 (콘솔)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# if-else if vs switch-case vs Dictionary</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8157,43 +8170,23 @@ using BenchmarkDotNet.Attributes;
 
 
 
-                기능
+                분기 처리
 
 
+특정 변수의 값에 따라 분기를 나누어 처리해야 하는 경우,
 
-  원하는 지점의 힙 메모리 크기 기록
-  기록된 두 지점의 힙 메모리 크기 차이 출력
-
-
-
-
-주의사항
-
-
-
-  Print() 이후에는 Record()하지 않아야 한다.
-    
-      Future Works : Print() 내에서 스트링을 스택에 할당하여 해결
-    
-  
-
-
-
-
-사용 예시
-
+일반적으로 if-else if 또는 switch-case문을 사용할 수 있다.
 
 1
 2
 3
 4
 5
-6
-7
-8
-9
-10
-...
+int value = someValue;
+
+if(value == 0) DoSomething0();
+else if(value == 1) DoSomething1();
+else if(v...
               </p>
             </div>
           </div>
