@@ -19,55 +19,124 @@
 
 # Gamma Correction(감마 보정)이란?
 ---
-- 이미지를 디스크에 저장할 때 `Pow(value, 1/2.2)` 연산을 적용해서 더 밝게 저장한다.
+- 이미지를 디스크에 저장할 때 `Pow(color, 1/2.2)` 연산을 적용해서 더 밝게 저장한다.
 - 모니터의 색상 변환에 대응하여, 원본 색상을 화면에 제대로 출력하기 위해 수행한다.
+- `1/2.2` = `0.4545....`
+
+<br>
+
+# 색 공간(Color Space) 종류
+---
+
+## **sRGB**
+ - 원본보다 밝아진 상태의 색 공간
+ - 감마 값이 `2.2`인 색 공간
+ - 감마 보정(`Pow(color, 1/2.2)`)을 통해 밝게 저장된 이미지의 색 공간을 의미한다.
+
+## **Linear**
+ - 원본 색상을 저장하는 상태의 색 공간
+
+## **Gamma**
+ - 감마 보정에 의해 어두워진 상태의 색 공간
+ - 모니터 출력 결과
+
+<br>
+
+
+# 유니티의 색 공간 파이프라인
+---
+
+## **Gamma Pipeline**
+
+- 다른 짓 안하고 그냥 쉐이더 연산 결과를 바로 모니터로 보낸다.
+
+![image](https://user-images.githubusercontent.com/42164422/134969719-2d0cde4e-61df-4dbb-9f3b-2fa1b38cce31.png)
+
+- 텍스쳐가 `sRGB`로 밝게 저장된 상태 그대로(원본과 값이 다른 상태에서) 연산을 해버린다.
+- 근데 텍스쳐를 사용하지 않는 쉐이더 연산(라이팅 등)에서는 정확한 값(`Linear`)으로 연산을 수행한다.
+- 따라서 텍스쳐는 `sRGB`, 라이팅 연산 결과는 `Linear`인 불일치 상태에서 서로가 연산되는 참사가 발생한다.
+- 그리고 심지어 `Linear`에서 이루어진 쉐이더 연산 결과가 그대로 모니터에 출력되므로, 의도보다 더 어두워진다는 것이 치명적이다.
+
+![image](https://user-images.githubusercontent.com/42164422/134968092-a9946934-d4c9-4c65-a655-3dd666b3697c.png)
+
+<br>
+
+## **Linear Pipeline**
+
+- `sRGB`로 저장된 텍스쳐를 다시 어둡게(원본으로) 바꾸고, 그 상태에서 정확한 값을 사용해 연산한다.
+- 그리고 그 연산 결과를 다시 sRGB로 저장하여, 모니터에서는 다시 어두워져서 원본이 출력되도록 한다.
+
+![image](https://user-images.githubusercontent.com/42164422/134970010-3b67678f-47d1-4911-ac85-d18f1528fd16.png)
+
+- `sRGB`로 저장되었던 텍스쳐, 그리고 순수한 쉐이더 연산 모두 동일한 `Linear` 공간에서 같이 계산되므로 정확히 계산된다.
+- 또한 `Linear`에서 계산된 결과를 `sRGB`로 올려서, 결과적으로 모니터에서는 통해 `Linear`로 내려져서 출력되므로
+
+![image](https://user-images.githubusercontent.com/42164422/134969087-d63930ae-76b2-4108-865d-3e05e29eb4b0.png)
+
+- 결과적으로, **Linear Pipeline**이 더 정확한 그래픽 결과를 얻을 수 있다.
+- 구형 기기(OpenGLES 2.0까지만 지원하는 기기)에서는 사용할 수 없다.
 
 
 <br>
 
-# sRGB란?
----
+## **Gamma vs. Linear**
 
-- 모니터, 카메라 등의 표준 RGB 색 공간
-- 감마 값이 `2.2`인 색 공간
-- 감마 보정(`Pow(value, 2.2)`)을 통해 밝게 저장된 이미지의 색 공간을 의미한다.
+- 화면의 모든 색상이 Gamma는 밝고 대비가 높으며, Linear는 비교적 차분하다.
+
+- Gamma는 비교적 화질이 떨어져 보이고, Diffuse 같은 연속된 음영에 대해 특히 뚝뚝 끊기는 느낌을 준다.
+
+- Linear는 더 부드러운 음영을 표현하며, Gamma보다 더 현실에 가까운 그래픽 연산 결과를 보여준다.
+
+- 구형 기기를 지원하지 않아도 된다면 대부분의 경우 그냥 Linear Pipeline을 선택하는 것이 좋다.
+
+- 색 공간 파이프라인을 Linear로 한다고 해서 성능 상 손해보지는 않는다.
+
+
+<br>
+
+## 유니티 렌더 파이프라인별 기본 색 공간 파이프라인
+- **Built-in** : `Gamma Space`
+  - Linear 파이프라인을 지원하지 못하는 구형 기기들을 모두 호환하기 위해서 기본 색공간이 `Gamma`로 설정된다.
+
+- **SRP(URP, HDRP)** : `Linear Space`
 
 <br>
 
 
-# 유니티의 색 공간
+## 유니티 텍스쳐의 sRGB 토글
+
+- `Gamma` 파이프라인은 어차피 싹다 그대로 연산하니까 달라지는 것이 없고, `Linear` 파이프라인일 경우 달라진다.
+
+- 색상 텍스쳐는 `sRGB` 색공간 텍스쳐로 간주하고, 연산을 위해 `Linear`로 끌어내려서(`^2.2`) 연산한다.
+
+- 그런데 정확한 값이 요구되는, 데이터 텍스쳐의 경우(노말 맵, 메탈릭 맵, 플로우 맵, 렌더 텍스쳐 등)
+  끌어내리면 오히려 부정확해지므로 `Linear` 그대로 사용해야 한다.
+
+- 따라서 데이터 텍스쳐는 인스펙터 설정에서 `sRGB` 체크 해제하면 `Linear`로 간주하고, 정확한 값으로 사용할 수 있다.
+
+<br>
+
+# 결론 : Gamma vs. Linear 파이프라인
 ---
 
-## 유니티 파이프라인별 기본 색 공간
-- Built-in : Gamma
-  - Linear 파이프라인을 지원하지 못하는 구형 기기들을 모두 호환하기 위해서 기본 색공간이 Gamma Space로 설정된다.
+![image](https://user-images.githubusercontent.com/42164422/134972937-f51ec163-443c-4ae2-b38f-8284660059d6.png)
 
-- SRP : Linear
+- 위와 같은 단순 라이팅 결과만 보자면 `Gamma` 파이프라인 쪽이 더 부드럽고 예뻐 보일 수 있다.
 
+- 하지만 `Gamma` 파이프라인은 애초에 치명적인 색공간 불일치 문제가 있다. (색상 텍스쳐는 `sRGB`, 쉐이더 연산 공간은 `Linear`)
 
-
-## 색 공간의 차이?
-- 연산을 어디서(어떤 상태에서) 하느냐의 차이
-- Gamma Space : 이미 Gamma로 변환된 상태의 색상을 갖고 연산 수행
-- Linear Space : Gamma로 변환된 색상을 다시 Linear로 변환시켜서, 원래 색상을 갖고 연산을 수행
+- 더 정확하고 현실적인 그래픽을 보여주는 것은 `Linear` 파이프라인이며 어두운 부분에서도 더 높은 화질을 제공한다.
 
 
 
-## 유니티 텍스쳐의 sRGB 토글 체크 여부의 차이
-- sRGB 체크 안하면 원래 색상 그대로 저장된다.(Linear)
-- 정확한 값이 요구되는, 데이터 텍스쳐의 경우 Linear로 사용한다.
-
-- sRGB 체크하면 해당 텍스쳐가 Gamma Correction 적용(`^0.45`)된 텍스쳐라고 생각하고, `^2.2` 해서 실제 색상으로 복원해서 연산할 수 있게 한다.
-
-
-
-
-
-
+<br>
 
 # References
 ---
 - <https://www.youtube.com/watch?v=Xwlm5V-bnBc>
+- <https://www.youtube.com/watch?v=oVyqLhVrjhY>
+- <https://www.youtube.com/watch?v=lUvsEfqOkUo>
+
 - <https://blog.naver.com/PostView.nhn?blogId=cdw0424&logNo=221827528747>
 - <https://www.slideshare.net/agebreak/color-space-gamma-correction>
 - <https://chulin28ho.tistory.com/241>
