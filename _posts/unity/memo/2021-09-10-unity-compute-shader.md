@@ -358,6 +358,7 @@ public class ScreenUVRenderer : MonoBehaviour
 
 - 큐브 위치, 색상 시뮬레이션
 - 이 예제의 연산은 컴퓨트 쉐이더로 실행할만큼 무겁지 않으니 CPU 연산에 비해 이득이 되지는 않는다.
+- 컴퓨트 쉐이더 연산 결과를 CPU로 가져와서 적용하는 `_cubeBuffer.GetData()`도 병목일 수 있으므로, 컴퓨트 버퍼를 완전히 활용하려면 컴퓨트 쉐이더의 연산 결과를 바로 Vert/Frag 쉐이더에서 컴퓨트 버퍼 변수로 참조하여 GPU 내에서 갱신해주는 것이 좋다.
 
 ![2021_0926_CubeSimulator](https://user-images.githubusercontent.com/42164422/134808168-206cc357-2a11-4591-9af6-a1c375e1cd6b.gif)
 
