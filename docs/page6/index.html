@@ -367,6 +367,97 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        렌더링 파이프라인 구조 요약(DirectX 9 기준)
+
+
+입력 조립
+
+  GPU가 CPU로부터 정점 데이터를 전달 받아서 프리미티브(삼각형)들을 만든다.
+
+
+정점 쉐이더
+
+  Object Space에서 Clip Space까지 정점들의 공간 변환을 수행한다.
+
+
+래스터라이저
+
+  Clip Space의 정점 데이터를 Viewport로 변환하고, 
+정점 데...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Aug 30, 2021,  1:50 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug 30
+  
+
+  <i class="unloaded">2021-08-30T01:50:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2911 words">16 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-editor-built-in-icons/">유니티 에디터 - Built-in Icons</a>
     </h1>
 
@@ -1174,97 +1265,6 @@ if (rect.Contains(Event.current.mousePosition))
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-scripting-version-compatability/">유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        EditorGUILayout.Space(float)
-
-
-
-  
-    .
-  
-
-  
-    
-      2019.3 미만의 버전에서는 .Space()만 존재하고 .Space(float)가 존재하지 않는다.
-    
-    
-      따라서 .Space()를 통해서는 높이 8의 고정된 여백만 넣을 수 있다.
-    
-    
-      이에 대응하기...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Aug 23, 2021,  8:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Aug 23
-  
-
-  <i class="unloaded">2021-08-23T20:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="901 words">5 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1830,17 +1830,17 @@ if (rect.Contains(Event.current.mousePosition))
         
         
         
+        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
       
         
         
         
         <li><a href="/posts/unity-shader-properties/">유니티 쉐이더 - 프로퍼티 메모</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
         
         

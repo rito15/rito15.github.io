@@ -1,8 +1,23 @@
 [
   
   {
+    "title": "유니티 - sRGB, Linear, Gamma 컬러 스페이스",
+    "url": "/posts/unity-srgb-linear-gamma-color-space/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, csharp",
+    "date": "2021-09-29 03:21:00 +0900",
+    
+
+
+
+
+
+    "snippet": "모니터의 색상 변환  모니터는 디스크에 저장된 이미지를 화면에 출력할 때 Pow(color, 2.2) 연산을 적용해서 더 어둡게 출력한다.  이유?          베버의 법칙(Weber’s law)      사람의 시각은 어두운 부분의 밝기 변화를 부드럽지 않고 단절되게 감지한다.      그래서 어두운 부분의 화질이 떨어져 보이는 현상이 발생한다.      따라서 이를 부드럽게 감지하도록 하려면 어두운 부분을 더 풍부하게 표현할 필요가 있다.      따라서 모니터 하드웨어적으로 이런 변환을 해준다.        Pow(c..."
+  },
+  
+  {
     "title": "유니티 - 진공 청소기, 먼지 시뮬레이션",
-    "url": "/posts/unity-vacuum-cleaner/",
+    "url": "/posts/unity-million-dust-simulation/",
     "categories": "Unity, Unity Study",
     "tags": "unity, csharp",
     "date": "2021-09-27 17:00:00 +0900",
@@ -12,7 +27,7 @@
 
 
 
-    "snippet": "목표  수십만 개의 먼지를 렌더링한다.  진공 청소기로 빨아들인다.주요 개념Compute Buffer  큰 병렬 데이터를 GPU에 전달하거나 쉐이더끼리 공유하기 위해 사용한다.  Vert/Frag, Compute Shader에서 StructuredBuffer&amp;lt;T&amp;gt; 타입 변수로 사용할 수 있다.Graphics.DrawMeshInstancedIndirect()  컴퓨트 버퍼의 메시 데이터를 GPU Instancing을 적용하여 대규모로 렌더링할 수 있다.Compute Shader  GPGPU를 통해 병렬적..."
+    "snippet": "목표  수십만 개의 먼지를 렌더링한다.  먼지들의 움직임을 시뮬레이션한다.  진공 청소기로 먼지들을 예쁘게 빨아들인다.주요 개념Compute Buffer  큰 병렬 데이터를 GPU에 전달하거나 쉐이더끼리 공유하기 위해 사용한다.  Vert/Frag, Compute Shader에서 StructuredBuffer&amp;lt;T&amp;gt; 타입 변수로 사용할 수 있다.Graphics.DrawMeshInstancedIndirect()  컴퓨트 버퍼의 메시 데이터를 GPU Instancing을 적용하여 대규모로 렌더링할 수 있다...."
   },
   
   {

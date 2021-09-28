@@ -1,10 +1,19 @@
-
-# TITLE : Unity - Gamma Correction, Linear/Gamma Color Space
-
+---
+title: 유니티 - sRGB, Linear, Gamma 컬러 스페이스
+author: Rito15
+date: 2021-09-29 03:21:00 +09:00
+categories: [Unity, Unity Memo]
+tags: [unity, csharp]
+math: true
+mermaid: true
+---
 
 # 모니터의 색상 변환
 ---
 - 모니터는 디스크에 저장된 이미지를 화면에 출력할 때 `Pow(color, 2.2)` 연산을 적용해서 더 어둡게 출력한다.
+
+![image](https://user-images.githubusercontent.com/42164422/135145554-2579fc60-b16a-470d-acfb-9128ae21131f.png)
+
 
 - 이유?
   - 베버의 법칙(Weber's law)
@@ -23,14 +32,20 @@
 - 모니터의 색상 변환에 대응하여, 원본 색상을 화면에 제대로 출력하기 위해 수행한다.
 - `1/2.2` = `0.4545....`
 
+![image](https://user-images.githubusercontent.com/42164422/135145723-1227a70f-6009-4e6b-b219-8d852db80868.png)
+
 <br>
 
 # 색 공간(Color Space) 종류
 ---
 
+> **Note**
+> - 색 공간은 어디까지나 상대적인 개념이다.
+
+<br>
+
 ## **sRGB**
  - 원본보다 밝아진 상태의 색 공간
- - 감마 값이 `2.2`인 색 공간
  - 감마 보정(`Pow(color, 1/2.2)`)을 통해 밝게 저장된 이미지의 색 공간을 의미한다.
 
 ## **Linear**
@@ -39,12 +54,22 @@
 ## **Gamma**
  - 감마 보정에 의해 어두워진 상태의 색 공간
  - 모니터 출력 결과
+ 
+ ![image](https://user-images.githubusercontent.com/42164422/135146948-1e03f0b5-37db-4a3e-8cd7-5f1ea58882ef.png)
 
 <br>
 
 
 # 유니티의 색 공간 파이프라인
 ---
+
+## **설정 방법**
+
+- `[Edit]` - `Project Settings` - `Player` - `Other Settings` - `Rendering`
+
+![image](https://user-images.githubusercontent.com/42164422/135147438-447223c0-128d-4657-bfa7-7ab298351289.png)
+
+<br>
 
 ## **Gamma Pipeline**
 
@@ -69,7 +94,7 @@
 ![image](https://user-images.githubusercontent.com/42164422/134970010-3b67678f-47d1-4911-ac85-d18f1528fd16.png)
 
 - `sRGB`로 저장되었던 텍스쳐, 그리고 순수한 쉐이더 연산 모두 동일한 `Linear` 공간에서 같이 계산되므로 정확히 계산된다.
-- 또한 `Linear`에서 계산된 결과를 `sRGB`로 올려서, 결과적으로 모니터에서는 통해 `Linear`로 내려져서 출력되므로
+- 또한 `Linear`에서 계산된 결과를 `sRGB`로 올려서, 결과적으로 모니터에서는 통해 `Linear`로 내려져서 출력되므로 의도한 색상이 출력된다.
 
 ![image](https://user-images.githubusercontent.com/42164422/134969087-d63930ae-76b2-4108-865d-3e05e29eb4b0.png)
 
@@ -105,6 +130,8 @@
 
 ## 유니티 텍스쳐의 sRGB 토글
 
+![image](https://user-images.githubusercontent.com/42164422/135147634-6d07a907-20a5-4cfd-ac5b-fe75de24dfee.png)
+
 - `Gamma` 파이프라인은 어차피 싹다 그대로 연산하니까 달라지는 것이 없고, `Linear` 파이프라인일 경우 달라진다.
 
 - 색상 텍스쳐는 `sRGB` 색공간 텍스쳐로 간주하고, 연산을 위해 `Linear`로 끌어내려서(`^2.2`) 연산한다.
@@ -113,6 +140,9 @@
   끌어내리면 오히려 부정확해지므로 `Linear` 그대로 사용해야 한다.
 
 - 따라서 데이터 텍스쳐는 인스펙터 설정에서 `sRGB` 체크 해제하면 `Linear`로 간주하고, 정확한 값으로 사용할 수 있다.
+
+- 근데 `sRGB`는 `R`, `G`, `B` 채널에만 적용된다.
+- `sRGB`에 체크를 해도 `A` 채널은 언제나 `Linear`로 인식된다.
 
 <br>
 
@@ -126,6 +156,27 @@
 - 하지만 `Gamma` 파이프라인은 애초에 치명적인 색공간 불일치 문제가 있다. (색상 텍스쳐는 `sRGB`, 쉐이더 연산 공간은 `Linear`)
 
 - 더 정확하고 현실적인 그래픽을 보여주는 것은 `Linear` 파이프라인이며 어두운 부분에서도 더 높은 화질을 제공한다.
+
+<br>
+
+# 추가 : 쉐이더 그래프 유의사항
+---
+
+URP의 쉐이더 그래프에서 RGB `0.5`의 색상 노드 두개를 더해주면 `1.0`으로 완전한 흰색이 되어야 하지만,
+
+![image](https://user-images.githubusercontent.com/42164422/135150389-5678100c-8888-4eb1-b621-2e4a28fd49d8.png)
+
+위와 같이 완전한 흰색이 되지 않는다.
+
+색상 노드의 색 자체를 `sRGB`로 간주하고 `^2.2`로 변환된 상태에서 연산한다는 의미이다.
+
+<br>
+
+따라서 이런 경우 정확하게 연산하려면
+
+![image](https://user-images.githubusercontent.com/42164422/135150876-5f468851-3877-4347-84d1-d6f18aa52ef2.png)
+
+색상마다 `Colorspace Conversion`으로 `^0.45` 연산을 적용해준 뒤 사용해야 한다.
 
 
 

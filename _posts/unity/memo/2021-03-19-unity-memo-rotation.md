@@ -139,3 +139,19 @@ private void LookAtSlowlyX(Transform target, float speed = 1f)
 ```
 
 ![2021_0528_LookRotation2](https://user-images.githubusercontent.com/42164422/119984795-c43e1980-bffc-11eb-95a5-2ad748f2a3e8.gif)
+
+<br>
+
+# 6. 회전 각도 제한하여 상하 회전하기
+---
+
+```cs
+Vector3 eRot = transform.localEulerAngles;
+float nextX = eRot.x - h;
+if (0f < nextX && nextX < 90f) // 최소, 최대 회전 각도 제한
+{
+    eRot.x = nextX;
+}
+transform.localEulerAngles = eRot;
+```
+

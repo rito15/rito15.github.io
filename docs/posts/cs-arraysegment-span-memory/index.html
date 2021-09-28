@@ -1856,17 +1856,17 @@
         
         
         
+        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
       
         
         
         
         <li><a href="/posts/unity-shader-properties/">유니티 쉐이더 - 프로퍼티 메모</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
         
         
@@ -6224,6 +6224,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9235,59 +9248,6 @@
       
       
       <div class="card">
-        <a href="/posts/cs-why-should-inherit-iequatable/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul 19
-  
-
-  <i class="unloaded">2021-07-19T20:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                System.Object.Equals(object)
-
-
-C#의 모든 타입의 최상위 클래스인 Object에는 .Equals(object) 메소드가 존재한다.
-
-그리고 이를 통해 다른 값과의 동일 비교를 수행할 수 있다.
-
-
-
-구조체나 클래스를 직접 정의하고, 해당 객체로 .Equals(object)를 호출하면
-
-object.Equals(object)가 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-serializations-to-byte-array/">
           <div class="card-body">
             <!--
@@ -9397,6 +9357,67 @@ try-catch는 예외가 발생하지 않으면 성능 소모가 없다고도 하�
 
 
 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-string-stringbuilder-and-zstring/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 11
+  
+
+  <i class="unloaded">2021-08-11T17:17:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# String, StringBuilder, ZString</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                String 포맷팅의 문제점
+
+
+1
+$"IntValue : {123}, BoolValue : {true}";
+
+
+또는
+
+1
+string.Format("IntValue {0}, BoolValue : {1}", 123, true);
+
+
+이런 방식의 스트링 포맷팅을 쓰는 경우가 정말 많다.
+
+
+
+정말 편리하긴 하지만,
+
+StringBuilder와 비교하면 ...
               </p>
             </div>
           </div>

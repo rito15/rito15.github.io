@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-27T22:21:12+09:00</updated>
+  <updated>2021-09-29T04:17:01+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,14 +20,76 @@
 
   
   <entry>
+    <title>유니티 - sRGB, Linear, Gamma 컬러 스페이스</title>
+    <link href="https://rito15.github.io/posts/unity-srgb-linear-gamma-color-space/" rel="alternate" type="text/html" title="유니티 - sRGB, Linear, Gamma 컬러 스페이스" />
+    <published>2021-09-29T03:21:00+09:00</published>
+  
+    <updated>2021-09-29T03:21:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-srgb-linear-gamma-color-space/</id>
+    <content src="https://rito15.github.io/posts/unity-srgb-linear-gamma-color-space/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      모니터의 색상 변환
+
+
+  모니터는 디스크에 저장된 이미지를 화면에 출력할 때 Pow(color, 2.2) 연산을 적용해서 더 어둡게 출력한다.
+
+
+
+
+
+  이유?
+    
+      베버의 법칙(Weber’s law)
+      사람의 시각은 어두운 부분의 밝기 변화를 부드럽지 않고 단절되게 감지한다.
+      그래서 어두운 부분의 화질이 떨어져 보이는 현상이 발생한다.
+      따라서 이를 부드럽게 감지하도록 하려면 어두운 부분을 더 풍부하게 표현할 필요가 있다.
+      따라서 모니터 하드웨어적으로 이런 변환을 해준다.
+    
+  
+  Pow(color, 2.2)이면 감마(Gamma)가 2.2라고 한다.
+
+
+
+
+Gamma Correction(감마 보정)이란?
+
+
+  이미지를 디스크에 저장할...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>유니티 - 진공 청소기, 먼지 시뮬레이션</title>
-    <link href="https://rito15.github.io/posts/unity-vacuum-cleaner/" rel="alternate" type="text/html" title="유니티 - 진공 청소기, 먼지 시뮬레이션" />
+    <link href="https://rito15.github.io/posts/unity-million-dust-simulation/" rel="alternate" type="text/html" title="유니티 - 진공 청소기, 먼지 시뮬레이션" />
     <published>2021-09-27T17:00:00+09:00</published>
   
     <updated>2021-09-27T17:00:00+09:00</updated>
   
-    <id>https://rito15.github.io/posts/unity-vacuum-cleaner/</id>
-    <content src="https://rito15.github.io/posts/unity-vacuum-cleaner/" />
+    <id>https://rito15.github.io/posts/unity-million-dust-simulation/</id>
+    <content src="https://rito15.github.io/posts/unity-million-dust-simulation/" />
     <author>
       <name>Rito15</name>
     </author>
@@ -52,7 +114,8 @@
 
 
   수십만 개의 먼지를 렌더링한다.
-  진공 청소기로 빨아들인다.
+  먼지들의 움직임을 시뮬레이션한다.
+  진공 청소기로 먼지들을 예쁘게 빨아들인다.
 
 
 
@@ -85,9 +148,7 @@ Compute Shader
 1. 10만개의 먼지 만들기
 
 
-렌더링될 메시의 버텍스 개수에 따라 성능 차이가 커지므로,
-
-일단 메시는...
+렌더링될 메시의 버...
     </summary>
   
 
@@ -288,99 +349,6 @@ XML 문법
     
     &amp;lt;packet name="Number"&amp;gt;
         &amp;lt;int name="number...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>(Amplify) Spawn Effect Shader</title>
-    <link href="https://rito15.github.io/posts/unity-amplify-spawn-effect-shader/" rel="alternate" type="text/html" title="(Amplify) Spawn Effect Shader" />
-    <published>2021-09-18T00:01:00+09:00</published>
-  
-    <updated>2021-09-18T06:09:10+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-amplify-spawn-effect-shader/</id>
-    <content src="https://rito15.github.io/posts/unity-amplify-spawn-effect-shader/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Amplify Shader" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Summary
-
-
-
-  
-    월드 좌표의 한 점에서부터 스폰되는 효과
-  
-  
-    월드 공간의 버텍스 이동, 그리드 패턴의 디졸브 효과로 이루어져 있다.
-  
-
-
-
-
-Preview
-
-
-
-
-
-
-
-
-Properties
-
-
-
-
-
-  
-    
-      프로퍼티명
-      설명
-      기본 값
-      범위
-    
-  
-  
-    
-      Main Texture
-      메인 텍스쳐(Albedo)
-       
-       
-    
-    
-      Grid Color
-      그리드 패턴 색상(HDR)
-       
-       
-    
-    
-      Grid Tiling X
-      그리드 X축 타일링
-      48
-      2 ~ 48
-    
-    
-   ...
     </summary>
   
 

@@ -566,7 +566,96 @@ Main Thread Dispatcher
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-vacuum-cleaner/">유니티 - 진공 청소기, 먼지 시뮬레이션</a>
+      <a href="/posts/unity-srgb-linear-gamma-color-space/">유니티 - sRGB, Linear, Gamma 컬러 스페이스</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        모니터의 색상 변환
+
+
+
+  모니터는 디스크에 저장된 이미지를 화면에 출력할 때 Pow(color, 2.2) 연산을 적용해서 더 어둡게 출력한다.
+
+
+
+
+
+  이유?
+    
+      베버의 법칙(Weber’s law)
+      사람의 시각은 어두운 부분의 밝기 변화를 부드럽지 않고 단절되게 감지한다.
+      그래서 어두운 부분의 화질이 떨어져...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Sep 29, 2021,  3:21 AM +0900"
+  >
+
+  
+  
+
+  
+    Sep 29
+  
+
+  <i class="unloaded">2021-09-29T03:21:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1622 words">9 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-million-dust-simulation/">유니티 - 진공 청소기, 먼지 시뮬레이션</a>
     </h1>
 
     <div class="post-content">
@@ -582,7 +671,8 @@ Main Thread Dispatcher
 
 
   수십만 개의 먼지를 렌더링한다.
-  진공 청소기로 빨아들인다.
+  먼지들의 움직임을 시뮬레이션한다.
+  진공 청소기로 먼지들을 예쁘게 빨아들인다.
 
 
 
@@ -595,10 +685,7 @@ Main Thread Dispatcher
 Compute Buffer
 
   큰 병렬 데이터를 GPU에 전달하거나 쉐이더끼리 공유하기 위해 사용한다.
-  Vert/Frag, Compute Shader에서 StructuredBuffer&lt;T&gt; 타입 변수로 사용할 수 있다.
-
-
-Graphi...
+  Vert/Frag, Compute Shader에서 StructuredBuffer&lt;T...
       </p>
     </div>
 
@@ -645,7 +732,7 @@ Graphi...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2459 words">13 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4819 words">26 min</span>
 
 
         <!-- page views -->
@@ -1258,106 +1345,6 @@ Punch
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editorconfig-encoding/">유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Problem
-
-
-문제 확인
-
-
-
-비주얼 스튜디오에서는 위와 같이 잘 보이던 한글 주석이
-
-
-
-유니티 에디터에서 보면 이렇게 깨지는 경우가 있다.
-
-당장은 스크립팅에 문제가 없더라도,
-
-스크립트 파일을 전송하거나 협업을 하게 될 때 문제가 생길 수 있다.
-
-
-
-인코딩
-
-인코딩을 확인해보면
-
-
-
-EUC-KR의 확장인 코드 페이지 949(CP949)임을 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Sep 15, 2021,  2:34 AM +0900"
-  >
-
-  
-  
-
-  
-    Sep 15
-  
-
-  <i class="unloaded">2021-09-15T02:34:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="826 words">4 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1916,17 +1903,17 @@ EUC-KR의 확장인 코드 페이지 949(CP949)임을 ...
         
         
         
+        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
       
         
         
         
         <li><a href="/posts/unity-shader-properties/">유니티 쉐이더 - 프로퍼티 메모</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
         
         

@@ -3665,17 +3665,17 @@ MainClass.cs
         
         
         
+        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
       
         
         
         
         <li><a href="/posts/unity-shader-properties/">유니티 쉐이더 - 프로퍼티 메모</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
         
         
@@ -8072,6 +8072,19 @@ MainClass.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -11114,59 +11127,6 @@ MainClass.cs
       
       
       <div class="card">
-        <a href="/posts/cs-why-should-inherit-iequatable/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Jul 19
-  
-
-  <i class="unloaded">2021-07-19T20:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                System.Object.Equals(object)
-
-
-C#의 모든 타입의 최상위 클래스인 Object에는 .Equals(object) 메소드가 존재한다.
-
-그리고 이를 통해 다른 값과의 동일 비교를 수행할 수 있다.
-
-
-
-구조체나 클래스를 직접 정의하고, 해당 객체로 .Equals(object)를 호출하면
-
-object.Equals(object)가 ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-arraysegment-span-memory/">
           <div class="card-body">
             <!--
@@ -11212,6 +11172,67 @@ object.Equals(object)가 ...
 특징
 
   고정된 크기...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-if-vs-try-performance/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug  9
+  
+
+  <i class="unloaded">2021-08-09T14:41:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# If vs. try-catch 성능</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+개발을 하다보면 고민되는 경우가 많다.
+
+예외 조건을 처리할 때 if로 예외를 회피할지, try-catch로 처리할지,
+
+실제 성능은 어떻게 될지도 궁금한 부분이다.
+
+
+
+try-catch는 예외가 발생하지 않으면 성능 소모가 없다고도 하고,
+
+성능 소모가 있지만 O(1)이라고도 하고,
+
+찾아보면 다양한 주장들을 확인해볼 수 있다.
+
+
+
+...
               </p>
             </div>
           </div>
