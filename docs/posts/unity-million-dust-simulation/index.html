@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 진공 청소기, 먼지 시뮬레이션" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 진공 청소기, 먼지 시뮬레이션","dateModified":"2021-09-27T17:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 진공 청소기, 먼지 시뮬레이션","dateModified":"2021-09-29T21:34:54+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,6 +407,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Sep 29, 2021,  9:34 PM +0900"
+  >
+
+  
+  
+
+  
+    Sep 29
+  
+
+  <i class="unloaded">2021-09-29T21:34:54+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -419,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6423 words">35 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="6496 words">36 min</span>
 
 
           <!-- page views -->
@@ -2942,18 +2971,47 @@ DustManager.cs - 메소드 구조 변경
 
 <!-- --------------------------------------------------------------------------- -->
 
-<h1 id="6-메시-변경-텍스쳐-적용">6. 메시 변경, 텍스쳐 적용</h1>
+<h1 id="6-메시-변경-쉐이더-수정">6. 메시 변경, 쉐이더 수정</h1>
 <hr />
 
-<p>Cube 메시 대신 +Y를 바라보는 Quad 메시를 사용한다.</p>
+<p>Cube 메시 대신 Quad 메시를 사용한다.</p>
 
 <p>렌더큐를 Transparent로 바꾸고, 먼지 텍스쳐를 적용한다.</p>
+
+<p>그리고 Billboard 효과를 적용한다.</p>
 
 <p><br /></p>
 
 <!-- --------------------------------------------------------------------------- -->
 
-<h1 id="7-애셋-적용">7. 애셋 적용</h1>
+<h1 id="7-먼지-반지름-적용">7. 먼지 반지름 적용</h1>
+<hr />
+
+<p>먼지의 반지름을 고려하여 물리 연산들을 변경한다.</p>
+
+<p><br /></p>
+
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="8-sphere-충돌-구현">8. Sphere 충돌 구현</h1>
+<hr />
+
+<p>기본적인 Sphere 충돌을 구현한다.</p>
+
+<p>충돌 시 탄성력을 구현한다.</p>
+
+<p><br /></p>
+
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="9-cube-충돌-구현">9. Cube 충돌 구현</h1>
+<hr />
+
+<p><br /></p>
+
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="0-애셋-적용">0. 애셋 적용</h1>
 <hr />
 
 <ul>
@@ -2997,6 +3055,60 @@ TODO
 
 <!-- 
 https://github.com/SebLague/Super-Chore-Man/blob/main/Assets/Scripts/Particles/DustCompute.compute
+-->
+
+<!-- 복붙
+
+
+## **[1] 컴퓨트 쉐이더**
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+
+```
+
+</details>
+
+<br>
+
+
+## **[2] 먼지 관리 컴포넌트**
+
+<details>
+<summary markdown="span"> 
+DustManager.cs
+</summary>
+
+```cs
+
+```
+
+</details>
+
+<br>
+
+
+## **[3] 진공 청소기 컴포넌트**
+
+<details>
+<summary markdown="span"> 
+VacuumCleanerHead.cs
+</summary>
+
+```cs
+
+```
+
+</details>
+
+<br>
+
+
+
 -->
 
 
@@ -3130,6 +3242,11 @@ https://github.com/SebLague/Super-Chore-Man/blob/main/Assets/Scripts/Particles/D
         
         
         
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 진공 청소기, 먼지 시뮬레이션</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
       
         
@@ -3146,11 +3263,6 @@ https://github.com/SebLague/Super-Chore-Man/blob/main/Assets/Scripts/Particles/D
         
         
         <li><a href="/posts/unity-shader-properties/">유니티 쉐이더 - 프로퍼티 메모</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-shader-concept/">초보자를 위한 쉐이더 개념 간단 정리</a></li>
       
 
       </ul>
@@ -6492,6 +6604,19 @@ https://github.com/SebLague/Super-Chore-Man/blob/main/Assets/Scripts/Particles/D
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -10557,6 +10682,7 @@ https://github.com/SebLague/Super-Chore-Man/blob/main/Assets/Scripts/Particles/D
                 1. 목표
 
 
+
   
     오브젝트 풀링 기법 이해하기
   
@@ -10575,7 +10701,7 @@ https://github.com/SebLague/Super-Chore-Man/blob/main/Assets/Scripts/Particles/D
 
 게임오브젝트를 생성, 파괴하는 것은 순간적으로 큰 성능 소모 및 프레임 저하를 발생시킬 수 있다.
 
-따라서 생성, 파괴 대신 활성화, 비활성화 방식을 사용하면 순...
+따라서 생성, 파괴 대신 활성화, 비활성화 방식을 사용하면 ...
               </p>
             </div>
           </div>
@@ -10620,9 +10746,10 @@ https://github.com/SebLague/Super-Chore-Man/blob/main/Assets/Scripts/Particles/D
                 개념
 
 
+
   FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
   FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
-  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다....
+  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
               </p>
             </div>
           </div>

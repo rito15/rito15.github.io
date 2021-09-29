@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-29T16:31:04+09:00</updated>
+  <updated>2021-09-30T02:32:10+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,85 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# Nullable</title>
+    <link href="https://rito15.github.io/posts/cs-nullable/" rel="alternate" type="text/html" title="C# Nullable" />
+    <published>2021-09-30T00:11:00+09:00</published>
+  
+    <updated>2021-09-30T00:11:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-nullable/</id>
+    <content src="https://rito15.github.io/posts/cs-nullable/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Grammar" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      null 허용 값 타입
+
+
+
+  
+    .Net Framework 2.0 버전부터 사용할 수 있다.
+  
+  
+    Nullable&amp;lt;T&amp;gt; 또는 T? 꼴로 사용할 수 있다.
+  
+  
+    null 값의 초기화를 허용한다.
+  
+  
+    null을 허용한다고 해서 참조형이 되는 것은 아니고, 값 타입은 그대로 값 타입이다.
+  
+  
+    힙에 할당되지 않고, 스택에 할당되는 것은 동일하다.
+  
+
+
+
+
+Nullable 클래스
+
+
+  
+    정적 클래스이다.
+  
+  
+    변수를 선언할 수 없다.
+  
+  
+    Nullable&amp;lt;T&amp;gt;와는 엄연히 다른 타입이며, 관련 API를 제공하기 위해 존재한다.
+  
+
+
+
+
+Nullable&amp;lt;T&amp;gt; 구조체
+
+
+  
+   ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -86,7 +165,7 @@ Gamma Correction(감마 보정)이란?
     <link href="https://rito15.github.io/posts/unity-million-dust-simulation/" rel="alternate" type="text/html" title="유니티 - 진공 청소기, 먼지 시뮬레이션" />
     <published>2021-09-27T17:00:00+09:00</published>
   
-    <updated>2021-09-27T17:00:00+09:00</updated>
+    <updated>2021-09-29T21:34:54+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-million-dust-simulation/</id>
     <content src="https://rito15.github.io/posts/unity-million-dust-simulation/" />
@@ -281,74 +360,6 @@ float3 RandomRGB(float2 seed)
   마지막 계층 이전까지의 계층이 포화 이진 트리를 이룬 구조
   마지막 계층은 왼쪽에서부터 채워지는 구조
   일차원 배열을 통해 표현될 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# XmlReader</title>
-    <link href="https://rito15.github.io/posts/cs-xml-reader/" rel="alternate" type="text/html" title="C# XmlReader" />
-    <published>2021-09-21T21:52:00+09:00</published>
-  
-    <updated>2021-09-21T21:52:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-xml-reader/</id>
-    <content src="https://rito15.github.io/posts/cs-xml-reader/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      XML
-
-
-eXTensible Markup Language의 약자로, W3C에서 개발된 마크업 언어.
-
-XML의 대표적인 파생 언어로 HTML이 있다.
-
-기본적인 XML 파일의 확장자는 .xml이다.
-
-
-
-XML 문법
-
-
-
-   
-…
-
-
-  예시
-  
-    패킷 데이터 목록 정의
-  
-
-  &amp;lt;?xml version="1.0" encoding="utf-8" ?&amp;gt;
-
-&amp;lt;!-- Packet Data List --&amp;gt;
-&amp;lt;packets&amp;gt; &amp;lt;!-- 루트 태그 --&amp;gt;
-    &amp;lt;packet name="Echo"&amp;gt;
-    &amp;lt;/packet&amp;gt;
-    
-    &amp;lt;packet name="Number"&amp;gt;
-        &amp;lt;int name="number...
     </summary>
   
 
