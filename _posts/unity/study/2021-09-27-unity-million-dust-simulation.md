@@ -338,7 +338,7 @@ private void UpdateDustPositions()
 {
     if (cleanerHead.Running == false) return;
 
-    Vector3 centerPos = cleanerHead.Position;
+    Vector3 headPos = cleanerHead.Position;
     float sqrRange = cleanerHead.SqrSuctionRange;
     float sqrDeathRange = cleanerHead.DeathRange * cleanerHead.DeathRange;
     float force = Time.deltaTime * cleanerHead.SuctionForce;
@@ -348,7 +348,7 @@ private void UpdateDustPositions()
         if (DustArray[i].isAlive == FALSE) continue;
 
         // root 연산은 비싸기 때문에 제곱 상태로 거리 비교
-        float sqrDist = Vector3.SqrMagnitude(DustArray[i].position - centerPos);
+        float sqrDist = Vector3.SqrMagnitude(DustArray[i].position - headPos);
         
         // 사망 범위
         if (sqrDist < sqrDeathRange)
@@ -359,7 +359,7 @@ private void UpdateDustPositions()
         // 흡입 범위
         else if (sqrDist < sqrRange)
         {
-            DustArray[i].position = Vector3.Lerp(DustArray[i].position, centerPos, force);
+            DustArray[i].position = Vector3.Lerp(DustArray[i].position, headPos, force);
         }
     }
 
@@ -389,7 +389,7 @@ private void UpdateDustPositions()
 {
     if (cleanerHead.Running == false) return;
 
-    Vector3 centerPos = cleanerHead.Position;
+    Vector3 headPos = cleanerHead.Position;
     float sqrRange = cleanerHead.SqrSuctionRange;
     float sqrDeathRange = cleanerHead.DeathRange * cleanerHead.DeathRange;
     float sqrForce = Time.deltaTime * cleanerHead.SuctionForce * cleanerHead.SuctionForce;
@@ -399,7 +399,7 @@ private void UpdateDustPositions()
     {
         if (DustArray[i].isAlive == FALSE) return;
 
-        float sqrDist = Vector3.SqrMagnitude(centerPos - DustArray[i].position);
+        float sqrDist = Vector3.SqrMagnitude(headPos - DustArray[i].position);
 
         // 사망 범위
         if (sqrDist < sqrDeathRange)
@@ -410,7 +410,7 @@ private void UpdateDustPositions()
         // 흡입 범위
         else if (sqrDist < sqrRange)
         {
-            Vector3 dir = (centerPos - DustArray[i].position).normalized;
+            Vector3 dir = (headPos - DustArray[i].position).normalized;
             float weightedForce = sqrForce / sqrDist;
             DustArray[i].position += dir * weightedForce;
         }
@@ -451,7 +451,7 @@ struct Dust
 RWStructuredBuffer<Dust> DustBuffer;
 RWStructuredBuffer<uint> aliveNumberBuffer; // 생존한 먼지 개수
 
-float3 centerPos;
+float3 headPos;
 float sqrRange;
 float sqrDeathRange;
 float sqrForce;
@@ -463,7 +463,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     if(DustBuffer[i].isAlive == FALSE) return;
     
     // 제곱 상태로 연산
-    float3 offs = (centerPos - DustBuffer[i].position);
+    float3 offs = (headPos - DustBuffer[i].position);
     float sqrDist = (offs.x * offs.x) + (offs.y * offs.y) + (offs.z * offs.z);
 
     // 사망 범위
@@ -475,7 +475,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     // 흡입 범위
     else if (sqrDist < sqrRange)
     {
-        float3 dir = normalize(centerPos - DustBuffer[i].position);
+        float3 dir = normalize(headPos - DustBuffer[i].position);
         float weightedForce = sqrForce / sqrDist;
         DustBuffer[i].position += dir * weightedForce;
     }
@@ -564,12 +564,12 @@ private void UpdateDustPositionsGPU()
 {
     if (cleanerHead.Running == false) return;
 
-    Vector3 centerPos = cleanerHead.Position;
+    Vector3 headPos = cleanerHead.Position;
     float sqrRange = cleanerHead.SqrSuctionRange;
     float sqrDeathRange = cleanerHead.DeathRange * cleanerHead.DeathRange;
     float sqrForce = Time.deltaTime * cleanerHead.SuctionForce * cleanerHead.SuctionForce;
 
-    DustCompute.SetVector("centerPos", centerPos);
+    DustCompute.SetVector("headPos", headPos);
     DustCompute.SetFloat("sqrRange", sqrRange);
     DustCompute.SetFloat("sqrDeathRange", sqrDeathRange);
     DustCompute.SetFloat("sqrForce", sqrForce);
@@ -651,7 +651,7 @@ RWStructuredBuffer<uint> aliveNumberBuffer; // 생존한 먼지 개수
 float3 boundsMin; // 먼지 생성 영역 - 최소 지점
 float3 boundsMax; // 먼지 생성 영역 - 최대 지점
 
-float3 centerPos;
+float3 headPos;
 float sqrRange;
 float sqrDeathRange;
 float sqrForce;
@@ -681,7 +681,7 @@ void Update (uint3 id : SV_DispatchThreadID)
     uint i = id.x;
     if(DustBuffer[i].isAlive == FALSE) return;
     
-    float3 offs = (centerPos - DustBuffer[i].position);
+    float3 offs = (headPos - DustBuffer[i].position);
     float sqrDist = (offs.x * offs.x) + (offs.y * offs.y) + (offs.z * offs.z);
 
     if (sqrDist < sqrDeathRange)
@@ -691,7 +691,7 @@ void Update (uint3 id : SV_DispatchThreadID)
     }
     else if (sqrDist < sqrRange)
     {
-        float3 dir = normalize(centerPos - DustBuffer[i].position);
+        float3 dir = normalize(headPos - DustBuffer[i].position);
         float weightedForce = sqrForce / sqrDist;
         DustBuffer[i].position += dir * weightedForce;
     }
@@ -858,6 +858,27 @@ private void Update()
 
 <br>
 
+1차로 단순히 거리 계산을 통해 구형 범위로 검사하는 것은 동일하다.
+
+> R : 구형 범위<br>
+> C : 청소기 입구 위치<br>
+> D : 각 먼지의 위치
+
+![image](https://user-images.githubusercontent.com/42164422/135222916-27124d3e-bc37-451b-b7bc-c78f844382e0.png)
+
+<br>
+
+2차로 내적을 이용해 원뿔 범위로 검사할 수 있다.
+
+> C : 청소기 입구 위치<br>
+> D : 각 먼지의 위치<br>
+> E : 원뿔 밑단 외곽의 한 점<br>
+> F : 원뿔 밑단 중심점
+
+![image](https://user-images.githubusercontent.com/42164422/135222977-b6a7511d-34de-4f21-b0db-98e2e37f1951.png)
+
+<br>
+
 ## **[1] 컴퓨트 쉐이더**
 
 - 내적을 이용하여 원뿔 범위 흡수를 구현한다.
@@ -868,29 +889,14 @@ DustCompute.compute
 </summary>
 
 ```hlsl
-
-#pragma kernel Populate
-#pragma kernel Update
-
-#define TRUE 1
-#define FALSE 0
-
-struct Dust
-{
-    float3 position;
-    int isAlive;
-};
+/* 관련 없는 코드는 생략 */
 
 /*************************************************
 /*                     Variables
 /*************************************************/
 RWStructuredBuffer<Dust> DustBuffer;
-RWStructuredBuffer<uint> aliveNumberBuffer; // 생존한 먼지 개수
 
-float3 boundsMin; // 먼지 생성 영역 - 최소 지점
-float3 boundsMax; // 먼지 생성 영역 - 최대 지점
-
-float3 centerPos;    // 진공 청소기 입구 위치
+float3 headPos;    // 진공 청소기 입구 위치
 float sqrRange;      // 먼지 흡입 범위(반지름)
 float sqrDeathRange; // 먼지 소멸 범위(반지름)
 float sqrForce;
@@ -916,10 +922,6 @@ void DestroyDust(uint i)
 /*************************************************
 /*                     Kernels
 /*************************************************/
-
-// 0 - 초기 생성
-//void Populate (uint3 id : SV_DispatchThreadID)
-
 // 1 - 실시간 업데이트
 [numthreads(64,1,1)]
 void Update (uint3 id : SV_DispatchThreadID)
@@ -928,7 +930,7 @@ void Update (uint3 id : SV_DispatchThreadID)
     if(DustBuffer[i].isAlive == FALSE) return;
     
     float3 pos = DustBuffer[i].position;
-    float3 offs = (centerPos - pos);
+    float3 offs = (headPos - pos);
     float sqrDist = SqrMagnitude(offs);
 
     // 입구 주변 - 먼지 소멸
@@ -951,7 +953,7 @@ void Update (uint3 id : SV_DispatchThreadID)
             DustBuffer[i].position += dir * weightedForce * dotValue;
 
             // 청소기 뒤편으로 넘어가면 먼지 소멸
-            if(dot(centerPos - DustBuffer[i].position, dir) < 0)
+            if(dot(headPos - DustBuffer[i].position, dir) < 0)
                 DestroyDust(i);
         }
     }
@@ -1153,19 +1155,312 @@ private void DrawConeGizmo(Vector3 origin, float height, float angle, int sample
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 5. 먼지 속도, 가속도 계산
+# 5. 물리 계산
 ---
 
 먼지의 속도를 새로운 컴퓨트 버퍼에 저장한다.
 
-공기 저항력, 마찰력, 중력을 계산한다.
+기존의 `Dust` 구조체에 속도를 포함시키지 않고 새로운 버퍼를 만들어 저장하는 이유는
 
-<!--
+컴퓨트 쉐이더 내에서만 기록하는 용도로 사용되며, 다른 쉐이더(Vert/Frag)에서는 참조할 필요가 없기 때문이다.
+
+기존의 계산을 속도, 가속도, 힘 기반으로 변경하고, 중력과 공기저항력을 계산한다.
+
+그리고 현재 위치와 다음 위치 벡터를 이용해 기본적인 충돌(Plane)을 구현한다.
+
+<br>
+
+## **[1] 컴퓨트 쉐이더**
+
+- `velocityBuffer` 변수 선언
+- 물리 계산에 필요한 변수들 선언
+- 청소기 흡수 계산을 단순 위치 변동 대신 힘 계산으로 변경
+- 힘, 가속도, 속도 계산 적용
+- 원뿔 영역 교차, Plane 충돌 구현
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+RWStructuredBuffer<Dust> dustBuffer;        // 먼지 위치, 생존 여부
+RWStructuredBuffer<float3> velocityBuffer;  // 먼지 속도
+RWStructuredBuffer<uint> aliveNumberBuffer; // 생존한 먼지 개수
+
+int isRunning;    // 청소기 가동 여부
+float deltaTime;
+
+float3 boundsMin; // 먼지 생성 영역 - 최소 지점
+float3 boundsMax; // 먼지 생성 영역 - 최대 지점
+
+float3 headPos;      // 진공 청소기 입구 위치
+float sqrRange;      // 먼지 흡입 범위(반지름) - 제곱
+float sqrDeathRange; // 먼지 소멸 범위(반지름) - 제곱
+float sqrForce;      // 빨아들이는 힘 - 제곱
+
+float3 headForwardDir; // 진공 청소기 전방 벡터
+float dotThreshold;    // 진공 청소기 원뿔 영역 내적 범위
+
+float mass;          // 질량
+float gravityForce;  // -Y 방향 중력 강도
+float airResistance; // 공기 저항력
+
+[numthreads(64,1,1)]
+void Update (uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if(dustBuffer[i].isAlive == FALSE) return;
+
+    bool sucking = false;
+    float3 F = 0; // 힘 합 벡터
+    float3 A = 0; // 가속도 합 벡터
+    
+    // ===================================================
+    //                  청소기로 먼지 흡수
+    // ===================================================
+    float3 currPos = dustBuffer[i].position;  // 현재 프레임 먼지 위치
+    float3 currToHead = (headPos - currPos);  // 청소기 입구 -> 먼지
+    float sqrDist = SqrMagnitude(currToHead); // 청소기 입구 <-> 먼지 사이 거리 제곱
+
+    // 먼지 이동
+    if (isRunning == TRUE && sqrDist < sqrRange)
+    {
+        float3 dustToHeadDir = normalize(currToHead); // 먼지 -> 청소기 입구 방향
+        float dotValue = dot(headForwardDir, -dustToHeadDir);
+
+        // 원뿔 범위 내에 있을 경우 빨아들이기
+        if(dotValue > dotThreshold)
+        {
+            float suctionForce = sqrForce / sqrDist;
+
+            // 빨아들이는 힘
+            F += dustToHeadDir * suctionForce * dotValue;
+
+            sucking = true;
+        }
+    }
+    
+    // F = m * a
+    // v = a * t
+
+    // ===================================================
+    //                    가속도 계산
+    // ===================================================
+    // [1] 외력
+    A += F / mass;
+
+    // [2] 중력
+    A += float3(0, -gravityForce, 0);
+
+    // [3] 공기 저항
+    A -= velocityBuffer[i] * airResistance;
+
+    // 속도 적용 : V = A * t
+    velocityBuffer[i] += A * deltaTime;
+    
+    // ===================================================
+    //              이동 시뮬레이션, 충돌 검사
+    // ===================================================
+    // 다음 프레임 위치 계산 : S = S0 + V * t
+    float3 nextPos = currPos + velocityBuffer[i] * deltaTime;
+
+    // 교차 지점에서 충돌 검사
+    // [1] Plane (Y = 0)
+    nextPos.y = max(0, nextPos.y);
+
+    // [2] 입구로 완전히 빨아들인 경우, 먼지 파괴
+    if(sucking)
+    {
+        float3 headToNext = nextPos - headPos;
+
+        float3 headToCurrDir = normalize(-currToHead);
+        float3 headToNextDir = normalize(headToNext);
+
+        // 현재 프레임에 먼지가 원뿔 범위 내에 있었다면
+        if(dot(headForwardDir, headToCurrDir) > dotThreshold)
+        {
+            // 다음 프레임에 원뿔 밖으로 나가거나 입구에 근접하면 파괴
+            if(dot(headForwardDir, headToNextDir) < dotThreshold ||
+               SqrMagnitude(headToNext) < sqrDeathRange)
+            {
+                DestroyDust(i);
+            }
+        }
+    }
+    
+    // 다음 위치 적용
+    dustBuffer[i].position = nextPos;
+}
+```
+
+</details>
+
+<br>
 
 
+## **[2] 먼지 관리 컴포넌트**
 
--->
+- 먼지의 속도를 저장하기 위한 새로운 컴퓨트 버퍼 `dustVelocityBuffer`를 만들고 컴퓨트 쉐이더에 할당한다.
+- 물리 시뮬레이션에 필요한 변수들을 추가하고 컴퓨트 쉐이더에 전달한다.
+- 메소드 구조를 더 깔끔하게 변경한다.
 
+<details>
+<summary markdown="span"> 
+DustManager.cs
+</summary>
+
+```cs
+[Header("Physics Options")]
+[Range(0f, 20f)]
+[SerializeField] private float mass = 1f;           // 먼지 질량
+[Range(0f, 20f)]
+[SerializeField] private float gravityForce = 9.8f; // 중력 강도
+[Range(0f, 100f)]
+[SerializeField] private float airResistance = 1f;  // 공기 저항력
+
+private ComputeBuffer dustVelocityBuffer; // 먼지 현재 속도 버퍼
+
+private void InitBuffers()
+{
+    // ...
+    
+    // Dust Velocity Buffer
+    dustVelocityBuffer = new ComputeBuffer(instanceNumber, sizeof(float) * 3);
+
+    // ...
+}
+
+/// <summary> 컴퓨트 쉐이더 초기화 </summary>
+private void InitComputeShader()
+{
+    // ...
+    
+    dustCompute.SetBuffer(kernelUpdateID, "velocityBuffer", dustVelocityBuffer);
+    
+    // ...
+}
+
+private void OnDestroy()
+{
+    // ...
+    
+    dustVelocityBuffer.Release();
+}
+
+private void UpdateDustPositionsGPU()
+{
+    ref var head = ref cleanerHead;
+
+    Vector3 headPos = head.Position;
+    float sqrRange = head.SqrSuctionRange;
+    //float sqrDeathRange = head.DeathRange * head.DeathRange;
+    float sqrForce      = head.SuctionForce * head.SuctionForce;
+
+    dustCompute.SetInt("isRunning", head.Running ? TRUE : FALSE);
+    dustCompute.SetFloat("deltaTime", deltaTime);
+
+    dustCompute.SetVector("headPos", headPos);
+    dustCompute.SetFloat("sqrRange", sqrRange);
+    //dustCompute.SetFloat("sqrDeathRange", sqrDeathRange);
+    dustCompute.SetFloat("sqrForce", sqrForce);
+
+    // 원뿔
+    dustCompute.SetVector("headForwardDir", head.Forward);
+    dustCompute.SetFloat("dotThreshold", Mathf.Cos(head.SuctionAngleRad));
+
+    // 물리
+    dustCompute.SetFloat("mass", mass);
+    dustCompute.SetFloat("gravityForce", gravityForce);
+    dustCompute.SetFloat("airResistance", airResistance);
+
+    dustCompute.Dispatch(kernelUpdateID, kernelUpdateGroupSizeX, 1, 1);
+
+    aliveNumberBuffer.GetData(aliveNumberArray);
+    aliveNumber = (int)aliveNumberArray[0]; 
+}
+```
+
+</details>
+
+
+<details>
+<summary markdown="span"> 
+DustManager.cs - 메소드 구조 변경
+</summary>
+
+```cs
+private void Start()
+{
+    Init();
+    InitBuffers();
+    SetBuffersToShaders();
+    PopulateDusts();
+}
+
+private void Init()
+{
+    aliveNumber = instanceNumber;
+
+    kernelPopulateID = dustCompute.FindKernel("Populate");
+    kernelUpdateID = dustCompute.FindKernel("Update");
+
+    dustCompute.GetKernelThreadGroupSizes(kernelUpdateID, out uint tx, out _, out _);
+    kernelUpdateGroupSizeX = Mathf.CeilToInt((float)instanceNumber / tx);
+}
+
+/// <summary> 컴퓨트 버퍼들 생성 </summary>
+private void InitBuffers()
+{
+    /* [Note]
+     * 
+     * argsBuffer
+     * - IndirectArguments로 사용되는 컴퓨트 버퍼의 stride는 20byte 이상이어야 한다.
+     * - 따라서 파라미터가 앞의 2개만 필요하지만, 뒤에 의미 없는 파라미터 3개를 더 넣어준다.
+     */
+
+    // Args Buffer
+    uint[] argsData = new uint[] { dustMesh.GetIndexCount(0), (uint)instanceNumber, 0, 0, 0 };
+    argsBuffer = new ComputeBuffer(1, 5 * sizeof(uint), ComputeBufferType.IndirectArguments);
+    argsBuffer.SetData(argsData);
+
+    // Dust Buffer
+    dustBuffer = new ComputeBuffer(instanceNumber, sizeof(float) * 3 + sizeof(int));
+
+    // Dust Velocity Buffer
+    dustVelocityBuffer = new ComputeBuffer(instanceNumber, sizeof(float) * 3);
+
+    // Alive Number Buffer
+    aliveNumberBuffer = new ComputeBuffer(1, sizeof(uint));
+    aliveNumberArray = new uint[] { (uint)instanceNumber };
+    aliveNumberBuffer.SetData(aliveNumberArray);
+
+    // 카메라 프러스텀이 이 영역과 겹치지 않으면 렌더링되지 않는다.
+    frustumOverlapBounds = new Bounds(
+        Vector3.zero, 
+        new Vector3(distributionRange, distributionHeight, distributionRange));
+}
+
+/// <summary> 컴퓨트 버퍼들을 쉐이더에 할당 </summary>
+private void SetBuffersToShaders()
+{
+    dustMaterial.SetBuffer("_DustBuffer", dustBuffer);
+    dustCompute.SetBuffer(kernelPopulateID, "dustBuffer", dustBuffer);
+    dustCompute.SetBuffer(kernelUpdateID, "dustBuffer", dustBuffer);
+    dustCompute.SetBuffer(kernelUpdateID, "aliveNumberBuffer", aliveNumberBuffer);
+    dustCompute.SetBuffer(kernelUpdateID, "velocityBuffer", dustVelocityBuffer);
+}
+```
+
+</details>
+
+<br>
+
+## **[3] 실행 결과**
+
+![2021_0929_Dust_Physics1](https://user-images.githubusercontent.com/42164422/135263865-39b67857-42ec-42e3-b521-e03e8f7fd47f.gif)
+
+![2021_0929_Dust_Physics2](https://user-images.githubusercontent.com/42164422/135263875-3c8238ee-9ed3-49c4-9366-4bab7619118d.gif)
 
 <br>
 
@@ -1225,3 +1520,7 @@ TODO
 - <https://www.youtube.com/watch?v=PGk0rnyTa1U>
 - <https://docs.unity3d.com/ScriptReference/Graphics.DrawMeshInstancedIndirect.html>
 - <https://github.com/ColinLeung-NiloCat/UnityURP-MobileDrawMeshInstancedIndirectExample>
+
+<!-- 
+https://github.com/SebLague/Super-Chore-Man/blob/main/Assets/Scripts/Particles/DustCompute.compute
+-->
