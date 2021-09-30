@@ -13,6 +13,7 @@ mermaid: true
 
 ## **메소드**
 
+{% include codeHeader.html %}
 ```cs
 /// <summary> 바이트 버퍼를 읽어서 구조체로 변환하기 </summary>
 public static T? ByteBufferToStruct<T>(byte[] buffer, int offset) where T : struct
@@ -31,7 +32,7 @@ public static T? ByteBufferToStruct<T>(byte[] buffer, int offset) where T : stru
     // ptr이 가리키는 위치의 메모리를 T 타입으로 변환하여 새롭게 할당
     T obj = Marshal.PtrToStructure<T>(ptr);
 
-    // ptr 해제
+    // ptr 메모리 해제
     Marshal.FreeHGlobal(ptr);
 
     return obj;
@@ -52,16 +53,15 @@ public struct Data
 static void Main(string[] args)
 {
     byte[] buffer = new byte[1024];
-    int curOffset = 0;
 
-    buffer[4] = 3;
-    buffer[5] = 2;
+    buffer[4] = 1; // byte0
+    buffer[5] = 2; // byte1
 
-                    // Little Endian
-    buffer[6] = 1; // 0x00000001
-    buffer[7] = 1; // 0x00000100
-    buffer[8] = 1; // 0x00010000
-    buffer[9] = 1; // 0x01000000
+                   // int2 (Little Endian)
+    buffer[6] = 3; // 0x00000003
+    buffer[7] = 4; // 0x00000400
+    buffer[8] = 5; // 0x00050000
+    buffer[9] = 6; // 0x06000000
 
     Data? val = ByteBufferToStruct<Data>(buffer, 4);
 
@@ -71,8 +71,8 @@ static void Main(string[] args)
         Console.WriteLine(val.Value.byte1);
 
         Console.WriteLine(val.Value.int2);
-        Console.WriteLine(0x00000001 + 0x00000100 + 0x00010000 + 0x01000000);
-        // = 16843009
+        Console.WriteLine(0x00000003 + 0x00000400 + 0x00050000 + 0x06000000);
+        // = 100992003
     }
 }
 ```
@@ -85,4 +85,4 @@ static void Main(string[] args)
 - `byte*` 포인터를 `T*` 포인터로 변환하여 할당하는 것과 같다.
 - `C#`에서는 `fixed` 구문에서도 `T*` 포인터를 만들 수는 없기 때문에, 위의 방법으로만 가능하다.
 
-![image](https://user-images.githubusercontent.com/42164422/135417366-87344509-807c-45fe-b087-7ec9d3170cca.png)
+![image](https://user-images.githubusercontent.com/42164422/135508151-67e4b1b9-c833-4763-8002-4b0dc760038c.png)

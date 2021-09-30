@@ -4689,6 +4689,19 @@ AndroidInputManager.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8576,7 +8589,7 @@ USB 디버깅 허용
       
       
       <div class="card">
-        <a href="/posts/unity-shader-const-variables/">
+        <a href="/posts/unity-shader-random-functions/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8593,13 +8606,13 @@ USB 디버깅 허용
   
 
   
-    Aug 30
+    Sep 26
   
 
-  <i class="unloaded">2021-08-30T21:00:00+09:00</i>
+  <i class="unloaded">2021-09-26T21:19:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 상수, 상수 배열 선언하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 랜덤 함수들</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8611,22 +8624,31 @@ USB 디버깅 허용
                 Memo
 
 
-
-  Pass 내부에 작성
-
-
-
-  
-    // 매크로 상수
-#define RANDOM_SEED 426.791
-
-// 그냥 상수
-static const float RandomSeed = 5417.24;
-
-// 상수 배열
-static const float2 dir[8] = 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+float Random(float2 seed)
 {
-    float2(1, 0), float2(0, 1),   ...
+    return frac(sin(dot(seed, float2(73.867, 25.241))) * 39482.17593);
+}
+
+float RandomRange(float2 seed, float min...
               </p>
             </div>
           </div>

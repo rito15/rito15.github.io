@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-30T22:09:25+09:00</updated>
+  <updated>2021-10-01T03:08:40+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,64 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# 바이트 버퍼를 읽어서 구조체로 변환하기</title>
+    <link href="https://rito15.github.io/posts/cs-byte-buffer-to-struct/" rel="alternate" type="text/html" title="C# 바이트 버퍼를 읽어서 구조체로 변환하기" />
+    <published>2021-10-01T00:01:00+09:00</published>
+  
+    <updated>2021-10-01T00:01:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-byte-buffer-to-struct/</id>
+    <content src="https://rito15.github.io/posts/cs-byte-buffer-to-struct/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      소스 코드
+
+
+메소드
+
+
+
+
+  
+
+
+/// &amp;lt;summary&amp;gt; 바이트 버퍼를 읽어서 구조체로 변환하기 &amp;lt;/summary&amp;gt;
+public static T? ByteBufferToStruct&amp;lt;T&amp;gt;(byte[] buffer, int offset) where T : struct
+{
+    int size = Marshal.SizeOf(typeof(T));
+
+    if (buffer.Length - offset &amp;lt; size)
+        return null;
+
+    // Unmanaged Heap에 size만큼 메모리 할당
+    IntPtr ptr = Marshal.AllocHGlobal(size);
+
+    // buffer[offset]부터 size만큼 읽어서 p...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -220,7 +278,7 @@ Gamma Correction(감마 보정)이란?
     <link href="https://rito15.github.io/posts/unity-million-dust-simulation/" rel="alternate" type="text/html" title="유니티 - 진공 청소기, 먼지 시뮬레이션" />
     <published>2021-09-27T17:00:00+09:00</published>
   
-    <updated>2021-09-30T02:50:08+09:00</updated>
+    <updated>2021-09-30T22:17:13+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-million-dust-simulation/</id>
     <content src="https://rito15.github.io/posts/unity-million-dust-simulation/" />
@@ -283,59 +341,6 @@ Compute Shader
 
 
 렌더링될 메시의 버...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 쉐이더 - 랜덤 함수들</title>
-    <link href="https://rito15.github.io/posts/unity-shader-random-functions/" rel="alternate" type="text/html" title="유니티 쉐이더 - 랜덤 함수들" />
-    <published>2021-09-26T21:19:00+09:00</published>
-  
-    <updated>2021-09-26T21:19:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-shader-random-functions/</id>
-    <content src="https://rito15.github.io/posts/unity-shader-random-functions/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-float Random(float2 seed)
-{
-    return frac(sin(dot(seed, float2(73.867, 25.241))) * 39482.17593);
-}
-
-float RandomRange(float2 seed, float min, float max)
-{
-    float t = frac(sin(dot(seed, float2(73.867, 25.241))) * 39482.17593);
-    return lerp(min, max, t);
-}
-
-float3 RandomRGB(float2 seed)
-{
-    float r = frac(sin(dot(seed, float2(12.586, 25.241))) * 39482.17593);
-    float g = frac(c...
     </summary>
   
 

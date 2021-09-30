@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "C# 바이트 버퍼를 읽어서 구조체로 변환하기",
+    "url": "/posts/cs-byte-buffer-to-struct/",
+    "categories": "C#, C# Memo",
+    "tags": "csharp",
+    "date": "2021-10-01 00:01:00 +0900",
+    
+
+
+
+
+
+    "snippet": "소스 코드메소드  /// &amp;lt;summary&amp;gt; 바이트 버퍼를 읽어서 구조체로 변환하기 &amp;lt;/summary&amp;gt;public static T? ByteBufferToStruct&amp;lt;T&amp;gt;(byte[] buffer, int offset) where T : struct{    int size = Marshal.SizeOf(typeof(T));    if (buffer.Length - offset &amp;lt; size)        return null;    // Unm..."
+  },
+  
+  {
     "title": "유니티 쉐이더 - 빌보드(Vert/Frag)",
     "url": "/posts/unity-shader-billboard/",
     "categories": "Unity Shader, Shader Memo",
