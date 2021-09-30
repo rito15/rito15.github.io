@@ -1472,15 +1472,133 @@ private void SetBuffersToShaders()
 
 Cube 메시 대신 Quad 메시를 사용한다.
 
-렌더큐를 Transparent로 바꾸고, 먼지 텍스쳐를 적용한다.
+렌더 타입을 Transparent로 바꾸고, 먼지 텍스쳐를 적용한다.
 
 그리고 Billboard 효과를 적용한다.
+
+GPU 인스턴싱을 이용해 그리며, 하나의 트랜스폼을 기반으로 하므로 보통의 빌보드 쉐이더와는 다른 연산을 적용해야 한다.
+
+<br>
+
+## **[1] 먼지 쉐이더**
+
+<details>
+<summary markdown="span"> 
+DustShader.shader
+</summary>
+
+```hlsl
+Properties
+{
+    _MainTex ("Texture", 2D) = "white" {}
+    _Color("Color", Color) = (0.2, 0.2, 0.2, 1)
+}
+SubShader
+{
+    Tags { "Queue"="Geometry" "RenderType"="Transparent" "IgnoreProjector"="True" }
+    ZWrite Off
+    Lighting Off
+    Fog { Mode Off }
+    Blend SrcAlpha OneMinusSrcAlpha 
+
+    Pass
+    {
+        CGPROGRAM
+        #pragma vertex vert
+        #pragma fragment frag
+
+        #include "UnityCG.cginc"
+        #define TRUE 1
+        #define FALSE 0
+
+        struct v2f
+        {
+            float4 pos    : SV_POSITION;
+            float3 uv     : TEXCOORD0;
+            int isAlive   : TEXCOORD1;
+        };
+
+        struct Dust
+        {
+            float3 position;
+            int isAlive;
+        };
+
+        // ========================================================================================
+        //                                  Vertex Shader
+        // ========================================================================================
+        uniform float _Scale;
+        StructuredBuffer<Dust> _DustBuffer;
+
+        float4 CalculateVertex(float4 vertex, float3 worldPos)
+        {
+            float3 camUpVec      =  normalize( UNITY_MATRIX_V._m10_m11_m12 );
+            float3 camForwardVec = -normalize( UNITY_MATRIX_V._m20_m21_m22 );
+            float3 camRightVec   =  normalize( UNITY_MATRIX_V._m00_m01_m02 );
+            float4x4 camRotMat   = float4x4( camRightVec, 0, camUpVec, 0, camForwardVec, 0, 0, 0, 0, 1 );
+
+            vertex = mul(vertex, camRotMat); // Billboard
+            vertex.xyz *= _Scale;   // Scale
+            vertex.xyz += worldPos; // Instance Position
+
+            // World => VP => Clip
+            return mul(UNITY_MATRIX_VP, vertex);
+        }
+
+        v2f vert (appdata_full v, uint instanceID : SV_InstanceID)
+        {
+            v2f o;
+
+            o.isAlive = _DustBuffer[instanceID].isAlive;
+            o.pos = CalculateVertex(v.vertex, _DustBuffer[instanceID].position);
+            o.uv = v.texcoord;
+
+            return o;
+        }
+        
+        // ========================================================================================
+        //                                  Fragment Shader
+        // ========================================================================================
+        sampler2D _MainTex;
+        fixed4 _Color;
+
+        fixed4 frag (v2f i) : SV_Target
+        {
+            // 죽은 먼지는 렌더링 X
+            if(i.isAlive == FALSE)
+            {
+                discard;
+            }
+
+            fixed4 col = tex2D(_MainTex, i.uv);
+            col.rgb = _Color.rgb * col.a;
+
+            return col;
+        }
+        ENDCG
+    }
+}
+```
+
+</details>
+
+<br>
+
+## **[2] 실행 결과**
+
+![image](https://user-images.githubusercontent.com/42164422/135460485-cbca4440-de7e-4bac-89a9-702f57410af9.png)
+
+빌보드 효과는 성공적으로 적용되었으나
+
+각 먼지의 충돌 반경이 고려되지 않았으므로,
+
+다른 오브젝트와 겹치면 위와 같이 잘려 보일 수밖에 없다.
 
 <br>
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 7. 먼지 반지름 적용
+# 7. 충돌 반경 적용
 ---
 
 먼지의 반지름을 고려하여 물리 연산들을 변경한다.

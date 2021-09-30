@@ -142,10 +142,22 @@ private void LookAtSlowlyX(Transform target, float speed = 1f)
 
 <br>
 
-# 6. 회전 각도 제한하여 상하 회전하기
+# 6. 마우스 입력에 따른 좌우, 상하 회전 예제
 ---
 
+- 부모, 자식 트랜스폼 구조
+- 스크립트는 자식에 할당
+- 부모는 좌우 회전, 자식은 상하 회전 담당
+
 ```cs
+// 마우스 움직임 감지
+float v = Input.GetAxisRaw("Mouse X") * deltaTime * 100f;
+float h = Input.GetAxisRaw("Mouse Y") * deltaTime * 100f;
+
+// 부모 : 좌우 회전
+transform.parent.localRotation *= Quaternion.Euler(0, v, 0);
+
+// 상하 회전
 Vector3 eRot = transform.localEulerAngles;
 float nextX = eRot.x - h;
 if (0f < nextX && nextX < 90f) // 최소, 최대 회전 각도 제한

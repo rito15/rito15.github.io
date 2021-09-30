@@ -6438,6 +6438,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8260,7 +8273,7 @@
       
       
       <div class="card">
-        <a href="/posts/ray-marching/">
+        <a href="/posts/unity-million-dust-simulation/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8277,13 +8290,13 @@
   
 
   
-    Jan 19
+    Sep 27
   
 
-  <i class="unloaded">2021-01-19T23:15:00+09:00</i>
+  <i class="unloaded">2021-09-27T17:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>레이 마칭(Ray Marching)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 진공 청소기, 먼지 시뮬레이션</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8292,15 +8305,25 @@
 
 
 
-                레이 마칭이란?
+                목표
+
+
+  수십만 개의 먼지를 렌더링한다.
+  먼지들의 움직임을 시뮬레이션한다.
+  진공 청소기로 먼지들을 예쁘게 빨아들인다.
 
 
 
-  
-    모델의 정점 데이터를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 카메라로부터 픽셀마다 가장 가까운 오브젝트 표면까지의 거리를 알아내고, 이를 활용해 오브젝트를 그려내는 기법
-  
-  
-    레이 마칭의 모든 오브젝트들은 거리 함수(SDF : Signed Distance Fu...
+
+
+
+주요 개념
+
+
+Compute Buffer
+
+  큰 병렬 데이터를 GPU에 전달하거나 쉐이더끼리 공유하기 위해 사용한다.
+  Vert/Frag, Compute Shader에서 StructuredBuffer&lt;T&...
               </p>
             </div>
           </div>

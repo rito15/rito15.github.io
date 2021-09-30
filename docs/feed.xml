@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-09-30T02:32:10+09:00</updated>
+  <updated>2021-09-30T22:09:25+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,61 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 쉐이더 - 빌보드(Vert/Frag)</title>
+    <link href="https://rito15.github.io/posts/unity-shader-billboard/" rel="alternate" type="text/html" title="유니티 쉐이더 - 빌보드(Vert/Frag)" />
+    <published>2021-09-30T21:00:00+09:00</published>
+  
+    <updated>2021-09-30T21:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-shader-billboard/</id>
+    <content src="https://rito15.github.io/posts/unity-shader-billboard/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. 일반
+
+
+struct appdata
+{
+    float4 vertex : POSITION;
+    float2 uv : TEXCOORD0;
+};
+
+struct v2f
+{
+    float4 vertex : SV_POSITION;
+    float2 uv : TEXCOORD0;
+};
+
+float4 Billboard(float4 vertex)
+{
+    float3 camUpVec      =  normalize( UNITY_MATRIX_V._m10_m11_m12 );
+    float3 camForwardVec = -normalize( UNITY_MATRIX_V._m20_m21_m22 );
+    float3 camRightVec   =  normalize( UNITY_MATRIX_V._m00_m...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -165,7 +220,7 @@ Gamma Correction(감마 보정)이란?
     <link href="https://rito15.github.io/posts/unity-million-dust-simulation/" rel="alternate" type="text/html" title="유니티 - 진공 청소기, 먼지 시뮬레이션" />
     <published>2021-09-27T17:00:00+09:00</published>
   
-    <updated>2021-09-29T21:34:54+09:00</updated>
+    <updated>2021-09-30T02:50:08+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-million-dust-simulation/</id>
     <content src="https://rito15.github.io/posts/unity-million-dust-simulation/" />
@@ -281,85 +336,6 @@ float3 RandomRGB(float2 seed)
 {
     float r = frac(sin(dot(seed, float2(12.586, 25.241))) * 39482.17593);
     float g = frac(c...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>자료구조 - 힙(Heap), 우선순위 큐(Priority Queue)</title>
-    <link href="https://rito15.github.io/posts/heap-priority-queue/" rel="alternate" type="text/html" title="자료구조 - 힙(Heap), 우선순위 큐(Priority Queue)" />
-    <published>2021-09-24T21:03:00+09:00</published>
-  
-    <updated>2021-09-24T21:03:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/heap-priority-queue/</id>
-    <content src="https://rito15.github.io/posts/heap-priority-queue/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Algorithm" />
-    
-    <category term="Data Structure" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      트리 자료 구조
-
-
-
-
-트리(Tree)
-
-
-  재귀적 계층 구조
-  노드로 이루어져 있다.
-  최초의 루트 노드에서부터 시작하며, 하나의 부모 노드는 여러 개의 자식 노드를 가진다.
-
-
-
-
-
-
-이진 트리(Binary Tree)
-
-
-  각 노드가 최대 두 개의 자식만 가질 수 있는 트리 구조
-
-
-
-
-
-
-포화 이진 트리(Perfect Binary Tree)
-
-
-  모든 잎 노드(Leaf Node : 자식이 없는 노드)가 같은 계층에 위치한 노드
-  완전한 삼각형 꼴을 이룬 이진 트리 구조를 의미한다.
-
-
-
-
-
-
-완전 이진 트리(Complete Binary Tree)
-
-
-  마지막 계층 이전까지의 계층이 포화 이진 트리를 이룬 구조
-  마지막 계층은 왼쪽에서부터 채워지는 구조
-  일차원 배열을 통해 표현될 ...
     </summary>
   
 

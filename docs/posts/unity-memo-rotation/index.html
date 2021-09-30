@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="735 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="829 words">4 min</span>
 
 
           <!-- page views -->
@@ -638,8 +638,14 @@
 
 <p><br /></p>
 
-<h1 id="6-회전-각도-제한하여-상하-회전하기">6. 회전 각도 제한하여 상하 회전하기</h1>
+<h1 id="6-마우스-입력에-따른-좌우-상하-회전-예제">6. 마우스 입력에 따른 좌우, 상하 회전 예제</h1>
 <hr />
+
+<ul>
+  <li>부모, 자식 트랜스폼 구조</li>
+  <li>스크립트는 자식에 할당</li>
+  <li>부모는 좌우 회전, 자식은 상하 회전 담당</li>
+</ul>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -648,7 +654,23 @@
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="n">Vector3</span> <span class="n">eRot</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">;</span>
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="c1">// 마우스 움직임 감지</span>
+<span class="kt">float</span> <span class="n">v</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetAxisRaw</span><span class="p">(</span><span class="s">"Mouse X"</span><span class="p">)</span> <span class="p">*</span> <span class="n">deltaTime</span> <span class="p">*</span> <span class="m">100f</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">h</span> <span class="p">=</span> <span class="n">Input</span><span class="p">.</span><span class="nf">GetAxisRaw</span><span class="p">(</span><span class="s">"Mouse Y"</span><span class="p">)</span> <span class="p">*</span> <span class="n">deltaTime</span> <span class="p">*</span> <span class="m">100f</span><span class="p">;</span>
+
+<span class="c1">// 부모 : 좌우 회전</span>
+<span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">.</span><span class="n">localRotation</span> <span class="p">*=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+
+<span class="c1">// 상하 회전</span>
+<span class="n">Vector3</span> <span class="n">eRot</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">;</span>
 <span class="kt">float</span> <span class="n">nextX</span> <span class="p">=</span> <span class="n">eRot</span><span class="p">.</span><span class="n">x</span> <span class="p">-</span> <span class="n">h</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span><span class="m">0f</span> <span class="p">&lt;</span> <span class="n">nextX</span> <span class="p">&amp;&amp;</span> <span class="n">nextX</span> <span class="p">&lt;</span> <span class="m">90f</span><span class="p">)</span> <span class="c1">// 최소, 최대 회전 각도 제한</span>
 <span class="p">{</span>
@@ -4154,6 +4176,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   

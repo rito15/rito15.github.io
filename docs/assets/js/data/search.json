@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "유니티 쉐이더 - 빌보드(Vert/Frag)",
+    "url": "/posts/unity-shader-billboard/",
+    "categories": "Unity Shader, Shader Memo",
+    "tags": "unity, shader, memo",
+    "date": "2021-09-30 21:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "1. 일반struct appdata{    float4 vertex : POSITION;    float2 uv : TEXCOORD0;};struct v2f{    float4 vertex : SV_POSITION;    float2 uv : TEXCOORD0;};float4 Billboard(float4 vertex){    float3 camUpVec      =  normalize( UNITY_MATRIX_V._m10_m11_m12 );    float3 camForwardVec = -normalize( UNITY_MAT..."
+  },
+  
+  {
     "title": "C# Nullable",
     "url": "/posts/cs-nullable/",
     "categories": "C#, C# Grammar",
