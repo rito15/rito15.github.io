@@ -367,6 +367,98 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-shader-script-transparent-custom/">Customizable Transparent Shader</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Summary
+
+
+
+  알파 블렌딩, ZTest 등의 옵션을 마테리얼에서 설정할 수 있는 반투명 쉐이더
+
+
+Source Code
+
+
+
+  
+    Shader "Custom/CustomizableTransparent"
+{
+    Properties
+    {
+        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+ ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Mar 15, 2021,  5:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar 15
+  
+
+  <i class="unloaded">2021-03-15T17:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="204 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-shader-script-transparent-2pass/">2-Pass Transparent Shader</a>
     </h1>
 
@@ -1170,91 +1262,6 @@ private static void MenuItem1()
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/memo-cs-get-path/">C# 스크립트(.cs), 어셈블리(.dll, .exe) 경로 참조</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        스크립트 경로
-
-
-  
-    public static void GetScriptPath([System.Runtime.CompilerServices.CallerFilePath] string filePath = "")
-{
-    // 1. Script(.cs) Path
-    _ = filePath;
-
-    // 2. Folder Path
-    st...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Mar 12, 2021,  6:10 PM +0900"
-  >
-
-  
-  
-
-  
-    Mar 12
-  
-
-  <i class="unloaded">2021-03-12T18:10:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="93 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1835,7 +1842,12 @@ private static void MenuItem1()
         
         
         
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 진공 청소기, 먼지 시뮬레이션</a></li>
+        <li><a href="/posts/cs-byte-buffer-to-struct/">C# 바이트 버퍼를 읽어서 구조체로 변환하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
@@ -1851,11 +1863,6 @@ private static void MenuItem1()
         
         
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-shader-properties/">유니티 쉐이더 - 프로퍼티 메모</a></li>
       
 
       </ul>

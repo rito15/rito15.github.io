@@ -737,7 +737,12 @@ Fibonacci(n) = Fibonacci(n - 1) + Fibonacci(n - 2), (n &gt;= 2)
         
         
         
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 진공 청소기, 먼지 시뮬레이션</a></li>
+        <li><a href="/posts/cs-byte-buffer-to-struct/">C# 바이트 버퍼를 읽어서 구조체로 변환하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
@@ -753,11 +758,6 @@ Fibonacci(n) = Fibonacci(n - 1) + Fibonacci(n - 2), (n &gt;= 2)
         
         
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-shader-properties/">유니티 쉐이더 - 프로퍼티 메모</a></li>
       
 
       </ul>
@@ -4099,6 +4099,19 @@ Fibonacci(n) = Fibonacci(n - 1) + Fibonacci(n - 2), (n &gt;= 2)
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8292,7 +8305,7 @@ Details
       
       
       <div class="card">
-        <a href="/posts/heap-priority-queue/">
+        <a href="/posts/raycast-to-sphere/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8309,13 +8322,13 @@ Details
   
 
   
-    Sep 24
+    Oct  2
   
 
-  <i class="unloaded">2021-09-24T21:03:00+09:00</i>
+  <i class="unloaded">2021-10-02T02:02:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>자료구조 - 힙(Heap), 우선순위 큐(Priority Queue)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>레이캐스트 - 구체(Sphere)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8324,34 +8337,21 @@ Details
 
 
 
-                트리 자료 구조
+                Raycast(레이캐스트)
+
+
+
+  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
 
 
 
 
-트리(Tree)
-
-
-  재귀적 계층 구조
-  노드로 이루어져 있다.
-  최초의 루트 노드에서부터 시작하며, 하나의 부모 노드는 여러 개의 자식 노드를 가진다.
+구체 표면 교차점 찾기
 
 
 
-
-
-
-이진 트리(Binary Tree)
-
-
-  각 노드가 최대 두 개의 자식만 가질 수 있는 트리 구조
-
-
-
-
-
-
-포화 이진 트리(Perfect Binary Tree...
+  시작 지점에서부터 목표 지점으로 광선을 발사하여, 그 사이에서 광선과 교차하는 구체의 표면 지점을 찾아낸다.
+  3차원에서 수행하면 구체, 2차원에서 수행하면 원(Circle)...
               </p>
             </div>
           </div>

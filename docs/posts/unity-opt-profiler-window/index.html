@@ -773,7 +773,12 @@
         
         
         
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 진공 청소기, 먼지 시뮬레이션</a></li>
+        <li><a href="/posts/cs-byte-buffer-to-struct/">C# 바이트 버퍼를 읽어서 구조체로 변환하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
@@ -789,11 +794,6 @@
         
         
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-shader-properties/">유니티 쉐이더 - 프로퍼티 메모</a></li>
       
 
       </ul>
@@ -7676,6 +7676,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8265,63 +8278,6 @@ Not...
       
       
       <div class="card">
-        <a href="/posts/unity-optimize-model-transform/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Sep 16
-  
-
-  <i class="unloaded">2021-09-16T00:02:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 모델 트랜스폼 구조 최적화하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                문제점
-
-
-Skinned Mesh가 적용되는 게임 오브젝트의 경우,
-
-하이라키에서 트랜스폼 구조를 확인해보면
-
-
-
-이렇게 Bone 별로 각각 존재하여, 굉장히 많은 게임오브젝트들로 이루어져 있다.
-
-그런데 유니티 엔진에서는 부모 게임 오브젝트의 트랜스폼에 변경사항이 생기면
-
-모든 자식 트랜스폼에 변경이 발생한다.
-
-한마디로, 위와 같이 무수히 많은 자...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-opt-script-optimization/">
           <div class="card-body">
             <!--
@@ -8362,6 +8318,77 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
   3.  Object.name, GameObject.tag 사용하지 않기
   4.  비어있는 유니티 이벤트 메소드 방치하지 않기
   5.  StartCoroutine() 자주 호출하지 않...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-opt-occlusion-culling/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar  1
+  
+
+  <i class="unloaded">2021-03-01T01:40:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 오클루전 컬링</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                프러스텀 컬링 (Frustum Culling)
+
+
+  
+    카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것
+  
+  
+    따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.
+  
+
+
+
+
+
+
+그냥 이렇게 두어도
+
+
+
+실제로 이렇게 컬링된다.
+
+
+
+GIF
+
+
+
+
+
+오클루전 컬링 (Occlusion Cu...
               </p>
             </div>
           </div>

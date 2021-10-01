@@ -1792,7 +1792,12 @@
         
         
         
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 진공 청소기, 먼지 시뮬레이션</a></li>
+        <li><a href="/posts/cs-byte-buffer-to-struct/">C# 바이트 버퍼를 읽어서 구조체로 변환하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
@@ -1808,11 +1813,6 @@
         
         
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-shader-properties/">유니티 쉐이더 - 프로퍼티 메모</a></li>
       
 
       </ul>
@@ -8669,6 +8669,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9294,63 +9307,6 @@ GIF
       
       
       <div class="card">
-        <a href="/posts/unity-optimize-model-transform/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Sep 16
-  
-
-  <i class="unloaded">2021-09-16T00:02:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 모델 트랜스폼 구조 최적화하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                문제점
-
-
-Skinned Mesh가 적용되는 게임 오브젝트의 경우,
-
-하이라키에서 트랜스폼 구조를 확인해보면
-
-
-
-이렇게 Bone 별로 각각 존재하여, 굉장히 많은 게임오브젝트들로 이루어져 있다.
-
-그런데 유니티 엔진에서는 부모 게임 오브젝트의 트랜스폼에 변경사항이 생기면
-
-모든 자식 트랜스폼에 변경이 발생한다.
-
-한마디로, 위와 같이 무수히 많은 자...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-opt-profiling/">
           <div class="card-body">
             <!--
@@ -9404,6 +9360,70 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
 
 
 No...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-material-property-block/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    May 22
+  
+
+  <i class="unloaded">2021-05-22T18:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Material Property Block을 통해 프로퍼티 값 변경하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                드로우 콜과 배칭의 개념
+
+
+Draw Call
+
+  
+    CPU가 GPU에게 오브젝트를 그리라고 요청하는 것
+  
+  
+    주요 CPU 병목 요소 중 하나
+  
+
+
+SetPass Call
+
+  
+    쉐이더 렌더링 패스 수
+  
+  
+    쉐이더 요소(예 : 프로퍼티)변경 시 SetPass Call 증가
+  
+  
+    간단히, 쉐이더와 ...
               </p>
             </div>
           </div>

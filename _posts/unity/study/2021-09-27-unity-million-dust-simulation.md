@@ -1,5 +1,5 @@
 ---
-title: 유니티 - 진공 청소기, 먼지 시뮬레이션
+title: 유니티 - 물리 기반 먼지 시뮬레이션
 author: Rito15
 date: 2021-09-27 17:00:00 +09:00
 categories: [Unity, Unity Study]
@@ -11,7 +11,7 @@ mermaid: true
 # 목표
 ---
 - 수십만 개의 먼지를 렌더링한다.
-- 먼지들의 움직임을 시뮬레이션한다.
+- 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다.
 - 진공 청소기로 먼지들을 예쁘게 빨아들인다.
 
 <br>
@@ -1601,9 +1601,67 @@ SubShader
 # 7. 충돌 반경 적용
 ---
 
-먼지의 반지름을 고려하여 물리 연산들을 변경한다.
+충돌 시 먼지의 반지름을 고려하도록 한다.
 
 <br>
+
+## **[1] 컴퓨트 쉐이더**
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+float radius;        // 먼지 반지름
+
+[numthreads(64,1,1)]
+void Update (uint3 id : SV_DispatchThreadID)
+{
+    // ...
+    
+    // 교차 지점에서 충돌 검사
+    // [1] Plane (Y = 0)
+    nextPos.y = max(radius, nextPos.y); // 반지름 고려
+
+    // ...
+}
+```
+
+</details>
+
+<br>
+
+
+## **[2] 먼지 관리 컴포넌트**
+
+<details>
+<summary markdown="span"> 
+DustManager.cs
+</summary>
+
+```cs
+private void UpdateDustPositionsGPU()
+{
+    // ...
+    
+    dustCompute.SetFloat("radius", dustScale);
+    
+    // ...
+}
+```
+
+</details>
+
+<br>
+
+
+## **[3] 실행 결과**
+
+![image](https://user-images.githubusercontent.com/42164422/135573568-cf529963-eec0-4da1-b044-38f47bde139f.png)
+
+<br>
+
 
 <!-- --------------------------------------------------------------------------- -->
 
@@ -1615,6 +1673,7 @@ SubShader
 충돌 시 탄성력을 구현한다.
 
 <br>
+
 
 <!-- --------------------------------------------------------------------------- -->
 

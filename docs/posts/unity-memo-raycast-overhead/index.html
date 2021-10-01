@@ -682,7 +682,12 @@
         
         
         
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 진공 청소기, 먼지 시뮬레이션</a></li>
+        <li><a href="/posts/cs-byte-buffer-to-struct/">C# 바이트 버퍼를 읽어서 구조체로 변환하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
@@ -698,11 +703,6 @@
         
         
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-shader-properties/">유니티 쉐이더 - 프로퍼티 메모</a></li>
       
 
       </ul>
@@ -7117,6 +7117,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8234,7 +8247,7 @@ GIF
       
       
       <div class="card">
-        <a href="/posts/unity-fix-unitypackage-association/">
+        <a href="/posts/unity-srgb-linear-gamma-color-space/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8251,13 +8264,13 @@ GIF
   
 
   
-    Sep  1
+    Sep 29
   
 
-  <i class="unloaded">2021-09-01T23:33:00+09:00</i>
+  <i class="unloaded">2021-09-29T03:21:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - .unitypackage 확장자 연결 끊어진 경우 해결하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - sRGB, Linear, Gamma 컬러 스페이스</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8266,18 +8279,20 @@ GIF
 
 
 
-                Note
+                모니터의 색상 변환
 
 
-컴퓨터에 설치된 유니티 에디터 버전 중 하나를 지운 경우,
+  모니터는 디스크에 저장된 이미지를 화면에 출력할 때 Pow(color, 2.2) 연산을 적용해서 더 어둡게 출력한다.
 
-.unitypackage 확장자의 연결이 끊어지는 경우가 종종 있다.
 
-확장자의 연결 프로그램이 단순한 응용 프로그램 실행이라면 상관 없지만,
 
-.unitypackage 확장자의 경우 그렇지 않기 때문에 연결프로그램 연결만으로는 해결할 수 없다.
 
-이를 비교적 간단히 해결하기 위...
+
+  이유?
+    
+      베버의 법칙(Weber’s law)
+      사람의 시각은 어두운 부분의 밝기 변화를 부드럽지 않고 단절되게 감지한다.
+      그래서 어두운 부분의 화질이 떨어져 ...
               </p>
             </div>
           </div>
