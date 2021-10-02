@@ -1665,7 +1665,138 @@ private void UpdateDustPositionsGPU()
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 8. Sphere 충돌 구현
+# 추가 : 진공 청소기 영역 메시 구현
+---
+
+기즈모는 다른 물체보다 항상 위에 보이므로 영역을 정확히 확인하기가 어렵다.
+
+따라서 영역을 정확히 파악할 수 있도록 메시를 만들어 렌더링한다.
+
+<br>
+
+## **진공 청소기 컴포넌트**
+
+<details>
+<summary markdown="span"> 
+VacuumCleanerHead.cs
+</summary>
+
+```cs
+private Transform childConeTr;
+[Space]
+[SerializeField] private Material coneMaterial;
+
+private void Awake()
+{
+    parent = transform.parent;
+    CreateChildCone();
+}
+private void Update()
+{
+    deltaTime = Time.deltaTime;
+
+    ChangeConeScale();
+    MouseControl();
+    if (mouseLocked)
+    {
+        Move();
+        Rotate();
+    }
+}
+
+/// <summary> 자식 게임오브젝트 생성하여 메시 렌더러, 필터 추가 </summary>
+private void CreateChildCone()
+{
+    GameObject go = new GameObject("Cone Mesh");
+    childConeTr = go.transform;
+    childConeTr.SetParent(transform, false);
+
+    MeshRenderer mr = go.AddComponent<MeshRenderer>();
+    mr.material = coneMaterial;
+    mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+    mr.receiveShadows = false;
+
+    MeshFilter mf = go.AddComponent<MeshFilter>();
+    mf.sharedMesh = CreateConeMesh();
+}
+
+/// <summary> 원뿔 모양 메시 생성 </summary>
+private Mesh CreateConeMesh(int sample = 24)
+{
+    Mesh mesh = new Mesh();
+    Vector3[] verts = new Vector3[sample + 1];
+    int[] tris = new int[sample * 3];
+
+    verts[0] = Vector3.zero; // 꼭짓점
+    float deltaRad = Mathf.PI * 2f / sample;
+    for (int i = 1; i <= sample; i++)
+    {
+        float r = i * deltaRad;
+        verts[i] = new Vector3(Mathf.Cos(r), Mathf.Sin(r), 1f);
+    }
+
+    int t = 0;
+    for (int i = 1; i < sample; i++)
+    {
+        tris[t] = 0;
+        tris[t + 1] = i + 1;
+        tris[t + 2] = i;
+        t += 3;
+    }
+    tris[t] = 0;
+    tris[t + 1] = 1;
+    tris[t + 2] = sample;
+
+    mesh.vertices = verts;
+    mesh.triangles = tris;
+    mesh.RecalculateNormals();
+    mesh.RecalculateBounds();
+
+    return mesh;
+}
+
+/// <summary> 옵션 변경에 따라 자식 스케일 변경 </summary>
+private void ChangeConeScale()
+{
+    float r = Mathf.Tan(suctionAngle * Mathf.Deg2Rad) * suctionRange * 0.5f;
+    float z = suctionRange * 0.5f;
+
+    childConeTr.localScale = new Vector3(r, r, z);
+}
+```
+
+</details>
+
+<br>
+
+
+![image](https://user-images.githubusercontent.com/42164422/135713799-d07fba9d-b17c-4d2d-81b6-47ee3b73cc02.png) ![image](https://user-images.githubusercontent.com/42164422/135713803-d67c22e0-bb4e-4b5a-a0f2-ffb22af8a97d.png)
+
+기본 PBR 쉐이더를 Transparent로 설정하고 적용하면 위와 같이 다른 오브젝트와 겹치는 부분이 명확하게 보이지 않는다.
+
+따라서 다음과 같은 쉐이더를 작성하여 적용한다.
+
+![image](https://user-images.githubusercontent.com/42164422/135714616-c3cf790e-62a9-45ef-bfc7-f9002c0f333d.png)
+
+![2021_1002_DepthIntersection](https://user-images.githubusercontent.com/42164422/135714621-aa2bc222-bbd8-4624-bdab-78b7edffd8b7.gif)
+
+이제 다른 오브젝트와 맞닿는 부분이 더 또렷하게 보이는 것을 확인할 수 있다.
+
+<br>
+
+# 8. 발사 기능 구현
+---
+
+진공 청소기로 흡수했던 먼지들을 한 번에 뿜어내어 발사하는 기능을 구현한다.
+
+
+
+<br>
+
+
+<!-- --------------------------------------------------------------------------- -->
+
+# 9. Sphere 충돌 구현
 ---
 
 기본적인 Sphere 충돌을 구현한다.
@@ -1677,7 +1808,7 @@ private void UpdateDustPositionsGPU()
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 9. Cube 충돌 구현
+# 10. Cube 충돌 구현
 ---
 
 
