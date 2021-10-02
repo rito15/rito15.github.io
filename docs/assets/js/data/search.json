@@ -102,7 +102,7 @@
 
 
 
-    "snippet": "Memofloat Random(float2 seed){    return frac(sin(dot(seed, float2(73.867, 25.241))) * 39482.17593);}float RandomRange(float2 seed, float min, float max){    float t = frac(sin(dot(seed, float2(73.867, 25.241))) * 39482.17593);    return lerp(min, max, t);}float3 RandomRGB(float2 seed){    float ..."
+    "snippet": "Memo#define RM 39482.17593#define RD1 7.8671#define RD2 3.3419#define RD3 5.8912#define RP1 2.1759#define RP2 4.7921float Random11(float seed){    return frac(sin(dot(float2(RD1, seed), float2(seed, RD2))) * RM);}float2 Random12(float seed){    return float2(        frac(sin(dot(float2(RD1, seed)..."
   },
   
   {

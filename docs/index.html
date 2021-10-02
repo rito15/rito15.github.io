@@ -1095,7 +1095,7 @@ Compute Buffer
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="7049 words">39 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8055 words">44 min</span>
 
 
         <!-- page views -->
@@ -1128,14 +1128,16 @@ Compute Buffer
 
 
   
-    float Random(float2 seed)
-{
-    return frac(sin(dot(seed, float2(73.867, 25.241))) * 39482.17593);
-}
+    #define RM 39482.17593
+#define RD1 7.8671
+#define RD2 3.3419
+#define RD3 5.8912
+#define RP1 2.1759
+#define RP2 4.7921
 
-float RandomRange(float2 seed, float min, float max)
+float Random11(float seed)
 {
-    float t = frac(sin(do...
+    return frac(sin(dot(float2(RD1...
       </p>
     </div>
 
@@ -1182,7 +1184,7 @@ float RandomRange(float2 seed, float min, float max)
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="85 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="367 words">2 min</span>
 
 
         <!-- page views -->
@@ -1872,12 +1874,17 @@ float RandomRange(float2 seed, float min, float max)
         
         
         
-        <li><a href="/posts/cs-byte-buffer-to-struct/">C# 바이트 버퍼를 읽어서 구조체로 변환하기</a></li>
+        <li><a href="/posts/unity-shader-random-functions/">유니티 쉐이더 - 랜덤 함수들</a></li>
       
         
         
         
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/cs-byte-buffer-to-struct/">C# 바이트 버퍼를 읽어서 구조체로 변환하기</a></li>
       
         
         
@@ -1888,11 +1895,6 @@ float RandomRange(float2 seed, float min, float max)
         
         
         <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
       
 
       </ul>

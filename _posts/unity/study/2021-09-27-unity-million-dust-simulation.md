@@ -717,7 +717,7 @@ DustManager.cs
 
 private int kernelPopulateID;
 private int kernelUpdateID;
-private int kernelUpdateGroupSizeX;
+private int kernelGroupSizeX;
 
 private void Start()
 {
@@ -767,7 +767,7 @@ private void InitComputeShader()
     DustCompute.SetBuffer(kernelUpdateID, "aliveNumberBuffer", aliveNumberBuffer);
 
     DustCompute.GetKernelThreadGroupSizes(kernelUpdateID, out uint tx, out _, out _);
-    kernelUpdateGroupSizeX = Mathf.CeilToInt((float)instanceNumber / tx);
+    kernelGroupSizeX = Mathf.CeilToInt((float)instanceNumber / tx);
 }
 
 /// <summary> 먼지들을 영역 내의 무작위 위치에 생성한다. </summary>
@@ -793,7 +793,7 @@ private void UpdateDustPositionsGPU()
     // 생략
     
     // Dispatch(0, ...) => Dispatch(kernelUpdateID, ...) 변경
-    DustCompute.Dispatch(kernelUpdateID, kernelUpdateGroupSizeX, 1, 1);
+    DustCompute.Dispatch(kernelUpdateID, kernelGroupSizeX, 1, 1);
 }
 ```
 
@@ -1374,7 +1374,7 @@ private void UpdateDustPositionsGPU()
     dustCompute.SetFloat("gravityForce", gravityForce);
     dustCompute.SetFloat("airResistance", airResistance);
 
-    dustCompute.Dispatch(kernelUpdateID, kernelUpdateGroupSizeX, 1, 1);
+    dustCompute.Dispatch(kernelUpdateID, kernelGroupSizeX, 1, 1);
 
     aliveNumberBuffer.GetData(aliveNumberArray);
     aliveNumber = (int)aliveNumberArray[0]; 
@@ -1406,7 +1406,7 @@ private void Init()
     kernelUpdateID = dustCompute.FindKernel("Update");
 
     dustCompute.GetKernelThreadGroupSizes(kernelUpdateID, out uint tx, out _, out _);
-    kernelUpdateGroupSizeX = Mathf.CeilToInt((float)instanceNumber / tx);
+    kernelGroupSizeX = Mathf.CeilToInt((float)instanceNumber / tx);
 }
 
 /// <summary> 컴퓨트 버퍼들 생성 </summary>
@@ -1601,7 +1601,7 @@ SubShader
 # 7. 충돌 반경 적용
 ---
 
-충돌 시 먼지의 반지름을 고려하도록 한다.
+충돌 시 먼지의 반지름을 고려하여, 다른 오브젝트에 겹치지 않도록 한다.
 
 <br>
 
@@ -1789,6 +1789,133 @@ private void ChangeConeScale()
 
 진공 청소기로 흡수했던 먼지들을 한 번에 뿜어내어 발사하는 기능을 구현한다.
 
+`suctionAngle` 각도를 발사 각도로 사용하고,
+
+`suctionForce` 값을 발사 강도로 사용한다.
+
+<br>
+
+## **[1] 컴퓨트 쉐이더**
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+#define TAU 6.28318530
+
+int maxNumber;       // 먼지 개수
+float time;          // Time.time
+float blowForce;     // 발사 강도(suctionForce 필드값)
+float blowAngleRad;  // 발사 각도(suctionAngle 필드값)
+float4x4 headMatrix; // CleanerHead : localToWorld
+
+// 2 - 죽었던 먼지들 살려서 발사
+[numthreads(64,1,1)]
+void Blow (uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if(dustBuffer[i].isAlive == TRUE) return;
+    if(i >= maxNumber) return;
+
+    // 발사 확률 계산
+    float seed = (i + time) / 79238.288;
+    float r = Random11(seed);
+    if(r > 0.01) return;
+
+    // Note : localDir의 z를 1로 고정하고, xy를 tan(blowAngleRad)로 지정함으로써
+    // 발사되는 먼지들이 형성하는 원뿔의 각도를 suctionAngle로 설정하는 효과를 얻는다.
+    
+    // r2.x : 각 먼지의 각도 (-360 ~ 360), r2.y : 원의 반지름(원뿔의 각도 결정)
+    float seed2 = i / 82801.277;
+    float2 r2 = RandomRange12(seed2, float2(-TAU, 0), float2(TAU, 1));
+    float2 randomCircle = float2(cos(r2.x), sin(r2.x)) * r2.y * tan(blowAngleRad);
+
+    float3 localDir = float3(randomCircle.x, randomCircle.y, 1);
+    float3 worldDir = mul(headMatrix, localDir);
+    
+    dustBuffer[i].position = headPos;
+    velocityBuffer[i] = (worldDir) * blowForce;
+
+    // 먼지 되살리기
+    dustBuffer[i].isAlive = TRUE;
+    InterlockedAdd(aliveNumberBuffer[0], 1);
+}
+```
+
+</details>
+
+<br>
+
+
+## **[2] 먼지 관리 컴포넌트**
+
+<details>
+<summary markdown="span"> 
+DustManager.cs
+</summary>
+
+```cs
+private int kernelBlowID;
+
+private void Update()
+{
+    // ...
+    
+    // 마우스 중앙 버튼 누르면 먼지 발사
+    if (Input.GetMouseButton(2))
+        BlowDusts();
+}
+
+private void Init()
+{
+    // ...
+    
+    kernelBlowID = dustCompute.FindKernel("Blow");
+    
+    // ...
+}
+
+private void SetBuffersToShaders()
+{
+    // ...
+    
+    dustCompute.SetBuffer(kernelBlowID, "dustBuffer", dustBuffer);
+    dustCompute.SetBuffer(kernelBlowID, "aliveNumberBuffer", aliveNumberBuffer);
+    dustCompute.SetBuffer(kernelBlowID, "velocityBuffer", dustVelocityBuffer);
+}
+
+private void BlowDusts()
+{
+    dustCompute.SetFloat("time", Time.time);
+    dustCompute.SetFloat("blowForce", cleanerHead.SuctionForce);
+    dustCompute.SetFloat("blowAngleRad", cleanerHead.SuctionAngleRad);
+    dustCompute.SetMatrix("headMatrix", cleanerHead.transform.localToWorldMatrix);
+    dustCompute.Dispatch(kernelBlowID, kernelGroupSizeX, 1, 1);
+}
+```
+
+</details>
+
+<br>
+
+## **[3] 실행 결과**
+
+![2021_1003_Blow Dust1](https://user-images.githubusercontent.com/42164422/135729201-b27e7340-fa4b-4eac-91e0-fde0056904bc.gif) ![2021_1003_Blow Dust2](https://user-images.githubusercontent.com/42164422/135729203-47f9f4b3-0d5f-44c8-90e2-68c2cd0a1ff8.gif)
+
+<br>
+
+<!-- --------------------------------------------------------------------------- -->
+
+# 9. 바닥 탄성 구현
+---
+
+먼지가 바닥에 부딪힐 경우, 현재는 바로 굴러간다.
+
+탄성 계수를 추가하고, 바닥에 떨어졌을 때 반사 벡터를 구하여 적당히 튕기도록 구현한다.
+
+
 
 
 <br>
@@ -1796,19 +1923,25 @@ private void ChangeConeScale()
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 9. Sphere 충돌 구현
+# 10. Sphere 충돌 구현
 ---
 
 기본적인 Sphere 충돌을 구현한다.
 
 충돌 시 탄성력을 구현한다.
 
+<!-- 그림으로 차근차근 설명
+
+nextPos Sphere-to-Sphere
+
+ -->
+
 <br>
 
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 10. Cube 충돌 구현
+# 11. Cube 충돌 구현
 ---
 
 
