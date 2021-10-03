@@ -1667,7 +1667,7 @@ private void UpdateDustPositionsGPU()
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 추가 : 진공 청소기 영역 메시 구현
+# 추가 : 원뿔 영역 메시 구현
 ---
 
 기즈모는 다른 물체보다 항상 위에 보이므로 영역을 정확히 확인하기가 어렵다.
@@ -2077,7 +2077,7 @@ private void BlowDusts()
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 9. 바닥 탄성 구현
+# 9. 바닥 평면 충돌 및 탄성 구현
 ---
 
 먼지가 바닥에 부딪힐 경우, 현재는 바로 굴러간다.
@@ -2086,7 +2086,7 @@ private void BlowDusts()
 
 <br>
 
-## **[1] 반사 벡터 연산 최적화**
+## **[1] 반사 벡터 계산 최적화**
 
 `reflect(inDir, normal)` 함수를 통한 연산은
 
@@ -2095,6 +2095,10 @@ inDir - 2 * dot(inDir, normal) * normal
 ```
 
 내부적으로 위와 같은 연산을 통해 반사 벡터를 계산한다.
+
+그림으로 나타내면 다음과 같다.
+
+![image](https://user-images.githubusercontent.com/42164422/135757693-65045077-0511-415f-a927-8eb573f082b3.png)
 
 <br>
 
@@ -2146,11 +2150,15 @@ inDir - 2 * dot(inDir, normal) * normal
 
 <br>
 
+- 참고 : 직선 - 평면 접점 구하기 : [Link](../raycast-to-plane/)
+
+<br>
+
 ## **[3] 탄성 계수 고려하기**
 
 물체가 다른 물체에 부딪혀 튕겨 나갈 때 운동량을 일정량 상실한다.
 
-따라서 이를 결정하는 값을 `탄성 계수`라고 정의하며,
+따라서 이를 결정하는 값을 임의로 `탄성 계수`라고 정의하며,
 
 값이 `1`이면 운동량 보존, 값이 `0`이면 모든 운동량을 상실한다고 가정한다.
 
@@ -2168,17 +2176,88 @@ DustCompute.compute
 </summary>
 
 ```hlsl
+#define ELAS 0.6 // 탄성 계수
 
+// 점 A에서 점 B로 레이캐스트하여 평면과 접점 찾기
+float3 RaycastToPlane(float3 A, float3 B, float3 P, float3 N)
+{
+    //A = Ray Origin;
+    //B = Ray End;
+    //P = Plane Point;
+    //N = Plane Normal;
+    float3 AB = (B - A);
+    float3 nAB = normalize(AB);
+    
+    float d = dot(N, P - A) / dot(N, nAB);
+    float3 C = A + nAB * d;
+    return C;
+}
+
+float3 ReverseY(float3 vec)
+{
+    return float3(vec.x, -vec.y, vec.z);
+}
+
+// 1 - 실시간 업데이트
+[numthreads(64,1,1)]
+void Update (uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if(dustBuffer[i].isAlive == FALSE) return;
+
+    // ...
+    float3 currPos = dustBuffer[i].position;  // 현재 프레임 먼지 위치
+    // ...
+    
+    // ===================================================
+    //              이동 시뮬레이션, 충돌 검사
+    // ===================================================
+    // 다음 프레임 위치 계산 : S = S0 + V * t
+    float3 nextPos = currPos + velocityBuffer[i] * deltaTime;
+
+    // [1] Plane 충돌 (Y = 0)
+    if(nextPos.y < radius && currPos.y > radius) // 먼지 반지름 고려
+    {
+        float3 currToNext = nextPos - currPos;
+
+        // 평면과의 충돌 지점
+        float3 contact = RaycastToPlane(currPos, nextPos, float3(0, radius, 0), float3(0, 1, 0));
+        float rayLen = length(currToNext);
+        float inLen = length(currPos - contact); // 입사 벡터 길이
+        float outLen = (rayLen - inLen) * ELAS;  // 반사 벡터 길이(운동량 감소)
+        float3 outVec = ReverseY(currToNext) * (outLen / rayLen);
+
+        nextPos = contact + outVec;
+        velocityBuffer[i] = ReverseY(velocityBuffer[i]) * ELAS;
+    }
+    else
+    {
+        nextPos.y = max(radius, nextPos.y);
+    }
+
+    // [2] 입구로 완전히 빨아들인 경우, 먼지 파괴
+    // ...
+    
+    // 다음 위치 적용
+    dustBuffer[i].position = nextPos;
+}
 ```
 
 </details>
 
+<br>
+
+## **[5] 실행 결과**
+
+![2021_1004_PlaneElastic1](https://user-images.githubusercontent.com/42164422/135767238-85ea3b2e-868c-4893-90f4-18be7021ab39.gif)
+
+![2021_1004_PlaneElastic2](https://user-images.githubusercontent.com/42164422/135767242-74f96e8c-1a4f-41f3-9f68-78325d068729.gif)
 
 <br>
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 10. 월드 영역 제한
+# 10. 월드 영역 제한(큐브)
 ---
 
 지금까지는 바닥만 제한 영역을 설정했으나,
@@ -2212,7 +2291,7 @@ nextPos Sphere-to-Sphere
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 11. Cube 충돌 구현
+# 12. Cube 충돌 구현
 ---
 
 
@@ -2248,7 +2327,7 @@ TODO
 
 # Github Link
 ---
-- 
+- <https://github.com/rito15/Unity-Million-Dust>
 
 <br>
 
