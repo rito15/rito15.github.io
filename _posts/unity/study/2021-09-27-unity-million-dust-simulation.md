@@ -1795,7 +1795,57 @@ private void ChangeConeScale()
 
 <br>
 
-## **[1] 컴퓨트 쉐이더**
+## **[1] 이론 : 발사 방향 설정**
+
+### **[1-1] 무작위 원형 범위 생성(XY 2D)**
+
+![image](https://user-images.githubusercontent.com/42164422/135745360-f079511b-62ad-4d71-8890-05e228109b9b.png)
+
+xy 평면에서 원형 범위를 생성한다.
+
+`θ`(각도) 값을 -360 ~ 360도 범위로,
+
+`r`(반지름) 값을 0 ~ 1 범위로 난수를 생성한다.
+
+그러면 위에서 보이는 원 내부의 모든 영역이 xy평면의 발사 방향으로 설정되며,
+
+이는 발사 방향을 결정하는 원뿔의 밑면이 된다.
+
+<br>
+
+### **[1-2] 발사 원뿔 영역 생성(XY-Z 2D)**
+
+![image](https://user-images.githubusercontent.com/42164422/135745354-18e23c36-91f5-401e-a164-d3c808e6d1cf.png)
+
+원뿔의 높이인 `Z` 값을 상수 `1`로 고정한다.
+
+그리고 여기서 원뿔의 각도, 즉 발사 각도 `t`를 조정하면 3D 공간의 원뿔 영역을 형성할 수 있는데,
+
+원뿔의 밑면 반지름 `r`은 `tan(t)`와 같으므로
+
+`tan(t)`를 계산하여 `[1-1]`의 `r` 값에 곱해주면
+
+최종적인 원뿔 영역을 완성할 수 있다.
+
+이 때 `t`는 청소기 객체의 `suctionAngle` 필드이다.
+
+<br>
+
+### **[1-3] 공간 변환**
+
+원뿔의 꼭짓점이 원점`(0, 0, 0)`, 밑면의 중심 위치가 `(0, 1, 0)`인 원뿔 영역을 완성했다.
+
+그리고 이 영역 내의 모든 점은 각각이 발사 방향 벡터이므로,
+
+이제 진공 청소기 트랜스폼의 `Local to World` 행렬을 여기에 곱하여 공간 변환을 해주면 최종적인 발사 방향 설정이 완료된다.
+
+그리고 여기에 힘을 곱해주기만 하면 발사 벡터가 완성되며,
+
+이 때 힘 값은 청소기 객체의 `suctionForce`이다.
+
+<br>
+
+## **[2] 컴퓨트 쉐이더**
 
 <details>
 <summary markdown="span"> 
@@ -1805,7 +1855,7 @@ DustCompute.compute
 ```hlsl
 #define TAU 6.28318530
 
-int maxNumber;       // 먼지 개수
+uint maxNumber;      // 먼지 개수
 float time;          // Time.time
 float blowForce;     // 발사 강도(suctionForce 필드값)
 float blowAngleRad;  // 발사 각도(suctionAngle 필드값)
@@ -1832,11 +1882,12 @@ void Blow (uint3 id : SV_DispatchThreadID)
     float2 r2 = RandomRange12(seed2, float2(-TAU, 0), float2(TAU, 1));
     float2 randomCircle = float2(cos(r2.x), sin(r2.x)) * r2.y * tan(blowAngleRad);
 
+    // 발사 방향 벡터 공간 변환
     float3 localDir = float3(randomCircle.x, randomCircle.y, 1);
-    float3 worldDir = mul(headMatrix, localDir);
+    float3 worldDir = mul(headMatrix, float4(localDir, 0)).xyz;
     
-    dustBuffer[i].position = headPos;
-    velocityBuffer[i] = (worldDir) * blowForce;
+    dustBuffer[i].position = headPos;           // 청소기 입구로 위치 이동
+    velocityBuffer[i] = (worldDir) * blowForce; // 발사 속도 벡터 설정(방향 * 크기)
 
     // 먼지 되살리기
     dustBuffer[i].isAlive = TRUE;
@@ -1849,7 +1900,7 @@ void Blow (uint3 id : SV_DispatchThreadID)
 <br>
 
 
-## **[2] 먼지 관리 컴포넌트**
+## **[3] 먼지 관리 컴포넌트**
 
 <details>
 <summary markdown="span"> 
@@ -1920,10 +1971,25 @@ private void BlowDusts()
 
 <br>
 
+<!-- --------------------------------------------------------------------------- -->
+
+# 10. 월드 영역 설정
+---
+
+지금까지는 바닥만 제한 영역을 설정했으나,
+
+월드 전체를 여섯 면이 이루는 큐브 형태로 영역을 제한한다.
+
+
+
+
+
+
+<br>
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 10. Sphere 충돌 구현
+# 11. Sphere 충돌 구현
 ---
 
 기본적인 Sphere 충돌을 구현한다.
