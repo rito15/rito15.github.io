@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 물리 기반 먼지 시뮬레이션" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-03T01:06:53+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-03T17:09:15+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,7 +421,7 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sun, Oct  3, 2021,  1:06 AM +0900"
+    title="Sun, Oct  3, 2021,  5:09 PM +0900"
   >
 
   
@@ -431,7 +431,7 @@
     Oct  3
   
 
-  <i class="unloaded">2021-10-03T01:06:53+09:00</i>
+  <i class="unloaded">2021-10-03T17:09:15+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8142 words">45 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="9805 words">54 min</span>
 
 
           <!-- page views -->
@@ -1918,7 +1918,7 @@ D : 각 먼지의 위치</p>
 
 <p><br /></p>
 
-<p>2차로 내적을 이용해 원뿔 범위로 검사할 수 있다.</p>
+<p>2차로 내적을 이용해 원뿔(밑면이 평면이 아닌 구의 일부) 범위로 검사할 수 있다.</p>
 
 <blockquote>
   <p>C : 청소기 입구 위치<br />
@@ -1927,7 +1927,7 @@ E : 원뿔 밑단 외곽의 한 점<br />
 F : 원뿔 밑단 중심점</p>
 </blockquote>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/135222977-b6a7511d-34de-4f21-b0db-98e2e37f1951.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/135745973-26191c8b-5779-4d96-8abd-0446d8c3ddee.png" alt="image" /></p>
 
 <p><br /></p>
 
@@ -3196,6 +3196,8 @@ DustShader.shader
 
 <p>충돌 시 먼지의 반지름을 고려하여, 다른 오브젝트에 겹치지 않도록 한다.</p>
 
+<p>앞으로 각 먼지들은 점이 아닌, 반경을 가진 구체(Sphere)로 취급되어야 한다.</p>
+
 <p><br /></p>
 
 <h2 id="1-컴퓨트-쉐이더-3"><strong>[1] 컴퓨트 쉐이더</strong></h2>
@@ -3472,6 +3474,202 @@ VacuumCleanerHead.cs
 
 <p><br /></p>
 
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="추가--다양한-난수-생성-함수들">추가 : 다양한 난수 생성 함수들</h1>
+<hr />
+
+<p>기존에는 단순히 2D 시드값을 통해 <code class="language-plaintext highlighter-rouge">float</code> 값, <code class="language-plaintext highlighter-rouge">float3</code> 값의 난수를 생성하는 함수들만 있었지만,</p>
+
+<p>앞으로 여러 차원의 입력 및 출력에 대응할 수 있도록 다양한 함수들을 작성한다.</p>
+
+<p><br /></p>
+
+<details>
+  <summary> 
+Random functions
+</summary>
+
+  <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+</pre></td><td class="rouge-code"><pre><span class="cp">#define RM 39482.17593
+#define RD1 7.8671
+#define RD2 3.3419
+#define RD3 5.8912
+#define RP1 2.1759
+#define RP2 4.7921
+</span>
+<span class="n">float</span> <span class="nf">Random11</span><span class="p">(</span><span class="n">float</span> <span class="n">seed</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="kt">float2</span><span class="p">(</span><span class="n">RD1</span><span class="p">,</span> <span class="n">seed</span><span class="p">),</span> <span class="kt">float2</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">RD2</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">float2</span> <span class="nf">Random12</span><span class="p">(</span><span class="n">float</span> <span class="n">seed</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="kt">float2</span><span class="p">(</span>
+        <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="kt">float2</span><span class="p">(</span><span class="n">RD1</span><span class="p">,</span> <span class="n">seed</span><span class="p">),</span> <span class="kt">float2</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">RD2</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">),</span>
+        <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="kt">float2</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">RD2</span><span class="p">),</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RD3</span><span class="p">,</span> <span class="n">seed</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">)</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">float3</span> <span class="nf">Random13</span><span class="p">(</span><span class="n">float</span> <span class="n">seed</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="kt">float3</span><span class="p">(</span>
+        <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="kt">float2</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">RD1</span><span class="p">),</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RD2</span><span class="p">,</span> <span class="n">seed</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">),</span>
+        <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="kt">float2</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">RD2</span><span class="p">),</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RD3</span><span class="p">,</span> <span class="n">seed</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">),</span>
+        <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="kt">float2</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">RD3</span><span class="p">),</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RD1</span><span class="p">,</span> <span class="n">seed</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">)</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">float</span> <span class="nf">RandomRange11</span><span class="p">(</span><span class="n">float</span> <span class="n">seed</span><span class="p">,</span> <span class="n">float</span> <span class="nb">min</span><span class="p">,</span> <span class="n">float</span> <span class="nb">max</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nb">lerp</span><span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">,</span> <span class="n">Random11</span><span class="p">(</span><span class="n">seed</span><span class="p">));</span> 
+<span class="p">}</span>
+<span class="kt">float2</span> <span class="nf">RandomRange12</span><span class="p">(</span><span class="n">float</span> <span class="n">seed</span><span class="p">,</span> <span class="kt">float2</span> <span class="nb">min</span><span class="p">,</span> <span class="kt">float2</span> <span class="nb">max</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">float2</span> <span class="n">vec</span><span class="p">;</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">RandomRange11</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span>       <span class="nb">min</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="nb">max</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">RandomRange11</span><span class="p">(</span><span class="n">seed</span> <span class="o">+</span> <span class="n">RP1</span><span class="p">,</span> <span class="nb">min</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="nb">max</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">vec</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">float3</span> <span class="nf">RandomRange13</span><span class="p">(</span><span class="n">float</span> <span class="n">seed</span><span class="p">,</span> <span class="kt">float3</span> <span class="nb">min</span><span class="p">,</span> <span class="kt">float3</span> <span class="nb">max</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">float3</span> <span class="n">vec</span><span class="p">;</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">RandomRange11</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span>       <span class="nb">min</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="nb">max</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">RandomRange11</span><span class="p">(</span><span class="n">seed</span> <span class="o">+</span> <span class="n">RP1</span><span class="p">,</span> <span class="nb">min</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="nb">max</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">RandomRange11</span><span class="p">(</span><span class="n">seed</span> <span class="o">+</span> <span class="n">RP2</span><span class="p">,</span> <span class="nb">min</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="nb">max</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">vec</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">float</span> <span class="nf">Random21</span><span class="p">(</span><span class="kt">float2</span> <span class="n">seed</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RD1</span><span class="p">,</span> <span class="n">RD2</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">float2</span> <span class="nf">Random22</span><span class="p">(</span><span class="kt">float2</span> <span class="n">seed</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="kt">float2</span><span class="p">(</span>
+        <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span>                    <span class="kt">float2</span><span class="p">(</span><span class="n">RD1</span><span class="p">,</span> <span class="n">RD2</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">),</span>
+        <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">seed</span> <span class="o">+</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RP1</span><span class="p">,</span> <span class="n">RP2</span><span class="p">),</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RD2</span><span class="p">,</span> <span class="n">RD3</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">)</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">float3</span> <span class="nf">Random23</span><span class="p">(</span><span class="kt">float2</span> <span class="n">seed</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="kt">float3</span><span class="p">(</span>
+        <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span>                    <span class="kt">float2</span><span class="p">(</span><span class="n">RD1</span><span class="p">,</span> <span class="n">RD2</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">),</span>
+        <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">seed</span> <span class="o">+</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RP1</span><span class="p">,</span> <span class="n">RP2</span><span class="p">),</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RD2</span><span class="p">,</span> <span class="n">RD3</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">),</span>
+        <span class="nb">frac</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">seed</span> <span class="o">+</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RP2</span><span class="p">,</span> <span class="n">RP1</span><span class="p">),</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RD3</span><span class="p">,</span> <span class="n">RD1</span><span class="p">)))</span> <span class="o">*</span> <span class="n">RM</span><span class="p">)</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">float</span> <span class="nf">RandomRange21</span><span class="p">(</span><span class="kt">float2</span> <span class="n">seed</span><span class="p">,</span> <span class="n">float</span> <span class="nb">min</span><span class="p">,</span> <span class="n">float</span> <span class="nb">max</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nb">lerp</span><span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">,</span> <span class="n">Random21</span><span class="p">(</span><span class="n">seed</span><span class="p">));</span> 
+<span class="p">}</span>
+<span class="kt">float2</span> <span class="nf">RandomRange22</span><span class="p">(</span><span class="kt">float2</span> <span class="n">seed</span><span class="p">,</span> <span class="kt">float2</span> <span class="nb">min</span><span class="p">,</span> <span class="kt">float2</span> <span class="nb">max</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">float2</span> <span class="n">vec</span><span class="p">;</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">RandomRange21</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span>                    <span class="nb">min</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="nb">max</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">RandomRange21</span><span class="p">(</span><span class="n">seed</span> <span class="o">+</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RP1</span><span class="p">,</span> <span class="n">RP2</span><span class="p">),</span> <span class="nb">min</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="nb">max</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">vec</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">float3</span> <span class="nf">RandomRange23</span><span class="p">(</span><span class="kt">float2</span> <span class="n">seed</span><span class="p">,</span> <span class="kt">float3</span> <span class="nb">min</span><span class="p">,</span> <span class="kt">float3</span> <span class="nb">max</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">float3</span> <span class="n">vec</span><span class="p">;</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">RandomRange21</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span>                    <span class="nb">min</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="nb">max</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">RandomRange21</span><span class="p">(</span><span class="n">seed</span> <span class="o">+</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RP1</span><span class="p">,</span> <span class="n">RP2</span><span class="p">),</span> <span class="nb">min</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="nb">max</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">RandomRange21</span><span class="p">(</span><span class="n">seed</span> <span class="o">+</span> <span class="kt">float2</span><span class="p">(</span><span class="n">RP2</span><span class="p">,</span> <span class="n">RP1</span><span class="p">),</span> <span class="nb">min</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="nb">max</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">vec</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
+<!-- --------------------------------------------------------------------------- -->
+
 <h1 id="8-발사-기능-구현">8. 발사 기능 구현</h1>
 <hr />
 
@@ -3481,9 +3679,63 @@ VacuumCleanerHead.cs
 
 <p><code class="language-plaintext highlighter-rouge">suctionForce</code> 값을 발사 강도로 사용한다.</p>
 
+<p>그리고 각 먼지마다 <code class="language-plaintext highlighter-rouge">0 ~ 1</code> 범위의 난수를 생성하여, 발사 확률을 결정한다.</p>
+
+<p>발사 확률은 발사되는 먼지 개수를 간접적으로 결정하게 된다.</p>
+
 <p><br /></p>
 
-<h2 id="1-컴퓨트-쉐이더-4"><strong>[1] 컴퓨트 쉐이더</strong></h2>
+<h2 id="1-이론--발사-방향-설정"><strong>[1] 이론 : 발사 방향 설정</strong></h2>
+
+<h3 id="1-1-무작위-원형-범위-생성xy-2d"><strong>[1-1] 무작위 원형 범위 생성(XY 2D)</strong></h3>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/135745360-f079511b-62ad-4d71-8890-05e228109b9b.png" alt="image" /></p>
+
+<p>xy 평면에서 원형 범위를 생성한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">θ</code>(각도) 값을 -360 ~ 360도 범위로,</p>
+
+<p><code class="language-plaintext highlighter-rouge">r</code>(반지름) 값을 0 ~ 1 범위로 난수를 생성한다.</p>
+
+<p>그러면 위에서 보이는 원 내부의 모든 영역이 xy평면의 발사 방향으로 설정되며,</p>
+
+<p>이는 발사 방향을 결정하는 원뿔의 밑면이 된다.</p>
+
+<p><br /></p>
+
+<h3 id="1-2-발사-원뿔-영역-생성xy-z-2d"><strong>[1-2] 발사 원뿔 영역 생성(XY-Z 2D)</strong></h3>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/135745354-18e23c36-91f5-401e-a164-d3c808e6d1cf.png" alt="image" /></p>
+
+<p>원뿔의 높이인 <code class="language-plaintext highlighter-rouge">Z</code> 값을 상수 <code class="language-plaintext highlighter-rouge">1</code>로 고정한다.</p>
+
+<p>그리고 여기서 원뿔의 각도, 즉 발사 각도 <code class="language-plaintext highlighter-rouge">t</code>를 조정하면 3D 공간의 원뿔 영역을 형성할 수 있는데,</p>
+
+<p>원뿔의 밑면 반지름 <code class="language-plaintext highlighter-rouge">r</code>은 <code class="language-plaintext highlighter-rouge">tan(t)</code>와 같으므로</p>
+
+<p><code class="language-plaintext highlighter-rouge">tan(t)</code>를 계산하여 <code class="language-plaintext highlighter-rouge">[1-1]</code>의 <code class="language-plaintext highlighter-rouge">r</code> 값에 곱해주면</p>
+
+<p>최종적인 원뿔 영역을 완성할 수 있다.</p>
+
+<p>이 때 <code class="language-plaintext highlighter-rouge">t</code>는 청소기 객체의 <code class="language-plaintext highlighter-rouge">suctionAngle</code> 필드이다.</p>
+
+<p><br /></p>
+
+<h3 id="1-3-공간-변환"><strong>[1-3] 공간 변환</strong></h3>
+
+<p>원뿔의 꼭짓점이 원점<code class="language-plaintext highlighter-rouge">(0, 0, 0)</code>, 밑면의 중심 위치가 <code class="language-plaintext highlighter-rouge">(0, 1, 0)</code>인 원뿔 영역을 완성했다.</p>
+
+<p>그리고 이 영역 내의 모든 점은 각각이 발사 방향 벡터이므로,</p>
+
+<p>이제 진공 청소기 트랜스폼의 <code class="language-plaintext highlighter-rouge">Local to World</code> 행렬을 여기에 곱하여 공간 변환을 해주면 최종적인 발사 방향 설정이 완료된다.</p>
+
+<p>그리고 여기에 힘을 곱해주기만 하면 발사 벡터가 완성되며,</p>
+
+<p>이 때 힘 값은 청소기 객체의 <code class="language-plaintext highlighter-rouge">suctionForce</code>이다.</p>
+
+<p><br /></p>
+
+<h2 id="2-컴퓨트-쉐이더"><strong>[2] 컴퓨트 쉐이더</strong></h2>
 
 <details>
   <summary> 
@@ -3529,9 +3781,10 @@ DustCompute.compute
 37
 38
 39
+40
 </pre></td><td class="rouge-code"><pre><span class="cp">#define TAU 6.28318530
 </span>
-<span class="n">int</span> <span class="n">maxNumber</span><span class="p">;</span>       <span class="c1">// 먼지 개수</span>
+<span class="n">uint</span> <span class="n">maxNumber</span><span class="p">;</span>      <span class="c1">// 먼지 개수</span>
 <span class="n">float</span> <span class="n">time</span><span class="p">;</span>          <span class="c1">// Time.time</span>
 <span class="n">float</span> <span class="n">blowForce</span><span class="p">;</span>     <span class="c1">// 발사 강도(suctionForce 필드값)</span>
 <span class="n">float</span> <span class="n">blowAngleRad</span><span class="p">;</span>  <span class="c1">// 발사 각도(suctionAngle 필드값)</span>
@@ -3558,11 +3811,12 @@ DustCompute.compute
     <span class="kt">float2</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">RandomRange12</span><span class="p">(</span><span class="n">seed2</span><span class="p">,</span> <span class="kt">float2</span><span class="p">(</span><span class="o">-</span><span class="n">TAU</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="kt">float2</span><span class="p">(</span><span class="n">TAU</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
     <span class="kt">float2</span> <span class="n">randomCircle</span> <span class="o">=</span> <span class="kt">float2</span><span class="p">(</span><span class="nb">cos</span><span class="p">(</span><span class="n">r2</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">sin</span><span class="p">(</span><span class="n">r2</span><span class="p">.</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="n">r2</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="nb">tan</span><span class="p">(</span><span class="n">blowAngleRad</span><span class="p">);</span>
 
+    <span class="c1">// 발사 방향 벡터 공간 변환</span>
     <span class="kt">float3</span> <span class="n">localDir</span> <span class="o">=</span> <span class="kt">float3</span><span class="p">(</span><span class="n">randomCircle</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">randomCircle</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="kt">float3</span> <span class="n">worldDir</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">headMatrix</span><span class="p">,</span> <span class="n">localDir</span><span class="p">);</span>
+    <span class="kt">float3</span> <span class="n">worldDir</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">headMatrix</span><span class="p">,</span> <span class="kt">float4</span><span class="p">(</span><span class="n">localDir</span><span class="p">,</span> <span class="mi">0</span><span class="p">)).</span><span class="n">xyz</span><span class="p">;</span>
     
-    <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span> <span class="o">=</span> <span class="n">headPos</span><span class="p">;</span>
-    <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">worldDir</span><span class="p">)</span> <span class="o">*</span> <span class="n">blowForce</span><span class="p">;</span>
+    <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span> <span class="o">=</span> <span class="n">headPos</span><span class="p">;</span>           <span class="c1">// 청소기 입구로 위치 이동</span>
+    <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">worldDir</span><span class="p">)</span> <span class="o">*</span> <span class="n">blowForce</span><span class="p">;</span> <span class="c1">// 발사 속도 벡터 설정(방향 * 크기)</span>
 
     <span class="c1">// 먼지 되살리기</span>
     <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">isAlive</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
@@ -3574,7 +3828,7 @@ DustCompute.compute
 
 <p><br /></p>
 
-<h2 id="2-먼지-관리-컴포넌트-4"><strong>[2] 먼지 관리 컴포넌트</strong></h2>
+<h2 id="3-먼지-관리-컴포넌트"><strong>[3] 먼지 관리 컴포넌트</strong></h2>
 
 <details>
   <summary> 
@@ -3678,9 +3932,111 @@ DustManager.cs
 
 <p><br /></p>
 
+<h2 id="1-반사-벡터-연산-최적화"><strong>[1] 반사 벡터 연산 최적화</strong></h2>
+
+<p><code class="language-plaintext highlighter-rouge">reflect(inDir, normal)</code> 함수를 통한 연산은</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>inDir - 2 * dot(inDir, normal) * normal
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>내부적으로 위와 같은 연산을 통해 반사 벡터를 계산한다.</p>
+
+<p><br /></p>
+
+<p>그런데 <code class="language-plaintext highlighter-rouge">y = 0</code>, <code class="language-plaintext highlighter-rouge">x = 1</code>, <code class="language-plaintext highlighter-rouge">z = 2</code>와 같이</p>
+
+<p>법선 벡터가 월드 축과 일치하는 평면의 반사 벡터 계산은</p>
+
+<p>아주 훨씬 저렴하게 이루어질 수 있다.</p>
+
+<p>예를 들어 월드의 바닥 평면인 <code class="language-plaintext highlighter-rouge">y = 0</code>의 경우,</p>
+
+<p>입사 벡터의 <code class="language-plaintext highlighter-rouge">y</code> 성분의 부호만 뒤집어주면 된다.</p>
+
+<p>예를 들어 입사 벡터가 <code class="language-plaintext highlighter-rouge">(a, b, c)</code>일 때 반사 벡터는 <code class="language-plaintext highlighter-rouge">(a, -b, c)</code> 이다.</p>
+
+<p><br /></p>
+
+<h2 id="2-다음-프레임-위치-계산하기"><strong>[2] 다음 프레임 위치 계산하기</strong></h2>
+
+<p>평면의 충돌 감지는 사실 아주 간단하다.</p>
+
+<p>법선 벡터가 <code class="language-plaintext highlighter-rouge">(0, 1, 0)</code>인 평면을 예시로,</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/135747040-13a54f84-642d-47cf-ba49-fc1ea74ea8f3.png" alt="image" /></p>
+
+<p>현재 프레임에는 아직 평면에 닿지 않았으나 다음 프레임에는 평면에 접촉, 혹은 평면을 지나가게 된다면 충돌 판정을 해주면 된다.</p>
+
+<p>그리고 이 때의 속도가 <code class="language-plaintext highlighter-rouge">(a, b, c)</code>라고 한다면, <code class="language-plaintext highlighter-rouge">(a, -b, c)</code>로 바꿔주면 된다.</p>
+
+<p><br /></p>
+
+<p>하지만 위와 같이 속도를 변경해주기만 한다면</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/135747248-041f49b8-3246-40a6-b2ac-fe9d84045720.png" alt="image" /></p>
+
+<p>이렇게 된다.</p>
+
+<p>충돌 했다고 가정하고, 그대로 현재 위치에서 반사 벡터를 따라 튕겨져 나간다.</p>
+
+<p><br /></p>
+
+<p>따라서 정확한 충돌을 구현하기 위해서는 충돌 지점을 계산하고,</p>
+
+<p>해당 지점을 기점으로 벡터의 방향을 꺾으며 벡터의 여분 길이를 계산하여</p>
+
+<p>다음 프레임 위치를 결정하는 방식으로 계산을 해주어야 한다.</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/135747443-728c80a7-8447-4378-baec-827935a471db.png" alt="image" /></p>
+
+<p><br /></p>
+
+<h2 id="3-탄성-계수-고려하기"><strong>[3] 탄성 계수 고려하기</strong></h2>
+
+<p>물체가 다른 물체에 부딪혀 튕겨 나갈 때 운동량을 일정량 상실한다.</p>
+
+<p>따라서 이를 결정하는 값을 <code class="language-plaintext highlighter-rouge">탄성 계수</code>라고 정의하며,</p>
+
+<p>값이 <code class="language-plaintext highlighter-rouge">1</code>이면 운동량 보존, 값이 <code class="language-plaintext highlighter-rouge">0</code>이면 모든 운동량을 상실한다고 가정한다.</p>
+
+<p>예를 들어 탄성 계수가 <code class="language-plaintext highlighter-rouge">0.6</code>이면 <code class="language-plaintext highlighter-rouge">40%</code>의 운동량을 상실하여</p>
+
+<p>충돌 이후 속도가 <code class="language-plaintext highlighter-rouge">40%</code> 감소한다.</p>
+
+<p><br /></p>
+
+<h2 id="4-구현--컴퓨트-쉐이더"><strong>[4] 구현 : 컴퓨트 쉐이더</strong></h2>
+
+<details>
+  <summary> 
+DustCompute.compute
+</summary>
+
+  <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
 <!-- --------------------------------------------------------------------------- -->
 
-<h1 id="10-sphere-충돌-구현">10. Sphere 충돌 구현</h1>
+<h1 id="10-월드-영역-제한">10. 월드 영역 제한</h1>
+<hr />
+
+<p>지금까지는 바닥만 제한 영역을 설정했으나,</p>
+
+<p>월드 전체를 여섯 면이 이루는 큐브 형태로 영역을 제한한다.</p>
+
+<p>따라서 월드의 제한 영역을 이루는 각 면에 부딪힐 경우 튕겨 나가도록 구현한다.</p>
+
+<p><br /></p>
+
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="11-sphere-충돌-구현">11. Sphere 충돌 구현</h1>
 <hr />
 
 <p>기본적인 Sphere 충돌을 구현한다.</p>
@@ -3935,12 +4291,12 @@ VacuumCleanerHead.cs
         
         
         
-        <li><a href="/posts/unity-shader-random-functions/">유니티 쉐이더 - 랜덤 함수들</a></li>
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
         
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+        <li><a href="/posts/unity-shader-random-functions/">유니티 쉐이더 - 랜덤 함수들</a></li>
       
         
         
@@ -7297,6 +7653,19 @@ VacuumCleanerHead.cs
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -11414,6 +11783,7 @@ VacuumCleanerHead.cs
                 1. 목표
 
 
+
   
     오브젝트 풀링 기법 이해하기
   
@@ -11432,7 +11802,7 @@ VacuumCleanerHead.cs
 
 게임오브젝트를 생성, 파괴하는 것은 순간적으로 큰 성능 소모 및 프레임 저하를 발생시킬 수 있다.
 
-따라서 생성, 파괴 대신 활성화, 비활성화 방식을 사용하면 순...
+따라서 생성, 파괴 대신 활성화, 비활성화 방식을 사용하면 ...
               </p>
             </div>
           </div>
@@ -11477,9 +11847,10 @@ VacuumCleanerHead.cs
                 개념
 
 
+
   FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
   FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
-  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다....
+  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
               </p>
             </div>
           </div>

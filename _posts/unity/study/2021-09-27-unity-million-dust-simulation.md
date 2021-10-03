@@ -868,14 +868,14 @@ private void Update()
 
 <br>
 
-2차로 내적을 이용해 원뿔 범위로 검사할 수 있다.
+2차로 내적을 이용해 원뿔(밑면이 평면이 아닌 구의 일부) 범위로 검사할 수 있다.
 
 > C : 청소기 입구 위치<br>
 > D : 각 먼지의 위치<br>
 > E : 원뿔 밑단 외곽의 한 점<br>
 > F : 원뿔 밑단 중심점
 
-![image](https://user-images.githubusercontent.com/42164422/135222977-b6a7511d-34de-4f21-b0db-98e2e37f1951.png)
+![image](https://user-images.githubusercontent.com/42164422/135745973-26191c8b-5779-4d96-8abd-0446d8c3ddee.png)
 
 <br>
 
@@ -1603,6 +1603,8 @@ SubShader
 
 충돌 시 먼지의 반지름을 고려하여, 다른 오브젝트에 겹치지 않도록 한다.
 
+앞으로 각 먼지들은 점이 아닌, 반경을 가진 구체(Sphere)로 취급되어야 한다.
+
 <br>
 
 ## **[1] 컴퓨트 쉐이더**
@@ -1784,6 +1786,118 @@ private void ChangeConeScale()
 
 <br>
 
+<!-- --------------------------------------------------------------------------- -->
+
+# 추가 : 다양한 난수 생성 함수들
+---
+
+기존에는 단순히 2D 시드값을 통해 `float` 값, `float3` 값의 난수를 생성하는 함수들만 있었지만,
+
+앞으로 여러 차원의 입력 및 출력에 대응할 수 있도록 다양한 함수들을 작성한다.
+
+<br>
+
+<details>
+<summary markdown="span"> 
+Random functions
+</summary>
+
+```hlsl
+#define RM 39482.17593
+#define RD1 7.8671
+#define RD2 3.3419
+#define RD3 5.8912
+#define RP1 2.1759
+#define RP2 4.7921
+
+float Random11(float seed)
+{
+    return frac(sin(dot(float2(RD1, seed), float2(seed, RD2))) * RM);
+}
+float2 Random12(float seed)
+{
+    return float2(
+        frac(sin(dot(float2(RD1, seed), float2(seed, RD2))) * RM),
+        frac(sin(dot(float2(seed, RD2), float2(RD3, seed))) * RM)
+    );
+}
+float3 Random13(float seed)
+{
+    return float3(
+        frac(sin(dot(float2(seed, RD1), float2(RD2, seed))) * RM),
+        frac(sin(dot(float2(seed, RD2), float2(RD3, seed))) * RM),
+        frac(sin(dot(float2(seed, RD3), float2(RD1, seed))) * RM)
+    );
+}
+
+float RandomRange11(float seed, float min, float max)
+{
+    return lerp(min, max, Random11(seed)); 
+}
+float2 RandomRange12(float seed, float2 min, float2 max)
+{
+    float2 vec;
+    vec.x = RandomRange11(seed,       min.x, max.x);
+    vec.y = RandomRange11(seed + RP1, min.y, max.y);
+    return vec;
+}
+float3 RandomRange13(float seed, float3 min, float3 max)
+{
+    float3 vec;
+    vec.x = RandomRange11(seed,       min.x, max.x);
+    vec.y = RandomRange11(seed + RP1, min.y, max.y);
+    vec.z = RandomRange11(seed + RP2, min.z, max.z);
+    return vec;
+}
+
+float Random21(float2 seed)
+{
+    return frac(sin(dot(seed, float2(RD1, RD2))) * RM);
+}
+float2 Random22(float2 seed)
+{
+    return float2(
+        frac(sin(dot(seed,                    float2(RD1, RD2))) * RM),
+        frac(sin(dot(seed + float2(RP1, RP2), float2(RD2, RD3))) * RM)
+    );
+}
+float3 Random23(float2 seed)
+{
+    return float3(
+        frac(sin(dot(seed,                    float2(RD1, RD2))) * RM),
+        frac(sin(dot(seed + float2(RP1, RP2), float2(RD2, RD3))) * RM),
+        frac(sin(dot(seed + float2(RP2, RP1), float2(RD3, RD1))) * RM)
+    );
+}
+
+float RandomRange21(float2 seed, float min, float max)
+{
+    return lerp(min, max, Random21(seed)); 
+}
+float2 RandomRange22(float2 seed, float2 min, float2 max)
+{
+    float2 vec;
+    vec.x = RandomRange21(seed,                    min.x, max.x);
+    vec.y = RandomRange21(seed + float2(RP1, RP2), min.y, max.y);
+    return vec;
+}
+float3 RandomRange23(float2 seed, float3 min, float3 max)
+{
+    float3 vec;
+    vec.x = RandomRange21(seed,                    min.x, max.x);
+    vec.y = RandomRange21(seed + float2(RP1, RP2), min.y, max.y);
+    vec.z = RandomRange21(seed + float2(RP2, RP1), min.z, max.z);
+    return vec;
+}
+```
+
+</details>
+
+
+<br>
+
+<!-- --------------------------------------------------------------------------- -->
+
 # 8. 발사 기능 구현
 ---
 
@@ -1792,6 +1906,10 @@ private void ChangeConeScale()
 `suctionAngle` 각도를 발사 각도로 사용하고,
 
 `suctionForce` 값을 발사 강도로 사용한다.
+
+그리고 각 먼지마다 `0 ~ 1` 범위의 난수를 생성하여, 발사 확률을 결정한다.
+
+발사 확률은 발사되는 먼지 개수를 간접적으로 결정하게 된다.
 
 <br>
 
@@ -1966,21 +2084,108 @@ private void BlowDusts()
 
 탄성 계수를 추가하고, 바닥에 떨어졌을 때 반사 벡터를 구하여 적당히 튕기도록 구현한다.
 
+<br>
 
+## **[1] 반사 벡터 연산 최적화**
+
+`reflect(inDir, normal)` 함수를 통한 연산은
+
+```
+inDir - 2 * dot(inDir, normal) * normal
+```
+
+내부적으로 위와 같은 연산을 통해 반사 벡터를 계산한다.
+
+<br>
+
+그런데 `y = 0`, `x = 1`, `z = 2`와 같이
+
+법선 벡터가 월드 축과 일치하는 평면의 반사 벡터 계산은
+
+아주 훨씬 저렴하게 이루어질 수 있다.
+
+예를 들어 월드의 바닥 평면인 `y = 0`의 경우,
+
+입사 벡터의 `y` 성분의 부호만 뒤집어주면 된다.
+
+예를 들어 입사 벡터가 `(a, b, c)`일 때 반사 벡터는 `(a, -b, c)` 이다.
+
+<br>
+
+## **[2] 다음 프레임 위치 계산하기**
+
+평면의 충돌 감지는 사실 아주 간단하다.
+
+법선 벡터가 `(0, 1, 0)`인 평면을 예시로,
+
+![image](https://user-images.githubusercontent.com/42164422/135747040-13a54f84-642d-47cf-ba49-fc1ea74ea8f3.png)
+
+현재 프레임에는 아직 평면에 닿지 않았으나 다음 프레임에는 평면에 접촉, 혹은 평면을 지나가게 된다면 충돌 판정을 해주면 된다.
+
+그리고 이 때의 속도가 `(a, b, c)`라고 한다면, `(a, -b, c)`로 바꿔주면 된다.
+
+<br>
+
+하지만 위와 같이 속도를 변경해주기만 한다면
+
+![image](https://user-images.githubusercontent.com/42164422/135747248-041f49b8-3246-40a6-b2ac-fe9d84045720.png)
+
+이렇게 된다.
+
+충돌 했다고 가정하고, 그대로 현재 위치에서 반사 벡터를 따라 튕겨져 나간다.
+
+<br>
+
+따라서 정확한 충돌을 구현하기 위해서는 충돌 지점을 계산하고,
+
+해당 지점을 기점으로 벡터의 방향을 꺾으며 벡터의 여분 길이를 계산하여
+
+다음 프레임 위치를 결정하는 방식으로 계산을 해주어야 한다.
+
+![image](https://user-images.githubusercontent.com/42164422/135747443-728c80a7-8447-4378-baec-827935a471db.png)
+
+<br>
+
+## **[3] 탄성 계수 고려하기**
+
+물체가 다른 물체에 부딪혀 튕겨 나갈 때 운동량을 일정량 상실한다.
+
+따라서 이를 결정하는 값을 `탄성 계수`라고 정의하며,
+
+값이 `1`이면 운동량 보존, 값이 `0`이면 모든 운동량을 상실한다고 가정한다.
+
+예를 들어 탄성 계수가 `0.6`이면 `40%`의 운동량을 상실하여
+
+충돌 이후 속도가 `40%` 감소한다.
+
+<br>
+
+## **[4] 구현 : 컴퓨트 쉐이더**
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+
+```
+
+</details>
 
 
 <br>
 
 <!-- --------------------------------------------------------------------------- -->
 
-# 10. 월드 영역 설정
+# 10. 월드 영역 제한
 ---
 
 지금까지는 바닥만 제한 영역을 설정했으나,
 
 월드 전체를 여섯 면이 이루는 큐브 형태로 영역을 제한한다.
 
-
+따라서 월드의 제한 영역을 이루는 각 면에 부딪힐 경우 튕겨 나가도록 구현한다.
 
 
 
