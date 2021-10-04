@@ -2433,12 +2433,12 @@ void ConfineWithinCubeBounds(float3 cur, inout float3 next, inout float3 velocit
 {
     // 1. 큐브 영역 밖에 있는지, 안에 있는지 검사
     int status = IN_BOUNDS;
-         if(next.x >= bounds.max.x - threshold) status = OUT_OF_PX;
-    else if(next.x <= bounds.min.x + threshold) status = OUT_OF_MX;
-    else if(next.y >= bounds.max.y - threshold) status = OUT_OF_PY;
-    else if(next.y <= bounds.min.y + threshold) status = OUT_OF_MY;
-    else if(next.z >= bounds.max.z - threshold) status = OUT_OF_PZ;
-    else if(next.z <= bounds.min.z + threshold) status = OUT_OF_MZ;
+         if(next.x > bounds.max.x - threshold) status = OUT_OF_PX;
+    else if(next.x < bounds.min.x + threshold) status = OUT_OF_MX;
+    else if(next.y > bounds.max.y - threshold) status = OUT_OF_PY;
+    else if(next.y < bounds.min.y + threshold) status = OUT_OF_MY;
+    else if(next.z > bounds.max.z - threshold) status = OUT_OF_PZ;
+    else if(next.z < bounds.min.z + threshold) status = OUT_OF_MZ;
     else return; // 영역 내부에 있는 경우, 종료
 
     Plane plane;
@@ -2660,8 +2660,8 @@ nextPos Sphere-to-Sphere
 <br>
 
 - 월드 내에 존재하는 모든 먼지에 적용되는 효과
-- 용권풍
 - 바람
+- 용권풍
 - ..
 
 <br>

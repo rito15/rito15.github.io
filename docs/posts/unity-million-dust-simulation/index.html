@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 물리 기반 먼지 시뮬레이션" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-04T04:13:50+09:00","datePublished":"2021-09-27T17:00:00+09:00","url":"https://rito15.github.io/posts/unity-million-dust-simulation/","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-04T23:01:11+09:00","datePublished":"2021-09-27T17:00:00+09:00","url":"https://rito15.github.io/posts/unity-million-dust-simulation/","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,7 +421,7 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Mon, Oct  4, 2021,  4:13 AM +0900"
+    title="Mon, Oct  4, 2021, 11:01 PM +0900"
   >
 
   
@@ -431,7 +431,7 @@
     Oct  4
   
 
-  <i class="unloaded">2021-10-04T04:13:50+09:00</i>
+  <i class="unloaded">2021-10-04T23:01:11+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="11309 words">62 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="11474 words">63 min</span>
 
 
           <!-- page views -->
@@ -3740,7 +3740,7 @@ Random functions
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-<h1 id="8-발사-기능-구현">8. 발사 기능 구현</h1>
+<h1 id="8-방출-기능-구현">8. 방출 기능 구현</h1>
 <hr />
 
 <details>
@@ -3780,7 +3780,7 @@ Random functions
 
   <p><br /></p>
 
-  <h3 id="xy-z-2d"><strong>[1-2] 발사 원뿔 영역 생성(XY-Z 2D)</strong></h3>
+  <h3 id="xy-z-2d"><strong>[1-2] 원뿔 영역 생성(XY-Z 2D)</strong></h3>
 
   <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/135745354-18e23c36-91f5-401e-a164-d3c808e6d1cf.png" alt="image" /></p>
 
@@ -4498,12 +4498,12 @@ Physics Functions
 <span class="p">{</span>
     <span class="c1">// 1. 큐브 영역 밖에 있는지, 안에 있는지 검사</span>
     <span class="n">int</span> <span class="n">status</span> <span class="o">=</span> <span class="n">IN_BOUNDS</span><span class="p">;</span>
-         <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">max</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_PX</span><span class="p">;</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">min</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_MX</span><span class="p">;</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">max</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_PY</span><span class="p">;</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">min</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_MY</span><span class="p">;</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">z</span> <span class="o">&gt;=</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">max</span><span class="p">.</span><span class="n">z</span> <span class="o">-</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_PZ</span><span class="p">;</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">z</span> <span class="o">&lt;=</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">min</span><span class="p">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_MZ</span><span class="p">;</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">max</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_PX</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">min</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_MX</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">max</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_PY</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">min</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_MY</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">z</span> <span class="o">&gt;</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">max</span><span class="p">.</span><span class="n">z</span> <span class="o">-</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_PZ</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="p">.</span><span class="n">z</span> <span class="o">&lt;</span> <span class="n">bounds</span><span class="p">.</span><span class="nb">min</span><span class="p">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">status</span> <span class="o">=</span> <span class="n">OUT_OF_MZ</span><span class="p">;</span>
     <span class="k">else</span> <span class="k">return</span><span class="p">;</span> <span class="c1">// 영역 내부에 있는 경우, 종료</span>
 
     <span class="n">Plane</span> <span class="n">plane</span><span class="p">;</span>
@@ -4705,6 +4705,78 @@ nextPos Sphere-to-Sphere
 </summary>
 
   <p><br /></p>
+
+  <p><br /></p>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="0-폭발-효과-구현">0. 폭발 효과 구현</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><br /></p>
+
+  <ul>
+    <li>투사체를 발사하여 충돌체에 닿으면 폭발</li>
+    <li>폭발 범위 내의 먼지에 힘 가하기</li>
+  </ul>
+
+  <p><br /></p>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="0-글로벌-효과-구현">0. 글로벌 효과 구현</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><br /></p>
+
+  <ul>
+    <li>월드 내에 존재하는 모든 먼지에 적용되는 효과</li>
+    <li>바람</li>
+    <li>용권풍</li>
+    <li>..</li>
+  </ul>
+
+  <p><br /></p>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="0-조작-개선">0. 조작 개선</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><br /></p>
+
+  <ul>
+    <li>WASD  이동</li>
+    <li>Shift 달리기</li>
+    <li>Ctrl  하강</li>
+    <li>Space 상승</li>
+    <li>Tab   모드 변경(흡수/방출/폭발 투사체), 원뿔 색상도 변경(Cyan/Yellow)/원기둥(Red)?</li>
+    <li>Q/E   각도 변경</li>
+    <li>Z/C   힘 변경</li>
+    <li>
+      <p>ESC   옵션 GUI 표시/미표시</p>
+    </li>
+    <li>옵션을 모두 조절할 수 있는 GUI 제공</li>
+    <li>중력을 3D로 조절할 수 있게 변경</li>
+  </ul>
 
   <p><br /></p>
 
