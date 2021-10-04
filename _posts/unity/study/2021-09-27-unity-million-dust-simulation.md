@@ -42,6 +42,15 @@ mermaid: true
 # 1. 10만개의 먼지 만들기
 ---
 
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+GPU 인스턴싱을 통해 십만 단위의 오브젝트를 동시에 렌더링한다.
+
 렌더링될 메시의 버텍스 개수에 따라 성능 차이가 커지므로,
 
 일단 메시는 단순한 큐브 메시를 사용한다.
@@ -77,7 +86,7 @@ private struct Dust
 [Range(0.01f, 2f)]
 [SerializeField] private float DustScale = 1f;           // 먼지 크기
 
-private ComputeBuffer DustBuffer; // 먼지 데이터 버퍼(위치, ...)
+private ComputeBuffer dustBuffer; // 먼지 데이터 버퍼(위치, ...)
 private ComputeBuffer argsBuffer; // 먼지 렌더링 데이터 버퍼
 
 private Bounds frustumOverlapBounds;
@@ -104,7 +113,7 @@ private void Update()
 }
 private void OnDestroy()
 {
-    DustBuffer.Release();
+    dustBuffer.Release();
     argsBuffer.Release();
 }
 
@@ -121,7 +130,7 @@ private void OnGUI()
     float scHeight = Screen.height;
     Rect r = new Rect(scWidth * 0.04f, scHeight * 0.04f, scWidth * 0.25f, scHeight * 0.05f);
 
-    GUI.Box(r, $"{aliveNumber:D6} / {instanceNumber}", boxStyle);
+    GUI.Box(r, $"{aliveNumber:#,###,##0} / {instanceNumber:#,###,##0}", boxStyle);
 }
 ```
 
@@ -148,9 +157,9 @@ private void InitBuffers()
     PopulateDusts();
 
     // Dust Buffer
-    DustBuffer = new ComputeBuffer(instanceNumber, sizeof(float) * 3 + sizeof(int));
-    DustBuffer.SetData(DustArray);
-    DustMaterial.SetBuffer("_DustBuffer", DustBuffer);
+    dustBuffer = new ComputeBuffer(instanceNumber, sizeof(float) * 3 + sizeof(int));
+    dustBuffer.SetData(DustArray);
+    DustMaterial.SetBuffer("_DustBuffer", dustBuffer);
 
     // 카메라 프러스텀이 이 영역과 겹치지 않으면 렌더링되지 않는다.
     frustumOverlapBounds = new Bounds(Vector3.zero, new Vector3(distributionRange, 1f, distributionRange));
@@ -273,10 +282,18 @@ Shader "Rito/Dust"
 <br>
 
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 # 2. 먼지 빨아들이기
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
 
 ## **진공 청소기 입구**
 
@@ -363,7 +380,7 @@ private void UpdateDustPositions()
         }
     }
 
-    DustBuffer.SetData(DustArray);
+    dustBuffer.SetData(DustArray);
 }
 ```
 
@@ -416,7 +433,7 @@ private void UpdateDustPositions()
         }
     });
 
-    DustBuffer.SetData(DustArray);
+    dustBuffer.SetData(DustArray);
 }
 ```
 
@@ -448,7 +465,7 @@ struct Dust
     int isAlive;
 };
 
-RWStructuredBuffer<Dust> DustBuffer;
+RWStructuredBuffer<Dust> dustBuffer;
 RWStructuredBuffer<uint> aliveNumberBuffer; // 생존한 먼지 개수
 
 float3 headPos;
@@ -463,21 +480,21 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     if(DustBuffer[i].isAlive == FALSE) return;
     
     // 제곱 상태로 연산
-    float3 offs = (headPos - DustBuffer[i].position);
+    float3 offs = (headPos - dustBuffer[i].position);
     float sqrDist = (offs.x * offs.x) + (offs.y * offs.y) + (offs.z * offs.z);
 
     // 사망 범위
     if (sqrDist < sqrDeathRange)
     {
-        DustBuffer[i].isAlive = FALSE;
+        dustBuffer[i].isAlive = FALSE;
         InterlockedAdd(aliveNumberBuffer[0], -1);
     }
     // 흡입 범위
     else if (sqrDist < sqrRange)
     {
-        float3 dir = normalize(headPos - DustBuffer[i].position);
+        float3 dir = normalize(headPos - dustBuffer[i].position);
         float weightedForce = sqrForce / sqrDist;
-        DustBuffer[i].position += dir * weightedForce;
+        dustBuffer[i].position += dir * weightedForce;
     }
 }
 ```
@@ -493,7 +510,7 @@ Dustmanager.cs
 /* 기타 필드 생략 */
 
 [SerializeField] private ComputeShader DustCompute;
-private ComputeBuffer DustBuffer; // 먼지 데이터 버퍼(위치, ...)
+private ComputeBuffer dustBuffer; // 먼지 데이터 버퍼(위치, ...)
 private ComputeBuffer argsBuffer; // 먼지 렌더링 데이터 버퍼
 private ComputeBuffer aliveNumberBuffer; // 생존 먼지 개수 RW
 
@@ -517,7 +534,7 @@ private void Update()
 }
 private void OnDestroy()
 {
-    DustBuffer.Release();
+    dustBuffer.Release();
     argsBuffer.Release();
     aliveNumberBuffer.Release();
 }
@@ -537,9 +554,9 @@ private void InitBuffers()
     PopulateDusts();
 
     // Dust Buffer
-    DustBuffer = new ComputeBuffer(instanceNumber, sizeof(float) * 3 + sizeof(int));
-    DustBuffer.SetData(DustArray);
-    DustMaterial.SetBuffer("_DustBuffer", DustBuffer);
+    dustBuffer = new ComputeBuffer(instanceNumber, sizeof(float) * 3 + sizeof(int));
+    dustBuffer.SetData(DustArray);
+    DustMaterial.SetBuffer("_DustBuffer", dustBuffer);
 
     // Alive Number Buffer
     // 단순 입력용이 아니라 RW이므로 컴퓨트 버퍼를 사용한다.
@@ -554,7 +571,7 @@ private void InitBuffers()
 /// <summary> 컴퓨트 쉐이더 초기화 </summary>
 private void InitComputeShader()
 {
-    DustCompute.SetBuffer(0, "DustBuffer", DustBuffer);
+    DustCompute.SetBuffer(0, "DustBuffer", dustBuffer);
     DustCompute.SetBuffer(0, "aliveNumberBuffer", aliveNumberBuffer);
     DustCompute.GetKernelThreadGroupSizes(0, out uint tx, out _, out _);
     kernelGroupSizeX = Mathf.CeilToInt((float)instanceNumber / tx);
@@ -589,10 +606,18 @@ private void UpdateDustPositionsGPU()
 <br>
 
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 # 3. 먼지 생성 최적화
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
 
 난수를 발생시켜 먼지를 무작위 위치에 생성하던 부분을 CPU가 아니라 컴퓨트 쉐이더 내에서 연산하도록 한다.
 
@@ -645,7 +670,7 @@ float3 RandomRange3(float2 seed, float3 min, float3 max)
 /*************************************************
 /*                     Variables
 /*************************************************/
-RWStructuredBuffer<Dust> DustBuffer;
+RWStructuredBuffer<Dust> dustBuffer;
 RWStructuredBuffer<uint> aliveNumberBuffer; // 생존한 먼지 개수
 
 float3 boundsMin; // 먼지 생성 영역 - 최소 지점
@@ -670,8 +695,8 @@ void Populate (uint3 id : SV_DispatchThreadID)
     float f = float(i);
     float2 uv = float2(f % width, f / width) / width;
     
-    DustBuffer[i].position = RandomRange3(uv, boundsMin, boundsMax);
-    DustBuffer[i].isAlive = TRUE;
+    dustBuffer[i].position = RandomRange3(uv, boundsMin, boundsMax);
+    dustBuffer[i].isAlive = TRUE;
 }
 
 // 1 - 실시간 업데이트
@@ -681,19 +706,19 @@ void Update (uint3 id : SV_DispatchThreadID)
     uint i = id.x;
     if(DustBuffer[i].isAlive == FALSE) return;
     
-    float3 offs = (headPos - DustBuffer[i].position);
+    float3 offs = (headPos - dustBuffer[i].position);
     float sqrDist = (offs.x * offs.x) + (offs.y * offs.y) + (offs.z * offs.z);
 
     if (sqrDist < sqrDeathRange)
     {
-        DustBuffer[i].isAlive = FALSE;
+        dustBuffer[i].isAlive = FALSE;
         InterlockedAdd(aliveNumberBuffer[0], -1);
     }
     else if (sqrDist < sqrRange)
     {
-        float3 dir = normalize(headPos - DustBuffer[i].position);
+        float3 dir = normalize(headPos - dustBuffer[i].position);
         float weightedForce = sqrForce / sqrDist;
-        DustBuffer[i].position += dir * weightedForce;
+        dustBuffer[i].position += dir * weightedForce;
     }
 }
 ```
@@ -744,8 +769,8 @@ private void InitBuffers()
     argsBuffer.SetData(argsData);
 
     // Dust Buffer => DustArray는 완전히 제거
-    DustBuffer = new ComputeBuffer(instanceNumber, sizeof(float) * 3 + sizeof(int));
-    DustMaterial.SetBuffer("_DustBuffer", DustBuffer);
+    dustBuffer = new ComputeBuffer(instanceNumber, sizeof(float) * 3 + sizeof(int));
+    DustMaterial.SetBuffer("_DustBuffer", dustBuffer);
 
     aliveNumberBuffer = new ComputeBuffer(1, sizeof(uint));
     aliveNumberArray = new uint[] { (uint)instanceNumber };
@@ -762,8 +787,8 @@ private void InitComputeShader()
     kernelUpdateID   = DustCompute.FindKernel("Update");
 
     // 버퍼는 커널마다 각각 할당해주어야 한다.
-    DustCompute.SetBuffer(kernelPopulateID, "DustBuffer", DustBuffer);
-    DustCompute.SetBuffer(kernelUpdateID, "DustBuffer", DustBuffer);
+    DustCompute.SetBuffer(kernelPopulateID, "DustBuffer", dustBuffer);
+    DustCompute.SetBuffer(kernelUpdateID, "DustBuffer", dustBuffer);
     DustCompute.SetBuffer(kernelUpdateID, "aliveNumberBuffer", aliveNumberBuffer);
 
     DustCompute.GetKernelThreadGroupSizes(kernelUpdateID, out uint tx, out _, out _);
@@ -847,10 +872,18 @@ private void Update()
 <br>
 
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
-# 4. 원뿔 흡수 영역 구현
+# 4. 원뿔 영역 흡수 구현
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
 
 구형 범위에서 흡수하는 것은 블랙홀이나 마찬가지이므로,
 
@@ -894,7 +927,7 @@ DustCompute.compute
 /*************************************************
 /*                     Variables
 /*************************************************/
-RWStructuredBuffer<Dust> DustBuffer;
+RWStructuredBuffer<Dust> dustBuffer;
 
 float3 headPos;    // 진공 청소기 입구 위치
 float sqrRange;      // 먼지 흡입 범위(반지름)
@@ -915,7 +948,7 @@ float SqrMagnitude(float3 vec)
 // 먼지 파괴
 void DestroyDust(uint i)
 {
-    DustBuffer[i].isAlive = FALSE;
+    dustBuffer[i].isAlive = FALSE;
     InterlockedAdd(aliveNumberBuffer[0], -1);
 }
 
@@ -929,7 +962,7 @@ void Update (uint3 id : SV_DispatchThreadID)
     uint i = id.x;
     if(DustBuffer[i].isAlive == FALSE) return;
     
-    float3 pos = DustBuffer[i].position;
+    float3 pos = dustBuffer[i].position;
     float3 offs = (headPos - pos);
     float sqrDist = SqrMagnitude(offs);
 
@@ -950,10 +983,10 @@ void Update (uint3 id : SV_DispatchThreadID)
         if(dotValue > dotThreshold)
         {
             float weightedForce = sqrForce / sqrDist;
-            DustBuffer[i].position += dir * weightedForce * dotValue;
+            dustBuffer[i].position += dir * weightedForce * dotValue;
 
             // 청소기 뒤편으로 넘어가면 먼지 소멸
-            if(dot(headPos - DustBuffer[i].position, dir) < 0)
+            if(dot(headPos - dustBuffer[i].position, dir) < 0)
                 DestroyDust(i);
         }
     }
@@ -1153,10 +1186,18 @@ private void DrawConeGizmo(Vector3 origin, float height, float angle, int sample
 <br>
 
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 # 5. 물리 계산
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
 
 먼지의 속도를 새로운 컴퓨트 버퍼에 저장한다.
 
@@ -1465,10 +1506,18 @@ private void SetBuffersToShaders()
 <br>
 
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 # 6. 메시 변경, 쉐이더 수정
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
 
 Cube 메시 대신 Quad 메시를 사용한다.
 
@@ -1596,10 +1645,18 @@ SubShader
 
 <br>
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 # 7. 충돌 반경 적용
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
 
 충돌 시 먼지의 반지름을 고려하여, 다른 오브젝트에 겹치지 않도록 한다.
 
@@ -1665,10 +1722,16 @@ private void UpdateDustPositionsGPU()
 <br>
 
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 # 추가 : 원뿔 영역 메시 구현
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
 
 기즈모는 다른 물체보다 항상 위에 보이므로 영역을 정확히 확인하기가 어렵다.
 
@@ -1786,10 +1849,18 @@ private void ChangeConeScale()
 
 <br>
 
+
+
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 # 추가 : 다양한 난수 생성 함수들
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
 
 기존에는 단순히 2D 시드값을 통해 `float` 값, `float3` 값의 난수를 생성하는 함수들만 있었지만,
 
@@ -1896,10 +1967,18 @@ float3 RandomRange23(float2 seed, float3 min, float3 max)
 
 <br>
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
-# 8. 발사 기능 구현
+# 8. 방출 기능 구현
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
 
 진공 청소기로 흡수했던 먼지들을 한 번에 뿜어내어 발사하는 기능을 구현한다.
 
@@ -1931,7 +2010,7 @@ xy 평면에서 원형 범위를 생성한다.
 
 <br>
 
-### **[1-2] 발사 원뿔 영역 생성(XY-Z 2D)**
+### **[1-2] 원뿔 영역 생성(XY-Z 2D)**
 
 ![image](https://user-images.githubusercontent.com/42164422/135745354-18e23c36-91f5-401e-a164-d3c808e6d1cf.png)
 
@@ -2075,10 +2154,18 @@ private void BlowDusts()
 
 <br>
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 # 9. 바닥 평면 충돌 및 탄성 구현
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
 
 먼지가 바닥에 부딪힐 경우, 현재는 바로 굴러간다.
 
@@ -2176,7 +2263,7 @@ DustCompute.compute
 </summary>
 
 ```hlsl
-#define ELAS 0.6 // 탄성 계수
+float elasticity; // 탄성 계수 : CPU에서 값 제공(범위 : 0 ~ 1)
 
 // 점 A에서 점 B로 레이캐스트하여 평면과 접점 찾기
 float3 RaycastToPlane(float3 A, float3 B, float3 P, float3 N)
@@ -2216,23 +2303,26 @@ void Update (uint3 id : SV_DispatchThreadID)
     float3 nextPos = currPos + velocityBuffer[i] * deltaTime;
 
     // [1] Plane 충돌 (Y = 0)
-    if(nextPos.y < radius && currPos.y > radius) // 먼지 반지름 고려
+    if(nextPos.y < radius) // 먼지 반지름 고려
     {
-        float3 currToNext = nextPos - currPos;
+        if(currPos.y > radius)
+        {
+            float3 currToNext = nextPos - currPos;
 
-        // 평면과의 충돌 지점
-        float3 contact = RaycastToPlane(currPos, nextPos, float3(0, radius, 0), float3(0, 1, 0));
-        float rayLen = length(currToNext);
-        float inLen = length(currPos - contact); // 입사 벡터 길이
-        float outLen = (rayLen - inLen) * ELAS;  // 반사 벡터 길이(운동량 감소)
-        float3 outVec = ReverseY(currToNext) * (outLen / rayLen);
+            // 평면과의 충돌 지점
+            float3 contact = RaycastToPlane(currPos, nextPos, float3(0, radius, 0), float3(0, 1, 0));
+            float rayLen = length(currToNext);
+            float inLen = length(currPos - contact);       // 입사 벡터 길이
+            float outLen = (rayLen - inLen) * elasticity;  // 반사 벡터 길이(운동량 감소)
+            float3 outVec = ReverseY(currToNext) * (outLen / rayLen);
 
-        nextPos = contact + outVec;
-        velocityBuffer[i] = ReverseY(velocityBuffer[i]) * ELAS;
-    }
-    else
-    {
-        nextPos.y = max(radius, nextPos.y);
+            nextPos = contact + outVec;
+            velocityBuffer[i] = ReverseY(velocityBuffer[i]) * elasticity;
+        }
+        else
+        {
+            nextPos.y = max(radius, nextPos.y);
+        }
     }
 
     // [2] 입구로 완전히 빨아들인 경우, 먼지 파괴
@@ -2255,10 +2345,18 @@ void Update (uint3 id : SV_DispatchThreadID)
 
 <br>
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 # 10. 월드 영역 제한(큐브)
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
 
 지금까지는 바닥만 제한 영역을 설정했으나,
 
@@ -2266,15 +2364,239 @@ void Update (uint3 id : SV_DispatchThreadID)
 
 따라서 월드의 제한 영역을 이루는 각 면에 부딪힐 경우 튕겨 나가도록 구현한다.
 
+<br>
 
+## **[1] 컴퓨트 쉐이더**
 
+<details>
+<summary markdown="span"> 
+Type Definitions
+</summary>
+
+```hlsl
+// 육면체 영역
+struct Bounds
+{
+    float3 min;
+    float3 max;
+};
+
+// 평면
+struct Plane
+{
+    float3 position; // 평면 위의 한 점
+    float3 normal;   // 평면의 법선
+};
+```
+
+</details>
 
 <br>
 
+<details>
+<summary markdown="span"> 
+Physics Functions
+</summary>
+
+```hlsl
+// 점 A에서 점 B로 레이캐스트하여 평면과 접점 찾기
+float3 RaycastToPlane(float3 A, float3 B, Plane plane)
+{
+    //A = Ray Origin;
+    //B = Ray End;
+    //P = Plane Point;
+    //N = Plane Normal;
+    float3 AB = (B - A);
+    float3 nAB = normalize(AB);
+    
+    float d = dot(plane.normal, plane.position - A) / dot(plane.normal, nAB);
+    float3 C = A + nAB * d;
+    return C;
+}
+
+#define IN_BOUNDS 0
+#define OUT_OF_PX 1 // +x
+#define OUT_OF_MX 2 // -x
+#define OUT_OF_PY 3 // +y
+#define OUT_OF_MY 4 // -y
+#define OUT_OF_PZ 5 // +z
+#define OUT_OF_MZ 6 // -z
+
+// 육면체 범위 내로 위치 제한 및 충돌 검사
+// - cur : 현재 프레임에서의 위치
+// - next : 다음 프레임에서의 위치
+// - velocity : 현재 이동 속도
+// - threshold : 입자의 크기
+// - elasticity : 탄성력 계수(0 ~ 1)
+// - bounds : 큐브 영역
+void ConfineWithinCubeBounds(float3 cur, inout float3 next, inout float3 velocity, float threshold, float elasticity, Bounds bounds)
+{
+    // 1. 큐브 영역 밖에 있는지, 안에 있는지 검사
+    int status = IN_BOUNDS;
+         if(next.x >= bounds.max.x - threshold) status = OUT_OF_PX;
+    else if(next.x <= bounds.min.x + threshold) status = OUT_OF_MX;
+    else if(next.y >= bounds.max.y - threshold) status = OUT_OF_PY;
+    else if(next.y <= bounds.min.y + threshold) status = OUT_OF_MY;
+    else if(next.z >= bounds.max.z - threshold) status = OUT_OF_PZ;
+    else if(next.z <= bounds.min.z + threshold) status = OUT_OF_MZ;
+    else return; // 영역 내부에 있는 경우, 종료
+
+    Plane plane;
+    float limit;
+    float3 reversedCurToNext;
+    float3 reversedVelocity;
+
+    switch(status)
+    {
+        case OUT_OF_PX:
+            limit = bounds.max.x - threshold;
+            if(cur.x > limit) // 외부에서 외부로 이동하는 경우, 단순히 위치만 변경하기
+            {
+                next.x = min(limit, next.x);
+                return;
+            }
+            // 내부에서 외부로 이동하는 경우, 반사 벡터 계산을 위한 변수들 초기화
+            plane.normal   = float3(1, 0, 0);
+            plane.position = float3(limit, 0, 0);
+            reversedCurToNext = ReverseX(next - cur);
+            reversedVelocity  = ReverseX(velocity);
+            break;
+
+        case OUT_OF_MX:
+            limit = bounds.min.x + threshold;
+            if(cur.x < limit)
+            {
+                next.x = max(limit, next.x);
+                return;
+            }
+            plane.normal   = float3(-1, 0, 0);
+            plane.position = float3(limit, 0, 0);
+            reversedCurToNext = ReverseX(next - cur);
+            reversedVelocity  = ReverseX(velocity);
+            break;
+
+        case OUT_OF_PY:
+            limit = bounds.max.y - threshold;
+            if(cur.y > limit)
+            {
+                next.y = min(limit, next.y);
+                return;
+            }
+            plane.normal   = float3(0, 1, 0);
+            plane.position = float3(0, limit, 0);
+            reversedCurToNext = ReverseY(next - cur);
+            reversedVelocity  = ReverseY(velocity);
+            break;
+
+        case OUT_OF_MY:
+            limit = bounds.min.y + threshold;
+            if(cur.y < limit)
+            {
+                next.y = max(limit, next.y);
+                return;
+            }
+            plane.normal   = float3(0, -1, 0);
+            plane.position = float3(0, limit, 0);
+            reversedCurToNext = ReverseY(next - cur);
+            reversedVelocity  = ReverseY(velocity);
+            break;
+
+        case OUT_OF_PZ:
+            limit = bounds.max.z - threshold;
+            if(cur.z > limit)
+            {
+                next.z = min(limit, next.z);
+                return;
+            }
+            plane.normal   = float3(0, 0, 1);
+            plane.position = float3(0, 0, limit);
+            reversedCurToNext = ReverseZ(next - cur);
+            reversedVelocity  = ReverseZ(velocity);
+            break;
+
+        case OUT_OF_MZ:
+            limit = bounds.min.z + threshold;
+            if(cur.z < limit)
+            {
+                next.z = max(limit, next.z);
+                return;
+            }
+            plane.normal   = float3(0, 0, -1);
+            plane.position = float3(0, 0, limit);
+            reversedCurToNext = ReverseZ(next - cur);
+            reversedVelocity  = ReverseZ(velocity);
+            break;
+    }
+    
+    // 직선과 평면의 충돌 계산
+    float3 currToNext = next - cur;
+    float3 contact = RaycastToPlane(cur, next, plane); // 이동 벡터와 평면의 접점
+    float rayLen   = length(currToNext);               // 이동 벡터의 길이
+    float inLen    = length(cur - contact);            // 입사 벡터 길이
+    float outLen   = (rayLen - inLen) * elasticity;    // 반사 벡터 길이(운동량 감소)
+    float3 outVec  = reversedCurToNext * (outLen / rayLen);
+
+    // Outputs
+    next = contact + outVec;                  // 다음 프레임 위치 변경
+    velocity = reversedVelocity * elasticity; // 속도 변경
+}
+```
+
+</details>
+
+<br>
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+[numthreads(64,1,1)]
+void Update (uint3 id : SV_DispatchThreadID)
+{
+    // ...
+    
+    // ===================================================
+    //              이동 시뮬레이션, 충돌 검사
+    // ===================================================
+    // 다음 프레임 위치 계산 : S = S0 + V * t
+    float3 nextPos = currPos + velocityBuffer[i] * deltaTime;
+
+    // [1] Cube 영역 제한
+    Bounds bounds;
+    bounds.min = boundsMin;
+    bounds.max = boundsMax;
+    ConfineWithinCubeBounds(currPos, nextPos, velocityBuffer[i], radius, elasticity, bounds);
+    
+    // ...
+}
+```
+
+</details>
+
+<br>
+
+## **[2] 실행 결과**
+
+![2021_1004_CubeLimit1](https://user-images.githubusercontent.com/42164422/135858930-89c13581-1f58-40f4-bb0c-cf8b74f8b634.gif)
+
+![2021_1004_CubeLimit3](https://user-images.githubusercontent.com/42164422/135858942-1c171386-24c0-48ee-b3f5-9872ed8004d8.gif)
+
+<br>
+
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 # 11. Sphere 충돌 구현
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
 
 기본적인 Sphere 충돌을 구현한다.
 
@@ -2289,19 +2611,100 @@ nextPos Sphere-to-Sphere
 <br>
 
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 # 12. Cube 충돌 구현
 ---
 
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
 
 
 <br>
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
-# 0. 애셋 적용
+# 0. 폭발 효과 구현
 ---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+- 투사체를 발사하여 충돌체에 닿으면 폭발
+- 폭발 범위 내의 먼지에 힘 가하기
+
+<br>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+# 0. 글로벌 효과 구현
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+- 월드 내에 존재하는 모든 먼지에 적용되는 효과
+- 용권풍
+- 바람
+- ..
+
+<br>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+# 0. 조작 개선
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+- WASD  이동
+- Shift 달리기
+- Ctrl  하강
+- Space 상승
+- Tab   모드 변경(흡수/방출/폭발 투사체), 원뿔 색상도 변경(Cyan/Yellow)/원기둥(Red)?
+- Q/E   각도 변경
+- Z/C   힘 변경
+- ESC   옵션 GUI 표시/미표시
+
+- 옵션을 모두 조절할 수 있는 GUI 제공
+- 중력을 3D로 조절할 수 있게 변경
+
+<br>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+# 0. 예쁘게 만들기
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
 
 - 예쁜 방 꾸미기
 - 진공 청소기 모델링 적용하기
@@ -2311,6 +2714,7 @@ nextPos Sphere-to-Sphere
 
 
 
+</details>
 <!-- --------------------------------------------------------------------------- -->
 
 <!-- 
