@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 물리 기반 먼지 시뮬레이션" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-04T23:01:11+09:00","datePublished":"2021-09-27T17:00:00+09:00","url":"https://rito15.github.io/posts/unity-million-dust-simulation/","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-05T03:11:28+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Mon, Oct  4, 2021, 11:01 PM +0900"
+    title="Tue, Oct  5, 2021,  3:11 AM +0900"
   >
 
   
   
 
   
-    Oct  4
+    Oct  5
   
 
-  <i class="unloaded">2021-10-04T23:01:11+09:00</i>
+  <i class="unloaded">2021-10-05T03:11:28+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="11474 words">63 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="11618 words">64 min</span>
 
 
           <!-- page views -->
@@ -4665,6 +4665,46 @@ DustCompute.compute
   <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/135858930-89c13581-1f58-40f4-bb0c-cf8b74f8b634.gif" alt="2021_1004_CubeLimit1" /></p>
 
   <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/135858942-1c171386-24c0-48ee-b3f5-9872ed8004d8.gif" alt="2021_1004_CubeLimit3" /></p>
+
+  <p><br /></p>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="구조-개편">구조 개편</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><br /></p>
+
+  <p>원래는 진공 청소기 기능만 구현하려 했으나, 다양한 기능들을 구현하게 되었으므로</p>
+
+  <p>진공 청소기/방출기/컨트롤러를 분리한다.</p>
+
+  <p>그리고 진공 청소기 흡수 기능을 <code class="language-plaintext highlighter-rouge">Update</code>에서 분리하여 새로운 커널에 구현한다.</p>
+
+  <p><br /></p>
+
+  <h2 id="section-32"><strong>[1] 컴퓨트 쉐이더</strong></h2>
+
+  <!--
+TODO : Wall 쉐이더 - Geometry로 작성,
+       모서리 경계가 뚜렷하게 보여야 함
+ -->
+
+  <p><br /></p>
+
+  <h2 id="section-33"><strong>변경사항</strong></h2>
+
+  <ul>
+    <li>이름 변경 : <code class="language-plaintext highlighter-rouge">VacuumCleanerHead</code> -&gt; <code class="language-plaintext highlighter-rouge">VacuumCleaner</code></li>
+    <li>이동 및 회전 기능 분리하여 새로운 클래스 작성 : <code class="language-plaintext highlighter-rouge">PlayerController</code></li>
+    <li>방출 기능 담당 클래스 작성 : <code class="language-plaintext highlighter-rouge">DustEmitter</code></li>
+  </ul>
 
   <p><br /></p>
 
