@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-03T23:18:40+09:00</updated>
+  <updated>2021-10-06T17:53:14+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,63 @@
 
   
   <entry>
+    <title>유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</title>
+    <link href="https://rito15.github.io/posts/unity-compute-buffer-gpu-instancing/" rel="alternate" type="text/html" title="유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱" />
+    <published>2021-10-06T15:15:00+09:00</published>
+  
+    <updated>2021-10-06T15:15:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-compute-buffer-gpu-instancing/</id>
+    <content src="https://rito15.github.io/posts/unity-compute-buffer-gpu-instancing/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="Shader Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      GPU Instancing
+
+
+[1] 컴퓨트 버퍼 - 메시 데이터
+
+  그려낼 메시의 정보를 컴퓨트 버퍼에 저장한다.
+  컴퓨트 버퍼의 stride는 4 byte(sizeof(uint))이다.
+  컴퓨트 버퍼의 크기는 20 byte(uint 5개)이며, 각각의 데이터는 메시에 대한 정보를 담고 있다.
+
+
+Mesh mesh;                     // 그려낼 메시
+int subMeshIndex = 0;          // 기본 : 0
+int instanceCount = 100_000;   // 생성할 인스턴스의 개수
+uint[] argsData = new uint[5]; // 메시 데이터
+
+argsData[0] = (uint)mesh.GetIndexCount(subMeshIndex);
+a...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>레이캐스트 - 평면(Plane)</title>
     <link href="https://rito15.github.io/posts/raycast-to-plane/" rel="alternate" type="text/html" title="레이캐스트 - 평면(Plane)" />
     <published>2021-10-03T22:22:00+09:00</published>
   
-    <updated>2021-10-03T22:22:00+09:00</updated>
+    <updated>2021-10-04T04:13:50+09:00</updated>
   
     <id>https://rito15.github.io/posts/raycast-to-plane/</id>
     <content src="https://rito15.github.io/posts/raycast-to-plane/" />
@@ -68,24 +120,22 @@
 
 
 
-직선과 평면의 교차점 찾기
+직선과 평면의 접점 찾기
 
 
-점 A에서 점 B를 향해 광선을 발사하여, 광선과 평면이 만나는 지점을 찾는다.
+점 A에서 점 B를 향해 광선을 발사하여, 광선(직선)과 평면이 만나는 지점을 찾는다.
 
 
 
 위와 같이 A, B, P, N이 주어졌을 때,
 
-길이 d를 알아내고 이를 통해 직선과 평면의 교차점 C를 알아내야 한다.
+길이 d를 알아내고 이를 통해 직선과 평면의 접점 C를 알아내야 한다.
 
 
 
 평면의 정의에 의해 다음과 같은 식을 얻을 수 있다.
 
 \[dot(N, P - C) = 0\]
-
-
 ...
     </summary>
   
@@ -98,7 +148,7 @@
     <link href="https://rito15.github.io/posts/raycast-to-sphere/" rel="alternate" type="text/html" title="레이캐스트 - 구체(Sphere)" />
     <published>2021-10-02T02:02:00+09:00</published>
   
-    <updated>2021-10-03T23:16:22+09:00</updated>
+    <updated>2021-10-04T04:13:50+09:00</updated>
   
     <id>https://rito15.github.io/posts/raycast-to-sphere/</id>
     <content src="https://rito15.github.io/posts/raycast-to-sphere/" />
@@ -131,7 +181,7 @@
 
 
 
-직선과 구체 표면의 교차점 찾기
+직선과 구체 표면의 접점 찾기
 
 
 
@@ -161,7 +211,7 @@
 
   
     C : 점 S에서 직선 AB에 내린 수선의 발
-...
+ ...
     </summary>
   
 
@@ -275,85 +325,6 @@ float4 Billboard(float4 vertex)
     float3 camUpVec      =  normalize( UNITY_MATRIX_V._m10_m11_m12 );
     float3 camForwardVec = -normalize( UNITY_MATRIX_V._m20_m21_m22 );
     float3 camRightVec   =  normalize( UNITY_MATRIX_V._m00_m...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# Nullable</title>
-    <link href="https://rito15.github.io/posts/cs-nullable/" rel="alternate" type="text/html" title="C# Nullable" />
-    <published>2021-09-30T00:11:00+09:00</published>
-  
-    <updated>2021-09-30T00:11:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-nullable/</id>
-    <content src="https://rito15.github.io/posts/cs-nullable/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Grammar" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      null 허용 값 타입
-
-
-
-  
-    .Net Framework 2.0 버전부터 사용할 수 있다.
-  
-  
-    Nullable&amp;lt;T&amp;gt; 또는 T? 꼴로 사용할 수 있다.
-  
-  
-    null 값의 초기화를 허용한다.
-  
-  
-    null을 허용한다고 해서 참조형이 되는 것은 아니고, 값 타입은 그대로 값 타입이다.
-  
-  
-    힙에 할당되지 않고, 스택에 할당되는 것은 동일하다.
-  
-
-
-
-
-Nullable 클래스
-
-
-  
-    정적 클래스이다.
-  
-  
-    변수를 선언할 수 없다.
-  
-  
-    Nullable&amp;lt;T&amp;gt;와는 엄연히 다른 타입이며, 관련 API를 제공하기 위해 존재한다.
-  
-
-
-
-
-Nullable&amp;lt;T&amp;gt; 구조체
-
-
-  
-   ...
     </summary>
   
 
