@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 쉐이더 - 프로퍼티 메모" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Memo 자꾸만 까먹어서 메모","datePublished":"2021-08-31T19:54:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-properties/"},"url":"https://rito15.github.io/posts/unity-shader-properties/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 쉐이더 - 프로퍼티 메모","dateModified":"2021-09-27T02:23:21+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 쉐이더 - 프로퍼티 메모","description":"Memo 자꾸만 까먹어서 메모","dateModified":"2021-09-27T02:23:21+09:00","datePublished":"2021-08-31T19:54:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-properties/"},"url":"https://rito15.github.io/posts/unity-shader-properties/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1745,6 +1745,8 @@
     
     
     
+    
+      
     
   
     
@@ -4032,6 +4034,45 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8114,6 +8155,154 @@
       
       
       <div class="card">
+        <a href="/posts/unity-shader-billboard/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep 30
+  
+
+  <i class="unloaded">2021-09-30T21:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 빌보드(Vert/Frag)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1. 일반
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+struct appdata
+{
+    float4 vertex : POSITION;
+    float2 uv : TEXCOORD0;
+};
+
+struct v2f
+{
+  ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-shader-const-variables/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 30
+  
+
+  <i class="unloaded">2021-08-30T21:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 상수, 상수 배열 선언하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+
+  Pass 내부에 작성
+
+
+
+  
+    // 매크로 상수
+#define RANDOM_SEED 426.791
+
+// 그냥 상수
+static const float RandomSeed = 5417.24;
+
+// 상수 배열
+static const float2 dir[8] = 
+{
+    float2(1, 0), float2(0, 1),   ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-shader-random-functions/">
           <div class="card-body">
             <!--
@@ -8216,154 +8405,6 @@
 65
 66
 6...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-shader-const-variables/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 30
-  
-
-  <i class="unloaded">2021-08-30T21:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 상수, 상수 배열 선언하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Memo
-
-
-
-  Pass 내부에 작성
-
-
-
-  
-    // 매크로 상수
-#define RANDOM_SEED 426.791
-
-// 그냥 상수
-static const float RandomSeed = 5417.24;
-
-// 상수 배열
-static const float2 dir[8] = 
-{
-    float2(1, 0), float2(0, 1),   ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-shader-billboard/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Sep 30
-  
-
-  <i class="unloaded">2021-09-30T21:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 빌보드(Vert/Frag)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                1. 일반
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-struct appdata
-{
-    float4 vertex : POSITION;
-    float2 uv : TEXCOORD0;
-};
-
-struct v2f
-{
-  ...
               </p>
             </div>
           </div>
@@ -9565,6 +9606,8 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
+    
+      
     
   
     

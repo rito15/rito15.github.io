@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 입력 바인딩 시스템 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 에디터 및 인게임에서 언제든 기능에 연결된 사용자 마우스, 키보드 바인딩을 변경할 수 있는 기능 구현 전체 입력 바인딩을 직렬화하여 저장하고 불러올 수 있는 기능 구현","datePublished":"2021-01-30T16:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/input-binding-system/"},"url":"https://rito15.github.io/posts/input-binding-system/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 입력 바인딩 시스템 만들기","dateModified":"2021-09-17T04:13:36+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 - 입력 바인딩 시스템 만들기","description":"목표 에디터 및 인게임에서 언제든 기능에 연결된 사용자 마우스, 키보드 바인딩을 변경할 수 있는 기능 구현 전체 입력 바인딩을 직렬화하여 저장하고 불러올 수 있는 기능 구현","dateModified":"2021-09-17T04:13:36+09:00","datePublished":"2021-01-30T16:18:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/input-binding-system/"},"url":"https://rito15.github.io/posts/input-binding-system/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -2253,6 +2253,8 @@
     
     
     
+    
+      
     
   
     
@@ -8276,6 +8278,45 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8790,7 +8831,7 @@ Source Code
       
       
       <div class="card">
-        <a href="/posts/unity-million-dust-simulation/">
+        <a href="/posts/unity-serialize-tree-object/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8807,13 +8848,13 @@ Source Code
   
 
   
-    Sep 27
+    Sep  6
   
 
-  <i class="unloaded">2021-09-27T17:00:00+09:00</i>
+  <i class="unloaded">2021-09-06T23:23:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 물리 기반 먼지 시뮬레이션</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 트리 구조 데이터 직렬화하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8822,25 +8863,31 @@ Source Code
 
 
 
-                목표
+                트리(Tree) 자료구조
 
 
-  수십만 개의 먼지를 렌더링한다.
-  먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다.
-  진공 청소기로 먼지들을 예쁘게 빨아들인다.
+1
+2
+3
+4
+class TreeNode
+{
+    public TreeNode[] children;
+}
+
+
+위와 같이 자기 타입의 배열 또는 컬렉션을 필드로 갖는 구조를 트리 자료구조라고 한다.
+
+자식 및 하위 노드들을 순회하기 위해 재귀적 호출을 많이 사용한다.
 
 
 
 
 
+직렬화(Serialization)
 
-주요 개념
 
-
-Compute Buffer
-
-  큰 병렬 데이터를 GPU에 전달하거나 쉐이더끼리 공유하기 위해 사용한다.
-  Vert/Frag, Compute Shader에서 Struct...
+데이터를 저...
               </p>
             </div>
           </div>
@@ -10052,6 +10099,8 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
+    
+      
     
   
     

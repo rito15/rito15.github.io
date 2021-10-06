@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 안드로이드 USB 디버깅하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"LogCat 패키지 설치","datePublished":"2021-09-07T16:49:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-android-usb-debugging/"},"url":"https://rito15.github.io/posts/unity-android-usb-debugging/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 안드로이드 USB 디버깅하기","dateModified":"2021-09-07T16:49:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 안드로이드 USB 디버깅하기","description":"LogCat 패키지 설치","dateModified":"2021-09-07T16:49:00+09:00","datePublished":"2021-09-07T16:49:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-android-usb-debugging/"},"url":"https://rito15.github.io/posts/unity-android-usb-debugging/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1747,6 +1747,8 @@
     
     
     
+    
+      
     
   
     
@@ -4034,6 +4036,45 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8236,7 +8277,7 @@ So...
       
       
       <div class="card">
-        <a href="/posts/unity-shader-random-functions/">
+        <a href="/posts/unity-shader-billboard/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8253,13 +8294,13 @@ So...
   
 
   
-    Sep 26
+    Sep 30
   
 
-  <i class="unloaded">2021-09-26T21:19:00+09:00</i>
+  <i class="unloaded">2021-09-30T21:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 랜덤 함수들</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 빌보드(Vert/Frag)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8268,7 +8309,7 @@ So...
 
 
 
-                Memo
+                1. 일반
 
 
 1
@@ -8306,38 +8347,15 @@ So...
 33
 34
 35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-6...
+struct appdata
+{
+    float4 vertex : POSITION;
+    float2 uv : TEXCOORD0;
+};
+
+struct v2f
+{
+  ...
               </p>
             </div>
           </div>
@@ -9549,6 +9567,8 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
+    
+      
     
   
     

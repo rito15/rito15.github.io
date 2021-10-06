@@ -676,4 +676,8 @@ Shader "Instanced/InstancedVertFrag"
 
 ![image](https://user-images.githubusercontent.com/42164422/136167366-5d33c62d-04de-4964-a140-e455cef22fa4.png)
 
+Surface 쉐이더는 Receive, Cast Shadow 모두 적용되고
+
+Vert/Frag 쉐이더는 적용되지 않는다.
+
 <br>

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="윈폼 중복 실행 방지" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Memo","datePublished":"2021-05-06T02:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-prevent-duplication/"},"url":"https://rito15.github.io/posts/cs-winform-prevent-duplication/","author":{"@type":"Person","name":"Rito15"},"headline":"윈폼 중복 실행 방지","dateModified":"2021-05-06T02:02:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"윈폼 중복 실행 방지","description":"Memo","dateModified":"2021-05-06T02:02:00+09:00","datePublished":"2021-05-06T02:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-prevent-duplication/"},"url":"https://rito15.github.io/posts/cs-winform-prevent-duplication/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1772,6 +1772,8 @@
     
     
     
+    
+      
     
   
     
@@ -6183,6 +6185,45 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8286,7 +8327,7 @@ public b...
       
       
       <div class="card">
-        <a href="/posts/01-cs-tcp-ip-4-layer/">
+        <a href="/posts/04-cs-udp-socket-server-client-basic.md/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8306,10 +8347,10 @@ public b...
     Aug  2
   
 
-  <i class="unloaded">2021-08-02T00:01:00+09:00</i>
+  <i class="unloaded">2021-08-02T00:04:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP/IP 4 계층</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UDP 소켓 서버, 클라이언트 기본</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8318,38 +8359,24 @@ public b...
 
 
 
-                Note
+                UDP 소켓 통신의 특징
+
+
+
+  서버와 클라이언트 간의 1:1 연결이 생성되지 않는다.
+  리스너 소켓이 필요하지 않다.
+  Listen(), Connect() 과정이 없다.
+  소켓의 .ReceiveFrom(), .SendTo() 메소드를 통해 엔드포인트와 데이터를 주고 받는다.
 
 
 
 
+소켓 통신 과정
 
 
-OSI 7 Layer
+서버
 
-
-[7] Application
-
-[6] Presentation
-
-[5] Session
-
-[4] Transport
-
-[3] Network
-
-[2] Data Link
-
-[1] Physical
-
-
-
-TCP/IP 4 Layer
-
-
-[4] Application
-
-  OSI 7 Layer의 Application(7), ...
+  서버 IP 주소, 포트를 통해 ...
               </p>
             </div>
           </div>
@@ -9551,6 +9578,8 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
+    
+      
     
   
     

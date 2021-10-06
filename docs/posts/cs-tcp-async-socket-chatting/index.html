@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"이전 포스팅에서 이어집니다.","datePublished":"2021-08-03T03:33:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-tcp-async-socket-chatting/"},"url":"https://rito15.github.io/posts/cs-tcp-async-socket-chatting/","author":{"@type":"Person","name":"Rito15"},"headline":"TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기","dateModified":"2021-08-06T18:31:06+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기","description":"이전 포스팅에서 이어집니다.","dateModified":"2021-08-06T18:31:06+09:00","datePublished":"2021-08-03T03:33:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-tcp-async-socket-chatting/"},"url":"https://rito15.github.io/posts/cs-tcp-async-socket-chatting/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -3183,6 +3183,8 @@ Utility.cs
     
     
     
+      
+    
   
     
     
@@ -5474,6 +5476,45 @@ Utility.cs
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9556,7 +9597,7 @@ Utility.cs
       
       
       <div class="card">
-        <a href="/posts/01-cs-tcp-ip-4-layer/">
+        <a href="/posts/04-cs-udp-socket-server-client-basic.md/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9576,10 +9617,10 @@ Utility.cs
     Aug  2
   
 
-  <i class="unloaded">2021-08-02T00:01:00+09:00</i>
+  <i class="unloaded">2021-08-02T00:04:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP/IP 4 계층</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UDP 소켓 서버, 클라이언트 기본</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9588,157 +9629,14 @@ Utility.cs
 
 
 
-                Note
+                UDP 소켓 통신의 특징
 
 
 
-
-
-
-OSI 7 Layer
-
-
-[7] Application
-
-[6] Presentation
-
-[5] Session
-
-[4] Transport
-
-[3] Network
-
-[2] Data Link
-
-[1] Physical
-
-
-
-TCP/IP 4 Layer
-
-
-[4] Application
-
-  OSI 7 Layer의 Application(7), ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/02-cs-tcp-udp-protocols.md/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  2
-  
-
-  <i class="unloaded">2021-08-02T00:02:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP, UDP 프로토콜</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                TCP, UDP 프로토콜
-
-
-
-  
-    OSI 7 Layer 중 4번째, TCP/IP 4 Layer 중 3번째인 Transport 계층의 통신을 위한 프로토콜
-  
-  
-    IP 주소와 포트 번호를 통해 대상을 식별한다.
-  
-
-
-
-
-TCP(Transmission Control Protocol)
-
-
-개념
-
-  데이터를 메시지 형태로 전송하기 위...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/03-cs-tcp-socket-server-client-basic.md/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  2
-  
-
-  <i class="unloaded">2021-08-02T00:03:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 소켓 서버, 클라이언트 기본</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                소켓 정의
-
-
-프로토콜
-
-  데이터 전송을 위한 규약이며, 대표적으로 TCP와 UDP가 있다.
-
-
-IP
-
-  컴퓨터에 부여된 논리적 식별 주소
-
-
-Port
-
-  네트워크 상에서 통신하기 위해 호스트 내부적으로 프로세스가 할당받는 고유 번호
-  같은 컴퓨터 내에서 프로세스를 식별하기 위한 번호
+  서버와 클라이언트 간의 1:1 연결이 생성되지 않는다.
+  리스너 소켓이 필요하지 않다.
+  Listen(), Connect() 과정이 없다.
+  소켓의 .ReceiveFrom(), .SendTo() 메소드를 통해 엔드포인트와 데이터를 주고 받는다.
 
 
 
@@ -9748,7 +9646,122 @@ Port
 
 서버
 
-  서버 IP 주소, 포트...
+  서버 IP 주소, 포트를 통해 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/05-cs-tcp-async-socket-basic.md/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug  2
+  
+
+  <i class="unloaded">2021-08-02T00:05:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 비동기 소켓 서버, 클라이언트 기본</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                비동기 소켓 통신 방식
+
+
+Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존재한다.
+
+
+  AcceptAsync(SocketAsyncEventArgs)
+  ConnectAsync(SocketAsyncEventArgs)
+  DisconnectAsync(SocketAsyncEventArgs)
+  ConnectAsync(SocketA...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/06-cs-tcp-async-socket-with-packet.md/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug  2
+  
+
+  <i class="unloaded">2021-08-02T00:06:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+  이전 포스팅에서 이어집니다.
+
+
+
+
+ReceiveBuffer, SendBuffer
+
+
+
+  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.
+
+
+
+
+ReceiveBuffer 클래스
+
+
+
+  
+    각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.
+  
+...
               </p>
             </div>
           </div>
@@ -10960,6 +10973,8 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
+    
+      
     
   
     

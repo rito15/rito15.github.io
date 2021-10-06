@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="브레즌햄(픽셀에 직선 그리기) 알고리즘" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Summary","datePublished":"2021-04-25T17:32:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/bresenham-algorithm/"},"url":"https://rito15.github.io/posts/bresenham-algorithm/","author":{"@type":"Person","name":"Rito15"},"headline":"브레즌햄(픽셀에 직선 그리기) 알고리즘","dateModified":"2021-04-25T17:32:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"브레즌햄(픽셀에 직선 그리기) 알고리즘","description":"Summary","dateModified":"2021-04-25T17:32:00+09:00","datePublished":"2021-04-25T17:32:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/bresenham-algorithm/"},"url":"https://rito15.github.io/posts/bresenham-algorithm/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -2075,6 +2075,8 @@ Source Code
     
     
     
+    
+      
     
   
     
@@ -6556,6 +6558,45 @@ Source Code
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8449,6 +8490,62 @@ Source Code
       
       
       <div class="card">
+        <a href="/posts/raycast-to-sphere/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Oct  2
+  
+
+  <i class="unloaded">2021-10-02T02:02:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>레이캐스트 - 구체(Sphere)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                레이캐스트(Raycast)
+
+
+
+  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
+
+
+
+
+직선과 구체 표면의 접점 찾기
+
+
+
+  시작 지점에서부터 목표 지점으로 광선을 발사하여, 그 사이에서 광선과 교차하는 구체의 표면 지점을 찾아낸다.
+  3차원에서 수행하면 구체, 2차원에서 수행하면 원(Cir...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/dynamic-programming/">
           <div class="card-body">
             <!--
@@ -8510,7 +8607,7 @@ Source Code
       
       
       <div class="card">
-        <a href="/posts/raycast-to-sphere/">
+        <a href="/posts/raycast-to-plane/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8527,13 +8624,13 @@ Source Code
   
 
   
-    Oct  2
+    Oct  3
   
 
-  <i class="unloaded">2021-10-02T02:02:00+09:00</i>
+  <i class="unloaded">2021-10-03T22:22:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>레이캐스트 - 구체(Sphere)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>레이캐스트 - 평면(Plane)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8551,73 +8648,14 @@ Source Code
 
 
 
-직선과 구체 표면의 접점 찾기
-
-
-
-  시작 지점에서부터 목표 지점으로 광선을 발사하여, 그 사이에서 광선과 교차하는 구체의 표면 지점을 찾아낸다.
-  3차원에서 수행하면 구체, 2차원에서 수행하면 원(Cir...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/algorithm-pow/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Apr  6
-  
-
-  <i class="unloaded">2021-04-06T18:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>O(logn) 거듭제곱 알고리즘</h3>
-            <div class="text-muted small">
-              <p>
-                
+평면(Plane)
 
 
 
 
+평면 위의 점 P와 평면의 법선 벡터 N을 알고 있으면 평면을 정의할 수 있으며,
 
-                Summary
-
-
-
-  
-    일반적으로 \(O(n)\) 시간복잡도로 수행하는 거듭제곱 계산을 \(O(log_{2}n)\) 의 시간복잡도로 수행할 수 있는 알고리즘
-  
-  
-    2진수 연산을 이용한다.
-  
-
-
-
-
-Details
-
-
-(a^n)을 계산하는 가장 쉬운 방법은 (a)를 (n) 번 곱하는 것이다.
-
-예를 들어 (4^9)을 구하려면 (4...
+평면 위의 임의의 점 X를 가정하여 dot(N, P - X) = 0을 통해 평면의 방정식을 정의할 ...
               </p>
             </div>
           </div>
@@ -9829,6 +9867,8 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
+    
+      
     
   
     

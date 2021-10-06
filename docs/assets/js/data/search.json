@@ -1,6 +1,51 @@
 [
   
   {
+    "title": "유니티 쉐이더 - 실수 타입들",
+    "url": "/posts/unity-shader-real-number-types/",
+    "categories": "Unity Shader, Shader Memo",
+    "tags": "unity, shader, memo",
+    "date": "2021-10-07 00:48:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Memo[1] float  32비트      유효 숫자 : 6자리    실수 중 정확도가 가장 높다.  실수 중 연산이 가장 느리다.      정확해야 하는 경우, 대개 사용된다.    예시 : 정점 위치, UV, 복합 스칼라 연산[2] half  16비트  유효 숫자 : 3자리      표현 범위 : -60,000.0 ~ +60,000.0    예시 : 방향 벡터, HDR 색상[3] fixed  11비트  정밀도 : 1/256      표현 범위 : -2.0 ~ +2.0    연산이 가장 빠르다.      작은 범위에서 한정..."
+  },
+  
+  {
+    "title": "유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기",
+    "url": "/posts/unity-shader-receive-and-cast-shadow/",
+    "categories": "Unity Shader, Shader Study",
+    "tags": "unity, shader",
+    "date": "2021-10-07 00:01:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Surface Shader  쉐이더를 빠르게 작성할 수 있도록 다양한 편의를 제공한다.  Surface 쉐이더 함수는 #pragma surface Surface쉐이더함수명으로 등록한다.  미리 만들어진 라이팅을 간편히 적용할 수 있다.  커스텀 라이트를 작성하는 것도 어렵지 않다.  Receive Shadow, Cast Shadow는 자동으로 적용된다.  Surface 쉐이더 함수는 기본적으로 Fragment 쉐이더 함수에 대응되며, 필요하다면 Vertex 쉐이더 함수를 따로 추가할 수 있다.   Surface Shader E..."
+  },
+  
+  {
+    "title": "C# 배열에 같은 값을 넣으면서 선언하기",
+    "url": "/posts/cs-memo-linq/",
+    "categories": "C#, C# Memo",
+    "tags": "csharp",
+    "date": "2021-10-06 22:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Memo// 인덱스 0부터 99까지 정수 1로 채우기int[] arr = Enumerable.Repeat(1, 100).ToArray();물론 LINQ를 쓰는 만큼, 중간 버퍼의 가비지는 감안해야 한다..NET 5.0 버전이라면 Array.Fill() 메소드를 사용하면 된다.int[] arr = new int[100];Array.Fill(arr, 1); // 배열 전체에 1로 채우기"
+  },
+  
+  {
     "title": "유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱",
     "url": "/posts/unity-compute-buffer-gpu-instancing/",
     "categories": "Unity Shader, Shader Study",
