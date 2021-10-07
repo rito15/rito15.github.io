@@ -3014,7 +3014,178 @@ private void UpdateBlower()
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-# 12. Sphere 충돌 구현
+# 12. 무작위 색상 설정
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+두 개의 색상을 지정하여,
+
+각 먼지가 두 색상 사이에서 랜덤한 색상으로 설정되도록 구현한다.
+
+<br>
+
+## **[1] 컴퓨트 쉐이더**
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+RWStructuredBuffer<half3> dustColorBuffer;  // 먼지 색상 RGB
+
+half3 dustColorA; // 무작위 색상 A
+half3 dustColorB; // 무작위 색상 B
+
+void Populate (uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    
+    // [1] 위치
+    float width = spawnBoundsMax.x - spawnBoundsMin.x;
+    float seed = i / (width * width);
+    dustBuffer[i].position = RandomRange13(seed, spawnBoundsMin, spawnBoundsMax);
+    dustBuffer[i].isAlive = TRUE;
+
+    // [2] 색상
+    float2 seed2d = float2(i % width, i / width);
+    float t = Random21(seed2d);
+    dustColorBuffer[i] = lerp(dustColorA, dustColorB, t);
+}
+```
+
+</details>
+
+<br>
+
+
+## **[2] 먼지 쉐이더**
+
+<details>
+<summary markdown="span"> 
+Dust.shader
+</summary>
+
+```cs
+StructuredBuffer<half3> _DustColorBuffer;
+
+struct v2f
+{
+    // ...
+    half3 dustColor : COLOR0;
+};
+
+v2f vert (appdata_full v, uint instanceID : SV_InstanceID)
+{
+    v2f o;
+
+    // ...
+    o.dustColor = _DustColorBuffer[instanceID];
+
+    return o;
+}
+
+fixed4 frag (v2f i) : SV_Target
+{
+    // ...
+    
+    fixed4 col = tex2D(_MainTex, i.uv);
+    col.rgb = i.dustColor * col.a;
+
+    return col;
+}
+```
+
+</details>
+
+<br>
+
+
+## **[3] 먼지 관리 컴포넌트**
+
+<details>
+<summary markdown="span"> 
+DustManager.cs
+</summary>
+
+```cs
+[SerializeField] private Color dustColorA = Color.black;
+[SerializeField] private Color dustColorB = Color.gray;
+
+private ComputeBuffer dustColorBuffer;
+
+private void InitBuffers()
+{
+    // ...
+
+    // Color Buffer
+    dustColorBuffer = new ComputeBuffer(dustCount, sizeof(float) * 3);
+
+    // ...
+}
+
+private void SetBuffersToShaders()
+{
+    dustMaterial.SetBuffer("_DustBuffer", dustBuffer);
+    dustMaterial.SetBuffer("_DustColorBuffer", dustColorBuffer);
+    dustCompute.SetBuffer(kernelPopulateID, "dustBuffer", dustBuffer);
+    dustCompute.SetBuffer(kernelPopulateID, "dustColorBuffer", dustColorBuffer);
+
+    // ...
+}
+
+private void OnDestroy()
+{
+    // ...
+    
+    if (dustColorBuffer != null) dustColorBuffer.Release();
+}
+```
+
+</details>
+
+<br>
+
+
+## **[4] 실행 결과**
+
+- 지정 색상 : Red, Blue
+
+![image](https://user-images.githubusercontent.com/42164422/136442001-f904827c-626f-4dbc-9f92-d50d6467ec5b.png)
+
+![image](https://user-images.githubusercontent.com/42164422/136442017-2f6636e2-171f-471e-8313-bc487a3ff0e9.png)
+
+<br>
+
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+# 0. 폭발 효과 구현
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+- 투사체를 발사하여 충돌체에 닿으면 폭발
+- 폭발 범위 내의 먼지에 힘 가하기
+
+<br>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+# 0. Sphere 충돌 구현
 ---
 
 <details>
@@ -3040,7 +3211,7 @@ nextPos Sphere-to-Sphere
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-# 13. Cube 충돌 구현
+# 0. Cube 충돌 구현
 ---
 
 <details>
@@ -3051,24 +3222,6 @@ nextPos Sphere-to-Sphere
 <br>
 
 
-
-<br>
-
-</details>
-<!-- --------------------------------------------------------------------------- -->
-
-# 0. 폭발 효과 구현
----
-
-<details>
-<summary markdown="span"> 
-...
-</summary>
-
-<br>
-
-- 투사체를 발사하여 충돌체에 닿으면 폭발
-- 폭발 범위 내의 먼지에 힘 가하기
 
 <br>
 
@@ -3211,18 +3364,9 @@ DustManager.cs
 <br>
 
 
-## **[3] 진공 청소기 컴포넌트**
+## **[3] 실행 결과**
 
-<details>
-<summary markdown="span"> 
-VacuumCleanerHead.cs
-</summary>
 
-```cs
-
-```
-
-</details>
 
 <br>
 

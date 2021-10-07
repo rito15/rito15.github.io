@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 물리 기반 먼지 시뮬레이션" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-06T03:55:55+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-08T01:32:51+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Oct  6, 2021,  3:55 AM +0900"
+    title="Fri, Oct  8, 2021,  1:32 AM +0900"
   >
 
   
   
 
   
-    Oct  6
+    Oct  8
   
 
-  <i class="unloaded">2021-10-06T03:55:55+09:00</i>
+  <i class="unloaded">2021-10-08T01:32:51+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="13433 words">74 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="13798 words">76 min</span>
 
 
           <!-- page views -->
@@ -5361,7 +5361,253 @@ DustManager.cs
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-<h1 id="12-sphere-충돌-구현">12. Sphere 충돌 구현</h1>
+<h1 id="12-무작위-색상-설정">12. 무작위 색상 설정</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><br /></p>
+
+  <p>두 개의 색상을 지정하여,</p>
+
+  <p>각 먼지가 두 색상 사이에서 랜덤한 색상으로 설정되도록 구현한다.</p>
+
+  <p><br /></p>
+
+  <h2 id="section-36"><strong>[1] 컴퓨트 쉐이더</strong></h2>
+
+  <details>
+    <summary> 
+DustCompute.compute
+</summary>
+
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="kt">RWStructuredBuffer</span><span class="o">&lt;</span><span class="kt">half3</span><span class="o">&gt;</span> <span class="n">dustColorBuffer</span><span class="p">;</span>  <span class="c1">// 먼지 색상 RGB</span>
+
+<span class="kt">half3</span> <span class="n">dustColorA</span><span class="p">;</span> <span class="c1">// 무작위 색상 A</span>
+<span class="kt">half3</span> <span class="n">dustColorB</span><span class="p">;</span> <span class="c1">// 무작위 색상 B</span>
+
+<span class="kt">void</span> <span class="nf">Populate</span> <span class="p">(</span><span class="n">uint3</span> <span class="n">id</span> <span class="o">:</span> <span class="n">SV_DispatchThreadID</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">uint</span> <span class="n">i</span> <span class="o">=</span> <span class="n">id</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    
+    <span class="c1">// [1] 위치</span>
+    <span class="n">float</span> <span class="n">width</span> <span class="o">=</span> <span class="n">spawnBoundsMax</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">spawnBoundsMin</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">float</span> <span class="n">seed</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">width</span><span class="p">);</span>
+    <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span> <span class="o">=</span> <span class="n">RandomRange13</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">spawnBoundsMin</span><span class="p">,</span> <span class="n">spawnBoundsMax</span><span class="p">);</span>
+    <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">isAlive</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
+
+    <span class="c1">// [2] 색상</span>
+    <span class="kt">float2</span> <span class="n">seed2d</span> <span class="o">=</span> <span class="kt">float2</span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">width</span><span class="p">,</span> <span class="n">i</span> <span class="o">/</span> <span class="n">width</span><span class="p">);</span>
+    <span class="n">float</span> <span class="n">t</span> <span class="o">=</span> <span class="n">Random21</span><span class="p">(</span><span class="n">seed2d</span><span class="p">);</span>
+    <span class="n">dustColorBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">lerp</span><span class="p">(</span><span class="n">dustColorA</span><span class="p">,</span> <span class="n">dustColorB</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="section-37"><strong>[2] 먼지 쉐이더</strong></h2>
+
+  <details>
+    <summary> 
+Dust.shader
+</summary>
+
+    <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td class="rouge-code"><pre><span class="n">StructuredBuffer</span><span class="p">&lt;</span><span class="n">half3</span><span class="p">&gt;</span> <span class="n">_DustColorBuffer</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="nc">v2f</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="n">half3</span> <span class="n">dustColor</span> <span class="p">:</span> <span class="n">COLOR0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">v2f</span> <span class="nf">vert</span> <span class="p">(</span><span class="n">appdata_full</span> <span class="n">v</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">instanceID</span> <span class="p">:</span> <span class="n">SV_InstanceID</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">v2f</span> <span class="n">o</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
+    <span class="n">o</span><span class="p">.</span><span class="n">dustColor</span> <span class="p">=</span> <span class="n">_DustColorBuffer</span><span class="p">[</span><span class="n">instanceID</span><span class="p">];</span>
+
+    <span class="k">return</span> <span class="n">o</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">fixed4</span> <span class="nf">frag</span> <span class="p">(</span><span class="n">v2f</span> <span class="n">i</span><span class="p">)</span> <span class="p">:</span> <span class="n">SV_Target</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    
+    <span class="n">fixed4</span> <span class="n">col</span> <span class="p">=</span> <span class="nf">tex2D</span><span class="p">(</span><span class="n">_MainTex</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">uv</span><span class="p">);</span>
+    <span class="n">col</span><span class="p">.</span><span class="n">rgb</span> <span class="p">=</span> <span class="n">i</span><span class="p">.</span><span class="n">dustColor</span> <span class="p">*</span> <span class="n">col</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">col</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="section-38"><strong>[3] 먼지 관리 컴포넌트</strong></h2>
+
+  <details>
+    <summary> 
+DustManager.cs
+</summary>
+
+    <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Color</span> <span class="n">dustColorA</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">black</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Color</span> <span class="n">dustColorB</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">gray</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="n">ComputeBuffer</span> <span class="n">dustColorBuffer</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">InitBuffers</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="c1">// Color Buffer</span>
+    <span class="n">dustColorBuffer</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ComputeBuffer</span><span class="p">(</span><span class="n">dustCount</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="p">*</span> <span class="m">3</span><span class="p">);</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">SetBuffersToShaders</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">dustMaterial</span><span class="p">.</span><span class="nf">SetBuffer</span><span class="p">(</span><span class="s">"_DustBuffer"</span><span class="p">,</span> <span class="n">dustBuffer</span><span class="p">);</span>
+    <span class="n">dustMaterial</span><span class="p">.</span><span class="nf">SetBuffer</span><span class="p">(</span><span class="s">"_DustColorBuffer"</span><span class="p">,</span> <span class="n">dustColorBuffer</span><span class="p">);</span>
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">SetBuffer</span><span class="p">(</span><span class="n">kernelPopulateID</span><span class="p">,</span> <span class="s">"dustBuffer"</span><span class="p">,</span> <span class="n">dustBuffer</span><span class="p">);</span>
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">SetBuffer</span><span class="p">(</span><span class="n">kernelPopulateID</span><span class="p">,</span> <span class="s">"dustColorBuffer"</span><span class="p">,</span> <span class="n">dustColorBuffer</span><span class="p">);</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">OnDestroy</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">dustColorBuffer</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="n">dustColorBuffer</span><span class="p">.</span><span class="nf">Release</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="section-39"><strong>[4] 실행 결과</strong></h2>
+
+  <ul>
+    <li>지정 색상 : Red, Blue</li>
+  </ul>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/136442001-f904827c-626f-4dbc-9f92-d50d6467ec5b.png" alt="image" /></p>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/136442017-2f6636e2-171f-471e-8313-bc487a3ff0e9.png" alt="image" /></p>
+
+  <p><br /></p>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="0-폭발-효과-구현">0. 폭발 효과 구현</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><br /></p>
+
+  <ul>
+    <li>투사체를 발사하여 충돌체에 닿으면 폭발</li>
+    <li>폭발 범위 내의 먼지에 힘 가하기</li>
+  </ul>
+
+  <p><br /></p>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="0-sphere-충돌-구현">0. Sphere 충돌 구현</h1>
 <hr />
 
 <details>
@@ -5386,7 +5632,7 @@ nextPos Sphere-to-Sphere
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-<h1 id="13-cube-충돌-구현">13. Cube 충돌 구현</h1>
+<h1 id="0-cube-충돌-구현">0. Cube 충돌 구현</h1>
 <hr />
 
 <details>
@@ -5395,26 +5641,6 @@ nextPos Sphere-to-Sphere
 </summary>
 
   <p><br /></p>
-
-  <p><br /></p>
-
-</details>
-<!-- --------------------------------------------------------------------------- -->
-
-<h1 id="0-폭발-효과-구현">0. 폭발 효과 구현</h1>
-<hr />
-
-<details>
-  <summary> 
-…
-</summary>
-
-  <p><br /></p>
-
-  <ul>
-    <li>투사체를 발사하여 충돌체에 닿으면 폭발</li>
-    <li>폭발 범위 내의 먼지에 힘 가하기</li>
-  </ul>
 
   <p><br /></p>
 
@@ -5562,18 +5788,9 @@ DustManager.cs
 <br>
 
 
-## **[3] 진공 청소기 컴포넌트**
+## **[3] 실행 결과**
 
-<details>
-<summary markdown="span"> 
-VacuumCleanerHead.cs
-</summary>
 
-```cs
-
-```
-
-</details>
 
 <br>
 
@@ -5712,17 +5929,17 @@ VacuumCleanerHead.cs
         
         
         
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
         
         
         
         <li><a href="/posts/unity-compute-buffer-gpu-instancing/">유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
