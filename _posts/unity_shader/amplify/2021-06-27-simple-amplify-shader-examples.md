@@ -808,6 +808,8 @@ WireConnection;137;0;136;0
 
 - 반드시 `Blend Mode`를 `Transparent`로 설정해야 한다.
 
+- `Cast Shadows` 옵션이 꺼져 있는 쉐이더(`#pragma noshadow`)는 `Screen Depth` 값이 제대로 받아와지지 않는다.
+
 <details>
 <summary markdown="span"> 
 원리?
