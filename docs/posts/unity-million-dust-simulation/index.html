@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 물리 기반 먼지 시뮬레이션" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 - 물리 기반 먼지 시뮬레이션","description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","dateModified":"2021-10-06T03:55:55+09:00","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-06T03:55:55+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="11618 words">64 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="13433 words">74 min</span>
 
 
           <!-- page views -->
@@ -4685,25 +4685,505 @@ DustCompute.compute
 
   <p>진공 청소기/방출기/컨트롤러를 분리한다.</p>
 
-  <p>그리고 진공 청소기 흡수 기능을 <code class="language-plaintext highlighter-rouge">Update</code>에서 분리하여 새로운 커널에 구현한다.</p>
-
   <p><br /></p>
 
   <h2 id="section-32"><strong>[1] 컴퓨트 쉐이더</strong></h2>
 
-  <!--
-TODO : Wall 쉐이더 - Geometry로 작성,
-       모서리 경계가 뚜렷하게 보여야 함
- -->
+  <ul>
+    <li>구조체 정의, 함수 구현을 별도의 <code class="language-plaintext highlighter-rouge">.cginc</code> 파일로 분리하고 <code class="language-plaintext highlighter-rouge">#include</code>로 가져온다.</li>
+    <li>진공 청소기 흡수 기능을 <code class="language-plaintext highlighter-rouge">Update</code>에서 분리하여 새로운 커널에 구현한다.</li>
+    <li><code class="language-plaintext highlighter-rouge">Update</code> 커널은 물리 업데이트만 담당한다.</li>
+    <li><code class="language-plaintext highlighter-rouge">Blow</code>는 <code class="language-plaintext highlighter-rouge">Emit</code>으로 이름을 변경한다.</li>
+    <li>변수들도 알맞게 네이밍을 변경한다.</li>
+  </ul>
 
   <p><br /></p>
 
-  <h2 id="section-33"><strong>변경사항</strong></h2>
+  <details>
+    <summary> 
+DustCompute.compute
+</summary>
 
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+</pre></td><td class="rouge-code"><pre><span class="cp">#pragma kernel Populate
+#pragma kernel Update
+#pragma kernel VacuumUp
+#pragma kernel Emit
+</span>
+<span class="cp">#include "Type Definitions.cginc"
+#include "Math Functions.cginc"
+#include "Random Functions.cginc"
+#include "Physics Functions.cginc"
+</span>
+<span class="cm">/*******************************************************************
+ *                        Naming Conventions
+/*******************************************************************
+ - AToB  : B - A
+ - ~Dir  : 방향 벡터(크기 1)
+ - ~Dist : 두 위치 벡터 사이의 거리(스칼라)
+ - ~Len  : 한 벡터의 길이
+/*******************************************************************/</span>
+
+<span class="cm">/*******************************************************************
+/*                            Definitions
+/*******************************************************************/</span>
+<span class="cp">#define TRUE 1
+#define FALSE 0
+#define TAU 6.28318530
+</span>
+<span class="cm">/*******************************************************************
+/*                            Variables
+/*******************************************************************/</span>
+<span class="kt">RWStructuredBuffer</span><span class="o">&lt;</span><span class="n">Dust</span><span class="o">&gt;</span> <span class="n">dustBuffer</span><span class="p">;</span>        <span class="c1">// 먼지 위치, 생존 여부</span>
+<span class="kt">RWStructuredBuffer</span><span class="o">&lt;</span><span class="kt">float3</span><span class="o">&gt;</span> <span class="n">velocityBuffer</span><span class="p">;</span>  <span class="c1">// 먼지 속도</span>
+<span class="kt">RWStructuredBuffer</span><span class="o">&lt;</span><span class="n">uint</span><span class="o">&gt;</span> <span class="n">aliveNumberBuffer</span><span class="p">;</span> <span class="c1">// 생존한 먼지 개수</span>
+
+<span class="cm">/* Common */</span>
+<span class="kt">float3</span> <span class="n">spawnBoundsMin</span><span class="p">;</span> <span class="c1">// 먼지 생성 영역 - 최소 지점</span>
+<span class="kt">float3</span> <span class="n">spawnBoundsMax</span><span class="p">;</span> <span class="c1">// 먼지 생성 영역 - 최대 지점</span>
+<span class="kt">float3</span> <span class="n">worldBoundsMin</span><span class="p">;</span> <span class="c1">// 월드 제한 영역 - 최소 지점</span>
+<span class="kt">float3</span> <span class="n">worldBoundsMax</span><span class="p">;</span> <span class="c1">// 월드 제한 영역 - 최대 지점</span>
+<span class="n">float</span> <span class="n">deltaTime</span><span class="p">;</span>
+
+<span class="cm">/* Controller */</span>
+<span class="kt">float3</span> <span class="n">controllerPos</span><span class="p">;</span>     <span class="c1">// 월드 위치</span>
+<span class="kt">float3</span> <span class="n">controllerForward</span><span class="p">;</span> <span class="c1">// 전방 벡터</span>
+
+<span class="cm">/* Vacuum Cleaner */</span>
+<span class="n">float</span> <span class="n">cleanerSqrDist</span><span class="p">;</span>       <span class="c1">// 먼지 흡입 범위(반지름) - 제곱</span>
+<span class="n">float</span> <span class="n">cleanerSqrDeathRange</span><span class="p">;</span> <span class="c1">// 먼지 소멸 범위(반지름) - 제곱</span>
+<span class="n">float</span> <span class="n">cleanerSqrForce</span><span class="p">;</span>      <span class="c1">// 빨아들이는 힘 - 제곱</span>
+<span class="n">float</span> <span class="n">cleanerDotThreshold</span><span class="p">;</span>  <span class="c1">// 진공 청소기 원뿔 영역 내적 범위</span>
+
+<span class="cm">/* Emitter */</span>
+<span class="n">uint</span> <span class="n">dustCount</span><span class="p">;</span>        <span class="c1">// 먼지 개수</span>
+<span class="n">float</span> <span class="n">time</span><span class="p">;</span>            <span class="c1">// Time.time</span>
+<span class="n">float</span> <span class="n">emitterForce</span><span class="p">;</span>    <span class="c1">// 방출 강도</span>
+<span class="n">float</span> <span class="n">emitterDist</span><span class="p">;</span>     <span class="c1">// 방출 거리</span>
+<span class="n">float</span> <span class="n">emitterAngleRad</span><span class="p">;</span> <span class="c1">// 방출 각도</span>
+<span class="kt">float4x4</span> <span class="n">controllerMatrix</span><span class="p">;</span> <span class="c1">//  localToWorld</span>
+
+<span class="cm">/* Physics(Update) */</span>
+<span class="kt">float3</span> <span class="n">gravity</span><span class="p">;</span>      <span class="c1">// 중력 가속도</span>
+<span class="n">float</span> <span class="n">radius</span><span class="p">;</span>        <span class="c1">// 먼지 반지름</span>
+<span class="n">float</span> <span class="n">mass</span><span class="p">;</span>          <span class="c1">// 질량</span>
+<span class="n">float</span> <span class="n">airResistance</span><span class="p">;</span> <span class="c1">// 공기 저항력</span>
+<span class="n">float</span> <span class="n">elasticity</span><span class="p">;</span>    <span class="c1">// 탄성력</span>
+
+<span class="cm">/*******************************************************************
+/*                            Functions
+/*******************************************************************/</span>
+<span class="c1">// 먼지 파괴</span>
+<span class="kt">void</span> <span class="nf">DestroyDust</span><span class="p">(</span><span class="n">uint</span> <span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">isAlive</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">;</span>
+    <span class="nb">InterlockedAdd</span><span class="p">(</span><span class="n">aliveNumberBuffer</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <details>
+    <summary> 
+Kernel : Update
+</summary>
+
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nb">numthreads</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+<span class="kt">void</span> <span class="nf">Update</span> <span class="p">(</span><span class="n">uint3</span> <span class="n">id</span> <span class="o">:</span> <span class="n">SV_DispatchThreadID</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">uint</span> <span class="n">i</span> <span class="o">=</span> <span class="n">id</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">isAlive</span> <span class="o">==</span> <span class="n">FALSE</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">dustCount</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="kt">float3</span> <span class="n">A</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 가속도 합 벡터</span>
+    
+    <span class="c1">// F = m * a</span>
+    <span class="c1">// v = a * t</span>
+
+    <span class="c1">// ===================================================</span>
+    <span class="c1">//                    속도 계산</span>
+    <span class="c1">// ===================================================</span>
+    <span class="c1">//A += F / mass;</span>
+
+    <span class="c1">// [1] 중력</span>
+    <span class="n">A</span> <span class="o">+=</span> <span class="n">gravity</span><span class="p">;</span>
+
+    <span class="c1">// [2] 공기 저항</span>
+    <span class="n">A</span> <span class="o">-=</span> <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">airResistance</span><span class="p">;</span>
+
+    <span class="c1">// 속도 적용 : V = A * t</span>
+    <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">deltaTime</span><span class="p">;</span>
+    
+    <span class="c1">// ===================================================</span>
+    <span class="c1">//              이동 시뮬레이션, 충돌 검사</span>
+    <span class="c1">// ===================================================</span>
+    <span class="c1">// 다음 프레임 위치 계산 : S = S0 + V * t</span>
+    <span class="kt">float3</span> <span class="n">currPos</span> <span class="o">=</span> <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span><span class="p">;</span>
+    <span class="kt">float3</span> <span class="n">nextPos</span> <span class="o">=</span> <span class="n">currPos</span> <span class="o">+</span> <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">deltaTime</span><span class="p">;</span>
+
+    <span class="c1">// [1] 월드 영역 제한(Cube)</span>
+    <span class="n">Bounds</span> <span class="n">bounds</span><span class="p">;</span>
+    <span class="n">bounds</span><span class="p">.</span><span class="nb">min</span> <span class="o">=</span> <span class="n">worldBoundsMin</span><span class="p">;</span>
+    <span class="n">bounds</span><span class="p">.</span><span class="nb">max</span> <span class="o">=</span> <span class="n">worldBoundsMax</span><span class="p">;</span>
+    <span class="n">ConfineWithinCubeBounds</span><span class="p">(</span><span class="n">currPos</span><span class="p">,</span> <span class="n">nextPos</span><span class="p">,</span> <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">radius</span><span class="p">,</span> <span class="n">elasticity</span><span class="p">,</span> <span class="n">bounds</span><span class="p">);</span>
+
+    <span class="c1">// 다음 위치 적용</span>
+    <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span> <span class="o">=</span> <span class="n">nextPos</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <details>
+    <summary> 
+Kernel : VacuumUp
+</summary>
+
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nb">numthreads</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+<span class="kt">void</span> <span class="nf">VacuumUp</span> <span class="p">(</span><span class="n">uint3</span> <span class="n">id</span> <span class="o">:</span> <span class="n">SV_DispatchThreadID</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">uint</span> <span class="n">i</span> <span class="o">=</span> <span class="n">id</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">isAlive</span> <span class="o">==</span> <span class="n">FALSE</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">dustCount</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="kt">float3</span> <span class="n">F</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 힘 합 벡터</span>
+    <span class="n">bool</span> <span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="kt">float3</span> <span class="n">currPos</span> <span class="o">=</span> <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span><span class="p">;</span>  <span class="c1">// 현재 프레임 먼지 위치</span>
+    <span class="kt">float3</span> <span class="n">currToHead</span> <span class="o">=</span> <span class="p">(</span><span class="n">controllerPos</span> <span class="o">-</span> <span class="n">currPos</span><span class="p">);</span>  <span class="c1">// 청소기 입구 -&gt; 먼지</span>
+    <span class="n">float</span> <span class="n">sqrDist</span> <span class="o">=</span> <span class="n">SqrMagnitude</span><span class="p">(</span><span class="n">currToHead</span><span class="p">);</span> <span class="c1">// 청소기 입구 &lt;-&gt; 먼지 사이 거리 제곱</span>
+
+    <span class="c1">// 원뿔 범위 및 힘 계산</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sqrDist</span> <span class="o">&lt;</span> <span class="n">cleanerSqrDist</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">float3</span> <span class="n">dustToHeadDir</span> <span class="o">=</span> <span class="nb">normalize</span><span class="p">(</span><span class="n">currToHead</span><span class="p">);</span> <span class="c1">// 먼지 -&gt; 청소기 입구 방향</span>
+        <span class="n">float</span> <span class="n">dotValue</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span><span class="n">controllerForward</span><span class="p">,</span> <span class="o">-</span><span class="n">dustToHeadDir</span><span class="p">);</span>
+
+        <span class="c1">// 원뿔 범위 내에 있을 경우 빨아들이기</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">dotValue</span> <span class="o">&gt;</span> <span class="n">cleanerDotThreshold</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">float</span> <span class="n">force</span> <span class="o">=</span> <span class="n">cleanerSqrForce</span> <span class="o">/</span> <span class="n">sqrDist</span><span class="p">;</span>
+
+            <span class="c1">// 빨아들이는 힘</span>
+            <span class="n">F</span> <span class="o">+=</span> <span class="n">dustToHeadDir</span> <span class="o">*</span> <span class="n">force</span> <span class="o">*</span> <span class="n">dotValue</span><span class="p">;</span>
+
+            <span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 속도 계산</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// 가속도</span>
+        <span class="kt">float3</span> <span class="n">A</span> <span class="o">=</span> <span class="n">F</span> <span class="o">/</span> <span class="n">mass</span><span class="p">;</span>
+
+        <span class="c1">// 속도</span>
+        <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">deltaTime</span><span class="p">;</span>
+
+        <span class="c1">// 다음 프레임 위치 예측 : S = S0 + V * t</span>
+        <span class="kt">float3</span> <span class="n">nextPos</span> <span class="o">=</span> <span class="n">currPos</span> <span class="o">+</span> <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">deltaTime</span><span class="p">;</span>
+
+        <span class="kt">float3</span> <span class="n">headToNext</span> <span class="o">=</span> <span class="n">nextPos</span> <span class="o">-</span> <span class="n">controllerPos</span><span class="p">;</span>
+        <span class="kt">float3</span> <span class="n">headToCurrDir</span> <span class="o">=</span> <span class="nb">normalize</span><span class="p">(</span><span class="o">-</span><span class="n">currToHead</span><span class="p">);</span>
+        <span class="kt">float3</span> <span class="n">headToNextDir</span> <span class="o">=</span> <span class="nb">normalize</span><span class="p">(</span><span class="n">headToNext</span><span class="p">);</span>
+
+        <span class="c1">// 현재 프레임에 먼지가 원뿔 범위 내에 있었다면</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">controllerForward</span><span class="p">,</span> <span class="n">headToCurrDir</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">cleanerDotThreshold</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 다음 프레임에 원뿔 밖으로 나가거나 입구에 근접하면 파괴</span>
+            <span class="k">if</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">controllerForward</span><span class="p">,</span> <span class="n">headToNextDir</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">cleanerDotThreshold</span> <span class="o">||</span>
+                <span class="n">SqrMagnitude</span><span class="p">(</span><span class="n">headToNext</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">cleanerSqrDeathRange</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">DestroyDust</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <details>
+    <summary> 
+Kernel : Emit
+</summary>
+
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="nb">numthreads</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+<span class="kt">void</span> <span class="nf">Emit</span> <span class="p">(</span><span class="n">uint3</span> <span class="n">id</span> <span class="o">:</span> <span class="n">SV_DispatchThreadID</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">uint</span> <span class="n">i</span> <span class="o">=</span> <span class="n">id</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">isAlive</span> <span class="o">==</span> <span class="n">TRUE</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">dustCount</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="c1">// 발사 확률 계산</span>
+    <span class="n">float</span> <span class="n">seed</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">time</span><span class="p">)</span> <span class="o">/</span> <span class="mi">79238</span><span class="p">.</span><span class="mi">288</span><span class="p">;</span>
+    <span class="n">float</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Random11</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">.</span><span class="mo">01</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="c1">// Note : localDir의 z를 1로 고정하고, xy를 tan(emitterAngleRad)로 지정함으로써</span>
+    <span class="c1">// 발사되는 먼지들이 형성하는 원뿔의 각도를 suctionAngle로 설정하는 효과를 얻는다.</span>
+    
+    <span class="c1">// r2.x : 각 먼지의 각도 (-360 ~ 360), r2.y : 원의 반지름(원뿔의 각도 결정)</span>
+    <span class="n">float</span> <span class="n">seed2</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">82801</span><span class="p">.</span><span class="mi">277</span><span class="p">;</span>
+    <span class="kt">float2</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">RandomRange12</span><span class="p">(</span><span class="n">seed2</span><span class="p">,</span> <span class="kt">float2</span><span class="p">(</span><span class="o">-</span><span class="n">TAU</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="kt">float2</span><span class="p">(</span><span class="n">TAU</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="kt">float2</span> <span class="n">randomCircle</span> <span class="o">=</span> <span class="kt">float2</span><span class="p">(</span><span class="nb">cos</span><span class="p">(</span><span class="n">r2</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">sin</span><span class="p">(</span><span class="n">r2</span><span class="p">.</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="n">r2</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="nb">tan</span><span class="p">(</span><span class="n">emitterAngleRad</span><span class="p">);</span>
+    
+    <span class="c1">// 발사 방향 벡터 공간 변환</span>
+    <span class="kt">float3</span> <span class="n">localDir</span> <span class="o">=</span> <span class="kt">float3</span><span class="p">(</span><span class="n">randomCircle</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">randomCircle</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="kt">float3</span> <span class="n">worldDir</span> <span class="o">=</span> <span class="nb">mul</span><span class="p">(</span><span class="n">controllerMatrix</span><span class="p">,</span> <span class="kt">float4</span><span class="p">(</span><span class="n">localDir</span><span class="p">,</span> <span class="mi">0</span><span class="p">)).</span><span class="n">xyz</span><span class="p">;</span>
+    
+    <span class="kt">float3</span> <span class="n">F</span> <span class="o">=</span> <span class="n">worldDir</span> <span class="o">*</span> <span class="n">emitterForce</span> <span class="o">*</span> <span class="n">emitterDist</span><span class="p">;</span>
+    <span class="kt">float3</span> <span class="n">A</span> <span class="o">=</span> <span class="n">F</span> <span class="o">/</span> <span class="n">mass</span><span class="p">;</span>
+    <span class="kt">float3</span> <span class="n">V</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">deltaTime</span><span class="p">;</span>
+
+    <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span> <span class="o">=</span> <span class="n">controllerPos</span><span class="p">;</span>        <span class="c1">// 청소기 입구로 위치 이동</span>
+    <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">V</span><span class="p">;</span>
+
+    <span class="c1">// 먼지 되살리기</span>
+    <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">isAlive</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
+    <span class="nb">InterlockedAdd</span><span class="p">(</span><span class="n">aliveNumberBuffer</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="c-"><strong>[2] C# 스크립트</strong></h2>
   <ul>
     <li>이름 변경 : <code class="language-plaintext highlighter-rouge">VacuumCleanerHead</code> -&gt; <code class="language-plaintext highlighter-rouge">VacuumCleaner</code></li>
     <li>이동 및 회전 기능 분리하여 새로운 클래스 작성 : <code class="language-plaintext highlighter-rouge">PlayerController</code></li>
+    <li>원뿔 공통 클래스 작성 : <code class="language-plaintext highlighter-rouge">Cone</code></li>
     <li>방출 기능 담당 클래스 작성 : <code class="language-plaintext highlighter-rouge">DustEmitter</code></li>
+  </ul>
+
+  <p><br /></p>
+
+  <h3 id="dustmanager"><strong>DustManager</strong></h3>
+  <ul>
+    <li>키보드 버튼 1, 2, … : 도구 선택</li>
+    <li>마우스 좌클릭 : 현재 선택된 도구 작동</li>
+    <li>
+      <p>마우스 우클릭 : 마우스 보이기/숨기기</p>
+    </li>
+    <li>각 도구가 실행될 때만, 해당되는 컴퓨트 쉐이더 커널 실행</li>
+    <li>지정한 World Bounds에 따라 기즈모 표시, 게임 시작 시 메시 생성</li>
   </ul>
 
   <p><br /></p>
@@ -4711,7 +5191,177 @@ TODO : Wall 쉐이더 - Geometry로 작성,
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-<h1 id="11-sphere-충돌-구현">11. Sphere 충돌 구현</h1>
+<h1 id="11-blow-기능-구현">11. Blow 기능 구현</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><br /></p>
+
+  <p>원뿔 범위에서 바람이 불듯 밀쳐내는 기능을 구현한다.</p>
+
+  <p>새로운 커널 <code class="language-plaintext highlighter-rouge">BlowWind</code>를 작성하며,</p>
+
+  <p>다른 커널과 마찬가지로 사용자의 입력에 따라 독립적으로 실행시킨다.</p>
+
+  <p><code class="language-plaintext highlighter-rouge">VacuumUp</code>과 유사하게 구현하며, 먼지의 진행 방향만 반대로 바꾸면 된다.</p>
+
+  <p><br /></p>
+  <h2 id="section-33"><strong>[1] 컴퓨트 쉐이더</strong></h2>
+
+  <details>
+    <summary> 
+DustCompute.compute
+</summary>
+
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">BlowWind</span> <span class="p">(</span><span class="n">uint3</span> <span class="n">id</span> <span class="o">:</span> <span class="n">SV_DispatchThreadID</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">uint</span> <span class="n">i</span> <span class="o">=</span> <span class="n">id</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">isAlive</span> <span class="o">==</span> <span class="n">FALSE</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">dustCount</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="kt">float3</span> <span class="n">dustPos</span> <span class="o">=</span> <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span><span class="p">;</span>        <span class="c1">// 현재 프레임 먼지 위치</span>
+    <span class="kt">float3</span> <span class="n">headToDust</span> <span class="o">=</span> <span class="p">(</span><span class="n">dustPos</span> <span class="o">-</span> <span class="n">controllerPos</span><span class="p">);</span>  <span class="c1">// 입구 -&gt; 먼지</span>
+    <span class="n">float</span> <span class="n">sqrDist</span> <span class="o">=</span> <span class="n">SqrMagnitude</span><span class="p">(</span><span class="n">headToDust</span><span class="p">);</span>       <span class="c1">// 입구&lt;-&gt; 먼지 사이 거리 제곱</span>
+
+    <span class="c1">// 구형 범위 내에 포함되는 경우</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sqrDist</span> <span class="o">&lt;</span> <span class="n">blowerSqrDist</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">float3</span> <span class="n">headToDustDir</span> <span class="o">=</span> <span class="nb">normalize</span><span class="p">(</span><span class="n">headToDust</span><span class="p">);</span> <span class="c1">// 입구 -&gt; 먼지 방향</span>
+        <span class="n">float</span> <span class="n">dotValue</span> <span class="o">=</span> <span class="nb">dot</span><span class="p">(</span><span class="n">controllerForward</span><span class="p">,</span> <span class="n">headToDustDir</span><span class="p">);</span>
+
+        <span class="c1">// 원뿔 범위 내에 포함되는 경우, 밀쳐내기</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">dotValue</span> <span class="o">&gt;</span> <span class="n">blowerDotThreshold</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">float</span> <span class="n">force</span> <span class="o">=</span> <span class="n">blowerSqrForce</span> <span class="o">/</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">sqrDist</span><span class="p">);</span>
+
+            <span class="kt">float3</span> <span class="n">F</span> <span class="o">=</span> <span class="n">headToDustDir</span> <span class="o">*</span> <span class="n">force</span> <span class="o">*</span> <span class="n">dotValue</span><span class="p">;</span>
+            <span class="kt">float3</span> <span class="n">A</span> <span class="o">=</span> <span class="n">F</span> <span class="o">/</span> <span class="n">mass</span><span class="p">;</span>
+            <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">deltaTime</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="section-34"><strong>[2] 먼지 관리 컴포넌트</strong></h2>
+
+  <details>
+    <summary> 
+DustManager.cs
+</summary>
+
+    <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre></td><td class="rouge-code"><pre>
+<span class="k">private</span> <span class="kt">int</span> <span class="n">kernelBlowID</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Init</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    
+    <span class="n">kernelBlowID</span> <span class="p">=</span> <span class="n">dustCompute</span><span class="p">.</span><span class="nf">FindKernel</span><span class="p">(</span><span class="s">"BlowWind"</span><span class="p">);</span>
+    
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">SetBuffersToShaders</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">SetBuffer</span><span class="p">(</span><span class="n">kernelBlowID</span><span class="p">,</span> <span class="s">"dustBuffer"</span><span class="p">,</span> <span class="n">dustBuffer</span><span class="p">);</span>
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">SetBuffer</span><span class="p">(</span><span class="n">kernelBlowID</span><span class="p">,</span> <span class="s">"velocityBuffer"</span><span class="p">,</span> <span class="n">dustVelocityBuffer</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">UpdateBlower</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(!</span><span class="n">blower</span><span class="p">.</span><span class="n">IsRunning</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="s">"blowerSqrForce"</span><span class="p">,</span> <span class="n">blower</span><span class="p">.</span><span class="n">SqrForce</span><span class="p">);</span>
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="s">"blowerSqrDist"</span><span class="p">,</span> <span class="n">blower</span><span class="p">.</span><span class="n">SqrDistance</span><span class="p">);</span>
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="s">"blowerDotThreshold"</span><span class="p">,</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Cos</span><span class="p">(</span><span class="n">blower</span><span class="p">.</span><span class="n">AngleRad</span><span class="p">));</span>
+
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">Dispatch</span><span class="p">(</span><span class="n">kernelBlowID</span><span class="p">,</span> <span class="n">kernelGroupSizeX</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="section-35"><strong>[3] 실행 결과</strong></h2>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/136383655-c0556655-d3df-4136-b3f5-943ca42336d5.gif" alt="2021_1007_Blow-Explosion" /></p>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/136383660-9566ac43-6a4a-4ec5-96a8-d91e40397f46.gif" alt="2021_1007_Blow2" /></p>
+
+  <p><br /></p>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="12-sphere-충돌-구현">12. Sphere 충돌 구현</h1>
 <hr />
 
 <details>
@@ -4736,7 +5386,7 @@ nextPos Sphere-to-Sphere
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-<h1 id="12-cube-충돌-구현">12. Cube 충돌 구현</h1>
+<h1 id="13-cube-충돌-구현">13. Cube 충돌 구현</h1>
 <hr />
 
 <details>
@@ -5062,6 +5712,16 @@ VacuumCleanerHead.cs
         
         
         
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-compute-buffer-gpu-instancing/">유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
@@ -5073,16 +5733,6 @@ VacuumCleanerHead.cs
         
         
         <li><a href="/posts/raycast-to-plane/">레이캐스트 - 평면(Plane)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-shader-random-functions/">유니티 쉐이더 - 랜덤 함수들</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-byte-buffer-to-struct/">C# 바이트 버퍼를 읽어서 구조체로 변환하기</a></li>
       
 
       </ul>

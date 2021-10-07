@@ -2603,31 +2603,418 @@ void Update (uint3 id : SV_DispatchThreadID)
 
 진공 청소기/방출기/컨트롤러를 분리한다.
 
-그리고 진공 청소기 흡수 기능을 `Update`에서 분리하여 새로운 커널에 구현한다.
-
 <br>
 
 ## **[1] 컴퓨트 쉐이더**
 
-<!--
-TODO : Wall 쉐이더 - Geometry로 작성,
-       모서리 경계가 뚜렷하게 보여야 함
- -->
+- 구조체 정의, 함수 구현을 별도의 `.cginc` 파일로 분리하고 `#include`로 가져온다.
+- 진공 청소기 흡수 기능을 `Update`에서 분리하여 새로운 커널에 구현한다.
+- `Update` 커널은 물리 업데이트만 담당한다.
+- `Blow`는 `Emit`으로 이름을 변경한다.
+- 변수들도 알맞게 네이밍을 변경한다.
 
 <br>
 
-## **변경사항**
 
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+#pragma kernel Populate
+#pragma kernel Update
+#pragma kernel VacuumUp
+#pragma kernel Emit
+
+#include "Type Definitions.cginc"
+#include "Math Functions.cginc"
+#include "Random Functions.cginc"
+#include "Physics Functions.cginc"
+
+/*******************************************************************
+ *                        Naming Conventions
+/*******************************************************************
+ - AToB  : B - A
+ - ~Dir  : 방향 벡터(크기 1)
+ - ~Dist : 두 위치 벡터 사이의 거리(스칼라)
+ - ~Len  : 한 벡터의 길이
+/*******************************************************************/
+
+/*******************************************************************
+/*                            Definitions
+/*******************************************************************/
+#define TRUE 1
+#define FALSE 0
+#define TAU 6.28318530
+
+/*******************************************************************
+/*                            Variables
+/*******************************************************************/
+RWStructuredBuffer<Dust> dustBuffer;        // 먼지 위치, 생존 여부
+RWStructuredBuffer<float3> velocityBuffer;  // 먼지 속도
+RWStructuredBuffer<uint> aliveNumberBuffer; // 생존한 먼지 개수
+
+/* Common */
+float3 spawnBoundsMin; // 먼지 생성 영역 - 최소 지점
+float3 spawnBoundsMax; // 먼지 생성 영역 - 최대 지점
+float3 worldBoundsMin; // 월드 제한 영역 - 최소 지점
+float3 worldBoundsMax; // 월드 제한 영역 - 최대 지점
+float deltaTime;
+
+/* Controller */
+float3 controllerPos;     // 월드 위치
+float3 controllerForward; // 전방 벡터
+
+/* Vacuum Cleaner */
+float cleanerSqrDist;       // 먼지 흡입 범위(반지름) - 제곱
+float cleanerSqrDeathRange; // 먼지 소멸 범위(반지름) - 제곱
+float cleanerSqrForce;      // 빨아들이는 힘 - 제곱
+float cleanerDotThreshold;  // 진공 청소기 원뿔 영역 내적 범위
+
+/* Emitter */
+uint dustCount;        // 먼지 개수
+float time;            // Time.time
+float emitterForce;    // 방출 강도
+float emitterDist;     // 방출 거리
+float emitterAngleRad; // 방출 각도
+float4x4 controllerMatrix; //  localToWorld
+
+/* Physics(Update) */
+float3 gravity;      // 중력 가속도
+float radius;        // 먼지 반지름
+float mass;          // 질량
+float airResistance; // 공기 저항력
+float elasticity;    // 탄성력
+
+/*******************************************************************
+/*                            Functions
+/*******************************************************************/
+// 먼지 파괴
+void DestroyDust(uint i)
+{
+    dustBuffer[i].isAlive = FALSE;
+    InterlockedAdd(aliveNumberBuffer[0], -1);
+}
+```
+
+</details>
+
+<br>
+
+<details>
+<summary markdown="span"> 
+Kernel : Update
+</summary>
+
+```hlsl
+[numthreads(64,1,1)]
+void Update (uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if(dustBuffer[i].isAlive == FALSE) return;
+    if(i >= dustCount) return;
+
+    float3 A = 0; // 가속도 합 벡터
+    
+    // F = m * a
+    // v = a * t
+
+    // ===================================================
+    //                    속도 계산
+    // ===================================================
+    //A += F / mass;
+
+    // [1] 중력
+    A += gravity;
+
+    // [2] 공기 저항
+    A -= velocityBuffer[i] * airResistance;
+
+    // 속도 적용 : V = A * t
+    velocityBuffer[i] += A * deltaTime;
+    
+    // ===================================================
+    //              이동 시뮬레이션, 충돌 검사
+    // ===================================================
+    // 다음 프레임 위치 계산 : S = S0 + V * t
+    float3 currPos = dustBuffer[i].position;
+    float3 nextPos = currPos + velocityBuffer[i] * deltaTime;
+
+    // [1] 월드 영역 제한(Cube)
+    Bounds bounds;
+    bounds.min = worldBoundsMin;
+    bounds.max = worldBoundsMax;
+    ConfineWithinCubeBounds(currPos, nextPos, velocityBuffer[i], radius, elasticity, bounds);
+
+    // 다음 위치 적용
+    dustBuffer[i].position = nextPos;
+}
+```
+
+</details>
+
+<br>
+
+<details>
+<summary markdown="span"> 
+Kernel : VacuumUp
+</summary>
+
+```hlsl
+[numthreads(64,1,1)]
+void VacuumUp (uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if(dustBuffer[i].isAlive == FALSE) return;
+    if(i >= dustCount) return;
+
+    float3 F = 0; // 힘 합 벡터
+    bool flag = false;
+
+    float3 currPos = dustBuffer[i].position;  // 현재 프레임 먼지 위치
+    float3 currToHead = (controllerPos - currPos);  // 청소기 입구 -> 먼지
+    float sqrDist = SqrMagnitude(currToHead); // 청소기 입구 <-> 먼지 사이 거리 제곱
+
+    // 원뿔 범위 및 힘 계산
+    if (sqrDist < cleanerSqrDist)
+    {
+        float3 dustToHeadDir = normalize(currToHead); // 먼지 -> 청소기 입구 방향
+        float dotValue = dot(controllerForward, -dustToHeadDir);
+
+        // 원뿔 범위 내에 있을 경우 빨아들이기
+        if(dotValue > cleanerDotThreshold)
+        {
+            float force = cleanerSqrForce / sqrDist;
+
+            // 빨아들이는 힘
+            F += dustToHeadDir * force * dotValue;
+
+            flag = true;
+        }
+    }
+
+    // 속도 계산
+    if(flag)
+    {
+        // 가속도
+        float3 A = F / mass;
+
+        // 속도
+        velocityBuffer[i] += A * deltaTime;
+
+        // 다음 프레임 위치 예측 : S = S0 + V * t
+        float3 nextPos = currPos + velocityBuffer[i] * deltaTime;
+
+        float3 headToNext = nextPos - controllerPos;
+        float3 headToCurrDir = normalize(-currToHead);
+        float3 headToNextDir = normalize(headToNext);
+
+        // 현재 프레임에 먼지가 원뿔 범위 내에 있었다면
+        if(dot(controllerForward, headToCurrDir) > cleanerDotThreshold)
+        {
+            // 다음 프레임에 원뿔 밖으로 나가거나 입구에 근접하면 파괴
+            if(dot(controllerForward, headToNextDir) < cleanerDotThreshold ||
+                SqrMagnitude(headToNext) < cleanerSqrDeathRange)
+            {
+                DestroyDust(i);
+            }
+        }
+    }
+}
+```
+
+</details>
+
+<br>
+
+<details>
+<summary markdown="span"> 
+Kernel : Emit
+</summary>
+
+```hlsl
+[numthreads(64,1,1)]
+void Emit (uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if(dustBuffer[i].isAlive == TRUE) return;
+    if(i >= dustCount) return;
+
+    // 발사 확률 계산
+    float seed = (i + time) / 79238.288;
+    float r = Random11(seed);
+    if(r > 0.01) return;
+
+    // Note : localDir의 z를 1로 고정하고, xy를 tan(emitterAngleRad)로 지정함으로써
+    // 발사되는 먼지들이 형성하는 원뿔의 각도를 suctionAngle로 설정하는 효과를 얻는다.
+    
+    // r2.x : 각 먼지의 각도 (-360 ~ 360), r2.y : 원의 반지름(원뿔의 각도 결정)
+    float seed2 = i / 82801.277;
+    float2 r2 = RandomRange12(seed2, float2(-TAU, 0), float2(TAU, 1));
+    float2 randomCircle = float2(cos(r2.x), sin(r2.x)) * r2.y * tan(emitterAngleRad);
+    
+    // 발사 방향 벡터 공간 변환
+    float3 localDir = float3(randomCircle.x, randomCircle.y, 1);
+    float3 worldDir = mul(controllerMatrix, float4(localDir, 0)).xyz;
+    
+    float3 F = worldDir * emitterForce * emitterDist;
+    float3 A = F / mass;
+    float3 V = A * deltaTime;
+
+    dustBuffer[i].position = controllerPos;        // 청소기 입구로 위치 이동
+    velocityBuffer[i] = V;
+
+    // 먼지 되살리기
+    dustBuffer[i].isAlive = TRUE;
+    InterlockedAdd(aliveNumberBuffer[0], 1);
+}
+```
+
+</details>
+
+
+
+<br>
+
+## **[2] C# 스크립트**
 - 이름 변경 : `VacuumCleanerHead` -&gt; `VacuumCleaner`
 - 이동 및 회전 기능 분리하여 새로운 클래스 작성 : `PlayerController`
+- 원뿔 공통 클래스 작성 : `Cone`
 - 방출 기능 담당 클래스 작성 : `DustEmitter`
+
+<br>
+
+### **DustManager**
+ - 키보드 버튼 1, 2, ... : 도구 선택
+ - 마우스 좌클릭 : 현재 선택된 도구 작동
+ - 마우스 우클릭 : 마우스 보이기/숨기기
+ 
+ - 각 도구가 실행될 때만, 해당되는 컴퓨트 쉐이더 커널 실행
+ - 지정한 World Bounds에 따라 기즈모 표시, 게임 시작 시 메시 생성
 
 <br>
 
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-# 11. Sphere 충돌 구현
+# 11. Blow 기능 구현
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+원뿔 범위에서 바람이 불듯 밀쳐내는 기능을 구현한다.
+
+새로운 커널 `BlowWind`를 작성하며,
+
+다른 커널과 마찬가지로 사용자의 입력에 따라 독립적으로 실행시킨다.
+
+`VacuumUp`과 유사하게 구현하며, 먼지의 진행 방향만 반대로 바꾸면 된다.
+
+<br>
+## **[1] 컴퓨트 쉐이더**
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+void BlowWind (uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if(dustBuffer[i].isAlive == FALSE) return;
+    if(i >= dustCount) return;
+
+    float3 dustPos = dustBuffer[i].position;        // 현재 프레임 먼지 위치
+    float3 headToDust = (dustPos - controllerPos);  // 입구 -> 먼지
+    float sqrDist = SqrMagnitude(headToDust);       // 입구<-> 먼지 사이 거리 제곱
+
+    // 구형 범위 내에 포함되는 경우
+    if (sqrDist < blowerSqrDist)
+    {
+        float3 headToDustDir = normalize(headToDust); // 입구 -> 먼지 방향
+        float dotValue = dot(controllerForward, headToDustDir);
+
+        // 원뿔 범위 내에 포함되는 경우, 밀쳐내기
+        if(dotValue > blowerDotThreshold)
+        {
+            float force = blowerSqrForce / sqrt(sqrDist);
+
+            float3 F = headToDustDir * force * dotValue;
+            float3 A = F / mass;
+            velocityBuffer[i] += A * deltaTime;
+        }
+    }
+}
+```
+
+</details>
+
+<br>
+
+
+## **[2] 먼지 관리 컴포넌트**
+
+<details>
+<summary markdown="span"> 
+DustManager.cs
+</summary>
+
+```cs
+
+private int kernelBlowID;
+
+private void Init()
+{
+    // ...
+    
+    kernelBlowID = dustCompute.FindKernel("BlowWind");
+    
+    // ...
+}
+
+private void SetBuffersToShaders()
+{
+    // ...
+    
+    dustCompute.SetBuffer(kernelBlowID, "dustBuffer", dustBuffer);
+    dustCompute.SetBuffer(kernelBlowID, "velocityBuffer", dustVelocityBuffer);
+}
+
+private void UpdateBlower()
+{
+    if (!blower.IsRunning) return;
+
+    dustCompute.SetFloat("blowerSqrForce", blower.SqrForce);
+    dustCompute.SetFloat("blowerSqrDist", blower.SqrDistance);
+    dustCompute.SetFloat("blowerDotThreshold", Mathf.Cos(blower.AngleRad));
+
+    dustCompute.Dispatch(kernelBlowID, kernelGroupSizeX, 1, 1);
+}
+```
+
+</details>
+
+<br>
+
+## **[3] 실행 결과**
+
+![2021_1007_Blow-Explosion](https://user-images.githubusercontent.com/42164422/136383655-c0556655-d3df-4136-b3f5-943ca42336d5.gif)
+
+![2021_1007_Blow2](https://user-images.githubusercontent.com/42164422/136383660-9566ac43-6a4a-4ec5-96a8-d91e40397f46.gif)
+
+<br>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+# 12. Sphere 충돌 구현
 ---
 
 <details>
@@ -2653,7 +3040,7 @@ nextPos Sphere-to-Sphere
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-# 12. Cube 충돌 구현
+# 13. Cube 충돌 구현
 ---
 
 <details>
