@@ -3179,6 +3179,7 @@ private void OnDestroy()
 
 - 투사체를 발사하여 충돌체에 닿으면 폭발
 - 폭발 범위 내의 먼지에 힘 가하기
+- Cannon : Cone
 
 <br>
 
