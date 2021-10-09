@@ -1,5 +1,5 @@
 ---
-title: 레이캐스트 - 평면(Plane)
+title: Raycast to Plane
 author: Rito15
 date: 2021-10-03 22:22:00 +09:00
 categories: [Algorithm, Algorithms]
@@ -30,7 +30,7 @@ mermaid: true
 # 직선과 평면의 접점 찾기
 ---
 
-점 `A`에서 점 `B`를 향해 광선을 발사하여, 광선(직선)과 평면이 만나는 지점을 찾는다.
+점 `A`와 점 `B`가 이루는 직선과 평면이 만나는 지점을 찾는다.
 
 ![image](https://user-images.githubusercontent.com/42164422/135755364-130b5305-7275-462f-a63c-39ee42ca036d.png)
 
