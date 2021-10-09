@@ -1192,27 +1192,27 @@ Vertex/Fragment Shader Example
         
         
         
+        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
         
+        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-compute-buffer-gpu-instancing/">유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">레이캐스트 - 구체(Sphere)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-plane/">레이캐스트 - 평면(Plane)</a></li>
       
 
       </ul>
@@ -4601,6 +4601,19 @@ Vertex/Fragment Shader Example
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8834,7 +8847,7 @@ Vertex/Fragment Shader Example
       
       
       <div class="card">
-        <a href="/posts/lighting-models/">
+        <a href="/posts/unity-compute-buffer-gpu-instancing/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8851,13 +8864,13 @@ Vertex/Fragment Shader Example
   
 
   
-    Nov 16, 2020
+    Oct  6
   
 
-  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
+  <i class="unloaded">2021-10-06T15:15:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lighting Models</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8866,17 +8879,19 @@ Vertex/Fragment Shader Example
 
 
 
-                Vectors
+                GPU Instancing
+
+
+[1] 컴퓨트 버퍼 - 메시 데이터
+
+  그려낼 메시의 정보를 컴퓨트 버퍼에 저장한다.
+  컴퓨트 버퍼의 stride는 4 byte(sizeof(uint))이다.
+  컴퓨트 버퍼의 크기는 20 byte(uint 5개)이며, 각각의 데이터는 메시에 대한 정보를 담고 있다.
 
 
 
-
-  L (Light) : 정점에서 광원을 향하는 방향의 벡터
-  N (Normal) : 정점의 노멀 벡터
-  V (View) : 정점에서 카메라를 향하는 방향의 벡터
-  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
   
-    H (Half) : 블린퐁에서 사용, L와 V의 중...
+    Mesh mesh;        ...
               </p>
             </div>
           </div>

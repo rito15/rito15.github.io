@@ -776,27 +776,27 @@ Form1.cs
         
         
         
+        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
         
+        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-compute-buffer-gpu-instancing/">유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">레이캐스트 - 구체(Sphere)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-plane/">레이캐스트 - 평면(Plane)</a></li>
       
 
       </ul>
@@ -6330,6 +6330,19 @@ Form1.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8425,7 +8438,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/04-cs-udp-socket-server-client-basic.md/">
+        <a href="/posts/05-cs-tcp-async-socket-basic.md/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8445,10 +8458,10 @@ static void Main()
     Aug  2
   
 
-  <i class="unloaded">2021-08-02T00:04:00+09:00</i>
+  <i class="unloaded">2021-08-02T00:05:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UDP 소켓 서버, 클라이언트 기본</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 비동기 소켓 서버, 클라이언트 기본</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8457,24 +8470,16 @@ static void Main()
 
 
 
-                UDP 소켓 통신의 특징
+                비동기 소켓 통신 방식
 
 
-
-  서버와 클라이언트 간의 1:1 연결이 생성되지 않는다.
-  리스너 소켓이 필요하지 않다.
-  Listen(), Connect() 과정이 없다.
-  소켓의 .ReceiveFrom(), .SendTo() 메소드를 통해 엔드포인트와 데이터를 주고 받는다.
+Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존재한다.
 
 
-
-
-소켓 통신 과정
-
-
-서버
-
-  서버 IP 주소, 포트를 통해 ...
+  AcceptAsync(SocketAsyncEventArgs)
+  ConnectAsync(SocketAsyncEventArgs)
+  DisconnectAsync(SocketAsyncEventArgs)
+  ConnectAsync(SocketA...
               </p>
             </div>
           </div>

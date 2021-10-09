@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-08T03:37:10+09:00</updated>
+  <updated>2021-10-10T04:26:36+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,81 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Sphere Cast to Sphere</title>
+    <link href="https://rito15.github.io/posts/sphere-cast-to-sphere/" rel="alternate" type="text/html" title="Sphere Cast to Sphere" />
+    <published>2021-10-09T18:26:00+09:00</published>
+  
+    <updated>2021-10-10T04:24:11+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/sphere-cast-to-sphere/</id>
+    <content src="https://rito15.github.io/posts/sphere-cast-to-sphere/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Algorithm" />
+    
+    <category term="Algorithms" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Sphere Cast
+
+
+
+  
+    공간 상의 한 점에서부터 목표 지점까지 구체를 전진시켜, 구체 표면에 닿는 물체 표면을 검출한다.
+  
+  
+    레이캐스트와는 달리 구체의 반지름을 고려해야 한다.
+  
+
+
+
+
+Sphere Cast to Sphere
+
+
+
+  
+    대상 물체가 구체인 경우에 대해서만 검사한다.
+  
+  
+    충돌 여부와 충돌 지점을 알아내는 것이 목표이다.
+  
+
+
+
+
+[1] 충돌 여부 판정
+
+충돌 지점을 계산하기 전에, 우선 충돌 여부를 판정할 필요가 있다.
+
+
+  
+    A : 캐스트 시작 지점
+    B : 캐스트 종료 지점
+    S : 검사 대상 구체의 중심 위치
+    r1 : 캐스트 구체의 반지름
+    r2 : 구체 S의 반지름
+    d : 점 S에서 ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -258,78 +333,6 @@ uint[] argsData = new uint[5]; // 메시 데이터
 
 argsData[0] = (uint)mesh.GetIndexCount(subMeshIndex);
 a...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>레이캐스트 - 평면(Plane)</title>
-    <link href="https://rito15.github.io/posts/raycast-to-plane/" rel="alternate" type="text/html" title="레이캐스트 - 평면(Plane)" />
-    <published>2021-10-03T22:22:00+09:00</published>
-  
-    <updated>2021-10-04T04:13:50+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/raycast-to-plane/</id>
-    <content src="https://rito15.github.io/posts/raycast-to-plane/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Algorithm" />
-    
-    <category term="Algorithms" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      레이캐스트(Raycast)
-
-
-
-  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
-
-
-
-
-평면(Plane)
-
-
-
-
-평면 위의 점 P와 평면의 법선 벡터 N을 알고 있으면 평면을 정의할 수 있으며,
-
-평면 위의 임의의 점 X를 가정하여 dot(N, P - X) = 0을 통해 평면의 방정식을 정의할 수 있다.
-
-
-
-직선과 평면의 접점 찾기
-
-
-점 A에서 점 B를 향해 광선을 발사하여, 광선(직선)과 평면이 만나는 지점을 찾는다.
-
-
-
-위와 같이 A, B, P, N이 주어졌을 때,
-
-길이 d를 알아내고 이를 통해 직선과 평면의 접점 C를 알아내야 한다.
-
-
-
-평면의 정의에 의해 다음과 같은 식을 얻을 수 있다.
-
-\[dot(N, P - C) = 0\]
-...
     </summary>
   
 

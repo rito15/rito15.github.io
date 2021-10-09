@@ -769,27 +769,27 @@
         
         
         
+        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
         
+        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-compute-buffer-gpu-instancing/">유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">레이캐스트 - 구체(Sphere)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-plane/">레이캐스트 - 평면(Plane)</a></li>
       
 
       </ul>
@@ -6458,6 +6458,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8322,7 +8335,7 @@
   <i class="unloaded">2021-10-02T02:02:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>레이캐스트 - 구체(Sphere)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Raycast to Sphere</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8344,8 +8357,66 @@
 
 
 
-  시작 지점에서부터 목표 지점으로 광선을 발사하여, 그 사이에서 광선과 교차하는 구체의 표면 지점을 찾아낸다.
-  3차원에서 수행하면 구체, 2차원에서 수행하면 원(Cir...
+  시작 지점에서부터 목표 지점으로 광선을 발사하여, 두 점이 이루는 직선과 교차하는 구체의 표면 지점을 찾아낸다.
+  3차원에서 수행하면 구체, 2차원에서 수행하면 원(C...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/raycast-to-plane/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Oct  3
+  
+
+  <i class="unloaded">2021-10-03T22:22:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Raycast to Plane</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                레이캐스트(Raycast)
+
+
+
+  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
+
+
+
+
+평면(Plane)
+
+
+
+
+평면 위의 점 P와 평면의 법선 벡터 N을 알고 있으면 평면을 정의할 수 있으며,
+
+평면 위의 임의의 점 X를 가정하여 dot(N, P - X) = 0을 통해 평면의 방정식을 정의할 ...
               </p>
             </div>
           </div>
@@ -8407,64 +8478,6 @@
 
 
 메모이제이션(Memoiz...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/raycast-to-plane/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Oct  3
-  
-
-  <i class="unloaded">2021-10-03T22:22:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>레이캐스트 - 평면(Plane)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                레이캐스트(Raycast)
-
-
-
-  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
-
-
-
-
-평면(Plane)
-
-
-
-
-평면 위의 점 P와 평면의 법선 벡터 N을 알고 있으면 평면을 정의할 수 있으며,
-
-평면 위의 임의의 점 X를 가정하여 dot(N, P - X) = 0을 통해 평면의 방정식을 정의할 ...
               </p>
             </div>
           </div>

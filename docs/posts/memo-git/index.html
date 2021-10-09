@@ -842,27 +842,27 @@ git branch
         
         
         
+        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
         
+        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-compute-buffer-gpu-instancing/">유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">레이캐스트 - 구체(Sphere)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-plane/">레이캐스트 - 평면(Plane)</a></li>
       
 
       </ul>
@@ -6440,6 +6440,19 @@ git branch
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8530,7 +8543,7 @@ public class Sampl...
       
       
       <div class="card">
-        <a href="/posts/unity-path-memo/">
+        <a href="/posts/unity-shader-billboard/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8547,13 +8560,13 @@ public class Sampl...
   
 
   
-    Aug 18
+    Sep 30
   
 
-  <i class="unloaded">2021-08-18T20:40:00+09:00</i>
+  <i class="unloaded">2021-09-30T21:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 스크립트 파일 기준 경로</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 빌보드(Vert/Frag)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8562,7 +8575,7 @@ public class Sampl...
 
 
 
-                Memo
+                1. 일반
 
 
 1
@@ -8600,7 +8613,15 @@ public class Sampl...
 33
 34
 35
-public static string ScriptFolderFullPath { get; private set; }      // "......\이 스크립트가 위치한 폴더...
+struct appdata
+{
+    float4 vertex : POSITION;
+    float2 uv : TEXCOORD0;
+};
+
+struct v2f
+{
+  ...
               </p>
             </div>
           </div>

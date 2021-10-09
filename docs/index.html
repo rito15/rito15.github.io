@@ -566,6 +566,103 @@ Main Thread Dispatcher
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Sphere Cast
+
+
+
+  
+    공간 상의 한 점에서부터 목표 지점까지 구체를 전진시켜, 구체 표면에 닿는 물체 표면을 검출한다.
+  
+  
+    레이캐스트와는 달리 구체의 반지름을 고려해야 한다.
+  
+
+
+
+
+Sphere Cast to Sphere
+
+
+
+  
+    대상 물체가 구체인 경우에 대해서만 검사한다.
+  
+  
+    충돌 여부와...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Oct  9, 2021,  6:26 PM +0900"
+  >
+
+  
+  
+
+  
+    Oct  9
+  
+
+  <i class="unloaded">2021-10-09T18:26:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1412 words">7 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-shader-real-number-types/">유니티 쉐이더 - 실수 타입들</a>
     </h1>
 
@@ -929,7 +1026,7 @@ int[] arr = Enumerable.Repeat(1, 100).ToArray();
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/raycast-to-plane/">레이캐스트 - 평면(Plane)</a>
+      <a href="/posts/raycast-to-plane/">Raycast to Plane</a>
     </h1>
 
     <div class="post-content">
@@ -1003,7 +1100,7 @@ int[] arr = Enumerable.Repeat(1, 100).ToArray();
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="758 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="746 words">4 min</span>
 
 
         <!-- page views -->
@@ -1020,7 +1117,7 @@ int[] arr = Enumerable.Repeat(1, 100).ToArray();
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/raycast-to-sphere/">레이캐스트 - 구체(Sphere)</a>
+      <a href="/posts/raycast-to-sphere/">Raycast to Sphere</a>
     </h1>
 
     <div class="post-content">
@@ -1044,8 +1141,8 @@ int[] arr = Enumerable.Repeat(1, 100).ToArray();
 
 
 
-  시작 지점에서부터 목표 지점으로 광선을 발사하여, 그 사이에서 광선과 교차하는 구체의 표면 지점을 찾아낸다.
-  3차원에서 수행하면 구체, 2차원에서 수행하면 원(Cir...
+  시작 지점에서부터 목표 지점으로 광선을 발사하여, 두 점이 이루는 직선과 교차하는 구체의 표면 지점을 찾아낸다.
+  3차원에서 수행하면 구체, 2차원에서 수행하면 원(C...
       </p>
     </div>
 
@@ -1092,7 +1189,7 @@ int[] arr = Enumerable.Repeat(1, 100).ToArray();
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="842 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1019 words">5 min</span>
 
 
         <!-- page views -->
@@ -1184,98 +1281,6 @@ public static T? ByteBufferToStruct&lt;T&gt;(byte[] buffer, int offset) where T 
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="342 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-shader-billboard/">유니티 쉐이더 - 빌보드(Vert/Frag)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        1. 일반
-
-
-
-  
-    struct appdata
-{
-    float4 vertex : POSITION;
-    float2 uv : TEXCOORD0;
-};
-
-struct v2f
-{
-    float4 vertex : SV_POSITION;
-    float2 uv : TEXCOORD0;
-};
-
-float4 Billboard(float4 ve...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Sep 30, 2021,  9:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Sep 30
-  
-
-  <i class="unloaded">2021-09-30T21:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="335 words">1 min</span>
 
 
         <!-- page views -->
@@ -1863,27 +1868,27 @@ float4 Billboard(float4 ve...
         
         
         
+        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
         
+        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-compute-buffer-gpu-instancing/">유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">레이캐스트 - 구체(Sphere)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-plane/">레이캐스트 - 평면(Plane)</a></li>
       
 
       </ul>

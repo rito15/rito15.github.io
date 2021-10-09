@@ -121,7 +121,7 @@ $$
 하나의 식으로 정리해보면 다음과 같다.
 
 $$
-C = A + nAB * (dot(AS, nAB) - \sqrt{(r1 + r2)^{2} - |AS|^{2} + dot(AS, nAB)^{2}})
+C = A + nAB * ( dot(AS, nAB) - \sqrt{(r1 + r2)^{2} - |AS|^{2} + dot(AS, nAB)^{2}} )
 $$
 
 <br>

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 물리 기반 먼지 시뮬레이션" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-08T01:32:51+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-10T03:37:07+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Oct  8, 2021,  1:32 AM +0900"
+    title="Sun, Oct 10, 2021,  3:37 AM +0900"
   >
 
   
   
 
   
-    Oct  8
+    Oct 10
   
 
-  <i class="unloaded">2021-10-08T01:32:51+09:00</i>
+  <i class="unloaded">2021-10-10T03:37:07+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="13798 words">76 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="14175 words">78 min</span>
 
 
           <!-- page views -->
@@ -5587,6 +5587,74 @@ DustManager.cs
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
+<h1 id="0-sphere-collider-구현">0. Sphere Collider 구현</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><br /></p>
+
+  <p>고정된 위치에 존재하는 Sphere Collider를 직접 구현한다.</p>
+
+  <p>먼지 역시 반지름이 있는 Sphere이므로,</p>
+
+  <p>먼지와 Sphere Collider의 충돌은 Sphere to Sphere 충돌로 계산되어야 한다.</p>
+
+  <p><br /></p>
+
+  <h2 id="section-40"><strong>[1] 충돌 감지</strong></h2>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/136651617-44d49378-1f3c-4e3f-93b0-9ae5dc392589.png" alt="image" /></p>
+
+  <p>충돌 감지 자체는 어렵지 않다.</p>
+
+  <p>다음 프레임의 먼지 위치를 검사했을 때, 먼지(빨간 구체)와 충돌체(하얀 구체)의 반지름 합이 두 구체 중심 위치 사이의 거리보다 같거나 크다면 충돌로 간주하면 된다.</p>
+
+  <p><br /></p>
+
+  <h2 id="section-41"><strong>[2] 충돌 접점 찾기</strong></h2>
+
+  <p>충돌 후 반사 벡터를 구하기 위해서는 충돌 지점의 노멀 벡터가 필요한데,</p>
+
+  <p>그 전에 우선 충돌 지점의 위치 벡터를 구해야 한다.</p>
+
+  <p><br /></p>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/136651977-27102e19-088d-493c-b39a-374d0a505006.png" alt="image" /></p>
+
+  <p>현재 프레임에서의 먼지 중심 위치에서부터 다음 프레임의 먼지 중심 위치를 향하는 직선 벡터와</p>
+
+  <p>충돌체와의 교차점을 구하는 Line to Sphere 검사를 생각해볼 수 있는데,</p>
+
+  <p><br /></p>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/136652004-bdbfcb7d-dd9e-4c06-a04c-dc7d32fddaec.png" alt="image" /></p>
+
+  <p>이렇게 스쳐 지나가는 경우가 있을 수 있으므로 Sphere to Sphere 검사를 통해 판정해야 한다.</p>
+
+  <p><br /></p>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+<h1 id="0-box-collider-구현">0. Box Collider 구현</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><br /></p>
+
+  <p><br /></p>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
 <h1 id="0-폭발-효과-구현">0. 폭발 효과 구현</h1>
 <hr />
 
@@ -5600,47 +5668,16 @@ DustManager.cs
   <ul>
     <li>투사체를 발사하여 충돌체에 닿으면 폭발</li>
     <li>폭발 범위 내의 먼지에 힘 가하기</li>
+    <li>Cannon : Cone</li>
   </ul>
 
-  <p><br /></p>
-
-</details>
-<!-- --------------------------------------------------------------------------- -->
-
-<h1 id="0-sphere-충돌-구현">0. Sphere 충돌 구현</h1>
-<hr />
-
-<details>
-  <summary> 
-…
-</summary>
-
-  <p><br /></p>
-
-  <p>기본적인 Sphere 충돌을 구현한다.</p>
-
-  <p>충돌 시 탄성력을 구현한다.</p>
-
-  <!-- 그림으로 차근차근 설명
-
-nextPos Sphere-to-Sphere
-
- -->
-
-  <p><br /></p>
-
-</details>
-<!-- --------------------------------------------------------------------------- -->
-
-<h1 id="0-cube-충돌-구현">0. Cube 충돌 구현</h1>
-<hr />
-
-<details>
-  <summary> 
-…
-</summary>
-
-  <p><br /></p>
+  <h2 id="requirements"><strong>Requirements</strong></h2>
+  <ul>
+    <li>C# Rigidbody로 제어</li>
+    <li>동시에 여러 개 발사 가능</li>
+    <li>물리 계산 적용 : 중력, 공기 저항</li>
+    <li>충돌체 충돌 적용 : 컴퓨트 쉐이더 내의 콜라이더와 유니티의 콜라이더가 공유되어야 하므로, 유니티에도 새로운 게임오브젝트 만들어서 콜라이더 넣어주기(Trigger)</li>
+  </ul>
 
   <p><br /></p>
 
@@ -5929,27 +5966,27 @@ DustManager.cs
         
         
         
+        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
         
+        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
+      
+        
+        
+        
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-compute-buffer-gpu-instancing/">유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">레이캐스트 - 구체(Sphere)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-plane/">레이캐스트 - 평면(Plane)</a></li>
       
 
       </ul>
@@ -9338,6 +9375,19 @@ DustManager.cs
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
