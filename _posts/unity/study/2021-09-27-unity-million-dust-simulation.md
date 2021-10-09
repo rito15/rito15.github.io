@@ -3163,6 +3163,77 @@ private void OnDestroy()
 
 <br>
 
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+# 0. Sphere Collider 구현
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+고정된 위치에 존재하는 Sphere Collider를 직접 구현한다.
+
+먼지 역시 반지름이 있는 Sphere이므로,
+
+먼지와 Sphere Collider의 충돌은 Sphere to Sphere 충돌로 계산되어야 한다.
+
+<br>
+
+## **[1] 충돌 감지**
+
+![image](https://user-images.githubusercontent.com/42164422/136651617-44d49378-1f3c-4e3f-93b0-9ae5dc392589.png)
+
+충돌 감지 자체는 어렵지 않다.
+
+다음 프레임의 먼지 위치를 검사했을 때, 먼지(빨간 구체)와 충돌체(하얀 구체)의 반지름 합이 두 구체 중심 위치 사이의 거리보다 같거나 크다면 충돌로 간주하면 된다.
+
+<br>
+
+## **[2] 충돌 접점 찾기**
+
+충돌 후 반사 벡터를 구하기 위해서는 충돌 지점의 노멀 벡터가 필요한데,
+
+그 전에 우선 충돌 지점의 위치 벡터를 구해야 한다.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/136651977-27102e19-088d-493c-b39a-374d0a505006.png)
+
+현재 프레임에서의 먼지 중심 위치에서부터 다음 프레임의 먼지 중심 위치를 향하는 직선 벡터와
+
+충돌체와의 교차점을 구하는 Line to Sphere 검사를 생각해볼 수 있는데,
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/136652004-bdbfcb7d-dd9e-4c06-a04c-dc7d32fddaec.png)
+
+이렇게 스쳐 지나가는 경우가 있을 수 있으므로 Sphere to Sphere 검사를 통해 판정해야 한다.
+
+<br>
+
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+# 0. Box Collider 구현
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+
+
+<br>
+
 
 </details>
 <!-- --------------------------------------------------------------------------- -->
@@ -3181,46 +3252,11 @@ private void OnDestroy()
 - 폭발 범위 내의 먼지에 힘 가하기
 - Cannon : Cone
 
-<br>
-
-</details>
-<!-- --------------------------------------------------------------------------- -->
-
-# 0. Sphere 충돌 구현
----
-
-<details>
-<summary markdown="span"> 
-...
-</summary>
-
-<br>
-
-기본적인 Sphere 충돌을 구현한다.
-
-충돌 시 탄성력을 구현한다.
-
-<!-- 그림으로 차근차근 설명
-
-nextPos Sphere-to-Sphere
-
- -->
-
-<br>
-
-
-</details>
-<!-- --------------------------------------------------------------------------- -->
-
-# 0. Cube 충돌 구현
----
-
-<details>
-<summary markdown="span"> 
-...
-</summary>
-
-<br>
+## **Requirements**
+- C# Rigidbody로 제어
+- 동시에 여러 개 발사 가능
+- 물리 계산 적용 : 중력, 공기 저항
+- 충돌체 충돌 적용 : 컴퓨트 쉐이더 내의 콜라이더와 유니티의 콜라이더가 공유되어야 하므로, 유니티에도 새로운 게임오브젝트 만들어서 콜라이더 넣어주기(Trigger)
 
 
 
