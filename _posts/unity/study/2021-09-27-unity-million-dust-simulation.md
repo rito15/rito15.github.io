@@ -3166,7 +3166,7 @@ private void OnDestroy()
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-# 0. Sphere Collider 구현
+# 13. Sphere Collision 구현
 ---
 
 <details>
@@ -3176,7 +3176,7 @@ private void OnDestroy()
 
 <br>
 
-고정된 위치에 존재하는 Sphere Collider를 직접 구현한다.
+고정된 위치에 존재하는 Sphere Collider와 먼지의 충돌을 구현한다.
 
 먼지 역시 반지름이 있는 Sphere이므로,
 
@@ -3186,7 +3186,7 @@ private void OnDestroy()
 
 ## **[1] 충돌 감지**
 
-![image](https://user-images.githubusercontent.com/42164422/136651617-44d49378-1f3c-4e3f-93b0-9ae5dc392589.png)
+![image](https://user-images.githubusercontent.com/42164422/136788162-d8e5fcb3-1599-48b6-b78c-2edd7a11bcd8.png)
 
 충돌 감지 자체는 어렵지 않다.
 
@@ -3194,33 +3194,190 @@ private void OnDestroy()
 
 <br>
 
-## **[2] 충돌 접점 찾기**
+## **[2] Sphere Cast to Sphere**
 
-충돌 후 반사 벡터를 구하기 위해서는 충돌 지점의 노멀 벡터가 필요한데,
-
-그 전에 우선 충돌 지점의 위치 벡터를 구해야 한다.
-
-<br>
-
-![image](https://user-images.githubusercontent.com/42164422/136651977-27102e19-088d-493c-b39a-374d0a505006.png)
-
-현재 프레임에서의 먼지 중심 위치에서부터 다음 프레임의 먼지 중심 위치를 향하는 직선 벡터와
-
-충돌체와의 교차점을 구하는 Line to Sphere 검사를 생각해볼 수 있는데,
+- [Post : Sphere Cast to Sphere](../sphere-cast-to-sphere/)
+- 구체를 전진시켜 다른 구체와의 충돌 지점을 찾아낸다.
 
 <br>
 
-![image](https://user-images.githubusercontent.com/42164422/136652004-bdbfcb7d-dd9e-4c06-a04c-dc7d32fddaec.png)
+![image](https://user-images.githubusercontent.com/42164422/136788363-80517aca-f970-451c-a2eb-1abd2b42345d.png)
 
-이렇게 스쳐 지나가는 경우가 있을 수 있으므로 Sphere to Sphere 검사를 통해 판정해야 한다.
+현재 프레임의 먼지 위치에서부터 다음 프레임의 먼지 위치까지 Sphere Cast를 통해 충돌 지점을 찾는다.
 
 <br>
 
+![image](https://user-images.githubusercontent.com/42164422/136788751-8a0537cd-405a-4d44-b325-d049f38d722b.png)
+
+충돌 지점에서부터 충돌체 중심 위치와 반대 방향을 향하는 법선 벡터를 구하고,
+
+입사 벡터를 반사시켜 충돌 이후 실제로 먼지가 이동할 다음 프레임의 위치를 계산한다.
+
+<br>
+
+![image](https://user-images.githubusercontent.com/42164422/136789433-338981f3-d5e2-4074-9a8b-3a7b2edc451a.png)
+
+이 때 `d`와 `d'`의 길이는 같으며,
+
+충돌 시 손실되는 운동량을 계산하여 `d'`에 곱해주면 된다.
+
+<br>
+
+## **[3] 컴퓨트 쉐이더 - 계산 함수**
+
+<details>
+<summary markdown="span"> 
+functions
+</summary>
+
+```hlsl
+// 구체끼리의 충돌 여부 검사
+// xyz : Position
+// w : Radius
+bool CheckSphereIntersection(float4 sphereA, float4 sphereB)
+{
+    return SqrMagnitude(sphereA.rgb - sphereB.rgb) < Square(sphereA.w + sphereB.w);
+}
+
+// A -> B 위치로 Sphere Cast
+// S : Target Sphere Position
+// r1 : Radius of Casted Sphere
+// r2 : Radius of Target Sphere
+float3 SphereCastToSphere(float3 A, float3 B, float3 S, float r1, float r2)
+{
+    float3 nAB = normalize(B - A);
+    float3 AS  = (S - A);
+    float as2 = SqrMagnitude(AS);
+    float ad  = dot(AS, nAB);
+    float ad2 = ad * ad;
+    float ds2 = as2 - ad2;
+    float cs  = r1 + r2;
+    float cs2 = cs * cs;
+    float cd  = sqrt(cs2 - ds2);
+    float ac  = ad - cd;
+
+    float3 C = A + nAB * ac;            // 충돌 시 구체 중심 좌표
+    //float3 E = C + (S - C) * r1 / cs; // 충돌 지점 좌표
+    return C;
+}
+
+// Sphere Collider에 충돌 검사하여 먼지 위치 및 속도 변경
+// - cur  : 현재 프레임에서의 위치
+// - next : 다음 프레임에서의 위치 [INOUT]
+// - velocity : 현재 이동 속도     [INOUT]
+// - sphere : 구체 중심 위치(xyz), 구체 반지름(w)
+// - dustRadius : 먼지 반지름
+// - elasticity : 탄성력 계수(0 ~ 1) : 충돌 시 보존되는 운동량 비율
+void CalculateSphereCollision(float3 cur, inout float3 next, inout float3 velocity, float4 sphere,
+float dustRadius, float elasticity)
+{
+    // 충돌 시 먼지 위치
+    float3 contactPos = SphereCastToSphere(cur, next, sphere.xyz, dustRadius, sphere.w);
+
+    // 충돌 지점의 노멀 벡터
+    float3 contactNormal = (contactPos - sphere.xyz) / (dustRadius + sphere.w);
+
+    // 충돌 지점에서 원래 다음 위치를 향한 벡터 : 잉여 벡터
+    float3 extraVec = next - contactPos;
+
+    // 반사 벡터
+    float3 outVec = reflect(extraVec, contactNormal) * elasticity;
+
+    // 다음 프레임 위치 변경
+    next = contactPos + outVec;
+
+    // 속도 변경
+    velocity = reflect(velocity, contactNormal) * elasticity;
+}
+```
+
+</details>
+
+<br>
+
+## **[4] 컴퓨트 쉐이더 - Update 커널**
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+void Update (uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if(dustBuffer[i].isAlive == FALSE) return;
+    if(i >= dustCount) return;
+
+    // ...
+
+    // ===================================================
+    //                    속도 계산
+    // ===================================================
+    // ...
+    
+    // ===================================================
+    //              이동 시뮬레이션, 충돌 검사
+    // ===================================================
+    // 다음 프레임 위치 계산 : S = S0 + V * t
+    float3 currPos = dustBuffer[i].position;
+    float3 nextPos = currPos + velocityBuffer[i] * deltaTime;
+
+    // [1] 월드 영역 제한(Cube)
+    // ...
+
+    // [2] Sphere Collider
+    float4 sphere = float4(0, 2.5, 0, 5);
+    bool sphereCollided = CheckSphereIntersection(float4(nextPos, radius), sphere);
+    if(sphereCollided)
+    {
+        CalculateSphereCollision(currPos, nextPos, velocityBuffer[i], sphere, radius, elasticity);
+    }
+    
+    // 다음 위치 적용
+    dustBuffer[i].position = nextPos;
+}
+```
+
+</details>
+
+<br>
+
+## **[5] 실행 결과**
+
+![2021_1011_Sphere Collision 1](https://user-images.githubusercontent.com/42164422/136793689-f0580362-c211-47dc-8ad4-892f2e331b8a.gif)
+
+![2021_1011_Sphere Collision 2](https://user-images.githubusercontent.com/42164422/136798176-c44b5caf-197e-405e-a65b-d98891c458ed.gif)
+
+<br>
 
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-# 0. Box Collider 구현
+# 14. 여러 개의 Sphere Collider 구현
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+게임 내에서 직접 여러 개의 Sphere Collider를 배치하고 위치와 반지름을 수정할 수 있도록 구현한다.
+
+Sphere Collider 데이터들은 하나의 Compute Buffer에 담아 전달하며,
+
+변동사항이 생길 때마다 Compute Buffer의 데이터 역시 변경해주어야 한다.
+
+
+
+<br>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+# 0. Box Collision 구현
 ---
 
 <details>
