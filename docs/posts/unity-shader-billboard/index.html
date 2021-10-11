@@ -701,17 +701,17 @@
         
         
         
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+      
+        
+        
+        
         <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
       
         
         
         
         <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
@@ -4105,6 +4105,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8358,7 +8371,7 @@ static const float2 dir[8] =
       
       
       <div class="card">
-        <a href="/posts/unity-shader-random-functions/">
+        <a href="/posts/unity-shader-real-number-types/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8375,13 +8388,13 @@ static const float2 dir[8] =
   
 
   
-    Sep 26
+    Oct  7
   
 
-  <i class="unloaded">2021-09-26T21:19:00+09:00</i>
+  <i class="unloaded">2021-10-07T00:48:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 랜덤 함수들</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 실수 타입들</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8393,18 +8406,28 @@ static const float2 dir[8] =
                 Memo
 
 
+[1] float
 
+  32비트
   
-    #define RM 39482.17593
-#define RD1 7.8671
-#define RD2 3.3419
-#define RD3 5.8912
-#define RP1 2.1759
-#define RP2 4.7921
+    유효 숫자 : 6자리
+  
+  실수 중 정확도가 가장 높다.
+  실수 중 연산이 가장 느리다.
+  
+    정확해야 하는 경우, 대개 사용된다.
+  
+  예시 : 정점 위치, UV, 복합 스칼라 연산
 
-float Random11(float seed)
-{
-    return frac(sin(dot(float2(RD1...
+
+
+
+[2] half
+
+  16비트
+  유효 숫자 : 3자리
+  
+    표현 범위 : -60...
               </p>
             </div>
           </div>

@@ -657,17 +657,17 @@
         
         
         
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+      
+        
+        
+        
         <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
       
         
         
         
         <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
@@ -6237,6 +6237,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8340,7 +8353,7 @@ public b...
       
       
       <div class="card">
-        <a href="/posts/05-cs-tcp-async-socket-basic.md/">
+        <a href="/posts/06-cs-tcp-async-socket-with-packet.md/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8360,10 +8373,10 @@ public b...
     Aug  2
   
 
-  <i class="unloaded">2021-08-02T00:05:00+09:00</i>
+  <i class="unloaded">2021-08-02T00:06:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 비동기 소켓 서버, 클라이언트 기본</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8372,16 +8385,29 @@ public b...
 
 
 
-                비동기 소켓 통신 방식
+                
+  이전 포스팅에서 이어집니다.
 
 
-Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존재한다.
 
 
-  AcceptAsync(SocketAsyncEventArgs)
-  ConnectAsync(SocketAsyncEventArgs)
-  DisconnectAsync(SocketAsyncEventArgs)
-  ConnectAsync(SocketA...
+ReceiveBuffer, SendBuffer
+
+
+
+  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.
+
+
+
+
+ReceiveBuffer 클래스
+
+
+
+  
+    각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.
+  
+...
               </p>
             </div>
           </div>

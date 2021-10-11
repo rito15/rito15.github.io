@@ -787,17 +787,17 @@
         
         
         
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+      
+        
+        
+        
         <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
       
         
         
         
         <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
@@ -6770,6 +6770,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8445,7 +8458,7 @@ Source Code
       
       
       <div class="card">
-        <a href="/posts/unity-memo-color-debug-log/">
+        <a href="/posts/unity-punch-ui-image/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8462,13 +8475,13 @@ Source Code
   
 
   
-    Apr 25
+    Sep 15
   
 
-  <i class="unloaded">2021-04-25T17:10:00+09:00</i>
+  <i class="unloaded">2021-09-15T15:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Debug.Log()에 색상 넣기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - UI 이미지에 구멍뚫기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8477,30 +8490,36 @@ Source Code
 
 
 
-                Memo
-
-
-  &lt;color=&gt;&lt;/color&gt; 태그를 사용하여 로그 메시지에 색상을 넣을 수 있다.
-  color= 뒤에는 색상 이름 또는 HTML 색상코드를 입력한다.
+                Mask
 
 
 
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-Debug.Log("Default");
-Debug.Log("&lt;color=white&gt;Whit...
+이런 이미지에
+
+
+
+이런 마스크를 씌우려면
+
+
+  Mask Image (Image, Mask 컴포넌트 존재)
+    
+      Image (Image 컴포넌트 존재)
+    
+  
+
+
+이렇게 마스크 이미지, 보여질 이미지를 부모-자식 관계로 구성하면 된다.
+
+
+
+그러면 이렇게 마스크 이미지와 겹치는 영역만 보인다.
+
+
+
+Punch
+
+...
               </p>
             </div>
           </div>
