@@ -3372,7 +3372,257 @@ Sphere Collider 데이터들은 하나의 Compute Buffer에 담아 전달하며,
 
 <br>
 
-<!-- 코드 복붙하고 설명 -->
+## **[1] 컴퓨트 쉐이더**
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+/* Colliders */
+RWStructuredBuffer<float4> sphereColliderBuffer;
+uint sphereColliderCount;
+
+void Update (uint3 id : SV_DispatchThreadID)
+{
+    // ...
+    
+    float3 currPos = dustBuffer[i].position;
+    float3 nextPos = currPos + velocityBuffer[i] * deltaTime;
+
+    // [1] 월드 영역 제한(Cube)
+    // ...
+
+    // [2] Sphere Colliders
+    for(uint scIndex = 0; scIndex < sphereColliderCount; scIndex++)
+    {
+        float4 sphere = sphereColliderBuffer[scIndex];
+        bool sphereCollided = CheckSphereIntersection(float4(nextPos, radius), sphere);
+        if(sphereCollided)
+        {
+            CalculateSphereCollision(currPos, nextPos, velocityBuffer[i], sphere, radius, elasticity);
+        }
+    }
+    
+    // 다음 위치 적용
+    dustBuffer[i].position = nextPos;
+}
+```
+
+</details>
+
+<br>
+
+
+## **[2] 구형 충돌체 컴포넌트**
+
+<details>
+<summary markdown="span"> 
+DustSphereCollider.cs
+</summary>
+
+```cs
+/* public class DustSphereCollider : MonoBehaviour */
+
+[SerializeField] private Vector3 position = Vector3.zero;
+[SerializeField] private float radius = 1f;
+
+private DustManager dustManager;
+
+public Vector4 SphereData => new Vector4(
+    position.x, position.y, position.z, radius
+);
+
+private void OnValidate()
+{
+    ValidateData();
+}
+
+private void OnEnable()
+{
+    if (dustManager == null)
+        dustManager = FindObjectOfType<DustManager>();
+
+    ValidateData();
+    dustManager.AddSphereCollider(this);
+}
+
+private void OnDisable()
+{
+    dustManager.RemoveSphereCollider(this);
+}
+
+private void ValidateData()
+{
+    if (radius < 0.1f)
+        radius = 0.1f;
+
+    transform.position = position;
+    transform.localScale = Vector3.one * 2f * radius;
+}
+```
+
+</details>
+
+<br>
+
+
+## **[3] 먼지 관리 컴포넌트**
+
+<details>
+<summary markdown="span"> 
+DustManager.cs - SphereColliderSet
+</summary>
+
+```cs
+private class SphereColliderSet
+{
+    /* Collider */
+    private ComputeBuffer colliderBuffer;
+    private List<DustSphereCollider> colliders;
+
+    /* Data */
+    private Vector4[] dataArray;
+    private int dataCount;
+
+    /* Compute Shader, Compute Buffer */
+    private ComputeShader computeShader;
+    private int shaderKernel;
+    private string bufferName;
+    private string countVariableName;
+
+    public SphereColliderSet(ComputeShader computeShader, int shaderKernel, string bufferName, string countVariableName)
+    {
+        this.colliders = new List<DustSphereCollider>(4);
+        this.dataArray = new Vector4[4];
+        this.computeShader = computeShader;
+        this.shaderKernel = shaderKernel;
+        this.bufferName = bufferName;
+        this.countVariableName = countVariableName;
+        this.dataCount = 0;
+
+        colliderBuffer = new ComputeBuffer(1, 4); // 기본 값
+        computeShader.SetBuffer(shaderKernel, bufferName, colliderBuffer);
+        computeShader.SetInt(countVariableName, 0);
+    }
+
+    ~SphereColliderSet()
+    {
+        ReleaseBuffer();
+    }
+
+    private void ReleaseBuffer()
+    {
+        if (colliderBuffer != null)
+            colliderBuffer.Release();
+    }
+
+    private void ExpandDataArray()
+    {
+        Vector4[] newArray = new Vector4[this.dataArray.Length * 2];
+        Array.Copy(this.dataArray, newArray, dataCount);
+        this.dataArray = newArray;
+    }
+
+    /// <summary> Collider 리스트로부터 Vector4 배열에 데이터 전달 </summary>
+    private void UpdateDataArray()
+    {
+        if (dataArray.Length < dataCount)
+            ExpandDataArray();
+
+        for (int i = 0; i < dataCount; i++)
+        {
+            dataArray[i] = colliders[i].SphereData;
+        }
+    }
+
+    /// <summary> 컴퓨트 버퍼의 데이터를 새롭게 갱신하고 컴퓨트 쉐이더에 전달 </summary>
+    public void UpdateBuffer()
+    {
+        ReleaseBuffer();
+        if (dataCount == 0) return;
+
+        UpdateDataArray();
+        colliderBuffer = new ComputeBuffer(dataCount, sizeof(float) * 4);
+        colliderBuffer.SetData(dataArray, 0, 0, dataCount);
+        computeShader.SetBuffer(shaderKernel, bufferName, colliderBuffer);
+        computeShader.SetInt(countVariableName, dataCount);
+    }
+
+    public void AddCollider(DustSphereCollider collider)
+    {
+        if (colliders.Contains(collider)) return;
+
+        dataCount++;
+        colliders.Add(collider);
+        UpdateBuffer();
+    }
+
+    public void RemoveCollider(DustSphereCollider collider)
+    {
+        if (!colliders.Contains(collider)) return;
+
+        dataCount--;
+        colliders.Remove(collider);
+        UpdateBuffer();
+    }
+}
+
+private SphereColliderSet sphereColliderSet;
+
+public void AddSphereCollider(DustSphereCollider collider)
+{
+    if (sphereColliderSet == null)
+    {
+        afterInitJobQueue.Enqueue(() => sphereColliderSet.AddCollider(collider));
+    }
+    else
+    {
+        sphereColliderSet.AddCollider(collider);
+    }
+}
+
+public void RemoveSphereCollider(DustSphereCollider collider)
+{
+    if (sphereColliderSet == null) return;
+
+    sphereColliderSet.RemoveCollider(collider);
+}
+```
+
+</details>
+
+<details>
+<summary markdown="span"> 
+DustManager.cs
+</summary>
+
+```cs
+// 게임 시작 시 초기화 작업 완료 후 처리
+private Queue<Action> afterInitJobQueue = new Queue<Action>();
+
+private void Start()
+{
+    // ...
+    
+    InitColliders();
+    ProcessInitialJobs();
+}
+
+private void InitColliders()
+{
+    sphereColliderSet = new SphereColliderSet(this.dustCompute, kernelUpdateID, "sphereColliderBuffer", "sphereColliderCount");
+}
+```
+
+</details>
+
+<br>
+
+## **[4] 실행 결과**
+
+![2021_1012_Multiple Sphere Collision](https://user-images.githubusercontent.com/42164422/136919803-caff4cc1-c25f-4756-a1d5-d0323f8c9bab.gif)
 
 <br>
 
