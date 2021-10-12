@@ -25,7 +25,7 @@ mermaid: true
 
 ## **[1] PlayerManager 클래스**
 
-- `Player` 클래스들을 리스트에 담아 관리하며, 추가/제거할 수 있는 API를 제공한다.
+- `Player` 객체들을 리스트에 담아 관리하며, 리스트에 추가/제거할 수 있는 API를 제공한다.
 
 ```cs
 class PlayerManager : MonoBehaviour
@@ -61,7 +61,7 @@ class PlayerManager : MonoBehaviour
 ```cs
 class Player : MonoBehaviour
 {
-    // 인스펙터에 드래그 하여 초기화
+    /* NOTE : manager 객체는 항상 null이 아니라고 가정 */
     [SerializeField] private PlayerManager manager;
 
     private void OnEnable()
@@ -137,7 +137,7 @@ class PlayerManager : MonoBehaviour
             action?.Invoke();
         }
         
-        // 힙에서 해제
+        // 힙에서 해제한다.
         afterInitJobQueue = null;
     }
 

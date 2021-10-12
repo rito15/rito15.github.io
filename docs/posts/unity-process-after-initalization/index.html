@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1177 words">6 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1187 words">6 min</span>
 
 
           <!-- page views -->
@@ -441,7 +441,7 @@
 <h2 id="1-playermanager-클래스"><strong>[1] PlayerManager 클래스</strong></h2>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">Player</code> 클래스들을 리스트에 담아 관리하며, 추가/제거할 수 있는 API를 제공한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Player</code> 객체들을 리스트에 담아 관리하며, 리스트에 추가/제거할 수 있는 API를 제공한다.</li>
 </ul>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -514,7 +514,7 @@
 15
 </pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Player</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
 <span class="p">{</span>
-    <span class="c1">// 인스펙터에 드래그 하여 초기화</span>
+    <span class="cm">/* NOTE : manager 객체는 항상 null이 아니라고 가정 */</span>
     <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">PlayerManager</span> <span class="n">manager</span><span class="p">;</span>
 
     <span class="k">private</span> <span class="k">void</span> <span class="nf">OnEnable</span><span class="p">()</span>
@@ -636,7 +636,7 @@
             <span class="n">action</span><span class="p">?.</span><span class="nf">Invoke</span><span class="p">();</span>
         <span class="p">}</span>
         
-        <span class="c1">// 힙에서 해제</span>
+        <span class="c1">// 힙에서 해제한다.</span>
         <span class="n">afterInitJobQueue</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -904,6 +904,11 @@
         
         
         
+        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
@@ -920,11 +925,6 @@
         
         
         <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
 
       </ul>
