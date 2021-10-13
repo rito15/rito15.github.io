@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 물리 기반 먼지 시뮬레이션" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-12T04:44:42+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-13T04:38:37+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Tue, Oct 12, 2021,  4:44 AM +0900"
+    title="Wed, Oct 13, 2021,  4:38 AM +0900"
   >
 
   
   
 
   
-    Oct 12
+    Oct 13
   
 
-  <i class="unloaded">2021-10-12T04:44:42+09:00</i>
+  <i class="unloaded">2021-10-13T04:38:37+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="15664 words">87 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="17287 words">96 min</span>
 
 
           <!-- page views -->
@@ -6330,6 +6330,470 @@ DustManager.cs
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
+<h1 id="15-투사체-발사-및-폭발-효과-구현">15. 투사체 발사 및 폭발 효과 구현</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><br /></p>
+
+  <p>투사체를 발사하여 충돌체에 닿으면 폭발하는 기능을 구현한다.</p>
+
+  <p><br /></p>
+
+  <h2 id="section-47"><strong>[1] 충돌체 동기화 방식</strong></h2>
+
+  <p>컴퓨트 쉐이더 내에서 World Bounds, Sphere Collider가 구현되어 있다.</p>
+
+  <p>이는 유니티엔진 내에서 사용할 수 있는 물리 엔진의 Collider와는 별개이므로, 두 가지 선택지가 있다.</p>
+
+  <ol>
+    <li>투사체의 움직임, 충돌 감지를 모두 컴퓨트 쉐이더 내에서 구현한다.</li>
+    <li>컴퓨트 쉐이더 내의 충돌체들을 유니티 엔진 내에서 컴포넌트로 동일하게 생성한다.</li>
+  </ol>
+
+  <p><br /></p>
+
+  <p><code class="language-plaintext highlighter-rouge">1번</code>의 방식대로 구현하려면, 일단 현재 사용 중인 <code class="language-plaintext highlighter-rouge">DustCompute</code> 컴퓨트 쉐이더 내에서는 할 수 없다.</p>
+
+  <p><code class="language-plaintext highlighter-rouge">DustCompute</code>에서 실제로 동작하는 각각의 스레드는, 각자 하나의 먼지를 담당하여 동작한다.</p>
+
+  <p>그러니 이 컴퓨트 쉐이더의 수십만 스레드 전부가 투사체의 움직임을 중복해서 계산할 수는 없는 노릇이고,</p>
+
+  <p>그렇다고 투사체의 개수만큼의 스레드를 지정해서 계산토록 하는 것은 병렬처리의 불균형을 초래하므로 바람직하지 않다.</p>
+
+  <p>그래서 또다른 컴퓨트 쉐이더를 구현하자니, 고작 몇 개의 투사체 연산 때문에 컴퓨트 쉐이더를 사용하는건 오히려 낭비이므로 차라리 CPU에서 연산하는 것이 낫다.</p>
+
+  <p><br /></p>
+
+  <p>따라서 <code class="language-plaintext highlighter-rouge">2번</code>을 선택하여, 컴퓨트 쉐이더 내의 충돌체를 CPU, 즉 유니티 월드 내에도 동기화하여 유니티의 물리엔진을 활용하는 것이 낫다.</p>
+
+  <p>어차피 컴퓨트 쉐이더에서 충돌체들을 선언하여 사용하는 것이 아니라, 애초에 CPU에서 충돌체 정보를 정의하여 컴퓨트 쉐이더에 전달해주는 방식이었으므로</p>
+
+  <p>이 충돌체 정보들을 토대로 Collider 컴포넌트들을 추가해주고 투사체의 움직임은 Rigidbody를 기반으로 구현하면 된다.</p>
+
+  <p>다시 말해, CPU에서 정의한 충돌체를 컴퓨트 쉐이더와 유니티 물리엔진이 동기화하여 사용하는 것이다.</p>
+
+  <p><br /></p>
+
+  <h2 id="section-48"><strong>[2] 유니티 엔진에서 충돌체 추가</strong></h2>
+
+  <p>방법은 아주 간단하다.</p>
+
+  <p>월드 영역을 제한하는 <code class="language-plaintext highlighter-rouge">World Bounds</code>는 큐브 형태지만,</p>
+
+  <p>일반적인 큐브 콜라이더와는 달리 충돌 영역이 외부가 아니라 내부를 향한다.</p>
+
+  <p>월드 영역 메시도 폴리곤이 내부를 향하도록 구현되어 있으므로,</p>
+
+  <p>그냥 <code class="language-plaintext highlighter-rouge">Mesh Collider</code> 컴포넌트만 추가해주면 된다.</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="cm">/* DustManager.cs */</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">InitWorldBounds</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    
+    <span class="k">if</span> <span class="p">(!</span><span class="n">worldGO</span><span class="p">.</span><span class="nf">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">MeshCollider</span> <span class="n">_</span><span class="p">))</span>
+        <span class="n">worldGO</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">MeshCollider</span><span class="p">&gt;();</span>
+    
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p><br /></p>
+
+  <p>마찬가지로 <code class="language-plaintext highlighter-rouge">DustSphereCollider</code> 클래스에서도 <code class="language-plaintext highlighter-rouge">SphereCollider</code> 컴포넌트를 추가해준다.</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="cm">/* DustSphereCollider.cs */</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">OnEnable</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    
+    <span class="k">if</span> <span class="p">(!</span><span class="nf">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">SphereCollider</span> <span class="n">_</span><span class="p">))</span>
+        <span class="n">gameObject</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">SphereCollider</span><span class="p">&gt;();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p><br /></p>
+
+  <p>모든 충돌체 게임오브젝트는 <code class="language-plaintext highlighter-rouge">DustCollider</code> 컴포넌트를 가지며, <code class="language-plaintext highlighter-rouge">"DustCollider"</code> 태그로 설정한다.</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">DustCollider</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">ColliderTag</span> <span class="p">=</span> <span class="s">"DustCollider"</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">tag</span> <span class="p">=</span> <span class="n">ColliderTag</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p><br /></p>
+
+  <h2 id="section-49"><strong>[3] 투사체 구현</strong></h2>
+
+  <p>발사되는 투사체를 구현한다.</p>
+
+  <p><code class="language-plaintext highlighter-rouge">Rigidbody</code>를 통해 물리엔진 기반으로 이동하며,</p>
+
+  <p><code class="language-plaintext highlighter-rouge">Sphere Collider</code>를 통해 <code class="language-plaintext highlighter-rouge">OnTriggerEnter()</code> 메소드에서 충돌을 감지한다.</p>
+
+  <p><code class="language-plaintext highlighter-rouge">"DustCollider"</code> 태그를 갖는 충돌체를 감지할 경우, 스스로를 파괴하며 <code class="language-plaintext highlighter-rouge">DustManager</code>의 <code class="language-plaintext highlighter-rouge">Explode()</code> 메소드를 실행한다.</p>
+
+  <p><code class="language-plaintext highlighter-rouge">Rigidbody</code>, <code class="language-plaintext highlighter-rouge">Sphere Collider</code> 컴포넌트와 함께 하나의 게임오브젝트에 담아서 미리 프리팹화한다.</p>
+
+  <details>
+    <summary> 
+CannonBall.cs
+</summary>
+
+    <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">CannonBall</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">Rigidbody</span> <span class="n">rBody</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="kt">float</span> <span class="n">explosionSqrRange</span><span class="p">;</span>
+    <span class="k">private</span> <span class="kt">float</span> <span class="n">explosionForce</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">Init</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rBody</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="n">rBody</span> <span class="p">=</span> <span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Rigidbody</span><span class="p">&gt;();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">rBody</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="n">rBody</span> <span class="p">=</span> <span class="n">gameObject</span><span class="p">.</span><span class="n">AddComponent</span><span class="p">&lt;</span><span class="n">Rigidbody</span><span class="p">&gt;();</span>
+
+        <span class="nf">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">Collider</span> <span class="n">col</span><span class="p">);</span>
+        <span class="n">col</span><span class="p">.</span><span class="n">isTrigger</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Shoot</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">movement</span><span class="p">,</span> <span class="k">in</span> <span class="kt">float</span> <span class="n">explosionRange</span><span class="p">,</span> <span class="k">in</span> <span class="kt">float</span> <span class="n">explosionForce</span><span class="p">,</span> <span class="k">in</span> <span class="kt">float</span> <span class="n">lifespan</span> <span class="p">=</span> <span class="m">5f</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nf">Init</span><span class="p">();</span>
+        <span class="nf">Destroy</span><span class="p">(</span><span class="n">gameObject</span><span class="p">,</span> <span class="n">lifespan</span><span class="p">);</span>
+        <span class="n">rBody</span><span class="p">.</span><span class="nf">AddForce</span><span class="p">(</span><span class="n">movement</span><span class="p">,</span> <span class="n">ForceMode</span><span class="p">.</span><span class="n">Impulse</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="n">explosionSqrRange</span> <span class="p">=</span> <span class="n">explosionRange</span> <span class="p">*</span> <span class="n">explosionRange</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">explosionForce</span> <span class="p">=</span> <span class="n">explosionForce</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">OnTriggerEnter</span><span class="p">(</span><span class="n">Collider</span> <span class="n">other</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="nf">CompareTag</span><span class="p">(</span><span class="n">DustCollider</span><span class="p">.</span><span class="n">ColliderTag</span><span class="p">)</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+        <span class="n">DustManager</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="nf">Explode</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">explosionSqrRange</span><span class="p">,</span> <span class="n">explosionForce</span><span class="p">);</span>
+        <span class="nf">Destroy</span><span class="p">(</span><span class="n">gameObject</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="section-50"><strong>[4] 발사대 구현</strong></h2>
+
+  <p><code class="language-plaintext highlighter-rouge">Cone</code> 클래스를 상속받는 <code class="language-plaintext highlighter-rouge">Cannon</code> 클래스를 정의한다.</p>
+
+  <p>발사 쿨타임을 설정하며, 쿨타임이 돌아왔을 때 <code class="language-plaintext highlighter-rouge">isRunning</code> 필드가 <code class="language-plaintext highlighter-rouge">true</code> 값을 갖게될 경우 포탄 프리팹을 복제하여 발사한다.</p>
+
+  <details>
+    <summary> 
+Cannon.cs
+</summary>
+
+    <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Cannon</span> <span class="p">:</span> <span class="n">Cone</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="nf">Header</span><span class="p">(</span><span class="s">"Cannon Options"</span><span class="p">)]</span>
+    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="n">GameObject</span> <span class="n">cannonBallPrefab</span><span class="p">;</span>
+
+    <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">200f</span><span class="p">)]</span>
+    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">float</span> <span class="n">explosionRange</span> <span class="p">=</span> <span class="m">25f</span><span class="p">;</span>
+
+    <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">100f</span><span class="p">,</span> <span class="m">10000f</span><span class="p">)]</span>
+    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">float</span> <span class="n">explosionForce</span> <span class="p">=</span> <span class="m">3000f</span><span class="p">;</span>
+
+    <span class="p">[</span><span class="nf">Range</span><span class="p">(</span><span class="m">0.1f</span><span class="p">,</span> <span class="m">2f</span><span class="p">)]</span>
+    <span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span> <span class="k">private</span> <span class="kt">float</span> <span class="n">shootingInterval</span> <span class="p">=</span> <span class="m">1f</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="kt">float</span> <span class="n">currentCooldown</span> <span class="p">=</span> <span class="m">0f</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">currentCooldown</span> <span class="p">&gt;</span> <span class="m">0f</span><span class="p">)</span>
+            <span class="n">currentCooldown</span> <span class="p">-=</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+
+        <span class="c1">// 발사</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isRunning</span> <span class="p">&amp;&amp;</span> <span class="n">currentCooldown</span> <span class="p">&lt;=</span> <span class="m">0f</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">currentCooldown</span> <span class="p">=</span> <span class="n">shootingInterval</span><span class="p">;</span>
+            <span class="nf">Shoot</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Shoot</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">GameObject</span> <span class="n">clone</span> <span class="p">=</span> <span class="nf">Instantiate</span><span class="p">(</span><span class="n">cannonBallPrefab</span><span class="p">,</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">Quaternion</span><span class="p">.</span><span class="n">identity</span><span class="p">);</span>
+        <span class="n">CannonBall</span> <span class="n">ball</span> <span class="p">=</span> <span class="n">clone</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">CannonBall</span><span class="p">&gt;();</span>
+
+        <span class="n">ball</span><span class="p">.</span><span class="nf">Shoot</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">forward</span> <span class="p">*</span> <span class="n">force</span><span class="p">,</span> <span class="n">explosionRange</span><span class="p">,</span> <span class="n">explosionForce</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="explode--"><strong>[5] Explode 커널 구현</strong></h2>
+
+  <p>폭발 중심 위치로부터 구 범위 내의 먼지를 밀쳐내는 기능을 별도의 커널로 작성한다.</p>
+
+  <details>
+    <summary> 
+DustCompute.compute
+</summary>
+
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre></td><td class="rouge-code"><pre><span class="cp">#pragma kernel Explode
+</span>
+<span class="cm">/* Explode */</span>
+<span class="kt">float3</span> <span class="n">explosionPosition</span><span class="p">;</span> <span class="c1">// 폭발 중심 위치</span>
+<span class="n">float</span> <span class="n">explosionSqrRange</span><span class="p">;</span>  <span class="c1">// 폭발 반지름 - 제곱</span>
+<span class="n">float</span> <span class="n">explosionForce</span><span class="p">;</span>     <span class="c1">// 폭발 힘</span>
+
+<span class="kt">void</span> <span class="nf">Explode</span> <span class="p">(</span><span class="n">uint3</span> <span class="n">id</span> <span class="o">:</span> <span class="n">SV_DispatchThreadID</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">uint</span> <span class="n">i</span> <span class="o">=</span> <span class="n">id</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">isAlive</span> <span class="o">==</span> <span class="n">FALSE</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">dustCount</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="kt">float3</span> <span class="n">dustPos</span> <span class="o">=</span> <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span><span class="p">;</span>             <span class="c1">// 현재 프레임 먼지 위치</span>
+    <span class="kt">float3</span> <span class="n">centerToDust</span> <span class="o">=</span> <span class="p">(</span><span class="n">dustPos</span> <span class="o">-</span> <span class="n">explosionPosition</span><span class="p">);</span> <span class="c1">// 폭발 중심 -&gt; 먼지</span>
+    <span class="n">float</span> <span class="n">sqrDist</span> <span class="o">=</span> <span class="n">SqrMagnitude</span><span class="p">(</span><span class="n">centerToDust</span><span class="p">);</span>          <span class="c1">// 폭발 중심&lt;-&gt; 먼지 사이 거리 제곱</span>
+
+    <span class="c1">// 구형 범위 내에 포함되는 경우</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sqrDist</span> <span class="o">&lt;</span> <span class="n">explosionSqrRange</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">float</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">sqrDist</span> <span class="o">/</span> <span class="n">explosionSqrRange</span><span class="p">);</span>
+        <span class="n">float</span> <span class="n">f</span> <span class="o">=</span> <span class="n">t</span> <span class="o">*</span> <span class="n">explosionForce</span><span class="p">;</span>
+        <span class="kt">float3</span> <span class="n">dir</span> <span class="o">=</span> <span class="nb">normalize</span><span class="p">(</span><span class="n">centerToDust</span><span class="p">);</span>
+
+        <span class="kt">float3</span> <span class="n">F</span> <span class="o">=</span> <span class="n">dir</span> <span class="o">*</span> <span class="n">f</span><span class="p">;</span>
+        <span class="kt">float3</span> <span class="n">A</span> <span class="o">=</span> <span class="n">F</span> <span class="o">/</span> <span class="n">mass</span><span class="p">;</span>
+        <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">deltaTime</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="section-51"><strong>[6] 먼지 관리 컴포넌트</strong></h2>
+
+  <p>우선, 편의상 싱글톤 클래스로 정의한다.</p>
+
+  <p>그리고 다른 <code class="language-plaintext highlighter-rouge">Cone</code>들과 마찬가지로 <code class="language-plaintext highlighter-rouge">Cannon</code> 필드를 작성하며,</p>
+
+  <p>키보드 <code class="language-plaintext highlighter-rouge">4</code> 키를 눌러 선택할 수 있게 한다.</p>
+
+  <p><code class="language-plaintext highlighter-rouge">Cannon</code>에 의해 투사체를 발사하는 메소드 <code class="language-plaintext highlighter-rouge">Explode()</code>를 작성하며,</p>
+
+  <p>이 메소드 내에서는 <code class="language-plaintext highlighter-rouge">Explode</code> 커널에 필요한 변수 값들을 전달하고, 해당 커널을 실행한다.</p>
+
+  <details>
+    <summary> 
+DustManager.cs
+</summary>
+
+    <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre><span class="c1">// 싱글톤</span>
+<span class="k">public</span> <span class="k">static</span> <span class="n">DustManager</span> <span class="n">Instance</span> <span class="p">=&gt;</span> <span class="n">_instance</span><span class="p">;</span>
+<span class="k">private</span> <span class="k">static</span> <span class="n">DustManager</span> <span class="n">_instance</span><span class="p">;</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">_instance</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 다른 커널들과 동일한 방식의 kernelID 등의 내용은 생략 //</span>
+
+<span class="k">public</span> <span class="k">void</span> <span class="nf">Explode</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">position</span><span class="p">,</span> <span class="k">in</span> <span class="kt">float</span> <span class="n">sqrRange</span><span class="p">,</span> <span class="k">in</span> <span class="kt">float</span> <span class="n">force</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">SetVector</span><span class="p">(</span><span class="s">"explosionPosition"</span><span class="p">,</span> <span class="n">position</span><span class="p">);</span>
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="s">"explosionSqrRange"</span><span class="p">,</span> <span class="n">sqrRange</span><span class="p">);</span>
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">SetFloat</span><span class="p">(</span><span class="s">"explosionForce"</span><span class="p">,</span> <span class="n">force</span><span class="p">);</span>
+    <span class="n">dustCompute</span><span class="p">.</span><span class="nf">Dispatch</span><span class="p">(</span><span class="n">kernelExplode</span><span class="p">,</span> <span class="n">kernelGroupSizeX</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="section-52"><strong>[7] 실행 결과</strong></h2>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/137156908-aa1c7406-0689-4bcf-ac31-8641dce9b52e.gif" alt="2021_1013_Explode 1" /></p>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/137156928-9bb4c1fc-b0b8-4c06-a3c8-cf7df9294d2d.gif" alt="2021_1013_Explode 2" /></p>
+
+  <p><br /></p>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
 <h1 id="0-box-collision-구현">0. Box Collision 구현</h1>
 <hr />
 
@@ -6339,35 +6803,6 @@ DustManager.cs
 </summary>
 
   <p><br /></p>
-
-  <p><br /></p>
-
-</details>
-<!-- --------------------------------------------------------------------------- -->
-
-<h1 id="0-폭발-효과-구현">0. 폭발 효과 구현</h1>
-<hr />
-
-<details>
-  <summary> 
-…
-</summary>
-
-  <p><br /></p>
-
-  <ul>
-    <li>투사체를 발사하여 충돌체에 닿으면 폭발</li>
-    <li>폭발 범위 내의 먼지에 힘 가하기</li>
-    <li>Cannon : Cone</li>
-  </ul>
-
-  <h2 id="requirements"><strong>Requirements</strong></h2>
-  <ul>
-    <li>C# Rigidbody로 제어</li>
-    <li>동시에 여러 개 발사 가능</li>
-    <li>물리 계산 적용 : 중력, 공기 저항</li>
-    <li>충돌체 충돌 적용 : 컴퓨트 쉐이더 내의 콜라이더와 유니티의 콜라이더가 공유되어야 하므로, 유니티에도 새로운 게임오브젝트 만들어서 콜라이더 넣어주기(Trigger)</li>
-  </ul>
 
   <p><br /></p>
 
@@ -6438,25 +6873,14 @@ DustManager.cs
 
   <ul>
     <li>예쁜 방 꾸미기</li>
-    <li>진공 청소기 모델링 적용하기</li>
+    <li>예쁜 모델링 적용하기</li>
+    <li>미니 게임 만들기</li>
   </ul>
 
   <p><br /></p>
 
 </details>
 <!-- --------------------------------------------------------------------------- -->
-
-<!-- 
-
-TODO
-
-시뮬레이션이라는 이름에 맞게
-
-- 흩날리는 움직임 구현
-
-- 플레인, 큐브, 스피어 등등 충돌과 미끄러짐, 마찰 등 구현
-
--->
 
 <h1 id="github-link">Github Link</h1>
 <hr />
@@ -6656,17 +7080,17 @@ DustManager.cs
         
         
         
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-process-after-initalization/">유니티 - 스크립트의 실행 순서를 보장할 수 없는 경우, 종속적인 작업 처리하기</a></li>
       
         
         
         
         <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
