@@ -3626,6 +3626,328 @@ private void InitColliders()
 
 <br>
 
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+# 15. 투사체 발사 및 폭발 효과 구현
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+투사체를 발사하여 충돌체에 닿으면 폭발하는 기능을 구현한다.
+
+<br>
+
+## **[1] 충돌체 동기화 방식**
+
+컴퓨트 쉐이더 내에서 World Bounds, Sphere Collider가 구현되어 있다.
+
+이는 유니티엔진 내에서 사용할 수 있는 물리 엔진의 Collider와는 별개이므로, 두 가지 선택지가 있다.
+
+1. 투사체의 움직임, 충돌 감지를 모두 컴퓨트 쉐이더 내에서 구현한다.
+2. 컴퓨트 쉐이더 내의 충돌체들을 유니티 엔진 내에서 컴포넌트로 동일하게 생성한다.
+
+<br>
+
+`1번`의 방식대로 구현하려면, 일단 현재 사용 중인 `DustCompute` 컴퓨트 쉐이더 내에서는 할 수 없다.
+
+`DustCompute`에서 실제로 동작하는 각각의 스레드는, 각자 하나의 먼지를 담당하여 동작한다.
+
+그러니 이 컴퓨트 쉐이더의 수십만 스레드 전부가 투사체의 움직임을 중복해서 계산할 수는 없는 노릇이고,
+
+그렇다고 투사체의 개수만큼의 스레드를 지정해서 계산토록 하는 것은 병렬처리의 불균형을 초래하므로 바람직하지 않다.
+
+그래서 또다른 컴퓨트 쉐이더를 구현하자니, 고작 몇 개의 투사체 연산 때문에 컴퓨트 쉐이더를 사용하는건 오히려 낭비이므로 차라리 CPU에서 연산하는 것이 낫다.
+
+<br>
+
+따라서 `2번`을 선택하여, 컴퓨트 쉐이더 내의 충돌체를 CPU, 즉 유니티 월드 내에도 동기화하여 유니티의 물리엔진을 활용하는 것이 낫다.
+
+어차피 컴퓨트 쉐이더에서 충돌체들을 선언하여 사용하는 것이 아니라, 애초에 CPU에서 충돌체 정보를 정의하여 컴퓨트 쉐이더에 전달해주는 방식이었으므로
+
+이 충돌체 정보들을 토대로 Collider 컴포넌트들을 추가해주고 투사체의 움직임은 Rigidbody를 기반으로 구현하면 된다.
+
+다시 말해, CPU에서 정의한 충돌체를 컴퓨트 쉐이더와 유니티 물리엔진이 동기화하여 사용하는 것이다.
+
+<br>
+
+## **[2] 유니티 엔진에서 충돌체 추가**
+
+방법은 아주 간단하다.
+
+월드 영역을 제한하는 `World Bounds`는 큐브 형태지만,
+
+일반적인 큐브 콜라이더와는 달리 충돌 영역이 외부가 아니라 내부를 향한다.
+
+월드 영역 메시도 폴리곤이 내부를 향하도록 구현되어 있으므로,
+
+그냥 `Mesh Collider` 컴포넌트만 추가해주면 된다.
+
+```cs
+/* DustManager.cs */
+private void InitWorldBounds()
+{
+    // ...
+    
+    if (!worldGO.TryGetComponent(out MeshCollider _))
+        worldGO.AddComponent<MeshCollider>();
+    
+    // ...
+}
+```
+
+<br>
+
+마찬가지로 `DustSphereCollider` 클래스에서도 `SphereCollider` 컴포넌트를 추가해준다.
+
+```cs
+/* DustSphereCollider.cs */
+
+private void OnEnable()
+{
+    // ...
+    
+    if (!TryGetComponent(out SphereCollider _))
+        gameObject.AddComponent<SphereCollider>();
+}
+```
+
+<br>
+
+모든 충돌체 게임오브젝트는 `DustCollider` 컴포넌트를 가지며, `"DustCollider"` 태그로 설정한다.
+
+```cs
+public class DustCollider : MonoBehaviour
+{
+    public const string ColliderTag = "DustCollider";
+
+    protected void Awake()
+    {
+        tag = ColliderTag;
+    }
+}
+```
+
+<br>
+
+## **[3] 투사체 구현**
+
+발사되는 투사체를 구현한다.
+
+`Rigidbody`를 통해 물리엔진 기반으로 이동하며,
+
+`Sphere Collider`를 통해 `OnTriggerEnter()` 메소드에서 충돌을 감지한다.
+
+`"DustCollider"` 태그를 갖는 충돌체를 감지할 경우, 스스로를 파괴하며 `DustManager`의 `Explode()` 메소드를 실행한다.
+
+`Rigidbody`, `Sphere Collider` 컴포넌트와 함께 하나의 게임오브젝트에 담아서 미리 프리팹화한다.
+
+<details>
+<summary markdown="span"> 
+CannonBall.cs
+</summary>
+
+```cs
+public class CannonBall : MonoBehaviour
+{
+    [SerializeField] private Rigidbody rBody;
+
+    private float explosionSqrRange;
+    private float explosionForce;
+
+    private void Init()
+    {
+        if (rBody == null)
+            rBody = GetComponent<Rigidbody>();
+
+        if (rBody == null)
+            rBody = gameObject.AddComponent<Rigidbody>();
+
+        TryGetComponent(out Collider col);
+        col.isTrigger = true;
+    }
+
+    public void Shoot(in Vector3 movement, in float explosionRange, in float explosionForce, in float lifespan = 5f)
+    {
+        Init();
+        Destroy(gameObject, lifespan);
+        rBody.AddForce(movement, ForceMode.Impulse);
+
+        this.explosionSqrRange = explosionRange * explosionRange;
+        this.explosionForce = explosionForce;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(DustCollider.ColliderTag) == false) return;
+
+        DustManager.Instance.Explode(transform.position, explosionSqrRange, explosionForce);
+        Destroy(gameObject);
+    }
+}
+```
+
+</details>
+
+<br>
+
+## **[4] 발사대 구현**
+
+`Cone` 클래스를 상속받는 `Cannon` 클래스를 정의한다.
+
+발사 쿨타임을 설정하며, 쿨타임이 돌아왔을 때 `isRunning` 필드가 `true` 값을 갖게될 경우 포탄 프리팹을 복제하여 발사한다.
+
+<details>
+<summary markdown="span"> 
+Cannon.cs
+</summary>
+
+```cs
+public class Cannon : Cone
+{
+    [Header("Cannon Options")]
+    [SerializeField] private GameObject cannonBallPrefab;
+
+    [Range(1, 200f)]
+    [SerializeField] private float explosionRange = 25f;
+
+    [Range(100f, 10000f)]
+    [SerializeField] private float explosionForce = 3000f;
+
+    [Range(0.1f, 2f)]
+    [SerializeField] private float shootingInterval = 1f;
+
+    private float currentCooldown = 0f;
+
+    private void Update()
+    {
+        if (currentCooldown > 0f)
+            currentCooldown -= Time.deltaTime;
+
+        // 발사
+        if (isRunning && currentCooldown <= 0f)
+        {
+            currentCooldown = shootingInterval;
+            Shoot();
+        }
+    }
+
+    public void Shoot()
+    {
+        GameObject clone = Instantiate(cannonBallPrefab, transform.position, Quaternion.identity);
+        CannonBall ball = clone.GetComponent<CannonBall>();
+
+        ball.Shoot(transform.forward * force, explosionRange, explosionForce);
+    }
+}
+```
+
+</details>
+
+<br>
+
+## **[5] Explode 커널 구현**
+
+폭발 중심 위치로부터 구 범위 내의 먼지를 밀쳐내는 기능을 별도의 커널로 작성한다.
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+#pragma kernel Explode
+
+/* Explode */
+float3 explosionPosition; // 폭발 중심 위치
+float explosionSqrRange;  // 폭발 반지름 - 제곱
+float explosionForce;     // 폭발 힘
+
+void Explode (uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if(dustBuffer[i].isAlive == FALSE) return;
+    if(i >= dustCount) return;
+
+    float3 dustPos = dustBuffer[i].position;             // 현재 프레임 먼지 위치
+    float3 centerToDust = (dustPos - explosionPosition); // 폭발 중심 -> 먼지
+    float sqrDist = SqrMagnitude(centerToDust);          // 폭발 중심<-> 먼지 사이 거리 제곱
+
+    // 구형 범위 내에 포함되는 경우
+    if (sqrDist < explosionSqrRange)
+    {
+        float t = 1 - (sqrDist / explosionSqrRange);
+        float f = t * explosionForce;
+        float3 dir = normalize(centerToDust);
+
+        float3 F = dir * f;
+        float3 A = F / mass;
+        velocityBuffer[i] += A * deltaTime;
+    }
+}
+```
+
+</details>
+
+<br>
+
+## **[6] 먼지 관리 컴포넌트**
+
+우선, 편의상 싱글톤 클래스로 정의한다.
+
+그리고 다른 `Cone`들과 마찬가지로 `Cannon` 필드를 작성하며,
+
+키보드 `4` 키를 눌러 선택할 수 있게 한다.
+
+`Cannon`에 의해 투사체를 발사하는 메소드 `Explode()`를 작성하며,
+
+이 메소드 내에서는 `Explode` 커널에 필요한 변수 값들을 전달하고, 해당 커널을 실행한다.
+
+<details>
+<summary markdown="span"> 
+DustManager.cs
+</summary>
+
+```cs
+// 싱글톤
+public static DustManager Instance => _instance;
+private static DustManager _instance;
+
+private void Awake()
+{
+    _instance = this;
+}
+
+// 다른 커널들과 동일한 방식의 kernelID 등의 내용은 생략 //
+
+public void Explode(in Vector3 position, in float sqrRange, in float force)
+{
+    dustCompute.SetVector("explosionPosition", position);
+    dustCompute.SetFloat("explosionSqrRange", sqrRange);
+    dustCompute.SetFloat("explosionForce", force);
+    dustCompute.Dispatch(kernelExplode, kernelGroupSizeX, 1, 1);
+}
+```
+
+</details>
+
+
+<br>
+
+## **[7] 실행 결과**
+
+![2021_1013_Explode 1](https://user-images.githubusercontent.com/42164422/137156908-aa1c7406-0689-4bcf-ac31-8641dce9b52e.gif)
+
+![2021_1013_Explode 2](https://user-images.githubusercontent.com/42164422/137156928-9bb4c1fc-b0b8-4c06-a3c8-cf7df9294d2d.gif)
+
+<br>
+
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
@@ -3638,34 +3960,6 @@ private void InitColliders()
 </summary>
 
 <br>
-
-
-
-<br>
-
-
-</details>
-<!-- --------------------------------------------------------------------------- -->
-
-# 0. 폭발 효과 구현
----
-
-<details>
-<summary markdown="span"> 
-...
-</summary>
-
-<br>
-
-- 투사체를 발사하여 충돌체에 닿으면 폭발
-- 폭발 범위 내의 먼지에 힘 가하기
-- Cannon : Cone
-
-## **Requirements**
-- C# Rigidbody로 제어
-- 동시에 여러 개 발사 가능
-- 물리 계산 적용 : 중력, 공기 저항
-- 충돌체 충돌 적용 : 컴퓨트 쉐이더 내의 콜라이더와 유니티의 콜라이더가 공유되어야 하므로, 유니티에도 새로운 게임오브젝트 만들어서 콜라이더 넣어주기(Trigger)
 
 
 
@@ -3732,7 +4026,8 @@ private void InitColliders()
 <br>
 
 - 예쁜 방 꾸미기
-- 진공 청소기 모델링 적용하기
+- 예쁜 모델링 적용하기
+- 미니 게임 만들기
 
 <br>
 
@@ -3741,18 +4036,6 @@ private void InitColliders()
 
 </details>
 <!-- --------------------------------------------------------------------------- -->
-
-<!-- 
-
-TODO
-
-시뮬레이션이라는 이름에 맞게
-
-- 흩날리는 움직임 구현
-
-- 플레인, 큐브, 스피어 등등 충돌과 미끄러짐, 마찰 등 구현
-
--->
 
 # Github Link
 ---
