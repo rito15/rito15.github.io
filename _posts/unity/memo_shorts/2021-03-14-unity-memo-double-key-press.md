@@ -19,7 +19,7 @@ mermaid: true
 
 ```cs
 /// <summary> 키보드 연속 입력 유지 상태 감지 </summary>
-private class KeyForDoublePressDetection
+private class DoubleKeyPressDetection
 {
     public KeyCode Key { get; private set; }
 
@@ -33,7 +33,7 @@ private class KeyForDoublePressDetection
     private float doublePressThreshold;
     private float lastKeyDownTime;
 
-    public KeyForDoublePressDetection(KeyCode key, float threshold = 0.3f)
+    public DoubleKeyPressDetection(KeyCode key, float threshold = 0.3f)
     {
         this.Key = key;
         SinglePressed = false;
@@ -53,7 +53,7 @@ private class KeyForDoublePressDetection
     }
 
     /// <summary> MonoBehaviour.Update()에서 호출 : 키 정보 업데이트 </summary>
-    public void UpdateCheck()
+    public void Update()
     {
         if (Input.GetKeyDown(Key))
         {
@@ -86,16 +86,16 @@ private class KeyForDoublePressDetection
     }
 }
 
-private KeyForDoublePressDetection[] keys;
+private DoubleKeyPressDetection[] keys;
 
 private void Start()
 {
     keys = new[]
     {
-        new KeyForDoublePressDetection(KeyCode.W),
-        new KeyForDoublePressDetection(KeyCode.A),
-        new KeyForDoublePressDetection(KeyCode.S),
-        new KeyForDoublePressDetection(KeyCode.D),
+        new DoubleKeyPressDetection(KeyCode.W),
+        new DoubleKeyPressDetection(KeyCode.A),
+        new DoubleKeyPressDetection(KeyCode.S),
+        new DoubleKeyPressDetection(KeyCode.D),
     };
 }
 
@@ -103,7 +103,7 @@ private void Update()
 {
     for (int i = 0; i < keys.Length; i++)
     {
-        keys[i].UpdateCheck();
+        keys[i].Update();
     }
 
     keys[0].UpdateAction(() => Debug.Log("W"), () => Debug.Log("WW"));

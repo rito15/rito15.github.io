@@ -556,7 +556,7 @@
 92
 93
 </pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; 키보드 연속 입력 유지 상태 감지 &lt;/summary&gt;</span>
-<span class="k">private</span> <span class="k">class</span> <span class="nc">KeyForDoublePressDetection</span>
+<span class="k">private</span> <span class="k">class</span> <span class="nc">DoubleKeyPressDetection</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="n">KeyCode</span> <span class="n">Key</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
@@ -570,7 +570,7 @@
     <span class="k">private</span> <span class="kt">float</span> <span class="n">doublePressThreshold</span><span class="p">;</span>
     <span class="k">private</span> <span class="kt">float</span> <span class="n">lastKeyDownTime</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="nf">KeyForDoublePressDetection</span><span class="p">(</span><span class="n">KeyCode</span> <span class="n">key</span><span class="p">,</span> <span class="kt">float</span> <span class="n">threshold</span> <span class="p">=</span> <span class="m">0.3f</span><span class="p">)</span>
+    <span class="k">public</span> <span class="nf">DoubleKeyPressDetection</span><span class="p">(</span><span class="n">KeyCode</span> <span class="n">key</span><span class="p">,</span> <span class="kt">float</span> <span class="n">threshold</span> <span class="p">=</span> <span class="m">0.3f</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="n">Key</span> <span class="p">=</span> <span class="n">key</span><span class="p">;</span>
         <span class="n">SinglePressed</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
@@ -590,7 +590,7 @@
     <span class="p">}</span>
 
     <span class="c1">/// &lt;summary&gt; MonoBehaviour.Update()에서 호출 : 키 정보 업데이트 &lt;/summary&gt;</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">UpdateCheck</span><span class="p">()</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="nf">GetKeyDown</span><span class="p">(</span><span class="n">Key</span><span class="p">))</span>
         <span class="p">{</span>
@@ -623,16 +623,16 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">private</span> <span class="n">KeyForDoublePressDetection</span><span class="p">[]</span> <span class="n">keys</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">DoubleKeyPressDetection</span><span class="p">[]</span> <span class="n">keys</span><span class="p">;</span>
 
 <span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">keys</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span>
     <span class="p">{</span>
-        <span class="k">new</span> <span class="nf">KeyForDoublePressDetection</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">W</span><span class="p">),</span>
-        <span class="k">new</span> <span class="nf">KeyForDoublePressDetection</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">A</span><span class="p">),</span>
-        <span class="k">new</span> <span class="nf">KeyForDoublePressDetection</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">S</span><span class="p">),</span>
-        <span class="k">new</span> <span class="nf">KeyForDoublePressDetection</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">D</span><span class="p">),</span>
+        <span class="k">new</span> <span class="nf">DoubleKeyPressDetection</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">W</span><span class="p">),</span>
+        <span class="k">new</span> <span class="nf">DoubleKeyPressDetection</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">A</span><span class="p">),</span>
+        <span class="k">new</span> <span class="nf">DoubleKeyPressDetection</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">S</span><span class="p">),</span>
+        <span class="k">new</span> <span class="nf">DoubleKeyPressDetection</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">D</span><span class="p">),</span>
     <span class="p">};</span>
 <span class="p">}</span>
 
@@ -640,7 +640,7 @@
 <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">keys</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
     <span class="p">{</span>
-        <span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">UpdateCheck</span><span class="p">();</span>
+        <span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">Update</span><span class="p">();</span>
     <span class="p">}</span>
 
     <span class="n">keys</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="nf">UpdateAction</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"W"</span><span class="p">),</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"WW"</span><span class="p">));</span>
@@ -787,12 +787,17 @@
         
         
         
-        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
         
         
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+        <li><a href="/posts/unity-process-after-initalization/">유니티 - 스크립트의 실행 순서를 보장할 수 없는 경우, 종속적인 작업 처리하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
       
         
         
@@ -803,11 +808,6 @@
         
         
         <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
       
 
       </ul>
