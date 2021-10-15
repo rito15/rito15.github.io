@@ -172,6 +172,32 @@ private Vector3? RaycastToPlane(Vector3 origin, Vector3 end, Vector3 planePoint,
 
 <details>
 <summary markdown="span"> 
+Simplified Method
+</summary>
+
+{% include codeHeader.html %}
+```cs
+// 충돌 여부를 미리 알고 있는 경우 사용하는 간소화된 메소드
+private Vector3? RaycastToPlane_Simple(Vector3 origin, Vector3 end, Vector3 planePoint, Vector3 planeNormal)
+{
+    ref Vector3 A = ref origin;
+    ref Vector3 B = ref end;
+    ref Vector3 P = ref planePoint;
+    ref Vector3 N = ref planeNormal;
+
+    Vector3 AB = (B - A);
+    Vector3 nAB = AB.normalized;
+
+    float d = Vector3.Dot(N, P - A) / Vector3.Dot(N, nAB);
+    Vector3 C = A + nAB * d;
+    return C;
+}
+```
+
+</details>
+
+<details>
+<summary markdown="span"> 
 Gizmo Example
 </summary>
 
