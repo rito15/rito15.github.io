@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Raycast to Plane" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"레이캐스트(Raycast)","datePublished":"2021-10-03T22:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/raycast-to-plane/"},"url":"https://rito15.github.io/posts/raycast-to-plane/","author":{"@type":"Person","name":"Rito15"},"headline":"Raycast to Plane","dateModified":"2021-10-09T18:24:54+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"레이캐스트(Raycast)","datePublished":"2021-10-03T22:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/raycast-to-plane/"},"url":"https://rito15.github.io/posts/raycast-to-plane/","author":{"@type":"Person","name":"Rito15"},"headline":"Raycast to Plane","dateModified":"2021-10-16T05:10:04+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sat, Oct  9, 2021,  6:24 PM +0900"
+    title="Sat, Oct 16, 2021,  5:10 AM +0900"
   >
 
   
   
 
   
-    Oct  9
+    Oct 16
   
 
-  <i class="unloaded">2021-10-09T18:24:54+09:00</i>
+  <i class="unloaded">2021-10-16T05:10:04+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="805 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="913 words">5 min</span>
 
 
           <!-- page views -->
@@ -638,6 +638,53 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
     <span class="k">return</span> <span class="n">C</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
+
+<details>
+  <summary> 
+Simplified Method
+</summary>
+
+  <!--
+https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button-to-your-jekyll-blog/
+-->
+
+  <div class="code-button-header">
+    <p><button class="copy-code-button" aria-label="Copy code to clipboard"></button></p>
+  </div>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="c1">// 충돌 여부를 미리 알고 있는 경우 사용하는 간소화된 메소드</span>
+<span class="k">private</span> <span class="n">Vector3</span> <span class="nf">RaycastToPlane_Simple</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">origin</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">end</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">planePoint</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">planeNormal</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">ref</span> <span class="n">Vector3</span> <span class="n">A</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">origin</span><span class="p">;</span>
+    <span class="k">ref</span> <span class="n">Vector3</span> <span class="n">B</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">end</span><span class="p">;</span>
+    <span class="k">ref</span> <span class="n">Vector3</span> <span class="n">P</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">planePoint</span><span class="p">;</span>
+    <span class="k">ref</span> <span class="n">Vector3</span> <span class="n">N</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">planeNormal</span><span class="p">;</span>
+
+    <span class="n">Vector3</span> <span class="n">AB</span> <span class="p">=</span> <span class="p">(</span><span class="n">B</span> <span class="p">-</span> <span class="n">A</span><span class="p">);</span>
+    <span class="n">Vector3</span> <span class="n">nAB</span> <span class="p">=</span> <span class="n">AB</span><span class="p">.</span><span class="n">normalized</span><span class="p">;</span>
+
+    <span class="kt">float</span> <span class="n">d</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">P</span> <span class="p">-</span> <span class="n">A</span><span class="p">)</span> <span class="p">/</span> <span class="n">Vector3</span><span class="p">.</span><span class="nf">Dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nAB</span><span class="p">);</span>
+    <span class="n">Vector3</span> <span class="n">C</span> <span class="p">=</span> <span class="n">A</span> <span class="p">+</span> <span class="n">nAB</span> <span class="p">*</span> <span class="n">d</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">C</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
 
 <details>
   <summary> 
@@ -850,7 +897,7 @@ Gizmo Example
         
         
         
-        <li><a href="/posts/unity-memo-double-key-press/">유니티 - 키보드 연속 입력 유지 상태 감지하기</a></li>
+        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
       
         
         
@@ -860,17 +907,17 @@ Gizmo Example
         
         
         
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-double-key-press/">유니티 - 키보드 연속 입력 유지 상태 감지하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-process-after-initalization/">유니티 - 스크립트의 실행 순서를 보장할 수 없는 경우, 종속적인 작업 처리하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/rendering-pipeline/">렌더링 파이프라인 간단 정리</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
       
 
       </ul>

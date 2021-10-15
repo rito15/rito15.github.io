@@ -178,7 +178,7 @@ Simplified Method
 {% include codeHeader.html %}
 ```cs
 // 충돌 여부를 미리 알고 있는 경우 사용하는 간소화된 메소드
-private Vector3? RaycastToPlane_Simple(Vector3 origin, Vector3 end, Vector3 planePoint, Vector3 planeNormal)
+private Vector3 RaycastToPlane_Simple(Vector3 origin, Vector3 end, Vector3 planePoint, Vector3 planeNormal)
 {
     ref Vector3 A = ref origin;
     ref Vector3 B = ref end;
