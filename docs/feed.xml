@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-15T18:10:27+09:00</updated>
+  <updated>2021-10-16T01:43:13+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,85 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 - 한 번씩만 실행되는 메소드들 순서 정리</title>
+    <link href="https://rito15.github.io/posts/unity-initialization-methods/" rel="alternate" type="text/html" title="유니티 - 한 번씩만 실행되는 메소드들 순서 정리" />
+    <published>2021-10-16T00:01:00+09:00</published>
+  
+    <updated>2021-10-16T00:01:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-initialization-methods/</id>
+    <content src="https://rito15.github.io/posts/unity-initialization-methods/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+  실행되는 순서대로 작성
+
+
+
+
+Methods
+
+
+[1] [InitializeOnEnterPlayMode]
+
+  
+    Docs
+  
+  namespace UnityEditor
+  메소드 애트리뷰트
+  
+    정적 메소드에 사용할 수 있다.
+  
+  플레이 모드에 진입하고, Awake()가 호출되기 전에 딱 1회 실행된다.
+    
+      씬을 재시작할 때는 실행되지 않는다.
+    
+  
+  컴포넌트로 넣지 않고, 스크립트로만 존재해도 실행된다.
+
+
+[InitializeOnEnterPlayMode]
+private static void Method()
+{
+    // ...
+}
+
+
+
+
+[2] [InitializeOnLoad]
+
+  
+    Docs
+  
+  namespace Uni...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -295,64 +374,6 @@ Sphere Cast to Sphere
 
 
 Ref...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</title>
-    <link href="https://rito15.github.io/posts/unity-shader-receive-and-cast-shadow/" rel="alternate" type="text/html" title="유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기" />
-    <published>2021-10-07T00:01:00+09:00</published>
-  
-    <updated>2021-10-07T00:01:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-shader-receive-and-cast-shadow/</id>
-    <content src="https://rito15.github.io/posts/unity-shader-receive-and-cast-shadow/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Study" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Surface Shader
-
-
-  쉐이더를 빠르게 작성할 수 있도록 다양한 편의를 제공한다.
-  Surface 쉐이더 함수는 #pragma surface Surface쉐이더함수명으로 등록한다.
-  미리 만들어진 라이팅을 간편히 적용할 수 있다.
-  커스텀 라이트를 작성하는 것도 어렵지 않다.
-  Receive Shadow, Cast Shadow는 자동으로 적용된다.
-  Surface 쉐이더 함수는 기본적으로 Fragment 쉐이더 함수에 대응되며, 필요하다면 Vertex 쉐이더 함수를 따로 추가할 수 있다.
-
-
-
-
-
-   
-Surface Shader Example
-
-
-  Shader "Custom/BasicSurfaceShader"
-{
-    Properties
-    {
-        _Color (...
     </summary>
   
 

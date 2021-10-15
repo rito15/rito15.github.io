@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기","description":"목표","dateModified":"2021-05-09T01:30:00+09:00","datePublished":"2021-05-09T01:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/"},"url":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표","datePublished":"2021-05-09T01:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/"},"url":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/","author":{"@type":"Person","name":"Rito15"},"headline":"마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기","dateModified":"2021-05-09T01:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -6367,6 +6367,19 @@ Form1.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8462,7 +8475,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/cs-tcp-async-socket-chatting/">
+        <a href="/posts/cs-struct-property-indexer/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8479,13 +8492,13 @@ static void Main()
   
 
   
-    Aug  3
+    Aug  6
   
 
-  <i class="unloaded">2021-08-03T03:33:00+09:00</i>
+  <i class="unloaded">2021-08-06T15:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 구조체 프로퍼티, 구조체 인덱서</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8494,30 +8507,13 @@ static void Main()
 
 
 
-                
-  이전 포스팅에서 이어집니다.
+                구조체의 특징
 
 
+  초기화(할당), 리턴 등의 동작을 통해 값을 전달할 경우, 구조체가 통째로 복제된다.
 
 
-1. 채팅을 위한 패킷 설계
-
-
-[1] ChattingCommand 열거형
-
-
-  전달하는 패킷의 명령어를 미리 열거형으로 정의한다.
-  명령어의 종류는 크게 공통, 클라이언트의 요청, 서버의 통지 3가지로 나뉜다.
-
-
-
-
-
-   
-ChattingCommand.cs
-
-
-  1
+1
 2
 3
 4
@@ -8527,7 +8523,24 @@ ChattingCommand.cs
 8
 9
 10
-...
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+struct MyStruct
+{
+    public float value;
+}
+
+class MainClass
+{
+    private MyStruct ...
               </p>
             </div>
           </div>

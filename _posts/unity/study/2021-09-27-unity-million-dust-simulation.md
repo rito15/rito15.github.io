@@ -3948,6 +3948,12 @@ public void Explode(in Vector3 position, in float sqrRange, in float force)
 
 <br>
 
+## **[8] 폭발 이펙트 추가**
+
+![2021_1015_Exposion and Flash](https://user-images.githubusercontent.com/42164422/137484005-87074c6c-a9b7-4d5d-b6c8-52d045694381.gif)
+
+<br>
+
 </details>
 <!-- --------------------------------------------------------------------------- -->
 

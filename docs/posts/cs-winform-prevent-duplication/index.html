@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="윈폼 중복 실행 방지" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"윈폼 중복 실행 방지","description":"Memo","dateModified":"2021-05-06T02:02:00+09:00","datePublished":"2021-05-06T02:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-prevent-duplication/"},"url":"https://rito15.github.io/posts/cs-winform-prevent-duplication/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Memo","datePublished":"2021-05-06T02:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-prevent-duplication/"},"url":"https://rito15.github.io/posts/cs-winform-prevent-duplication/","author":{"@type":"Person","name":"Rito15"},"headline":"윈폼 중복 실행 방지","dateModified":"2021-05-06T02:02:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -6261,6 +6261,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8364,7 +8377,7 @@ public b...
       
       
       <div class="card">
-        <a href="/posts/cs-tcp-async-socket-chatting/">
+        <a href="/posts/cs-struct-property-indexer/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8381,13 +8394,13 @@ public b...
   
 
   
-    Aug  3
+    Aug  6
   
 
-  <i class="unloaded">2021-08-03T03:33:00+09:00</i>
+  <i class="unloaded">2021-08-06T15:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 구조체 프로퍼티, 구조체 인덱서</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8396,30 +8409,13 @@ public b...
 
 
 
-                
-  이전 포스팅에서 이어집니다.
+                구조체의 특징
 
 
+  초기화(할당), 리턴 등의 동작을 통해 값을 전달할 경우, 구조체가 통째로 복제된다.
 
 
-1. 채팅을 위한 패킷 설계
-
-
-[1] ChattingCommand 열거형
-
-
-  전달하는 패킷의 명령어를 미리 열거형으로 정의한다.
-  명령어의 종류는 크게 공통, 클라이언트의 요청, 서버의 통지 3가지로 나뉜다.
-
-
-
-
-
-   
-ChattingCommand.cs
-
-
-  1
+1
 2
 3
 4
@@ -8429,7 +8425,24 @@ ChattingCommand.cs
 8
 9
 10
-...
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+struct MyStruct
+{
+    public float value;
+}
+
+class MainClass
+{
+    private MyStruct ...
               </p>
             </div>
           </div>

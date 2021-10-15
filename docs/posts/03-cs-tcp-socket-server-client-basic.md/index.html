@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="TCP 소켓 서버, 클라이언트 기본" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"TCP 소켓 서버, 클라이언트 기본","description":"소켓 정의","dateModified":"2021-08-02T00:03:00+09:00","datePublished":"2021-08-02T00:03:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/03-cs-tcp-socket-server-client-basic.md/"},"url":"https://rito15.github.io/posts/03-cs-tcp-socket-server-client-basic.md/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"소켓 정의","datePublished":"2021-08-02T00:03:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/03-cs-tcp-socket-server-client-basic.md/"},"url":"https://rito15.github.io/posts/03-cs-tcp-socket-server-client-basic.md/","author":{"@type":"Person","name":"Rito15"},"headline":"TCP 소켓 서버, 클라이언트 기본","dateModified":"2021-08-02T00:03:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -5831,6 +5831,19 @@ TcpClientBasic.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8647,81 +8660,6 @@ TcpClientBasic.cs
       
       
       <div class="card">
-        <a href="/posts/cs-tcp-async-socket-chatting/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  3
-  
-
-  <i class="unloaded">2021-08-03T03:33:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                
-  이전 포스팅에서 이어집니다.
-
-
-
-
-1. 채팅을 위한 패킷 설계
-
-
-[1] ChattingCommand 열거형
-
-
-  전달하는 패킷의 명령어를 미리 열거형으로 정의한다.
-  명령어의 종류는 크게 공통, 클라이언트의 요청, 서버의 통지 3가지로 나뉜다.
-
-
-
-
-
-   
-ChattingCommand.cs
-
-
-  1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/01-cs-tcp-ip-4-layer/">
           <div class="card-body">
             <!--
@@ -8847,6 +8785,65 @@ TCP(Transmission Control Protocol)
 개념
 
   데이터를 메시지 형태로 전송하기 위...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/04-cs-udp-socket-server-client-basic.md/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug  2
+  
+
+  <i class="unloaded">2021-08-02T00:04:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>UDP 소켓 서버, 클라이언트 기본</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                UDP 소켓 통신의 특징
+
+
+
+  서버와 클라이언트 간의 1:1 연결이 생성되지 않는다.
+  리스너 소켓이 필요하지 않다.
+  Listen(), Connect() 과정이 없다.
+  소켓의 .ReceiveFrom(), .SendTo() 메소드를 통해 엔드포인트와 데이터를 주고 받는다.
+
+
+
+
+소켓 통신 과정
+
+
+서버
+
+  서버 IP 주소, 포트를 통해 ...
               </p>
             </div>
           </div>

@@ -1082,7 +1082,7 @@ https://www.youtube.com/watch?v=MawzivWLCoo
 
 
 
-# 4. Graph
+# 4. Particle Shaders
 ---
 
 ## **Basic Particle(Additive) Shader**
@@ -1230,6 +1230,10 @@ WireConnection;5;2;23;0
 `Static Switch` 노드는 아래처럼 설정하면 된다.
 
 ![image](https://user-images.githubusercontent.com/42164422/132756323-ae1667ce-3d56-4eec-91b7-7e035a59843a.png)
+
+<br>
+
+대신 `Project Settings` - `Quality` - `Rendering` - `Soft Particles`에 체크해야 한다.
 
 </details>
 
