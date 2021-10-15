@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="TCP, UDP 프로토콜" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"TCP, UDP 프로토콜","datePublished":"2021-08-02T00:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/02-cs-tcp-udp-protocols.md/"},"url":"https://rito15.github.io/posts/02-cs-tcp-udp-protocols.md/","author":{"@type":"Person","name":"Rito15"},"headline":"TCP, UDP 프로토콜","dateModified":"2021-08-02T00:02:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"TCP, UDP 프로토콜","description":"TCP, UDP 프로토콜","dateModified":"2021-08-02T00:02:00+09:00","datePublished":"2021-08-02T00:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/02-cs-tcp-udp-protocols.md/"},"url":"https://rito15.github.io/posts/02-cs-tcp-udp-protocols.md/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -680,6 +680,11 @@
         
         
         
+        <li><a href="/posts/unity-memo-double-key-press/">유니티 - 키보드 연속 입력 유지 상태 감지하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
@@ -696,11 +701,6 @@
         
         
         <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
       
 
       </ul>
@@ -1795,8 +1795,6 @@
     
     
     
-    
-      
     
   
     
@@ -4089,6 +4087,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8236,70 +8247,6 @@
       
       
       <div class="card">
-        <a href="/posts/06-cs-tcp-async-socket-with-packet.md/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  2
-  
-
-  <i class="unloaded">2021-08-02T00:06:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                
-  이전 포스팅에서 이어집니다.
-
-
-
-
-ReceiveBuffer, SendBuffer
-
-
-
-  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.
-
-
-
-
-ReceiveBuffer 클래스
-
-
-
-  
-    각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.
-  
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-tcp-async-socket-chatting/">
           <div class="card-body">
             <!--
@@ -8439,6 +8386,74 @@ TCP/IP 4 Layer
 [4] Application
 
   OSI 7 Layer의 Application(7), ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/03-cs-tcp-socket-server-client-basic.md/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug  2
+  
+
+  <i class="unloaded">2021-08-02T00:03:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 소켓 서버, 클라이언트 기본</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                소켓 정의
+
+
+프로토콜
+
+  데이터 전송을 위한 규약이며, 대표적으로 TCP와 UDP가 있다.
+
+
+IP
+
+  컴퓨터에 부여된 논리적 식별 주소
+
+
+Port
+
+  네트워크 상에서 통신하기 위해 호스트 내부적으로 프로세스가 할당받는 고유 번호
+  같은 컴퓨터 내에서 프로세스를 식별하기 위한 번호
+
+
+
+
+소켓 통신 과정
+
+
+서버
+
+  서버 IP 주소, 포트...
               </p>
             </div>
           </div>
@@ -9640,8 +9655,6 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
-    
-      
     
   
     

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표","datePublished":"2021-05-09T01:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/"},"url":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/","author":{"@type":"Person","name":"Rito15"},"headline":"마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기","dateModified":"2021-05-09T01:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기","description":"목표","dateModified":"2021-05-09T01:30:00+09:00","datePublished":"2021-05-09T01:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/"},"url":"https://rito15.github.io/posts/cs-winform-pass-through-mouse-events/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -776,6 +776,11 @@ Form1.cs
         
         
         
+        <li><a href="/posts/unity-memo-double-key-press/">유니티 - 키보드 연속 입력 유지 상태 감지하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
@@ -792,11 +797,6 @@ Form1.cs
         
         
         <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
       
 
       </ul>
@@ -1891,8 +1891,6 @@ Form1.cs
     
     
     
-    
-      
     
   
     
@@ -6356,6 +6354,19 @@ Form1.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8451,7 +8462,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/06-cs-tcp-async-socket-with-packet.md/">
+        <a href="/posts/cs-tcp-async-socket-chatting/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8468,13 +8479,13 @@ static void Main()
   
 
   
-    Aug  2
+    Aug  3
   
 
-  <i class="unloaded">2021-08-02T00:06:00+09:00</i>
+  <i class="unloaded">2021-08-03T03:33:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8489,22 +8500,33 @@ static void Main()
 
 
 
-ReceiveBuffer, SendBuffer
+1. 채팅을 위한 패킷 설계
+
+
+[1] ChattingCommand 열거형
+
+
+  전달하는 패킷의 명령어를 미리 열거형으로 정의한다.
+  명령어의 종류는 크게 공통, 클라이언트의 요청, 서버의 통지 3가지로 나뉜다.
 
 
 
-  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.
 
 
+   
+ChattingCommand.cs
 
 
-ReceiveBuffer 클래스
-
-
-
-  
-    각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.
-  
+  1
+2
+3
+4
+5
+6
+7
+8
+9
+10
 ...
               </p>
             </div>
@@ -9717,8 +9739,6 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
-    
-      
     
   
     

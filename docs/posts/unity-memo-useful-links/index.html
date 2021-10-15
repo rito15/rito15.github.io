@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 유용한 정보, 링크 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"플러그인, 깃헙","datePublished":"2021-01-01T01:01:01+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-useful-links/"},"url":"https://rito15.github.io/posts/unity-memo-useful-links/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 유용한 정보, 링크 모음","dateModified":"2021-09-23T00:02:42+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 - 유용한 정보, 링크 모음","description":"플러그인, 깃헙","dateModified":"2021-09-23T00:02:42+09:00","datePublished":"2021-01-01T01:01:01+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-useful-links/"},"url":"https://rito15.github.io/posts/unity-memo-useful-links/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -806,6 +806,11 @@
         
         
         
+        <li><a href="/posts/unity-memo-double-key-press/">유니티 - 키보드 연속 입력 유지 상태 감지하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
@@ -822,11 +827,6 @@
         
         
         <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
       
 
       </ul>
@@ -1921,8 +1921,6 @@
     
     
     
-    
-      
     
   
     
@@ -8237,6 +8235,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8464,7 +8475,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-memo-gc/">
+        <a href="/posts/unity-save-screen-shot/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8481,13 +8492,13 @@
   
 
   
-    Jan  1
+    Sep  8
   
 
-  <i class="unloaded">2021-01-01T01:01:02+09:00</i>
+  <i class="unloaded">2021-09-08T05:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - GC 관련 메모, 팁 모음</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 스크린샷 찍고 저장하기(Windows, Android)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8496,28 +8507,33 @@
 
 
 
-                String
+                1. Unity Editor
+
+
+저장할 경로
+
+  $"{Application.dataPath}/ScreenShots/"
+
+
+실제 경로
+
+  "[프로젝트 디렉토리]/Assets/ScreenShots/"
 
 
 
-  
-    Object.name 프로퍼티는 호출하는 것 자체만으로 가비지를 하나 생성한다.
-  
-  
-    GameObject.tag 프로퍼티는 호출하는 것 자체만으로 가비지를 하나 생성한다.
-    
-      태그 비교 시 반드시 .CompareTag() 메소드를 사용해야 한다.
-    
-  
 
 
+2. Standalone App
 
 
-Component
+저장할 경로
+
+  $"{Application.dataPath}/ScreenShots/"
 
 
+실제 경로
 
- ...
+  ...
               </p>
             </div>
           </div>
@@ -9719,8 +9735,6 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
-    
-      
     
   
     

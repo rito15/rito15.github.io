@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page7/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page7/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,99 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-shader-const-variables/">유니티 쉐이더 - 상수, 상수 배열 선언하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+
+  Pass 내부에 작성
+
+
+
+  
+    // 매크로 상수
+#define RANDOM_SEED 426.791
+
+// 그냥 상수
+static const float RandomSeed = 5417.24;
+
+// 상수 배열
+static const float2 dir[8] = 
+{
+    float2(1, 0), float2(0, 1),   ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Aug 30, 2021,  9:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 30
+  
+
+  <i class="unloaded">2021-08-30T21:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="67 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1172,98 +1265,6 @@ if(GUI.GetNameOfFocusedControl() =...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있다.
-
-그런데 일반적인 방법으로는 하나의 커브 필드에 하나의 커브만 그려진다.
-
-커브 필드에는 불투명한 배경 색상이 존재하기 때문이다.
-
-
-  (0.337f, 0.337f, 0.337f, 1f)
-
-
-
-
-
-
-따라서 이를 해결하기 위해서는, 리플렉...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Aug 25, 2021,  3:00 AM +0900"
-  >
-
-  
-  
-
-  
-    Aug 25
-  
-
-  <i class="unloaded">2021-08-25T03:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="677 words">3 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1844,6 +1845,11 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
         
         
         
+        <li><a href="/posts/unity-memo-double-key-press/">유니티 - 키보드 연속 입력 유지 상태 감지하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
@@ -1860,11 +1866,6 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
         
         
         <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
       
 
       </ul>
@@ -2959,8 +2960,6 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
     
     
     
-    
-      
     
   
     
@@ -6363,8 +6362,6 @@ EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있�
     
     
     
-    
-      
     
   
     

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Raycast to Plane" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"레이캐스트(Raycast)","datePublished":"2021-10-03T22:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/raycast-to-plane/"},"url":"https://rito15.github.io/posts/raycast-to-plane/","author":{"@type":"Person","name":"Rito15"},"headline":"Raycast to Plane","dateModified":"2021-10-09T18:24:54+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Raycast to Plane","description":"레이캐스트(Raycast)","dateModified":"2021-10-09T18:24:54+09:00","datePublished":"2021-10-03T22:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/raycast-to-plane/"},"url":"https://rito15.github.io/posts/raycast-to-plane/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -841,6 +841,11 @@ Gizmo Example
         
         
         
+        <li><a href="/posts/unity-memo-double-key-press/">유니티 - 키보드 연속 입력 유지 상태 감지하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
@@ -857,11 +862,6 @@ Gizmo Example
         
         
         <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
       
 
       </ul>
@@ -1956,8 +1956,6 @@ Gizmo Example
     
     
     
-    
-      
     
   
     
@@ -4245,6 +4243,19 @@ Gizmo Example
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8509,7 +8520,7 @@ Gizmo Example
       
       
       <div class="card">
-        <a href="/posts/algorithm-pow/">
+        <a href="/posts/sphere-cast-to-sphere/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8526,13 +8537,13 @@ Gizmo Example
   
 
   
-    Apr  6
+    Oct  9
   
 
-  <i class="unloaded">2021-04-06T18:00:00+09:00</i>
+  <i class="unloaded">2021-10-09T18:26:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>O(logn) 거듭제곱 알고리즘</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Sphere Cast to Sphere</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8541,26 +8552,29 @@ Gizmo Example
 
 
 
-                Summary
+                Sphere Cast
 
 
 
   
-    일반적으로 \(O(n)\) 시간복잡도로 수행하는 거듭제곱 계산을 \(O(log_{2}n)\) 의 시간복잡도로 수행할 수 있는 알고리즘
+    공간 상의 한 점에서부터 목표 지점까지 구체를 전진시켜, 구체 표면에 닿는 물체 표면을 검출한다.
   
   
-    2진수 연산을 이용한다.
+    레이캐스트와는 달리 구체의 반지름을 고려해야 한다.
   
 
 
 
 
-Details
+Sphere Cast to Sphere
 
 
-(a^n)을 계산하는 가장 쉬운 방법은 (a)를 (n) 번 곱하는 것이다.
 
-예를 들어 (4^9)을 구하려면 (4...
+  
+    대상 물체가 구체인 경우에 대해서만 검사한다.
+  
+  
+    충돌 여부와...
               </p>
             </div>
           </div>
@@ -9772,8 +9786,6 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
-    
-      
     
   
     

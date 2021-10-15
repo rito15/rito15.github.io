@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-15T02:50:06+09:00</updated>
+  <updated>2021-10-15T18:10:27+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,67 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 - 에디터에서 스크립트로 태그, 레이어 추가하기</title>
+    <link href="https://rito15.github.io/posts/unity-add-tag-or-layer-in-script/" rel="alternate" type="text/html" title="유니티 - 에디터에서 스크립트로 태그, 레이어 추가하기" />
+    <published>2021-10-15T17:00:00+09:00</published>
+  
+    <updated>2021-10-15T17:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-add-tag-or-layer-in-script/</id>
+    <content src="https://rito15.github.io/posts/unity-add-tag-or-layer-in-script/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+프로젝트의 일부를 다른 프로젝트로 옮기는 경우,
+
+특정 씬에서만 사용하는 태그 또는 레이어가 존재할 수 있다.
+
+그런데 옮긴 프로젝트에서 해당 태그 또는 레이어가 존재하지 않으면
+
+직접 추가해줘야 하므로 번거롭다.
+
+따라서 아래 소스 코드를 통해 이를 자동화할 수 있다.
+
+
+
+Source Code
+
+
+using UnityEngine;
+using UnityEditor;
+
+public static class EditorTagLayerHelper
+{
+    /// &amp;lt;summary&amp;gt; 태그 중복 확인 및 추가 &amp;lt;/summary&amp;gt;
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
+    public static void AddNewTa...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -292,58 +353,6 @@ Surface Shader Example
     Properties
     {
         _Color (...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# 배열에 같은 값을 넣으면서 선언하기</title>
-    <link href="https://rito15.github.io/posts/cs-memo-linq/" rel="alternate" type="text/html" title="C# 배열에 같은 값을 넣으면서 선언하기" />
-    <published>2021-10-06T22:00:00+09:00</published>
-  
-    <updated>2021-10-06T22:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-memo-linq/</id>
-    <content src="https://rito15.github.io/posts/cs-memo-linq/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-// 인덱스 0부터 99까지 정수 1로 채우기
-int[] arr = Enumerable.Repeat(1, 100).ToArray();
-
-
-물론 LINQ를 쓰는 만큼, 중간 버퍼의 가비지는 감안해야 한다.
-
-
-
-.NET 5.0 버전이라면 Array.Fill() 메소드를 사용하면 된다.
-
-int[] arr = new int[100];
-Array.Fill(arr, 1); // 배열 전체에 1로 채우기
-
-
     </summary>
   
 
