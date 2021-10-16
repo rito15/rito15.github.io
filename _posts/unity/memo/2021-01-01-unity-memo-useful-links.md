@@ -39,7 +39,7 @@ pin: true
 ## Math Utilities
 - <https://github.com/zalo/MathUtilities>
 
-## Patterns
+## Design Patterns
 - <https://github.com/QianMo/Unity-Design-Pattern>
 
 ## UGUI Particle Effects
@@ -62,6 +62,78 @@ pin: true
 
 ## Voxelizer
 - <https://github.com/mattatz/unity-voxel>
+
+<br>
+
+# 유니티 관련 강좌, 정보
+---
+
+## 유니티 코리아 유튜브
+- <https://www.youtube.com/c/UnityKoreaHi/playlists>
+
+## 최적화
+- [유나이트 서울 2020 - 최대 성능을 위한 최적화 팁](https://www.youtube.com/watch?v=tT9LS53HRx4)
+- [Dev Weeks: 성능 프로파일링과 최적화](https://www.youtube.com/watch?v=4kVffWfmJ60)
+
+## 성능 프로파일링과 최적화
+- [1. 성능 프로파일링 유의사항](https://www.youtube.com/watch?v=d_0uDfNEOk8)
+- [2. 유니티 프로파일러](https://www.youtube.com/watch?v=WncETrdMG0Q)
+- [3. GPU 프로파일링](https://www.youtube.com/watch?v=3-ir52a_ynM)
+- [4. 텍스쳐 압축](https://www.youtube.com/watch?v=3_pASBWPovc)
+- [5. 프레임 디버거](https://www.youtube.com/watch?v=g_ZgPyB9uKw)
+- [6. 메모리 프로파일러](https://www.youtube.com/watch?v=myXFh3wjbxA)
+- [7. 코드 작성 팁](https://www.youtube.com/watch?v=lx5x41WqgMo)
+
+## 모바일 최적화
+- [모바일 게임 성능 최적화 - 1편](https://www.youtube.com/watch?v=1mJtoceqvro)
+- [모바일 게임 성능 최적화 - 2편](https://www.youtube.com/watch?v=RLcSRuZsZQU)
+
+## 유니티, 쉐이더 튜토리얼
+- <https://catlikecoding.com/unity/tutorials/>
+- <https://www.ronja-tutorials.com/>
+
+## URP 쉐이더 코딩 기초
+- <https://docs.google.com/document/d/1UX0319CXa29fCFAgg0qa5vnH-U6875jt0KLKUk5mke8/edit>
+- <https://www.youtube.com/watch?v=mlNWoROvavY>
+
+## HDRP
+- [Dev Weeks : HDRP Environment settings and Look dev](https://www.youtube.com/watch?v=n5NzQfpVb54)
+- [Dev Weeks: HDRP Lighting의 종류와 이해](https://www.youtube.com/watch?v=5P7fyMqywxc)
+
+- [Unite Now: HDRP로 정확도 높은 게임 그래픽스 구현하기](https://www.youtube.com/watch?v=FpmBAilRoBE)
+- [Unite Now 2020 : Lighting and rendering tutorial for HDRP](https://www.youtube.com/watch?v=yqCHiZrgKzs)
+
+- [HDRP Interior Lighting 1. Basic Setting](https://www.youtube.com/watch?v=KSzpQo_LJak)
+- [HDRP Interior Lighting 2. Light Setting](https://www.youtube.com/watch?v=3eUNCqSj8hY)
+- [HDRP Interior Lighting 3. HDRP Volumetric Lighting](https://www.youtube.com/watch?v=OaOdsh7qL0w)
+
+## 레거시 파이프라인과 SRP
+- <https://drive.google.com/file/d/1eR39KY_n_wuWF5S_zClCECE3ynmSfs-h/view>
+
+## 유니티 C# 소스코드
+- <https://github.com/Unity-Technologies/UnityCsReference>
+
+## DOTS
+- [Unite Seoul 2019 : 이재호 - DOTS란 무엇인가?](https://www.youtube.com/watch?v=OLCf8nlMJ_U)
+- [DOTS란 무엇인가?](https://www.youtube.com/watch?v=hAp5nx2_Hpg)
+- [Dev Weeks: Pong 게임을 통해 배워보는 DOTS](https://www.youtube.com/watch?v=fl1Acgc3L9o)
+- <https://github.com/Unity-Technologies/DOTS-training-samples>
+
+<br>
+
+# 무료 애셋
+---
+
+## URP, HDRP Materials
+- <https://blog.unity.com/kr/manufacturing/we-have-you-covered-with-the-measured-materials-library>
+- <https://github.com/Unity-Technologies/MeasuredMaterialLibraryURP>
+- <https://github.com/Unity-Technologies/MeasuredMaterialLibraryHDRP>
+
+## Kenny : Simple Assets
+- <https://www.kenney.nl/assets>
+
+## WeSound : 25GB SFX
+- <https://wesoundeffects.com/we-sound-effects-bundle-2020/>
 
 <br>
 
@@ -88,47 +160,6 @@ pin: true
 
 <br>
 
-# 무료 애셋
----
-
-## URP, HDRP Materials
-- <https://blog.unity.com/kr/manufacturing/we-have-you-covered-with-the-measured-materials-library>
-- <https://github.com/Unity-Technologies/MeasuredMaterialLibraryURP>
-- <https://github.com/Unity-Technologies/MeasuredMaterialLibraryHDRP>
-
-## Kenny : Simple Assets
-- <https://www.kenney.nl/assets>
-
-## WeSound : 25GB SFX
-- <https://wesoundeffects.com/we-sound-effects-bundle-2020/>
-
-<br>
-
-# 유니티 관련 강좌, 정보
----
-
-## 유니티 코리아 유튜브
-- <https://www.youtube.com/c/UnityKoreaHi/playlists>
-
-## 유니티, 쉐이더 튜토리얼
-- <https://catlikecoding.com/unity/tutorials/>
-- <https://www.ronja-tutorials.com/>
-
-## URP 쉐이더 코딩 기초
-- <https://docs.google.com/document/d/1UX0319CXa29fCFAgg0qa5vnH-U6875jt0KLKUk5mke8/edit>
-- <https://www.youtube.com/watch?v=mlNWoROvavY>
-
-## 레거시 파이프라인과 SRP
-- <https://drive.google.com/file/d/1eR39KY_n_wuWF5S_zClCECE3ynmSfs-h/view>
-
-## 유니티 C# 소스코드
-- <https://github.com/Unity-Technologies/UnityCsReference>
-
-## DOTS 샘플
-- <https://github.com/Unity-Technologies/DOTS-training-samples>
-
-<br>
-
 # 기타
 ---
 
@@ -151,7 +182,7 @@ pin: true
  - 기간 결제 / 기간 내 다운받으면 평생 사용
  - 라이센스는 대부분 상업 이용 가능이지만 그래도 확인하기
 
-# 깃헙 프로젝트 관리
+## 깃헙 프로젝트 관리
  - <https://www.slideshare.net/utilforever/ss-114169070>
  - 지속적인 통합, 테스트, 코드 커버리지, 코드 품질, 문서화
 
