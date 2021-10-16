@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 스크립트 최적화" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 스크립트 최적화","dateModified":"2021-09-17T04:13:36+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main","headline":"유니티 - 스크립트 최적화","dateModified":"2021-09-17T04:13:36+09:00","datePublished":"2021-02-04T19:30:00+09:00","url":"https://rito15.github.io/posts/unity-opt-script-optimization/","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="7494 words">41 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="7643 words">42 min</span>
 
 
           <!-- page views -->
@@ -1223,11 +1223,9 @@
   <li><a href="https://www.jacksondunstan.com/articles/4840">https://www.jacksondunstan.com/articles/4840</a></li>
 </ul>
 
-<p>LINQ는 개발자에게 굉장한 편의성을 제공해주며, 대개 성능이 크게 나쁘지는 않다.</p>
+<p><code class="language-plaintext highlighter-rouge">LINQ</code>는 개발자에게 굉장한 편의성을 제공해주며, 대개 성능이 크게 나쁘지는 않다.</p>
 
-<p>하지만 정확히 이해하고 사용하지 않는다면 불필요한 성능 및 메모리 소모가 발생할 수 있으므로,</p>
-
-<p>잘 판단해서 사용해야 한다.</p>
+<p>하지만 정확히 이해하고 사용할 필요가 있다.</p>
 
 <p><code class="language-plaintext highlighter-rouge">LINQ</code>의 대부분의 연산자는 중간 버퍼(일종의 배열)를 생성하고, 이는 모조리 가비지가 된다.</p>
 
@@ -1237,7 +1235,20 @@
 
 <p>성능에 민감하거나 매프레임 호출되는 부분에서 <code class="language-plaintext highlighter-rouge">LINQ</code>를 사용하고 있었다면,</p>
 
-<p>더 나은 방안은 없을지 다시 한 번 생각해보는 것이 좋다.</p>
+<p>가능하면 최대한 <code class="language-plaintext highlighter-rouge">LINQ</code>의 사용을 자제하고 직접 구현하는 것이 좋다.</p>
+
+<p>물론 하드 코딩으로 매번 구현하기보다, <code class="language-plaintext highlighter-rouge">LINQ</code>를 대체할 수 있는 <code class="language-plaintext highlighter-rouge">API</code>를 구축해서 재사용하는 것이 현명할 것이다.</p>
+
+<p><br /></p>
+
+<p>잘 모르겠다면, 간단한 규칙을 정해보면 된다.</p>
+
+<ol>
+  <li>빠르게 구현해야만 하는 상황(프로토타입 개발 등)인가? - <code class="language-plaintext highlighter-rouge">LINQ</code> 사용</li>
+  <li>성능에 민감하지 않은 코드(에디터 전용 코드 또는 작은 코드 등)인가? - <code class="language-plaintext highlighter-rouge">LINQ</code> 사용</li>
+  <li><code class="language-plaintext highlighter-rouge">LINQ</code>의 편의성 또는 가독성이 꼭 필요한가? - <code class="language-plaintext highlighter-rouge">LINQ</code> 사용</li>
+  <li>매프레임 호출되거나, 성능에 민감한 부분인가? - <code class="language-plaintext highlighter-rouge">LINQ</code> 사용하지 않기</li>
+</ol>
 
 <p><br /></p>
 
@@ -1792,6 +1803,16 @@
         
         
         
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
       
         
@@ -1802,17 +1823,7 @@
         
         
         
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-memo-double-key-press/">유니티 - 키보드 연속 입력 유지 상태 감지하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-process-after-initalization/">유니티 - 스크립트의 실행 순서를 보장할 수 없는 경우, 종속적인 작업 처리하기</a></li>
       
 
       </ul>
@@ -9478,7 +9489,6 @@ GIF
                 목차
 
 
-
   1. Note
   2. Tools
   3. Unity Profiler
@@ -9495,7 +9505,7 @@ GIF
 
 
 
-No...
+Not...
               </p>
             </div>
           </div>
