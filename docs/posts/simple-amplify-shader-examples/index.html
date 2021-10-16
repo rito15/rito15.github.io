@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="간단한 앰플리파이 쉐이더 예제 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note","datePublished":"2021-06-27T04:24:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/simple-amplify-shader-examples/"},"url":"https://rito15.github.io/posts/simple-amplify-shader-examples/","author":{"@type":"Person","name":"Rito15"},"headline":"간단한 앰플리파이 쉐이더 예제 모음","dateModified":"2021-10-16T02:34:56+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note","headline":"간단한 앰플리파이 쉐이더 예제 모음","dateModified":"2021-10-16T02:34:56+09:00","datePublished":"2021-06-27T04:24:00+09:00","url":"https://rito15.github.io/posts/simple-amplify-shader-examples/","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/simple-amplify-shader-examples/"},"author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1817 words">10 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1824 words">10 min</span>
 
 
           <!-- page views -->
@@ -1210,6 +1210,51 @@ WireConnection;8;0;3;0
 </details>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/123473821-0fffd500-d634-11eb-988c-3ed1c20f4130.gif" alt="2021_0626_CheckerBoard" /></p>
+
+<p><br /></p>
+
+<h2 id="smooth-box"><strong>Smooth Box</strong></h2>
+
+<details>
+
+  <summary> 
+Copy &amp; Paste
+</summary>
+
+  <!--
+https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button-to-your-jekyll-blog/
+-->
+
+  <div class="code-button-header">
+    <p><button class="copy-code-button" aria-label="Copy code to clipboard"></button></p>
+  </div>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>http://paste.amplify.pt/view/raw/4b5cd0ae
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <!--
+AMPLIFY_CLIPBOARD_ID;-1288.301,-234.3079,0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleAddOpNode;8;-757.921,-321.0081;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;8;0;9;0
+WireConnection;8;1;9;1#CLIP_ITEM#Node;AmplifyShaderEditor.BreakToComponentsNode;9;-868.6594,-323.8337;Inherit;False;FLOAT2;1;0;FLOAT2;0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
+WireConnection;9;0;10;0#CLIP_ITEM#Node;AmplifyShaderEditor.SmoothstepOpNode;10;-1083.659,-322.8338;Inherit;True;3;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;2;FLOAT2;1,0;False;1;FLOAT2;0
+WireConnection;10;0;5;0
+WireConnection;10;1;14;0
+WireConnection;10;2;11;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleAddOpNode;11;-1246.958,-107.5339;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;11;0;14;0
+WireConnection;11;1;12;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;7;-1817.458,-122.334;Inherit;False;Property;_Width;Width;0;0;Create;True;0;0;0;False;0;False;0.2;0.2900154;0;1;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.AbsOpNode;5;-1271.658,-323.8338;Inherit;False;1;0;FLOAT2;0,0;False;1;FLOAT2;0
+WireConnection;5;0;3;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleMultiplyOpNode;14;-1402.28,-142.8168;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;14;0;4;0
+WireConnection;14;1;16;0#CLIP_ITEM#Node;AmplifyShaderEditor.OneMinusNode;16;-1554.881,-117.5169;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;16;0;7;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;4;-1554.658,-224.8338;Inherit;False;Constant;_05;0.5;0;0;Create;True;0;0;0;False;0;False;0.5;0;0;0;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.SaturateNode;13;-647.8101,-320.3564;Inherit;True;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;13;0;8;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleSubtractOpNode;3;-1401.658,-323.8338;Inherit;False;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
+WireConnection;3;0;2;0
+WireConnection;3;1;4;0#CLIP_ITEM#Node;AmplifyShaderEditor.TexCoordVertexDataNode;2;-1602.057,-354.1338;Inherit;False;0;2;0;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;12;-1538.258,-41.1339;Inherit;False;Property;_Smoothness;Smoothness;3;0;Create;True;0;0;0;False;0;False;0.2;0.263312;0;1;0;1;FLOAT;0
+-->
+
+</details>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/137590346-5d0dfdd7-d5ac-4dd8-aabe-14eb8ac873ff.png" alt="image" /></p>
 
 <p><br /></p>
 
