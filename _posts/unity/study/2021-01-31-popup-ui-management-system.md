@@ -317,7 +317,7 @@ public class PopupUIManager : MonoBehaviour
 
 # Source Code
 ---
-- <https://github.com/rito15/UnityStudy2>
+- [Github Link](https://github.com/rito15/UnityStudy2/tree/master/Rito/2.%20Study/2021_0131_Popup%20UI%20Management/Scripts)
 
 <br>
 

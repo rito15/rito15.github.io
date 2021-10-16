@@ -88,6 +88,11 @@ pin: true
 - [모바일 게임 성능 최적화 - 1편](https://www.youtube.com/watch?v=1mJtoceqvro)
 - [모바일 게임 성능 최적화 - 2편](https://www.youtube.com/watch?v=RLcSRuZsZQU)
 
+- [Adaptive Performance 1](https://www.youtube.com/watch?v=bG2tbxASSh0)
+- [Adaptive Performance 2](https://www.youtube.com/watch?v=mNCSnbDzXMo)
+- [Adaptive Performance 3](https://www.youtube.com/watch?v=znfyEhpsXkU)
+- [Adaptive Performance 4](https://www.youtube.com/watch?v=YMED8Y_WWn8)
+
 ## 유니티, 쉐이더 튜토리얼
 - <https://catlikecoding.com/unity/tutorials/>
 - <https://www.ronja-tutorials.com/>
