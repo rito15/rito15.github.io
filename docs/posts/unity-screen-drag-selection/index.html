@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="191 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="181 words">1 min</span>
 
 
           <!-- page views -->
@@ -489,8 +489,6 @@
 42
 43
 44
-45
-46
 </pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
@@ -521,10 +519,8 @@
             <span class="n">mPosBegin</span> <span class="p">=</span> <span class="n">mPosCur</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="n">mPosMin</span><span class="p">.</span><span class="n">x</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Min</span><span class="p">(</span><span class="n">mPosCur</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">mPosBegin</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
-        <span class="n">mPosMin</span><span class="p">.</span><span class="n">y</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Min</span><span class="p">(</span><span class="n">mPosCur</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">mPosBegin</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
-        <span class="n">mPosMax</span><span class="p">.</span><span class="n">x</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Max</span><span class="p">(</span><span class="n">mPosCur</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">mPosBegin</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
-        <span class="n">mPosMax</span><span class="p">.</span><span class="n">y</span> <span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="nf">Max</span><span class="p">(</span><span class="n">mPosCur</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">mPosBegin</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+        <span class="n">mPosMin</span> <span class="p">=</span> <span class="n">Vector2</span><span class="p">.</span><span class="nf">Min</span><span class="p">(</span><span class="n">mPosCur</span><span class="p">,</span> <span class="n">mPosBegin</span><span class="p">);</span>
+        <span class="n">mPosMax</span> <span class="p">=</span> <span class="n">Vector2</span><span class="p">.</span><span class="nf">Max</span><span class="p">(</span><span class="n">mPosCur</span><span class="p">,</span> <span class="n">mPosBegin</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="k">private</span> <span class="k">void</span> <span class="nf">OnGUI</span><span class="p">()</span>
@@ -681,12 +677,17 @@
         
         
         
-        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
         
         
         
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+        <li><a href="/posts/popup-ui-management-system/">유니티 - 팝업 UI 관리 시스템 구현하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
       
         
         
@@ -696,12 +697,7 @@
         
         
         
-        <li><a href="/posts/unity-memo-double-key-press/">유니티 - 키보드 연속 입력 유지 상태 감지하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-process-after-initalization/">유니티 - 스크립트의 실행 순서를 보장할 수 없는 경우, 종속적인 작업 처리하기</a></li>
+        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
       
 
       </ul>

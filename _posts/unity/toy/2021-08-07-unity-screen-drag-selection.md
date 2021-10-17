@@ -47,10 +47,8 @@ public class ScreenDragSelection : MonoBehaviour
             mPosBegin = mPosCur;
         }
 
-        mPosMin.x = Mathf.Min(mPosCur.x, mPosBegin.x);
-        mPosMin.y = Mathf.Min(mPosCur.y, mPosBegin.y);
-        mPosMax.x = Mathf.Max(mPosCur.x, mPosBegin.x);
-        mPosMax.y = Mathf.Max(mPosCur.y, mPosBegin.y);
+        mPosMin = Vector2.Min(mPosCur, mPosBegin);
+        mPosMax = Vector2.Max(mPosCur, mPosBegin);
     }
 
     private void OnGUI()
