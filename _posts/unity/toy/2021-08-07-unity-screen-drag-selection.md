@@ -28,10 +28,10 @@ using System;
 /// <summary> 화면에 마우스 드래그로 사각형 선택 영역 표시하기 </summary>
 public class ScreenDragSelection : MonoBehaviour
 {
-    private Vector2 mPosCur;
-    private Vector2 mPosBegin;
-    private Vector2 mPosMin;
-    private Vector2 mPosMax;
+    private Vector2 mPosCur;   // 실시간(현재 프레임) 마우스 좌표
+    private Vector2 mPosBegin; // 드래그 시작 지점 마우스 좌표
+    private Vector2 mPosMin;   // Rect의 최소 지점 좌표
+    private Vector2 mPosMax;   // Rect의 최대 지점 좌표
     private bool showSelection;
 
     private void Update()
