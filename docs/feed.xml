@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-18T03:15:53+09:00</updated>
+  <updated>2021-10-19T16:19:15+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,85 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Raycast to AABB</title>
+    <link href="https://rito15.github.io/posts/raycast-to-aabb/" rel="alternate" type="text/html" title="Raycast to AABB" />
+    <published>2021-10-19T03:00:00+09:00</published>
+  
+    <updated>2021-10-19T03:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/raycast-to-aabb/</id>
+    <content src="https://rito15.github.io/posts/raycast-to-aabb/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Algorithm" />
+    
+    <category term="Algorithms" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      레이캐스트(Raycast)
+
+
+
+  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
+
+
+
+
+AABB
+
+
+
+  
+    Axis-Aligned Bounding Box
+  
+  
+    여섯 면이 모두 각각 X, Y, Z 축에 정렬된 형태의 육면체
+  
+  
+    중심 좌표(Vector3)와 각 축의 크기(Vector3) 또는
+최소 좌표(Vector3)와 최대 좌표(Vector3)를 통해 정의할 수 있다.
+  
+
+
+
+
+Raycast to AABB
+
+
+
+
+구현 예시(Unity)
+
+
+
+
+
+  
+
+
+private Vector3? RaycastToAABB(Vector3 origin, Vector3 end, in MinMax bounds)
+{
+    ref V...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -291,89 +370,6 @@ Sphere Cast to Sphere
     r1 : 캐스트 구체의 반지름
     r2 : 구체 S의 반지름
     d : 점 S에서 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 쉐이더 - 실수 타입들</title>
-    <link href="https://rito15.github.io/posts/unity-shader-real-number-types/" rel="alternate" type="text/html" title="유니티 쉐이더 - 실수 타입들" />
-    <published>2021-10-07T00:48:00+09:00</published>
-  
-    <updated>2021-10-07T00:48:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-shader-real-number-types/</id>
-    <content src="https://rito15.github.io/posts/unity-shader-real-number-types/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity Shader" />
-    
-    <category term="Shader Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Memo
-
-
-[1] float
-
-  32비트
-  
-    유효 숫자 : 6자리
-  
-  실수 중 정확도가 가장 높다.
-  실수 중 연산이 가장 느리다.
-  
-    정확해야 하는 경우, 대개 사용된다.
-  
-  예시 : 정점 위치, UV, 복합 스칼라 연산
-
-
-
-
-[2] half
-
-  16비트
-  유효 숫자 : 3자리
-  
-    표현 범위 : -60,000.0 ~ +60,000.0
-  
-  예시 : 방향 벡터, HDR 색상
-
-
-
-
-[3] fixed
-
-  11비트
-  정밀도 : 1/256
-  
-    표현 범위 : -2.0 ~ +2.0
-  
-  연산이 가장 빠르다.
-  
-    작은 범위에서 한정된 LDR 색상 등에 사용된다.
-  
-  예시 : Albedo, Emission, Normal
-
-
-
-
-Ref...
     </summary>
   
 

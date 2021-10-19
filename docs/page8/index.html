@@ -367,6 +367,93 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-focus/">유니티 에디터 GUI - 포커스 확인, 처리</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        1. 컨트롤 포커스 여부 확인
+
+
+
+  
+    // 다음에 나올 GUI 컨트롤에 이름 부여
+GUI.SetNextControlName("Foooooooocus");
+
+// GUI 그리기
+EditorGUI.TextArea(rect, value, inputStyle);
+
+// 포커스 여부 확인
+if(GUI.GetNameOfFocusedControl() =...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Aug 26, 2021,  3:45 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug 26
+  
+
+  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="159 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-screen-effect-controller/">Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</a>
     </h1>
 
@@ -1230,116 +1317,6 @@ public float[] targetArray;
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-screen-shake/">(Amplify) Screen Effect - Shake</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  
-    화면 흔들림 이펙트
-  
-  
-    스크린 이펙트 적용 애셋 : Link
-  
-
-
-
-
-Preview
-
-
-
-
-
-
-Nodes
-
-
-
-
-
-
-Download
-
-
-
-  2021_0817_Screen Effect_Shake.zip
-
-
-
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Aug 19, 2021,  2:55 AM +0900"
-  >
-
-  
-  
-
-  
-    Aug 19
-  
-
-  <i class="unloaded">2021-08-19T02:55:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="26 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1859,9 +1836,24 @@ Download
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page32/">32</a>
+        <a class="page-link btn-box-shadow" href="/page33/">33</a>
       </li>
     
 

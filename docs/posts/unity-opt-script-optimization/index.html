@@ -26,8 +26,8 @@
 <meta property="og:title" content="유니티 - 스크립트 최적화" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main" />
-<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main" />
+<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main 25. 벡터 연산 시 주의사항" />
+<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main 25. 벡터 연산 시 주의사항" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-opt-script-optimization/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-opt-script-optimization/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 스크립트 최적화" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 스크립트 최적화","dateModified":"2021-10-17T03:40:09+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main 25. 벡터 연산 시 주의사항","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 스크립트 최적화","dateModified":"2021-10-17T03:40:09+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="7643 words">42 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8260 words">45 min</span>
 
 
           <!-- page views -->
@@ -493,6 +493,7 @@
   <li><a href="#메소드-호출-줄이기">22. 메소드 호출 줄이기</a></li>
   <li><a href="#비싼-수학-계산-피하기">23. 비싼 수학 계산 피하기</a></li>
   <li><a href="#cameramain">24. Camera.main</a></li>
+  <li><a href="#벡터-연산-시-주의사항">25. 벡터 연산 시 주의사항</a></li>
 </ul>
 
 <p><br /></p>
@@ -1651,6 +1652,115 @@
 <p>그런데 아직도 <code class="language-plaintext highlighter-rouge">2019</code>, 심지어는 <code class="language-plaintext highlighter-rouge">2018</code>이나 그 이하 버전을 사용하는 경우도 굉장히 많으므로</p>
 
 <p>이런 이슈는 버전에 맞게 반드시 고려해야 한다.</p>
+
+<p><br /></p>
+
+<h1 id="벡터-연산-시-주의사항">벡터 연산 시 주의사항</h1>
+<hr />
+
+<p>아주 간단하고 사소하지만, 성능에 영향을 미칠 수 있는 문제가 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="n">Vector3</span> <span class="n">vec</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">2f</span><span class="p">,</span> <span class="m">3f</span><span class="p">);</span>
+<span class="kt">float</span> <span class="n">a</span> <span class="p">=</span> <span class="m">4f</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">b</span> <span class="p">=</span> <span class="m">5f</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위와 같이 벡터와 스칼라 변수가 있다.</p>
+
+<p>스칼라는 단순한 하나의 값을 갖는 변수 또는 상수를 의미하고,</p>
+
+<p>벡터는 여러 스칼라 값을 갖는 변수 또는 상수를 의미한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Vector3</code>는 세 개의 값을 갖는다.</p>
+
+<p><br /></p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Vector3</span> <span class="n">vec2</span> <span class="p">=</span> <span class="n">vec</span> <span class="p">*</span> <span class="n">a</span> <span class="p">*</span> <span class="n">b</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>벡터 연산을 하다 보면, 무심코 위와 같이 연산할 수 있다.</p>
+
+<p>얼핏 보기에는 아무런 문제가 없으나, 사소하면서도 중요한 문제가 있다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Vector3</code>는 <code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">y</code>, <code class="language-plaintext highlighter-rouge">z</code> 세개의 값을 갖는다.</p>
+
+<p>따라서 다른 스칼라 값과 연산을 하게 된다면</p>
+
+<p><code class="language-plaintext highlighter-rouge">vec * a</code> 연산은 실제로</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">x</span> <span class="p">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">vec</span><span class="p">.</span><span class="n">y</span> <span class="p">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">vec</span><span class="p">.</span><span class="n">z</span> <span class="p">*</span> <span class="n">a</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 벡터 내의 모든 성분이 각각 스칼라와 연산되어, 총 세 번의 연산이 발생한다.</p>
+
+<p><br /></p>
+
+<p>그리고 아직 <code class="language-plaintext highlighter-rouge">* b</code>가 남았으므로, 연이어 표현하자면</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="n">Vector3</span> <span class="n">temp</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">x</span>  <span class="p">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">vec</span><span class="p">.</span><span class="n">y</span>  <span class="p">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">vec</span><span class="p">.</span><span class="n">z</span>  <span class="p">*</span> <span class="n">a</span><span class="p">);</span>
+<span class="n">Vector3</span> <span class="n">vec2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">temp</span><span class="p">.</span><span class="n">x</span> <span class="p">*</span> <span class="n">b</span><span class="p">,</span> <span class="n">temp</span><span class="p">.</span><span class="n">y</span> <span class="p">*</span> <span class="n">b</span><span class="p">,</span> <span class="n">temp</span><span class="p">.</span><span class="n">z</span> <span class="p">*</span> <span class="n">b</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 마찬가지로 벡터의 각 성분마다 한 번씩, 다시 세번의 연산이 이루어진다.</p>
+
+<p>최종적으로 여섯 번의 스칼라 곱셈 연산이 발생한다.</p>
+
+<p><br /></p>
+
+<p>그런데 만약 순서를 바꾸어</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Vector3</span> <span class="n">vec2</span> <span class="p">=</span> <span class="n">a</span> <span class="p">*</span> <span class="n">b</span> <span class="p">*</span> <span class="n">vec</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위와 같이 스칼라부터 연산한다면</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="kt">float</span> <span class="n">temp</span>   <span class="p">=</span> <span class="n">a</span> <span class="p">*</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">Vector3</span> <span class="n">vec2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector3</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">x</span> <span class="p">*</span> <span class="n">temp</span><span class="p">,</span> <span class="n">vec</span><span class="p">.</span><span class="n">y</span> <span class="p">*</span> <span class="n">temp</span><span class="p">,</span> <span class="n">vec</span><span class="p">.</span><span class="n">z</span> <span class="p">*</span> <span class="n">temp</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 네 번의 스칼라 곱셈으로 연산이 이루어진다.</p>
+
+<p>결과적으로 동일한 값을 도출하지만, 스칼라부터 연산하는 것이 성능 상 훨씬 이득이다.</p>
+
+<p>따라서 이를 습관화할 필요가 있다.</p>
+
+<p><br /></p>
+
+<h2 id="요약"><strong>요약</strong></h2>
+
+<ul>
+  <li>벡터와 스칼라 연산은 스칼라부터 모두 계산한 뒤에, 벡터와 계산하는 것이 성능 상 매우매우 좋다.</li>
+</ul>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">vector</span> <span class="p">*</span> <span class="n">scalar</span> <span class="p">*</span> <span class="n">scalar</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위와 같은 연산은</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">scalar</span> <span class="p">*</span> <span class="n">scalar</span> <span class="p">*</span> <span class="n">vector</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>또는</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">vector</span> <span class="p">*</span> <span class="p">(</span><span class="n">scalar</span> <span class="p">*</span> <span class="n">scalar</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>이렇게 스칼라부터 연산하도록 해야 한다.</p>
 
 <p><br /></p>
 
@@ -5210,6 +5320,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
