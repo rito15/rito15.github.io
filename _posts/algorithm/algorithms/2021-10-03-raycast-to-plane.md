@@ -142,6 +142,11 @@ $$
 # 구현 예시(Unity)
 ---
 
+<details>
+<summary markdown="span"> 
+Raycast Method
+</summary>
+
 {% include codeHeader.html %}
 ```cs
 private Vector3? RaycastToPlane(Vector3 origin, Vector3 end, Vector3 planePoint, Vector3 planeNormal)
@@ -170,6 +175,10 @@ private Vector3? RaycastToPlane(Vector3 origin, Vector3 end, Vector3 planePoint,
 }
 ```
 
+</details>
+
+<br>
+
 <details>
 <summary markdown="span"> 
 Simplified Method
@@ -196,11 +205,14 @@ private Vector3 RaycastToPlane_Simple(Vector3 origin, Vector3 end, Vector3 plane
 
 </details>
 
+<br>
+
 <details>
 <summary markdown="span"> 
 Gizmo Example
 </summary>
 
+{% include codeHeader.html %}
 ```cs
 // MonoBehaviour Script
 

@@ -145,6 +145,11 @@ $$
 # 구현 예시(Unity)
 ---
 
+<details>
+<summary markdown="span"> 
+Raycast Method
+</summary>
+
 {% include codeHeader.html %}
 ```cs
 private Vector3? SphereCastToSphere(Vector3 origin, Vector3 end, Vector3 targetSphere, float castRadius, float targetRadius)
@@ -190,6 +195,10 @@ private Vector3? SphereCastToSphere(Vector3 origin, Vector3 end, Vector3 targetS
 }
 ```
 
+</details>
+
+<br>
+
 <details>
 <summary markdown="span"> 
 Simplified Method
@@ -225,11 +234,14 @@ private Vector3 SphereCastToSphere_Simple(Vector3 origin, Vector3 end, Vector3 t
 
 </details>
 
+<br>
+
 <details>
 <summary markdown="span"> 
 Gizmo Example
 </summary>
 
+{% include codeHeader.html %}
 ```cs
 // MonoBehaviour Script
 

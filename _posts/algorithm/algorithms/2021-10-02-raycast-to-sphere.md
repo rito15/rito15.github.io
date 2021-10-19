@@ -82,6 +82,11 @@ $$ D = A + nAB * |AD| $$
 # 구현 예시(Unity)
 ---
 
+<details>
+<summary markdown="span"> 
+Raycast Method
+</summary>
+
 {% include codeHeader.html %}
 ```cs
 private Vector3? RaycastToSphere(Vector3 origin, Vector3 end, Vector3 sphereCenter, float sphereRadius)
@@ -127,6 +132,10 @@ private Vector3? RaycastToSphere(Vector3 origin, Vector3 end, Vector3 sphereCent
 }
 ```
 
+</details>
+
+<br>
+
 <details>
 <summary markdown="span"> 
 Simplified Method
@@ -158,6 +167,8 @@ private Vector3 RaycastToSphere_Simple(Vector3 origin, Vector3 end, Vector3 sphe
 ```
 
 </details>
+
+<br>
 
 <details>
 <summary markdown="span"> 
