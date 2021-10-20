@@ -16,7 +16,7 @@ mermaid: true
 
  - 래스터라이저 : 정점 쉐이더가 변환한 정점 위치로부터 화면에 출력할 2D 픽셀들을 찾아주는 장치
 
- - 픽셀 쉐이더 : 2D 화면에 출력될 모든 픽셀의 색상을 계산하는 함수
+ - 픽셀 쉐이더 : 2D 화면에 출력될 모든 픽셀의 최종 색상을 계산하는 함수
 
 ![](https://4.bp.blogspot.com/-0d2jWe8pwrA/TsW0zTGAlsI/AAAAAAAAApc/3nF0xO1c0q4/s1600/fig_01_01.jpg)
 <center>출처 : https://kblog.popekim.com/2011/11/01-part-1.html</center>

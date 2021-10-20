@@ -2,7 +2,7 @@
 title: 유니티 - 한 번씩만 실행되는 메소드들 순서 정리
 author: Rito15
 date: 2021-10-16 00:01:00 +09:00
-categories: [Unity, Unity Editor Memo]
+categories: [Unity, Unity Memo - Shorts]
 tags: [unity, editor, memo]
 math: true
 mermaid: true
