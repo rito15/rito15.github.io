@@ -1,5 +1,5 @@
 ---
-title: 게임 수학 - 선과 삼각형, 정점의 보간
+title: 게임 수학 - 선과 평면, 정점 보간
 author: Rito15
 date: 2021-10-20 21:00:00 +09:00
 categories: [Memo, Game Mathematics]
@@ -55,21 +55,21 @@ $$
 
 <br>
 
-![image](https://user-images.githubusercontent.com/42164422/138098295-e97e1296-ec56-4379-90ac-ac2f6235d2d5.png)
-
 - `a`가 실수이면 P는 직선(Line)
 
-<br>
+![image](https://user-images.githubusercontent.com/42164422/138098295-e97e1296-ec56-4379-90ac-ac2f6235d2d5.png)
 
-![image](https://user-images.githubusercontent.com/42164422/138098460-d10f7fe3-038b-4b2d-8672-8667b86dacf9.png)
+<br>
 
 - `(a > 0)`이면 P2에서 P1을 향한 반직선(Ray)
 
+![image](https://user-images.githubusercontent.com/42164422/138098460-d10f7fe3-038b-4b2d-8672-8667b86dacf9.png)
+
 <br>
 
-![image](https://user-images.githubusercontent.com/42164422/138098505-ff804e9b-7c67-4c6b-94fe-acf9323b1490.png)
-
 - `(0 < a < 1)` 이면 P1과 P2 사이의 선분(Line Segment)
+
+![image](https://user-images.githubusercontent.com/42164422/138098505-ff804e9b-7c67-4c6b-94fe-acf9323b1490.png)
 
 <br>
 
@@ -85,31 +85,29 @@ $$
 
 <br>
 
-![image](https://user-images.githubusercontent.com/42164422/138098652-fad3be8c-07f1-4e14-a13d-f152a9c54978.png)
-
 - (`a = 1`, `b = 0`, `(1 - a - b) = 0`)이면 P는 P1
 - (`a = 0`, `b = 1`, `(1 - a - b) = 0`)이면 P는 P2
 - (`a = 0`, `b = 0`, `(1 - a - b) = 1`)이면 P는 P3
 
-<br>
-
-![image](https://user-images.githubusercontent.com/42164422/138098864-e568f3fc-78fd-44eb-b69e-73650887f172.png)
-
 - `a`, `b`가 실수이면 P는 점 P1, P2, P3를 모두 지나는 평면
 
+![image](https://user-images.githubusercontent.com/42164422/138098652-fad3be8c-07f1-4e14-a13d-f152a9c54978.png)
+
 <br>
+
+- (`0 < a < 1`, `0 < b < 1`, `0 < a + b < 1`)이면 P는 점 P1, P2, P3가 이루는 삼각형
 
 ![image](https://user-images.githubusercontent.com/42164422/138098789-c82e4be8-7ad2-40b0-8fda-6f1df4097b67.png)
 
 ![image](https://user-images.githubusercontent.com/42164422/138099237-5c7ff313-6f0c-403b-8051-88e46bb78375.png)
 
-- (`0 < a < 1`, `0 < b < 1`, `0 < a + b < 1`)이면 P는 점 P1, P2, P3가 이루는 삼각형
+![image](https://user-images.githubusercontent.com/42164422/138150565-4aa37ba3-d1e3-43f4-a4e1-18b84e1fea72.png)
 
 <br>
 
-![image](https://user-images.githubusercontent.com/42164422/138098925-ee1d7989-c154-4783-8b98-c0fdcfee5982.png)
-
 - 모든 계수(`a`, `b`, `(1 - a - b)`)가 `1/3`일 때 P는 무게중심좌표(Barycentric Coordinate)
+
+![image](https://user-images.githubusercontent.com/42164422/138098925-ee1d7989-c154-4783-8b98-c0fdcfee5982.png)
 
 <br>
 
@@ -118,19 +116,19 @@ $$
 
 ## **픽셀화(Rasterization)**
 
-![image](https://user-images.githubusercontent.com/42164422/138104722-17337645-3a8c-4bd7-a89c-db31a692db28.png)
-
 - 세 개의 정점 데이터를 이용해 각 정점 사이의 픽셀 데이터를 계산하는 것
 - 각 정점이 갖고 있던 데이터가 위의 평면 방정식을 통해 계수 `(0 ~ 1)` 사이에서 보간되어 삼각형 내의 픽셀들에 적용된다.
+
+![image](https://user-images.githubusercontent.com/42164422/138104722-17337645-3a8c-4bd7-a89c-db31a692db28.png)
 
 
 <br>
 
 ## **색상 보간 예시**
 
-![image](https://user-images.githubusercontent.com/42164422/138101376-726fe88a-5bf7-452f-88ee-b876a2b0e4e1.png)
+- 세 개의 정점이 각각 `R`, `G`, `B` 색상을 가지고 있었을 경우, 평면의 보간을 통해 삼각형의 내부를 아래와 같이 채울 수 있다.
 
-- 세 개의 정점이 각각 `R`, `G`, `B` 색상을 가지고 있었을 경우, 평면의 보간을 통해 삼각형의 내부를 위와 같이 채울 수 있다.
+![image](https://user-images.githubusercontent.com/42164422/138101376-726fe88a-5bf7-452f-88ee-b876a2b0e4e1.png)
 
 
 <br>

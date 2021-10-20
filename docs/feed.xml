@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-20T17:47:21+09:00</updated>
+  <updated>2021-10-21T03:38:53+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,83 @@
 
   
   <entry>
+    <title>게임 수학 - 선과 평면, 정점 보간</title>
+    <link href="https://rito15.github.io/posts/game-math-line-plane-vertex/" rel="alternate" type="text/html" title="게임 수학 - 선과 평면, 정점 보간" />
+    <published>2021-10-20T21:00:00+09:00</published>
+  
+    <updated>2021-10-20T21:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/game-math-line-plane-vertex/</id>
+    <content src="https://rito15.github.io/posts/game-math-line-plane-vertex/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Memo" />
+    
+    <category term="Game Mathematics" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      3D 게임 공간의 확장
+
+
+  벡터 공간 : 이동 벡터를 표현(w가 항상 0)
+  아핀 공간 : 위치 벡터를 표현(w가 항상 1)
+
+
+
+
+특징
+
+  벡터와 벡터는 더할 수 있다.
+  벡터와 점을 더하면 w = 1이므로 점이 된다.
+  점과 점을 더하면 w = 2가 되어 아핀 공간을 벗어나므로, 더할 수 없다.
+
+
+
+
+아핀 조합(Affine Combination)
+
+
+\[a + b = 1\]
+
+\[P = aP_{1} + bP_{2}\]
+
+\[P = aP_{1} + (1 - a)P_{2}\]
+
+
+  점 P는 (x, y, z, 1)인 아핀 공간의 위치 벡터
+  아핀 조합 : 아핀 공간의 두 점을 더했을 때의 결과가 아핀 공간의 점(w = 1)이 됨을 보장하는 공식
+
+
+
+
+두 개의 점을 이용해 선 표현하기
+
+...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>Raycast to AABB</title>
     <link href="https://rito15.github.io/posts/raycast-to-aabb/" rel="alternate" type="text/html" title="Raycast to AABB" />
     <published>2021-10-19T03:00:00+09:00</published>
   
-    <updated>2021-10-20T04:17:53+09:00</updated>
+    <updated>2021-10-20T17:49:46+09:00</updated>
   
     <id>https://rito15.github.io/posts/raycast-to-aabb/</id>
     <content src="https://rito15.github.io/posts/raycast-to-aabb/" />
@@ -100,7 +172,7 @@ Axis-Aligned라는 특성 덕분에 각 평면에 대한 ...
     <link href="https://rito15.github.io/posts/unity-initialization-methods/" rel="alternate" type="text/html" title="유니티 - 한 번씩만 실행되는 메소드들 순서 정리" />
     <published>2021-10-16T00:01:00+09:00</published>
   
-    <updated>2021-10-16T00:01:00+09:00</updated>
+    <updated>2021-10-21T02:57:10+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-initialization-methods/</id>
     <content src="https://rito15.github.io/posts/unity-initialization-methods/" />
@@ -112,7 +184,7 @@ Axis-Aligned라는 특성 덕분에 각 평면에 대한 ...
     
     <category term="Unity" />
     
-    <category term="Unity Editor Memo" />
+    <category term="Unity Memo - Shorts" />
     
   
 
@@ -292,81 +364,6 @@ class PlayerManager : MonoBehaviour
     private void Awake()
     {
     ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Sphere Cast to Sphere</title>
-    <link href="https://rito15.github.io/posts/sphere-cast-to-sphere/" rel="alternate" type="text/html" title="Sphere Cast to Sphere" />
-    <published>2021-10-09T18:26:00+09:00</published>
-  
-    <updated>2021-10-20T04:17:53+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/sphere-cast-to-sphere/</id>
-    <content src="https://rito15.github.io/posts/sphere-cast-to-sphere/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Algorithm" />
-    
-    <category term="Algorithms" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Sphere Cast
-
-
-
-  
-    공간 상의 한 점에서부터 목표 지점까지 구체를 전진시켜, 구체 표면에 닿는 물체 표면을 검출한다.
-  
-  
-    레이캐스트와는 달리 구체의 반지름을 고려해야 한다.
-  
-
-
-
-
-Sphere Cast to Sphere
-
-
-
-  
-    대상 물체가 구체인 경우에 대해서만 검사한다.
-  
-  
-    충돌 여부와 충돌 지점을 알아내는 것이 목표이다.
-  
-
-
-
-
-[1] 충돌 여부 판정
-
-충돌 지점을 계산하기 전에, 우선 충돌 여부를 판정할 필요가 있다.
-
-
-  
-    A : 캐스트 시작 지점
-    B : 캐스트 종료 지점
-    S : 검사 대상 구체의 중심 위치
-    r1 : 캐스트 구체의 반지름
-    r2 : 구체 S의 반지름
-    d : 점 S에서 ...
     </summary>
   
 
