@@ -72,9 +72,9 @@ mermaid: true
 
 <br>
 
-이를 다시 `XY` 축을 가로축으로, `Y`축을 세로축으로 하는 `2D` 평면 상에 표현해보면
+이를 다시 `XZ` 평면을 가로축으로, `Y`축을 세로축으로 하는 `2D` 평면 상에 표현해보면
 
-![image](https://user-images.githubusercontent.com/42164422/137878795-ecfb4e97-24a8-446f-b5ad-a7a48021763d.png)
+![image](https://user-images.githubusercontent.com/42164422/138056453-8ee27a6c-9305-43ca-a83f-008fe74e7eab.png)
 
 이렇게 되는데,
 
@@ -82,7 +82,7 @@ mermaid: true
 
 여기에 `AB`를 빗변으로 하는 삼각형을 그려볼 수 있다.
 
-![image](https://user-images.githubusercontent.com/42164422/137879513-63210947-86c1-43ec-beed-f48e03c46876.png)
+![image](https://user-images.githubusercontent.com/42164422/138056661-c4fce6cd-ebfc-47f6-b5df-30c0c140735c.png)
 
 선분 `AC`는 `Y`축에 평행하다.
 
@@ -380,27 +380,23 @@ private Vector3? RaycastToAABB(Vector3 origin, Vector3 end, in MinMax bounds)
     ref Vector3 B = ref end;
     Vector3 min = bounds.min;
     Vector3 max = bounds.max;
-
     Vector3 AB = B - A;
     Vector3 contact;
 
     // [1] YZ 평면 검사
-    if (AB.x > 0) contact = RaycastToPlaneYZ(A, B, min.x);
-    else          contact = RaycastToPlaneYZ(A, B, max.x);
+    contact = RaycastToPlaneYZ(A, B, (AB.x > 0) ? min.x : max.x);
 
     if (InRange(contact.y, min.y, max.y) && InRange(contact.z, min.z, max.z))
         goto VALIDATE_DISTANCE;
 
     // [2] XZ 평면 검사
-    if (AB.y > 0) contact = RaycastToPlaneXZ(A, B, min.y);
-    else          contact = RaycastToPlaneXZ(A, B, max.y);
+    contact = RaycastToPlaneXZ(A, B, (AB.y > 0) ? min.y : max.y);
 
     if (InRange(contact.x, min.x, max.x) && InRange(contact.z, min.z, max.z))
         goto VALIDATE_DISTANCE;
 
     // [3] XY 평면 검사
-    if (AB.z > 0) contact = RaycastToPlaneXY(A, B, min.z);
-    else          contact = RaycastToPlaneXY(A, B, max.z);
+    contact = RaycastToPlaneXY(A, B, (AB.z > 0) ? min.z : max.z);
 
     if (InRange(contact.x, min.x, max.x) && InRange(contact.y, min.y, max.y))
         goto VALIDATE_DISTANCE;
@@ -408,15 +404,12 @@ private Vector3? RaycastToAABB(Vector3 origin, Vector3 end, in MinMax bounds)
     // [4] No Contact Point
     return null;
 
-    // 길이 검사 : 교점이 레이보다 더 긴 경우 제외
+    // 길이 검사 : 교점까지의 거리가 레이의 길이보다 더 긴 경우 제외
 VALIDATE_DISTANCE:
     float ab2 = AB.sqrMagnitude;
     float len = (contact - A).sqrMagnitude;
 
-    if (ab2 < len)
-        return null;
-    else
-        return contact;
+    return (ab2 < len) ? (Vector3?)null : contact;
 }
 ```
 
@@ -438,27 +431,23 @@ private Vector3? RaycastToAABB_Simple(Vector3 origin, Vector3 end, in MinMax bou
     ref Vector3 B = ref end;
     Vector3 min = bounds.min;
     Vector3 max = bounds.max;
-
     Vector3 AB = B - A;
     Vector3 contact;
 
     // [1] YZ 평면 검사
-    if (AB.x > 0) contact = RaycastToPlaneYZ(A, B, min.x);
-    else          contact = RaycastToPlaneYZ(A, B, max.x);
+    contact = RaycastToPlaneYZ(A, B, (AB.x > 0) ? min.x : max.x);
 
     if (InRange(contact.y, min.y, max.y) && InRange(contact.z, min.z, max.z))
         return contact;
         
     // [2] XZ 평면 검사
-    if (AB.y > 0) contact = RaycastToPlaneXZ(A, B, min.y);
-    else          contact = RaycastToPlaneXZ(A, B, max.y);
+    contact = RaycastToPlaneXZ(A, B, (AB.y > 0) ? min.y : max.y);
 
     if (InRange(contact.x, min.x, max.x) && InRange(contact.z, min.z, max.z))
         return contact;
 
     // [3] XY 평면 검사
-    if (AB.z > 0) contact = RaycastToPlaneXY(A, B, min.z);
-    else          contact = RaycastToPlaneXY(A, B, max.z);
+    contact = RaycastToPlaneXY(A, B, (AB.z > 0) ? min.z : max.z);
 
     if (InRange(contact.x, min.x, max.x) && InRange(contact.y, min.y, max.y))
         return contact;

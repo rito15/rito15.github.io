@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Raycast to AABB" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"레이캐스트(Raycast)","datePublished":"2021-10-19T03:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/raycast-to-aabb/"},"url":"https://rito15.github.io/posts/raycast-to-aabb/","author":{"@type":"Person","name":"Rito15"},"headline":"Raycast to AABB","dateModified":"2021-10-19T03:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"레이캐스트(Raycast)","datePublished":"2021-10-19T03:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/raycast-to-aabb/"},"url":"https://rito15.github.io/posts/raycast-to-aabb/","author":{"@type":"Person","name":"Rito15"},"headline":"Raycast to AABB","dateModified":"2021-10-20T04:17:53+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,6 +407,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Oct 20, 2021,  4:17 AM +0900"
+  >
+
+  
+  
+
+  
+    Oct 20
+  
+
+  <i class="unloaded">2021-10-20T04:17:53+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -419,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2864 words">15 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2837 words">15 min</span>
 
 
           <!-- page views -->
@@ -509,9 +538,9 @@
 
 <p><br /></p>
 
-<p>이를 다시 <code class="language-plaintext highlighter-rouge">XY</code> 축을 가로축으로, <code class="language-plaintext highlighter-rouge">Y</code>축을 세로축으로 하는 <code class="language-plaintext highlighter-rouge">2D</code> 평면 상에 표현해보면</p>
+<p>이를 다시 <code class="language-plaintext highlighter-rouge">XZ</code> 평면을 가로축으로, <code class="language-plaintext highlighter-rouge">Y</code>축을 세로축으로 하는 <code class="language-plaintext highlighter-rouge">2D</code> 평면 상에 표현해보면</p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/137878795-ecfb4e97-24a8-446f-b5ad-a7a48021763d.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/138056453-8ee27a6c-9305-43ca-a83f-008fe74e7eab.png" alt="image" /></p>
 
 <p>이렇게 되는데,</p>
 
@@ -519,7 +548,7 @@
 
 <p>여기에 <code class="language-plaintext highlighter-rouge">AB</code>를 빗변으로 하는 삼각형을 그려볼 수 있다.</p>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/137879513-63210947-86c1-43ec-beed-f48e03c46876.png" alt="image" /></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/138056661-c4fce6cd-ebfc-47f6-b5df-30c0c140735c.png" alt="image" /></p>
 
 <p>선분 <code class="language-plaintext highlighter-rouge">AC</code>는 <code class="language-plaintext highlighter-rouge">Y</code>축에 평행하다.</p>
 
@@ -891,40 +920,29 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 35
 36
 37
-38
-39
-40
-41
-42
-43
-44
 </pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">Vector3</span><span class="p">?</span> <span class="nf">RaycastToAABB</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">origin</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">end</span><span class="p">,</span> <span class="k">in</span> <span class="n">MinMax</span> <span class="n">bounds</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">ref</span> <span class="n">Vector3</span> <span class="n">A</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">origin</span><span class="p">;</span>
     <span class="k">ref</span> <span class="n">Vector3</span> <span class="n">B</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">end</span><span class="p">;</span>
     <span class="n">Vector3</span> <span class="n">min</span> <span class="p">=</span> <span class="n">bounds</span><span class="p">.</span><span class="n">min</span><span class="p">;</span>
     <span class="n">Vector3</span> <span class="n">max</span> <span class="p">=</span> <span class="n">bounds</span><span class="p">.</span><span class="n">max</span><span class="p">;</span>
-
     <span class="n">Vector3</span> <span class="n">AB</span> <span class="p">=</span> <span class="n">B</span> <span class="p">-</span> <span class="n">A</span><span class="p">;</span>
     <span class="n">Vector3</span> <span class="n">contact</span><span class="p">;</span>
 
     <span class="c1">// [1] YZ 평면 검사</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">x</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneYZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
-    <span class="k">else</span>          <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneYZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneYZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">x</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">?</span> <span class="n">min</span><span class="p">.</span><span class="n">x</span> <span class="p">:</span> <span class="n">max</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">z</span><span class="p">))</span>
         <span class="k">goto</span> <span class="n">VALIDATE_DISTANCE</span><span class="p">;</span>
 
     <span class="c1">// [2] XZ 평면 검사</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">y</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
-    <span class="k">else</span>          <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">y</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">?</span> <span class="n">min</span><span class="p">.</span><span class="n">y</span> <span class="p">:</span> <span class="n">max</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">z</span><span class="p">))</span>
         <span class="k">goto</span> <span class="n">VALIDATE_DISTANCE</span><span class="p">;</span>
 
     <span class="c1">// [3] XY 평면 검사</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">z</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXY</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-    <span class="k">else</span>          <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXY</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+    <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXY</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">z</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">?</span> <span class="n">min</span><span class="p">.</span><span class="n">z</span> <span class="p">:</span> <span class="n">max</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">y</span><span class="p">))</span>
         <span class="k">goto</span> <span class="n">VALIDATE_DISTANCE</span><span class="p">;</span>
@@ -932,15 +950,12 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
     <span class="c1">// [4] No Contact Point</span>
     <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
 
-    <span class="c1">// 길이 검사 : 교점이 레이보다 더 긴 경우 제외</span>
+    <span class="c1">// 길이 검사 : 교점까지의 거리가 레이의 길이보다 더 긴 경우 제외</span>
 <span class="n">VALIDATE_DISTANCE</span><span class="p">:</span>
     <span class="kt">float</span> <span class="n">ab2</span> <span class="p">=</span> <span class="n">AB</span><span class="p">.</span><span class="n">sqrMagnitude</span><span class="p">;</span>
     <span class="kt">float</span> <span class="n">len</span> <span class="p">=</span> <span class="p">(</span><span class="n">contact</span> <span class="p">-</span> <span class="n">A</span><span class="p">).</span><span class="n">sqrMagnitude</span><span class="p">;</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">ab2</span> <span class="p">&lt;</span> <span class="n">len</span><span class="p">)</span>
-        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
-    <span class="k">else</span>
-        <span class="k">return</span> <span class="n">contact</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ab2</span> <span class="p">&lt;</span> <span class="n">len</span><span class="p">)</span> <span class="p">?</span> <span class="p">(</span><span class="n">Vector3</span><span class="p">?)</span><span class="k">null</span> <span class="p">:</span> <span class="n">contact</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div>  </div>
 
@@ -992,10 +1007,6 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 29
 30
 31
-32
-33
-34
-35
 </pre></td><td class="rouge-code"><pre><span class="c1">// 교점까지의 길이 검사를 배제한 간소화 메소드</span>
 <span class="k">private</span> <span class="n">Vector3</span><span class="p">?</span> <span class="nf">RaycastToAABB_Simple</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">origin</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">end</span><span class="p">,</span> <span class="k">in</span> <span class="n">MinMax</span> <span class="n">bounds</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1003,27 +1014,23 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
     <span class="k">ref</span> <span class="n">Vector3</span> <span class="n">B</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">end</span><span class="p">;</span>
     <span class="n">Vector3</span> <span class="n">min</span> <span class="p">=</span> <span class="n">bounds</span><span class="p">.</span><span class="n">min</span><span class="p">;</span>
     <span class="n">Vector3</span> <span class="n">max</span> <span class="p">=</span> <span class="n">bounds</span><span class="p">.</span><span class="n">max</span><span class="p">;</span>
-
     <span class="n">Vector3</span> <span class="n">AB</span> <span class="p">=</span> <span class="n">B</span> <span class="p">-</span> <span class="n">A</span><span class="p">;</span>
     <span class="n">Vector3</span> <span class="n">contact</span><span class="p">;</span>
 
     <span class="c1">// [1] YZ 평면 검사</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">x</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneYZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
-    <span class="k">else</span>          <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneYZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneYZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">x</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">?</span> <span class="n">min</span><span class="p">.</span><span class="n">x</span> <span class="p">:</span> <span class="n">max</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">z</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">contact</span><span class="p">;</span>
         
     <span class="c1">// [2] XZ 평면 검사</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">y</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
-    <span class="k">else</span>          <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXZ</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">y</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">?</span> <span class="n">min</span><span class="p">.</span><span class="n">y</span> <span class="p">:</span> <span class="n">max</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">z</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">contact</span><span class="p">;</span>
 
     <span class="c1">// [3] XY 평면 검사</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">z</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXY</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-    <span class="k">else</span>          <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXY</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+    <span class="n">contact</span> <span class="p">=</span> <span class="nf">RaycastToPlaneXY</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">z</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">?</span> <span class="n">min</span><span class="p">.</span><span class="n">z</span> <span class="p">:</span> <span class="n">max</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="nf">InRange</span><span class="p">(</span><span class="n">contact</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">min</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">max</span><span class="p">.</span><span class="n">y</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">contact</span><span class="p">;</span>
@@ -1257,27 +1264,27 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         
+        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/raycast-to-aabb/">Raycast to AABB</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-study-bezier-curve/">유니티 - 베지어 곡선(Bezier Curve)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-screen-drag-selection/">Screen Drag Selection(화면에 마우스 드래그 영역 표시하기)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/popup-ui-management-system/">유니티 - 팝업 UI 관리 시스템 구현하기</a></li>
       
 
       </ul>
