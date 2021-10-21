@@ -26,8 +26,8 @@
 <meta property="og:title" content="유니티 - 스크립트 최적화" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main 25. 벡터 연산 시 주의사항" />
-<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main 25. 벡터 연산 시 주의사항" />
+<meta name="description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 메소드 호출 줄이기 8. 참조 캐싱하기 9. 빌드 이후 Debug.Log() 사용하지 않기 10 Transform 변경은 한번에 11. 불필요하게 부모 자식 구조 늘리지 않기 12. ScriptableObject 활용하기 13. 필요하지 않은 경우, 리턴하지 않기 14. new로 생성하는 부분 최대한 줄이기 15. 오브젝트 풀링 사용하기 16. 구조체 사용하기 17. 컬렉션 재사용하기 18. List 사용할 때 주의할 점 19. StringBuilder 사용하기 20. LINQ 사용 시 주의하기 21. 박싱, 언박싱 피하기 23. Enum HasFlag() 박싱 이슈 24. 비싼 수학 계산 피하기 25. Camera.main 26. 벡터 연산 시 주의사항" />
+<meta property="og:description" content="목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 메소드 호출 줄이기 8. 참조 캐싱하기 9. 빌드 이후 Debug.Log() 사용하지 않기 10 Transform 변경은 한번에 11. 불필요하게 부모 자식 구조 늘리지 않기 12. ScriptableObject 활용하기 13. 필요하지 않은 경우, 리턴하지 않기 14. new로 생성하는 부분 최대한 줄이기 15. 오브젝트 풀링 사용하기 16. 구조체 사용하기 17. 컬렉션 재사용하기 18. List 사용할 때 주의할 점 19. StringBuilder 사용하기 20. LINQ 사용 시 주의하기 21. 박싱, 언박싱 피하기 23. Enum HasFlag() 박싱 이슈 24. 비싼 수학 계산 피하기 25. Camera.main 26. 벡터 연산 시 주의사항" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-opt-script-optimization/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-opt-script-optimization/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 스크립트 최적화" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 참조 캐싱하기 8. 빌드 이후 Debug.Log() 사용하지 않기 9. Transform 변경은 한번에 10. 불필요하게 부모 자식 구조 늘리지 않기 11. ScriptableObject 활용하기 12. 필요하지 않은 경우, 리턴하지 않기 13. new로 생성하는 부분 최대한 줄이기 14. 오브젝트 풀링 사용하기 15. 구조체 사용하기 16. 컬렉션 재사용하기 17. List 사용할 때 주의할 점 18. StringBuilder 사용하기 19. LINQ 사용 시 주의하기 20. 박싱, 언박싱 피하기 21. Enum HasFlag() 박싱 이슈 22. 메소드 호출 줄이기 23. 비싼 수학 계산 피하기 24. Camera.main 25. 벡터 연산 시 주의사항","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 스크립트 최적화","dateModified":"2021-10-19T16:33:02+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 메소드 호출 줄이기 8. 참조 캐싱하기 9. 빌드 이후 Debug.Log() 사용하지 않기 10 Transform 변경은 한번에 11. 불필요하게 부모 자식 구조 늘리지 않기 12. ScriptableObject 활용하기 13. 필요하지 않은 경우, 리턴하지 않기 14. new로 생성하는 부분 최대한 줄이기 15. 오브젝트 풀링 사용하기 16. 구조체 사용하기 17. 컬렉션 재사용하기 18. List 사용할 때 주의할 점 19. StringBuilder 사용하기 20. LINQ 사용 시 주의하기 21. 박싱, 언박싱 피하기 23. Enum HasFlag() 박싱 이슈 24. 비싼 수학 계산 피하기 25. Camera.main 26. 벡터 연산 시 주의사항","headline":"유니티 - 스크립트 최적화","dateModified":"2021-10-19T16:33:02+09:00","datePublished":"2021-02-04T19:30:00+09:00","url":"https://rito15.github.io/posts/unity-opt-script-optimization/","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8260 words">45 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8244 words">45 min</span>
 
 
           <!-- page views -->
@@ -475,25 +475,25 @@
   <li><a href="#비어있는-유니티-이벤트-메소드-방치하지-않기">4.  비어있는 유니티 이벤트 메소드 방치하지 않기</a></li>
   <li><a href="#startcoroutine-자주-호출하지-않기">5.  StartCoroutine() 자주 호출하지 않기</a></li>
   <li><a href="#코루틴의-yield-캐싱하기">6.  코루틴의 yield 캐싱하기</a></li>
-  <li><a href="#참조-캐싱하기">7.  참조 캐싱하기</a></li>
-  <li><a href="#빌드-이후-debuglog-사용하지-않기">8.  빌드 이후 Debug.Log() 사용하지 않기</a></li>
-  <li><a href="#transform-변경은-한번에">9.  Transform 변경은 한번에</a></li>
-  <li><a href="#불필요하게-부모-자식-구조-늘리지-않기">10. 불필요하게 부모 자식 구조 늘리지 않기</a></li>
-  <li><a href="#scriptableobject-활용하기">11. ScriptableObject 활용하기</a></li>
-  <li><a href="#필요하지-않은-경우-리턴하지-않기">12. 필요하지 않은 경우, 리턴하지 않기</a></li>
-  <li><a href="#new로-생성하는-부분-최대한-줄이기">13. new로 생성하는 부분 최대한 줄이기</a></li>
-  <li><a href="#오브젝트-풀링-사용하기">14. 오브젝트 풀링 사용하기</a></li>
-  <li><a href="#구조체-사용하기">15. 구조체 사용하기</a></li>
-  <li><a href="#컬렉션-재사용하기">16. 컬렉션 재사용하기</a></li>
-  <li><a href="#list-사용할-때-주의할-점">17. List 사용할 때 주의할 점</a></li>
-  <li><a href="#stringbuilder-사용하기">18. StringBuilder 사용하기</a></li>
-  <li><a href="#linq-사용-시-주의하기">19. LINQ 사용 시 주의하기</a></li>
-  <li><a href="#박싱-언박싱-피하기">20. 박싱, 언박싱 피하기</a></li>
-  <li><a href="#enum-hasflag-박싱-이슈">21. Enum HasFlag() 박싱 이슈</a></li>
-  <li><a href="#메소드-호출-줄이기">22. 메소드 호출 줄이기</a></li>
-  <li><a href="#비싼-수학-계산-피하기">23. 비싼 수학 계산 피하기</a></li>
-  <li><a href="#cameramain">24. Camera.main</a></li>
-  <li><a href="#벡터-연산-시-주의사항">25. 벡터 연산 시 주의사항</a></li>
+  <li><a href="#메소드-호출-줄이기">7.  메소드 호출 줄이기</a></li>
+  <li><a href="#참조-캐싱하기">8.  참조 캐싱하기</a></li>
+  <li><a href="#빌드-이후-debuglog-사용하지-않기">9.  빌드 이후 Debug.Log() 사용하지 않기</a></li>
+  <li><a href="#transform-변경은-한번에">10  Transform 변경은 한번에</a></li>
+  <li><a href="#불필요하게-부모-자식-구조-늘리지-않기">11. 불필요하게 부모 자식 구조 늘리지 않기</a></li>
+  <li><a href="#scriptableobject-활용하기">12. ScriptableObject 활용하기</a></li>
+  <li><a href="#필요하지-않은-경우-리턴하지-않기">13. 필요하지 않은 경우, 리턴하지 않기</a></li>
+  <li><a href="#new로-생성하는-부분-최대한-줄이기">14. new로 생성하는 부분 최대한 줄이기</a></li>
+  <li><a href="#오브젝트-풀링-사용하기">15. 오브젝트 풀링 사용하기</a></li>
+  <li><a href="#구조체-사용하기">16. 구조체 사용하기</a></li>
+  <li><a href="#컬렉션-재사용하기">17. 컬렉션 재사용하기</a></li>
+  <li><a href="#list-사용할-때-주의할-점">18. List 사용할 때 주의할 점</a></li>
+  <li><a href="#stringbuilder-사용하기">19. StringBuilder 사용하기</a></li>
+  <li><a href="#linq-사용-시-주의하기">20. LINQ 사용 시 주의하기</a></li>
+  <li><a href="#박싱-언박싱-피하기">21. 박싱, 언박싱 피하기</a></li>
+  <li><a href="#enum-hasflag-박싱-이슈">23. Enum HasFlag() 박싱 이슈</a></li>
+  <li><a href="#비싼-수학-계산-피하기">24. 비싼 수학 계산 피하기</a></li>
+  <li><a href="#cameramain">25. Camera.main</a></li>
+  <li><a href="#벡터-연산-시-주의사항">26. 벡터 연산 시 주의사항</a></li>
 </ul>
 
 <p><br /></p>
@@ -694,9 +694,9 @@
 
 <p>코루틴에서는 <code class="language-plaintext highlighter-rouge">WaitForSeconds()</code> 등의 객체를 yield return으로 사용한다.</p>
 
-<p>그런데 위처럼 항상 new로 생성할 경우, 모조리 GC.Collect()의 대상이 된다.</p>
+<p>그런데 위처럼 매번 new로 생성할 경우, 모조리 가비지 수집의 대상이 된다.</p>
 
-<p>따라서 아래처럼 캐싱하여 사용하는 것이 좋다.</p>
+<p>따라서 아래처럼 미리 변수에 담아 두고 사용하는 것이 좋다.</p>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -720,12 +720,148 @@
 
 <p><br /></p>
 
+<h1 id="메소드-호출-줄이기">메소드 호출 줄이기</h1>
+<hr />
+
+<p>메소드는 호출하는 것 자체만으로도 성능을 소모한다.</p>
+
+<p>그런데 종종 가독성을 위해 비교적 간단한 문장도 메소드화하는 경우가 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 1. 문장</span>
+    <span class="kt">bool</span> <span class="n">b1</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeSelf</span> <span class="p">&amp;&amp;</span>
+              <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeInHierarchy</span><span class="p">;</span>
+
+    <span class="c1">// 2. 메소드 호출</span>
+    <span class="kt">bool</span> <span class="n">b2</span> <span class="p">=</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">Transform</span> <span class="n">tr</span><span class="p">)</span>
+ <span class="p">=&gt;</span> <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeSelf</span> <span class="p">&amp;&amp;</span>
+    <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeInHierarchy</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>위의 경우, 동일한 문장을 여러 번 호출해야 한다면 대부분 메소드화해서 사용할 것이다.</p>
+
+<p>메소드 호출 때문에 비용이 더 들지만 가독성을 위해 어쩔 수 없는 선택이라고 할 수 있다.</p>
+
+<p><br /></p>
+
+<p>따라서 아래와 같이 사용할 수 있다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre></td><td class="rouge-code"><pre><span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="c1">// ...1</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ..</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="cm">/* ... */</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...2</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ..</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="cm">/* .. */</span> <span class="p">||</span> <span class="cm">/* .. */</span> <span class="p">&amp;&amp;</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="c1">// ...3</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>그런데 ‘문장의 메소드화’와는 별개로, 이 코드에서 생각해봐야 할 점이 있다.</p>
+
+<p>메소드 호출의 결괏값이 범위(메소드 블록 또는 라이프사이클 등) 내에서 항상 같다면?</p>
+
+<p>따라서 두 가지 경우로 나누어 생각해볼 수 있다.</p>
+
+<p><br /></p>
+
+<h3 id="1-해당-메소드-호출의-결괏값이-범위-내에서-달라질-수-있는-경우">1. 해당 메소드 호출의 결괏값이 범위 내에서 달라질 수 있는 경우</h3>
+
+<ul>
+  <li>IsFullyActive(transform)을 호출할 때마다 결과가 다를 수 있다면, 위처럼 사용하면 된다.</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="2-해당-메소드-호출의-결괏값이-범위-내에서-항상-같은-경우">2. 해당 메소드 호출의 결괏값이 범위 내에서 항상 같은 경우</h3>
+
+<ul>
+  <li>
+    <p>결국 항상 같은 값을 얻는데, 메소드를 여러 번 호출하는 것은 해당 메소드의 비용에 비례해서 그만큼의 손해를 보게 된다.</p>
+  </li>
+  <li>
+    <p>따라서 이런 경우에는 지역변수 또는 필드에 한 번의 메소드 호출로 값을 얻어 초기화한 뒤, 재사용 하는 방식을 선택해야 한다.</p>
+  </li>
+</ul>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">isTransformFullyActive</span> <span class="p">=</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">);</span>
+    
+    <span class="c1">// 블록 내에서 isTransformFullyActive 재사용</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><br /></p>
+
 <h1 id="참조-캐싱하기">참조 캐싱하기</h1>
 <hr />
 
-<p>위의 ‘메소드 호출 줄이기’와 같은 맥락이다.</p>
-
-<p>이것은 주로 프로퍼티 호출에 해당한다.</p>
+<p>주로 프로퍼티 호출에 해당한다.</p>
 
 <p>예를 들어,</p>
 
@@ -745,9 +881,9 @@
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>이런 경우이다.</p>
+<p>이런 경우다.</p>
 
-<p>프로퍼티는 필드가 아니다. 필드처럼, 혹은 메소드처럼 사용할 수 있는 참조이다.</p>
+<p>프로퍼티는 필드가 아니다. 필드처럼, 혹은 메소드처럼 사용할 수 있는 참조다.</p>
 
 <p>그리고 실제로 내부적으로는 Setter, Getter 메소드로 이루어져 있으며,</p>
 
@@ -994,7 +1130,7 @@
 
 <p>그리고 구조체는 크기에 관계없이 항상 스택에, 클래스는 힙에 할당된다.</p>
 
-<p>16kB를 초과한다고 해서 구조체가 힙에 할당된다는 루머를 본적이 있는데, 사실이 아니다.</p>
+<p>16byte를 초과한다고 해서 구조체가 힙에 할당된다는 루머를 본적이 있는데, 사실이 아니다.</p>
 
 <p><br /></p>
 
@@ -1073,7 +1209,7 @@
 <p>경험 많은 프로그래머가 아니라면, 원칙을 세워두면 좋다.</p>
 
 <ol>
-  <li>16kB(예 : int, float 변수 4개) 이하의 데이터 클래스는 구조체로 만든다.</li>
+  <li>16byte(예 : int, float 변수 4개) 이하의 데이터 클래스는 구조체로 만든다.</li>
   <li>생성/해제가 자주 일어나면 구조체로 만든다.</li>
   <li>생성/해제보다 전달(매개변수, 리턴)이 훨씬 자주 일어나면 클래스로 만들거나 매개변수 한정자 <code class="language-plaintext highlighter-rouge">in</code>을 사용한다.</li>
 </ol>
@@ -1323,142 +1459,6 @@
     </ul>
   </li>
 </ol>
-
-<p><br /></p>
-
-<h1 id="메소드-호출-줄이기">메소드 호출 줄이기</h1>
-<hr />
-
-<p>메소드는 호출하는 것 자체만으로도 성능을 소모한다.</p>
-
-<p>그런데 종종 가독성을 위해 비교적 간단한 문장도 메소드화하는 경우가 있다.</p>
-
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-</pre></td><td class="rouge-code"><pre><span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="c1">// 1. 문장</span>
-    <span class="kt">bool</span> <span class="n">b1</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeSelf</span> <span class="p">&amp;&amp;</span>
-              <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeInHierarchy</span><span class="p">;</span>
-
-    <span class="c1">// 2. 메소드 호출</span>
-    <span class="kt">bool</span> <span class="n">b2</span> <span class="p">=</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">bool</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">Transform</span> <span class="n">tr</span><span class="p">)</span>
- <span class="p">=&gt;</span> <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeSelf</span> <span class="p">&amp;&amp;</span>
-    <span class="n">transform</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">activeInHierarchy</span><span class="p">;</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p>위의 경우, 동일한 문장을 여러 번 호출해야 한다면 대부분 메소드화해서 사용할 것이다.</p>
-
-<p>메소드 호출 때문에 비용이 더 들지만 가독성을 위해 어쩔 수 없는 선택이라고 할 수 있다.</p>
-
-<p><br /></p>
-
-<p>따라서 아래와 같이 사용할 수 있다.</p>
-
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-</pre></td><td class="rouge-code"><pre><span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">))</span>
-    <span class="p">{</span>
-        <span class="c1">// ...1</span>
-    <span class="p">}</span>
-
-    <span class="c1">// ..</span>
-
-    <span class="k">if</span><span class="p">(</span><span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="cm">/* ... */</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">// ...2</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-        <span class="c1">// ...</span>
-    <span class="p">}</span>
-
-    <span class="c1">// ..</span>
-
-    <span class="k">if</span><span class="p">(</span><span class="cm">/* .. */</span> <span class="p">||</span> <span class="cm">/* .. */</span> <span class="p">&amp;&amp;</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">))</span>
-    <span class="p">{</span>
-        <span class="c1">// ...3</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p>그런데 ‘문장의 메소드화’와는 별개로, 이 코드에서 생각해봐야 할 점이 있다.</p>
-
-<p>메소드 호출의 결괏값이 범위(메소드 블록 또는 라이프사이클 등) 내에서 항상 같다면?</p>
-
-<p>따라서 두 가지 경우로 나누어 생각해볼 수 있다.</p>
-
-<p><br /></p>
-<h3 id="1-해당-메소드-호출의-결괏값이-범위-내에서-달라질-수-있는-경우">1. 해당 메소드 호출의 결괏값이 범위 내에서 달라질 수 있는 경우</h3>
-
-<ul>
-  <li>IsFullyActive(transform)을 호출할 때마다 결과가 다를 수 있다면, 위처럼 사용하면 된다.</li>
-</ul>
-
-<p><br /></p>
-<h3 id="2-해당-메소드-호출의-결괏값이-범위-내에서-항상-같은-경우">2. 해당 메소드 호출의 결괏값이 범위 내에서 항상 같은 경우</h3>
-
-<ul>
-  <li>
-    <p>결국 항상 같은 값을 얻는데, 메소드를 여러 번 호출하는 것은 해당 메소드의 비용에 비례해서 그만큼의 손해를 보게 된다.</p>
-  </li>
-  <li>
-    <p>따라서 이런 경우에는 지역변수 또는 필드에 한 번의 메소드 호출로 값을 얻어 초기화한 뒤, 재사용 하는 방식을 선택해야 한다.</p>
-  </li>
-</ul>
-
-<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="k">void</span> <span class="nf">Update</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="kt">bool</span> <span class="n">isTransformFullyActive</span> <span class="p">=</span> <span class="nf">IsFullyActive</span><span class="p">(</span><span class="n">transform</span><span class="p">);</span>
-    
-    <span class="c1">// 블록 내에서 isTransformFullyActive 재사용</span>
-<span class="p">}</span>
-</pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
 
@@ -1913,6 +1913,16 @@
         
         
         
+        <li><a href="/posts/raycast-to-aabb/">Raycast to AABB</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-shader-concept/">초보자를 위한 쉐이더 개념 간단 정리</a></li>
       
         
@@ -1923,17 +1933,7 @@
         
         
         
-        <li><a href="/posts/raycast-to-aabb/">Raycast to AABB</a></li>
-      
-        
-        
-        
         <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
       
 
       </ul>
@@ -9703,7 +9703,6 @@ GIF
                 목차
 
 
-
   1. Note
   2. Tools
   3. Unity Profiler
@@ -9720,7 +9719,7 @@ GIF
 
 
 
-No...
+Not...
               </p>
             </div>
           </div>

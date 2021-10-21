@@ -16,25 +16,25 @@ mermaid: true
 - [4.  비어있는 유니티 이벤트 메소드 방치하지 않기](#비어있는-유니티-이벤트-메소드-방치하지-않기)
 - [5.  StartCoroutine() 자주 호출하지 않기](#startcoroutine-자주-호출하지-않기)
 - [6.  코루틴의 yield 캐싱하기](#코루틴의-yield-캐싱하기)
-- [7.  참조 캐싱하기](#참조-캐싱하기)
-- [8.  빌드 이후 Debug.Log() 사용하지 않기](#빌드-이후-debuglog-사용하지-않기)
-- [9.  Transform 변경은 한번에](#transform-변경은-한번에)
-- [10. 불필요하게 부모 자식 구조 늘리지 않기](#불필요하게-부모-자식-구조-늘리지-않기)
-- [11. ScriptableObject 활용하기](#scriptableobject-활용하기)
-- [12. 필요하지 않은 경우, 리턴하지 않기](#필요하지-않은-경우-리턴하지-않기)
-- [13. new로 생성하는 부분 최대한 줄이기](#new로-생성하는-부분-최대한-줄이기)
-- [14. 오브젝트 풀링 사용하기](#오브젝트-풀링-사용하기)
-- [15. 구조체 사용하기](#구조체-사용하기)
-- [16. 컬렉션 재사용하기](#컬렉션-재사용하기)
-- [17. List 사용할 때 주의할 점](#list-사용할-때-주의할-점)
-- [18. StringBuilder 사용하기](#stringbuilder-사용하기)
-- [19. LINQ 사용 시 주의하기](#linq-사용-시-주의하기)
-- [20. 박싱, 언박싱 피하기](#박싱-언박싱-피하기)
-- [21. Enum HasFlag() 박싱 이슈](#enum-hasflag-박싱-이슈)
-- [22. 메소드 호출 줄이기](#메소드-호출-줄이기)
-- [23. 비싼 수학 계산 피하기](#비싼-수학-계산-피하기)
-- [24. Camera.main](#cameramain)
-- [25. 벡터 연산 시 주의사항](#벡터-연산-시-주의사항)
+- [7.  메소드 호출 줄이기](#메소드-호출-줄이기)
+- [8.  참조 캐싱하기](#참조-캐싱하기)
+- [9.  빌드 이후 Debug.Log() 사용하지 않기](#빌드-이후-debuglog-사용하지-않기)
+- [10  Transform 변경은 한번에](#transform-변경은-한번에)
+- [11. 불필요하게 부모 자식 구조 늘리지 않기](#불필요하게-부모-자식-구조-늘리지-않기)
+- [12. ScriptableObject 활용하기](#scriptableobject-활용하기)
+- [13. 필요하지 않은 경우, 리턴하지 않기](#필요하지-않은-경우-리턴하지-않기)
+- [14. new로 생성하는 부분 최대한 줄이기](#new로-생성하는-부분-최대한-줄이기)
+- [15. 오브젝트 풀링 사용하기](#오브젝트-풀링-사용하기)
+- [16. 구조체 사용하기](#구조체-사용하기)
+- [17. 컬렉션 재사용하기](#컬렉션-재사용하기)
+- [18. List 사용할 때 주의할 점](#list-사용할-때-주의할-점)
+- [19. StringBuilder 사용하기](#stringbuilder-사용하기)
+- [20. LINQ 사용 시 주의하기](#linq-사용-시-주의하기)
+- [21. 박싱, 언박싱 피하기](#박싱-언박싱-피하기)
+- [23. Enum HasFlag() 박싱 이슈](#enum-hasflag-박싱-이슈)
+- [24. 비싼 수학 계산 피하기](#비싼-수학-계산-피하기)
+- [25. Camera.main](#cameramain)
+- [26. 벡터 연산 시 주의사항](#벡터-연산-시-주의사항)
 
 
 <br>
@@ -197,9 +197,9 @@ private IEnumerator SomeCoroutine()
 
 코루틴에서는 `WaitForSeconds()` 등의 객체를 yield return으로 사용한다.
 
-그런데 위처럼 항상 new로 생성할 경우, 모조리 GC.Collect()의 대상이 된다.
+그런데 위처럼 매번 new로 생성할 경우, 모조리 가비지 수집의 대상이 된다.
 
-따라서 아래처럼 캐싱하여 사용하는 것이 좋다.
+따라서 아래처럼 미리 변수에 담아 두고 사용하는 것이 좋다.
 
 ```cs
 private IEnumerator SomeCoroutine()
@@ -215,12 +215,100 @@ private IEnumerator SomeCoroutine()
 
 <br>
 
+# 메소드 호출 줄이기
+---
+
+메소드는 호출하는 것 자체만으로도 성능을 소모한다.
+
+그런데 종종 가독성을 위해 비교적 간단한 문장도 메소드화하는 경우가 있다.
+
+```cs
+void Update()
+{
+    // 1. 문장
+    bool b1 = transform.gameObject.activeSelf &&
+              transform.gameObject.activeInHierarchy;
+
+    // 2. 메소드 호출
+    bool b2 = IsFullyActive(transform);
+}
+
+bool IsFullyActive(Transform tr)
+ => transform.gameObject.activeSelf &&
+    transform.gameObject.activeInHierarchy;
+```
+
+위의 경우, 동일한 문장을 여러 번 호출해야 한다면 대부분 메소드화해서 사용할 것이다.
+
+메소드 호출 때문에 비용이 더 들지만 가독성을 위해 어쩔 수 없는 선택이라고 할 수 있다.
+
+<br>
+
+따라서 아래와 같이 사용할 수 있다.
+
+```cs
+void Update()
+{
+    if(IsFullyActive(transform))
+    {
+        // ...1
+    }
+
+    // ..
+
+    if(IsFullyActive(transform) && /* ... */)
+    {
+        // ...2
+    }
+    else
+    {
+        // ...
+    }
+
+    // ..
+
+    if(/* .. */ || /* .. */ && IsFullyActive(transform))
+    {
+        // ...3
+    }
+}
+```
+
+그런데 '문장의 메소드화'와는 별개로, 이 코드에서 생각해봐야 할 점이 있다.
+
+메소드 호출의 결괏값이 범위(메소드 블록 또는 라이프사이클 등) 내에서 항상 같다면?
+
+따라서 두 가지 경우로 나누어 생각해볼 수 있다.
+
+<br>
+
+### 1. 해당 메소드 호출의 결괏값이 범위 내에서 달라질 수 있는 경우
+
+- IsFullyActive(transform)을 호출할 때마다 결과가 다를 수 있다면, 위처럼 사용하면 된다.
+
+<br>
+
+### 2. 해당 메소드 호출의 결괏값이 범위 내에서 항상 같은 경우
+
+- 결국 항상 같은 값을 얻는데, 메소드를 여러 번 호출하는 것은 해당 메소드의 비용에 비례해서 그만큼의 손해를 보게 된다.
+
+- 따라서 이런 경우에는 지역변수 또는 필드에 한 번의 메소드 호출로 값을 얻어 초기화한 뒤, 재사용 하는 방식을 선택해야 한다.
+
+```cs
+void Update()
+{
+    bool isTransformFullyActive = IsFullyActive(transform);
+    
+    // 블록 내에서 isTransformFullyActive 재사용
+}
+```
+
+<br>
+
 # 참조 캐싱하기
 ---
 
-위의 '메소드 호출 줄이기'와 같은 맥락이다.
-
-이것은 주로 프로퍼티 호출에 해당한다.
+주로 프로퍼티 호출에 해당한다.
 
 예를 들어,
 
@@ -234,9 +322,9 @@ void Update()
 }
 ```
 
-이런 경우이다.
+이런 경우다.
 
-프로퍼티는 필드가 아니다. 필드처럼, 혹은 메소드처럼 사용할 수 있는 참조이다.
+프로퍼티는 필드가 아니다. 필드처럼, 혹은 메소드처럼 사용할 수 있는 참조다.
 
 그리고 실제로 내부적으로는 Setter, Getter 메소드로 이루어져 있으며,
 
@@ -441,7 +529,7 @@ private void Caller()
 
 그리고 구조체는 크기에 관계없이 항상 스택에, 클래스는 힙에 할당된다.
 
-16kB를 초과한다고 해서 구조체가 힙에 할당된다는 루머를 본적이 있는데, 사실이 아니다.
+16byte를 초과한다고 해서 구조체가 힙에 할당된다는 루머를 본적이 있는데, 사실이 아니다.
 
 <br>
 
@@ -519,7 +607,7 @@ private void Caller()
 
 경험 많은 프로그래머가 아니라면, 원칙을 세워두면 좋다.
 
-1. 16kB(예 : int, float 변수 4개) 이하의 데이터 클래스는 구조체로 만든다.
+1. 16byte(예 : int, float 변수 4개) 이하의 데이터 클래스는 구조체로 만든다.
 2. 생성/해제가 자주 일어나면 구조체로 만든다.
 3. 생성/해제보다 전달(매개변수, 리턴)이 훨씬 자주 일어나면 클래스로 만들거나 매개변수 한정자 `in`을 사용한다.
 
@@ -729,94 +817,6 @@ public static bool HasFlag2<T>(this T self, T flag) where T : Enum
 
 2. Dictionary의 키로 Enum을 사용할 경우 박싱 이슈
   - 역시 .Net 4.x 버전에서 해결되었다고 한다.
-
-<br>
-
-# 메소드 호출 줄이기
----
-
-메소드는 호출하는 것 자체만으로도 성능을 소모한다.
-
-그런데 종종 가독성을 위해 비교적 간단한 문장도 메소드화하는 경우가 있다.
-
-```cs
-void Update()
-{
-    // 1. 문장
-    bool b1 = transform.gameObject.activeSelf &&
-              transform.gameObject.activeInHierarchy;
-
-    // 2. 메소드 호출
-    bool b2 = IsFullyActive(transform);
-}
-
-bool IsFullyActive(Transform tr)
- => transform.gameObject.activeSelf &&
-    transform.gameObject.activeInHierarchy;
-```
-
-위의 경우, 동일한 문장을 여러 번 호출해야 한다면 대부분 메소드화해서 사용할 것이다.
-
-메소드 호출 때문에 비용이 더 들지만 가독성을 위해 어쩔 수 없는 선택이라고 할 수 있다.
-
-<br>
-
-따라서 아래와 같이 사용할 수 있다.
-
-```cs
-void Update()
-{
-    if(IsFullyActive(transform))
-    {
-        // ...1
-    }
-
-    // ..
-
-    if(IsFullyActive(transform) && /* ... */)
-    {
-        // ...2
-    }
-    else
-    {
-        // ...
-    }
-
-    // ..
-
-    if(/* .. */ || /* .. */ && IsFullyActive(transform))
-    {
-        // ...3
-    }
-}
-```
-
-그런데 '문장의 메소드화'와는 별개로, 이 코드에서 생각해봐야 할 점이 있다.
-
-메소드 호출의 결괏값이 범위(메소드 블록 또는 라이프사이클 등) 내에서 항상 같다면?
-
-따라서 두 가지 경우로 나누어 생각해볼 수 있다.
-
-<br>
-### 1. 해당 메소드 호출의 결괏값이 범위 내에서 달라질 수 있는 경우
-
-- IsFullyActive(transform)을 호출할 때마다 결과가 다를 수 있다면, 위처럼 사용하면 된다.
-
-<br>
-### 2. 해당 메소드 호출의 결괏값이 범위 내에서 항상 같은 경우
-
-- 결국 항상 같은 값을 얻는데, 메소드를 여러 번 호출하는 것은 해당 메소드의 비용에 비례해서 그만큼의 손해를 보게 된다.
-
-- 따라서 이런 경우에는 지역변수 또는 필드에 한 번의 메소드 호출로 값을 얻어 초기화한 뒤, 재사용 하는 방식을 선택해야 한다.
-
-```cs
-void Update()
-{
-    bool isTransformFullyActive = IsFullyActive(transform);
-    
-    // 블록 내에서 isTransformFullyActive 재사용
-}
-```
 
 <br>
 
