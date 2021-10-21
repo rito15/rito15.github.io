@@ -3,7 +3,7 @@ title: Raycast to Plane
 author: Rito15
 date: 2021-10-03 22:22:00 +09:00
 categories: [Algorithm, Algorithms]
-tags: [algorithm, csharp]
+tags: [algorithm, csharp, raycast]
 math: true
 mermaid: true
 ---

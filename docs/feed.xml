@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-21T03:38:53+09:00</updated>
+  <updated>2021-10-21T16:11:27+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,103 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>게임 수학 - 벡터의 내적과 외적</title>
+    <link href="https://rito15.github.io/posts/game-math-dot-cross/" rel="alternate" type="text/html" title="게임 수학 - 벡터의 내적과 외적" />
+    <published>2021-10-21T16:00:00+09:00</published>
+  
+    <updated>2021-10-21T16:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/game-math-dot-cross/</id>
+    <content src="https://rito15.github.io/posts/game-math-dot-cross/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Memo" />
+    
+    <category term="Game Mathematics" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      내적
+
+
+특징
+
+
+  내적은 벡터의 차원에 관계 없이, 동일한 차원의 벡터끼리 가능하다.
+
+
+
+
+주어진 벡터
+
+\[A = (a_{x}, a_{y}, a_{z})\]
+
+\[B = (b_{x}, b_{y}, b_{z})\]
+
+
+
+내적 연산
+
+\[A\cdotB = a_{x}\cdotBb_{x} + a_{y}\cdotBb_{y} + a_{z}\cdotBb_{z}\]
+
+
+
+내적의 활용
+
+
+[1] 두 벡터의 각도 관계 판별
+
+
+
+[2] 두 벡터의 사잇각 계산
+
+
+
+[3] 투영 벡터 계산
+
+
+
+외적
+
+
+특징
+
+
+  벡터의 외적은 3차원 벡터끼리만 가능하다.
+
+
+
+
+주어진 벡터
+
+\[A = (a_{x}, a_{y}, a_{z})\]
+
+\[B = (b_{x}, b_{y}, b_{z})\]
+
+
+
+외적 연산
+
+\[A X ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -301,69 +398,6 @@ public static class EditorTagLayerHelper
     /// &amp;lt;summary&amp;gt; 태그 중복 확인 및 추가 &amp;lt;/summary&amp;gt;
     [System.Diagnostics.Conditional("UNITY_EDITOR")]
     public static void AddNewTa...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 스크립트의 실행 순서를 보장할 수 없는 경우, 종속적인 작업 처리하기</title>
-    <link href="https://rito15.github.io/posts/unity-process-after-initalization/" rel="alternate" type="text/html" title="유니티 - 스크립트의 실행 순서를 보장할 수 없는 경우, 종속적인 작업 처리하기" />
-    <published>2021-10-12T04:00:00+09:00</published>
-  
-    <updated>2021-10-12T15:24:38+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-process-after-initalization/</id>
-    <content src="https://rito15.github.io/posts/unity-process-after-initalization/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      요약
-
-A 클래스가 B 클래스에 종속적인 작업을 수행할 때,
-
-B 클래스가 초기화 작업을 완료하기 전에 A 클래스가 작업을 요청하면 에러가 발생할 수 있다.
-
-예를 들면 서로 다른 클래스의 Awake(), Start(), OnEnable() 호출 순서를 보장할 수 없는 경우를 생각해볼 수 있다.
-
-이런 경우의 해결 방안을 알아본다.
-
-
-
-상황 예시
-
-
-[1] PlayerManager 클래스
-
-
-  Player 객체들을 리스트에 담아 관리하며, 리스트에 추가/제거할 수 있는 API를 제공한다.
-
-
-class PlayerManager : MonoBehaviour
-{
-    private List&amp;lt;Player&amp;gt; playerList;
-
-    private void Awake()
-    {
-    ...
     </summary>
   
 

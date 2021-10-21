@@ -6656,6 +6656,19 @@ return res
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8609,7 +8622,7 @@ Sphere Cast to Sphere
       
       
       <div class="card">
-        <a href="/posts/bresenham-algorithm/">
+        <a href="/posts/raycast-to-aabb/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8626,13 +8639,13 @@ Sphere Cast to Sphere
   
 
   
-    Apr 25
+    Oct 19
   
 
-  <i class="unloaded">2021-04-25T17:32:00+09:00</i>
+  <i class="unloaded">2021-10-19T03:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>브레즌햄(픽셀에 직선 그리기) 알고리즘</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Raycast to AABB</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8641,28 +8654,27 @@ Sphere Cast to Sphere
 
 
 
-                Summary
-
-
-직선을 그릴 때 직선 위의 점들은 실수 값을 가질 수밖에 없다.
-
-그래서 불연속 정수 값만을 갖는 픽셀에 직선을 그릴 때는
-
-실수 값의 소수점을 버리거나 반올림하여 정수로 변환해야 하는데,
-
-브레즌햄 알고리즘은 실수 연산 없이 정수 연산만으로 직선을 그릴 수 있게 해준다.
+                레이캐스트(Raycast)
 
 
 
-Details
-
-
-2가지 경우로 나눈다.
+  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
 
 
 
 
-  기울...
+AABB
+
+
+
+  
+    Axis-Aligned Bounding Box
+  
+  
+    여섯 면이 모두 각각 X, Y, Z 축에 정렬된 형태의 육면체
+  
+  
+    중심 좌표(Vector3)와 각 축의...
               </p>
             </div>
           </div>

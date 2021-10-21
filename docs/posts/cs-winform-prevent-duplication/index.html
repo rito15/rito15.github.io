@@ -6365,6 +6365,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8468,7 +8481,7 @@ public b...
       
       
       <div class="card">
-        <a href="/posts/cs-struct-property-indexer/">
+        <a href="/posts/cs-benchmark-dotnet/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8485,13 +8498,13 @@ public b...
   
 
   
-    Aug  6
+    Aug  7
   
 
-  <i class="unloaded">2021-08-06T15:00:00+09:00</i>
+  <i class="unloaded">2021-08-07T16:16:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 구조체 프로퍼티, 구조체 인덱서</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Benchmark DotNet</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8500,40 +8513,39 @@ public b...
 
 
 
-                구조체의 특징
+                설치
 
 
-  초기화(할당), 리턴 등의 동작을 통해 값을 전달할 경우, 구조체가 통째로 복제된다.
+
+  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치
 
 
-1
+
+
+사용법
+
+
+[1] 테스트 대상 클래스
+
+
+   
+…
+
+
+  [1-1] 네임스페이스
+
+  
+     
+.
+
+
+    1
 2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-struct MyStruct
-{
-    public float value;
-}
+using BenchmarkDotNet;
+using BenchmarkDotNet.Attributes;
+    
 
-class MainClass
-{
-    private MyStruct ...
+  ...
               </p>
             </div>
           </div>

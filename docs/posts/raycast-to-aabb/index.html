@@ -1159,6 +1159,9 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
           <a href="/tags/csharp/"
             class="post-tag no-text-decoration" >csharp</a>
           
+          <a href="/tags/raycast/"
+            class="post-tag no-text-decoration" >raycast</a>
+          
           </div>
         
 
@@ -4736,6 +4739,19 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8999,7 +9015,7 @@ Sphere Cast to Sphere
       
       
       <div class="card">
-        <a href="/posts/dynamic-programming/">
+        <a href="/posts/raycast-to-sphere/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9016,13 +9032,13 @@ Sphere Cast to Sphere
   
 
   
-    Sep  2
+    Oct  2
   
 
-  <i class="unloaded">2021-09-02T16:40:00+09:00</i>
+  <i class="unloaded">2021-10-02T02:02:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>동적 계획법(Dynamic Programming, DP)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Raycast to Sphere</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9031,26 +9047,21 @@ Sphere Cast to Sphere
 
 
 
-                개념
-
-
-동적 계획법
-
-문제를 여러 개의 하위 문제들로 나누어 해결 및 기록한 뒤
-
-이를 이용해 최종적인 문제를 해결해나가는 방법.
+                레이캐스트(Raycast)
 
 
 
-다시 말해,
-
-문제 해결 과정을 메모리에 기록하고 이를 바탕으로 이후의 문제를 해결해나가는 방법이다.
-
-한 번 기록한 적이 있다면 다시 계산할 필요 없이 곧바로 답을 도출해낼 수 있다.
+  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
 
 
 
-메모이제이션(Memoiz...
+
+직선과 구체 표면의 접점 찾기
+
+
+
+  시작 지점에서부터 목표 지점으로 광선을 발사하여, 두 점이 이루는 직선과 교차하는 구체의 표면 지점을 찾아낸다.
+  3차원에서 수행하면 구체, 2차원에서 수행하면 원(C...
               </p>
             </div>
           </div>
@@ -9060,7 +9071,7 @@ Sphere Cast to Sphere
       
       
       <div class="card">
-        <a href="/posts/algorithm-pow/">
+        <a href="/posts/raycast-to-plane/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9077,13 +9088,13 @@ Sphere Cast to Sphere
   
 
   
-    Apr  6
+    Oct  3
   
 
-  <i class="unloaded">2021-04-06T18:00:00+09:00</i>
+  <i class="unloaded">2021-10-03T22:22:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>O(logn) 거듭제곱 알고리즘</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Raycast to Plane</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9092,26 +9103,23 @@ Sphere Cast to Sphere
 
 
 
-                Summary
+                레이캐스트(Raycast)
 
 
 
-  
-    일반적으로 \(O(n)\) 시간복잡도로 수행하는 거듭제곱 계산을 \(O(log_{2}n)\) 의 시간복잡도로 수행할 수 있는 알고리즘
-  
-  
-    2진수 연산을 이용한다.
-  
+  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
 
 
 
 
-Details
+평면(Plane)
 
 
-(a^n)을 계산하는 가장 쉬운 방법은 (a)를 (n) 번 곱하는 것이다.
 
-예를 들어 (4^9)을 구하려면 (4...
+
+평면 위의 점 P와 평면의 법선 벡터 N을 알고 있으면 평면을 정의할 수 있으며,
+
+평면 위의 임의의 점 X를 가정하여 dot(N, P - X) = 0을 통해 평면의 방정식을 정의할 ...
               </p>
             </div>
           </div>

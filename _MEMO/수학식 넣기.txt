@@ -1,3 +1,17 @@
+특수기호
+
+Dot
+⋅
+
+Cross
+×
+
+Theta
+θ
+
+
+----------------
+
 인라인 방식 ($ ~ $이 아니라 블록과 동일..)
 $$ ~ $$
 
@@ -12,9 +26,13 @@ $$
 
 문법
 https://rpruim.github.io/s341/S19/from-class/MathinRmd.html
+https://ko.wikipedia.org/wiki/위키백과:TeX_문법
 
-곱셈 (중앙 점) 기호
+곱셈 (내적) 기호
 \cdot
+
+곱셈 (외적) 기호
+\times
 
 제곱근
 \sqrt{x}
@@ -27,3 +45,37 @@ https://rpruim.github.io/s341/S19/from-class/MathinRmd.html
 
 조합(Combination) 또는 (1, 2) 세로행렬 (n, i)
 $$ \binom{n}{i} $$
+
+개행 : \begin{} ~ \end{}로 묶여야 함
+\\
+
+개행 - 여러 줄 작성할 때 : 행렬 응용
+\begin{matrix}
+f(n+1) &=& (n+1)^2 \\
+       &=& n^2 + 2n + 1
+\end{matrix}
+
+공백 1칸
+\,
+
+공백 4칸
+\quad
+
+공백 8칸
+\qquad
+
+공백 -1칸
+\!
+
+좌측 정렬
+\begin{flalign*}
+\quad 
+
+수식수식 &&
+
+\end{flalign*}
+
+=> 수식마다 우측에 &&를 붙여줘야 한다.
+=> 그래도 안되면 \\ && 를 붙여주면 된다.
+
+
