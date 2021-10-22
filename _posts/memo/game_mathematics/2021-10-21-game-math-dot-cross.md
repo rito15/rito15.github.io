@@ -351,7 +351,31 @@ $$
 
 
 
-## **[2] 평면의 법선 벡터 구하기**
+## **[2] 외적 결과 벡터의 길이 구하기**
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+두 벡터 `A`, `B`를 외적한 벡터의 길이는 다음과 같이 계산할 수 있다.
+
+$$
+\begin{flalign*}
+\quad 
+
+|A×B| = |A| |B| sin\theta &&
+
+\end{flalign*}
+$$
+
+</details>
+
+<br>
+
+
+
+## **[3] 평면의 법선 벡터 구하기**
 
 <details>
 <summary markdown="span"> 
@@ -372,7 +396,7 @@ $$
 
 
 
-## **[3] 벡터의 좌우 관계 판별하기**
+## **[4] 벡터의 좌우 관계 판별하기**
 
 <details>
 <summary markdown="span"> 
@@ -406,7 +430,7 @@ $$
 
 
 
-## **[4] 오브젝트의 로컬 축 벡터 구성하기**
+## **[5] 오브젝트의 로컬 축 벡터 구성하기**
 
 <details>
 <summary markdown="span"> 
@@ -428,7 +452,7 @@ $$
 
 <br>
 
-## **[5] 삼각형의 내부, 외부 판별하기**
+## **[6] 삼각형의 내부, 외부 판별하기**
 
 <details>
 <summary markdown="span"> 
