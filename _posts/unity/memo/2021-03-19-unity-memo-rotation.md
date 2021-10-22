@@ -77,7 +77,135 @@ transform.rotation *=
 
 <br>
 
-# 3. 방향 벡터를 월드 축으로 회전
+# 3. 트랜스폼을 타겟 중심으로 회전
+---
+
+## **Note**
+- `Update()` 내에서 호출
+
+<br>
+
+## **[1] 현재 타겟과의 관계에 따라 회전하기**
+
+![2021_1022_Rotate0](https://user-images.githubusercontent.com/42164422/138448967-c1ca56a8-16a7-4661-86aa-b9fc88682dbf.gif)
+
+{% include codeHeader.html %}
+```cs
+// axis  : 회전축 벡터
+// speed : 회전 속도
+private void RotateAround0(in Vector3 axis, float speed)
+{
+    float t = speed * Time.deltaTime;
+    transform.RotateAround(target.position, axis, t);
+}
+```
+
+<details>
+<summary markdown="span"> 
+호출 예제
+</summary>
+
+```cs
+public float rotateSpeed = 50f;
+public Vector3 axis = new Vector3(0f, 1f, 0f);
+
+private void Update()
+{
+    RotateAround0(axis, rotateSpeed);
+}
+```
+
+</details>
+
+<br>
+
+
+## **[2] 타겟과 거리 관계를 유지한 채로 회전하기**
+
+![2021_1022_Rotate1](https://user-images.githubusercontent.com/42164422/138448980-ef989aec-4ac7-4054-ae62-9d1ffa66fcc0.gif)
+
+{% include codeHeader.html %}
+```cs
+// axis  : 회전축 벡터
+// diff  : (타겟의 위치 - 자신의 위치) 벡터
+// speed : 회전 속도
+// t     : 현재 회전 기억
+private void RotateAround1(in Vector3 axis, in Vector3 diff, float speed, ref float t)
+{
+    t += speed * Time.deltaTime;
+
+    Vector3 offset = Quaternion.AngleAxis(t, axis) * diff;
+    transform.position = target.position + offset;
+}
+```
+
+<details>
+<summary markdown="span"> 
+호출 예제
+</summary>
+
+```cs
+public float rotateSpeed = 50f;
+public Vector3 axis = new Vector3(0f, 1f, 0f);
+public Vector3 diff = new Vector3(4f, 0f, 0f);
+private float t = 0;
+
+private void Update()
+{
+    RotateAround1(axis, diff, rotateSpeed, ref t);
+}
+```
+
+</details>
+
+<br>
+
+
+## **[3] 타겟과의 거리를 유지하고, 타겟을 바라보며 회전하기**
+
+![2021_1022_Rotate2](https://user-images.githubusercontent.com/42164422/138448990-f3a0f1ae-2441-4353-8352-d476cb17ce3f.gif)
+
+{% include codeHeader.html %}
+```cs
+// axis  : 회전축 벡터
+// diff  : (타겟의 위치 - 자신의 위치) 벡터
+// speed : 회전 속도
+// t     : 현재 회전 기억
+private void RotateAround2(in Vector3 axis, in Vector3 diff, float speed, ref float t)
+{
+    t += speed * Time.deltaTime;
+
+    Vector3 offset = Quaternion.AngleAxis(t, Vector3.up) * diff;
+    transform.position = target.position + offset;
+
+    Quaternion rot = Quaternion.LookRotation(-offset, axis);
+    transform.rotation = rot;
+}
+```
+
+<details>
+<summary markdown="span"> 
+호출 예제
+</summary>
+
+```cs
+public float rotateSpeed = 50f;
+public Vector3 axis = new Vector3(0f, 1f, 0f);
+public Vector3 diff = new Vector3(4f, 0f, 0f);
+private float t = 0;
+
+private void Update()
+{
+    RotateAround2(axis, diff, rotateSpeed, ref t);
+}
+```
+
+</details>
+
+
+<br>
+
+# 4. 방향 벡터를 월드 축으로 회전
 ---
 
 ```cs
@@ -89,7 +217,7 @@ Vector3 rotatedDirVec = Quaternion.Euler(rotVec) * dirVec;
 
 <br>
 
-# 4. 방향 벡터를 특정 축으로 회전
+# 5. 방향 벡터를 특정 축으로 회전
 ---
 
 ```cs
@@ -102,7 +230,7 @@ Vector3 rotatedDirVec = Quaternion.AngleAxis(45f, axisVec) * dirVec;
 
 <br>
 
-# 5. 대상 지점 천천히 바라보기
+# 6. 대상 지점 천천히 바라보기
 ---
 
 ## [1] XYZ 모두 회전
@@ -142,7 +270,7 @@ private void LookAtSlowlyX(Transform target, float speed = 1f)
 
 <br>
 
-# 6. 마우스 입력에 따른 좌우, 상하 회전 예제
+# 7. 마우스 입력에 따른 좌우, 상하 회전 예제
 ---
 
 - 부모, 자식 트랜스폼 구조
