@@ -345,6 +345,15 @@ $$
 
 순서를 바꾸어 연산할 경우 반대 방향으로 수직인 벡터를 얻을 수 있다.
 
+$$
+\begin{flalign*}
+\quad 
+
+A \times B = -B \times A &&
+
+\end{flalign*}
+$$
+
 </details>
 
 <br>
@@ -500,7 +509,70 @@ $$
 
 </details>
 
+<br>
 
+# 추가
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+## **[1] 벡터 삼중곱**
+- 라그랑주 공식 또는 백캡 규칙(BAC-CAB rule) 이라고도 한다.
+- 외적은 결합법칙이 성립하지 않으므로 `A×(B×C)`는 `(A×B)×C`와 다르다.
+
+<br>
+
+$$
+\begin{flalign*}
+\quad 
+
+A \times (B \times C) \,\,\,\, = \, B(A \cdot C) - C(A \cdot B) &&
+
+\end{flalign*}
+$$
+
+
+$$
+\begin{flalign*}
+\quad 
+
+\begin{matrix}
+(A \times B) \times C &=& -C \times (A \times B) \qquad\quad \\
+                      &=& -A(B \cdot C) - B(A \cdot C)
+\end{matrix} &&
+
+\end{flalign*}
+$$
+
+
+<br>
+
+## **[2] 스칼라 삼중곱**
+
+![image](https://user-images.githubusercontent.com/42164422/138458190-1b87179b-658e-434d-9122-16543fd6afc0.png)
+
+- 스칼라 삼중곱의 절댓값을 통해 위 평행 육면체의 부피를 구할 수 있다.
+
+<br>
+
+$$
+\begin{flalign*}
+\quad 
+
+\begin{matrix}
+V &=& ||B \times C|| \, ||A|| \, cos \phi \\
+  &=& |A \cdot (B \times C)| \qquad
+\end{matrix} &&
+
+\end{flalign*}
+$$
+
+</details>
 
 <br>
 
@@ -508,3 +580,4 @@ $$
 ---
 - <https://www.inflearn.com/course/게임-수학-이해/lecture/75048>
 - <https://m.blog.naver.com/destiny9720/221411770100>
+- <http://hi-kam.blogspot.com/2015/09/scalar-triple-product.html>
