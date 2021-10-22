@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="게임 수학 - 벡터의 내적과 외적" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"dateModified":"2021-10-22T17:22:08+09:00","description":"내적","datePublished":"2021-10-21T16:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/game-math-dot-cross/"},"headline":"게임 수학 - 벡터의 내적과 외적","url":"https://rito15.github.io/posts/game-math-dot-cross/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"내적","datePublished":"2021-10-21T16:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/game-math-dot-cross/"},"url":"https://rito15.github.io/posts/game-math-dot-cross/","author":{"@type":"Person","name":"Rito15"},"headline":"게임 수학 - 벡터의 내적과 외적","dateModified":"2021-10-22T23:00:26+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,7 +421,7 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Oct 22, 2021,  5:22 PM +0900"
+    title="Fri, Oct 22, 2021, 11:00 PM +0900"
   >
 
   
@@ -431,7 +431,7 @@
     Oct 22
   
 
-  <i class="unloaded">2021-10-22T17:22:08+09:00</i>
+  <i class="unloaded">2021-10-22T23:00:26+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1338 words">7 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1510 words">8 min</span>
 
 
           <!-- page views -->
@@ -770,6 +770,13 @@ a_{y} \cdot b_{z} - a_{z} \cdot b_{y})&amp;&amp;
 
   <p>순서를 바꾸어 연산할 경우 반대 방향으로 수직인 벡터를 얻을 수 있다.</p>
 
+\[\begin{flalign*}
+\quad 
+
+A \times B = -B \times A &amp;&amp;
+
+\end{flalign*}\]
+
 </details>
 
 <p><br /></p>
@@ -921,11 +928,73 @@ P = aA + bB + (1 - a - b)C &amp;&amp;
 
 <p><br /></p>
 
+<h1 id="추가">추가</h1>
+<hr />
+
+<details>
+  <summary> 
+…
+</summary>
+
+  <p><br /></p>
+
+  <h2 id="section-6"><strong>[1] 벡터 삼중곱</strong></h2>
+  <ul>
+    <li>라그랑주 공식 또는 백캡 규칙(BAC-CAB rule) 이라고도 한다.</li>
+    <li>외적은 결합법칙이 성립하지 않으므로 <code class="language-plaintext highlighter-rouge">A×(B×C)</code>는 <code class="language-plaintext highlighter-rouge">(A×B)×C</code>와 다르다.</li>
+  </ul>
+
+  <p><br /></p>
+
+\[\begin{flalign*}
+\quad 
+
+A \times (B \times C) \,\,\,\, = \, B(A \cdot C) - C(A \cdot B) &amp;&amp;
+
+\end{flalign*}\]
+
+\[\begin{flalign*}
+\quad 
+
+\begin{matrix}
+(A \times B) \times C &amp;=&amp; -C \times (A \times B) \qquad\quad \\
+                      &amp;=&amp; -A(B \cdot C) - B(A \cdot C)
+\end{matrix} &amp;&amp;
+
+\end{flalign*}\]
+
+  <p><br /></p>
+
+  <h2 id="section-7"><strong>[2] 스칼라 삼중곱</strong></h2>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/138458190-1b87179b-658e-434d-9122-16543fd6afc0.png" alt="image" /></p>
+
+  <ul>
+    <li>스칼라 삼중곱의 절댓값을 통해 위 평행 육면체의 부피를 구할 수 있다.</li>
+  </ul>
+
+  <p><br /></p>
+
+\[\begin{flalign*}
+\quad 
+
+\begin{matrix}
+V &amp;=&amp; ||B \times C|| \, ||A|| \, cos \phi \\
+  &amp;=&amp; |A \cdot (B \times C)| \qquad
+\end{matrix} &amp;&amp;
+
+\end{flalign*}\]
+
+</details>
+
+<p><br /></p>
+
 <h1 id="references">References</h1>
 <hr />
 <ul>
   <li><a href="https://www.inflearn.com/course/게임-수학-이해/lecture/75048">https://www.inflearn.com/course/게임-수학-이해/lecture/75048</a></li>
   <li><a href="https://m.blog.naver.com/destiny9720/221411770100">https://m.blog.naver.com/destiny9720/221411770100</a></li>
+  <li><a href="http://hi-kam.blogspot.com/2015/09/scalar-triple-product.html">http://hi-kam.blogspot.com/2015/09/scalar-triple-product.html</a></li>
 </ul>
 
 
@@ -1064,6 +1133,11 @@ P = aA + bB + (1 - a - b)C &amp;&amp;
         
         
         
+        <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
       
         
@@ -1075,11 +1149,6 @@ P = aA + bB + (1 - a - b)C &amp;&amp;
         
         
         <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-shader-concept/">초보자를 위한 쉐이더 개념 간단 정리</a></li>
       
 
       </ul>
@@ -4531,6 +4600,19 @@ P = aA + bB + (1 - a - b)C &amp;&amp;
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8778,6 +8860,7 @@ P = aA + bB + (1 - a - b)C &amp;&amp;
                 3D 게임 공간의 확장
 
 
+
   벡터 공간 : 이동 벡터를 표현(w가 항상 0)
   아핀 공간 : 위치 벡터를 표현(w가 항상 1)
 
@@ -8793,7 +8876,7 @@ P = aA + bB + (1 - a - b)C &amp;&amp;
 
 
 
-아핀 조합(Affine Combin...
+아핀 조합(Affine Combi...
               </p>
             </div>
           </div>
@@ -8838,6 +8921,7 @@ P = aA + bB + (1 - a - b)C &amp;&amp;
                 Memo
 
 
+
   
     _alloca
     
@@ -8845,7 +8929,7 @@ P = aA + bB + (1 - a - b)C &amp;&amp;
       함수의 리턴으로 전달하면 안된다.
       블록이 종료되면 자동으로 할당 해제된다.
       공간 할당 불가능한 경우 Stack Overflow 에러가 발생할 수 있으니 주의
-      예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 함...
+      예외가 발생한 경우 구조적 예외처리(SEH)로 받아야 ...
               </p>
             </div>
           </div>
@@ -8889,6 +8973,7 @@ P = aA + bB + (1 - a - b)C &amp;&amp;
 
                 Note
 
+
 C++에는 미리 정의된 동적 매크로가 있다.
 
 __FILE__
@@ -8906,7 +8991,7 @@ __LINE__
 
 #define MACRO(x) #x
 
-  x에 위치한 코드를 문자...
+  x에 위치한 코드를 문...
               </p>
             </div>
           </div>
@@ -8935,9 +9020,9 @@ __LINE__
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/unity-fixed-update-and-physics-loop/" class="btn btn-outline-primary">
+    <p>유니티 - FixedUpdate()와 Physics Loop에 대한 이해</p>
+  </a>
   
 
 </div>

@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "유니티 - FixedUpdate()와 Physics Loop에 대한 이해",
+    "url": "/posts/unity-fixed-update-and-physics-loop/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, csharp",
+    "date": "2021-10-23 03:45:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Update()와 Game Loop그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 모든 처리가 Game Loop(게임 루프)를 기반으로 동작한다.DirectX, OpenGL, Vulkan, … 등 어떤 그래픽스 라이브러리를 사용하더라도모든 처리는/* Main Function */// Game Loopwhile(...){    // User Inputs..    // Game Logics..    // Draw Calls..    // ...}이런 게임 루프를 기반으로 이루어진다.유니티 엔진 같은 상용 엔진도 저 게임 루프..."
+  },
+  
+  {
     "title": "게임 수학 - 벡터의 내적과 외적",
     "url": "/posts/game-math-dot-cross/",
     "categories": "Memo, Game Mathematics",
@@ -12,7 +27,7 @@
 
 
 
-    "snippet": "내적특징  내적은 벡터의 차원에 관계 없이, 동일한 차원의 벡터끼리 가능하다.주어진 벡터\\[A = (a_{x}, a_{y}, a_{z})\\]\\[B = (b_{x}, b_{y}, b_{z})\\]내적 연산\\[A\\cdotB = a_{x}\\cdotBb_{x} + a_{y}\\cdotBb_{y} + a_{z}\\cdotBb_{z}\\]내적의 활용[1] 두 벡터의 각도 관계 판별[2] 두 벡터의 사잇각 계산[3] 투영 벡터 계산외적특징  벡터의 외적은 3차원 벡터끼리만 가능하다.주어진 벡터\\[A = (a_{x}, a_{y}, a_{z})\\]\\..."
+    "snippet": "내적   …  특징      내적은 벡터의 차원에 관계 없이, 동일한 차원의 벡터끼리 가능하다.    내적의 결과는 스칼라 값이다.    벡터 A, B의 내적은 A를 B에(또는 B를 A에) 투영시킨 후 두 벡터의 길이를 곱한 것과 같다.    내적은 교환 법칙, 결합 법칙이 성립한다.      주어진 벡터\\[\\begin{flalign*}\\quad A = (a_{x} \\, , \\,\\, a_{y} \\, , \\,\\, a_{z}) &amp;amp;&amp;amp;\\end{flalign*}\\]\\[\\begin{flalign*}\\quad ..."
   },
   
   {
@@ -4257,7 +4272,7 @@
 
 
 
-    "snippet": "목차  1.  GetComponent(), Find() 메소드 사용 줄이기  2.  GetComponent() 대신 TryGetComponent() 사용하기  3.  Object.name, GameObject.tag 사용하지 않기  4.  비어있는 유니티 이벤트 메소드 방치하지 않기  5.  StartCoroutine() 자주 호출하지 않기  6.  코루틴의 yield 캐싱하기  7.  참조 캐싱하기  8.  빌드 이후 Debug.Log() 사용하지 않기  9.  Transform 변경은 한번에  10. 불필요하게 부모 자식 ..."
+    "snippet": "목차  1.  GetComponent(), Find() 메소드 사용 줄이기  2.  GetComponent() 대신 TryGetComponent() 사용하기  3.  Object.name, GameObject.tag 사용하지 않기  4.  비어있는 유니티 이벤트 메소드 방치하지 않기  5.  StartCoroutine() 자주 호출하지 않기  6.  코루틴의 yield 캐싱하기  7.  메소드 호출 줄이기  8.  참조 캐싱하기  9.  빌드 이후 Debug.Log() 사용하지 않기  10  Transform 변경은 한번에  ..."
   },
   
   {

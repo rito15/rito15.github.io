@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-21T16:11:27+09:00</updated>
+  <updated>2021-10-23T04:06:57+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,77 @@
 
   
   <entry>
+    <title>유니티 - FixedUpdate()와 Physics Loop에 대한 이해</title>
+    <link href="https://rito15.github.io/posts/unity-fixed-update-and-physics-loop/" rel="alternate" type="text/html" title="유니티 - FixedUpdate()와 Physics Loop에 대한 이해" />
+    <published>2021-10-23T03:45:00+09:00</published>
+  
+    <updated>2021-10-23T03:45:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-fixed-update-and-physics-loop/</id>
+    <content src="https://rito15.github.io/posts/unity-fixed-update-and-physics-loop/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Update()와 Game Loop
+
+
+그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 모든 처리가 Game Loop(게임 루프)를 기반으로 동작한다.
+
+DirectX, OpenGL, Vulkan, … 등 어떤 그래픽스 라이브러리를 사용하더라도
+
+모든 처리는
+
+/* Main Function */
+
+// Game Loop
+while(...)
+{
+    // User Inputs..
+    // Game Logics..
+    // Draw Calls..
+    // ...
+}
+
+
+이런 게임 루프를 기반으로 이루어진다.
+
+
+
+유니티 엔진 같은 상용 엔진도 저 게임 루프가 엔진 코어 내에 숨겨져 있을 뿐이지,
+
+크게 보면 동일하게 동작한다.
+
+
+  MonoBehaviour.Update()는 스크립트에 ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>게임 수학 - 벡터의 내적과 외적</title>
     <link href="https://rito15.github.io/posts/game-math-dot-cross/" rel="alternate" type="text/html" title="게임 수학 - 벡터의 내적과 외적" />
     <published>2021-10-21T16:00:00+09:00</published>
   
-    <updated>2021-10-21T16:00:00+09:00</updated>
+    <updated>2021-10-22T23:00:26+09:00</updated>
   
     <id>https://rito15.github.io/posts/game-math-dot-cross/</id>
     <content src="https://rito15.github.io/posts/game-math-dot-cross/" />
@@ -51,65 +117,35 @@
       내적
 
 
-특징
+
+   
+…
 
 
-  내적은 벡터의 차원에 관계 없이, 동일한 차원의 벡터끼리 가능하다.
+  특징
 
+  
+    내적은 벡터의 차원에 관계 없이, 동일한 차원의 벡터끼리 가능하다.
+    내적의 결과는 스칼라 값이다.
+    벡터 A, B의 내적은 A를 B에(또는 B를 A에) 투영시킨 후 두 벡터의 길이를 곱한 것과 같다.
+    내적은 교환 법칙, 결합 법칙이 성립한다.
+  
 
+  
 
+  주어진 벡터
 
-주어진 벡터
+\[\begin{flalign*}
+\quad A = (a_{x} \, , \,\, a_{y} \, , \,\, a_{z}) &amp;amp;&amp;amp;
+\end{flalign*}\]
 
-\[A = (a_{x}, a_{y}, a_{z})\]
+\[\begin{flalign*}
+\quad B = (b_{x} \, , \,\, b_{y} \, , \,\, b_{z}) &amp;amp;&amp;amp;
+\end{flalign*}\]
 
-\[B = (b_{x}, b_{y}, b_{z})\]
+  
 
-
-
-내적 연산
-
-\[A\cdotB = a_{x}\cdotBb_{x} + a_{y}\cdotBb_{y} + a_{z}\cdotBb_{z}\]
-
-
-
-내적의 활용
-
-
-[1] 두 벡터의 각도 관계 판별
-
-
-
-[2] 두 벡터의 사잇각 계산
-
-
-
-[3] 투영 벡터 계산
-
-
-
-외적
-
-
-특징
-
-
-  벡터의 외적은 3차원 벡터끼리만 가능하다.
-
-
-
-
-주어진 벡터
-
-\[A = (a_{x}, a_{y}, a_{z})\]
-
-\[B = (b_{x}, b_{y}, b_{z})\]
-
-
-
-외적 연산
-
-\[A X ...
+  내적 ...
     </summary>
   
 
@@ -193,7 +229,7 @@
     <link href="https://rito15.github.io/posts/raycast-to-aabb/" rel="alternate" type="text/html" title="Raycast to AABB" />
     <published>2021-10-19T03:00:00+09:00</published>
   
-    <updated>2021-10-20T17:49:46+09:00</updated>
+    <updated>2021-10-22T04:52:46+09:00</updated>
   
     <id>https://rito15.github.io/posts/raycast-to-aabb/</id>
     <content src="https://rito15.github.io/posts/raycast-to-aabb/" />
@@ -337,67 +373,6 @@ private static void Method()
     Docs
   
   namespace Uni...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 에디터에서 스크립트로 태그, 레이어 추가하기</title>
-    <link href="https://rito15.github.io/posts/unity-add-tag-or-layer-in-script/" rel="alternate" type="text/html" title="유니티 - 에디터에서 스크립트로 태그, 레이어 추가하기" />
-    <published>2021-10-15T17:00:00+09:00</published>
-  
-    <updated>2021-10-15T17:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-add-tag-or-layer-in-script/</id>
-    <content src="https://rito15.github.io/posts/unity-add-tag-or-layer-in-script/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-프로젝트의 일부를 다른 프로젝트로 옮기는 경우,
-
-특정 씬에서만 사용하는 태그 또는 레이어가 존재할 수 있다.
-
-그런데 옮긴 프로젝트에서 해당 태그 또는 레이어가 존재하지 않으면
-
-직접 추가해줘야 하므로 번거롭다.
-
-따라서 아래 소스 코드를 통해 이를 자동화할 수 있다.
-
-
-
-Source Code
-
-
-using UnityEngine;
-using UnityEditor;
-
-public static class EditorTagLayerHelper
-{
-    /// &amp;lt;summary&amp;gt; 태그 중복 확인 및 추가 &amp;lt;/summary&amp;gt;
-    [System.Diagnostics.Conditional("UNITY_EDITOR")]
-    public static void AddNewTa...
     </summary>
   
 

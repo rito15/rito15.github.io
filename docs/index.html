@@ -566,6 +566,95 @@ Main Thread Dispatcher
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Update()와 Game Loop
+
+
+그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 모든 처리가 Game Loop(게임 루프)를 기반으로 동작한다.
+
+DirectX, OpenGL, Vulkan, … 등 어떤 그래픽스 라이브러리를 사용하더라도
+
+모든 처리는
+
+
+  
+    /* Main Function */
+
+// Game Loop
+while(...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Oct 23, 2021,  3:45 AM +0900"
+  >
+
+  
+  
+
+  
+    Oct 23
+  
+
+  <i class="unloaded">2021-10-23T03:45:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1638 words">9 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/game-math-dot-cross/">게임 수학 - 벡터의 내적과 외적</a>
     </h1>
 
@@ -580,25 +669,23 @@ Main Thread Dispatcher
         내적
 
 
-특징
 
+  
+    …
+  
 
-  내적은 벡터의 차원에 관계 없이, 동일한 차원의 벡터끼리 가능하다.
+  특징
 
+  
+    내적은 벡터의 차원에 관계 없이, 동일한 차원의 벡터끼리 가능하다.
+    내적의 결과는 스칼라 값이다.
+    벡터 A, B의 내적은 A를 B에(또는 B를 A에) 투영시킨 후 두 벡터의 길이를 곱한 것과 같다.
+    내적은 교환 법칙, 결합 법칙이 성립한다.
+  
 
+  
 
-
-주어진 벡터
-
-[A = (a_{x}, a_{y}, a_{z})]
-
-[B = (b_{x}, b_{y}, b_{z})]
-
-
-
-내적 연산
-
-[A\cdotB = a_{x}\cdotBb_{x} + a_{y}\cdotBb_{y} + a_{z}\cdotBb_{z}]
+  주어진 벡터
 
 ...
       </p>
@@ -647,7 +734,7 @@ Main Thread Dispatcher
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="200 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1510 words">8 min</span>
 
 
         <!-- page views -->
@@ -1216,105 +1303,6 @@ Sphere Cast to Sphere
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1414 words">7 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-shader-real-number-types/">유니티 쉐이더 - 실수 타입들</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Memo
-
-
-[1] float
-
-  32비트
-  
-    유효 숫자 : 6자리
-  
-  실수 중 정확도가 가장 높다.
-  실수 중 연산이 가장 느리다.
-  
-    정확해야 하는 경우, 대개 사용된다.
-  
-  예시 : 정점 위치, UV, 복합 스칼라 연산
-
-
-
-
-[2] half
-
-  16비트
-  유효 숫자 : 3자리
-  
-    표현 범위 : -60...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Oct  7, 2021, 12:48 AM +0900"
-  >
-
-  
-  
-
-  
-    Oct  7
-  
-
-  <i class="unloaded">2021-10-07T00:48:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="156 words">1 min</span>
 
 
         <!-- page views -->
@@ -1917,12 +1905,17 @@ Sphere Cast to Sphere
         
         
         
-        <li><a href="/posts/unity-shader-concept/">초보자를 위한 쉐이더 개념 간단 정리</a></li>
+        <li><a href="/posts/game-math-dot-cross/">게임 수학 - 벡터의 내적과 외적</a></li>
       
         
         
         
-        <li><a href="/posts/unity-initialization-methods/">유니티 - 한 번씩만 실행되는 메소드들 순서 정리</a></li>
+        <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
       
         
         
@@ -1932,12 +1925,7 @@ Sphere Cast to Sphere
         
         
         
-        <li><a href="/posts/sphere-cast-to-sphere/">Sphere Cast to Sphere</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-sphere/">Raycast to Sphere</a></li>
+        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
       
 
       </ul>
