@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1258 words">6 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1301 words">7 min</span>
 
 
           <!-- page views -->
@@ -511,19 +511,19 @@
 <ul>
   <li>트랜스폼의 자신의 축으로 회전시키기</li>
   <li>
-    <p>rotVector가 (1, 0, 0)인 경우 : 자신의 X축으로 회전</p>
+    <p>예) eulerAngle의 값이 (1, 0, 0)인 경우 : 자신의 X축을 기준으로 1도 회전</p>
   </li>
-  <li>트랜스폼의 rotation 값 자체는 x, y, z 모두 변화하지만, 회전 자체는 자신의 축을 기반으로 수행</li>
+  <li>회전의 우선순위(Z-X-Y) 때문에, X 및 Y 축 회전 시 다른 축의 회전값도 변경될 수 있다.</li>
 </ul>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
-</pre></td><td class="rouge-code"><pre><span class="n">transform</span><span class="p">.</span><span class="nf">Rotate</span><span class="p">(</span><span class="n">rotVector</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">Self</span><span class="p">);</span>
+</pre></td><td class="rouge-code"><pre><span class="n">transform</span><span class="p">.</span><span class="nf">Rotate</span><span class="p">(</span><span class="n">eulerAngle</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">Self</span><span class="p">);</span>
 
 <span class="c1">// Space.Self일 때의 Rotate() 내부 구현</span>
-<span class="n">transform</span><span class="p">.</span><span class="n">localRotation</span> <span class="p">*=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="n">rotVector</span><span class="p">);</span>
+<span class="n">transform</span><span class="p">.</span><span class="n">localRotation</span> <span class="p">*=</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="n">eulerAngle</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
@@ -540,11 +540,23 @@
 3
 4
 5
-</pre></td><td class="rouge-code"><pre><span class="n">transform</span><span class="p">.</span><span class="nf">Rotate</span><span class="p">(</span><span class="n">rotVector</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">World</span><span class="p">);</span>
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="n">transform</span><span class="p">.</span><span class="nf">Rotate</span><span class="p">(</span><span class="n">eulerAngle</span><span class="p">,</span> <span class="n">Space</span><span class="p">.</span><span class="n">World</span><span class="p">);</span>
 
-<span class="c1">// 내부 구현</span>
+<span class="c1">// 내부 구현(1, 2 모두 결과는 동일)</span>
+<span class="c1">// [1]</span>
+<span class="n">Quaternion</span> <span class="n">rot</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">;</span>
 <span class="n">transform</span><span class="p">.</span><span class="n">rotation</span> <span class="p">*=</span> 
-    <span class="n">rot</span> <span class="p">*</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Inverse</span><span class="p">(</span><span class="n">rot</span><span class="p">)</span> <span class="p">*</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="n">rotVector</span><span class="p">)</span> <span class="p">*</span> <span class="n">rot</span><span class="p">;</span>
+    <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Inverse</span><span class="p">(</span><span class="n">rot</span><span class="p">)</span> <span class="p">*</span> <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="n">eulerAngle</span><span class="p">)</span> <span class="p">*</span> <span class="n">rot</span><span class="p">;</span>
+
+<span class="c1">// [2]</span>
+<span class="n">transform</span><span class="p">.</span><span class="n">rotation</span> <span class="p">=</span> 
+    <span class="n">Quaternion</span><span class="p">.</span><span class="nf">Euler</span><span class="p">(</span><span class="n">eulerAngle</span><span class="p">)</span> <span class="p">*</span> <span class="n">rot</span><span class="p">;</span>
 </pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
@@ -638,7 +650,7 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 </pre></td><td class="rouge-code"><pre><span class="c1">// axis  : 회전축 벡터</span>
 <span class="c1">// diff  : (타겟의 위치 - 자신의 위치) 벡터</span>
 <span class="c1">// speed : 회전 속도</span>
-<span class="c1">// t     : 현재 회전 기억</span>
+<span class="c1">// t     : 현재 회전값을 기억할 변수</span>
 <span class="k">private</span> <span class="k">void</span> <span class="nf">RotateAround1</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">axis</span><span class="p">,</span> <span class="k">in</span> <span class="n">Vector3</span> <span class="n">diff</span><span class="p">,</span> <span class="kt">float</span> <span class="n">speed</span><span class="p">,</span> <span class="k">ref</span> <span class="kt">float</span> <span class="n">t</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">t</span> <span class="p">+=</span> <span class="n">speed</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
@@ -706,7 +718,7 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 </pre></td><td class="rouge-code"><pre><span class="c1">// axis  : 회전축 벡터</span>
 <span class="c1">// diff  : (타겟의 위치 - 자신의 위치) 벡터</span>
 <span class="c1">// speed : 회전 속도</span>
-<span class="c1">// t     : 현재 회전 기억</span>
+<span class="c1">// t     : 현재 회전값을 기억할 변수</span>
 <span class="k">private</span> <span class="k">void</span> <span class="nf">RotateAround2</span><span class="p">(</span><span class="k">in</span> <span class="n">Vector3</span> <span class="n">axis</span><span class="p">,</span> <span class="k">in</span> <span class="n">Vector3</span> <span class="n">diff</span><span class="p">,</span> <span class="kt">float</span> <span class="n">speed</span><span class="p">,</span> <span class="k">ref</span> <span class="kt">float</span> <span class="n">t</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">t</span> <span class="p">+=</span> <span class="n">speed</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
@@ -1013,6 +1025,11 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         
+        <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
+      
+        
+        
+        
         <li><a href="/posts/game-math-dot-cross/">게임 수학 - 벡터의 내적과 외적</a></li>
       
         
@@ -1029,11 +1046,6 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         <li><a href="/posts/raycast-to-aabb/">Raycast to AABB</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
       
 
       </ul>
@@ -4485,6 +4497,19 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   

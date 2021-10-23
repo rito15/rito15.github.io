@@ -776,6 +776,11 @@ Form1.cs
         
         
         
+        <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
+      
+        
+        
+        
         <li><a href="/posts/game-math-dot-cross/">게임 수학 - 벡터의 내적과 외적</a></li>
       
         
@@ -792,11 +797,6 @@ Form1.cs
         
         
         <li><a href="/posts/raycast-to-aabb/">Raycast to AABB</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
       
 
       </ul>
@@ -6497,6 +6497,19 @@ Form1.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8592,7 +8605,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/cs-benchmark-dotnet/">
+        <a href="/posts/cs-serializations-to-byte-array/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8609,13 +8622,13 @@ static void Main()
   
 
   
-    Aug  7
+    Aug  8
   
 
-  <i class="unloaded">2021-08-07T16:16:00+09:00</i>
+  <i class="unloaded">2021-08-08T02:34:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# Benchmark DotNet</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 패킷을 byte[]로 직렬화하는 다양한 방법</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8624,39 +8637,22 @@ static void Main()
 
 
 
-                설치
+                Note
 
 
-
-  비주얼 스튜디오 - 프로젝트 - NuGet 패키지 관리 - Benchmark를 검색하여 설치
-
-
-
-
-사용법
-
-
-[1] 테스트 대상 클래스
-
-
-   
-…
-
-
-  [1-1] 네임스페이스
 
   
-     
-.
-
-
-    1
-2
-using BenchmarkDotNet;
-using BenchmarkDotNet.Attributes;
-    
-
-  ...
+    비교적 단순한 형태의 패킷들을 정의한다.
+  
+  
+    패킷을 다양한 방법으로 직렬화하여 byte[] 타입 버퍼에 순서대로 넣으며, 성능을 검사한다.
+  
+  
+    직렬화된 결과의 크기는 패킷 내 모든 필드의 크기의 합이어야 한다.
+  
+  
+    문자열 패킷은 어차피 공통적으로 인코딩을 거쳐야 하므로, 제외한다.
+...
               </p>
             </div>
           </div>

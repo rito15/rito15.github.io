@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-23T13:53:36+09:00</updated>
+  <updated>2021-10-23T20:25:29+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,87 @@
 
   
   <entry>
+    <title>게임 수학 - 회전(2차원, 3차원, 4원수)</title>
+    <link href="https://rito15.github.io/posts/game-math-rotation/" rel="alternate" type="text/html" title="게임 수학 - 회전(2차원, 3차원, 4원수)" />
+    <published>2021-10-23T17:14:00+09:00</published>
+  
+    <updated>2021-10-23T17:14:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/game-math-rotation/</id>
+    <content src="https://rito15.github.io/posts/game-math-rotation/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Memo" />
+    
+    <category term="Game Mathematics" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      기초 개념
+
+
+기저 벡터(Basis Vector)
+
+
+  n차원 공간에서 임의의 벡터를 표현할 수 있는, 선형 독립 관계의 벡터
+  n차원 공간을 구성하려면 n개의 기저 벡터가 필요하다.
+
+
+
+
+표준 기저 벡터(Standard Basis Vector)
+
+
+  기저 벡터 중에서도 원소 중 하나의 값이 1이고, 나머지 원소가 0인 벡터
+  예를 들어 2차원 평면에서의 표준 기저 벡터는 (1, 0), (0, 1)이다.
+
+
+
+
+공간 변환(Space Transformation)
+
+
+
+
+  공간 변환이란 기존의 공간을 이루고 있던 표준기저벡터를 변경하여 새로운 공간을 만드는 작업이다.
+  이동, 회전, 크기 변환이 있다.
+
+
+
+
+2차원 평면의 회전
+
+
+2차원 회전 변환의 특징
+
+
+
+
+  평면 내에서 반지름이 1인...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>유니티 - FixedUpdate()와 Physics Loop에 대한 이해</title>
     <link href="https://rito15.github.io/posts/unity-fixed-update-and-physics-loop/" rel="alternate" type="text/html" title="유니티 - FixedUpdate()와 Physics Loop에 대한 이해" />
     <published>2021-10-23T03:45:00+09:00</published>
   
-    <updated>2021-10-23T03:45:00+09:00</updated>
+    <updated>2021-10-23T15:58:34+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-fixed-update-and-physics-loop/</id>
     <content src="https://rito15.github.io/posts/unity-fixed-update-and-physics-loop/" />
@@ -75,9 +151,7 @@ while(...)
 }
 
 
-이렇게 게임 루프를 작성하며,
-
-이 게임 루프의 반복이...
+이렇게 메인 스레드에 무한 반복문을 통해 게임 루프를 ...
     </summary>
   
 
@@ -293,85 +367,6 @@ Raycast to AAP
 AABB 역시 6개의 평면으로 이루어져 있는데,
 
 Axis-Aligned라는 특성 덕분에 각 평면에 대한 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 한 번씩만 실행되는 메소드들 순서 정리</title>
-    <link href="https://rito15.github.io/posts/unity-initialization-methods/" rel="alternate" type="text/html" title="유니티 - 한 번씩만 실행되는 메소드들 순서 정리" />
-    <published>2021-10-16T00:01:00+09:00</published>
-  
-    <updated>2021-10-21T02:57:10+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-initialization-methods/</id>
-    <content src="https://rito15.github.io/posts/unity-initialization-methods/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo - Shorts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-  실행되는 순서대로 작성
-
-
-
-
-Methods
-
-
-[1] [InitializeOnEnterPlayMode]
-
-  
-    Docs
-  
-  namespace UnityEditor
-  메소드 애트리뷰트
-  
-    정적 메소드에 사용할 수 있다.
-  
-  플레이 모드에 진입하고, Awake()가 호출되기 전에 딱 1회 실행된다.
-    
-      씬을 재시작할 때는 실행되지 않는다.
-    
-  
-  컴포넌트로 넣지 않고, 스크립트로만 존재해도 실행된다.
-
-
-[InitializeOnEnterPlayMode]
-private static void Method()
-{
-    // ...
-}
-
-
-
-
-[2] [InitializeOnLoad]
-
-  
-    Docs
-  
-  namespace Uni...
     </summary>
   
 

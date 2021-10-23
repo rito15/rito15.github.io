@@ -773,6 +773,11 @@
         
         
         
+        <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
+      
+        
+        
+        
         <li><a href="/posts/game-math-dot-cross/">게임 수학 - 벡터의 내적과 외적</a></li>
       
         
@@ -789,11 +794,6 @@
         
         
         <li><a href="/posts/raycast-to-aabb/">Raycast to AABB</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-plane/">Raycast to Plane</a></li>
       
 
       </ul>
@@ -7968,6 +7968,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8580,7 +8593,7 @@ Not...
       
       
       <div class="card">
-        <a href="/posts/unity-opt-occlusion-culling/">
+        <a href="/posts/unity-optimize-model-transform/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8597,13 +8610,13 @@ Not...
   
 
   
-    Mar  1
+    Sep 16
   
 
-  <i class="unloaded">2021-03-01T01:40:00+09:00</i>
+  <i class="unloaded">2021-09-16T00:02:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 오클루전 컬링</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 모델 트랜스폼 구조 최적화하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8612,36 +8625,22 @@ Not...
 
 
 
-                프러스텀 컬링 (Frustum Culling)
+                문제점
 
 
-  
-    카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것
-  
-  
-    따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.
-  
+Skinned Mesh가 적용되는 게임 오브젝트의 경우,
+
+하이라키에서 트랜스폼 구조를 확인해보면
 
 
 
+이렇게 Bone 별로 각각 존재하여, 굉장히 많은 게임오브젝트들로 이루어져 있다.
 
+그런데 유니티 엔진에서는 부모 게임 오브젝트의 트랜스폼에 변경사항이 생기면
 
+모든 자식 트랜스폼에 변경이 발생한다.
 
-그냥 이렇게 두어도
-
-
-
-실제로 이렇게 컬링된다.
-
-
-
-GIF
-
-
-
-
-
-오클루전 컬링 (Occlusion Cu...
+한마디로, 위와 같이 무수히 많은 자...
               </p>
             </div>
           </div>
