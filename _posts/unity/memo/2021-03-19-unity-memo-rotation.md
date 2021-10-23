@@ -49,15 +49,15 @@ Y축 회전일 경우 Z, X값이 0이 아니면 영향을 받는다.
 ---
 
 - 트랜스폼의 자신의 축으로 회전시키기
-- rotVector가 (1, 0, 0)인 경우 : 자신의 X축으로 회전
+- 예) eulerAngle의 값이 (1, 0, 0)인 경우 : 자신의 X축을 기준으로 1도 회전
 
-- 트랜스폼의 rotation 값 자체는 x, y, z 모두 변화하지만, 회전 자체는 자신의 축을 기반으로 수행
+- 회전의 우선순위(Z-X-Y) 때문에, X 및 Y 축 회전 시 다른 축의 회전값도 변경될 수 있다.
 
 ```cs
-transform.Rotate(rotVector, Space.Self);
+transform.Rotate(eulerAngle, Space.Self);
 
 // Space.Self일 때의 Rotate() 내부 구현
-transform.localRotation *= Quaternion.Euler(rotVector);
+transform.localRotation *= Quaternion.Euler(eulerAngle);
 ```
 
 <br>
@@ -68,11 +68,17 @@ transform.localRotation *= Quaternion.Euler(rotVector);
 - 트랜스폼을 월드 축으로 회전시키기
 
 ```cs
-transform.Rotate(rotVector, Space.World);
+transform.Rotate(eulerAngle, Space.World);
 
-// 내부 구현
+// 내부 구현(1, 2 모두 결과는 동일)
+// [1]
+Quaternion rot = transform.rotation;
 transform.rotation *= 
-    rot * Quaternion.Inverse(rot) * Quaternion.Euler(rotVector) * rot;
+    Quaternion.Inverse(rot) * Quaternion.Euler(eulerAngle) * rot;
+
+// [2]
+transform.rotation = 
+    Quaternion.Euler(eulerAngle) * rot;
 ```
 
 <br>
@@ -129,7 +135,7 @@ private void Update()
 // axis  : 회전축 벡터
 // diff  : (타겟의 위치 - 자신의 위치) 벡터
 // speed : 회전 속도
-// t     : 현재 회전 기억
+// t     : 현재 회전값을 기억할 변수
 private void RotateAround1(in Vector3 axis, in Vector3 diff, float speed, ref float t)
 {
     t += speed * Time.deltaTime;
@@ -170,7 +176,7 @@ private void Update()
 // axis  : 회전축 벡터
 // diff  : (타겟의 위치 - 자신의 위치) 벡터
 // speed : 회전 속도
-// t     : 현재 회전 기억
+// t     : 현재 회전값을 기억할 변수
 private void RotateAround2(in Vector3 axis, in Vector3 diff, float speed, ref float t)
 {
     t += speed * Time.deltaTime;
