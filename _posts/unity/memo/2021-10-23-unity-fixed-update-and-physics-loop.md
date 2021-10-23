@@ -11,11 +11,17 @@ mermaid: true
 # Update()와 Game Loop
 ---
 
-그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 모든 처리가 **Game Loop(게임 루프)**를 기반으로 동작한다.
+유니티 엔진의 `Update()`는 매 프레임 호출되며,
+
+이동, 회전, 입력, 실시간 계산 등 수많은 기능을 여기에 작성한다.
+
+그렇다면 `Update()`의 정체는 무엇일까?
+
+<br>
+
+그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 **Game Loop(게임 루프)** 를 통해 프레임 기반 동작이 수행된다.
 
 **DirectX**, **OpenGL**, **Vulkan**, ... 등 어떤 그래픽스 라이브러리를 사용하더라도
-
-모든 처리는
 
 ```cpp
 /* Main Function */
@@ -30,24 +36,49 @@ while(...)
 }
 ```
 
-이런 게임 루프를 기반으로 이루어진다.
+이렇게 메인 스레드에 무한 반복문을 통해 게임 루프를 작성하며,
+
+이 게임 루프의 반복이 프레임의 진행을 의미한다.
+
+즉, `Update()`의 호출은 게임 루프의 반복에 대응된다.
+
+정확히는 게임 루프 내에서 매 반복마다 모든 `Update()`가 한 번씩 호출되는 것이다.
 
 <br>
 
-유니티 엔진 같은 상용 엔진도 저 게임 루프가 엔진 코어 내에 숨겨져 있을 뿐이지,
+```cpp
+// Game Loop
+while(...)
+{
+    // ...
+    game->Update();
+}
+```
 
-크게 보면 동일하게 동작한다.
+<br>
+
+그런데 유니티 엔진에서
 
 >`MonoBehaviour.Update()`는 스크립트에 작성하기만 하면 알아서 동작하지 않나? <br>
 >어디서 따로 호출해주지도 않는데?
 
-이렇게 생각할 수 있지만
+이렇게 생각할 수 있지만,
 
-이것도 `Update()` 메소드가 존재하는 모든 `MonoBehaviour`를 찾아서
+<br>
 
-스크립팅 런타임이 내부적으로 저장해놓았다가,
+유니티 같은 상용 엔진도 저 게임 루프가 엔진 코어 내에 숨겨져 있을 뿐이지,
+
+근본적인 구조는 다르지 않다.
+
+<br>
+
+`Update()` 메소드가 존재하는 모든 `MonoBehaviour`를 찾아서
+
+스크립팅 런타임이 내부적으로 저장해놓았다가
 
 게임 루프에서 일괄적으로 순회하며 호출해주는 방식이다.
+
+유니티 엔진은 프로그래머의 편의를 위해서 이런 방식을 채택했다고 한다.
 
 <br>
 
@@ -65,7 +96,7 @@ while(...)
 
 매 프레임 동작하는 게임 로직은 `Update()`를 기반으로 작성되며, 게임 루프 내부에서 실행된다.
 
-반면, **Unity Physics**에 의한 물리 연산은 게임 루프와는 완전히 별개의 `Timestep`을 가지며
+반면, **Unity Physics**에 의한 물리 연산은 게임 루프와는 다른 별개의 루프에서 실행되며
 
 성능에 따라 들쑥날쑥 실행되는 `Update()`와 달리 `FixedUpdate()`는 완전히 일정한 주기로 실행되고,
 
@@ -75,7 +106,7 @@ while(...)
 
 ...라고 오해하기 쉽다.
 
-`FixedUpdate()`는 `Update()`와 완전히 별개로 여겨질 수 있다는 것이다.
+`FixedUpdate()`는 게임 루프와 완전히 별개로 여겨질 수 있다는 것이다.
 
 엔진의 내부 핵심 코드를 덮어놓고, `MonoBehaviour`만 바라보고 있자면
 
@@ -111,7 +142,7 @@ private void FixedUpdate()
 
 ![image](https://user-images.githubusercontent.com/42164422/138500649-b1e05bd5-1466-44db-b9f1-7192763a9e1a.png)
 
-이렇게 `Update()`와 다음 `Update()` 사이에 `FixedUpdate()`가 여러 번 호출되는 경우도 있다.
+`Update()`와 다음 `Update()` 사이에 `FixedUpdate()`가 여러 번 호출되는 경우도 있다.
 
 두 메소드 호출의 주기가 다른 것을 감안하면 여기까지는 자연스럽다.
 
@@ -121,7 +152,9 @@ private void FixedUpdate()
 
 그런데 이걸 보면 뭔가 좀 이상하다는 것을 느낄 수 있다.
 
-노랗게 표시된 `FixedUpdate()`의 호출 시간을 확인해보면,
+`FixedUpdate()`는 분명 `0.02`초마다 호출되어야 할텐데,
+
+노랗게 표시된 `FixedUpdate()`의 호출 시간을 확인해보면
 
 메소드 호출의 오버헤드에 따른 미세한 시간 격차가 있을 뿐이지
 
@@ -132,7 +165,7 @@ private void FixedUpdate()
 
 <https://docs.unity3d.com/Manual/ExecutionOrder.html>
 
-위 문서는 유니티 내부 동작들의 호출 순서를 보여준다.
+위 문서는 유니티의 내부 동작 구조를 보여준다.
 
 <br>
 
@@ -154,7 +187,7 @@ private void FixedUpdate()
 
 ```
 The physics cycle may happen more than once per frame
-if the fixed time step is less than the actural frame update time.
+if the fixed time step is less than the actual frame update time.
 ```
 
 이라고 적혀 있는 것을 확인할 수 있다.
@@ -183,7 +216,7 @@ if the fixed time step is less than the actural frame update time.
 
 `FixedUpdate()`는 `Physics Loop`의 초입에 실행되며,
 
-결국 게임 루프와는 별개로 실행되는 것이 아니라
+결국 게임 루프와는 별개로 일정한 주기마다 호출되는 것이 아니라
 
 게임 루프 내에서 중첩 루프를 통해 호출된다는 것을 알 수 있다.
 
@@ -205,7 +238,7 @@ if the fixed time step is less than the actural frame update time.
 
 `Sphere Collider`를 갖고 있는 강체가 `Box Collider`에 부딪힌다.
 
-물리 업데이트는 단순히 프레임 기반으로, `Update()`와 동일한 주기로 호출된다고 가정한다.
+물리 업데이트는 `Update()`와 동일한 주기로 호출된다고 가정한다.
 
 <br>
 
@@ -248,4 +281,58 @@ if the fixed time step is less than the actural frame update time.
 일정한 주기로 물리 업데이트가 진행되는 것처럼 보정하는 방식을 채택하여,
 
 물리 시뮬레이션에 있어서 신뢰성을 얻을 수 있게 된다.
+
+<br>
+
+
+# Physics Loop가 Game Loop에 포함되는 이유?
+---
+
+`Physics Loop`는 일정한 주기로 실행되어야 한다.
+
+그렇다면 별도의 스레드를 통해 일정한 주기로 수행되는 루프를 만들어
+
+여기서 물리 업데이트를 실행하면 될텐데
+
+그러면 심지어 멀티스레딩을 통해 성능 향상도 있을텐데,
+
+왜 굳이 메인 스레드의 게임 루프 내에서 실행하는 것일까?
+
+<br>
+
+무엇보다도 스레드 간의 데이터 동기화 문제가 가장 크다.
+
+<br>
+
+애초에 메인 스레드에서는 물리 관련 데이터에 접근하지 못하게 하고,
+
+`FixedUpdate()` 및 내부 물리 연산에서는 물리 처리에 관련 없는 데이터에 접근하지 못하도록
+
+접근 영역을 완전히 분리할 수 있다면 이것이 최고의 방법일 수 있다.
+
+<br>
+
+하지만 이는 프로그래밍 난이도를 기하급수적으로 끌어올리는 결과가 될 수 있으므로
+
+상용 엔진 입장에서 선택하기 힘든 방안인데다,
+
+결국 물리 업데이트의 결과는 트랜스폼에 적용되어야 하므로
+
+동기화 문제에서 결코 자유롭지 못하다.
+
+<br>
+
+그래서 메인 스레드와 물리 스레드의 공유 데이터를 모두 동기화(e.g., `lock`) 하자니,
+
+게임 루프를 기반으로 동작하는 메인 스레드 특성 상
+
+물리 스레드는 게임 루프의 동작에 종속되고,
+
+반대로 게임 루프도 물리 스레드의 동작에 종속되는 최악의 경우가 발생할 수 있다.
+
+<br>
+
+이렇게 되느니 `Physics Loop`를 게임 루프 내에서 실행하고,
+
+`deltaTime`에 따라 실행 횟수를 보정해주는 방식이 결국 최선의 선택이었던 것이다.
 

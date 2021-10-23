@@ -580,18 +580,17 @@ Main Thread Dispatcher
         Update()와 Game Loop
 
 
-그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 모든 처리가 Game Loop(게임 루프)를 기반으로 동작한다.
+유니티 엔진의 Update()는 매 프레임 호출되며,
 
-DirectX, OpenGL, Vulkan, … 등 어떤 그래픽스 라이브러리를 사용하더라도
+이동, 회전, 입력, 실시간 계산 등 수많은 기능을 여기에 작성한다.
 
-모든 처리는
+그렇다면 Update()의 정체는 무엇일까?
 
 
-  
-    /* Main Function */
 
-// Game Loop
-while(...
+그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 Game Loop(게임 루프) 를 통해 프레임 기반 동작이 수행된다.
+
+Direct...
       </p>
     </div>
 
@@ -638,7 +637,7 @@ while(...
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1638 words">9 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1811 words">10 min</span>
 
 
         <!-- page views -->

@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-23T04:06:57+09:00</updated>
+  <updated>2021-10-23T13:53:36+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -51,11 +51,17 @@
       Update()와 Game Loop
 
 
-그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 모든 처리가 Game Loop(게임 루프)를 기반으로 동작한다.
+유니티 엔진의 Update()는 매 프레임 호출되며,
+
+이동, 회전, 입력, 실시간 계산 등 수많은 기능을 여기에 작성한다.
+
+그렇다면 Update()의 정체는 무엇일까?
+
+
+
+그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 Game Loop(게임 루프) 를 통해 프레임 기반 동작이 수행된다.
 
 DirectX, OpenGL, Vulkan, … 등 어떤 그래픽스 라이브러리를 사용하더라도
-
-모든 처리는
 
 /* Main Function */
 
@@ -69,16 +75,9 @@ while(...)
 }
 
 
-이런 게임 루프를 기반으로 이루어진다.
+이렇게 게임 루프를 작성하며,
 
-
-
-유니티 엔진 같은 상용 엔진도 저 게임 루프가 엔진 코어 내에 숨겨져 있을 뿐이지,
-
-크게 보면 동일하게 동작한다.
-
-
-  MonoBehaviour.Update()는 스크립트에 ...
+이 게임 루프의 반복이...
     </summary>
   
 
