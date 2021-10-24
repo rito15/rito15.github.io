@@ -922,6 +922,16 @@
         
         
         
+        <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/game-math-rotation/">게임 수학 - 회전(2차원, 3차원, 4원수)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
       
         
@@ -932,17 +942,7 @@
         
         
         
-        <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-aabb/">Raycast to AABB</a></li>
       
 
       </ul>
@@ -4394,6 +4394,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8757,7 +8770,7 @@ So...
       
       
       <div class="card">
-        <a href="/posts/unity-shader-real-number-types/">
+        <a href="/posts/unity-shader-const-variables/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8774,13 +8787,13 @@ So...
   
 
   
-    Oct  7
+    Aug 30
   
 
-  <i class="unloaded">2021-10-07T00:48:00+09:00</i>
+  <i class="unloaded">2021-08-30T21:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 실수 타입들</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 상수, 상수 배열 선언하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8792,28 +8805,22 @@ So...
                 Memo
 
 
-[1] float
 
-  32비트
+  Pass 내부에 작성
+
+
+
   
-    유효 숫자 : 6자리
-  
-  실수 중 정확도가 가장 높다.
-  실수 중 연산이 가장 느리다.
-  
-    정확해야 하는 경우, 대개 사용된다.
-  
-  예시 : 정점 위치, UV, 복합 스칼라 연산
+    // 매크로 상수
+#define RANDOM_SEED 426.791
 
+// 그냥 상수
+static const float RandomSeed = 5417.24;
 
-
-
-[2] half
-
-  16비트
-  유효 숫자 : 3자리
-  
-    표현 범위 : -60...
+// 상수 배열
+static const float2 dir[8] = 
+{
+    float2(1, 0), float2(0, 1),   ...
               </p>
             </div>
           </div>

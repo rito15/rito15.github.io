@@ -776,6 +776,16 @@ Form1.cs
         
         
         
+        <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/game-math-rotation/">게임 수학 - 회전(2차원, 3차원, 4원수)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
       
         
@@ -786,17 +796,7 @@ Form1.cs
         
         
         
-        <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-aabb/">Raycast to AABB</a></li>
       
 
       </ul>
@@ -6510,6 +6510,19 @@ Form1.cs
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8605,7 +8618,7 @@ static void Main()
       
       
       <div class="card">
-        <a href="/posts/cs-serializations-to-byte-array/">
+        <a href="/posts/cs-heap-memory-debugger/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8625,10 +8638,10 @@ static void Main()
     Aug  8
   
 
-  <i class="unloaded">2021-08-08T02:34:00+09:00</i>
+  <i class="unloaded">2021-08-08T12:12:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 패킷을 byte[]로 직렬화하는 다양한 방법</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 간단한 힙 메모리 디버거 (콘솔)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8637,21 +8650,42 @@ static void Main()
 
 
 
-                Note
+                기능
 
 
 
+  원하는 지점의 힙 메모리 크기 기록
+  기록된 두 지점의 힙 메모리 크기 차이 출력
+
+
+
+
+주의사항
+
+
+
+  Print() 이후에는 Record()하지 않아야 한다.
+    
+      Future Works : Print() 내에서 스트링을 스택에 할당하여 해결
+    
   
-    비교적 단순한 형태의 패킷들을 정의한다.
-  
-  
-    패킷을 다양한 방법으로 직렬화하여 byte[] 타입 버퍼에 순서대로 넣으며, 성능을 검사한다.
-  
-  
-    직렬화된 결과의 크기는 패킷 내 모든 필드의 크기의 합이어야 한다.
-  
-  
-    문자열 패킷은 어차피 공통적으로 인코딩을 거쳐야 하므로, 제외한다.
+
+
+
+
+사용 예시
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
 ...
               </p>
             </div>

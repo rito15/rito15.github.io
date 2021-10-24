@@ -566,6 +566,93 @@ Main Thread Dispatcher
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-quaternion/">유니티 - Quaternion</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Quaternion
+
+
+
+  
+    4개의 float로 이루어져 있다.
+  
+  쿼터니언은 3차원 공간에서의 회전 정보를 가진다.
+    
+      예를 들어, [X축 15도, Y축 30도, Z축 0도 회전] 또는 [벡터 (1, 2, 3)을 축으로 25도 회전]과 같은 정보를 갖고 있다.
+    
+  
+  쿼터니언의 회전은 해당 쿼터니언 연산(곱셈...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Oct 24, 2021,  4:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Oct 24
+  
+
+  <i class="unloaded">2021-10-24T16:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="986 words">5 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/game-math-rotation/">게임 수학 - 회전(2차원, 3차원, 4원수)</a>
     </h1>
 
@@ -640,7 +727,7 @@ Main Thread Dispatcher
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="524 words">2 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1995 words">11 min</span>
 
 
         <!-- page views -->
@@ -1207,95 +1294,6 @@ Source Code
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="549 words">3 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-process-after-initalization/">유니티 - 스크립트의 실행 순서를 보장할 수 없는 경우, 종속적인 작업 처리하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        요약
-
-
-A 클래스가 B 클래스에 종속적인 작업을 수행할 때,
-
-B 클래스가 초기화 작업을 완료하기 전에 A 클래스가 작업을 요청하면 에러가 발생할 수 있다.
-
-예를 들면 서로 다른 클래스의 Awake(), Start(), OnEnable() 호출 순서를 보장할 수 없는 경우를 생각해볼 수 있다.
-
-이런 경우의 해결 방안을 알아본다.
-
-
-
-상황 예시
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Oct 12, 2021,  4:00 AM +0900"
-  >
-
-  
-  
-
-  
-    Oct 12
-  
-
-  <i class="unloaded">2021-10-12T04:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1187 words">6 min</span>
 
 
         <!-- page views -->
@@ -1898,6 +1896,16 @@ B 클래스가 초기화 작업을 완료하기 전에 A 클래스가 작업을 
         
         
         
+        <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/game-math-rotation/">게임 수학 - 회전(2차원, 3차원, 4원수)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
       
         
@@ -1908,17 +1916,7 @@ B 클래스가 초기화 작업을 완료하기 전에 A 클래스가 작업을 
         
         
         
-        <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/raycast-to-aabb/">Raycast to AABB</a></li>
       
 
       </ul>

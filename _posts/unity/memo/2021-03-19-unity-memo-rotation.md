@@ -95,6 +95,8 @@ private void Update()
 - 회전의 적용 순서(Y-X-Z) 때문에, X 및 Y 축 회전 시 다른 축의 오일러 회전 값도 변경될 수 있다.
 
 ```cs
+Vector3 eulerAngle = new Vector3(1f, 0f, 0f); // 예시
+
 transform.Rotate(eulerAngle, Space.Self);
 
 // Space.Self일 때의 Rotate() 내부 구현
@@ -109,6 +111,8 @@ transform.localRotation *= Quaternion.Euler(eulerAngle);
 - 트랜스폼을 월드 축으로 회전시키기
 
 ```cs
+Vector3 eulerAngle = new Vector3(1f, 0f, 0f); // 예시
+
 transform.Rotate(eulerAngle, Space.World);
 
 // 내부 구현(1, 2 모두 결과는 동일)
@@ -320,6 +324,8 @@ private void LookAtSlowlyX(Transform target, float speed = 1f)
 # 7. 마우스 입력에 따른 상하좌우 회전 예제
 ---
 
+## **[1] 자유 회전**
+
 ```cs
 [SerializeField, Range(0f, 100f)]
 private float hRotationSpeed = 50f;  // 좌우 회전 속도
@@ -349,12 +355,37 @@ private void Update()
 
 <br>
 
-<!--
-
-- 추가 : 상하 회전 각도 제한
+## **[2] 상하 회전 각도 제한**
 
 ```cs
+[SerializeField, Range(0f, 100f)]
+private float hRotationSpeed = 50f;  // 좌우 회전 속도
 
+[SerializeField, Range(0f, 100f)]
+private float vRotationSpeed = 100f; // 상하 회전 속도
+
+private void Update()
+{
+    float t = Time.deltaTime;
+
+    // 마우스 움직임 감지
+    float h =  Input.GetAxisRaw("Mouse X") * hRotationSpeed * t;
+    float v = -Input.GetAxisRaw("Mouse Y") * vRotationSpeed * t;
+
+    // [1] 좌우 회전 : 월드 Y축 기준
+    Quaternion hRot = Quaternion.AngleAxis(h, Vector3.up);
+    transform.rotation = hRot * transform.rotation;
+
+    // [2] 상하 회전 : 로컬 X축 기준
+    float xNext = transform.eulerAngles.x + v;
+    if (xNext > 180f)
+        xNext -= 360f;
+
+    // 상하 회전 각도 제한(다음 프레임 회전 각도 미리 체크)
+    if (-90f < xNext && xNext < 90f)
+    {
+        Quaternion vRot = Quaternion.AngleAxis(v, Vector3.right);
+        transform.rotation = transform.rotation * vRot;
+    }
+}
 ```
-
--->
