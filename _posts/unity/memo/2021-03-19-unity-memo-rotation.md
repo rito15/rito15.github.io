@@ -45,6 +45,47 @@ Y축 회전일 경우 X, Z값이 0이 아니면 영향을 받는다.
 
 <br>
 
+
+# 회전 시 주의사항
+---
+
+위에서 설명했듯, 오일러 X Y Z축 중 하나의 축에만 회전이 적용된 상태에서
+
+해당 축의 오일러 회전값을 변경하면 정상적으로 회전되기는 한다.
+
+하지만 다른 축에도 회전이 적용되어 있다면 정확히 회전할 수 없다.
+
+따라서 회전을 적용할 때는 오일러 회전을 변경시키지 말고,
+
+쿼터니언 연산을 통해 회전시키도록 습관을 들이는 것이 좋다.
+
+<br>
+
+## **[1] X축 회전 : 잘못된 예시**
+
+```cs
+private void Update()
+{
+    Vector3 eRot = transform.eulerAngles;
+    eRot.x += Time.deltaTime * 100f;
+    transform.eulerAngles = eRot;
+}
+```
+
+<br>
+
+## **[2] X축 회전 : 정상**
+
+```cs
+private void Update()
+{
+    transform.rotation *= Quaternion.Euler(Time.deltaTime * 100f, 0f, 0f);
+}
+```
+
+
+<br>
+
 # 1. 트랜스폼을 자신의 축으로 회전
 ---
 
@@ -276,28 +317,44 @@ private void LookAtSlowlyX(Transform target, float speed = 1f)
 
 <br>
 
-# 7. 마우스 입력에 따른 좌우, 상하 회전 예제
+# 7. 마우스 입력에 따른 상하좌우 회전 예제
 ---
 
-- 부모, 자식 트랜스폼 구조
-- 스크립트는 자식에 할당
-- 부모는 좌우 회전, 자식은 상하 회전 담당
-
 ```cs
-// 마우스 움직임 감지
-float v = Input.GetAxisRaw("Mouse X") * deltaTime * 100f;
-float h = Input.GetAxisRaw("Mouse Y") * deltaTime * 100f;
+[SerializeField, Range(0f, 100f)]
+private float hRotationSpeed = 50f;  // 좌우 회전 속도
 
-// 부모 : 좌우 회전
-transform.parent.localRotation *= Quaternion.Euler(0, v, 0);
+[SerializeField, Range(0f, 100f)]
+private float vRotationSpeed = 100f; // 상하 회전 속도
 
-// 상하 회전
-Vector3 eRot = transform.localEulerAngles;
-float nextX = eRot.x - h;
-if (0f < nextX && nextX < 90f) // 최소, 최대 회전 각도 제한
+private void Update()
 {
-    eRot.x = nextX;
+    float t = Time.deltaTime;
+
+    // 마우스 움직임 감지
+    float h =  Input.GetAxisRaw("Mouse X") * hRotationSpeed * t;
+    float v = -Input.GetAxisRaw("Mouse Y") * vRotationSpeed * t;
+
+    // 회전 변위 생성
+    Quaternion hRot = Quaternion.AngleAxis(h, Vector3.up);
+    Quaternion vRot = Quaternion.AngleAxis(v, Vector3.right);
+
+    // [1] 좌우 회전 : 월드 Y축 기준
+    transform.rotation = hRot * transform.rotation;
+
+    // [2] 상하 회전 : 로컬 X축 기준
+    transform.rotation *= vRot;
 }
-transform.localEulerAngles = eRot;
 ```
 
+<br>
+
+<!--
+
+- 추가 : 상하 회전 각도 제한
+
+```cs
+
+```
+
+-->
