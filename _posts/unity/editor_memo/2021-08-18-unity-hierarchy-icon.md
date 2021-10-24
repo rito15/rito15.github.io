@@ -15,6 +15,12 @@ mermaid: true
 
 ![image](https://user-images.githubusercontent.com/42164422/129899146-49fe71d1-82df-4f4a-8393-01a3effac442.png)
 
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+{% include codeHeader.html %}
 ```cs
 [DisallowMultipleComponent]
 public class Test_HierarchyIcon : MonoBehaviour
@@ -84,6 +90,8 @@ public class Test_HierarchyIcon : MonoBehaviour
 }
 ```
 
+</details>
+
 <br>
 
 # 좌측 끝에 아이콘 하나 띄우기
@@ -91,6 +99,12 @@ public class Test_HierarchyIcon : MonoBehaviour
 
 ![image](https://user-images.githubusercontent.com/42164422/130314363-bfcc95fc-46ed-4ba0-b3f5-535cc1ff841b.png)
 
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+{% include codeHeader.html %}
 ```cs
 using UnityEngine;
 
@@ -153,3 +167,94 @@ public class Test_HierarchyLeftIcon : MonoBehaviour
 #endif
 }
 ```
+
+</details>
+
+<br>
+
+# 타입별로 Built-in 아이콘 그려주기
+---
+
+![image](https://user-images.githubusercontent.com/42164422/138607984-26d138e8-55a3-4a30-8c7e-c3528dbae65c.png)
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+{% include codeHeader.html %}
+```cs
+#if UNITY_EDITOR
+
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+using System;
+
+public static class EditorHierarchyIconHelper
+{
+    [UnityEditor.InitializeOnLoadMethod]
+    private static void ApplyHierarchyIcon()
+    {
+        if (iconData == null || iconData.Length == 0)
+            InitIconData();
+
+        UnityEditor.EditorApplication.hierarchyWindowItemOnGUI += DrawHierarchyIcon;
+    }
+
+    private static (Type type, Texture icon, Color color)[] iconData;
+
+    private static void InitIconData()
+    {
+        Texture boxCollider    = EditorGUIUtility.IconContent("d_BoxCollider Icon").image;
+        Texture sphereCollider = EditorGUIUtility.IconContent("d_SphereCollider Icon").image;
+
+        iconData = new (Type, Texture, Color)[]
+        {
+            (typeof(DustManager), EditorGUIUtility.FindTexture("GameManager Icon"), Color.magenta),
+            (typeof(Cone),   EditorGUIUtility.FindTexture("d_Favorite On Icon"), Color.yellow),
+            (typeof(Camera), EditorGUIUtility.FindTexture("Camera Gizmo"),       Color.cyan),
+            (typeof(DustBoxCollider),    boxCollider,    Color.white),
+            (typeof(DustSphereCollider), sphereCollider, Color.white),
+        };
+    }
+
+    private static void DrawHierarchyIcon(int instanceID, Rect selectionRect)
+    {
+        Rect iconRect  = new Rect(selectionRect);
+        iconRect.x     = 32f; // 하이라키 좌측 끝
+        iconRect.width = 16f;
+
+        GameObject go = EditorUtility.InstanceIDToObject(instanceID) as GameObject;
+        if (go == null)
+            return;
+
+        Color c = GUI.color;
+
+        for (int i = 0; i < iconData.Length; i++)
+        {
+            ref var current = ref iconData[i];
+            if (current.icon != null && go.GetComponent(current.type) != null)
+            {
+                GUI.color = go.activeInHierarchy ? current.color : Color.white * 0.5f;
+                GUI.DrawTexture(iconRect, current.icon);
+                break;
+            }
+        }
+
+        GUI.color = c;
+    }
+}
+
+#endif
+```
+
+</details>
+
+
+<br>
+
+# 참고 : Built-in 아이콘 목록
+---
+- <https://rito15.github.io/posts/unity-editor-built-in-icons/>
+- <https://github.com/halak/unity-editor-icons>

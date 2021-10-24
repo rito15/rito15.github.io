@@ -65,6 +65,8 @@ pin: true
 
 <br>
 
+
+
 # 유니티 관련 강좌, 정보
 ---
 
@@ -126,6 +128,16 @@ pin: true
 
 <br>
 
+
+# 유니티 - 읽을거리
+---
+
+## **1만 번의 Update() 호출**
+- <https://blog.unity.com/kr/technology/1k-update-calls>
+
+<br>
+
+
 # 기타 참고 자료
 ---
 
@@ -140,6 +152,8 @@ pin: true
 - <https://noti.st/eiaserinnys/jCpSbp#sZCWPP6>
 
 <br>
+
+
 
 # 무료 애셋
 ---
@@ -156,6 +170,8 @@ pin: true
 - <https://wesoundeffects.com/we-sound-effects-bundle-2020/>
 
 <br>
+
+
 
 # 웹 도구
 ---
@@ -179,6 +195,8 @@ pin: true
 - <https://mebiusbox.github.io/contents/EffectTextureMaker/>
 
 <br>
+
+
 
 # 기타
 ---
