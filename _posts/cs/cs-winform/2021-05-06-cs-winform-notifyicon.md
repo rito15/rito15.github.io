@@ -1,5 +1,5 @@
 ---
-title: Notify Icon 사용하기
+title: C# 윈폼 - Notify Icon 사용하기
 author: Rito15
 date: 2021-05-06 02:02:00 +09:00
 categories: [C#, C# Winform]

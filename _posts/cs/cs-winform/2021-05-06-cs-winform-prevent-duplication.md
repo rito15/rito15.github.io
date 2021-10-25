@@ -1,5 +1,5 @@
 ---
-title: 윈폼 중복 실행 방지
+title: C# 윈폼 - 중복 실행 방지
 author: Rito15
 date: 2021-05-06 02:02:00 +09:00
 categories: [Memo, Csharp Winform Memo]

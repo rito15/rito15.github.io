@@ -3967,15 +3967,16 @@ public void Explode(in Vector3 position, in float sqrRange, in float force)
 
 <br>
 
-Sphere Collider의 정의에 필요한 데이터는 위치(`float3`)와 반지름(`float`)이다.
+**Sphere Collider**의 정의에 필요한 데이터는 위치(`float3`)와 반지름(`float`)이다.
 
-반면 Box Collider를 정의하기 위해 필요한 데이터는 위치(`float3`)와 크기(`float3`) 또는
+반면 **Box Collider**를 정의하기 위해 필요한 데이터는 위치(`float3`)와 크기(`float3`) 또는
 
 최소 지점(`float3`)과 최대 지점(`float3`)이다.
 
-이 중에서 최소 지점과 최대 지점을 CPU에서 컴퓨트 쉐이더로 전달한다.
+이 중에서 최소 지점과 최대 지점을 통해 **Box Collider**를 정의한다.
 
 <br>
+
 
 ## **[1] DustCollider 클래스 수정**
 
@@ -3992,6 +3993,7 @@ public abstract class DustCollider<T> : MonoBehaviour
 
 <br>
 
+
 ## **[2] DustBoxCollider 클래스 작성**
 
 유니티 엔진의 `Bounds` 구조체와 호환되는 `MinMaxBounds` 구조체를 작성하고,
@@ -4002,7 +4004,7 @@ public abstract class DustCollider<T> : MonoBehaviour
 
 <details>
 <summary markdown="span"> 
-...
+DustBoxCollider.cs
 </summary>
 
 ```cs
@@ -4042,18 +4044,17 @@ public class DustBoxCollider : DustCollider<MinMaxBounds>
 
 <br>
 
+
 ## **[3] 제네릭 ColliderSet 클래스 작성**
+
+기존의 `SphereColliderSet` 클래스를 제네릭화하여,
+
+`Data`를 정의하기만 하면 앞으로 작성할 모든 콜라이더를 같은 방식으로 관리할 수 있도록 한다.
 
 <details>
 <summary markdown="span"> 
-...
+DustManager.cs
 </summary>
-
-```cs
-
-```
-
-</details>
 
 ```cs
 private class ColliderSet<TCol, TData> where TCol : DustCollider<TData>
@@ -4153,10 +4154,199 @@ private class ColliderSet<TCol, TData> where TCol : DustCollider<TData>
 }
 ```
 
-기존의 `SphereColliderSet` 클래스를 제네릭화하여,
-
+</details>
 
 <br>
+
+
+## **[4] Collider API 작성**
+
+콜라이더에서 호출하기 위한 `DustManager`의 메소드들을 공통 기능 `Add`, `Update`, `Remove`로 묶어 제네릭화한다.
+
+그리고 각 콜라이더 메소드에서는 간단히 호출할 수 있도록 한 줄씩만 작성해주면 된다.
+
+<details>
+<summary markdown="span"> 
+DustManager.cs
+</summary>
+
+```cs
+private ColliderSet<DustSphereCollider, Vector4> sphereColliderSet;
+private ColliderSet<DustBoxCollider, MinMaxBounds> boxColliderSet;
+
+
+/* Generic Collider Methods */
+
+private void AddCollider<TCol, TData>(Func<ColliderSet<TCol, TData>> getter, TCol collider) where TCol : DustCollider<TData>
+{
+    var colSet = getter();
+
+    if (colSet == null)
+    {
+        afterInitJobQueue.Enqueue(() => getter().AddCollider(collider));
+    }
+    else
+    {
+        colSet.AddCollider(collider);
+    }
+}
+
+/// <summary> ColliderSet의 내부 컴퓨트 버퍼 갱신 </summary>
+private void UpdateCollider<TCol, TData>(ColliderSet<TCol, TData> set) where TCol : DustCollider<TData>
+{
+    if (set != null)
+        set.UpdateColliderData();
+}
+
+/// <summary> ColliderSet에서 Collider 제거 </summary>
+private void RemoveCollider<TCol, TData>(ColliderSet<TCol, TData> set, TCol collider) where TCol : DustCollider<TData>
+{
+    if (set != null)
+        set.RemoveCollider(collider);
+}
+
+
+/* Sphere Collider */
+
+public void AddSphereCollider(DustSphereCollider collider)
+{
+    AddCollider(() => sphereColliderSet, collider);
+}
+public void UpdateSphereCollider()
+{
+    UpdateCollider(sphereColliderSet);
+}
+public void RemoveSphereCollider(DustSphereCollider collider)
+{
+    RemoveCollider(sphereColliderSet, collider);
+}
+
+
+/* Box Collider */
+
+public void AddBoxCollider(DustBoxCollider collider)
+{
+    AddCollider(() => boxColliderSet, collider);
+}
+public void UpdateBoxCollider()
+{
+    UpdateCollider(boxColliderSet);
+}
+public void RemoveBoxCollider(DustBoxCollider collider)
+{
+    RemoveCollider(boxColliderSet, collider);
+}
+```
+
+</details>
+
+<br>
+
+
+## **[5] AABB 충돌 감지**
+
+AABB와 Dust(Sphere)의 충돌 감지는 간단하다.
+
+모든 면의 노멀 벡터는 표준 기저 벡터와 일치하므로
+
+X, Y, Z 축마다 각 성분의 범위 검사를 해주면 된다.
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+// AABB-Dust(Sphere) 충돌 여부 확인
+bool CheckBoxIntersection(float3 position, float radius, Bounds box)
+{
+    if(position.x + radius < box.min.x) return false;
+    if(position.y + radius < box.min.y) return false;
+    if(position.z + radius < box.min.z) return false;
+    if(position.x - radius > box.max.x) return false;
+    if(position.y - radius > box.max.y) return false;
+    if(position.z - radius > box.max.z) return false;
+    return true;
+}
+```
+
+</details>
+
+<br>
+
+
+## **[6] Raycast to AABB**
+
+
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+
+```
+
+</details>
+
+<br>
+
+
+## **[7] Update 커널 수정**
+
+
+
+<details>
+<summary markdown="span"> 
+DustCompute.compute
+</summary>
+
+```hlsl
+RWStructuredBuffer<bool> collisionFlagBuffer; // 이번 프레임 충돌 처리 여부
+RWStructuredBuffer<Bounds> boxColliderBuffer;
+uint boxColliderCount;
+
+void Update (uint3 id : SV_DispatchThreadID)
+{
+    // ...
+    float3 currPos = dustBuffer[i].position;
+    float3 nextPos = currPos + velocityBuffer[i] * deltaTime;
+
+    // 충돌 처리 완료 여부
+    collisionFlagBuffer[i] = false;
+
+    // [1] Sphere Colliders
+    for(uint scIndex = 0; scIndex < sphereColliderCount; scIndex++)
+    {
+        // ...
+    }
+
+    // [2] Box Colliders
+    for(uint bcIndex = 0; bcIndex < boxColliderCount; bcIndex++)
+    {
+        if(collisionFlagBuffer[i] == true) continue;
+
+        Bounds box = boxColliderBuffer[bcIndex];
+        if(CheckBoxIntersection(nextPos, radius, box))
+        {
+            CalculateBoxCollision(currPos, nextPos, velocityBuffer[i], radius, box, elasticity, collisionFlagBuffer[i]);
+        }
+    }
+
+    // [Last] 월드 영역 제한(Box)
+    // ...
+
+    // 다음 위치 적용
+    dustBuffer[i].position = nextPos;
+}
+```
+
+</details>
+
+<br>
+
+
 
 </details>
 <!-- --------------------------------------------------------------------------- -->

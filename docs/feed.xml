@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-24T16:50:54+09:00</updated>
+  <updated>2021-10-26T05:10:09+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,134 @@
 
   
   <entry>
+    <title>C# - Global Mouse Hook</title>
+    <link href="https://rito15.github.io/posts/cs-global-mouse-hook/" rel="alternate" type="text/html" title="C# - Global Mouse Hook" />
+    <published>2021-10-26T03:56:00+09:00</published>
+  
+    <updated>2021-10-26T03:56:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-global-mouse-hook/</id>
+    <content src="https://rito15.github.io/posts/cs-global-mouse-hook/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Winform" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Source Code
+
+
+
+
+
+  
+
+
+using System;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
+using System.Threading;
+
+namespace Rito
+{
+    /*
+         [기능]
+             - 마우스 누름, 뗌, 휠 올림/내림, 휠클릭 이벤트 글로벌 후킹
+
+         [메소드]
+            - 후킹 시작 : Begin()
+            - 후킹 종료 : End()
+            - 핸들러 추가 : Mouse~, Middle~, Left~, Right~ 이벤트 핸들러에 메소드 등록
+            - 마우스 현재 위치 받아오기 : GetCursor...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>C# - Global Key Hook</title>
+    <link href="https://rito15.github.io/posts/cs-global-key-hook/" rel="alternate" type="text/html" title="C# - Global Key Hook" />
+    <published>2021-10-26T03:55:00+09:00</published>
+  
+    <updated>2021-10-26T03:55:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-global-key-hook/</id>
+    <content src="https://rito15.github.io/posts/cs-global-key-hook/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Winform" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Source Code
+
+
+
+
+
+  
+
+
+using System;
+using System.Linq;
+using System.Windows.Forms;
+
+namespace Rito
+{
+    /* 
+        [기능]
+            - 키 누름, 키 뗌 이벤트 글로벌 후킹
+
+        [프로퍼티]
+            - bool Shift   : Shift 키 누른 상태인지 여부
+            - bool Control : Control 키 누른 상태인지 여부
+            - bool Alt     : Alt 키 누른 상태인지 여부
+
+        [메소드]
+            - 후킹 시작 : Begin()
+            - 후킹 종료 : End()
+       ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>유니티 - Quaternion</title>
     <link href="https://rito15.github.io/posts/unity-quaternion/" rel="alternate" type="text/html" title="유니티 - Quaternion" />
     <published>2021-10-24T16:00:00+09:00</published>
   
-    <updated>2021-10-24T16:00:00+09:00</updated>
+    <updated>2021-10-24T22:57:18+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-quaternion/</id>
     <content src="https://rito15.github.io/posts/unity-quaternion/" />
@@ -48,33 +171,32 @@
 
 
 
-      Quaternion
+      Note : 회전에 대한 정의
+
+
+공간은 표준 기저 벡터의 집합에 의해 정의될 수 있다.
+
+표준 기저 벡터란, 쉽게 말해 해당 공간의 축 방향을 향하는 정규화된 벡터다.
+
+2D 공간, 즉 평면은 (1, 0), (0, 1)에 의해 정의될 수 있으며,
+
+3D 공간은 (1, 0, 0), (0, 1, 0), (0, 0, 1) 에 의해 정의될 수 있다.
 
 
 
-  
-    4개의 float로 이루어져 있다.
-  
-  쿼터니언은 3차원 공간에서의 회전 정보를 가진다.
-    
-      예를 들어, [X축 15도, Y축 30도, Z축 0도 회전] 또는 [벡터 (1, 2, 3)을 축으로 25도 회전]과 같은 정보를 갖고 있다.
-    
-  
-  쿼터니언의 회전은 해당 쿼터니언 연산(곱셈)을 적용하는 순간의 로컬 공간을 기준으로 적용된다.
+회전이란, 표준 기저 벡터를 회전시키는 것과 같다.
+
+트랜스폼이 현재 갖고 있는 회전 정보를 오일러 각으로 정의했을 때,
+
+(0, 0, 0)일 경우 해당 오브젝트의 로컬 공간 표준 기저가
+
+월드 공간의 표준 기저와 일치한 상태를 의미한다.
 
 
 
+(30, 0, 0)일 경우 해당 오브젝트의 로컬 공간 표준 기저가
 
-오일러 회전 적용 순서
-
-
-
-  https://docs.unity3d.com/Packages/com.unity.mathematics@0.0/api/Unity.Mathematics.math.RotationOrder.html
-
-
-위와 같은 유니티 문서들을 찾아봐도,
-
-internal class Tra...
+월드 공간 표준 기저에 대해 X축을 기준으로 ...
     </summary>
   
 
@@ -86,7 +208,7 @@ internal class Tra...
     <link href="https://rito15.github.io/posts/game-math-rotation/" rel="alternate" type="text/html" title="게임 수학 - 회전(2차원, 3차원, 4원수)" />
     <published>2021-10-23T17:14:00+09:00</published>
   
-    <updated>2021-10-24T05:36:07+09:00</updated>
+    <updated>2021-10-24T21:14:16+09:00</updated>
   
     <id>https://rito15.github.io/posts/game-math-rotation/</id>
     <content src="https://rito15.github.io/posts/game-math-rotation/" />
@@ -210,145 +332,6 @@ while(...)
 
 
 이렇게 메인 스레드에 무한 반복문을 통해 게임 루프를 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>게임 수학 - 벡터의 내적과 외적</title>
-    <link href="https://rito15.github.io/posts/game-math-dot-cross/" rel="alternate" type="text/html" title="게임 수학 - 벡터의 내적과 외적" />
-    <published>2021-10-21T16:00:00+09:00</published>
-  
-    <updated>2021-10-22T23:00:26+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/game-math-dot-cross/</id>
-    <content src="https://rito15.github.io/posts/game-math-dot-cross/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Game Mathematics" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      내적
-
-
-
-   
-…
-
-
-  특징
-
-  
-    내적은 벡터의 차원에 관계 없이, 동일한 차원의 벡터끼리 가능하다.
-    내적의 결과는 스칼라 값이다.
-    벡터 A, B의 내적은 A를 B에(또는 B를 A에) 투영시킨 후 두 벡터의 길이를 곱한 것과 같다.
-    내적은 교환 법칙, 결합 법칙이 성립한다.
-  
-
-  
-
-  주어진 벡터
-
-\[\begin{flalign*}
-\quad A = (a_{x} \, , \,\, a_{y} \, , \,\, a_{z}) &amp;amp;&amp;amp;
-\end{flalign*}\]
-
-\[\begin{flalign*}
-\quad B = (b_{x} \, , \,\, b_{y} \, , \,\, b_{z}) &amp;amp;&amp;amp;
-\end{flalign*}\]
-
-  
-
-  내적 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>게임 수학 - 선과 평면, 정점 보간</title>
-    <link href="https://rito15.github.io/posts/game-math-line-plane-vertex/" rel="alternate" type="text/html" title="게임 수학 - 선과 평면, 정점 보간" />
-    <published>2021-10-20T21:00:00+09:00</published>
-  
-    <updated>2021-10-20T21:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/game-math-line-plane-vertex/</id>
-    <content src="https://rito15.github.io/posts/game-math-line-plane-vertex/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Game Mathematics" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      3D 게임 공간의 확장
-
-
-  벡터 공간 : 이동 벡터를 표현(w가 항상 0)
-  아핀 공간 : 위치 벡터를 표현(w가 항상 1)
-
-
-
-
-특징
-
-  벡터와 벡터는 더할 수 있다.
-  벡터와 점을 더하면 w = 1이므로 점이 된다.
-  점과 점을 더하면 w = 2가 되어 아핀 공간을 벗어나므로, 더할 수 없다.
-
-
-
-
-아핀 조합(Affine Combination)
-
-
-\[a + b = 1\]
-
-\[P = aP_{1} + bP_{2}\]
-
-\[P = aP_{1} + (1 - a)P_{2}\]
-
-
-  점 P는 (x, y, z, 1)인 아핀 공간의 위치 벡터
-  아핀 조합 : 아핀 공간의 두 점을 더했을 때의 결과가 아핀 공간의 점(w = 1)이 됨을 보장하는 공식
-
-
-
-
-두 개의 점을 이용해 선 표현하기
-
-...
     </summary>
   
 

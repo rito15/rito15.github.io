@@ -1185,27 +1185,27 @@
         
         
         
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
       
         
         
         
-        <li><a href="/posts/game-math-rotation/">게임 수학 - 회전(2차원, 3차원, 4원수)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/game-math-dot-cross/">게임 수학 - 벡터의 내적과 외적</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
+        <li><a href="/posts/unity-quaternion/">유니티 - Quaternion</a></li>
       
 
       </ul>
@@ -5975,6 +5975,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8965,7 +8991,7 @@
       
       
       <div class="card">
-        <a href="/posts/cs-heap-memory-debugger/">
+        <a href="/posts/cs-character-encodings/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8982,13 +9008,13 @@
   
 
   
-    Aug  8
+    Aug 15
   
 
-  <i class="unloaded">2021-08-08T12:12:00+09:00</i>
+  <i class="unloaded">2021-08-15T21:42:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 간단한 힙 메모리 디버거 (콘솔)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>문자 인코딩 방식들 간단 메모</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8997,30 +9023,80 @@
 
 
 
-                기능
+                Encoding
 
 
 
-  원하는 지점의 힙 메모리 크기 기록
-  기록된 두 지점의 힙 메모리 크기 차이 출력
-
-
-
-
-주의사항
-
-
-
-  Print() 이후에는 Record()하지 않아야 한다.
-    
-      Future Works : Print() 내에서 스트링을 스택에 할당하여 해결
-    
+  
+    문자(char)를 코드(byte[])로 표현하는 것
+  
+  
+    반의어 : Decoding
   
 
 
 
 
-사용 예시
+ASCII
+
+
+
+  
+    American Standard Code for Information Interchange, 미국 정보 교환 표준 부호
+  
+  
+    영미 문화권의 기본적인 문자들을 코드값에 대...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-enum-index-array-vs-dict/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 19
+  
+
+  <i class="unloaded">2021-08-19T23:11:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                요약
+
+
+
+  array[(int)enumValue], dict[enumValue]의 참조 성능을 비교한다.
+
+
+
+
+테스트 코드
 
 
 1
@@ -9033,77 +9109,40 @@
 8
 9
 10
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/cs-utf8-string-to-byte-array/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  8
-  
-
-  <i class="unloaded">2021-08-08T19:31:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                1. 힙 할당 있는 방식
-
-
-1
-2
-3
-string str = "가나다 ABC 123";
-
-byte[] byteStr = Encoding.UTF8.GetBytes(str);
-
-
-
-
-2. 힙 할당 없는 방식
-
-
-
-  요지 : 미리 생성된 byte[]의 특정 offset에 문자열을 직렬화하여 복제하기
-
-
-
-
-버퍼를 이용한 직렬화 예시
-
-1
-2
-3
-4
-5
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
 ...
               </p>
             </div>

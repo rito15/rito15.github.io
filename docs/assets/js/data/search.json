@@ -1,6 +1,36 @@
 [
   
   {
+    "title": "C# - Global Mouse Hook",
+    "url": "/posts/cs-global-mouse-hook/",
+    "categories": "C#, C# Winform",
+    "tags": "csharp, winform",
+    "date": "2021-10-26 03:56:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Source Code  using System;using System.Runtime.InteropServices;using System.Diagnostics;using System.Threading;namespace Rito{    /*         [기능]             - 마우스 누름, 뗌, 휠 올림/내림, 휠클릭 이벤트 글로벌 후킹         [메소드]            - 후킹 시작 : Begin()            - 후킹 종료 : End()            - 핸들러 추가 : Mouse~, Mi..."
+  },
+  
+  {
+    "title": "C# - Global Key Hook",
+    "url": "/posts/cs-global-key-hook/",
+    "categories": "C#, C# Winform",
+    "tags": "csharp, winform",
+    "date": "2021-10-26 03:55:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Source Code  using System;using System.Linq;using System.Windows.Forms;namespace Rito{    /*         [기능]            - 키 누름, 키 뗌 이벤트 글로벌 후킹        [프로퍼티]            - bool Shift   : Shift 키 누른 상태인지 여부            - bool Control : Control 키 누른 상태인지 여부            - bool Alt     : Alt 키 누른 상태인지 여부   ..."
+  },
+  
+  {
     "title": "유니티 - Quaternion",
     "url": "/posts/unity-quaternion/",
     "categories": "Unity, Unity Memo",
@@ -12,7 +42,7 @@
 
 
 
-    "snippet": "Quaternion      4개의 float로 이루어져 있다.    쿼터니언은 3차원 공간에서의 회전 정보를 가진다.          예를 들어, [X축 15도, Y축 30도, Z축 0도 회전] 또는 [벡터 (1, 2, 3)을 축으로 25도 회전]과 같은 정보를 갖고 있다.        쿼터니언의 회전은 해당 쿼터니언 연산(곱셈)을 적용하는 순간의 로컬 공간을 기준으로 적용된다.오일러 회전 적용 순서  https://docs.unity3d.com/Packages/com.unity.mathematics@0.0/api/Unity..."
+    "snippet": "Note : 회전에 대한 정의공간은 표준 기저 벡터의 집합에 의해 정의될 수 있다.표준 기저 벡터란, 쉽게 말해 해당 공간의 축 방향을 향하는 정규화된 벡터다.2D 공간, 즉 평면은 (1, 0), (0, 1)에 의해 정의될 수 있으며,3D 공간은 (1, 0, 0), (0, 1, 0), (0, 0, 1) 에 의해 정의될 수 있다.회전이란, 표준 기저 벡터를 회전시키는 것과 같다.트랜스폼이 현재 갖고 있는 회전 정보를 오일러 각으로 정의했을 때,(0, 0, 0)일 경우 해당 오브젝트의 로컬 공간 표준 기저가월드 공간의 표준 기저와..."
   },
   
   {
@@ -1302,7 +1332,7 @@
 
 
 
-    "snippet": "Memo  NOTE : 아이콘 뿐만 아니라 가능한 GUI를 모두 그릴 수 있다.[DisallowMultipleComponent]public class Test_HierarchyIcon : MonoBehaviour{#if UNITY_EDITOR    public static string CurrentFolderPath { get; private set; } // &quot;Assets\\......\\이 스크립트가 있는 폴더 경로&quot;    private static Texture2D iconTexture;    private..."
+    "snippet": "Memo  NOTE : 아이콘 뿐만 아니라 가능한 GUI를 모두 그릴 수 있다.   …            [DisallowMultipleComponent]public class Test_HierarchyIcon : MonoBehaviour{#if UNITY_EDITOR    public static string CurrentFolderPath { get; private set; } // &quot;Assets\\......\\이 스크립트가 있는 폴더 경로&quot;    private static Texture2D iconTex..."
   },
   
   {
@@ -2626,7 +2656,7 @@
   },
   
   {
-    "title": "마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기",
+    "title": "C# 윈폼 - 마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기",
     "url": "/posts/cs-winform-pass-through-mouse-events/",
     "categories": "C#, C# Winform",
     "tags": "",
@@ -2641,7 +2671,7 @@
   },
   
   {
-    "title": "윈폼 중복 실행 방지",
+    "title": "C# 윈폼 - 중복 실행 방지",
     "url": "/posts/cs-winform-prevent-duplication/",
     "categories": "C#, C# Winform",
     "tags": "",
@@ -2656,7 +2686,7 @@
   },
   
   {
-    "title": "Notify Icon 사용하기",
+    "title": "C# 윈폼 - Notify Icon 사용하기",
     "url": "/posts/cs-winform-notifyicon/",
     "categories": "C#, C# Winform",
     "tags": "csharp, winform",
@@ -2982,7 +3012,7 @@
 
 
 
-    "snippet": "Memo유니티엔진에서의 회전  각 축에 회전이 적용되는 순서는 Y축 -&amp;gt; X축 -&amp;gt; Z축오일러 회전 값을 변경하여 회전시킬 때Local Rotation(Euler) X, Y, Z 값 중 회전시키려는 축을 제외하고 모두 0이라면(예 : X축으로 회전시키려는데 (34f, 0f, 0f)인 상태)해당 축의 오일러 값만 변경시키면 다른 축에 영향을 받지 않고 정상적으로 회전할 수 있다.정확히는, 유니티엔진의 회전 순서에 따라Z축 회전일 경우 X, Y 오일러 값에 상관 없이 회전이 가능하고X축 회전일 경우 Z 값..."
+    "snippet": "Memo유니티엔진에서의 회전  각 축에 회전이 적용되는 순서는 Y축 -&amp;gt; X축 -&amp;gt; Z축오일러 회전 값을 변경하여 회전시킬 때트랜스폼 오일러 회전 벡터의 X, Y, Z 값 중 회전시키려는 축을 제외하고 모두 0이라면(예 : X축으로 회전시키려는데 (34f, 0f, 0f)인 상태)해당 축의 오일러 값만 변경시키면 다른 축에 영향을 받지 않고 정상적으로 회전할 수 있다.정확히는, 유니티엔진의 회전 순서에 따라Z축 회전일 경우 X, Y 오일러 값에 상관 없이 회전이 가능하고X축 회전일 경우 Z 값이 0이 아..."
   },
   
   {

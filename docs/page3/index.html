@@ -367,6 +367,189 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/cs-byte-buffer-to-struct/">C# 바이트 버퍼를 읽어서 구조체로 변환하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        소스 코드
+
+
+메소드
+
+
+
+
+  
+
+
+
+  
+    /// &lt;summary&gt; 바이트 버퍼를 읽어서 구조체로 변환하기 &lt;/summary&gt;
+public static T? ByteBufferToStruct&lt;T&gt;(byte[] buffer, int offset) where T : struct
+{
+    int size = Mar...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Oct  1, 2021, 12:01 AM +0900"
+  >
+
+  
+  
+
+  
+    Oct  1
+  
+
+  <i class="unloaded">2021-10-01T00:01:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="342 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-shader-billboard/">유니티 쉐이더 - 빌보드(Vert/Frag)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        1. 일반
+
+
+
+  
+    struct appdata
+{
+    float4 vertex : POSITION;
+    float2 uv : TEXCOORD0;
+};
+
+struct v2f
+{
+    float4 vertex : SV_POSITION;
+    float2 uv : TEXCOORD0;
+};
+
+float4 Billboard(float4 ve...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Sep 30, 2021,  9:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Sep 30
+  
+
+  <i class="unloaded">2021-09-30T21:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="335 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/cs-nullable/">C# Nullable</a>
     </h1>
 
@@ -624,7 +807,7 @@ Compute Buffer
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="17295 words">96 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="18678 words">103 min</span>
 
 
         <!-- page views -->
@@ -1121,210 +1304,6 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="513 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-punch-ui-image/">유니티 - UI 이미지에 구멍뚫기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Mask
-
-
-
-
-이런 이미지에
-
-
-
-이런 마스크를 씌우려면
-
-
-  Mask Image (Image, Mask 컴포넌트 존재)
-    
-      Image (Image 컴포넌트 존재)
-    
-  
-
-
-이렇게 마스크 이미지, 보여질 이미지를 부모-자식 관계로 구성하면 된다.
-
-
-
-그러면 이렇게 마스크 이미지와 겹치는 영역만 보인다.
-
-
-
-Punch
-
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Sep 15, 2021,  3:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Sep 15
-  
-
-  <i class="unloaded">2021-09-15T15:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="236 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editorconfig-encoding/">유니티 - 한글 주석 인코딩 깨지는 경우 해결하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Problem
-
-
-문제 확인
-
-
-
-비주얼 스튜디오에서는 위와 같이 잘 보이던 한글 주석이
-
-
-
-유니티 에디터에서 보면 이렇게 깨지는 경우가 있다.
-
-당장은 스크립팅에 문제가 없더라도,
-
-스크립트 파일을 전송하거나 협업을 하게 될 때 문제가 생길 수 있다.
-
-
-
-인코딩
-
-인코딩을 확인해보면
-
-
-
-EUC-KR의 확장인 코드 페이지 949(CP949)임을 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Sep 15, 2021,  2:34 AM +0900"
-  >
-
-  
-  
-
-  
-    Sep 15
-  
-
-  <i class="unloaded">2021-09-15T02:34:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="826 words">4 min</span>
 
 
         <!-- page views -->
@@ -1929,27 +1908,27 @@ EUC-KR의 확장인 코드 페이지 949(CP949)임을 ...
         
         
         
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
       
         
         
         
-        <li><a href="/posts/game-math-rotation/">게임 수학 - 회전(2차원, 3차원, 4원수)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/game-math-dot-cross/">게임 수학 - 벡터의 내적과 외적</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
+        <li><a href="/posts/unity-quaternion/">유니티 - Quaternion</a></li>
       
 
       </ul>

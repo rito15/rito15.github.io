@@ -934,27 +934,27 @@ MeshToObj.cs (테스트용 스크립트)
         
         
         
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
       
         
         
         
-        <li><a href="/posts/game-math-rotation/">게임 수학 - 회전(2차원, 3차원, 4원수)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/game-math-dot-cross/">게임 수학 - 벡터의 내적과 외적</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
+        <li><a href="/posts/unity-quaternion/">유니티 - Quaternion</a></li>
       
 
       </ul>
@@ -6590,6 +6590,32 @@ MeshToObj.cs (테스트용 스크립트)
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8652,62 +8678,6 @@ MeshToObj.cs (테스트용 스크립트)
       
       
       <div class="card">
-        <a href="/posts/unity-process-after-initalization/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Oct 12
-  
-
-  <i class="unloaded">2021-10-12T04:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 스크립트의 실행 순서를 보장할 수 없는 경우, 종속적인 작업 처리하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                요약
-
-A 클래스가 B 클래스에 종속적인 작업을 수행할 때,
-
-B 클래스가 초기화 작업을 완료하기 전에 A 클래스가 작업을 요청하면 에러가 발생할 수 있다.
-
-예를 들면 서로 다른 클래스의 Awake(), Start(), OnEnable() 호출 순서를 보장할 수 없는 경우를 생각해볼 수 있다.
-
-이런 경우의 해결 방안을 알아본다.
-
-
-
-상황 예시
-
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-fix-unitypackage-association/">
           <div class="card-body">
             <!--
@@ -8801,6 +8771,74 @@ B 클래스가 초기화 작업을 완료하기 전에 A 클래스가 작업을 
   &lt;executablefolder&gt; : 빌드된 실행 파일의 폴더 경로
   &lt;companyname&gt; : Project Settings - Player에서 지정한 Company Name
   &lt;productname&gt; : P...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-save-screen-shot/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep  8
+  
+
+  <i class="unloaded">2021-09-08T05:10:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 스크린샷 찍고 저장하기(Windows, Android)</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1. Unity Editor
+
+
+저장할 경로
+
+  $"{Application.dataPath}/ScreenShots/"
+
+
+실제 경로
+
+  "[프로젝트 디렉토리]/Assets/ScreenShots/"
+
+
+
+
+
+2. Standalone App
+
+
+저장할 경로
+
+  $"{Application.dataPath}/ScreenShots/"
+
+
+실제 경로
+
+  ...
               </p>
             </div>
           </div>

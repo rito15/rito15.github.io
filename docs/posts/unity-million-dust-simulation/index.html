@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 물리 기반 먼지 시뮬레이션" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-16T02:34:56+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 수십만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-25T21:27:05+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Sat, Oct 16, 2021,  2:34 AM +0900"
+    title="Mon, Oct 25, 2021,  9:27 PM +0900"
   >
 
   
   
 
   
-    Oct 16
+    Oct 25
   
 
-  <i class="unloaded">2021-10-16T02:34:56+09:00</i>
+  <i class="unloaded">2021-10-25T21:27:05+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="17295 words">96 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="18678 words">103 min</span>
 
 
           <!-- page views -->
@@ -6800,7 +6800,7 @@ DustManager.cs
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-<h1 id="0-box-collision-구현">0. Box Collision 구현</h1>
+<h1 id="16-boxaabb-collision-구현">16. Box(AABB) Collision 구현</h1>
 <hr />
 
 <details>
@@ -6809,6 +6809,610 @@ DustManager.cs
 </summary>
 
   <p><br /></p>
+
+  <p><strong>Sphere Collider</strong>의 정의에 필요한 데이터는 위치(<code class="language-plaintext highlighter-rouge">float3</code>)와 반지름(<code class="language-plaintext highlighter-rouge">float</code>)이다.</p>
+
+  <p>반면 <strong>Box Collider</strong>를 정의하기 위해 필요한 데이터는 위치(<code class="language-plaintext highlighter-rouge">float3</code>)와 크기(<code class="language-plaintext highlighter-rouge">float3</code>) 또는</p>
+
+  <p>최소 지점(<code class="language-plaintext highlighter-rouge">float3</code>)과 최대 지점(<code class="language-plaintext highlighter-rouge">float3</code>)이다.</p>
+
+  <p>이 중에서 최소 지점과 최대 지점을 통해 <strong>Box Collider</strong>를 정의한다.</p>
+
+  <p><br /></p>
+
+  <h2 id="dustcollider--"><strong>[1] DustCollider 클래스 수정</strong></h2>
+
+  <p>컴퓨트 쉐이더에서 전달할 데이터를 제네릭을 통해 콜라이더마다 정의할 수 있도록, 아래와 같이 수정한다.</p>
+
+  <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">DustCollider</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">abstract</span> <span class="n">T</span> <span class="n">Data</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+    
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+  <p><br /></p>
+
+  <h2 id="dustboxcollider--"><strong>[2] DustBoxCollider 클래스 작성</strong></h2>
+
+  <p>유니티 엔진의 <code class="language-plaintext highlighter-rouge">Bounds</code> 구조체와 호환되는 <code class="language-plaintext highlighter-rouge">MinMaxBounds</code> 구조체를 작성하고,</p>
+
+  <p>이를 <code class="language-plaintext highlighter-rouge">Data</code>로 사용하는 <code class="language-plaintext highlighter-rouge">DustBoxCollider</code> 클래스를 작성한다.</p>
+
+  <p>트랜스폼의 스케일을 기반으로 콜라이더 영역이 정의된다.</p>
+
+  <details>
+    <summary> 
+DustBoxCollider.cs
+</summary>
+
+    <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre></td><td class="rouge-code"><pre><span class="c1">/// &lt;summary&gt; </span>
+<span class="c1">/// Box Collider를 위한 Min-Max 데이터</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">public</span> <span class="k">struct</span> <span class="nc">MinMaxBounds</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">Vector3</span> <span class="n">min</span><span class="p">;</span>
+    <span class="k">public</span> <span class="n">Vector3</span> <span class="n">max</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="n">MinMaxBounds</span> <span class="nf">FromBounds</span><span class="p">(</span><span class="k">in</span> <span class="n">Bounds</span> <span class="n">bounds</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">MinMaxBounds</span> <span class="n">mmb</span> <span class="p">=</span> <span class="k">default</span><span class="p">;</span>
+        <span class="n">mmb</span><span class="p">.</span><span class="n">min</span> <span class="p">=</span> <span class="n">bounds</span><span class="p">.</span><span class="n">min</span><span class="p">;</span>
+        <span class="n">mmb</span><span class="p">.</span><span class="n">max</span> <span class="p">=</span> <span class="n">bounds</span><span class="p">.</span><span class="n">max</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">mmb</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">DustBoxCollider</span> <span class="p">:</span> <span class="n">DustCollider</span><span class="p">&lt;</span><span class="n">MinMaxBounds</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="n">MinMaxBounds</span> <span class="n">Data</span>
+    <span class="p">{</span>
+        <span class="k">get</span>
+        <span class="p">{</span>
+            <span class="n">Bounds</span> <span class="n">b</span> <span class="p">=</span> <span class="k">default</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">.</span><span class="n">center</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">.</span><span class="n">extents</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">lossyScale</span> <span class="p">*</span> <span class="m">0.5f</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">MinMaxBounds</span><span class="p">.</span><span class="nf">FromBounds</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="colliderset--"><strong>[3] 제네릭 ColliderSet 클래스 작성</strong></h2>
+
+  <p>기존의 <code class="language-plaintext highlighter-rouge">SphereColliderSet</code> 클래스를 제네릭화하여,</p>
+
+  <p><code class="language-plaintext highlighter-rouge">Data</code>를 정의하기만 하면 앞으로 작성할 모든 콜라이더를 같은 방식으로 관리할 수 있도록 한다.</p>
+
+  <details>
+    <summary> 
+DustManager.cs
+</summary>
+
+    <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="k">class</span> <span class="nc">ColliderSet</span><span class="p">&lt;</span><span class="n">TCol</span><span class="p">,</span> <span class="n">TData</span><span class="p">&gt;</span> <span class="k">where</span> <span class="n">TCol</span> <span class="p">:</span> <span class="n">DustCollider</span><span class="p">&lt;</span><span class="n">TData</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="cm">/* Collider */</span>
+    <span class="k">private</span> <span class="n">ComputeBuffer</span> <span class="n">colliderBuffer</span><span class="p">;</span>
+    <span class="k">private</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">TCol</span><span class="p">&gt;</span> <span class="n">colliders</span><span class="p">;</span>
+
+    <span class="cm">/* Data */</span>
+    <span class="k">private</span> <span class="n">TData</span><span class="p">[]</span> <span class="n">dataArray</span><span class="p">;</span>
+    <span class="k">private</span> <span class="kt">int</span> <span class="n">dataCount</span><span class="p">;</span>
+    <span class="k">private</span> <span class="kt">int</span> <span class="n">dataStride</span><span class="p">;</span>
+
+    <span class="cm">/* Compute Shader, Compute Buffer */</span>
+    <span class="k">private</span> <span class="n">ComputeShader</span> <span class="n">computeShader</span><span class="p">;</span>
+    <span class="k">private</span> <span class="kt">int</span> <span class="n">shaderKernel</span><span class="p">;</span> <span class="c1">// Update Kernel</span>
+    <span class="k">private</span> <span class="kt">string</span> <span class="n">bufferName</span><span class="p">;</span>
+    <span class="k">private</span> <span class="kt">string</span> <span class="n">countVariableName</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">ColliderSet</span><span class="p">(</span><span class="n">ComputeShader</span> <span class="n">computeShader</span><span class="p">,</span> <span class="kt">int</span> <span class="n">shaderKernel</span><span class="p">,</span> <span class="kt">string</span> <span class="n">bufferName</span><span class="p">,</span> <span class="kt">string</span> <span class="n">countVariableName</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dataStride</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">colliders</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">TCol</span><span class="p">&gt;(</span><span class="m">4</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">dataArray</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TData</span><span class="p">[</span><span class="m">4</span><span class="p">];</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">computeShader</span> <span class="p">=</span> <span class="n">computeShader</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">shaderKernel</span> <span class="p">=</span> <span class="n">shaderKernel</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">bufferName</span> <span class="p">=</span> <span class="n">bufferName</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">countVariableName</span> <span class="p">=</span> <span class="n">countVariableName</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">dataStride</span> <span class="p">=</span> <span class="n">dataStride</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">dataCount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+
+        <span class="n">colliderBuffer</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ComputeBuffer</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">);</span> <span class="c1">// 기본 값</span>
+        <span class="n">computeShader</span><span class="p">.</span><span class="nf">SetBuffer</span><span class="p">(</span><span class="n">shaderKernel</span><span class="p">,</span> <span class="n">bufferName</span><span class="p">,</span> <span class="n">colliderBuffer</span><span class="p">);</span>
+        <span class="n">computeShader</span><span class="p">.</span><span class="nf">SetInt</span><span class="p">(</span><span class="n">countVariableName</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="p">~</span><span class="nf">ColliderSet</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nf">ReleaseBuffer</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">ReleaseBuffer</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">colliderBuffer</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+            <span class="n">colliderBuffer</span><span class="p">.</span><span class="nf">Release</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">ExpandDataArray</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">TData</span><span class="p">[]</span> <span class="n">newArray</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TData</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="n">dataArray</span><span class="p">.</span><span class="n">Length</span> <span class="p">*</span> <span class="m">2</span><span class="p">];</span>
+        <span class="n">Array</span><span class="p">.</span><span class="nf">Copy</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">dataArray</span><span class="p">,</span> <span class="n">newArray</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">dataArray</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">dataArray</span> <span class="p">=</span> <span class="n">newArray</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// &lt;summary&gt; 컴퓨트 버퍼의 데이터를 새롭게 갱신하고 컴퓨트 쉐이더에 전달 &lt;/summary&gt;</span>
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">ReallocateBuffer</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nf">ReleaseBuffer</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dataCount</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+        <span class="n">colliderBuffer</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ComputeBuffer</span><span class="p">(</span><span class="n">dataCount</span><span class="p">,</span> <span class="n">dataStride</span><span class="p">);</span>
+        <span class="n">computeShader</span><span class="p">.</span><span class="nf">SetInt</span><span class="p">(</span><span class="n">countVariableName</span><span class="p">,</span> <span class="n">dataCount</span><span class="p">);</span>
+        <span class="nf">UpdateColliderData</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// &lt;summary&gt; 배열 내부의 콜라이더 데이터만 갱신하여 컴퓨트 쉐이더에 전달 &lt;/summary&gt;</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">UpdateColliderData</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">dataArray</span><span class="p">.</span><span class="n">Length</span> <span class="p">&lt;</span> <span class="n">dataCount</span><span class="p">)</span>
+            <span class="nf">ExpandDataArray</span><span class="p">();</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">dataCount</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+        <span class="p">{</span>
+            <span class="n">dataArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">colliders</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Data</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">colliderBuffer</span><span class="p">.</span><span class="nf">SetData</span><span class="p">(</span><span class="n">dataArray</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">dataCount</span><span class="p">);</span>
+        <span class="n">computeShader</span><span class="p">.</span><span class="nf">SetBuffer</span><span class="p">(</span><span class="n">shaderKernel</span><span class="p">,</span> <span class="n">bufferName</span><span class="p">,</span> <span class="n">colliderBuffer</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">AddCollider</span><span class="p">(</span><span class="n">TCol</span> <span class="n">collider</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">colliders</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="n">collider</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span>
+
+        <span class="n">dataCount</span><span class="p">++;</span>
+        <span class="n">colliders</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">collider</span><span class="p">);</span>
+        <span class="nf">ReallocateBuffer</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">RemoveCollider</span><span class="p">(</span><span class="n">TCol</span> <span class="n">collider</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(!</span><span class="n">colliders</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="n">collider</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span>
+
+        <span class="n">dataCount</span><span class="p">--;</span>
+        <span class="n">colliders</span><span class="p">.</span><span class="nf">Remove</span><span class="p">(</span><span class="n">collider</span><span class="p">);</span>
+        <span class="nf">ReallocateBuffer</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="collider-api-"><strong>[4] Collider API 작성</strong></h2>
+
+  <p>콜라이더에서 호출하기 위한 <code class="language-plaintext highlighter-rouge">DustManager</code>의 메소드들을 공통 기능 <code class="language-plaintext highlighter-rouge">Add</code>, <code class="language-plaintext highlighter-rouge">Update</code>, <code class="language-plaintext highlighter-rouge">Remove</code>로 묶어 제네릭화한다.</p>
+
+  <p>그리고 각 콜라이더 메소드에서는 간단히 호출할 수 있도록 한 줄씩만 작성해주면 된다.</p>
+
+  <details>
+    <summary> 
+DustManager.cs
+</summary>
+
+    <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+</pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">ColliderSet</span><span class="p">&lt;</span><span class="n">DustSphereCollider</span><span class="p">,</span> <span class="n">Vector4</span><span class="p">&gt;</span> <span class="n">sphereColliderSet</span><span class="p">;</span>
+<span class="k">private</span> <span class="n">ColliderSet</span><span class="p">&lt;</span><span class="n">DustBoxCollider</span><span class="p">,</span> <span class="n">MinMaxBounds</span><span class="p">&gt;</span> <span class="n">boxColliderSet</span><span class="p">;</span>
+
+
+<span class="cm">/* Generic Collider Methods */</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="n">AddCollider</span><span class="p">&lt;</span><span class="n">TCol</span><span class="p">,</span> <span class="n">TData</span><span class="p">&gt;(</span><span class="n">Func</span><span class="p">&lt;</span><span class="n">ColliderSet</span><span class="p">&lt;</span><span class="n">TCol</span><span class="p">,</span> <span class="n">TData</span><span class="p">&gt;&gt;</span> <span class="n">getter</span><span class="p">,</span> <span class="n">TCol</span> <span class="n">collider</span><span class="p">)</span> <span class="k">where</span> <span class="n">TCol</span> <span class="p">:</span> <span class="n">DustCollider</span><span class="p">&lt;</span><span class="n">TData</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">colSet</span> <span class="p">=</span> <span class="nf">getter</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">colSet</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">afterInitJobQueue</span><span class="p">.</span><span class="nf">Enqueue</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nf">getter</span><span class="p">().</span><span class="nf">AddCollider</span><span class="p">(</span><span class="n">collider</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">colSet</span><span class="p">.</span><span class="nf">AddCollider</span><span class="p">(</span><span class="n">collider</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; ColliderSet의 내부 컴퓨트 버퍼 갱신 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="n">UpdateCollider</span><span class="p">&lt;</span><span class="n">TCol</span><span class="p">,</span> <span class="n">TData</span><span class="p">&gt;(</span><span class="n">ColliderSet</span><span class="p">&lt;</span><span class="n">TCol</span><span class="p">,</span> <span class="n">TData</span><span class="p">&gt;</span> <span class="k">set</span><span class="p">)</span> <span class="k">where</span> <span class="n">TCol</span> <span class="p">:</span> <span class="n">DustCollider</span><span class="p">&lt;</span><span class="n">TData</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">set</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="k">set</span><span class="p">.</span><span class="nf">UpdateColliderData</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">/// &lt;summary&gt; ColliderSet에서 Collider 제거 &lt;/summary&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="n">RemoveCollider</span><span class="p">&lt;</span><span class="n">TCol</span><span class="p">,</span> <span class="n">TData</span><span class="p">&gt;(</span><span class="n">ColliderSet</span><span class="p">&lt;</span><span class="n">TCol</span><span class="p">,</span> <span class="n">TData</span><span class="p">&gt;</span> <span class="k">set</span><span class="p">,</span> <span class="n">TCol</span> <span class="n">collider</span><span class="p">)</span> <span class="k">where</span> <span class="n">TCol</span> <span class="p">:</span> <span class="n">DustCollider</span><span class="p">&lt;</span><span class="n">TData</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">set</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="k">set</span><span class="p">.</span><span class="nf">RemoveCollider</span><span class="p">(</span><span class="n">collider</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="cm">/* Sphere Collider */</span>
+
+<span class="k">public</span> <span class="k">void</span> <span class="nf">AddSphereCollider</span><span class="p">(</span><span class="n">DustSphereCollider</span> <span class="n">collider</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nf">AddCollider</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">sphereColliderSet</span><span class="p">,</span> <span class="n">collider</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">UpdateSphereCollider</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">UpdateCollider</span><span class="p">(</span><span class="n">sphereColliderSet</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">RemoveSphereCollider</span><span class="p">(</span><span class="n">DustSphereCollider</span> <span class="n">collider</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nf">RemoveCollider</span><span class="p">(</span><span class="n">sphereColliderSet</span><span class="p">,</span> <span class="n">collider</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="cm">/* Box Collider */</span>
+
+<span class="k">public</span> <span class="k">void</span> <span class="nf">AddBoxCollider</span><span class="p">(</span><span class="n">DustBoxCollider</span> <span class="n">collider</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nf">AddCollider</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">boxColliderSet</span><span class="p">,</span> <span class="n">collider</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">UpdateBoxCollider</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nf">UpdateCollider</span><span class="p">(</span><span class="n">boxColliderSet</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">RemoveBoxCollider</span><span class="p">(</span><span class="n">DustBoxCollider</span> <span class="n">collider</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nf">RemoveCollider</span><span class="p">(</span><span class="n">boxColliderSet</span><span class="p">,</span> <span class="n">collider</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="aabb--"><strong>[5] AABB 충돌 감지</strong></h2>
+
+  <p>AABB와 Dust(Sphere)의 충돌 감지는 간단하다.</p>
+
+  <p>모든 면의 노멀 벡터는 표준 기저 벡터와 일치하므로</p>
+
+  <p>X, Y, Z 축마다 각 성분의 범위 검사를 해주면 된다.</p>
+
+  <details>
+    <summary> 
+DustCompute.compute
+</summary>
+
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="c1">// AABB-Dust(Sphere) 충돌 여부 확인</span>
+<span class="n">bool</span> <span class="nf">CheckBoxIntersection</span><span class="p">(</span><span class="kt">float3</span> <span class="n">position</span><span class="p">,</span> <span class="n">float</span> <span class="n">radius</span><span class="p">,</span> <span class="n">Bounds</span> <span class="n">box</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">&lt;</span> <span class="n">box</span><span class="p">.</span><span class="nb">min</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">&lt;</span> <span class="n">box</span><span class="p">.</span><span class="nb">min</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">&lt;</span> <span class="n">box</span><span class="p">.</span><span class="nb">min</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">radius</span> <span class="o">&gt;</span> <span class="n">box</span><span class="p">.</span><span class="nb">max</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">radius</span> <span class="o">&gt;</span> <span class="n">box</span><span class="p">.</span><span class="nb">max</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">z</span> <span class="o">-</span> <span class="n">radius</span> <span class="o">&gt;</span> <span class="n">box</span><span class="p">.</span><span class="nb">max</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="raycast-to-aabb"><strong>[6] Raycast to AABB</strong></h2>
+
+  <details>
+    <summary> 
+DustCompute.compute
+</summary>
+
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
+
+  <p><br /></p>
+
+  <h2 id="update--"><strong>[7] Update 커널 수정</strong></h2>
+
+  <details>
+    <summary> 
+DustCompute.compute
+</summary>
+
+    <div class="language-hlsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+</pre></td><td class="rouge-code"><pre><span class="kt">RWStructuredBuffer</span><span class="o">&lt;</span><span class="n">bool</span><span class="o">&gt;</span> <span class="n">collisionFlagBuffer</span><span class="p">;</span> <span class="c1">// 이번 프레임 충돌 처리 여부</span>
+<span class="kt">RWStructuredBuffer</span><span class="o">&lt;</span><span class="n">Bounds</span><span class="o">&gt;</span> <span class="n">boxColliderBuffer</span><span class="p">;</span>
+<span class="n">uint</span> <span class="n">boxColliderCount</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">Update</span> <span class="p">(</span><span class="n">uint3</span> <span class="n">id</span> <span class="o">:</span> <span class="n">SV_DispatchThreadID</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="kt">float3</span> <span class="n">currPos</span> <span class="o">=</span> <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span><span class="p">;</span>
+    <span class="kt">float3</span> <span class="n">nextPos</span> <span class="o">=</span> <span class="n">currPos</span> <span class="o">+</span> <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">deltaTime</span><span class="p">;</span>
+
+    <span class="c1">// 충돌 처리 완료 여부</span>
+    <span class="n">collisionFlagBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="c1">// [1] Sphere Colliders</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">uint</span> <span class="n">scIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">scIndex</span> <span class="o">&lt;</span> <span class="n">sphereColliderCount</span><span class="p">;</span> <span class="n">scIndex</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+
+    <span class="c1">// [2] Box Colliders</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">uint</span> <span class="n">bcIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">bcIndex</span> <span class="o">&lt;</span> <span class="n">boxColliderCount</span><span class="p">;</span> <span class="n">bcIndex</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">collisionFlagBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="nb">true</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+
+        <span class="n">Bounds</span> <span class="n">box</span> <span class="o">=</span> <span class="n">boxColliderBuffer</span><span class="p">[</span><span class="n">bcIndex</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">CheckBoxIntersection</span><span class="p">(</span><span class="n">nextPos</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">box</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">CalculateBoxCollision</span><span class="p">(</span><span class="n">currPos</span><span class="p">,</span> <span class="n">nextPos</span><span class="p">,</span> <span class="n">velocityBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">radius</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">elasticity</span><span class="p">,</span> <span class="n">collisionFlagBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// [Last] 월드 영역 제한(Box)</span>
+    <span class="c1">// ...</span>
+
+    <span class="c1">// 다음 위치 적용</span>
+    <span class="n">dustBuffer</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span> <span class="o">=</span> <span class="n">nextPos</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div>    </div>
+
+  </details>
 
   <p><br /></p>
 
@@ -7086,27 +7690,27 @@ DustManager.cs
         
         
         
+        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
       
         
         
         
-        <li><a href="/posts/game-math-rotation/">게임 수학 - 회전(2차원, 3차원, 4원수)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/game-math-dot-cross/">게임 수학 - 벡터의 내적과 외적</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
+        <li><a href="/posts/unity-quaternion/">유니티 - Quaternion</a></li>
       
 
       </ul>
@@ -10558,6 +11162,32 @@ DustManager.cs
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   

@@ -1,5 +1,5 @@
 ---
-title: 마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기
+title: C# 윈폼 - 마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기
 author: Rito15
 date: 2021-05-09 01:30:00 +09:00
 categories: [Memo, Csharp Winform Memo]
