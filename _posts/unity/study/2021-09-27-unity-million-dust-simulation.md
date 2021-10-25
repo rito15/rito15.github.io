@@ -3957,7 +3957,7 @@ public void Explode(in Vector3 position, in float sqrRange, in float force)
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-# 0. Box Collision 구현
+# 16. Box(AABB) Collision 구현
 ---
 
 <details>
@@ -3967,6 +3967,193 @@ public void Explode(in Vector3 position, in float sqrRange, in float force)
 
 <br>
 
+Sphere Collider의 정의에 필요한 데이터는 위치(`float3`)와 반지름(`float`)이다.
+
+반면 Box Collider를 정의하기 위해 필요한 데이터는 위치(`float3`)와 크기(`float3`) 또는
+
+최소 지점(`float3`)과 최대 지점(`float3`)이다.
+
+이 중에서 최소 지점과 최대 지점을 CPU에서 컴퓨트 쉐이더로 전달한다.
+
+<br>
+
+## **[1] DustCollider 클래스 수정**
+
+컴퓨트 쉐이더에서 전달할 데이터를 제네릭을 통해 콜라이더마다 정의할 수 있도록, 아래와 같이 수정한다.
+
+```cs
+public abstract class DustCollider<T> : MonoBehaviour
+{
+    public abstract T Data { get; }
+    
+    // ...
+}
+```
+
+<br>
+
+## **[2] DustBoxCollider 클래스 작성**
+
+유니티 엔진의 `Bounds` 구조체와 호환되는 `MinMaxBounds` 구조체를 작성하고,
+
+이를 `Data`로 사용하는 `DustBoxCollider` 클래스를 작성한다.
+
+트랜스폼의 스케일을 기반으로 콜라이더 영역이 정의된다.
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+```cs
+/// <summary> 
+/// Box Collider를 위한 Min-Max 데이터
+/// </summary>
+public struct MinMaxBounds
+{
+    public Vector3 min;
+    public Vector3 max;
+
+    public static MinMaxBounds FromBounds(in Bounds bounds)
+    {
+        MinMaxBounds mmb = default;
+        mmb.min = bounds.min;
+        mmb.max = bounds.max;
+        return mmb;
+    }
+}
+
+public class DustBoxCollider : DustCollider<MinMaxBounds>
+{
+    public override MinMaxBounds Data
+    {
+        get
+        {
+            Bounds b = default;
+            b.center = transform.position;
+            b.extents = transform.lossyScale * 0.5f;
+            return MinMaxBounds.FromBounds(b);
+        }
+    }
+}
+```
+
+</details>
+
+<br>
+
+## **[3] 제네릭 ColliderSet 클래스 작성**
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+```cs
+
+```
+
+</details>
+
+```cs
+private class ColliderSet<TCol, TData> where TCol : DustCollider<TData>
+{
+    /* Collider */
+    private ComputeBuffer colliderBuffer;
+    private List<TCol> colliders;
+
+    /* Data */
+    private TData[] dataArray;
+    private int dataCount;
+    private int dataStride;
+
+    /* Compute Shader, Compute Buffer */
+    private ComputeShader computeShader;
+    private int shaderKernel; // Update Kernel
+    private string bufferName;
+    private string countVariableName;
+
+    public ColliderSet(ComputeShader computeShader, int shaderKernel, string bufferName, string countVariableName, int dataStride)
+    {
+        this.colliders = new List<TCol>(4);
+        this.dataArray = new TData[4];
+        this.computeShader = computeShader;
+        this.shaderKernel = shaderKernel;
+        this.bufferName = bufferName;
+        this.countVariableName = countVariableName;
+        this.dataStride = dataStride;
+        this.dataCount = 0;
+
+        colliderBuffer = new ComputeBuffer(1, 4); // 기본 값
+        computeShader.SetBuffer(shaderKernel, bufferName, colliderBuffer);
+        computeShader.SetInt(countVariableName, 0);
+    }
+
+    ~ColliderSet()
+    {
+        ReleaseBuffer();
+    }
+
+    private void ReleaseBuffer()
+    {
+        if (colliderBuffer != null)
+            colliderBuffer.Release();
+    }
+
+    private void ExpandDataArray()
+    {
+        TData[] newArray = new TData[this.dataArray.Length * 2];
+        Array.Copy(this.dataArray, newArray, this.dataArray.Length);
+        this.dataArray = newArray;
+    }
+
+    /// <summary> 컴퓨트 버퍼의 데이터를 새롭게 갱신하고 컴퓨트 쉐이더에 전달 </summary>
+    private void ReallocateBuffer()
+    {
+        ReleaseBuffer();
+        if (dataCount == 0) return;
+
+        colliderBuffer = new ComputeBuffer(dataCount, dataStride);
+        computeShader.SetInt(countVariableName, dataCount);
+        UpdateColliderData();
+    }
+
+    /// <summary> 배열 내부의 콜라이더 데이터만 갱신하여 컴퓨트 쉐이더에 전달 </summary>
+    public void UpdateColliderData()
+    {
+        if (dataArray.Length < dataCount)
+            ExpandDataArray();
+
+        for (int i = 0; i < dataCount; i++)
+        {
+            dataArray[i] = colliders[i].Data;
+        }
+
+        colliderBuffer.SetData(dataArray, 0, 0, dataCount);
+        computeShader.SetBuffer(shaderKernel, bufferName, colliderBuffer);
+    }
+
+    public void AddCollider(TCol collider)
+    {
+        if (colliders.Contains(collider)) return;
+
+        dataCount++;
+        colliders.Add(collider);
+        ReallocateBuffer();
+    }
+
+    public void RemoveCollider(TCol collider)
+    {
+        if (!colliders.Contains(collider)) return;
+
+        dataCount--;
+        colliders.Remove(collider);
+        ReallocateBuffer();
+    }
+}
+```
+
+기존의 `SphereColliderSet` 클래스를 제네릭화하여,
 
 
 <br>
