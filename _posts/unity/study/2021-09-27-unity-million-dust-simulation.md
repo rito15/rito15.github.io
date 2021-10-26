@@ -4247,9 +4247,6 @@ public void RemoveBoxCollider(DustBoxCollider collider)
 
 AABB와 Dust(Sphere)의 충돌 감지는 간단하다.
 
-모든 면의 노멀 벡터는 표준 기저 벡터와 일치하므로
-
-X, Y, Z 축마다 각 성분의 범위 검사를 해주면 된다.
 
 <details>
 <summary markdown="span"> 
@@ -4257,17 +4254,8 @@ DustCompute.compute
 </summary>
 
 ```hlsl
-// AABB-Dust(Sphere) 충돌 여부 확인
-bool CheckBoxIntersection(float3 position, float radius, Bounds box)
-{
-    if(position.x + radius < box.min.x) return false;
-    if(position.y + radius < box.min.y) return false;
-    if(position.z + radius < box.min.z) return false;
-    if(position.x - radius > box.max.x) return false;
-    if(position.y - radius > box.max.y) return false;
-    if(position.z - radius > box.max.z) return false;
-    return true;
-}
+// AABB-Sphere 충돌 여부 확인
+
 ```
 
 </details>
