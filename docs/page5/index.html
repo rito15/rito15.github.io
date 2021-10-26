@@ -367,6 +367,95 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/cs-string-first-char-to-lower-or-upper/">C# Span 사용하여 문자열의 첫 문자만 대소문자 변경하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        첫 문자만 간단히 대소문자 변경하기
+
+
+string의 API만 사용하면 아주 간단히 첫 문자만 대소문자를 변경할 수 있다.
+
+
+  
+    private static string FirstCharToLower(string str)
+{
+    return str[0].ToString().ToLower() + str.Substring(1);
+}
+
+  
+
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Sep 10, 2021,  5:51 PM +0900"
+  >
+
+  
+  
+
+  
+    Sep 10
+  
+
+  <i class="unloaded">2021-09-10T17:51:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="414 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a>
     </h1>
 
@@ -1205,94 +1294,6 @@ USB 디버깅 허용
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-imgui-event-and-handle-exception/">유니티 - IMGUI 이벤트, Getting control n's position... 예외 처리</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        IMGUI 이벤트
-
-
-유니티 IMGUI에서 OnGUI() 메소드가 호출되는 이벤트 타이밍은
-
-기본적으로 Layout과 Repaint가 있다.
-
-Layout은 GUI 레이아웃 컨트롤을 생성하는 단계이고,
-
-Repaint은 GUI 컨트롤들을 화면에 그려내는 단계이다.
-
-별도의 상호작용이나 간섭이 없다면 Layout과 Repaint가 반복된다.
-
-Event...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Sep  5, 2021,  6:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Sep  5
-  
-
-  <i class="unloaded">2021-09-05T18:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2445 words">13 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1893,22 +1894,22 @@ Event...
         
         
         
+        <li><a href="/posts/cs-winform-notifyicon/">C# 윈폼 - Notify Icon 사용하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/cs-winform-prevent-duplication/">C# 윈폼 - 중복 실행 방지</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/cs-winform-pass-through-mouse-events/">C# 윈폼 - 마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-quaternion/">유니티 - Quaternion</a></li>
       
 
       </ul>

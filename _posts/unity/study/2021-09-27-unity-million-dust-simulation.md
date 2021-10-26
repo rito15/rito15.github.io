@@ -10,7 +10,7 @@ mermaid: true
 
 # 목표
 ---
-- 수십만 개의 먼지를 렌더링한다.
+- 수십만 ~ 백만 개의 먼지를 렌더링한다.
 - 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다.
 - 진공 청소기로 먼지들을 예쁘게 빨아들인다.
 
@@ -3969,9 +3969,7 @@ public void Explode(in Vector3 position, in float sqrRange, in float force)
 
 **Sphere Collider**의 정의에 필요한 데이터는 위치(`float3`)와 반지름(`float`)이다.
 
-반면 **Box Collider**를 정의하기 위해 필요한 데이터는 위치(`float3`)와 크기(`float3`) 또는
-
-최소 지점(`float3`)과 최대 지점(`float3`)이다.
+반면 **Box Collider**를 정의하기 위해 필요한 데이터는 위치(`float3`)와 크기(`float3`) 또는 최소 지점(`float3`)과 최대 지점(`float3`)이다.
 
 이 중에서 최소 지점과 최대 지점을 통해 **Box Collider**를 정의한다.
 
@@ -4247,6 +4245,7 @@ public void RemoveBoxCollider(DustBoxCollider collider)
 
 AABB와 Dust(Sphere)의 충돌 감지는 간단하다.
 
+- [Post : Sphere-AABB Intersection](../sphere-aabb-intersection/)
 
 <details>
 <summary markdown="span"> 
@@ -4254,8 +4253,26 @@ DustCompute.compute
 </summary>
 
 ```hlsl
-// AABB-Sphere 충돌 여부 확인
+// 구체와 육면체(AABB)의 충돌 여부 검사
+// AABB : Axis Aligned Bounding Box
+// S : 구체의 위치
+// r : 구체의 반지름
+bool SphereToAABBIntersection(float3 S, float r, Bounds aabb)
+{
+    // Future Works : 최적화
 
+    // [1] AABB까지의 최단지점 계산
+    float3 C = S;
+    if      (C.x < aabb.min.x) C.x = aabb.min.x;
+    else if (C.x > aabb.max.x) C.x = aabb.max.x;
+    if      (C.y < aabb.min.y) C.y = aabb.min.y;
+    else if (C.y > aabb.max.y) C.y = aabb.max.y;
+    if      (C.z < aabb.min.z) C.z = aabb.min.z;
+    else if (C.z > aabb.max.z) C.z = aabb.max.z;
+
+    // [2] 거리 비교
+    return SqrMagnitude(C - S) <= r * r;
+}
 ```
 
 </details>
@@ -4263,9 +4280,15 @@ DustCompute.compute
 <br>
 
 
-## **[6] Raycast to AABB**
+## **[6] AABB 충돌 처리**
 
+**AABB**를 먼지의 반지름만큼 각 면을 확장시켜, 레이캐스트를 통해 검사한다.
 
+- [Post : Sphere-AABB Intersection](../raycast-to-aabb/)
+
+그리고 **Sphere Collider**와 마찬가지로 반사 벡터를 계산하여
+
+먼지의 다음 프레임 위치와 속도를 변경 적용한다.
 
 <details>
 <summary markdown="span"> 
@@ -4273,7 +4296,75 @@ DustCompute.compute
 </summary>
 
 ```hlsl
+// Box(AABB) Collider에 충돌 검사하여 먼지 위치 및 속도 변경
+// - cur  : 현재 프레임에서의 위치
+// - next : 다음 프레임에서의 위치 [INOUT]
+// - velocity   : 현재 이동 속도   [INOUT]
+// - dustRadius : 먼지 반지름
+// - box        : Box 영역 범위
+// - elasticity : 탄성력 계수(0 ~ 1) : 충돌 시 보존되는 운동량 비율
+void DustToAABBCollision(float3 cur, inout float3 next, inout float3 velocity,
+float dustRadius, Bounds box, float elasticity, inout bool handled)
+{
+    /*
+        [흐름]
+        1. 레이의 xyz 성분 각각 부호를 판단하여 큐브의 평면 후보 6개를 3개로 줄인다.
+        2. 레이를 평면 3개(먼지 반지름 고려하여 확장)에 차례로 캐스트하여 접점을 구한다.
+        3. 얻은 접점이 각각의 면 범위 내에 있다면 해당 위치를 충돌지점으로 결정한다.
+        4. 레이와 속도 벡터에 대해 반사 벡터와 반사 속도를 구한다.
+        5. 탄성력을 적용하여 다음 위치와 다음 속도를 결정한다.
+    */
+    
+    // 먼지 반지름 고려하기
+    float3 boxMin = box.min - dustRadius;
+    float3 boxMax = box.max + dustRadius;
+    
+    /* 지역변수 */
+    float3 ray     = next - cur;
+    float3 contact = 0;
+    half3  raySign = (ray >= 0);
+    int    flag    = FLAG_ERROR; // XYZ 선택 플래그
 
+    /* 큐브 6면에 캐스트하여 충돌 지점 구하기 */
+    //if(flag == FLAG_ERROR)
+    {
+        if(raySign.x > 0) contact = RaycastToPlaneYZ(cur, next, boxMin.x);
+        else              contact = RaycastToPlaneYZ(cur, next, boxMax.x);
+
+        if(InRange2(contact.yz, boxMin.yz, boxMax.yz))
+            flag = FLAG_X;
+    }
+    if(flag == FLAG_ERROR)
+    {
+        if(raySign.y > 0) contact = RaycastToPlaneXZ(cur, next, boxMin.y);
+        else              contact = RaycastToPlaneXZ(cur, next, boxMax.y);
+
+        if(InRange2(contact.xz, boxMin.xz, boxMax.xz))
+            flag = FLAG_Y;
+    }
+    if(flag == FLAG_ERROR)
+    {
+        if(raySign.z > 0) contact = RaycastToPlaneXY(cur, next, boxMin.z);
+        else              contact = RaycastToPlaneXY(cur, next, boxMax.z);
+
+        if(InRange2(contact.xy, boxMin.xy, boxMax.xy))
+            flag = FLAG_Z;
+    }
+    
+    /* 최종 계산 */
+    float rayLen = length(ray);
+    float inLen  = length(contact - cur);                 // 입사 벡터 길이
+    float rfLen  = (rayLen - inLen) * elasticity;         // 반사 벡터 길이(탄성 적용)
+    
+    float3 rfRay = Reverse(ray, flag) * (rfLen / rayLen); // 반사 벡터
+    float3 rfVel = Reverse(velocity, flag) * elasticity;  // 반사 속도 벡터(탄성 적용)
+    
+    /* 변경사항 적용 */
+    next     = contact + rfRay;
+    velocity = rfVel;
+
+    handled = true;
+}
 ```
 
 </details>
@@ -4283,7 +4374,25 @@ DustCompute.compute
 
 ## **[7] Update 커널 수정**
 
+**Sphere Collider**와 마찬가지로, 반복문을 이용해 **Box Collider**들의 충돌을 계산한다.
 
+여기서 한 가지 처리를 더해주는데, 바로 `bool` 타입의 **CollisionFlag**이다.
+
+기존에는 한 프레임 내에서 여러 콜라이더에 의해 충돌이 발생할 수 있었지만
+
+그렇게 되면 콜라이더가 겹친 위치에서 양측 콜라이더의 충돌 처리에 의해
+
+서로 반대 방향으로 동일한 속도로 이동하려고 하다보니
+
+두 방향 중 어느쪽으로도 완전히 이동하지 못하고 제자리에서 무한히 진동하는 현상이 발생한다.
+
+<br>
+
+따라서 이를 막기 위해 충돌 시 **CollisionFlag**를 `true`로 설정하고
+
+이번 프레임에 충돌 처리가 발생했는지 여부를 검사하여 
+
+한 프레임 내에서는 단 하나의 콜라이더에 의한 충돌이 가능하도록 수정한다.
 
 <details>
 <summary markdown="span"> 
@@ -4301,12 +4410,15 @@ void Update (uint3 id : SV_DispatchThreadID)
     float3 currPos = dustBuffer[i].position;
     float3 nextPos = currPos + velocityBuffer[i] * deltaTime;
 
-    // 충돌 처리 완료 여부
+    // 이번 프레임 충돌 처리 완료 여부 초기화
     collisionFlagBuffer[i] = false;
 
     // [1] Sphere Colliders
     for(uint scIndex = 0; scIndex < sphereColliderCount; scIndex++)
     {
+        // 이번 프레임에 이미 충돌한 경우, 더이상 충돌 처리하지 않음
+        if(collisionFlagBuffer[i] == true) continue;
+        
         // ...
     }
 
@@ -4334,7 +4446,30 @@ void Update (uint3 id : SV_DispatchThreadID)
 
 <br>
 
+## **[8] 실행 결과**
 
+![2021_1018_Box Collision 1](https://user-images.githubusercontent.com/42164422/138950077-acf1ba33-b4f9-454d-bde3-678ce002c7e0.gif)
+
+![2021_1018_Box Collision_Pyramid](https://user-images.githubusercontent.com/42164422/138950087-330f48c1-950b-463b-ab50-2178427655fd.gif)
+
+<br>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
+# 0. Box(OBB) Collision 구현
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+
+
+<br>
 
 </details>
 <!-- --------------------------------------------------------------------------- -->

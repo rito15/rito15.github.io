@@ -367,6 +367,96 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-optimize-model-transform/">유니티 - 모델 트랜스폼 구조 최적화하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        문제점
+
+
+Skinned Mesh가 적용되는 게임 오브젝트의 경우,
+
+하이라키에서 트랜스폼 구조를 확인해보면
+
+
+
+이렇게 Bone 별로 각각 존재하여, 굉장히 많은 게임오브젝트들로 이루어져 있다.
+
+그런데 유니티 엔진에서는 부모 게임 오브젝트의 트랜스폼에 변경사항이 생기면
+
+모든 자식 트랜스폼에 변경이 발생한다.
+
+한마디로, 위와 같이 무수히 많은 자...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Sep 16, 2021, 12:02 AM +0900"
+  >
+
+  
+  
+
+  
+    Sep 16
+  
+
+  <i class="unloaded">2021-09-16T00:02:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="513 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-punch-ui-image/">유니티 - UI 이미지에 구멍뚫기</a>
     </h1>
 
@@ -1223,95 +1313,6 @@ Dictionary의 탐색 성능은 어느 정도...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-string-first-char-to-lower-or-upper/">C# Span 사용하여 문자열의 첫 문자만 대소문자 변경하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        첫 문자만 간단히 대소문자 변경하기
-
-
-string의 API만 사용하면 아주 간단히 첫 문자만 대소문자를 변경할 수 있다.
-
-
-  
-    private static string FirstCharToLower(string str)
-{
-    return str[0].ToString().ToLower() + str.Substring(1);
-}
-
-  
-
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Sep 10, 2021,  5:51 PM +0900"
-  >
-
-  
-  
-
-  
-    Sep 10
-  
-
-  <i class="unloaded">2021-09-10T17:51:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="414 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1912,22 +1913,22 @@ string의 API만 사용하면 아주 간단히 첫 문자만 대소문자를 변
         
         
         
+        <li><a href="/posts/cs-winform-notifyicon/">C# 윈폼 - Notify Icon 사용하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/cs-winform-prevent-duplication/">C# 윈폼 - 중복 실행 방지</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/cs-winform-pass-through-mouse-events/">C# 윈폼 - 마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-quaternion/">유니티 - Quaternion</a></li>
       
 
       </ul>

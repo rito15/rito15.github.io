@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-26T05:10:09+09:00</updated>
+  <updated>2021-10-27T04:52:38+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,89 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Sphere-AABB Intersection</title>
+    <link href="https://rito15.github.io/posts/sphere-aabb-intersection/" rel="alternate" type="text/html" title="Sphere-AABB Intersection" />
+    <published>2021-10-26T20:22:00+09:00</published>
+  
+    <updated>2021-10-26T20:22:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/sphere-aabb-intersection/</id>
+    <content src="https://rito15.github.io/posts/sphere-aabb-intersection/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Algorithm" />
+    
+    <category term="Algorithms" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Sphere
+
+
+
+  
+    공간의 한 점에서부터 동일한 거리에 있는 점들의 집합
+  
+  
+    구체의 중심 좌표(Vector3), 반지름(float)을 통해 정의할 수 있다.
+  
+
+
+
+
+AABB
+
+
+
+  
+    Axis-Aligned Bounding Box
+  
+  
+    여섯 면이 모두 각각 X, Y, Z 축에 정렬된 형태의 육면체
+  
+  
+    중심 좌표(Vector3)와 각 축의 크기(Vector3) 또는
+최소 좌표(Vector3)와 최대 좌표(Vector3)를 통해 정의할 수 있다.
+  
+
+
+
+
+
+
+Closest Point to AABB
+
+
+우선, AABB 바깥의 한 점에서부터
+
+AABB 여섯 면 위의 가장 가까운 점을 찾는다.
+
+2차원 평면의 예시는 다음과 같다.
+
+
+
+
+
+위의...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -269,69 +352,6 @@ namespace Rito
 
 
 2차원 회전 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - FixedUpdate()와 Physics Loop에 대한 이해</title>
-    <link href="https://rito15.github.io/posts/unity-fixed-update-and-physics-loop/" rel="alternate" type="text/html" title="유니티 - FixedUpdate()와 Physics Loop에 대한 이해" />
-    <published>2021-10-23T03:45:00+09:00</published>
-  
-    <updated>2021-10-23T15:58:34+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-fixed-update-and-physics-loop/</id>
-    <content src="https://rito15.github.io/posts/unity-fixed-update-and-physics-loop/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Update()와 Game Loop
-
-
-유니티 엔진의 Update()는 매 프레임 호출되며,
-
-이동, 회전, 입력, 실시간 계산 등 수많은 기능을 여기에 작성한다.
-
-그렇다면 Update()의 정체는 무엇일까?
-
-
-
-그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 Game Loop(게임 루프) 를 통해 프레임 기반 동작이 수행된다.
-
-DirectX, OpenGL, Vulkan, … 등 어떤 그래픽스 라이브러리를 사용하더라도
-
-/* Main Function */
-
-// Game Loop
-while(...)
-{
-    // User Inputs..
-    // Game Logics..
-    // Draw Calls..
-    // ...
-}
-
-
-이렇게 메인 스레드에 무한 반복문을 통해 게임 루프를 ...
     </summary>
   
 
