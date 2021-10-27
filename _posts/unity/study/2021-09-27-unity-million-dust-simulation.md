@@ -4585,6 +4585,10 @@ void Explode (uint3 id : SV_DispatchThreadID)
   - LocalToWorld Matrix
   - WorldToLocal Matrix
   - Scale
+    => Scale이 따로 필요한 이유?
+       - 콜라이더의 로컬 공간으로 먼지를 옮겨올 경우 콜라이더의 스케일에 따라 먼지의 XYZ 크기가 달라진다
+       - 이를 보정하기 위해 Scale이 필요한데, 컴퓨트 쉐이더에서 매번 행렬에서 추출하는 것은 손해이므로
+         미리 Scale을 가져간다.
 
 - OBB 충돌
   - 공간 변환
