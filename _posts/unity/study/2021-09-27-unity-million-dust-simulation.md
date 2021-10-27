@@ -4457,6 +4457,118 @@ void Update (uint3 id : SV_DispatchThreadID)
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
+# 추가 : 타임스케일 변경 기능, deltaTime 수정
+---
+
+<details>
+<summary markdown="span"> 
+...
+</summary>
+
+<br>
+
+## **[1] DustManager**
+
+`DustManager` 컴포넌트에 게임 진행 속도를 조절할 수 있는 기능을 추가한다.
+
+```cs
+[Header("Game")]
+[Range(0, 1f)]
+[SerializeField] private float timescale = 1f;
+
+private void Update()
+{
+    Time.timeScale = timescale;
+    // ...
+}
+```
+
+<br>
+
+## **[2] 컴퓨트 쉐이더**
+
+게임 진행 속도가 다르더라도 물리 시뮬레이션은 일관성 있게 진행되어야 한다.
+
+지금까지 가속도에 의한 속도 계산은 모두 $$ v = a \cdot \Delta t $$ 꼴로 작성되어 있는데,
+
+'순간적 충격에 의한 속도 변화'의 경우 이는 일관성 없는 결과를 보여주게 된다.
+
+예를 들어 폭발 기능을 구현하는 `Explode` 커널의 경우
+
+```hlsl
+void Explode (uint3 id : SV_DispatchThreadID)
+{
+    // ...
+
+    if (sqrDist < explosionSqrRange)
+    {
+        // ...
+        float3 F = dir * f;
+        float3 A = F / mass;
+        velocityBuffer[i] += A * deltaTime;
+    }
+}
+```
+
+위와 같이 `Δv = a * deltaTime` 꼴인데,
+
+이건 사실 타임스케일 변동이 없더라도 문제가 될수 있는 부분이다.
+
+게임 루프의 `deltaTime`에 의존하기 때문에
+
+극단적인 예시로 `deltaTime = 0.0001`인 경우에 `Explode`가 발생하면
+
+먼지는 아주 미세하게 움직일 수 있다.
+
+<br>
+
+따라서 순간적 충격이 발생하는 물리 연산의 경우,
+
+`deltaTime` 대신 고정된 임의의 `Δt`를 정의하여 사용하도록 한다.
+
+```hlsl
+#define CONSTANT_DELTA_TIME 0.02
+```
+
+<br>
+
+현재 물리 연산을 구현하는 커널 목록은 다음과 같다.
+
+1. `Update()`   : 프레임 기반 실시간 가속도/속도/이동 계산
+2. `VacuumUp()` : 원뿔 범위 먼지 흡수
+3. `Emit()`     : 먼지 방출(발사)
+4. `BlowWind()` : 먼지 밀쳐내기
+5. `Explode()`  : 구형 범위 순간 폭발
+
+<br>
+
+이 중에서 일시적인 가속에 의한 순간 속도 변화가 발생하는 커널은
+
+`Emit`, `BlowWind`, `Explode` 커널로,
+
+해당 커널 함수들 내의 `A * deltaTime` 계산을 모두 `A * CONST_DELTA_TIME`으로 변경한다.
+
+<br>
+
+## **[3] 실행 결과**
+
+### **[3-1] deltaTime, timescale = 1**
+
+![2021_1027_Explode_Timescale_1](https://user-images.githubusercontent.com/42164422/139041660-eb69832c-ef26-4524-b461-22159aec9c0d.gif)
+
+### **[3-2] deltaTime, timescale = 0.2**
+
+![2021_1027_Explode_Timescale_0_2](https://user-images.githubusercontent.com/42164422/139041670-6244e9dd-5062-40a8-a89a-c7269f026812.gif)
+
+### **[3-3] CONST_DELTA_TIME, timescale = 0.2**
+
+![2021_1027_Explode_Timescale_0_2_cons](https://user-images.githubusercontent.com/42164422/139041677-0dfa2820-d56b-41b5-99eb-b2b54afc710e.gif)
+
+<br>
+
+</details>
+<!-- --------------------------------------------------------------------------- -->
+
 # 0. Box(OBB) Collision 구현
 ---
 
