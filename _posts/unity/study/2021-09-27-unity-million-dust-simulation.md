@@ -4579,7 +4579,25 @@ void Explode (uint3 id : SV_DispatchThreadID)
 
 <br>
 
+- DustCollider, ColliderSet 제네릭 제거
 
+- 컴퓨트 쉐이더에 전달하는 콜라이더 데이터 통일
+  - LocalToWorld Matrix
+  - WorldToLocal Matrix
+  - Scale
+
+- OBB 충돌
+  - 공간 변환
+    - Position : currPos, nextPos
+    - Vector3  : Velocity
+  - World to Local로 콜라이더의 로컬 공간에서 AABB 충돌 계산
+  - 충돌 계산 완료된 벡터는 다시 Local to World로 변환하여 적용
+
+
+
+![2021_1027_OBB_02](https://user-images.githubusercontent.com/42164422/139092386-6106f21b-a9f0-4d30-9086-8fdd3f65c478.gif)
+
+![2021_1027_OBB_03](https://user-images.githubusercontent.com/42164422/139092392-1076ca4a-1b26-479c-9935-ff4e13cd13a8.gif)
 
 <br>
 

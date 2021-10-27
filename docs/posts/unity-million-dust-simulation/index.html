@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 물리 기반 먼지 시뮬레이션" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목표 수십만 ~ 백만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-27T04:57:17+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"dateModified":"2021-10-27T18:55:11+09:00","description":"목표 수십만 ~ 백만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,7 +421,7 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Oct 27, 2021,  4:57 AM +0900"
+    title="Wed, Oct 27, 2021,  6:55 PM +0900"
   >
 
   
@@ -431,7 +431,7 @@
     Oct 27
   
 
-  <i class="unloaded">2021-10-27T04:57:17+09:00</i>
+  <i class="unloaded">2021-10-27T18:55:11+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="20245 words">112 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="20333 words">112 min</span>
 
 
           <!-- page views -->
@@ -7757,6 +7757,35 @@ DustCompute.compute
 </summary>
 
   <p><br /></p>
+
+  <ul>
+    <li>
+      <p>DustCollider, ColliderSet 제네릭 제거</p>
+    </li>
+    <li>컴퓨트 쉐이더에 전달하는 콜라이더 데이터 통일
+      <ul>
+        <li>LocalToWorld Matrix</li>
+        <li>WorldToLocal Matrix</li>
+        <li>Scale</li>
+      </ul>
+    </li>
+    <li>OBB 충돌
+      <ul>
+        <li>공간 변환
+          <ul>
+            <li>Position : currPos, nextPos</li>
+            <li>Vector3  : Velocity</li>
+          </ul>
+        </li>
+        <li>World to Local로 콜라이더의 로컬 공간에서 AABB 충돌 계산</li>
+        <li>충돌 계산 완료된 벡터는 다시 Local to World로 변환하여 적용</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/139092386-6106f21b-a9f0-4d30-9086-8fdd3f65c478.gif" alt="2021_1027_OBB_02" /></p>
+
+  <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/139092392-1076ca4a-1b26-479c-9935-ff4e13cd13a8.gif" alt="2021_1027_OBB_03" /></p>
 
   <p><br /></p>
 
