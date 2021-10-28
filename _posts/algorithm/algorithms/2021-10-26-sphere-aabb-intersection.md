@@ -41,7 +41,7 @@ AABB 여섯 면 위의 가장 가까운 점을 찾는다.
 
 2차원 평면의 예시는 다음과 같다.
 
-![image](https://user-images.githubusercontent.com/42164422/138879288-4c3bdea1-d554-48c9-ac41-3dd71b3ef656.png)
+![image](https://user-images.githubusercontent.com/42164422/139316985-67c19696-9487-4a2a-9d21-840dfdcd3045.png)
 
 <br>
 

@@ -2,7 +2,7 @@
 title: C# 타입별 GetHashCode() 성능
 author: Rito15
 date: 2021-09-11 00:30:00 +09:00
-categories: [C#, C# Memo]
+categories: [C#, C# Benchmark]
 tags: [csharp]
 math: true
 mermaid: true

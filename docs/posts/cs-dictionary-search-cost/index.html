@@ -646,7 +646,7 @@
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
             <a href='/categories/c/'>C#</a>,
-            <a href='/categories/c-memo/'>C# Memo</a>
+            <a href='/categories/c-benchmark/'>C# Benchmark</a>
         </div>
         
 
@@ -8520,7 +8520,7 @@
       
       
       <div class="card">
-        <a href="/posts/cs-character-encodings/">
+        <a href="/posts/cs-if-vs-try-performance/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8537,13 +8537,13 @@
   
 
   
-    Aug 15
+    Aug  9
   
 
-  <i class="unloaded">2021-08-15T21:42:00+09:00</i>
+  <i class="unloaded">2021-08-09T14:41:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>문자 인코딩 방식들 간단 메모</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# If vs try-catch 성능</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8552,29 +8552,26 @@
 
 
 
-                Encoding
+                Note
+
+
+개발을 하다보면 고민되는 경우가 많다.
+
+예외 조건을 처리할 때 if로 예외를 회피할지, try-catch로 처리할지,
+
+실제 성능은 어떻게 될지도 궁금한 부분이다.
 
 
 
-  
-    문자(char)를 코드(byte[])로 표현하는 것
-  
-  
-    반의어 : Decoding
-  
+try-catch는 예외가 발생하지 않으면 성능 소모가 없다고도 하고,
+
+성능 소모가 있지만 O(1)이라고도 하고,
+
+찾아보면 다양한 주장들을 확인해볼 수 있다.
 
 
 
-
-ASCII
-
-
-
-  
-    American Standard Code for Information Interchange, 미국 정보 교환 표준 부호
-  
-  
-    영미 문화권의 기본적인 문자들을 코드값에 대...
+...
               </p>
             </div>
           </div>
@@ -8646,7 +8643,7 @@ public float[] targetArray;
       
       
       <div class="card">
-        <a href="/posts/cs-vs-2019-item-template/">
+        <a href="/posts/cs-gethashcode-cost-by-types/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8663,13 +8660,13 @@ public float[] targetArray;
   
 
   
-    Aug 20
+    Sep 11
   
 
-  <i class="unloaded">2021-08-20T16:16:00+09:00</i>
+  <i class="unloaded">2021-09-11T00:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>VS2019 파일 템플릿 만들기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# 타입별 GetHashCode() 성능</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8678,54 +8675,43 @@ public float[] targetArray;
 
 
 
-                Memo
+                Curiosity
 
 
-[1] 템플릿으로 사용할 파일 만들기
+타입별로 GetHashCode()의 성능 비용이 얼마나 달라지는지 간단히 확인해본다.
 
-
-
-
-
-[2] 템플릿 내보내기
-
-
-  [프로젝트] - [템플릿 내보내기]
+사용자 정의 타입은 GetHashCode() 메소드를 임의로 오버라이드 하지 않고 확인한다.
 
 
 
+사용자 정의 타입
 
-
-  [항목 템플릿] 선택 - [다음]
-
-
-
-
-
-  내보낼 파일에 체크
-
-
-
-
-
-  참조가 필요한 경우 선택 - [다음]
-
-
-
-
-
-  템플릿 이름과 설명 작성 후 - [마침]
-
-
-
-
-[2] 생성된 파일 확인
-
-
-
-
-
-[3...
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+publ...
               </p>
             </div>
           </div>

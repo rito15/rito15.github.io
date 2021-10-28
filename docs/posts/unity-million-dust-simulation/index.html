@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 물리 기반 먼지 시뮬레이션" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"dateModified":"2021-10-27T18:55:11+09:00","description":"목표 수십만 ~ 백만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 수십만 ~ 백만 개의 먼지를 렌더링한다. 먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다. 진공 청소기로 먼지들을 예쁘게 빨아들인다.","datePublished":"2021-09-27T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-million-dust-simulation/"},"url":"https://rito15.github.io/posts/unity-million-dust-simulation/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 물리 기반 먼지 시뮬레이션","dateModified":"2021-10-28T00:14:13+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Wed, Oct 27, 2021,  6:55 PM +0900"
+    title="Thu, Oct 28, 2021, 12:14 AM +0900"
   >
 
   
   
 
   
-    Oct 27
+    Oct 28
   
 
-  <i class="unloaded">2021-10-27T18:55:11+09:00</i>
+  <i class="unloaded">2021-10-28T00:14:13+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="20333 words">112 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="20434 words">113 min</span>
 
 
           <!-- page views -->
@@ -7766,7 +7766,14 @@ DustCompute.compute
       <ul>
         <li>LocalToWorld Matrix</li>
         <li>WorldToLocal Matrix</li>
-        <li>Scale</li>
+        <li>Scale
+=&gt; Scale이 따로 필요한 이유?
+          <ul>
+            <li>콜라이더의 로컬 공간으로 먼지를 옮겨올 경우 콜라이더의 스케일에 따라 먼지의 XYZ 크기가 달라진다</li>
+            <li>이를 보정하기 위해 Scale이 필요한데, 컴퓨트 쉐이더에서 매번 행렬에서 추출하는 것은 손해이므로
+미리 Scale을 가져간다.</li>
+          </ul>
+        </li>
       </ul>
     </li>
     <li>OBB 충돌
@@ -15860,14 +15867,14 @@ DustManager.cs
                 트리(Tree) 자료구조
 
 
-1
-2
-3
-4
-class TreeNode
+
+  
+    class TreeNode
 {
     public TreeNode[] children;
 }
+
+  
 
 
 위와 같이 자기 타입의 배열 또는 컬렉션을 필드로 갖는 구조를 트리 자료구조라고 한다.
@@ -15881,7 +15888,7 @@ class TreeNode
 직렬화(Serialization)
 
 
-데이터를 저...
+데이...
               </p>
             </div>
           </div>
@@ -15926,9 +15933,10 @@ class TreeNode
                 개념
 
 
+
   FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
   FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
-  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다....
+  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
               </p>
             </div>
           </div>
