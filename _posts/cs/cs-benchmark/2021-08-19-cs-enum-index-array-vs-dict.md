@@ -1,5 +1,5 @@
 ---
-title: Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교
+title: C# - Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교
 author: Rito15
 date: 2021-08-19 23:11:00 +09:00
 categories: [C#, C# Benchmark]

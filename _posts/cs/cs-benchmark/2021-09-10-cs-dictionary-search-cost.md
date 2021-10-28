@@ -1,5 +1,5 @@
 ---
-title: C# Dictionary 탐색 성능 - 선형 탐색과 비교
+title: C# - Dictionary 탐색 성능 - 선형 탐색과 비교
 author: Rito15
 date: 2021-09-11 00:01:00 +09:00
 categories: [C#, C# Benchmark]

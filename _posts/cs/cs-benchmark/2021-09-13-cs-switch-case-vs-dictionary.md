@@ -1,5 +1,5 @@
 ---
-title: C# if-else if vs switch-case vs Dictionary
+title: C# - if-else if vs switch-case vs Dictionary
 author: Rito15
 date: 2021-09-13 00:01:00 +09:00
 categories: [C#, C# Benchmark]
