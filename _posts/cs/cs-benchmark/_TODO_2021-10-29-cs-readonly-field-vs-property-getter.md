@@ -34,32 +34,36 @@ public struct Color : IEquatable<Color>
 
 구조체 타입의 변수는 메소드의 매개변수 또는 반환 값으로 전달될 때 복제된다.
 
-그리고 프로퍼티의 **Getter**는 사실 메소드다.
+그리고 프로퍼티의 **Getter**는 사실 메소드와 동일하게 동작한다.
 
 <br>
 
-그렇다면 구조체 타입 읽기 전용 프로퍼티는 **Getter**가 호출될 때마다 복제되어서 전달되지 않을까?
+의문을 정리해보면 다음과 같다.
+
+1. 구조체 타입 읽기 전용 프로퍼티는 **Getter**가 호출될 때마다 복제되어서 전달될텐데, `readonly` 필드에 비해 성능 상 손해가 아닐까?
+2. 위에서 `Color.white` 프로퍼티는 호출할 때마다 매번 `Color` 생성자를 호출하여 새로운 구조체 값을 만들어 전달하는데, 이러면 할당과 복제가 한 번씩 일어나므로 성능 상 굉장히 손해가 아닐까?
+3. 동일한 경우에 대해, 주솟값을 복제하여 전달하는 클래스 타입은 괜찮을까?
 
 <br>
 
 
-# Benchmark
+# Benchmark 1
 ---
 
 ## **테스트 조건**
 - **Benchmark.NET**을 통해 테스트한다.
-- 일부러 크기가 큰 구조체를 정의한다.
-- 구조체의 크기는 `sizeof(float) * 18 = 72byte`
+- 4개의 `float` 필드를 갖는 구조체를 정의한다.
+- 구조체의 크기는 `sizeof(float) * 4 = 16byte`
 - 필드, 프로퍼티, 메소드로부터 값을 참조하여 다른 필드에 초기화한다.
 
 <br>
 
 ## **테스트 대상**
-1. 필드 값의 참조
-2. 읽기 전용 프로퍼티 Getter를 통해 미리 초기화된 값 참조
-3. 다른 읽기 전용 필드를 가리키는 읽기 전용 프로퍼티 Getter 참조
-3. 매번 구조체를 생성하여 전달하는 읽기 전용 프로퍼티 Getter 참조
-4. Getter 메소드 호출
+1. `readonly` 필드 참조
+2. 읽기 전용 프로퍼티 통해 미리 초기화된 값 참조
+3. 다른 `readonly` 필드를 가리키는 읽기 전용 프로퍼티 참조
+4. 호출될 때마다 구조체 객체를 생성하여 전달하는 읽기 전용 프로퍼티 참조
+5. 필드를 리턴하는 Getter 메소드 호출
 
 <br>
 
@@ -71,64 +75,27 @@ public struct Color : IEquatable<Color>
 </summary>
 
 ```cs
-private struct Vector3
+private struct Color
 {
-    public float x, y, z;
-    public Vector3(float x, float y, float z)
+    public float r, g, b, a;
+
+    public Color(float r, float g, float b, float a)
     {
-        this.x = x; this.y = y; this.z = z;
+        this.r = r; this.g = g; this.b = b; this.a = a;
     }
-}
-private struct Transform
-{
-    public Vector3 position;
-    public Vector3 localPosition;
-    public Vector3 eulerAngles;
-    public Vector3 localEulerAngles;
-    public Vector3 scale;
-    public Vector3 localScale;
 
-    public static readonly Transform readonlyField = new Transform()
+    public static readonly Color readonlyField = new Color(1, 1, 1, 1);
+
+    public static Color ReadonlyProperty1 { get; } = new Color(1, 1, 1, 1);
+
+    public static Color ReadonlyProperty2 => readonlyField;
+
+    public static Color ReadonlyProperty3 => new Color(1, 1, 1, 1);
+
+    public static Color GetterMethod()
     {
-        position         = new Vector3(1, 2, 3),
-        localPosition    = new Vector3(1, 2, 3),
-        eulerAngles      = new Vector3(1, 2, 3),
-        localEulerAngles = new Vector3(1, 2, 3),
-        scale            = new Vector3(1, 2, 3),
-        localScale       = new Vector3(1, 2, 3),
-    };
-
-    public static Transform PropertyGetter1 { get; } = new Transform()
-    {
-        position         = new Vector3(1, 2, 3),
-        localPosition    = new Vector3(1, 2, 3),
-        eulerAngles      = new Vector3(1, 2, 3),
-        localEulerAngles = new Vector3(1, 2, 3),
-        scale            = new Vector3(1, 2, 3),
-        localScale       = new Vector3(1, 2, 3),
-    };
-
-    public static Transform PropertyGetter2 => readonlyField;
-
-    public static Transform PropertyGetter3 => new Transform()
-    {
-        position         = new Vector3(1, 2, 3),
-        localPosition    = new Vector3(1, 2, 3),
-        eulerAngles      = new Vector3(1, 2, 3),
-        localEulerAngles = new Vector3(1, 2, 3),
-        scale            = new Vector3(1, 2, 3),
-        localScale       = new Vector3(1, 2, 3),
-    };
-
-    public static Transform GetterMethod() => new Transform()
-    {
-        position         = new Vector3(1, 2, 3),
-        localPosition    = new Vector3(1, 2, 3),
-        eulerAngles      = new Vector3(1, 2, 3),
-        localEulerAngles = new Vector3(1, 2, 3),
-        scale            = new Vector3(1, 2, 3),
-        localScale       = new Vector3(1, 2, 3),
-    };
+        return readonlyField;
+    }
 }
 ```
 
@@ -144,36 +111,37 @@ private struct Transform
 </summary>
 
 ```cs
-private static Transform dest; // 값 초기화 목적지 필드
+// 값 초기화 목적지 필드
+private static Color dest;
 
 [Benchmark(Baseline = true)]
-public void Test_ReadonlyField()
+public void ReadonlyField()
 {
-    dest = Transform.readonlyField;
+    dest = Color.readonlyField;
 }
 
 [Benchmark]
-public void Test_PropertyGetter1()
+public void ReadonlyProperty1()
 {
-    dest = Transform.PropertyGetter1;
+    dest = Color.ReadonlyProperty1;
 }
 
 [Benchmark]
-public void Test_PropertyGetter2()
+public void ReadonlyProperty2()
 {
-    dest = Transform.PropertyGetter2;
+    dest = Color.ReadonlyProperty2;
 }
 
 [Benchmark]
-public void Test_PropertyGetter3()
+public void ReadonlyProperty3()
 {
-    dest = Transform.PropertyGetter3;
+    dest = Color.ReadonlyProperty3;
 }
 
 [Benchmark]
-public void Test_GetterMethod()
+public void GetterMethod()
 {
-    dest = Transform.GetterMethod();
+    dest = Color.GetterMethod();
 }
 ```
 
@@ -182,28 +150,26 @@ public void Test_GetterMethod()
 <br>
 
 
-# Result
+# Result 1
 ---
 
-![image](https://user-images.githubusercontent.com/42164422/139322125-d2870923-084d-466d-b8a7-66fbc983fcad.png)
+![image](https://user-images.githubusercontent.com/42164422/139434578-92dcbaec-9e46-4f35-af0f-10a130b43e24.png)
+
+<br>
+
+## **결과 해석**
+
+1. 읽기 전용 필드의 직접 참조가 가장 성능이 좋다.
+2. 미리 초기화된 필드를 참조하여 반환하는 것이 그 다음으로 성능이 좋다.
+3. 호출할 때마다 새로운 구조체 객체를 생성하여 반환하는 것은 가장 성능이 좋지 않다.
 
 <br>
 
 
-# Conclusion
+# Analysis 1
 ---
 
-1. 읽기 전용 필드를 직접 호출하는 것이 가장 성능이 좋다.
-2. 읽기 전용 프로퍼티를 호출하여, 미리 저장된 값을 받아오는 것은 필드 호출에 근접하게 성능이 좋다.
-3. 프로퍼티 Getter 또는 Getter 메소드를 통해 값을 받아오는 것은 복제가 일어나므로 성능이 좋지 않다.
-
-<br>
-
-
-# Analysis - 1
----
-
-각 프로퍼티(1, 2, 3)들이 컴파일러에 의해 어떻게 변하는지 디스어셈블러를 통해 확인해보았다.
+각 프로퍼티들이 컴파일러에 의해 어떻게 변하는지 디스어셈블러를 통해 확인해 본다.
 
 <br>
 
@@ -213,83 +179,65 @@ public void Test_GetterMethod()
 </summary>
 
 ```cs
-private struct Transform
+private struct Color
 {
-  public Vector3 position;
-  public Vector3 localPosition;
-  public Vector3 eulerAngles;
-  public Vector3 localEulerAngles;
-  public Vector3 scale;
-  public Vector3 localScale;
+  public float r;
+  public float g;
+  public float b;
+  public float a;
+  public static readonly Color readonlyField;
   
-  public static readonly Transform readonlyField;
   [CompilerGenerated]
-  private static readonly Transform \u003CPropertyGetter1\u003Ek__BackingField;
+  private static readonly Color \u003CReadonlyProperty1\u003Ek__BackingField;
 
-  public static Transform PropertyGetter1
+  public Color(float r, float g, float b, float a)
+  {
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    this.a = a;
+  }
+
+  public static Color operator +(
+    Color A,
+    Color B)
+  {
+    return new Color(A.r + B.r, A.g + B.g, A.b + B.b, A.a + B.a);
+  }
+
+  public static Color ReadonlyProperty1
   {
     [CompilerGenerated] get
     {
-      return Transform.\u003CPropertyGetter1\u003Ek__BackingField;
+      return Color.\u003CReadonlyProperty1\u003Ek__BackingField;
     }
   }
 
-  public static Transform PropertyGetter2
+  public static Color ReadonlyProperty2
   {
     get
     {
-      return Transform.readonlyField;
+      return Color.readonlyField;
     }
   }
 
-  public static Transform PropertyGetter3
+  public static Color ReadonlyProperty3
   {
     get
     {
-      Transform transform = new Transform();
-      transform.position         = new Vector3(1f, 2f, 3f);
-      transform.localPosition    = new Vector3(1f, 2f, 3f);
-      transform.eulerAngles      = new Vector3(1f, 2f, 3f);
-      transform.localEulerAngles = new Vector3(1f, 2f, 3f);
-      transform.scale            = new Vector3(1f, 2f, 3f);
-      transform.localScale       = new Vector3(1f, 2f, 3f);
-      return transform;
+      return new Color(1f, 1f, 1f, 1f);
     }
   }
 
-  public static Transform GetterMethod()
+  public static Color GetterMethod()
   {
-    Transform transform = new Transform();
-    transform.position         = new Vector3(1f, 2f, 3f);
-    transform.localPosition    = new Vector3(1f, 2f, 3f);
-    transform.eulerAngles      = new Vector3(1f, 2f, 3f);
-    transform.localEulerAngles = new Vector3(1f, 2f, 3f);
-    transform.scale            = new Vector3(1f, 2f, 3f);
-    transform.localScale       = new Vector3(1f, 2f, 3f);
-    return transform;
+    return Color.readonlyField;
   }
-  
-  static Transform()
+
+  static Color()
   {
-    Transform transform1 = new Transform();
-    transform1.position         = new Vector3(1f, 2f, 3f);
-    transform1.localPosition    = new Vector3(1f, 2f, 3f);
-    transform1.eulerAngles      = new Vector3(1f, 2f, 3f);
-    transform1.localEulerAngles = new Vector3(1f, 2f, 3f);
-    transform1.scale            = new Vector3(1f, 2f, 3f);
-    transform1.localScale       = new Vector3(1f, 2f, 3f);
-    
-    Transform.readonlyField = transform1;
-    
-    Transform transform2 = new Transform();
-    transform1.position         = new Vector3(1f, 2f, 3f);
-    transform1.localPosition    = new Vector3(1f, 2f, 3f);
-    transform1.eulerAngles      = new Vector3(1f, 2f, 3f);
-    transform1.localEulerAngles = new Vector3(1f, 2f, 3f);
-    transform1.scale            = new Vector3(1f, 2f, 3f);
-    transform1.localScale       = new Vector3(1f, 2f, 3f);
-    
-    Transform.\u003CPropertyGetter1\u003Ek__BackingField = transform2;
+    Color.readonlyField = new Color(1f, 1f, 1f, 1f);
+    Color.\u003CReadonlyProperty1\u003Ek__BackingField = new Color(1f, 1f, 1f, 1f);
   }
 }
 ```
@@ -299,64 +247,76 @@ private struct Transform
 <br>
 
 ```cs
-public static Transform PropertyGetter1 { get; } = new Transform()
-{
-    position         = new Vector3(1, 2, 3),
-    localPosition    = new Vector3(1, 2, 3),
-    eulerAngles      = new Vector3(1, 2, 3),
-    localEulerAngles = new Vector3(1, 2, 3),
-    scale            = new Vector3(1, 2, 3),
-    localScale       = new Vector3(1, 2, 3),
-};
+public static Color ReadonlyProperty1 { get; } = new Color(1, 1, 1, 1);
 ```
 
 이랬던 녀석이, 컴파일러에 의해 **Backing Field**가 추가되면서
 
 ```cs
 [CompilerGenerated]
-private static readonly Transform \u003CPropertyGetter1\u003Ek__BackingField;
+private static readonly Color \u003CReadonlyProperty1\u003Ek__BackingField;
 
-public static Transform PropertyGetter1
+public static Color ReadonlyProperty1
 {
   [CompilerGenerated] get
   {
-    return Transform.\u003CPropertyGetter1\u003Ek__BackingField;
+    return Color.\u003CReadonlyProperty1\u003Ek__BackingField;
+  }
+}
+
+static Color()
+{
+  // ...
+  Color.\u003CReadonlyProperty1\u003Ek__BackingField = new Color(1f, 1f, 1f, 1f);
+}
+```
+
+위와 같이 변했다는 것을 확인할 수 있다.
+
+<br>
+
+그리고 `ReadonlyProperty3`을 살펴보면
+
+```cs
+public static Color ReadonlyProperty3 => new Color(1, 1, 1, 1);
+```
+
+위와 같은 코드에서
+
+```cs
+public static Color ReadonlyProperty3
+{
+  get
+  {
+    return new Color(1f, 1f, 1f, 1f);
   }
 }
 ```
 
-위와 같이 변했다는 것을 확인할 수 있었다.
-
-<br>
-
-그리고 `PropertyGetter3`은 `GetterMethod()`와 동일한 형태라고 볼 수 있다.
+이렇게 바뀌면서, 역시나 호출될 때마다 새로운 객체를 생성하여 반환한다는 것을 알 수 있다.
 
 <br>
 
 
 
-# Analysis - 2
+# Benchmark 2
 ---
 
-가장 의아했던 점은, 프로퍼티 Getter 호출은 결국 메소드 호출일텐데
-
-미리 초기화된 값을 받아올 때 필드를 직접 참조하는 것에 버금가는 성능을 보인다는 것이다.
-
-그러면 이 경우에 구조체의 복제가 발생하지 않는다는 의미가 되는 걸까?
-
-TODO
+## **테스트 대상**
+- 완전히 동일한 구조의 구조체와 클래스를 정의한다.
+- 미리 정의된 필드를 반환하는 읽기 전용 프로퍼티를 각각 호출한다.
 
 
 
-의문
-1. 구조체 변수를 다른 변수에 초기화하면 모든 필드의 복제가 일어나는 것이 아닌가? 바로 가볍게 덮어씌울 수 있나?
-2. 마찬가지로 구조체 변수를 메소드에서 리턴할 때도 생각보다 가볍게 전달되나?
-3. 그럼 설마 매개변수로 전달할 때도? 그럼 in으로 전달할 때와의 차이점은?
+
+<br>
+
+# Conclusion
+---
 
 
-TODO
-- 구조체 타입 객체가 초기화/매개변수 및 반환을 통해 전달될 때의 메커니즘 정확하게 이해하기
 
+<br>
 
 # References
 ---
