@@ -446,6 +446,41 @@ position, rotation, scale을 한 메소드 내에서 여러 번 변경할 경우
 
 <br>
 
+## **예시**
+
+게임 유닛의 HP(체력), MP(마력)을 정의한다.
+
+각 유닛마다 현재 HP와 MP는 개별적으로 관리되어야 하므로 클래스의 멤버 변수로 저장하며,
+
+동일한 유닛의 경우 MaxHP(최대 체력), MaxMP(최대 마력)는 공유될 수 있으므로 **Scriptable Object**로 저장한다.
+
+```cs
+public class GameUnit : MonoBehaviour
+{
+    /* 개별 데이터 필드 */
+    private float hp;
+    private float mp;
+
+    // 공유 데이터 필드(Scriptable Object)
+    private GameUnitData data;
+
+    private void Awake()
+    {
+        /* 게임 시작 시 초기 HP, MP 값을 최대치로 설정 */
+        hp = data.maxHp;
+        mp = data.maxMp;
+    }
+}
+
+public class GameUnitData : ScriptableObject
+{
+    public float maxHp = 100;
+    public float maxMp = 50;
+}
+```
+
+<br>
+
 # 필요하지 않은 경우, 리턴하지 않기
 ---
 ```cs

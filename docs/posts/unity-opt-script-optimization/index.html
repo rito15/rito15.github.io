@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8244 words">45 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8444 words">46 min</span>
 
 
           <!-- page views -->
@@ -1033,6 +1033,62 @@
 <p>객체의 수에 관계 없이 동일 데이터는 단 하나만 존재하게 되어 메모리를 절약할 수 있다.</p>
 
 <p>참고 : 경량 패턴(Flyweight Pattern)</p>
+
+<p><br /></p>
+
+<h2 id="예시"><strong>예시</strong></h2>
+
+<p>게임 유닛의 HP(체력), MP(마력)을 정의한다.</p>
+
+<p>각 유닛마다 현재 HP와 MP는 개별적으로 관리되어야 하므로 클래스의 멤버 변수로 저장하며,</p>
+
+<p>동일한 유닛의 경우 MaxHP(최대 체력), MaxMP(최대 마력)는 공유될 수 있으므로 <strong>Scriptable Object</strong>로 저장한다.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">GameUnit</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="cm">/* 개별 데이터 필드 */</span>
+    <span class="k">private</span> <span class="kt">float</span> <span class="n">hp</span><span class="p">;</span>
+    <span class="k">private</span> <span class="kt">float</span> <span class="n">mp</span><span class="p">;</span>
+
+    <span class="c1">// 공유 데이터 필드(Scriptable Object)</span>
+    <span class="k">private</span> <span class="n">GameUnitData</span> <span class="n">data</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">Awake</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="cm">/* 게임 시작 시 초기 HP, MP 값을 최대치로 설정 */</span>
+        <span class="n">hp</span> <span class="p">=</span> <span class="n">data</span><span class="p">.</span><span class="n">maxHp</span><span class="p">;</span>
+        <span class="n">mp</span> <span class="p">=</span> <span class="n">data</span><span class="p">.</span><span class="n">maxMp</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">GameUnitData</span> <span class="p">:</span> <span class="n">ScriptableObject</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">float</span> <span class="n">maxHp</span> <span class="p">=</span> <span class="m">100</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">float</span> <span class="n">maxMp</span> <span class="p">=</span> <span class="m">50</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 <p><br /></p>
 
@@ -1913,27 +1969,27 @@
         
         
         
-        <li><a href="/posts/unity-memo-prevent-infinite-loop/">유니티 - 무한 루프를 간편히 방지하기</a></li>
+        <li><a href="/posts/cs-if-vs-try-performance/">C# - If vs try-catch 성능</a></li>
       
         
         
         
-        <li><a href="/posts/sphere-aabb-intersection/">Sphere-AABB Intersection</a></li>
+        <li><a href="/posts/cs-enum-index-array-vs-dict/">C# - Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교</a></li>
       
         
         
         
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
+        <li><a href="/posts/cs-dictionary-search-cost/">C# - Dictionary 탐색 성능 - 선형 탐색과 비교</a></li>
       
         
         
         
-        <li><a href="/posts/cs-winform-notifyicon/">C# 윈폼 - Notify Icon 사용하기</a></li>
+        <li><a href="/posts/cs-gethashcode-cost-by-types/">C# - 타입별 GetHashCode() 성능</a></li>
       
         
         
         
-        <li><a href="/posts/cs-winform-prevent-duplication/">C# 윈폼 - 중복 실행 방지</a></li>
+        <li><a href="/posts/cs-switch-case-vs-dictionary/">C# - if-else if vs switch-case vs Dictionary</a></li>
       
 
       </ul>
