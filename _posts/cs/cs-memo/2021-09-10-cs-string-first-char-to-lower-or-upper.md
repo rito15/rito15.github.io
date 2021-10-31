@@ -1,5 +1,5 @@
 ---
-title: C# Span 사용하여 문자열의 첫 문자만 대소문자 변경하기
+title: C# - Span 사용하여 문자열의 첫 문자만 대소문자 변경하기
 author: Rito15
 date: 2021-09-10 17:51:00 +09:00
 categories: [C#, C# Memo]

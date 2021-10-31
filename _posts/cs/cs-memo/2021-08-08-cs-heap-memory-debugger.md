@@ -1,5 +1,5 @@
 ---
-title: C# 간단한 힙 메모리 디버거 (콘솔)
+title: C# - 간단한 힙 메모리 디버거 (콘솔)
 author: Rito15
 date: 2021-08-08 12:12:00 +09:00
 categories: [C#, C# Memo]

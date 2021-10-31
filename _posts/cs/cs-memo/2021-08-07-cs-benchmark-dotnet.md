@@ -1,5 +1,5 @@
 ---
-title: C# Benchmark DotNet
+title: C# - Benchmark DotNet
 author: Rito15
 date: 2021-08-07 16:16:00 +09:00
 categories: [C#, C# Memo]

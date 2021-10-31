@@ -1,5 +1,5 @@
 ---
-title: C# 파일 입출력
+title: C# - 파일 입출력
 author: Rito15
 date: 2021-01-28 21:10:00 +09:00
 categories: [C#, C# Memo]

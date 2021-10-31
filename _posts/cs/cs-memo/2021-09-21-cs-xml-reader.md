@@ -1,5 +1,5 @@
 ---
-title: C# XmlReader
+title: C# - XmlReader
 author: Rito15
 date: 2021-09-21 21:52:00 +09:00
 categories: [C#, C# Memo]

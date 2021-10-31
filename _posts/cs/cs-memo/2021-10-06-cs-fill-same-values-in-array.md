@@ -1,5 +1,5 @@
 ---
-title: C# 배열 내부를 같은 값으로 채우기
+title: C# - 배열 내부를 같은 값으로 채우기
 author: Rito15
 date: 2021-10-06 22:00:00 +09:00
 categories: [C#, C# Memo]

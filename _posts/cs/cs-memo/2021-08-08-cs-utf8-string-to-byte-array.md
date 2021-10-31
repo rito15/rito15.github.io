@@ -1,5 +1,5 @@
 ---
-title: C# UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기
+title: C# - UTF8 문자열을 힙 할당 없이 byte 배열로 직렬화하기
 author: Rito15
 date: 2021-08-08 19:31:00 +09:00
 categories: [C#, C# Memo]

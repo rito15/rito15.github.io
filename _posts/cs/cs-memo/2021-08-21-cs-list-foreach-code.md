@@ -1,5 +1,5 @@
 ---
-title: (Shorts) C# Foreach가 실제로 생성하는 소스코드
+title: (Shorts) C# - Foreach가 실제로 생성하는 소스코드
 author: Rito15
 date: 2021-08-21 17:22:00 +09:00
 categories: [C#, C# Memo]

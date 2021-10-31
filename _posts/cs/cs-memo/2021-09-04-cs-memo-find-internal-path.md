@@ -1,5 +1,5 @@
 ---
-title: C# 하위 폴더, 파일들의 절대 경로 찾기
+title: C# - 하위 폴더, 파일들의 절대 경로 찾기
 author: Rito15
 date: 2021-09-04 19:45:00 +09:00
 categories: [C#, C# Memo]

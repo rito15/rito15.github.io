@@ -1,5 +1,5 @@
 ---
-title: C# Prime Number(소수)
+title: C# - Prime Number(소수)
 author: Rito15
 date: 2021-03-26 18:12:00 +09:00
 categories: [C#, C# Memo]

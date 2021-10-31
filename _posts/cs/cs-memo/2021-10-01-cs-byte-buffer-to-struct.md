@@ -1,5 +1,5 @@
 ---
-title: C# 바이트 버퍼를 읽어서 구조체로 변환하기
+title: C# - 바이트 버퍼를 읽어서 구조체로 변환하기
 author: Rito15
 date: 2021-10-01 00:01:00 +09:00
 categories: [C#, C# Memo]

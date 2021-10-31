@@ -1,5 +1,5 @@
 ---
-title: C# 간단한 트릭 - 널 체크
+title: C# - 간단한 트릭 - 널 체크
 author: Rito15
 date: 2021-09-06 04:40:00 +09:00
 categories: [C#, C# Memo]

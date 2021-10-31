@@ -1,5 +1,5 @@
 ---
-title: C# 커스텀 애트리뷰트
+title: C# - 커스텀 애트리뷰트
 author: Rito15
 date: 2021-02-19 03:55:00 +09:00
 categories: [C#, C# Memo]

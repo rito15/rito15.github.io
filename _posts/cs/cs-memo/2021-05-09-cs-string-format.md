@@ -1,5 +1,5 @@
 ---
-title: C# 스트링 포맷 정리
+title: C# - 스트링 포맷 정리
 author: Rito15
 date: 2021-05-09 21:00:00 +09:00
 categories: [C#, C# Memo]
