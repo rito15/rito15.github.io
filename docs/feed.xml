@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-11-01T17:25:19+09:00</updated>
+  <updated>2021-11-02T04:38:41+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,80 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Intel Assembly 기초 간단 정리</title>
+    <link href="https://rito15.github.io/posts/intel-assembly-memo/" rel="alternate" type="text/html" title="Intel Assembly 기초 간단 정리" />
+    <published>2021-11-02T03:54:00+09:00</published>
+  
+    <updated>2021-11-02T03:54:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/intel-assembly-memo/</id>
+    <content src="https://rito15.github.io/posts/intel-assembly-memo/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Memo" />
+    
+    <category term="Assembly Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      목표
+
+
+  비주얼 스튜디오에서 디스어셈블러로 어셈블리 코드를 읽었을 때, 대충이라도 흐름과 동작 이해하기
+
+
+
+
+어셈블리 문법 종류
+
+
+
+  
+    Intel, AT&amp;amp;T 문법이 있다.
+  
+  eax, [eax] 꼴의 문법은 Intel이며,
+  
+    %eax, (%eax) 꼴의 문법은 AT&amp;amp;T이다.
+  
+  Intel 문법을 따르는 대표적인 예시로 MASM(Microsoft Macro Assembler), NASM(Netwide Assembler) 등이 있다.
+
+
+
+
+알아두기
+
+
+
+  
+…
+
+
+  어셈블리 연산의 특징
+
+  메모리 주소 간의 연산을 수행할 때,
+
+  특정 주소에서 주소로 직접 연산할 수 없고, 반드시 레지스터를 거쳐간다.
+
+  예를 들어 메모리 0x24 위치의 값을...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -302,67 +376,6 @@ namespace Rito
             - 후킹 시작 : Begin()
             - 후킹 종료 : End()
        ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - Quaternion</title>
-    <link href="https://rito15.github.io/posts/unity-quaternion/" rel="alternate" type="text/html" title="유니티 - Quaternion" />
-    <published>2021-10-24T16:00:00+09:00</published>
-  
-    <updated>2021-10-24T22:57:18+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-quaternion/</id>
-    <content src="https://rito15.github.io/posts/unity-quaternion/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note : 회전에 대한 정의
-
-
-공간은 표준 기저 벡터의 집합에 의해 정의될 수 있다.
-
-표준 기저 벡터란, 쉽게 말해 해당 공간의 축 방향을 향하는 정규화된 벡터다.
-
-2D 공간, 즉 평면은 (1, 0), (0, 1)에 의해 정의될 수 있으며,
-
-3D 공간은 (1, 0, 0), (0, 1, 0), (0, 0, 1) 에 의해 정의될 수 있다.
-
-
-
-회전이란, 표준 기저 벡터를 회전시키는 것과 같다.
-
-트랜스폼이 현재 갖고 있는 회전 정보를 오일러 각으로 정의했을 때,
-
-(0, 0, 0)일 경우 해당 오브젝트의 로컬 공간 표준 기저가
-
-월드 공간의 표준 기저와 일치한 상태를 의미한다.
-
-
-
-(30, 0, 0)일 경우 해당 오브젝트의 로컬 공간 표준 기저가
-
-월드 공간 표준 기저에 대해 X축을 기준으로 ...
     </summary>
   
 

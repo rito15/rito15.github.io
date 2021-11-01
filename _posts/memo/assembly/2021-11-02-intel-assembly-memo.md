@@ -1,3 +1,12 @@
+---
+title: Intel Assembly 기초 간단 정리
+author: Rito15
+date: 2021-11-02 03:54:00 +09:00
+categories: [Memo, Assembly Memo]
+tags: [assembly, masm, memo]
+math: true
+mermaid: true
+---
 
 
 # 목표
@@ -8,13 +17,15 @@
 
 
 
-# 대상 어셈블리 언어
+# 어셈블리 문법 종류
 ---
 
-- **MASM**(Microsoft Macro Assembler)
+- `Intel`, `AT&T` 문법이 있다.
 
-- Intel Assembly 문법을 따른다.
-- AT&T 문법과는 다르다.
+- `eax`, `[eax]` 꼴의 문법은 `Intel`이며,
+- `%eax`, `(%eax)` 꼴의 문법은 `AT&T`이다.
+
+- `Intel` 문법을 따르는 대표적인 예시로 **MASM**(Microsoft Macro Assembler), **NASM**(Netwide Assembler) 등이 있다.
 
 <br>
 
@@ -22,6 +33,11 @@
 
 # 알아두기
 ---
+
+<details>
+<summary markdown="span">
+...
+</summary>
 
 ## **어셈블리 연산의 특징**
 
@@ -65,6 +81,27 @@ lea    rcx,[rbp+20h]
 
 <br>
 
+## **WORD**
+- **WORD**는 CPU가 한 번에 처리할 수 있는 기본 데이터 처리 단위를 의미한다.
+
+- 32비트 머신에서 **WORD**는 32비트, 64비트 머신에서는 64비트로 정의된다.
+
+- 하드웨어적으로는 CPU의 기본 데이터 처리 단위와 일치하지만, <br>
+  소프트웨어에서 **WORD**는 16비트 타입을 의미한다.
+
+<br>
+
+## **숫자 리터럴**
+- 어셈블리 코드에 작성되는 숫자의 단위 : `byte`
+
+- **접미어**
+  - `h` : 16진수 값
+  - `b` : 2진수 값
+
+</details>
+
+<br>
+
 
 
 # 기본 문법
@@ -100,9 +137,6 @@ lea    rcx,[rbp+20h]
 ;<comment>
 ```
 
-</details>
-
-
 
 ## **레이블(Label)**
 
@@ -110,18 +144,42 @@ lea    rcx,[rbp+20h]
 <Label> : <opcode> <operand1> <operand2> ;<comment>
 ```
 
+</details>
+
 <br>
 
 
 
-# 숫자 리터럴
+# 자료형
 ---
 
-- 어셈블리 코드에 작성되는 숫자의 단위 : `byte`
+<details>
+<summary markdown="span">
+...
+</summary>
 
-## **접미어**
-- `h` : 16진수 값
-- `b` : 2진수 값
+## **BYTE**
+- `8` bit (1byte)
+
+## **WORD**
+- CPU의 기본 처리 단위
+- `16` bit (2byte)
+
+## **DWORD**
+- Double Word
+- `32` bit (4byte)
+
+## **QWORD**
+- Quadruple Word
+- `64` bit (8byte)
+
+## **부호 있는 자료형**
+- SBYTE (8 bit)
+- SWORD (16 bit)
+- SDWORD (32 bit)
+- SQWORD (64 bit)
+
+</details>
 
 <br>
 
@@ -181,7 +239,7 @@ mov eax, dword ptr [ebp+30h]
 
 
 
-# 자료형
+# 레지스터
 ---
 
 <details>
@@ -189,35 +247,14 @@ mov eax, dword ptr [ebp+30h]
 ...
 </summary>
 
-## **BYTE**
-- `8` bit (1byte)
-
-## **WORD**
-- CPU의 기본 처리 단위
-- `16` bit (2byte)
-
-## **DWORD**
-- Double Word
-- `32` bit (4byte)
-
-## **QWORD**
-- Quadruple Word
-- `64` bit (8byte)
-
-## **부호 있는 자료형**
-- SBYTE (8 bit)
-- SWORD (16 bit)
-- SDWORD (32 bit)
-- SQWORD (64 bit)
-
-</details>
+## **레지스터(Register)**
+- CPU 내부의 작은 메모리 공간
+- 기억 장치 중에서 가장 빠르다.
+- CPU와 메모리 사이에서 임시 기억 장치 역할을 수행한다.
+- 각 레지스터는 고유의 용도를 가진다.
 
 <br>
 
-
-
-# 레지스터의 크기
----
 
 ## **접두사에 따른 레지스터의 크기**
 - 없음 : 16 bit (예 : AX, BX, CX, DX)
@@ -226,24 +263,15 @@ mov eax, dword ptr [ebp+30h]
 
 <br>
 
+
 ## **레지스터의 크기를 결정하는 것**
 - 하드웨어적으로는 CPU 아키텍처에 의해 결정된다.
 - 소프트웨어적으로는 운영체제와 응용 프로그램의 정책에 의해 결정된다.
 
-<br>
-
-## **WORD**
-- **WORD**는 CPU가 한 번에 처리할 수 있는 기본 데이터 처리 단위를 의미한다.
-- 32비트 머신에서 **WORD**는 32비트, 64비트 머신에서는 64비트로 정의된다.
-- 하드웨어적으로는 CPU의 기본 데이터 처리 단위와 일치하지만, <br>
-  소프트웨어에서 **WORD**는 16비트 타입을 의미한다.
 
 <br>
 
-
-
-# 레지스터의 구조
----
+## **레지스터의 구조**
 
 - 예시 : AX(Accumulator Register)
 
@@ -257,10 +285,21 @@ mov eax, dword ptr [ebp+30h]
 
 <br>
 
+각각의 레지스터는 위와 같이 호출되는 이름에 따라 정해진 위치와 크기의 영역을 사용한다.
+
+</details>
+
+<br>
+
 
 
 # 레지스터 종류
 ---
+
+<details>
+<summary markdown="span">
+...
+</summary>
 
 - 32비트 기준으로 작성
 
@@ -337,8 +376,13 @@ mov eax, dword ptr [ebp+30h]
 
 ### **ESP**
 - Stack Pointer
-- 현재 스택 프레임의 종료 주소를 저장한다.
+- 항상 현재 스택의 최상단(TOP) 주소를 저장한다.
 - `PUSH`, `POP` 명령에 따라 값이 `4 byte`씩 변하며, 유동적이다.
+- 스택은 높은 주소가 Base, 낮은 주소가 Top이며 위에서 아래로 확장된다.
+
+- `EBP`는 스택 프레임 이동 시 값을 직접 넣어주는데 반해, <br>
+  `ESP`는 `PUSH`와 `POP`에 의해 간접적으로 변한다.(중요)
+
 - `SS 레지스터`와 함께 사용된다.
 
 ### **EIP**
@@ -369,45 +413,56 @@ mov eax, dword ptr [ebp+30h]
 ...
 </summary>
 
-### **세그먼트?**
-  - Segment
-  - 주기억장치(메모리)의 일부에 할당되는 논리적 영역
-  - 프로그램 시작 시 크기가 정해지는 정적 세그먼트, 런타임에 크기가 변하는 동적 세그먼트로 나눌 수 있다.
+### **세그먼트(Segment)?**
+- 주기억장치(메모리)의 일부에 할당되는 논리적 영역
+- 프로그램 시작 시 크기가 정해지는 정적 세그먼트, 런타임에 크기가 변하는 동적 세그먼트로 나눌 수 있다.
+
+<br>
 
 ### **세그먼트 종류**
-  - **Code Segment** (정적)
-    - Text Segment라고도 한다.
-    - 프로그램의 명령어를 저장한다.
-    - 프로그램 시작 시 할당되며, 읽기만 가능하다.
-    
-    - `CS 레지스터`에 코드 세그먼트의 시작 주소를 저장한다.
-    
-  - **Data Segment** (정적)
-    - 초기화된 전역 변수, 정적 변수, 문자열 리터럴이 저장된다.
-    - 프로그램 시작 시 할당되며, 종료 시 해제된다.
-    - 런타임에 크기가 변하지 않는다.
-    
-    - `DS 레지스터`에 데이터 세그먼트의 시작 주소를 저장한다.
-    
-  - **BSS Segment** (정적)
-    - 초기화되지 않은 전역 변수, 정적 변수가 저장된다.
-    - 런타임에 크기가 변하지 않는다.
-    
-  - **Heap Segment** (동적)
-    - 런타임에 프로그래머가 직접 할당한 메모리가 저장되는 영역
-    - 런타임에 크기가 변할 수 있다.
-    - 메모리의 낮은 주소에서 높은 주소 방향으로 저장, 확장된다.
-    
-  - **Stack Segment** (동적)
-    - 런타임에 데이터의 임시 저장을 위해 사용되는 메모리 영역
-    - 런타임에 크기가 변할 수 있다.
-    - 함수가 실행될 때 할당되고, 함수가 끝날 때 해제된다.
-    - 주로 함수 내의 지역변수를 저장한다.
-    
-    - 메모리의 높은 주소에서 낮은 주소 방향으로 저장, 확장된다.
-    - 힙과 스택 영역은 서로 반대 방향의 말단에서 서로를 향해 크기를 확장한다.
-    
-    - `SS 레지스터`에 스택 세그먼트의 시작 주소를 저장한다.
+- **Code Segment** (정적)
+  - Text Segment라고도 한다.
+  - 프로그램의 명령어를 저장한다.
+  - 프로그램 시작 시 할당되며, 읽기만 가능하다.
+  
+  - `CS 레지스터`에 코드 세그먼트의 시작 주소를 저장한다.
+  
+  <br>
+  
+- **Data Segment** (정적)
+  - 초기화된 전역 변수, 정적 변수, 문자열 리터럴이 저장된다.
+  - 프로그램 시작 시 할당되며, 종료 시 해제된다.
+  - 런타임에 크기가 변하지 않는다.
+  
+  - `DS 레지스터`에 데이터 세그먼트의 시작 주소를 저장한다.
+  
+  <br>
+  
+- **BSS Segment** (정적)
+  - 초기화되지 않은 전역 변수, 정적 변수가 저장된다.
+  - 런타임에 크기가 변하지 않는다.
+  
+  <br>
+  
+- **Heap Segment** (동적)
+  - 런타임에 프로그래머가 직접 할당한 메모리가 저장되는 영역
+  - 런타임에 크기가 변할 수 있다.
+  - 메모리의 낮은 주소에서 높은 주소 방향으로 저장, 확장된다.
+  
+  <br>
+  
+- **Stack Segment** (동적)
+  - 런타임에 데이터의 임시 저장을 위해 사용되는 메모리 영역
+  - 런타임에 크기가 변할 수 있다.
+  - 함수가 실행될 때 할당되고, 함수가 끝날 때 해제된다.
+  - 주로 함수 내의 지역변수를 저장한다.
+  
+  - 메모리의 높은 주소에서 낮은 주소 방향으로 저장, 확장된다.
+  - 힙과 스택 영역은 서로 반대 방향의 말단에서 서로를 향해 크기를 확장한다.
+  
+  - `SS 레지스터`에 스택 세그먼트의 시작 주소를 저장한다.
+
+<br>
 
 ### **세그먼트 레지스터?**
   - 세그먼트의 특정 영역에 대한 주소 지정 기능을 제공한다.
@@ -509,12 +564,22 @@ mov eax, dword ptr [ebp+30h]
 
 </details>
 
+
+</details> <!-- # 레지스터 종류 -->
+
 <br>
 
 
 
 # 명령어
 ---
+
+<details>
+<summary markdown="span">
+...
+</summary>
+
+
 
 ## **[0] 미분류**
 
@@ -620,7 +685,7 @@ POP eip
 <br>
 
 
-## **[2] 데이터 복사**
+## **[3] 데이터 복사**
 
 <details>
 <summary markdown="span">
@@ -674,12 +739,45 @@ MOV eax, ebp+8
 
 그래서 `LEA`가 필요한 것이다.
 
+<br>
+
+### **MOVZX**
+- Move with Zero-Extension
+- src에 저장된 값을 dest로 복사한다.
+- dest의 크기가 src보다 큰 경우, dest의 남은 비트를 0으로 채운다.
+
+```
+MOVZX <dest> <src>
+```
+
+<br>
+
+### **MOVSX**
+- Move with Sign-Extension
+- src에 저장된 값을 dest로 복사한다.
+- dest의 크기가 src보다 큰 경우, dest의 남은 비트를 부호 비트로 채운다.
+
+```
+MOVSX <dest> <src>
+```
+
+<br>
+
+### **MOVS**
+- Move String
+- `ESI`(Source Index)에 저장된 주소에 위치한 문자열을<br>
+  `EDI`(Destination Index)에 저장된 주소에 복사한다.
+
+```
+MOVS
+```
+
 </details>
 
 <br>
 
 
-## **[3] 연산**
+## **[4] 연산**
 
 <details>
 <summary markdown="span">
@@ -687,6 +785,7 @@ MOV eax, ebp+8
 </summary>
 
 ### **INC**
+- Increment
 - 대상 레지스터의 값을 1 증가시킨다.
 
 ```
@@ -696,6 +795,7 @@ INC <operand(register)>
 <br>
 
 ### **DEC**
+- Decrement
 - 대상 레지스터의 값을 1 감소시킨다.
 
 ```
@@ -724,6 +824,7 @@ ADD eax, dword ptr [7FF80BF4FAD8h]
 <br>
 
 ### **SUB**
+- Subtract
 - dest에 저장된 값에 src에 저장된 값을 빼서 dest에 저장한다.
 
 ```
@@ -733,6 +834,7 @@ SUB <dest>, <src>
 <br>
 
 ### **CMP**
+- Compare
 - dest와 src의 값을 비교한다.
 - 연산 결과로 `ZF`, `SF`, `OF`와 같은 플래그 레지스터의 값이 설정된다.
 - 조건부 점프(`JA`, `JB`, `JE`, `JNE`, ...) 명령어가 이어 나오는 경우가 많다.
@@ -759,26 +861,6 @@ CMP    dword ptr [7FF80BF4FAD8h], 0
 <br>
 
 
-## **[4] 문자열 조작**
-
-<details>
-<summary markdown="span">
-...
-</summary>
-
-### **EEP**
-- 
-
-<br>
-
-### **MOVS**
-- 
-
-</details>
-
-<br>
-
-
 ## **[5] 인터럽트**
 
 <details>
@@ -787,38 +869,88 @@ CMP    dword ptr [7FF80BF4FAD8h], 0
 </summary>
 
 ### **INT**
-- 
+- 소프트웨어 인터럽트를 발생시켜 OS의 서브루틴을 호출한다.
+- 피연산자는 상수만 사용할 수 있다.
+
+```
+INT <operand>
+```
 
 </details>
+
+
+</details> <!-- # 명령어 -->
 
 <br>
 
 
 
+# 스택 프레임
+---
 
-스택 프레임 개념
+<details>
+<summary markdown="span">
+...
+</summary>
 
-https://blog.kimtae.xyz/9
+## **스택 프레임(Stack Frame)?**
+- `EBP`(스택 베이스 포인터) 레지스터를 사용하여 현재 스택 내의 지역 변수, 매개 변수, 복귀 주소에 접근하는 기법 또는 그 영역
+- `EBP`에 저장된 주소를 기반으로 오프셋을 더하여 지역 변수에 간편히 접근할 수 있다.
+- 함수가 호출될 때마다 해당 함수의 스택 프레임이 생성되고, `EBP`에는 스택 프레임의 시작 주소가 저장된다.
+
+<br>
+
+## **설명**
+- `PUSH`, `POP`이 발생할 때마다 `ESP`에 저장된 값은 `4byte`씩 변하며, 항상 스택의 상단을 가리킨다.
+- 함수 호출 직후 `EBP`에 `ESP`의 값을 넣어 줌으로써, 마치 스택 상단에서 작은 스택을 생성하는 효과를 얻을 수 있다.
+- 이 영역을 스택 프레임이라고 하며, `EBP`는 현재 스택 프레임의 시작 주소를 저장하는 역할을 수행한다.
+
+<br>
+
+## **구조**
+
+```
+PUSH ebp        ; 이전 스택 프레임의 시작 주소 백업
+MOV  ebp, esp   ; ESP -> EBP : 새로운 스택 프레임 형성
+
+                ; 함수 영역
+
+MOV  esp, ebp   ; EBP   -> ESP : 이전 스택 프레임의 상단(Top) 주솟값 복원
+POP  ebp        ; stack -> EBP : 이전 스택 프레임의 시작(Base) 주솟값 복원
+RET             ; stack -> EIP : 함수 호출 문장 다음 지점으로 제어 이동
+```
 
 
+</details>
 
+
+<br>
 
 # References
 ---
+
+<details>
+<summary markdown="span">
+...
+</summary>
+
 - <https://rootfriend.tistory.com/entry/어셈블러Assembler의-종류>
 
 - <https://sunrinjuntae.tistory.com/24>
 - <https://iceb1u3.tistory.com/entry/2장-레지스터와-어셈블리어-정리>
 - <https://velog.io/@hidaehyunlee/libasm-어셈블리-프로그램-구조와-x64-레지스터-이해하기>
 - <https://sewcode.tistory.com/10>
-- <https://coding-factory.tistory.com/651>
 - <https://velog.io/@kjh3865/movandlea>
-- <https://blog.kimtae.xyz/9>
+- <https://coding-factory.tistory.com/650>
+- <https://coding-factory.tistory.com/651>
 
 - <https://wogh8732.tistory.com/215>
 - <https://to-paz.tistory.com/99>
 - <https://5kyc1ad.tistory.com/32>
 - <https://sunrinjuntae.tistory.com/24>
 - <https://blog.kimtae.xyz/9>
+- <https://adipo.tistory.com/entry/어셈블리어-MASMMicrosoft-Macro-Assembler>
 
 - <https://www.youtube.com/watch?v=yf7yFJHTif8>
+
+</details>
