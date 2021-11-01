@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-10-29T18:03:42+09:00</updated>
+  <updated>2021-11-01T17:25:19+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,89 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 - 매 프레임 처리 성능 테스트 - Update() vs 코루틴</title>
+    <link href="https://rito15.github.io/posts/unity-update-vs-coroutine-every-frame/" rel="alternate" type="text/html" title="유니티 - 매 프레임 처리 성능 테스트 - Update() vs 코루틴" />
+    <published>2021-11-01T15:02:00+09:00</published>
+  
+    <updated>2021-11-01T15:02:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-update-vs-coroutine-every-frame/</id>
+    <content src="https://rito15.github.io/posts/unity-update-vs-coroutine-every-frame/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      실험 목적
+
+
+
+  매 프레임 호출되는 Update() 메소드, 코루틴의 성능 비교
+
+
+
+
+실험 조건
+
+
+
+  운영체제 : Windows 10
+  유니티 에디터 버전 : 2020.3.17f1
+  실행 환경 : 유니티 에디터, Windows Standalone Build(Mono, IL2CPP)
+
+
+
+
+실험 대상
+
+
+[1] Update()
+
+
+  각 컴포넌트마다 Update() 작성
+
+
+
+  
+UpdateEveryFrame.cs
+
+
+  public class UpdateEveryFrame : MonoBehaviour
+{
+    private void Update() { }
+}
+  
+
+
+
+
+
+[2] CustomUpdate()
+
+
+  한 컴포넌트의 Update()에서 다른 컴포넌트들의 CustomUpdate...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -280,78 +363,6 @@ namespace Rito
 (30, 0, 0)일 경우 해당 오브젝트의 로컬 공간 표준 기저가
 
 월드 공간 표준 기저에 대해 X축을 기준으로 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>게임 수학 - 회전(2차원, 3차원, 4원수)</title>
-    <link href="https://rito15.github.io/posts/game-math-rotation/" rel="alternate" type="text/html" title="게임 수학 - 회전(2차원, 3차원, 4원수)" />
-    <published>2021-10-23T17:14:00+09:00</published>
-  
-    <updated>2021-10-24T21:14:16+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/game-math-rotation/</id>
-    <content src="https://rito15.github.io/posts/game-math-rotation/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Game Mathematics" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      기초 개념
-
-
-기저 벡터(Basis Vector)
-
-
-  n차원 공간에서 임의의 벡터를 표현할 수 있는, 선형 독립 관계의 벡터
-  n차원 공간을 구성하려면 n개의 기저 벡터가 필요하다.
-
-
-
-
-표준 기저 벡터(Standard Basis Vector)
-
-
-  기저 벡터 중에서도 원소 중 하나의 값이 1이고, 나머지 원소가 0인 벡터
-  예를 들어 2차원 평면에서의 표준 기저 벡터는 (1, 0), (0, 1)이다.
-  공간의 축에 대응되는 벡터라고 할 수 있다.
-
-
-
-
-공간 변환(Space Transformation)
-
-
-
-
-  공간 변환이란 기존의 공간을 이루고 있던 표준기저벡터를 변경하여 새로운 공간을 만드는 작업이다.
-  이동, 회전, 크기 변환이 있다.
-
-
-
-
-2차원 평면의 회전
-
-
-2차원 회전 ...
     </summary>
   
 

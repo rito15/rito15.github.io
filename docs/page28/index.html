@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page28/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page28/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,101 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/opengl-study-18/">OpenGL 공부 - 18 - Specular, Rim Light</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  Specular Lighting, Rim Lighting 적용
+
+
+
+
+공부 내용
+
+
+필요한 유니폼 변수 전달
+
+World View 벡터가 필요하므로, 이를 구하기 위한 카메라 위치를 전달해준다.
+
+
+  
+    // main.cpp
+
+glUniform3fv(glGetUniformLocation(shaderProgram, "cameraPo...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Feb 14, 2021,  3:38 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 14
+  
+
+  <i class="unloaded">2021-02-14T15:38:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4149 words">23 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1243,107 +1338,6 @@ glm::vec3 scale(1.0f);
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-14/">OpenGL 공부 - 14 - Model Matrix</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  Model Matrix에 대한 이해
-  이동, 회전, 크기 변경
-
-
-
-
-공부 내용
-
-
-공통
-
-glm의 모델 매트릭스를 선언하는 것으로 시작한다.
-
-
-  
-    glm::mat modelMatrix(1.0f);
-
-  
-
-
-openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진다.
-
-4x4 행렬과 곱해지려면...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Feb 10, 2021,  3:20 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 10
-  
-
-  <i class="unloaded">2021-02-10T15:20:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2383 words">13 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1939,27 +1933,27 @@ openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진�
         
         
         
-        <li><a href="/posts/cs-if-vs-try-performance/">C# - If vs try-catch 성능</a></li>
+        <li><a href="/posts/cs-list-foreach-code/">(Shorts) C# - Foreach가 실제로 생성하는 소스코드</a></li>
       
         
         
         
-        <li><a href="/posts/cs-enum-index-array-vs-dict/">C# - Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교</a></li>
+        <li><a href="/posts/cs-memo-find-internal-path/">C# - 하위 폴더, 파일들의 절대 경로 찾기</a></li>
       
         
         
         
-        <li><a href="/posts/cs-dictionary-search-cost/">C# - Dictionary 탐색 성능 - 선형 탐색과 비교</a></li>
+        <li><a href="/posts/cs-null-check-trick/">C# - 간단한 트릭 - 널 체크</a></li>
       
         
         
         
-        <li><a href="/posts/cs-gethashcode-cost-by-types/">C# - 타입별 GetHashCode() 성능</a></li>
+        <li><a href="/posts/cs-string-first-char-to-lower-or-upper/">C# - Span 사용하여 문자열의 첫 문자만 대소문자 변경하기</a></li>
       
         
         
         
-        <li><a href="/posts/cs-switch-case-vs-dictionary/">C# - if-else if vs switch-case vs Dictionary</a></li>
+        <li><a href="/posts/memo-cs-fileio/">C# - 파일 입출력</a></li>
       
 
       </ul>

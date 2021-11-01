@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# - Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"요약","datePublished":"2021-08-19T23:11:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-enum-index-array-vs-dict/"},"url":"https://rito15.github.io/posts/cs-enum-index-array-vs-dict/","author":{"@type":"Person","name":"Rito15"},"headline":"C# - Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교","dateModified":"2021-10-29T05:23:14+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C# - Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교","description":"요약","dateModified":"2021-10-29T05:23:14+09:00","datePublished":"2021-08-19T23:11:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-enum-index-array-vs-dict/"},"url":"https://rito15.github.io/posts/cs-enum-index-array-vs-dict/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -781,27 +781,27 @@
         
         
         
-        <li><a href="/posts/cs-if-vs-try-performance/">C# - If vs try-catch 성능</a></li>
+        <li><a href="/posts/cs-list-foreach-code/">(Shorts) C# - Foreach가 실제로 생성하는 소스코드</a></li>
       
         
         
         
-        <li><a href="/posts/cs-enum-index-array-vs-dict/">C# - Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교</a></li>
+        <li><a href="/posts/cs-memo-find-internal-path/">C# - 하위 폴더, 파일들의 절대 경로 찾기</a></li>
       
         
         
         
-        <li><a href="/posts/cs-dictionary-search-cost/">C# - Dictionary 탐색 성능 - 선형 탐색과 비교</a></li>
+        <li><a href="/posts/cs-null-check-trick/">C# - 간단한 트릭 - 널 체크</a></li>
       
         
         
         
-        <li><a href="/posts/cs-gethashcode-cost-by-types/">C# - 타입별 GetHashCode() 성능</a></li>
+        <li><a href="/posts/cs-string-first-char-to-lower-or-upper/">C# - Span 사용하여 문자열의 첫 문자만 대소문자 변경하기</a></li>
       
         
         
         
-        <li><a href="/posts/cs-switch-case-vs-dictionary/">C# - if-else if vs switch-case vs Dictionary</a></li>
+        <li><a href="/posts/memo-cs-fileio/">C# - 파일 입출력</a></li>
       
 
       </ul>
@@ -5358,6 +5358,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8538,67 +8551,6 @@
       
       
       <div class="card">
-        <a href="/posts/cs-if-vs-try-performance/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug  9
-  
-
-  <i class="unloaded">2021-08-09T14:41:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# - If vs try-catch 성능</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-개발을 하다보면 고민되는 경우가 많다.
-
-예외 조건을 처리할 때 if로 예외를 회피할지, try-catch로 처리할지,
-
-실제 성능은 어떻게 될지도 궁금한 부분이다.
-
-
-
-try-catch는 예외가 발생하지 않으면 성능 소모가 없다고도 하고,
-
-성능 소모가 있지만 O(1)이라고도 하고,
-
-찾아보면 다양한 주장들을 확인해볼 수 있다.
-
-
-
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-dictionary-search-cost/">
           <div class="card-body">
             <!--
@@ -8721,6 +8673,64 @@ Dictionary의 탐색 성능은 어느 정도...
 24
 25
 publ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-switch-case-vs-dictionary/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep 13
+  
+
+  <i class="unloaded">2021-09-13T00:01:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# - if-else if vs switch-case vs Dictionary</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                분기 처리
+
+
+특정 변수의 값에 따라 분기를 나누어 처리해야 하는 경우,
+
+일반적으로 if-else if 또는 switch-case문을 사용할 수 있다.
+
+1
+2
+3
+4
+5
+int value = someValue;
+
+if(value == 0) DoSomething0();
+else if(value == 1) DoSomething1();
+else if(v...
               </p>
             </div>
           </div>
