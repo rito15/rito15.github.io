@@ -12,7 +12,7 @@ pin: true
 # 플러그인, 깃헙
 ---
 
-## 각종 링크 모음
+## 유니티 스크립트 모음
 - <https://github.com/michidk/Unity-Script-Collection>
 
 ## Newton Json for Unity
@@ -99,9 +99,9 @@ pin: true
 - <https://catlikecoding.com/unity/tutorials/>
 - <https://www.ronja-tutorials.com/>
 
-## **URP 쉐이더 코딩 기초**
-- <https://docs.google.com/document/d/1UX0319CXa29fCFAgg0qa5vnH-U6875jt0KLKUk5mke8/edit>
-- <https://www.youtube.com/watch?v=mlNWoROvavY>
+## **URP 쉐이더 기초**
+- [Google Docs](https://docs.google.com/document/d/1UX0319CXa29fCFAgg0qa5vnH-U6875jt0KLKUk5mke8/edit)
+- [Youtube Playlist](https://www.youtube.com/playlist?list=PLo0EL2mTb8Nw6GRRrYhXIG6vh9U-BukXZ)
 
 ## **HDRP**
 - [Dev Weeks : HDRP Environment settings and Look dev](https://www.youtube.com/watch?v=n5NzQfpVb54)
@@ -173,6 +173,22 @@ pin: true
 
 
 
+# 텍스쳐 리소스
+---
+
+- <https://www.textures.com/library>
+- <https://ambientcg.com/>
+- <https://polyhaven.com/>
+- <https://www.poliigon.com/>
+- <https://freepbr.com/>
+- <https://www.cgbookcase.com/>
+- <https://3djungle.net/>
+- <https://www.sharetextures.com/tag/cc0/>
+
+<br>
+
+
+
 # 웹 도구
 ---
 
@@ -184,6 +200,9 @@ pin: true
 
 ## **구름 IDE**
 - <https://www.goorm.io/>
+
+## **온라인 C# 컴파일러**
+- <https://sharplab.io/>
 
 ## **Regex 테스트**
 - <https://regex101.com/>
