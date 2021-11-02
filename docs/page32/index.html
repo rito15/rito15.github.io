@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Rito15","description":"Unity Csharp Developer","url":"https://rito15.github.io/page32/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page32/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -945,10 +945,14 @@ Source Code
 
 
   
-    모델의 정점 데이터를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 카메라로부터 픽셀마다 가장 가까운 오브젝트 표면까지의 거리를 알아내고, 이를 활용해 오브젝트를 그려내는 기법
+    메시 데이터를 이용하는 기존의 3D 렌더링 방식과는 달리, 거리 함수(SDF)를 통해 오브젝트의 표면을 정의한다.
   
   
-    레이 마칭의 모든 오브젝트들은 거리 함수(SDF : Signed Distance Fu...
+    카메라로부터 스크린 픽셀들을 향해 레이를 전진시키고(Ray Marching), 해당 픽셀의 레이가 오브젝트 표면에 닿으면 그 픽셀에 오브젝트 표면을 렌더링하는 방식을 사용한다.
+  
+
+
+...
       </p>
     </div>
 
@@ -995,7 +999,7 @@ Source Code
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3996 words">22 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4093 words">22 min</span>
 
 
         <!-- page views -->

@@ -11,33 +11,189 @@ mermaid: true
 # 레이 마칭이란?
 ---
 
-- 모델의 정점 데이터를 이용하는 기존의 3D 렌더링 방식과는 달리, 레이를 전진시켜(Ray Marching) 카메라로부터 픽셀마다 가장 가까운 오브젝트 표면까지의 거리를 알아내고, 이를 활용해 오브젝트를 그려내는 기법
- 
-- 레이 마칭의 모든 오브젝트들은 거리 함수(SDF : Signed Distance Function)로 표면의 정보가 계산된다.
+- 메시 데이터를 이용하는 기존의 3D 렌더링 방식과는 달리, 거리 함수(**SDF**)를 통해 오브젝트의 표면을 정의한다.
 
-- SDF의 기초적인 예시 : 구체(Sphere)
+- 카메라로부터 스크린 픽셀들을 향해 레이를 전진시키고(**Ray Marching**), 해당 픽셀의 레이가 오브젝트 표면에 닿으면 그 픽셀에 오브젝트 표면을 렌더링하는 방식을 사용한다.
+
+<center><img src="https://user-images.githubusercontent.com/42164422/104993172-ce0bab00-5a65-11eb-9eda-705de2034f17.png" width="500"></center>
+
+<br>
+
+## **SDF**
+- **Signed Distance Function**
+- 공간 상의 임의의 한 점으로부터 오브젝트 표면까지의 최단 거리를 계산하는 함수
+- SDF를 통해 3D 오브젝트 표면의 공간상 위치를 정의할 수 있다.
+
+<br>
+
+- 가장 간단한 **SDF** : 구체(Sphere)
+
+![image](https://user-images.githubusercontent.com/42164422/139840667-430e5a81-3f5b-4c26-9d68-5c033532abf7.png)
+
 
 ```glsl
-// point : 거리를 계산할 기준 좌표
+// point  : 거리를 계산할 기준 좌표
 // center : Sphere의 중심 좌표
 // radius : Sphere의 반지름
 float sdSphere(vec3 point, vec3 center, float radius)
 {
     return length(point - center) - radius;
 }
-
-// 위 함수를 통해, 특정 좌표에서 구체의 표면까지의 최단 거리값을 계산할 수 있다.
 ```
 
 <br>
 
-<center><img src="https://user-images.githubusercontent.com/42164422/104993172-ce0bab00-5a65-11eb-9eda-705de2034f17.png" width="500"></center>
- 
- - 한 점(RO : Ray Origin, 위의 그림에서 Camera)에서 스크린의 모든 픽셀들을 향한 방향(RD : Ray Direction, 위의 그림에서 Camera -> Image)으로 레이 캐스팅을 하여, 각 레이마다 여러 스텝(Step)으로 나누어 레이를 전진시키게 된다.
-   
+# 레이 마칭 과정
+---
+
+## **[1] Ray Origin 정의**
+
+![image](https://user-images.githubusercontent.com/42164422/139842639-663e9600-b516-46be-bb94-010caa8fd7fb.png)
+
+레이의 출발 지점(Ray Origin, **RO**), 즉 카메라의 3D 공간 상 위치를 정의한다.
+
 <br>
 
+## **[2] Screen UV 정의**
+
+![UV_225](https://user-images.githubusercontent.com/42164422/139843156-502d0b30-9708-4aa7-8d7f-f55fc954eda0.png)
+
+XY 평면에 Screen UV(화면 좌표)를 정의한다.
+
+<br>
+
+## **[3] Ray Direction 정의**
+
+![image](https://user-images.githubusercontent.com/42164422/139843952-739a740b-d8ef-4b44-ac33-683da9614090.png)
+
+Screen UV 좌표에 깊이(Z축 좌표)를 추가하여 3D 공간 상의 화면 좌표를 생성한다.
+
+그리고 카메라(**RO**)에서 모든 화면 좌표를 향하는 방향 벡터(Ray Direction, **RD**)를 정의한다.
+
+**RD**는 정규화된 벡터여야 한다.
+
+<br>
+
+## **Note**
+
+레이 마칭은 대개 **Pixel Shader** 또는 **Fragment Shader**에서 계산한다.
+
+물체의 표면을 이루는 모든 픽셀마다 한 번씩 병렬적으로 실행된다는 뜻이다.
+
+다시 말해, **RD**는 각 픽셀 쉐이더마다 한 개씩 계산된다.
+
+따라서 물체의 표면을 이루는 픽셀이 `200 x 100 = 20000`개라면 `20000` 개의 **RD**가 존재하고, 
+
+렌더 타겟, 즉 스크린 전체에서 레이 마칭을 계산하게 될 경우 해상도 만큼의 **RD**가 존재한다.
+
+<br>
+
+## **[4] SDF 정의**
+
+![image](https://user-images.githubusercontent.com/42164422/139844891-5446eed6-84fe-482b-bce9-b4e2ea6fa3a9.png)
+
+![image](https://user-images.githubusercontent.com/42164422/139845841-6e8f40f5-14e9-49d5-a555-1a5f64701e3d.png)
+
+공간 상의 물체 표면 정보를 SDF 함수를 통해 정의한다.
+
+<br>
+
+## **[5] 레이 전진 알고리즘**
+
+하나의 픽셀 쉐이더, 즉 하나의 **RD**에 대해 예시로 설명한다.
+
+**RO**, **RD**, **SDF**가 모두 정의된 상태.
+
+![image](https://user-images.githubusercontent.com/42164422/139847236-5f6a7f82-93f2-462c-9d47-99bbcd3bdfcb.png)
+
+<br>
+
+**RO**에서 각각의 물체마다 **SDF(거리 함수)**를 계산하여, **RO**로부터 각 물체 표면까지의 최단거리를 계산한다.
+
+예시의 오브젝트는 2개이므로, 총 2개의 **SDF** 계산을 거쳐 두 개의 거리 값이 계산된다.
+
+![image](https://user-images.githubusercontent.com/42164422/139847954-89581066-d543-45ab-860a-ed2a6ecc46fb.png)
+
+<br>
+
+계산된 모든 **SDF** 값(`d1`, `d2`)들 중 가장 작은 값(`d1`)만큼의 거리를 **RD** 방향으로 전진한다.
+
+그러면 한 번의 스텝(Step)이 완료된 것이다.
+
+![image](https://user-images.githubusercontent.com/42164422/139849098-bd7a9678-e2f8-47a5-bcfb-ffa75d25a8fd.png)
+
+<br>
+
+첫 번째 스텝에서 전진한 위치(`P1`)에서 다시 모든 물체의 **SDF**를 계산하여 각 물체 표면까지의 최단거리를 계산한다.
+
+![image](https://user-images.githubusercontent.com/42164422/139849650-0687557c-2b28-4e18-9e8e-4975af579308.png)
+
+<br>
+
+그리고 마찬가지로 각 최단거리 중 가장 작은 값만큼 **RD** 방향으로 전진한다.
+
+![image](https://user-images.githubusercontent.com/42164422/139849976-35d56ae4-9b48-492a-a592-aae6ab65388e.png)
+
+<br>
+
+위와 같이 스텝을 반복하여 레이를 전진시키고, 이동한 거리 값을 누적한다.
+
+<br>
+
+물체 표면에 닿거나(최단거리가 임계 값보다 작다고 판단)
+
+![image](https://user-images.githubusercontent.com/42164422/139850580-093b4657-2a6e-498b-ac9d-7a68c20b4309.png)
+
+<br>
+
+물체 표면을 찾지 못한 상태에서 제한 스텝 수 또는 제한 전진 거리에 도달한 경우
+
+![image](https://user-images.githubusercontent.com/42164422/139850983-928ee2ac-9871-46ab-909a-f722744d7610.png)
+
+스텝을 종료한다.
+
+<br>
+
+레이마칭의 결과로는 `RO에서부터 물체 표면까지의 거리`(**d**)를 리턴하게 되는데,
+
+`RO + RD * d` 계산식을 통해 물체 표면의 공간 상 위치를 계산할 수 있다.
+
+<br>
+
+# 레이 마칭 함수
+---
+
+## **레이 마칭 함수의 구성**
+
 <center> <img src="https://user-images.githubusercontent.com/42164422/104993811-c1d41d80-5a66-11eb-9ad3-a861471cce8e.png" width="500"> </center>
+
+```glsl
+#define MAX_STEPS 100   // 최대 스텝 수
+#define MAX_DIST  100   // 최대 전진 거리
+#define SURF_DIST 0.01  // 표면 인식 거리
+
+float RayMarch(vec3 ro, vec3 rd)
+{
+    // RO에서 현재까지 전진한 누적 거리 저장
+    float dO = 0.;
+    
+    for(int i = 0; i < MAX_STEPS; i++)
+    {
+        vec3 p = ro + rd * dO;
+        
+        // GetDist() : 지정한 위치로부터 최단 SDF 거리값 계산
+        float dS = GetDist(p); // 이번 스텝에 전진할 거리
+        dO += dS;              // 레이 전진
+        
+        // 레이 제한 거리까지 도달하거나
+        // 레이가 물체의 정점 또는 땅에 닿은 경우 레이 마칭 종료
+        if(dO > MAX_DIST || dS < SURF_DIST)
+            break;
+    }
+    
+    return dO;
+}
+```
 
 > - i : 누적 스텝 수
 > - ro : 카메라의 위치
@@ -53,44 +209,126 @@ float sdSphere(vec3 point, vec3 center, float radius)
 
 <br>
 
-## 각 픽셀에서의 레이마칭(거리 계산) 과정
-
- - 매 스텝마다, 존재하는 모든 오브젝트들의 SDF를 계산하여 현재 레이의 위치로부터 가장 가까운 물체 표면까지의 거리(dS)를 얻어낸다.
-
- - dS가 매우 작으면(dS < SURFACE_DIST) 레이가 오브젝트의 표면에 닿았다고 판단하고, 레이의 전진을 중단한다.
- - 그렇지 않을 경우, 이번 스텝에서 레이를 dS만큼 전진시키고 다음 스텝으로 이어간다.
- 
- - 레이의 전진 횟수가 MAX_STEPS에 도달하거나, 레이의 누적 전진 거리(dO)가 MAX_DIST를 넘어서면 해당 픽셀에는 오브젝트의 표면이 존재하지 않는다고 판단하고 레이의 전진을 중단한다.
- 
- - 위 과정을 스크린의 모든 픽셀에 대해 계산하여, 각 픽셀에서 카메라로부터 가장 가까운 오브젝트 표면까지의 거리를 모두 알아낸다.
- 
-<br>
-
 # 전체 계산 과정
 ---
  
-### [1] 거리 계산
+### **[1] 거리 계산**
 
 - 스크린의 모든 픽셀에 대해 위의 레이마칭 과정을 통해 최단 거리 값을 계산한다.
 
- <center><img src="https://user-images.githubusercontent.com/42164422/104995624-f0072c80-5a69-11eb-9888-15b0f89edd41.png" width="500"></center>
+<center><img src="https://user-images.githubusercontent.com/42164422/104995624-f0072c80-5a69-11eb-9888-15b0f89edd41.png" width="500"></center>
 
-### [2] 노멀 계산
+<details>
+<summary markdown="span">
+RayMarch Function
+</summary>
 
-- [1]에서 얻어낸 거리값(d)을 이용해, 각 표면의 정확한 3D 공간 상 위치(p = ro + rd * d)를 계산한다.
+```glsl
+float RayMarch(vec3 ro, vec3 rd)
+{
+    // RO에서 현재까지 전진한 누적 거리 저장
+    float dO = 0.;
+    
+    for(int i = 0; i < MAX_STEPS; i++)
+    {
+        vec3 p = ro + rd * dO;
+        
+        // GetDist() : 지정한 위치로부터 최단 SDF 거리값 계산
+        float dS = GetDist(p); // 이번 스텝에 전진할 거리
+        dO += dS;              // 레이 전진
+        
+        // 레이 제한 거리까지 도달하거나
+        // 레이가 물체의 정점 또는 땅에 닿은 경우 레이 마칭 종료
+        if(dO > MAX_DIST || dS < SURF_DIST)
+            break;
+    }
+    
+    return dO;
+}
+```
 
-- 계산된 위치(p)로부터 x, y, z축 방향으로 각각 미세하게 떨어진 위치에서 GetDist() 함수를 통해 가장 가까운 물체 표면까지의 거리를 계산한다.
+</details>
+
+<br>
+
+### **[2] 노멀 계산**
+
+- `[1]`에서 얻어낸 거리값(`d`)을 이용해, 각 표면의 정확한 3D 공간 상 위치(`P = RO + RD * d`)를 계산한다.
+
+- 계산된 위치(`P`)로부터 x, y, z축 방향으로 각각 미세하게 떨어진 위치에서 `GetDist()` 함수를 통해 가장 가까운 물체 표면까지의 거리를 계산한다.
 
 - 이렇게 얻어낸 3개의 값을 각각 해당 표면에서의 x, y, z 노멀 벡터 성분으로 사용한다.
 
- <center><img src="https://user-images.githubusercontent.com/42164422/104995731-1927bd00-5a6a-11eb-8f0b-c63f60abe394.png" width="500"> </center>
+<center><img src="https://user-images.githubusercontent.com/42164422/104995731-1927bd00-5a6a-11eb-8f0b-c63f60abe394.png" width="500"> </center>
+
+<details>
+<summary markdown="span">
+GetNormal Function
+</summary>
+
+```glsl
+// 각 물체 표면 위치에서 노멀 벡터 계산
+vec3 GetNormal(vec3 p)
+{
+    float d = GetDist(p);
+    vec2  e = vec2(0.001, 0.0);
+    
+    // x, y, z 좌표를 0.01씩 움직인 3개의 방향벡터를 이용하여
+    // 각각 GetDist()를 통해 해당 방향에 있는 물체의 표면까지의 최단거리를 찾고,
+    // 이를 x, y, z 성분으로 사용한 노멀 벡터 생성
+    vec3 n = d - vec3(
+        GetDist(p - e.xyy),
+        GetDist(p - e.yxy),
+        GetDist(p - e.yyx)
+    );
+    
+    return normalize(n);
+}
+```
+
+</details>
+
+<br>
 
 ### [3] 라이트(Directional Light) 계산
 
 - 픽셀 쉐이더에서의 디퓨즈 계산 방식과 동일하게, 가상 라이트 벡터(L)와 각 표면의 노멀 벡터(N)를 내적하여 라이팅을 계산한다.
 
- <center><img src="https://user-images.githubusercontent.com/42164422/104995793-2e045080-5a6a-11eb-86db-8c7601d12846.png" width="500"> </center>
- 
+<center><img src="https://user-images.githubusercontent.com/42164422/104995793-2e045080-5a6a-11eb-86db-8c7601d12846.png" width="500"> </center>
+
+<details>
+<summary markdown="span">
+GetLight Function
+</summary>
+
+```glsl
+// 각 물체 표면에서 라이팅 계산
+float GetLight(vec3 p)
+{
+    vec3 L = normalize(g_lightPos - p);
+    vec3 N = GetNormal(p);
+    
+    // Shade(Diffuse)
+    float diff = saturate( dot(N, L) );
+    
+    // Shadow
+    // 정점(3D 물체 표면이 위치하는 모든 지점)에서 광원을 향해 레이마칭하여 얻은 거리가
+    // 정점에서 광원까지의 거리보다 작다면,
+    // 그 사이에 또다른 정점이 가로막고 있다는 뜻이므로 이 정점은 그림자가 생긴다.
+    
+    // SURF_DIST만큼의 거리를 더해주는 이유 : 레이가 정점을 찾아내는 최소 거리(Threshold)이므로
+    // SURF_DIST에 1.0 초과 숫자를 곱해주는 이유 : 의도치 않은 음영이 생길 수 있으므로
+    
+    float d = RayMarch(p + N * SURF_DIST * 2.0, L);
+    if( d < length(g_lightPos - p) )
+        diff *= 0.1;
+    
+    return diff;
+}
+```
+
+</details>
+
 <br>
 
 # ShaderToy에서의 구현 예시
@@ -370,13 +608,18 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 # 유니티 엔진에서의 간단한 구현 예시
 ---
 
-[1] <https://github.com/SebLague/Ray-Marching> 활용
+## **[1]**
+
+- <https://github.com/SebLague/Ray-Marching> 활용
 
  <center><img src="https://user-images.githubusercontent.com/42164422/105003713-5f831900-5a76-11eb-8090-bd2e8d6f9b87.png" width="500"></center>
 
 <br>
 
-[2] 하나의 쉐이더 내에서 구현
+## **[2]**
+
+- 하나의 쉐이더 내에서 구현
+- Cube Mesh에 쉐이더를 적용한다.
 
 ![2021_0703_Unity_Raymarching](https://user-images.githubusercontent.com/42164422/124320293-8feae980-dbb6-11eb-85ca-f861415b9785.gif)
 
@@ -715,27 +958,33 @@ Shader "Rito/RayMarching"
 
 <br>
 
-# 단점
----
- - 기존의 렌더링 방식에 비해 성능 소모가 크다.
-
- <img src="https://user-images.githubusercontent.com/42164422/105004241-023b9780-5a77-11eb-9d91-015809da2d88.png" width="500">
- 
-<br>
-
 # 연관 개념
 ---
- - <https://blog.hybrid3d.dev/2019-11-15-raytracing-pathtracing-denoising>
 
- - **레이 트레이싱(Ray Traycing)**
-   - 빛이 물체의 표면에서 여러번 난반사되어 카메라에 도달하기까지의 경로를 모두 역추적하여 계산하는 기법
-   - 요구되는 연산량이 매우 많다.
-   - 기본적인 레이 트레이싱은 주로 반사/스페큘러 계산에 사용한다.
- 
- - **패스 트레이싱(Path Traycing)**
-   - 레이 트레이싱의 일종
-   - 반사, 굴절이 없는 물체에도 모두 레이를 추적하여, 보다 현실적인 그래픽을 표현하는 기법
-   - 레이 트레이싱을 이용해 디퓨즈(Diffuse) 및 스페큘러(Specular), 전역 조명(GI, Global Illumination)을 주로 계산한다.
+## **레이 트레이싱(Ray Traycing)**
+- 광원으로부터 나온 빛이 물체의 표면에 부딪히고, 그 다음 표면에 부딪히기를 반복해서 결국 카메라에 도달했을 때의 결과 색상을 화면에 출력하는 기법
+- 현실적으로 모든 광선의 추적은 불가능하므로 역으로 카메라에서 픽셀마다 레이를 발사하여, 표면에 부딪힌 결과를 역연산하여 렌더링하는 방식을 사용한다.
+- 기본적인 레이 트레이싱은 주로 반사/스페큘러 계산에 사용한다.
+
+## **패스 트레이싱(Path Traycing)**
+- 레이 트레이싱의 일종
+- 반사, 굴절이 없는 물체에도 모두 레이를 추적하여, 보다 현실적인 그래픽을 표현하는 기법
+- 레이 트레이싱을 이용해 **디퓨즈(Diffuse)** 및 **스페큘러(Specular)**, **전역 조명(GI, Global Illumination)**을 주로 계산한다.
+
+<br>
+
+- <https://blog.hybrid3d.dev/2019-11-15-raytracing-pathtracing-denoising>
+
+<details>
+<summary markdown="span">
+Ray Tracing in Unity Tutorial
+</summary>
+
+- <https://www.gamedeveloper.com/programming/gpu-ray-tracing-in-unity-part-1>
+- <http://three-eyed-games.com/2018/05/12/gpu-path-tracing-in-unity-part-2/>
+- <https://www.gamedeveloper.com/programming/gpu-path-tracing-in-unity-part-3>
+
+</details>
 
 <br>
 
