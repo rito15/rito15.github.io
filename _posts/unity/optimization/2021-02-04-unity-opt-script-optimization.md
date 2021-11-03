@@ -413,6 +413,8 @@ position, rotation, scale을 한 메소드 내에서 여러 번 변경할 경우
 
 그런데 트랜스폼이 여러 자식 트랜스폼들을 갖고 있는 경우, 자식 트랜스폼도 함께 변경된다.
 
+트랜스폼의 변경 자체는 그리 큰 연산이 아닐 수 있으나, 한 번에 이루어질 수 있는 연산을 여러 번 하는 것은 당연히 그만큼의 성능 저하로 이어진다.
+
 따라서 벡터로 미리 담아두고 최종 계산 이후, 트랜스폼에 단 한 번만 변경을 지정하는 것이 좋다.
 
 또한 position과 rotation을 모두 변경해야 하는 경우 `SetPositionAndRotation()` 메소드를 사용하는 것이 좋다.
@@ -563,6 +565,7 @@ private void Caller()
 # 구조체 사용하기
 ---
 - <http://clarkkromenaker.com/post/csharp-structs/>
+- <https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/choosing-between-class-and-struct>
 
 동일한 데이터를 하나는 구조체, 하나는 클래스로 작성할 경우 클래스는 참조를 위해 8~24 바이트의 추가적인 메모리를 필요로 한다.
 
@@ -578,7 +581,7 @@ private void Caller()
 
 스택에 할당된다는 것, 힙에 할당된다는 것은 무엇일까?
 
-스택은 지역 메모리, 힙은 동적 메모리라고 할 수 있다.
+스택은 지역 메모리, 힙은 전역 메모리라고 할 수 있다.
 
 모든 **Value Type**(int, float, ... , struct) 지역 변수는 스택에 저장된다.
 

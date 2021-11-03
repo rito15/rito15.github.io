@@ -313,7 +313,7 @@ internal StringBuilder AppendFormatHelper(IFormatProvider provider, string forma
 <br>
 
 ## **결론**
-- `string.Format()`, `StrinbBuilder.AppendFormat()` 메소드의 내부 구현은 같다.
+- `string.Format()`, `StringBuilder.AppendFormat()` 메소드의 내부 구현은 같다.
 
 </details>
 

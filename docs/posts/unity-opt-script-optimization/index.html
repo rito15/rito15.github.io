@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 스크립트 최적화" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 메소드 호출 줄이기 8. 참조 캐싱하기 9. 빌드 이후 Debug.Log() 사용하지 않기 10 Transform 변경은 한번에 11. 불필요하게 부모 자식 구조 늘리지 않기 12. ScriptableObject 활용하기 13. 필요하지 않은 경우, 리턴하지 않기 14. new로 생성하는 부분 최대한 줄이기 15. 오브젝트 풀링 사용하기 16. 구조체 사용하기 17. 컬렉션 재사용하기 18. List 사용할 때 주의할 점 19. StringBuilder 사용하기 20. LINQ 사용 시 주의하기 21. 박싱, 언박싱 피하기 23. Enum HasFlag() 박싱 이슈 24. 비싼 수학 계산 피하기 25. Camera.main 26. 벡터 연산 시 주의사항","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 스크립트 최적화","dateModified":"2021-10-29T18:06:19+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목차 1. GetComponent(), Find() 메소드 사용 줄이기 2. GetComponent() 대신 TryGetComponent() 사용하기 3. Object.name, GameObject.tag 사용하지 않기 4. 비어있는 유니티 이벤트 메소드 방치하지 않기 5. StartCoroutine() 자주 호출하지 않기 6. 코루틴의 yield 캐싱하기 7. 메소드 호출 줄이기 8. 참조 캐싱하기 9. 빌드 이후 Debug.Log() 사용하지 않기 10 Transform 변경은 한번에 11. 불필요하게 부모 자식 구조 늘리지 않기 12. ScriptableObject 활용하기 13. 필요하지 않은 경우, 리턴하지 않기 14. new로 생성하는 부분 최대한 줄이기 15. 오브젝트 풀링 사용하기 16. 구조체 사용하기 17. 컬렉션 재사용하기 18. List 사용할 때 주의할 점 19. StringBuilder 사용하기 20. LINQ 사용 시 주의하기 21. 박싱, 언박싱 피하기 23. Enum HasFlag() 박싱 이슈 24. 비싼 수학 계산 피하기 25. Camera.main 26. 벡터 연산 시 주의사항","datePublished":"2021-02-04T19:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-opt-script-optimization/"},"url":"https://rito15.github.io/posts/unity-opt-script-optimization/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 스크립트 최적화","dateModified":"2021-11-03T16:11:30+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,17 +421,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Fri, Oct 29, 2021,  6:06 PM +0900"
+    title="Wed, Nov  3, 2021,  4:11 PM +0900"
   >
 
   
   
 
   
-    Oct 29
+    Nov  3
   
 
-  <i class="unloaded">2021-10-29T18:06:19+09:00</i>
+  <i class="unloaded">2021-11-03T16:11:30+09:00</i>
 
 </span>
           </span>
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8730 words">48 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8791 words">48 min</span>
 
 
           <!-- page views -->
@@ -1003,6 +1003,8 @@
 
 <p>그런데 트랜스폼이 여러 자식 트랜스폼들을 갖고 있는 경우, 자식 트랜스폼도 함께 변경된다.</p>
 
+<p>트랜스폼의 변경 자체는 그리 큰 연산이 아닐 수 있으나, 한 번에 이루어질 수 있는 연산을 여러 번 하는 것은 당연히 그만큼의 성능 저하로 이어진다.</p>
+
 <p>따라서 벡터로 미리 담아두고 최종 계산 이후, 트랜스폼에 단 한 번만 변경을 지정하는 것이 좋다.</p>
 
 <p>또한 position과 rotation을 모두 변경해야 하는 경우 <code class="language-plaintext highlighter-rouge">SetPositionAndRotation()</code> 메소드를 사용하는 것이 좋다.</p>
@@ -1184,6 +1186,7 @@
 <hr />
 <ul>
   <li><a href="http://clarkkromenaker.com/post/csharp-structs/">http://clarkkromenaker.com/post/csharp-structs/</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/choosing-between-class-and-struct">https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/choosing-between-class-and-struct</a></li>
 </ul>
 
 <p>동일한 데이터를 하나는 구조체, 하나는 클래스로 작성할 경우 클래스는 참조를 위해 8~24 바이트의 추가적인 메모리를 필요로 한다.</p>
@@ -1200,7 +1203,7 @@
 
 <p>스택에 할당된다는 것, 힙에 할당된다는 것은 무엇일까?</p>
 
-<p>스택은 지역 메모리, 힙은 동적 메모리라고 할 수 있다.</p>
+<p>스택은 지역 메모리, 힙은 전역 메모리라고 할 수 있다.</p>
 
 <p>모든 <strong>Value Type</strong>(int, float, … , struct) 지역 변수는 스택에 저장된다.</p>
 
@@ -2013,6 +2016,16 @@
         
         
         
+        <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
         
@@ -2024,16 +2037,6 @@
         
         
         <li><a href="/posts/cs-list-foreach-code/">(Shorts) C# - Foreach가 실제로 생성하는 소스코드</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-memo-find-internal-path/">C# - 하위 폴더, 파일들의 절대 경로 찾기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-null-check-trick/">C# - 간단한 트릭 - 널 체크</a></li>
       
 
       </ul>
