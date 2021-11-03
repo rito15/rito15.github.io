@@ -43,7 +43,7 @@ mermaid: true
 ---
 GetComponent, Find, FindObjectOfType 등의 메소드는 자주 호출될 경우 성능에 악영향을 끼친다.
 
-따라서 객체 참조가 필요할 때마다 Update에서 Get, Find 메소드들을 호출하는 방식은 지양하고,
+따라서 객체 참조가 필요할 때마다 `Update()`에서 Get, Find 메소드들을 호출하는 방식은 지양하고,
 
 최대한 Awake, Start 메소드에서 Get, Find 메소드들을 통해 객체들을 필드에 캐싱하여 사용해야 한다.
 
@@ -88,6 +88,12 @@ private void Update()
 하지만 `TryGetComponent()`를 이용하면 GC 걱정 없이 깔끔하게 사용할 수 있으며,
 
 할당 성공 여부를 `bool` 타입으로 리턴받을 수 있다.
+
+<br>
+
+`TryGetComponent()` 메소드는 유니티 **2019.2** 버전부터 사용할 수 있다.
+
+이전 버전까지는 그대로 `GetComponent()`를 사용하면 된다.
 
 <br>
 
@@ -284,7 +290,7 @@ void Update()
 
 ### 1. 해당 메소드 호출의 결괏값이 범위 내에서 달라질 수 있는 경우
 
-- IsFullyActive(transform)을 호출할 때마다 결과가 다를 수 있다면, 위처럼 사용하면 된다.
+- `IsFullyActive(transform)`를 호출할 때마다 결과가 다를 수 있다면, 위처럼 사용하면 된다.
 
 <br>
 
@@ -324,9 +330,9 @@ void Update()
 
 이런 경우다.
 
-프로퍼티는 필드가 아니다. 필드처럼, 혹은 메소드처럼 사용할 수 있는 참조다.
+프로퍼티는 필드가 아니다. 필드처럼 호출할 수 있는 메소드다.
 
-그리고 실제로 내부적으로는 Setter, Getter 메소드로 이루어져 있으며,
+실제로 내부적으로는 Setter, Getter 메소드로 이루어져 있으며,
 
 당연히 메소드 호출만큼의 오버헤드가 발생한다.
 
@@ -336,11 +342,11 @@ void Update()
 
 따라서 이를 자주 호출해야 하는 경우에는 미리 참조로 캐싱해두는 것이 좋다.
 
-예전보다 나아졌긴 하지만 심지어 Camera.main도 필드 참조보다 훨씬 비싸다.
+예전보다 나아졌긴 하지만 심지어 `Camera.main`도 필드 참조보다 훨씬 비싸다.
 
 메인 카메라로 등록된 참조를 바로 가져오는 친절한 친구가 아니라,
 
-내부적으로 `FindMainCamera` 메소드 호출을 통해 "MainCamera" 태그가 붙은 카메라들 중에 현재 렌더링을 담당하고 있는 카메라를 가져오는 프로퍼티다.
+내부적으로 `FindMainCamera()` 메소드 호출을 통해 "MainCamera" 태그가 붙은 카메라들 중에 현재 렌더링을 담당하고 있는 카메라를 가져오는 프로퍼티다.
 
 그래서 이렇게,
 
@@ -374,11 +380,11 @@ void Update()
 
 자주 호출하는 프로퍼티, 참조들은 최대한 해당 타입 그대로 필드에 담아 사용하는 것이 좋다.
 
-Time.deltaTime도 캐싱하는 것은 과하다고 생각할 수 있는데,
+`Time.deltaTime`도 캐싱하는 것은 과하다고 생각할 수 있는데,
 
-Time.deltaTime 또한 내부 메소드 호출로 구현되어 있다.
+`Time.deltaTime` 또한 내부 메소드 호출로 구현되어 있다.
 
-여러 군데, 수십 군데에서 Time.deltaTime을 그대로 항상 호출하여 사용하면 그만큼의 메소드 호출 비용이 발생하는 것이니 항상 Update() 최상단에서 캐싱해서 사용하는 것이 좋다.
+여러 군데, 수십 군데에서 `Time.deltaTime`을 그대로 항상 호출하여 사용하면 그만큼의 메소드 호출 비용이 발생하는 것이니 항상 `Update()` 최상단에서 캐싱해서 사용하는 것이 좋다.
 
 <br>
 
@@ -442,7 +448,7 @@ position, rotation, scale을 한 메소드 내에서 여러 번 변경할 경우
 
 객체의 수에 관계 없이 동일 데이터는 단 하나만 존재하게 되어 메모리를 절약할 수 있다.
 
-참고 : 경량 패턴(Flyweight Pattern)
+참고 : **경량 패턴(Flyweight Pattern)**
 
 <br>
 
@@ -564,7 +570,7 @@ private void Caller()
 
 그리고 구조체는 크기에 관계없이 항상 스택에, 클래스는 힙에 할당된다.
 
-16byte를 초과한다고 해서 구조체가 힙에 할당된다는 루머를 본적이 있는데, 사실이 아니다.
+16byte를 초과하는 구조체가 힙에 할당된다는 루머를 본적이 있는데, 사실이 아니다.
 
 <br>
 
@@ -734,14 +740,16 @@ C#의 가변 배열인 `List<T>`는 내부적으로 배열로 구현되어 있�
 
 # StringBuilder 사용하기
 ---
-스트링의 연결(a + b)이 자주 발생하는 경우, StringBuilder.Append()를 활용하는 것이 좋다.
+스트링의 연결(String Concatenation) 또는 다른 타입 값을 문자열에 합치는 스트링 포맷팅(String Formatting)이 자주 발생하는 경우, `StringBuilder`를 활용하는 것이 좋다.
 
 ```cs
 string a = "a1";
 a = "a2";
 ```
 
-스트링에 상수 문자열을 초기화 하는 것은 GC를 호출하지 않지만,
+스트링에 상수 문자열을 초기화 하는 것은 가비지를 생성하지 않지만,
+
+<br>
 
 ```cs
 string strA = "a";
@@ -750,17 +758,34 @@ string strB = "b";
 strA = "a" + "b";
 strA = strA + strB;
 strA = $"{strB}c";
+
+string formatted1 = $"{123} + {234} = {357}";
+string formatted2 = string.Format("{0} + {1} = {2}", 123, 234, 357);
 ```
 
-스트링끼리 연결하는 경우에는 가비지를 생성한다.
+스트링끼리 연결하거나 스트링 포맷팅을 통해 런타임에 새로운 스트링을 만드는 경우에는 가비지가 생성된다.
+
+<br>
 
 ```cs
-StringBuilder sb = new StringBuilder("");
-sb.Append("a");
-sb.Append("b");
+StringBuilder sb = new StringBuilder(100);
+sb
+    .Append(123)
+    .Append(" + ")
+    .Append(234)
+    .Append(" = ")
+    .Append(357);
+    
+string sbString = sb.ToString();
 ```
 
-따라서 이렇게 StringBuilder를 사용하는 것이 좋다.
+따라서 이렇게 `StringBuilder`를 사용하는 것이 좋다.
+
+그렇다고 `StringBuilder` 객체를 매번 생성하면 이 또한 가비지가 되므로,
+
+`StringBuilder` 객체는 한 번만 생성하여
+
+`.Clear()`로 내부를 초기화하면서 항상 재사용해야 한다.
 
 <br>
 
@@ -797,6 +822,16 @@ sb.Append("b");
 
 <br>
 
+솔직히 `LINQ` 때문에, 혹은 다른 이유로 가비지가 많이 생성된다고 해서 '그 즉시' 문제가 발생하지는 않는다.
+
+하지만 게임 플레이 도중 영문을 모르게 느닷없는 프리징(멈춤)이 발생하고,
+
+프로파일링을 해봤더니 `GC.Collect()`가 반갑게 맞아주고 있다면
+
+업보가 돌아왔다고 생각하면 된다.
+
+<br>
+
 # 박싱, 언박싱 피하기
 ---
 
@@ -813,7 +848,7 @@ public static class Debug
 }
 ```
 
-유니티 엔진을 사용하면서 가장 친숙한 메소드인 Debug.Log()이다.
+유니티 엔진을 사용하면서 가장 친숙한 메소드인 `Debug.Log()`이다.
 
 그리고 항상 박싱이 발생하는 대표적인 예시라고 할 수 있다.
 

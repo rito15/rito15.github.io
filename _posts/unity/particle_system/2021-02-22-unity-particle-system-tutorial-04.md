@@ -171,7 +171,7 @@ mermaid: true
 
 - 각 파티클들의 색상 및 투명도를 지정한다.
 
-- 예시 : Start Color [White] vs [Yellow]
+- 예시 : Start Color [White] vs [Red]
 
 ![2021_0222_Particle_Color_White_Red](https://user-images.githubusercontent.com/42164422/108685403-731f1500-7537-11eb-901a-943eb86afbf7.gif){:.normal}
 
@@ -329,8 +329,15 @@ mermaid: true
 
 - 파티클의 개수가 Max Particles에 도달했을 때 재활용하는 방식을 결정한다.
 
-- Disabled : 수명을 다한 파티클을 제거한다. 메모리를 가장 아낄 수 있다.
+- Disabled : Ring Buffer Mode를 비활성화하여, 수명을 다한 파티클을 제거한다. 메모리를 가장 아낄 수 있다.
 
 - Pause Until Replaced : 수명을 다한 파티클을 일시정지 상태로 보존하다가 Max Particles에 도달 시 재활용한다.
 
 - Loop Until Replaced : 수명을 다한 파티클을 바로 새로 생성되는 파티클에 재활용시킨다.
+
+<br>
+
+
+# References
+---
+- <https://docs.unity3d.com/kr/2019.3/Manual/PartSysMainModule.html>
