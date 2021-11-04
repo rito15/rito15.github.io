@@ -1,5 +1,5 @@
 ---
-title: 유니티 에디터 - 게임 뷰 객체 찾기
+title: 유니티 에디터 - 게임 뷰 객체 찾는 코드
 author: Rito15
 date: 2021-11-05 02:10:00 +09:00
 categories: [Unity, Unity Editor Memo]

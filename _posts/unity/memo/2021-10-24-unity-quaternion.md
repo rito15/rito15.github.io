@@ -8,8 +8,10 @@ math: true
 mermaid: true
 ---
 
-# Note : 회전에 대한 정의
+# Note
 ---
+
+## **회전에 대한 정의**
 
 공간은 표준 기저 벡터의 집합에 의해 정의될 수 있다.
 
@@ -181,7 +183,7 @@ Quaternion.FromToRotation(Vector3 from, Vector3 to)
 
 ## **[4] Z, Y 표준 기저 변환**
 
-- 기존 공간의 +Z 기저가 `forward`를, +Y 기저가 `upwards`을 향하도록 회전시키는 쿼터니언을 정의한다.
+- 기존 공간의 +Z 기저가 `forward`를, +Y 기저가 `upwards`를 향하도록 회전시키는 쿼터니언을 정의한다.
 - 캐릭터가 대상을 바라보도록 할 때 자주 사용된다.
 
 ```cs
