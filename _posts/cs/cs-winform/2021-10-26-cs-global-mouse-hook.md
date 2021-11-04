@@ -25,8 +25,8 @@ namespace Rito
              - 마우스 누름, 뗌, 휠 올림/내림, 휠클릭 이벤트 글로벌 후킹
 
          [메소드]
-            - 후킹 시작 : Begin()
-            - 후킹 종료 : End()
+            - 후킹 시작 : Start()
+            - 후킹 종료 : Stop()
             - 핸들러 추가 : Mouse~, Middle~, Left~, Right~ 이벤트 핸들러에 메소드 등록
             - 마우스 현재 위치 받아오기 : GetCursorPosition()
             - 마우스 이벤트 발생시키기  : Force~()
@@ -142,7 +142,7 @@ namespace Rito
 
         ~GlobalMouseHook()
         {
-            End();
+            Stop();
         }
 
         private IntPtr SetHook(MouseHookProc proc)
@@ -228,7 +228,7 @@ namespace Rito
         ***********************************************************************/
         #region .
         /// <summary> 마우스 후킹 시작 </summary>
-        public void Begin()
+        public void Start()
         {
             // CAS
             if (System.Threading.Interlocked.CompareExchange(ref _isHooking, TRUE, FALSE) == TRUE)
@@ -238,7 +238,7 @@ namespace Rito
             hookID = SetHook(mouseHookProc);
         }
         /// <summary> 마우스 후킹 종료 </summary>
-        public void End()
+        public void Stop()
         {
             // CAS
             if (System.Threading.Interlocked.CompareExchange(ref _isHooking, FALSE, TRUE) == FALSE)
