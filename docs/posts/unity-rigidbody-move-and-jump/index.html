@@ -26,8 +26,8 @@
 <meta property="og:title" content="유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Source Code" />
-<meta property="og:description" content="Source Code" />
+<meta name="description" content="Note 입력은 Update(), 물리 처리는 FixedUpdate()로 철처히 구분하는 것이 핵심" />
+<meta property="og:description" content="Note 입력은 Update(), 물리 처리는 FixedUpdate()로 철처히 구분하는 것이 핵심" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Source Code","datePublished":"2021-11-04T20:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-rigidbody-move-and-jump/"},"url":"https://rito15.github.io/posts/unity-rigidbody-move-and-jump/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드","dateModified":"2021-11-04T20:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note 입력은 Update(), 물리 처리는 FixedUpdate()로 철처히 구분하는 것이 핵심","datePublished":"2021-11-04T20:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-rigidbody-move-and-jump/"},"url":"https://rito15.github.io/posts/unity-rigidbody-move-and-jump/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드","dateModified":"2021-11-04T20:30:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="209 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="331 words">1 min</span>
 
 
           <!-- page views -->
@@ -423,12 +423,25 @@
 
         
 
-        <h1 id="source-code">Source Code</h1>
+        <h1 id="note">Note</h1>
 <hr />
-
 <ul>
-  <li>기본 중의 기본 코드</li>
+  <li>
+    <p>입력은 <code class="language-plaintext highlighter-rouge">Update()</code>, 물리 처리는 <code class="language-plaintext highlighter-rouge">FixedUpdate()</code>로 철처히 구분하는 것이 핵심</p>
+  </li>
+  <li>
+    <p>다음과 같은 증상들이 발생한다면 <code class="language-plaintext highlighter-rouge">Update()</code>에서 모든 물리 처리를 하고 있는지 의심할 필요가 있다.</p>
+    <ul>
+      <li>왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.</li>
+      <li>콜라이더에 자주 끼인다.</li>
+      <li>지터링(덜덜 떨림)이 빈번하게 발생한다.</li>
+      <li>점프할 때마다 점프하는 높이가 달라진다.</li>
+    </ul>
+  </li>
 </ul>
+
+<h1 id="source-code">Source Code</h1>
+<hr />
 
 <!--
 https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button-to-your-jekyll-blog/
@@ -693,6 +706,11 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         
+        <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
       
         
@@ -703,17 +721,12 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         
-        <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
-      
-        
-        
-        
         <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
       
         
         
         
-        <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
+        <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
       
 
       </ul>
@@ -4235,6 +4248,19 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8769,9 +8795,9 @@ private class DoubleKeyPressDetection
   
 
   
-  <span class="btn btn-outline-primary disabled">
-    <p>-</p>
-  </span>
+  <a href="/posts/unity-editor-find-game-view/" class="btn btn-outline-primary">
+    <p>유니티 에디터 - 게임 뷰 객체 찾기</p>
+  </a>
   
 
 </div>

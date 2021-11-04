@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-11-04T21:02:55+09:00</updated>
+  <updated>2021-11-05T03:12:07+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,69 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 에디터 - 게임 뷰 객체 찾기</title>
+    <link href="https://rito15.github.io/posts/unity-editor-find-game-view/" rel="alternate" type="text/html" title="유니티 에디터 - 게임 뷰 객체 찾기" />
+    <published>2021-11-05T02:10:00+09:00</published>
+  
+    <updated>2021-11-05T02:10:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-editor-find-game-view/</id>
+    <content src="https://rito15.github.io/posts/unity-editor-find-game-view/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Editor Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Note
+
+
+  흔히 게임 뷰라고 알려져 있는 에디터 윈도우는 UnityEditor.PlayModeView 타입이다.
+  리플렉션을 통해 접근할 수 있다.
+
+
+
+
+Source Code
+
+
+
+
+
+  
+
+
+private static Type GameViewType
+{
+    get
+    {
+        if (gameViewType == null)
+        {
+            gameViewType =
+                AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(ass =&amp;gt; ass.GetTypes())
+                .Where(t =&amp;gt; t.Namespace == "UnityEd...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -48,11 +111,24 @@
 
 
 
-      Source Code
+      Note
 
 
+  
+    입력은 Update(), 물리 처리는 FixedUpdate()로 철처히 구분하는 것이 핵심
+  
+  
+    다음과 같은 증상들이 발생한다면 Update()에서 모든 물리 처리를 하고 있는지 의심할 필요가 있다.
+    
+      왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.
+      콜라이더에 자주 끼인다.
+      지터링(덜덜 떨림)이 빈번하게 발생한다.
+      점프할 때마다 점프하는 높이가 달라진다.
+    
+  
 
-  기본 중의 기본 코드
+
+Source Code
 
 
 
@@ -66,16 +142,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(Rigidbody))]
-public class InputAndPhysicsMove : MonoBehaviour
-{
-    private Vector3 moveDir;
-    private bool isMoving = false;
-    private bool isJumpRequired = false;
-    private Rigidbody rb;
-
-    [SerializeField, Range(0f, 100f)]
-    p...
+[RequireComponent(ty...
     </summary>
   
 
@@ -316,66 +383,6 @@ AABB 여섯 면 위의 가장 가까운 점을 찾는다.
 
 
 위의...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# - Global Mouse Hook</title>
-    <link href="https://rito15.github.io/posts/cs-global-mouse-hook/" rel="alternate" type="text/html" title="C# - Global Mouse Hook" />
-    <published>2021-10-26T03:56:00+09:00</published>
-  
-    <updated>2021-11-04T16:09:07+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-global-mouse-hook/</id>
-    <content src="https://rito15.github.io/posts/cs-global-mouse-hook/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Winform" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Source Code
-
-
-
-
-
-  
-
-
-using System;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
-using System.Threading;
-
-namespace Rito
-{
-    /*
-         [기능]
-             - 마우스 누름, 뗌, 휠 올림/내림, 휠클릭 이벤트 글로벌 후킹
-
-         [메소드]
-            - 후킹 시작 : Start()
-            - 후킹 종료 : Stop()
-            - 핸들러 추가 : Mouse~, Middle~, Left~, Right~ 이벤트 핸들러에 메소드 등록
-            - 마우스 현재 위치 받아오기 : GetCurso...
     </summary>
   
 

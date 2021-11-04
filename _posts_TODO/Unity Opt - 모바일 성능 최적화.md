@@ -3,7 +3,15 @@ TITLE : 유니티 - 모바일 성능 최적화
 
 
 https://www.youtube.com/watch?v=RLcSRuZsZQU
-13:40 보는중
+29:17 보는중
+
+# NOTE
+---
+
+- 꾸준히 내용 업데이트 예정
+
+<br>
+
 
 
 
@@ -174,15 +182,98 @@ https://www.youtube.com/watch?v=RLcSRuZsZQU
 <br>
 
 
+
 # 렌더 파이프라인 선택
 ---
 
 - 모바일은 `URP`(Universal Render Pipeline)를 선택하는 것이 성능 상 좋다.
 
+- 기본 파이프라인에 비해 여러 개의 동적 라이트에 대해 드로우 콜을 절약할 수 있다.
 
+<br>
+
+
+
+# 그래픽 최적화
+---
+
+## **라이트(Light)**
+- 만약 `URP`를 사용한다고 해도 동적 라이트는 성능 영향이 큰 편이므로 최소화해야 한다.
+- 정적인 오브젝트에는 라이트맵, 동적 오브젝트에는 라이트 프로브를 최대한 활용하는 것이 성능을 위해 좋다.
+
+<br>
+
+## **그림자(Shadow)**
+- 유니티 엔진의 동적(실시간) 그림자는 쉐도우 맵(Shadow Map) 방식을 사용한다.
+- 실시간 그림자를 사용하면 드로우 콜, GPU 성능 소모를 생각보다 많이 발생시킨다.
+- 따라서 그림자는 웬만하면 최대한 줄이거나 안쓰는 것이 좋다.
+
+<br>
+
+## **정적 배칭(Static Batching)**
+- <https://docs.unity3d.com/kr/current/Manual/DrawCallBatching.html>
+
+- 게임 내에서 배경 프랍과 같이 항상 변하지 않는 오브젝트는 정적 배칭을 통해 최적화할 수 있다.
+- 인스펙터의 우측 상단에서 `Batching Static`에 체크한다.
+- 정적 배칭 대상 메시들은 하나의 메시로 합쳐지며, 그만큼 새로운 메시를 생성해야 하므로 메모리를 더 소모한다.
+- 대신 하나의 메시로 합쳐진 만큼 한 번의 드로우 콜로 그려낼 수 있다. <br>
+  (메시의 한계 수용량을 넘어설 경우, 여러 개의 메시로 각각 통합될 수 있다.)
+
+> + 동적 배칭? <br>
+> 동적 배칭은 딱히 의미 없고, 동적 오브젝트에 대해서는 GPU Instancing을 알아보는 것이 좋다.
+
+<br>
+
+## **LOD(Level of Detail)**
+- <https://docs.unity3d.com/kr/current/Manual/class-LODGroup.html>
+- <https://chulin28ho.tistory.com/264>
+
+- 같은 모델링에 대해, 원본 메시와 단순화된 버전의 메시를 준비한다.
+- `LOD Group` 컴포넌트를 통해 거리가 가까우면 원본 메시, 멀리 떨어져 있으면 단순화된 메시를 보여줄 수 있다.
+
+<br>
+
+## 오클루전 컬링(Occlusion Culling)**
+- <https://docs.unity3d.com/kr/current/Manual/OcclusionCulling.html>
+- 정적 오브젝트에 해당하는 최적화 방법
+- 오브젝트가 다른 오브젝트에 의해 완전히 가려질 경우 화면에 렌더링되지 않도록 컬링하는 기법
+
+- 건물, 담벼락처럼 부피가 꽤 있어서 다른 오브젝트를 가릴 가능성이 많은 오브젝트는 `Occluder Static`으로 설정한다. <br>
+  (`Occludee Static`도 함께 설정해도 된다.)
+- 작은 프랍과 같이 가려질 가능성이 많은 오브젝트는 `Occludee Static`으로 설정한다.
+- `Window` - `Rendering` - `Occlusion Culling` 창에서 베이크할 수 있다.
+
+- 오브젝트끼리 서로 가리는 경우가 빈번하지 않은 야외의 씬에서는 오히려 오클루전 컬링이 비효율적일 수 있다.
 
 
 <br>
+
+# 모바일 기기 최적화
+---
+
+## **해상도 설정**
+- 기기별로 해상도는 천차만별일 수 있다.
+- 따라서 해상도가 너무 높은 경우에는 괜히 성능상 손해를 보게될 수 있으므로, <br>
+  `Screen.SetResolution(width, height, false)` 메소드를 통해 적절한 수준으로 조절해야 한다.
+
+- 해상도를 낮추면 UI 역시 해상도가 낮아지므로 품질이 떨어져 보일 수 있다.
+- 따라서 이런 경우에는 오버레이 UI만 원래 해상도대로 그려줘야 하는데, <br>
+  이를 업스케일 샘플링(**Upscale Sampling**)을 통해 해결할 수 있다.
+
+- `URP`에서는 이런 기능을 기본적으로 제공한다.
+- `URP`에서는 굳이 `SetResolution()` 메소드를 사용하지 않아도 <br>
+  `URP Asset` - `Quality` - `Render Scale` 설정을 통해 <br>
+  오버레이 UI를 제외한 게임 화면의 해상도를 낮출 수 있다.
+
+- <https://github.com/ozlael/UpsamplingRenderingDemo>
+- 레거시 파이프라인에서는 위의 예제처럼 카메라의 렌더 텍스쳐 해상도를 낮추는 방식을 사용하면 된다.
+
+- 그리고 왠지 모르겠지만 예제 코드에서는 굳이 RawImage 컴포넌트를 캔버스 아래에 넣고 그 이미지를 렌더 타겟으로 이용하는데, 그럴 필요는 없다. <br>
+  거기다가 샘플링 스케일을 변경할 때마다 렌더 타겟을 새로 생성하고 안지워주는데, 이러면 메모리에 계속 쌓이므로 반드시 이전 렌더 타겟을 지워줘야 한다.
+
+<br>
+
+
 
 # References
 ---
