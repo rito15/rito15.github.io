@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-11-02T21:16:11+09:00</updated>
+  <updated>2021-11-04T21:02:55+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,69 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드</title>
+    <link href="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" rel="alternate" type="text/html" title="유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드" />
+    <published>2021-11-04T20:30:00+09:00</published>
+  
+    <updated>2021-11-04T20:30:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-rigidbody-move-and-jump/</id>
+    <content src="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo - Shorts" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Source Code
+
+
+
+  기본 중의 기본 코드
+
+
+
+
+
+  
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+[RequireComponent(typeof(Rigidbody))]
+public class InputAndPhysicsMove : MonoBehaviour
+{
+    private Vector3 moveDir;
+    private bool isMoving = false;
+    private bool isJumpRequired = false;
+    private Rigidbody rb;
+
+    [SerializeField, Range(0f, 100f)]
+    p...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -264,7 +327,7 @@ AABB 여섯 면 위의 가장 가까운 점을 찾는다.
     <link href="https://rito15.github.io/posts/cs-global-mouse-hook/" rel="alternate" type="text/html" title="C# - Global Mouse Hook" />
     <published>2021-10-26T03:56:00+09:00</published>
   
-    <updated>2021-10-26T03:56:00+09:00</updated>
+    <updated>2021-11-04T16:09:07+09:00</updated>
   
     <id>https://rito15.github.io/posts/cs-global-mouse-hook/</id>
     <content src="https://rito15.github.io/posts/cs-global-mouse-hook/" />
@@ -309,73 +372,10 @@ namespace Rito
              - 마우스 누름, 뗌, 휠 올림/내림, 휠클릭 이벤트 글로벌 후킹
 
          [메소드]
-            - 후킹 시작 : Begin()
-            - 후킹 종료 : End()
+            - 후킹 시작 : Start()
+            - 후킹 종료 : Stop()
             - 핸들러 추가 : Mouse~, Middle~, Left~, Right~ 이벤트 핸들러에 메소드 등록
-            - 마우스 현재 위치 받아오기 : GetCursor...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>C# - Global Key Hook</title>
-    <link href="https://rito15.github.io/posts/cs-global-key-hook/" rel="alternate" type="text/html" title="C# - Global Key Hook" />
-    <published>2021-10-26T03:55:00+09:00</published>
-  
-    <updated>2021-10-26T03:55:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/cs-global-key-hook/</id>
-    <content src="https://rito15.github.io/posts/cs-global-key-hook/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="C#" />
-    
-    <category term="C# Winform" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Source Code
-
-
-
-
-
-  
-
-
-using System;
-using System.Linq;
-using System.Windows.Forms;
-
-namespace Rito
-{
-    /* 
-        [기능]
-            - 키 누름, 키 뗌 이벤트 글로벌 후킹
-
-        [프로퍼티]
-            - bool Shift   : Shift 키 누른 상태인지 여부
-            - bool Control : Control 키 누른 상태인지 여부
-            - bool Alt     : Alt 키 누른 상태인지 여부
-
-        [메소드]
-            - 후킹 시작 : Begin()
-            - 후킹 종료 : End()
-       ...
+            - 마우스 현재 위치 받아오기 : GetCurso...
     </summary>
   
 

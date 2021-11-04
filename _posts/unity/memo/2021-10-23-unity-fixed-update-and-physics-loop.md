@@ -40,18 +40,23 @@ while(...)
 
 이 게임 루프의 반복이 프레임의 진행을 의미한다.
 
-즉, `Update()`의 호출은 게임 루프의 반복에 대응된다.
-
-정확히는 게임 루프 내에서 매 반복마다 모든 `Update()`가 한 번씩 호출되는 것이다.
+즉, 게임 루프 내부를 한 번 실행하면 한 프레임이 지난 것이다.
 
 <br>
 
-```cpp
+그리고 `Update()`의 호출은 게임 루프의 1회 반복에 대응된다.
+
+정확히는 게임 루프 내에서 매 반복마다 모든 `Update()`가 한 번씩 호출되는 것이다.
+
+```cs
 // Game Loop
 while(...)
 {
     // ...
+    
     game->Update();
+    
+    // ...
 }
 ```
 
@@ -80,13 +85,28 @@ while(...)
 
 유니티 엔진은 프로그래머의 편의를 위해서 이런 방식을 채택했다고 한다.
 
+```cs
+// Unity Game Loop
+while(...)
+{
+    // ...
+    
+    foreach(var m in monoBehavioursWhoHaveUpdateMethod)
+    {
+        m.Update();
+    }
+    
+    // ...
+}
+```
+
 <br>
 
 그리고 `Update()` 내에서 단골로 호출되는 `Time.deltaTime`은
 
 게임 루프의 이전 수행과 현재 수행 간의 시간 간격을 저장한 값이다.
 
-이를 통해 비주기적으로 실행되는 게임 루프 이터레이션 간의 시간 보정을 해줄 수 있게 된다.
+이를 통해 비주기적으로 실행되는 게임 루프 반복 간의 시간 보정을 해줄 수 있게 된다.
 
 <br>
 
@@ -125,40 +145,38 @@ while(...)
 ```cs
 private void Update()
 {
-    Debug.Log($"Update : {Time.realtimeSinceStartup}");
+    Debug.Log($"Update [{Time.frameCount}] : {Time.realtimeSinceStartup}");
 }
 private void FixedUpdate()
 {
-    Debug.Log($"FixedUpdate : {Time.realtimeSinceStartup}");
+    Debug.Log($"FixedUpdate [{Time.frameCount}] : {Time.realtimeSinceStartup}");
 }
 ```
 
 <br>
 
-![image](https://user-images.githubusercontent.com/42164422/138500887-1e81b008-bb95-4e33-b91a-699376c77ca2.png)
+![image](https://user-images.githubusercontent.com/42164422/140308729-a347afda-e5dd-46dd-8801-df21fa5fc14b.png)
 
 이렇게 `FixedUpdate()`가 호출되지 않고 `Update()`만 연달아 호출되는 경우가 있는가 하면,
 
 
-![image](https://user-images.githubusercontent.com/42164422/138500649-b1e05bd5-1466-44db-b9f1-7192763a9e1a.png)
+![image](https://user-images.githubusercontent.com/42164422/140309024-d902ca99-206d-405a-b07d-c42185f48017.png)
 
 `Update()`와 다음 `Update()` 사이에 `FixedUpdate()`가 여러 번 호출되는 경우도 있다.
 
-두 메소드 호출의 주기가 다른 것을 감안하면 여기까지는 자연스럽다.
-
 <br>
 
-![image](https://user-images.githubusercontent.com/42164422/138501222-79fa956b-30aa-4ed4-a654-a9f9050dc6c7.png)
+두 메소드 호출의 주기가 다른 것을 감안하면 여기까지는 자연스러울 수 있으나,
 
-그런데 이걸 보면 뭔가 좀 이상하다는 것을 느낄 수 있다.
+자세히 보면 뭔가 좀 이상하다는 것을 느낄 수 있다.
 
-`FixedUpdate()`는 분명 `0.02`초마다 호출되어야 할텐데,
+`364`번째 프레임의 `Update()`와 `365`번째 프레임의 `Update()` 사이에,
 
-노랗게 표시된 `FixedUpdate()`의 호출 시간을 확인해보면
+`365`번째 프레임에서 `FixedUpdate()`가 **4번**이나 호출된 것이다.
 
-메소드 호출의 오버헤드에 따른 미세한 시간 격차가 있을 뿐이지
+심지어 `FixedUpdate()` 호출 시간 간격은
 
-아래쪽에 빨갛게 표시된 `Update()`의 호출 시간과 거의 동일하다.
+`Fixed Time Step`의 기본 값인 `0.02`초여야 할텐데, 그렇지도 않다.
 
 <br>
 
@@ -260,7 +278,7 @@ if the fixed time step is less than the actual frame update time.
 
 주기가 길어서 충돌 감지를 못하고 관통하는 것은 어쨌든 납득할 수 있다.
 
-하지만 실시간 성능 차이로 인해 언제는 충돌하고, 언제는 관통하게 되는,
+하지만 **Frame Rate** 차이로 인해 언제는 충돌하고, 언제는 관통하게 되는,
 
 심지어 타겟 기기마다의 성능 격차로 인해 전혀 다른 결과를 얻을 수도 있는
 
@@ -300,7 +318,7 @@ if the fixed time step is less than the actual frame update time.
 
 <br>
 
-무엇보다도 스레드 간의 데이터 동기화 문제가 가장 크다.
+무엇보다도 스레드 간의 데이터 동기화 문제가 가장 클 것이다.
 
 <br>
 
@@ -334,5 +352,7 @@ if the fixed time step is less than the actual frame update time.
 
 이렇게 되느니 `Physics Loop`를 게임 루프 내에서 실행하고,
 
-`deltaTime`에 따라 실행 횟수를 보정해주는 방식이 결국 최선의 선택이었던 것이다.
+`deltaTime`과 `fixedDeltaTime`의 관계에 따라
+
+실행 횟수를 보정해주는 방식이 결국 최선의 선택이었던 것으로 생각된다.
 

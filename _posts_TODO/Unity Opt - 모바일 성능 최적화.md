@@ -33,9 +33,9 @@ https://www.youtube.com/watch?v=RLcSRuZsZQU
 ---
 
 ## **이미지 파일 포맷**
+- <https://docs.unity3d.com/kr/current/Manual/class-TextureImporterOverride.html>
 - 이미지를 동일하게 저장할 수만 있다면, 이미지 파일 포맷(`JPG`, `PNG`, `TGA`, `PSD`, `PSB`, ...)은 딱히 최종적인 이미지 품질에 영향을 미치지 않는다.
 - 유니티에서 사용될 때 GPU 전용 압축 포맷(`ETC`, `ASTC`, `PVRTC`, ...)으로 변환되기 때문이다.
-- <https://docs.unity3d.com/kr/current/Manual/class-TextureImporterOverride.html>
 
 <br>
 
@@ -101,11 +101,16 @@ https://www.youtube.com/watch?v=RLcSRuZsZQU
 - 타겟 플랫폼이 iOS일 경우 기본적으로 사용되는 포맷
 - 텍스쳐의 해상도가 POT(2의 제곱수)여야 한다는 제약이 있으므로, 리소스 제작 시 신경써야 한다는 단점이 있다.
 
-
 <br>
+
+
 
 # 텍스쳐 임포트 설정
 ---
+- <https://docs.unity3d.com/kr/current/Manual/class-TextureImporter.html>
+- <https://docs.unity3d.com/kr/current/Manual/ImportingTextures.html>
+
+<br>
 
 ## **Read/Write Enabled**
 - <https://ozlael.tistory.com/82>
@@ -128,6 +133,52 @@ https://www.youtube.com/watch?v=RLcSRuZsZQU
 - 요약 : 3D 게임에서는 켜고, 2D 게임에서는 끄면 된다.
 
 <br>
+
+
+
+# 모델 임포트 설정
+---
+- <https://docs.unity3d.com/kr/current/Manual/class-FBXImporter.html>
+- <https://docs.unity3d.com/kr/current/Manual/FBXImporter-Model.html>
+
+<br>
+
+## **Mesh Compression**
+- 메시의 정밀도를 낮추고 메시 데이터를 압축한다.
+- 타겟 디바이스에 저장되는 메시의 크기를 줄이지만, 런타임 메시 크기에는 영향을 주지 않는다.
+- 압축비가 높을수록 부정확도가 높아져서 시각적 품질을 저하시킬 수 있다.
+
+<br>
+
+## **Read/Write Enabled**
+- 텍스쳐와 마찬가지로, 메시 데이터 역시 GPU 메모리에 저장된다.
+- 이 옵션을 설정하면 GPU 메모리뿐만 아니라 CPU 메모리에도 저장된다.
+- CPU를 통해 실시간으로 메시를 수정할 필요가 없다면 해제하는 것이 좋다.
+
+<br>
+
+## **Disable rigs and BlendShapes**
+- 메시가 Skeletal 또는 BlendShape(예: 표정) 애니메이션을 필요로 하지 않으면 설정한다.
+- 리깅 되지 않은 건물, 배경 메시인 경우 해당된다.
+
+<br>
+
+## **Normals**
+- 노멀 벡터를 전혀 필요로 하지 않는 경우(완벽한 Unlit), `None`으로 설정한다.
+
+<br>
+
+## **Tangents**
+- 노멀 맵을 사용하지 않는 경우, `None`으로 설정하면 된다.
+
+<br>
+
+
+# 렌더 파이프라인 선택
+---
+
+- 모바일은 `URP`(Universal Render Pipeline)를 선택하는 것이 성능 상 좋다.
+
 
 
 

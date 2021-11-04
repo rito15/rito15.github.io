@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C# - Global Mouse Hook" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Source Code","datePublished":"2021-10-26T03:56:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-global-mouse-hook/"},"url":"https://rito15.github.io/posts/cs-global-mouse-hook/","author":{"@type":"Person","name":"Rito15"},"headline":"C# - Global Mouse Hook","dateModified":"2021-10-26T03:56:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Source Code","datePublished":"2021-10-26T03:56:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cs-global-mouse-hook/"},"url":"https://rito15.github.io/posts/cs-global-mouse-hook/","author":{"@type":"Person","name":"Rito15"},"headline":"C# - Global Mouse Hook","dateModified":"2021-11-04T16:09:07+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -392,6 +392,35 @@
 
         <div>
           <!-- lastmod -->
+          
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Nov  4, 2021,  4:09 PM +0900"
+  >
+
+  
+  
+
+  
+    Nov  4
+  
+
+  <i class="unloaded">2021-11-04T16:09:07+09:00</i>
+
+</span>
+          </span>
           
 
           <!-- read time -->
@@ -1268,6 +1297,16 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         
+        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
+      
+        
+        
+        
         <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
       
         
@@ -1279,16 +1318,6 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
 
       </ul>
@@ -4810,6 +4839,19 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9244,11 +9286,9 @@ namespace Rito
 
 3. 필드, 메소드 추가
 
-1
-2
-3
-4
-...
+
+  
+    ...
               </p>
             </div>
           </div>
@@ -9258,7 +9298,7 @@ namespace Rito
       
       
       <div class="card">
-        <a href="/posts/unity-snow-pile-and-clear/">
+        <a href="/posts/unity-amplify-electricity-shader/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9275,13 +9315,13 @@ namespace Rito
   
 
   
-    Aug 10
+    Aug 14
   
 
-  <i class="unloaded">2021-08-10T23:23:00+09:00</i>
+  <i class="unloaded">2021-08-14T09:09:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Snow Pile &amp; Clear (Plane에 눈 쌓기, 지우기)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(Amplify) Electricity Shader</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9293,11 +9333,21 @@ namespace Rito
                 Summary
 
 
+
+  표면에 전기가 맴도는 효과
+
+
+
+
+Note
+
+
+
   
-    파티클이 닿는 지점에 눈 쌓기
+    포스트프로세싱 Bloom을 넣어 주는 것이 좋다.
   
   
-    쌓인 눈 지우기
+    최적화를 위해서는 Noise Generator 노드 대신 노이즈 텍스쳐를 사용해야 한다.
   
 
 
@@ -9306,31 +9356,25 @@ namespace Rito
 Preview
 
 
-[1] 쌓기
 
 
 
 
 
 
-[2] 지우기
+Properties
 
 
 
 
 
 
-Details
+Settings
 
 
-[1] Ground 쉐이더
+General
 
-
-  
-    메인 텍스쳐의 색상을 그대로 최종 색상으로 출력한다.
-  
-  
-    메인 텍스쳐의 rgb 값 중 하나를 Height...
+  ...
               </p>
             </div>
           </div>
