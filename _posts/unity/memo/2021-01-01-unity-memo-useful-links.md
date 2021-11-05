@@ -67,11 +67,66 @@ pin: true
 
 
 
-# 유니티 관련 강좌, 정보
+# 유니티 강좌, 정보
 ---
 
 ## **유니티 코리아 유튜브**
 - <https://www.youtube.com/c/UnityKoreaHi/playlists>
+
+## **유니티 C# 소스코드**
+- <https://github.com/Unity-Technologies/UnityCsReference>
+
+## **HDRP**
+- [Dev Weeks : HDRP Environment settings and Look dev](https://www.youtube.com/watch?v=n5NzQfpVb54)
+- [Dev Weeks: HDRP Lighting의 종류와 이해](https://www.youtube.com/watch?v=5P7fyMqywxc)
+
+- [Unite Now: HDRP로 정확도 높은 게임 그래픽스 구현하기](https://www.youtube.com/watch?v=FpmBAilRoBE)
+- [Unite Now 2020 : Lighting and rendering tutorial for HDRP](https://www.youtube.com/watch?v=yqCHiZrgKzs)
+
+- [HDRP Interior Lighting 1. Basic Setting](https://www.youtube.com/watch?v=KSzpQo_LJak)
+- [HDRP Interior Lighting 2. Light Setting](https://www.youtube.com/watch?v=3eUNCqSj8hY)
+- [HDRP Interior Lighting 3. HDRP Volumetric Lighting](https://www.youtube.com/watch?v=OaOdsh7qL0w)
+
+## **DOTS**
+- [Unite Seoul 2019 : 이재호 - DOTS란 무엇인가?](https://www.youtube.com/watch?v=OLCf8nlMJ_U)
+- [DOTS란 무엇인가?](https://www.youtube.com/watch?v=hAp5nx2_Hpg)
+- [Dev Weeks: Pong 게임을 통해 배워보는 DOTS](https://www.youtube.com/watch?v=fl1Acgc3L9o)
+- <https://github.com/Unity-Technologies/DOTS-training-samples>
+
+## **시네머신(Cinemachine)**
+- [유니티짱과 함께하는 시네머신 튜토리얼](https://www.youtube.com/watch?v=0uDROvxOQ0w)
+- [유니티로 시네마틱 제작하기 : 타임라인 ＆ 시네머신](https://www.youtube.com/watch?v=6uWa3JnL2hk)
+- [Dev Weeks: 스마트한 카메라 시스템, 시네머신 파헤치기](https://www.youtube.com/watch?v=2oOIp22Y11U)
+- [Dev Weeks: 타임라인 ＆ 시네머신](https://www.youtube.com/watch?v=N5ql64AFZ28)
+- [유니티 시네머신 기능 - Dolly Track 간단히 배워보자](https://www.youtube.com/watch?v=gpELHh7iIV4)
+
+## **어드레서블(Addressable)**
+- [Unite Seoul 2017 - 에셋번들 실용 가이드](https://www.youtube.com/watch?v=Z9LrkQUDzJw)
+- [워크플로 속도 향상을 위한 기능 소개 - 어드레서블](https://www.youtube.com/watch?v=-B_jcrrWMdA)
+- [Unite Seoul 2019 - 어드레서블 에셋 시스템 소개](https://www.youtube.com/watch?v=yoBzTpJYN44)
+- [Unite Seoul 2020 - Addressables 사용 가이드](https://www.youtube.com/watch?v=EP3pvPAcHSo)
+- [감귤오렌지 - Unity Addressable(Playlist)](https://www.youtube.com/playlist?list=PLmRK0lH8TNCo7K4xmLpEov4llbVTwf29s)
+- [유니티 에셋번들을 사용한 패치 시스템](https://www.youtube.com/watch?v=ByQAii2x5mI)
+
+<br>
+
+
+
+# 유니티 - 읽을거리
+---
+
+## **1만 번의 Update() 호출**
+- <https://blog.unity.com/kr/technology/1k-update-calls>
+
+## **레거시 파이프라인과 SRP**
+- <https://drive.google.com/file/d/1eR39KY_n_wuWF5S_zClCECE3ynmSfs-h/view>
+
+<br>
+
+
+
+# 유니티 최적화
+---
 
 ## **최적화**
 - [유나이트 서울 2020 - 최대 성능을 위한 최적화 팁](https://www.youtube.com/watch?v=tT9LS53HRx4)
@@ -95,6 +150,13 @@ pin: true
 - [Adaptive Performance 3](https://www.youtube.com/watch?v=znfyEhpsXkU)
 - [Adaptive Performance 4](https://www.youtube.com/watch?v=YMED8Y_WWn8)
 
+<br>
+
+
+
+# 유니티 쉐이더
+---
+
 ## **유니티, 쉐이더 튜토리얼**
 - <https://catlikecoding.com/unity/tutorials/>
 - <https://www.ronja-tutorials.com/>
@@ -102,38 +164,6 @@ pin: true
 ## **URP 쉐이더 기초**
 - [Google Docs](https://docs.google.com/document/d/1UX0319CXa29fCFAgg0qa5vnH-U6875jt0KLKUk5mke8/edit)
 - [Youtube Playlist](https://www.youtube.com/playlist?list=PLo0EL2mTb8Nw6GRRrYhXIG6vh9U-BukXZ)
-
-## **HDRP**
-- [Dev Weeks : HDRP Environment settings and Look dev](https://www.youtube.com/watch?v=n5NzQfpVb54)
-- [Dev Weeks: HDRP Lighting의 종류와 이해](https://www.youtube.com/watch?v=5P7fyMqywxc)
-
-- [Unite Now: HDRP로 정확도 높은 게임 그래픽스 구현하기](https://www.youtube.com/watch?v=FpmBAilRoBE)
-- [Unite Now 2020 : Lighting and rendering tutorial for HDRP](https://www.youtube.com/watch?v=yqCHiZrgKzs)
-
-- [HDRP Interior Lighting 1. Basic Setting](https://www.youtube.com/watch?v=KSzpQo_LJak)
-- [HDRP Interior Lighting 2. Light Setting](https://www.youtube.com/watch?v=3eUNCqSj8hY)
-- [HDRP Interior Lighting 3. HDRP Volumetric Lighting](https://www.youtube.com/watch?v=OaOdsh7qL0w)
-
-## **레거시 파이프라인과 SRP**
-- <https://drive.google.com/file/d/1eR39KY_n_wuWF5S_zClCECE3ynmSfs-h/view>
-
-## **유니티 C# 소스코드**
-- <https://github.com/Unity-Technologies/UnityCsReference>
-
-## **DOTS**
-- [Unite Seoul 2019 : 이재호 - DOTS란 무엇인가?](https://www.youtube.com/watch?v=OLCf8nlMJ_U)
-- [DOTS란 무엇인가?](https://www.youtube.com/watch?v=hAp5nx2_Hpg)
-- [Dev Weeks: Pong 게임을 통해 배워보는 DOTS](https://www.youtube.com/watch?v=fl1Acgc3L9o)
-- <https://github.com/Unity-Technologies/DOTS-training-samples>
-
-<br>
-
-
-# 유니티 - 읽을거리
----
-
-## **1만 번의 Update() 호출**
-- <https://blog.unity.com/kr/technology/1k-update-calls>
 
 <br>
 
