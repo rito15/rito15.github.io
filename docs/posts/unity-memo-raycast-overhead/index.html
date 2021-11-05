@@ -682,27 +682,27 @@
         
         
         
-        <li><a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드</a></li>
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-quaternion/">유니티 - Quaternion</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력을 통한 리지드바디 이동, 점프 기본 코드</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-editor-find-game-view/">유니티 에디터 - 게임 뷰 객체 찾는 코드</a></li>
       
         
         
         
         <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
       
 
       </ul>
@@ -7601,6 +7601,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8692,7 +8705,7 @@ GIF
       
       
       <div class="card">
-        <a href="/posts/unity-fixed-update-and-physics-loop/">
+        <a href="/posts/unity-quaternion/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8709,13 +8722,13 @@ GIF
   
 
   
-    Oct 23
+    Oct 24
   
 
-  <i class="unloaded">2021-10-23T03:45:00+09:00</i>
+  <i class="unloaded">2021-10-24T16:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - FixedUpdate()와 Physics Loop에 대한 이해</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Quaternion</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8724,20 +8737,22 @@ GIF
 
 
 
-                Update()와 Game Loop
+                Note
 
 
-유니티 엔진의 Update()는 매 프레임 호출되며,
+회전에 대한 정의
 
-이동, 회전, 입력, 실시간 계산 등 수많은 기능을 여기에 작성한다.
+공간은 표준 기저 벡터의 집합에 의해 정의될 수 있다.
 
-그렇다면 Update()의 정체는 무엇일까?
+표준 기저 벡터란, 쉽게 말해 해당 공간의 축 방향을 향하는 정규화된 벡터다.
+
+2D 공간, 즉 평면은 (1, 0), (0, 1)에 의해 정의될 수 있으며,
+
+3D 공간은 (1, 0, 0), (0, 1, 0), (0, 0, 1) 에 의해 정의될 수 있다.
 
 
 
-그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 Game Loop(게임 루프) 를 통해 프레임 기반 동작이 수행된다.
-
-Direct...
+회...
               </p>
             </div>
           </div>

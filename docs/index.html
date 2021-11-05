@@ -544,7 +544,7 @@ Main Thread Dispatcher
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="622 words">3 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="817 words">4 min</span>
 
 
         <!-- page views -->
@@ -566,7 +566,102 @@ Main Thread Dispatcher
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-editor-find-game-view/">유니티 에디터 - 게임 뷰 객체 찾기</a>
+      <a href="/posts/unity-mobile-optimization/">유니티 - 모바일 성능 최적화</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        프로젝트 설정
+
+
+
+  
+    …
+  
+
+  공통
+  
+    프로젝트 설정에서 불필요해 보이는 옵션들은 웬만해서 끄는 것이 성능에 좋다.
+  
+
+  물리 엔진을 사용하지 않는 경우
+  
+    Physics - Auto Simulation, Auto Sync Transforms 비활성화
+  
+
+  알맞은 Frame Rate 설정하기
+  
+    A...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Nov  6, 2021, 12:02 AM +0900"
+  >
+
+  
+  
+
+  
+    Nov  6
+  
+
+  <i class="unloaded">2021-11-06T00:02:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5535 words">30 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-editor-find-game-view/">유니티 에디터 - 게임 뷰 객체 찾는 코드</a>
     </h1>
 
     <div class="post-content">
@@ -666,7 +761,7 @@ Source Code
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드</a>
+      <a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력을 통한 리지드바디 이동, 점프 기본 코드</a>
     </h1>
 
     <div class="post-content">
@@ -682,14 +777,14 @@ Source Code
 
 
   
-    입력은 Update(), 물리 처리는 FixedUpdate()로 철처히 구분하는 것이 핵심
+    입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심
   
   
-    다음과 같은 증상들이 발생한다면 Update()에서 모든 물리 처리를 하고 있는지 의심할 필요가 있다.
+    다음과 같은 증상들이 발생한다면 Update()에서 리지드바디를 조작하고 있는지 의심할 필요가 있다.
     
       왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.
       콜라이더에 자주 끼인다.
-   ...
+    ...
       </p>
     </div>
 
@@ -736,7 +831,7 @@ Source Code
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="331 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="332 words">1 min</span>
 
 
         <!-- page views -->
@@ -1223,94 +1318,6 @@ namespace Rito
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4856 words">26 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-quaternion/">유니티 - Quaternion</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note : 회전에 대한 정의
-
-
-공간은 표준 기저 벡터의 집합에 의해 정의될 수 있다.
-
-표준 기저 벡터란, 쉽게 말해 해당 공간의 축 방향을 향하는 정규화된 벡터다.
-
-2D 공간, 즉 평면은 (1, 0), (0, 1)에 의해 정의될 수 있으며,
-
-3D 공간은 (1, 0, 0), (0, 1, 0), (0, 0, 1) 에 의해 정의될 수 있다.
-
-
-
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Oct 24, 2021,  4:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Oct 24
-  
-
-  <i class="unloaded">2021-10-24T16:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1751 words">9 min</span>
 
 
         <!-- page views -->
@@ -1928,27 +1935,27 @@ namespace Rito
         
         
         
-        <li><a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드</a></li>
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-quaternion/">유니티 - Quaternion</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력을 통한 리지드바디 이동, 점프 기본 코드</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-editor-find-game-view/">유니티 에디터 - 게임 뷰 객체 찾는 코드</a></li>
       
         
         
         
         <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
       
 
       </ul>

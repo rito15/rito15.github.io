@@ -680,27 +680,27 @@
         
         
         
-        <li><a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드</a></li>
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-quaternion/">유니티 - Quaternion</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력을 통한 리지드바디 이동, 점프 기본 코드</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-editor-find-game-view/">유니티 에디터 - 게임 뷰 객체 찾는 코드</a></li>
       
         
         
         
         <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a></li>
       
 
       </ul>
@@ -8184,6 +8184,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8745,7 +8758,7 @@ Source Code
       
       
       <div class="card">
-        <a href="/posts/unity-memo-color-debug-log/">
+        <a href="/posts/unity-rigidbody-move-and-jump/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8762,13 +8775,13 @@ Source Code
   
 
   
-    Apr 25
+    Nov  4
   
 
-  <i class="unloaded">2021-04-25T17:10:00+09:00</i>
+  <i class="unloaded">2021-11-04T20:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Debug.Log()에 색상 넣기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 키보드 입력을 통한 리지드바디 이동, 점프 기본 코드</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8777,30 +8790,18 @@ Source Code
 
 
 
-                Memo
+                Note
 
 
-  &lt;color=&gt;&lt;/color&gt; 태그를 사용하여 로그 메시지에 색상을 넣을 수 있다.
-  color= 뒤에는 색상 이름 또는 HTML 색상코드를 입력한다.
-
-
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-Debug.Log("Default");
-Debug.Log("&lt;color=white&gt;Whit...
+  
+    입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심
+  
+  
+    다음과 같은 증상들이 발생한다면 Update()에서 리지드바디를 조작하고 있는지 의심할 필요가 있다.
+    
+      왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.
+      콜라이더에 자주 끼인다.
+     ...
               </p>
             </div>
           </div>

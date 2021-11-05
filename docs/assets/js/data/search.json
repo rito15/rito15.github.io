@@ -1,7 +1,22 @@
 [
   
   {
-    "title": "유니티 에디터 - 게임 뷰 객체 찾기",
+    "title": "유니티 - 모바일 성능 최적화",
+    "url": "/posts/unity-mobile-optimization/",
+    "categories": "Unity, Unity Optimization",
+    "tags": "unity, csharp, optimization",
+    "date": "2021-11-06 00:02:00 +0900",
+    
+
+
+
+
+
+    "snippet": "프로젝트 설정  …  공통      프로젝트 설정에서 불필요해 보이는 옵션들은 웬만해서 끄는 것이 성능에 좋다.    물리 엔진을 사용하지 않는 경우      Physics - Auto Simulation, Auto Sync Transforms 비활성화    알맞은 Frame Rate 설정하기      Application.targetFrameRate 설정    액션 게임 : 60fps    보드 게임 : 30fps    Vsync 설정      모바일 플랫폼에서 Vsync 설정을 끄는 것은 사실상 의미가 없을 수 있다.   ..."
+  },
+  
+  {
+    "title": "유니티 에디터 - 게임 뷰 객체 찾는 코드",
     "url": "/posts/unity-editor-find-game-view/",
     "categories": "Unity, Unity Editor Memo",
     "tags": "unity, editor, memo",
@@ -16,7 +31,7 @@
   },
   
   {
-    "title": "유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드",
+    "title": "유니티 - 키보드 입력을 통한 리지드바디 이동, 점프 기본 코드",
     "url": "/posts/unity-rigidbody-move-and-jump/",
     "categories": "Unity, Unity Memo - Shorts",
     "tags": "unity, csharp, shorts",
@@ -27,7 +42,7 @@
 
 
 
-    "snippet": "Note      입력은 Update(), 물리 처리는 FixedUpdate()로 철처히 구분하는 것이 핵심        다음과 같은 증상들이 발생한다면 Update()에서 모든 물리 처리를 하고 있는지 의심할 필요가 있다.          왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.      콜라이더에 자주 끼인다.      지터링(덜덜 떨림)이 빈번하게 발생한다.      점프할 때마다 점프하는 높이가 달라진다.      Source Code  using System.Collections;using System.Co..."
+    "snippet": "Note      입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심        다음과 같은 증상들이 발생한다면 Update()에서 리지드바디를 조작하고 있는지 의심할 필요가 있다.          왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.      콜라이더에 자주 끼인다.      지터링(덜덜 떨림)이 빈번하게 발생한다.      점프할 때마다 점프하는 높이가 달라진다.      Source Code  using System.Collections;using System.Col..."
   },
   
   {
@@ -117,7 +132,7 @@
 
 
 
-    "snippet": "Note : 회전에 대한 정의공간은 표준 기저 벡터의 집합에 의해 정의될 수 있다.표준 기저 벡터란, 쉽게 말해 해당 공간의 축 방향을 향하는 정규화된 벡터다.2D 공간, 즉 평면은 (1, 0), (0, 1)에 의해 정의될 수 있으며,3D 공간은 (1, 0, 0), (0, 1, 0), (0, 0, 1) 에 의해 정의될 수 있다.회전이란, 표준 기저 벡터를 회전시키는 것과 같다.트랜스폼이 현재 갖고 있는 회전 정보를 오일러 각으로 정의했을 때,(0, 0, 0)일 경우 해당 오브젝트의 로컬 공간 표준 기저가월드 공간의 표준 기저와..."
+    "snippet": "Note회전에 대한 정의공간은 표준 기저 벡터의 집합에 의해 정의될 수 있다.표준 기저 벡터란, 쉽게 말해 해당 공간의 축 방향을 향하는 정규화된 벡터다.2D 공간, 즉 평면은 (1, 0), (0, 1)에 의해 정의될 수 있으며,3D 공간은 (1, 0, 0), (0, 1, 0), (0, 0, 1) 에 의해 정의될 수 있다.회전이란, 표준 기저 벡터를 회전시키는 것과 같다.트랜스폼이 현재 갖고 있는 회전 정보를 오일러 각으로 정의했을 때,(0, 0, 0)일 경우 해당 오브젝트의 로컬 공간 표준 기저가월드 공간의 표준 기저와 일치..."
   },
   
   {
@@ -1503,7 +1518,7 @@
   {
     "title": "C# String, StringBuilder, ZString",
     "url": "/posts/cs-string-stringbuilder-and-zstring/",
-    "categories": "C#, C# Study",
+    "categories": "C#, C# Benchmark",
     "tags": "csharp",
     "date": "2021-08-11 17:17:00 +0900",
     

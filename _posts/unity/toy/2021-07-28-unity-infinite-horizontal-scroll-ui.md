@@ -50,7 +50,7 @@ mermaid: true
 `Space Width` (float)
   - 각 UI 사이의 간격
 
-`Transition TIme` (float)
+`Transition Time` (float)
   - 스크롤 한 번에 소요되는 시간(초)
 
 <br>

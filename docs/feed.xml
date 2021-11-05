@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-11-05T05:19:46+09:00</updated>
+  <updated>2021-11-06T03:14:10+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,90 @@
 
   
   <entry>
-    <title>유니티 에디터 - 게임 뷰 객체 찾기</title>
-    <link href="https://rito15.github.io/posts/unity-editor-find-game-view/" rel="alternate" type="text/html" title="유니티 에디터 - 게임 뷰 객체 찾기" />
+    <title>유니티 - 모바일 성능 최적화</title>
+    <link href="https://rito15.github.io/posts/unity-mobile-optimization/" rel="alternate" type="text/html" title="유니티 - 모바일 성능 최적화" />
+    <published>2021-11-06T00:02:00+09:00</published>
+  
+    <updated>2021-11-06T00:02:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-mobile-optimization/</id>
+    <content src="https://rito15.github.io/posts/unity-mobile-optimization/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Optimization" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      프로젝트 설정
+
+
+
+  
+…
+
+
+  공통
+  
+    프로젝트 설정에서 불필요해 보이는 옵션들은 웬만해서 끄는 것이 성능에 좋다.
+  
+
+  물리 엔진을 사용하지 않는 경우
+  
+    Physics - Auto Simulation, Auto Sync Transforms 비활성화
+  
+
+  알맞은 Frame Rate 설정하기
+  
+    Application.targetFrameRate 설정
+    액션 게임 : 60fps
+    보드 게임 : 30fps
+  
+
+  Vsync 설정
+  
+    모바일 플랫폼에서 Vsync 설정을 끄는 것은 사실상 의미가 없을 수 있다.
+    웬만해서 이미 하드웨어 레벨에서 Vsync가 설정되기 때문이다.
+  
+
+  
+
+
+
+파일 포맷(확장자)
+
+
+
+  
+…
+
+
+  이미...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>유니티 에디터 - 게임 뷰 객체 찾는 코드</title>
+    <link href="https://rito15.github.io/posts/unity-editor-find-game-view/" rel="alternate" type="text/html" title="유니티 에디터 - 게임 뷰 객체 찾는 코드" />
     <published>2021-11-05T02:10:00+09:00</published>
   
-    <updated>2021-11-05T02:10:00+09:00</updated>
+    <updated>2021-11-05T05:41:44+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-editor-find-game-view/</id>
     <content src="https://rito15.github.io/posts/unity-editor-find-game-view/" />
@@ -83,11 +162,11 @@ private static Type GameViewType
 
   
   <entry>
-    <title>유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드</title>
-    <link href="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" rel="alternate" type="text/html" title="유니티 - 키보드 입력 및 리지드바디 이동, 점프 기본 코드" />
+    <title>유니티 - 키보드 입력을 통한 리지드바디 이동, 점프 기본 코드</title>
+    <link href="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" rel="alternate" type="text/html" title="유니티 - 키보드 입력을 통한 리지드바디 이동, 점프 기본 코드" />
     <published>2021-11-04T20:30:00+09:00</published>
   
-    <updated>2021-11-05T03:26:56+09:00</updated>
+    <updated>2021-11-05T05:41:44+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-rigidbody-move-and-jump/</id>
     <content src="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" />
@@ -115,10 +194,10 @@ private static Type GameViewType
 
 
   
-    입력은 Update(), 물리 처리는 FixedUpdate()로 철처히 구분하는 것이 핵심
+    입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심
   
   
-    다음과 같은 증상들이 발생한다면 Update()에서 모든 물리 처리를 하고 있는지 의심할 필요가 있다.
+    다음과 같은 증상들이 발생한다면 Update()에서 리지드바디를 조작하고 있는지 의심할 필요가 있다.
     
       왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.
       콜라이더에 자주 끼인다.
@@ -142,7 +221,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(ty...
+[RequireComponent(typ...
     </summary>
   
 
@@ -300,89 +379,6 @@ UpdateEveryFrame.cs
 
 
   한 컴포넌트의 Update()에서 다른 컴포넌트들의 CustomUpdate...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Sphere-AABB Intersection</title>
-    <link href="https://rito15.github.io/posts/sphere-aabb-intersection/" rel="alternate" type="text/html" title="Sphere-AABB Intersection" />
-    <published>2021-10-26T20:22:00+09:00</published>
-  
-    <updated>2021-10-29T03:59:19+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/sphere-aabb-intersection/</id>
-    <content src="https://rito15.github.io/posts/sphere-aabb-intersection/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Algorithm" />
-    
-    <category term="Algorithms" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Sphere
-
-
-
-  
-    공간의 한 점에서부터 동일한 거리에 있는 점들의 집합
-  
-  
-    구체의 중심 좌표(Vector3), 반지름(float)을 통해 정의할 수 있다.
-  
-
-
-
-
-AABB
-
-
-
-  
-    Axis-Aligned Bounding Box
-  
-  
-    여섯 면이 모두 각각 X, Y, Z 축에 정렬된 형태의 육면체
-  
-  
-    중심 좌표(Vector3)와 각 축의 크기(Vector3) 또는
-최소 좌표(Vector3)와 최대 좌표(Vector3)를 통해 정의할 수 있다.
-  
-
-
-
-
-
-
-Closest Point to AABB
-
-
-우선, AABB 바깥의 한 점에서부터
-
-AABB 여섯 면 위의 가장 가까운 점을 찾는다.
-
-2차원 평면의 예시는 다음과 같다.
-
-
-
-
-
-위의...
     </summary>
   
 
