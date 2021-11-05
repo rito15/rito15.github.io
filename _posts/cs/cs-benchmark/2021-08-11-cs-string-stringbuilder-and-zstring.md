@@ -2,7 +2,7 @@
 title: C# String, StringBuilder, ZString
 author: Rito15
 date: 2021-08-11 17:17:00 +09:00
-categories: [C#, C# Study]
+categories: [C#, C# Benchmark]
 tags: [csharp]
 math: true
 mermaid: true
@@ -318,7 +318,120 @@ internal StringBuilder AppendFormatHelper(IFormatProvider provider, string forma
 </details>
 
 
+<br>
+
+# Benchmark 2
+---
+
+- **ZString**에도 스트링 빌더가 존재하는데, 깜빡했다.
+- 따라서 이번에는 **StringBuilder**, ZString의 **Utf16ValueStringBuilder**를 이용해 벤치마크를 수행한다.
+
+<br>
+
+## **[1] 벤치마크 소스코드**
+
+<details>
+<summary markdown="span">
+...
+</summary>
+
+```cs
+private StringBuilder sb;
+private Utf16ValueStringBuilder zb;
+private int intValue = 123;
+private bool boolValue = true;
+private float floatValue = 1234.567f;
+
+[GlobalSetup]
+public void Init()
+{
+    sb = new StringBuilder(500);
+    zb = ZString.CreateStringBuilder();
+}
+
+[Benchmark(Baseline = true)]
+public string StringBuilder_Append()
+{
+    sb.Clear();
+    return sb
+        .Append("IntValue : ")
+        .Append(intValue)
+        .Append(", BoolValue : ")
+        .Append(boolValue)
+        .Append(", FloatValue : ")
+        .Append(floatValue)
+        .ToString();
+}
+
+[Benchmark]
+public string ZStringBuilder_Append()
+{
+    zb.Clear();
+    zb.Append("IntValue : ");
+    zb.Append(intValue);
+    zb.Append(", BoolValue : ");
+    zb.Append(boolValue);
+    zb.Append(", FloatValue : ");
+    zb.Append(floatValue);
+
+    return zb.ToString();
+}
+
+[Benchmark]
+public string StringBuilder_AppendFormat()
+{
+    sb.Clear();
+    return sb.AppendFormat("IntValue : {0}, BoolValue : {1}, FloatValue : {2}",
+        intValue, boolValue, floatValue).ToString();
+}
+
+[Benchmark]
+public string ZStringFormat()
+{
+    return ZString.Format("IntValue : {0}, BoolValue : {1}, FloatValue : {2}",
+        intValue, boolValue, floatValue);
+}
+```
+
+</details>
+
+<br>
+
+## **[2] 결과**
+
+![image](https://user-images.githubusercontent.com/42164422/140488192-d8bcbb10-b627-49d6-a8a5-dcdb36f2179f.png)
+
+- `.Append()`는 **StringBuilder**, **Utf16ValueStringBuilder** 모두 힙 할당이 없음을 알 수 있다.
+
+- 성능은 비슷하거나 **StringBuilder**가 조금 더 나은 편이다.
+
+<br>
 
 
 
+# Note
+---
+
+환경마다 `StringBuilder`의 동작이 조금 다른 듯하다.
+
+예를 들어 다음 코드를 실행했을 때,
+
+```cs
+StringBuilder sb = new StringBuilder(1000);
+
+for (int i = 0; i < 100; i++)
+{
+    sb.Append(i);
+}
+```
+
+콘솔 앱에서는 위 반복문의 `StringBuilder.Append(int)`에 의한 힙 할당이 없다.
+
+`.NET Framework 2.0, 4.0, 4.7.2`, `.NET Core 3.1` 버전에서 테스트 해보았지만 모두 동일했다.
+
+그런데 유니티 엔진에서는 100번의 힙 할당이 발생하며 그 크기는 대략 `3.3kB` 정도다.
+
+<br>
+
+만약 유니티 엔진을 사용한다면 `ZString`을 꼭 사용하는 것이 좋을 것 같다.
 
