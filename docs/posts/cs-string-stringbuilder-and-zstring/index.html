@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1697 words">9 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1702 words">9 min</span>
 
 
           <!-- page views -->
@@ -1006,10 +1006,11 @@ Source Code
 
 <ul>
   <li>
-    <p><code class="language-plaintext highlighter-rouge">.Append()</code>는 <strong>StringBuilder</strong>, <strong>Utf16ValueStringBuilder</strong> 모두 힙 할당이 없음을 알 수 있다.</p>
+    <p><code class="language-plaintext highlighter-rouge">.Append()</code>는 <strong>StringBuilder</strong>, <strong>Utf16ValueStringBuilder</strong> 모두 힙 할당이 없음을 알 수 있다. <br />
+(<code class="language-plaintext highlighter-rouge">136 byte</code>의 힙 할당은 <code class="language-plaintext highlighter-rouge">.ToString()</code>에 의해 발생한다.)</p>
   </li>
   <li>
-    <p>성능은 비슷하거나 <strong>StringBuilder</strong>가 조금 더 나은 편이다.</p>
+    <p>성능은 비슷하다.</p>
   </li>
 </ul>
 
@@ -1175,6 +1176,11 @@ Source Code
         
         
         
+        <li><a href="/posts/unity-infinite-horizontal-scroll-ui/">Infinite Horizontal Scroll (무한 횡스크롤) UI</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
         
@@ -1191,11 +1197,6 @@ Source Code
         
         
         <li><a href="/posts/unity-editor-find-game-view/">유니티 에디터 - 게임 뷰 객체 찾는 코드</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a></li>
       
 
       </ul>

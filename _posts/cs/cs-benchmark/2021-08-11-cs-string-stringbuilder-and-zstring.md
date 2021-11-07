@@ -401,9 +401,10 @@ public string ZStringFormat()
 
 ![image](https://user-images.githubusercontent.com/42164422/140488192-d8bcbb10-b627-49d6-a8a5-dcdb36f2179f.png)
 
-- `.Append()`는 **StringBuilder**, **Utf16ValueStringBuilder** 모두 힙 할당이 없음을 알 수 있다.
+- `.Append()`는 **StringBuilder**, **Utf16ValueStringBuilder** 모두 힙 할당이 없음을 알 수 있다. <br>
+  (`136 byte`의 힙 할당은 `.ToString()`에 의해 발생한다.)
 
-- 성능은 비슷하거나 **StringBuilder**가 조금 더 나은 편이다.
+- 성능은 비슷하다.
 
 <br>
 
