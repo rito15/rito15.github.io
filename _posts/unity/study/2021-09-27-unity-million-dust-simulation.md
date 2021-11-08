@@ -4569,7 +4569,7 @@ void Explode (uint3 id : SV_DispatchThreadID)
 </details>
 <!-- --------------------------------------------------------------------------- -->
 
-# 0. Box(OBB) Collision 구현
+# 17. Box(OBB) Collision 구현
 ---
 
 <details>
@@ -4579,31 +4579,340 @@ void Explode (uint3 id : SV_DispatchThreadID)
 
 <br>
 
-- DustCollider, ColliderSet 제네릭 제거
+## **[1] OBB란?**
 
-- 컴퓨트 쉐이더에 전달하는 콜라이더 데이터 통일
-  - LocalToWorld Matrix
-  - WorldToLocal Matrix
-  - Scale
-    => Scale이 따로 필요한 이유?
-       - 콜라이더의 로컬 공간으로 먼지를 옮겨올 경우 콜라이더의 스케일에 따라 먼지의 XYZ 크기가 달라진다
-       - 이를 보정하기 위해 Scale이 필요한데, 컴퓨트 쉐이더에서 매번 행렬에서 추출하는 것은 손해이므로
-         미리 Scale을 가져간다.
+![image](https://user-images.githubusercontent.com/42164422/140696122-54d720a7-89a5-40ab-a8e5-d67e3733e556.png)
 
-- OBB 충돌
-  - 공간 변환
-    - Position : currPos, nextPos
-    - Vector3  : Velocity
-  - World to Local로 콜라이더의 로컬 공간에서 AABB 충돌 계산
-  - 충돌 계산 완료된 벡터는 다시 Local to World로 변환하여 적용
+**OBB**는 **Oriented Bounding Box**의 약자로,
+
+**AABB**처럼 마주보는 두 면끼리는 서로 평행하지만
+
+모든 면이 공간의 축에 평행한 **AABB**와는 다르게 자유롭게 회전이 적용된 상자의 형태를 지닌다.
+
+쉽게 말해, 회전 변환이 적용된 **AABB**라고 보면 된다.
+
+<br>
 
 
+## **[2] OBB 충돌 구현 방법**
+
+**OBB**는 **AABB**보다 구현이 어렵다.
+
+특히나 3차원에서는 2차원보다 더 어렵고 번거롭다.
+
+그래서 이걸 비교적 간단하게 구현할 수 있는 방법이 있는데,
+
+바로 공간 변환을 이용하는 것이다.
+
+<br>
+
+큐브의 기본 형태는 중심 좌표가 `(0, 0, 0)`, 모든 모서리의 길이가 `1`인 **AABB**이다.
+
+모든 **OBB**는 이 기본 큐브를 위치, 회전, 크기 변환을 수행하여 만들 수 있다.
+
+그러므로 **OBB** 충돌체의 데이터는 변환 행렬만 있으면 된다.
+
+<br>
+
+먼지를 **AABB**에 충돌시킬 때,
+
+입력은 현재 프레임의 먼지 위치 벡터, 다음 프레임의 먼지 위치 벡터, 속도 벡터,
+
+출력은 다음 프레임의 먼지 위치 벡터, 속도 벡터다.
+
+세 개의 입력 벡터를 월드-로컬 공간 변환하여 콜라이더의 로컬 공간에서 **AABB** 충돌을 계산하고,
+
+얻어낸 두 개의 출력 벡터를 다시 로컬-월드 공간변환하는 방식으로
+
+기존의 **AABB** 충돌 계산을 이용해 **OBB** 충돌을 구현할 수 있다.
+
+<br>
+
+
+## **[3] 클래스 수정**
+
+제네릭으로 구현했던 `ColliderSet` 클래스에서 제네릭을 제거한다.
+
+대신 모든 콜라이더가 컴퓨트 버퍼로 전달할 데이터를 변환 행렬로 통일한다.
+
+컴퓨트 쉐이더의 각 스레드에서 매번 역행렬을 계산하는 것은 굉장히 손해이므로,
+
+로컬-월드 변환 행렬과 월드-로컬 변환 행렬을 모두 전달한다.
+
+그리고 충돌을 계산하는 콜라이더의 로컬 공간에서 먼지의 스케일을 재조정할 필요가 있는데,
+
+변환 행렬에서 스케일을 따로 추출하기 위해 계산하는 것 역시 손해이므로 스케일 값도 함께 전달한다.
+
+<br>
+
+<details>
+<summary markdown="span">
+ColliderSet.cs
+</summary>
+
+```cs
+private class ColliderSet
+{
+    private struct ColliderData
+    {
+        public Matrix4x4 localToWorld;
+        public Matrix4x4 worldToLocal;
+        public Vector3 scale;
+
+        public ColliderData(DustCollider collider)
+        {
+            localToWorld = collider.transform.localToWorldMatrix;
+            worldToLocal = collider.transform.worldToLocalMatrix;
+            scale = collider.transform.lossyScale;
+        }
+    }
+
+    /* Collider */
+    private ComputeBuffer colliderBuffer;
+    private List<DustCollider> colliders;
+
+    /* Data */
+    private ColliderData[] dataArray;
+    private int dataCount;
+
+    /* Compute Shader, Compute Buffer */
+    private ComputeShader computeShader;
+    private int shaderKernel; // Update Kernel
+    private string bufferName;
+    private string countVariableName;
+
+    public ColliderSet(ComputeShader computeShader, int shaderKernel, string bufferName, string countVariableName)
+    {
+        this.colliders = new List<DustCollider>(4);
+        this.dataArray = new ColliderData[4];
+        this.computeShader = computeShader;
+        this.shaderKernel = shaderKernel;
+        this.bufferName = bufferName;
+        this.countVariableName = countVariableName;
+        this.dataCount = 0;
+
+        colliderBuffer = new ComputeBuffer(1, 4); // 기본 값
+        computeShader.SetBuffer(shaderKernel, bufferName, colliderBuffer);
+        computeShader.SetInt(countVariableName, 0);
+    }
+
+    ~ColliderSet()
+    {
+        ReleaseBuffer();
+    }
+
+    private void ReleaseBuffer()
+    {
+        if (colliderBuffer != null)
+            colliderBuffer.Release();
+    }
+
+    private void ExpandDataArray()
+    {
+        ColliderData[] newArray = new ColliderData[this.dataArray.Length * 2];
+        Array.Copy(this.dataArray, newArray, this.dataArray.Length);
+        this.dataArray = newArray;
+    }
+
+    /// <summary> 컴퓨트 버퍼의 데이터를 새롭게 갱신하고 컴퓨트 쉐이더에 전달 </summary>
+    private void ReallocateBuffer()
+    {
+        ReleaseBuffer();
+        if (dataCount == 0) return;
+
+        colliderBuffer = new ComputeBuffer(dataCount, sizeof(float) * 35);
+        computeShader.SetInt(countVariableName, dataCount);
+        UpdateColliderData();
+    }
+
+    /// <summary> 배열 내부의 콜라이더 데이터만 갱신하여 컴퓨트 쉐이더에 전달 </summary>
+    public void UpdateColliderData()
+    {
+        if (dataArray.Length < dataCount)
+            ExpandDataArray();
+
+        for (int i = 0; i < dataCount; i++)
+        {
+            dataArray[i] = new ColliderData(colliders[i]);
+        }
+
+        colliderBuffer.SetData(dataArray, 0, 0, dataCount);
+        computeShader.SetBuffer(shaderKernel, bufferName, colliderBuffer);
+    }
+
+    public void AddCollider(DustCollider collider)
+    {
+        if (colliders.Contains(collider)) return;
+
+        dataCount++;
+        colliders.Add(collider);
+        ReallocateBuffer();
+    }
+
+    public void RemoveCollider(DustCollider collider)
+    {
+        if (!colliders.Contains(collider)) return;
+
+        dataCount--;
+        colliders.Remove(collider);
+        ReallocateBuffer();
+    }
+}
+```
+
+</details>
+
+<details>
+<summary markdown="span">
+DustManager.cs
+</summary>
+
+```cs
+private ColliderSet sphereColliderSet;
+private ColliderSet boxColliderSet;
+
+/// <summary> ColliderSet에 새로운 Collider 추가 </summary>
+private void AddCollider(Func<ColliderSet> getter, DustCollider collider)
+{
+    var colSet = getter();
+
+    if (colSet == null)
+    {
+        afterInitJobQueue.Enqueue(() => getter().AddCollider(collider));
+    }
+    else
+    {
+        colSet.AddCollider(collider);
+    }
+}
+
+/// <summary> ColliderSet의 내부 컴퓨트 버퍼 갱신 </summary>
+private void UpdateCollider(ColliderSet set)
+{
+    if (set != null)
+        set.UpdateColliderData();
+}
+
+/// <summary> ColliderSet에서 Collider 제거 </summary>
+private void RemoveCollider(ColliderSet set, DustCollider collider)
+{
+    if (set != null)
+        set.RemoveCollider(collider);
+}
+```
+
+</details>
+
+<br>
+
+
+## **[4] 컴퓨트 쉐이더 수정**
+
+<details>
+<summary markdown="span">
+DustCompute.compute
+</summary>
+
+```hlsl
+struct ColliderTransform
+{
+    float4x4 localToWorld;
+    float4x4 worldToLocal;
+    float3 scale;
+};
+
+RWStructuredBuffer<ColliderTransform> sphereColliderBuffer;
+uint sphereColliderCount;
+
+RWStructuredBuffer<ColliderTransform> boxColliderBuffer;
+uint boxColliderCount;
+
+// AABB로 근사시킨 먼지를 기본 AABB(-0.5 ~ 0.5)와 교차 검사
+bool DustToDefaultAABBIntersection(float3 pos, float3 scale)
+{
+    if (pos.x + scale.x < -0.5) return false;
+    if (pos.y + scale.y < -0.5) return false;
+    if (pos.z + scale.z < -0.5) return false;
+    if (pos.x - scale.x >  0.5) return false;
+    if (pos.y - scale.y >  0.5) return false;
+    if (pos.z - scale.z >  0.5) return false;
+    return true;
+}
+
+void Update (uint3 id : SV_DispatchThreadID)
+{
+    // ...
+    float3 currPos = dustBuffer[i].position;
+    float3 nextPos = currPos + velocityBuffer[i] * deltaTime;
+
+    // 이번 프레임 충돌 처리 완료 여부 초기화
+    collisionFlagBuffer[i] = false;
+
+    // [1] Sphere Colliders
+    for(uint scIndex = 0; scIndex < sphereColliderCount; scIndex++)
+    {
+        if(collisionFlagBuffer[i] == true) continue;
+
+        float4 sphere;
+        sphere.xyz = mul(sphereColliderBuffer[scIndex].localToWorld, float4(0, 0, 0, 1)).xyz;
+        sphere.w = sphereColliderBuffer[scIndex].scale.x * 0.5;
+
+        if(SphereToSphereIntersection(float4(nextPos, radius), sphere))
+        {
+            DustToSphereCollision(currPos, nextPos, velocityBuffer[i], radius, sphere, bounciness, collisionFlagBuffer[i]);
+        }
+    }
+
+    // [2] Box Colliders(OBB)
+    for(uint bcIndex = 0; bcIndex < boxColliderCount; bcIndex++)
+    {
+        if(collisionFlagBuffer[i] == true) continue;
+    
+        Bounds box = DEFAULT_BOX_COLLIDER;
+        float4x4 WtL = boxColliderBuffer[bcIndex].worldToLocal;
+        
+        float3 localNextPos    = mul(WtL, float4(nextPos, 1)).xyz;
+
+        // 박스 로컬 스페이스에서의 먼지 스케일 계산
+        float3 localDustRadius = radius.xxx / boxColliderBuffer[bcIndex].scale;
+        
+        // 박스 콜라이더의 로컬 스페이스에서 먼지 교차 검사(AABB-AABB)
+        if(DustToDefaultAABBIntersection(localNextPos, localDustRadius))
+        {
+            float3 localCurrPos  = mul(WtL, float4(currPos,           1)).xyz;
+            float3 localVelocity = mul(WtL, float4(velocityBuffer[i], 0)).xyz;
+
+            // 박스 콜라이더의 로컬 스페이스에서 충돌 처리
+            DustToAABBCollision(localCurrPos, localNextPos, localVelocity, localDustRadius, box, bounciness, collisionFlagBuffer[i]);
+            
+            float4x4 LtW = boxColliderBuffer[bcIndex].localToWorld;
+            nextPos           = mul(LtW, float4(localNextPos,  1)).xyz;
+            velocityBuffer[i] = mul(LtW, float4(localVelocity, 0)).xyz;
+        }
+    }
+
+    // [Last] 월드 영역 제한(Box)
+    // ...
+
+    // 다음 위치 적용
+    dustBuffer[i].position = nextPos;
+}
+```
+
+</details>
+
+<br>
+
+
+## **[5] 실행 결과**
 
 ![2021_1027_OBB_02](https://user-images.githubusercontent.com/42164422/139092386-6106f21b-a9f0-4d30-9086-8fdd3f65c478.gif)
 
 ![2021_1027_OBB_03](https://user-images.githubusercontent.com/42164422/139092392-1076ca4a-1b26-479c-9935-ff4e13cd13a8.gif)
 
 <br>
+
+
 
 </details>
 <!-- --------------------------------------------------------------------------- -->
