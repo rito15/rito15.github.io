@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-11-06T03:14:10+09:00</updated>
+  <updated>2021-11-09T16:47:07+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,72 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 - 리지드바디와 콜라이더 간단 정리</title>
+    <link href="https://rito15.github.io/posts/unity-rigidbody-and-collider/" rel="alternate" type="text/html" title="유니티 - 리지드바디와 콜라이더 간단 정리" />
+    <published>2021-11-09T14:50:00+09:00</published>
+  
+    <updated>2021-11-09T14:50:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-rigidbody-and-collider/</id>
+    <content src="https://rito15.github.io/posts/unity-rigidbody-and-collider/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      리지드바디(Rigidbody)
+
+
+
+  https://docs.unity3d.com/kr/2019.4/Manual/class-Rigidbody.html
+
+
+‘강체’로 번역할 수 있다.
+
+유니티 엔진에서 제공하는 기본 컴포넌트이다.
+
+리지드바디가 존재하는 게임 오브젝트는 물리 엔진의 영향을 받는다.
+
+현실감 있는 물리 시뮬레이션이 가능해지며,
+
+힘(Force)과 속도(Velocity)의 영향을 받는다.
+
+3D에서는 Rigidbody, 2D에서는 Rigidbody2D 컴포넌트를 사용한다.
+
+프로젝트 종류에 따라 잘 구분해서 사용해야 한다.
+
+
+
+콜라이더(Collider)
+
+
+
+  https://docs.unity3d.com/kr/2019.4/Manual/Physics3DReference.html
+
+
+‘충돌...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -162,11 +228,11 @@ private static Type GameViewType
 
   
   <entry>
-    <title>유니티 - 키보드 입력을 통한 리지드바디 이동, 점프 기본 코드</title>
-    <link href="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" rel="alternate" type="text/html" title="유니티 - 키보드 입력을 통한 리지드바디 이동, 점프 기본 코드" />
+    <title>유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드</title>
+    <link href="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" rel="alternate" type="text/html" title="유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드" />
     <published>2021-11-04T20:30:00+09:00</published>
   
-    <updated>2021-11-05T05:41:44+09:00</updated>
+    <updated>2021-11-07T16:00:43+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-rigidbody-move-and-jump/</id>
     <content src="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" />
@@ -207,21 +273,34 @@ private static Type GameViewType
   
 
 
+
+
+Source Code 1
+
+
+기능
+
+  WASD 키 : 리지드바디 이동
+  Space 키 : 리지드바디 점프
+
+
+
+
+소스 코드
+
+
+  
 Source Code
-
-
-
 
 
   
 
+  
+    
+  
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-
-[RequireComponent(typ...
+  using System.Collections;
+u...
     </summary>
   
 
@@ -296,89 +375,6 @@ using System;
   특정 주소에서 주소로 직접 연산할 수 없고, 반드시 레지스터를 거쳐간다.
 
   예를 들어 메모리 0x24 위치의 값을...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 매 프레임 처리 성능 테스트 - Update() vs 코루틴</title>
-    <link href="https://rito15.github.io/posts/unity-update-vs-coroutine-every-frame/" rel="alternate" type="text/html" title="유니티 - 매 프레임 처리 성능 테스트 - Update() vs 코루틴" />
-    <published>2021-11-01T15:02:00+09:00</published>
-  
-    <updated>2021-11-01T15:02:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-update-vs-coroutine-every-frame/</id>
-    <content src="https://rito15.github.io/posts/unity-update-vs-coroutine-every-frame/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      실험 목적
-
-
-
-  매 프레임 호출되는 Update() 메소드, 코루틴의 성능 비교
-
-
-
-
-실험 조건
-
-
-
-  운영체제 : Windows 10
-  유니티 에디터 버전 : 2020.3.17f1
-  실행 환경 : 유니티 에디터, Windows Standalone Build(Mono, IL2CPP)
-
-
-
-
-실험 대상
-
-
-[1] Update()
-
-
-  각 컴포넌트마다 Update() 작성
-
-
-
-  
-UpdateEveryFrame.cs
-
-
-  public class UpdateEveryFrame : MonoBehaviour
-{
-    private void Update() { }
-}
-  
-
-
-
-
-
-[2] CustomUpdate()
-
-
-  한 컴포넌트의 Update()에서 다른 컴포넌트들의 CustomUpdate...
     </summary>
   
 

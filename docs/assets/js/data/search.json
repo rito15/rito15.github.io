@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "유니티 - 리지드바디와 콜라이더 간단 정리",
+    "url": "/posts/unity-rigidbody-and-collider/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, csharp",
+    "date": "2021-11-09 14:50:00 +0900",
+    
+
+
+
+
+
+    "snippet": "리지드바디(Rigidbody)  https://docs.unity3d.com/kr/2019.4/Manual/class-Rigidbody.html‘강체’로 번역할 수 있다.유니티 엔진에서 제공하는 기본 컴포넌트이다.리지드바디가 존재하는 게임 오브젝트는 물리 엔진의 영향을 받는다.현실감 있는 물리 시뮬레이션이 가능해지며,힘(Force)과 속도(Velocity)의 영향을 받는다.3D에서는 Rigidbody, 2D에서는 Rigidbody2D 컴포넌트를 사용한다.프로젝트 종류에 따라 잘 구분해서 사용해야 한다.콜라이더(Collider)..."
+  },
+  
+  {
     "title": "유니티 - 모바일 성능 최적화",
     "url": "/posts/unity-mobile-optimization/",
     "categories": "Unity, Unity Optimization",
@@ -31,7 +46,7 @@
   },
   
   {
-    "title": "유니티 - 키보드 입력을 통한 리지드바디 이동, 점프 기본 코드",
+    "title": "유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드",
     "url": "/posts/unity-rigidbody-move-and-jump/",
     "categories": "Unity, Unity Memo - Shorts",
     "tags": "unity, csharp, shorts",
@@ -42,7 +57,7 @@
 
 
 
-    "snippet": "Note      입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심        다음과 같은 증상들이 발생한다면 Update()에서 리지드바디를 조작하고 있는지 의심할 필요가 있다.          왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.      콜라이더에 자주 끼인다.      지터링(덜덜 떨림)이 빈번하게 발생한다.      점프할 때마다 점프하는 높이가 달라진다.      Source Code  using System.Collections;using System.Col..."
+    "snippet": "Note      입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심        다음과 같은 증상들이 발생한다면 Update()에서 리지드바디를 조작하고 있는지 의심할 필요가 있다.          왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.      콜라이더에 자주 끼인다.      지터링(덜덜 떨림)이 빈번하게 발생한다.      점프할 때마다 점프하는 높이가 달라진다.      Source Code 1기능  WASD 키 : 리지드바디 이동  Space 키 : 리지드바디 점프..."
   },
   
   {
