@@ -273,5 +273,7 @@ pin: true
  - <https://www.slideshare.net/utilforever/ss-114169070>
  - 지속적인 통합, 테스트, 코드 커버리지, 코드 품질, 문서화
 
-
+## **삼성 테스트 랩**
+ - <https://developer.samsung.com/remote-test-lab>
+ - 다양한 기종의 안드로이드 스마트폰에 대해 기기 테스트를 해볼 수 있다.
 
