@@ -2,7 +2,7 @@
 title: 유니티 - 이벤트 함수는 어떻게 실행되는 것일까?
 author: Rito15
 date: 2021-06-06 05:05:00 +09:00
-categories: [Unity, Unity Memo]
+categories: [Unity, Unity Tips]
 tags: [unity, csharp]
 math: true
 mermaid: true

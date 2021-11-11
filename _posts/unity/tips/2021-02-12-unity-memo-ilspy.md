@@ -2,7 +2,7 @@
 title: 유니티 - ILSpy로 유니티 API 구현 뜯어보기
 author: Rito15
 date: 2021-02-12 05:32:00 +09:00
-categories: [Unity, Unity Memo]
+categories: [Unity, Unity Tips]
 tags: [unity, csharp, ilspy]
 math: true
 mermaid: true

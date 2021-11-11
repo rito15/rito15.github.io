@@ -367,203 +367,6 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-memo-cooldown-icon-ui/">유니티 - 쿨타임 아이콘 UI 만들기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-
-
-
-구현
-
-
-1. 하이라키 구성
-
-
-
-[1] Outline
-
-  Image 컴포넌트 : 원하는 모양의 스프라이트 사용, 아웃라인으로 지정할 색상 적용
-
-
-[2] Mask
-
-  RectTransform : Anchor Preset [stretch &amp; stretch] 설정
-  Left, Top, Right, Bottom 4픽셀 설정
- ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Feb 12, 2021,  5:13 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 12
-  
-
-  <i class="unloaded">2021-02-12T17:13:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="339 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-16/">OpenGL 공부 - 16 - Transform, Input</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  오브젝트 기본 트랜스폼 정의하기
-  키보드 입력 처리하기
-
-
-
-
-트랜스폼 정의
-
-
-트랜스폼의 3요소(위치, 회전, 크기)를 정의한다.
-
-
-  
-    glm::vec3 position(0.0f);
-glm::vec3 rotation(0.0f);
-glm::vec3 scale(1.0f);
-
-  
-
-
-그리고 모델 행렬에 트랜스폼 연산을 모두 넣...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Feb 12, 2021,  3:11 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 12
-  
-
-  <i class="unloaded">2021-02-12T15:11:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2838 words">15 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
       <a href="/posts/unity-memo-ilspy/">유니티 - ILSpy로 유니티 API 구현 뜯어보기</a>
     </h1>
 
@@ -1305,6 +1108,208 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
 
 
 
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/opengl-study-12/">OpenGL 공부 - 12 - New Beginning 3</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  기본 렌더링 세팅
+  기본 도형 렌더링
+
+
+
+
+공부 내용
+
+
+테스트를 위해 렌더링 옵션들 설정
+
+
+  
+    // main.cpp - in main()
+
+glEnable(GL_DEPTH_TEST);
+
+glEnable(GL_CULL_FACE);
+glCullFace(GL_BACK);
+glFrontFace(GL_CCW); // 시계 반대 방...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Feb  8, 2021,  4:12 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb  8
+  
+
+  <i class="unloaded">2021-02-08T16:12:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1983 words">11 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/opengl-study-11/">OpenGL 공부 - 11 - New Beginning 2</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  프로그램 및 쉐이더 객체 생성
+  파일에 쉐이더 작성, 불러와 컴파일
+
+
+
+
+공부 내용
+
+
+
+
+
+
+
+
+Source Code
+
+
+vertex_core.glsl
+
+
+  
+    #version 440
+
+layout (location = 0) in vec3 vertex_position;
+layout (location = 1) in vec3 v...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Feb  7, 2021,  4:12 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb  7
+  
+
+  <i class="unloaded">2021-02-07T16:12:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="990 words">5 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
 </div> <!-- #post-list -->
 
 
@@ -1915,6 +1920,16 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
         
         
         
+        <li><a href="/posts/unity-mobile-optimization/">유니티 - 모바일 성능 최적화</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
@@ -1926,16 +1941,6 @@ bool res2 = EditorUtility.DisplayDialog("Title", "Message", "OK", "Cancel");
         
         
         <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-infinite-horizontal-scroll-ui/">Infinite Horizontal Scroll (무한 횡스크롤) UI</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
 
       </ul>

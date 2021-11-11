@@ -2,7 +2,7 @@
 title: 유니티 - FixedUpdate()와 Physics Loop에 대한 이해
 author: Rito15
 date: 2021-10-23 03:45:00 +09:00
-categories: [Unity, Unity Memo]
+categories: [Unity, Unity Tips]
 tags: [unity, csharp]
 math: true
 mermaid: true

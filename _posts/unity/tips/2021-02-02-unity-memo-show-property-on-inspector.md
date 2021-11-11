@@ -2,7 +2,7 @@
 title: 유니티 - 인스펙터에 오토 프로퍼티 표시하기
 author: Rito15
 date: 2021-02-02 17:08:00 +09:00
-categories: [Unity, Unity Memo]
+categories: [Unity, Unity Tips]
 tags: [unity, csharp, property]
 math: true
 mermaid: true

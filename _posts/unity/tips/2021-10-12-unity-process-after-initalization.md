@@ -2,7 +2,7 @@
 title: 유니티 - 스크립트의 실행 순서를 보장할 수 없는 경우, 종속적인 작업 처리하기
 author: Rito15
 date: 2021-10-12 04:00:00 +09:00
-categories: [Unity, Unity Memo]
+categories: [Unity, Unity Tips]
 tags: [unity, csharp]
 math: true
 mermaid: true

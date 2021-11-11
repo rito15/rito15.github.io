@@ -2,7 +2,7 @@
 title: 유니티 - 무한 루프를 간편히 방지하기
 author: Rito15
 date: 2021-03-05 04:00:00 +09:00
-categories: [Unity, Unity Memo]
+categories: [Unity, Unity Tips]
 tags: [unity, csharp]
 math: true
 mermaid: true
