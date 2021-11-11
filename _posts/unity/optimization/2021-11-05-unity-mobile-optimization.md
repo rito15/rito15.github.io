@@ -445,14 +445,14 @@ mermaid: true
 <br>
 
 ## **가벼운 쉐이더 사용하기**
-- 단순히 로직이 단순한 것은 의미가 없다.
+- 그저 로직이 단순한 것은 의미가 없다.
 - 실제로 연산의 부하가 적은 쉐이더를 사용하는 것이 좋다.
 
 <br>
 
 ## **오버드로우(OverDraw), 알파 블렌딩(Alpha Blending) 최소화**
 - 동일 픽셀에 여러 오브젝트가 그려지는 것을 오버드로우라고 한다.
-- 마찬가지로 동일 픽셀에 여러 오브젝트의 픽셀 색상이 섞여 그려지는 연산을 알파 블렌딩이라고 한다.
+- 마찬가지로 동일 픽셀에 여러 반투명(Transparent) 오브젝트의 픽셀 색상이 섞여 그려지는 연산을 알파 블렌딩이라고 한다.
 - 쉽게 말해, 반투명 쉐이더의 사용을 최대한 줄이는 것이 좋다.
 
 <br>
@@ -476,9 +476,10 @@ mermaid: true
 
 ## **마테리얼 복사본 생성 주의하기**
 - <https://docs.unity3d.com/ScriptReference/Renderer-material.html>
+- <https://docs.unity3d.com/kr/current/Manual/GPUInstancing.html>
 - `Renderer` 클래스의 `material` 프로퍼티를 직접 참조하면 해당 마테리얼의 복사본이 생성되고, 배칭이 깨져서 드로우 콜이 증가한다.
 - 따라서 마테리얼의 프로퍼티에 접근하려면 `sharedMaterial` 프로퍼티를 통해 해당 마테리얼 전체의 프로퍼티에 접근하거나, <br>
-  개별 마테리얼의 프로퍼티를 수정하려면 `MaterialPropertyBlock`을 사용하는 것이 좋다.
+  개별 마테리얼의 프로퍼티를 수정하려면 **GPU Instancing**을 적용하고 `MaterialPropertyBlock`을 사용하는 것이 좋다.
 
 <br>
 
@@ -593,8 +594,9 @@ mermaid: true
 - <https://www.youtube.com/watch?v=RLcSRuZsZQU>
 - <https://ozlael.tistory.com/category/Unity3D/Graphics>
 - <http://egloos.zum.com/littles/v/3439290>
-
-
+- <https://blog.unity.com/kr/technology/optimize-your-mobile-game-performance-expert-tips-on-graphics-and-assets>
+- <https://blog.unity.com/kr/technology/artists-best-practices-for-mobile-game-development>
+- <https://coderzero.tistory.com/entry/유니티-최적화-모바일용-최적화-실전-가이드>
 
 
 

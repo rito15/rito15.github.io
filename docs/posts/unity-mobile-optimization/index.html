@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5536 words">30 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5573 words">30 min</span>
 
 
           <!-- page views -->
@@ -955,7 +955,7 @@
 
   <h2 id="section-11"><strong>가벼운 쉐이더 사용하기</strong></h2>
   <ul>
-    <li>단순히 로직이 단순한 것은 의미가 없다.</li>
+    <li>그저 로직이 단순한 것은 의미가 없다.</li>
     <li>실제로 연산의 부하가 적은 쉐이더를 사용하는 것이 좋다.</li>
   </ul>
 
@@ -964,7 +964,7 @@
   <h2 id="overdraw--alpha-blending-"><strong>오버드로우(OverDraw), 알파 블렌딩(Alpha Blending) 최소화</strong></h2>
   <ul>
     <li>동일 픽셀에 여러 오브젝트가 그려지는 것을 오버드로우라고 한다.</li>
-    <li>마찬가지로 동일 픽셀에 여러 오브젝트의 픽셀 색상이 섞여 그려지는 연산을 알파 블렌딩이라고 한다.</li>
+    <li>마찬가지로 동일 픽셀에 여러 반투명(Transparent) 오브젝트의 픽셀 색상이 섞여 그려지는 연산을 알파 블렌딩이라고 한다.</li>
     <li>쉽게 말해, 반투명 쉐이더의 사용을 최대한 줄이는 것이 좋다.</li>
   </ul>
 
@@ -994,9 +994,10 @@
   <h2 id="section-14"><strong>마테리얼 복사본 생성 주의하기</strong></h2>
   <ul>
     <li><a href="https://docs.unity3d.com/ScriptReference/Renderer-material.html">https://docs.unity3d.com/ScriptReference/Renderer-material.html</a></li>
+    <li><a href="https://docs.unity3d.com/kr/current/Manual/GPUInstancing.html">https://docs.unity3d.com/kr/current/Manual/GPUInstancing.html</a></li>
     <li><code class="language-plaintext highlighter-rouge">Renderer</code> 클래스의 <code class="language-plaintext highlighter-rouge">material</code> 프로퍼티를 직접 참조하면 해당 마테리얼의 복사본이 생성되고, 배칭이 깨져서 드로우 콜이 증가한다.</li>
     <li>따라서 마테리얼의 프로퍼티에 접근하려면 <code class="language-plaintext highlighter-rouge">sharedMaterial</code> 프로퍼티를 통해 해당 마테리얼 전체의 프로퍼티에 접근하거나, <br />
-개별 마테리얼의 프로퍼티를 수정하려면 <code class="language-plaintext highlighter-rouge">MaterialPropertyBlock</code>을 사용하는 것이 좋다.</li>
+개별 마테리얼의 프로퍼티를 수정하려면 <strong>GPU Instancing</strong>을 적용하고 <code class="language-plaintext highlighter-rouge">MaterialPropertyBlock</code>을 사용하는 것이 좋다.</li>
   </ul>
 
   <p><br /></p>
@@ -1129,6 +1130,9 @@
   <li><a href="https://www.youtube.com/watch?v=RLcSRuZsZQU">https://www.youtube.com/watch?v=RLcSRuZsZQU</a></li>
   <li><a href="https://ozlael.tistory.com/category/Unity3D/Graphics">https://ozlael.tistory.com/category/Unity3D/Graphics</a></li>
   <li><a href="http://egloos.zum.com/littles/v/3439290">http://egloos.zum.com/littles/v/3439290</a></li>
+  <li><a href="https://blog.unity.com/kr/technology/optimize-your-mobile-game-performance-expert-tips-on-graphics-and-assets">https://blog.unity.com/kr/technology/optimize-your-mobile-game-performance-expert-tips-on-graphics-and-assets</a></li>
+  <li><a href="https://blog.unity.com/kr/technology/artists-best-practices-for-mobile-game-development">https://blog.unity.com/kr/technology/artists-best-practices-for-mobile-game-development</a></li>
+  <li><a href="https://coderzero.tistory.com/entry/유니티-최적화-모바일용-최적화-실전-가이드">https://coderzero.tistory.com/entry/유니티-최적화-모바일용-최적화-실전-가이드</a></li>
 </ul>
 
 
@@ -1266,6 +1270,11 @@
         
         
         
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
       
         
@@ -1282,11 +1291,6 @@
         
         
         <li><a href="/posts/unity-infinite-horizontal-scroll-ui/">Infinite Horizontal Scroll (무한 횡스크롤) UI</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
 
       </ul>
@@ -9273,7 +9277,6 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
                 목차
 
 
-
   1. Note
   2. Tools
   3. Unity Profiler
@@ -9290,7 +9293,7 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
 
 
 
-No...
+Not...
               </p>
             </div>
           </div>
@@ -9335,12 +9338,11 @@ No...
                 목차
 
 
-
   1.  GetComponent(), Find() 메소드 사용 줄이기
   2.  GetComponent() 대신 TryGetComponent() 사용하기
   3.  Object.name, GameObject.tag 사용하지 않기
   4.  비어있는 유니티 이벤트 메소드 방치하지 않기
-  5.  StartCoroutine() 자주 호출하지 ...
+  5.  StartCoroutine() 자주 호출하지 않...
               </p>
             </div>
           </div>
