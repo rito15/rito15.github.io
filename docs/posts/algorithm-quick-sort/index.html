@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Quick Sort(빠른 정렬)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Summary","datePublished":"2021-04-07T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/algorithm-quick-sort/"},"url":"https://rito15.github.io/posts/algorithm-quick-sort/","author":{"@type":"Person","name":"Rito15"},"headline":"Quick Sort(빠른 정렬)","dateModified":"2021-04-07T22:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Quick Sort(빠른 정렬)","description":"Summary","dateModified":"2021-04-07T22:00:00+09:00","datePublished":"2021-04-07T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/algorithm-quick-sort/"},"url":"https://rito15.github.io/posts/algorithm-quick-sort/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -6843,6 +6843,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8658,67 +8671,6 @@
       
       
       <div class="card">
-        <a href="/posts/dynamic-programming/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Sep  2
-  
-
-  <i class="unloaded">2021-09-02T16:40:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>동적 계획법(Dynamic Programming, DP)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                개념
-
-
-동적 계획법
-
-문제를 여러 개의 하위 문제들로 나누어 해결 및 기록한 뒤
-
-이를 이용해 최종적인 문제를 해결해나가는 방법.
-
-
-
-다시 말해,
-
-문제 해결 과정을 메모리에 기록하고 이를 바탕으로 이후의 문제를 해결해나가는 방법이다.
-
-한 번 기록한 적이 있다면 다시 계산할 필요 없이 곧바로 답을 도출해낼 수 있다.
-
-
-
-메모이제이션(Memoiz...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/sphere-aabb-intersection/">
           <div class="card-body">
             <!--
@@ -8784,7 +8736,7 @@ AABB
       
       
       <div class="card">
-        <a href="/posts/heap-priority-queue/">
+        <a href="/posts/raycast-to-sphere/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8801,13 +8753,13 @@ AABB
   
 
   
-    Sep 24
+    Oct  2
   
 
-  <i class="unloaded">2021-09-24T21:03:00+09:00</i>
+  <i class="unloaded">2021-10-02T02:02:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>자료구조 - 힙(Heap), 우선순위 큐(Priority Queue)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Raycast to Sphere</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8816,34 +8768,79 @@ AABB
 
 
 
-                트리 자료 구조
+                레이캐스트(Raycast)
+
+
+
+  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
 
 
 
 
-트리(Tree)
-
-
-  재귀적 계층 구조
-  노드로 이루어져 있다.
-  최초의 루트 노드에서부터 시작하며, 하나의 부모 노드는 여러 개의 자식 노드를 가진다.
+직선과 구체 표면의 접점 찾기
 
 
 
+  시작 지점에서부터 목표 지점으로 광선을 발사하여, 두 점이 이루는 직선과 교차하는 구체의 표면 지점을 찾아낸다.
+  3차원에서 수행하면 구체, 2차원에서 수행하면 원(C...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/raycast-to-plane/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Oct  3
+  
+
+  <i class="unloaded">2021-10-03T22:22:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Raycast to Plane</h3>
+            <div class="text-muted small">
+              <p>
+                
 
 
 
-이진 트리(Binary Tree)
 
 
-  각 노드가 최대 두 개의 자식만 가질 수 있는 트리 구조
-
-
+                레이캐스트(Raycast)
 
 
 
+  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
 
-포화 이진 트리(Perfect Binary Tree...
+
+
+
+평면(Plane)
+
+
+
+
+평면 위의 점 P와 평면의 법선 벡터 N을 알고 있으면 평면을 정의할 수 있으며,
+
+평면 위의 임의의 점 X를 가정하여 dot(N, P - X) = 0을 통해 평면의 방정식을 정의할 ...
               </p>
             </div>
           </div>

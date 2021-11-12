@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="게임 수학 - 벡터의 내적과 외적" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"내적","datePublished":"2021-10-21T16:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/game-math-dot-cross/"},"url":"https://rito15.github.io/posts/game-math-dot-cross/","author":{"@type":"Person","name":"Rito15"},"headline":"게임 수학 - 벡터의 내적과 외적","dateModified":"2021-10-22T23:00:26+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"게임 수학 - 벡터의 내적과 외적","description":"내적","dateModified":"2021-10-22T23:00:26+09:00","datePublished":"2021-10-21T16:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/game-math-dot-cross/"},"url":"https://rito15.github.io/posts/game-math-dot-cross/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -4836,6 +4836,19 @@ V &amp;=&amp; ||B \times C|| \, ||A|| \, cos \phi \\
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9136,7 +9149,7 @@ V &amp;=&amp; ||B \times C|| \, ||A|| \, cos \phi \\
       
       
       <div class="card">
-        <a href="/posts/sphere-aabb-intersection/">
+        <a href="/posts/foot-of-perpendicular-in-three-vectors/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9153,13 +9166,13 @@ V &amp;=&amp; ||B \times C|| \, ||A|| \, cos \phi \\
   
 
   
-    Oct 26
+    Nov 12
   
 
-  <i class="unloaded">2021-10-26T20:22:00+09:00</i>
+  <i class="unloaded">2021-11-12T18:12:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Sphere-AABB Intersection</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>게임 수학 - 세 점이 주어질 때 수선의 발 구하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9168,30 +9181,26 @@ V &amp;=&amp; ||B \times C|| \, ||A|| \, cos \phi \\
 
 
 
-                Sphere
-
-
-
-  
-    공간의 한 점에서부터 동일한 거리에 있는 점들의 집합
-  
-  
-    구체의 중심 좌표(Vector3), 반지름(float)을 통해 정의할 수 있다.
-  
+                수선의 발 구하기
 
 
 
 
-AABB
+공간 상의 세 점 A, B, C가 주어져 있다.
+
+D는 C에서 직선 AB에 내린 수선의 발이다.
+
+D는 간단히 다음과 같이 구할 수 있다.
+
+\[D = A + AB * \frac{AB \cdot AC}{AB \cdot AB}\]
 
 
 
-  
-    Axis-Aligned Bounding Box
-  
-  
-    여섯 면이 모두 각각 X, Y, Z 축에 정렬된 형태의 육면체
-  ...
+설명
+
+AD 벡터를 구하고, A에서 AD를 더해 D를 계산하는 방식이다.
+
+벡터 AB와 AC를...
               </p>
             </div>
           </div>

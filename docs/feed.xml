@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-11-11T20:43:09+09:00</updated>
+  <updated>2021-11-12T18:15:29+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,67 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>게임 수학 - 세 점이 주어질 때 수선의 발 구하기</title>
+    <link href="https://rito15.github.io/posts/foot-of-perpendicular-in-three-vectors/" rel="alternate" type="text/html" title="게임 수학 - 세 점이 주어질 때 수선의 발 구하기" />
+    <published>2021-11-12T18:12:00+09:00</published>
+  
+    <updated>2021-11-12T18:12:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/foot-of-perpendicular-in-three-vectors/</id>
+    <content src="https://rito15.github.io/posts/foot-of-perpendicular-in-three-vectors/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Memo" />
+    
+    <category term="Game Mathematics" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      수선의 발 구하기
+
+
+
+
+공간 상의 세 점 A, B, C가 주어져 있다.
+
+D는 C에서 직선 AB에 내린 수선의 발이다.
+
+D는 간단히 다음과 같이 구할 수 있다.
+
+\[D = A + AB * \frac{AB \cdot AC}{AB \cdot AB}\]
+
+
+
+설명
+
+AD 벡터를 구하고, A에서 AD를 더해 D를 계산하는 방식이다.
+
+벡터 AB와 AC를 내적하면 AB의 크기와 AC를 AB에 사영한 벡터 AD의 크기를 곱한 값, 즉 |AB| * |AD|를 얻을 수 있고,
+
+벡터 AB를 자기 자신에 대해 내적하면 |AB| * |AB|를 얻을 수 있다.
+
+전자를 후자로 나누면 |AD| / |AB|를 얻을 수 있고,
+
+여기에 벡터 AB를 곱하면 AB의 방향을 유지한채 크기는 |AD|인 벡터, 즉 AD를 얻을 수...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -312,80 +373,6 @@ Source Code
 
   using System.Collections;
 u...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Intel Assembly 기초 간단 정리</title>
-    <link href="https://rito15.github.io/posts/intel-assembly-memo/" rel="alternate" type="text/html" title="Intel Assembly 기초 간단 정리" />
-    <published>2021-11-02T03:54:00+09:00</published>
-  
-    <updated>2021-11-02T03:54:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/intel-assembly-memo/</id>
-    <content src="https://rito15.github.io/posts/intel-assembly-memo/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Assembly Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      목표
-
-
-  비주얼 스튜디오에서 디스어셈블러로 어셈블리 코드를 읽었을 때, 대충이라도 흐름과 동작 이해하기
-
-
-
-
-어셈블리 문법 종류
-
-
-
-  
-    Intel, AT&amp;amp;T 문법이 있다.
-  
-  eax, [eax] 꼴의 문법은 Intel이며,
-  
-    %eax, (%eax) 꼴의 문법은 AT&amp;amp;T이다.
-  
-  Intel 문법을 따르는 대표적인 예시로 MASM(Microsoft Macro Assembler), NASM(Netwide Assembler) 등이 있다.
-
-
-
-
-알아두기
-
-
-
-  
-…
-
-
-  어셈블리 연산의 특징
-
-  메모리 주소 간의 연산을 수행할 때,
-
-  특정 주소에서 주소로 직접 연산할 수 없고, 반드시 레지스터를 거쳐간다.
-
-  예를 들어 메모리 0x24 위치의 값을...
     </summary>
   
 

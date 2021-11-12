@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="C++ Smart Debugging" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Note C++에는 미리 정의된 동적 매크로가 있다.","datePublished":"2021-02-04T16:56:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cpp-smart-debugging/"},"url":"https://rito15.github.io/posts/memo-cpp-smart-debugging/","author":{"@type":"Person","name":"Rito15"},"headline":"C++ Smart Debugging","dateModified":"2021-05-10T03:44:51+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"C++ Smart Debugging","description":"Note C++에는 미리 정의된 동적 매크로가 있다.","dateModified":"2021-05-10T03:44:51+09:00","datePublished":"2021-02-04T16:56:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-cpp-smart-debugging/"},"url":"https://rito15.github.io/posts/memo-cpp-smart-debugging/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -8108,6 +8108,19 @@ if(x != value) {        \
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8718,7 +8731,7 @@ Cout Format
       
       
       <div class="card">
-        <a href="/posts/intel-assembly-memo/">
+        <a href="/posts/sphere-aabb-intersection/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8735,13 +8748,13 @@ Cout Format
   
 
   
-    Nov  2
+    Oct 26
   
 
-  <i class="unloaded">2021-11-02T03:54:00+09:00</i>
+  <i class="unloaded">2021-10-26T20:22:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Intel Assembly 기초 간단 정리</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Sphere-AABB Intersection</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8750,26 +8763,30 @@ Cout Format
 
 
 
-                목표
-
-
-  비주얼 스튜디오에서 디스어셈블러로 어셈블리 코드를 읽었을 때, 대충이라도 흐름과 동작 이해하기
-
-
-
-
-어셈블리 문법 종류
+                Sphere
 
 
 
   
-    Intel, AT&amp;T 문법이 있다.
+    공간의 한 점에서부터 동일한 거리에 있는 점들의 집합
   
-  eax, [eax] 꼴의 문법은 Intel이며,
   
-    %eax, (%eax) 꼴의 문법은 AT&amp;T이다.
+    구체의 중심 좌표(Vector3), 반지름(float)을 통해 정의할 수 있다.
   
-  Intel 문법을 따르...
+
+
+
+
+AABB
+
+
+
+  
+    Axis-Aligned Bounding Box
+  
+  
+    여섯 면이 모두 각각 X, Y, Z 축에 정렬된 형태의 육면체
+  ...
               </p>
             </div>
           </div>

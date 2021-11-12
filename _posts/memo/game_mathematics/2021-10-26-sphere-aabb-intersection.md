@@ -2,7 +2,7 @@
 title: Sphere-AABB Intersection
 author: Rito15
 date: 2021-10-26 20:22:00 +09:00
-categories: [Algorithm, Algorithms]
+categories: [Memo, Game Mathematics]
 tags: [algorithm, csharp, math]
 math: true
 mermaid: true

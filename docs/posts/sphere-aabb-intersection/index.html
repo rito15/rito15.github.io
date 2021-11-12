@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Sphere-AABB Intersection" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Sphere","datePublished":"2021-10-26T20:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/sphere-aabb-intersection/"},"url":"https://rito15.github.io/posts/sphere-aabb-intersection/","author":{"@type":"Person","name":"Rito15"},"headline":"Sphere-AABB Intersection","dateModified":"2021-10-29T03:59:19+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Sphere-AABB Intersection","description":"Sphere","dateModified":"2021-10-26T20:22:00+09:00","datePublished":"2021-10-26T20:22:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/sphere-aabb-intersection/"},"url":"https://rito15.github.io/posts/sphere-aabb-intersection/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,35 +407,6 @@
         <div>
           <!-- lastmod -->
           
-          <span>
-            Updated
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago lastmod"
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Oct 29, 2021,  3:59 AM +0900"
-  >
-
-  
-  
-
-  
-    Oct 29
-  
-
-  <i class="unloaded">2021-10-29T03:59:19+09:00</i>
-
-</span>
-          </span>
-          
 
           <!-- read time -->
           <!--
@@ -787,8 +758,8 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         <div class="post-meta mb-3">
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
-            <a href='/categories/algorithm/'>Algorithm</a>,
-            <a href='/categories/algorithms/'>Algorithms</a>
+            <a href='/categories/memo/'>Memo</a>,
+            <a href='/categories/game-mathematics/'>Game Mathematics</a>
         </div>
         
 
@@ -4453,6 +4424,19 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8795,67 +8779,6 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
       
       
       <div class="card">
-        <a href="/posts/dynamic-programming/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Sep  2
-  
-
-  <i class="unloaded">2021-09-02T16:40:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>동적 계획법(Dynamic Programming, DP)</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                개념
-
-
-동적 계획법
-
-문제를 여러 개의 하위 문제들로 나누어 해결 및 기록한 뒤
-
-이를 이용해 최종적인 문제를 해결해나가는 방법.
-
-
-
-다시 말해,
-
-문제 해결 과정을 메모리에 기록하고 이를 바탕으로 이후의 문제를 해결해나가는 방법이다.
-
-한 번 기록한 적이 있다면 다시 계산할 필요 없이 곧바로 답을 도출해낼 수 있다.
-
-
-
-메모이제이션(Memoiz...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/raycast-to-sphere/">
           <div class="card-body">
             <!--
@@ -8961,6 +8884,70 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 평면 위의 점 P와 평면의 법선 벡터 N을 알고 있으면 평면을 정의할 수 있으며,
 
 평면 위의 임의의 점 X를 가정하여 dot(N, P - X) = 0을 통해 평면의 방정식을 정의할 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/sphere-cast-to-sphere/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Oct  9
+  
+
+  <i class="unloaded">2021-10-09T18:26:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Sphere Cast to Sphere</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Sphere Cast
+
+
+
+  
+    공간 상의 한 점에서부터 목표 지점까지 구체를 전진시켜, 구체 표면에 닿는 물체 표면을 검출한다.
+  
+  
+    레이캐스트와는 달리 구체의 반지름을 고려해야 한다.
+  
+
+
+
+
+Sphere Cast to Sphere
+
+
+
+  
+    대상 물체가 구체인 경우에 대해서만 검사한다.
+  
+  
+    충돌 여부와...
               </p>
             </div>
           </div>

@@ -2,7 +2,7 @@
 title: Raycast to Sphere
 author: Rito15
 date: 2021-10-02 02:02:00 +09:00
-categories: [Algorithm, Algorithms]
+categories: [Memo, Game Mathematics]
 tags: [algorithm, csharp, raycast]
 math: true
 mermaid: true

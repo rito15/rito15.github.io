@@ -2,7 +2,7 @@
 title: Raycast to AABB
 author: Rito15
 date: 2021-10-19 03:00:00 +09:00
-categories: [Algorithm, Algorithms]
+categories: [Memo, Game Mathematics]
 tags: [algorithm, csharp, raycast]
 math: true
 mermaid: true
