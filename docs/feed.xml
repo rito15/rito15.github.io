@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-11-12T18:15:29+09:00</updated>
+  <updated>2021-11-13T01:23:53+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,78 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 - Transform의 공간 변환 메소드 간단 메모</title>
+    <link href="https://rito15.github.io/posts/unity-transform-transformation-methods/" rel="alternate" type="text/html" title="유니티 - Transform의 공간 변환 메소드 간단 메모" />
+    <published>2021-11-13T00:02:00+09:00</published>
+  
+    <updated>2021-11-13T00:02:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-transform-transformation-methods/</id>
+    <content src="https://rito15.github.io/posts/unity-transform-transformation-methods/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo - Shorts" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. 로컬-월드 변환
+
+
+[1] TransformPoint()
+
+
+  
+    위치, 회전, 크기 변환을 적용한다.
+  
+  
+    방향 벡터가 아니라, 위치 벡터를 월드 위치로 변환할 때 사용한다.
+  
+  
+    메시의 로컬 정점 좌표로부터 월드 정점 좌표를 구할 때처럼, 
+오브젝트에 완전히 종속적인 위치 벡터를 변환할 때 사용된다.
+  
+  
+    C# 스크립트에서는 딱히 자주 쓰이지 않는다.
+  
+
+
+
+
+[2] TransformVector()
+
+
+  
+    회전, 크기 변환을 적용한다.
+  
+  
+    메시의 노멀 벡터처럼 오브젝트에 종속적인 방향 벡터를 월드로 변환할 때 사용된다.
+  
+  
+    이것도 C# 스크립트에서 딱히 쓸 일은 없어 보인다.
+  
+  
+    혹시나 방향 벡...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -293,86 +365,6 @@ private static Type GameViewType
                 AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(ass =&amp;gt; ass.GetTypes())
                 .Where(t =&amp;gt; t.Namespace == "UnityEd...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드</title>
-    <link href="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" rel="alternate" type="text/html" title="유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드" />
-    <published>2021-11-04T20:30:00+09:00</published>
-  
-    <updated>2021-11-07T16:00:43+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-rigidbody-move-and-jump/</id>
-    <content src="https://rito15.github.io/posts/unity-rigidbody-move-and-jump/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo - Shorts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-  
-    입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심
-  
-  
-    다음과 같은 증상들이 발생한다면 Update()에서 리지드바디를 조작하고 있는지 의심할 필요가 있다.
-    
-      왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.
-      콜라이더에 자주 끼인다.
-      지터링(덜덜 떨림)이 빈번하게 발생한다.
-      점프할 때마다 점프하는 높이가 달라진다.
-    
-  
-
-
-
-
-Source Code 1
-
-
-기능
-
-  WASD 키 : 리지드바디 이동
-  Space 키 : 리지드바디 점프
-
-
-
-
-소스 코드
-
-
-  
-Source Code
-
-
-  
-
-  
-    
-  
-
-  using System.Collections;
-u...
     </summary>
   
 
