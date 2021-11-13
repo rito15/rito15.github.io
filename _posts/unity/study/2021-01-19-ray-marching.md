@@ -165,7 +165,15 @@ Screen UV 좌표에 깊이(Z축 좌표)를 추가하여 3D 공간 상의 화면 
 
 ## **레이 마칭 함수의 구성**
 
-<center> <img src="https://user-images.githubusercontent.com/42164422/104993811-c1d41d80-5a66-11eb-9ad3-a861471cce8e.png" width="500"> </center>
+<center>
+
+<img src="https://user-images.githubusercontent.com/42164422/104993811-c1d41d80-5a66-11eb-9ad3-a861471cce8e.png" width="500">
+
+<br>
+
+출처 : <a href="https://www.youtube.com/watch?v=PGtv-dBi2wE">Youtube - The Art of Code</a>
+
+</center>
 
 ```glsl
 #define MAX_STEPS 100   // 최대 스텝 수
@@ -312,9 +320,9 @@ float GetLight(vec3 p)
     float diff = saturate( dot(N, L) );
     
     // Shadow
-    // 정점(3D 물체 표면이 위치하는 모든 지점)에서 광원을 향해 레이마칭하여 얻은 거리가
-    // 정점에서 광원까지의 거리보다 작다면,
-    // 그 사이에 또다른 정점이 가로막고 있다는 뜻이므로 이 정점은 그림자가 생긴다.
+    // 물체 표면에서 광원을 향해 레이마칭하여 얻은 거리가
+    // 표면에서 광원까지의 거리보다 작다면,
+    // 그 사이에 또다른 물체의 표면이 가로막고 있다는 뜻이므로 이 표면에는 그림자가 생긴다.
     
     // SURF_DIST만큼의 거리를 더해주는 이유 : 레이가 정점을 찾아내는 최소 거리(Threshold)이므로
     // SURF_DIST에 1.0 초과 숫자를 곱해주는 이유 : 의도치 않은 음영이 생길 수 있으므로
@@ -522,9 +530,9 @@ float GetLight(vec3 p)
     float dif = saturate( dot(N, L) );
     
     // Shadow
-    // 정점(3D 물체 표면이 위치하는 모든 지점)에서 광원을 향해 레이마칭하여 얻은 거리가
-    // 정점에서 광원까지의 거리보다 작다면,
-    // 그 사이에 또다른 정점이 가로막고 있다는 뜻이므로 이 정점은 그림자가 생김
+    // 물체 표면에서 광원을 향해 레이마칭하여 얻은 거리가
+    // 표면에서 광원까지의 거리보다 작다면,
+    // 그 사이에 또다른 물체의 표면이 가로막고 있다는 뜻이므로 이 표면에는 그림자가 생긴다.
     
     // SURF_DIST만큼의 거리를 더해주는 이유 : 레이가 정점을 찾아내는 최소 거리(Threshold)이므로
     // SURF_DIST에 1.0 초과 숫자를 곱해주는 이유 : 의도치 않은 음영이 생길 수 있으므로

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="레이 마칭(Ray Marching)" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"레이 마칭(Ray Marching)","description":"레이 마칭이란?","dateModified":"2021-11-03T00:02:43+09:00","datePublished":"2021-01-19T23:15:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/ray-marching/"},"url":"https://rito15.github.io/posts/ray-marching/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"레이 마칭이란?","datePublished":"2021-01-19T23:15:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/ray-marching/"},"url":"https://rito15.github.io/posts/ray-marching/","author":{"@type":"Person","name":"Rito15"},"headline":"레이 마칭(Ray Marching)","dateModified":"2021-11-03T00:02:43+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5197 words">28 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5190 words">28 min</span>
 
 
           <!-- page views -->
@@ -637,7 +637,15 @@
 
 <h2 id="레이-마칭-함수의-구성"><strong>레이 마칭 함수의 구성</strong></h2>
 
-<center> <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104993811-c1d41d80-5a66-11eb-9ad3-a861471cce8e.png" width="500" /> </center>
+<center>
+
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/104993811-c1d41d80-5a66-11eb-9ad3-a861471cce8e.png" width="500" />
+
+<br />
+
+출처 : <a href="https://www.youtube.com/watch?v=PGtv-dBi2wE">Youtube - The Art of Code</a>
+
+</center>
 
 <div class="language-glsl highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -888,9 +896,9 @@ GetLight Function
     <span class="kt">float</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">(</span> <span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span> <span class="p">);</span>
     
     <span class="c1">// Shadow</span>
-    <span class="c1">// 정점(3D 물체 표면이 위치하는 모든 지점)에서 광원을 향해 레이마칭하여 얻은 거리가</span>
-    <span class="c1">// 정점에서 광원까지의 거리보다 작다면,</span>
-    <span class="c1">// 그 사이에 또다른 정점이 가로막고 있다는 뜻이므로 이 정점은 그림자가 생긴다.</span>
+    <span class="c1">// 물체 표면에서 광원을 향해 레이마칭하여 얻은 거리가</span>
+    <span class="c1">// 표면에서 광원까지의 거리보다 작다면,</span>
+    <span class="c1">// 그 사이에 또다른 물체의 표면이 가로막고 있다는 뜻이므로 이 표면에는 그림자가 생긴다.</span>
     
     <span class="c1">// SURF_DIST만큼의 거리를 더해주는 이유 : 레이가 정점을 찾아내는 최소 거리(Threshold)이므로</span>
     <span class="c1">// SURF_DIST에 1.0 초과 숫자를 곱해주는 이유 : 의도치 않은 음영이 생길 수 있으므로</span>
@@ -1352,9 +1360,9 @@ Source Code
     <span class="kt">float</span> <span class="n">dif</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">(</span> <span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span> <span class="p">);</span>
     
     <span class="c1">// Shadow</span>
-    <span class="c1">// 정점(3D 물체 표면이 위치하는 모든 지점)에서 광원을 향해 레이마칭하여 얻은 거리가</span>
-    <span class="c1">// 정점에서 광원까지의 거리보다 작다면,</span>
-    <span class="c1">// 그 사이에 또다른 정점이 가로막고 있다는 뜻이므로 이 정점은 그림자가 생김</span>
+    <span class="c1">// 물체 표면에서 광원을 향해 레이마칭하여 얻은 거리가</span>
+    <span class="c1">// 표면에서 광원까지의 거리보다 작다면,</span>
+    <span class="c1">// 그 사이에 또다른 물체의 표면이 가로막고 있다는 뜻이므로 이 표면에는 그림자가 생긴다.</span>
     
     <span class="c1">// SURF_DIST만큼의 거리를 더해주는 이유 : 레이가 정점을 찾아내는 최소 거리(Threshold)이므로</span>
     <span class="c1">// SURF_DIST에 1.0 초과 숫자를 곱해주는 이유 : 의도치 않은 음영이 생길 수 있으므로</span>
@@ -10302,10 +10310,9 @@ class TreeNode
                 개념
 
 
-
   FSM (Finite State Machine)의 단점을 보완하기 위해 만들어진 기법
   FSM에서는 상태 전이 조건을 모두 각각의 상태에서 검사하지만, BT에서는 상태 동작 뿐만 아니라 전이 조건도 노드로 관리한다.
-  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다...
+  노드 그래프를 통해 시각화하거나 params, 빌더 패턴 등을 활용하여 스크립트 내에서도 가독성 좋게 구성할 수 있다....
               </p>
             </div>
           </div>
