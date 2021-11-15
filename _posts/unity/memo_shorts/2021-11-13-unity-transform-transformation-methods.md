@@ -46,6 +46,8 @@ mermaid: true
 
 - `Transform`의 변환 메소드 중에서는 가장 자주 쓰이는 편이다.
 
+- `transform.TransformDirection(vector)`는 <br> `transform.rotation * vector`와 같다.
+
 <br>
 
 - 예시 : 키보드 입력에 따른 이동 방향 벡터를 로컬 공간에서 조립하여, <br>
