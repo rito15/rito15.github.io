@@ -795,27 +795,27 @@
         
         
         
+        <li><a href="/posts/unity-transform-transformation-methods/">유니티 - Transform의 공간 변환 메소드 간단 메모</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-mobile-optimization/">유니티 - 모바일 성능 최적화</a></li>
       
         
         
         
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-million-dust-simulation/">유니티 - 물리 기반 먼지 시뮬레이션</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a></li>
       
 
       </ul>
@@ -8559,6 +8559,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8830,7 +8843,7 @@ class TreeNode
       
       
       <div class="card">
-        <a href="/posts/fog-of-war/">
+        <a href="/posts/unity-million-dust-simulation/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8847,13 +8860,13 @@ class TreeNode
   
 
   
-    Jan 20
+    Sep 27
   
 
-  <i class="unloaded">2021-01-20T21:00:00+09:00</i>
+  <i class="unloaded">2021-09-27T17:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 전장의 안개(Fog of War)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 물리 기반 먼지 시뮬레이션</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8862,25 +8875,25 @@ class TreeNode
 
 
 
-                목차
+                목표
 
 
-  1. 개념
-  2. 구현 방법
-  3. 타일맵을 이용한 구현
-  4. 구현 결과
-  5. 프로파일링, 최적화
-  6. Reference
+  수십만 ~ 백만 개의 먼지를 렌더링한다.
+  먼지들의 움직임을 물리 기반으로 직접 구현하여 시뮬레이션한다.
+  진공 청소기로 먼지들을 예쁘게 빨아들인다.
 
 
 
 
-개념
 
 
-  맵과 크기가 동일한 RGBA(0, 0, 0, a)의 텍스쳐를 이용해 지정한 유닛들의 주변시야를 표현한다.
-  지정한 유닛이 현재 위치한 원형 범위 내 영역들은 a = 0,
-  지정한 유...
+주요 개념
+
+
+Compute Buffer
+
+  큰 병렬 데이터를 GPU에 전달하거나 쉐이더끼리 공유하기 위해 사용한다.
+  Vert/Frag, Compute Shader에서 S...
               </p>
             </div>
           </div>

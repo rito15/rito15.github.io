@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-11-13T17:18:11+09:00</updated>
+  <updated>2021-11-17T00:16:06+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,79 @@
 
   
   <entry>
+    <title>유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</title>
+    <link href="https://rito15.github.io/posts/unity-bad-coding-practices/" rel="alternate" type="text/html" title="유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들" />
+    <published>2021-11-16T22:51:00+09:00</published>
+  
+    <updated>2021-11-16T22:51:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-bad-coding-practices/</id>
+    <content src="https://rito15.github.io/posts/unity-bad-coding-practices/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Tips" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Intro
+
+
+별 생각 없이 흔하게 작성할 수 있지만,
+
+제대로 알고 보면 ‘절대 이렇게 작성하면 안되겠다’라고 생각할 수 있는 유니티 C# 코딩 방식들에 대해 다룹니다.
+
+편의상 본문에서는 평어로 서술합니다.
+
+
+
+Note
+
+
+
+  
+    본문에서의 ‘자주’는 Update(), FixedUpdate(), 코루틴 내부의 while(true) 문 등에서 자주 호출되는 경우를 의미한다.
+  
+  
+    예를 들어 Update()는 매 프레임마다 한 번씩 호출되므로, 자주 호출된다고 할 수 있다.
+  
+
+
+
+
+1. 자주 호출되는 Find(), GetComponent()
+
+
+예시
+
+private void Update()
+{
+    GameObject managerObject  = GameObject.Fin...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>유니티 - Transform의 공간 변환 메소드 간단 메모</title>
     <link href="https://rito15.github.io/posts/unity-transform-transformation-methods/" rel="alternate" type="text/html" title="유니티 - Transform의 공간 변환 메소드 간단 메모" />
     <published>2021-11-13T00:02:00+09:00</published>
   
-    <updated>2021-11-13T00:02:00+09:00</updated>
+    <updated>2021-11-16T00:25:12+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-transform-transformation-methods/</id>
     <content src="https://rito15.github.io/posts/unity-transform-transformation-methods/" />
@@ -302,69 +370,6 @@ Unity Docs
 
 
   이미...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 에디터 - 게임 뷰 객체 찾는 코드</title>
-    <link href="https://rito15.github.io/posts/unity-editor-find-game-view/" rel="alternate" type="text/html" title="유니티 에디터 - 게임 뷰 객체 찾는 코드" />
-    <published>2021-11-05T02:10:00+09:00</published>
-  
-    <updated>2021-11-05T05:41:44+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-editor-find-game-view/</id>
-    <content src="https://rito15.github.io/posts/unity-editor-find-game-view/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Editor Memo" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Note
-
-
-  흔히 게임 뷰라고 알려져 있는 에디터 윈도우는 UnityEditor.PlayModeView 타입이다.
-  리플렉션을 통해 접근할 수 있다.
-
-
-
-
-Source Code
-
-
-
-
-
-  
-
-
-private static Type GameViewType
-{
-    get
-    {
-        if (gameViewType == null)
-        {
-            gameViewType =
-                AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(ass =&amp;gt; ass.GetTypes())
-                .Where(t =&amp;gt; t.Namespace == "UnityEd...
     </summary>
   
 

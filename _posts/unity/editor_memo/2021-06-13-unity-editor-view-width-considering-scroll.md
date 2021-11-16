@@ -86,3 +86,13 @@ private class CE : UnityEditor.Editor
 ```
 
 <br>
+
+# 추가
+---
+
+`EditorGUILayout.Space(0f)` 대신 `GUILayoutUtility.GetRect(0f, 0f)`를 호출해도 된다.
+
+**2019.3** 이전 버전에서는 `EditorGUILayout.Space(float)` 메소드가 없으므로
+
+`GUILayoutUtility.GetRect(0f, 0f)`를 사용해야만 한다.
+
