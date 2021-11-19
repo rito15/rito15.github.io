@@ -30,7 +30,8 @@ mermaid: true
 # Properties
 ---
 
-- 
+- `이름`
+  - 설명
 
 
 <br>
