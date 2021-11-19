@@ -26,8 +26,8 @@
 <meta property="og:title" content="멀티패스 쉐이더 코드 깔끔하게 작성하기" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="```hlsl Shader “A/B” { Properties { _MainTex (“Texture”, 2D) = “black” {} }" />
-<meta property="og:description" content="```hlsl Shader “A/B” { Properties { _MainTex (“Texture”, 2D) = “black” {} }" />
+<meta name="description" content="```hlsl Shader “A/B” { Properties { _MainTex (“Texture”, 2D) = “white” {} }" />
+<meta property="og:description" content="```hlsl Shader “A/B” { Properties { _MainTex (“Texture”, 2D) = “white” {} }" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-smart-multipass-code/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-smart-multipass-code/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="멀티패스 쉐이더 코드 깔끔하게 작성하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"멀티패스 쉐이더 코드 깔끔하게 작성하기","description":"```hlsl Shader “A/B” { Properties { _MainTex (“Texture”, 2D) = “black” {} }","dateModified":"2021-02-02T00:00:00+09:00","datePublished":"2021-02-02T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-smart-multipass-code/"},"url":"https://rito15.github.io/posts/unity-smart-multipass-code/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"```hlsl Shader “A/B” { Properties { _MainTex (“Texture”, 2D) = “white” {} }","datePublished":"2021-02-02T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-smart-multipass-code/"},"url":"https://rito15.github.io/posts/unity-smart-multipass-code/","author":{"@type":"Person","name":"Rito15"},"headline":"멀티패스 쉐이더 코드 깔끔하게 작성하기","dateModified":"2021-02-02T00:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="223 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="241 words">1 min</span>
 
 
           <!-- page views -->
@@ -500,16 +500,20 @@
 75
 76
 77
+78
+79
+80
 </pre></td><td class="rouge-code"><pre><span class="n">Shader</span> <span class="s">"A/B"</span>
 <span class="p">{</span>
     <span class="n">Properties</span>
     <span class="p">{</span>
-        <span class="n">_MainTex</span> <span class="p">(</span><span class="s">"Texture"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"black"</span> <span class="p">{}</span>
+        <span class="n">_MainTex</span> <span class="p">(</span><span class="s">"Texture"</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">"white"</span> <span class="p">{}</span>
     <span class="p">}</span>
 
     <span class="n">CGINCLUDE</span>
     <span class="cp">#include "UnityCG.cginc"
 </span>
+    <span class="cm">/* Structs */</span>
     <span class="k">struct</span> <span class="n">appdata</span>
     <span class="p">{</span>
         <span class="kt">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="nb">POSITION</span><span class="p">;</span>
@@ -523,11 +527,12 @@
 
     <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
 
+    <span class="cm">/* Pass 1 Shader Functions */</span>
     <span class="n">v2f</span> <span class="n">vert1</span> <span class="p">(</span><span class="n">appdata</span> <span class="n">v</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">v2f</span> <span class="n">o</span><span class="p">;</span>
-		<span class="n">o</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">UnityObjectToClipPos</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">vertex</span><span class="p">);</span>
-		<span class="n">o</span><span class="p">.</span><span class="n">uv</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">uv</span><span class="p">;</span>
+        <span class="n">o</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">UnityObjectToClipPos</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">vertex</span><span class="p">);</span>
+        <span class="n">o</span><span class="p">.</span><span class="n">uv</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">uv</span><span class="p">;</span>
         <span class="c1">// ...</span>
         <span class="k">return</span> <span class="n">o</span><span class="p">;</span>
     <span class="p">}</span>
@@ -539,11 +544,12 @@
         <span class="k">return</span> <span class="n">col</span><span class="p">;</span>
     <span class="p">}</span>     
 
+    <span class="cm">/* Pass 2 Shader Functions */</span>
     <span class="n">v2f</span> <span class="n">vert2</span> <span class="p">(</span><span class="n">appdata</span> <span class="n">v</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">v2f</span> <span class="n">o</span><span class="p">;</span>
-		<span class="n">o</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">UnityObjectToClipPos</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">vertex</span><span class="p">);</span>
-		<span class="n">o</span><span class="p">.</span><span class="n">uv</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">uv</span><span class="p">;</span>
+        <span class="n">o</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">UnityObjectToClipPos</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">vertex</span><span class="p">);</span>
+        <span class="n">o</span><span class="p">.</span><span class="n">uv</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">uv</span><span class="p">;</span>
         <span class="c1">// ...</span>
         <span class="k">return</span> <span class="n">o</span><span class="p">;</span>
     <span class="p">}</span>
@@ -590,7 +596,7 @@
           <i class="far fa-folder-open fa-fw mr-1"></i>
           
             <a href='/categories/unity-shader/'>Unity Shader</a>,
-            <a href='/categories/shader-study/'>Shader Study</a>
+            <a href='/categories/shader-memo/'>Shader Memo</a>
         </div>
         
 
@@ -8629,116 +8635,6 @@
       
       
       <div class="card">
-        <a href="/posts/rendering-pipeline/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 30
-  
-
-  <i class="unloaded">2021-08-30T01:50:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>렌더링 파이프라인 간단 정리</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                렌더링 파이프라인 구조 요약(DirectX 9 기준)
-
-
-입력 조립
-
-  GPU가 CPU로부터 정점 데이터를 전달 받아서 프리미티브(삼각형)들을 만든다.
-
-
-정점 쉐이더
-
-  Object Space에서 Clip Space까지 정점들의 공간 변환을 수행한다.
-
-
-래스터라이저
-
-  Clip Space의 정점 데이터를 Viewport로 변환하고, 
-정점 데...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/lighting-models/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Nov 16, 2020
-  
-
-  <i class="unloaded">2020-11-16T17:14:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Lighting Models</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Vectors
-
-
-
-
-  L (Light) : 정점에서 광원을 향하는 방향의 벡터
-  N (Normal) : 정점의 노멀 벡터
-  V (View) : 정점에서 카메라를 향하는 방향의 벡터
-  R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
-  
-    H (Half) : 블린퐁에서 사용, L와 V의 중...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-shader-compilation/">
           <div class="card-body">
             <!--
@@ -8830,6 +8726,156 @@
 52
 // 트랜스폼의 회전 행렬 추출
 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-amplify-screen-damage/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 19
+  
+
+  <i class="unloaded">2021-08-19T02:55:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(Amplify) Screen Effect - Damage</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Summary
+
+
+  
+    피격 시 화면 가장자리 붉어지는 이펙트
+  
+  
+    스크린 이펙트 적용 애셋 : Link
+  
+
+
+
+
+Preview
+
+
+
+
+
+
+Nodes
+
+
+
+
+
+
+Download
+
+
+  2021_0817_Screen Effect_Damage.zip
+
+
+
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-amplify-screen-hexagons/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug 19
+  
+
+  <i class="unloaded">2021-08-19T02:55:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(Amplify) Screen Effect - Hexagonal Pattern</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Summary
+
+
+  
+    육각형 패턴 이펙트
+  
+  
+    스크린 이펙트 적용 애셋 : Link
+  
+
+
+
+
+Preview
+
+
+
+
+
+
+Nodes
+
+
+
+
+
+
+Download
+
+
+  2021_0817_Screen Effect_Hexagons.zip
+
+
+
               </p>
             </div>
           </div>

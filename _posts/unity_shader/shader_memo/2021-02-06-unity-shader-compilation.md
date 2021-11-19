@@ -2,7 +2,7 @@
 title: 유니티 쉐이더 & 함수 모음
 author: Rito15
 date: 2021-02-06 01:25:00 +09:00
-categories: [Unity Shader, Shader Study]
+categories: [Unity Shader, Shader Memo]
 tags: [unity, csharp, shader, graphics, transparent, stencil]
 math: true
 mermaid: true

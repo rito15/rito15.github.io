@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 쉐이더 프로퍼티 애트리뷰트 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 쉐이더 프로퍼티 애트리뷰트 모음","description":"Space","dateModified":"2021-07-06T16:56:59+09:00","datePublished":"2021-03-04T21:58:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-property-attributes/"},"url":"https://rito15.github.io/posts/unity-shader-property-attributes/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Space","datePublished":"2021-03-04T21:58:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-property-attributes/"},"url":"https://rito15.github.io/posts/unity-shader-property-attributes/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 쉐이더 프로퍼티 애트리뷰트 모음","dateModified":"2021-07-06T16:56:59+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -9070,7 +9070,7 @@ Source Code
       
       
       <div class="card">
-        <a href="/posts/unity-smart-multipass-code/">
+        <a href="/posts/unity-transparent-stencil/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9087,13 +9087,13 @@ Source Code
   
 
   
-    Feb  2
+    Feb  6
   
 
-  <i class="unloaded">2021-02-02T00:00:00+09:00</i>
+  <i class="unloaded">2021-02-06T01:29:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>멀티패스 쉐이더 코드 깔끔하게 작성하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 반투명, 스텐실 개념 익히기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9102,21 +9102,27 @@ Source Code
 
 
 
-                
-  
-    Shader "A/B"
-{
-    Properties
-    {
-        _MainTex ("Texture", 2D) = "black" {}
-    }
+                목차
 
-    CGINCLUDE
-    #include "UnityCG.cginc"
 
-    struct appdata
-    {
-        float4 vertex : POSITIO...
+
+  1. 불투명과 반투명
+  2. 알파 블렌딩, 알파 소팅
+  3. 알파 테스트
+  4. 커스텀 알파 블렌딩
+  5. 파티클 쉐이더 만들어보기
+  6. 깨끗한 알파 블렌딩 쉐이더 만들기
+  7. ZTest와 ZWrite
+  8. 알파 블렌딩 쉐이더에서 발생하는 문제점들
+  9. 스텐실
+  10. References
+
+
+
+
+불투명과 반투명
+
+...
               </p>
             </div>
           </div>

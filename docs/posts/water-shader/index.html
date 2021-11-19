@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="물 쉐이더 만들기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"물 쉐이더 만들기","description":"목표 서피스 쉐이더로 물 쉐이더 만들기","dateModified":"2021-09-16T00:12:50+09:00","datePublished":"2021-02-13T19:24:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/water-shader/"},"url":"https://rito15.github.io/posts/water-shader/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"목표 서피스 쉐이더로 물 쉐이더 만들기","datePublished":"2021-02-13T19:24:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/water-shader/"},"url":"https://rito15.github.io/posts/water-shader/","author":{"@type":"Person","name":"Rito15"},"headline":"물 쉐이더 만들기","dateModified":"2021-09-16T00:12:50+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -9385,7 +9385,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-shader-compilation/">
+        <a href="/posts/unity-transparent-stencil/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9405,10 +9405,10 @@
     Feb  6
   
 
-  <i class="unloaded">2021-02-06T01:25:00+09:00</i>
+  <i class="unloaded">2021-02-06T01:29:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 & 함수 모음</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 반투명, 스텐실 개념 익히기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9417,19 +9417,27 @@
 
 
 
-                Functions
+                목차
 
 
-트랜스폼에서 회전 행렬만 추출하기
+
+  1. 불투명과 반투명
+  2. 알파 블렌딩, 알파 소팅
+  3. 알파 테스트
+  4. 커스텀 알파 블렌딩
+  5. 파티클 쉐이더 만들어보기
+  6. 깨끗한 알파 블렌딩 쉐이더 만들기
+  7. ZTest와 ZWrite
+  8. 알파 블렌딩 쉐이더에서 발생하는 문제점들
+  9. 스텐실
+  10. References
 
 
-  
-    // 트랜스폼의 회전 행렬 추출
-float4x4 GetModelRotationMatrix()
-{
-    float4x4 rotationMatrix;
 
-    vector sx = vector(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10...
+
+불투명과 반투명
+
+...
               </p>
             </div>
           </div>

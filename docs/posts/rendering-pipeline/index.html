@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="렌더링 파이프라인 간단 정리" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"렌더링 파이프라인 간단 정리","description":"렌더링 파이프라인 구조 요약(DirectX 9 기준)","dateModified":"2021-10-12T04:44:42+09:00","datePublished":"2021-08-30T01:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/rendering-pipeline/"},"url":"https://rito15.github.io/posts/rendering-pipeline/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"렌더링 파이프라인 구조 요약(DirectX 9 기준)","datePublished":"2021-08-30T01:50:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/rendering-pipeline/"},"url":"https://rito15.github.io/posts/rendering-pipeline/","author":{"@type":"Person","name":"Rito15"},"headline":"렌더링 파이프라인 간단 정리","dateModified":"2021-10-12T04:44:42+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -8977,60 +8977,6 @@ OpenGL과 유니티 엔진에서는 프래그먼트 쉐이더(Fragment Shader)�
       
       
       <div class="card">
-        <a href="/posts/unity-shader-compilation/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Feb  6
-  
-
-  <i class="unloaded">2021-02-06T01:25:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 & 함수 모음</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Functions
-
-
-트랜스폼에서 회전 행렬만 추출하기
-
-
-  
-    // 트랜스폼의 회전 행렬 추출
-float4x4 GetModelRotationMatrix()
-{
-    float4x4 rotationMatrix;
-
-    vector sx = vector(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-transparent-stencil/">
           <div class="card-body">
             <!--
@@ -9082,6 +9028,85 @@ float4x4 GetModelRotationMatrix()
 
 
 불투명과 반투명
+
+...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/water-shader/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 13
+  
+
+  <i class="unloaded">2021-02-13T19:24:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>물 쉐이더 만들기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+
+  서피스 쉐이더로 물 쉐이더 만들기
+
+
+
+
+목차
+
+
+
+  1. 물 쉐이더 기초
+  2. 프레넬 공식 적용
+  3. 물 흐르게 하기
+  4. 스페큘러 적용
+  5. 파도 만들기
+  6. 투과율 제어하기
+  7. 최종 결과
+
+
+
+
+준비물
+
+
+
+  큐브맵 텍스쳐 기반 스카이박스
+  물 노멀맵 텍스쳐
+  물에 빠질 로봇
+
+
+
+
+물 쉐이더 기초
 
 ...
               </p>

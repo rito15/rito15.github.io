@@ -2,7 +2,7 @@
 title: 멀티패스 쉐이더 코드 깔끔하게 작성하기
 author: Rito15
 date: 2021-02-02 00:00:00 +09:00
-categories: [Unity Shader, Shader Study]
+categories: [Unity Shader, Shader Memo]
 tags: [unity, csharp, shader]
 math: true
 mermaid: true
@@ -13,12 +13,13 @@ Shader "A/B"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "black" {}
+        _MainTex ("Texture", 2D) = "white" {}
     }
 
     CGINCLUDE
     #include "UnityCG.cginc"
 
+    /* Structs */
     struct appdata
     {
         float4 vertex : POSITION;
@@ -32,11 +33,12 @@ Shader "A/B"
 
     sampler2D _MainTex;
 
+    /* Pass 1 Shader Functions */
     v2f vert1 (appdata v)
     {
         v2f o;
-		o.pos = UnityObjectToClipPos(v.vertex);
-		o.uv = v.uv;
+        o.pos = UnityObjectToClipPos(v.vertex);
+        o.uv = v.uv;
         // ...
         return o;
     }
@@ -48,11 +50,12 @@ Shader "A/B"
         return col;
     }     
 
+    /* Pass 2 Shader Functions */
     v2f vert2 (appdata v)
     {
         v2f o;
-		o.pos = UnityObjectToClipPos(v.vertex);
-		o.uv = v.uv;
+        o.pos = UnityObjectToClipPos(v.vertex);
+        o.uv = v.uv;
         // ...
         return o;
     }

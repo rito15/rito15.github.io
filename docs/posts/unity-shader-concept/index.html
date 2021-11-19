@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="초보자를 위한 쉐이더 개념 간단 정리" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"초보자를 위한 쉐이더 개념 간단 정리","description":"요약 쉐이더 : 3D 모델링의 정점 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수","dateModified":"2021-10-21T02:57:10+09:00","datePublished":"2021-08-17T20:40:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-concept/"},"url":"https://rito15.github.io/posts/unity-shader-concept/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"요약 쉐이더 : 3D 모델링의 정점 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수","datePublished":"2021-08-17T20:40:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-concept/"},"url":"https://rito15.github.io/posts/unity-shader-concept/","author":{"@type":"Person","name":"Rito15"},"headline":"초보자를 위한 쉐이더 개념 간단 정리","dateModified":"2021-10-21T02:57:10+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -8740,7 +8740,7 @@ OpenGL과 유니티 엔진에서는 프래그먼트 쉐이더(Fragment Shader)�
       
       
       <div class="card">
-        <a href="/posts/unity-shader-compilation/">
+        <a href="/posts/unity-transparent-stencil/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8760,10 +8760,10 @@ OpenGL과 유니티 엔진에서는 프래그먼트 쉐이더(Fragment Shader)�
     Feb  6
   
 
-  <i class="unloaded">2021-02-06T01:25:00+09:00</i>
+  <i class="unloaded">2021-02-06T01:29:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 & 함수 모음</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 반투명, 스텐실 개념 익히기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8772,19 +8772,27 @@ OpenGL과 유니티 엔진에서는 프래그먼트 쉐이더(Fragment Shader)�
 
 
 
-                Functions
+                목차
 
 
-트랜스폼에서 회전 행렬만 추출하기
+
+  1. 불투명과 반투명
+  2. 알파 블렌딩, 알파 소팅
+  3. 알파 테스트
+  4. 커스텀 알파 블렌딩
+  5. 파티클 쉐이더 만들어보기
+  6. 깨끗한 알파 블렌딩 쉐이더 만들기
+  7. ZTest와 ZWrite
+  8. 알파 블렌딩 쉐이더에서 발생하는 문제점들
+  9. 스텐실
+  10. References
 
 
-  
-    // 트랜스폼의 회전 행렬 추출
-float4x4 GetModelRotationMatrix()
-{
-    float4x4 rotationMatrix;
 
-    vector sx = vector(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10...
+
+불투명과 반투명
+
+...
               </p>
             </div>
           </div>
