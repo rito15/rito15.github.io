@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-11-17T15:19:28+09:00</updated>
+  <updated>2021-11-19T16:18:57+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,11 +20,89 @@
 
   
   <entry>
+    <title>유니티 - 쉐이더에서 파티클 시스템 커스텀 데이터(Custom Data) 사용하기</title>
+    <link href="https://rito15.github.io/posts/unity-particle-system-custom-data/" rel="alternate" type="text/html" title="유니티 - 쉐이더에서 파티클 시스템 커스텀 데이터(Custom Data) 사용하기" />
+    <published>2021-11-19T15:00:00+09:00</published>
+  
+    <updated>2021-11-19T15:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-particle-system-custom-data/</id>
+    <content src="https://rito15.github.io/posts/unity-particle-system-custom-data/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Particle System" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      커스텀 데이터(Custom Data)
+
+
+  파티클 시스템의 Custom Data 모듈에서 지정한 값을 쉐이더로 가져와 사용할 수 있다.
+
+
+
+
+1. 파티클 시스템 설정
+
+
+[1] Custom Data 모듈
+
+  
+    Custom Data 모듈에 체크한다.
+  
+  
+    Mode를 Vector 또는 Color로 설정한다.
+  
+  
+    Vector로 설정한 경우, 사용할 채널 개수(Number of Components), 각 채널의 값을 지정한다.
+  
+
+
+
+
+
+
+[2] Renderer 모듈
+
+  Custom Vertex Streams에 치크한다.
+
+
+
+
+
+
+
+  
+    우측 하단의 + 버튼을 눌러 알맞은 커스텀 데이터를 목록에 추가한다.
+  
+  
+    Custom Data 모듈에서 지...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</title>
     <link href="https://rito15.github.io/posts/unity-bad-coding-practices/" rel="alternate" type="text/html" title="유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들" />
     <published>2021-11-16T22:51:00+09:00</published>
   
-    <updated>2021-11-16T22:51:00+09:00</updated>
+    <updated>2021-11-18T00:19:03+09:00</updated>
   
     <id>https://rito15.github.io/posts/unity-bad-coding-practices/</id>
     <content src="https://rito15.github.io/posts/unity-bad-coding-practices/" />
@@ -291,85 +369,6 @@ Unity Docs
 
   
     https://docs.unity3d.co...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 모바일 성능 최적화</title>
-    <link href="https://rito15.github.io/posts/unity-mobile-optimization/" rel="alternate" type="text/html" title="유니티 - 모바일 성능 최적화" />
-    <published>2021-11-06T00:02:00+09:00</published>
-  
-    <updated>2021-11-11T16:46:26+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-mobile-optimization/</id>
-    <content src="https://rito15.github.io/posts/unity-mobile-optimization/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Optimization" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      프로젝트 설정
-
-
-
-  
-…
-
-
-  공통
-  
-    프로젝트 설정에서 불필요해 보이는 옵션들은 웬만해서 끄는 것이 성능에 좋다.
-  
-
-  물리 엔진을 사용하지 않는 경우
-  
-    Physics - Auto Simulation, Auto Sync Transforms 비활성화
-  
-
-  알맞은 Frame Rate 설정하기
-  
-    Application.targetFrameRate 설정
-    액션 게임 : 60fps
-    보드 게임 : 30fps
-  
-
-  Vsync 설정
-  
-    모바일 플랫폼에서 Vsync 설정을 끄는 것은 사실상 의미가 없을 수 있다.
-    웬만해서 이미 하드웨어 레벨에서 Vsync가 설정되기 때문이다.
-  
-
-  
-
-
-
-파일 포맷(확장자)
-
-
-
-  
-…
-
-
-  이미...
     </summary>
   
 

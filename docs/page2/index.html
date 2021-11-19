@@ -367,6 +367,101 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/intel-assembly-memo/">Intel Assembly 기초 간단 정리</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  비주얼 스튜디오에서 디스어셈블러로 어셈블리 코드를 읽었을 때, 대충이라도 흐름과 동작 이해하기
+
+
+
+
+어셈블리 문법 종류
+
+
+
+  
+    Intel, AT&amp;T 문법이 있다.
+  
+  eax, [eax] 꼴의 문법은 Intel이며,
+  
+    %eax, (%eax) 꼴의 문법은 AT&amp;T이다.
+  
+  Intel 문법을 따...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, Nov  2, 2021,  3:54 AM +0900"
+  >
+
+  
+  
+
+  
+    Nov  2
+  
+
+  <i class="unloaded">2021-11-02T03:54:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4782 words">26 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-update-vs-coroutine-every-frame/">유니티 - 매 프레임 처리 성능 테스트 - Update() vs 코루틴</a>
     </h1>
 
@@ -1215,101 +1310,6 @@ Direct...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/raycast-to-aabb/">Raycast to AABB</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        레이캐스트(Raycast)
-
-
-
-  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
-
-
-
-
-AABB
-
-
-
-  
-    Axis-Aligned Bounding Box
-  
-  
-    여섯 면이 모두 각각 X, Y, Z 축에 정렬된 형태의 육면체
-  
-  
-    중심 좌표(Vector3)와 각 축의...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Oct 19, 2021,  3:00 AM +0900"
-  >
-
-  
-  
-
-  
-    Oct 19
-  
-
-  <i class="unloaded">2021-10-19T03:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2837 words">15 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1913,6 +1913,11 @@ AABB
         
         
         
+        <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-view-width-considering-scroll/">유니티 - 커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기</a></li>
       
         
@@ -1929,11 +1934,6 @@ AABB
         
         
         <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-mobile-optimization/">유니티 - 모바일 성능 최적화</a></li>
       
 
       </ul>
@@ -5338,41 +5338,6 @@ AABB
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -5413,7 +5378,7 @@ AABB
         <a class="post-tag" href="/tags/amplify/">amplify</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
 
       </div>
@@ -8880,41 +8845,6 @@ AABB
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -8950,7 +8880,7 @@ AABB
         <a class="post-tag" href="/tags/amplify/">amplify</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
 
     </div>

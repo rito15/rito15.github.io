@@ -367,6 +367,95 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/raycast-to-sphere/">Raycast to Sphere</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        레이캐스트(Raycast)
+
+
+
+  공간 상의 한 점에서부터 목표 지점까지 가상의 광선을 발사하여, 광선에 닿는 물체의 표면을 검출한다.
+
+
+
+
+직선과 구체 표면의 접점 찾기
+
+
+
+  시작 지점에서부터 목표 지점으로 광선을 발사하여, 두 점이 이루는 직선과 교차하는 구체의 표면 지점을 찾아낸다.
+  3차원에서 수행하면 구체, 2차원에서 수행하면 원(C...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Oct  2, 2021,  2:02 AM +0900"
+  >
+
+  
+  
+
+  
+    Oct  2
+  
+
+  <i class="unloaded">2021-10-02T02:02:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1021 words">5 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/cs-byte-buffer-to-struct/">C# - 바이트 버퍼를 읽어서 구조체로 변환하기</a>
     </h1>
 
@@ -1228,96 +1317,6 @@ Properties
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-optimize-model-transform/">유니티 - 모델 트랜스폼 구조 최적화하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        문제점
-
-
-Skinned Mesh가 적용되는 게임 오브젝트의 경우,
-
-하이라키에서 트랜스폼 구조를 확인해보면
-
-
-
-이렇게 Bone 별로 각각 존재하여, 굉장히 많은 게임오브젝트들로 이루어져 있다.
-
-그런데 유니티 엔진에서는 부모 게임 오브젝트의 트랜스폼에 변경사항이 생기면
-
-모든 자식 트랜스폼에 변경이 발생한다.
-
-한마디로, 위와 같이 무수히 많은 자...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Sep 16, 2021, 12:02 AM +0900"
-  >
-
-  
-  
-
-  
-    Sep 16
-  
-
-  <i class="unloaded">2021-09-16T00:02:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="513 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1928,6 +1927,11 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
         
         
         
+        <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-view-width-considering-scroll/">유니티 - 커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기</a></li>
       
         
@@ -1944,11 +1948,6 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
         
         
         <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-mobile-optimization/">유니티 - 모바일 성능 최적화</a></li>
       
 
       </ul>
@@ -5353,41 +5352,6 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -5428,7 +5392,7 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
         <a class="post-tag" href="/tags/amplify/">amplify</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
 
       </div>
@@ -8895,41 +8859,6 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -8965,7 +8894,7 @@ Skinned Mesh가 적용되는 게임 오브젝트의 경우,
         <a class="post-tag" href="/tags/amplify/">amplify</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
 
     </div>

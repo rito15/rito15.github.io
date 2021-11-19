@@ -367,6 +367,94 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/05-cs-auto-reset-event/">C# AutoResetEvent</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        이벤트(Event) 동기화 기법
+
+
+기존의 락과는 조금 다르게,
+
+락을 얻고자 하는 각각의 스레드만 직접 락을 설정하고 해제할 수 있는 것이 아니라
+
+제 3자도 락을 설정/해제할 수 있는 방식이다.
+
+여기서 제 3자는 커널을 의미하며
+
+커널 영역으로 요청을 보내기 때문에 다른 방식보다 성능 소모가 좀더 크다.
+
+그리고 기존의 락 방식과 동일하게 사용될...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Jul  8, 2021,  1:05 AM +0900"
+  >
+
+  
+  
+
+  
+    Jul  8
+  
+
+  <i class="unloaded">2021-07-08T01:05:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="809 words">4 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/04-cs-context-switching/">C# Context Switching, Sleep, Yield</a>
     </h1>
 
@@ -1191,110 +1279,6 @@ Download
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-world-position-offset-shaders/">(Amplify) World Position Offset(Black Hole) Shaders</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  특정 월드 좌표로 빨려 들어가는 효과
-
-
-
-
-1. Simple Move
-
-
-
-  현재 좌표로부터 타겟 위치까지 T(0 ~ 1) 값에 따라 선형 보간하여 단순 이동
-
-
-
-
-
-
-
-
-2. Procedural Move
-
-
-
-  
-    현재 좌표로부터 타겟 위치까지 T(0 ~ 1) 값에 따라 선형 보간하여 빨려 들어가는 효과
-  
-  ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Jul  4, 2021,  5:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul  4
-  
-
-  <i class="unloaded">2021-07-04T17:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="571 words">3 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1905,6 +1889,11 @@ Download
         
         
         
+        <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-view-width-considering-scroll/">유니티 - 커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기</a></li>
       
         
@@ -1921,11 +1910,6 @@ Download
         
         
         <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-mobile-optimization/">유니티 - 모바일 성능 최적화</a></li>
       
 
       </ul>
@@ -5330,41 +5314,6 @@ Download
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -5405,7 +5354,7 @@ Download
         <a class="post-tag" href="/tags/amplify/">amplify</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
 
       </div>
@@ -8872,41 +8821,6 @@ Download
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -8942,7 +8856,7 @@ Download
         <a class="post-tag" href="/tags/amplify/">amplify</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
 
     </div>

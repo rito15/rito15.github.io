@@ -367,6 +367,97 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/cs-winform-prevent-duplication/">C# 윈폼 - 중복 실행 방지</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+
+  Program.cs에서 Main() 메소드 지우고 아래 내용 복붙하기
+
+
+
+  
+    /// &lt;summary&gt;
+/// 해당 응용 프로그램의 주 진입점입니다.
+/// &lt;/summary&gt;
+[STAThread]
+static void Main()
+{
+    if (!IsDuplicated())
+        RunAp...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, May  6, 2021,  2:02 AM +0900"
+  >
+
+  
+  
+
+  
+    May  6
+  
+
+  <i class="unloaded">2021-05-06T02:02:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="275 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/cs-winform-notifyicon/">C# 윈폼 - Notify Icon 사용하기</a>
     </h1>
 
@@ -1242,100 +1333,6 @@ QuickS...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/algorithm-pow/">O(logn) 거듭제곱 알고리즘</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  
-    일반적으로 \(O(n)\) 시간복잡도로 수행하는 거듭제곱 계산을 \(O(log_{2}n)\) 의 시간복잡도로 수행할 수 있는 알고리즘
-  
-  
-    2진수 연산을 이용한다.
-  
-
-
-
-
-Details
-
-
-(a^n)을 계산하는 가장 쉬운 방법은 (a)를 (n) 번 곱하는 것이다.
-
-예를 들어 (4^9)을 구하려면 (4...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Apr  6, 2021,  6:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Apr  6
-  
-
-  <i class="unloaded">2021-04-06T18:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="889 words">4 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1946,6 +1943,11 @@ Details
         
         
         
+        <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-editor-view-width-considering-scroll/">유니티 - 커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기</a></li>
       
         
@@ -1962,11 +1964,6 @@ Details
         
         
         <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-mobile-optimization/">유니티 - 모바일 성능 최적화</a></li>
       
 
       </ul>
@@ -5371,41 +5368,6 @@ Details
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -5446,7 +5408,7 @@ Details
         <a class="post-tag" href="/tags/amplify/">amplify</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
 
       </div>
@@ -8913,41 +8875,6 @@ Details
     
     
     
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
       
         
         
@@ -8983,7 +8910,7 @@ Details
         <a class="post-tag" href="/tags/amplify/">amplify</a>
       
         
-        <a class="post-tag" href="/tags/plugin/">plugin</a>
+        <a class="post-tag" href="/tags/particle/">particle</a>
       
 
     </div>
