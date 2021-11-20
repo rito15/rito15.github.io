@@ -18,6 +18,9 @@ pin: true
 ## Newton Json for Unity
 - <https://github.com/jilleJr/Newtonsoft.Json-for-Unity>
 
+## Utf8Json - Fast JSON Serializer
+- <https://github.com/neuecc/Utf8Json>
+
 ## Main Thread Dispatcher
 - <https://github.com/PimDeWitte/UnityMainThreadDispatcher>
 
