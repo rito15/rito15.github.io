@@ -26,8 +26,8 @@
 <meta property="og:title" content="Rito15" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Unity Csharp Developer" />
-<meta property="og:description" content="Unity Csharp Developer" />
+<meta name="description" content="Game Programmer" />
+<meta property="og:description" content="Game Programmer" />
 <link rel="canonical" href="https://rito15.github.io/page30/" />
 <meta property="og:url" content="https://rito15.github.io/page30/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page30/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Game Programmer","url":"https://rito15.github.io/page30/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -176,7 +176,7 @@
       <a href="/">Rito15</a>
     </div>
 
-    <div class="site-subtitle font-italic">Unity Csharp Developer</div>
+    <div class="site-subtitle font-italic">Game Programmer</div>
 
   </div><!-- .profile-wrapper -->
 
@@ -362,6 +362,197 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/opengl-study-14/">OpenGL 공부 - 14 - Model Matrix</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  Model Matrix에 대한 이해
+  이동, 회전, 크기 변경
+
+
+
+
+공부 내용
+
+
+공통
+
+glm의 모델 매트릭스를 선언하는 것으로 시작한다.
+
+
+  
+    glm::mat modelMatrix(1.0f);
+
+  
+
+
+openGL의 Transformation은 기본적으로 4x4 행렬과 vec3로 이루어진다.
+
+4x4 행렬과 곱해지려면...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Feb 10, 2021,  3:20 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 10
+  
+
+  <i class="unloaded">2021-02-10T15:20:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2383 words">13 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-memo-editor-exit-dialog/">유니티 - 에디터 종료 확인 다이얼로그 만들기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+기본적으로 유니티 에디터를 종료할 때는 확인창이 뜨지 않고 바로 종료된다.
+
+만약 실수로 닫기 버튼을 눌러버린다면 그대로 종료되어 버린다.
+
+그런데 유니티 에디터는 에디터의 종료도 이벤트로 구분하여, 메소드를 추가할 수 있도록 구현해놓았기 때문에
+
+이를 이용해 에디터의 종료를 시도할 경우 확인창을 띄우도록 할 수 있다.
+
+
+
+
+  
+   ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Feb 10, 2021,  1:50 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 10
+  
+
+  <i class="unloaded">2021-02-10T13:50:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="414 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1122,190 +1313,6 @@ float4x4 GetModelRotationMatrix()
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-09/">OpenGL 공부 - 09 - uniform, VAO</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  uniform 변수, VAO에 대한 이해 및 사용
-
-
-
-
-1. uniform
-
-
-uniform이란?
-
-  OpenGL에서 쉐이더로 전달하는 글로벌 변수
-
-
-
-
-쉐이더에서 uniform 변수 선언 및 사용
-
-
-  
-    #shader fragment
-#version 330 core
-
-layout(location = 0) out vec4 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Feb  5, 2021,  3:20 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb  5
-  
-
-  <i class="unloaded">2021-02-05T15:20:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2521 words">14 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-opt-script-optimization/">유니티 - 스크립트 최적화</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목차
-
-
-
-  1.  GetComponent(), Find() 메소드 사용 줄이기
-  2.  GetComponent() 대신 TryGetComponent() 사용하기
-  3.  Object.name, GameObject.tag 사용하지 않기
-  4.  비어있는 유니티 이벤트 메소드 방치하지 않기
-  5.  StartCoroutine() 자주 호출하지 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Feb  4, 2021,  7:30 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb  4
-  
-
-  <i class="unloaded">2021-02-04T19:30:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8791 words">48 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1916,6 +1923,11 @@ layout(location = 0) out vec4 ...
         
         
         
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
       
         
@@ -1932,11 +1944,6 @@ layout(location = 0) out vec4 ...
         
         
         <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
 
       </ul>

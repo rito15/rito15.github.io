@@ -3,8 +3,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
-  <subtitle>Unity Csharp Developer</subtitle>
-  <updated>2021-11-20T01:22:36+09:00</updated>
+  <subtitle>Game Programmer</subtitle>
+  <updated>2021-11-22T01:16:58+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,127 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 - FixedUpdate()에서 이동, 회전 구현 시 버벅임 현상 해결하기</title>
+    <link href="https://rito15.github.io/posts/unity-fixed-update-and-stuttering/" rel="alternate" type="text/html" title="유니티 - FixedUpdate()에서 이동, 회전 구현 시 버벅임 현상 해결하기" />
+    <published>2021-11-22T00:23:00+09:00</published>
+  
+    <updated>2021-11-22T00:23:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-fixed-update-and-stuttering/</id>
+    <content src="https://rito15.github.io/posts/unity-fixed-update-and-stuttering/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Tips" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Update()와 FixedUpdate()
+
+
+Update()
+
+Update() 메소드는 프레임 당 한 번씩 호출된다.
+
+그리고 이동, 회전 등을 구현할 경우 프레임 간의 호출 간격을 고려하고
+
+단위 시간 당 일정한 수치로 기능을 구현하기 위해 Time.deltaTime을 사용한다.
+
+
+
+FixedUpdate()
+
+리지드바디를 사용할 때, 즉 물리 엔진의 기능을 이용할 때 사용하는 메소드.
+
+FixedUpdate() 메소드는 Fixed Time Step 주기(기본 0.02초)마다 한 번씩 호출되도록 보정된다.
+
+그냥 ‘호출된다’가 아니고, ‘호출되도록 보정된다’.
+
+왜냐하면, FixedUpdate()의 호출은 Update()를 호출하는 게임 루프와 별도의 루프, 혹은 멀티스레드에 의해 발생하지 않기 때...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>유니티 - Time.deltaTime과 Time.fixedDeltaTime의 올바른 이해</title>
+    <link href="https://rito15.github.io/posts/unity-deltatime-and-fixeddeltatime/" rel="alternate" type="text/html" title="유니티 - Time.deltaTime과 Time.fixedDeltaTime의 올바른 이해" />
+    <published>2021-11-21T23:45:00+09:00</published>
+  
+    <updated>2021-11-21T23:45:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-deltatime-and-fixeddeltatime/</id>
+    <content src="https://rito15.github.io/posts/unity-deltatime-and-fixeddeltatime/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Tips" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      deltaTime과 fixedDeltaTime
+
+
+deltaTime
+
+Time.deltaTime을 통해 참조할 수 있다.
+
+이전 프레임의 발생 시각과 현재 프레임의 발생 시각 사이의 시간 간격,
+
+즉 이전 프레임의 수행에 걸린 시간을 의미한다.
+
+Update() 내에서 시간의 진행에 따른 일정한 기능을 구현하기 위해 Time.deltaTime을 이용해 보정한다.
+
+
+
+fixedDeltaTime
+
+Time.fixedDeltaTime을 통해 참조할 수 있다.
+
+기본적으로 물리 업데이트 발생 주기, 즉 Fixed Time Step 값을 의미한다.
+
+마찬가지로 FixedUpdate() 내에서 Time.fixedDeltaTime을 이용해 보정한다.
+
+
+
+Frame Rate
+
+
+‘프레임률’이라고도 부르며, 초당 ...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -242,139 +363,6 @@ Note
 private void Update()
 {
     GameObject managerObject  = GameObject.Fin...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - Transform의 공간 변환 메소드 간단 메모</title>
-    <link href="https://rito15.github.io/posts/unity-transform-transformation-methods/" rel="alternate" type="text/html" title="유니티 - Transform의 공간 변환 메소드 간단 메모" />
-    <published>2021-11-13T00:02:00+09:00</published>
-  
-    <updated>2021-11-16T00:25:12+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-transform-transformation-methods/</id>
-    <content src="https://rito15.github.io/posts/unity-transform-transformation-methods/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo - Shorts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      1. 로컬-월드 변환
-
-
-[1] TransformPoint()
-
-
-  
-    위치, 회전, 크기 변환을 적용한다.
-  
-  
-    방향 벡터가 아니라, 위치 벡터를 월드 위치로 변환할 때 사용한다.
-  
-  
-    메시의 로컬 정점 좌표로부터 월드 정점 좌표를 구할 때처럼, 
-오브젝트에 완전히 종속적인 위치 벡터를 변환할 때 사용된다.
-  
-  
-    C# 스크립트에서는 딱히 자주 쓰이지 않는다.
-  
-
-
-
-
-[2] TransformVector()
-
-
-  
-    회전, 크기 변환을 적용한다.
-  
-  
-    메시의 노멀 벡터처럼 오브젝트에 종속적인 방향 벡터를 월드로 변환할 때 사용된다.
-  
-  
-    이것도 C# 스크립트에서 딱히 쓸 일은 없어 보인다.
-  
-  
-    혹시나 방향 벡...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>게임 수학 - 세 점이 주어질 때 수선의 발 구하기</title>
-    <link href="https://rito15.github.io/posts/foot-of-perpendicular-in-three-vectors/" rel="alternate" type="text/html" title="게임 수학 - 세 점이 주어질 때 수선의 발 구하기" />
-    <published>2021-11-12T18:12:00+09:00</published>
-  
-    <updated>2021-11-12T18:12:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/foot-of-perpendicular-in-three-vectors/</id>
-    <content src="https://rito15.github.io/posts/foot-of-perpendicular-in-three-vectors/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Game Mathematics" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      수선의 발 구하기
-
-
-
-
-공간 상의 세 점 A, B, C가 주어져 있다.
-
-D는 C에서 직선 AB에 내린 수선의 발이다.
-
-D는 간단히 다음과 같이 구할 수 있다.
-
-\[D = A + AB * \frac{AB \cdot AC}{AB \cdot AB}\]
-
-
-
-설명
-
-AD 벡터를 구하고, A에서 AD를 더해 D를 계산하는 방식이다.
-
-벡터 AB와 AC를 내적하면 AB의 크기와 AC를 AB에 사영한 벡터 AD의 크기를 곱한 값, 즉 |AB| * |AD|를 얻을 수 있고,
-
-벡터 AB를 자기 자신에 대해 내적하면 |AB| * |AB|를 얻을 수 있다.
-
-전자를 후자로 나누면 |AD| / |AB|를 얻을 수 있고,
-
-여기에 벡터 AB를 곱하면 AB의 방향을 유지한채 크기는 |AD|인 벡터, 즉 AD를 얻을 수...
     </summary>
   
 

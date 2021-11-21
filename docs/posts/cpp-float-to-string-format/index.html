@@ -185,7 +185,7 @@
       <a href="/">Rito15</a>
     </div>
 
-    <div class="site-subtitle font-italic">Unity Csharp Developer</div>
+    <div class="site-subtitle font-italic">Game Programmer</div>
 
   </div><!-- .profile-wrapper -->
 
@@ -672,6 +672,11 @@
         
         
         
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
       
         
@@ -688,11 +693,6 @@
         
         
         <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
 
       </ul>
@@ -6578,6 +6578,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8703,7 +8729,7 @@ __LINE__
       
       
       <div class="card">
-        <a href="/posts/intel-assembly-memo/">
+        <a href="/posts/foot-of-perpendicular-in-three-vectors/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8720,13 +8746,13 @@ __LINE__
   
 
   
-    Nov  2
+    Nov 12
   
 
-  <i class="unloaded">2021-11-02T03:54:00+09:00</i>
+  <i class="unloaded">2021-11-12T18:12:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Intel Assembly 기초 간단 정리</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>게임 수학 - 세 점이 주어질 때 수선의 발 구하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8735,26 +8761,26 @@ __LINE__
 
 
 
-                목표
-
-
-  비주얼 스튜디오에서 디스어셈블러로 어셈블리 코드를 읽었을 때, 대충이라도 흐름과 동작 이해하기
+                수선의 발 구하기
 
 
 
 
-어셈블리 문법 종류
+공간 상의 세 점 A, B, C가 주어져 있다.
+
+D는 C에서 직선 AB에 내린 수선의 발이다.
+
+D는 간단히 다음과 같이 구할 수 있다.
+
+\[D = A + AB * \frac{AB \cdot AC}{AB \cdot AB}\]
 
 
 
-  
-    Intel, AT&amp;T 문법이 있다.
-  
-  eax, [eax] 꼴의 문법은 Intel이며,
-  
-    %eax, (%eax) 꼴의 문법은 AT&amp;T이다.
-  
-  Intel 문법을 따르...
+설명
+
+AD 벡터를 구하고, A에서 AD를 더해 D를 계산하는 방식이다.
+
+벡터 AB와 AC를...
               </p>
             </div>
           </div>

@@ -185,7 +185,7 @@
       <a href="/">Rito15</a>
     </div>
 
-    <div class="site-subtitle font-italic">Unity Csharp Developer</div>
+    <div class="site-subtitle font-italic">Game Programmer</div>
 
   </div><!-- .profile-wrapper -->
 
@@ -749,6 +749,11 @@
         
         
         
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
       
         
@@ -765,11 +770,6 @@
         
         
         <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
 
       </ul>
@@ -5425,6 +5425,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8796,7 +8822,7 @@ if (rect.Contains(Event.current.mousePosition))
       
       
       <div class="card">
-        <a href="/posts/unity-editor-focus/">
+        <a href="/posts/unity-editor-find-game-view/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8813,13 +8839,13 @@ if (rect.Contains(Event.current.mousePosition))
   
 
   
-    Aug 26
+    Nov  5
   
 
-  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
+  <i class="unloaded">2021-11-05T02:10:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 포커스 확인, 처리</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 게임 뷰 객체 찾는 코드</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8828,9 +8854,19 @@ if (rect.Contains(Event.current.mousePosition))
 
 
 
-                1. 컨트롤 포커스 여부 확인
+                Note
 
 
+  흔히 게임 뷰라고 알려져 있는 에디터 윈도우는 UnityEditor.PlayModeView 타입이다.
+  리플렉션을 통해 접근할 수 있다.
+
+
+
+
+Source Code
+
+
+{% include codeHeader.html %}
 1
 2
 3
@@ -8842,14 +8878,19 @@ if (rect.Contains(Event.current.mousePosition))
 9
 10
 11
-// 다음에 나올 GUI 컨트롤에 이름 부여
-GUI.SetNextControlName("Foooooooocus");
-
-// GUI 그리기
-EditorGUI.TextArea(rect, value, inputStyle);
-
-// 포커스 여부 확인
-if(GUI.GetNameOfFo...
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24...
               </p>
             </div>
           </div>

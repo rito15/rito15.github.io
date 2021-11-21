@@ -26,8 +26,8 @@
 <meta property="og:title" content="Rito15" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Unity Csharp Developer" />
-<meta property="og:description" content="Unity Csharp Developer" />
+<meta name="description" content="Game Programmer" />
+<meta property="og:description" content="Game Programmer" />
 <link rel="canonical" href="https://rito15.github.io/page11/" />
 <meta property="og:url" content="https://rito15.github.io/page11/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page11/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Game Programmer","url":"https://rito15.github.io/page11/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -176,7 +176,7 @@
       <a href="/">Rito15</a>
     </div>
 
-    <div class="site-subtitle font-italic">Unity Csharp Developer</div>
+    <div class="site-subtitle font-italic">Game Programmer</div>
 
   </div><!-- .profile-wrapper -->
 
@@ -362,6 +362,211 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-enum-index-array-vs-dict/">C# - Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        요약
+
+
+
+  array[(int)enumValue], dict[enumValue]의 참조 성능을 비교한다.
+
+
+
+
+테스트 코드
+
+
+
+  
+    public enum MyEnum
+{
+    Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine
+}
+
+public float[] targetArray;
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Aug 19, 2021, 11:11 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 19
+  
+
+  <i class="unloaded">2021-08-19T23:11:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="427 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-amplify-screen-shake/">(Amplify) Screen Effect - Shake</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Summary
+
+
+
+  
+    화면 흔들림 이펙트
+  
+  
+    스크린 이펙트 적용 애셋 : Link
+  
+
+
+
+
+Preview
+
+
+
+
+
+
+Nodes
+
+
+
+
+
+
+Download
+
+
+
+  2021_0817_Screen Effect_Shake.zip
+
+
+
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Aug 19, 2021,  2:55 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug 19
+  
+
+  <i class="unloaded">2021-08-19T02:55:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="26 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1149,225 +1354,6 @@ ASCII
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-electricity-shader/">(Amplify) Electricity Shader</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  표면에 전기가 맴도는 효과
-
-
-
-
-Note
-
-
-
-  
-    포스트프로세싱 Bloom을 넣어 주는 것이 좋다.
-  
-  
-    최적화를 위해서는 Noise Generator 노드 대신 노이즈 텍스쳐를 사용해야 한다.
-  
-
-
-
-
-Preview
-
-
-
-
-
-
-
-
-Properties
-
-
-
-
-
-
-Settings
-
-
-General
-
-  ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sat, Aug 14, 2021,  9:09 AM +0900"
-  >
-
-  
-  
-
-  
-    Aug 14
-  
-
-  <i class="unloaded">2021-08-14T09:09:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="81 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-string-stringbuilder-and-zstring/">C# String, StringBuilder, ZString</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        String 포맷팅의 문제점
-
-
-
-  
-    $"IntValue : {123}, BoolValue : {true}";
-
-  
-
-
-또는
-
-
-  
-    string.Format("IntValue {0}, BoolValue : {1}", 123, true);
-
-  
-
-
-이런 방식의 스트링 포맷팅을 쓰는 경우가 정말 많다.
-
-
-
-정말 편리하긴 하지만,
-
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Aug 11, 2021,  5:17 PM +0900"
-  >
-
-  
-  
-
-  
-    Aug 11
-  
-
-  <i class="unloaded">2021-08-11T17:17:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1702 words">9 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1978,6 +1964,11 @@ General
         
         
         
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
       
         
@@ -1994,11 +1985,6 @@ General
         
         
         <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
 
       </ul>

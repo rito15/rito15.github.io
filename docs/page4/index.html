@@ -26,8 +26,8 @@
 <meta property="og:title" content="Rito15" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Unity Csharp Developer" />
-<meta property="og:description" content="Unity Csharp Developer" />
+<meta name="description" content="Game Programmer" />
+<meta property="og:description" content="Game Programmer" />
 <link rel="canonical" href="https://rito15.github.io/page4/" />
 <meta property="og:url" content="https://rito15.github.io/page4/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Unity Csharp Developer","url":"https://rito15.github.io/page4/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Game Programmer","url":"https://rito15.github.io/page4/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -176,7 +176,7 @@
       <a href="/">Rito15</a>
     </div>
 
-    <div class="site-subtitle font-italic">Unity Csharp Developer</div>
+    <div class="site-subtitle font-italic">Game Programmer</div>
 
   </div><!-- .profile-wrapper -->
 
@@ -362,6 +362,187 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-fill-same-values-in-array/">C# - 배열 내부를 같은 값으로 채우기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+
+  
+    // 인덱스 0부터 99까지 정수 1로 채우기
+int[] arr = Enumerable.Repeat(1, 100).ToArray();
+
+  
+
+
+물론 LINQ를 쓰는 만큼, 중간 버퍼의 가비지는 감안해야 한다.
+
+
+
+.NET 5.0 버전이라면 Array.Fill() 메소드를 사용하면 된다.
+
+
+  
+    int[] arr ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Oct  6, 2021, 10:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Oct  6
+  
+
+  <i class="unloaded">2021-10-06T22:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="89 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-compute-buffer-gpu-instancing/">유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        GPU Instancing
+
+
+[1] 컴퓨트 버퍼 - 메시 데이터
+
+  그려낼 메시의 정보를 컴퓨트 버퍼에 저장한다.
+  컴퓨트 버퍼의 stride는 4 byte(sizeof(uint))이다.
+  컴퓨트 버퍼의 크기는 20 byte(uint 5개)이며, 각각의 데이터는 메시에 대한 정보를 담고 있다.
+
+
+
+  
+    Mesh mesh;        ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Oct  6, 2021,  3:15 PM +0900"
+  >
+
+  
+  
+
+  
+    Oct  6
+  
+
+  <i class="unloaded">2021-10-06T15:15:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2651 words">14 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1091,209 +1272,6 @@ float Random11(float seed)
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/heap-priority-queue/">자료구조 - 힙(Heap), 우선순위 큐(Priority Queue)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        트리 자료 구조
-
-
-
-
-트리(Tree)
-
-
-  재귀적 계층 구조
-  노드로 이루어져 있다.
-  최초의 루트 노드에서부터 시작하며, 하나의 부모 노드는 여러 개의 자식 노드를 가진다.
-
-
-
-
-
-
-이진 트리(Binary Tree)
-
-
-  각 노드가 최대 두 개의 자식만 가질 수 있는 트리 구조
-
-
-
-
-
-
-포화 이진 트리(Perfect Binary Tree...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Sep 24, 2021,  9:03 PM +0900"
-  >
-
-  
-  
-
-  
-    Sep 24
-  
-
-  <i class="unloaded">2021-09-24T21:03:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3931 words">21 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-xml-reader/">C# - XmlReader</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        XML
-
-
-eXTensible Markup Language의 약자로, W3C에서 개발된 마크업 언어.
-
-XML의 대표적인 파생 언어로 HTML이 있다.
-
-기본적인 XML 파일의 확장자는 .xml이다.
-
-
-
-XML 문법
-
-
-
-  
-    …
-  
-
-  예시
-  
-    패킷 데이터 목록 정의
-  
-
-  
-    
-      &lt;?xml version...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Sep 21, 2021,  9:52 PM +0900"
-  >
-
-  
-  
-
-  
-    Sep 21
-  
-
-  <i class="unloaded">2021-09-21T21:52:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2803 words">15 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1904,6 +1882,11 @@ XML 문법
         
         
         
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
       
         
@@ -1920,11 +1903,6 @@ XML 문법
         
         
         <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
 
       </ul>

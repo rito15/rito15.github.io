@@ -1,6 +1,36 @@
 [
   
   {
+    "title": "유니티 - FixedUpdate()에서 이동, 회전 구현 시 버벅임 현상 해결하기",
+    "url": "/posts/unity-fixed-update-and-stuttering/",
+    "categories": "Unity, Unity Tips",
+    "tags": "unity, csharp",
+    "date": "2021-11-22 00:23:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Update()와 FixedUpdate()Update()Update() 메소드는 프레임 당 한 번씩 호출된다.그리고 이동, 회전 등을 구현할 경우 프레임 간의 호출 간격을 고려하고단위 시간 당 일정한 수치로 기능을 구현하기 위해 Time.deltaTime을 사용한다.FixedUpdate()리지드바디를 사용할 때, 즉 물리 엔진의 기능을 이용할 때 사용하는 메소드.FixedUpdate() 메소드는 Fixed Time Step 주기(기본 0.02초)마다 한 번씩 호출되도록 보정된다.그냥 ‘호출된다’가 아니고, ‘호출되도록 보정된다..."
+  },
+  
+  {
+    "title": "유니티 - Time.deltaTime과 Time.fixedDeltaTime의 올바른 이해",
+    "url": "/posts/unity-deltatime-and-fixeddeltatime/",
+    "categories": "Unity, Unity Tips",
+    "tags": "unity, csharp",
+    "date": "2021-11-21 23:45:00 +0900",
+    
+
+
+
+
+
+    "snippet": "deltaTime과 fixedDeltaTimedeltaTimeTime.deltaTime을 통해 참조할 수 있다.이전 프레임의 발생 시각과 현재 프레임의 발생 시각 사이의 시간 간격,즉 이전 프레임의 수행에 걸린 시간을 의미한다.Update() 내에서 시간의 진행에 따른 일정한 기능을 구현하기 위해 Time.deltaTime을 이용해 보정한다.fixedDeltaTimeTime.fixedDeltaTime을 통해 참조할 수 있다.기본적으로 물리 업데이트 발생 주기, 즉 Fixed Time Step 값을 의미한다.마찬가지로 Fixed..."
+  },
+  
+  {
     "title": "(Amplify) Screen Effect - Chromatic Aberration",
     "url": "/posts/unity-amplify-screen-chromatic-aberration/",
     "categories": "Unity Shader, Amplify Shader",
@@ -132,7 +162,7 @@
 
 
 
-    "snippet": "Note      입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심        다음과 같은 증상들이 발생한다면 Update()에서 리지드바디를 조작하고 있는지 의심할 필요가 있다.          왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.      콜라이더에 자주 끼인다.      지터링(덜덜 떨림)이 빈번하게 발생한다.      점프할 때마다 점프하는 높이가 달라진다.      Source Code 1기능  WASD 키 : 리지드바디 이동  Space 키 : 리지드바디 점프..."
+    "snippet": "Note      입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심        리지드바디를 사용한다면, 트랜스폼을 직접 조작하지 말고 반드시 FixedUpdate()에서 리지드바디를 통해서 이동시켜야만 한다.        다음과 같은 증상들이 발생한다면 Update()에서 리지드바디를 조작하고 있는지, 혹은 트랜스폼을 직접 조작하고 있는지 의심할 필요가 있다.          왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.      콜라이더에 자주 끼인다.      지터링(덜덜 떨..."
   },
   
   {
@@ -4947,7 +4977,7 @@
 
 
 
-    "snippet": "플러그인, 깃헙유니티 스크립트 모음  https://github.com/michidk/Unity-Script-CollectionNewton Json for Unity  https://github.com/jilleJr/Newtonsoft.Json-for-UnityMain Thread Dispatcher  https://github.com/PimDeWitte/UnityMainThreadDispatcherZString  https://github.com/Cysharp/ZStringZeroFormatter  https://github..."
+    "snippet": "플러그인, 깃헙유니티 스크립트 모음  https://github.com/michidk/Unity-Script-CollectionNewton Json for Unity  https://github.com/jilleJr/Newtonsoft.Json-for-UnityUtf8Json - Fast JSON Serializer  https://github.com/neuecc/Utf8JsonMain Thread Dispatcher  https://github.com/PimDeWitte/UnityMainThreadDispatcherZStri..."
   },
   
   {

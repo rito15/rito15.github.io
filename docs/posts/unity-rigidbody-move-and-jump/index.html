@@ -185,7 +185,7 @@
       <a href="/">Rito15</a>
     </div>
 
-    <div class="site-subtitle font-italic">Unity Csharp Developer</div>
+    <div class="site-subtitle font-italic">Game Programmer</div>
 
   </div><!-- .profile-wrapper -->
 
@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1040 words">5 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1106 words">6 min</span>
 
 
           <!-- page views -->
@@ -473,7 +473,10 @@
     <p>입력은 <code class="language-plaintext highlighter-rouge">Update()</code>, 물리 처리는 <code class="language-plaintext highlighter-rouge">FixedUpdate()</code>로 철저히 구분하는 것이 핵심</p>
   </li>
   <li>
-    <p>다음과 같은 증상들이 발생한다면 <code class="language-plaintext highlighter-rouge">Update()</code>에서 리지드바디를 조작하고 있는지 의심할 필요가 있다.</p>
+    <p>리지드바디를 사용한다면, 트랜스폼을 직접 조작하지 말고 반드시 <code class="language-plaintext highlighter-rouge">FixedUpdate()</code>에서 리지드바디를 통해서 이동시켜야만 한다.</p>
+  </li>
+  <li>
+    <p>다음과 같은 증상들이 발생한다면 <code class="language-plaintext highlighter-rouge">Update()</code>에서 리지드바디를 조작하고 있는지, 혹은 트랜스폼을 직접 조작하고 있는지 의심할 필요가 있다.</p>
     <ul>
       <li>왠지 모르게 캐릭터가 벽을 너무 잘 뚫고 지나간다.</li>
       <li>콜라이더에 자주 끼인다.</li>
@@ -1035,6 +1038,11 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         
+        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
       
         
@@ -1051,11 +1059,6 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/ray-marching/">레이 마칭(Ray Marching)</a></li>
       
 
       </ul>
@@ -4549,6 +4552,32 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8956,6 +8985,64 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
       
       
       <div class="card">
+        <a href="/posts/unity-transform-transformation-methods/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Nov 13
+  
+
+  <i class="unloaded">2021-11-13T00:02:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Transform의 공간 변환 메소드 간단 메모</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1. 로컬-월드 변환
+
+
+[1] TransformPoint()
+
+
+  
+    위치, 회전, 크기 변환을 적용한다.
+  
+  
+    방향 벡터가 아니라, 위치 벡터를 월드 위치로 변환할 때 사용한다.
+  
+  
+    메시의 로컬 정점 좌표로부터 월드 정점 좌표를 구할 때처럼, 
+오브젝트에 완전히 종속적인 위치 벡터를 변환할 때 사용된다.
+  
+  ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-punch-ui-image/">
           <div class="card-body">
             <!--
@@ -9074,64 +9161,6 @@ Punch
 
   
     using U...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-transform-transformation-methods/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Nov 13
-  
-
-  <i class="unloaded">2021-11-13T00:02:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Transform의 공간 변환 메소드 간단 메모</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                1. 로컬-월드 변환
-
-
-[1] TransformPoint()
-
-
-  
-    위치, 회전, 크기 변환을 적용한다.
-  
-  
-    방향 벡터가 아니라, 위치 벡터를 월드 위치로 변환할 때 사용한다.
-  
-  
-    메시의 로컬 정점 좌표로부터 월드 정점 좌표를 구할 때처럼, 
-오브젝트에 완전히 종속적인 위치 벡터를 변환할 때 사용된다.
-  
-  ...
               </p>
             </div>
           </div>
