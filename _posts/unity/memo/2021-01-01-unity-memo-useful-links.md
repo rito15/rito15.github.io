@@ -157,6 +157,18 @@ pin: true
 
 
 
+# 유니티 형상 관리 - Plastic SCM
+---
+
+- [Plastic SCM 홈페이지](https://www.plasticscm.com/)
+- [Unity Plastic SCM 제품 소개](https://unity.com/kr/products/plastic-scm)
+- [소개 영상 1](https://www.youtube.com/watch?v=cYouCns9vz8)
+- [소개 영상 2](https://www.youtube.com/watch?v=8NY3szQinX8)
+
+<br>
+
+
+
 # 유니티 쉐이더
 ---
 
@@ -169,6 +181,7 @@ pin: true
 - [Youtube Playlist](https://www.youtube.com/playlist?list=PLo0EL2mTb8Nw6GRRrYhXIG6vh9U-BukXZ)
 
 <br>
+
 
 
 # 기타 참고 자료

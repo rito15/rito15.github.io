@@ -11,60 +11,7 @@ mermaid: true
 # 드로우 콜과 배칭의 개념
 ---
 
-## **Draw Call**
-- CPU가 GPU에게 오브젝트를 그리라고 요청하는 것
-
-- 주요 CPU 병목 요소 중 하나
-
-
-## **SetPass Call**
-- 쉐이더 렌더링 패스 수
-
-- 쉐이더 요소(예 : 프로퍼티)변경 시 SetPass Call 증가
-
-- 간단히, 쉐이더와 마테리얼에 관련된 Batch라고 할 수 있다.
-
-
-## **Batch**
-- 드로우 콜을 포함하는 상위 개념
-
-- 각각의 드로우 콜 사이에서 GPU에 의해 접근되는 리소스들을 변경하는 일련의 모든 작업
-
-- Batch = Draw Call + Set Pass Call + Set Transform + ...
-
-
-## **Batching**
-- 다수의 드로우 콜을 하나로 통합하는 작업
-
-
-## **Dynamic Batching**
-- 동일한 마테리얼을 공유하는 오브젝트들에 적용되는 배칭
-
-- 특정 조건들을 만족하면 유니티에 의해 자동적으로 수행된다.
-
-- Static Batching에 비해 CPU 오버헤드는 크지만, 사용 메모리량은 적다.
-
-
-## **Static Batching**
-- Dynamic Batching과 달리, 개별 오브젝트들에 드로우 콜을 통합하지 않고<br>
-  아예 메시를 하나로 통합시켜 배칭을 수행한다.
-
-- 씬에서 미리 체크해야 하며, 움직이지 않는 오브젝트들에 적용할 수 있다.
-
-- CPU의 부담을 줄이는 대신 메모리를 더 많이 사용한다.
-  - 이유 : 배칭으로 인해 통합된 메시를 위한 메모리를 추가 할당하므로
-
-
-## **GPU Instancing**
-- 동적 배칭을 위한 조건 중 하나
-
-- 동일 마테리얼을 사용하는 오브젝트들의 드로우 콜을 통합한다.
-
-- 쉐이더에서 GPU Instancing을 지원해야 한다.
-  - Surface Shader는 기본 적용
-  - Vertex/Fragment Shader : `#pragma multi_compile_instancing`
-
-- 마테리얼에서 적용 여부를 체크/해제할 수 있다.
+- [포스트 : 드로우 콜과 배칭](../unity-draw-call-and-batching/)
 
 <br>
 
