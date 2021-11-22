@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Game Programmer</subtitle>
-  <updated>2021-11-22T01:16:58+09:00</updated>
+  <updated>2021-11-22T20:59:11+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,56 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>유니티 - 드로우 콜과 배칭 개념 간단 정리</title>
+    <link href="https://rito15.github.io/posts/unity-draw-call-and-batching/" rel="alternate" type="text/html" title="유니티 - 드로우 콜과 배칭 개념 간단 정리" />
+    <published>2021-11-22T20:13:00+09:00</published>
+  
+    <updated>2021-11-22T20:13:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-draw-call-and-batching/</id>
+    <content src="https://rito15.github.io/posts/unity-draw-call-and-batching/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Optimization" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. CPU와 GPU의 상호작용
+
+
+CPU에서 GPU에 명령하기
+
+  일반적으로 CPU에서 렌더링, 상태 변경 등의 명령을 GPU에 전달한다.
+  그런데 GPU가 바쁘게 작업하는 도중이라면, CPU는 GPU의 작업이 끝나기를 하염없이 기다리게 될 수 있다.
+  따라서 커맨드 패턴(Command Pattern)과 메시지 큐(Message Queue)에 의한 비동기 방식을 활용한다.
+  CPU에서 GPU에 전달할 명령(Command)을 임시 공간에 담아 두고, GPU가 여유 될 때 명령을 하나씩 꺼내어 처리한다.
+
+
+Command Buffer(커맨드 버퍼)
+
+  CPU의 각 스레드에서는 GPU에 전달할 렌더링 관련 명령을 모듈화하여 커맨드 버퍼에 차곡차곡 쌓아 임시로 저장한다.
+  그리고 GPU의 공유 커...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -295,74 +345,6 @@ Properties
   
   
     Custom Data 모듈에서 지...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</title>
-    <link href="https://rito15.github.io/posts/unity-bad-coding-practices/" rel="alternate" type="text/html" title="유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들" />
-    <published>2021-11-16T22:51:00+09:00</published>
-  
-    <updated>2021-11-18T00:19:03+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-bad-coding-practices/</id>
-    <content src="https://rito15.github.io/posts/unity-bad-coding-practices/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Tips" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Intro
-
-
-별 생각 없이 흔하게 작성할 수 있지만,
-
-제대로 알고 보면 ‘절대 이렇게 작성하면 안되겠다’라고 생각할 수 있는 유니티 C# 코딩 방식들에 대해 다룹니다.
-
-편의상 본문에서는 평어로 서술합니다.
-
-
-
-Note
-
-
-
-  
-    본문에서의 ‘자주’는 Update(), FixedUpdate(), 코루틴 내부의 while(true) 문 등에서 자주 호출되는 경우를 의미한다.
-  
-  
-    예를 들어 Update()는 매 프레임마다 한 번씩 호출되므로, 자주 호출된다고 할 수 있다.
-  
-
-
-
-
-1. 자주 호출되는 Find(), GetComponent()
-
-
-예시
-
-private void Update()
-{
-    GameObject managerObject  = GameObject.Fin...
     </summary>
   
 

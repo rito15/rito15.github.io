@@ -1192,6 +1192,11 @@ Vertex/Fragment Shader Example
         
         
         
+        <li><a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
         
@@ -1208,11 +1213,6 @@ Vertex/Fragment Shader Example
         
         
         <li><a href="/posts/unity-transform-transformation-methods/">유니티 - Transform의 공간 변환 메소드 간단 메모</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-particle-system-tutorial-04/">파티클 시스템 기초 - 04 - 메인 모듈</a></li>
       
 
       </ul>
@@ -4706,6 +4706,19 @@ Vertex/Fragment Shader Example
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9249,7 +9262,7 @@ Vertex/Fragment Shader Example
       
       
       <div class="card">
-        <a href="/posts/unity-transparent-stencil/">
+        <a href="/posts/unity-compute-buffer-gpu-instancing/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9266,13 +9279,13 @@ Vertex/Fragment Shader Example
   
 
   
-    Feb  6
+    Oct  6
   
 
-  <i class="unloaded">2021-02-06T01:29:00+09:00</i>
+  <i class="unloaded">2021-10-06T15:15:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 반투명, 스텐실 개념 익히기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9281,27 +9294,19 @@ Vertex/Fragment Shader Example
 
 
 
-                목차
+                GPU Instancing
+
+
+[1] 컴퓨트 버퍼 - 메시 데이터
+
+  그려낼 메시의 정보를 컴퓨트 버퍼에 저장한다.
+  컴퓨트 버퍼의 stride는 4 byte(sizeof(uint))이다.
+  컴퓨트 버퍼의 크기는 20 byte(uint 5개)이며, 각각의 데이터는 메시에 대한 정보를 담고 있다.
 
 
 
-  1. 불투명과 반투명
-  2. 알파 블렌딩, 알파 소팅
-  3. 알파 테스트
-  4. 커스텀 알파 블렌딩
-  5. 파티클 쉐이더 만들어보기
-  6. 깨끗한 알파 블렌딩 쉐이더 만들기
-  7. ZTest와 ZWrite
-  8. 알파 블렌딩 쉐이더에서 발생하는 문제점들
-  9. 스텐실
-  10. References
-
-
-
-
-불투명과 반투명
-
-...
+  
+    Mesh mesh;        ...
               </p>
             </div>
           </div>

@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "유니티 - 드로우 콜과 배칭 개념 간단 정리",
+    "url": "/posts/unity-draw-call-and-batching/",
+    "categories": "Unity, Unity Optimization",
+    "tags": "unity, csharp, optimization",
+    "date": "2021-11-22 20:13:00 +0900",
+    
+
+
+
+
+
+    "snippet": "1. CPU와 GPU의 상호작용CPU에서 GPU에 명령하기  일반적으로 CPU에서 렌더링, 상태 변경 등의 명령을 GPU에 전달한다.  그런데 GPU가 바쁘게 작업하는 도중이라면, CPU는 GPU의 작업이 끝나기를 하염없이 기다리게 될 수 있다.  따라서 커맨드 패턴(Command Pattern)과 메시지 큐(Message Queue)에 의한 비동기 방식을 활용한다.  CPU에서 GPU에 전달할 명령(Command)을 임시 공간에 담아 두고, GPU가 여유 될 때 명령을 하나씩 꺼내어 처리한다.Command Buffer(커맨드..."
+  },
+  
+  {
     "title": "유니티 - FixedUpdate()에서 이동, 회전 구현 시 버벅임 현상 해결하기",
     "url": "/posts/unity-fixed-update-and-stuttering/",
     "categories": "Unity, Unity Tips",
@@ -2682,7 +2697,7 @@
 
 
 
-    "snippet": "드로우 콜과 배칭의 개념Draw Call      CPU가 GPU에게 오브젝트를 그리라고 요청하는 것        주요 CPU 병목 요소 중 하나  SetPass Call      쉐이더 렌더링 패스 수        쉐이더 요소(예 : 프로퍼티)변경 시 SetPass Call 증가        간단히, 쉐이더와 마테리얼에 관련된 Batch라고 할 수 있다.  Batch      드로우 콜을 포함하는 상위 개념        각각의 드로우 콜 사이에서 GPU에 의해 접근되는 리소스들을 변경하는 일련의 모든 작업        Bat..."
+    "snippet": "드로우 콜과 배칭의 개념  포스트 : 드로우 콜과 배칭마테리얼 프로퍼티 값 변경하기MeshRenderer.material.Set~ 메소드를 통해스크립트에서 마테리얼 특정 프로퍼티의 값을 실시간으로 변경할 수 있다.하지만 이렇게 .material에 접근하여 프로퍼티를 수정하면이런식으로 마테리얼이 개별 인스턴스로 복제되어, 배칭이 깨지게 된다.(.material에 접근하기만 해도 바로 개별 인스턴스가 생성된다.)이를 방지할 수 있는 것이 Material Property Block, GPU Instancing이다.Material P..."
   },
   
   {
