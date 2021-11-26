@@ -792,6 +792,16 @@
         
         
         
+        <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-mobile-optimization/">유니티 - 모바일 성능 최적화</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
         
@@ -803,16 +813,6 @@
         
         
         <li><a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-editor-view-width-considering-scroll/">유니티 - 커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기</a></li>
       
 
       </ul>
@@ -3273,8 +3273,6 @@
     
     
     
-      
-    
   
     
     
@@ -4301,6 +4299,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8747,68 +8758,6 @@
       
       
       <div class="card">
-        <a href="/posts/cs-enum-index-array-vs-dict/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 19
-  
-
-  <i class="unloaded">2021-08-19T23:11:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# - Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                요약
-
-
-
-  array[(int)enumValue], dict[enumValue]의 참조 성능을 비교한다.
-
-
-
-
-테스트 코드
-
-
-
-  
-    public enum MyEnum
-{
-    Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine
-}
-
-public float[] targetArray;
-...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/cs-gethashcode-cost-by-types/">
           <div class="card-body">
             <!--
@@ -8936,6 +8885,67 @@ int value = someValue;
 if(value == 0) DoSomething0();
 else if(value == 1) DoSomething1();
 else if(v...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/cs-if-vs-try-performance/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Aug  9
+  
+
+  <i class="unloaded">2021-08-09T14:41:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>C# - If vs try-catch 성능</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+개발을 하다보면 고민되는 경우가 많다.
+
+예외 조건을 처리할 때 if로 예외를 회피할지, try-catch로 처리할지,
+
+실제 성능은 어떻게 될지도 궁금한 부분이다.
+
+
+
+try-catch는 예외가 발생하지 않으면 성능 소모가 없다고도 하고,
+
+성능 소모가 있지만 O(1)이라고도 하고,
+
+찾아보면 다양한 주장들을 확인해볼 수 있다.
+
+
+
+...
               </p>
             </div>
           </div>
@@ -11512,8 +11522,6 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
-    
-      
     
   
     
