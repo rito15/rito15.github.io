@@ -63,6 +63,8 @@ Y축 회전일 경우 X, Z값이 0이 아니면 영향을 받는다.
 
 ## **[1] X축 회전 : 잘못된 예시**
 
+- 오일러 각도를 직접 변경하여 회전
+
 ```cs
 private void Update()
 {
@@ -75,6 +77,8 @@ private void Update()
 <br>
 
 ## **[2] X축 회전 : 정상**
+
+- 쿼터니언 연산을 통해 회전
 
 ```cs
 private void Update()
