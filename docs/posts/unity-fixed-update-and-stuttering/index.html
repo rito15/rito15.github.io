@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1091 words">6 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1276 words">7 min</span>
 
 
           <!-- page views -->
@@ -466,13 +466,13 @@
 
 <p><br /></p>
 
-<p>예를 들어 <strong>FrameRate = 50</strong>일 경우, 즉 매 프레임이 <strong>0.02초</strong>마다 실행될 경우</p>
+<p>예를 들어 <strong>Frame Rate = 50</strong>일 경우, 즉 매 프레임이 <strong>0.02초</strong>마다 실행될 경우</p>
 
 <p>매 프레임마다 <code class="language-plaintext highlighter-rouge">Update()</code>, <code class="language-plaintext highlighter-rouge">FixedUpdate()</code>는 한 번씩 호출될 것이다.</p>
 
 <p><br /></p>
 
-<p><strong>FrameRate = 25</strong>일 경우, 즉 매 프레임이 <strong>0.04초</strong>마다 실행될 경우</p>
+<p><strong>Frame Rate = 25</strong>일 경우, 즉 매 프레임이 <strong>0.04초</strong>마다 실행될 경우</p>
 
 <p><code class="language-plaintext highlighter-rouge">Update()</code>는 역시 매 프레임마다 호출되겠지만,</p>
 
@@ -482,7 +482,7 @@
 
 <p><br /></p>
 
-<p>반면에 성능이 아주 좋아서 <strong>FrameRate = 250</strong>쯤 된다면,</p>
+<p>반면에 성능이 아주 좋아서 <strong>Frame Rate = 250</strong>쯤 된다면,</p>
 
 <p>프레임은 <strong>0.004초</strong> 간격으로 실행된다.</p>
 
@@ -499,11 +499,11 @@
 
 <p><code class="language-plaintext highlighter-rouge">FixedUpdate()</code>는 기본적으로 <strong>0.02초</strong>마다 실행된다.</p>
 
-<p><strong>FrameRate</strong>로 따지자면 <strong>50</strong>에 해당한다.</p>
+<p><strong>Frame Rate</strong>로 따지자면 <strong>50</strong>에 해당한다.</p>
 
-<p>따라서 현재 <strong>FrameRate</strong>가 <strong>50</strong>보다 너무 클 경우,</p>
+<p>따라서 현재 <strong>Frame Rate</strong>가 <strong>50</strong>보다 클 경우,</p>
 
-<p><code class="language-plaintext highlighter-rouge">FixedUpdate()</code>가 호출되지 않는 프레임들이 많아지기 때문에</p>
+<p><code class="language-plaintext highlighter-rouge">FixedUpdate()</code>가 호출되지 않는 프레임들이 존재하기 때문에</p>
 
 <p>분명 사용자 입력이 이루어지는데도 움직임이 업데이트되지 않는 프레임들이 존재하여</p>
 
@@ -518,69 +518,89 @@
 
 <p><code class="language-plaintext highlighter-rouge">FixedUpdate()</code>의 이동, 회전에 의한 버벅임 현상은 어떻게 해결할 수 있을까?</p>
 
-<p>실제 <strong>FrameRate</strong>와 초당 <code class="language-plaintext highlighter-rouge">FixedUpdate()</code> 실행 횟수를 적당히 비슷하게 맞춰줄 필요가 있다.</p>
+<p><strong>Frame Rate</strong>와 <strong>Fixed Time Step</strong>을 고려하여,</p>
 
-<p>따라서 두 가지 방법이 있다.</p>
+<p><code class="language-plaintext highlighter-rouge">FixedUpdate()</code>가 프레임당 최소 한 번은 호출되도록 해주어야 한다.</p>
 
-<p><br /></p>
+<p>다시 말해, <code class="language-plaintext highlighter-rouge">FixedUpdate()</code>가 호출되지 않는 프레임이 없어야 한다.</p>
 
-<h2 id="1-framerate를-낮춘다"><strong>[1] FrameRate를 낮춘다</strong></h2>
-
-<p><code class="language-plaintext highlighter-rouge">Application.targetFrameRate</code> 값을 <strong>30</strong>, <strong>60</strong> 정도로 조절하여 낮춘다.</p>
-
-<p>초당 물리 업데이트 횟수는 <strong>50</strong>이므로 비슷해지며,</p>
-
-<p>따라서 <code class="language-plaintext highlighter-rouge">FixedUpdate()</code>가 호출되지 않는 프레임이 거의 존재하지 않아</p>
-
-<p>버벅이는 현상을 해결할 수 있다.</p>
+<p>이를 위해 두 가지를 설정할 수 있다.</p>
 
 <p><br /></p>
 
-<h2 id="2-fixed-time-step을-낮춘다"><strong>[2] Fixed Time Step을 낮춘다</strong></h2>
+<h2 id="1-target-frame-rate를-지정한다"><strong>[1] Target Frame Rate를 지정한다</strong></h2>
 
-<p>실행 환경이 너무 넉넉해서 <strong>Frame Rate</strong>가 <strong>50</strong>을 거뜬히 넘는 경우 사용한다.</p>
+<p>스크립트에서 <code class="language-plaintext highlighter-rouge">Application.targetFrameRate</code> 값을 설정하여 최대 <strong>Frame Rate</strong> 제한을 지정할 수 있다.</p>
+
+<p><strong>Fixed Time Step</strong>이 기본 값(<strong>0.02</strong>)일 때, 초당 물리 업데이트 횟수는 <strong>50</strong>이다.</p>
+
+<p>만약 <strong>Fixed Time Step</strong>을 그대로 유지하고 버벅임 현상을 없애려면,</p>
+
+<p><code class="language-plaintext highlighter-rouge">targetFrameRate</code> 값을 <strong>50</strong> 이하로 설정하여</p>
+
+<p>프레임 당 <code class="language-plaintext highlighter-rouge">FixedUpdate()</code>가 최소 1번 이상 호출되도록 해주면 된다.</p>
+
+<p><br /></p>
+
+<h2 id="2-fixed-time-step을-조정한다"><strong>[2] Fixed Time Step을 조정한다</strong></h2>
+
+<p><strong>Frame Rate</strong>에 맞추어 물리 업데이트 주기를 변경할 수도 있다.</p>
 
 <p><code class="language-plaintext highlighter-rouge">[Edit] - [Project Settings] - [Time]</code> 창을 연다.</p>
 
-<p><code class="language-plaintext highlighter-rouge">Fixed Time Step</code>은 기본적으로 <strong>0.02</strong>로 설정되어 있는데,</p>
+<p><strong>Fixed Time Step</strong>은 기본적으로 <strong>0.02</strong>로 지정되어 있는데,</p>
 
-<p>이 값을 낮춰주면 된다.</p>
+<p>이 값을 <strong>(1 / Frame Rate)</strong>로 계산하여 넣어주면 된다.</p>
+
+<p>예를 들어 <strong>Frame Rate</strong>가 <strong>60</strong>이면 <strong>(1 / 60) = 0.016667</strong>로 설정하면 된다.</p>
+
+<p><br /></p>
+
+<p>보통 이렇게 <code class="language-plaintext highlighter-rouge">targetFrameRate</code> 값을 먼저 결정하고,</p>
+
+<p>이에 맞추어 <strong>Fixed Time Step</strong> 값을 조정하는 것이 일반적이다.</p>
 
 <p><br /></p>
 
 <h1 id="결론">결론</h1>
 <hr />
 
-<p>대부분의 경우 실행할 기기 환경을 특정하고,</p>
+<h2 id="1-target-frame-rate-설정"><strong>[1] Target Frame Rate 설정</strong></h2>
 
-<p>이에 따라 <strong>Target Frame Rate</strong>를 <strong>30</strong> 또는 <strong>60</strong>으로 설정한다.</p>
+<p>게임의 특징, 실행할 기기 환경 등에 따라 <strong>Target Frame Rate</strong>를 설정한다.</p>
 
-<p>물리 엔진 기반으로 주요 기능들을 구현할 경우,</p>
+<p>스크립트에서 <code class="language-plaintext highlighter-rouge">Application.targetFrameRate</code>를 통해 설정할 수 있으며</p>
 
-<p><strong>Target Frame Rate</strong>에 따라 알맞은 <strong>Fixed Time Step</strong> 값을 설정해주는 것이 좋다.</p>
+<p>캐주얼, 아케이드 등 가벼운 게임은 <strong>30</strong>,</p>
+
+<p>FPS, 액션 게임처럼 부드러운 화면 업데이트가 필요하면 <strong>60</strong>으로 설정하는 경우가 많다.</p>
+
+<p>모바일 대상인 경우, 액션 게임이라도 최적화를 위해 <strong>30</strong>으로 설정할 수도 있다.</p>
 
 <p><br /></p>
 
-<h2 id="계산-방법"><strong>계산 방법</strong></h2>
+<h2 id="2-계산을-통해-fixed-time-step-설정"><strong>[2] 계산을 통해 Fixed Time Step 설정</strong></h2>
+
+<p>물리 엔진 기반으로 움직임들을 구현할 경우,</p>
+
+<p><strong>Target Frame Rate</strong>에 따라 알맞은 <strong>Fixed Time Step</strong> 값을 설정해준다.</p>
+
+<p>프레임당 최소 한 번의 물리 업데이트가 발생하도록 하는 것이 목적이다.</p>
+
+<p><br /></p>
+
+<h3 id="계산-방법"><strong>계산 방법</strong></h3>
 <blockquote>
   <p>Fixed Time Step = (1 / Target Frame Rate)</p>
 </blockquote>
 
 <p><br /></p>
 
-<p><strong>Target Frame Rate = 60</strong>인데 <strong>Fixed Time Step = 0.02</strong>일 경우,</p>
+<p>예를 들어,</p>
 
-<p><strong>60프레임</strong>마다 <strong>10프레임</strong>은 물리 업데이트가 발생하지 않으므로 미묘하게 불편한 느낌이 생길 수 있다.</p>
+<p><strong>Target Frame Rate = 60</strong>이면 <strong>(1 / 60) = 0.016667</strong>,</p>
 
-<p><br /></p>
-
-<p>따라서 <strong>Target Frame Rate = 60</strong>이면 <strong>Fixed Time Step = 0.016667</strong>,</p>
-
-<p><strong>30</strong>이면 <strong>0.033333</strong>으로 설정하여</p>
-
-<p>프레임 주기와 물리 업데이트 주기를 최대한 일치시키면</p>
-
-<p>유저의 게임 플레이에 쾌적함을 가져다 줄 수 있다.</p>
+<p><strong>Target Frame Rate = 30</strong>이면 <strong>(1 / 30) = 0.033333</strong>으로 설정한다.</p>
 
 <p><br /></p>
 
@@ -590,7 +610,7 @@
 <h2 id="공통"><strong>공통</strong></h2>
 <ul>
   <li><strong>Target Frame Rate = 120</strong> <br />
-(<strong>Delta Time = 0.008333</strong>)</li>
+(<strong>Delta Time = (1 / 120) = 0.008333</strong>)</li>
 </ul>
 
 <p><br /></p>
@@ -735,6 +755,11 @@
         
         
         
+        <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
       
         
@@ -751,11 +776,6 @@
         
         
         <li><a href="/posts/unity-material-property-block/">유니티 - Material Property Block을 통해 프로퍼티 값 변경하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-rigidbody-move-and-jump/">유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드</a></li>
       
 
       </ul>
@@ -8852,22 +8872,22 @@ Note
                 Memo
 
 
-
-  
-    public GameObject Property1 =&gt; Field1;
+1
+2
+public GameObject Property1 =&gt; Field1;
 private GameObject Field1;
-
-  
 
 
 이렇게 다른 필드와 연결된 프로퍼티라면
 
-
-  
-    public GameObject Property1 =&gt; field1;
+1
+2
+3
+4
+public GameObject Property1 =&gt; field1;
 
 [SerializeField]
-private GameObje...
+private GameObject field...
               </p>
             </div>
           </div>
