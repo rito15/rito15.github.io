@@ -330,6 +330,8 @@ private void LookAtSlowlyX(Transform target, float speed = 1f)
 
 ## **[1] 자유 회전**
 
+![2021_1130_Camera Free Rot](https://user-images.githubusercontent.com/42164422/144037611-ed91408b-6c09-4cd1-a9bd-988e02fb9c46.gif)
+
 ```cs
 [SerializeField, Range(0f, 100f)]
 private float hRotationSpeed = 50f;  // 좌우 회전 속도
@@ -361,12 +363,20 @@ private void Update()
 
 ## **[2] 상하 회전 각도 제한**
 
+![2021_1130_CameraXRot_Clamped](https://user-images.githubusercontent.com/42164422/144037628-0096bc93-b0a5-4b3e-9f24-2d9f7b0108a8.gif)
+
 ```cs
 [SerializeField, Range(0f, 100f)]
 private float hRotationSpeed = 50f;  // 좌우 회전 속도
 
 [SerializeField, Range(0f, 100f)]
 private float vRotationSpeed = 100f; // 상하 회전 속도
+
+[SerializeField, Range(-60f,  0f)]
+private float lookUpAngleLimit = -45f;  // 최소 회전각(올려다보기 제한)
+
+[SerializeField, Range( 15f, 60f)]
+private float lookDownAngleLimit = 45f; // 최대 회전각(내려다보기 제한)
 
 private void Update()
 {
@@ -381,15 +391,64 @@ private void Update()
     transform.rotation = hRot * transform.rotation;
 
     // [2] 상하 회전 : 로컬 X축 기준
+    // 다음 프레임 각도 예측
     float xNext = transform.eulerAngles.x + v;
     if (xNext > 180f)
         xNext -= 360f;
 
-    // 상하 회전 각도 제한(다음 프레임 회전 각도 미리 체크)
-    if (-90f < xNext && xNext < 90f)
+    // 상하 회전 각도 제한
+    if (lookUpAngleLimit < xNext && xNext < lookDownAngleLimit)
     {
-        Quaternion vRot = Quaternion.AngleAxis(v, Vector3.right);
-        transform.rotation = transform.rotation * vRot;
+        transform.rotation *= Quaternion.AngleAxis(v, Vector3.right);
     }
 }
 ```
+
+<details>
+<summary markdown="span">
+2
+</summary>
+
+```cs
+/* 좀더 안전한 상하 회전 방식 */
+
+[SerializeField, Range(0f, 100f)]
+private float hRotationSpeed = 50f;  // 좌우 회전 속도
+
+[SerializeField, Range(0f, 100f)]
+private float vRotationSpeed = 100f; // 상하 회전 속도
+
+[SerializeField, Range(-60f,  0f)]
+private float lookUpAngleLimit = -45f;  // 최소 회전각(올려다보기 제한)
+
+[SerializeField, Range( 15f, 60f)]
+private float lookDownAngleLimit = 45f; // 최대 회전각(내려다보기 제한)
+
+private void Update()
+{
+    float t = Time.deltaTime;
+
+    // 마우스 움직임 감지
+    float yDelta =  Input.GetAxisRaw("Mouse X") * hRotationSpeed * t;
+    float xDelta = -Input.GetAxisRaw("Mouse Y") * vRotationSpeed * t;
+
+    // [1] 좌우 회전 : 월드 Y축 기준
+    Quaternion hRot = Quaternion.AngleAxis(yDelta, Vector3.up);
+    transform.rotation = hRot * transform.rotation;
+
+    // [2] 상하 회전 : 로컬 X축 기준
+    float xCurrent = transform.eulerAngles.x; // 현재 X 각도
+    if (xCurrent > 180f)
+        xCurrent -= 360f;
+
+    float xNext = xCurrent + xDelta; // 회전 예정 X 각도
+
+    // 상하 회전 각도 제한
+    if      (xNext > lookDownAngleLimit) xDelta = (lookDownAngleLimit - xCurrent);
+    else if (xNext < lookUpAngleLimit)   xDelta = (lookUpAngleLimit   - xCurrent);
+    
+    transform.rotation *= Quaternion.AngleAxis(xDelta, Vector3.right);
+}
+```
+
+</details>
