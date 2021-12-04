@@ -11,7 +11,7 @@ mermaid: true
 # Intro
 ---
 
-코딩을 하다보면 변수의 이름을 지을 때 많은 고민을 하게 되고, 생각보다 많은 시간을 소요한다.
+코딩을 하다보면 변수의 이름을 지을 때 많은 고민을 하게 되고, 생각보다 많은 시간이 소요된다.
 
 아무 의미 없는 이름을 짓게 되면 개발을 이어 나가면서 스스로도 혼란을 겪게 되고,
 
@@ -89,7 +89,7 @@ MS에서 추천하는 C# 공식 네이밍 가이드에서도 클래스 및 변�
 
 **characterMovement**는 `character` + `Movement`로 캐릭터 이동 관련된 변수라는 것을 알 수 있다.
 
-**cInventory**는 **character**를 줄인 접두어 `c` + `Inventory`로, 얼핏 보면 'c'의 의미를 고민하게 될 수 있다.
+**cInventory**는 **character**를 줄인 접두어 `c` + `Inventory`로, 언뜻 봤을 때 'c'의 의미를 바로 알아채지 못하고 고민하게 될 수 있다.
 
 **recordedCharacterCommands**는 형용사 + 명사 + 명사의 조합으로, 단순히 단어를 순서대로 나열하여 명명하였다.
 
@@ -128,17 +128,17 @@ MS에서 추천하는 C# 공식 네이밍 가이드에서도 클래스 및 변�
 
 위의 규칙을 통해 다시 예시의 변수명들을 이름 지어본다.
 
-- CharacterMovement
-- CharacterInventory
-- CharacterCommandRecords
+- characterMovement
+- characterInventory
+- characterCommandRecords
 
 <br>
 
-모두 캐릭터에 관련되어 있으므로, 공통 접두어로 `Character`를 사용한다.
+모두 캐릭터에 관련되어 있으므로, 공통 접두어로 `character`를 사용한다.
 
 그리고 `Movement`, `Inventory`, `Command`, `Record`는 몸체에 해당된다.
 
-마지막으로 **CharacterCommandRecords**의 `s`는 접미어에 해당된다.
+마지막으로 **characterCommandRecords**의 `s`는 접미어에 해당된다.
 
 `Records` 자체가 하나의 단어로서 몸체가 아닌가? 이렇게 생각할 수 있지만
 
@@ -148,9 +148,9 @@ MS에서 추천하는 C# 공식 네이밍 가이드에서도 클래스 및 변�
 
 여기서 `s`는 마지막 세부 규칙인 '접두어는 의미적 특성, 접미어는 변수 형식의 특성을 나타내도록 짓는다.'에서 '변수 형식의 특성'을 나타내는 역할을 한다.
 
-**CharacterMovement**, **CharacterInventory는** 접미어가 없으므로 단일 개체로서의 특징을 지니고
+**characterMovement**, **characterInventory는** 접미어가 없으므로 단일 개체로서의 특징을 지니고
 
-**CharacterCommandRecord**라고 이름을 지을 경우, 마찬가지로 단일 개체라는 것을 유추할 수 있다.
+**characterCommandRecord**라고 이름을 지을 경우, 마찬가지로 단일 개체라는 것을 유추할 수 있다.
 
 하지만 `s`를 접미어로 붙임으로써 '배열' 혹은 다중 개체라는 특성을 부여하고, 유추할 수 있게 된다.
 
@@ -188,16 +188,16 @@ MS에서 추천하는 C# 공식 네이밍 가이드에서도 클래스 및 변�
 
 # Prefix 예시
 ---
-- 변수의 의미 근간을 설명하고, 여러 변수의 공통 의미를 나타낸다.
+- 여러 변수를 한데 묶었을 때 공통 분모가 될 수 있는 의미를 나타낸다.
 
 <br>
 
 |이름|설명|
 |---|---|
-|Game     |게임에 직접적으로 관련된 변수. 주로 매니저, 설정 등에 사용한다.|
-|World    |Game과 비슷한 의미를 지닐 수도 있고, 조금 더 좁혀서 '공간'으로서의 의미를 가지는 경우가 많다.|
-|Player   |플레이어 캐릭터 또는 사용자의 직접 조작에 따라 동작하는 대상|
-|Character|독립적 객체로서 사용되며, 이동, 상호작용 등 행위의 주체가 되는 대상|
+|game     |게임에 직접적으로 관련된 변수. 주로 매니저, 설정 등에 사용한다.|
+|world    |1. game과 비슷한 의미(게임 월드)<br>2. '공간'으로서의 의미<br>3. local의 반대 의미 : world space|
+|player   |플레이어 캐릭터 또는 사용자의 직접 조작에 따라 동작하는 대상|
+|character|독립적 객체로서 사용되며, 이동, 상호작용 등 행위의 주체가 되는 대상|
 
 <br>
 
@@ -238,7 +238,7 @@ MS에서 추천하는 C# 공식 네이밍 가이드에서도 클래스 및 변�
 |Arr, Array      |배열|
 |List            |리스트|
 |Dict, Dictionary|딕셔너리|
-|Set             |해시셋(HashSet)|
+|Set             |1. 해시셋(HashSet)<br>2. 튜플과 같이 여러 변수를 하나로 묶은 경우|
 
 <br>
 
