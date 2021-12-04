@@ -367,6 +367,102 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-undo/">유니티 - Undo</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+
+  
+    필드의 값 변경, 리스트나 딕셔너리의 구성요소 변경 : RecordeObject(컴포넌트, "")
+  
+  
+    커스텀 에디터에서 대상의 필드를 Undo에 등록하려면, 반드시 해당 필드가 직렬화되어야 한다.
+  
+
+
+
+
+Memo
+
+
+1. 다른 동작에 Undo 등록
+
+
+  
+    // 이름 변경, 기타 등등 수행하기 직전...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Feb 28, 2021,  1:52 AM +0900"
+  >
+
+  
+  
+
+  
+    Feb 28
+  
+
+  <i class="unloaded">2021-02-28T01:52:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="249 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-physics-based-movement/">유니티 - 물리 기반 캐릭터 이동 구현하기</a>
     </h1>
 
@@ -1221,104 +1317,6 @@ public class TestScriptableObject : ScriptableObject
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-23/">OpenGL 공부 - 23 - Mesh, GameObject Class, Multiple Objects</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  프래그먼트 쉐이더 수정
-  Mesh 클래스 작성
-  GameObject 클래스 작성
-  여러 개의 게임오브젝트 렌더링
-
-
-
-
-1. 프래그먼트 쉐이더 수정
-
-
-
-  
-    각각의 계산이 독립적이고 순차적으로 수행될 수 있도록 변경한다.
-  
-  
-    바뀐 구조
-    
-      
-        1. 색상 계산(텍스쳐, 버텍스 컬러 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Feb 19, 2021,  4:27 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 19
-  
-
-  <i class="unloaded">2021-02-19T16:27:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2989 words">16 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1949,6 +1947,11 @@ public class TestScriptableObject : ScriptableObject
         
         
         
+        <li><a href="/posts/unity-fixed-update-and-stuttering/">유니티 - FixedUpdate()에서 이동, 회전 구현 시 버벅임 현상 해결하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
       
         
@@ -1960,11 +1963,6 @@ public class TestScriptableObject : ScriptableObject
         
         
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-material-property-block/">유니티 - Material Property Block을 통해 프로퍼티 값 변경하기</a></li>
       
 
       </ul>

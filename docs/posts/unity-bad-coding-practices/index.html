@@ -1303,6 +1303,11 @@
         
         
         
+        <li><a href="/posts/unity-fixed-update-and-stuttering/">유니티 - FixedUpdate()에서 이동, 회전 구현 시 버벅임 현상 해결하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-bad-coding-practices/">유니티 - 반드시 고쳐야 하는, 잘못된 코딩 방식들</a></li>
       
         
@@ -1314,11 +1319,6 @@
         
         
         <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-material-property-block/">유니티 - Material Property Block을 통해 프로퍼티 값 변경하기</a></li>
       
 
       </ul>
@@ -4810,6 +4810,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9322,6 +9335,59 @@
       
       
       <div class="card">
+        <a href="/posts/unity-deltatime-and-fixeddeltatime/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Nov 21
+  
+
+  <i class="unloaded">2021-11-21T23:45:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Time.deltaTime과 Time.fixedDeltaTime의 올바른 이해</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                deltaTime과 fixedDeltaTime
+
+
+deltaTime
+
+Time.deltaTime을 통해 참조할 수 있다.
+
+이전 프레임의 발생 시각과 현재 프레임의 발생 시각 사이의 시간 간격,
+
+즉 이전 프레임의 수행에 걸린 시간을 의미한다.
+
+Update() 내에서 시간의 진행에 따른 일정한 기능을 구현하기 위해 Time.deltaTime을 이용해...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
         <a href="/posts/unity-memo-show-property-on-inspector/">
           <div class="card-body">
             <!--
@@ -9373,59 +9439,6 @@ private GameObject Field1;
 
 [SerializeField]
 private GameObje...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-deltatime-and-fixeddeltatime/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Nov 21
-  
-
-  <i class="unloaded">2021-11-21T23:45:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Time.deltaTime과 Time.fixedDeltaTime의 올바른 이해</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                deltaTime과 fixedDeltaTime
-
-
-deltaTime
-
-Time.deltaTime을 통해 참조할 수 있다.
-
-이전 프레임의 발생 시각과 현재 프레임의 발생 시각 사이의 시간 간격,
-
-즉 이전 프레임의 수행에 걸린 시간을 의미한다.
-
-Update() 내에서 시간의 진행에 따른 일정한 기능을 구현하기 위해 Time.deltaTime을 이용해...
               </p>
             </div>
           </div>
