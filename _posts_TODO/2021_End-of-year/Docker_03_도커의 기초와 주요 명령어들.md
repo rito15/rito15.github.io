@@ -303,7 +303,6 @@ docker exec [옵션] {컨테이너 이름} {명령어} [명령어 인수]
 <br>
 
 ## **[2] 쉘 실행하여 작업하기**
-
 - 지속적으로 연결을 유지하는 `-it` 옵션과 쉘 실행 명령어를 조합하여, 해당 컨테이너의 파일 시스템 내에서 계속 작업할 수 있다.
 - `exit` 명령어를 통해 쉘을 종료할 수 있다.
 
@@ -312,10 +311,74 @@ docker exec [옵션] {컨테이너 이름} {명령어} [명령어 인수]
   - `pwd` : 현재 위치한 디렉토리 경로를 출력한다.
 
 ```
-docker exec -it {컨테이너 이름} /bin/sh
+docker exec -it {컨테이너 이름} /bin/sh    # 기본 쉘
+docker exec -it {컨테이너 이름} /bin/bash  # 배시 쉘
 ```
 
 ![image](https://user-images.githubusercontent.com/42164422/144747902-ec7f8092-1db8-4423-8b14-4a435a70ecc3.png)
+
+<br>
+
+## **[3] 컨테이너 내부 파일 수정하기**
+- 도커 허브에서 해당 이미지의 세부 정보 페이지에서 기본 접속 경로를 확인할 수 있다.
+- 예를 들어 `httpd` 이미지(아파치 웹 서버)의 경우에는 `/usr/local/apache2/htdocs/`이다.
+
+![image](https://user-images.githubusercontent.com/42164422/144750393-39993ef3-024a-4fa0-87a4-e478adac0ff6.png)
+
+<br>
+
+우선, 다음 명령어들을 컨테이너 쉘 내에서 실행하여 `nano` 에디터를 받아준다.
+
+```
+apt update
+apt install nano
+```
+
+![image](https://user-images.githubusercontent.com/42164422/144750681-c68afcb4-c6a1-4406-870b-e19d09b9c19d.png)
+
+![image](https://user-images.githubusercontent.com/42164422/144750712-703a51a0-4187-477a-8194-c4e949249fbd.png)
+
+<br>
+
+그리고 `/usr/local/apache2/htdocs/` 경로로 들어간 뒤,
+
+![image](https://user-images.githubusercontent.com/42164422/144750740-3bc51106-906b-4c3b-8b85-9c24ce818ce5.png)
+
+![image](https://user-images.githubusercontent.com/42164422/144750787-b47dd29e-8cc7-46a4-8881-6782d0c216de.png)
+
+이렇게 나노 에디터로
+
+![image](https://user-images.githubusercontent.com/42164422/144750815-73826ca6-47aa-4bdc-9068-6130b67cffa3.png)
+
+내용을
+
+![image](https://user-images.githubusercontent.com/42164422/144750849-8d45dabf-abe9-4329-80ef-d20367226571.png)
+
+수정해준다.
+
+<br>
+
+그리고 이제 브라우저로 접속해보면 변경된 것을 확인할 수 있다.
+
+![image](https://user-images.githubusercontent.com/42164422/144751301-c55580d6-25b0-453d-ab16-890d0c92c98f.png)
+
+<!-- ============================================================ -->
+
+
+# 5. 파일 시스템 연결하기
+---
+
+호스트와 컨테이너의 파일 시스템을 연결하여, 기존 작업 환경에서 계속 작업할 수 있게 한다.
+
+
+https://www.youtube.com/watch?v=AmSKD4p-jhw&list=PLuHgQVnccGMDeMJsGq2O-55Ymtx0IdKWf&index=7
+
+
+
+
+작 성 중
+
+
 
 
 <!-- ============================================================ -->
