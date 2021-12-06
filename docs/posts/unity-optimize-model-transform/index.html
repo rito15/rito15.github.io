@@ -682,6 +682,11 @@
         
         
         
+        <li><a href="/posts/unity-naming-variables-neatly/">유니티 - 깔끔하고 보기 좋은 변수명 짓기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-rotation/">유니티 - 트랜스폼과 방향벡터의 회전</a></li>
       
         
@@ -698,11 +703,6 @@
         
         
         <li><a href="/posts/unity-mobile-optimization/">유니티 - 모바일 성능 최적화</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-useful-links/">유니티 - 유용한 정보, 링크 모음</a></li>
       
 
       </ul>
@@ -4189,6 +4189,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8773,7 +8786,7 @@ No...
       
       
       <div class="card">
-        <a href="/posts/unity-opt-occlusion-culling/">
+        <a href="/posts/unity-draw-call-and-batching/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8790,13 +8803,13 @@ No...
   
 
   
-    Mar  1
+    Nov 22
   
 
-  <i class="unloaded">2021-03-01T01:40:00+09:00</i>
+  <i class="unloaded">2021-11-22T20:13:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 오클루전 컬링</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 드로우 콜과 배칭 개념 간단 정리</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8805,37 +8818,14 @@ No...
 
 
 
-                프러스텀 컬링 (Frustum Culling)
+                1. CPU와 GPU의 상호작용
 
 
+CPU에서 GPU에 명령하기
 
-  
-    카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것
-  
-  
-    따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.
-  
-
-
-
-
-
-
-그냥 이렇게 두어도
-
-
-
-실제로 이렇게 컬링된다.
-
-
-
-GIF
-
-
-
-
-
-오클루전 컬링 (Occlusion C...
+  일반적으로 CPU에서 렌더링, 상태 변경 등의 명령을 GPU에 전달한다.
+  그런데 GPU가 바쁘게 작업하는 도중이라면, CPU는 GPU의 작업이 끝나기를 하염없이 기다리게 될 수 있다.
+  따라서 커맨드 패턴(Command Pattern)과 메시지 큐(Message Queue)에 ...
               </p>
             </div>
           </div>
