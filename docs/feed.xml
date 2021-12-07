@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Game Programmer</subtitle>
-  <updated>2021-12-06T19:46:21+09:00</updated>
+  <updated>2021-12-07T17:35:02+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,8 +20,8 @@
 
   
   <entry>
-    <title>Fisher-Yates Shuffle</title>
-    <link href="https://rito15.github.io/posts/fisher-yates-shuffle/" rel="alternate" type="text/html" title="Fisher-Yates Shuffle" />
+    <title>Fisher-Yates Shuffle 간단 정리</title>
+    <link href="https://rito15.github.io/posts/fisher-yates-shuffle/" rel="alternate" type="text/html" title="Fisher-Yates Shuffle 간단 정리" />
     <published>2021-12-06T18:00:00+09:00</published>
   
     <updated>2021-12-06T18:00:00+09:00</updated>
@@ -48,33 +48,47 @@
 
 
 
-      Note
+      1. Original Fisher-Yates Shuffle
 
+
+알고리즘
 
 
   
-푸념
+…
 
 
-  어떤 알고리즘 혹은 구현 방법에 대해 구글링 했을 때,
+  
 
-  간략하고 명쾌하게 핵심만 짚어내는 블로그 포스트가 없는 경우가 있다.
+  길이 n인 배열이 있다.
 
-  대충 알고 있던 알고리즘을 구현하려고 보니 확실히 떠오르지 않아서 구글링을 하는데
+  
 
-  정리되지 않은 장황한 설명과, 조금 지저분해 보이는 코드가 가득한 글들이 보인다.
+  
 
-  공부하려는 목적이라면 전문을 읽어보면 되기 때문에 딱히 상관 없겠으나
+  [0, n-1] 범위에서 무작위 인덱스를 뽑아, 그 위치의 원소를 새로운 배열의 인덱스 0 위치에 넣는다.
 
-  한 1~2분 동안 빠르게 핵심만 살펴보고 ‘아, 이거였지!’ 하고 싶은 상황에서는 아쉬운 부분이다.
+  
 
-  사실 개발 블로그를 운영하는 가장 큰 이유 중 하나가 이것이다.
+  
 
-  내 방식대로, 가끔은 아주 간략하게 핵심만 메모하고
+  기존 배열에서 n-1 인덱스에 있는 원소를 구멍 뚫린 위치에 채워 넣는다.
 
-  나중에 기억이 나지 않을 때 빠르게 살펴보는 것.
+  뒤에서 한 칸씩 밀어서 빈 칸을 채우는 방법도 있겠으나, 그러면 O(n)에 해당하므로 정말 굉장히 비효율적이다.
 
-  이 ...
+  끝에서 꺼내어 채워 넣으면 O(1)이므로 쓸만하다.
+
+  
+
+  
+
+  이번에는 [0, n-2] 범위에서 무작위 인덱스를 뽑아 새로운 배열의 인덱스 1에 넣고,
+
+  마찬가지로 n-2 인덱스의 원소를 구멍 뚫린 위치에 채워 넣는다.
+
+  
+
+...
     </summary>
   
 
