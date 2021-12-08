@@ -81,7 +81,7 @@ To install the missing version, run `gem install bundler:1.16.3`
 
 같은게 써있다면,
 
-그대로 잘 실행해주고 다시 `bundle install` 해주면 된다.
+제시된 명령어를 실행해주고 다시 `bundle install` 해주면 된다.
 
 <br>
 
@@ -183,8 +183,9 @@ git push
 - <http://jekyllthemes.org/themes/resumecard/>
 - <http://jekyllthemes.org/themes/sleek-blog/>
 
+<br>
 
-## 4. 설명 문서용 테마
+## 5. 설명 문서용 테마
 
 - <http://jekyllthemes.org/themes/edition/>
 - <http://jekyllthemes.org/themes/papyrus-theme/>

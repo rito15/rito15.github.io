@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2294 words">12 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2584 words">14 min</span>
 
 
           <!-- page views -->
@@ -786,6 +786,45 @@
     </tr>
   </tbody>
 </table></div>
+
+<p><br /></p>
+
+<h1 id="상태를-나타내는-변수의-이름-규칙--is--형용사">상태를 나타내는 변수의 이름 규칙 : is + 형용사</h1>
+<hr />
+
+<p>변수는 명사형을 기본으로 짓는 것이 좋으나, ‘반드시’ 그런 것은 아니다.</p>
+
+<p>여기서는 <code class="language-plaintext highlighter-rouge">is + 형용사</code>를 사용하는 경우에 대해 소개한다.</p>
+
+<p>주로 상태나 플래그를 나타내는 <code class="language-plaintext highlighter-rouge">bool</code> 타입 변수들에 해당한다.</p>
+
+<p><br /></p>
+
+<p>예시로, 다음과 같은 변수들이 있다.</p>
+
+<ul>
+  <li><strong>moving</strong> (현재 이동 중인지 여부)</li>
+  <li><strong>jumping</strong> (점프 중인지 여부)</li>
+  <li><strong>damaged</strong> (피해를 입었는지 여부)</li>
+</ul>
+
+<p>각각 한 단어로 이루어져 있고 간결한 편이지만,</p>
+
+<p>여기에 간단한 규칙을 적용하여 통일성을 줄 수 있다.</p>
+
+<p><br /></p>
+
+<ul>
+  <li><strong>isMoving</strong></li>
+  <li><strong>isJumping</strong></li>
+  <li><strong>isDamaged</strong></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">is-</code>를 붙임으로써 상태를 나타내는 <code class="language-plaintext highlighter-rouge">bool</code> 타입 변수라는 것을 명시적으로 드러내고,</p>
+
+<p>유사한 속성의 변수들에 통일성을 부여할 수 있게 되며</p>
+
+<p>이름의 앞부분을 보자마자 0.1초만에 그 변수의 역할을 곧바로 짐작할 수 있게 되는 장점이 있다.</p>
 
 <p><br /></p>
 
