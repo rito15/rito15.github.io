@@ -8,6 +8,13 @@ math: true
 mermaid: true
 ---
 
+# Note
+---
+
+[유니티 - 1인칭, 3인칭 전환 가능한 캐릭터 제작하기](../unity-fps-tps-character/)에서 이어집니다.
+
+<br>
+
 # 목차
 ---
 - [1. 서론](#서론)
