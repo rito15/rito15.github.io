@@ -70,7 +70,7 @@ pin: true
 
 
 
-# 유니티 강좌, 정보
+# 유니티 주요 기능 소개, 강좌
 ---
 
 ## **유니티 코리아 유튜브**
@@ -110,6 +110,34 @@ pin: true
 - [Unite Seoul 2020 - Addressables 사용 가이드](https://www.youtube.com/watch?v=EP3pvPAcHSo)
 - [감귤오렌지 - Unity Addressable(Playlist)](https://www.youtube.com/playlist?list=PLmRK0lH8TNCo7K4xmLpEov4llbVTwf29s)
 - [유니티 에셋번들을 사용한 패치 시스템](https://www.youtube.com/watch?v=ByQAii2x5mI)
+
+<br>
+
+
+
+# 유니티 강좌 - 기타
+---
+
+## **OpenCV with Unity**
+- [Introduction to Using OpenCV With Unity](https://www.raywenderlich.com/5475-introduction-to-using-opencv-with-unity?fbclid=IwAR3L6v08dVUHO_dkUlRhsqH8T6m06NuWIIPFar8w7TGJzQG8F4T99O2rsKY)
+
+## **Volumetric Light in URP**
+- [Volumetric Light Scattering as a Custom Renderer Feature in URP](https://www.raywenderlich.com/22027819-volumetric-light-scattering-as-a-custom-renderer-feature-in-urp?fbclid=IwAR0pf6_0JYuf4ticDCsh6TJhBkBjkyDpcFyhuJ_GPvfO4q2eOYRfXIv9Fb0)
+
+<br>
+
+
+
+# 유니티 쉐이더
+---
+
+## **유니티, 쉐이더 튜토리얼**
+- <https://catlikecoding.com/unity/tutorials/>
+- <https://www.ronja-tutorials.com/>
+
+## **URP 쉐이더 기초**
+- [Google Docs](https://docs.google.com/document/d/1UX0319CXa29fCFAgg0qa5vnH-U6875jt0KLKUk5mke8/edit)
+- [Youtube Playlist](https://www.youtube.com/playlist?list=PLo0EL2mTb8Nw6GRRrYhXIG6vh9U-BukXZ)
 
 <br>
 
@@ -156,29 +184,14 @@ pin: true
 <br>
 
 
-
-# 유니티 형상 관리 - Plastic SCM
+# 유니티 관련 툴
 ---
 
+## Plastic SCM(유니티 형상 관리)
 - [Plastic SCM 홈페이지](https://www.plasticscm.com/)
 - [Unity Plastic SCM 제품 소개](https://unity.com/kr/products/plastic-scm)
 - [소개 영상 1](https://www.youtube.com/watch?v=cYouCns9vz8)
 - [소개 영상 2](https://www.youtube.com/watch?v=8NY3szQinX8)
-
-<br>
-
-
-
-# 유니티 쉐이더
----
-
-## **유니티, 쉐이더 튜토리얼**
-- <https://catlikecoding.com/unity/tutorials/>
-- <https://www.ronja-tutorials.com/>
-
-## **URP 쉐이더 기초**
-- [Google Docs](https://docs.google.com/document/d/1UX0319CXa29fCFAgg0qa5vnH-U6875jt0KLKUk5mke8/edit)
-- [Youtube Playlist](https://www.youtube.com/playlist?list=PLo0EL2mTb8Nw6GRRrYhXIG6vh9U-BukXZ)
 
 <br>
 
