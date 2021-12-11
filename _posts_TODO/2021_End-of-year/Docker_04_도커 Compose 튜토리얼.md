@@ -2,8 +2,13 @@ TITLE : 도커 Compose 튜토리얼
 CATEGORY : MEMO/Docker
 
 
-# Network 명령어
+# 참고 : Docker Network 명령어
 ---
+
+<details>
+<summary markdown="span">
+...
+</summary>
 
 ## **[1] 네트워크 목록 표시**
 
@@ -27,6 +32,8 @@ docker network create {이름}
 docker network rm {이름}
 ```
 
+</details>
+
 <br>
 
 
@@ -40,7 +47,7 @@ docker network rm {이름}
 
 따라서 `docker-compose.yml` 파일에 이런 내용들을 미리 작성해놓고,
 
-`docker-compose` 명령어들을 통해 아주 간단히 실행하도록 자동화할 수 있다.
+`docker-compose` 명령어들을 통해 아주 간편히 실행하도록 자동화할 수 있다.
 
 <br>
 

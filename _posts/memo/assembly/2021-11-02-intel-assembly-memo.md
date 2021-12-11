@@ -2,7 +2,7 @@
 title: Intel Assembly 기초 간단 정리
 author: Rito15
 date: 2021-11-02 03:54:00 +09:00
-categories: [Memo, Assembly Memo]
+categories: [Memo, Assembly]
 tags: [assembly, masm, memo]
 math: true
 mermaid: true
