@@ -8,11 +8,6 @@ math: true
 mermaid: true
 ---
 
-### 2021. 06. 17.
-- 무한루프를 보다 간편히 방지할 수 있도록 코드 개선
-
-<br>
-
 # Note
 ---
 - 유니티 엔진에서 무한 루프가 발생하면 에디터가 그대로 멈추어, 강제 종료해야 하는 경험을 겪은 적이 간혹 있을 것이다.
@@ -56,6 +51,7 @@ while( /* condition */ )
 # InfiniteLoopDetector
 ---
 
+{% include codeHeader.html %}
 ```cs
 using UnityEngine;
 using System;
