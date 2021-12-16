@@ -895,6 +895,80 @@ WireConnection;137;0;136;0
 
 <br>
 
+
+
+
+## **Camera Distance-Based Fade**
+
+물체는 카메라에서 멀리 떨어질수록 당연히 작게 보인다.
+
+그런데 물체 표면에 복잡하거나 정교한 문양 또는 패턴을 표현하는 경우,
+
+카메라에서 멀어지는데 디테일은 유지되어 자글자글하고 썩 좋지 않게 보이는 경우가 있다.
+
+대표적인 예시로 체크 무늬가 있다.
+
+![image](https://user-images.githubusercontent.com/42164422/146382446-9c82210d-daf6-4486-b032-306a2d61298f.png)
+
+카메라에 가까이 보이는 부분은 괜찮지만, 먼 부분은 보기에 별로 좋지 않다.
+
+카메라의 거리에 따른 디테일을 조정할 때는 보통 LOD를 사용하여 거리별로 다른 품질의 텍스쳐를 적용하지만,
+
+순수하게 수학으로 표현된 패턴이거나 혹은 모종의 이유로 LOD를 사용하지 못하는 경우가 존재한다.
+
+이럴 때는 카메라로부터 정점 위치까지의 거리 값을 기반으로 쉐이더에서 직접 색상 전환 효과를 넣어줄 수 있다.
+
+![2021_1216_Camera Based Fade](https://user-images.githubusercontent.com/42164422/146383253-e23e2b97-63df-4eb5-9b42-5f53725beb91.gif)
+
+<br>
+
+계산은 다음과 같으며, 결과는 0 ~ 1 사이 값이 된다.
+
+<details>
+
+<summary markdown="span"> 
+Copy & Paste
+</summary>
+
+{% include codeHeader.html %}
+```
+http://paste.amplify.pt/view/raw/900fb562
+```
+
+<!--
+AMPLIFY_CLIPBOARD_ID;-875.3598,632.8765,0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleSubtractOpNode;40;-682.1503,576.9948;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;40;0;21;0
+WireConnection;40;1;23;0#CLIP_ITEM#Node;AmplifyShaderEditor.SimpleDivideOpNode;22;-556.6341,576.6582;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+WireConnection;22;0;40;0
+WireConnection;22;1;42;0#CLIP_ITEM#Node;AmplifyShaderEditor.SaturateNode;24;-447.1511,576.0944;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+WireConnection;24;0;22;0#CLIP_ITEM#Node;AmplifyShaderEditor.WorldSpaceCameraPos;14;-1236.458,716.2997;Inherit;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3#CLIP_ITEM#Node;AmplifyShaderEditor.WorldPosInputsNode;52;-1173.81,576.1093;Inherit;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3#CLIP_ITEM#Node;AmplifyShaderEditor.DistanceOpNode;21;-967.5909,576.1583;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT;0
+WireConnection;21;0;52;0
+WireConnection;21;1;14;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;42;-969.3503,778.689;Inherit;False;Property;_Smoothness;Smoothness;4;0;Create;True;0;0;0;False;0;False;10;0;1;100;0;1;FLOAT;0#CLIP_ITEM#Node;AmplifyShaderEditor.RangedFloatNode;23;-969.7343,686.0087;Inherit;False;Property;_CameraDistance;Camera Distance;3;0;Create;True;0;0;0;False;0;False;10;0;0;100;0;1;FLOAT;0
+-->
+
+</details>
+
+![image](https://user-images.githubusercontent.com/42164422/146389622-47319756-7651-4388-9f44-c48fde0fb0bb.png)
+
+`Camera Distance` 프로퍼티는 색상을 전환할 기준이 되는 카메라로부터의 거리값,
+
+`Smoothness` 프로퍼티는 두 색상이 부드럽게 섞이는 정도를 의미한다.
+
+<br>
+
+위 계산의 결괏값을 `Lerp` 노드의 `Alpha` 입력에 넣고,
+
+`A` 입력에는 원래 색상, `B` 입력에는 카메라에서 지정한 거리만큼 떨어지는 경우 보여줄 색상을 넣어준다.
+
+예제에서는 `A`에 체크무늬 색상, `B`에는 체크무늬의 두 색상의 중간 값을 넣어주었다.
+
+![ScreenshotASE](https://user-images.githubusercontent.com/42164422/146390180-8977072a-2557-4d6b-b82c-7da250f66a3b.png)
+
+<br>
+
+
+
+
 ## **Texture Sheet Animation**
 
 - 예제 텍스쳐 :
