@@ -398,7 +398,7 @@ mermaid: true
 
 ## **World Normal**
 
-![image](https://user-images.githubusercontent.com/42164422/122811445-74a4f200-d30b-11eb-88d7-21bba7b635b8.png)
+![image](https://user-images.githubusercontent.com/42164422/146540311-07547431-10a0-437a-b102-0ab44d7c2de6.png)
 
 ### **설명**
  - 단축키 : 없음
@@ -468,7 +468,7 @@ mermaid: true
 
 ### **설명**
  - 단축키 : 없음
- - 오브젝트가 픽셀마다 갖고 있는 UV 좌표값
+ - 오브젝트가 픽셀마다 갖고 있는 텍스쳐 좌표값
  - `U`, `V`는 각각 `X축`, `Y축` 성분이며, **0 ~ 1** 범위의 값을 가진다.
 
 ### **출력**
