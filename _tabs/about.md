@@ -11,7 +11,7 @@ order: 4
 ---
 
 
-> Unity C# Developer
+> Game Developer
 
 - [https://github.com/rito15](https://github.com/rito15)
 

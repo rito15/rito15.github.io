@@ -741,12 +741,8 @@ mermaid: true
  - 예를 들어 **1.1**은 `2`, **5**는 `5`, **-2.3**은 `-2`가 된다.
  
 ### **예시**
- - .
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/146635142-c170c657-6b29-48f2-9ccc-8bf2a4bf3de3.png)
 
 
 ### **Wiki**
