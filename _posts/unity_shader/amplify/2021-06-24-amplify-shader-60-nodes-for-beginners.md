@@ -999,18 +999,16 @@ mermaid: true
 
 ### **설명**
  - 단축키 : 없음
+ - 값의 최솟값과 최댓값 범위를 제한한다.
  - 입력 값을 `Min` ~ `Max` 사이 범위로 제한한다.
  - 입력 값이 `Min`보다 작다면 `Min`으로 바꾸어 출력한다.
  - 입력 값이 `Max`보다 크다면 `Max`로 바꾸어 출력한다.
  - 입력 값이 `Min`과 `Max` 사이라면 그대로 출력한다.
 
 ### **예시**
- - .
+ - Saturate(input)는 Clamp(input, 0, 1)과 같다.
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/42164422/146729072-afa291f4-cc91-4f45-a95f-9b2a13532951.png)
 
 
 ### **Wiki**
