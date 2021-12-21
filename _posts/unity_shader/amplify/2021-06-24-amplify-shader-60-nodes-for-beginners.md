@@ -1427,12 +1427,8 @@ mermaid: true
  - `Out` : **Scale**이 곱해진 결과값을 출력한다.
  
 ### **예시**
- - .
 
-
-
-
-
+![2021_1221_Time Node Example](https://user-images.githubusercontent.com/42164422/146942364-bb3ec3dd-a1b7-41f7-a1ea-e41ea7e26525.gif)
 
 
 ### **Wiki**
