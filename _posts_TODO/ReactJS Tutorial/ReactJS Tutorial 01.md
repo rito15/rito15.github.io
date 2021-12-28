@@ -1,4 +1,4 @@
-TITLE : React JS Tutorial 01 - 설치
+TITLE : React JS Tutorial 01 - 설치 및 환경 구축
 
 
 # 필수 요소 설치
@@ -181,12 +181,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 <br>
