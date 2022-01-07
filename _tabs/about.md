@@ -11,7 +11,7 @@ order: 4
 ---
 
 
-> Game Developer
+> 유니티 개발자(였던 것)
 
 - [https://github.com/rito15](https://github.com/rito15)
 
