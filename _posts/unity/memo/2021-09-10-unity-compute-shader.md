@@ -12,19 +12,25 @@ mermaid: true
 ---
 
 ## **개념**
- - GPU를 CPU의 영역인 응용 프로그램 계산에 사용하는 **GPGPU**(General-Purpose computing on GPU)와는 개념이 유사하지만 다르다고 한다.
- - **GPGPU**를 사용하는 **CUDA**, **OpenCL**은 독립 API이고 **OpenGL**의 **Compute Shader**, **DirectX**의 **DirectCompute**는 그래픽스API에 종속되어 동작한다.
- - 동시에 수많은 대상(수십만, 수백만 단위 가능)에 대해 동일한 연산(함수)을 처리해야 할 때 사용한다.
- - **VFX Graph**도 컴퓨트 쉐이더를 연산에 사용한다고 한다.
- - 확장자는 `.compute`이다.
+ - **GPGPU**(General-Purpose computing on GPU)를 이용해 대규모 병렬처리를 수행하는 쉐이더
+ - 동시에 수많은 대상(~ 수십만, 수백만 단위)에 대해 동일한 연산(함수)을 처리해야 할 때 사용한다.
+ - 컴퓨트 쉐이더를 연산에 사용하는 예시로 **VFX Graph**가 있다.
+ - 확장자는 `.compute`.
+
+<!--
+
+ - **CUDA**, **OpenCL**는 **GPGPU**를 사용하는 독립 API이고, **OpenGL**의 **Compute Shader**, **DirectX**의 **DirectCompute**는 그래픽스API에 종속되어 동작한다.
+
+-->
  
 ## **커널(Kernal)**
  - GPU에서 동작하는 함수를 의미한다.
  - 함수의 이름이 곧 커널의 이름이며, `#pragma kernel`에도 명시해 주어야 한다.
 
 ## **스레드 그룹(Thread Group)**
- - 하나의 스레드 그룹 당 `[numthread(x, y, z)]`로 지정된 개수만큼의 스레드를 실행한다.
- - 스레드 그룹의 개수는 컴퓨트 쉐이더 객체를 `.Dispatch(kernalIndex, X, Y, Z)`로 실행할 때 지정한다.
+ - 여러 개의 스레드를 묶어 처리하는 단위
+ - 하나의 스레드 그룹 당 `[numthreads(x, y, z)]`로 지정된 개수만큼의 스레드를 실행한다.
+ - 스레드 그룹의 개수는 컴퓨트 쉐이더 객체를 `.Dispatch(kernalIndex, X, Y, Z)`로 실행할 때 인자로 지정한다.
  - 개수는 3차원(`X, Y, Z`)으로 구성된다.
 
 ## **스레드(Thread)**
@@ -36,7 +42,7 @@ mermaid: true
 
 ## **스레드 개수의 차원 설정**
  - `1024 * 1 * 1`로 1차원으로 지정하는 경우도 있고, `32 * 32 * 1`처럼 2차원으로, 혹은 3차원으로 지정하는 경우도 있다.
- - 이는 계산할 데이터의 차원에 따라 결정된다.
+ - 이는 계산할 데이터의 차원에 따라 결정한다.
  - 예를 들어 동일한 연산을 단순 병렬처리할 때는 1차원으로 할 수 있다.
  - 렌더 텍스쳐와 같이 2차원 계산이 필요한 경우, 2차원으로 설정한다.
  - 공간과 같이 3차원 계산이 필요하면 3차원으로 설정한다.
@@ -54,7 +60,7 @@ mermaid: true
    (더 크게 할 수도 있지만, 너무 크게 했다가 낭비되는 스레드가 생길 수 있으므로 적절히 설정한다.)
  - 스레드 그룹의 개수는 `(1024 / 8) * (768 / 8) * (1 / 1)` = `128 * 96 * 1`이 된다.
  
- - 따라서 커널 상단에 `[numthread(8, 8, 1)]`로 지정하고,
+ - 따라서 커널 상단에 `[numthreads(8, 8, 1)]`로 지정하고,
  - 컴퓨트 쉐이더를 실행할 때 `Dispatch(index, 128, 96, 1)` 이렇게 호출한다.
  
 ## **최적의 스레드 개수**
@@ -614,6 +620,14 @@ public class CubeSimulator : MonoBehaviour
 ```
 
 </details>
+
+<br>
+
+
+# 추가 예제
+---
+- 컴퓨트 쉐이더를 적절하게 사용하는 예제(GPU Instancing)
+  - <https://rito15.github.io/posts/unity-compute-buffer-gpu-instancing/>
 
 <br>
 

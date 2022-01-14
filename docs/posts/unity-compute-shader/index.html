@@ -448,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4807 words">26 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4792 words">26 min</span>
 
 
           <!-- page views -->
@@ -471,12 +471,17 @@
 
 <h2 id="개념"><strong>개념</strong></h2>
 <ul>
-  <li>GPU를 CPU의 영역인 응용 프로그램 계산에 사용하는 <strong>GPGPU</strong>(General-Purpose computing on GPU)와는 개념이 유사하지만 다르다고 한다.</li>
-  <li><strong>GPGPU</strong>를 사용하는 <strong>CUDA</strong>, <strong>OpenCL</strong>은 독립 API이고 <strong>OpenGL</strong>의 <strong>Compute Shader</strong>, <strong>DirectX</strong>의 <strong>DirectCompute</strong>는 그래픽스API에 종속되어 동작한다.</li>
-  <li>동시에 수많은 대상(수십만, 수백만 단위 가능)에 대해 동일한 연산(함수)을 처리해야 할 때 사용한다.</li>
-  <li><strong>VFX Graph</strong>도 컴퓨트 쉐이더를 연산에 사용한다고 한다.</li>
-  <li>확장자는 <code class="language-plaintext highlighter-rouge">.compute</code>이다.</li>
+  <li><strong>GPGPU</strong>(General-Purpose computing on GPU)를 이용해 대규모 병렬처리를 수행하는 쉐이더</li>
+  <li>동시에 수많은 대상(~ 수십만, 수백만 단위)에 대해 동일한 연산(함수)을 처리해야 할 때 사용한다.</li>
+  <li>컴퓨트 쉐이더를 연산에 사용하는 예시로 <strong>VFX Graph</strong>가 있다.</li>
+  <li>확장자는 <code class="language-plaintext highlighter-rouge">.compute</code>.</li>
 </ul>
+
+<!--
+
+ - **CUDA**, **OpenCL**는 **GPGPU**를 사용하는 독립 API이고, **OpenGL**의 **Compute Shader**, **DirectX**의 **DirectCompute**는 그래픽스API에 종속되어 동작한다.
+
+-->
 
 <h2 id="커널kernal"><strong>커널(Kernal)</strong></h2>
 <ul>
@@ -486,8 +491,9 @@
 
 <h2 id="스레드-그룹thread-group"><strong>스레드 그룹(Thread Group)</strong></h2>
 <ul>
-  <li>하나의 스레드 그룹 당 <code class="language-plaintext highlighter-rouge">[numthread(x, y, z)]</code>로 지정된 개수만큼의 스레드를 실행한다.</li>
-  <li>스레드 그룹의 개수는 컴퓨트 쉐이더 객체를 <code class="language-plaintext highlighter-rouge">.Dispatch(kernalIndex, X, Y, Z)</code>로 실행할 때 지정한다.</li>
+  <li>여러 개의 스레드를 묶어 처리하는 단위</li>
+  <li>하나의 스레드 그룹 당 <code class="language-plaintext highlighter-rouge">[numthreads(x, y, z)]</code>로 지정된 개수만큼의 스레드를 실행한다.</li>
+  <li>스레드 그룹의 개수는 컴퓨트 쉐이더 객체를 <code class="language-plaintext highlighter-rouge">.Dispatch(kernalIndex, X, Y, Z)</code>로 실행할 때 인자로 지정한다.</li>
   <li>개수는 3차원(<code class="language-plaintext highlighter-rouge">X, Y, Z</code>)으로 구성된다.</li>
 </ul>
 
@@ -503,7 +509,7 @@
 <h2 id="스레드-개수의-차원-설정"><strong>스레드 개수의 차원 설정</strong></h2>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">1024 * 1 * 1</code>로 1차원으로 지정하는 경우도 있고, <code class="language-plaintext highlighter-rouge">32 * 32 * 1</code>처럼 2차원으로, 혹은 3차원으로 지정하는 경우도 있다.</li>
-  <li>이는 계산할 데이터의 차원에 따라 결정된다.</li>
+  <li>이는 계산할 데이터의 차원에 따라 결정한다.</li>
   <li>예를 들어 동일한 연산을 단순 병렬처리할 때는 1차원으로 할 수 있다.</li>
   <li>렌더 텍스쳐와 같이 2차원 계산이 필요한 경우, 2차원으로 설정한다.</li>
   <li>공간과 같이 3차원 계산이 필요하면 3차원으로 설정한다.</li>
@@ -529,7 +535,7 @@
   <li>
     <p>스레드 그룹의 개수는 <code class="language-plaintext highlighter-rouge">(1024 / 8) * (768 / 8) * (1 / 1)</code> = <code class="language-plaintext highlighter-rouge">128 * 96 * 1</code>이 된다.</p>
   </li>
-  <li>따라서 커널 상단에 <code class="language-plaintext highlighter-rouge">[numthread(8, 8, 1)]</code>로 지정하고,</li>
+  <li>따라서 커널 상단에 <code class="language-plaintext highlighter-rouge">[numthreads(8, 8, 1)]</code>로 지정하고,</li>
   <li>컴퓨트 쉐이더를 실행할 때 <code class="language-plaintext highlighter-rouge">Dispatch(index, 128, 96, 1)</code> 이렇게 호출한다.</li>
 </ul>
 
@@ -1483,6 +1489,18 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 </pre></td></tr></tbody></table></code></div>  </div>
 
 </details>
+
+<p><br /></p>
+
+<h1 id="추가-예제">추가 예제</h1>
+<hr />
+<ul>
+  <li>컴퓨트 쉐이더를 적절하게 사용하는 예제(GPU Instancing)
+    <ul>
+      <li><a href="https://rito15.github.io/posts/unity-compute-buffer-gpu-instancing/">https://rito15.github.io/posts/unity-compute-buffer-gpu-instancing/</a></li>
+    </ul>
+  </li>
+</ul>
 
 <p><br /></p>
 
