@@ -11,7 +11,7 @@ order: 4
 ---
 
 
-> 유니티 개발자(였던 것)
+> 유니티 개발자(였던..)
 
 - [https://github.com/rito15](https://github.com/rito15)
 
