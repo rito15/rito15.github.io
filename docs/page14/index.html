@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Game Programmer","url":"https://rito15.github.io/page14/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Rito15","description":"Game Programmer","url":"https://rito15.github.io/page14/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,100 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-struct-property-indexer/">C# 구조체 프로퍼티, 구조체 인덱서</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        구조체의 특징
+
+
+
+  초기화(할당), 리턴 등의 동작을 통해 값을 전달할 경우, 구조체가 통째로 복제된다.
+
+
+
+  
+    struct MyStruct
+{
+    public float value;
+}
+
+class MainClass
+{
+    private MyStruct ms;
+
+    private MyStruct GetStruct()
+    ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Aug  6, 2021,  3:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug  6, 2021
+  
+
+  <i class="unloaded">2021-08-06T15:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1674 words">9 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1233,105 +1327,6 @@ TCP/IP 4 Layer
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-union-in-csharp/">C#에서 union 구현하기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        C언어의 union
-
-
-
-  
-    union MyUnion
-{
-    int intValue;     // 4바이트
-    short shortValue; // 2바이트
-}
-
-  
-
-
-
-  위처럼 C언어에는 서로 다른 타입의 변수가 동일 메모리를 사용하도록 하는 union(공용체)이 존재한다.
-
-
-
-
-C#에서의 union
-
-
-
-  C#에는 unio...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Jul 30, 2021,  6:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul 30, 2021
-  
-
-  <i class="unloaded">2021-07-30T18:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="343 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1957,6 +1952,11 @@ C#에서의 union
         
         
         
+        <li><a href="/posts/fisher-yates-shuffle/">Fisher-Yates Shuffle 간단 정리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
         
@@ -1973,11 +1973,6 @@ C#에서의 union
         
         
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-prevent-infinite-loop/">유니티 - 무한 루프를 간편히 방지하기</a></li>
       
 
       </ul>

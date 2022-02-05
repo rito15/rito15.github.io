@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - FixedUpdate()에서 이동, 회전 구현 시 버벅임 현상 해결하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Update()와 FixedUpdate()","datePublished":"2021-11-22T00:23:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-fixed-update-and-stuttering/"},"url":"https://rito15.github.io/posts/unity-fixed-update-and-stuttering/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - FixedUpdate()에서 이동, 회전 구현 시 버벅임 현상 해결하기","dateModified":"2021-11-29T05:05:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"유니티 - FixedUpdate()에서 이동, 회전 구현 시 버벅임 현상 해결하기","description":"Update()와 FixedUpdate()","dateModified":"2021-11-29T05:05:00+09:00","datePublished":"2021-11-22T00:23:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-fixed-update-and-stuttering/"},"url":"https://rito15.github.io/posts/unity-fixed-update-and-stuttering/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -784,6 +784,11 @@
         
         
         
+        <li><a href="/posts/fisher-yates-shuffle/">Fisher-Yates Shuffle 간단 정리</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
       
         
@@ -800,11 +805,6 @@
         
         
         <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-prevent-infinite-loop/">유니티 - 무한 루프를 간편히 방지하기</a></li>
       
 
       </ul>
@@ -4336,6 +4336,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8873,59 +8886,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-deltatime-and-fixeddeltatime/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Nov 21, 2021
-  
-
-  <i class="unloaded">2021-11-21T23:45:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Time.deltaTime과 Time.fixedDeltaTime의 올바른 이해</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                deltaTime과 fixedDeltaTime
-
-
-deltaTime
-
-Time.deltaTime을 통해 참조할 수 있다.
-
-이전 프레임의 발생 시각과 현재 프레임의 발생 시각 사이의 시간 간격,
-
-즉 이전 프레임의 수행에 걸린 시간을 의미한다.
-
-Update() 내에서 시간의 진행에 따른 일정한 기능을 구현하기 위해 Time.deltaTime을 이용해...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-fix-unitypackage-association/">
           <div class="card-body">
             <!--
@@ -9021,6 +8981,62 @@ Update() 내에서 시간의 진행에 따른 일정한 기능을 구현하기 �
 만일 협업을 하고 있었다면, 솔직히 혼나도 할 말이 없다.
 
 그러니 ‘보기에도 깔끔하고 한 눈에 의미를 알아볼 수 있는 이름’을 짓기 위해 언제나 ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-process-after-initalization/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Oct 12, 2021
+  
+
+  <i class="unloaded">2021-10-12T04:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 스크립트의 실행 순서를 보장할 수 없는 경우, 종속적인 작업 처리하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                요약
+
+
+A 클래스가 B 클래스에 종속적인 작업을 수행할 때,
+
+B 클래스가 초기화 작업을 완료하기 전에 A 클래스가 작업을 요청하면 에러가 발생할 수 있다.
+
+예를 들면 서로 다른 클래스의 Awake(), Start(), OnEnable() 호출 순서를 보장할 수 없는 경우를 생각해볼 수 있다.
+
+이런 경우의 해결 방안을 알아본다.
+
+
+
+상황 예시
+...
               </p>
             </div>
           </div>
