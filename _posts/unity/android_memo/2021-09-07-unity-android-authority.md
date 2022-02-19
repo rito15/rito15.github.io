@@ -20,15 +20,19 @@ mermaid: true
 
 ## **안드로이드 매니페스트 파일 경로**
 
-- 구글링하면 대부분 나오는 `Root/Temp/StagingArea/AndroidManifest.xml` 경로는 `2019.3` 미만 버전이다.
+- 안드로이드 빌드를 한 번이라도 수행할 경우, 프로젝트 내에 안드로이드 매니페스트 파일이 생성된다.
 
-- `2019.3` 이상부터는 `Root/Temp/gradleOut/unityLibrary/src/main/AndroidManifest.xml` 이다.
+- 구글링하면 대부분 나오는 `프로젝트 루트(최상단)/Temp/StagingArea/AndroidManifest.xml` 경로는 `2019.3` 미만 버전이다.
+
+- `2019.3` 이상부터는 `프로젝트 루트(최상단)/Temp/gradleOut/unityLibrary/src/main/AndroidManifest.xml` 이다.
 
 <br>
 
 ## **안드로이드 매니페스트 오버라이드하기**
 
 - 위에서 찾은 파일을 `Assets/Plugins/Android/AndroidManifest.xml`로 가져온다.
+
+- 폴더가 없으면 `Assets` 하위에 `Plugins`, 그 하위에 `Android` 폴더를 만들면 된다.
 
 <br>
 

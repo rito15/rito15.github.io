@@ -31,7 +31,7 @@ mermaid: true
 <br>
 
 ## **[2] Renderer 모듈**
-- `Custom Vertex Streams`에 치크한다.
+- `Custom Vertex Streams`에 체크한다.
 
 ![image](https://user-images.githubusercontent.com/42164422/142575505-691f7f9b-f584-4e3d-9b65-feda48dddad8.png)
 

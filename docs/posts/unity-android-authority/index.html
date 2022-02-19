@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1276 words">7 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1364 words">7 min</span>
 
 
           <!-- page views -->
@@ -468,10 +468,13 @@
 
 <ul>
   <li>
-    <p>구글링하면 대부분 나오는 <code class="language-plaintext highlighter-rouge">Root/Temp/StagingArea/AndroidManifest.xml</code> 경로는 <code class="language-plaintext highlighter-rouge">2019.3</code> 미만 버전이다.</p>
+    <p>안드로이드 빌드를 한 번이라도 수행할 경우, 프로젝트 내에 안드로이드 매니페스트 파일이 생성된다.</p>
   </li>
   <li>
-    <p><code class="language-plaintext highlighter-rouge">2019.3</code> 이상부터는 <code class="language-plaintext highlighter-rouge">Root/Temp/gradleOut/unityLibrary/src/main/AndroidManifest.xml</code> 이다.</p>
+    <p>구글링하면 대부분 나오는 <code class="language-plaintext highlighter-rouge">프로젝트 루트(최상단)/Temp/StagingArea/AndroidManifest.xml</code> 경로는 <code class="language-plaintext highlighter-rouge">2019.3</code> 미만 버전이다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">2019.3</code> 이상부터는 <code class="language-plaintext highlighter-rouge">프로젝트 루트(최상단)/Temp/gradleOut/unityLibrary/src/main/AndroidManifest.xml</code> 이다.</p>
   </li>
 </ul>
 
@@ -480,7 +483,12 @@
 <h2 id="안드로이드-매니페스트-오버라이드하기"><strong>안드로이드 매니페스트 오버라이드하기</strong></h2>
 
 <ul>
-  <li>위에서 찾은 파일을 <code class="language-plaintext highlighter-rouge">Assets/Plugins/Android/AndroidManifest.xml</code>로 가져온다.</li>
+  <li>
+    <p>위에서 찾은 파일을 <code class="language-plaintext highlighter-rouge">Assets/Plugins/Android/AndroidManifest.xml</code>로 가져온다.</p>
+  </li>
+  <li>
+    <p>폴더가 없으면 <code class="language-plaintext highlighter-rouge">Assets</code> 하위에 <code class="language-plaintext highlighter-rouge">Plugins</code>, 그 하위에 <code class="language-plaintext highlighter-rouge">Android</code> 폴더를 만들면 된다.</p>
+  </li>
 </ul>
 
 <p><br /></p>
@@ -922,6 +930,11 @@
         
         
         
+        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+      
+        
+        
+        
         <li><a href="/posts/fisher-yates-shuffle/">Fisher-Yates Shuffle 간단 정리</a></li>
       
         
@@ -938,11 +951,6 @@
         
         
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
 
       </ul>
@@ -9188,9 +9196,19 @@ So...
   Pass 내부에 작성
 
 
-
-  
-    // 매크로 상수
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+// 매크로 상수
 #define RANDOM_SEED 426.791
 
 // 그냥 상수
@@ -9199,7 +9217,7 @@ static const float RandomSeed = 5417.24;
 // 상수 배열
 static const float2 dir[8] = 
 {
-    float2(1, 0), float2(0, 1),   ...
+    float2(1, 0...
               </p>
             </div>
           </div>

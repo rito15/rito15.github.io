@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="몬티 홀 문제에 대한 3가지 풀이" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"dateModified":"2022-02-05T17:00:00+09:00","description":"몬티 홀 문제","datePublished":"2022-02-05T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/monty-hall-problem/"},"headline":"몬티 홀 문제에 대한 3가지 풀이","url":"https://rito15.github.io/posts/monty-hall-problem/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"몬티 홀 문제","datePublished":"2022-02-05T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/monty-hall-problem/"},"url":"https://rito15.github.io/posts/monty-hall-problem/","author":{"@type":"Person","name":"Rito15"},"headline":"몬티 홀 문제에 대한 3가지 풀이","dateModified":"2022-02-19T19:15:55+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -393,6 +393,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Feb 19, 2022,  7:15 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 19
+  
+
+  <i class="unloaded">2022-02-19T19:15:55+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -405,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2684 words">14 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3168 words">17 min</span>
 
 
           <!-- page views -->
@@ -463,7 +492,7 @@
 
 <p><br /></p>
 
-<h1 id="풀이-1---여사건--내가-선택한-것과-선택하지-않은-것">풀이 1 - 여사건 : 내가 선택한 것과 선택하지 않은 것</h1>
+<h1 id="풀이-1---여사건--확률역전세계">풀이 1 - 여사건 : 확률역전세계</h1>
 <hr />
 
 <details>
@@ -473,13 +502,9 @@
 
   <p><br /></p>
 
-  <p>먼저, 내가 처음에 어떤 문을 고르던 그 문 뒤에 자동차가 있을 확률은 \(\frac{1}{3}\)이다.</p>
+  <p>내가 처음에 어떤 문을 고르든, 그 문 뒤에 자동차가 있을 확률은 \(\frac{1}{3}\)이다.</p>
 
-  <p>그리고 ‘내가 고르지 않은 문’ 뒤에 자동차가 있을 확률은 \(\frac{2}{3}\)다.</p>
-
-  <p>이게 중요하다.</p>
-
-  <p>여사건의 확률 계산법에 따라, 내가 고르지 않은 문 뒤에 자동차가 있을 확률은 \(1 - \frac{1}{3} = \frac{2}{3}\)가 되는 것이다.</p>
+  <p>그리고 염소가 있을 확률은 \(\frac{2}{3}\)이다.</p>
 
   <p><br /></p>
 
@@ -493,31 +518,66 @@
 
   <p>이제 나는 선택을 바꿀 기회를 얻게 되는데,</p>
 
-  <p>‘선택을 바꿀 기회’라는 말을 해석하는 것이 중요하다.</p>
+  <p>내가 처음에 자동차가 있는 문을 골랐을 확률은 \(\frac{1}{3}\)이다.</p>
 
-  <p>‘선택을 바꾼다’는 것이 내가 선택하지 않은 나머지 두 개의 문 중에서 하나를 고르는,</p>
-
-  <p>즉 전체 세 개의 문 중에서 내가 지금 선택하지 않은 또다른 하나를 골라</p>
-
-  <p>동등한 \(\frac{1}{3}\)확률을 유지하는 것이 아니고</p>
+  <p>내가 처음에 염소가 있는 문을 골랐을 확률은 \(\frac{2}{3}\)이다.</p>
 
   <p><br /></p>
 
-  <p>‘내가 선택하지 않은 문을 선택한다’,</p>
+  <p>그런데 선택을 바꾸게 된다면</p>
 
-  <p>즉 ‘내가 선택한 사건의 확률에서 여사건의 확률로 선택을 바꾼다’를 의미하게 되는 것이다.</p>
+  <p>내가 처음에 자동차가 있는 문을 골랐다면 선택을 바꾼 후 ‘반드시’ 염소가 있는 문을 고르게 되고</p>
 
-  <p>따라서 이 경우에는 ‘내가 선택하지 않은 또 다른 문’이 \(\frac{1}{3}\)의 확률이 아니라</p>
+  <p>내가 처음에 염소가 있는 문을 골랐다면 선택을 바꾼 후 ‘반드시’ 자동차가 있는 문을 고르게 된다.</p>
 
-  <p>내 선택의 여사건, 즉 \(\frac{2}{3}\)를 대변하게 된다는 것이 핵심이다.</p>
+  <p><br /></p>
+
+  <p>이제 다시 확률을 계산해보면</p>
+
+  <p>만약 내가 선택을 바꾼다는 행위가 전제되었을 때,</p>
+
+  <p>‘내가 선택한 문 뒤에 자동차가 있을 확률(\(\frac{1}{3}\))’이었던 것은</p>
+
+  <p>‘내가 선택한 문 뒤에 염소가 있을 확률(\(\frac{2}{3}\))’이 되어버리고</p>
+
+  <p>반대로</p>
+
+  <p>‘내가 선택한 문 뒤에 염소가 있을 확률(\(\frac{2}{3}\))’이었던 것은</p>
+
+  <p>‘내가 선택한 문 뒤에 자동차가 있을 확률(\(\frac{1}{3}\))’이 되어버린다.</p>
+
+  <p><br /></p>
+
+  <p>다시 정확히 정의해보자면</p>
+
+  <p>‘내가 처음에 자동차를 고르고 선택을 바꿔서 염소를 얻게 되는 확률’은</p>
+
+  <p>‘처음에 염소를 고르고 선택을 유지해서 염소를 얻게 되는 확률’인 \(\frac{2}{3}\)과 동일하고,</p>
+
+  <p>‘내가 처음에 염소를 고르고 선택을 바꿔서 자동차를 얻게 되는 확률’은</p>
+
+  <p>‘처음에 자동차를 고르고 선택을 유지해서 자동차를 얻게 되는 확률’인 \(\frac{1}{3}\)과 동일하다.</p>
+
+  <p><br /></p>
+
+  <p>따라서 ‘선택을 바꾸는 행위’는 ‘초기 사건의 확률’과 ‘초기 사건의 여사건의 확률’을 서로 뒤집어버리는 역할을 하기 때문에</p>
+
+  <p>결국 선택을 바꾸는것이 유리하다.</p>
 
   <p><br /></p>
 
   <p>어떻게 이것이 가능할까?</p>
 
-  <p>사회자가 미리 자동차의 위치를 알고 있고,</p>
+  <ol>
+    <li>
+      <p>사회자가 미리 자동차의 위치를 알고 있고,</p>
+    </li>
+    <li>
+      <p>초기 선택 후, 내가 선택하지 않은 문 중에서 ‘반드시’ 염소가 있는 문을 열어준다.</p>
+    </li>
+  </ol>
 
-  <p>내가 선택하지 않은 문 중에서 ‘반드시’ 염소가 있는 문을 열어준다는 것이 핵심이다.</p>
+  <p>이렇게 두 가지 전제가 있기에 가능하다.</p>
 
   <p><br /></p>
 
@@ -527,27 +587,23 @@
 
   <p>그리고 나는 내 선택을 유지할지, 내가 고르지 않은 문으로 선택을 바꿀지 고민하게 된다.</p>
 
-  <p>여기서도 ‘내가 고르지 않은 단 하나의 문’은 전체 100개의 문 중 하나, 즉 \(\frac{1}{100}\)확률이 아니라</p>
+  <p>여기서도 만약 내가 선택을 바꾸게 된다면,</p>
 
-  <p>‘내가 고르지 않은 선택지’, 즉 여사건으로서 \(1 - \frac{1}{100} = \frac{99}{100}\)의 확률을 대변하게 된다.</p>
+  <p>자동차의 확률(\(\frac{1}{100}\))은 염소의 확률(\(\frac{99}{100}\))로 역전되어 버리므로</p>
+
+  <p>선택을 바꾸는 것이 유리하다.</p>
 
   <p><br /></p>
 
   <p>결국 핵심을 정리하자면 이렇다.</p>
 
-  <p>사회자가 미리 정답을 알고 있고, 내가 선택한 문을 제외한 문 중에서 염소가 있는 문을 ‘무조건’ 열어주기 때문에</p>
+  <p>사회자가 미리 정답을 알고 있고, 내가 선택한 문을 제외한 문 중에서 ‘반드시 염소가 있는 문을 열어주기 때문’에</p>
 
   <p>내가 선택을 바꾸는 것은 말 그대로 ‘내가 최초 선택했을 때의 확률에 대한 여사건을 고르는 것’이 되어버린다.</p>
 
   <p>문이 3개면 \(1 - \frac{1}{3} = \frac{2}{3}\),</p>
 
   <p>문이 100개면 \(1 - \frac{1}{100} = \frac{99}{100}\)가 된다.</p>
-
-  <p><br /></p>
-
-  <blockquote>
-    <p>솔직히 설득력 있는 해석은 아닌듯.</p>
-  </blockquote>
 
 </details>
 
@@ -560,6 +616,8 @@
   <summary>
 …
 </summary>
+
+  <p><br /></p>
 
   <p>이번에는 구체적인 사건의 경우를 나누어 모두 확인해보자.</p>
 
@@ -664,6 +722,8 @@
   <summary>
 …
 </summary>
+
+  <p><br /></p>
 
   <p>내가 문 A를 선택했을 때의 상황을 가정하고 베이즈 정리를 이용해 조건부 확률을 계산해보자.</p>
 
@@ -770,6 +830,63 @@
 
 </details>
 
+<p><br /></p>
+
+<h1 id="아주-간단히-요약-정리">아주 간단히 요약 정리</h1>
+<hr />
+
+<details>
+  <summary>
+…
+</summary>
+
+  <p><br /></p>
+
+  <p>A에는 자동차, B와 C에는 염소가 있다.</p>
+
+  <p>나는 아무 것도 모르고, 사회자는 어디에 뭐가 있는지 모두 알고 있다.</p>
+
+  <p>선택의 순간, 바꾸는 경우와 바꾸지 않는 경우로 나누어 살펴보자.</p>
+
+  <p><br /></p>
+
+  <h2 id="section"><strong>[1] 바꾸는 경우</strong></h2>
+
+  <p>A를 골랐다면, B나 C로 바꿨을 때 모두 염소이므로 꽝.</p>
+
+  <p>B를 골랐다면, 사회자가 C를 보여주고 나는 A를 선택하게 되므로 당첨.</p>
+
+  <p>C를 골랐다면, 사회자가 B를 보여주고 나는 A를 선택하게 되므로 당첨.</p>
+
+  <p><br /></p>
+
+  <h2 id="section-1"><strong>[2] 안바꾸는 경우</strong></h2>
+
+  <p>A를 고르면 당첨.</p>
+
+  <p>B를 고르면 꽝.</p>
+
+  <p>C를 고르면 꽝.</p>
+
+  <p><br /></p>
+
+  <h2 id="section-2"><strong>그래서 결론?</strong></h2>
+
+  <p>안바꾸면 처음 선택할 때의 확률 그대로 \(\frac{1}{3}\)이다.</p>
+
+  <p>바꾸면 ‘처음 선택에 대한 미당첨 확률’이 ‘당첨 확률’로 역전되므로 \(\frac{2}{3}\)이다.</p>
+
+  <p><br /></p>
+
+  <h2 id="section-3"><strong>그럼 문이 3개가 아니고 100개, 1000개, 10000개라면?</strong></h2>
+
+  <p>선택을 바꿨을 때 당첨 확률은 각각 \(\frac{99}{100}\) \(\frac{999}{1000}\), \(\frac{9999}{10000}\)인가요?</p>
+
+  <p>네.</p>
+
+</details>
+
+<p><br /></p>
 
 
       </div>
@@ -899,6 +1016,11 @@
         
         
         
+        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+      
+        
+        
+        
         <li><a href="/posts/fisher-yates-shuffle/">Fisher-Yates Shuffle 간단 정리</a></li>
       
         
@@ -915,11 +1037,6 @@
         
         
         <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
 
       </ul>
@@ -4412,6 +4529,11 @@
   
   </div> <!-- .access -->
 
+  
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
   
 
 </div> <!-- #panel-wrapper -->
