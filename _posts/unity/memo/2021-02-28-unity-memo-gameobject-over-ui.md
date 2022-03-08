@@ -78,7 +78,7 @@ mermaid: true
 ![image](https://user-images.githubusercontent.com/42164422/145761393-863f5f38-1197-463d-98e2-a7a103c45869.png){:.normal}
 
 ## 메인 카메라
-![image](https://user-images.githubusercontent.com/42164422/145763213-f46577e3-0073-4449-aa5b-a7452e7d3315.png){:.normal}
+![image](https://user-images.githubusercontent.com/42164422/157252893-a063a5e5-444e-4b66-9def-ee9eb74bfe54.png){:.normal}
 
 ## Over UI 카메라
 ![image](https://user-images.githubusercontent.com/42164422/145763237-4aabd560-454b-4e33-b214-bc9e2bdf80c2.png){:.normal}
