@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 포스트 프로세싱 적용하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"1. Built-in Pipeline","datePublished":"2021-03-16T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-post-processing/"},"url":"https://rito15.github.io/posts/unity-memo-post-processing/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 포스트 프로세싱 적용하기","dateModified":"2021-09-17T04:13:36+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"dateModified":"2021-09-17T04:13:36+09:00","description":"1. Built-in Pipeline","datePublished":"2021-03-16T17:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-post-processing/"},"headline":"유니티 - 포스트 프로세싱 적용하기","url":"https://rito15.github.io/posts/unity-memo-post-processing/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="143 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="316 words">1 min</span>
 
 
           <!-- page views -->
@@ -455,37 +455,53 @@
         <h1 id="1-built-in-pipeline">1. Built-in Pipeline</h1>
 <hr />
 
+<h2 id="1-패키지-설치"><strong>[1] 패키지 설치</strong></h2>
+
 <ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">Package Manager</code> - [Post Processing] 설치</p>
-  </li>
-  <li>
-    <p>레이어 - [Post Processing] 추가</p>
-  </li>
+  <li><strong>Package Manager</strong> - <code class="language-plaintext highlighter-rouge">Post Processing</code> 설치</li>
 </ul>
 
 <p><br /></p>
+
+<h2 id="2-레이어-추가"><strong>[2] 레이어 추가</strong></h2>
+
 <ul>
-  <li>메인 카메라
+  <li>레이어 - <code class="language-plaintext highlighter-rouge">Post Processing</code> 추가</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="3-메인-카메라-게임오브젝트"><strong>[3] 메인 카메라 게임오브젝트</strong></h2>
+
+<ul>
+  <li>
+    <p>컴포넌트 추가 : <code class="language-plaintext highlighter-rouge">Post-process Layer</code></p>
+  </li>
+  <li>
+    <p><strong>Post-process Layer</strong> 컴포넌트</p>
     <ul>
-      <li>컴포넌트 추가 : <code class="language-plaintext highlighter-rouge">Post-process Layer</code></li>
-      <li><code class="language-plaintext highlighter-rouge">Volume blending</code> - <code class="language-plaintext highlighter-rouge">Layer</code> : [Post Processing] 설정</li>
+      <li><strong>Volume blending</strong> - <strong>Layer</strong> : <code class="language-plaintext highlighter-rouge">Post Processing</code> 설정</li>
     </ul>
   </li>
 </ul>
 
 <p><br /></p>
+
+<h2 id="4-포스트-프로세싱-볼륨-게임오브젝트"><strong>[4] 포스트 프로세싱 볼륨 게임오브젝트</strong></h2>
+
 <ul>
-  <li>빈 게임오브젝트 추가 : “Volume”
+  <li>
+    <p>빈 게임오브젝트 추가</p>
+  </li>
+  <li>
+    <p>레이어 설정 : <code class="language-plaintext highlighter-rouge">Post Processing</code></p>
+  </li>
+  <li>
+    <p>컴포넌트 추가 : <code class="language-plaintext highlighter-rouge">Post-process Volume</code></p>
     <ul>
-      <li>레이어 설정 : [Post Processing]</li>
-      <li>컴포넌트 추가 : <code class="language-plaintext highlighter-rouge">Post-process Volume</code>
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">Is Global</code> 체크</li>
-          <li><code class="language-plaintext highlighter-rouge">Profile</code> - [New]</li>
-          <li>[Add effect…]</li>
-        </ul>
-      </li>
+      <li><code class="language-plaintext highlighter-rouge">Is Global</code> 체크</li>
+      <li><strong>Profile</strong> - <code class="language-plaintext highlighter-rouge">New</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Add effect</code>를 통해 원하는 효과 추가</li>
     </ul>
   </li>
 </ul>
@@ -495,35 +511,91 @@
 <h1 id="2-urp">2. URP</h1>
 <hr />
 
-<ul>
-  <li>레이어 - [Post Processing] 추가</li>
-</ul>
+<h2 id="1-urp-애셋-정상-적용-확인"><strong>[1] URP 애셋 정상 적용 확인</strong></h2>
 
-<p><br /></p>
 <ul>
-  <li>메인 카메라
+  <li><strong>Edit - Project Settings</strong>
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">Rendering</code> - <code class="language-plaintext highlighter-rouge">Post Processing</code> 체크</li>
-      <li><code class="language-plaintext highlighter-rouge">Environment</code> - <code class="language-plaintext highlighter-rouge">Volume Mask</code> - [Post Processing] 설정</li>
+      <li><strong>Graphics</strong> - <code class="language-plaintext highlighter-rouge">Scriptable Render Pipeline Settings</code></li>
+      <li>URP 애셋 장착(드래그 앤 드롭 또는 우측 동그라미를 통해 목록에서 선택)</li>
     </ul>
   </li>
 </ul>
 
 <p><br /></p>
+
 <ul>
-  <li>빈 게임오브젝트 추가 : “Volume”
+  <li>URP 애셋이 없을 경우
     <ul>
-      <li>레이어 설정 : [Post Processing]</li>
-      <li>컴포넌트 추가 : <code class="language-plaintext highlighter-rouge">Volume</code>
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">Mode</code> : [Global]</li>
-          <li><code class="language-plaintext highlighter-rouge">Profile</code> - [New]</li>
-          <li>[Add effect…]</li>
-        </ul>
-      </li>
+      <li><strong>Project 윈도우</strong> - 빈 공간 우클릭</li>
+      <li>Create</li>
+      <li>Rendering</li>
+      <li>Universal Render Pipeline</li>
+      <li><code class="language-plaintext highlighter-rouge">Pipeline Asset (Forward Renderer)</code></li>
     </ul>
   </li>
 </ul>
+
+<p><br /></p>
+
+<h2 id="2-urp-asset-forward-renderer-설정"><strong>[2] URP Asset Forward Renderer 설정</strong></h2>
+
+<ul>
+  <li><strong>Post-processing</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Enabled</code> 체크</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="3-레이어-추가"><strong>[3] 레이어 추가</strong></h2>
+
+<ul>
+  <li>레이어 - <code class="language-plaintext highlighter-rouge">Post Processing</code> 추가</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="4-메인-카메라---camera-컴포넌트"><strong>[4] 메인 카메라 - Camera 컴포넌트</strong></h2>
+
+<ul>
+  <li><strong>Rendering</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Post Processing</code> 체크</li>
+    </ul>
+  </li>
+  <li><strong>Environment</strong>
+    <ul>
+      <li><strong>Volume Mask</strong> - <code class="language-plaintext highlighter-rouge">Post Processing</code> 설정</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="5-포스트-프로세싱-볼륨-게임오브젝트"><strong>[5] 포스트 프로세싱 볼륨 게임오브젝트</strong></h2>
+
+<ul>
+  <li>
+    <p>빈 게임오브젝트 추가</p>
+  </li>
+  <li>
+    <p>레이어 설정 : <code class="language-plaintext highlighter-rouge">Post Processing</code></p>
+  </li>
+  <li>
+    <p>컴포넌트 추가 : <code class="language-plaintext highlighter-rouge">Volume</code></p>
+    <ul>
+      <li><strong>Mode</strong> : <code class="language-plaintext highlighter-rouge">Global</code></li>
+      <li><strong>Profile</strong> - <code class="language-plaintext highlighter-rouge">New</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Add Override</code>를 통해 원하는 효과 추가</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
 
 
       </div>
@@ -659,27 +731,27 @@
         
         
         
+        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-particle-system-custom-data/">유니티 - 쉐이더에서 파티클 시스템 커스텀 데이터(Custom Data) 사용하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/fisher-yates-shuffle/">Fisher-Yates Shuffle 간단 정리</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-naming-variables-neatly/">유니티 - 깔끔하고 보기 좋은 변수명 짓기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
       
 
       </ul>
@@ -4172,6 +4244,11 @@
   
   </div> <!-- .access -->
 
+  
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
   
 
 </div> <!-- #panel-wrapper -->
