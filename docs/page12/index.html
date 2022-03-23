@@ -367,6 +367,687 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-draw-multiple-curves/">유니티 에디터 GUI - 여러 개의 커브를 겹쳐 그리기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+EditorGUI.CurveField()를 통해 AnimationCurve를 에디터에 그릴 수 있다.
+
+그런데 일반적인 방법으로는 하나의 커브 필드에 하나의 커브만 그려진다.
+
+커브 필드에는 불투명한 배경 색상이 존재하기 때문이다.
+
+
+  (0.337f, 0.337f, 0.337f, 1f)
+
+
+
+
+
+
+따라서 이를 해결하기 위해서는, 리플렉...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Aug 25, 2021,  3:00 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug 25, 2021
+  
+
+  <i class="unloaded">2021-08-25T03:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="677 words">3 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-editor-block-mouse-click/">유니티 - 에디터의 특정 영역 마우스 클릭 방지하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+
+  
+    Rect rect = ....; // 마우스 클릭 방지할 영역
+
+if (rect.Contains(Event.current.mousePosition))
+{
+    if(Event.current.type == EventType.MouseDown)
+        Event.current.Use();
+}
+
+// 이후 해당 영역에서의...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Aug 25, 2021,  2:59 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug 25, 2021
+  
+
+  <i class="unloaded">2021-08-25T02:59:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="218 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-editor-scripting-version-compatability/">유니티 에디터 스크립팅 - 버전 호환 시 고려사항들</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        EditorGUILayout.Space(float)
+
+
+
+  
+    .
+  
+
+  
+    
+      2019.3 미만의 버전에서는 .Space()만 존재하고 .Space(float)가 존재하지 않는다.
+    
+    
+      따라서 .Space()를 통해서는 높이 8의 고정된 여백만 넣을 수 있다.
+    
+    
+      이에 대응하기...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Aug 23, 2021,  8:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 23, 2021
+  
+
+  <i class="unloaded">2021-08-23T20:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="901 words">5 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-dark-mode-in-script/">유니티 - 에디터 다크모드 여부 스크립트로 확인하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+확인된 버전
+
+
+  2019.4.9f1
+
+
+
+
+[1] 다크모드 여부 확인
+
+
+  
+    EditorGUIUtility.isProSkin;
+
+// true : 다크모드
+// false : 일반모드(Light)
+
+  
+
+
+
+
+[2] 모드 변경하기
+
+
+  
+    UnityEditorInternal.InternalEditorUtility.Sw...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Aug 22, 2021, 10:48 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 22, 2021
+  
+
+  <i class="unloaded">2021-08-22T22:48:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="45 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-list-foreach-code/">(Shorts) C# - Foreach가 실제로 생성하는 소스코드</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+Source Code
+
+
+  
+    private List&lt;int&gt; list = new List&lt;int&gt;(10);
+
+foreach (var item in list)
+{
+    Console.WriteLine(item);
+}
+
+  
+
+
+
+
+Generated Code
+
+
+  
+    private List&lt;int&...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Aug 21, 2021,  5:22 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 21, 2021
+  
+
+  <i class="unloaded">2021-08-21T17:22:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="116 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-switch-case/">C# Switch-Case의 특징</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Switch-Case 문
+
+
+
+  
+    대상 변수에 대해, 고정된 값들을 case에 지정하여 동등 비교를 수행할 수 있다.
+  
+  
+    case가 일정 개수 미만일 경우, if-else와 동일한 방식으로 각 case를 순차적으로 확인하며 분기한다고 한다.
+  
+  
+    case가 일정 개수 이상일 경우, 메모리에 Jump Table을 생성...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Aug 20, 2021,  4:49 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 20, 2021
+  
+
+  <i class="unloaded">2021-08-20T16:49:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3051 words">16 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-vs-2019-item-template/">VS2019 파일 템플릿 만들기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Memo
+
+
+[1] 템플릿으로 사용할 파일 만들기
+
+
+
+
+
+[2] 템플릿 내보내기
+
+
+  [프로젝트] - [템플릿 내보내기]
+
+
+
+
+
+  [항목 템플릿] 선택 - [다음]
+
+
+
+
+
+  내보낼 파일에 체크
+
+
+
+
+
+  참조가 필요한 경우 선택 - [다음]
+
+
+
+
+
+  템플릿 이름과 설명 작성 후 - [마침]
+
+
+
+
+[2] 생성된 파일 확인
+
+
+
+
+
+[3...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Aug 20, 2021,  4:16 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug 20, 2021
+  
+
+  <i class="unloaded">2021-08-20T16:16:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="154 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/cs-enum-index-array-vs-dict/">C# - Enum을 인덱스로 사용할 경우, 배열과 딕셔너리의 참조 성능 비교</a>
     </h1>
 
@@ -666,680 +1347,6 @@ Download
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="26 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-screen-damage/">(Amplify) Screen Effect - Damage</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  
-    피격 시 화면 가장자리 붉어지는 이펙트
-  
-  
-    스크린 이펙트 적용 애셋 : Link
-  
-
-
-
-
-Preview
-
-
-
-
-
-
-Nodes
-
-
-
-
-
-
-Download
-
-
-
-  2021_0817_Screen Effect_Damage.zip
-
-
-
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, Aug 19, 2021,  2:55 AM +0900"
-  >
-
-  
-  
-
-  
-    Aug 19, 2021
-  
-
-  <i class="unloaded">2021-08-19T02:55:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="34 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-hierarchy-icon/">유니티 - 하이라키 아이콘 적용 예제</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Memo
-
-
-
-  NOTE : 아이콘 뿐만 아니라 가능한 GUI를 모두 그릴 수 있다.
-
-
-
-
-
-  
-    …
-  
-
-  
-
-  
-    1
-&lt;p&gt;&lt;button class="copy-code-button" aria-label="Copy code to clipboard"&gt;&lt;/button&gt;&lt;/p&gt;
-    
-  ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Aug 18, 2021,  9:20 PM +0900"
-  >
-
-  
-  
-
-  
-    Aug 18, 2021
-  
-
-  <i class="unloaded">2021-08-18T21:20:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="805 words">4 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-path-memo/">유니티 - 스크립트 파일 기준 경로</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Memo
-
-
-
-  
-    public static string ScriptFolderFullPath { get; private set; }      // "......\이 스크립트가 위치한 폴더 경로"
-public static string ScriptFolderInProjectPath { get; private set; } // "Assets\......
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Aug 18, 2021,  8:40 PM +0900"
-  >
-
-  
-  
-
-  
-    Aug 18, 2021
-  
-
-  <i class="unloaded">2021-08-18T20:40:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="211 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-shader-concept/">초보자를 위한 쉐이더 개념 간단 정리</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        요약
-
-
-
-  
-    쉐이더 : 3D 모델링의 정점 데이터로부터 화면에 출력하기 위한 픽셀의 위치와 색상을 계산하는 함수
-  
-  
-    정점 쉐이더 : 각 모델링의 3D 정점 위치들을 카메라가 바라보는 화면 위치로 변환하는 함수
-  
-  
-    래스터라이저 : 정점 쉐이더가 변환한 정점 위치로부터 화면에 출력할 2D 픽셀들을 찾아주는 장치
-  ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Aug 17, 2021,  8:40 PM +0900"
-  >
-
-  
-  
-
-  
-    Aug 17, 2021
-  
-
-  <i class="unloaded">2021-08-17T20:40:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="921 words">5 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-play-mode-save-sample/">유니티 - Play Mode Save Sample</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Memo
-
-
-
-  플레이모드 -&gt; 에디터모드 진입 시 플레이모드의 변경사항 유지
-
-
-
-  
-    public class Sample_PlayModeSave : MonoBehaviour
-{
-    /***********************************************************************
-    *      ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Aug 17, 2021,  4:32 AM +0900"
-  >
-
-  
-  
-
-  
-    Aug 17, 2021
-  
-
-  <i class="unloaded">2021-08-17T04:32:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="222 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-time-easing-functions/">(Amplify) Time Easing Functions</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  Time 노드 기반의, 시간 진행에 따른 변화 함수 예제 모음
-
-
-
-
-[1]
-
-
-
-
-
-
-
-  0 ~ 1 값을 단순 선형으로 왕복할 수 있다.
-
-
-
-
-[2]
-
-
-
-
-
-
-
-  
-    Power 값은 [2, 8] 범위에서 2의 배수로 넣어 주는 것이 안전하다.
-  
-  
-    사용 예시 : 심장 박동 표현
-  
-
-
-
-
-
-
-Referen...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Aug 16, 2021, 10:22 PM +0900"
-  >
-
-  
-  
-
-  
-    Aug 16, 2021
-  
-
-  <i class="unloaded">2021-08-16T22:22:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="81 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-character-encodings/">문자 인코딩 방식들 간단 메모</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Encoding
-
-
-
-  
-    문자(char)를 코드(byte[])로 표현하는 것
-  
-  
-    반의어 : Decoding
-  
-
-
-
-
-ASCII
-
-
-
-  
-    American Standard Code for Information Interchange, 미국 정보 교환 표준 부호
-  
-  
-    영미 문화권의 기본적인 문자들을 코드값에 대...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Aug 15, 2021,  9:42 PM +0900"
-  >
-
-  
-  
-
-  
-    Aug 15, 2021
-  
-
-  <i class="unloaded">2021-08-15T21:42:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="473 words">2 min</span>
 
 
         <!-- page views -->
@@ -1918,9 +1925,24 @@ ASCII
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page35/">35</a>
+        <a class="page-link btn-box-shadow" href="/page36/">36</a>
       </li>
     
 
@@ -1984,12 +2006,12 @@ ASCII
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
       
         
         

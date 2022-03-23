@@ -628,12 +628,12 @@
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
       
         
         
@@ -5462,6 +5462,97 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8733,7 +8824,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-sliding-onoff-button/">
+        <a href="/posts/unity-editor-mouse-events/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8750,13 +8841,13 @@
   
 
   
-    Aug 26, 2021
+    Aug 30, 2021
   
 
-  <i class="unloaded">2021-08-26T03:45:00+09:00</i>
+  <i class="unloaded">2021-08-30T03:03:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 GUI - 미끄러지는 On-Off 버튼</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 마우스 이벤트 메모</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8765,9 +8856,11 @@
 
 
 
-                Memo
+                Note
 
 
+
+  OnInspectorGUI() 내에서 호출
 
 
 1
@@ -8792,50 +8885,8 @@
 20
 21
 22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66...
+private static bool IsLeftMouseDown =&gt; 
+    Event.current.type == EventType.MouseDown &amp;&amp; Even...
               </p>
             </div>
           </div>
@@ -8845,7 +8896,7 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-hierarchy-window/">
+        <a href="/posts/unity-editor-key-events/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -8862,13 +8913,73 @@
   
 
   
-    Aug 27, 2021
+    Aug 31, 2021
   
 
-  <i class="unloaded">2021-08-27T18:00:00+09:00</i>
+  <i class="unloaded">2021-08-31T15:33:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 하이라키 윈도우 관련 코드 모음</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 키보드 이벤트 메모</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Note
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+// 현재 누른 키 확인
+bool spacePressed = Event.current.keyCode == KeyCode.Space;
+
+// 다른 이벤트(마우스 이벤트 등)와 동시에 입력한 보조 키 확인
+bool controlPressed = Event.current.modifiers == Even...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-process-before-build/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep  1, 2021
+  
+
+  <i class="unloaded">2021-09-01T17:51:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 빌드 직전에 동작하는 기능 작성하기</h3>
             <div class="text-muted small">
               <p>
                 
@@ -8879,115 +8990,9 @@
 
                 Memo
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
-        <a href="/posts/unity-editor-predefined-gui-styles/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 27, 2021
-  
-
-  <i class="unloaded">2021-08-27T21:59:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 미리 정의된 GUIStyle 목록</h3>
-            <div class="text-muted small">
-              <p>
-                
 
 
-
-
-
-                목록
+  아래의 형태로 스크립트를 작성해놓으면 빌드 직전에 동작한다.
 
 
 1
@@ -9003,24 +9008,11 @@
 11
 12
 13
-14
-15
-16
-17
-18
-19
-20
-"box"
-"button"
-"toggle"
-"label"
-"window"
-"textfield"
-"textarea"
-"horizontalslider"
-"horizontalsliderthumb"
-"verticalslider"
-"verticalsliderth...
+#if UNITY_EDITOR
+
+class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
+{
+    public int callbackOrder =...
               </p>
             </div>
           </div>

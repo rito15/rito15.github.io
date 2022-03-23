@@ -802,12 +802,12 @@
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
       
         
         
@@ -8358,6 +8358,97 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -8974,64 +9065,6 @@
       
       
       <div class="card">
-        <a href="/posts/rendering-pipeline/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 30, 2021
-  
-
-  <i class="unloaded">2021-08-30T01:50:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>렌더링 파이프라인 간단 정리</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                렌더링 파이프라인 구조 요약(DirectX 9 기준)
-
-
-입력 조립
-
-  GPU가 CPU로부터 정점 데이터를 전달 받아서 프리미티브(삼각형)들을 만든다.
-
-
-정점 쉐이더
-
-  Object Space에서 Clip Space까지 정점들의 공간 변환을 수행한다.
-
-
-래스터라이저
-
-  Clip Space의 정점 데이터를 Viewport로 변환하고, 
-정점 데...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/lighting-models/">
           <div class="card-body">
             <!--
@@ -9075,6 +9108,83 @@
   R (Reflect) : 노멀벡터를 법선으로 하여 계산한 L의 반사 벡터 ( 2N(NdL)-L )
   
     H (Half) : 블린퐁에서 사용, L와 V의 중...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/water-shader/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 13, 2021
+  
+
+  <i class="unloaded">2021-02-13T19:24:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>물 쉐이더 만들기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                목표
+
+
+  서피스 쉐이더로 물 쉐이더 만들기
+
+
+
+
+목차
+
+
+  1. 물 쉐이더 기초
+  2. 프레넬 공식 적용
+  3. 물 흐르게 하기
+  4. 스페큘러 적용
+  5. 파도 만들기
+  6. 투과율 제어하기
+  7. 최종 결과
+
+
+
+
+준비물
+
+
+  큐브맵 텍스쳐 기반 스카이박스
+  물 노멀맵 텍스쳐
+  물에 빠질 로봇
+
+
+
+
+물 쉐이더 기초
+
+
+메시...
               </p>
             </div>
           </div>

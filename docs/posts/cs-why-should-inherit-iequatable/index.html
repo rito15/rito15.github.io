@@ -1444,12 +1444,12 @@ IL_0035:  pop
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
       
         
         
@@ -6881,6 +6881,97 @@ IL_0035:  pop
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9665,7 +9756,7 @@ IL_0035:  pop
       
       
       <div class="card">
-        <a href="/posts/rendering-pipeline/">
+        <a href="/posts/unity-shader-screen-blur/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9685,10 +9776,10 @@ IL_0035:  pop
     Aug 30, 2021
   
 
-  <i class="unloaded">2021-08-30T01:50:00+09:00</i>
+  <i class="unloaded">2021-08-30T22:11:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>렌더링 파이프라인 간단 정리</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Screen Effect - Blur</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9697,23 +9788,33 @@ IL_0035:  pop
 
 
 
-                렌더링 파이프라인 구조 요약(DirectX 9 기준)
+                Summary
 
 
-입력 조립
 
-  GPU가 CPU로부터 정점 데이터를 전달 받아서 프리미티브(삼각형)들을 만든다.
+  
+    블러 이펙트
+  
+  
+    스크린 이펙트 적용 애셋 : Link
+  
 
 
-정점 쉐이더
-
-  Object Space에서 Clip Space까지 정점들의 공간 변환을 수행한다.
 
 
-래스터라이저
+Properties
 
-  Clip Space의 정점 데이터를 Viewport로 변환하고, 
-정점 데...
+
+
+  
+    Resolution : 블러 적용 해상도(기본 0.5)
+  
+  
+    Intensity : 블러 적용 강도
+  
+  
+    Blur Area Mask : 블러 적용 영역을 제한할 수 있는 마스크
+ ...
               </p>
             </div>
           </div>

@@ -792,12 +792,12 @@
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
       
         
         
@@ -7368,6 +7368,97 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9024,7 +9115,7 @@ Punch
       
       
       <div class="card">
-        <a href="/posts/unity-memo-color-debug-log/">
+        <a href="/posts/unity-rigidbody-move-and-jump/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9041,13 +9132,13 @@ Punch
   
 
   
-    Apr 25, 2021
+    Nov  4, 2021
   
 
-  <i class="unloaded">2021-04-25T17:10:00+09:00</i>
+  <i class="unloaded">2021-11-04T20:30:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Debug.Log()에 색상 넣기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9056,30 +9147,17 @@ Punch
 
 
 
-                Memo
+                Note
 
 
-  &lt;color=&gt;&lt;/color&gt; 태그를 사용하여 로그 메시지에 색상을 넣을 수 있다.
-  color= 뒤에는 색상 이름 또는 HTML 색상코드를 입력한다.
-
-
-
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-Debug.Log("Default");
-Debug.Log("&lt;color=white&gt;Whit...
+  
+    입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심
+  
+  
+    리지드바디를 사용한다면, 트랜스폼을 직접 조작하지 말고 반드시 FixedUpdate()에서 리지드바디를 통해서 이동시켜야만 한다.
+  
+  
+    다음과 같은 증상들이 발생한다면 Update()에서 리지드바디를 조작하...
               </p>
             </div>
           </div>

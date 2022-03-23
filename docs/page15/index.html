@@ -367,6 +367,671 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-web-request/">유니티 - Async Web Request</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+
+  
+    UnityWebRequest는 AsyncOperation 클래스를 상속받는다.
+  
+  
+    그러니까 코루틴에서 yield return으로 기다릴 수 있다.
+  
+  
+    웹페이지를 받아올 경우, 페이지 소스의 &lt;head&gt; 부분에서 인코딩을 꼭 확인해야 한다.
+  
+
+
+
+
+Source Code
+
+
+
+  
+ ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Aug  4, 2021,  3:45 PM +0900"
+  >
+
+  
+  
+
+  
+    Aug  4, 2021
+  
+
+  <i class="unloaded">2021-08-04T15:45:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="150 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/cs-tcp-async-socket-chatting/">TCP 비동기 소켓으로 간단한 콘솔 채팅 구현하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+  이전 포스팅에서 이어집니다.
+
+
+
+
+1. 채팅을 위한 패킷 설계
+
+
+[1] ChattingCommand 열거형
+
+
+  전달하는 패킷의 명령어를 미리 열거형으로 정의한다.
+  명령어의 종류는 크게 공통, 클라이언트의 요청, 서버의 통지 3가지로 나뉜다.
+
+
+
+
+
+  
+    ChattingCommand.cs
+  
+
+  
+    
+      /// ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, Aug  3, 2021,  3:33 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug  3, 2021
+  
+
+  <i class="unloaded">2021-08-03T03:33:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3820 words">21 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/06-cs-tcp-async-socket-with-packet.md/">TCP 비동기 소켓 서버, 클라이언트 - 패킷 고려하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+  이전 포스팅에서 이어집니다.
+
+
+
+
+ReceiveBuffer, SendBuffer
+
+
+
+  소켓 통신을 통한 데이터 전달 시 단순히 byte[]를 주고 받는 것에서 그치지 않고, 정말로 ‘패킷’을 주고 받기 위해 필요하다.
+
+
+
+
+ReceiveBuffer 클래스
+
+
+
+  
+    각 세션마다 하나의 ReceiveBuffer 객체를 갖는다.
+  
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Aug  2, 2021, 12:06 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug  2, 2021
+  
+
+  <i class="unloaded">2021-08-02T00:06:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3917 words">21 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/05-cs-tcp-async-socket-basic.md/">TCP 비동기 소켓 서버, 클라이언트 기본</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        비동기 소켓 통신 방식
+
+
+Socket 객체에는 ~Async() 형태로 명명된 비동기 메소드들이 존재한다.
+
+
+  AcceptAsync(SocketAsyncEventArgs)
+  ConnectAsync(SocketAsyncEventArgs)
+  DisconnectAsync(SocketAsyncEventArgs)
+  ConnectAsync(SocketA...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Aug  2, 2021, 12:05 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug  2, 2021
+  
+
+  <i class="unloaded">2021-08-02T00:05:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2794 words">15 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/04-cs-udp-socket-server-client-basic.md/">UDP 소켓 서버, 클라이언트 기본</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        UDP 소켓 통신의 특징
+
+
+
+  서버와 클라이언트 간의 1:1 연결이 생성되지 않는다.
+  리스너 소켓이 필요하지 않다.
+  Listen(), Connect() 과정이 없다.
+  소켓의 .ReceiveFrom(), .SendTo() 메소드를 통해 엔드포인트와 데이터를 주고 받는다.
+
+
+
+
+소켓 통신 과정
+
+
+서버
+
+  서버 IP 주소, 포트를 통해 ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Aug  2, 2021, 12:04 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug  2, 2021
+  
+
+  <i class="unloaded">2021-08-02T00:04:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1328 words">7 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/03-cs-tcp-socket-server-client-basic.md/">TCP 소켓 서버, 클라이언트 기본</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        소켓 정의
+
+
+프로토콜
+
+  데이터 전송을 위한 규약이며, 대표적으로 TCP와 UDP가 있다.
+
+
+IP
+
+  컴퓨터에 부여된 논리적 식별 주소
+
+
+Port
+
+  네트워크 상에서 통신하기 위해 호스트 내부적으로 프로세스가 할당받는 고유 번호
+  같은 컴퓨터 내에서 프로세스를 식별하기 위한 번호
+
+
+
+
+소켓 통신 과정
+
+
+서버
+
+  서버 IP 주소, 포트...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Aug  2, 2021, 12:03 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug  2, 2021
+  
+
+  <i class="unloaded">2021-08-02T00:03:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1551 words">8 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/02-cs-tcp-udp-protocols.md/">TCP, UDP 프로토콜</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        TCP, UDP 프로토콜
+
+
+
+  
+    OSI 7 Layer 중 4번째, TCP/IP 4 Layer 중 3번째인 Transport 계층의 통신을 위한 프로토콜
+  
+  
+    IP 주소와 포트 번호를 통해 대상을 식별한다.
+  
+
+
+
+
+TCP(Transmission Control Protocol)
+
+
+개념
+
+  데이터를 메시지 형태로 전송하기 위...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Aug  2, 2021, 12:02 AM +0900"
+  >
+
+  
+  
+
+  
+    Aug  2, 2021
+  
+
+  <i class="unloaded">2021-08-02T00:02:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="736 words">4 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/01-cs-tcp-ip-4-layer/">TCP/IP 4 계층</a>
     </h1>
 
@@ -652,721 +1317,6 @@ call        bool ClassName::op_Equality(class ClassName, clas...
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="237 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-infinite-horizontal-scroll-ui/">Infinite Horizontal Scroll (무한 횡스크롤) UI</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  자식 UI들을 좌우로 무한히 스크롤시키는 컴포넌트
-
-
-
-
-Preview
-
-
-
-
-
-
-
-
-How To Use
-
-
-
-  
-    횡스크롤 시킬 UI들을 하나의 부모 오브젝트에 묶는다.
-  
-  
-    해당 부모 오브젝트에 InfiniteHorizontalScroll 컴포넌트를 추가한다.
-  
-  
-    게임 시작 후 좌우 화살표 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Jul 28, 2021,  7:50 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul 28, 2021
-  
-
-  <i class="unloaded">2021-07-28T19:50:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1694 words">9 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-tree-growth/">(Amplify) Tree Growth Shader</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  나무가 성장하는 효과 표현하기
-
-
-
-
-Preview
-
-
-
-
-
-
-1. Tree - Body
-
-
-프로퍼티 목록
-
-
-
-
-
-쉐이더 에디터 설정
-
-
-
-
-  
-    우측 상단을 클릭하여 Blend Mode를 Masked로 변경한다.
-  
-  
-    Mask Clip Value 값을 쉐이더 에디터에서 직접 설정해도 되지만
-마테리얼에서 프...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sat, Jul 24, 2021,  5:21 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul 24, 2021
-  
-
-  <i class="unloaded">2021-07-24T17:21:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="921 words">5 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-amplify-sea-urchin/">(Amplify) Sea Urchin Shader</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  가시 삐쭉삐쭉한 성게 쉐이더
-
-
-
-
-1. 기본
-
-
-Preview
-
-
-
-
-
-
-
-Properties
-
-
-
-
-  
-    
-      프로퍼티
-      설명
-    
-  
-  
-    
-      Edge length
-      테셀레이션 간격(작을수록 촘촘해진다)
-    
-    
-      Tiling
-      가시 개수 비율...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Fri, Jul 23, 2021,  3:15 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul 23, 2021
-  
-
-  <i class="unloaded">2021-07-23T15:15:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="150 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/hash-table/">자료구조 - 해시 테이블(Hash Table)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        해시 테이블(Hash Table)
-
-
-
-  
-    데이터의 삽입, 제거, 탐색이 모두 O(1)로 매우 빠르다.
-  
-  
-    내부적으로 정렬되지는 않는다.
-  
-  
-    저장할 데이터의 수보다 더 많은 공간이 필요하다.
-  
-
-
-
-
-구현 원리
-
-
-
-  
-    Key와 Value를 함께 저장하는 Pair 타입(클래스 또는 구조체)을 준비한다....
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Jul 20, 2021,  5:14 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul 20, 2021
-  
-
-  <i class="unloaded">2021-07-20T17:14:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8029 words">44 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-why-should-inherit-iequatable/">C# 구조체가 IEquatable&lt;T&gt;를 상속해야 하는 이유</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        System.Object.Equals(object)
-
-
-C#의 모든 타입의 최상위 클래스인 Object에는 .Equals(object) 메소드가 존재한다.
-
-그리고 이를 통해 다른 값과의 동일 비교를 수행할 수 있다.
-
-
-
-구조체나 클래스를 직접 정의하고, 해당 객체로 .Equals(object)를 호출하면
-
-object.Equals(object)가 ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Jul 19, 2021,  8:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul 19, 2021
-  
-
-  <i class="unloaded">2021-07-19T20:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2637 words">14 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-animator-event-controller/">Animator Event Controller(애니메이터 이벤트 관리 컴포넌트)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  
-    애니메이터 내의 각 애니메이션에 대한 이벤트를 생성, 관리할 수 있는 컴포넌트
-  
-  
-    애니메이션의 프레임마다 이벤트를 추가할 수 있습니다.
-  
-  
-    플레이모드의 변경 사항은 플레이모드가 종료되어도 유지됩니다.
-  
-  
-    테스트 버전 : 2018.3.14f1, 2019.4.9f1, 2020.3....
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sat, Jul 17, 2021,  3:15 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul 17, 2021
-  
-
-  <i class="unloaded">2021-07-17T15:15:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2611 words">14 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-particle-system-example-12-sword-aura/">파티클 시스템 예제 - 12 - Sword Aura</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목차
-
-
-
-  목표
-  준비물
-  1. 작업 환경 구성
-  2. 하이라키 구성
-  3. Aura 이펙트
-  4. Smoke 이펙트
-  5. Spark 이펙트
-  6. Glow 이펙트
-
-
-
-
-Preview
-
-
-
-
-
-
-
-
-
-
-목표
-
-
-
-  검 모델링에 부착하여 사용할 수 있는, 타오르는 듯한 이펙트 만들기
-
-
-
-
-준비물
-
-
-검 모델링
-
-  https://...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Jul 11, 2021,  2:55 PM +0900"
-  >
-
-  
-  
-
-  
-    Jul 11, 2021
-  
-
-  <i class="unloaded">2021-07-11T14:55:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2602 words">14 min</span>
 
 
         <!-- page views -->
@@ -1945,9 +1895,24 @@ Preview
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page35/">35</a>
+        <a class="page-link btn-box-shadow" href="/page36/">36</a>
       </li>
     
 
@@ -2011,12 +1976,12 @@ Preview
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
       
         
         

@@ -1,14 +1,4 @@
----
-title: 깃 관련 메모 모음
-author: Rito15
-date: 2021-05-03 17:00:00 +09:00
-categories: [Memo, Git]
-tags: [memo, git, github]
-math: true
-mermaid: true
----
 
-<br>
 
 # Git 구성
 ---
@@ -60,11 +50,24 @@ git config --global alias.st status
 <br>
 
 
-## **로컬, 원격 브랜치명 확인하기**
+## **원격 리포지토리 이름 확인하기**
 
 ```
 git remote
+```
+
+<br>
+
+## **로컬 브랜치명 확인하기**
+
+```
 git branch
+```
+
+## **로컬, 원격 브랜치명 확인하기**
+
+```
+git branch -a
 ```
 
 <br>
@@ -77,7 +80,7 @@ git remote -v
 
 <br>
 
-## **원격 리포지토리 주소 변경하기 **
+## **원격 리포지토리 주소 변경하기**
 
 ```
 git remote set-url origin [https://~.git]
@@ -208,6 +211,135 @@ git commit -am "comment"
 - `git add .`, `git commit`을 동시에 하는 효과
 
 
+<br>
+
+## **Push**
+
+### **[1] 원격 리포지토리에 푸시하기**
+
+- 로컬과 원격의 브랜치 이름이 같아야 한다.
+
+```
+git push {원격 리포지토리 이름} {브랜치 이름}
+```
+
+<br>
+
+### **[2] 다음부터 간단히 푸시하도록 설정하기**
+
+- 다음 푸시부터는 `git push`로 간단히 할 수 있도록,<br>
+  현재의 로컬 브랜치와 대상 원격 리포지토리의 브랜치를 연결한다.
+
+- `git pull`도 마찬가지로 간단히 할 수 있게 된다.
+
+```
+git push --set-upstream {원격 리포지토리 이름} {브랜치 이름}
+
+## 동일
+
+git push -u {원격 리포지토리 이름} {브랜치 이름}
+```
+
+<br>
+
+
+## **Clone**
+
+### **[1] 기본 클론**
+
+```
+git clone https://github.com/{사용자명}/{프로젝트명}.git
+```
+
+<br>
+
+### **[2] 특정 브랜치만 클론**
+
+```
+git clone -b {브랜치명} https://github.com/{사용자명}/{프로젝트명}.git
+```
+
+<br>
+
+
+## **Branch**
+
+### **[1] 현재 브랜치 확인**
+
+```
+git branch
+```
+
+<br>
+
+### **[2] 브랜치 전체(원격 포함) 목록 확인**
+
+```
+git branch -a
+```
+
+<br>
+
+### **[3] 브랜치 이동**
+
+```
+git checkout {이동할 브랜치 이름}
+```
+
+<br>
+
+### **[4] 새로운 브랜치 생성**
+
+- 생성 후 해당 브랜치로 이동된다.
+
+```
+git checkout -b {새로운 브랜치 이름}
+```
+
+<br>
+
+### **[5] 새로운 원격 브랜치 생성**
+
+- 로컬에서 새로운 브랜치를 생성한 상태
+
+```
+# 로컬의 현재 브랜치와 {새로운 원격 브랜치 이름}은 일치해야 한다.
+git push {원격 리포지토리 이름} {새로운 원격 브랜치 이름}
+```
+
+```
+# 예시
+git push origin dev-batch
+```
+
+<br>
+
+### **[6] 브랜치 제거하기**
+
+- 제거 대상이 아닌 브랜치로 이동한 상태
+
+```
+git branch --delete {제거할 브랜치명}
+```
+
+```
+# 변경사항, 커밋 등이 있는 경우 무시하고 강제로 제거
+git branch -D {제거할 브랜치명}
+```
+
+<br>
+
+### **[7] 원격 브랜치 제거하기**
+
+```
+git push {원격 리포지토리 이름} :{제거할 원격 브랜치 이름}
+```
+
+```
+# 예시
+git push origin :dev-batch
+```
+
 
 <br>
 
@@ -218,7 +350,6 @@ git commit -am "comment"
  - Personal Access Token
 
 ## **예시**
- - 내 Github ID : rito01
  - 내가 가진 토큰(PAT) ID : `abcd1234`
  - 대상 리포지토리 소유자 ID : rito02
  - 대상 리포지토리 이름 : repo01

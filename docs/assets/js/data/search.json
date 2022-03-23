@@ -1,6 +1,111 @@
 [
   
   {
+    "title": "Git - 명령어 - 7. Restore",
+    "url": "/posts/memo-git-command-7-restore/",
+    "categories": "Memo, Git",
+    "tags": "memo, git, github",
+    "date": "2022-03-23 22:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Restore[1] 작업 중인 파일 상태 되돌리기git restore abc.txt  modified 상태인 파일의 변경사항을 마지막 커밋 상태로 되돌린다.[2] 스테이징 취소하기git restore --staged abc.txt  Staging Area에 있는 특정 파일을 modified 상태로 되돌린다.  파일 내용에 영향을 주지 않는다."
+  },
+  
+  {
+    "title": "Git - 명령어 - 6. Commit, Push, Pull",
+    "url": "/posts/memo-git-command-6-commit-push-pull/",
+    "categories": "Memo, Git",
+    "tags": "memo, git, github",
+    "date": "2022-03-23 22:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Commit  Staging Area -&amp;gt; .git Directory  스테이징 된 데이터를 깃 히스토리 영역으로 이동시킨다.[1] 코멘트와 함께 커밋하기git commit -m &quot;comment&quot;[2] 워킹 디렉토리의 수정사항도 한번에 커밋하기git commit -am &quot;comment&quot;  git add ., git commit을 동시에 하는 효과Push[1] 원격 리포지토리에 푸시하기  로컬과 원격의 브랜치 이름이 같아야 한다.git push {원격 리포지토리 이름} {브랜치 이..."
+  },
+  
+  {
+    "title": "Git - 명령어 - 5. 브랜치",
+    "url": "/posts/memo-git-command-5-branch/",
+    "categories": "Memo, Git",
+    "tags": "memo, git, github",
+    "date": "2022-03-23 22:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Branch[1] 현재 브랜치 확인git branch[2] 브랜치 전체(원격 포함) 목록 확인git branch -a[3] 브랜치 이동git checkout {이동할 브랜치 이름}[4] 새로운 브랜치 생성  생성 후 해당 브랜치로 이동된다.git checkout -b {새로운 브랜치 이름}[5] 새로운 원격 브랜치 생성  로컬에서 새로운 브랜치를 생성한 상태# 로컬의 현재 브랜치와 {새로운 원격 브랜치 이름}은 일치해야 한다.git push {원격 리포지토리 이름} {새로운 원격 브랜치 이름}# 예시git push origin..."
+  },
+  
+  {
+    "title": "Git - 명령어 - 4. 클론",
+    "url": "/posts/memo-git-command-4-clone/",
+    "categories": "Memo, Git",
+    "tags": "memo, git, github",
+    "date": "2022-03-23 22:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Clone[1] 기본 클론git clone https://github.com/{사용자명}/{프로젝트명}.git[2] 특정 브랜치만 클론git clone -b {브랜치명} https://github.com/{사용자명}/{프로젝트명}.git"
+  },
+  
+  {
+    "title": "Git - 명령어 - 3. 상태, 기록",
+    "url": "/posts/memo-git-command-3-status-logs/",
+    "categories": "Memo, Git",
+    "tags": "memo, git, github",
+    "date": "2022-03-23 22:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Status변경된 파일들 상태 확인하기git status  Changes to be committed:          git add를 통해 Staging Area로 이동된 파일들 목록        Changes not staged for commit:          변경되었지만 아직 스테이징 되지 않은 파일들 목록      Diff파일 변경 내용 확인하기git diff [파일명]      스테이징 되지 않은, 변경된 파일들의 내용 변경사항을 보여준다.        git diff 파일명으로 특정 파일만 변경사항을 확인할 수..."
+  },
+  
+  {
+    "title": "Git - 명령어 - 2. 저장소(Repository)",
+    "url": "/posts/memo-git-command-2-repository/",
+    "categories": "Memo, Git",
+    "tags": "memo, git, github",
+    "date": "2022-03-23 22:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "Init로컬 리포지토리로 만들기git init  .git 폴더가 생성된다.Remote원격 리포지토리 이름 확인하기git remote원격 리포지토리 주소 확인하기git remote -v원격 리포지토리 주소 변경하기git remote set-url origin [https://~.git]"
+  },
+  
+  {
+    "title": "Git - 명령어 - 1. 기본",
+    "url": "/posts/memo-git-command-1-basic/",
+    "categories": "Memo, Git",
+    "tags": "memo, git, github",
+    "date": "2022-03-23 22:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "특정 명령어의 도움말 확인하기git {명령어} -h임의 단축 명령어 만들기  예시 : git status를 git st로 사용하도록 단축 명령어 등록git config --global alias.st status"
+  },
+  
+  {
     "title": "유니티 - 디컴파일용 어셈블리 경로",
     "url": "/posts/unity-assembly-path-to-decompile/",
     "categories": "Unity, Unity Memo",
@@ -3061,8 +3166,8 @@
   },
   
   {
-    "title": "깃 관련 메모 모음",
-    "url": "/posts/memo-git/",
+    "title": "Git - 저장소 구조",
+    "url": "/posts/memo-git-repos/",
     "categories": "Memo, Git",
     "tags": "memo, git, github",
     "date": "2021-05-03 17:00:00 +0900",
@@ -3072,7 +3177,7 @@
 
 
 
-    "snippet": "Git 구성[1] Local[1-1] Working Directory  작업 디렉토리 : 윈도우 내 폴더  git add 명령어를 통해 변경된 파일들을 Staging Area로 옮길 수 있다.[1-2] Staging Area  커밋할 대상들을 저장하는 임시 저장소  파일 변경사항 스냅샷을 안전하게 보관하지는 않는다.  git commit 명령어를 통해 스테이징 영역 내의 파일들을 .git Directory로 옮길 수 있다.[1-3] .git Directory (History)  커밋 히스토리를 저장한다.  커밋 버전별로 내용을..."
+    "snippet": "1. 로컬 저장소[1] Working Directory  작업 디렉토리 : 윈도우 내 폴더  git add 명령어를 통해 변경된 파일들을 Staging Area로 옮길 수 있다.[2] Staging Area  커밋할 대상들을 저장하는 임시 저장소  파일 변경사항 스냅샷을 안전하게 보관하지는 않는다.  git commit 명령어를 통해 스테이징 영역 내의 파일들을 .git Directory로 옮길 수 있다.[3] .git Directory (History)  커밋 히스토리를 저장한다.  커밋 버전별로 내용을 관리할 수 있다.  ..."
   },
   
   {
@@ -4111,7 +4216,7 @@
   },
   
   {
-    "title": "깃 로컬 리포지토리 초기 세팅하기",
+    "title": "Git - 로컬 리포지토리 초기 세팅하기",
     "url": "/posts/memo-git-local-repo-initialization/",
     "categories": "Memo, Git",
     "tags": "memo, git, github",

@@ -984,12 +984,12 @@
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
       
         
         
@@ -4531,6 +4531,97 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9203,7 +9294,7 @@ B 클래스가 초기화 작업을 완료하기 전에 A 클래스가 작업을 
       
       
       <div class="card">
-        <a href="/posts/unity-memo-show-property-on-inspector/">
+        <a href="/posts/unity-fixed-update-and-physics-loop/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9220,13 +9311,13 @@ B 클래스가 초기화 작업을 완료하기 전에 A 클래스가 작업을 
   
 
   
-    Feb  2, 2021
+    Oct 23, 2021
   
 
-  <i class="unloaded">2021-02-02T17:08:00+09:00</i>
+  <i class="unloaded">2021-10-23T03:45:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 인스펙터에 오토 프로퍼티 표시하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - FixedUpdate()와 Physics Loop에 대한 이해</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9235,25 +9326,20 @@ B 클래스가 초기화 작업을 완료하기 전에 A 클래스가 작업을 
 
 
 
-                Memo
+                Update()와 Game Loop
+
+
+유니티 엔진의 Update()는 매 프레임 호출되며,
+
+이동, 회전, 입력, 실시간 계산 등 수많은 기능을 여기에 작성한다.
+
+그렇다면 Update()의 정체는 무엇일까?
 
 
 
-  
-    public GameObject Property1 =&gt; Field1;
-private GameObject Field1;
+그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 Game Loop(게임 루프) 를 통해 프레임 기반 동작이 수행된다.
 
-  
-
-
-이렇게 다른 필드와 연결된 프로퍼티라면
-
-
-  
-    public GameObject Property1 =&gt; field1;
-
-[SerializeField]
-private GameObje...
+Direct...
               </p>
             </div>
           </div>
