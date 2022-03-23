@@ -2108,27 +2108,27 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         
-        <li><a href="/posts/fisher-yates-shuffle/">Fisher-Yates Shuffle 간단 정리</a></li>
+        <li><a href="/posts/unity-memo-post-processing/">유니티 - 포스트 프로세싱 적용하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-compute-shader/">유니티 - 컴퓨트 쉐이더(Compute Shader)</a></li>
+        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-naming-variables-neatly/">유니티 - 깔끔하고 보기 좋은 변수명 짓기</a></li>
+        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
       
         
         
         
-        <li><a href="/posts/amplify-shader-60-nodes-for-beginners/">앰플리파이 쉐이더 입문자를 위한 60가지 노드 모음</a></li>
+        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
       
         
         
         
-        <li><a href="/posts/simple-amplify-shader-examples/">간단한 앰플리파이 쉐이더 예제 모음</a></li>
+        <li><a href="/posts/unity-particle-system-custom-data/">유니티 - 쉐이더에서 파티클 시스템 커스텀 데이터(Custom Data) 사용하기</a></li>
       
 
       </ul>
@@ -5655,6 +5655,19 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -10371,7 +10384,7 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
       
       
       <div class="card">
-        <a href="/posts/unity-screen-effect-controller/">
+        <a href="/posts/rendering-pipeline/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -10388,13 +10401,13 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
   
 
   
-    Aug 25, 2021
+    Aug 30, 2021
   
 
-  <i class="unloaded">2021-08-25T21:00:00+09:00</i>
+  <i class="unloaded">2021-08-30T01:50:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Screen Effect Controller(스크린 이펙트, 포스트 프로세싱)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>렌더링 파이프라인 간단 정리</h3>
             <div class="text-muted small">
               <p>
                 
@@ -10403,21 +10416,23 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 
 
-                Summary
+                렌더링 파이프라인 구조 요약(DirectX 9 기준)
 
 
+입력 조립
 
-  
-    스크린 이펙트(포스트 프로세싱)를 간단히 적용할 수 있게 해주는 애셋입니다.
-  
-  
-    게임 오브젝트의 단순 활성화/비활성화 방식으로 스크린 이펙트를 적용/해제합니다.
-  
-  
-    시간에 따른 마테리얼 프로퍼티의 값 변화 애니메이션을 쉽게 제작할 수 있습니다.
-  
-  
-    유니티 타임라인에도 손쉽게 연...
+  GPU가 CPU로부터 정점 데이터를 전달 받아서 프리미티브(삼각형)들을 만든다.
+
+
+정점 쉐이더
+
+  Object Space에서 Clip Space까지 정점들의 공간 변환을 수행한다.
+
+
+래스터라이저
+
+  Clip Space의 정점 데이터를 Viewport로 변환하고, 
+정점 데...
               </p>
             </div>
           </div>

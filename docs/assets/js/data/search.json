@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "유니티 - 디컴파일용 어셈블리 경로",
+    "url": "/posts/unity-assembly-path-to-decompile/",
+    "categories": "Unity, Unity Memo",
+    "tags": "unity, csharp",
+    "date": "2022-03-23 00:00:00 +0900",
+    
+
+
+
+
+
+    "snippet": "디컴파일러 예시  MS Disassembler, IL Spy, JetBrains DotPeek에디터 어셈블리 경로{프로젝트 경로}\\Library\\ScriptAssemblies\\Assembly-CSharp.dllStandalone 빌드 어셈블리 경로{빌드된 폴더 경로}\\{프로젝트명}_Data\\Managed\\Assembly-CSharp.dll"
+  },
+  
+  {
     "title": "몬티 홀 문제에 대한 3가지 풀이",
     "url": "/posts/monty-hall-problem/",
     "categories": "Memo, Mathematics",
@@ -12,7 +27,7 @@
 
 
 
-    "snippet": "몬티 홀 문제세 개의 문이 있다.이 중 두 개의 문 뒤에는 염소가 있고, 하나의 문 뒤에는 자동차가 있다.사회자는 자동차가 있는 문을 미리 알고 있으며,내가 하나의 문을 선택하면, 내가 선택하지 않은 두 개의 문 중 염소가 있는 문을 열어서 보여준다.그리고 이 상태에서 나는 내가 고르지 않은 닫힌 문으로 선택을 바꿀 기회를 얻게 된다.내가 선택을 바꿨을 때, 바꾼 문 뒤에 자동차가 있을 확률은 얼마일까?      정답 : \\(\\frac{2}{3}\\)        몬티 홀의 딜레마 : \\(\\frac{1}{2}\\)이 아니고 \\(\\..."
+    "snippet": "몬티 홀 문제세 개의 문이 있다.이 중 두 개의 문 뒤에는 염소가 있고, 하나의 문 뒤에는 자동차가 있다.사회자는 자동차가 있는 문을 미리 알고 있으며,내가 하나의 문을 선택하면, 내가 선택하지 않은 두 개의 문 중 염소가 있는 문을 열어서 보여준다.그리고 이 상태에서 나는 내가 고르지 않은 닫힌 문으로 선택을 바꿀 기회를 얻게 된다.선택을 바꾸는 것이 유리할까?내가 선택을 바꿨을 때, 바꾼 문 뒤에 자동차가 있을 확률은 얼마일까?      정답 : \\(\\frac{2}{3}\\)        몬티 홀의 딜레마 : \\(\\frac{..."
   },
   
   {
@@ -192,7 +207,7 @@
 
 
 
-    "snippet": "커스텀 데이터(Custom Data)  파티클 시스템의 Custom Data 모듈에서 지정한 값을 쉐이더로 가져와 사용할 수 있다.1. 파티클 시스템 설정[1] Custom Data 모듈      Custom Data 모듈에 체크한다.        Mode를 Vector 또는 Color로 설정한다.        Vector로 설정한 경우, 사용할 채널 개수(Number of Components), 각 채널의 값을 지정한다.  [2] Renderer 모듈  Custom Vertex Streams에 치크한다.      우측 하단의..."
+    "snippet": "커스텀 데이터(Custom Data)  파티클 시스템의 Custom Data 모듈에서 지정한 값을 쉐이더로 가져와 사용할 수 있다.1. 파티클 시스템 설정[1] Custom Data 모듈      Custom Data 모듈에 체크한다.        Mode를 Vector 또는 Color로 설정한다.        Vector로 설정한 경우, 사용할 채널 개수(Number of Components), 각 채널의 값을 지정한다.  [2] Renderer 모듈  Custom Vertex Streams에 체크한다.      우측 하단의..."
   },
   
   {
@@ -1002,7 +1017,7 @@
 
 
 
-    "snippet": "Memo  안드로이드의 카메라, 로컬 스토리지 등의 기능을 사용하려면 권한을 반드시 요청해야 한다.  Android 6(API Lv.23) 이상에서는 Android.Permission API를 통해 런타임에 권한을 요청할 수 있다.공통안드로이드 매니페스트 파일 경로      구글링하면 대부분 나오는 Root/Temp/StagingArea/AndroidManifest.xml 경로는 2019.3 미만 버전이다.        2019.3 이상부터는 Root/Temp/gradleOut/unityLibrary/src/main/Andro..."
+    "snippet": "Memo  안드로이드의 카메라, 로컬 스토리지 등의 기능을 사용하려면 권한을 반드시 요청해야 한다.  Android 6(API Lv.23) 이상에서는 Android.Permission API를 통해 런타임에 권한을 요청할 수 있다.공통안드로이드 매니페스트 파일 경로      안드로이드 빌드를 한 번이라도 수행할 경우, 프로젝트 내에 안드로이드 매니페스트 파일이 생성된다.        구글링하면 대부분 나오는 프로젝트 루트(최상단)/Temp/StagingArea/AndroidManifest.xml 경로는 2019.3 미만 버전이..."
   },
   
   {
@@ -3402,7 +3417,7 @@
 
 
 
-    "snippet": "1. Built-in Pipeline      Package Manager - [Post Processing] 설치        레이어 - [Post Processing] 추가    메인 카메라          컴포넌트 추가 : Post-process Layer      Volume blending - Layer : [Post Processing] 설정        빈 게임오브젝트 추가 : “Volume”          레이어 설정 : [Post Processing]      컴포넌트 추가 : Post-process Volu..."
+    "snippet": "1. Built-in Pipeline[1] 패키지 설치  Package Manager - Post Processing 설치[2] 레이어 추가  레이어 - Post Processing 추가[3] 메인 카메라 게임오브젝트      컴포넌트 추가 : Post-process Layer        Post-process Layer 컴포넌트          Volume blending - Layer : Post Processing 설정      [4] 포스트 프로세싱 볼륨 게임오브젝트      빈 게임오브젝트 추가        레이어 ..."
   },
   
   {
