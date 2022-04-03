@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Game Programmer</subtitle>
-  <updated>2022-03-23T22:27:22+09:00</updated>
+  <updated>2022-04-03T15:50:58+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,64 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>C# Shorts - 필드의 값 변화 감지하기</title>
+    <link href="https://rito15.github.io/posts/cs-detect-changes-of-field-values/" rel="alternate" type="text/html" title="C# Shorts - 필드의 값 변화 감지하기" />
+    <published>2022-04-03T15:40:00+09:00</published>
+  
+    <updated>2022-04-03T15:40:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/cs-detect-changes-of-field-values/</id>
+    <content src="https://rito15.github.io/posts/cs-detect-changes-of-field-values/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="C#" />
+    
+    <category term="C# Memo - Shorts" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      소스 코드
+
+
+private int _score; // 필요하다면 _score = 123; 꼴로 초깃값 직접 설정
+
+public int Score
+{
+    // Getter에서는 단순히 대상 필드 값만 리턴
+    get
+    {
+        return _score;
+    }
+    // Setter 블록
+    set
+    {
+        // 저장된 값(_score), 현재 값(value)을 비교하여 변화 감지
+        if(_score != value)
+        {
+            Console.WriteLine($"Value Changed : [{_score}] -&amp;gt; [{value}]");
+        }
+
+        // 새로운 값 할당
+        _...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -132,7 +190,12 @@ git commit -am "comment"
 
 
 
-  git add ., git commit을 동시에 하는 효과
+  
+    git add ., git commit을 동시에 하는 효과
+  
+  
+    커밋 기록이 없는 파일은 직접 git add를 해줘야 한다.
+  
 
 
 
@@ -154,9 +217,7 @@ git push {원격 리포지토리 이름} {브랜치 이름}
 [2] 다음부터 간단히 푸시하도록 설정하기
 
 
-  
-    다음 푸시부터는 git push로 간단히 할 수 있도록,
-현재의 로컬 브랜치와 대상 ...
+  ...
     </summary>
   
 
@@ -209,14 +270,17 @@ git branch -a
 
 
 
-[3] 브랜치 이동
+Checkout
+
+
+[1] 브랜치 이동
 
 git checkout {이동할 브랜치 이름}
 
 
 
 
-[4] 새로운 브랜치 생성
+[2] 새로운 브랜치 생성
 
 
   생성 후 해당 브랜치로 이동된다.
@@ -227,26 +291,26 @@ git checkout -b {새로운 브랜치 이름}
 
 
 
-[5] 새로운 원격 브랜치 생성
+브랜치 생성/제거
 
 
-  로컬에서 새로운 브랜치를 생성한 상태
+[1] 새로운 원격 브랜치 생성
 
 
-# 로컬의 현재 브랜치와 {새로운 원격 브랜치 이름}은 일치해야 한다.
+  
+    로컬에서 새로운 브랜치를 생성한 상태
+  
+  
+    로컬의 현재 브랜치 이름과 {새로운 원격 브랜치 이름}은 일치해야 한다.
+  
+
+
 git push {원격 리포지토리 이름} {새로운 원격 브랜치 이름}
 
 
 # 예시
 git push origin dev-batch
 
-
-
-
-[6] 브랜치 제거하기
-
-
-  제거 대상이 아닌 브랜치로 이동한 상태
 ...
     </summary>
   
@@ -288,103 +352,19 @@ git push origin dev-batch
 
 [1] 기본 클론
 
-git clone https://github.com/{사용자명}/{프로젝트명}.git
+git clone https://github.com/{사용자명}/{원격 리포지토리명}.git
 
 
 
 
 [2] 특정 브랜치만 클론
 
-git clone -b {브랜치명} https://github.com/{사용자명}/{프로젝트명}.git
+git clone -b {브랜치명} https://github.com/{사용자명}/{원격 리포지토리명}.git
 
 
 
 
 
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Git - 명령어 - 3. 상태, 기록</title>
-    <link href="https://rito15.github.io/posts/memo-git-command-3-status-logs/" rel="alternate" type="text/html" title="Git - 명령어 - 3. 상태, 기록" />
-    <published>2022-03-23T22:00:00+09:00</published>
-  
-    <updated>2022-03-23T22:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-git-command-3-status-logs/</id>
-    <content src="https://rito15.github.io/posts/memo-git-command-3-status-logs/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Git" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Status
-
-
-변경된 파일들 상태 확인하기
-
-git status
-
-
-
-
-
-  Changes to be committed:
-    
-      git add를 통해 Staging Area로 이동된 파일들 목록
-    
-  
-  Changes not staged for commit:
-    
-      변경되었지만 아직 스테이징 되지 않은 파일들 목록
-    
-  
-
-
-
-
-Diff
-
-
-파일 변경 내용 확인하기
-
-git diff [파일명]
-
-
-
-  
-    스테이징 되지 않은, 변경된 파일들의 내용 변경사항을 보여준다.
-  
-  
-    git diff 파일명으로 특정 파일만 변경사항을 확인할 수 있다.
-  
-
-
-
-
-git diff --cached [파일명]
-
-
-
-  스테이징 된 파일들의 변경사항을 최근 ...
     </summary>
   
 

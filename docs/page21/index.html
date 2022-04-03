@@ -367,6 +367,117 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-refresh-windows/">유니티 - 각종 윈도우 새로고침하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        커스텀 에디터 - 인스펙터뷰
+
+
+
+  Editor.Repaint()
+
+
+
+  
+    // 해당 CustomEditor 내에서 호출
+this.Repaint();
+
+  
+
+
+
+
+커스텀 에디터 윈도우
+
+
+
+  EditorWindow.Repaint()
+
+
+
+  
+    this.Repaint();
+
+  
+
+
+
+
+씬뷰
+
+
+인스펙터의 변경사항이 씬뷰에 곧바로 ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, May 19, 2021,  1:00 AM +0900"
+  >
+
+  
+  
+
+  
+    May 19, 2021
+  
+
+  <i class="unloaded">2021-05-19T01:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="194 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-editor-gui-style/">유니티 - GUI 스타일 지정하기</a>
     </h1>
 
@@ -1243,104 +1354,6 @@ unsafe
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-winform-pass-through-mouse-events/">C# 윈폼 - 마우스 이벤트를 통과시킬 수 있는 컨트롤 만들기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  마우스 이벤트를 모두 무시할 수 있는 컨트롤(버튼, 레이블 등) 만들기
-
-
-
-
-방법
-
-
-
-  
-    특정 컨트롤 클래스(Button, Label, …)를 상속받는 클래스를 작성한다.
-  
-  
-    아래와 같이 프로퍼티와 메소드를 작성한다.
-  
-
-
-
-  
-    public bool Ignored { get; set; } = fal...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, May  9, 2021,  1:30 AM +0900"
-  >
-
-  
-  
-
-  
-    May  9, 2021
-  
-
-  <i class="unloaded">2021-05-09T01:30:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="417 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1981,6 +1994,11 @@ unsafe
         
         
         
+        <li><a href="/posts/memo-git-local-repo-initialization/">Git - 로컬 리포지토리 초기 세팅하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-post-processing/">유니티 - 포스트 프로세싱 적용하기</a></li>
       
         
@@ -1997,11 +2015,6 @@ unsafe
         
         
         <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-particle-system-custom-data/">유니티 - 쉐이더에서 파티클 시스템 커스텀 데이터(Custom Data) 사용하기</a></li>
       
 
       </ul>

@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "C# Shorts - 필드의 값 변화 감지하기",
+    "url": "/posts/cs-detect-changes-of-field-values/",
+    "categories": "C#, C# Memo - Shorts",
+    "tags": "csharp",
+    "date": "2022-04-03 15:40:00 +0900",
+    
+
+
+
+
+
+    "snippet": "소스 코드private int _score; // 필요하다면 _score = 123; 꼴로 초깃값 직접 설정public int Score{    // Getter에서는 단순히 대상 필드 값만 리턴    get    {        return _score;    }    // Setter 블록    set    {        // 저장된 값(_score), 현재 값(value)을 비교하여 변화 감지        if(_score != value)        {            Console.WriteLine($&quot..."
+  },
+  
+  {
     "title": "Git - 명령어 - 7. Restore",
     "url": "/posts/memo-git-command-7-restore/",
     "categories": "Memo, Git",
@@ -27,7 +42,7 @@
 
 
 
-    "snippet": "Commit  Staging Area -&amp;gt; .git Directory  스테이징 된 데이터를 깃 히스토리 영역으로 이동시킨다.[1] 코멘트와 함께 커밋하기git commit -m &quot;comment&quot;[2] 워킹 디렉토리의 수정사항도 한번에 커밋하기git commit -am &quot;comment&quot;  git add ., git commit을 동시에 하는 효과Push[1] 원격 리포지토리에 푸시하기  로컬과 원격의 브랜치 이름이 같아야 한다.git push {원격 리포지토리 이름} {브랜치 이..."
+    "snippet": "Commit  Staging Area -&amp;gt; .git Directory  스테이징 된 데이터를 깃 히스토리 영역으로 이동시킨다.[1] 코멘트와 함께 커밋하기git commit -m &quot;comment&quot;[2] 워킹 디렉토리의 수정사항도 한번에 커밋하기git commit -am &quot;comment&quot;      git add ., git commit을 동시에 하는 효과        커밋 기록이 없는 파일은 직접 git add를 해줘야 한다.  Push[1] 원격 리포지토리에 푸시하기  로컬과 원..."
   },
   
   {
@@ -42,7 +57,7 @@
 
 
 
-    "snippet": "Branch[1] 현재 브랜치 확인git branch[2] 브랜치 전체(원격 포함) 목록 확인git branch -a[3] 브랜치 이동git checkout {이동할 브랜치 이름}[4] 새로운 브랜치 생성  생성 후 해당 브랜치로 이동된다.git checkout -b {새로운 브랜치 이름}[5] 새로운 원격 브랜치 생성  로컬에서 새로운 브랜치를 생성한 상태# 로컬의 현재 브랜치와 {새로운 원격 브랜치 이름}은 일치해야 한다.git push {원격 리포지토리 이름} {새로운 원격 브랜치 이름}# 예시git push origin..."
+    "snippet": "Branch[1] 현재 브랜치 확인git branch[2] 브랜치 전체(원격 포함) 목록 확인git branch -aCheckout[1] 브랜치 이동git checkout {이동할 브랜치 이름}[2] 새로운 브랜치 생성  생성 후 해당 브랜치로 이동된다.git checkout -b {새로운 브랜치 이름}브랜치 생성/제거[1] 새로운 원격 브랜치 생성      로컬에서 새로운 브랜치를 생성한 상태        로컬의 현재 브랜치 이름과 {새로운 원격 브랜치 이름}은 일치해야 한다.  git push {원격 리포지토리 이름} {새..."
   },
   
   {
@@ -57,7 +72,7 @@
 
 
 
-    "snippet": "Clone[1] 기본 클론git clone https://github.com/{사용자명}/{프로젝트명}.git[2] 특정 브랜치만 클론git clone -b {브랜치명} https://github.com/{사용자명}/{프로젝트명}.git"
+    "snippet": "Clone[1] 기본 클론git clone https://github.com/{사용자명}/{원격 리포지토리명}.git[2] 특정 브랜치만 클론git clone -b {브랜치명} https://github.com/{사용자명}/{원격 리포지토리명}.git"
   },
   
   {

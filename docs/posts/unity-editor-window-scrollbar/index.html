@@ -624,6 +624,11 @@
         
         
         
+        <li><a href="/posts/memo-git-local-repo-initialization/">Git - 로컬 리포지토리 초기 세팅하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-memo-post-processing/">유니티 - 포스트 프로세싱 적용하기</a></li>
       
         
@@ -640,11 +645,6 @@
         
         
         <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-particle-system-custom-data/">유니티 - 쉐이더에서 파티클 시스템 커스텀 데이터(Custom Data) 사용하기</a></li>
       
 
       </ul>
@@ -4171,6 +4171,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -8825,60 +8838,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-mouse-events/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 30, 2021
-  
-
-  <i class="unloaded">2021-08-30T03:03:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 마우스 이벤트 메모</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-
-  OnInspectorGUI() 내에서 호출
-
-
-
-  
-    private static bool IsLeftMouseDown =&gt; 
-    Event.current.type == EventType.MouseDown &amp;&amp; Event.current.button == 0;
-
-private static bool IsLef...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-key-events/">
           <div class="card-body">
             <!--
@@ -8978,6 +8937,63 @@ class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
     public int callbackOrder =&gt; 0;
 
     public vo...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-find-folder-path-from-folder-asset/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep  4, 2021
+  
+
+  <i class="unloaded">2021-09-04T19:59:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 폴더 애셋으로부터 폴더 절대 경로 구하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1. 삽질
+
+
+
+  
+    …
+  
+
+  아무 생각 없이 재귀로 폴더도 찾고, 메타 파일도 찾고, Regex로 guid도 찾고…
+
+  정신 차려보니 아래와 같은 소스 코드를 짜고 있었다.
+
+  
+    
+      /// &lt;summary&gt; 지정한 폴더 애셋의 절대 경로 찾기 &lt;/summary&gt;
+private string Find...
               </p>
             </div>
           </div>
