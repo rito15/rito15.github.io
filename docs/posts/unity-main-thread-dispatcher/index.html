@@ -26,8 +26,8 @@
 <meta property="og:title" content="Main Thread Dispatcher" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Summary 워커 스레드에서 유니티 메인 스레드에 작업을 위임할 수 있게 하는 싱글톤 클래스" />
-<meta property="og:description" content="Summary 워커 스레드에서 유니티 메인 스레드에 작업을 위임할 수 있게 하는 싱글톤 클래스" />
+<meta name="description" content="메인 스레드 디스패처?" />
+<meta property="og:description" content="메인 스레드 디스패처?" />
 <link rel="canonical" href="https://rito15.github.io/posts/unity-main-thread-dispatcher/" />
 <meta property="og:url" content="https://rito15.github.io/posts/unity-main-thread-dispatcher/" />
 <meta property="og:site_name" content="Rito15" />
@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Main Thread Dispatcher" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Summary 워커 스레드에서 유니티 메인 스레드에 작업을 위임할 수 있게 하는 싱글톤 클래스","datePublished":"2021-06-30T04:04:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-main-thread-dispatcher/"},"url":"https://rito15.github.io/posts/unity-main-thread-dispatcher/","author":{"@type":"Person","name":"Rito15"},"headline":"Main Thread Dispatcher","dateModified":"2021-06-30T04:04:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"메인 스레드 디스패처?","datePublished":"2021-06-30T04:04:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-main-thread-dispatcher/"},"url":"https://rito15.github.io/posts/unity-main-thread-dispatcher/","author":{"@type":"Person","name":"Rito15"},"headline":"Main Thread Dispatcher","dateModified":"2021-06-30T04:04:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="763 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="961 words">5 min</span>
 
 
           <!-- page views -->
@@ -423,18 +423,37 @@
 
         
 
-        <h1 id="summary">Summary</h1>
+        <h1 id="메인-스레드-디스패처">메인 스레드 디스패처?</h1>
 <hr />
+
+<p>유니티 엔진에서는 메인 스레드가 아닌 다른 스레드에서</p>
+
+<p>게임오브젝트, 트랜스폼 등 유니티 API에 접근할 수 없게 제한되어 있다.</p>
+
+<p>하지만 <code class="language-plaintext highlighter-rouge">메인 스레드 디스패처</code>를 사용하면 이 문제를 해결할 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="동작-원리">동작 원리</h2>
+
 <ul>
   <li>
-    <p>워커 스레드에서 유니티 메인 스레드에 작업을 위임할 수 있게 하는 싱글톤 클래스</p>
+    <p><code class="language-plaintext highlighter-rouge">메인 스레드 디스패처</code>에는 동기화 큐(Queue)가 존재한다.</p>
   </li>
   <li>
-    <p><a href="https://github.com/PimDeWitte/UnityMainThreadDispatcher">https://github.com/PimDeWitte/UnityMainThreadDispatcher</a>의 코드를 조금 더 사용하기 편리하게 살짝 수정</p>
+    <p>다른 스레드에서 유니티 API 작업이 필요할 경우, <code class="language-plaintext highlighter-rouge">메인 스레드 디스패처</code>의 큐에 집어 넣는다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">메인 스레드 디스패처</code>는 매 프레임마다 큐에서 작업을 꺼내어 메인 스레드 내에서 수행한다.</p>
+  </li>
+  <li>
+    <p>다른 스레드에서는 위와 같이 <code class="language-plaintext highlighter-rouge">디스패처</code>를 통해 메인 스레드에 작업을 위임하게 되어, 결과적으로 안전하게 메인스레드 내에서 유니티 API 작업을 처리할 수 있게 된다.</p>
   </li>
 </ul>
 
-<h1 id="usage-example">Usage Example</h1>
+<p><br /></p>
+
+<h1 id="사용-예시">사용 예시</h1>
 <hr />
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -462,12 +481,6 @@
 23
 24
 25
-26
-27
-28
-29
-30
-31
 </pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">MainThreadDispatcher</span> <span class="n">mtd</span><span class="p">;</span>
 
 <span class="k">private</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
@@ -480,33 +493,41 @@
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">res1</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">,</span> <span class="n">res2</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
 
-    <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="m">500</span><span class="p">);</span>
-
-    <span class="c1">// 1. 비동기 수행</span>
+    <span class="c1">// 1. 비동기 요청</span>
     <span class="n">mtd</span><span class="p">.</span><span class="nf">Request</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">res1</span> <span class="p">=</span> <span class="n">Random</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1000</span><span class="p">));</span>
     <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">res1</span><span class="p">);</span>
 
-    <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="m">500</span><span class="p">);</span>
-
-    <span class="c1">// 2. 대기 - Action</span>
+    <span class="c1">// 2. await를 통한 대기 - Action</span>
     <span class="k">await</span> <span class="n">mtd</span><span class="p">.</span><span class="nf">RequestAsync</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="n">res2</span> <span class="p">=</span> <span class="n">Random</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1000</span><span class="p">);</span> <span class="p">});</span>
     <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">res2</span><span class="p">);</span>
 
-    <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="nf">Delay</span><span class="p">(</span><span class="m">500</span><span class="p">);</span>
-
-    <span class="c1">// 3. 대기 - Func&lt;int&gt;</span>
+    <span class="c1">// 3. await를 통한 대기 - Func&lt;int&gt;</span>
     <span class="n">Task</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">resultTask</span> <span class="p">=</span> <span class="n">mtd</span><span class="p">.</span><span class="nf">RequestAsync</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">Random</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1000</span><span class="p">));</span>
     <span class="k">await</span> <span class="n">resultTask</span><span class="p">;</span>
     <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">resultTask</span><span class="p">.</span><span class="n">Result</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<h1 id="source-code">Source Code</h1>
+<p><br /></p>
+
+<h1 id="소스코드">소스코드</h1>
 <hr />
 <details>
   <summary> 
 .
 </summary>
+
+  <ul>
+    <li><a href="https://github.com/PimDeWitte/UnityMainThreadDispatcher">https://github.com/PimDeWitte/UnityMainThreadDispatcher</a>의 코드를 조금 더 사용하기 편리하게 살짝 수정</li>
+  </ul>
+
+  <!--
+https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button-to-your-jekyll-blog/
+-->
+
+  <div class="code-button-header">
+    <p><button class="copy-code-button" aria-label="Copy code to clipboard"></button></p>
+  </div>
 
   <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -668,9 +689,6 @@
 158
 159
 160
-161
-162
-163
 </pre></td><td class="rouge-code"><pre><span class="cm">/*
     Copyright 2015 Pim de Witte All Rights Reserved.
 
@@ -700,9 +718,6 @@
 
 <span class="k">using</span> <span class="nn">MTD</span> <span class="p">=</span> <span class="n">MainThreadDispatcher</span><span class="p">;</span>
 
-<span class="c1">/// &lt;summary&gt; </span>
-<span class="c1">/// 워커스레드로부터 작업을 받아 처리하는 싱글톤 모노비헤이비어</span>
-<span class="c1">/// &lt;/summary&gt;</span>
 <span class="k">public</span> <span class="k">class</span> <span class="nc">MainThreadDispatcher</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
 <span class="p">{</span>
     <span class="cm">/***********************************************************************
@@ -766,13 +781,13 @@
     <span class="p">}</span>
 
     <span class="c1">/// &lt;summary&gt; 메인 스레드에 작업 요청(코루틴) &lt;/summary&gt;</span>
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">Request</span><span class="p">(</span><span class="n">IEnumerator</span> <span class="n">action</span><span class="p">)</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Request</span><span class="p">(</span><span class="n">IEnumerator</span> <span class="n">coroutine</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">lock</span> <span class="p">(</span><span class="n">_executionQueue</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="n">_executionQueue</span><span class="p">.</span><span class="nf">Enqueue</span><span class="p">(()</span> <span class="p">=&gt;</span>
             <span class="p">{</span>
-                <span class="nf">StartCoroutine</span><span class="p">(</span><span class="n">action</span><span class="p">);</span>
+                <span class="nf">StartCoroutine</span><span class="p">(</span><span class="n">coroutine</span><span class="p">);</span>
             <span class="p">});</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -827,7 +842,7 @@
         <span class="k">return</span> <span class="n">tcs</span><span class="p">.</span><span class="n">Task</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="c1">/// &lt;summary&gt; Action -&gt; IEnumerator &lt;/summary&gt;</span>
+    <span class="c1">/// &lt;summary&gt; Action을 코루틴으로 래핑 &lt;/summary&gt;</span>
     <span class="k">private</span> <span class="n">IEnumerator</span> <span class="nf">ActionWrapper</span><span class="p">(</span><span class="n">Action</span> <span class="n">a</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="nf">a</span><span class="p">();</span>
@@ -838,11 +853,14 @@
 
 </details>
 
+<p><br /></p>
+
 <h1 id="references">References</h1>
 <hr />
 <ul>
   <li><a href="https://github.com/PimDeWitte/UnityMainThreadDispatcher">https://github.com/PimDeWitte/UnityMainThreadDispatcher</a></li>
 </ul>
+
 
 
       </div>
@@ -4494,6 +4512,11 @@
   
   </div> <!-- .access -->
 
+  
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
   
 
 </div> <!-- #panel-wrapper -->
@@ -9230,7 +9253,6 @@
                 Note
 
 
-
   
     기본적으로, 플레이 모드에서 트랜스폼의 위치, 회전, 크기를 변경하여도
 플레이 모드가 종료되면 변경사항이 저장되지 않는다.
@@ -9246,9 +9268,8 @@
 How to Use
 
 
-
   
-    원하는 게임오브젝트에 Sav...
+    원하는 게임오브젝트에 SaveT...
               </p>
             </div>
           </div>
@@ -9293,14 +9314,13 @@ How to Use
                 Note
 
 
-
   
     메소드로만 사용하던 GetComponent(), Find() 기능들을 필드/프로퍼티 애트리뷰트로 간편하게 사용할 수 있다.
   
   리플렉션과 커스텀 애트리뷰트를 활용하여 제작하였다.
   Component를 상속받는 타입의 필드/프로퍼티에 사용할 수 있다.
   대상 멤버의 접근지정자에 관계 없이 모두 동작한다.
-  본 애트리...
+  본 애트리뷰...
               </p>
             </div>
           </div>
@@ -9345,7 +9365,6 @@ How to Use
                 Note
 
 
-
   유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있다.
   이를 방지할 수 있게 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스
 
@@ -9353,22 +9372,17 @@ How to Use
 How To Use
 
 
-
   스크립트 상단에 다음과 같이 작성한다.
 
 
-
-  
-    using Debug = Rito.Debug;
-
-  
+1
+using Debug = Rito.Debug;
 
 
 Download
 
 
-
-  ...
+  Debug_UnityEd...
               </p>
             </div>
           </div>

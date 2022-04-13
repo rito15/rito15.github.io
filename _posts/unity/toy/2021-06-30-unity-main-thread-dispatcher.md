@@ -8,14 +8,32 @@ math: true
 mermaid: true
 ---
 
-# Summary
+# 메인 스레드 디스패처?
 ---
-- 워커 스레드에서 유니티 메인 스레드에 작업을 위임할 수 있게 하는 싱글톤 클래스
 
-- <https://github.com/PimDeWitte/UnityMainThreadDispatcher>의 코드를 조금 더 사용하기 편리하게 살짝 수정
+유니티 엔진에서는 메인 스레드가 아닌 다른 스레드에서
+
+게임오브젝트, 트랜스폼 등 유니티 API에 접근할 수 없게 제한되어 있다.
+
+하지만 `메인 스레드 디스패처`를 사용하면 이 문제를 해결할 수 있다.
+
+<br>
 
 
-# Usage Example
+## 동작 원리
+
+- `메인 스레드 디스패처`에는 동기화 큐(Queue)가 존재한다.
+
+- 다른 스레드에서 유니티 API 작업이 필요할 경우, `메인 스레드 디스패처`의 큐에 집어 넣는다.
+
+- `메인 스레드 디스패처`는 매 프레임마다 큐에서 작업을 꺼내어 메인 스레드 내에서 수행한다.
+
+- 다른 스레드에서는 위와 같이 `디스패처`를 통해 메인 스레드에 작업을 위임하게 되어, 결과적으로 안전하게 메인스레드 내에서 유니티 API 작업을 처리할 수 있게 된다.
+
+<br>
+
+
+# 사용 예시
 ---
 
 ```cs
@@ -31,35 +49,33 @@ private async void TestBody()
 {
     int res1 = -1, res2 = -1;
 
-    await Task.Delay(500);
-
-    // 1. 비동기 수행
+    // 1. 비동기 요청
     mtd.Request(() => res1 = Random.Range(0, 1000));
     Debug.Log(res1);
 
-    await Task.Delay(500);
-
-    // 2. 대기 - Action
+    // 2. await를 통한 대기 - Action
     await mtd.RequestAsync(() => { res2 = Random.Range(0, 1000); });
     Debug.Log(res2);
 
-    await Task.Delay(500);
-
-    // 3. 대기 - Func<int>
+    // 3. await를 통한 대기 - Func<int>
     Task<int> resultTask = mtd.RequestAsync(() => Random.Range(0, 1000));
     await resultTask;
     Debug.Log(resultTask.Result);
 }
 ```
 
+<br>
 
-# Source Code
+# 소스코드
 ---
 <details>
 <summary markdown="span"> 
 .
 </summary>
 
+- <https://github.com/PimDeWitte/UnityMainThreadDispatcher>의 코드를 조금 더 사용하기 편리하게 살짝 수정
+
+{% include codeHeader.html %}
 ```cs
 /*
     Copyright 2015 Pim de Witte All Rights Reserved.
@@ -90,9 +106,6 @@ using System.Threading.Tasks;
 
 using MTD = MainThreadDispatcher;
 
-/// <summary> 
-/// 워커스레드로부터 작업을 받아 처리하는 싱글톤 모노비헤이비어
-/// </summary>
 public class MainThreadDispatcher : MonoBehaviour
 {
     /***********************************************************************
@@ -156,13 +169,13 @@ public class MainThreadDispatcher : MonoBehaviour
     }
 
     /// <summary> 메인 스레드에 작업 요청(코루틴) </summary>
-    public void Request(IEnumerator action)
+    public void Request(IEnumerator coroutine)
     {
         lock (_executionQueue)
         {
             _executionQueue.Enqueue(() =>
             {
-                StartCoroutine(action);
+                StartCoroutine(coroutine);
             });
         }
     }
@@ -217,7 +230,7 @@ public class MainThreadDispatcher : MonoBehaviour
         return tcs.Task;
     }
 
-    /// <summary> Action -> IEnumerator </summary>
+    /// <summary> Action을 코루틴으로 래핑 </summary>
     private IEnumerator ActionWrapper(Action a)
     {
         a();
@@ -228,7 +241,10 @@ public class MainThreadDispatcher : MonoBehaviour
 
 </details>
 
+<br>
+
 
 # References
 ---
 - <https://github.com/PimDeWitte/UnityMainThreadDispatcher>
+

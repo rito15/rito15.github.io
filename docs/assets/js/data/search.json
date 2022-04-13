@@ -2622,7 +2622,7 @@
 
 
 
-    "snippet": "Summary      워커 스레드에서 유니티 메인 스레드에 작업을 위임할 수 있게 하는 싱글톤 클래스        https://github.com/PimDeWitte/UnityMainThreadDispatcher의 코드를 조금 더 사용하기 편리하게 살짝 수정  Usage Exampleprivate MainThreadDispatcher mtd;private void Start(){    mtd = MainThreadDispatcher.Instance;    Task.Run(() =&amp;gt; TestBody());}pri..."
+    "snippet": "메인 스레드 디스패처?유니티 엔진에서는 메인 스레드가 아닌 다른 스레드에서게임오브젝트, 트랜스폼 등 유니티 API에 접근할 수 없게 제한되어 있다.하지만 메인 스레드 디스패처를 사용하면 이 문제를 해결할 수 있다.동작 원리      메인 스레드 디스패처에는 동기화 큐(Queue)가 존재한다.        다른 스레드에서 유니티 API 작업이 필요할 경우, 메인 스레드 디스패처의 큐에 집어 넣는다.        메인 스레드 디스패처는 매 프레임마다 큐에서 작업을 꺼내어 메인 스레드 내에서 수행한다.        다른 스레드에서는..."
   },
   
   {

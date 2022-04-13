@@ -1008,24 +1008,25 @@ How To Use
 
 
 
-        Summary
+        메인 스레드 디스패처?
 
+
+유니티 엔진에서는 메인 스레드가 아닌 다른 스레드에서
+
+게임오브젝트, 트랜스폼 등 유니티 API에 접근할 수 없게 제한되어 있다.
+
+하지만 메인 스레드 디스패처를 사용하면 이 문제를 해결할 수 있다.
+
+
+
+동작 원리
 
 
   
-    워커 스레드에서 유니티 메인 스레드에 작업을 위임할 수 있게 하는 싱글톤 클래스
+    메인 스레드 디스패처에는 동기화 큐(Queue)가 존재한다.
   
   
-    https://github.com/PimDeWitte/UnityMainThreadDispatcher의 코드를 조금 더 사용하기 편리하게 살짝 수정
-  
-
-
-Usage Example
-
-
-
-  
-    private MainT...
+    다른 스레드에서...
       </p>
     </div>
 
@@ -1072,7 +1073,7 @@ Usage Example
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="763 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="996 words">5 min</span>
 
 
         <!-- page views -->
