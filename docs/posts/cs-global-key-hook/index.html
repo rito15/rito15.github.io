@@ -434,7 +434,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4856 words">26 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4874 words">27 min</span>
 
 
           <!-- page views -->
@@ -738,10 +738,8 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 273
 274
 275
-276
 </pre></td><td class="rouge-code"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Windows.Forms</span><span class="p">;</span>
 
 <span class="k">namespace</span> <span class="nn">Rito</span>
 <span class="p">{</span>
@@ -755,7 +753,7 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
             - bool Alt     : Alt 키 누른 상태인지 여부
 
         [메소드]
-            - 후킹 시작 : Start()
+            - 후킹 시작 : Begin()
             - 후킹 종료 : Stop()
             - 핸들러 추가 : AddKeyDownHandler(메소드), AddKeyUpHandler(메소드)
             - 이벤트 변수 비우기 : ResetKeyDownEvent(), ResetKeyUpEvent()
@@ -908,7 +906,7 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         ***********************************************************************/</span>
         <span class="err">#</span><span class="n">region</span> <span class="p">.</span>
         <span class="c1">/// &lt;summary&gt; 후킹 시작 &lt;/summary&gt;</span>
-        <span class="k">public</span> <span class="k">void</span> <span class="nf">Start</span><span class="p">()</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Begin</span><span class="p">()</span>
         <span class="p">{</span>
             <span class="c1">// CAS</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Interlocked</span><span class="p">.</span><span class="nf">CompareExchange</span><span class="p">(</span><span class="k">ref</span> <span class="n">_isHooking</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">)</span> <span class="p">==</span> <span class="n">TRUE</span><span class="p">)</span>
@@ -1073,6 +1071,12 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 49
 50
 51
+52
+53
+54
+55
+56
+57
 </pre></td><td class="rouge-code"><pre><span class="k">private</span> <span class="n">GlobalKeyHook</span> <span class="n">kHook</span><span class="p">;</span>
 
 <span class="k">private</span> <span class="k">void</span> <span class="nf">KeyDownHandler</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">KeyEventArgs</span> <span class="n">args</span><span class="p">)</span>
@@ -1082,6 +1086,12 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
     <span class="c1">// 입력한 키 코드 확인</span>
     <span class="c1">//MessageBox.Show(key.ToString());</span>
     <span class="c1">//return;</span>
+
+    <span class="c1">// Ctrl + Q</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">KeyCode</span> <span class="p">==</span> <span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="n">Control</span> <span class="p">|</span> <span class="n">Keys</span><span class="p">.</span><span class="n">Q</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="c1">// Do Something</span>
+    <span class="p">}</span>
 
     <span class="k">switch</span> <span class="p">(</span><span class="n">key</span><span class="p">)</span>
     <span class="p">{</span>
@@ -2108,6 +2118,11 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         
+        <li><a href="/posts/unity-main-thread-dispatcher/">Main Thread Dispatcher</a></li>
+      
+        
+        
+        
         <li><a href="/posts/memo-git-local-repo-initialization/">Git - 로컬 리포지토리 초기 세팅하기</a></li>
       
         
@@ -2124,11 +2139,6 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
       
 
       </ul>
@@ -10476,9 +10486,11 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 3. 필드, 메소드 추가
 
-
-  
-    ...
+1
+2
+3
+4
+...
               </p>
             </div>
           </div>

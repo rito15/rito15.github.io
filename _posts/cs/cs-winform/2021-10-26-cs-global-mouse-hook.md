@@ -17,6 +17,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace Rito
 {
@@ -25,12 +26,18 @@ namespace Rito
              - 마우스 누름, 뗌, 휠 올림/내림, 휠클릭 이벤트 글로벌 후킹
 
          [메소드]
-            - 후킹 시작 : Start()
+            - 후킹 시작 : Begin()
             - 후킹 종료 : Stop()
             - 핸들러 추가 : Mouse~, Middle~, Left~, Right~ 이벤트 핸들러에 메소드 등록
             - 마우스 현재 위치 받아오기 : GetCursorPosition()
             - 마우스 이벤트 발생시키기  : Force~()
     */
+    /*
+        [2022. 04. 14. 기능 추가]
+            - BlockMouseClick() : 마우스가 현재 위치한 창에 대해 클릭 차단
+            - AllowMouseClickAll() : 마우스 클릭 차단된 적 있는 모든 창에 대해 클릭 허용
+            - ToggleShowCursor(bool) : 마우스 커서 보이기/숨기기
+     */
     class GlobalMouseHook
     {
         /***********************************************************************
@@ -59,6 +66,15 @@ namespace Rito
 
         [DllImport("user32")]
         public static extern int GetCursorPos(out MousePoint pt);
+
+
+
+        [DllImport("user32.dll")]
+        static extern bool EnableWindow(IntPtr hWnd, bool enable);
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+        [DllImport("user32.dll")]
+        private static extern int ShowCursor(bool enable);
 
         #endregion
         /***********************************************************************
@@ -115,14 +131,14 @@ namespace Rito
         #region .
         // 마우스 입력용
         private const uint LB_DOWN = 0x00000002; // 왼쪽 마우스 버튼 누름
-        private const uint LB_UP   = 0x00000004; // 왼쪽 마우스 버튼 뗌
+        private const uint LB_UP = 0x00000004; // 왼쪽 마우스 버튼 뗌
 
         private const uint RB_DOWN = 0x00000008;  // 오른쪽 마우스 버튼 누름
-        private const uint RB_UP   = 0x000000010; // 오른쪽 마우스 버튼 뗌
+        private const uint RB_UP = 0x000000010; // 오른쪽 마우스 버튼 뗌
 
         private const uint MB_DOWN = 0x00000020;  // 휠 버튼 누름
-        private const uint MB_UP   = 0x000000040; // 휠 버튼 뗌
-        private const uint WHEEL   = 0x00000800;  // 휠 스크롤
+        private const uint MB_UP = 0x000000040; // 휠 버튼 뗌
+        private const uint WHEEL = 0x00000800;  // 휠 스크롤
 
         private const int WH_MOUSE_LL = 14;
 
@@ -134,10 +150,10 @@ namespace Rito
         ***********************************************************************/
         #region .
         private delegate IntPtr MouseHookProc(int code, IntPtr wParam, IntPtr lParam);
+
         private MouseHookProc mouseHookProc;
 
         private IntPtr hookID = IntPtr.Zero;
-
         private int _isHooking = FALSE;
 
         ~GlobalMouseHook()
@@ -224,11 +240,26 @@ namespace Rito
 
         #endregion
         /***********************************************************************
-        *                               Public Methods
+        *                               Additionals
         ***********************************************************************/
         #region .
+
+        private HashSet<IntPtr> blockedWindowSet = new HashSet<IntPtr>(); // 마우스 클릭 차단된 적 있는 윈도우들
+
+
+        /// <summary> 지정 윈도우에 대해 마우스 클릭 허용 </summary>
+        private void AllowMouseClick(IntPtr window)
+        {
+            EnableWindow(window, true);
+        }
+        #endregion
+        /***********************************************************************
+        *                               Begin & Stop
+        ***********************************************************************/
+        #region .
+
         /// <summary> 마우스 후킹 시작 </summary>
-        public void Start()
+        public void Begin()
         {
             // CAS
             if (System.Threading.Interlocked.CompareExchange(ref _isHooking, TRUE, FALSE) == TRUE)
@@ -237,6 +268,7 @@ namespace Rito
             mouseHookProc = HookProc;
             hookID = SetHook(mouseHookProc);
         }
+
         /// <summary> 마우스 후킹 종료 </summary>
         public void Stop()
         {
@@ -246,7 +278,48 @@ namespace Rito
 
             UnhookWindowsHookEx(hookID);
             hookID = IntPtr.Zero;
+
+            // 블락된 모든 창에 대해 마우스 클릭 허용
+            AllowMouseClickAll();
         }
+
+        #endregion
+        /***********************************************************************
+        *                               Public Methods
+        ***********************************************************************/
+        #region .
+
+        /// <summary> 마우스가 현재 위치한 창에 대해 클릭 차단 </summary>
+        public void BlockMouseClick(bool block)
+        {
+            IntPtr window = GetForegroundWindow();
+
+            // EnableWindow(_, false) => 차단
+            EnableWindow(GetForegroundWindow(), !block);
+
+            // 차단 기록
+            if (block)
+            {
+                blockedWindowSet.Add(window);
+            }
+        }
+
+        /// <summary> 마우스 클릭 차단된 적 있는 모든 윈도우에 대해 클릭 허용 </summary>
+        public void AllowMouseClickAll()
+        {
+            foreach (var w in blockedWindowSet)
+            {
+                AllowMouseClick(w);
+            }
+            blockedWindowSet.Clear();
+        }
+
+        /// <summary> 커서 보이기/숨기기 </summary>
+        public void ToggleShowCursor(bool show)
+        {
+            ShowCursor(show);
+        }
+
         #endregion
         /***********************************************************************
         *                               Force Event Methods

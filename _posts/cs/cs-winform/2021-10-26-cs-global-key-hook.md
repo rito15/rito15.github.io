@@ -15,7 +15,6 @@ mermaid: true
 ```cs
 using System;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace Rito
 {
@@ -29,7 +28,7 @@ namespace Rito
             - bool Alt     : Alt 키 누른 상태인지 여부
 
         [메소드]
-            - 후킹 시작 : Start()
+            - 후킹 시작 : Begin()
             - 후킹 종료 : Stop()
             - 핸들러 추가 : AddKeyDownHandler(메소드), AddKeyUpHandler(메소드)
             - 이벤트 변수 비우기 : ResetKeyDownEvent(), ResetKeyUpEvent()
@@ -182,7 +181,7 @@ namespace Rito
         ***********************************************************************/
         #region .
         /// <summary> 후킹 시작 </summary>
-        public void Start()
+        public void Begin()
         {
             // CAS
             if (System.Threading.Interlocked.CompareExchange(ref _isHooking, TRUE, FALSE) == TRUE)
@@ -306,6 +305,12 @@ private void KeyDownHandler(object sender, KeyEventArgs args)
     // 입력한 키 코드 확인
     //MessageBox.Show(key.ToString());
     //return;
+
+    // Ctrl + Q
+    if (args.KeyCode == (Keys.Control | Keys.Q))
+    {
+        // Do Something
+    }
 
     switch (key)
     {
