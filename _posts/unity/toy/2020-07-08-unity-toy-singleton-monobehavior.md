@@ -51,6 +51,7 @@ public class Apple : Rito.SingletonMonoBehavior<Apple>
 .
 </summary>
 
+{% include codeHeader.html %}
 ```cs
 #if UNITY_EDITOR
 #define DEBUG_ON
@@ -223,6 +224,7 @@ namespace Rito
 [1] 완성형
 </summary>
 
+{% include codeHeader.html %}
 ```cs
 /***********************************************************************
 *                           Singleton Options
@@ -367,6 +369,7 @@ namespace Rito
 [2] 조각
 </summary>
 
+{% include codeHeader.html %}
 ```cs
 /***********************************************************************
 *                               Singleton
