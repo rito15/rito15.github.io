@@ -75,7 +75,7 @@ Shader "Custom/BasicSurfaceShader"
 # Vertex/Fragment Shader
 ---
 - 대부분의 구현을 직접 해야 한다.
-- Vertex, Fragment 쉐이더 함수는 각각 `#pragma vert Vertex쉐이더함수명` `#pragma frag Fragment쉐이더함수명`으로 등록한다.
+- Vertex, Fragment 쉐이더 함수는 각각 `#pragma vert 버텍스쉐이더함수명` `#pragma frag 프래그먼트쉐이더함수명`으로 등록한다.
 - 라이팅 계산은 Vertex 또는 Fragment 쉐이더 함수 내에서 직접 해야 한다.
 - Receive Shadow, Cast Shadow 역시 직접 해야 하며, 특히 Cast Shadow는 패스를 추가하여 작성해야 한다.
 
