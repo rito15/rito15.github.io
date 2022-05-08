@@ -367,6 +367,190 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-fixed-update-and-physics-loop/">유니티 - FixedUpdate()와 Physics Loop에 대한 이해</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Update()와 Game Loop
+
+
+유니티 엔진의 Update()는 매 프레임 호출되며,
+
+이동, 회전, 입력, 실시간 계산 등 수많은 기능을 여기에 작성한다.
+
+그렇다면 Update()의 정체는 무엇일까?
+
+
+
+그래픽스 라이브러리를 통해 구현되는 게임은 기본적으로 Game Loop(게임 루프) 를 통해 프레임 기반 동작이 수행된다.
+
+Direct...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Oct 23, 2021,  3:45 AM +0900"
+  >
+
+  
+  
+
+  
+    Oct 23, 2021
+  
+
+  <i class="unloaded">2021-10-23T03:45:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2394 words">13 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/game-math-dot-cross/">게임 수학 - 벡터의 내적과 외적</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        내적
+
+
+
+  
+    …
+  
+
+  특징
+
+  
+    내적은 벡터의 차원에 관계 없이, 동일한 차원의 벡터끼리 가능하다.
+    내적의 결과는 스칼라 값이다.
+    벡터 A, B의 내적은 A를 B에(또는 B를 A에) 투영시킨 후 두 벡터의 길이를 곱한 것과 같다.
+    내적은 교환 법칙, 결합 법칙이 성립한다.
+  
+
+  
+
+  주어진 벡터
+
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Oct 21, 2021,  4:00 PM +0900"
+  >
+
+  
+  
+
+  
+    Oct 21, 2021
+  
+
+  <i class="unloaded">2021-10-21T16:00:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1510 words">8 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/game-math-line-plane-vertex/">게임 수학 - 선과 평면, 정점 보간</a>
     </h1>
 
@@ -1100,188 +1284,7 @@ Sphere Cast to Sphere
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1860 words">10 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-fill-same-values-in-array/">C# - 배열 내부를 같은 값으로 채우기</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Memo
-
-
-
-  
-    // 인덱스 0부터 99까지 정수 1로 채우기
-int[] arr = Enumerable.Repeat(1, 100).ToArray();
-
-  
-
-
-물론 LINQ를 쓰는 만큼, 중간 버퍼의 가비지는 감안해야 한다.
-
-
-
-.NET 5.0 버전이라면 Array.Fill() 메소드를 사용하면 된다.
-
-
-  
-    int[] arr ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Oct  6, 2021, 10:00 PM +0900"
-  >
-
-  
-  
-
-  
-    Oct  6, 2021
-  
-
-  <i class="unloaded">2021-10-06T22:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="89 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-compute-buffer-gpu-instancing/">유니티 - 컴퓨트 버퍼를 통한 GPU 인스턴싱</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        GPU Instancing
-
-
-[1] 컴퓨트 버퍼 - 메시 데이터
-
-  그려낼 메시의 정보를 컴퓨트 버퍼에 저장한다.
-  컴퓨트 버퍼의 stride는 4 byte(sizeof(uint))이다.
-  컴퓨트 버퍼의 크기는 20 byte(uint 5개)이며, 각각의 데이터는 메시에 대한 정보를 담고 있다.
-
-
-
-  
-    Mesh mesh;        ...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, Oct  6, 2021,  3:15 PM +0900"
-  >
-
-  
-  
-
-  
-    Oct  6, 2021
-  
-
-  <i class="unloaded">2021-10-06T15:15:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2651 words">14 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1866 words">10 min</span>
 
 
         <!-- page views -->
@@ -1936,27 +1939,27 @@ int[] arr = Enumerable.Repeat(1, 100).ToArray();
         
         
         
-        <li><a href="/posts/memo-git-local-repo-initialization/">Git - 로컬 리포지토리 초기 세팅하기</a></li>
+        <li><a href="/posts/unity-shader-receive-and-cast-shadow/">유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-post-processing/">유니티 - 포스트 프로세싱 적용하기</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+        <li><a href="/posts/unity-main-thread-dispatcher/">Main Thread Dispatcher</a></li>
       
 
       </ul>
@@ -3101,6 +3104,8 @@ int[] arr = Enumerable.Repeat(1, 100).ToArray();
     
     
     
+    
+      
     
   
     
@@ -6648,6 +6653,8 @@ int[] arr = Enumerable.Repeat(1, 100).ToArray();
     
     
     
+    
+      
     
   
     

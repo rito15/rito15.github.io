@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Game Programmer</subtitle>
-  <updated>2022-04-13T20:57:44+09:00</updated>
+  <updated>2022-05-08T15:56:42+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,124 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>URP 마테리얼이 기본 렌더파이프라인에서 분홍색으로 나타나는 이유</title>
+    <link href="https://rito15.github.io/posts/why-urp-material-shows-pink/" rel="alternate" type="text/html" title="URP 마테리얼이 기본 렌더파이프라인에서 분홍색으로 나타나는 이유" />
+    <published>2022-05-08T14:54:00+09:00</published>
+  
+    <updated>2022-05-08T14:54:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/why-urp-material-shows-pink/</id>
+    <content src="https://rito15.github.io/posts/why-urp-material-shows-pink/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity Shader" />
+    
+    <category term="URP Shader Study" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      기본 쉐이더
+
+
+빌트인 렌더파이프라인에서 Standard 쉐이더를 사용하듯,
+
+URP에서는 Universal Render Pipeline/Lit 쉐이더를 기본으로 사용한다.
+
+두 쉐이더는 라이팅의 영향을 받으며,
+
+물리 기반 쉐이더(Physically-Based Shader, PBS)를 구현한다는 특징이 있다.
+
+
+
+핑크 마테리얼
+
+
+핑크핑크
+
+
+
+URP에서 작업한 위와 같은 씬을 빌트인 렌더파이프라인으로 옮겨오면
+
+
+
+이렇게 핑크핑크하게, 전문 용어로 ‘마젠타’ 색상으로 변해버린다.
+
+그 이유는 무엇일까?
+
+
+
+URP Lit 쉐이더
+
+경로
+{프로젝트 경로}\Library\PackageCache\com.unity.render-pipelines.universal@11.0.0\Shaders\Lit.shad...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>유니티 - 알아두면 쓸모 있을 수도 있는 경로들</title>
+    <link href="https://rito15.github.io/posts/unity-locations/" rel="alternate" type="text/html" title="유니티 - 알아두면 쓸모 있을 수도 있는 경로들" />
+    <published>2022-05-05T15:05:00+09:00</published>
+  
+    <updated>2022-05-05T15:05:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-locations/</id>
+    <content src="https://rito15.github.io/posts/unity-locations/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Memo - Shorts" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Shader
+
+
+CGIncludes
+
+C:\Program Files\{유니티 버전}\Editor\Data\CGIncludes
+
+
+URP HLSL Includes
+
+{프로젝트 경로}\Library\PackageCache\com.unity.render-pipelines.universal@11.0.0\ShaderLibrary
+
+
+
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -218,153 +336,6 @@ git push {원격 리포지토리 이름} {브랜치 이름}
 
 
   ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Git - 명령어 - 5. 브랜치</title>
-    <link href="https://rito15.github.io/posts/memo-git-command-5-branch/" rel="alternate" type="text/html" title="Git - 명령어 - 5. 브랜치" />
-    <published>2022-03-23T22:00:00+09:00</published>
-  
-    <updated>2022-03-23T22:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-git-command-5-branch/</id>
-    <content src="https://rito15.github.io/posts/memo-git-command-5-branch/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Git" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Branch
-
-
-[1] 현재 브랜치 확인
-
-git branch
-
-
-
-
-[2] 브랜치 전체(원격 포함) 목록 확인
-
-git branch -a
-
-
-
-
-Checkout
-
-
-[1] 브랜치 이동
-
-git checkout {이동할 브랜치 이름}
-
-
-
-
-[2] 새로운 브랜치 생성
-
-
-  생성 후 해당 브랜치로 이동된다.
-
-
-git checkout -b {새로운 브랜치 이름}
-
-
-
-
-브랜치 생성/제거
-
-
-[1] 새로운 원격 브랜치 생성
-
-
-  
-    로컬에서 새로운 브랜치를 생성한 상태
-  
-  
-    로컬의 현재 브랜치 이름과 {새로운 원격 브랜치 이름}은 일치해야 한다.
-  
-
-
-git push {원격 리포지토리 이름} {새로운 원격 브랜치 이름}
-
-
-# 예시
-git push origin dev-batch
-
-...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Git - 명령어 - 4. 클론</title>
-    <link href="https://rito15.github.io/posts/memo-git-command-4-clone/" rel="alternate" type="text/html" title="Git - 명령어 - 4. 클론" />
-    <published>2022-03-23T22:00:00+09:00</published>
-  
-    <updated>2022-03-23T22:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-git-command-4-clone/</id>
-    <content src="https://rito15.github.io/posts/memo-git-command-4-clone/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Git" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Clone
-
-
-[1] 기본 클론
-
-git clone https://github.com/{사용자명}/{원격 리포지토리명}.git
-
-
-
-
-[2] 특정 브랜치만 클론
-
-git clone -b {브랜치명} https://github.com/{사용자명}/{원격 리포지토리명}.git
-
-
-
-
-
     </summary>
   
 

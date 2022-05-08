@@ -367,6 +367,193 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/08-cs-thread-local-storage/">C# TLS(Thread Local Storage)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        
+
+메모리 구조
+
+
+
+
+
+
+TLS(Thread Local Storage)
+
+
+Data 영역의 전역 변수, Heap 영역의 객체는 모든 스레드가 공유한다.
+
+그리고 Stack 영역의 지역 변수(또는 멤버 변수)는 해당 블록 내에서만 사용된다.
+
+따라서 기본적으로 각각의 스레드마다 고유하게 갖는 메모리 영역은 없다.
+
+이를 만들어 줄 수 있는 것이 바로 ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Jul  8, 2021,  1:08 AM +0900"
+  >
+
+  
+  
+
+  
+    Jul  8, 2021
+  
+
+  <i class="unloaded">2021-07-08T01:08:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="803 words">4 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/07-cs-thread-synchronization/">C# Thread Synchronization and Locks</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        동기화 영역에 따른 구분
+
+
+1. 유저 모드 동기화
+
+
+  
+    유저 객체(커널에서 제공하지 않는 객체)를 사용한다.
+  
+  
+    대표적으로 크리티컬 섹션(Critical Section), 인터락(Interlocked)이 있다.
+  
+  
+    커널 모드 동기화보다 빠르다.
+  
+  
+    동일 프로세스 내에서만 동기화 가능하다.
+  
+
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Jul  8, 2021,  1:07 AM +0900"
+  >
+
+  
+  
+
+  
+    Jul  8, 2021
+  
+
+  <i class="unloaded">2021-07-08T01:07:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1689 words">9 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/06-cs-reader-writer-lock/">C# ReaderWriterLock</a>
     </h1>
 
@@ -1069,182 +1256,6 @@ using UnityEngine.Scen...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-async-task/">C# async Task</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        비동기 작업 : async-await
-
-
-
-  
-    Task를 Thread처럼 사용하는 대신, 비동기 작업을 위해 사용할 수 있다.
-  
-  
-    async, await 키워드를 이용해 이루어지는 비동기 작업은 기존의 멀티 스레딩과는 다른 방식으로 이루어진다.
-  
-  
-    async-await 작업은 Parallel이 아닌, Concurr...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Jul  6, 2021,  3:34 AM +0900"
-  >
-
-  
-  
-
-  
-    Jul  6, 2021
-  
-
-  <i class="unloaded">2021-07-06T03:34:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2886 words">16 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/cs-task/">C# Task</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Task
-
-
-
-  
-    Task는 ThreadPool을 기반으로 작성된 라이브러리이다.
-  
-  
-    내부적으로 ThreadPool의 스레드 개수를 차지하며, ThreadPool의 스레드 개수 제한에 영향을 받는다.
-  
-  
-    가벼운 비동기 작업에 특화되어 있다.
-  
-  
-    Thread.Abort()처럼 간단히 종료할 수 없다.
-...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Tue, Jul  6, 2021,  3:33 AM +0900"
-  >
-
-  
-  
-
-  
-    Jul  6, 2021
-  
-
-  <i class="unloaded">2021-07-06T03:33:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1661 words">9 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1885,27 +1896,27 @@ using UnityEngine.Scen...
         
         
         
-        <li><a href="/posts/memo-git-local-repo-initialization/">Git - 로컬 리포지토리 초기 세팅하기</a></li>
+        <li><a href="/posts/unity-shader-receive-and-cast-shadow/">유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-post-processing/">유니티 - 포스트 프로세싱 적용하기</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+        <li><a href="/posts/unity-main-thread-dispatcher/">Main Thread Dispatcher</a></li>
       
 
       </ul>
@@ -3050,6 +3061,8 @@ using UnityEngine.Scen...
     
     
     
+    
+      
     
   
     
@@ -6597,6 +6610,8 @@ using UnityEngine.Scen...
     
     
     
+    
+      
     
   
     

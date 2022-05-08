@@ -367,6 +367,188 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-window-codes/">유니티 - 에디터 윈도우 관련 유용한 코드 모음</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Enum - EditorWindowType
+
+
+
+  
+    [Flags]
+private enum EditorWindowType
+{
+    Scene = 1,
+    Game  = 2,
+    Inspector = 4,
+    Hierarchy = 8,
+    Project   = 16,
+    Console   = 32
+}
+
+  
+
+
+
+
+특정 윈도우...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, Jun 14, 2021,  1:50 AM +0900"
+  >
+
+  
+  
+
+  
+    Jun 14, 2021
+  
+
+  <i class="unloaded">2021-06-14T01:50:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="228 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/unity-editor-view-width-considering-scroll/">유니티 - 커스텀 에디터(인스펙터)의 스크롤바를 고려한 너비 구하기</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Note
+
+
+커스텀 에디터에서 EditorGUIUtility.currentViewWidth를 통해 현재 에디터의 너비를 구할 수 있지만,
+
+
+
+위처럼 컴포넌트 창이 상하로 길어져 우측에 스크롤바가 생기는 경우
+
+스크롤바가 컨트롤들을 가림에도 불구하고, currentViewWidth는 스크롤바를 포함한 너비를 알려주며
+
+스크롤바를 제외한 너비를 구하는 ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Jun 13, 2021, 11:33 PM +0900"
+  >
+
+  
+  
+
+  
+    Jun 13, 2021
+  
+
+  <i class="unloaded">2021-06-13T23:33:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="567 words">3 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/singleton-pattern/">Singleton Pattern(싱글톤 패턴)</a>
     </h1>
 
@@ -1086,216 +1268,6 @@ MeshRenderer.material.Set~ 메소드를 통해
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-pivot-editor/">Pivot Editor(메시의 피벗 위치 수정)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  메시의 피벗 위치를 직접 수정할 수 있는 기능을 제공합니다.
-  메시의 위치, 회전, 크기를 직접 변경할 수 있습니다.
-
-
-
-
-Preview
-
-
-Inspector
-
-
-Scene
-
-
-
-
-
-Preview(GIF)
-
-
-
-
-
-
-
-
-How To Use
-
-
-Pivot Editor 컴포넌트 추가
-
-
-  
-    Mesh Filter 컴포넌트...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Thu, May 20, 2021,  3:00 PM +0900"
-  >
-
-  
-  
-
-  
-    May 20, 2021
-  
-
-  <i class="unloaded">2021-05-20T15:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="501 words">2 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-position-fixer/">Position Fixer</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Summary
-
-
-
-  부모 게임오브젝트의 이동에 영향받지 않고 트랜스폼 위치를 고정시키는 컴포넌트
-
-
-How To Use
-
-
-
-  위치를 고정/해제할 게임오브젝트에 컴포넌트로 넣는다.
-  인스펙터에서 Activated를 체크하거나 스페이스바를 눌러 기능을 활성화한다.
-
-
-Download
-
-
-
-  PositionFixer.zip
-
-
-Source Cod...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Wed, May 19, 2021,  8:00 PM +0900"
-  >
-
-  
-  
-
-  
-    May 19, 2021
-  
-
-  <i class="unloaded">2021-05-19T20:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="258 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1936,27 +1908,27 @@ Source Cod...
         
         
         
-        <li><a href="/posts/memo-git-local-repo-initialization/">Git - 로컬 리포지토리 초기 세팅하기</a></li>
+        <li><a href="/posts/unity-shader-receive-and-cast-shadow/">유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-post-processing/">유니티 - 포스트 프로세싱 적용하기</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+        <li><a href="/posts/unity-main-thread-dispatcher/">Main Thread Dispatcher</a></li>
       
 
       </ul>
@@ -3101,6 +3073,8 @@ Source Cod...
     
     
     
+    
+      
     
   
     
@@ -6648,6 +6622,8 @@ Source Cod...
     
     
     
+    
+      
     
   
     

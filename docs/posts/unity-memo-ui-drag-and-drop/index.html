@@ -680,27 +680,27 @@
         
         
         
-        <li><a href="/posts/memo-git-local-repo-initialization/">Git - 로컬 리포지토리 초기 세팅하기</a></li>
+        <li><a href="/posts/unity-shader-receive-and-cast-shadow/">유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-post-processing/">유니티 - 포스트 프로세싱 적용하기</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+        <li><a href="/posts/unity-main-thread-dispatcher/">Main Thread Dispatcher</a></li>
       
 
       </ul>
@@ -1845,6 +1845,8 @@
     
     
     
+    
+      
     
   
     
@@ -8514,6 +8516,32 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9022,7 +9050,7 @@ Punch
       
       
       <div class="card">
-        <a href="/posts/unity-memo-double-key-press/">
+        <a href="/posts/unity-transform-transformation-methods/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9039,13 +9067,13 @@ Punch
   
 
   
-    Mar 14, 2021
+    Nov 13, 2021
   
 
-  <i class="unloaded">2021-03-14T23:23:00+09:00</i>
+  <i class="unloaded">2021-11-13T00:02:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 키보드 연속 입력 유지 상태 감지하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Transform의 공간 변환 메소드 간단 메모</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9054,70 +9082,23 @@ Punch
 
 
 
-                활용
+                1. 로컬-월드 변환
 
 
-
-  달리기 구현(WW, AA, SS, DD)
-
-
-Source Code
+[1] TransformPoint()
 
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-...
+  
+    위치, 회전, 크기 변환을 적용한다.
+  
+  
+    방향 벡터가 아니라, 위치 벡터를 월드 위치로 변환할 때 사용한다.
+  
+  
+    메시의 로컬 정점 좌표로부터 월드 정점 좌표를 구할 때처럼, 
+오브젝트에 완전히 종속적인 위치 벡터를 변환할 때 사용된다.
+  
+  ...
               </p>
             </div>
           </div>
@@ -10369,6 +10350,8 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
+    
+      
     
   
     

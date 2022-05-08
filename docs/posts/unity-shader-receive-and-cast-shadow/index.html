@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"Surface Shader 쉐이더를 빠르게 작성할 수 있도록 다양한 편의를 제공한다. Surface 쉐이더 함수는 #pragma surface Surface쉐이더함수명으로 등록한다. 미리 만들어진 라이팅을 간편히 적용할 수 있다. 커스텀 라이트를 작성하는 것도 어렵지 않다. Receive Shadow, Cast Shadow는 자동으로 적용된다. Surface 쉐이더 함수는 기본적으로 Fragment 쉐이더 함수에 대응되며, 필요하다면 Vertex 쉐이더 함수를 따로 추가할 수 있다.","datePublished":"2021-10-07T00:01:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-receive-and-cast-shadow/"},"url":"https://rito15.github.io/posts/unity-shader-receive-and-cast-shadow/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기","dateModified":"2021-10-07T00:01:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Surface Shader 쉐이더를 빠르게 작성할 수 있도록 다양한 편의를 제공한다. Surface 쉐이더 함수는 #pragma surface Surface쉐이더함수명으로 등록한다. 미리 만들어진 라이팅을 간편히 적용할 수 있다. 커스텀 라이트를 작성하는 것도 어렵지 않다. Receive Shadow, Cast Shadow는 자동으로 적용된다. Surface 쉐이더 함수는 기본적으로 Fragment 쉐이더 함수에 대응되며, 필요하다면 Vertex 쉐이더 함수를 따로 추가할 수 있다.","datePublished":"2021-10-07T00:01:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-receive-and-cast-shadow/"},"url":"https://rito15.github.io/posts/unity-shader-receive-and-cast-shadow/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기","dateModified":"2022-05-08T14:28:12+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,6 +407,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, May  8, 2022,  2:28 PM +0900"
+  >
+
+  
+  
+
+  
+    May  8
+  
+
+  <i class="unloaded">2022-05-08T14:28:12+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -419,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1860 words">10 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1866 words">10 min</span>
 
 
           <!-- page views -->
@@ -539,7 +568,7 @@ Surface Shader Example
 <hr />
 <ul>
   <li>대부분의 구현을 직접 해야 한다.</li>
-  <li>Vertex, Fragment 쉐이더 함수는 각각 <code class="language-plaintext highlighter-rouge">#pragma vert Vertex쉐이더함수명</code> <code class="language-plaintext highlighter-rouge">#pragma frag Fragment쉐이더함수명</code>으로 등록한다.</li>
+  <li>Vertex, Fragment 쉐이더 함수는 각각 <code class="language-plaintext highlighter-rouge">#pragma vert 버텍스쉐이더함수명</code> <code class="language-plaintext highlighter-rouge">#pragma frag 프래그먼트쉐이더함수명</code>으로 등록한다.</li>
   <li>라이팅 계산은 Vertex 또는 Fragment 쉐이더 함수 내에서 직접 해야 한다.</li>
   <li>Receive Shadow, Cast Shadow 역시 직접 해야 하며, 특히 Cast Shadow는 패스를 추가하여 작성해야 한다.</li>
 </ul>
@@ -1192,27 +1221,27 @@ Vertex/Fragment Shader Example
         
         
         
-        <li><a href="/posts/memo-git-local-repo-initialization/">Git - 로컬 리포지토리 초기 세팅하기</a></li>
+        <li><a href="/posts/unity-shader-receive-and-cast-shadow/">유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-post-processing/">유니티 - 포스트 프로세싱 적용하기</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+        <li><a href="/posts/unity-main-thread-dispatcher/">Main Thread Dispatcher</a></li>
       
 
       </ul>
@@ -2357,6 +2386,8 @@ Vertex/Fragment Shader Example
     
     
     
+    
+      
     
   
     
@@ -4744,6 +4775,32 @@ Vertex/Fragment Shader Example
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -10831,6 +10888,8 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
+    
+      
     
   
     

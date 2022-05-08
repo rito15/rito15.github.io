@@ -682,27 +682,27 @@
         
         
         
-        <li><a href="/posts/memo-git-local-repo-initialization/">Git - 로컬 리포지토리 초기 세팅하기</a></li>
+        <li><a href="/posts/unity-shader-receive-and-cast-shadow/">유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-post-processing/">유니티 - 포스트 프로세싱 적용하기</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+        <li><a href="/posts/unity-main-thread-dispatcher/">Main Thread Dispatcher</a></li>
       
 
       </ul>
@@ -1847,6 +1847,8 @@
     
     
     
+    
+      
     
   
     
@@ -4229,6 +4231,32 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9008,7 +9036,7 @@ No...
       
       
       <div class="card">
-        <a href="/posts/unity-opt-occlusion-culling/">
+        <a href="/posts/unity-mobile-optimization/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9025,13 +9053,13 @@ No...
   
 
   
-    Mar  1, 2021
+    Nov  6, 2021
   
 
-  <i class="unloaded">2021-03-01T01:40:00+09:00</i>
+  <i class="unloaded">2021-11-06T00:02:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 오클루전 컬링</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 모바일 성능 최적화</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9040,37 +9068,27 @@ No...
 
 
 
-                프러스텀 컬링 (Frustum Culling)
+                프로젝트 설정
 
 
 
   
-    카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것
+…
+
+
+  공통
   
+    프로젝트 설정에서 불필요해 보이는 옵션들은 웬만해서 끄는 것이 성능에 좋다.
   
-    따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.
+
+  물리 엔진을 사용하지 않는 경우
+  
+    Physics - Auto Simulation, Auto Sync Transforms 비활성화
   
 
-
-
-
-
-
-그냥 이렇게 두어도
-
-
-
-실제로 이렇게 컬링된다.
-
-
-
-GIF
-
-
-
-
-
-오클루전 컬링 (Occlusion C...
+  알맞은 Frame Rate 설정하기
+  
+    Applica...
               </p>
             </div>
           </div>
@@ -10332,6 +10350,8 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
+    
+      
     
   
     

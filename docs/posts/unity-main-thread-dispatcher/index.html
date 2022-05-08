@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Main Thread Dispatcher" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"메인 스레드 디스패처?","datePublished":"2021-06-30T04:04:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-main-thread-dispatcher/"},"url":"https://rito15.github.io/posts/unity-main-thread-dispatcher/","author":{"@type":"Person","name":"Rito15"},"headline":"Main Thread Dispatcher","dateModified":"2021-06-30T04:04:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"메인 스레드 디스패처?","datePublished":"2021-06-30T04:04:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-main-thread-dispatcher/"},"url":"https://rito15.github.io/posts/unity-main-thread-dispatcher/","author":{"@type":"Person","name":"Rito15"},"headline":"Main Thread Dispatcher","dateModified":"2022-04-13T21:07:54+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -392,6 +392,35 @@
 
         <div>
           <!-- lastmod -->
+          
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Wed, Apr 13, 2022,  9:07 PM +0900"
+  >
+
+  
+  
+
+  
+    Apr 13
+  
+
+  <i class="unloaded">2022-04-13T21:07:54+09:00</i>
+
+</span>
+          </span>
           
 
           <!-- read time -->
@@ -999,27 +1028,27 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         
-        <li><a href="/posts/memo-git-local-repo-initialization/">Git - 로컬 리포지토리 초기 세팅하기</a></li>
+        <li><a href="/posts/unity-shader-receive-and-cast-shadow/">유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-post-processing/">유니티 - 포스트 프로세싱 적용하기</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+        <li><a href="/posts/unity-main-thread-dispatcher/">Main Thread Dispatcher</a></li>
       
 
       </ul>
@@ -2164,6 +2193,8 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
     
     
     
+    
+      
     
   
     
@@ -4551,6 +4582,32 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9253,6 +9310,7 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
                 Note
 
 
+
   
     기본적으로, 플레이 모드에서 트랜스폼의 위치, 회전, 크기를 변경하여도
 플레이 모드가 종료되면 변경사항이 저장되지 않는다.
@@ -9268,8 +9326,9 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 How to Use
 
 
+
   
-    원하는 게임오브젝트에 SaveT...
+    원하는 게임오브젝트에 Sav...
               </p>
             </div>
           </div>
@@ -9314,13 +9373,14 @@ How to Use
                 Note
 
 
+
   
     메소드로만 사용하던 GetComponent(), Find() 기능들을 필드/프로퍼티 애트리뷰트로 간편하게 사용할 수 있다.
   
   리플렉션과 커스텀 애트리뷰트를 활용하여 제작하였다.
   Component를 상속받는 타입의 필드/프로퍼티에 사용할 수 있다.
   대상 멤버의 접근지정자에 관계 없이 모두 동작한다.
-  본 애트리뷰...
+  본 애트리...
               </p>
             </div>
           </div>
@@ -9365,6 +9425,7 @@ How to Use
                 Note
 
 
+
   유니티엔진의 콘솔 디버그는 빌드 이후에도 작동하여, 성능을 많이 소모할 수 있다.
   이를 방지할 수 있게 유니티 에디터에서만 작동하도록 래핑된 Debug 클래스
 
@@ -9372,17 +9433,22 @@ How to Use
 How To Use
 
 
+
   스크립트 상단에 다음과 같이 작성한다.
 
 
-1
-using Debug = Rito.Debug;
+
+  
+    using Debug = Rito.Debug;
+
+  
 
 
 Download
 
 
-  Debug_UnityEd...
+
+  ...
               </p>
             </div>
           </div>
@@ -10634,6 +10700,8 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
+    
+      
     
   
     

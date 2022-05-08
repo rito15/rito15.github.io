@@ -1692,27 +1692,27 @@ RET             ; stack -&gt; EIP : 함수 호출 문장 다음 지점으로 제
         
         
         
-        <li><a href="/posts/memo-git-local-repo-initialization/">Git - 로컬 리포지토리 초기 세팅하기</a></li>
+        <li><a href="/posts/unity-shader-receive-and-cast-shadow/">유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-post-processing/">유니티 - 포스트 프로세싱 적용하기</a></li>
+        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
       
         
         
         
-        <li><a href="/posts/monty-hall-problem/">몬티 홀 문제에 대한 3가지 풀이</a></li>
+        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-memo-gameobject-over-ui/">유니티 - UI 위에 게임오브젝트 띄우기</a></li>
+        <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
       
         
         
         
-        <li><a href="/posts/unity-android-authority/">유니티 안드로이드 권한 요청하기</a></li>
+        <li><a href="/posts/unity-main-thread-dispatcher/">Main Thread Dispatcher</a></li>
       
 
       </ul>
@@ -2857,6 +2857,8 @@ RET             ; stack -&gt; EIP : 함수 호출 문장 다음 지점으로 제
     
     
     
+    
+      
     
   
     
@@ -5244,6 +5246,32 @@ RET             ; stack -&gt; EIP : 함수 호출 문장 다음 지점으로 제
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9911,66 +9939,6 @@ RET             ; stack -&gt; EIP : 함수 호출 문장 다음 지점으로 제
       
       
       <div class="card">
-        <a href="/posts/unity-shader-const-variables/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 30, 2021
-  
-
-  <i class="unloaded">2021-08-30T21:00:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 쉐이더 - 상수, 상수 배열 선언하기</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Memo
-
-
-
-  Pass 내부에 작성
-
-
-
-  
-    // 매크로 상수
-#define RANDOM_SEED 426.791
-
-// 그냥 상수
-static const float RandomSeed = 5417.24;
-
-// 상수 배열
-static const float2 dir[8] = 
-{
-    float2(1, 0), float2(0, 1),   ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-key-events/">
           <div class="card-body">
             <!--
@@ -10072,6 +10040,63 @@ bool controlPressed = Event.current.modifiers == EventModifiers.Contr...
     _MyRange("My Range", Range(0, 1)) = 1
 
     _MyFloat("My ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-process-before-build/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep  1, 2021
+  
+
+  <i class="unloaded">2021-09-01T17:51:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 빌드 직전에 동작하는 기능 작성하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+
+  아래의 형태로 스크립트를 작성해놓으면 빌드 직전에 동작한다.
+
+
+
+  
+    #if UNITY_EDITOR
+
+class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
+{
+    public int callbackOrder =&gt; 0;
+
+    public vo...
               </p>
             </div>
           </div>
@@ -11333,6 +11358,8 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
     
     
     
+    
+      
     
   
     
