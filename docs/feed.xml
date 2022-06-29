@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Game Programmer</subtitle>
-  <updated>2022-05-08T15:56:42+09:00</updated>
+  <updated>2022-06-29T23:47:49+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -36,7 +36,7 @@
     
     <category term="Unity Shader" />
     
-    <category term="URP Shader Study" />
+    <category term="URP Shader Memo" />
     
   
 
@@ -82,55 +82,6 @@ URP Lit 쉐이더
 
 경로
 {프로젝트 경로}\Library\PackageCache\com.unity.render-pipelines.universal@11.0.0\Shaders\Lit.shad...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>유니티 - 알아두면 쓸모 있을 수도 있는 경로들</title>
-    <link href="https://rito15.github.io/posts/unity-locations/" rel="alternate" type="text/html" title="유니티 - 알아두면 쓸모 있을 수도 있는 경로들" />
-    <published>2022-05-05T15:05:00+09:00</published>
-  
-    <updated>2022-05-05T15:05:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/unity-locations/</id>
-    <content src="https://rito15.github.io/posts/unity-locations/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Unity" />
-    
-    <category term="Unity Memo - Shorts" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Shader
-
-
-CGIncludes
-
-C:\Program Files\{유니티 버전}\Editor\Data\CGIncludes
-
-
-URP HLSL Includes
-
-{프로젝트 경로}\Library\PackageCache\com.unity.render-pipelines.universal@11.0.0\ShaderLibrary
-
-
-
     </summary>
   
 
@@ -336,6 +287,100 @@ git push {원격 리포지토리 이름} {브랜치 이름}
 
 
   ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Git - 명령어 - 5. 브랜치</title>
+    <link href="https://rito15.github.io/posts/memo-git-command-5-branch/" rel="alternate" type="text/html" title="Git - 명령어 - 5. 브랜치" />
+    <published>2022-03-23T22:00:00+09:00</published>
+  
+    <updated>2022-03-23T22:00:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/memo-git-command-5-branch/</id>
+    <content src="https://rito15.github.io/posts/memo-git-command-5-branch/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Memo" />
+    
+    <category term="Git" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Branch
+
+
+[1] 현재 브랜치 확인
+
+git branch
+
+
+
+
+[2] 브랜치 전체(원격 포함) 목록 확인
+
+git branch -a
+
+
+
+
+Checkout
+
+
+[1] 브랜치 이동
+
+git checkout {이동할 브랜치 이름}
+
+
+
+
+[2] 새로운 브랜치 생성
+
+
+  생성 후 해당 브랜치로 이동된다.
+
+
+git checkout -b {새로운 브랜치 이름}
+
+
+
+
+브랜치 생성/제거
+
+
+[1] 새로운 원격 브랜치 생성
+
+
+  
+    로컬에서 새로운 브랜치를 생성한 상태
+  
+  
+    로컬의 현재 브랜치 이름과 {새로운 원격 브랜치 이름}은 일치해야 한다.
+  
+
+
+git push {원격 리포지토리 이름} {새로운 원격 브랜치 이름}
+
+
+# 예시
+git push origin dev-batch
+
+...
     </summary>
   
 

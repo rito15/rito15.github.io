@@ -10265,19 +10265,6 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
   
 
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
 
 
 
@@ -10333,71 +10320,21 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
                 기본 구조
 
 
+
   
 
 
 Starting Point
 
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59...
+
+  
+    Shader "RitoURP/VertexFragmentStartPoint"
+{
+    Properties
+    {
+        _MainTex ("Main Map", 2D) = "white" {}
+        _BumpMap ("Normal Map", 2D) = "bump" {...
               </p>
             </div>
           </div>
@@ -10455,10 +10392,12 @@ Starting Point
 References
 
 
+
   https://www.youtube.com/watch?v=gRq-IdShxpU&amp;ab_channel=Unity
 
 
 Download
+
 
 
   2021_0214_Water.zip
@@ -10473,7 +10412,7 @@ Download
       
       
       <div class="card">
-        <a href="/posts/unity-amplify-screen-grayscale/">
+        <a href="/posts/unity-shader-screen-blur/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -10490,13 +10429,13 @@ Download
   
 
   
-    Aug 31, 2021
+    Aug 30, 2021
   
 
-  <i class="unloaded">2021-08-31T18:01:00+09:00</i>
+  <i class="unloaded">2021-08-30T22:11:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>(Amplify) Screen Effect - Grayscale</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Screen Effect - Blur</h3>
             <div class="text-muted small">
               <p>
                 
@@ -10508,8 +10447,9 @@ Download
                 Summary
 
 
+
   
-    흑백 효과
+    블러 이펙트
   
   
     스크린 이펙트 적용 애셋 : Link
@@ -10518,38 +10458,19 @@ Download
 
 
 
-Preview
-
-
-
-
-
-
 Properties
 
 
 
-  Intensity
-    
-      흑백 효과 적용 강도
-      범위 : 0 ~ 1
-    
   
-
-
-
-
-Nodes
-
-
-
-
-
-
-Download
-
-
-  2021_0831_Screen Ef...
+    Resolution : 블러 적용 해상도(기본 0.5)
+  
+  
+    Intensity : 블러 적용 강도
+  
+  
+    Blur Area Mask : 블러 적용 영역을 제한할 수 있는 마스크
+ ...
               </p>
             </div>
           </div>
@@ -10572,8 +10493,8 @@ Download
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/unity-locations/" class="btn btn-outline-primary">
-    <p>유니티 - 알아두면 쓸모 있을 수도 있는 경로들</p>
+  <a href="/posts/cs-detect-changes-of-field-values/" class="btn btn-outline-primary">
+    <p>C# Shorts - 필드의 값 변화 감지하기</p>
   </a>
   
 
