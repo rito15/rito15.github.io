@@ -23,7 +23,7 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="유니티 - 인스펙터에 오토 프로퍼티 표시하기" />
+<meta property="og:title" content="유니티 - 인스펙터에 프로퍼티 표시하기" />
 <meta name="author" content="Rito15" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Memo" />
@@ -34,14 +34,14 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-02-02T17:08:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="유니티 - 인스펙터에 오토 프로퍼티 표시하기" />
+<meta property="twitter:title" content="유니티 - 인스펙터에 프로퍼티 표시하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 - 인스펙터에 오토 프로퍼티 표시하기","description":"Memo","dateModified":"2021-02-02T17:08:00+09:00","datePublished":"2021-02-02T17:08:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-show-property-on-inspector/"},"url":"https://rito15.github.io/posts/unity-memo-show-property-on-inspector/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Memo","datePublished":"2021-02-02T17:08:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-memo-show-property-on-inspector/"},"url":"https://rito15.github.io/posts/unity-memo-show-property-on-inspector/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 인스펙터에 프로퍼티 표시하기","dateModified":"2021-02-02T17:08:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>유니티 - 인스펙터에 오토 프로퍼티 표시하기 | Rito15
+  <title>유니티 - 인스펙터에 프로퍼티 표시하기 | Rito15
   </title>
 
   <!--
@@ -296,7 +296,7 @@
       
 
       
-        <span>유니티 - 인스펙터에 오토 프로퍼티 표시하기</span>
+        <span>유니티 - 인스펙터에 프로퍼티 표시하기</span>
       
 
     </span><!-- endof #breadcrumb -->
@@ -368,7 +368,7 @@
 
     <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-      <h1 data-toc-skip>유니티 - 인스펙터에 오토 프로퍼티 표시하기</h1>
+      <h1 data-toc-skip>유니티 - 인스펙터에 프로퍼티 표시하기</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
         <!-- Published date and author -->
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="259 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="347 words">1 min</span>
 
 
           <!-- page views -->
@@ -468,7 +468,7 @@
 <span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property2</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>이런 오토 속성 프로퍼티는 프로퍼티 앞에 <code class="language-plaintext highlighter-rouge">[SerializeField]</code>를 붙여도 인스펙터에 표시되지 않는다.</p>
+<p>프로퍼티는 앞에 <code class="language-plaintext highlighter-rouge">[SerializeField]</code>를 붙여도 인스펙터에 표시되지 않는다.</p>
 
 <p><br /></p>
 
@@ -480,7 +480,7 @@
 <span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property3</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>이렇게 오토 속성 프로퍼티의 앞에 <code class="language-plaintext highlighter-rouge">[field: SerializeField]</code>를 붙이면</p>
+<p>이렇게 프로퍼티의 앞에 <code class="language-plaintext highlighter-rouge">[field: SerializeField]</code>를 붙이면</p>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://user-images.githubusercontent.com/42164422/106571323-5c118680-657a-11eb-8400-4ef143b6238c.png" alt="image" /></p>
 
@@ -488,7 +488,19 @@
 
 <p><br /></p>
 
-<h2 id="예외">예외</h2>
+<h2 id="제한사항">제한사항</h2>
+<ul>
+  <li>단순히 <code class="language-plaintext highlighter-rouge">get;</code>, <code class="language-plaintext highlighter-rouge">set;</code>만 작성한 자동 구현 프로퍼티만 인스펙터에 나타낼 수 있다.</li>
+  <li>읽기 전용 프로퍼티, Getter 또는 Setter의 블록을 구현한 프로퍼티는 인스펙터에 나타낼 수 없다.</li>
+</ul>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="c1">// 자동 구현 프로퍼티 : 표시 가능</span>
+<span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property1</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property2</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
 
 <div class="language-cs highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -511,9 +523,14 @@
 19
 20
 21
-</pre></td><td class="rouge-code"><pre><span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property1</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+22
+23
+24
+</pre></td><td class="rouge-code"><pre><span class="c1">// 읽기 전용 프로퍼티 : 표시 불가능</span>
+<span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property3</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property2</span>
+<span class="c1">// Getter 구현 프로퍼티 : 표시 불가능</span>
+<span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property4</span>
 <span class="p">{</span>
     <span class="k">get</span>
     <span class="p">{</span>
@@ -521,7 +538,8 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property3</span>
+<span class="c1">// Getter/Setter 구현 프로퍼티 : 표시 불가능</span>
+<span class="k">public</span> <span class="n">GameObject</span> <span class="n">Property5</span>
 <span class="p">{</span>
     <span class="k">get</span>
     <span class="p">{</span>
@@ -533,10 +551,6 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></div></div>
-
-<ul>
-  <li>위와 같은 읽기 전용 프로퍼티, Getter 또는 Setter의 블록을 구현한 프로퍼티의 경우에는 인스펙터에 표시할 수 없다.</li>
-</ul>
 
 
       </div>
@@ -597,19 +611,19 @@
 
     
       
-        <a href="https://twitter.com/intent/tweet?text=유니티 - 인스펙터에 오토 프로퍼티 표시하기 - Rito15&url=https://rito15.github.io/posts/unity-memo-show-property-on-inspector/" data-toggle="tooltip" data-placement="top"
+        <a href="https://twitter.com/intent/tweet?text=유니티 - 인스펙터에 프로퍼티 표시하기 - Rito15&url=https://rito15.github.io/posts/unity-memo-show-property-on-inspector/" data-toggle="tooltip" data-placement="top"
           title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
           <i class="fa-fw fab fa-twitter"></i>
         </a>
     
       
-        <a href="https://www.facebook.com/sharer/sharer.php?title=유니티 - 인스펙터에 오토 프로퍼티 표시하기 - Rito15&u=https://rito15.github.io/posts/unity-memo-show-property-on-inspector/" data-toggle="tooltip" data-placement="top"
+        <a href="https://www.facebook.com/sharer/sharer.php?title=유니티 - 인스펙터에 프로퍼티 표시하기 - Rito15&u=https://rito15.github.io/posts/unity-memo-show-property-on-inspector/" data-toggle="tooltip" data-placement="top"
           title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
           <i class="fa-fw fab fa-facebook-square"></i>
         </a>
     
       
-        <a href="https://telegram.me/share?text=유니티 - 인스펙터에 오토 프로퍼티 표시하기 - Rito15&url=https://rito15.github.io/posts/unity-memo-show-property-on-inspector/" data-toggle="tooltip" data-placement="top"
+        <a href="https://telegram.me/share?text=유니티 - 인스펙터에 프로퍼티 표시하기 - Rito15&url=https://rito15.github.io/posts/unity-memo-show-property-on-inspector/" data-toggle="tooltip" data-placement="top"
           title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
           <i class="fa-fw fab fa-telegram"></i>
         </a>

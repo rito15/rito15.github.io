@@ -1,5 +1,5 @@
 ---
-title: 유니티 - 인스펙터에 오토 프로퍼티 표시하기
+title: 유니티 - 인스펙터에 프로퍼티 표시하기
 author: Rito15
 date: 2021-02-02 17:08:00 +09:00
 categories: [Unity, Unity Tips]
@@ -34,7 +34,7 @@ private GameObject field1;
 public GameObject Property2 { get; private set; }
 ```
 
-이런 오토 속성 프로퍼티는 프로퍼티 앞에 `[SerializeField]`를 붙여도 인스펙터에 표시되지 않는다.
+프로퍼티는 앞에 `[SerializeField]`를 붙여도 인스펙터에 표시되지 않는다.
 
 <br>
 
@@ -45,7 +45,7 @@ public GameObject Property2 { get; private set; }
 public GameObject Property3 { get; private set; }
 ```
 
-이렇게 오토 속성 프로퍼티의 앞에 `[field: SerializeField]`를 붙이면
+이렇게 프로퍼티의 앞에 `[field: SerializeField]`를 붙이면
 
 ![image](https://user-images.githubusercontent.com/42164422/106571323-5c118680-657a-11eb-8400-4ef143b6238c.png)
 
@@ -53,12 +53,22 @@ public GameObject Property3 { get; private set; }
 
 <br>
 
-## 예외
+## 제한사항
+- 단순히 `get;`, `set;`만 작성한 자동 구현 프로퍼티만 인스펙터에 나타낼 수 있다.
+- 읽기 전용 프로퍼티, Getter 또는 Setter의 블록을 구현한 프로퍼티는 인스펙터에 나타낼 수 없다.
 
 ```cs
-public GameObject Property1 { get; }
+// 자동 구현 프로퍼티 : 표시 가능
+public GameObject Property1 { get; set; }
+public GameObject Property2 { get; private set; }
+```
 
-public GameObject Property2
+```cs
+// 읽기 전용 프로퍼티 : 표시 불가능
+public GameObject Property3 { get; }
+
+// Getter 구현 프로퍼티 : 표시 불가능
+public GameObject Property4
 {
     get
     {
@@ -66,7 +76,8 @@ public GameObject Property2
     }
 }
 
-public GameObject Property3
+// Getter/Setter 구현 프로퍼티 : 표시 불가능
+public GameObject Property5
 {
     get
     {
@@ -78,5 +89,3 @@ public GameObject Property3
     }
 }
 ```
-
-- 위와 같은 읽기 전용 프로퍼티, Getter 또는 Setter의 블록을 구현한 프로퍼티의 경우에는 인스펙터에 표시할 수 없다.
