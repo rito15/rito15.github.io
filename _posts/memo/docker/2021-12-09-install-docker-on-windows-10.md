@@ -293,6 +293,39 @@ Hyper-V를 사용할 수 있더라도 WSL2를 사용하는 것이 권장된다�
 
 <br>
 
+# 추가: 가상화 설정 체크리스트
+---
+
+<details>
+<summary markdown="span">
+...
+</summary>
+
+## **[1] 메인보드 설정**
+- CPU Configuration - 가상화 Enabled
+
+## **[2] Windows 기능 활성화**
+
+> `Windows + R` - `OptionalFeatures`
+
+- Hyper-V
+- Linux용 Windows 하위시스템
+- 가상 머신 플랫폼
+- Windows 하이퍼바이저 플랫폼
+
+## **[3] 그래도 에러나는 경우**
+
+- 관리자 권한으로 PowerShell 실행 후 다음 명령어 실행
+- 참고 : <https://www.lainyzine.com/ko/article/how-to-disable-hyper-v-in-windows-10/>
+
+```ps
+bcdedit /set hypervisorlaunchtype auto
+```
+
+</details>
+
+<br>
+
 
 # References
 ---

@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Docker - 2. Windows 10 환경에서 도커 설치하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"가상화(Virtualization) 지원 확인","datePublished":"2021-12-09T19:43:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/install-docker-on-windows-10/"},"url":"https://rito15.github.io/posts/install-docker-on-windows-10/","author":{"@type":"Person","name":"Rito15"},"headline":"Docker - 2. Windows 10 환경에서 도커 설치하기","dateModified":"2021-12-09T19:43:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"가상화(Virtualization) 지원 확인","headline":"Docker - 2. Windows 10 환경에서 도커 설치하기","dateModified":"2021-12-09T19:43:00+09:00","datePublished":"2021-12-09T19:43:00+09:00","url":"https://rito15.github.io/posts/install-docker-on-windows-10/","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/install-docker-on-windows-10/"},"author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -419,7 +419,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1317 words">7 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1420 words">7 min</span>
 
 
           <!-- page views -->
@@ -745,6 +745,47 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 <p><br /></p>
 
+<h1 id="추가-가상화-설정-체크리스트">추가: 가상화 설정 체크리스트</h1>
+<hr />
+
+<details>
+  <summary>
+…
+</summary>
+
+  <h2 id="section-1"><strong>[1] 메인보드 설정</strong></h2>
+  <ul>
+    <li>CPU Configuration - 가상화 Enabled</li>
+  </ul>
+
+  <h2 id="windows--"><strong>[2] Windows 기능 활성화</strong></h2>
+
+  <blockquote>
+    <p><code class="language-plaintext highlighter-rouge">Windows + R</code> - <code class="language-plaintext highlighter-rouge">OptionalFeatures</code></p>
+  </blockquote>
+
+  <ul>
+    <li>Hyper-V</li>
+    <li>Linux용 Windows 하위시스템</li>
+    <li>가상 머신 플랫폼</li>
+    <li>Windows 하이퍼바이저 플랫폼</li>
+  </ul>
+
+  <h2 id="section-2"><strong>[3] 그래도 에러나는 경우</strong></h2>
+
+  <ul>
+    <li>관리자 권한으로 PowerShell 실행 후 다음 명령어 실행</li>
+    <li>참고 : <a href="https://www.lainyzine.com/ko/article/how-to-disable-hyper-v-in-windows-10/">https://www.lainyzine.com/ko/article/how-to-disable-hyper-v-in-windows-10/</a></li>
+  </ul>
+
+  <div class="language-ps highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nf">bcdedit</span> <span class="nv">/set</span> <span class="nf">hypervisorlaunchtype</span> <span class="nf">auto</span>
+</pre></td></tr></tbody></table></code></div>  </div>
+
+</details>
+
+<p><br /></p>
+
 <h1 id="references">References</h1>
 <hr />
 <ul>
@@ -886,6 +927,11 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         
+        <li><a href="/posts/unity-memo-show-property-on-inspector/">유니티 - 인스펙터에 프로퍼티 표시하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-shader-receive-and-cast-shadow/">유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</a></li>
       
         
@@ -902,11 +948,6 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         <li><a href="/posts/cs-global-mouse-hook/">C# - Global Mouse Hook</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-main-thread-dispatcher/">Main Thread Dispatcher</a></li>
       
 
       </ul>
