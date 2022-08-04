@@ -11,8 +11,6 @@ order: 4
 ---
 
 
-> 유니티 개발자(였던..)
+> 유니티 개발자
 
 - [https://github.com/rito15](https://github.com/rito15)
-
-- ghdtkals15@gmail.com
