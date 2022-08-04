@@ -11,6 +11,6 @@ order: 4
 ---
 
 
-> 유니티 개발자
+> 유니티 개발자 아님
 
 - [https://github.com/rito15](https://github.com/rito15)
