@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Git - 명령어 - 1. 기본" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Git - 명령어 - 1. 기본","description":"특정 명령어의 도움말 확인하기","dateModified":"2022-03-23T22:00:00+09:00","datePublished":"2022-03-23T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git-command-1-basic/"},"url":"https://rito15.github.io/posts/memo-git-command-1-basic/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"특정 명령어의 도움말 확인하기","datePublished":"2022-03-23T22:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-git-command-1-basic/"},"url":"https://rito15.github.io/posts/memo-git-command-1-basic/","author":{"@type":"Person","name":"Rito15"},"headline":"Git - 명령어 - 1. 기본","dateModified":"2022-03-23T22:00:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -405,7 +405,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="58 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="293 words">1 min</span>
 
 
           <!-- page views -->
@@ -425,9 +425,8 @@
 
         <h2 id="특정-명령어의-도움말-확인하기"><strong>특정 명령어의 도움말 확인하기</strong></h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>git {명령어} -h
-</pre></td></tr></tbody></table></code></div></div>
+<pre><code class="language-git">git {명령어} -h
+</code></pre>
 
 <p><br /></p>
 
@@ -437,11 +436,47 @@
   <li>예시 : <code class="language-plaintext highlighter-rouge">git status</code>를 <code class="language-plaintext highlighter-rouge">git st</code>로 사용하도록 단축 명령어 등록</li>
 </ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>git config --global alias.st status
-</pre></td></tr></tbody></table></code></div></div>
+<pre><code class="language-git">git config --global alias.st status
+</code></pre>
 
 <p><br /></p>
+
+<p><br /></p>
+
+<h1 id="자주-사용하는-명령어-모음">자주 사용하는 명령어 모음</h1>
+<hr />
+<ul>
+  <li>참고 : <a href="https://velog.io/@simchodi/Git-초기세팅-기본명렁어">https://velog.io/@simchodi/Git-초기세팅-기본명렁어</a></li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="1-gitignore-재적용"><strong>[1] gitignore 재적용</strong></h3>
+<ul>
+  <li><a href="https://dev-jwblog.tistory.com/51">https://dev-jwblog.tistory.com/51</a></li>
+</ul>
+
+<pre><code class="language-git">git rm -r --cached .
+</code></pre>
+
+<h3 id="2-리모트"><strong>[2] 리모트</strong></h3>
+
+<pre><code class="language-git"># 별칭은 대부분 origin
+git remote -v                             # 원격 리포지토리 이름(별칭), URL 확인
+git remote add {별칭} {리포지토리 URL}     # 해당 별칭으로 원격 리포지토리 등록
+git remote remove {별칭}                  # 해당 별칭으로 등록된 원격 리포지토리 제거
+git remote set-url {별칭} {리포지토리 URL} # 해당 별칭에 등록된 원격 리포지토리 주소 변경
+</code></pre>
+
+<h3 id="3-태그"><strong>[3] 태그</strong></h3>
+
+<pre><code class="language-git">git tag          # 로컬에서 태그 목록 확인
+git tag alpha    # 로컬에서 'alpha'라는 이름으로 태그 추가
+git push --tag   # 태그 포함하여 원격에 푸시
+
+git tag -d alpha                  # 로컬에서 'alpha` 태그 제거
+git push origin --delete alpha    # 원격에서 'alpha' 태그 제거
+</code></pre>
 
 
       </div>
