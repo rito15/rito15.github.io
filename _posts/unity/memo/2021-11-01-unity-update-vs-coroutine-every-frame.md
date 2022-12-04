@@ -367,7 +367,7 @@ public class UpdateCoroutineManager : MonoBehaviour
 # 실험 결과 정리
 ---
 
-|환경|대상|프레임당 평균 소요 시간|
+|환경|대상|프레임당 평균 소요 시간(ms)|
 |---|---|:---:|
 |Unity Editor|Update()                     |67.89|
 |Unity Editor|Custom Update                |33.99|
@@ -384,4 +384,34 @@ public class UpdateCoroutineManager : MonoBehaviour
 
 <br>
 
+매 프레임 한 번씩 호출되는 경우,
+
 어떤 플랫폼에서든 항상 `Update()`가 코루틴보다 성능이 좋다.
+
+<br>
+
+## **사족**
+
+간혹 위 실험 결과를 오해하는 경우가 있는데,
+
+`Update()`를 통해 매 프레임 호출 vs 코루틴으로 0.1초마다 호출
+
+이와 같은 경우에 대해 위 실험 결과를 대입해서는 안된다.
+
+'동일하게 매 프레임마다 한 번씩 호출하는 경우'에 대해서만 단순히 참고할 수 있는 정도로 이해하면 된다.
+
+<br>
+
+그러니까, 어차피 매 프레임마다 호출하는데다가 관리상 문제도 없는 경우,
+
+ 굳이 `Update()`를 통해 호출하던 것을 코루틴으로 바꿀 필요는 없다는 의미.
+
+<br>
+
+오히려 `Update()`로 매프레임 호출하던 것을
+
+코루틴의 `yield return WaitForSeconds(float)` 등으로 바꾸어 최적화를 이루었다면,
+
+올바른 방향이니까 이 실험 결과를 보고 오해하지 않았으면 한다.
+
+

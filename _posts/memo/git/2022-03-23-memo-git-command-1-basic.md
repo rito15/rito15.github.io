@@ -62,4 +62,5 @@ git push --tag   # 태그 포함하여 원격에 푸시
 
 git tag -d alpha                  # 로컬에서 'alpha` 태그 제거
 git push origin --delete alpha    # 원격에서 'alpha' 태그 제거
+git push origin :alpha            # 원격에서 'alpha' 태그 제거
 ```
