@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 매 프레임 처리 성능 테스트 - Update() vs 코루틴" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"실험 목적","datePublished":"2021-11-01T15:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-update-vs-coroutine-every-frame/"},"url":"https://rito15.github.io/posts/unity-update-vs-coroutine-every-frame/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 매 프레임 처리 성능 테스트 - Update() vs 코루틴","dateModified":"2021-11-01T15:02:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"실험 목적","datePublished":"2021-11-01T15:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-update-vs-coroutine-every-frame/"},"url":"https://rito15.github.io/posts/unity-update-vs-coroutine-every-frame/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 매 프레임 처리 성능 테스트 - Update() vs 코루틴","dateModified":"2022-12-04T23:43:35+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -407,6 +407,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Dec  4, 2022, 11:43 PM +0900"
+  >
+
+  
+  
+
+  
+    Dec  4
+  
+
+  <i class="unloaded">2022-12-04T23:43:35+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -419,7 +448,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="908 words">5 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1171 words">6 min</span>
 
 
           <!-- page views -->
@@ -963,7 +992,7 @@ UpdateCoroutineManager.cs
     <tr>
       <th>환경</th>
       <th>대상</th>
-      <th style="text-align: center">프레임당 평균 소요 시간</th>
+      <th style="text-align: center">프레임당 평균 소요 시간(ms)</th>
     </tr>
   </thead>
   <tbody>
@@ -1032,7 +1061,37 @@ UpdateCoroutineManager.cs
 
 <p><br /></p>
 
+<p>매 프레임 한 번씩 호출되는 경우,</p>
+
 <p>어떤 플랫폼에서든 항상 <code class="language-plaintext highlighter-rouge">Update()</code>가 코루틴보다 성능이 좋다.</p>
+
+<p><br /></p>
+
+<h1 id="주의사항">주의사항</h1>
+<hr />
+
+<p>간혹 위 실험 결과를 오해하는 경우가 있는데,</p>
+
+<p><code class="language-plaintext highlighter-rouge">Update()</code>를 통해 매 프레임 호출 vs 코루틴으로 0.1초마다 호출</p>
+
+<p>이와 같은 경우에 대해 위 실험 결과를 대입해서는 안된다.</p>
+
+<p>‘동일하게 매 프레임마다 한 번씩 호출하는 경우’에 대해서만 단순히 참고할 수 있는 정도로 이해하면 된다.</p>
+
+<p><br /></p>
+
+<p>그러니까, 어차피 매 프레임마다 호출하는 데다가 관리상 문제도 없는 경우,</p>
+
+<p>굳이 <code class="language-plaintext highlighter-rouge">Update()</code>를 통해 호출하던 것을 코루틴으로 바꿀 필요는 없다는 의미다.</p>
+
+<p><br /></p>
+
+<p>오히려 <code class="language-plaintext highlighter-rouge">Update()</code>로 매프레임 호출하여 병목이 발생하던 지점을</p>
+
+<p>코루틴의 <code class="language-plaintext highlighter-rouge">yield return WaitForSeconds(float)</code> 등으로 바꾸어 최적화를 이루었다면,</p>
+
+<p>올바른 방향이니까 이 실험 결과를 보고 오해하지 않았으면 한다.</p>
+
 
 
       </div>
@@ -1165,6 +1224,16 @@ UpdateCoroutineManager.cs
         
         
         
+        <li><a href="/posts/memo-git-command-1-basic/">Git - 명령어 - 1. 기본</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/unity-update-vs-coroutine-every-frame/">유니티 - 매 프레임 처리 성능 테스트 - Update() vs 코루틴</a></li>
+      
+        
+        
+        
         <li><a href="/posts/install-docker-on-windows-10/">Docker - 2. Windows 10 환경에서 도커 설치하기</a></li>
       
         
@@ -1176,16 +1245,6 @@ UpdateCoroutineManager.cs
         
         
         <li><a href="/posts/unity-shader-receive-and-cast-shadow/">유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
       
 
       </ul>

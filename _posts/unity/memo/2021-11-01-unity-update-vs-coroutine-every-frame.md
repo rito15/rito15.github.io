@@ -390,11 +390,14 @@ public class UpdateCoroutineManager : MonoBehaviour
 
 <br>
 
-## **사족**
+
+
+# 주의사항
+---
 
 간혹 위 실험 결과를 오해하는 경우가 있는데,
 
-`Update()`를 통해 매 프레임 호출 vs 코루틴으로 0.1초마다 호출
+`Update()`를 통해 매 프레임 호출 vs 코루틴으로 0.1초마다 호출 
 
 이와 같은 경우에 대해 위 실험 결과를 대입해서는 안된다.
 
@@ -402,13 +405,13 @@ public class UpdateCoroutineManager : MonoBehaviour
 
 <br>
 
-그러니까, 어차피 매 프레임마다 호출하는데다가 관리상 문제도 없는 경우,
+그러니까, 어차피 매 프레임마다 호출하는 데다가 관리상 문제도 없는 경우,
 
- 굳이 `Update()`를 통해 호출하던 것을 코루틴으로 바꿀 필요는 없다는 의미.
+굳이 `Update()`를 통해 호출하던 것을 코루틴으로 바꿀 필요는 없다는 의미다.
 
 <br>
 
-오히려 `Update()`로 매프레임 호출하던 것을
+오히려 `Update()`로 매프레임 호출하여 병목이 발생하던 지점을
 
 코루틴의 `yield return WaitForSeconds(float)` 등으로 바꾸어 최적화를 이루었다면,
 
