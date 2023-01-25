@@ -539,7 +539,7 @@ FixedUpdate()
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/unity-deltatime-and-fixeddeltatime/">유니티 - Time.deltaTime과 Time.fixedDeltaTime의 올바른 이해</a>
+      <a href="/posts/unity-deltatime-and-fixeddeltatime/">유니티 - Time.deltaTime과 Time.fixedDeltaTime</a>
     </h1>
 
     <div class="post-content">
@@ -553,15 +553,13 @@ FixedUpdate()
         deltaTime과 fixedDeltaTime
 
 
-deltaTime
+델타타임의 용도
 
-Time.deltaTime을 통해 참조할 수 있다.
+타겟 디바이스마다 성능 격차로 인해 프레임 수행 시간이 다를 것을 대비해 보정하기 위해 사용된다.
 
-이전 프레임의 발생 시각과 현재 프레임의 발생 시각 사이의 시간 간격,
+예를 들어 A 디바이스는 1초에 10프레임, B 디바이스는 1초에 20프레임이 재생된다면
 
-즉 이전 프레임의 수행에 걸린 시간을 의미한다.
-
-Update() 내에서 시간의 진행에 따른 일정한 기능을 구현하기 위해 Time.deltaTime을 이용해...
+그냥 Update() 내에서 프레임마다 거리를 1씩 가도록 구현했을 경우, 1초에 A는 10,...
       </p>
     </div>
 
@@ -608,7 +606,7 @@ Update() 내에서 시간의 진행에 따른 일정한 기능을 구현하기 �
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="891 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="658 words">3 min</span>
 
 
         <!-- page views -->
@@ -1929,6 +1927,16 @@ AD 벡터를 구하고, A에서 AD를 더해 D를 계산하는 방식이다.
         
         
         
+        <li><a href="/posts/unity-update-vs-coroutine-every-frame/">유니티 - 매 프레임 처리 성능 테스트 - Update() vs 코루틴</a></li>
+      
+        
+        
+        
+        <li><a href="/posts/memo-git-command-1-basic/">Git - 명령어 - 1. 기본</a></li>
+      
+        
+        
+        
         <li><a href="/posts/install-docker-on-windows-10/">Docker - 2. Windows 10 환경에서 도커 설치하기</a></li>
       
         
@@ -1940,16 +1948,6 @@ AD 벡터를 구하고, A에서 AD를 더해 D를 계산하는 방식이다.
         
         
         <li><a href="/posts/unity-shader-receive-and-cast-shadow/">유니티 - Vert/Frag 쉐이더에서 Receive Shadow, Cast Shadow 구현하기</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-toy-singleton-monobehavior/">Singleton MonoBehavior (상속용, 복붙용 싱글톤)</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/cs-global-key-hook/">C# - Global Key Hook</a></li>
       
 
       </ul>
@@ -5469,7 +5467,7 @@ AD 벡터를 구하고, A에서 AD를 더해 D를 계산하는 방식이다.
   <div class="d-flex justify-content-between align-items-center">
     <div class="footer-left">
       <p class="mb-0">
-        © 2022
+        © 2023
         <a href="https://github.com/rito15">Rito15</a>.
         
         <span data-toggle="tooltip" data-placement="top"

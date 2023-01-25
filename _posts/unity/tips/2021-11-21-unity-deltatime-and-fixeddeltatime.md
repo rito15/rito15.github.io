@@ -1,15 +1,31 @@
 ---
-title: 유니티 - Time.deltaTime과 Time.fixedDeltaTime의 올바른 이해
+title: 유니티 - Time.deltaTime과 Time.fixedDeltaTime
 author: Rito15
 date: 2021-11-21 23:45:00 +09:00
 categories: [Unity, Unity Tips]
 tags: [unity, csharp]
-math: true
-mermaid: true
+math: false
+mermaid: false
 ---
 
 # deltaTime과 fixedDeltaTime
 ---
+
+## **델타타임의 용도**
+
+타겟 디바이스마다 성능 격차로 인해 프레임 수행 시간이 다를 것을 대비해 보정하기 위해 사용된다.
+
+예를 들어 A 디바이스는 1초에 10프레임, B 디바이스는 1초에 20프레임이 재생된다면
+
+그냥 `Update()` 내에서 프레임마다 거리를 1씩 가도록 구현했을 경우, 1초에 A는 10, B는 20만큼 이동하게 된다.
+
+하지만 원래 의도가 동일한 시간에 동일한 거리만큼 이동하도록 구현하는 것이었다면, 델타타임을 곱해주면 된다.
+
+프레임마다 `1 * deltaTime`만큼 이동하도록 구현하면 A의 델타타임은 0.1, B의 델타타임은 0.05이므로
+
+A, B 모두 동일하게 1초에 1씩 이동하게 할 수 있다.
+
+<br>
 
 ## **deltaTime**
 
@@ -33,12 +49,25 @@ mermaid: true
 
 <br>
 
+## **참고사항**
+
+`FixedUpdate()` 내에서 `Time.deltaTime`을 참조해도 실제로는 `Time.fixedDeltaTime`의 값이 참조된다.
+
+하지만 반대로 `Update()` 내에서 `Time.fixedDeltaTime`을 참조하면 그대로 `Time.fixedDeltaTime`의 값이 참조되니 주의해야 한다.
+
+그러니 타겟 디바이스의 성능에 따른 보정을 위해 델타 타임을 사용할 때,
+
+`Update()`와 `FixedUpdate()` 내에서 `Time.deltaTime`을 똑같이 참조해도 각각 의도에 맞게 사용된다.
+
+<br>
 
 
 # Frame Rate
 ---
 
 '프레임률'이라고도 부르며, 초당 프레임 진행 횟수를 의미한다.
+
+즉, 델타 타임과는 역수 관계이다. (`1 / deltaTime == frameRate)
 
 흔히 **FPS(Frame Per Second)**라고도 한다.
 
@@ -60,6 +89,7 @@ mermaid: true
 <br>
 
 
+<!--  틀려먹음
 
 # 잘못된 deltaTime의 사용
 ---
@@ -138,3 +168,4 @@ mermaid: true
 만약 완전히 이해하지 못했더라도, 법칙처럼 외우면 된다.
 
 
+-->

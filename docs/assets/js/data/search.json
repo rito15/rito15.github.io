@@ -132,7 +132,7 @@
 
 
 
-    "snippet": "특정 명령어의 도움말 확인하기git {명령어} -h임의 단축 명령어 만들기  예시 : git status를 git st로 사용하도록 단축 명령어 등록git config --global alias.st status자주 사용하는 명령어 모음## 참고 : https://velog.io/@simchodi/Git-초기세팅-기본명렁어 ### gitignore 재적용# 참고 : https://dev-jwblog.tistory.com/51git rm -r --cached .# 리모트# * 별칭은 대부분 origingit remote -v  ..."
+    "snippet": "특정 명령어의 도움말 확인하기git {명령어} -h임의 단축 명령어 만들기  예시 : git status를 git st로 사용하도록 단축 명령어 등록git config --global alias.st status자주 사용하는 명령어 모음  참고 : https://velog.io/@simchodi/Git-초기세팅-기본명렁어[1] gitignore 재적용  https://dev-jwblog.tistory.com/51git rm -r --cached .[2] 리모트# 별칭은 대부분 origingit remote -v         ..."
   },
   
   {
@@ -301,7 +301,7 @@
   },
   
   {
-    "title": "유니티 - Time.deltaTime과 Time.fixedDeltaTime의 올바른 이해",
+    "title": "유니티 - Time.deltaTime과 Time.fixedDeltaTime",
     "url": "/posts/unity-deltatime-and-fixeddeltatime/",
     "categories": "Unity, Unity Tips",
     "tags": "unity, csharp",
@@ -312,7 +312,7 @@
 
 
 
-    "snippet": "deltaTime과 fixedDeltaTimedeltaTimeTime.deltaTime을 통해 참조할 수 있다.이전 프레임의 발생 시각과 현재 프레임의 발생 시각 사이의 시간 간격,즉 이전 프레임의 수행에 걸린 시간을 의미한다.Update() 내에서 시간의 진행에 따른 일정한 기능을 구현하기 위해 Time.deltaTime을 이용해 보정한다.fixedDeltaTimeTime.fixedDeltaTime을 통해 참조할 수 있다.기본적으로 물리 업데이트 발생 주기, 즉 Fixed Time Step 값을 의미한다.마찬가지로 Fixed..."
+    "snippet": "deltaTime과 fixedDeltaTime델타타임의 용도타겟 디바이스마다 성능 격차로 인해 프레임 수행 시간이 다를 것을 대비해 보정하기 위해 사용된다.예를 들어 A 디바이스는 1초에 10프레임, B 디바이스는 1초에 20프레임이 재생된다면그냥 Update() 내에서 프레임마다 거리를 1씩 가도록 구현했을 경우, 1초에 A는 10, B는 20만큼 이동하게 된다.하지만 원래 의도가 동일한 시간에 동일한 거리만큼 이동하도록 구현하는 것이었다면, 델타타임을 곱해주면 된다.프레임마다 1 * deltaTime만큼 이동하도록 구현하면..."
   },
   
   {
