@@ -317,9 +317,18 @@ Hyper-V를 사용할 수 있더라도 WSL2를 사용하는 것이 권장된다�
 
 - 관리자 권한으로 PowerShell 실행 후 다음 명령어 실행
 - 참고 : <https://www.lainyzine.com/ko/article/how-to-disable-hyper-v-in-windows-10/>
+- 재부팅
 
 ```ps
-bcdedit /set hypervisorlaunchtype auto
+bcdedit /set hypervisorlaunchtype auto    # 가상화 켜기
+```
+
+## **참고:PS**
+
+```ps
+bcdedit /enum | findstr "hypervisor"      # off: 가상화 꺼짐 / auto: 켜짐(자동)
+
+bcdedit /set hypervisorlaunchtype off     # 가상화 끄기(앱플레이어 등 사용하는 경우)
 ```
 
 </details>
