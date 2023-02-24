@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드","description":"Note 입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심","dateModified":"2021-12-15T00:01:34+09:00","datePublished":"2021-11-04T20:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-rigidbody-move-and-jump/"},"url":"https://rito15.github.io/posts/unity-rigidbody-move-and-jump/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Note 입력은 Update(), 물리 처리는 FixedUpdate()로 철저히 구분하는 것이 핵심","datePublished":"2021-11-04T20:30:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-rigidbody-move-and-jump/"},"url":"https://rito15.github.io/posts/unity-rigidbody-move-and-jump/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 키보드 입력을 통한 리지드바디 이동, 회전, 점프 기본 코드","dateModified":"2021-12-15T00:01:34+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1291,6 +1291,11 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         
+        <li><a href="/posts/install-docker-on-windows-10/">Docker - 2. Windows 10 환경에서 도커 설치하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-deltatime-and-fixeddeltatime/">유니티 - Time.deltaTime과 Time.fixedDeltaTime</a></li>
       
         
@@ -1302,11 +1307,6 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
         
         
         <li><a href="/posts/memo-git-command-1-basic/">Git - 명령어 - 1. 기본</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/install-docker-on-windows-10/">Docker - 2. Windows 10 환경에서 도커 설치하기</a></li>
       
         
         
@@ -4845,6 +4845,19 @@ https://www.aleksandrhovhannisyan.com/blog/how-to-add-a-copy-to-clipboard-button
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9652,7 +9665,7 @@ Punch
       
       
       <div class="card">
-        <a href="/posts/unity-memo-double-key-press/">
+        <a href="/posts/unity-transform-transformation-methods/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9669,13 +9682,13 @@ Punch
   
 
   
-    Mar 14, 2021
+    Nov 13, 2021
   
 
-  <i class="unloaded">2021-03-14T23:23:00+09:00</i>
+  <i class="unloaded">2021-11-13T00:02:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 키보드 연속 입력 유지 상태 감지하기</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - Transform의 공간 변환 메소드 간단 메모</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9684,24 +9697,23 @@ Punch
 
 
 
-                활용
+                1. 로컬-월드 변환
 
 
-
-  달리기 구현(WW, AA, SS, DD)
-
-
-Source Code
-
+[1] TransformPoint()
 
 
   
-    /// &lt;summary&gt; 키보드 연속 입력 유지 상태 감지 &lt;/summary&gt;
-private class DoubleKeyPressDetection
-{
-    public KeyCode Key { get; private set; }
-
-...
+    위치, 회전, 크기 변환을 적용한다.
+  
+  
+    방향 벡터가 아니라, 위치 벡터를 월드 위치로 변환할 때 사용한다.
+  
+  
+    메시의 로컬 정점 좌표로부터 월드 정점 좌표를 구할 때처럼, 
+오브젝트에 완전히 종속적인 위치 벡터를 변환할 때 사용된다.
+  
+  ...
               </p>
             </div>
           </div>

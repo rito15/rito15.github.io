@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Screen Effect - Zoom Blur" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Screen Effect - Zoom Blur","description":"Summary","dateModified":"2021-08-31T21:33:00+09:00","datePublished":"2021-08-31T21:33:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-screen-zoom-blur/"},"url":"https://rito15.github.io/posts/unity-shader-screen-zoom-blur/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Summary","datePublished":"2021-08-31T21:33:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-shader-screen-zoom-blur/"},"url":"https://rito15.github.io/posts/unity-shader-screen-zoom-blur/","author":{"@type":"Person","name":"Rito15"},"headline":"Screen Effect - Zoom Blur","dateModified":"2021-08-31T21:33:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -823,6 +823,11 @@
         
         
         
+        <li><a href="/posts/install-docker-on-windows-10/">Docker - 2. Windows 10 환경에서 도커 설치하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-deltatime-and-fixeddeltatime/">유니티 - Time.deltaTime과 Time.fixedDeltaTime</a></li>
       
         
@@ -834,11 +839,6 @@
         
         
         <li><a href="/posts/memo-git-command-1-basic/">Git - 명령어 - 1. 기본</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/install-docker-on-windows-10/">Docker - 2. Windows 10 환경에서 도커 설치하기</a></li>
       
         
         
@@ -5573,6 +5573,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9052,74 +9065,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-shader-screen-blur/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 30, 2021
-  
-
-  <i class="unloaded">2021-08-30T22:11:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Screen Effect - Blur</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Summary
-
-
-
-  
-    블러 이펙트
-  
-  
-    스크린 이펙트 적용 애셋 : Link
-  
-
-
-
-
-Properties
-
-
-
-  
-    Resolution : 블러 적용 해상도(기본 0.5)
-  
-  
-    Intensity : 블러 적용 강도
-  
-  
-    Blur Area Mask : 블러 적용 영역을 제한할 수 있는 마스크
- ...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-shader-script-rainy-window/">
           <div class="card-body">
             <!--
@@ -9238,6 +9183,65 @@ Source Code
     {
         _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
         _Intensity(...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-shader-script-transparent-2pass/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Mar 15, 2021
+  
+
+  <i class="unloaded">2021-03-15T17:00:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>2-Pass Transparent Shader</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Summary
+
+
+
+  2패스로 작성하여 내부가 드러나는 알파 소팅 문제가 발생하지 않는 쉐이더
+
+
+Source Code
+
+
+
+  
+    Shader "Custom/Transparent2Pass"
+{
+    Properties
+    {
+        _MainTex("Albedo (RGB)", 2D) = "white" {}
+        _Alph...
               </p>
             </div>
           </div>

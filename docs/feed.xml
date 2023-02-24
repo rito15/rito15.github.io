@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Game Programmer</subtitle>
-  <updated>2023-02-24T22:16:06+09:00</updated>
+  <updated>2023-02-24T22:51:46+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -17,6 +17,55 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>관리자 권한으로 CMD 열기(배치파일)</title>
+    <link href="https://rito15.github.io/posts/open-cmd-as-admin/" rel="alternate" type="text/html" title="관리자 권한으로 CMD 열기(배치파일)" />
+    <published>2023-02-24T22:31:23+09:00</published>
+  
+    <updated>2023-02-24T22:31:23+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/open-cmd-as-admin/</id>
+    <content src="https://rito15.github.io/posts/open-cmd-as-admin/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="cmd" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      관리자 권한으로 CMD 여는 배치파일 만들기
+
+
+cmdcmd.bat
+
+@echo off
+
+&amp;gt;nul 2&amp;gt;&amp;amp;1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+if '%errorlevel%' NEQ '0' (
+    echo.
+    goto UACPrompt
+) else ( goto gotAdmin )
+:UACPrompt
+    echo Set UAC = CreateObject^("Shell.Application"^) &amp;gt; "%temp%\getadmin.vbs"
+    set params = %*:"=""
+    echo UAC.ShellExecute "cmd.exe", "/c %~s0 %params%"...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
@@ -287,100 +336,6 @@ git push {원격 리포지토리 이름} {브랜치 이름}
 
 
   ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Git - 명령어 - 5. 브랜치</title>
-    <link href="https://rito15.github.io/posts/memo-git-command-5-branch/" rel="alternate" type="text/html" title="Git - 명령어 - 5. 브랜치" />
-    <published>2022-03-23T22:00:00+09:00</published>
-  
-    <updated>2022-03-23T22:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-git-command-5-branch/</id>
-    <content src="https://rito15.github.io/posts/memo-git-command-5-branch/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Git" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Branch
-
-
-[1] 현재 브랜치 확인
-
-git branch
-
-
-
-
-[2] 브랜치 전체(원격 포함) 목록 확인
-
-git branch -a
-
-
-
-
-Checkout
-
-
-[1] 브랜치 이동
-
-git checkout {이동할 브랜치 이름}
-
-
-
-
-[2] 새로운 브랜치 생성
-
-
-  생성 후 해당 브랜치로 이동된다.
-
-
-git checkout -b {새로운 브랜치 이름}
-
-
-
-
-브랜치 생성/제거
-
-
-[1] 새로운 원격 브랜치 생성
-
-
-  
-    로컬에서 새로운 브랜치를 생성한 상태
-  
-  
-    로컬의 현재 브랜치 이름과 {새로운 원격 브랜치 이름}은 일치해야 한다.
-  
-
-
-git push {원격 리포지토리 이름} {새로운 원격 브랜치 이름}
-
-
-# 예시
-git push origin dev-batch
-
-...
     </summary>
   
 

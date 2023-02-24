@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="유니티 - 모델 트랜스폼 구조 최적화하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"유니티 - 모델 트랜스폼 구조 최적화하기","description":"문제점","dateModified":"2021-09-17T04:13:36+09:00","datePublished":"2021-09-16T00:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-optimize-model-transform/"},"url":"https://rito15.github.io/posts/unity-optimize-model-transform/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"문제점","datePublished":"2021-09-16T00:02:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/unity-optimize-model-transform/"},"url":"https://rito15.github.io/posts/unity-optimize-model-transform/","author":{"@type":"Person","name":"Rito15"},"headline":"유니티 - 모델 트랜스폼 구조 최적화하기","dateModified":"2021-09-17T04:13:36+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -682,6 +682,11 @@
         
         
         
+        <li><a href="/posts/install-docker-on-windows-10/">Docker - 2. Windows 10 환경에서 도커 설치하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-deltatime-and-fixeddeltatime/">유니티 - Time.deltaTime과 Time.fixedDeltaTime</a></li>
       
         
@@ -693,11 +698,6 @@
         
         
         <li><a href="/posts/memo-git-command-1-basic/">Git - 명령어 - 1. 기본</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/install-docker-on-windows-10/">Docker - 2. Windows 10 환경에서 도커 설치하기</a></li>
       
         
         
@@ -4231,6 +4231,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
   
@@ -9023,7 +9036,7 @@ No...
       
       
       <div class="card">
-        <a href="/posts/unity-opt-occlusion-culling/">
+        <a href="/posts/unity-mobile-optimization/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9040,13 +9053,13 @@ No...
   
 
   
-    Mar  1, 2021
+    Nov  6, 2021
   
 
-  <i class="unloaded">2021-03-01T01:40:00+09:00</i>
+  <i class="unloaded">2021-11-06T00:02:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 오클루전 컬링</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 모바일 성능 최적화</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9055,37 +9068,27 @@ No...
 
 
 
-                프러스텀 컬링 (Frustum Culling)
+                프로젝트 설정
 
 
 
   
-    카메라의 뷰 프러스텀(View Frustum) 영역 밖의 오브젝트들은 렌더링하지 않는 것
+…
+
+
+  공통
   
+    프로젝트 설정에서 불필요해 보이는 옵션들은 웬만해서 끄는 것이 성능에 좋다.
   
-    따로 설정하지 않아도 유니티 내에서 기본적으로 적용된다.
+
+  물리 엔진을 사용하지 않는 경우
+  
+    Physics - Auto Simulation, Auto Sync Transforms 비활성화
   
 
-
-
-
-
-
-그냥 이렇게 두어도
-
-
-
-실제로 이렇게 컬링된다.
-
-
-
-GIF
-
-
-
-
-
-오클루전 컬링 (Occlusion C...
+  알맞은 Frame Rate 설정하기
+  
+    Applica...
               </p>
             </div>
           </div>

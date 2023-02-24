@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="Rito15" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"Rito15","description":"Game Programmer","url":"https://rito15.github.io/page30/","author":{"@type":"Person","name":"Rito15"},"@type":"WebPage","@context":"https://schema.org"}</script>
+{"description":"Game Programmer","url":"https://rito15.github.io/page30/","author":{"@type":"Person","name":"Rito15"},"headline":"Rito15","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -362,6 +362,104 @@
 
 
 <div id="post-list">
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/opengl-study-22/">OpenGL 공부 - 22 - Light Class</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        목표
+
+
+
+  DirectionalLight, PointLight 클래스 작성
+  프래그먼트 쉐이더에서 각 라이트에 맞는 계산 수행
+
+
+
+
+1. Directional Light
+
+
+
+  위치에 관계 없이 방향으로만 작용하는 직광 만들기
+
+
+DirectionalLight 클래스 작성
+
+
+  
+    class DirectionalLight
+{
+priva...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, Feb 18, 2021,  3:13 PM +0900"
+  >
+
+  
+  
+
+  
+    Feb 18, 2021
+  
+
+  <i class="unloaded">2021-02-18T15:13:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1283 words">7 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
 
 
 
@@ -1220,101 +1318,6 @@ p...
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/opengl-study-18/">OpenGL 공부 - 18 - Specular, Rim Light</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        목표
-
-
-
-  Specular Lighting, Rim Lighting 적용
-
-
-
-
-공부 내용
-
-
-필요한 유니폼 변수 전달
-
-World View 벡터가 필요하므로, 이를 구하기 위한 카메라 위치를 전달해준다.
-
-
-  
-    // main.cpp
-
-glUniform3fv(glGetUniformLocation(shaderProgram, "cameraPo...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Sun, Feb 14, 2021,  3:38 PM +0900"
-  >
-
-  
-  
-
-  
-    Feb 14, 2021
-  
-
-  <i class="unloaded">2021-02-14T15:38:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4149 words">23 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1955,6 +1958,11 @@ glUniform3fv(glGetUniformLocation(shaderProgram, "cameraPo...
         
         
         
+        <li><a href="/posts/install-docker-on-windows-10/">Docker - 2. Windows 10 환경에서 도커 설치하기</a></li>
+      
+        
+        
+        
         <li><a href="/posts/unity-deltatime-and-fixeddeltatime/">유니티 - Time.deltaTime과 Time.fixedDeltaTime</a></li>
       
         
@@ -1966,11 +1974,6 @@ glUniform3fv(glGetUniformLocation(shaderProgram, "cameraPo...
         
         
         <li><a href="/posts/memo-git-command-1-basic/">Git - 명령어 - 1. 기본</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/install-docker-on-windows-10/">Docker - 2. Windows 10 환경에서 도커 설치하기</a></li>
       
         
         

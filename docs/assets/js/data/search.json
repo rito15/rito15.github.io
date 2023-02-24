@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "관리자 권한으로 CMD 열기(배치파일)",
+    "url": "/posts/open-cmd-as-admin/",
+    "categories": "cmd",
+    "tags": "",
+    "date": "2023-02-24 22:31:23 +0900",
+    
+
+
+
+
+
+    "snippet": "관리자 권한으로 CMD 여는 배치파일 만들기cmdcmd.bat@echo off&amp;gt;nul 2&amp;gt;&amp;amp;1 &quot;%SYSTEMROOT%\\system32\\cacls.exe&quot; &quot;%SYSTEMROOT%\\system32\\config\\system&quot;if &#39;%errorlevel%&#39; NEQ &#39;0&#39; (    echo.    goto UACPrompt) else ( goto gotAdmin ):UACPrompt    echo Set UAC = CreateOb..."
+  },
+  
+  {
     "title": "URP 마테리얼이 기본 렌더파이프라인에서 분홍색으로 나타나는 이유",
     "url": "/posts/why-urp-material-shows-pink/",
     "categories": "Unity Shader, URP Shader Memo",
