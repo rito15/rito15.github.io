@@ -5654,6 +5654,19 @@ RET             ; stack -&gt; EIP : 함수 호출 문장 다음 지점으로 제
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9939,57 +9952,6 @@ RET             ; stack -&gt; EIP : 함수 호출 문장 다음 지점으로 제
       
       
       <div class="card">
-        <a href="/posts/unity-editor-key-events/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 31, 2021
-  
-
-  <i class="unloaded">2021-08-31T15:33:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 키보드 이벤트 메모</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-
-  
-    // 현재 누른 키 확인
-bool spacePressed = Event.current.keyCode == KeyCode.Space;
-
-// 다른 이벤트(마우스 이벤트 등)와 동시에 입력한 보조 키 확인
-bool controlPressed = Event.current.modifiers == EventModifiers.Contr...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-shader-properties/">
           <div class="card-body">
             <!--
@@ -10097,6 +10059,63 @@ class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
     public int callbackOrder =&gt; 0;
 
     public vo...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-find-folder-path-from-folder-asset/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep  4, 2021
+  
+
+  <i class="unloaded">2021-09-04T19:59:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 - 폴더 애셋으로부터 폴더 절대 경로 구하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                1. 삽질
+
+
+
+  
+    …
+  
+
+  아무 생각 없이 재귀로 폴더도 찾고, 메타 파일도 찾고, Regex로 guid도 찾고…
+
+  정신 차려보니 아래와 같은 소스 코드를 짜고 있었다.
+
+  
+    
+      /// &lt;summary&gt; 지정한 폴더 애셋의 절대 경로 찾기 &lt;/summary&gt;
+private string Find...
               </p>
             </div>
           </div>

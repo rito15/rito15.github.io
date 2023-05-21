@@ -4917,6 +4917,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9046,57 +9059,6 @@
       
       
       <div class="card">
-        <a href="/posts/unity-editor-key-events/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago small"
-  >
-
-  
-  
-
-  
-    Aug 31, 2021
-  
-
-  <i class="unloaded">2021-08-31T15:33:00+09:00</i>
-
-</span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 - 키보드 이벤트 메모</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                Note
-
-
-
-  
-    // 현재 누른 키 확인
-bool spacePressed = Event.current.keyCode == KeyCode.Space;
-
-// 다른 이벤트(마우스 이벤트 등)와 동시에 입력한 보조 키 확인
-bool controlPressed = Event.current.modifiers == EventModifiers.Contr...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
-      
-      
-      <div class="card">
         <a href="/posts/unity-editor-process-before-build/">
           <div class="card-body">
             <!--
@@ -9202,6 +9164,64 @@ class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
     
       /// &lt;summary&gt; 지정한 폴더 애셋의 절대 경로 찾기 &lt;/summary&gt;
 private string Find...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/unity-editor-window-scrollbar/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Sep  4, 2021
+  
+
+  <i class="unloaded">2021-09-04T23:11:00+09:00</i>
+
+</span>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>유니티 에디터 윈도우 - 스크롤 바 생성하기</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Memo
+
+
+
+  
+    에디터 윈도우 내의 내용들이 세로 범위를 넘어설 경우, 윈도우 우측에 스크롤 바를 생성한다.
+  
+  
+    BeginScrollView ~ EndScrollView 사이 영역에만 스크롤바를 생성하고,
+위아래 영역은 기존처럼 고정된다.
+  
+
+
+
+  
+    [SerializeField]
+private Vector2 scr...
               </p>
             </div>
           </div>

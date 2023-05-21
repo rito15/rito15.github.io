@@ -8503,6 +8503,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9043,7 +9056,7 @@ Cout Format
       
       
       <div class="card">
-        <a href="/posts/memo-git-command-1-basic/">
+        <a href="/posts/memo-git-command-2-repository/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9066,7 +9079,7 @@ Cout Format
   <i class="unloaded">2022-03-23T22:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Git - 명령어 - 1. 기본</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Git - 명령어 - 2. 저장소(Repository)</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9075,30 +9088,44 @@ Cout Format
 
 
 
-                특정 명령어의 도움말 확인하기
-
-git {명령어} -h
+                Init
 
 
+로컬 리포지토리로 만들기
+
+1
+git init
 
 
-임의 단축 명령어 만들기
 
-
-  예시 : git status를 git st로 사용하도록 단축 명령어 등록
-
-
-git config --global alias.st status
+  .git 폴더가 생성된다.
 
 
 
 
+Remote
 
 
-자주 사용하는 명령어 모음
+원격 리포지토리 이름 확인하기
+
+1
+git remote
 
 
-  참고 : https://velog.io/@simchodi/Git-초기세팅...
+
+
+원격 리포지토리 주소 확인하기
+
+1
+git remote -v
+
+
+
+
+원격 리포지토리 주소 변경하기
+
+1
+git remote set-url origin [https://~.g...
               </p>
             </div>
           </div>

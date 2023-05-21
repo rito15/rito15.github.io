@@ -367,6 +367,94 @@
 
   <div class="post-preview">
     <h1>
+      <a href="/posts/unity-editor-menu-item/">유니티 - Menu Item(메뉴 아이템)</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        메뉴 아이템 기본
+
+
+  
+    private const string MenuItemTitle = "Window/Rito/Menu Item";
+private const int MenuItemPriority = 123;
+
+[MenuItem(MenuItemTitle)]
+private static void MenuItem1()
+{
+    // ..
+}
+
+...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, Mar 12, 2021,  8:10 PM +0900"
+  >
+
+  
+  
+
+  
+    Mar 12, 2021
+  
+
+  <i class="unloaded">2021-03-12T20:10:00+09:00</i>
+
+</span>
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="405 words">2 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
       <a href="/posts/unity-editor-define-symbol/">유니티 - Scripting Define Symbol 스크립트로 제어하기</a>
     </h1>
 
@@ -1204,107 +1292,6 @@ How To Use
 
 
 
-  <div class="post-preview">
-    <h1>
-      <a href="/posts/unity-editor-custom-editor-window/">유니티 - Custom Editor Window(커스텀 에디터 윈도우)</a>
-    </h1>
-
-    <div class="post-content">
-      <p>
-        
-
-
-
-
-
-        Note
-
-
-
-  에디터 윈도우를 직접 만들어 사용할 수 있다.
-
-
-Preview
-
-
-
-
-
-
-Source Code Example
-
-
-
-  
-    #if UNITY_EDITOR
-
-using UnityEngine;
-using UnityEditor;
-
-public class ExampleWindow : EditorWindow
-{
-    private bo...
-      </p>
-    </div>
-
-    <div class="post-meta text-muted d-flex justify-content-between">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        <!--
-  Date format snippet
-
-  v2.4.1
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2020 Cotes Chung
-  MIT License
--->
-<span class="timeago "
-  
-    data-toggle="tooltip"
-    data-placement="bottom"
-    title="Mon, Mar  8, 2021, 12:00 AM +0900"
-  >
-
-  
-  
-
-  
-    Mar  8, 2021
-  
-
-  <i class="unloaded">2021-03-08T00:00:00+09:00</i>
-
-</span>
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        <!--
-  Calculate the post's reading time, and display the word count in tooltip
- -->
-
-
-
-
-
-
-<!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="247 words">1 min</span>
-
-
-        <!-- page views -->
-        
-      </div>
-
-      
-
-    </div> <!-- .post-meta -->
-
-  </div> <!-- .post-review -->
-
-
-
 </div> <!-- #post-list -->
 
 
@@ -1884,9 +1871,24 @@ public class ExampleWindow : EditorWindow
     
 
     
+      <!-- hide number -->
+      
+    
+
+  
+
+    
+    
+    
+    
+    
+
+    
+
+    
       <!-- show number -->
       <li class="page-item ">
-        <a class="page-link btn-box-shadow" href="/page36/">36</a>
+        <a class="page-link btn-box-shadow" href="/page37/">37</a>
       </li>
     
 
