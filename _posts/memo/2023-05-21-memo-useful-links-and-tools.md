@@ -153,6 +153,9 @@ pin: true
 ## **Pixlr: 온라인 포토샵**
 - <https://pixlr.com/kr/editor/>
 
+## **Squoosh: 이미지 압축**
+- <https://squoosh.app/>
+
 ## **Waifu: 이미지 업스케일링**
 - <https://waifu2x.udp.jp/index.ko.html>
 
