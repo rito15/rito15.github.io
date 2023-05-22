@@ -162,5 +162,14 @@ pin: true
 ## **Effect Texture Maker**
 - <https://mebiusbox.github.io/contents/EffectTextureMaker/>
 
+<br>
 
+<!-- --------------------------------------------------------------------------------- -->
+
+# 6. 폰트
+---
+
+## **Font Squirrel**
+- <https://www.fontsquirrel.com/>
+- 무료 영문 폰트
 

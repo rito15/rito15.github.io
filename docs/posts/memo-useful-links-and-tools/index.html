@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="★ 알아두면 좋은, 아주 유용한 링크 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"작성일 기준 2023. 05. 21","datePublished":"2023-05-21T18:34:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-useful-links-and-tools/"},"url":"https://rito15.github.io/posts/memo-useful-links-and-tools/","author":{"@type":"Person","name":"Rito15"},"headline":"★ 알아두면 좋은, 아주 유용한 링크 모음","dateModified":"2023-05-21T18:34:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"작성일 기준 2023. 05. 21","datePublished":"2023-05-21T18:34:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-useful-links-and-tools/"},"url":"https://rito15.github.io/posts/memo-useful-links-and-tools/","author":{"@type":"Person","name":"Rito15"},"headline":"★ 알아두면 좋은, 아주 유용한 링크 모음","dateModified":"2023-05-22T22:37:31+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -389,6 +389,35 @@
         <div>
           <!-- lastmod -->
           
+          <span>
+            Updated
+            <!--
+  Date format snippet
+
+  v2.4.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+<span class="timeago lastmod"
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Mon, May 22, 2023, 10:37 PM +0900"
+  >
+
+  
+  
+
+  
+    May 22
+  
+
+  <i class="unloaded">2023-05-22T22:37:31+09:00</i>
+
+</span>
+          </span>
+          
 
           <!-- read time -->
           <!--
@@ -401,7 +430,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="814 words">4 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="826 words">4 min</span>
 
 
           <!-- page views -->
@@ -610,6 +639,19 @@
   <li><a href="https://mebiusbox.github.io/contents/EffectTextureMaker/">https://mebiusbox.github.io/contents/EffectTextureMaker/</a></li>
 </ul>
 
+<p><br /></p>
+
+<!-- --------------------------------------------------------------------------------- -->
+
+<h1 id="6-폰트">6. 폰트</h1>
+<hr />
+
+<h2 id="font-squirrel"><strong>Font Squirrel</strong></h2>
+<ul>
+  <li><a href="https://www.fontsquirrel.com/">https://www.fontsquirrel.com/</a></li>
+  <li>무료 영문 폰트</li>
+</ul>
+
 
 
       </div>
@@ -741,6 +783,11 @@
         
         
         
+        <li><a href="/posts/memo-useful-links-and-tools/">★ 알아두면 좋은, 아주 유용한 링크 모음</a></li>
+      
+        
+        
+        
         <li><a href="/posts/install-docker-on-windows-10/">Docker - 2. Windows 10 환경에서 도커 설치하기</a></li>
       
         
@@ -757,11 +804,6 @@
         
         
         <li><a href="/posts/memo-git-command-1-basic/">Git - 명령어 - 1. 기본</a></li>
-      
-        
-        
-        
-        <li><a href="/posts/unity-memo-show-property-on-inspector/">유니티 - 인스펙터에 프로퍼티 표시하기</a></li>
       
 
       </ul>
@@ -9036,21 +9078,34 @@
                 Memo
 
 
-
   자꾸만 까먹어서 메모
 
 
-
-  
-    Properties
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+Properties
 {
     _MyColor("MyColor", Color) = (1,1,1,1)
 
     _MyVector("My Vector", Vector) = (0,0,0,0)
 
-    _MyRange("My Range", Range(0, 1)) = 1
-
-    _MyFloat("My ...
+    _MyRange("My Range",...
               </p>
             </div>
           </div>
@@ -9099,15 +9154,24 @@
   아래의 형태로 스크립트를 작성해놓으면 빌드 직전에 동작한다.
 
 
-
-  
-    #if UNITY_EDITOR
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+#if UNITY_EDITOR
 
 class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
 {
-    public int callbackOrder =&gt; 0;
-
-    public vo...
+    public int callbackOrder =...
               </p>
             </div>
           </div>
@@ -9153,18 +9217,49 @@ class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
 
 
 
-  
-    …
-  
+   
+…
+
 
   아무 생각 없이 재귀로 폴더도 찾고, 메타 파일도 찾고, Regex로 guid도 찾고…
 
   정신 차려보니 아래와 같은 소스 코드를 짜고 있었다.
 
-  
-    
-      /// &lt;summary&gt; 지정한 폴더 애셋의 절대 경로 찾기 &lt;/summary&gt;
-private string Find...
+  1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+...
               </p>
             </div>
           </div>
