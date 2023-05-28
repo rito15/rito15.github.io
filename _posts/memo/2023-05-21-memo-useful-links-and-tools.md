@@ -1,5 +1,5 @@
 ---
-title: ★ 알아두면 좋은, 아주 유용한 링크 모음
+title: ★ 알아두면 좋은 유용한 링크 모음
 author: Rito15
 date: 2023-05-21 18:34:00 +09:00
 categories: [Memo]
@@ -10,7 +10,7 @@ pin: true
 ---
 
 ## 작성일 기준
-> `2023. 05. 21`
+> `2023. 05. 29`
 
 
 <br>
@@ -23,13 +23,14 @@ pin: true
 - <https://chat.openai.com/chat>
 - 구글링하기 귀찮으면 꼭 쓰세요.
 - 무료: GPT 3.5 / 유료: GPT 4.0 기반 (월 20달러)
-- 한 세션 내에서는 이전 채팅 컨텍스트 기억해서 답변하니까, 주제가 달라지면 꼭 세션 새로 열어서 질문하세요.
+- 월 20달러가 비싸긴 한데 GPT 4.0은 비싼 값을 합니다. 그런데 3시간마다 25 메시지 제한이 있으니 결제 시 꼭 고려하세요.
 
 
 ## **Bing Chat**
 - <https://www.bing.com/new>
 - GPT 4.0 기반
 - 검색 데이터 기반으로 동작하고, 데이터를 어디서 찾았는지 링크도 제공합니다.
+- 체감상 ChatGPT보다 데이터의 질이 많이 떨어집니다.
 
 
 ## **Bard: Google Chat AI**
@@ -60,6 +61,7 @@ pin: true
 ## **AWS**
 - <https://aws.amazon.com/ko/>
 - 대 클라우드 시대의 대표 주자
+- 개발자로서 클라우드 하나쯤은 꼭 익혀두는 것이 좋습니다.
 
 <br>
 
@@ -67,27 +69,6 @@ pin: true
 
 # 3. 문서 및 협업
 ---
-
-## **StackEdit: 마크다운 온라인 에디터**
-- <https://stackedit.io/app#>
-- 마크다운 문서를 웹 브라우저로 작성하고, 뷰어로 확인할 수 있습니다.
-
-
-## **Marp: Markdown for PPT**
-- <https://marp.app/>
-
-- <https://programming119.tistory.com/264>
-- <https://sooftware.io/marp/>
-- <https://gist.github.com/yhatt/a7d33a306a87ff634df7bb96aab058b5>
-
-- 마크다운 문법을 통해 빠르게 PPT를 작성할 수 있습니다.
-- PPT 및 PDF 변환 지원
-- VS Code 익스텐션 지원
-
-
-## **Latex: 마크다운 수식 테스트**
-- <http://mathurl.com/>
-
 
 ## **Notion: 개인 메모 및 협업**
 - <https://www.notion.so/ko-kr/>
@@ -114,7 +95,34 @@ pin: true
 
 <!-- ---------------------------------------------------------------------------------- -->
 
-# 4. 다이어그램
+# 4. 마크다운
+---
+
+## **StackEdit: 마크다운 온라인 에디터**
+- <https://stackedit.io/app#>
+- 마크다운 문서를 웹 브라우저로 작성하고, 뷰어로 확인할 수 있습니다.
+
+
+## **Marp: Markdown for PPT**
+- <https://marp.app/>
+
+- <https://programming119.tistory.com/264>
+- <https://sooftware.io/marp/>
+- <https://gist.github.com/yhatt/a7d33a306a87ff634df7bb96aab058b5>
+
+- 마크다운 문법을 통해 빠르게 PPT를 작성할 수 있습니다.
+- PPT 및 PDF 변환 지원
+- VS Code 익스텐션 지원
+
+
+## **Latex: 마크다운 수식 테스트**
+- <http://mathurl.com/>
+
+<br>
+
+<!-- ---------------------------------------------------------------------------------- -->
+
+# 5. 다이어그램
 ---
 
 ## **Figma: 다이어그램 작성 및 협업**
@@ -122,8 +130,9 @@ pin: true
 - 기업 내에서도 많이 쓰니까 꼭 알아두는게 좋습니다.
 
 
-## **Figjam: 효율적인 문서작업을 위한 각종 템플릿 제공**
+## **Figjam**
 - <https://www.figma.com/figjam/>
+- 효율적인 작업을 위한 각종 템플릿을 제공합니다.
 
 
 ## **Draw.IO: 다이어그램**
@@ -135,9 +144,27 @@ pin: true
 
 <br>
 
+<!-- ---------------------------------------------------------------------------------- -->
+
+# 6. 디자인
+---
+
+## **Pixlr: 온라인 포토샵**
+- <https://pixlr.com/kr/editor/>
+
+## **색상 팔레트**
+- <https://colorhunt.co/>
+- <https://coolors.co/>
+
+## **그라디언트 팔레트**
+- <https://gradienthunt.com/>
+- <https://uigradients.com/>
+
+<br>
+
 <!-- --------------------------------------------------------------------------------- -->
 
-# 5. 이미지
+# 7. 이미지
 ---
 
 ## **FlatIcon: 무료 아이콘**
@@ -149,9 +176,6 @@ pin: true
 - <https://www.pngwing.com/ko>
 - 광고도 많고 지저분하게 생겼긴 한데, 가입 없이 무료로 사용할 수 있습니다.
 - Flat Icon에 없는 아이콘들을 추가로 찾을 때 사용하기 좋습니다.
-
-## **Pixlr: 온라인 포토샵**
-- <https://pixlr.com/kr/editor/>
 
 ## **Squoosh: 이미지 압축**
 - <https://squoosh.app/>
@@ -166,10 +190,29 @@ pin: true
 
 <!-- --------------------------------------------------------------------------------- -->
 
-# 6. 폰트
+# 8. 폰트
 ---
 
-## **Font Squirrel**
+## **무료 영문 폰트**
 - <https://www.fontsquirrel.com/>
-- 무료 영문 폰트
+- <https://fonts.google.com/>
+- <https://www.dafont.com/>
+
+## **무료 한글 폰트**
+- <https://noonnu.cc/>
+- <https://www.woowahan.com/fonts>
+- <https://hangeul.naver.com/font>
+
+## **참고 유튜브**
+- [디자이너가 추천하는 상업적, 저작권 무료 폰트 완벽 모음 - 존코바](https://www.youtube.com/watch?v=7gOiGK83X-o)
+
+## **개발용(고정폭) 폰트 추천**
+- [나눔고딕코딩](https://github.com/naver/nanumfont)
+- [D2Coding](https://github.com/naver/d2codingfont)
+
+- **구글 스프레드시트 고정폭 글꼴**
+  - `Inconsolata`
+  - `Courier New`
+
+
 
