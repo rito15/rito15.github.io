@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="★ 알아두면 좋은 유용한 링크 모음" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"description":"작성일 기준 2023. 05. 29","datePublished":"2023-05-21T18:34:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-useful-links-and-tools/"},"url":"https://rito15.github.io/posts/memo-useful-links-and-tools/","author":{"@type":"Person","name":"Rito15"},"headline":"★ 알아두면 좋은 유용한 링크 모음","dateModified":"2023-05-23T01:15:05+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"★ 알아두면 좋은 유용한 링크 모음","description":"작성일 기준 2023. 05. 29","dateModified":"2023-05-29T05:08:38+09:00","datePublished":"2023-05-21T18:34:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/memo-useful-links-and-tools/"},"url":"https://rito15.github.io/posts/memo-useful-links-and-tools/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -403,17 +403,17 @@
   
     data-toggle="tooltip"
     data-placement="bottom"
-    title="Tue, May 23, 2023,  1:15 AM +0900"
+    title="Mon, May 29, 2023,  5:08 AM +0900"
   >
 
   
   
 
   
-    May 23
+    May 29
   
 
-  <i class="unloaded">2023-05-23T01:15:05+09:00</i>
+  <i class="unloaded">2023-05-29T05:08:38+09:00</i>
 
 </span>
           </span>
@@ -9134,34 +9134,21 @@
                 Memo
 
 
+
   자꾸만 까먹어서 메모
 
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-Properties
+
+  
+    Properties
 {
     _MyColor("MyColor", Color) = (1,1,1,1)
 
     _MyVector("My Vector", Vector) = (0,0,0,0)
 
-    _MyRange("My Range",...
+    _MyRange("My Range", Range(0, 1)) = 1
+
+    _MyFloat("My ...
               </p>
             </div>
           </div>
@@ -9210,24 +9197,15 @@ Properties
   아래의 형태로 스크립트를 작성해놓으면 빌드 직전에 동작한다.
 
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-#if UNITY_EDITOR
+
+  
+    #if UNITY_EDITOR
 
 class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
 {
-    public int callbackOrder =...
+    public int callbackOrder =&gt; 0;
+
+    public vo...
               </p>
             </div>
           </div>
@@ -9273,49 +9251,18 @@ class BuildPreProcessor : UnityEditor.Build.IPreprocessBuildWithReport
 
 
 
-   
-…
-
+  
+    …
+  
 
   아무 생각 없이 재귀로 폴더도 찾고, 메타 파일도 찾고, Regex로 guid도 찾고…
 
   정신 차려보니 아래와 같은 소스 코드를 짜고 있었다.
 
-  1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-...
+  
+    
+      /// &lt;summary&gt; 지정한 폴더 애셋의 절대 경로 찾기 &lt;/summary&gt;
+private string Find...
               </p>
             </div>
           </div>
