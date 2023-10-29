@@ -4,7 +4,7 @@
   <id>https://rito15.github.io/</id>
   <title>Rito15</title>
   <subtitle>Game Programmer</subtitle>
-  <updated>2023-07-09T18:06:17+09:00</updated>
+  <updated>2023-10-30T03:12:17+09:00</updated>
   <author>
     <name>Rito15</name>
     <uri>https://rito15.github.io/</uri>
@@ -20,8 +20,62 @@
 
   
   <entry>
-    <title>★ 알아두면 좋은 유용한 링크 모음</title>
-    <link href="https://rito15.github.io/posts/memo-useful-links-and-tools/" rel="alternate" type="text/html" title="★ 알아두면 좋은 유용한 링크 모음" />
+    <title>유니티 - 업스케일 샘플링(Upscale Sampling)</title>
+    <link href="https://rito15.github.io/posts/unity-upscale-sampling/" rel="alternate" type="text/html" title="유니티 - 업스케일 샘플링(Upscale Sampling)" />
+    <published>2023-10-30T00:58:00+09:00</published>
+  
+    <updated>2023-10-30T00:58:00+09:00</updated>
+  
+    <id>https://rito15.github.io/posts/unity-upscale-sampling/</id>
+    <content src="https://rito15.github.io/posts/unity-upscale-sampling/" />
+    <author>
+      <name>Rito15</name>
+    </author>
+
+  
+    
+    <category term="Unity" />
+    
+    <category term="Unity Optimization" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      1. What is it?
+
+모바일과 같은 환경에서는 종종 해상도를 낮춰서 최적화하는 방식을 사용할 때가 있다.
+
+기기에서 최대로 사용 가능한 해상도보다 살짝 낮추면 생각보다 품질은 많이 떨어지지 않으면서, 상당한 성능 상의 여유를 얻을 수 있다.
+
+그리고 라이팅이나 포스트 프로세싱 등 다른 영역에 리소스를 할당하여 전체적인 품질을 향상시킬 수 있다.
+
+하지만 여기에 치명적인 단점이 존재한다.
+
+바로 UI의 해상도를 낮추면 사용자가 해상도가 낮아졌다는 것을 보다 민감하게 받아들일 수 있다는 것이다.
+
+이를 보완하기 위해, UI를 제외한 게임 화면은 해상도를 낮추고 UI의 해상도는 원본을 유지하는 방식을 선택할 수 있는데
+
+이 트릭을 업스케일 샘플링(Upscale Sampling)이라고 한다.
+
+
+
+2....
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>★ 알아두면 좋은 유용한 링크, 툴 모음</title>
+    <link href="https://rito15.github.io/posts/memo-useful-links-and-tools/" rel="alternate" type="text/html" title="★ 알아두면 좋은 유용한 링크, 툴 모음" />
     <published>2023-05-21T18:34:00+09:00</published>
   
     <updated>2023-05-29T05:08:38+09:00</updated>
@@ -251,67 +305,6 @@ public int Score
 
         // 새로운 값 할당
         _...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Git - 명령어 - 7. Restore</title>
-    <link href="https://rito15.github.io/posts/memo-git-command-7-restore/" rel="alternate" type="text/html" title="Git - 명령어 - 7. Restore" />
-    <published>2022-03-23T22:00:00+09:00</published>
-  
-    <updated>2022-03-23T22:00:00+09:00</updated>
-  
-    <id>https://rito15.github.io/posts/memo-git-command-7-restore/</id>
-    <content src="https://rito15.github.io/posts/memo-git-command-7-restore/" />
-    <author>
-      <name>Rito15</name>
-    </author>
-
-  
-    
-    <category term="Memo" />
-    
-    <category term="Git" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Restore
-
-
-[1] 작업 중인 파일 상태 되돌리기
-
-git restore abc.txt
-
-
-
-  modified 상태인 파일의 변경사항을 마지막 커밋 상태로 되돌린다.
-
-
-
-
-[2] 스테이징 취소하기
-
-git restore --staged abc.txt
-
-
-
-  Staging Area에 있는 특정 파일을 modified 상태로 되돌린다.
-  파일 내용에 영향을 주지 않는다.
-
-
-
-
     </summary>
   
 

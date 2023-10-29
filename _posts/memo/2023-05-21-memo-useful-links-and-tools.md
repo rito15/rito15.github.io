@@ -1,5 +1,5 @@
 ---
-title: ★ 알아두면 좋은 유용한 링크 모음
+title: ★ 알아두면 좋은 유용한 링크, 툴 모음
 author: Rito15
 date: 2023-05-21 18:34:00 +09:00
 categories: [Memo]
@@ -90,6 +90,10 @@ pin: true
 ## **Monday: 협업 및 프로젝트 관리**
 - <https://monday.com/lang/ko>
 - 기업에서 많이 씁니다.
+
+## **Slack: 업무 채팅용**
+- <https://slack.com/>
+- 기업에서 많이 많이 씁니다.
 
 <br>
 

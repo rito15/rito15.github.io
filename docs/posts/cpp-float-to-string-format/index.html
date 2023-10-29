@@ -37,7 +37,7 @@
 <meta property="twitter:title" content="실수를 스트링으로 변환할 때 포맷 지정하기" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"실수를 스트링으로 변환할 때 포맷 지정하기","description":"Headers","dateModified":"2021-05-16T01:33:00+09:00","datePublished":"2021-05-16T01:33:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cpp-float-to-string-format/"},"url":"https://rito15.github.io/posts/cpp-float-to-string-format/","author":{"@type":"Person","name":"Rito15"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"Headers","datePublished":"2021-05-16T01:33:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://rito15.github.io/posts/cpp-float-to-string-format/"},"url":"https://rito15.github.io/posts/cpp-float-to-string-format/","author":{"@type":"Person","name":"Rito15"},"headline":"실수를 스트링으로 변환할 때 포맷 지정하기","dateModified":"2021-05-16T01:33:00+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -672,7 +672,7 @@
         
         
         
-        <li><a href="/posts/memo-useful-links-and-tools/">★ 알아두면 좋은 유용한 링크 모음</a></li>
+        <li><a href="/posts/memo-useful-links-and-tools/">★ 알아두면 좋은 유용한 링크, 툴 모음</a></li>
       
         
         
@@ -6917,6 +6917,19 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -9042,7 +9055,7 @@ __LINE__
       
       
       <div class="card">
-        <a href="/posts/memo-git-command-2-repository/">
+        <a href="/posts/memo-git-command-3-status-logs/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -9065,7 +9078,7 @@ __LINE__
   <i class="unloaded">2022-03-23T22:00:00+09:00</i>
 
 </span>
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Git - 명령어 - 2. 저장소(Repository)</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Git - 명령어 - 3. 상태, 기록</h3>
             <div class="text-muted small">
               <p>
                 
@@ -9074,44 +9087,26 @@ __LINE__
 
 
 
-                Init
+                Status
 
 
-로컬 리포지토리로 만들기
-
-1
-git init
-
-
-
-  .git 폴더가 생성된다.
-
-
-
-
-Remote
-
-
-원격 리포지토리 이름 확인하기
+변경된 파일들 상태 확인하기
 
 1
-git remote
+git status
 
 
 
 
-원격 리포지토리 주소 확인하기
 
-1
-git remote -v
-
-
-
-
-원격 리포지토리 주소 변경하기
-
-1
-git remote set-url origin [https://~.g...
+  Changes to be committed:
+    
+      git add를 통해 Staging Area로 이동된 파일들 목록
+    
+  
+  Changes not staged for commit:
+    
+      변경되었지만 아직 스테이징 되지 않은 파일들 목...
               </p>
             </div>
           </div>
